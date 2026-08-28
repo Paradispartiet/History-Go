@@ -1,0 +1,372 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const rel = p => path.join(ROOT, p);
+const readJson = p => JSON.parse(fs.readFileSync(rel(p), 'utf8'));
+const writeJson = (p, value) => {
+  fs.mkdirSync(path.dirname(rel(p)), { recursive: true });
+  fs.writeFileSync(rel(p), `${JSON.stringify(value, null, 2)}\n`);
+};
+const writeText = (p, value) => {
+  fs.mkdirSync(path.dirname(rel(p)), { recursive: true });
+  fs.writeFileSync(rel(p), value);
+};
+
+const KEY = 'religion/religion_forskning';
+const ROLE = 'religion_forskning';
+const WORLD_PATH = 'data/Civication/roleWorlds/religion/religion_forskning.json';
+const SOURCE_FIRST = 'reports/CIVICATION_RELIGION_FORSKNING_ROLE_WORLD_ROLLOUT_SOURCE_FIRST.md';
+const REPORT_PATH = 'reports/CIVICATION_RELIGION_FORSKNING_ROLE_WORLD_ROLLOUT.md';
+const sourceRefs = [
+  'data/Civication/mailFamilies/religion/job/religion_forskning_job.json#religion_forskning_job_problemstilling',
+  'data/Civication/mailFamilies/religion/people/religion_forskning_people.json#religion_forskning_people_motlesning',
+  'data/Civication/mailFamilies/religion/conflict/religion_forskning_conflict.json#religion_forskning_conflict_formidling',
+  'data/Civication/mailFamilies/religion/event/religion_forskning_event.json#religion_forskning_event_motkilde',
+  'data/Civication/mailFamilies/religion/knowledge/religion_forskning_knowledge.json#religion_forskning_knowledge_analytisk_kategori',
+  'data/Civication/mailFamilies/religion/followup/religion_forskning_followup.json#religion_forskning_followup_kodebok',
+  'data/Civication/mailFamilies/religion/consequence/religion_forskning_consequence.json#religion_forskning_consequence_fagfelle'
+];
+
+if (!fs.existsSync(rel(SOURCE_FIRST))) throw new Error('Source-first contract must exist before materialization');
+if (fs.existsSync(rel(WORLD_PATH))) throw new Error('Religion forskning Role World already exists; refuse overwrite');
+
+const readinessBefore = readJson('data/Civication/roleWorldRolloutReadiness.json');
+const target = (readinessBefore.rollout_queue || []).find(row => row.key === KEY);
+if (!target) throw new Error(`${KEY} is not in rollout queue`);
+if (target.classification !== 'rollout_ready') throw new Error(`${KEY} is not rollout_ready: ${target.classification}`);
+if (JSON.stringify(target.authored_work_required || []) !== JSON.stringify(['situated_reputation'])) {
+  throw new Error(`Expected one-gap situated_reputation debt, got ${JSON.stringify(target.authored_work_required)}`);
+}
+if (target.cross_role_need !== 'not_required_for_rollout') throw new Error(`Unexpected cross-role need: ${target.cross_role_need}`);
+
+const flattenMails = doc => (doc.families || []).flatMap(family => family.mails || []);
+for (const ref of sourceRefs) {
+  const [file, id] = ref.split('#');
+  if (!fs.existsSync(rel(file))) throw new Error(`Missing source file ${file}`);
+  if (!flattenMails(readJson(file)).some(mail => mail.id === id)) throw new Error(`Missing canonical source scene ${ref}`);
+}
+
+const themeIds = [
+  'professional_culture',
+  'status_anxiety',
+  'shame_reputation',
+  'loyalty_up_down',
+  'social_mask',
+  'precarity',
+  'bureaucratic_power',
+  'care_vs_efficiency'
+];
+
+const recurringPeople = [
+  {
+    id: 'religion_research_project_lead_world',
+    social_function: 'prosjektleder som holder problemstilling, leveranse og metodekrav sammen uten å eie forskerens konklusjon',
+    class_position: 'prosjektansvarlig kunnskapsarbeider med koordineringsmakt, men uten rett til å omskrive evidensen',
+    status: 'høy situert prosjektstatus og tydelig fristmakt',
+    power_over_player: 'kan prioritere leveranser, etterspørre beslutningsgrunnlag og gjøre forsinkelse synlig, men kan ikke gjøre en svak hypotese sann',
+    wants: 'et avgrenset spørsmål, sporbar framdrift og tidlig varsling når metode eller etikk endrer leveransen',
+    conceals: 'at prosjektpress kan belønne en ren historie før rivalforklaringer og usikkerhet er ferdig undersøkt',
+    speech_style: 'kort, leveranse- og beslutningsnær; spør hva dataene kan bære nå, hva som mangler og hva som må endres',
+    teaches_player: 'at prosjektpålitelighet kan øke når forskeren avgrenser påstanden i stedet for å levere kunstig sikkerhet'
+  },
+  {
+    id: 'religion_research_method_peer_world',
+    social_function: 'metodekollega som motleser operasjonalisering, rivalforklaringer og påstandsrekkevidde',
+    class_position: 'faglig likemann uten formell beslutningsmyndighet over prosjektets konklusjon',
+    status: 'høy epistemisk og kollegial innflytelse',
+    power_over_player: 'kan gjøre bekreftelsesbias og manglende rivaltester synlige i fagmiljøet og påvirke senere peer review',
+    wants: 'en analyse som kan vise hva som ville motsagt hovedforklaringen og hvordan kategoriene faktisk er målt',
+    conceals: 'at faglig prestisje også kan gjøre en elegant metodeinnvending mer sosialt attraktiv enn en proporsjonal reparasjon',
+    speech_style: 'analytisk og kontrollspørsmålsdrevet; ber om alternativ forklaring, skillekriterium og observerbar konsekvens',
+    teaches_player: 'at fagfellestanding bygges når kritikk faktisk får endre analysen og ikke parkeres i en begrensningsseksjon'
+  },
+  {
+    id: 'religion_research_ethics_world',
+    social_function: 'forskningsetisk kontakt som beskytter samtykke, konfidensialitet, dataminimering og identifiseringsgrenser',
+    class_position: 'institusjonell prosess- og rådgivningsrolle med avgrenset etisk myndighet',
+    status: 'høy situert tillit i spørsmål om deltakerbeskyttelse og prosess',
+    power_over_player: 'kan kreve pause, avklaring eller eskalering når deltakerrisikoen ikke lenger dekkes av opprinnelig samtykke',
+    wants: 'at forskeren skiller navnefjerning fra reell anonymitet og dokumenterer hvorfor konkret bruk er forsvarlig',
+    conceals: 'at en langsommere prosess kan oppfattes som svak framdrift selv når den beskytter både deltaker og prosjekt',
+    speech_style: 'rolig og presis; spør hvem som kan identifiseres, hva de faktisk samtykket til og hvem som eier neste beslutning',
+    teaches_player: 'at etisk tillit ofte bygges ved å redusere egen kontroll og gi en reell grense videre til riktig prosess'
+  },
+  {
+    id: 'religion_research_archive_world',
+    social_function: 'arkivar eller kildesteward som synliggjør proveniens, bevaringslogikk, katalogisering og arkivets blindsoner',
+    class_position: 'kunnskapsinfrastruktur-rolle med høy situert makt over kildekontekst, men ikke over forskerens ferdige tolkning',
+    status: 'høy kilde- og proveniensautoritet',
+    power_over_player: 'kan vise at fravær i én samling skyldes produksjon, seleksjon eller katalogisering og dermed endre evidensens rekkevidde',
+    wants: 'presis kildeidentitet, skille mellom dokumentasjonsfravær og historisk fravær og sporbar bruk av nye funn',
+    conceals: 'at også arkivets egne ordningskategorier kan få en stabilitet som gjør dem lettere å ta som historisk virkelighet',
+    speech_style: 'proveniens- og samlingsnær; spør hvem som produserte materialet, hva som ble bevart og hva som kan ha falt utenfor',
+    teaches_player: 'at kildekritisk standing øker når forskeren gjør arkivets produksjonsbetingelser til en del av argumentet'
+  },
+  {
+    id: 'religion_research_field_participant_world',
+    social_function: 'felt- eller intervjudeltaker som bærer situert erfaring og samtidig kan være sårbar for overgeneralisering eller indirekte identifisering',
+    class_position: 'evidensbærer uten formell prosjektmakt og med asymmetrisk eksponeringsrisiko',
+    status: 'lav organisatorisk status, men høy moralsk og epistemisk betydning for eget perspektiv',
+    power_over_player: 'kan trekke tillit, avgrense samtykke eller vise at forskerens kategorier ikke beskriver erfaringen slik deltakeren kjenner den',
+    wants: 'at egen stemme brukes innen avtalt ramme og ikke gjøres til representant for en hel tradisjon eller gruppe',
+    conceals: 'at gjenkjennelighet kan være åpenbar lokalt selv når forskeren oppfatter materialet som anonymisert',
+    speech_style: 'erfaringsnær og konkret; korrigerer når institusjonelle eller analytiske ord blir større enn det som faktisk ble sagt',
+    teaches_player: 'at deltakertrust ikke kan erstattes av metodeprestisje og kan divergere fra hva kolleger belønner'
+  },
+  {
+    id: 'religion_research_peer_reviewer_world',
+    social_function: 'fagfelle som tester om argumentet viser rivalforklaringer, begrensninger, kildegrunnlag og sporbar reparasjon',
+    class_position: 'ekstern faglig portvokter uten eierskap til prosjektet, men med betydelig publiseringsrelevant innflytelse',
+    status: 'høy situert faglig vurderingsmakt',
+    power_over_player: 'kan gjøre et metodisk hull kostbart sent i prosessen og kreve at påstander avgrenses eller tester dokumenteres',
+    wants: 'et argument der leseren kan se hva som er data, tolkning, rivalforklaring, usikkerhet og senere korrigering',
+    conceals: 'at peer-review-språk kan høres definitivt ut selv når flere faglig forsvarlige reparasjoner er mulige',
+    speech_style: 'presis og sporbarhetsorientert; peker på det konkrete stedet der beviskjeden mangler et ledd',
+    teaches_player: 'at langsiktig akademisk standing ofte styrkes av synlig reparasjon selv når den koster kortsiktig status og tid'
+  },
+  {
+    id: 'religion_research_public_communication_world',
+    social_function: 'formidler eller redaksjonell samarbeidspartner som vil gjøre forskningen forståelig og interessant for et større publikum',
+    class_position: 'kommunikasjonsrolle med innflytelse over presentasjon, ikke over hva forskningsdataene faktisk beviser',
+    status: 'høy situert synlighetsmakt og varierende faglig autoritet',
+    power_over_player: 'kan belønne klare overskrifter og konkrete historier eller framstille forbehold som svakhet',
+    wants: 'tydelige funn, forståelige eksempler og en historie som kan kommuniseres uten unødvendig friksjon',
+    conceals: 'at behovet for tydelighet kan presse én situert stemme eller ett nytt dokument til å bære mer enn evidensen tillater',
+    speech_style: 'publikums- og fortellingsnær; spør hva hovedfunnet er, hvilket eksempel som bærer det og hvor mye usikkerhet som må med',
+    teaches_player: 'at offentlig troverdighet kan divergere fra kortsiktig gjennomslagskraft når forskeren beskytter claim scope'
+  },
+  {
+    id: 'religion_research_private_world',
+    social_function: 'privat nær relasjon som møter personen når metodekritikk, deltakeransvar og akademisk status følger med hjem',
+    class_position: 'privat likemann uten forsknings- eller institusjonsmyndighet',
+    status: 'emosjonell nærhet uten arbeidsrang',
+    power_over_player: 'kan utfordre tendensen til å gjøre fagfellekritikk, prosjektpress eller publiseringsstatus til en total dom over egen verdi',
+    wants: 'at forskeren kan legge fra seg arbeid som faktisk eies av en kollega, prosess eller neste dags analyse',
+    conceals: 'at det blir krevende når enhver metodeinnvending blir gjenfortalt som personlig tap av status',
+    speech_style: 'direkte og hverdagslig; spør hva du faktisk kan reparere nå og hva som ikke trenger et svar i kveld',
+    teaches_player: 'at akademisk standing er situert og ikke identisk med personlig verdi eller trygghet'
+  }
+];
+
+const slowAxes = [
+  ['project_method_reliability_standing','situert prosjektledertillit til avgrensning, varsling, metode og realistisk leveranse'],
+  ['method_peer_rigor_standing','situert metodekollegial tillit til rivaltester, operasjonalisering og korrigerbar analyse'],
+  ['ethics_process_trust_standing','situert tillit hos forskningsetisk prosess til samtykke, dataminimering og identifiseringskontroll'],
+  ['provenance_discipline_standing','situert tillit hos arkivarer og kildestewarder til proveniens, arkivstillhet og dokumentert kildebruk'],
+  ['participant_protection_trust_standing','situert deltakertillit til representasjon, konfidensialitet og respekt for samtykkets rekkevidde'],
+  ['peer_review_traceability_standing','situert fagfellevurdert tillit til at argument, motkilder, begrensninger og reparasjoner er sporbare'],
+  ['public_claim_scope_standing','situert formidlingstillit til at klare funn kan kommuniseres uten å gjøre evidensen sikrere eller større enn den er'],
+  ['private_academic_status_mask','hvor sterkt akademisk prestisje, metodekritikk og publiseringspress smelter sammen med personlig verdi privat']
+].map(([id, meaning]) => ({ id, meaning, runtime_binding:'editorial_only_until_governed' }));
+
+const audiences = [
+  {
+    id:'project_leadership', standing_axis:'project_method_reliability_standing',
+    cares_about:['avgrenset og testbar problemstilling','sporbar framdrift og tidlig varsling om metodeendring','realistisk leveranse under usikkerhet'],
+    cannot_grant:'Prosjektlederstanding kan ikke gjøre en bred hypotese sann, utvide datagrunnlaget eller gi forskeren et mandat som prosjekt- eller institusjonsrollen ikke allerede har.'
+  },
+  {
+    id:'method_peers', standing_axis:'method_peer_rigor_standing',
+    cares_about:['reelle rivalforklaringer','operasjonalisering som kan etterprøves','åpen korrigering når analysen ikke skiller forklaringer'],
+    cannot_grant:'Metodekollegial standing kan ikke gjøre én metode til obligatorisk fasit, overta konklusjonen eller gi formell publiserings- eller ansettelsesmyndighet.'
+  },
+  {
+    id:'research_ethics', standing_axis:'ethics_process_trust_standing',
+    cares_about:['samtykkets konkrete rekkevidde','konfidensialitet og indirekte identifisering','dataminimering og riktig eskalering'],
+    cannot_grant:'Etisk standing kan ikke gi forskeren lov til å bryte samtykke, konfidensialitet eller personvern, eller til å avgjøre spørsmål som eies av en formell etikkprosess.'
+  },
+  {
+    id:'archivists_and_source_stewards', standing_axis:'provenance_discipline_standing',
+    cares_about:['proveniens og samlingshistorie','skille mellom dokumentasjonsfravær og historisk fravær','sporbar innarbeiding av nye kilder'],
+    cannot_grant:'Kildesteward-standing kan ikke gjøre arkivets kategorier til historisk fasit eller autorisere forskeren til å overdrive hva én mappe, samling eller taushet beviser.'
+  },
+  {
+    id:'field_participants', standing_axis:'participant_protection_trust_standing',
+    cares_about:['at egen stemme forblir situert','at gjenkjennelighet vurderes lokalt og konkret','at avtalt samtykke respekteres ved senere bruk'],
+    cannot_grant:'Deltakertillit kan ikke gjøre én informant representativ for en hel tradisjon, og lav tillit kan heller ikke brukes som grunn til å eksponere mer data enn samtykket dekker.'
+  },
+  {
+    id:'peer_reviewers', standing_axis:'peer_review_traceability_standing',
+    cares_about:['dokumentert rivaltest og argumentkjede','tydelige begrensninger og claim scope','åpen metodereparasjon framfor retorisk skjuling'],
+    cannot_grant:'Peer-review-standing kan ikke erstatte data, gjøre teologiske sannhetspåstander empirisk bevist eller gi forskeren kvalifikasjon, stilling eller myndighet utover eksisterende rolle.'
+  },
+  {
+    id:'public_communicators', standing_axis:'public_claim_scope_standing',
+    cares_about:['forståelig hovedfunn','konkrete eksempler som ikke overgeneraliseres','synlig usikkerhet som fortsatt kan kommuniseres'],
+    cannot_grant:'Formidlingsstanding kan ikke gjøre en dramatisk detalj etisk forsvarlig, utvide samtykket eller forvandle en enkel kilde eller informant til universell empirisk sannhet.'
+  },
+  {
+    id:'private_relations', standing_axis:'private_academic_status_mask',
+    cares_about:['at arbeidskritikk ikke blir personlig totaldom','at ansvar kan legges hos riktig neste eier','at uferdig metodearbeid kan vente uten statustap hjemme'],
+    cannot_grant:'Privat støtte kan ikke gi akademisk kvalifikasjon, ansettelse, etisk dispensasjon eller forskningsmyndighet; den kan bare påvirke hvordan personen bærer arbeidets statuspress.'
+  }
+];
+
+const dayFocus = [
+  'Prosjektet åpner med en hypotese som passer de første notatene for godt, og forskeren må gjøre spørsmålet falsifiserbart før framdrift får se ut som et funn.',
+  'Kodeboken må skille medlemskap, praksis, identitet og institusjon slik at én bekvem religionsvariabel ikke skjuler hva som faktisk måles.',
+  'Sara introduserer en rivalforklaring som kan skyldes alder, organisasjonstype eller intervjusituasjon, og kritikken må få en observerbar test i stedet for en fotnote.',
+  'Et sterkt informantsitat skaper press mellom forklaringskraft og indirekte identifisering, og forskeren må skille anonymisering fra reell deltakerbeskyttelse.',
+  'Mina trenger leveranse, men avgrensningen viser at noen sammenligninger ikke er symmetriske; prosjektpålitelighet må bygges uten å late som all usikkerhet er løst.',
+  'Arkivstillhet frister til en negativ historisk konklusjon, mens Lea gjør samlingens proveniens og blindsoner til en del av selve evidensspørsmålet.',
+  'Formidlingspresset øker fordi en konkret historie er lettere å selge enn et situert funn, og forskeren må bevare claim scope selv når synligheten belønner sikker retorikk.',
+  'En ny katalogisert mappe bryter den tidlige arkivstillheten og tvinger fram sporbar korrigering uten at ett nytt dokument får bli hele historien.',
+  'Prosjektet må innarbeide motkilden i eksisterende analyse og samtidig vise hva som fortsatt ikke kan avgjøres om utbredelse, representativitet og kausal forklaring.',
+  'Kodebokoppfølgingen viser at en liten tvetydighet fortsatt lever i datamodellen, slik at tidlig metodekritikk må få en konkret reparasjon før feilen blir dyrere.',
+  'Deltakerbeskyttelsen får en senere sosial konsekvens: tillit kan være sterk hos etikk- og feltaktører selv om en formidler opplever teksten som mindre slagkraftig.',
+  'En intern motlesning viser at rivaltesten fortsatt er for svakt dokumentert, og forskeren må velge mellom å åpne analysen eller redusere påstandsrekkevidden.',
+  'Fagfellekritikken gjør metodisk gjeld synlig etter at første leveranse føltes ferdig; åpen reparasjon koster tid og kan likevel bygge mer varig faglig standing.',
+  'Sesongen avsluttes med et korrigert og sporbarere argument der prosjektledelse, metodekolleger, deltakere, arkiv og formidling kan ha forskjellige vurderinger av samme forsker.'
+];
+const phaseTail = {
+  morning:'Morgenen gjør premiss, ansvar og dagens avgrensede neste steg eksplisitt før tempoet setter seg.',
+  lunch:'I lunsjfasen møter forskeren en annen aktørs ståsted og må tåle at standing kan utvikle seg forskjellig mellom publikum.',
+  afternoon:'Ettermiddagen krever et dokumenterbart valg eller en reparasjon som kan spores tilbake til metode, kilde eller samtykke.',
+  evening:'Kvelden viser privat eller forsinket konsekvens uten å gjøre arbeidsstatus til personlig verdi eller opprette ny runtime-state.'
+};
+const beatTypes = {
+  morning:['task','info','decision','task'],
+  lunch:['conversation','relationship','social','conversation'],
+  afternoon:['decision','task','consequence','decision'],
+  evening:['private_consequence','relationship','private_consequence','social']
+};
+const phases = ['morning','lunch','afternoon','evening'];
+const coverage = [];
+for (let day = 1; day <= 14; day += 1) {
+  for (let p = 0; p < phases.length; p += 1) {
+    const phase = phases[p];
+    const refIndex = ((day - 1) * 4 + p) % sourceRefs.length;
+    coverage.push({
+      day,
+      phase,
+      beat_type: beatTypes[phase][(day - 1) % beatTypes[phase].length],
+      summary: `Dag ${day}, ${phase}: ${dayFocus[day - 1]} ${phaseTail[phase]} Standing registreres bare som situert redaksjonell tolkning hos berørte publikum; den kan aldri utvide forskerens metode-, samtykke-, etikk- eller institusjonsmyndighet.`,
+      materialization_refs:[sourceRefs[refIndex]]
+    });
+  }
+}
+
+const world = {
+  schema:'civication_role_world_v1',
+  version:1,
+  category:'religion',
+  role_scope:ROLE,
+  title:'Religion – forskning — metodisk korrigerbarhet og situert akademisk tillit',
+  status:'role_world_complete',
+  sociological_core:{
+    main_problem:'Å produsere etterprøvbar kunnskap om religion og livssyn når prosjektfrister, kategorier, deltakerrisiko, arkivets skjevheter, fagfellekritikk og formidlingspress gjør forskjellige typer sikkerhet sosialt attraktive.',
+    description:'Role World-en lukker bare situated_reputation. Den følger den eksisterende forskningspraksisen gjennom avgrensning, motlesning, forskningsetikk, arkivkritikk, kodebokreparasjon og peer review uten å skrive om rollemodell, work grammar, fire-stegsplan eller Scene Pipeline.'
+  },
+  theme_ids:themeIds,
+  social_environments:[
+    'Forskningskontoret der problemstilling, kodebok, frist og påstandsrekkevidde må være synlige samtidig.',
+    'Metodeverkstedet der en kollega skal kunne introdusere en rivalforklaring uten at uenighet blir illojalitet eller skjult statuskamp.',
+    'Det lille feltmiljøet der anonymisering, samtykke og indirekte identifisering må vurderes ut fra faktisk lokal gjenkjennelighet.',
+    'Det religionshistoriske arkivet der proveniens, katalogisering og institusjonell dokumentproduksjon bestemmer hva taushet kan bety.',
+    'Prosjektmøtet der framdrift må kommuniseres uten at prosjektleders behov for beslutning blir til forskningsfaglig fasit.',
+    'Peer-review-flaten der en manglende rivaltest kommer tilbake som sen metodisk gjeld og tvinger fram avgrensning eller reanalyse.',
+    'Formidlingsflaten der klare historier og levende eksempler må holdes adskilt fra hva data og samtykke faktisk bærer.',
+    'Privatlivet der publiseringsstatus og metodekritikk må kunne skilles fra egenverdi og relasjonell trygghet.'
+  ],
+  recurring_people_archetypes:recurringPeople,
+  slow_axes:slowAxes,
+  existing_work_continuity:{
+    runtime_binding:'existing_mail_and_work_grammar',
+    new_runtime_state:false,
+    work_loops:[
+      'formuler spørsmål og avgrens påstand',
+      'velg metode og dokumenter kildegrunnlag',
+      'ivareta samtykke, personvern og posisjonalitet der mennesker inngår',
+      'analyser med alternative forklaringer og negativ evidens',
+      'skriv funn, begrensninger og sporbar argumentasjon'
+    ],
+    canonical_surfaces:[
+      'data/Civication/roleModels/religion/religion_forskning.json',
+      'data/Civication/workGrammars/religion/religion_forskning.json',
+      'data/Civication/mailPlans/religion/religion_forskning_plan.json'
+    ],
+    rule:'Eksisterende problemstilling-, metode-, samtykke-, arkiv-, rivalforklarings-, kodebok- og fagfellearbeid forblir canonical. Role World-en legger bare audience-spesifikk standing over dette arbeidet og skaper ingen ny persistent work object eller rytme-runtime.'
+  },
+  situated_reputation_model:{
+    global_score_allowed:false,
+    audiences,
+    divergence_examples:[
+      'Å avgrense en over-bred hypotese kan styrke method-peer og peer-review-standing samtidig som prosjektledelsen opplever lavere tempo og mindre umiddelbar sikkerhet.',
+      'Å teste Saras rivalforklaring kan styrke akademisk troverdighet mens en formidler mister den enkleste hovedhistorien.',
+      'Å fjerne identifiserende kontekst fra et sterkt sitat kan styrke participant- og ethics-trust samtidig som public-communication-standing for kortsiktig slagkraft faller.',
+      'Å behandle arkivstillhet som usikker negativ evidens kan styrke provenance-standing mens et prosjekt som ønsket en klar fraværskonklusjon opplever mindre beslutningsklarhet.',
+      'Å korrigere et tidligere utsagn etter en ny mappe kan koste kortsiktig status for inkonsistens og samtidig styrke peer-review-standing fordi reparasjonen er synlig og sporbar.',
+      'Å eskalere et samtykkeproblem til riktig etikkprosess kan redusere inntrykket av personlig kontroll og samtidig styrke institusjonell og deltakerbasert tillit.'
+    ],
+    authority_separation:'Audience-spesifikk standing kan aldri gi myndighet til å bryte samtykke eller konfidensialitet, gjøre én informant representativ, behandle teologisk sannhet som empirisk bevist, utlede tro fra identitet, eller gjøre Badge-poeng til akademisk kvalifikasjon, ansettelse eller forskningsmyndighet.',
+    rule:'Reputation er audience-spesifikk standing og kan divergere mellom prosjektledelse, metodekolleger, etikk, arkiv, deltakere, fagfeller, formidling og private relasjoner; ingen global score brukes.'
+  },
+  cross_role_link:{
+    status:'not_required_for_rollout',
+    materialized:false,
+    new_runtime:false,
+    rule:'Cross-role is not required for this rollout. Mina, Sara, Oskar and Lea are authored contacts inside the Religion research work world; no genuinely shared canonical work object with a second Role World is introduced.'
+  },
+  season:{ days:14, day_phases:phases, coverage },
+  primary_threads:[
+    {id:'research_scope_and_testability',title:'Problemstilling som må kunne feile',beat_refs:['1/morning','2/afternoon','5/morning','7/afternoon','10/morning','13/afternoon']},
+    {id:'method_rivalry_and_correction',title:'Rivalforklaring som faktisk får konsekvens',beat_refs:['1/lunch','3/afternoon','5/lunch','8/afternoon','11/lunch','14/afternoon']},
+    {id:'participant_ethics_and_trust',title:'Sitat, samtykke og indirekte identifisering',beat_refs:['2/lunch','4/morning','6/afternoon','8/evening','11/afternoon','13/evening']},
+    {id:'archive_provenance_and_negative_evidence',title:'Arkivstillhet og motkilde',beat_refs:['4/afternoon','6/morning','7/lunch','9/afternoon','12/morning','14/lunch']},
+    {id:'peer_review_and_traceable_repair',title:'Metodisk gjeld vender tilbake i peer review',beat_refs:['2/afternoon','6/lunch','9/lunch','10/afternoon','12/afternoon','14/evening']},
+    {id:'public_claim_scope',title:'Formidling uten å gjøre evidensen større',beat_refs:['3/lunch','5/afternoon','7/morning','10/lunch','11/evening','13/lunch']}
+  ],
+  private_aftermath:[
+    {id:'private_scope_doubt',beat_ref:'2/evening',summary:'Etter å ha snevret inn hypotesen må forskeren tåle at mindre ambisiøs retorikk kan være bedre forskning uten å lese det som personlig utilstrekkelighet.'},
+    {id:'private_ethics_weight',beat_ref:'4/evening',summary:'Usikkerheten om indirekte identifisering følger med hjem, men ansvaret skilles fra behovet for å løse alt alene før den formelle etikkavklaringen.'},
+    {id:'private_archive_uncertainty',beat_ref:'8/evening',summary:'Den nye mappen gjør den tidligere konklusjonen mindre ryddig; privat statusubehag må holdes adskilt fra den faglige plikten til å korrigere.'},
+    {id:'private_communication_pressure',beat_ref:'11/evening',summary:'En mindre dramatisk formidling kan oppleves som tapt synlighet samtidig som deltaker- og forskningsetisk tillit faktisk er styrket.'},
+    {id:'private_peer_review',beat_ref:'13/evening',summary:'Fagfellekritikken kjennes personlig før den oversettes tilbake til et konkret metodehull som kan repareres eller avgrenses.'},
+    {id:'private_closure',beat_ref:'14/evening',summary:'Sesongen avsluttes uten én global statusdom: ulike publikum vurderer forskeren forskjellig, og personlig verdi ligger utenfor disse profesjonelle standing-aksene.'}
+  ],
+  delayed_consequences:[
+    {id:'broad_hypothesis_returns_as_codebook_debt',setup_ref:'1/morning',return_ref:'10/morning',consequence:'Tidlig avgrensning viser seg senere som forskjellen mellom en reparerbar kodebok og en tvetydighet som har spredt seg gjennom hele analysen.'},
+    {id:'rival_explanation_returns_in_peer_review',setup_ref:'3/afternoon',return_ref:'13/afternoon',consequence:'Rivalforklaringen som ble testet eller parkert vender tilbake som et konkret peer-review-spørsmål om hva dataene faktisk skiller.'},
+    {id:'participant_protection_returns_as_trust',setup_ref:'4/morning',return_ref:'11/afternoon',consequence:'Valget om å minimere identifiserende kontekst får en senere tillitskonsekvens hos deltaker- og etikkpublikum selv om formidlingen blir mindre dramatisk.'},
+    {id:'archive_silence_returns_as_counter_source',setup_ref:'6/morning',return_ref:'8/afternoon',consequence:'Arkivstillheten blir utfordret av en ny mappe, slik at tidligere sikkerhet må korrigeres i stedet for å forsvares av hensyn til fasaden.'},
+    {id:'counter_source_returns_as_claim_scope',setup_ref:'8/afternoon',return_ref:'12/afternoon',consequence:'Motkilden tvinger senere fram en eksplisitt avgrensning av utbredelse og representativitet; ett nytt dokument får ikke bli ny totalforklaring.'},
+    {id:'transparent_repair_returns_as_credibility',setup_ref:'12/afternoon',return_ref:'14/evening',consequence:'Synlig metodereparasjon kan koste status mens arbeidet pågår og samtidig gi sterkere langsiktig fagfellestanding fordi beviskjeden er etterprøvbar.'}
+  ],
+  materialization:{
+    authored_dimensions:['situated_reputation'],
+    no_new_runtime:true,
+    existing_plan_preserved:true,
+    existing_role_model_preserved:true,
+    existing_work_grammar_preserved:true,
+    existing_persistent_work_preserved:true,
+    existing_rhythm_preserved:true,
+    cross_role_link_materialized:false,
+    source_refs:sourceRefs
+  }
+};
+
+writeJson(WORLD_PATH, world);
+
+const index = readJson('data/Civication/roleWorlds/index.json');
+if ((index.roles || []).some(row => `${row.category}/${row.role_scope}` === KEY)) throw new Error('Role World index already contains Religion forskning');
+index.roles.push({ category:'religion', role_scope:ROLE, status:'role_world_complete', path:WORLD_PATH });
+index.status = 'thirty_four_role_worlds_materialized';
+index.effective_date = '2026-08-28';
+writeJson('data/Civication/roleWorlds/index.json', index);
+
+const checklist = readJson('data/Civication/roleWorldAuthoringChecklist.json');
+checklist.reference_worlds ||= [];
+if (!checklist.reference_worlds.includes(WORLD_PATH)) checklist.reference_worlds.push(WORLD_PATH);
+writeJson('data/Civication/roleWorldAuthoringChecklist.json', checklist);
+
+const themeBank = readJson('data/Civication/roleWorldThemeBank.json');
+themeBank.reference_profiles ||= {};
+themeBank.reference_profiles[KEY] = themeIds;
+writeJson('data/Civication/roleWorldThemeBank.json', themeBank);
+
+writeText(REPORT_PATH, `# Civication Religion – forskning — Role World rollout\n\n## Materialized scope\n\n- Role: \`${KEY}\`\n- Status: \`role_world_complete\`\n- Authored debt closed: \`situated_reputation\` only\n- New runtime: **no**\n- Cross-role link: **not required / not materialized**\n- Existing role model, work grammar, persistent work/rhythm and four-step mail plan: **preserved**\n\n## Season proof\n\n- 14 days × 4 phases = **56 substantive beats**\n- canonical provenance refs = **${sourceRefs.length}**\n- primary threads = **${world.primary_threads.length}**\n- audience-specific standing surfaces = **${audiences.length}**\n- private aftermath beats = **${world.private_aftermath.length}**\n- delayed consequences = **${world.delayed_consequences.length}**\n\n## Situated-reputation proof\n\nStanding is deliberately split across project leadership, method peers, research ethics, archivists/source stewards, field participants, peer reviewers, public communicators and private relations. No global reputation score is created. The same choice may improve one audience's standing while worsening another's. Standing never expands consent, confidentiality, ethics, academic qualification, employment or research authority.\n\n## Provenance\n\n${sourceRefs.map(ref => `- \`${ref}\``).join('\n')}\n\n## Fail-closed completion rule\n\nThe world is not merge-ready until the strict Religion-forskning Role World gate, canonical Role World contract, regenerated scene registry/career audit/readiness and the full Civication suite all pass in the temporary GitHub materialization workflow. TEMP surfaces are deleted before the verified permanent state is committed.\n`);
+
+console.log(`Materialized ${KEY}: ${coverage.length} beats, ${sourceRefs.length} canonical refs, ${audiences.length} situated audiences.`);
