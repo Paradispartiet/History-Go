@@ -11,6 +11,7 @@ on:
       - 'reports/fagverk/by-theory-integrity-audit.json'
       - 'reports/fagverk/kunst-complete-audit.json'
       - 'reports/fagverk/kunst-theory-integrity-audit.json'
+      - 'reports/fagverk/kunst-legacy-theory-audit.json'
       - 'reports/fagverk/media-complete-audit.json'
       - 'reports/fagverk/media-theory-integrity-audit.json'
       - 'reports/fagverk/musikk-subject-audit.json'
@@ -34,6 +35,7 @@ on:
       - 'scripts/audit-fagverk-religion-theory-canon.mjs'
       - 'scripts/audit-fagverk-scenekunst-theory-canon.mjs'
       - 'scripts/audit-fagverk-kunst-complete.mjs'
+      - 'scripts/audit-fagverk-kunst-legacy-theory.mjs'
       - 'scripts/audit-fagverk-media-complete.mjs'
       - 'scripts/audit-fagverk-musikk.mjs'
       - 'scripts/audit-fagverk-litteratur-legacy-theory.mjs'
@@ -56,6 +58,7 @@ on:
       - 'tools/audit-teknologi-theory-integrity.mjs'
       - 'tests/by-theory-integrity.test.mjs'
       - 'tests/kunst-theory-integrity.test.mjs'
+      - 'tests/fagverk-kunst-legacy-theory-audit.test.mjs'
       - 'tests/media-theory-integrity.test.mjs'
       - 'tests/musikk-theory-integrity.test.mjs'
       - 'tests/litteratur-theory-integrity.test.mjs'
@@ -93,6 +96,7 @@ jobs:
       - name: Verify strict cross-Fagverk theory integrity audit
         run: |
           node --check scripts/audit-fagverk-theory-integrity.mjs
+          node --check scripts/audit-fagverk-kunst-legacy-theory.mjs
           node --check scripts/audit-fagverk-litteratur-legacy-theory.mjs
           node --check scripts/audit-fagverk-litteratur-legacy-adjudication.mjs
           node --check tools/audit-by-theory-integrity.mjs
@@ -112,6 +116,7 @@ jobs:
           node scripts/audit-fagverk-theory-integrity.mjs
           node --test tests/by-theory-integrity.test.mjs
           node --test tests/kunst-theory-integrity.test.mjs
+          node --test tests/fagverk-kunst-legacy-theory-audit.test.mjs
           node --test tests/media-theory-integrity.test.mjs
           node --test tests/musikk-theory-integrity.test.mjs
           node --test tests/litteratur-theory-integrity.test.mjs
