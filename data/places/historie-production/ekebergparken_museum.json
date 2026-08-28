@@ -1,0 +1,276 @@
+{
+  "schemaVersion": "historie_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "ekebergparken_museum",
+  "placeFile": "data/places/historie/oslo/places_historie/ekebergparken_museum.json",
+  "status": "ready",
+  "historicalIdentity": {
+    "statement": "Lunds hus er en villa fra 1891 som gikk fra privatbolig via okkupasjonsbruk og kommunale leiligheter til museum i 2013.",
+    "placeRelationType": "institution_site",
+    "placeRelationStatement": "Place-ID-en representerer Lunds hus og museumsvirksomheten i bygningen, ikke hele Ekebergparken eller helleristningsfeltet.",
+    "temporalScope": {
+      "start": "1891",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Perioden dekker oppføring, dokumenterte bruksskifter, rehabilitering og nåværende museumsdrift."
+    },
+    "sourceIds": [
+      "source_ekeberg_museum_official",
+      "source_ekeberg_museum_timeline",
+      "source_ekeberg_museum_heritage",
+      "source_ekeberg_museum_local_history",
+      "source_ekeberg_museum_visit_oslo"
+    ]
+  },
+  "historyTopics": [
+    {
+      "emneId": "em_his_museum_samling_kanon",
+      "siteSpecificRationale": "Museets utvalg av arkeologiske funn viser konkret hvordan samlinger, proveniens og kuratering former lokalhistorie.",
+      "caseIds": [
+        "case_lunds_hus_bruksskifter"
+      ]
+    },
+    {
+      "emneId": "em_his_spor_materialitet",
+      "siteSpecificRationale": "Villaens fasade, rom og ombygginger er materielle spor etter bolig, okkupasjon, kommunal bruk og museum.",
+      "caseIds": [
+        "case_lunds_hus_bruksskifter"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_ekeberg_museum_official",
+      "url": "https://ekebergparken.com/besok-oss/museum-og-butikk",
+      "sourceLocation": "Museum og butikk – bygning, brukshistorie og utstilling",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-28",
+      "temporalCoverage": "current",
+      "provenance": "Ekebergparkens offisielle presentasjon av museet i Lunds hus.",
+      "limitations": "Institusjonen beskriver sin egen virksomhet og må sammenholdes med en uavhengig lokalhistorisk kilde."
+    },
+    {
+      "id": "source_ekeberg_museum_timeline",
+      "url": "https://ekebergparken.com/historisk-tidslinje",
+      "sourceLocation": "Historisk tidslinje – Lunds hus og åpningen i 2013",
+      "sourceType": "museum_or_heritage",
+      "verifiedAt": "2026-08-28",
+      "temporalCoverage": "mixed",
+      "provenance": "Ekebergparkens kronologiske oversikt over områdets dokumenterte historie.",
+      "limitations": "Tidslinjen sammenfatter hendelser og gir ikke en full rom- eller beboerhistorie."
+    },
+    {
+      "id": "source_ekeberg_museum_heritage",
+      "url": "https://ekebergparken.com/kulturminner",
+      "sourceLocation": "Kulturminner – arkeologiske spor og funn på Ekeberg",
+      "sourceType": "museum_or_heritage",
+      "verifiedAt": "2026-08-28",
+      "temporalCoverage": "mixed",
+      "provenance": "Ekebergparkens tematiske oversikt over kulturminner og arkeologiske spor.",
+      "limitations": "Oversikten er kuratert formidling og erstatter ikke funnrapporter for enkeltgjenstander."
+    },
+    {
+      "id": "source_ekeberg_museum_local_history",
+      "url": "https://www.eikaberg.org/h22",
+      "sourceLocation": "Kongsveien 23 – Lunds hus og eiendomshistorien",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-08-28",
+      "temporalCoverage": "retrospective",
+      "provenance": "Bekkelagshøgda lokalhistoriske forenings stedsspesifikke historikk.",
+      "limitations": "Sekundær lokalhistorie med begrenset dokumentasjon av hver enkelt beboer og innvendig ombygging."
+    },
+    {
+      "id": "source_ekeberg_museum_visit_oslo",
+      "url": "https://www.visitoslo.com/no/attraksjon/ekebergparken-museum/",
+      "sourceLocation": "Ekebergparken Museum – nåværende besøksmål",
+      "sourceType": "institutional",
+      "verifiedAt": "2026-08-28",
+      "temporalCoverage": "current",
+      "provenance": "VisitOSLOs institusjonelle presentasjon av museet som besøksmål.",
+      "limitations": "Reiselivsformidling dokumenterer nåværende funksjon, men ikke alle historiske årsaksforhold."
+    }
+  ],
+  "caseRealizations": [
+    {
+      "id": "case_lunds_hus_bruksskifter",
+      "claim": "Lunds hus viser hvordan skiftende eierskap og samfunnsbehov ga en privat villa nye offentlige funksjoner uten å oppheve bygningens historiske lag.",
+      "temporalSequence": {
+        "scope": {
+          "start": "1891",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Caset følger villaen fra oppføring gjennom tre tydelige bruksskifter til nåværende museum."
+        },
+        "startPoint": "Anton M. Lund fikk villaen oppført som privat familiehjem i 1891.",
+        "endPoint": "Den rehabiliterte bygningen rommer i dag museum, butikk og permanent utstilling.",
+        "breaks": [
+          "Kommunalt kjøp og okkupasjonsbruk endret rådigheten over huset i 1942.",
+          "Etter krigen ble interiøret bygd om til fire kommunale leiligheter.",
+          "Rehabiliteringen og åpningen i 2013 gjorde bygningen offentlig tilgjengelig som museum."
+        ],
+        "continuities": [
+          "Den samme villaen ved Kongsveien 23 er det fysiske ankeret gjennom hele perioden.",
+          "Bygningen forble i aktiv bruk selv om beboere, forvaltere og formål skiftet."
+        ],
+        "sourceIds": [
+          "source_ekeberg_museum_official",
+          "source_ekeberg_museum_timeline",
+          "source_ekeberg_museum_local_history"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Anton M. Lund og familien",
+          "roleOrInterest": "Oppførte og brukte villaen som privat hjem.",
+          "powerPosition": "Rådde over eiendommen i den første dokumenterte bruksfasen.",
+          "sourceIds": [
+            "source_ekeberg_museum_official",
+            "source_ekeberg_museum_local_history"
+          ]
+        },
+        {
+          "name": "Oslo kommune og okkupasjonsmyndighetene",
+          "roleOrInterest": "Overtok, rekvirerte og omdisponerte bygningen fra 1942.",
+          "powerPosition": "Kunne endre adgang, rombruk og hvem som fikk bo eller arbeide i huset.",
+          "sourceIds": [
+            "source_ekeberg_museum_official",
+            "source_ekeberg_museum_local_history"
+          ]
+        },
+        {
+          "name": "C. Ludens Ringnes Stiftelse og museumsforvaltningen",
+          "roleOrInterest": "Rehabiliterte huset og utviklet den offentlige museumsfunksjonen.",
+          "powerPosition": "Velger hvilke gjenstander, kilder og fortellinger som formidles til publikum.",
+          "sourceIds": [
+            "source_ekeberg_museum_official",
+            "source_ekeberg_museum_timeline"
+          ]
+        }
+      ],
+      "conflictOrNegotiation": {
+        "statement": "Bruksskiftene viser en forhandling mellom privat råderett, offentlig forvaltning, krigstidens rekvisisjon, boligbehov og kulturhistorisk bevaring.",
+        "sourceIds": [
+          "source_ekeberg_museum_official",
+          "source_ekeberg_museum_local_history"
+        ]
+      },
+      "sourceComparison": {
+        "sourceIds": [
+          "source_ekeberg_museum_official",
+          "source_ekeberg_museum_local_history",
+          "source_ekeberg_museum_visit_oslo"
+        ],
+        "comparison": "Museets side gir hovedkronologien og utstillingsinnholdet, lokalhistorien kontrollerer eiendom og bruksskifter, mens VisitOSLO bekrefter dagens offentlige museumsfunksjon.",
+        "contradictionsOrSilences": "Kildene gir få opplysninger om de kommunale beboernes erfaringer og ingen komplett rom-for-rom-historie.",
+        "conclusionLimits": "Bruksskiftene kan dokumenteres, men kildene bærer ikke detaljerte påstander om alle beboere eller hvert innvendig inngrep."
+      },
+      "comparativeScale": {
+        "localFinding": "Én sveitservilla på Ekeberg samler spor etter privat bolig, okkupasjon, kommunal boligpolitikk og museumsombruk.",
+        "widerContext": "Caset inngår i en regional historie om hvordan Oslo bevarer og gir eldre villaer nye kulturinstitusjonelle funksjoner.",
+        "scale": "regional",
+        "sourceIds": [
+          "source_ekeberg_museum_official",
+          "source_ekeberg_museum_local_history"
+        ]
+      },
+      "causationAndUncertainty": {
+        "causalAssessment": "Kommunal overtakelse muliggjorde offentlig og militær bruk, mens parkprosjektets rehabilitering gjorde museumsåpningen i 2013 mulig.",
+        "alternativeExplanations": [
+          "Etterkrigstidens boligbehov og senere bevarings- og formidlingsmål virket i ulike faser og bør ikke reduseres til én årsak."
+        ],
+        "uncertainty": "De åpne kildene dokumenterer hovedskiftene, men ikke alle beslutninger, romendringer eller personlige erfaringer.",
+        "sourceIds": [
+          "source_ekeberg_museum_official",
+          "source_ekeberg_museum_timeline",
+          "source_ekeberg_museum_local_history"
+        ]
+      }
+    }
+  ],
+  "presentTrace": {
+    "objectStatus": "altered",
+    "statement": "Den rehabiliterte sveitservillaen, rominndelingen og museumsmontrene gjør både bygningshistorien og dagens kuratering synlig.",
+    "originalSiteRelationship": "Museumsbygningen står på den dokumenterte villaeiendommen ved Kongsveien 23 og er et eget anker innenfor parkområdet.",
+    "sourceIds": [
+      "source_ekeberg_museum_official",
+      "source_ekeberg_museum_visit_oslo"
+    ]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "ekebergparken_museum",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/historie/ekebergparken_museum.json",
+    "productionContext": "data/quiz/production_context/historie/ekebergparken_museum.json",
+    "requiredInputs": [
+      "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "data/fag/historie/supersetQUIZMAL_historie.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "PASS",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Leksikonets daterte milepæler og Story-episoden er kontrollert mot museums-, tidslinje- og lokalhistoriske kilder."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "historicalIdentity"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "historyTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0].temporalSequence"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0].actors"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0].sourceComparison"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0].comparativeScale"
+      ]
+    },
+    "G": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "quizOpening"
+      ]
+    },
+    "H": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "chronologyStories"
+      ]
+    }
+  },
+  "review": {
+    "reviewer": "History GO Ekebergparken Museum source audit",
+    "reviewedAt": "2026-08-28",
+    "notes": "Identitet, bruksskifter, aktører, kildesammenligning, materielle spor, quizåpning og Story er kontrollert; manglende beboer- og romdetaljer er eksplisitt avgrenset."
+  }
+}

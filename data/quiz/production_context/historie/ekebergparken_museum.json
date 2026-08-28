@@ -1,0 +1,653 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "ekebergparken_museum",
+  "profile": "normal_4x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1805,
+    "selection_sha256": "b553843a7f17bfebb33d7807fec6f5446c4ea5e29e31590206287947be4d6529",
+    "category_id": "historie",
+    "target_id": "ekebergparken_museum"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "bytes": 93945,
+      "sha256": "37abfe99b9f3f1db23bb0cb307b2076407076a405c15868b0524ef5b9e31c72d",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "bytes": 2142053,
+      "sha256": "bcb20665e0a013c4f57e17719b610224874552b942b9bcd7421a7239463931ec",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "bytes": 1127330,
+      "sha256": "6db315c9b911fc04b99dd7609e493e744f919448668cf35fe3c72d3dabff59b1",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "bytes": 252328,
+      "sha256": "9462f9fc4a07c9c08593abaa75e4ee1bddd6af9e45a87304b52df66bcdb654be",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "bytes": 6935,
+      "sha256": "162f166d3c5be89d77b7529ba9186a552b791e9dbd04a590a01fdaad28944098",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 16882,
+      "sha256": "60804db1e587faae822930a800cfebac7966fa7e009778d46d94d1f28e02545e",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/historie/ekebergparken_museum.json",
+      "bytes": 12758,
+      "sha256": "7243650125c07288f2784a97b5125adbe705f658c50c8b7b1fd01ac63cb95829"
+    },
+    "target": {
+      "path": "data/places/historie/oslo/places_historie/ekebergparken_museum.json",
+      "bytes": 9855,
+      "sha256": "ad44071f3e82c4168b79db61ee5a0d774f97229a58d00559f81f0ba895a643e0"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1226,
+      "selection_sha256": "a6b57b3117ac6a11c811cc88fba84c777fcf4e7f028567bbdd0f043f32a8b1da"
+    },
+    "relations": [],
+    "stories": [
+      {
+        "path": "data/stories/stories_ekebergparken_museum.json",
+        "matches": 1,
+        "selection_bytes": 2019,
+        "selection_sha256": "9a41babfe8662b935846e7981407bbb33e896653785fdbb666cb5d3b7337e322"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/historie/ekebergparken_museum_sets.json",
+  "source_registry": {
+    "official_museum": {
+      "url": "https://ekebergparken.com/besok-oss/museum-og-butikk",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Ekebergparken – Museum og butikk"
+    },
+    "official_timeline": {
+      "url": "https://ekebergparken.com/historisk-tidslinje",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Ekebergparken – historisk tidslinje"
+    },
+    "official_heritage": {
+      "url": "https://ekebergparken.com/kulturminner",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Ekebergparken – kulturminner"
+    },
+    "blf_history": {
+      "url": "https://www.eikaberg.org/h22",
+      "source_type": "reputable_secondary",
+      "review_status": "reviewed",
+      "review_note": "Bekkelagshøgda lokalhistoriske forening – Kongsveien 23"
+    },
+    "visit_oslo": {
+      "url": "https://www.visitoslo.com/no/attraksjon/ekebergparken-museum/",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "VisitOSLO – Ekebergparken Museum"
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/historie/",
+      "data/places/historie/oslo/places_historie/ekebergparken_museum.json"
+    ],
+    "active_before": {
+      "file": null,
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "No manifest-loaded canonical museum quiz existed."
+    },
+    "decisions": [
+      "Build normal 4x7 from reviewed external claims."
+    ],
+    "knowledge_migration": "New Knowledge units are generated from the canonical package."
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Four learning jobs: identity, use changes, collections and source criticism."
+  },
+  "held_back_candidates": [
+    "Exact room-level wartime use without archival documentation.",
+    "Individual archaeological objects without catalogue identifiers."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 23,
+      "emner": 230,
+      "topic_hooks": 230,
+      "methods": 105
+    },
+    "candidate_emner": [
+      {
+        "id": "em_his_museum_samling_kanon",
+        "title": "Museum, samling og historisk kanon",
+        "score": 100
+      },
+      {
+        "id": "em_his_spor_materialitet",
+        "title": "Spor og materialitet",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "his_museum_samling_kanon",
+        "title": "Museum, samling og kanon",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 10
+      },
+      {
+        "id": "his_spor_materialitet",
+        "title": "Materielle spor og sted som kilde",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_museum_samling_kanon",
+      "em_his_spor_materialitet"
+    ],
+    "topic_hook_ids": [
+      "his_spor_materialitet",
+      "his_kildekritikk",
+      "his_kulturminneutvelgelse_verdi"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk",
+      "met_kulturarvutvelgelsesanalyse"
+    ],
+    "thinker_ids": [
+      "carlo_ginzburg",
+      "marc_bloch",
+      "alois_riegl"
+    ],
+    "works": [
+      "Clues, Myths, and the Historical Method",
+      "The Historian's Craft",
+      "The Modern Cult of Monuments"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Lunds hus",
+      "source_ids": [
+        "official_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_museum_samling_kanon"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "1891",
+      "source_ids": [
+        "official_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_museum_samling_kanon"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Anton M. Lund",
+      "source_ids": [
+        "official_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_museum_samling_kanon"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Privatbolig",
+      "source_ids": [
+        "official_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_museum_samling_kanon"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kongsveien 23",
+      "source_ids": [
+        "official_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_museum_samling_kanon"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Sveitservilla",
+      "source_ids": [
+        "official_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_museum_samling_kanon"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Den første eieren Anton M. Lund",
+      "source_ids": [
+        "official_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_museum_samling_kanon"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo kommune",
+      "source_ids": [
+        "official_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_museum_samling_kanon"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Av tyske offiserer",
+      "source_ids": [
+        "official_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_museum_samling_kanon"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Det ble bygd om til fire kommunale leiligheter",
+      "source_ids": [
+        "official_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_museum_samling_kanon"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "2013",
+      "source_ids": [
+        "official_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_museum_samling_kanon"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Rehabilitering av huset",
+      "source_ids": [
+        "official_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_museum_samling_kanon"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Fra boligbygning til museum",
+      "source_ids": [
+        "official_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_museum_samling_kanon"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Lunds hus",
+      "source_ids": [
+        "official_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_museum_samling_kanon"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Ekebergs kulturhistorie og natur",
+      "source_ids": [
+        "official_heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Fra steinalder til jernalder",
+      "source_ids": [
+        "official_heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "I museet i Lunds hus",
+      "source_ids": [
+        "official_heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Setter det inn i en kuratert sammenheng",
+      "source_ids": [
+        "official_heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Funnsted, datering og dokumentasjon",
+      "source_ids": [
+        "official_heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Bygningen viser skiftende bruk over tid",
+      "source_ids": [
+        "official_heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Museet er i Lunds hus; feltet er et eget arkeologisk sted",
+      "source_ids": [
+        "official_heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Museets offisielle side",
+      "source_ids": [
+        "official_museum",
+        "blf_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "For å kontrollere bygningens brukshistorie fra flere perspektiver",
+      "source_ids": [
+        "official_museum",
+        "blf_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Den kan prioritere institusjonens nåværende fortelling",
+      "source_ids": [
+        "official_museum",
+        "blf_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Den samme villaen er fortsatt det fysiske ankeret",
+      "source_ids": [
+        "official_museum",
+        "blf_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Privat og kommunal bruk ble avløst av offentlig museum",
+      "source_ids": [
+        "official_museum",
+        "blf_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "At en bestemt gjenstand ble funnet på et bestemt sted",
+      "source_ids": [
+        "official_museum",
+        "blf_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_ekebergparken_museum_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Ny bruk kan bevare en bygning og samtidig endre betydningen",
+      "source_ids": [
+        "official_museum",
+        "blf_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "story",
+      "id": "st_ekebergparken_museum_apning_2013",
+      "source_file": "data/stories/stories_ekebergparken_museum.json",
+      "summary": "I 2013 åpnet Lunds hus for publikum etter mer enn et århundre med skiftende privat, militær og kommunal bruk."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "historie_ekebergparken_museum_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_ekebergparken_museum_quiz_01",
+        "claim_ekebergparken_museum_quiz_02",
+        "claim_ekebergparken_museum_quiz_03",
+        "claim_ekebergparken_museum_quiz_04",
+        "claim_ekebergparken_museum_quiz_05",
+        "claim_ekebergparken_museum_quiz_06",
+        "claim_ekebergparken_museum_quiz_07"
+      ]
+    },
+    {
+      "set_id": "historie_ekebergparken_museum_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_ekebergparken_museum_quiz_08",
+        "claim_ekebergparken_museum_quiz_09",
+        "claim_ekebergparken_museum_quiz_10",
+        "claim_ekebergparken_museum_quiz_11",
+        "claim_ekebergparken_museum_quiz_12",
+        "claim_ekebergparken_museum_quiz_13",
+        "claim_ekebergparken_museum_quiz_14"
+      ]
+    },
+    {
+      "set_id": "historie_ekebergparken_museum_set_3",
+      "order": 3,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_ekebergparken_museum_quiz_15",
+        "claim_ekebergparken_museum_quiz_16",
+        "claim_ekebergparken_museum_quiz_17",
+        "claim_ekebergparken_museum_quiz_18",
+        "claim_ekebergparken_museum_quiz_19",
+        "claim_ekebergparken_museum_quiz_20",
+        "claim_ekebergparken_museum_quiz_21"
+      ]
+    },
+    {
+      "set_id": "historie_ekebergparken_museum_set_4",
+      "order": 4,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_ekebergparken_museum_quiz_22",
+        "claim_ekebergparken_museum_quiz_23",
+        "claim_ekebergparken_museum_quiz_24",
+        "claim_ekebergparken_museum_quiz_25",
+        "claim_ekebergparken_museum_quiz_26",
+        "claim_ekebergparken_museum_quiz_27",
+        "claim_ekebergparken_museum_quiz_28"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 28,
+    "counts": {
+      "fact": 14,
+      "context": 7,
+      "concept_theory": 7
+    },
+    "ratios": {
+      "fact": 0.5,
+      "context": 0.25,
+      "concept_theory": 0.25
+    }
+  }
+}
