@@ -5,6 +5,7 @@ import { spawnSync } from 'node:child_process';
 
 const SCRIPT = 'scripts/audit-fagverk-litteratur-legacy-theory.mjs';
 const REPORT = 'reports/fagverk/litteratur-legacy-theory-audit.json';
+const LEGACY_ARCHIVE = 'data/fag/litteratur/archive/merke_litteratur_full_teori_legacy_20260828.html';
 const LANGUAGE_HISTORY_OWNER = 'data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/norsk_nordisk_samisk_minoritetslitteratur/03-sprak-sted-og-kanon.json';
 const EXPECTED_IDS = [
   'felt', 'normativ', 'doxa', 'metode', 'materiell', 'sosial',
@@ -22,7 +23,7 @@ test('Litteratur legacy-teori har deterministisk, fail-closed canonical coverage
 
   assert.equal(report.schema, 'history_go_fagverk_litteratur_legacy_theory_audit_v1');
   assert.equal(report.subject, 'litteratur');
-  assert.equal(report.legacy.badgePage, 'data/fag/litteratur/merke_litteratur (1).html');
+  assert.equal(report.legacy.badgePage, LEGACY_ARCHIVE);
   assert.equal(report.legacy.sectionCount, 11);
   assert.equal(report.legacy.knowledgeSectionCount, 10);
   assert.deepEqual(report.rows.map((row) => row.id), EXPECTED_IDS);
@@ -70,6 +71,12 @@ test('Litteratur legacy-teori har deterministisk, fail-closed canonical coverage
   for (const phrase of ['historiske og institusjonelle skriftspråk', 'målreisning', 'normering']) {
     assert.ok(languageOwner.includes(phrase), `Canonical språk-/historieeier mangler dokumentert equivalence: ${phrase}`);
   }
+
+  assert.ok(fs.existsSync(LEGACY_ARCHIVE), 'Arkivert Litteratur fullteori må bevares som auditkilde');
+  const archiveHtml = fs.readFileSync(LEGACY_ARCHIVE, 'utf8');
+  assert.match(archiveHtml, /LITTERATUR – full teoretisk beskrivelse/);
+  assert.match(archiveHtml, /id="felt"/);
+  assert.match(archiveHtml, /id="bidrag"/);
 
   assert.ok(fs.existsSync(REPORT), `${REPORT} må være innchecket som permanent deterministisk audit`);
   const committed = JSON.parse(fs.readFileSync(REPORT, 'utf8'));
