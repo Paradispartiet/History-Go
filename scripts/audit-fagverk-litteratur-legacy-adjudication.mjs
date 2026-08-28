@@ -5,7 +5,8 @@ import { spawnSync } from 'node:child_process';
 const ROOT = process.cwd();
 const ADJUDICATION = 'data/fag/litteratur/legacy_theory_adjudication_v1.json';
 const PORTAL = 'data/fagverk/fagverk_portal.json';
-const LEGACY_BADGE = 'data/fag/litteratur/merke_litteratur (1).html';
+const LEGACY_BADGE = 'data/fag/litteratur/archive/merke_litteratur_full_teori_legacy_20260828.html';
+const COMPAT_BADGE_PAGE = 'data/fag/litteratur/merke_litteratur (1).html';
 const EXPECTED_TARGET = 'fagverk.html?subject=litteratur#fagverkIaProgresjon';
 const KNOWLEDGE_DISPOSITIONS = new Set(['canonical_supersedes', 'migrated_to_canonical']);
 const PRODUCT_DISPOSITIONS = new Set(['retire_legacy_product_copy']);
@@ -23,7 +24,7 @@ function runAnchorAudit() {
   return JSON.parse(result.stdout);
 }
 
-for (const required of [ADJUDICATION, PORTAL, LEGACY_BADGE]) {
+for (const required of [ADJUDICATION, PORTAL, LEGACY_BADGE, COMPAT_BADGE_PAGE]) {
   if (!exists(required)) throw new Error(`Mangler nødvendig Litteratur-adjudiseringsfil: ${required}`);
 }
 
@@ -100,6 +101,10 @@ const portalEntry = portal.categories?.find((item) => item.id === 'litteratur');
 if (!portalEntry) throw new Error('Litteratur mangler i fagverk_portal.json.');
 const portalRoute = text(portalEntry.badgePage);
 const portalRedirected = portalRoute === EXPECTED_TARGET;
+const legacyBadgeSourcePreserved = exists(LEGACY_BADGE);
+const compatibilityRedirectHtml = fs.readFileSync(path.join(ROOT, COMPAT_BADGE_PAGE), 'utf8');
+const compatibilityRedirectPresent = compatibilityRedirectHtml.includes('location.replace')
+  && compatibilityRedirectHtml.includes('subject=litteratur#fagverkIaProgresjon');
 
 const redirectReady = knowledgeRows.length === anchorAudit.summary.knowledgeSectionCount
   && knowledgeRows.every((row) => row.adjudicated && row.anchorCoverage === 1 && KNOWLEDGE_DISPOSITIONS.has(row.disposition) && row.ownerFiles.length > 0)
@@ -111,7 +116,8 @@ const report = {
   inputs: {
     anchorAuditSchema: anchorAudit.schema,
     adjudicationFile: ADJUDICATION,
-    legacyBadgePage: LEGACY_BADGE
+    legacyBadgePage: LEGACY_BADGE,
+    compatibilityBadgePage: COMPAT_BADGE_PAGE
   },
   summary: {
     legacySectionCount: rows.length,
@@ -125,13 +131,15 @@ const report = {
     redirectTarget: EXPECTED_TARGET,
     portalRoute,
     portalRedirected,
-    legacyBadgeSourcePreserved: exists(LEGACY_BADGE)
+    legacyBadgeSourcePreserved,
+    compatibilityRedirectPresent
   },
   rows
 };
 
 if (!report.summary.redirectReady) throw new Error('Litteratur legacy adjudication er ikke redirect-klar.');
-if (report.summary.portalRedirected) throw new Error('Litteratur portalruten skal ikke endres i adjudiserings-PR-en; redirect skjer i egen tranche.');
-if (!report.summary.legacyBadgeSourcePreserved) throw new Error('Litteratur legacy-teori må bevares som auditkilde før redirect-tranchen.');
+if (!report.summary.portalRedirected) throw new Error(`Litteratur badgePage må peke til ${EXPECTED_TARGET} etter grønn adjudisering.`);
+if (!report.summary.legacyBadgeSourcePreserved) throw new Error('Arkivert Litteratur-teori må bevares som auditkilde.');
+if (!report.summary.compatibilityRedirectPresent) throw new Error('Legacy Litteratur-URL må være en compatibility-redirect til Progresjon.');
 
 process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
