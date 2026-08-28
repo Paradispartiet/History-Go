@@ -68,8 +68,19 @@ Historie er andre fullteorifag som er ført gjennom samme fail-closed prosess, u
 
 Historie-auditene leser arkivfilen, ikke redirect-wrapperen. Dermed kan gammel teori fortsatt etterprøves, samtidig som ingen aktiv navigasjonsflate bruker den som produktinnhold. Compatibility-URL-en er kun en bakoverkompatibel inngang og skal aldri igjen få eget faginnhold eller progresjonsruntime.
 
+### Litteratur
+
+Litteratur er tredje fullteorifag som er ført gjennom samme fail-closed prosess, men med en annen canonical eiermodell enn Historie:
+
+- **#5451:** deterministisk audit identifiserte alle elleve legacy-seksjoner og sammenlignet ti kunnskapsseksjoner mot Litteraturs manifesteide vitenskapspakke. Litteratur har ikke registry-eide fagkapitler (`chapterCount: 0` i general-engine), så auditen skal ikke finne på registry-eierskap. Det rekursive canonicale korpuset var 2,81 millioner tegn og endte med 10/10 ankerdekning og null manuell restanse.
+- Den eneste innledende restansen, legacy-formuleringen `språkendring/språkhistorie`, ble redaksjonelt bundet til eksisterende canonical dekning av historiske og institusjonelle skriftspråk, målreisning, normering og normalisering. Det ble ikke opprettet et nytt duplikatbegrep.
+- **#5453:** alle ti kunnskapsseksjoner fikk eksplisitte eiere i den canonicale vitenskapspakken og `canonical_supersedes`; `bidrag` ble pensjonert som gammel produkttekst. Ingen seksjon ble feilaktig markert som migrert innhold.
+- Redirect-tranchen bevarer full legacy-teori byte-for-byte i `data/fag/litteratur/archive/merke_litteratur_full_teori_legacy_20260828.html`, gjør `data/fag/litteratur/merke_litteratur (1).html` til ren compatibility-redirect og flytter canonical `badgePage`/`Alle merker` til `fagverk.html?subject=litteratur#fagverkIaProgresjon`.
+
+Litteratur-auditene skal etter redirect kun lese arkivfilen. Redirect-wrapperen er en bakoverkompatibel URL, ikke en faglig kilde eller selvstendig produktflate.
+
 ## Ikke redirect ennå
 
 - **Politikk:** `rich_runtime`; emneprogresjon, quizhistorikk, steder, begrepsutforsker og øvrig aktiv legacy-runtime må ha dokumentert equivalence før redirect.
-- **Andre fullteorisider:** `legacy_static_theory`; hvert fag må gjennom egen innholdsaudit og eksplisitt adjudisering. By og Historie er prosessbevis, ikke automatisk godkjenning av resten.
+- **Andre fullteorisider:** `legacy_static_theory`; hvert fag må gjennom egen innholdsaudit og eksplisitt adjudisering. By, Historie og Litteratur er prosessbevis, ikke automatisk godkjenning av resten.
 - **Tynne legacy-sider:** `legacy_stub`; må gjennom enkel unik-innhold/linkaudit før redirect.
