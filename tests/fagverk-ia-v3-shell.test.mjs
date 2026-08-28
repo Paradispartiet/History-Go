@@ -46,6 +46,15 @@ test('emnekatalogen viser normaliserte canonicale emner uavhengig av progresjon'
   assert.doesNotMatch(renderEmner, /domain\.emneIds\.filter\([^\n]*(?:percent|coverage)/);
 });
 
+test('emnekatalogen bruker progressive disclosure per fagområde og åpner treff ved søk', () => {
+  const renderEmner = functionSource(ia, 'function renderEmner(', 'function renderLaerestoff(');
+  assert.match(renderEmner, /<details class="fagverk-ia-emne-group"/);
+  assert.match(renderEmner, /group\.open = true/);
+  assert.match(renderEmner, /group\.dataset\.searchOpened = 'true'/);
+  assert.match(renderEmner, /delete group\.dataset\.searchOpened/);
+  assert.match(css, /\.fagverk-ia-emne-group>summary/);
+});
+
 test('lærestoffet bruker eksisterende chapter-ruter og bare source-eid curriculum', () => {
   assert.match(ia, /model\.chapters\.map/);
   assert.match(ia, /MODEL\.chapterUrl/);
