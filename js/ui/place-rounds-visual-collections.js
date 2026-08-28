@@ -58,6 +58,8 @@
   });
 
   const PRODUCTION_LABELS = Object.freeze({
+    historie:"Historiske hendelser",
+    historisk:"Historiske hendelser",
     kunst:"Kunstverk",
     litteratur:"Bøker og tekster",
     musikk:"Sanger og album",

@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "a777d03a7a35ea0624347991c23fe8892e6b3bc8964ea4f4f76c4620a215364a"
+    "content_sha256": "dc95437f47de675359084a08bdf30a68a9325bbc9d5762a8c351abf48a86a3f2"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 17,
     "chapter_count": 189,
     "module_file_count": 497,
-    "package_file_count": 332,
+    "package_file_count": 335,
     "chapter_referenced_file_count": 933,
-    "referenced_file_count": 1194,
+    "referenced_file_count": 1197,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -1912,9 +1912,9 @@
         "version"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 41,
+      "package_file_count": 44,
       "required_package_file_count": 4,
-      "optional_package_file_count": 37,
+      "optional_package_file_count": 40,
       "package_files": [
         {
           "path": "data/fag/historie/case_requirements_historie_canonical_v1.json",
@@ -2073,6 +2073,18 @@
           "content_sha256": "cd0ecf17487c6c31811ea2d857a3f60c0b757a3e71652af438cdadb597442606"
         },
         {
+          "path": "data/quiz/historie/ekebergparken_museum_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.ekebergparken_museum.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "2fdf15d19d96019286a148ca045f8c0e180fa8d1e9e13647e52278e73854f405"
+        },
+        {
           "path": "data/quiz/historie/gamle_aker_kirke_sets.json",
           "required": false,
           "fields": [
@@ -2169,6 +2181,18 @@
           "content_sha256": "786ad31de8d175c5805640428c00ed5371f1935fbd077ab15bea7ae6f2be5217"
         },
         {
+          "path": "data/quiz/production_briefs/historie/ekebergparken_museum.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.ekebergparken_museum.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "755566f90b1a459c5b551c7b79a5d782feaa2b0ca7274989ceac9cca309ec74e"
+        },
+        {
           "path": "data/quiz/production_briefs/historie/gamle_aker_kirke.json",
           "required": false,
           "fields": [
@@ -2263,6 +2287,18 @@
           ],
           "exists": true,
           "content_sha256": "62489fc800124b1a577dd709b0e554158aa5c31eb718441d67e8bd49024df7e1"
+        },
+        {
+          "path": "data/quiz/production_context/historie/ekebergparken_museum.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.ekebergparken_museum.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "1d9dd0564b537a168c918909f6e1f3aea76d7c9fe9656bf3a60f463fc7b0c3c2"
         },
         {
           "path": "data/quiz/production_context/historie/gamle_aker_kirke.json",
@@ -2409,20 +2445,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "b0279db6d2b87b1c7ee0beca198979d53c8bb1e3fc78c2a2772a2f940ad6ed7f",
+      "package_content_sha256": "60fbff0d7954cd7fe0e2f8c6b01b587e16664bf3261228a3530d6a2be60bf6c0",
       "chapter_count": 23,
       "module_file_count": 69,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 92,
       "chapter_content_sha256": "bedfd019dc2fa60ba92a540bf6b9f2504e0f6b1680350762a5fe074e82153148",
-      "referenced_file_count": 133,
+      "referenced_file_count": 136,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "b943039e86fe5b0dcb8573c3b2085f1704a07f6ee16818594ad04d419dc452c7",
-      "content_sha256": "994bb3bc8bfb54bbb3a9b010000ab1d9554d35eae09eabccd34520c20c85ed78",
+      "structure_sha256": "e99940f3dbb72eae386b184a1c19c30b5390a41a21c69d505c183670f3df93da",
+      "content_sha256": "c81c744cadc12f4818c87195a8c41fc8135e577f27958e67afb8c230959e14b9",
       "chapters": [
         {
           "chapter_id": "historisk_tid_periodisering",
@@ -6686,5 +6722,5 @@
       ]
     }
   },
-  "release_sha256": "4feb241e32e47c725cfecfd6dac22d6a7efd06adf3e8cb6f1c60806b1bee7678"
+  "release_sha256": "cf50c38088c195a79546839c01e8234a225dd6df0a1374305f87a415d9dc0240"
 }
