@@ -242,10 +242,10 @@ const fagManifest = read("data/fag/fag_manifest.json"); fagManifest.historie.qui
 write(contextFile, { schema_version: "1.0", categoryId: "historie", targetId: placeId, profile: "normal_4x7" });
 
 const readingTracks = [
-  ["statsbygg", "Statsbygg", "Botsen – Oslo fengsel avdeling A", urls.statsbygg, "Hovedkilde for fredning, stenging i 2017 og dagens eiendomsstatus.", "official"],
-  ["snl", "Store norske leksikon", "Botsfengselet", urls.snl, "Kontrollerer bygging, drift, system, kapasitet og institusjonskronologi.", "recognized_reference"],
+  ["statsbygg", "Statsbygg", "Botsen – Oslo fengsel avdeling A", urls.statsbygg, "Hovedkilde for fredning, stenging i 2017 og dagens eiendomsstatus.", "institutional"],
+  ["snl", "Store norske leksikon", "Botsfengselet", urls.snl, "Kontrollerer bygging, drift, system, kapasitet og institusjonskronologi.", "recognized"],
   ["medical", "Tidsskrift for Den norske legeforening", "Frederik Holst og fengslene", urls.medical, "Fagfellevurdert analyse av helse, arkitektur, kommisjonsarbeid og Philadelphia-systemet.", "scholarly"],
-  ["heritage", "Riksantikvaren", "Innsigelse mot Oslo fengsel", urls.riksantikvaren, "Avgrenser fredede Botsen fra planområdet for nytt Oslo fengsel.", "official_heritage"]
+  ["heritage", "Riksantikvaren", "Innsigelse mot Oslo fengsel", urls.riksantikvaren, "Avgrenser fredede Botsen fra planområdet for nytt Oslo fengsel.", "institutional"]
 ].map(([id, publication, title, url, relevance, source_quality]) => ({ id: `lesespor_${placeId}_${id}`, type: "place_history", title, publication, author: null, year: 2026, date: null, url, access: "open", rights: "link_only", curation_status: "approved", source_quality, relevance, subjects: ["fengsel", "straff", "arkitektur", "kulturminne"], category_hints: ["historie"], place_ids: [placeId], person_ids: id === "medical" ? [personId] : [] }));
 const readingTrackFile = "data/lesespor/oslo/lesespor_oslo_by.json"; const readingTrackRegistry = read(readingTrackFile); const readingTrackIds = new Set(readingTracks.map(item => item.id)); readingTrackRegistry.items = readingTrackRegistry.items.filter(item => !readingTrackIds.has(item.id)); readingTrackRegistry.items.push(...readingTracks); write(readingTrackFile, readingTrackRegistry);
 
