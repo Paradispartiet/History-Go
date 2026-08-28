@@ -27,10 +27,10 @@ A PASS with policy open means controlled role-by-role rollout may proceed. It do
 
 ## First structurally varied wave candidates
 
-- **by/by_prosjektleder** — public_administration; rollout_ready; queue #1
-- **filosofi/filosofi_forskning_og_formidling** — research_education; rollout_ready; queue #3
-- **litteratur/redaktor_bok** — media_editorial; rollout_ready; queue #5
-- **sport/sport_trener** — sport_performance; rollout_ready; queue #7
+- **by/by_saksbehandler** — public_administration; rollout_ready; queue #1
+- **filosofi/filosofi_forskning_og_formidling** — research_education; rollout_ready; queue #2
+- **litteratur/redaktor_bok** — media_editorial; rollout_ready; queue #4
+- **sport/sport_trener** — sport_performance; rollout_ready; queue #6
 
 The first wave is a recommendation, not a batch PR: every role still gets its own PR. Cross-role linkage is optional and only used when the work object is genuinely shared.
 
@@ -38,31 +38,31 @@ The first wave is a recommendation, not a batch PR: every role still gets its ow
 
 | Rank | Role | Class | Structural family | Cross-role | Main authored debt |
 | ---: | --- | --- | --- | --- | --- |
-| 1 | `by/by_prosjektleder` | rollout_ready | public_administration | candidate_when_shared_work_is_real | situated_reputation |
-| 2 | `by/by_saksbehandler` | rollout_ready | public_administration | candidate_when_shared_work_is_real | situated_reputation |
-| 3 | `filosofi/filosofi_forskning_og_formidling` | rollout_ready | research_education | not_required_for_rollout | rhythm_waiting_handoff_rework, situated_reputation |
-| 4 | `filosofi/filosofi_undervisning_og_akademia` | rollout_ready | research_education | not_required_for_rollout | situated_reputation |
-| 5 | `litteratur/redaktor_bok` | rollout_ready | media_editorial | candidate_when_shared_work_is_real | rhythm_waiting_handoff_rework, situated_reputation |
-| 6 | `religion/religion_forskning` | rollout_ready | research_education | not_required_for_rollout | situated_reputation |
-| 7 | `sport/sport_trener` | rollout_ready | sport_performance | candidate_when_shared_work_is_real | situated_reputation |
-| 8 | `naeringsliv/administrasjonsmedarbeider` | needs_role_authored_work | economy_business | not_required_for_rollout | career:people, people_places_integrity, situated_reputation |
-| 9 | `naeringsliv/fagarbeider` | needs_role_authored_work | economy_business | not_required_for_rollout | career:people, people_places_integrity, situated_reputation |
-| 10 | `naeringsliv/formann` | needs_role_authored_work | economy_business | candidate_when_shared_work_is_real | career:people, people_places_integrity, situated_reputation |
-| 11 | `naeringsliv/lager_og_driftsmedarbeider` | needs_role_authored_work | economy_business | not_required_for_rollout | career:people, people_places_integrity, situated_reputation |
-| 12 | `naeringsliv/mellomleder` | needs_role_authored_work | economy_business | candidate_when_shared_work_is_real | career:people, people_places_integrity, situated_reputation |
-| 13 | `kunst/kunst_kunstnerisk_ledelse` | needs_role_authored_work | creative_production | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
-| 14 | `kunst/kunst_utstillingsproduksjon` | needs_role_authored_work | creative_production | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
-| 15 | `psykologi/klinikkleder` | needs_role_authored_work | care_professional | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
-| 16 | `psykologi/psykologi_arbeids_og_karriereveiledning` | needs_role_authored_work | care_professional | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
-| 17 | `psykologi/spesialistpsykolog` | needs_role_authored_work | care_professional | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
-| 18 | `scenekunst/scenekunst_dramaturgi_og_utvikling` | needs_role_authored_work | creative_production | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
-| 19 | `scenekunst/scenekunst_institusjonsledelse` | needs_role_authored_work | creative_production | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
-| 20 | `scenekunst/scenekunst_program_og_kuratering` | needs_role_authored_work | creative_production | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
-| 21 | `scenekunst/scenekunst_regi_og_koreografi` | needs_role_authored_work | creative_production | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
-| 22 | `scenekunst/scenekunst_scene_og_produksjon` | needs_role_authored_work | creative_production | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
-| 23 | `scenekunst/scenekunst_utoving_og_ensemble` | needs_role_authored_work | creative_production | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
-| 24 | `subkultur/subkultur_kulturarena_ledelse` | needs_role_authored_work | event_operational | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
-| 25 | `subkultur/subkultur_produksjon_og_prosjekt` | needs_role_authored_work | creative_production | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
+| 1 | `by/by_saksbehandler` | rollout_ready | public_administration | candidate_when_shared_work_is_real | situated_reputation |
+| 2 | `filosofi/filosofi_forskning_og_formidling` | rollout_ready | research_education | not_required_for_rollout | rhythm_waiting_handoff_rework, situated_reputation |
+| 3 | `filosofi/filosofi_undervisning_og_akademia` | rollout_ready | research_education | not_required_for_rollout | situated_reputation |
+| 4 | `litteratur/redaktor_bok` | rollout_ready | media_editorial | candidate_when_shared_work_is_real | rhythm_waiting_handoff_rework, situated_reputation |
+| 5 | `religion/religion_forskning` | rollout_ready | research_education | not_required_for_rollout | situated_reputation |
+| 6 | `sport/sport_trener` | rollout_ready | sport_performance | candidate_when_shared_work_is_real | situated_reputation |
+| 7 | `naeringsliv/administrasjonsmedarbeider` | needs_role_authored_work | economy_business | not_required_for_rollout | career:people, people_places_integrity, situated_reputation |
+| 8 | `naeringsliv/fagarbeider` | needs_role_authored_work | economy_business | not_required_for_rollout | career:people, people_places_integrity, situated_reputation |
+| 9 | `naeringsliv/formann` | needs_role_authored_work | economy_business | candidate_when_shared_work_is_real | career:people, people_places_integrity, situated_reputation |
+| 10 | `naeringsliv/lager_og_driftsmedarbeider` | needs_role_authored_work | economy_business | not_required_for_rollout | career:people, people_places_integrity, situated_reputation |
+| 11 | `naeringsliv/mellomleder` | needs_role_authored_work | economy_business | candidate_when_shared_work_is_real | career:people, people_places_integrity, situated_reputation |
+| 12 | `kunst/kunst_kunstnerisk_ledelse` | needs_role_authored_work | creative_production | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
+| 13 | `kunst/kunst_utstillingsproduksjon` | needs_role_authored_work | creative_production | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
+| 14 | `psykologi/klinikkleder` | needs_role_authored_work | care_professional | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
+| 15 | `psykologi/psykologi_arbeids_og_karriereveiledning` | needs_role_authored_work | care_professional | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
+| 16 | `psykologi/spesialistpsykolog` | needs_role_authored_work | care_professional | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
+| 17 | `scenekunst/scenekunst_dramaturgi_og_utvikling` | needs_role_authored_work | creative_production | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
+| 18 | `scenekunst/scenekunst_institusjonsledelse` | needs_role_authored_work | creative_production | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
+| 19 | `scenekunst/scenekunst_program_og_kuratering` | needs_role_authored_work | creative_production | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
+| 20 | `scenekunst/scenekunst_regi_og_koreografi` | needs_role_authored_work | creative_production | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
+| 21 | `scenekunst/scenekunst_scene_og_produksjon` | needs_role_authored_work | creative_production | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
+| 22 | `scenekunst/scenekunst_utoving_og_ensemble` | needs_role_authored_work | creative_production | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
+| 23 | `subkultur/subkultur_kulturarena_ledelse` | needs_role_authored_work | event_operational | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
+| 24 | `subkultur/subkultur_produksjon_og_prosjekt` | needs_role_authored_work | creative_production | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
+| 25 | `subkultur/subkultur_produksjonsledelse` | needs_role_authored_work | creative_production | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
 
 ## Blocked roles
 
