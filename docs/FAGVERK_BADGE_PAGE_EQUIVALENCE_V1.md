@@ -90,8 +90,18 @@ Kunst er fjerde `legacy_static_theory`-fag som er ført gjennom hele equivalence
 
 Kunst-auditene skal etter redirect bare lese arkivfilen. Compatibility-wrapperen er ikke en faglig kilde, og Kunst/Scenekunst-grensen skal fortsatt eies av category-contracten framfor å materialiseres som et kunstemne.
 
+### Religion
+
+Religion er et `legacy_stub`-fag og trenger derfor ikke fullteori-prosessen:
+
+- **#5466:** den gamle stubben ble kontrollert for unik tekst, runtime og lenker. Den har ingen egen progresjonslogikk, quiz, emnekatalog eller faglig detaljflate. Fagbeskrivelsen er allerede dekket av canonical badge-, registry- og universitetsmateriale, blant annet kildebasert/respektfull behandling, skillet mellom dokumentert observasjon og antakelser om tro og at religiøse tradisjoner er internt mangfoldige.
+- Den gamle formuleringen `4 fagområder / 8 emner / 8 metoder` klassifiseres som `legacy_product_summary`, ikke som kunnskapsinnhold som skal kopieres. Fagverkets runtime eier tellingene.
+- Originalstubben bevares byte-for-byte i `data/fag/religion/archive/merke_religion_legacy_20260828.html` med original Git-blob `fa4cdd97372ce1d2fd90f2a0712bf2458b1f42a4`. `data/fag/religion/merke_religion.html` er kun compatibility-redirect, mens canonical `badgePage` og `Alle merker` går til `fagverk.html?subject=religion#fagverkIaProgresjon`.
+
+Religion viser at `legacy_stub` kan pensjoneres i én tranche når en permanent audit beviser at siden ikke bærer unik kunnskap eller funksjon.
+
 ## Ikke redirect ennå
 
 - **Politikk:** `rich_runtime`; emneprogresjon, quizhistorikk, steder, begrepsutforsker og øvrig aktiv legacy-runtime må ha dokumentert equivalence før redirect.
 - **Andre fullteorisider:** `legacy_static_theory`; hvert fag må gjennom egen innholdsaudit og eksplisitt adjudisering. By, Historie, Litteratur og Kunst er prosessbevis, ikke automatisk godkjenning av resten.
-- **Tynne legacy-sider:** `legacy_stub`; må gjennom enkel unik-innhold/linkaudit før redirect.
+- **Tynne legacy-sider:** `legacy_stub`; Religion er første eksplisitte stub-retirement; øvrige stubber må fortsatt gjennom egen unik-innhold/linkaudit før redirect.
