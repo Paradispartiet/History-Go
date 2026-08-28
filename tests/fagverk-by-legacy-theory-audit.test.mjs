@@ -5,10 +5,18 @@ import { spawnSync } from 'node:child_process';
 
 const portal = JSON.parse(fs.readFileSync('data/fagverk/fagverk_portal.json', 'utf8'));
 
-function audit() {
-  const result = spawnSync(process.execPath, ['scripts/audit-fagverk-by-legacy-theory.mjs'], { encoding: 'utf8' });
+function runJsonScript(script) {
+  const result = spawnSync(process.execPath, [script], { encoding: 'utf8' });
   assert.equal(result.status, 0, result.stderr || result.stdout);
   return JSON.parse(result.stdout);
+}
+
+function audit() {
+  return runJsonScript('scripts/audit-fagverk-by-legacy-theory.mjs');
+}
+
+function adjudicationAudit() {
+  return runJsonScript('scripts/audit-fagverk-by-legacy-adjudication.mjs');
 }
 
 test('By-auditen dekker hele den gamle fullteoristrukturen', () => {
@@ -50,4 +58,32 @@ test('legacy produkttekst skilles fra kunnskapsseksjoner', () => {
 test('By badgePage forblir legacy til innholdsauditen er adjudisert', () => {
   const by = portal.categories.find((item) => item.id === 'by');
   assert.equal(by.badgePage, 'data/fag/by/merke_by.html');
+});
+
+test('adjudiseringsgaten krever eksplisitt disposisjon og canonical eier for alle ti kunnskapsseksjoner', () => {
+  const report = adjudicationAudit();
+  assert.equal(report.summary.knowledgeSectionCount, 10);
+  assert.equal(report.summary.adjudicatedKnowledgeCount, 10);
+  assert.equal(report.rows.filter((row) => row.role === 'knowledge').every((row) => row.anchorCoverage === 1), true);
+  assert.equal(report.rows.filter((row) => row.role === 'knowledge').every((row) => row.ownerFiles.length > 0), true);
+});
+
+test('den geografiske legacy-seksjonen er eksplisitt migrert til canonical By etter topografi/grunnforhold-gapet', () => {
+  const report = adjudicationAudit();
+  const geographic = report.rows.find((row) => row.id === 'geografisk');
+  assert.equal(geographic.disposition, 'migrated_to_canonical');
+  assert.ok(geographic.ownerFiles.includes('data/fagverk/by/arkitektur-type-skala-byform.json'));
+  assert.ok(geographic.migrationRefs.includes('PR #5435'));
+  assert.ok(geographic.migrationRefs.includes('data/fagverk/by/arkitektur-type-skala-byform/01-grunnlag.json'));
+  assert.ok(geographic.migrationRefs.includes('data/fagverk/by/arkitektur-type-skala-byform/claims.json'));
+});
+
+test('adjudisering gjør innholdet redirect-klart uten å endre badgePage i samme tranche', () => {
+  const report = adjudicationAudit();
+  assert.equal(report.summary.anchorAuditRedirectReady, false, 'anker-auditen skal fortsatt ikke kunne auto-godkjenne redirect');
+  assert.equal(report.summary.redirectReady, true);
+  assert.equal(report.summary.redirectTarget, 'fagverk.html?subject=by#fagverkIaProgresjon');
+  assert.equal(report.summary.portalStillLegacy, true);
+  const contribution = report.rows.find((row) => row.id === 'bidrag');
+  assert.equal(contribution.disposition, 'retire_legacy_product_copy');
 });
