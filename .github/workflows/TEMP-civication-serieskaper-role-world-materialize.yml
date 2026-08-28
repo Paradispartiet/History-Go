@@ -9,6 +9,10 @@ on:
       - tests/civication-film-tv-serieskaper-role-world-rollout.test.js
       - .github/workflows/TEMP-civication-serieskaper-role-world-materialize.yml
 
+concurrency:
+  group: civication-serieskaper-role-world-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
