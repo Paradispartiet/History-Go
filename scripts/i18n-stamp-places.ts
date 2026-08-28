@@ -10,6 +10,13 @@
   Usage:
     node scripts/i18n-stamp-places.js
     node scripts/i18n-stamp-places.js en
+    node scripts/i18n-stamp-places.js en --restamp-stale
+
+  By default only translations that have no _sourceHash at all are stamped.
+  A translation whose _sourceHash differs from its master place is what
+  i18n-audit-places.js reports as stale, so overwriting that hash would mark
+  untranslated text as current. Pass --restamp-stale only when the text really
+  has been retranslated.
 */
 
 import type { JsonObject, PlaceSourcePayload, PlaceTranslationMap } from "../schemas/i18n";
@@ -21,6 +28,7 @@ const { createPlaceManifestLoader, resolveRepoRoot } = require("./i18n-place-man
 
 const ROOT = resolveRepoRoot(__dirname);
 const DEFAULT_LANGS = ["en"];
+const restampStale = process.argv.includes("--restamp-stale");
 const placeManifestLoader = createPlaceManifestLoader(ROOT, "i18n-stamp");
 
 type MasterPlace = JsonObject & {
@@ -28,7 +36,13 @@ type MasterPlace = JsonObject & {
   _sourceHash: string;
 };
 
-type StampResult = { lang: string; changed: number; missingMaster: number; total: number };
+type StampResult = {
+  lang: string;
+  changed: number;
+  missingMaster: number;
+  staleSkipped: number;
+  total: number;
+};
 
 function readJson(relativePath: string): any {
   const filePath = path.join(ROOT, relativePath);
@@ -67,6 +81,7 @@ function sourceHash(place: JsonObject): string {
 function extractRows(data: any, relativePath: string): JsonObject[] {
   if (Array.isArray(data)) return data;
   if (Array.isArray(data?.places)) return data.places;
+  if (data && typeof data === "object" && typeof data.id === "string" && data.id.trim()) return [data];
   console.warn(`[i18n-stamp] ${relativePath} is not an array and has no .places array. Skipping.`);
   return [];
 }
@@ -102,12 +117,13 @@ function stampLanguage(lang: string, masterById: Map<string, MasterPlace>): Stam
 
   if (!fs.existsSync(filePath)) {
     console.log(`[i18n-stamp] ${relativePath} does not exist. Skipping.`);
-    return { lang, changed: 0, missingMaster: 0, total: 0 };
+    return { lang, changed: 0, missingMaster: 0, staleSkipped: 0, total: 0 };
   }
 
   const translations: PlaceTranslationMap = readJson(relativePath);
   let changed = 0;
   let missingMaster = 0;
+  let staleSkipped = 0;
   let total = 0;
 
   for (const [id, entry] of Object.entries(translations || {})) {
@@ -121,9 +137,22 @@ function stampLanguage(lang: string, masterById: Map<string, MasterPlace>): Stam
     if (!entry || typeof entry !== "object") continue;
 
     const nextHash = master._sourceHash;
-    if (entry._sourceHash !== nextHash) {
+    const currentHash = String(entry._sourceHash || "").trim();
+
+    if (!currentHash) {
       entry._sourceHash = nextHash;
       changed += 1;
+    } else if (currentHash !== nextHash) {
+      // The translation carries a hash that no longer matches its master place,
+      // which is exactly how i18n-audit-places.js detects a stale translation.
+      // Overwriting it here would mark untranslated text as current, so it
+      // requires an explicit opt-in.
+      if (restampStale) {
+        entry._sourceHash = nextHash;
+        changed += 1;
+      } else {
+        staleSkipped += 1;
+      }
     }
 
     if (!entry._status) entry._status = "machine_translated";
@@ -131,11 +160,11 @@ function stampLanguage(lang: string, masterById: Map<string, MasterPlace>): Stam
 
   if (changed) writeJson(relativePath, translations);
 
-  return { lang, changed, missingMaster, total };
+  return { lang, changed, missingMaster, staleSkipped, total };
 }
 
 function main(): void {
-  const langs = process.argv.slice(2).map(x => String(x || "").trim()).filter(Boolean);
+  const langs = process.argv.slice(2).map(x => String(x || "").trim()).filter(x => x && !x.startsWith("--"));
   const targetLangs = langs.length ? langs : DEFAULT_LANGS;
   const masterById = loadMasterPlaces();
 
@@ -148,6 +177,7 @@ function main(): void {
     console.log(`- entries: ${result.total}`);
     console.log(`- hashes changed: ${result.changed}`);
     console.log(`- translation IDs without master place: ${result.missingMaster}`);
+    console.log(`- stale hashes left untouched: ${result.staleSkipped}`);
   }
 
   console.log("\nDone.");
