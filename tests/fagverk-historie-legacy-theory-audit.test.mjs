@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import { spawnSync } from 'node:child_process';
 
 const portal = JSON.parse(fs.readFileSync('data/fagverk/fagverk_portal.json', 'utf8'));
+const historicalTime = JSON.parse(fs.readFileSync('data/fagverk/historie/historisk_tid_periodisering/01-grunnlag.json', 'utf8'));
 
 function audit() {
   const result = spawnSync(process.execPath, ['scripts/audit-fagverk-historie-legacy-theory.mjs'], { encoding: 'utf8' });
@@ -32,12 +33,35 @@ test('Historie-merkesiden sammenlignes mot det rike manifest- og registry-eide c
   assert.ok(report.canonical.corpusCharacterCount > 5000);
 });
 
+test('alle ti Historie-kunnskapsseksjoner har canonical ankerdekning etter redaksjonell synonymkontroll', () => {
+  const report = audit();
+  assert.equal(report.summary.anchorCompleteCount, 10);
+  assert.equal(report.summary.manualReviewCount, 0);
+  assert.deepEqual(report.summary.manualReview, []);
+  assert.equal(report.rows.filter((row) => row.role === 'knowledge').every((row) => row.anchorCoverage === 1), true);
+});
+
+test('legacy diskontinuitet eies av det canonicale og operasjonaliserte Brudd-begrepet', () => {
+  const report = audit();
+  const conceptRow = report.rows.find((row) => row.id === 'begreper');
+  const discontinuityAnchor = conceptRow.anchors.find((row) => row.alternatives.includes('diskontinuitet'));
+  assert.deepEqual(discontinuityAnchor.alternatives, ['diskontinuitet', 'brudd']);
+  assert.equal(discontinuityAnchor.found, 'brudd');
+
+  const canonicalBreak = historicalTime.concepts.find((concept) => concept.id === 'brudd');
+  assert.equal(canonicalBreak.term, 'Brudd');
+  assert.match(canonicalBreak.definition, /Dokumenterbar endring/);
+  const breakSection = historicalTime.sections.find((section) => section.id === 'brudd-kontinuitet');
+  assert.equal(breakSection.title, '2. Brudd og kontinuitet samtidig');
+  assert.match(breakSection.paragraphs.join(' '), /historiske brudd er sjelden totale/i);
+});
+
 test('ankerfunn alene kan aldri auto-godkjenne redirect av gammel Historie-teori', () => {
   const report = audit();
   assert.equal(report.summary.redirectReady, false);
   assert.match(report.summary.redirectBlockReason, /explicit editorial adjudication/i);
   for (const row of report.rows.filter((item) => item.role === 'knowledge')) {
-    assert.ok(['canonical_anchor_coverage_complete_claim_review_pending','canonical_anchor_gaps_manual_review_required'].includes(row.contentStatus));
+    assert.equal(row.contentStatus, 'canonical_anchor_coverage_complete_claim_review_pending');
   }
 });
 
