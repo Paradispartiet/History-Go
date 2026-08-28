@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="css/fagverk-general.css">
   <link rel="stylesheet" href="css/fagverk-career-uses.css">
   <link rel="stylesheet" href="css/politikk-curriculum.css">
+  <link rel="stylesheet" href="css/fagverk-ia-v3.css">
 </head>
 <body class="hg-fagverk-page">
   <a class="fagverk-skip-link" href="#fagverkMain">Hopp til læreverket</a>
@@ -45,6 +46,42 @@
           <p id="fagverkChapterSubtitle" class="fagverk-subtitle"></p>
           <p id="fagverkLead" class="fagverk-lead"></p>
         </header>
+
+        <nav id="fagverkIaNav" class="fagverk-ia-nav" aria-label="I dette faget" hidden>
+          <a href="#fagverkIaOversikt">Oversikt</a>
+          <a href="#fagverkIaEmner">Emner</a>
+          <a href="#fagverkIaLaerestoff">Lærestoff</a>
+          <a href="#fagverkIaUtforsk">Utforsk</a>
+          <a href="#fagverkIaProgresjon">Progresjon</a>
+        </nav>
+
+        <div id="fagverkIaRoot" class="fagverk-ia-root" hidden>
+          <section id="fagverkIaOversikt" class="fagverk-ia-section" aria-labelledby="fagverkIaOversiktTitle">
+            <header class="fagverk-ia-section-head"><div><p class="fagverk-kicker">Start her</p><h3 id="fagverkIaOversiktTitle">Oversikt</h3></div><p>Få oversikt over faget før du velger emne, lærestoff eller progresjon.</p></header>
+            <div id="fagverkIaOverviewContent"></div>
+          </section>
+
+          <section id="fagverkIaEmner" class="fagverk-ia-section" aria-labelledby="fagverkIaEmnerTitle">
+            <header class="fagverk-ia-section-head"><div><p class="fagverk-kicker">Canonical fagstruktur</p><h3 id="fagverkIaEmnerTitle">Emner</h3></div><p>Alle emnene vises uavhengig av hva du allerede har lært. Progresjon er informasjon, ikke et filter.</p></header>
+            <div id="fagverkIaEmnerContent"></div>
+          </section>
+
+          <section id="fagverkIaLaerestoff" class="fagverk-ia-section" aria-labelledby="fagverkIaLaerestoffTitle">
+            <header class="fagverk-ia-section-head"><div><p class="fagverk-kicker">Redigert læring</p><h3 id="fagverkIaLaerestoffTitle">Lærestoff</h3></div><p>Her ligger redigerte kapitler og eksplisitte studieløp der fagets canonicale kilder faktisk definerer dem.</p></header>
+            <div id="fagverkIaLaerestoffContent"></div>
+          </section>
+
+          <section id="fagverkIaUtforsk" class="fagverk-ia-section" aria-labelledby="fagverkIaUtforskTitle">
+            <header class="fagverk-ia-section-head"><div><p class="fagverk-kicker">Koble faget til steder</p><h3 id="fagverkIaUtforskTitle">Utforsk</h3></div><p>Stedene forblir egne tverrfaglige fagverkssider og åpnes som selvstendige innganger.</p></header>
+            <div id="fagverkIaUtforskContent"></div>
+          </section>
+
+          <section id="fagverkIaProgresjon" class="fagverk-ia-section" aria-labelledby="fagverkIaProgresjonTitle">
+            <header class="fagverk-ia-section-head"><div><p class="fagverk-kicker">Din læring</p><h3 id="fagverkIaProgresjonTitle">Progresjon</h3></div><p>Poeng, nivå og dekning beregnes fra eksisterende History GO-state. Fagverket oppretter ingen ny progresjonslagring.</p></header>
+            <div id="fagverkIaProgresjonContent"></div>
+          </section>
+        </div>
+
         <section id="fagverkSubjectOverview" class="fagverk-general-overview" hidden></section>
         <section id="fagverkCanonicalDomain" class="fagverk-canonical-domain" hidden></section>
         <section id="fagverkCanonicalEmne" class="fagverk-canonical-emne" hidden></section>
@@ -78,6 +115,7 @@
   <script src="js/fagverk-subject-core.js"></script>
   <script src="js/fagverk-subject-model.js"></script>
   <script src="js/fagverk.js"></script>
+  <script src="js/fagverk-ia-v3.js"></script>
   <script src="js/fagverk-history-period-deeplink.js"></script>
   <script src="js/Civication/systems/civicationCareerKnowledgeBridge.js"></script>
   <script src="js/fagverk-career-uses.js"></script>
