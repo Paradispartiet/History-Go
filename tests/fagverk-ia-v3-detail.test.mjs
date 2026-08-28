@@ -54,6 +54,14 @@ test('chapter viser canonicale emner som sammenfoldbar kontekst, ikke kopiert em
   assert.doesNotMatch(source, /emne\.concepts/);
 });
 
+test('detail-shim følger base-rendererens chapter → emne → domain-prioritet', () => {
+  const init = functionSource(detail, 'async function init(', "if (document.readyState === 'loading')");
+  assert.match(init, /if \(chapter\) enhanceChapter/);
+  assert.match(init, /else if \(emne\) enhanceEmne/);
+  assert.match(init, /else if \(domain\) enhanceDomain/);
+  assert.doesNotMatch(init, /if \(emne\)[\s\S]*if \(chapter\)/);
+});
+
 test('detailvisninger skjuler den gamle fulle sidebarinventeringen', () => {
   assert.match(detail, /document\.body\.classList\.add\('fagverk-ia-v3-detail'\)/);
   assert.match(css, /body\.fagverk-ia-v3-detail \.fagverk-sidebar #fagverkSubjectProgress/);
