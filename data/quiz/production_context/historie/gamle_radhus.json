@@ -1,0 +1,728 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "gamle_radhus",
+  "profile": "normal_4x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1773,
+    "selection_sha256": "1bd4a6e7b0f3da50c452d2e2249ff6d09d05bb5481312bcbbb0d3b4ccd9dc544",
+    "category_id": "historie",
+    "target_id": "gamle_radhus"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "bytes": 93945,
+      "sha256": "37abfe99b9f3f1db23bb0cb307b2076407076a405c15868b0524ef5b9e31c72d",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "bytes": 2142053,
+      "sha256": "bcb20665e0a013c4f57e17719b610224874552b942b9bcd7421a7239463931ec",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "bytes": 1127330,
+      "sha256": "6db315c9b911fc04b99dd7609e493e744f919448668cf35fe3c72d3dabff59b1",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "bytes": 252328,
+      "sha256": "9462f9fc4a07c9c08593abaa75e4ee1bddd6af9e45a87304b52df66bcdb654be",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "bytes": 6935,
+      "sha256": "162f166d3c5be89d77b7529ba9186a552b791e9dbd04a590a01fdaad28944098",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 16882,
+      "sha256": "60804db1e587faae822930a800cfebac7966fa7e009778d46d94d1f28e02545e",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/historie/gamle_radhus.json",
+      "bytes": 13847,
+      "sha256": "15d5c9bf089c03f42c232374fc1aa16c8cf4d60a7037b41bd40fbaf701582a06"
+    },
+    "target": {
+      "path": "data/places/by/oslo/gamle_radhus/gamle_radhus.json",
+      "bytes": 16518,
+      "sha256": "9f340dc8b21a7a2c6babe83482c3f25d59751b45e5906a5c5f2ba6fdbf039236"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1303,
+      "selection_sha256": "2f39616c1137dd3c77ba5d246b4350c9fbaf6a659d29860e785fd86a58f42e2d"
+    },
+    "relations": [
+      {
+        "path": "data/relations.json",
+        "matches": 1,
+        "selection_bytes": 261,
+        "selection_sha256": "0eda5f5111719e7147e310622e6a48c819f440cda461d238cbd9a47207263164"
+      }
+    ],
+    "stories": [
+      {
+        "path": "data/stories/stories_gamle_radhus.json",
+        "matches": 1,
+        "selection_bytes": 2227,
+        "selection_sha256": "b500412d18834c13d2bf911ad1dfe24458b984bb15a285a09674ec2508566dfa"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/historie/gamle_radhus_sets.json",
+  "source_registry": {
+    "oslo_gamle_radhus": {
+      "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/gamle-radhus/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Oslo kommune – Gamle Rådhus"
+    },
+    "sceneweb_gamle_radhus": {
+      "url": "https://sceneweb.no/nb/venue/31901/Gamle_Raadhus%20Scene%20%2F%20R%C3%A5dhussalen%2C%20Oslo",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Sceneweb – Gamle Raadhus Scene"
+    },
+    "oppdag_hoyesterett": {
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/hoyesterett",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Oppdag Kvadraturen – Høyesterett"
+    },
+    "oslo_byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Nedre_Slottsgate",
+      "source_type": "reputable_secondary",
+      "review_status": "reviewed",
+      "review_note": "Oslo byleksikon – Nedre Slottsgate"
+    },
+    "snl_lars_backer": {
+      "url": "https://snl.no/Lars_Backer",
+      "source_type": "reputable_secondary",
+      "review_status": "reviewed",
+      "review_note": "Store norske leksikon – Lars Backer"
+    },
+    "commons_current": {
+      "url": "https://commons.wikimedia.org/wiki/File:Gamle_r%C3%A5dhus_Oslo.jpg",
+      "source_type": "archive",
+      "review_status": "reviewed",
+      "review_note": "Wikimedia Commons – Gamle rådhus 2007"
+    },
+    "commons_historic": {
+      "url": "https://commons.wikimedia.org/wiki/File:Gamle_R%C3%A5dhus,_Oslo_-_8.9.1931_-_Ruth_Raabe_-_Oslo_Museum_-_OMu.F26672.jpg",
+      "source_type": "archive",
+      "review_status": "reviewed",
+      "review_note": "Oslo Museum via Wikimedia Commons – Gamle Rådhus 1931"
+    },
+    "commons_interior": {
+      "url": "https://commons.wikimedia.org/wiki/File:Gamle_r%C3%A5dhus_14._des_2013_._Wikipedia_Akademiet_Julebord.JPG",
+      "source_type": "archive",
+      "review_status": "reviewed",
+      "review_note": "Wikimedia Commons – Rådhussalen 2013"
+    },
+    "commons_backer": {
+      "url": "https://commons.wikimedia.org/wiki/File:Lars_Backer_-_1911.jpg",
+      "source_type": "archive",
+      "review_status": "reviewed",
+      "review_note": "Norsk Folkemuseum via Wikimedia Commons – Lars Backer 1911"
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/historie/gamle_radhus_sets.json",
+      "data/places/by/oslo/gamle_radhus/gamle_radhus.json"
+    ],
+    "active_before": {
+      "file": "data/quiz/historie/gamle_radhus_sets.json",
+      "set_count": 1,
+      "question_count": 3,
+      "finding": "Legacy 1x3 quiz had only introductory coverage."
+    },
+    "decisions": [
+      "Replace with normal 4x7 using reviewed external claims."
+    ],
+    "knowledge_migration": "New place-specific Knowledge units replace the three legacy units."
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Four learning jobs: civic identity, chronology, material layers and source criticism."
+  },
+  "held_back_candidates": [
+    "1815 as the move-in year; the detailed site source says 1821.",
+    "Claims that present-day gables or interior are untouched originals from 1641 or 1926."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 23,
+      "emner": 230,
+      "topic_hooks": 230,
+      "methods": 105
+    },
+    "candidate_emner": [
+      {
+        "id": "em_his_arkiv_og_dokumentasjon",
+        "title": "Arkiv og dokumentasjon",
+        "score": 100
+      },
+      {
+        "id": "em_his_historiske_lag_i_byrom",
+        "title": "Historiske lag i byrom",
+        "score": 100
+      },
+      {
+        "id": "em_his_modernisering_1800",
+        "title": "1800-tallets modernisering og ulike endringstempo",
+        "score": 100
+      },
+      {
+        "id": "em_his_spor_materialitet",
+        "title": "Spor og materialitet",
+        "score": 100
+      },
+      {
+        "id": "em_his_stat_institusjoner",
+        "title": "Stat og institusjoner",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "his_arkiv_makt_orden",
+        "title": "Arkiv, klassifikasjon og makt",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      },
+      {
+        "id": "his_digitale_kilder",
+        "title": "Digitale kilder, metadata og søk",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      },
+      {
+        "id": "his_institusjonsbygging_funksjon",
+        "title": "Institusjonsbygging, mandat og funksjon",
+        "category_id": "his_makt_stat_institusjoner",
+        "score": 10
+      },
+      {
+        "id": "his_rytmer_tempo",
+        "title": "Historiske rytmer, tempo og modernisering",
+        "category_id": "his_tid_periodisering",
+        "score": 10
+      },
+      {
+        "id": "his_spor_materialitet",
+        "title": "Materielle spor og sted som kilde",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      },
+      {
+        "id": "his_taushet_fravaer",
+        "title": "Taushet, fravær og blindsoner",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      },
+      {
+        "id": "his_tidslag_samtidighet",
+        "title": "Tidslag og samtidighet i sted",
+        "category_id": "his_tid_periodisering",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_tid_periodisering",
+      "his_kilder_arkiv_spor",
+      "his_makt_stat_institusjoner",
+      "his_byhistorie_stedsendring"
+    ],
+    "emne_ids": [
+      "em_his_stat_institusjoner",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_modernisering_1800",
+      "em_his_arkiv_og_dokumentasjon",
+      "em_his_spor_materialitet"
+    ],
+    "topic_hook_ids": [
+      "his_tidslag_samtidighet",
+      "his_spor_materialitet",
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "reinhart_koselleck"
+    ],
+    "works": [
+      "Futures Past"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_gamle_radhus_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "1641",
+      "source_ids": [
+        "oslo_gamle_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Christianias rådhus",
+      "source_ids": [
+        "oslo_gamle_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Rådmann Lauritz Hansen",
+      "source_ids": [
+        "sceneweb_gamle_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Arrest og fengsel",
+      "source_ids": [
+        "sceneweb_gamle_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "1733",
+      "source_ids": [
+        "oslo_gamle_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Hellig Trefoldighets kirke var ødelagt i brannen",
+      "source_ids": [
+        "sceneweb_gamle_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Byens privilegier",
+      "source_ids": [
+        "sceneweb_gamle_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkiv_og_dokumentasjon"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "1730",
+      "source_ids": [
+        "sceneweb_gamle_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "1821",
+      "source_ids": [
+        "oppdag_hoyesterett"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_modernisering_1800"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Året domstolen ble opprettet",
+      "source_ids": [
+        "oppdag_hoyesterett"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_modernisering_1800"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "1846",
+      "source_ids": [
+        "oppdag_hoyesterett"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_modernisering_1800"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "I en ny sidefløy",
+      "source_ids": [
+        "oslo_gamle_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "1926",
+      "source_ids": [
+        "oslo_gamle_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Carl og Hagbart Berner",
+      "source_ids": [
+        "oslo_gamle_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Utarbeidet en restaureringsplan",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "De ble tilbakeført",
+      "source_ids": [
+        "oslo_gamle_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Det ble gjenskapt",
+      "source_ids": [
+        "oslo_gamle_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Senere restaureringer tilbakeførte eldre former",
+      "source_ids": [
+        "oslo_gamle_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "At et institusjonsbygg kan ombrukes gjennom flere historiske lag",
+      "source_ids": [
+        "sceneweb_gamle_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Rådhuset er bygningen; torvet er plassrommet",
+      "source_ids": [
+        "oslo_gamle_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkiv_og_dokumentasjon"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Restaurant i første etasje og scene i andre",
+      "source_ids": [
+        "oslo_gamle_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Skille institusjonens start fra innflytting i bygningen",
+      "source_ids": [
+        "oppdag_hoyesterett"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkiv_og_dokumentasjon"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Synlig form og restaurerte detaljer, ikke alle tidligere funksjoner alene",
+      "source_ids": [
+        "commons_current"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Representasjonen var begrenset og embeter ble utnevnt",
+      "source_ids": [
+        "sceneweb_gamle_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Som et senere valg om å gjenskape et eldre uttrykk",
+      "source_ids": [
+        "oslo_gamle_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkiv_og_dokumentasjon"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "At administrasjon og tvang var deler av samme institusjon",
+      "source_ids": [
+        "sceneweb_gamle_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Opprinnelige deler, endringer og rekonstruksjoner må skilles",
+      "source_ids": [
+        "oslo_gamle_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_gamle_radhus_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Den lar flere perioders funksjoner og former leses samtidig uten å blande dem",
+      "source_ids": [
+        "oslo_gamle_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "relation",
+      "id": "rel_gamle_radhus_lars_backer",
+      "source_file": "data/relations.json",
+      "summary": "Backers plan fra 1917 formet bygningens senere uttrykk."
+    },
+    {
+      "type": "story",
+      "id": "st_gamle_radhus_raadet_faar_et_hus_1641",
+      "source_file": "data/stories/stories_gamle_radhus.json",
+      "summary": "I 1641 fikk den nye byen et rådhus der styring, rett, borgerskap og arrest ble samlet under samme tak."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "historie_gamle_radhus_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_gamle_radhus_quiz_01",
+        "claim_gamle_radhus_quiz_02",
+        "claim_gamle_radhus_quiz_03",
+        "claim_gamle_radhus_quiz_04",
+        "claim_gamle_radhus_quiz_05",
+        "claim_gamle_radhus_quiz_06",
+        "claim_gamle_radhus_quiz_07"
+      ]
+    },
+    {
+      "set_id": "historie_gamle_radhus_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_gamle_radhus_quiz_08",
+        "claim_gamle_radhus_quiz_09",
+        "claim_gamle_radhus_quiz_10",
+        "claim_gamle_radhus_quiz_11",
+        "claim_gamle_radhus_quiz_12",
+        "claim_gamle_radhus_quiz_13",
+        "claim_gamle_radhus_quiz_14"
+      ]
+    },
+    {
+      "set_id": "historie_gamle_radhus_set_3",
+      "order": 3,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_gamle_radhus_quiz_15",
+        "claim_gamle_radhus_quiz_16",
+        "claim_gamle_radhus_quiz_17",
+        "claim_gamle_radhus_quiz_18",
+        "claim_gamle_radhus_quiz_19",
+        "claim_gamle_radhus_quiz_20",
+        "claim_gamle_radhus_quiz_21"
+      ]
+    },
+    {
+      "set_id": "historie_gamle_radhus_set_4",
+      "order": 4,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_gamle_radhus_quiz_22",
+        "claim_gamle_radhus_quiz_23",
+        "claim_gamle_radhus_quiz_24",
+        "claim_gamle_radhus_quiz_25",
+        "claim_gamle_radhus_quiz_26",
+        "claim_gamle_radhus_quiz_27",
+        "claim_gamle_radhus_quiz_28"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 28,
+    "counts": {
+      "fact": 14,
+      "context": 7,
+      "concept_theory": 7
+    },
+    "ratios": {
+      "fact": 0.5,
+      "context": 0.25,
+      "concept_theory": 0.25
+    }
+  }
+}
