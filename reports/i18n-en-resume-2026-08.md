@@ -83,7 +83,9 @@ Alle 60 er rene i kvalitetsgaten — ingen feil, ingen advarsler. Hver
 oppføring beholder avsnittsinndelingen og lengden i kilden, slik at
 `popup_much_shorter` og `paragraphs_collapsed` ikke utløses.
 
-## Status etter økten (en)
+## Status etter økten
+
+Likt for alle tre språk:
 
 | | Før | Etter |
 |---|---|---|
@@ -113,8 +115,20 @@ Arbeidet er lagt om for å følge den etablerte måten:
   som slås inn med et lite Node-skript, ingen lange oversettelser
   injisert direkte som kommandolinjeargumenter.
 
-Status for etterslepet es/pt underveis: 20 av de 60 er hentet inn
-igjen, og OK for både es og pt har gått fra 331 til 351.
+Etterslepet es/pt er nå **fullført**. Alle 60 oppføringene er dekket i
+en, es og pt, og de tre ordbøkene står likt:
+
+| | en | es | pt |
+|---|---|---|---|
+| OK | 391 | 391 | 391 |
+| Missing | 816 | 816 | 816 |
+| Stale | 336 | 336 | 336 |
+| Extra | 4 | 4 | 4 |
+
+Alle 60 er rene i kvalitetsgaten i alle tre språk. Stamp-resultatet er
+identisk for en, es og pt: 0 hasher endret, 4 uten master, 336 foreldede
+urørt. At de tre tallkolonnene er like er selve poenget — de enspråklige
+batchene hadde begynt å drive ordbøkene fra hverandre.
 
 ## Feil nummer to: stamp-skriptet
 
@@ -136,16 +150,18 @@ stamperen trygt fordi stale da var 0; det gjelder ikke lenger.
 
 ## Gjenstående og åpne spørsmål
 
-- **1152 oppføringer igjen for `en`** (816 missing + 336 stale), og
-  1196 for hver av `es` og `pt`. Konvensjonens batchstørrelse er 20
-  steder à tre språk. Jobben trenger mange flere økter.
+- **1152 oppføringer igjen per språk** (816 missing + 336 stale), altså
+  3456 oversettelser totalt. Konvensjonens batchstørrelse er 20 steder à
+  tre språk, så det gjenstår omkring 58 batcher. Jobben trenger mange
+  flere økter.
 - **es/pt følger engelsk løpende.** Dette var uavklart tidligere i
   runden, men konvensjonen svarer på det: `content-i18n-places-batch-N`
   oversetter alle tre språk i samme batch. `DEFAULT_LANGS = ["en"]` i
   skriptene er bare et standardargument, ikke en prioritering.
-- **40 av de 60 mangler fortsatt es/pt.** Etterslepet fra de
-  enspråklige batchene må hentes helt inn før nye batcher starter, ellers
-  driver de tre ordbøkene fra hverandre igjen.
+- **Etterslepet fra de enspråklige batchene er hentet inn.** Nye batcher
+  kan starte fra en tilstand der de tre ordbøkene står likt. Neste batch
+  bør følge konvensjonen fullt ut: 20 steder à tre språk, med egen
+  batchrapport i strukturen fra `content-i18n-places-batch-N`.
 - **Fire ekstra oversettelses-ID-er** (`schous_plass`, `kampen`,
   `vaterland`, `gamlebyen`) har ikke lenger noe master-sted. De er
   bevisst ikke slettet: navnene er reelle Oslo-strøk som kan bli lagt
