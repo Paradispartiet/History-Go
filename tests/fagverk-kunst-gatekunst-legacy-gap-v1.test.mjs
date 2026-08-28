@@ -32,16 +32,10 @@ test('gatekunst materialiseres i eksisterende Offentlig kunst-emne uten nytt emn
   assert.equal(emners.some((item) => item.emne_id !== TARGET && /gatekunst/i.test(item.emne_id || '')), false);
 });
 
-test('Publikum og offentlighet eier et eksplisitt gatekunst-begrep', () => {
+test('Publikum og offentlighet beholder authored seksbegrepskontrakt', () => {
   const module = JSON.parse(fs.readFileSync(CHAPTER_MODULE, 'utf8'));
-  const concept = module.concepts.find((item) => item.id === 'gatekunst');
-  assert.ok(concept, 'Gatekunst-begrepet mangler i canonicalt kapittel');
-  assert.equal(concept.term, 'Gatekunst');
-  assert.match(concept.definition, /graffiti/i);
-  assert.match(concept.definition, /sjablong/i);
-  assert.match(concept.definition, /veggmaler/i);
-  assert.match(concept.definition, /tillatelse/i);
-  assert.match(concept.definition, /varighet/i);
+  assert.equal(module.concepts.length, 6, 'Gatekunst-migreringen skal ikke endre kapittelets seks authored concepts');
+  assert.equal(module.concepts.some((item) => item.id === 'gatekunst'), false, 'Gatekunst eies av emnet, ikke som et påtvunget sjuende kapittelbegrep');
 });
 
 test('legacy-auditen går fra ett gatekunst-gap til full knowledge-anchor-dekning', () => {
