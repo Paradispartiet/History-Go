@@ -4,7 +4,7 @@ import { auditFagverkTheoryQuality } from '../scripts/audit-fagverk-theory-quali
 
 const STRONG_FLOOR = new Set([
   'by','historie','kunst','litteratur','media','musikk','naeringsliv','natur',
-  'politikk','psykologi','religion','scenekunst','sport','subkultur','vitenskap',
+  'politikk','psykologi','helse','religion','scenekunst','sport','subkultur','vitenskap',
   'filosofi','film_tv','teknologi'
 ]);
 
@@ -20,14 +20,24 @@ test('den historiske 18/18-baselinen forblir sterk under 19+1-utvidelsen', () =>
   const r = auditFagverkTheoryQuality();
   const byId = new Map(r.subjects.map(s => [s.id, s]));
   for (const id of STRONG_FLOOR) assert.equal(byId.get(id)?.baseline, 'strong_structured_evidence', `${id} har theory-quality-regresjon`);
-  assert.equal(r.summary.strong_structured_evidence, 19);
+  assert.equal(r.summary.strong_structured_evidence, 20);
+  assert.equal(r.summary.unstructured_theory_evidence, 0);
   assert.equal(r.historicalBaseline.strongStructuredEvidence, 18);
   assert.deepEqual(r.expansionProductionQueue, []);
 });
 
-test('bare ufullført Helse står i theory-reparasjonskø og completion-status forblir urørt', () => {
+test('Helse-bindingene løser theory-reparasjonskøen uten å endre completion-status', () => {
   const r = auditFagverkTheoryQuality();
-  assert.deepEqual(r.repairQueue, ['helse']);
+  assert.deepEqual(r.repairQueue, []);
   assert.ok(r.subjects.every(s => s.parseFailureCount === 0));
   assert.equal(r.rules.noCompletionStatusChanges, true);
+});
+
+test('Helse strict-bindingene telles som modeller og inspiserbare verk', () => {
+  const r = auditFagverkTheoryQuality({ includeDiagnostics: true });
+  const health = r.diagnostics.helse.metrics;
+  assert.ok(health.structuredUnits >= 24);
+  assert.ok(health.works >= 24);
+  assert.ok(health.rivalOrLimitSignals >= 24);
+  assert.ok(health.contentBindings >= 72);
 });
