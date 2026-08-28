@@ -52,8 +52,7 @@
   function removeRedundantLegacyAction(host, model) {
     const subjectProgress = `${model.subject.routes.subject}#fagverkIaProgresjon`;
     host.querySelectorAll('.fagverk-ia-progress-actions a').forEach((link) => {
-      const href = text(link.getAttribute('href'));
-      if (href === subjectProgress || href === `${model.subject.routes.subject}#fagverkIaProgresjon`) link.remove();
+      if (text(link.getAttribute('href')) === subjectProgress) link.remove();
     });
   }
 
