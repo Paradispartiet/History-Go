@@ -45,14 +45,6 @@
       "type": "official-strategy"
     },
     {
-      "id": "ark06-sentrale-planer",
-      "publisher": "Oslo kommune",
-      "title": "Sentrale planer",
-      "url": "https://www.oslo.kommune.no/politikk/sentrale-planer/",
-      "source_location": "Byutvikling og infrastruktur: Strategi for høyhus i Oslo – behandlet av bystyret 2023; Arkitekturpolitikk for Oslo – bystyret 2020",
-      "type": "official-plan-register"
-    },
-    {
       "id": "ark07-smahusplan-2018",
       "publisher": "Oslo kommune",
       "title": "Småhusplanen – et verktøy for alle som vil opprettholde bomiljøer",
@@ -102,12 +94,21 @@
       "type": "national-guidance"
     },
     {
-      "id": "ark13-visuelle-kvaliteter",
-      "publisher": "Direktoratet for byggkvalitet",
-      "title": "Generelle råd om visuelle kvaliteter",
-      "url": "https://www.dibk.no/bygge-eller-endre/veileder-for-visuelle-kvaliteter/generelle-rad-om-visuelle-kvaliteter",
-      "source_location": "Avsnittene om helhet, form, volum, farge, materialer, plassering, karakter, proporsjon og rytme",
-      "type": "national-guidance"
+      "id": "ark14-bomiljo-topografi",
+      "publisher": "Oslo kommune",
+      "title": "Kriterier for godt bomiljø",
+      "url": "https://www.oslo.kommune.no/get-file/1124222/705c03327c87abe5698e2bed4a91a6a600f9f1becaaa0b352665b1c5ad7cf5be",
+      "source_location": "By og byområde → Topografi og landskapsformer: vurderingskriterier for grunnforhold, topografi, landskapsformer, bebyggelsesstruktur og høydevariasjon",
+      "type": "official-guidance"
+    },
+    {
+      "id": "ark15-undergrunn",
+      "publisher": "Oslo kommune",
+      "title": "Oppdag Oslos undergrunn",
+      "url": "https://magasin.oslo.kommune.no/byplan/oppdag-oslos-undergrunn",
+      "source_location": "Avsnittene om Undergrunnsarkivet, grunnforhold, løsmasser, dybde til fjell og behovet for detaljerte undersøkelser på tomten",
+      "published_at": "2021-01-27",
+      "type": "dated-official-editorial"
     }
   ],
   "claims": [
@@ -163,7 +164,7 @@
     {
       "id": "arkt-08",
       "claim": "Oslos høyhusstrategi ble vedtatt av bystyret 27. september 2023 og fungerer som kommunens styringsdokument for hvor høyhus kan vurderes og hvordan de skal utformes.",
-      "source_ids": ["ark05-hoyhusstrategi", "ark06-sentrale-planer"],
+      "source_ids": ["ark05-hoyhusstrategi"],
       "status": "verified",
       "used_in": ["ark-grunnlag-3", "ark-anvendelse-2"]
     },
@@ -204,8 +205,8 @@
     },
     {
       "id": "arkt-14",
-      "claim": "Direktoratet for byggkvalitet beskriver byggeskikk på flere skalanivåer, fra landskap og bebyggelsesstruktur til det enkelte byggverkets volum, fasader, tak, materialer og farger.",
-      "source_ids": ["ark10-byggeskikk"],
+      "claim": "Direktoratet for byggkvalitet beskriver byggeskikk på flere skalanivåer, fra landskap og bebyggelsesstruktur til det enkelte byggverkets volum, fasader, tak, materialer og farger; Oslo kommunes bomiljøkriterier gjør samtidig grunnforhold, topografi og overordnede landskapsformer til eksplisitte premisser i vurderingen av boliglokalisering og bebyggelsesstruktur.",
+      "source_ids": ["ark10-byggeskikk", "ark14-bomiljo-topografi"],
       "status": "verified",
       "used_in": ["ark-grunnlag-1", "ark-fordypning-1"]
     },
@@ -225,17 +226,17 @@
     },
     {
       "id": "arkt-17",
-      "claim": "DiBKs veiledning om visuelle kvaliteter bruker form, volum, farge, materialer, detaljer, plassering, proporsjon og rytme som eksplisitte kriterier for å diskutere arkitektonisk helhet.",
-      "source_ids": ["ark13-visuelle-kvaliteter"],
+      "claim": "DiBKs veiledning behandler arkitektonisk helhet gjennom eksplisitte forhold som form, volum, plassering, funksjon og omgivelser, slik at estetiske vurderinger kan skilles fra ren smak og fra enkeltmål som høyde alene.",
+      "source_ids": ["ark11-estetikk", "ark12-form-volum"],
       "status": "verified",
       "used_in": ["ark-fordypning-1", "ark-fordypning-3"]
     },
     {
       "id": "arkt-18",
-      "claim": "En etterprøvbar arkitekturanalyse bør skille det som kan observeres direkte – type, struktur, høyde, volum og romlig orden – fra registeropplysninger om vern, strategiske eller juridiske rammer og eksplisitte estetiske eller funksjonelle vurderinger.",
-      "source_ids": ["ark05-hoyhusstrategi", "ark09-gul-liste", "ark10-byggeskikk", "ark11-estetikk", "ark13-visuelle-kvaliteter"],
+      "claim": "En etterprøvbar arkitekturanalyse bør skille det som kan observeres direkte – som topografi, type, struktur, høyde, volum og romlig orden – fra forhold som krever dokumentasjon, blant annet grunnforhold under overflaten, vernestatus og strategiske eller juridiske rammer.",
+      "source_ids": ["ark05-hoyhusstrategi", "ark09-gul-liste", "ark10-byggeskikk", "ark11-estetikk", "ark15-undergrunn"],
       "status": "verified",
-      "used_in": ["ark-fordypning-2", "ark-fordypning-3", "ark-anvendelse-3"]
+      "used_in": ["ark-grunnlag-1", "ark-fordypning-2", "ark-fordypning-3", "ark-anvendelse-3"]
     }
   ]
 }
