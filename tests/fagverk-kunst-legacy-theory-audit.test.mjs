@@ -5,6 +5,8 @@ import { spawnSync } from 'node:child_process';
 
 const SCRIPT = 'scripts/audit-fagverk-kunst-legacy-theory.mjs';
 const REPORT = 'reports/fagverk/kunst-legacy-theory-audit.json';
+const ARCHIVE = 'data/fag/kunst/archive/merke_kunst_legacy_20260828.html';
+const COMPATIBILITY = 'data/fag/kunst/merke_kunst (2).html';
 const CATEGORY_CONTRACT = 'data/categories/category_contract.json';
 const EXPECTED_IDS = [
   'felt', 'verk', 'metode', 'institusjoner', 'offentlig-rom',
@@ -22,7 +24,7 @@ test('Kunst legacy-teori har deterministisk, fail-closed canonical coverage-audi
 
   assert.equal(report.schema, 'history_go_fagverk_kunst_legacy_theory_audit_v1');
   assert.equal(report.subject, 'kunst');
-  assert.equal(report.legacy.badgePage, 'data/fag/kunst/merke_kunst (2).html');
+  assert.equal(report.legacy.badgePage, ARCHIVE);
   assert.equal(report.legacy.sectionCount, 10);
   assert.equal(report.legacy.knowledgeSectionCount, 9);
   assert.equal(report.legacy.productBoundarySectionCount, 1);
@@ -66,6 +68,12 @@ test('Kunst legacy-teori har deterministisk, fail-closed canonical coverage-audi
   assert.ok(report.canonical.registryFiles.length >= 24, 'Kunst-auditen må inkludere hele registry-eide kapittelgrafen');
   assert.equal(report.canonical.categoryBoundaryOwner, CATEGORY_CONTRACT);
   assert.ok(report.canonical.corpusCharacterCount >= 100000, 'Canonical Kunst-korpus er uventet lite');
+
+  assert.ok(fs.existsSync(ARCHIVE), 'Kunst legacy-kilden må være bevart i arkiv');
+  const compatibility = fs.readFileSync(COMPATIBILITY, 'utf8');
+  assert.match(compatibility, /location\.replace/);
+  assert.match(compatibility, /subject=kunst#fagverkIaProgresjon/);
+  assert.doesNotMatch(compatibility, /id="felt"|id="offentlig-rom"/);
 
   assert.ok(fs.existsSync(REPORT), `${REPORT} må være innchecket som permanent deterministisk audit`);
   const committed = JSON.parse(fs.readFileSync(REPORT, 'utf8'));
