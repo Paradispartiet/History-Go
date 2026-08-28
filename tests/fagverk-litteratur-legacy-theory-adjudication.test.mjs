@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { spawnSync } from 'node:child_process';
 
-const LEGACY_ROUTE = 'data/fag/litteratur/merke_litteratur (1).html';
+const LEGACY_ARCHIVE = 'data/fag/litteratur/archive/merke_litteratur_full_teori_legacy_20260828.html';
+const COMPAT_ROUTE = 'data/fag/litteratur/merke_litteratur (1).html';
 const PROGRESS_ROUTE = 'fagverk.html?subject=litteratur#fagverkIaProgresjon';
 const LANGUAGE_HISTORY_OWNER = 'data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/norsk_nordisk_samisk_minoritetslitteratur.json';
 
@@ -51,14 +52,23 @@ test('legacy språkendring og språkhistorie adjudiseres til canonical historisk
   assert.match(temporal.rationale, /normering/i);
 });
 
-test('Litteratur-adjudiseringen er redirect-klar men holder portalruten urørt i egen tranche', () => {
+test('Litteratur-adjudiseringen holder den migrerte progresjonsruten fail-closed', () => {
   const report = adjudicationAudit();
   assert.equal(report.summary.anchorAuditRedirectReady, false, 'anker-auditen alene skal aldri godkjenne redirect');
   assert.equal(report.summary.redirectReady, true);
   assert.equal(report.summary.redirectTarget, PROGRESS_ROUTE);
-  assert.equal(report.summary.portalRoute, LEGACY_ROUTE);
-  assert.equal(report.summary.portalRedirected, false);
+  assert.equal(report.summary.portalRoute, PROGRESS_ROUTE);
+  assert.equal(report.summary.portalRedirected, true);
   assert.equal(report.summary.legacyBadgeSourcePreserved, true);
+  assert.equal(report.summary.compatibilityRedirectPresent, true);
+  assert.equal(report.inputs.legacyBadgePage, LEGACY_ARCHIVE);
+  assert.equal(report.inputs.compatibilityBadgePage, COMPAT_ROUTE);
+
+  assert.ok(fs.existsSync(LEGACY_ARCHIVE));
+  assert.ok(fs.existsSync(COMPAT_ROUTE));
+  const compatHtml = fs.readFileSync(COMPAT_ROUTE, 'utf8');
+  assert.match(compatHtml, /location\.replace/);
+  assert.match(compatHtml, /subject=litteratur#fagverkIaProgresjon/);
 });
 
 test('Litteratur bidrag er gammel produkttekst og får ingen kunstig canonical eier', () => {
