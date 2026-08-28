@@ -1,302 +1,2429 @@
 {
   "targetId": "oslo_radhus",
   "categoryId": "politikk",
-  "generator_version": "chatgpt_history_go_manual_v1",
-  "generated_from": [
-    "data/places/politikk/oslo/places_politikk/oslo_radhus.json",
-    "data/stories/stories_oslo_radhus.json",
-    "data/leksikon/places/oslo/politikk/leksikon_oslo_radhus.json",
-    "data/quiz/regler/SET_MAL_README_v3.md"
-  ],
-  "manual_production_notes": {
-    "quality_direction": "sted → observasjon → emne → forståelse",
-    "hold_back": [
-      "Rådhuset skal ikke reduseres til bare Nobels fredspris.",
-      "Skill kommunal makt fra statlig makt.",
-      "Skill Nobelkomiteens valg av prisvinner fra Oslo kommunes rolle som vertskap."
+  "size_class": "major_8x7",
+  "generator_version": "history_go_manual_reviewed_v1",
+  "generated_from": "data/quiz/production_briefs/politikk/oslo_radhus.json",
+  "sources": {
+    "oslo_radhus": "https://www.oslo.kommune.no/radhuset/",
+    "oslo_styres": "https://www.oslo.kommune.no/politikk/slik-styres-oslo/",
+    "oslo_bystyre_moter": "https://www.oslo.kommune.no/politikk/bystyret/moter-i-bystyret/",
+    "oslo_byrad_moter": "https://www.oslo.kommune.no/politikk/byradet/moter-i-byradet/",
+    "oslo_radhus_75": "https://aktuelt.oslo.kommune.no/oslo-radhus-fyller-75-ar",
+    "oslo_omvisning": "https://www.oslo.kommune.no/radhuset/omvisninger-i-oslo-radhus/",
+    "oslo_klokkespill": "https://www.oslo.kommune.no/english/oslo-city-hall/the-carillon-at-oslo-city-hall/",
+    "nobel_seremoni": "https://www.nobelpeaceprize.org/nobel-peace-prize/about-the-nobel-peace-prize/nobel-peace-prize-celebrations/award-ceremony",
+    "kunst_radhusjubileet": "https://www.kunstsamlingen.no/aktuelt/radhusjubileet-2025",
+    "snl_oslo_radhus": "https://snl.no/Oslo_r%C3%A5dhus",
+    "commons_exterior": "https://commons.wikimedia.org/wiki/File:Oslo_City_Hall_(Oslo_r%C3%A5dhus)_(29796674661).jpg",
+    "commons_hall": "https://commons.wikimedia.org/wiki/File:Oslo_City_Hall_-_The_place_where_the_Nobel_Peace_Prize_is_presented_(29879653935).jpg",
+    "commons_facade": "https://commons.wikimedia.org/wiki/File:Oslo_City_Hall_fa%C3%A7ade_(Oslo_r%C3%A5dhus)_(29252794404).jpg",
+    "commons_nobel_2009": "https://commons.wikimedia.org/wiki/File:Barack_Obama_delivers_remarks_during_the_Nobel_Peace_Prize_ceremony.jpg",
+    "commons_poulsson": "https://commons.wikimedia.org/wiki/File:Magnus_Poulsson.jpg",
+    "commons_oslo_komm": "https://commons.wikimedia.org/wiki/File:Oslo_komm.svg"
+  },
+  "production_context": {
+    "manifest_category": "politikk",
+    "profile": "major_8x7",
+    "standard_version": "3.3",
+    "source_brief": "data/quiz/production_briefs/politikk/oslo_radhus.json",
+    "context_artifact": "data/quiz/production_context/politikk/oslo_radhus.json",
+    "resolved_files": {
+      "pensum": "data/fag/politikk/politikkpensum_canonical_v4_5.json",
+      "emner": "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+      "fagkart": "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+      "methods": "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/politikk/supersetQUIZMAL_politikk.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "styring_institusjoner_forvaltning",
+      "demokrati_representasjon_offentlighet",
+      "offentlig_politikk_beslutning_implementering"
+    ],
+    "emne_ids": [
+      "em_pol_lokaldemokrati",
+      "em_pol_byrakrati_forvaltning",
+      "em_pol_mediert_offentlighet"
+    ],
+    "topic_hook_ids": [
+      "kommunal_styring"
+    ],
+    "method_ids": [
+      "met_pol_institusjonsanalyse",
+      "met_pol_forvaltningsanalyse",
+      "met_pol_dokumentanalyse",
+      "met_pol_offentlighetsanalyse"
+    ],
+    "thinker_ids": [
+      "robert_dahl"
+    ],
+    "works": [],
+    "source_review_status": "reviewed",
+    "theory_start_phase": "final",
+    "method_start_phase": "final",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/politikk/oslo_radhus_sets.json",
+        "data/places/politikk/oslo/places_politikk/oslo_radhus.json"
+      ],
+      "active_before": {
+        "file": "data/quiz/politikk/oslo_radhus_sets.json",
+        "set_count": 1,
+        "question_count": 5,
+        "finding": "Den aktive 1×5-pakken ga en god introduksjon, men manglet canonical normalåpning, produksjonskontekst og bredde."
+      },
+      "decisions": {
+        "keep_as_claim_basis": [
+          "arkitektur og funksjon",
+          "Pipervika",
+          "bystyre og byråd",
+          "kunst og representasjon",
+          "fredspris"
+        ],
+        "rewrite": "Alle fem spørsmål er omskrevet i canonical 8×7-struktur.",
+        "move": [],
+        "remove": []
+      },
+      "knowledge_migration": "De fem eksisterende kunnskapspoengene bevares i den nye påstandsbanken; canonical Knowledge bygges på nytt for 56 spørsmål."
+    },
+    "profile_decision": {
+      "profile": "major",
+      "set_count": 8,
+      "questions_per_set": 7,
+      "justification": "Åtte selvstendige kildebårne læringsjobber dekker institusjonene, planhistorien, arkitektur og kunst, møter og roller, offentlighet og dokumenter, klokkespill og seremoni, vedtakskjeder samt avsluttende kildekritisk syntese."
+    },
+    "held_back_candidates": [
+      "Før/etter-modul: åpne bilder hadde ikke sammenlignbart ståsted.",
+      "Et eget teorisett ble ikke valgt; én avsluttende Dahl-binding skjerper skillet mellom institusjonelle ordninger og udokumenterte effektpåstander uten å dominere stedskunnskapen.",
+      "Sett 9–10: mulige ekstra spor om sanering og kunsthistorie overlapper de åtte læringsjobbene og ble ikke kunstig splittet.",
+      "Langsiktige politikkutfall: møte- og institusjonskildene dokumenterer prosess, ikke effekt av enkeltvedtak."
     ]
   },
   "sets": [
     {
       "set_id": "politikk_oslo_radhus_set_1",
-      "title": "Byens makt, kunst og seremoni",
+      "title": "Rådhuset og organene",
       "level": 1,
       "order": 1,
+      "phase": "opening",
       "xp": 50,
-      "mode": "place_observation_understanding",
       "questions": [
         {
-          "id": "oslo_radhus_s1_q1",
+          "id": "oslo_radhus_quiz_01",
           "quiz_id": "politikk_oslo_radhus_set_1_q1",
           "categoryId": "politikk",
           "placeId": "oslo_radhus",
           "targetId": "oslo_radhus",
           "question_scope": "place",
-          "question": "Hva forteller forskjellen mellom de to høye tårnene og den lave midtbygningen best?",
+          "question": "Når åpnet Oslo rådhus offisielt?",
           "options": [
-            "Tårnene rommer mye av kontorarbeidet, mens midtbygningen samler representasjonsrom og Rådhushallen",
-            "Tårnene er boliger, mens midtbygningen er jernbanestasjon",
-            "Tårnene er kirker, mens midtbygningen er et privat museum"
+            "15. mai 1950",
+            "17. mai 1918",
+            "10. desember 1990"
           ],
-          "answer": "Tårnene rommer mye av kontorarbeidet, mens midtbygningen samler representasjonsrom og Rådhushallen",
+          "answer": "15. mai 1950",
           "answerIndex": 0,
-          "dimension": "stedlesning",
-          "topic": "arkitektur og funksjon",
-          "knowledge": "Rådhusets form skiller kontortårnene fra den lavere delen med bystyresal, representasjonslokaler og den store Rådhushallen.",
-          "difficulty": 1,
-          "question_type": "observation",
-          "question_layer": "place_intro",
-          "emne_id": "em_pol_byrakrati_forvaltning",
-          "related_emner": [
-            "em_pol_lokaldemokrati"
-          ],
+          "knowledge": "Oslo rådhus åpnet 15. mai 1950 under byjubileet.",
           "core_concepts": [
-            "administrasjon",
-            "representasjon",
-            "institusjonsarkitektur"
+            "lokaldemokrati"
           ],
-          "tags": [
-            "oslo_radhus",
-            "tårn",
-            "radhushallen",
-            "stedlesning"
-          ],
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_lokaldemokrati",
           "source": [
-            "data/places/politikk/oslo/places_politikk/oslo_radhus.json",
-            "https://snl.no/Oslo_r%C3%A5dhus"
+            "oslo_radhus_75"
           ],
-          "question_family": "arkitektur_og_funksjon",
-          "angle": "kontor_og_seremoni",
-          "primary_knowledge_unit_id": "ku_politikk_radhusets_form_skiller_k_5088fb3088",
+          "source_origin": "external",
+          "claim_basis": "Oslo rådhus åpnet 15. mai 1950 under byjubileet.",
+          "claim_id": "claim_oslo_radhus_quiz_01",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_01",
           "knowledge_unit_ids": [
-            "ku_politikk_radhusets_form_skiller_k_5088fb3088"
+            "ku_politikk_oslo_radhus_01"
           ],
           "concept_ids": [
-            "co_politikk_administrasjon_5231b94f0c",
-            "co_politikk_representasjon_9258e4132e",
-            "co_politikk_institusjonsarkitektur_381d69f7f9"
+            "co_politikk_lokaldemokrati_01"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
         {
-          "id": "oslo_radhus_s1_q2",
+          "id": "oslo_radhus_quiz_02",
           "quiz_id": "politikk_oslo_radhus_set_1_q2",
           "categoryId": "politikk",
           "placeId": "oslo_radhus",
           "targetId": "oslo_radhus",
           "question_scope": "place",
-          "question": "Hva var den viktigste byendringen da rådhuset ble reist?",
+          "question": "Hvilke to politiske organer har sete i Oslo rådhus?",
           "options": [
-            "Store deler av Pipervika og Tivoliområdet ble sanert og erstattet av et nytt kommunalt monumentalrom",
-            "Stortinget ble flyttet fra Karl Johans gate til fjorden",
-            "Hele havnen ble gjort om til privat boligområde"
+            "Stortinget og regjeringen",
+            "Oslo bystyre og Oslo byråd",
+            "Høyesterett og Riksrevisjonen"
           ],
-          "answer": "Store deler av Pipervika og Tivoliområdet ble sanert og erstattet av et nytt kommunalt monumentalrom",
-          "answerIndex": 0,
-          "dimension": "historisk_transformasjon",
-          "topic": "Pipervika og byomforming",
-          "knowledge": "Rådhusprosjektet omformet et eldre bolig-, arbeids- og fornøyelsesområde til et planlagt administrativt og seremonielt sentrum.",
-          "difficulty": 1,
-          "question_type": "before_after",
-          "question_layer": "place_intro",
-          "emne_id": "em_pol_byrakrati_forvaltning",
-          "related_emner": [
-            "em_pol_lokaldemokrati"
-          ],
+          "answer": "Oslo bystyre og Oslo byråd",
+          "answerIndex": 1,
+          "knowledge": "Oslo bystyre og Oslo byråd",
           "core_concepts": [
-            "sanering",
-            "byutvikling",
-            "kommunal_makt"
+            "lokaldemokrati"
           ],
-          "tags": [
-            "pipervika",
-            "for_na",
-            "byomforming"
-          ],
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_lokaldemokrati",
           "source": [
-            "data/stories/stories_oslo_radhus.json",
-            "https://oslobyleksikon.no/index.php/R%C3%A5dhuset"
+            "oslo_radhus"
           ],
-          "question_family": "sted_og_forvandling",
-          "angle": "pipervika_til_radhus",
-          "primary_knowledge_unit_id": "ku_politikk_radhusprosjektet_omforme_f821ca0b7d",
+          "source_origin": "external",
+          "claim_basis": "Oslo bystyre og Oslo byråd",
+          "claim_id": "claim_oslo_radhus_quiz_02",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_02",
           "knowledge_unit_ids": [
-            "ku_politikk_radhusprosjektet_omforme_f821ca0b7d"
+            "ku_politikk_oslo_radhus_02"
           ],
           "concept_ids": [
-            "co_politikk_sanering_a101bd3210",
-            "co_politikk_byutvikling_4781da1409",
-            "co_politikk_kommunal_makt_99cc60d430"
+            "co_politikk_lokaldemokrati_02"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
         {
-          "id": "oslo_radhus_s1_q3",
+          "id": "oslo_radhus_quiz_03",
           "quiz_id": "politikk_oslo_radhus_set_1_q3",
           "categoryId": "politikk",
           "placeId": "oslo_radhus",
           "targetId": "oslo_radhus",
           "question_scope": "place",
-          "question": "Hva er hovedforskjellen mellom bystyret og byrådet i Oslo?",
+          "question": "Hva er hovedforskjellen mellom bystyret og byrådet?",
           "options": [
-            "Bystyret er det øverste folkevalgte organet, mens byrådet leder den kommunale administrasjonen og gjennomfører politikken",
-            "Byrådet vedtar nasjonale lover, mens bystyret leder domstolene",
-            "Bystyret er en statlig etat, mens byrådet er et privat selskap"
+            "Byrådet vedtar nasjonale lover, mens bystyret dømmer",
+            "Bystyret er privat, mens byrådet er statlig",
+            "Bystyret er øverste folkevalgte organ, mens byrådet leder administrasjonen"
           ],
-          "answer": "Bystyret er det øverste folkevalgte organet, mens byrådet leder den kommunale administrasjonen og gjennomfører politikken",
-          "answerIndex": 0,
-          "dimension": "politisk_forståelse",
-          "topic": "lokaldemokrati",
-          "knowledge": "Oslo har parlamentarisk styringsform. Bystyret er kommunens øverste folkevalgte organ, mens byrådet fungerer som kommuneråd og leder den utøvende kommunale virksomheten.",
-          "difficulty": 2,
-          "question_type": "institution_comparison",
-          "question_layer": "foundation",
-          "emne_id": "em_pol_lokaldemokrati",
-          "related_emner": [
-            "em_pol_byrakrati_forvaltning"
-          ],
+          "answer": "Bystyret er øverste folkevalgte organ, mens byrådet leder administrasjonen",
+          "answerIndex": 2,
+          "knowledge": "Bystyret er øverste folkevalgte organ, mens byrådet leder administrasjonen",
           "core_concepts": [
-            "bystyre",
-            "byråd",
-            "parlamentarisme"
+            "lokaldemokrati"
           ],
-          "tags": [
-            "lokaldemokrati",
-            "oslo_kommune",
-            "styring"
-          ],
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_lokaldemokrati",
           "source": [
-            "https://www.oslo.kommune.no/politikk/bystyret/moter-i-oslo-bystyre/",
-            "https://www.oslo.kommune.no/politikk/reglement-for-folkevalgte/reglement-for-byradet/"
+            "oslo_styres"
           ],
-          "question_family": "kommunal_styring",
-          "angle": "folkevalgt_og_utovende",
-          "primary_knowledge_unit_id": "ku_politikk_oslo_har_parlamentarisk__b249d42ebc",
+          "source_origin": "external",
+          "claim_basis": "Bystyret er øverste folkevalgte organ, mens byrådet leder administrasjonen",
+          "claim_id": "claim_oslo_radhus_quiz_03",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_03",
           "knowledge_unit_ids": [
-            "ku_politikk_oslo_har_parlamentarisk__b249d42ebc",
-            "ku_politikk_bystyret_er_kommunens_ve_924a02da66"
+            "ku_politikk_oslo_radhus_03"
           ],
           "concept_ids": [
-            "co_politikk_bystyre_78939857f4",
-            "co_politikk_byrad_5a781ee74f",
-            "co_politikk_parlamentarisme_93433f8a1b"
+            "co_politikk_lokaldemokrati_03"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
         {
-          "id": "oslo_radhus_s1_q4",
+          "id": "oslo_radhus_quiz_04",
           "quiz_id": "politikk_oslo_radhus_set_1_q4",
           "categoryId": "politikk",
           "placeId": "oslo_radhus",
           "targetId": "oslo_radhus",
           "question_scope": "place",
-          "question": "Hvorfor er monumentalmaleriene politisk interessante i et rådhus?",
+          "question": "Hvor mange medlemmer har Oslo bystyre?",
           "options": [
-            "De former en offentlig fortelling om arbeid, krig, frigjøring og fellesskap i rommet der byen representerer seg selv",
-            "De skjuler alle spor etter kommunal virksomhet",
-            "De viser bare private familieportretter uten forbindelse til byen"
+            "59",
+            "19",
+            "169"
           ],
-          "answer": "De former en offentlig fortelling om arbeid, krig, frigjøring og fellesskap i rommet der byen representerer seg selv",
+          "answer": "59",
           "answerIndex": 0,
-          "dimension": "symbolforståelse",
-          "topic": "kunst og representasjon",
-          "knowledge": "Henrik Sørensen, Alf Rolfsen og flere andre kunstnere gjorde Rådhuset til et bildeprogram om byen, folket og nasjonens historie.",
-          "difficulty": 2,
-          "question_type": "symbol_interpretation",
-          "question_layer": "place_meaning",
-          "emne_id": "em_pol_mediert_offentlighet",
-          "related_emner": [
-            "em_pol_lokaldemokrati"
-          ],
+          "knowledge": "59",
           "core_concepts": [
-            "offentlig_kunst",
-            "representasjon",
-            "fellesskap"
+            "lokaldemokrati"
           ],
-          "tags": [
-            "monumentalmaleri",
-            "henrik_sorensen",
-            "alf_rolfsen"
-          ],
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_lokaldemokrati",
           "source": [
-            "data/places/politikk/oslo/places_politikk/oslo_radhus.json",
-            "https://www.oslo.kommune.no/radhuset/omvisninger-i-oslo-radhus/"
+            "oslo_styres"
           ],
-          "question_family": "kunst_og_makt",
-          "angle": "bildeprogram_som_representasjon",
-          "primary_knowledge_unit_id": "ku_politikk_henrik_s_rensen_alf_rolf_7335a15d24",
+          "source_origin": "external",
+          "claim_basis": "59",
+          "claim_id": "claim_oslo_radhus_quiz_04",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_04",
           "knowledge_unit_ids": [
-            "ku_politikk_henrik_s_rensen_alf_rolf_7335a15d24"
+            "ku_politikk_oslo_radhus_04"
           ],
           "concept_ids": [
-            "co_politikk_offentlig_kunst_c0ebcb8e07",
-            "co_politikk_representasjon_9258e4132e",
-            "co_politikk_fellesskap_52bbefe07b"
+            "co_politikk_lokaldemokrati_04"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
         {
-          "id": "oslo_radhus_s1_q5",
+          "id": "oslo_radhus_quiz_05",
           "quiz_id": "politikk_oslo_radhus_set_1_q5",
           "categoryId": "politikk",
           "placeId": "oslo_radhus",
           "targetId": "oslo_radhus",
           "question_scope": "place",
-          "question": "Hvem bestemmer hvem som får Nobels fredspris, og hvilken rolle har rådhuset?",
+          "question": "Hvem tegnet Oslo rådhus?",
           "options": [
-            "Den norske Nobelkomité velger prisvinneren, mens Oslo rådhus er vertskap og seremonirom",
-            "Oslo bystyre velger prisvinneren og Stortinget låner ut medaljen",
-            "Byrådet velger prisvinneren gjennom kommunebudsjettet"
+            "Henrik Bull og Erling Viksjø",
+            "Arnstein Arneberg og Magnus Poulsson",
+            "Lars Backer og Sverre Fehn"
           ],
-          "answer": "Den norske Nobelkomité velger prisvinneren, mens Oslo rådhus er vertskap og seremonirom",
-          "answerIndex": 0,
-          "dimension": "institusjonsforståelse",
-          "topic": "fredspris og offentlig ritual",
-          "knowledge": "Fredsprisen avgjøres av Den norske Nobelkomité. Siden 1990 har utdelingsseremonien vært holdt i Oslo rådhus 10. desember.",
-          "difficulty": 2,
-          "question_type": "institution_role",
-          "question_layer": "foundation",
-          "emne_id": "em_pol_mediert_offentlighet",
-          "related_emner": [
-            "em_pol_lokaldemokrati"
-          ],
+          "answer": "Arnstein Arneberg og Magnus Poulsson",
+          "answerIndex": 1,
+          "knowledge": "Arnstein Arneberg og Magnus Poulsson",
           "core_concepts": [
-            "Nobelkomiteen",
-            "seremoni",
-            "vertsskap"
+            "lokaldemokrati"
           ],
-          "tags": [
-            "nobels_fredspris",
-            "radhushallen",
-            "offentlighet"
-          ],
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_mediert_offentlighet",
           "source": [
-            "https://www.nobelpeaceprize.org/nobel-peace-prize/about-the-nobel-peace-prize/nobel-peace-prize-celebrations/award-ceremony?instance=0",
-            "https://www.nobelpeaceprize.org/nobel-peace-prize/nomination/the-nomination-process"
+            "kunst_radhusjubileet"
           ],
-          "question_family": "institusjon_og_seremoni",
-          "angle": "beslutning_og_vertsskap",
-          "primary_knowledge_unit_id": "ku_politikk_fredsprisen_avgj_res_av__2e0a066b03",
+          "source_origin": "external",
+          "claim_basis": "Arnstein Arneberg og Magnus Poulsson",
+          "claim_id": "claim_oslo_radhus_quiz_05",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_05",
           "knowledge_unit_ids": [
-            "ku_politikk_fredsprisen_avgj_res_av__2e0a066b03",
-            "ku_politikk_siden_1990_har_utdelings_52931e0e2b"
+            "ku_politikk_oslo_radhus_05"
           ],
           "concept_ids": [
-            "co_politikk_nobelkomiteen_98751307be",
-            "co_politikk_seremoni_42dc1c2fcc",
-            "co_politikk_vertsskap_a3b651f05b"
+            "co_politikk_lokaldemokrati_05"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_06",
+          "quiz_id": "politikk_oslo_radhus_set_1_q6",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hva kan publikum normalt gjøre i Oslo rådhus?",
+          "options": [
+            "Gå fritt inn i alle kontorer",
+            "Vedta kommunens budsjett direkte",
+            "Besøke åpne deler og følge offentlige møter etter gjeldende regler"
+          ],
+          "answer": "Besøke åpne deler og følge offentlige møter etter gjeldende regler",
+          "answerIndex": 2,
+          "knowledge": "Besøke åpne deler og følge offentlige møter etter gjeldende regler",
+          "core_concepts": [
+            "lokaldemokrati"
+          ],
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_lokaldemokrati",
+          "source": [
+            "oslo_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Besøke åpne deler og følge offentlige møter etter gjeldende regler",
+          "claim_id": "claim_oslo_radhus_quiz_06",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_06",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_06"
+          ],
+          "concept_ids": [
+            "co_politikk_lokaldemokrati_06"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_07",
+          "quiz_id": "politikk_oslo_radhus_set_1_q7",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hva skiller Oslo rådhus fra Rådhusplassen i datasettet?",
+          "options": [
+            "Rådhuset er bygningen; Rådhusplassen er byrommet utenfor",
+            "De er to navn på samme kartpunkt",
+            "Rådhusplassen ligger inne i bystyresalen"
+          ],
+          "answer": "Rådhuset er bygningen; Rådhusplassen er byrommet utenfor",
+          "answerIndex": 0,
+          "knowledge": "Rådhuset er bygningen; Rådhusplassen er byrommet utenfor",
+          "core_concepts": [
+            "lokaldemokrati"
+          ],
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "oslo_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Rådhuset er bygningen; Rådhusplassen er byrommet utenfor",
+          "claim_id": "claim_oslo_radhus_quiz_07",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_07",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_07"
+          ],
+          "concept_ids": [
+            "co_politikk_lokaldemokrati_07"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "politikk_oslo_radhus_set_2",
+      "title": "Fra plan til åpning",
+      "level": 2,
+      "order": 2,
+      "phase": "middle",
+      "xp": 60,
+      "questions": [
+        {
+          "id": "oslo_radhus_quiz_08",
+          "quiz_id": "politikk_oslo_radhus_set_2_q1",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hvem tok initiativ til en ny rådhusplan i 1915?",
+          "options": [
+            "Alfred Nobel",
+            "Hieronymus Heyerdahl",
+            "Einar Gerhardsen"
+          ],
+          "answer": "Hieronymus Heyerdahl",
+          "answerIndex": 1,
+          "knowledge": "Hieronymus Heyerdahl",
+          "core_concepts": [
+            "lokaldemokrati"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_lokaldemokrati",
+          "source": [
+            "kunst_radhusjubileet"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Hieronymus Heyerdahl",
+          "claim_id": "claim_oslo_radhus_quiz_08",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_08",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_08"
+          ],
+          "concept_ids": [
+            "co_politikk_lokaldemokrati_08"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_09",
+          "quiz_id": "politikk_oslo_radhus_set_2_q2",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hva omfattet idékonkurransen i 1916?",
+          "options": [
+            "Bare et nytt klokketårn",
+            "En nasjonal parlamentsbygning",
+            "Både et rådhus og regulering av Pipervika"
+          ],
+          "answer": "Både et rådhus og regulering av Pipervika",
+          "answerIndex": 2,
+          "knowledge": "Både et rådhus og regulering av Pipervika",
+          "core_concepts": [
+            "lokaldemokrati"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "kunst_radhusjubileet"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Både et rådhus og regulering av Pipervika",
+          "claim_id": "claim_oslo_radhus_quiz_09",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_09",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_09"
+          ],
+          "concept_ids": [
+            "co_politikk_lokaldemokrati_09"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_10",
+          "quiz_id": "politikk_oslo_radhus_set_2_q3",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Når foregikk plankonkurransen Arneberg og Poulsson vant?",
+          "options": [
+            "1917–1918",
+            "1890–1891",
+            "1949–1950"
+          ],
+          "answer": "1917–1918",
+          "answerIndex": 0,
+          "knowledge": "1917–1918",
+          "core_concepts": [
+            "lokaldemokrati"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "kunst_radhusjubileet"
+          ],
+          "source_origin": "external",
+          "claim_basis": "1917–1918",
+          "claim_id": "claim_oslo_radhus_quiz_10",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_10",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_10"
+          ],
+          "concept_ids": [
+            "co_politikk_lokaldemokrati_10"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_11",
+          "quiz_id": "politikk_oslo_radhus_set_2_q4",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hva vedtok bystyret i 1919?",
+          "options": [
+            "Å flytte Stortinget til Pipervika",
+            "Å gjennomføre rådhusprosjektet",
+            "Å avskaffe byrådet"
+          ],
+          "answer": "Å gjennomføre rådhusprosjektet",
+          "answerIndex": 1,
+          "knowledge": "Å gjennomføre rådhusprosjektet",
+          "core_concepts": [
+            "lokaldemokrati"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_lokaldemokrati",
+          "source": [
+            "kunst_radhusjubileet"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Å gjennomføre rådhusprosjektet",
+          "claim_id": "claim_oslo_radhus_quiz_11",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_11",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_11"
+          ],
+          "concept_ids": [
+            "co_politikk_lokaldemokrati_11"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_12",
+          "quiz_id": "politikk_oslo_radhus_set_2_q5",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Når ble grunnsteinen lagt?",
+          "options": [
+            "1915",
+            "1990",
+            "1931"
+          ],
+          "answer": "1931",
+          "answerIndex": 2,
+          "knowledge": "1931",
+          "core_concepts": [
+            "lokaldemokrati"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "kunst_radhusjubileet"
+          ],
+          "source_origin": "external",
+          "claim_basis": "1931",
+          "claim_id": "claim_oslo_radhus_quiz_12",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_12",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_12"
+          ],
+          "concept_ids": [
+            "co_politikk_lokaldemokrati_12"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_13",
+          "quiz_id": "politikk_oslo_radhus_set_2_q6",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hvor mange bearbeidede utkast lå bak prosjektet før grunnsteinen?",
+          "options": [
+            "Åtte",
+            "To",
+            "Tjuefire"
+          ],
+          "answer": "Åtte",
+          "answerIndex": 0,
+          "knowledge": "Åtte",
+          "core_concepts": [
+            "lokaldemokrati"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "kunst_radhusjubileet"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Åtte",
+          "claim_id": "claim_oslo_radhus_quiz_13",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_13",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_13"
+          ],
+          "concept_ids": [
+            "co_politikk_lokaldemokrati_13"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_14",
+          "quiz_id": "politikk_oslo_radhus_set_2_q7",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hva viser den lange veien fra konkurranse til åpning?",
+          "options": [
+            "At bygget ble reist uten kommunale vedtak",
+            "At et stort offentlig bygg formes av gjentatte politiske, økonomiske og arkitektoniske valg",
+            "At prosjektet aldri endret seg"
+          ],
+          "answer": "At et stort offentlig bygg formes av gjentatte politiske, økonomiske og arkitektoniske valg",
+          "answerIndex": 1,
+          "knowledge": "At et stort offentlig bygg formes av gjentatte politiske, økonomiske og arkitektoniske valg",
+          "core_concepts": [
+            "lokaldemokrati"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "kunst_radhusjubileet"
+          ],
+          "source_origin": "external",
+          "claim_basis": "At et stort offentlig bygg formes av gjentatte politiske, økonomiske og arkitektoniske valg",
+          "claim_id": "claim_oslo_radhus_quiz_14",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_14",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_14"
+          ],
+          "concept_ids": [
+            "co_politikk_lokaldemokrati_14"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "politikk_oslo_radhus_set_3",
+      "title": "Arkitektur, kunst og makt",
+      "level": 3,
+      "order": 3,
+      "phase": "middle",
+      "xp": 70,
+      "questions": [
+        {
+          "id": "oslo_radhus_quiz_15",
+          "quiz_id": "politikk_oslo_radhus_set_3_q1",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hva rommer de høye tårnene først og fremst?",
+          "options": [
+            "Boliger for stortingsrepresentanter",
+            "En jernbanestasjon",
+            "Kontorer for kommunalt arbeid"
+          ],
+          "answer": "Kontorer for kommunalt arbeid",
+          "answerIndex": 2,
+          "knowledge": "Tårnene er kontorvolumer i det kommunale arbeidsbygget.",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "snl_oslo_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Tårnene er kontorvolumer i det kommunale arbeidsbygget.",
+          "claim_id": "claim_oslo_radhus_quiz_15",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_15",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_15"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_15"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_16",
+          "quiz_id": "politikk_oslo_radhus_set_3_q2",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hva er Rådhushallens viktigste funksjon i anlegget?",
+          "options": [
+            "Et stort offentlig representasjons- og seremonirom",
+            "Et lukket lager for arkivsaker",
+            "En privat bolig"
+          ],
+          "answer": "Et stort offentlig representasjons- og seremonirom",
+          "answerIndex": 0,
+          "knowledge": "Et stort offentlig representasjons- og seremonirom",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "oslo_omvisning"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Et stort offentlig representasjons- og seremonirom",
+          "claim_id": "claim_oslo_radhus_quiz_16",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_16",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_16"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_16"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_17",
+          "quiz_id": "politikk_oslo_radhus_set_3_q3",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hvilke kunstnere nevner kommunen blant dem som preger rådhuset?",
+          "options": [
+            "Picasso, Warhol, Banksy og Matisse",
+            "Munch, Sørensen, Rolfsen og Per Krohg",
+            "Tidemand, Gude, Dahl og Werenskiold alene"
+          ],
+          "answer": "Munch, Sørensen, Rolfsen og Per Krohg",
+          "answerIndex": 1,
+          "knowledge": "Munch, Sørensen, Rolfsen og Per Krohg",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "oslo_omvisning"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Munch, Sørensen, Rolfsen og Per Krohg",
+          "claim_id": "claim_oslo_radhus_quiz_17",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_17",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_17"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_17"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_18",
+          "quiz_id": "politikk_oslo_radhus_set_3_q4",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hvorfor er kunsten politisk relevant i et rådhus?",
+          "options": [
+            "Den erstatter alle politiske dokumenter",
+            "Den beviser at alle innbyggere var enige",
+            "Den former en offentlig fortelling om byen, arbeid og fellesskap"
+          ],
+          "answer": "Den former en offentlig fortelling om byen, arbeid og fellesskap",
+          "answerIndex": 2,
+          "knowledge": "Den integrerte kunsten er del av kommunens representasjon av byen.",
+          "core_concepts": [
+            "representasjon",
+            "offentlig kunst"
+          ],
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "kunst_radhusjubileet"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den integrerte kunsten er del av kommunens representasjon av byen.",
+          "claim_id": "claim_oslo_radhus_quiz_18",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_18",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_18"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_18",
+            "co_politikk_offentlig_kunst_c0ebcb8e07"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_19",
+          "quiz_id": "politikk_oslo_radhus_set_3_q5",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hva gjør arkitekturen synlig på ett sted?",
+          "options": [
+            "Både administrativt arbeid, folkevalgte møter og representasjon",
+            "Bare privat næringsvirksomhet",
+            "Bare nasjonal lovgivning"
+          ],
+          "answer": "Både administrativt arbeid, folkevalgte møter og representasjon",
+          "answerIndex": 0,
+          "knowledge": "Både administrativt arbeid, folkevalgte møter og representasjon",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "oslo_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Både administrativt arbeid, folkevalgte møter og representasjon",
+          "claim_id": "claim_oslo_radhus_quiz_19",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_19",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_19"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_19"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_20",
+          "quiz_id": "politikk_oslo_radhus_set_3_q6",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hva er en presis observasjon av tårn og lav midtdel?",
+          "options": [
+            "Tårnene er kirker og midtdelen en havn",
+            "Bygningsdelene skiller kontorarbeid fra større møte- og representasjonsrom",
+            "Formen viser hvem som vinner valg"
+          ],
+          "answer": "Bygningsdelene skiller kontorarbeid fra større møte- og representasjonsrom",
+          "answerIndex": 1,
+          "knowledge": "Bygningsdelene skiller kontorarbeid fra større møte- og representasjonsrom",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "snl_oslo_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bygningsdelene skiller kontorarbeid fra større møte- og representasjonsrom",
+          "claim_id": "claim_oslo_radhus_quiz_20",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_20",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_20"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_20"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_21",
+          "quiz_id": "politikk_oslo_radhus_set_3_q7",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hva kan et fasadefoto dokumentere sikkert?",
+          "options": [
+            "Alle beslutninger som er tatt inne",
+            "Effekten av kommunens politikk",
+            "Bygningens synlige form på fototidspunktet"
+          ],
+          "answer": "Bygningens synlige form på fototidspunktet",
+          "answerIndex": 2,
+          "knowledge": "Bygningens synlige form på fototidspunktet",
+          "core_concepts": [
+            "kildekritikk"
+          ],
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "commons_facade"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bygningens synlige form på fototidspunktet",
+          "claim_id": "claim_oslo_radhus_quiz_21",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_21",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_21"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_21"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "politikk_oslo_radhus_set_4",
+      "title": "Bystyre og byråd i arbeid",
+      "level": 4,
+      "order": 4,
+      "phase": "middle",
+      "xp": 80,
+      "questions": [
+        {
+          "id": "oslo_radhus_quiz_22",
+          "quiz_id": "politikk_oslo_radhus_set_4_q1",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hva vedtar bystyret blant annet?",
+          "options": [
+            "Budsjett og overordnede planer",
+            "Dommer i straffesaker",
+            "Nasjonale lover"
+          ],
+          "answer": "Budsjett og overordnede planer",
+          "answerIndex": 0,
+          "knowledge": "Budsjett og overordnede planer",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "fact",
+          "emne_id": "em_pol_lokaldemokrati",
+          "source": [
+            "oslo_styres"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Budsjett og overordnede planer",
+          "claim_id": "claim_oslo_radhus_quiz_22",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_22",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_22"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_22"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_23",
+          "quiz_id": "politikk_oslo_radhus_set_4_q2",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hvem er byrådet politisk ansvarlig overfor?",
+          "options": [
+            "Den norske Nobelkomité",
+            "Oslo bystyre",
+            "Høyesterett"
+          ],
+          "answer": "Oslo bystyre",
+          "answerIndex": 1,
+          "knowledge": "Oslo bystyre",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "fact",
+          "emne_id": "em_pol_lokaldemokrati",
+          "source": [
+            "oslo_styres"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oslo bystyre",
+          "claim_id": "claim_oslo_radhus_quiz_23",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_23",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_23"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_23"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_24",
+          "quiz_id": "politikk_oslo_radhus_set_4_q3",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hvor ofte møtes bystyret omtrent?",
+          "options": [
+            "Hver dag",
+            "Én gang hvert fjerde år",
+            "Én gang i måneden"
+          ],
+          "answer": "Én gang i måneden",
+          "answerIndex": 2,
+          "knowledge": "Én gang i måneden",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "fact",
+          "emne_id": "em_pol_lokaldemokrati",
+          "source": [
+            "oslo_bystyre_moter"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Én gang i måneden",
+          "claim_id": "claim_oslo_radhus_quiz_24",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_24",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_24"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_24"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_25",
+          "quiz_id": "politikk_oslo_radhus_set_4_q4",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hvor ofte holder byrådet normalt formelle møter?",
+          "options": [
+            "Ukentlig",
+            "Bare ved kommunevalg",
+            "Hvert tiende år"
+          ],
+          "answer": "Ukentlig",
+          "answerIndex": 0,
+          "knowledge": "Ukentlig",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "fact",
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "oslo_byrad_moter"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Ukentlig",
+          "claim_id": "claim_oslo_radhus_quiz_25",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_25",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_25"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_25"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_26",
+          "quiz_id": "politikk_oslo_radhus_set_4_q5",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hva skiller en byrådskonferanse fra et formelt byrådsmøte?",
+          "options": [
+            "Konferansen vedtar lover for landet",
+            "Konferansen forbereder; det formelle møtet avgjør eller sender innstilling",
+            "Det finnes ingen forskjell"
+          ],
+          "answer": "Konferansen forbereder; det formelle møtet avgjør eller sender innstilling",
+          "answerIndex": 1,
+          "knowledge": "Konferansen forbereder; det formelle møtet avgjør eller sender innstilling",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "fact",
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "oslo_byrad_moter"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Konferansen forbereder; det formelle møtet avgjør eller sender innstilling",
+          "claim_id": "claim_oslo_radhus_quiz_26",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_26",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_26"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_26"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_27",
+          "quiz_id": "politikk_oslo_radhus_set_4_q6",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hva gjør byrådet etter at bystyret har vedtatt overordnede rammer?",
+          "options": [
+            "Oppløser bystyret automatisk",
+            "Overfører sakene til Stortinget",
+            "Leder administrasjonen og gjennomfører politikken"
+          ],
+          "answer": "Leder administrasjonen og gjennomfører politikken",
+          "answerIndex": 2,
+          "knowledge": "Leder administrasjonen og gjennomfører politikken",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "fact",
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "oslo_styres"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Leder administrasjonen og gjennomfører politikken",
+          "claim_id": "claim_oslo_radhus_quiz_27",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_27",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_27"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_27"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_28",
+          "quiz_id": "politikk_oslo_radhus_set_4_q7",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hvorfor er rådhuset et lokalt og ikke nasjonalt maktsted?",
+          "options": [
+            "Det huser kommunens organer, ikke Stortinget og statsregjeringen",
+            "Det ligger utenfor Norge",
+            "Det har ingen folkevalgte møter"
+          ],
+          "answer": "Det huser kommunens organer, ikke Stortinget og statsregjeringen",
+          "answerIndex": 0,
+          "knowledge": "Det huser kommunens organer, ikke Stortinget og statsregjeringen",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "fact",
+          "emne_id": "em_pol_lokaldemokrati",
+          "source": [
+            "oslo_styres"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Det huser kommunens organer, ikke Stortinget og statsregjeringen",
+          "claim_id": "claim_oslo_radhus_quiz_28",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_28",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_28"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_28"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "politikk_oslo_radhus_set_5",
+      "title": "Offentlighet og dokumenter",
+      "level": 5,
+      "order": 5,
+      "phase": "middle",
+      "xp": 90,
+      "questions": [
+        {
+          "id": "oslo_radhus_quiz_29",
+          "quiz_id": "politikk_oslo_radhus_set_5_q1",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Når publiseres sakspapirer til bystyremøtene?",
+          "options": [
+            "Bare etter neste valg",
+            "Før møtene",
+            "De publiseres aldri"
+          ],
+          "answer": "Før møtene",
+          "answerIndex": 1,
+          "knowledge": "Før møtene",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "oslo_bystyre_moter"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Før møtene",
+          "claim_id": "claim_oslo_radhus_quiz_29",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_29",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_29"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_29"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_30",
+          "quiz_id": "politikk_oslo_radhus_set_5_q2",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Når publiseres protokollen fra et bystyremøte?",
+          "options": [
+            "Før saken er skrevet",
+            "Bare etter ti år",
+            "Etter møtet"
+          ],
+          "answer": "Etter møtet",
+          "answerIndex": 2,
+          "knowledge": "Etter møtet",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "oslo_bystyre_moter"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Etter møtet",
+          "claim_id": "claim_oslo_radhus_quiz_30",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_30",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_30"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_30"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_31",
+          "quiz_id": "politikk_oslo_radhus_set_5_q3",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hvordan kan publikum følge et bystyremøte uten å sitte i salen?",
+          "options": [
+            "Via direktesending eller opptak",
+            "Bare gjennom private referater",
+            "Ved å stemme i stedet for representantene"
+          ],
+          "answer": "Via direktesending eller opptak",
+          "answerIndex": 0,
+          "knowledge": "Via direktesending eller opptak",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "oslo_bystyre_moter"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Via direktesending eller opptak",
+          "claim_id": "claim_oslo_radhus_quiz_31",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_31",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_31"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_31"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_32",
+          "quiz_id": "politikk_oslo_radhus_set_5_q4",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hva tilbyr møteinformasjonen for å gjøre sendingen mer tilgjengelig?",
+          "options": [
+            "Hemmelig avstemning for seerne",
+            "Tegnspråktolking",
+            "Fri adgang til alle interne systemer"
+          ],
+          "answer": "Tegnspråktolking",
+          "answerIndex": 1,
+          "knowledge": "Tegnspråktolking",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "oslo_bystyre_moter"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Tegnspråktolking",
+          "claim_id": "claim_oslo_radhus_quiz_32",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_32",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_32"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_32"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_33",
+          "quiz_id": "politikk_oslo_radhus_set_5_q5",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hvor finnes byrådets agendaer og beslutninger?",
+          "options": [
+            "Bare i et privat arkiv",
+            "Kun muntlig i Rådhushallen",
+            "I kommunens offentlige innsynsløsning"
+          ],
+          "answer": "I kommunens offentlige innsynsløsning",
+          "answerIndex": 2,
+          "knowledge": "I kommunens offentlige innsynsløsning",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "oslo_byrad_moter"
+          ],
+          "source_origin": "external",
+          "claim_basis": "I kommunens offentlige innsynsløsning",
+          "claim_id": "claim_oslo_radhus_quiz_33",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_33",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_33"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_33"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_34",
+          "quiz_id": "politikk_oslo_radhus_set_5_q6",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hvorfor er møtepapirer og protokoller viktige for demokratisk kontroll?",
+          "options": [
+            "De gjør saker og vedtak etterprøvbare før og etter møtet",
+            "De erstatter valg",
+            "De gjør all saksbehandling hemmelig"
+          ],
+          "answer": "De gjør saker og vedtak etterprøvbare før og etter møtet",
+          "answerIndex": 0,
+          "knowledge": "De gjør saker og vedtak etterprøvbare før og etter møtet",
+          "core_concepts": [
+            "offentlighet",
+            "dokumentanalyse"
+          ],
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "oslo_bystyre_moter"
+          ],
+          "source_origin": "external",
+          "claim_basis": "De gjør saker og vedtak etterprøvbare før og etter møtet",
+          "claim_id": "claim_oslo_radhus_quiz_34",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_34",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_34"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_34",
+            "co_politikk_dokumentanalyse_482ca29b43"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_35",
+          "quiz_id": "politikk_oslo_radhus_set_5_q7",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hva viser adgangsregler i et åpent rådhus?",
+          "options": [
+            "At demokrati krever fri adgang til alle kontorer",
+            "Åpenhet må balanseres mot sikkerhet og aktivt arbeid",
+            "At publikum ikke har noen rolle"
+          ],
+          "answer": "Åpenhet må balanseres mot sikkerhet og aktivt arbeid",
+          "answerIndex": 1,
+          "knowledge": "Åpenhet må balanseres mot sikkerhet og aktivt arbeid",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "oslo_omvisning"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Åpenhet må balanseres mot sikkerhet og aktivt arbeid",
+          "claim_id": "claim_oslo_radhus_quiz_35",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_35",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_35"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_35"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "politikk_oslo_radhus_set_6",
+      "title": "Klokker og fredspris",
+      "level": 6,
+      "order": 6,
+      "phase": "bridge",
+      "xp": 100,
+      "questions": [
+        {
+          "id": "oslo_radhus_quiz_36",
+          "quiz_id": "politikk_oslo_radhus_set_6_q1",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hvor mange klokker har rådhusets klokkespill?",
+          "options": [
+            "12",
+            "59",
+            "49"
+          ],
+          "answer": "49",
+          "answerIndex": 2,
+          "knowledge": "49",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "oslo_klokkespill"
+          ],
+          "source_origin": "external",
+          "claim_basis": "49",
+          "claim_id": "claim_oslo_radhus_quiz_36",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_36",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_36"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_36"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_37",
+          "quiz_id": "politikk_oslo_radhus_set_6_q2",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hvor mye veier den største klokken?",
+          "options": [
+            "4000 kilo",
+            "400 kilo",
+            "14 kilo"
+          ],
+          "answer": "4000 kilo",
+          "answerIndex": 0,
+          "knowledge": "4000 kilo",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "oslo_klokkespill"
+          ],
+          "source_origin": "external",
+          "claim_basis": "4000 kilo",
+          "claim_id": "claim_oslo_radhus_quiz_37",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_37",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_37"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_37"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_38",
+          "quiz_id": "politikk_oslo_radhus_set_6_q3",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hvor mye veier den minste klokken?",
+          "options": [
+            "140 kilo",
+            "14 kilo",
+            "4000 kilo"
+          ],
+          "answer": "14 kilo",
+          "answerIndex": 1,
+          "knowledge": "14 kilo",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "oslo_klokkespill"
+          ],
+          "source_origin": "external",
+          "claim_basis": "14 kilo",
+          "claim_id": "claim_oslo_radhus_quiz_38",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_38",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_38"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_38"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_39",
+          "quiz_id": "politikk_oslo_radhus_set_6_q4",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Når holdes Nobels fredsprisseremoni?",
+          "options": [
+            "15. mai",
+            "17. mai",
+            "10. desember"
+          ],
+          "answer": "10. desember",
+          "answerIndex": 2,
+          "knowledge": "10. desember",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "nobel_seremoni"
+          ],
+          "source_origin": "external",
+          "claim_basis": "10. desember",
+          "claim_id": "claim_oslo_radhus_quiz_39",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_39",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_39"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_39"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_40",
+          "quiz_id": "politikk_oslo_radhus_set_6_q5",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Siden hvilket år har fredsprisseremonien vært i Oslo rådhus?",
+          "options": [
+            "1990",
+            "1901",
+            "1950"
+          ],
+          "answer": "1990",
+          "answerIndex": 0,
+          "knowledge": "1990",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "nobel_seremoni"
+          ],
+          "source_origin": "external",
+          "claim_basis": "1990",
+          "claim_id": "claim_oslo_radhus_quiz_40",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_40",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_40"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_40"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_41",
+          "quiz_id": "politikk_oslo_radhus_set_6_q6",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hvor ble seremonien holdt rett før flyttingen til rådhuset?",
+          "options": [
+            "Regjeringskvartalet",
+            "Universitetets aula",
+            "Oslo tinghus"
+          ],
+          "answer": "Universitetets aula",
+          "answerIndex": 1,
+          "knowledge": "Universitetets aula",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "nobel_seremoni"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Universitetets aula",
+          "claim_id": "claim_oslo_radhus_quiz_41",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_41",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_41"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_41"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_42",
+          "quiz_id": "politikk_oslo_radhus_set_6_q7",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hva mottar prisvinneren i seremonien?",
+          "options": [
+            "Ordførerkjede og pass",
+            "Et sete i bystyret",
+            "Medalje og diplom"
+          ],
+          "answer": "Medalje og diplom",
+          "answerIndex": 2,
+          "knowledge": "Medalje og diplom",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "nobel_seremoni"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Medalje og diplom",
+          "claim_id": "claim_oslo_radhus_quiz_42",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_42",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_42"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_42"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "politikk_oslo_radhus_set_7",
+      "title": "Vedtak, gjennomføring og kontroll",
+      "level": 7,
+      "order": 7,
+      "phase": "bridge",
+      "xp": 110,
+      "questions": [
+        {
+          "id": "oslo_radhus_quiz_43",
+          "quiz_id": "politikk_oslo_radhus_set_7_q1",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hvem velger mottakeren av Nobels fredspris?",
+          "options": [
+            "Den norske Nobelkomité",
+            "Oslo bystyre",
+            "Oslo byråd"
+          ],
+          "answer": "Den norske Nobelkomité",
+          "answerIndex": 0,
+          "knowledge": "Den norske Nobelkomité",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_pol_lokaldemokrati",
+          "source": [
+            "nobel_seremoni"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den norske Nobelkomité",
+          "claim_id": "claim_oslo_radhus_quiz_43",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_43",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_43"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_43"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_44",
+          "quiz_id": "politikk_oslo_radhus_set_7_q2",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hvilken rolle har Oslo rådhus i fredsprisen?",
+          "options": [
+            "Det velger prisvinneren",
+            "Seremoniarena og vertskapsramme",
+            "Det forvalter Nobels testamente"
+          ],
+          "answer": "Seremoniarena og vertskapsramme",
+          "answerIndex": 1,
+          "knowledge": "Seremoniarena og vertskapsramme",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "nobel_seremoni"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Seremoniarena og vertskapsramme",
+          "claim_id": "claim_oslo_radhus_quiz_44",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_44",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_44"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_44"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_45",
+          "quiz_id": "politikk_oslo_radhus_set_7_q3",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hva dokumenterer bildet fra seremonien i 2009?",
+          "options": [
+            "At rådhuset åpnet i 1919",
+            "At bystyret valgte prisvinneren",
+            "At Barack Obama talte i Rådhushallen under den faktiske seremonien"
+          ],
+          "answer": "At Barack Obama talte i Rådhushallen under den faktiske seremonien",
+          "answerIndex": 2,
+          "knowledge": "At Barack Obama talte i Rådhushallen under den faktiske seremonien",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "commons_nobel_2009"
+          ],
+          "source_origin": "external",
+          "claim_basis": "At Barack Obama talte i Rådhushallen under den faktiske seremonien",
+          "claim_id": "claim_oslo_radhus_quiz_45",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_45",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_45"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_45"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_46",
+          "quiz_id": "politikk_oslo_radhus_set_7_q4",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hvilken kjede beskriver kommunal styring mest presist?",
+          "options": [
+            "Bystyret vedtar rammer, byrådet leder gjennomføringen, administrasjonen utfører",
+            "Nobelkomiteen vedtar, Stortinget utfører, rådhuset dømmer",
+            "Administrasjonen velger bystyret og opphever budsjettet"
+          ],
+          "answer": "Bystyret vedtar rammer, byrådet leder gjennomføringen, administrasjonen utfører",
+          "answerIndex": 0,
+          "knowledge": "Bystyret vedtar rammer, byrådet leder gjennomføringen, administrasjonen utfører",
+          "core_concepts": [
+            "vedtak",
+            "implementering"
+          ],
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "oslo_styres"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bystyret vedtar rammer, byrådet leder gjennomføringen, administrasjonen utfører",
+          "claim_id": "claim_oslo_radhus_quiz_46",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_46",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_46"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_46",
+            "co_politikk_implementering_5ab0397c63"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_47",
+          "quiz_id": "politikk_oslo_radhus_set_7_q5",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hva kan åpne møter og publiserte dokumenter bidra til?",
+          "options": [
+            "Sikker kunnskap om alle langsiktige virkninger",
+            "Innsyn og mulighet til å kontrollere beslutningsprosessen",
+            "At politisk uenighet forsvinner"
+          ],
+          "answer": "Innsyn og mulighet til å kontrollere beslutningsprosessen",
+          "answerIndex": 1,
+          "knowledge": "Innsyn og mulighet til å kontrollere beslutningsprosessen",
+          "core_concepts": [
+            "demokratisk kontroll"
+          ],
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "oslo_bystyre_moter"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Innsyn og mulighet til å kontrollere beslutningsprosessen",
+          "claim_id": "claim_oslo_radhus_quiz_47",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_47",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_47"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_47"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_48",
+          "quiz_id": "politikk_oslo_radhus_set_7_q6",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hvorfor er rådhuset ikke det samme som hele Oslo kommune?",
+          "options": [
+            "Kommunen finnes bare under Rådhushallen",
+            "Bygningen tilhører staten",
+            "Det er et sete og symbolbygg, mens tjenester og ansatte finnes mange steder"
+          ],
+          "answer": "Det er et sete og symbolbygg, mens tjenester og ansatte finnes mange steder",
+          "answerIndex": 2,
+          "knowledge": "Det er et sete og symbolbygg, mens tjenester og ansatte finnes mange steder",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "oslo_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Det er et sete og symbolbygg, mens tjenester og ansatte finnes mange steder",
+          "claim_id": "claim_oslo_radhus_quiz_48",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_48",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_48"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_48"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "oslo_radhus_quiz_49",
+          "quiz_id": "politikk_oslo_radhus_set_7_q7",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hva kan man ikke slutte fra et vedtak alene?",
+          "options": [
+            "At den ønskede virkningen faktisk ble oppnådd",
+            "At et organ behandlet saken",
+            "At vedtaket kan dokumenteres"
+          ],
+          "answer": "At den ønskede virkningen faktisk ble oppnådd",
+          "answerIndex": 0,
+          "knowledge": "At den ønskede virkningen faktisk ble oppnådd",
+          "core_concepts": [
+            "utfall",
+            "evidens"
+          ],
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "oslo_byrad_moter"
+          ],
+          "source_origin": "external",
+          "claim_basis": "At den ønskede virkningen faktisk ble oppnådd",
+          "claim_id": "claim_oslo_radhus_quiz_49",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_49",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_49"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_49",
+            "co_politikk_evidens_38da5ebddd"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "politikk_oslo_radhus_set_8",
+      "title": "Grenser, sammenligning og syntese",
+      "level": 8,
+      "order": 8,
+      "phase": "final",
+      "xp": 120,
+      "questions": [
+        {
+          "id": "oslo_radhus_quiz_50",
+          "quiz_id": "politikk_oslo_radhus_set_8_q1",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hvordan kan kunsten undersøkes politisk uten å anta enighet?",
+          "options": [
+            "Behandle bildene som bevis på at alle var enige",
+            "Spørre hvilke motiver og grupper byen valgte å representere",
+            "Se bort fra plasseringen i maktbygget"
+          ],
+          "answer": "Spørre hvilke motiver og grupper byen valgte å representere",
+          "answerIndex": 1,
+          "knowledge": "Spørre hvilke motiver og grupper byen valgte å representere",
+          "core_concepts": [
+            "representasjonsanalyse"
+          ],
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "kunst_radhusjubileet"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Spørre hvilke motiver og grupper byen valgte å representere",
+          "claim_id": "claim_oslo_radhus_quiz_50",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_50",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_50"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_50"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_pol_dokumentanalyse",
+          "guidance_basis": [
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "oslo_radhus_quiz_51",
+          "quiz_id": "politikk_oslo_radhus_set_8_q2",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hva viser klokkespillet om institusjonens forhold til byrommet?",
+          "options": [
+            "At klokkene fatter politiske vedtak",
+            "At bystyret møtes i tårnet",
+            "At rådhuset kommuniserer gjennom lyd også utenfor bygningen"
+          ],
+          "answer": "At rådhuset kommuniserer gjennom lyd også utenfor bygningen",
+          "answerIndex": 2,
+          "knowledge": "At rådhuset kommuniserer gjennom lyd også utenfor bygningen",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "oslo_klokkespill"
+          ],
+          "source_origin": "external",
+          "claim_basis": "At rådhuset kommuniserer gjennom lyd også utenfor bygningen",
+          "claim_id": "claim_oslo_radhus_quiz_51",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_51",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_51"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_51"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_pol_institusjonsanalyse",
+          "guidance_basis": [
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "oslo_radhus_quiz_52",
+          "quiz_id": "politikk_oslo_radhus_set_8_q3",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hvilken sammenligning mellom rådhuset og Stortinget er riktig?",
+          "options": [
+            "Rådhuset huser kommunal styring; Stortinget vedtar nasjonale lover",
+            "Begge er kommunale byråd",
+            "Rådhuset er en domstol og Stortinget et museum"
+          ],
+          "answer": "Rådhuset huser kommunal styring; Stortinget vedtar nasjonale lover",
+          "answerIndex": 0,
+          "knowledge": "Rådhuset huser kommunal styring; Stortinget vedtar nasjonale lover",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_pol_lokaldemokrati",
+          "source": [
+            "oslo_styres"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Rådhuset huser kommunal styring; Stortinget vedtar nasjonale lover",
+          "claim_id": "claim_oslo_radhus_quiz_52",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_52",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_52"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_52"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_pol_dokumentanalyse",
+          "guidance_basis": [
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "oslo_radhus_quiz_53",
+          "quiz_id": "politikk_oslo_radhus_set_8_q4",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hva er den viktigste forskjellen mellom daglig rådhusarbeid og Nobel-seremonien?",
+          "options": [
+            "Begge velger Oslo bystyre",
+            "Det første er løpende kommunal styring; det andre er en årlig internasjonal seremoni",
+            "Ingen av dem foregår i bygningen"
+          ],
+          "answer": "Det første er løpende kommunal styring; det andre er en årlig internasjonal seremoni",
+          "answerIndex": 1,
+          "knowledge": "Det første er løpende kommunal styring; det andre er en årlig internasjonal seremoni",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "nobel_seremoni"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Det første er løpende kommunal styring; det andre er en årlig internasjonal seremoni",
+          "claim_id": "claim_oslo_radhus_quiz_53",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_53",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_53"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_53"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_pol_institusjonsanalyse",
+          "guidance_basis": [
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "oslo_radhus_quiz_54",
+          "quiz_id": "politikk_oslo_radhus_set_8_q5",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hva betyr det at et bystyremøte er åpent?",
+          "options": [
+            "Publikum kan overta representantenes stemmer",
+            "Alle kommunale dokumenter blir automatisk offentlige",
+            "Publikum kan følge møtet innenfor praktiske adgangsregler"
+          ],
+          "answer": "Publikum kan følge møtet innenfor praktiske adgangsregler",
+          "answerIndex": 2,
+          "knowledge": "Publikum kan følge møtet innenfor praktiske adgangsregler",
+          "core_concepts": [
+            "institusjon"
+          ],
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "oslo_bystyre_moter"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Publikum kan følge møtet innenfor praktiske adgangsregler",
+          "claim_id": "claim_oslo_radhus_quiz_54",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_54",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_54"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_54"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_pol_dokumentanalyse",
+          "guidance_basis": [
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "oslo_radhus_quiz_55",
+          "quiz_id": "politikk_oslo_radhus_set_8_q6",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hvilken kildekombinasjon er best for å undersøke et vedtak og hvordan det fremstilles?",
+          "options": [
+            "Sakspapir, møteopptak og protokoll",
+            "Bare et fasadefoto",
+            "Bare klokkespillprogrammet"
+          ],
+          "answer": "Sakspapir, møteopptak og protokoll",
+          "answerIndex": 0,
+          "knowledge": "Sakspapir, møteopptak og protokoll",
+          "core_concepts": [
+            "dokumentanalyse",
+            "medieanalyse"
+          ],
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "oslo_bystyre_moter"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Sakspapir, møteopptak og protokoll",
+          "claim_id": "claim_oslo_radhus_quiz_55",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_55",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_55"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_55",
+            "co_politikk_medieanalyse_1a70cc9867"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_pol_institusjonsanalyse",
+          "guidance_basis": [
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "oslo_radhus_quiz_56",
+          "quiz_id": "politikk_oslo_radhus_set_8_q7",
+          "categoryId": "politikk",
+          "placeId": "oslo_radhus",
+          "targetId": "oslo_radhus",
+          "question_scope": "place",
+          "question": "Hva er en kildebevisst konklusjon om rådhuset?",
+          "options": [
+            "Arkitekturen beviser at alle vedtak er gode",
+            "Bygget samler dokumenterbare funksjoner, men kilder må skilles fra tolkninger av virkning",
+            "Et seremonibilde forklarer hele kommunens arbeid"
+          ],
+          "answer": "Bygget samler dokumenterbare funksjoner, men kilder må skilles fra tolkninger av virkning",
+          "answerIndex": 1,
+          "knowledge": "Bygget samler dokumenterbare funksjoner, men kilder må skilles fra tolkninger av virkning",
+          "core_concepts": [
+            "kildekritikk"
+          ],
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_pol_lokaldemokrati",
+          "source": [
+            "oslo_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bygget samler dokumenterbare funksjoner, men kilder må skilles fra tolkninger av virkning",
+          "claim_id": "claim_oslo_radhus_quiz_56",
+          "primary_knowledge_unit_id": "ku_politikk_oslo_radhus_56",
+          "knowledge_unit_ids": [
+            "ku_politikk_oslo_radhus_56"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjon_56"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_pol_dokumentanalyse",
+          "guidance_basis": [
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "topic_hook_id": "kommunal_styring",
+          "thinker_id": "robert_dahl",
+          "theory_ref": {
+            "topic_hook_id": "kommunal_styring",
+            "why_it_helps": "Dahls institusjonelle demokratiperspektiv skjerper skillet mellom dokumenterbare ordninger for deltakelse og kontroll og sterkere påstander om demokratisk kvalitet eller virkning."
+          }
         }
       ]
     }
