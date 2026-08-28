@@ -15,7 +15,8 @@ Denne PR-en skal lukke **kun** de to readiness-gapene. Den skal ikke bygge ny pr
 
 ## Eksisterende pakke som skal bevares
 
-- role model: `data/Civication/roleModels/by/by_arkitekt.json`
+- canonical career role model: `data/Civication/roleModels/by/arkitekt.json`
+- compatibility/shared model: `data/Civication/roleModels/by/by_arkitekt.json` beholdes urørt
 - work grammar: `data/Civication/workGrammars/by/by_arkitekt.json`
 - mail plan: `data/Civication/mailPlans/by/by_arkitekt_plan.json`
 - eksisterende 8-stegs arkitektplan bevares uendret
@@ -116,7 +117,7 @@ Materialiseringen skal:
 - ha 14 dager × fire faser = 56 unike beats;
 - ha `materialization.authored_dimensions` lik nøyaktig `['rhythm_waiting_handoff_rework','situated_reputation']`;
 - gjenbruke nøyaktig de ni canonical source refs over;
-- bevare 8-stegs mailplan, role model, work grammar og Scene Pipeline;
+- bevare 8-stegs mailplan, canonical career role model, compatibility/shared model, work grammar og Scene Pipeline;
 - ha minst seks recurring archetypes, åtte slow axes, fem primary threads, fem private aftermath og seks delayed consequences;
 - bruke `by_arkitekt_people_sara_001` som editorial continuity anchor uten ny runtime state;
 - ikke introdusere global reputation, ny godkjenningsmotor eller parallelt sceneformat;
