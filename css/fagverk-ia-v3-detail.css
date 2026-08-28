@@ -1,0 +1,110 @@
+/* Fagverk IA v3 — contextual domain, emne and chapter views */
+.fagverk-ia-detail-nav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:14px 0 20px;
+  padding:9px;
+  border:1px solid var(--fv-line);
+  border-radius:17px;
+  background:rgba(7,11,17,.82);
+}
+.fagverk-ia-detail-nav a{
+  padding:8px 10px;
+  border-radius:999px;
+  color:var(--fv-muted);
+  font-size:11px;
+  font-weight:850;
+  text-decoration:none;
+}
+.fagverk-ia-detail-nav a:first-child{background:var(--fv-accent-soft);color:#fff;}
+.fagverk-ia-detail-nav a:hover,.fagverk-ia-detail-nav a:focus-visible{background:rgba(255,255,255,.06);color:#fff;outline:none;}
+
+.fagverk-ia-emne-status{
+  display:grid;
+  grid-template-columns:minmax(150px,auto) minmax(120px,1fr);
+  gap:12px 18px;
+  align-items:center;
+  margin-bottom:16px;
+  padding:16px;
+  border:1px solid rgba(246,200,0,.22);
+  border-radius:18px;
+  background:linear-gradient(145deg,rgba(246,200,0,.09),rgba(255,255,255,.025));
+}
+.fagverk-ia-emne-status>div:first-child{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;align-items:baseline;}
+.fagverk-ia-emne-status .fagverk-kicker{grid-column:1/-1;}
+.fagverk-ia-emne-status strong{font-size:26px;line-height:1;}
+.fagverk-ia-emne-status span{color:var(--fv-muted);font-size:11px;}
+.fagverk-ia-emne-status-bar{height:8px;overflow:hidden;border-radius:999px;background:rgba(255,255,255,.09);}
+.fagverk-ia-emne-status-bar i{display:block;height:100%;border-radius:inherit;background:var(--fv-accent);}
+.fagverk-ia-emne-status>small{grid-column:1/-1;color:var(--fv-muted);font-size:10px;line-height:1.45;}
+
+.fagverk-ia-emne-primary-learning{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:16px;
+  align-items:center;
+  margin:0 0 18px;
+  padding:17px;
+  border:1px solid rgba(246,200,0,.3);
+  border-radius:19px;
+  background:linear-gradient(135deg,rgba(246,200,0,.13),rgba(48,102,175,.08));
+  text-decoration:none;
+}
+.fagverk-ia-emne-primary-learning>span{display:flex;flex-direction:column;gap:5px;min-width:0;}
+.fagverk-ia-emne-primary-learning strong{font-size:17px;line-height:1.25;}
+.fagverk-ia-emne-primary-learning small{color:var(--fv-muted);font-size:11px;line-height:1.4;}
+.fagverk-ia-emne-primary-learning>b{color:var(--fv-accent);font-size:12px;white-space:nowrap;}
+.fagverk-ia-emne-primary-learning:hover{border-color:rgba(246,200,0,.55);}
+.fagverk-ia-secondary-learning{margin-top:18px;padding-top:18px;border-top:1px solid var(--fv-line);}
+
+.fagverk-ia-domain-status{
+  display:grid;
+  grid-template-columns:minmax(140px,auto) auto minmax(100px,1fr);
+  gap:10px;
+  align-items:center;
+  margin-bottom:16px;
+  padding:12px 14px;
+  border:1px solid var(--fv-line);
+  border-radius:16px;
+  background:rgba(0,0,0,.14);
+}
+.fagverk-ia-domain-status>span{color:var(--fv-muted);font-size:11px;}
+.fagverk-ia-domain-status>strong{font-size:16px;}
+.fagverk-ia-domain-status>div{height:7px;overflow:hidden;border-radius:999px;background:rgba(255,255,255,.08);}
+.fagverk-ia-domain-status i{display:block;height:100%;border-radius:inherit;background:var(--fv-accent);}
+
+.fagverk-ia-chapter-emner{
+  margin:0 0 18px;
+  border:1px solid var(--fv-line);
+  border-radius:17px;
+  background:rgba(0,0,0,.13);
+}
+.fagverk-ia-chapter-emner>summary{display:flex;justify-content:space-between;gap:12px;padding:13px 15px;cursor:pointer;font-size:12px;font-weight:850;}
+.fagverk-ia-chapter-emner>summary span{color:var(--fv-accent);}
+.fagverk-ia-chapter-emner>div{display:flex;flex-wrap:wrap;gap:7px;padding:0 15px 15px;}
+.fagverk-ia-chapter-emner a{padding:7px 9px;border:1px solid rgba(255,255,255,.09);border-radius:999px;color:var(--fv-muted);font-size:10px;text-decoration:none;}
+.fagverk-ia-chapter-emner a:hover{color:#fff;border-color:rgba(246,200,0,.32);}
+
+body.fagverk-ia-v3-detail .fagverk-sidebar #fagverkSubjectProgress,
+body.fagverk-ia-v3-detail .fagverk-sidebar #fagverkDomainNav,
+body.fagverk-ia-v3-detail .fagverk-sidebar #fagverkChapterNav{display:none;}
+body.fagverk-ia-v3-detail .fagverk-sidebar{position:relative;top:auto;max-height:none;align-self:start;}
+body.fagverk-ia-v3-detail .fagverk-shell{grid-template-columns:minmax(190px,240px) minmax(0,980px);}
+
+@media(max-width:900px){
+  body.fagverk-ia-v3-detail .fagverk-shell{grid-template-columns:1fr;gap:14px;}
+  body.fagverk-ia-v3-detail .fagverk-sidebar{padding:14px 16px;}
+  body.fagverk-ia-v3-detail .fagverk-sidebar .fagverk-subject-description{display:none;}
+  .fagverk-ia-detail-nav{overflow-x:auto;flex-wrap:nowrap;}
+  .fagverk-ia-detail-nav a{flex:0 0 auto;}
+}
+
+@media(max-width:620px){
+  .fagverk-ia-emne-status{grid-template-columns:1fr;}
+  .fagverk-ia-emne-status>small{grid-column:auto;}
+  .fagverk-ia-emne-primary-learning{grid-template-columns:1fr;}
+  .fagverk-ia-emne-primary-learning>b{white-space:normal;}
+  .fagverk-ia-domain-status{grid-template-columns:1fr auto;}
+  .fagverk-ia-domain-status>div{grid-column:1/-1;}
+}
