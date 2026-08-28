@@ -17,6 +17,13 @@ Status: Materialisert som kontrollert Role World med eksisterende Scene Pipeline
 - 5 primære tråder, 5 recurring people-archetypes, 8 slow axes, 5 private aftermath og 6 delayed consequences.
 - Waiting er legitim når beslutningseier mangler; handoff må angi versjon/eier/mottaker/avhengighet; rework må bevare historisk beslutningsspor.
 
+## Fail-closed verification
+
+- Serieskaper-materialisering og canonical generatorer passerte samlet i TEMP-run #3.
+- Den strenge Serieskaper-porten, eksisterende Serieskaper-playability, progresjonssikker Programleder-port og generiske Role World-policyporter passerte før fullsuite.
+- Hele `test:civication` passerte før TEMP-materializer og TEMP-workflow ble fjernet og den permanente canonical committen ble skrevet.
+- Dokumentasjonscommitten endrer ikke generator-output; den brukes bare til å få ordinær exact-head PR-CI kjørt av repo-eieren før merge.
+
 ## Kvalitetsgrense
 
 Rollouten skal feile lukket hvis provenance, eksakt mailplan, readiness-gjeld, audience-spesifikk standing, handoff/rework, authority boundaries, History Go-kildegrense, compiled registry, Career Gameplay Matrix eller full Civication-suite ikke kan bevises samlet.
