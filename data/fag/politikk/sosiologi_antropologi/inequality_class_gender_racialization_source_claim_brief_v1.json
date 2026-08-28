@@ -1,0 +1,649 @@
+{
+  "schema": "history_go_sosiologi_antropologi_inequality_class_gender_racialization_source_claim_brief_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-28",
+  "status": "source_first_ready_not_materialized",
+  "subject_id": "politikk",
+  "canonical_subcategory_id": "sosiologi_antropologi",
+  "domain": {
+    "ordinal": 5,
+    "id": "ulikhet_klasse_kjonn_rasialisering",
+    "title": "Ulikhet, klasse, kjønn og rasialisering",
+    "production_mode": "reuse_with_expansion",
+    "existing_owner_chapter": "data/fagverk/politikk/fordeling-velferd-ulikhet.json",
+    "existing_owner_claims": "data/fagverk/politikk/fordeling-velferd-ulikhet/claims.json",
+    "existing_owner_git_blob_shas": {
+      "chapter": "d55591138538840c1be333783cf3e32f7a07c08d",
+      "claims": "88af362d097d45289dd8e1d932f1a2f5004e5488"
+    }
+  },
+  "source_strategy": {
+    "source_first": true,
+    "inspectable_urls_required": true,
+    "claim_level_trace_required": true,
+    "minimum_sources_per_claim": 2,
+    "fulltext_materialization_required_before_counting": true
+  },
+  "sources": [
+    {
+      "id": "ukr01-marx",
+      "title": "Capital, Volume I",
+      "publisher": "Penguin Classics",
+      "type": "scholarly-book",
+      "url": "https://www.penguin.co.uk/books/35192/capital-by-karl-marx-intro-ernest-mandel-trans-ben-fowkes/9780140445688",
+      "evidence_role": "class-relations-labour-capital-exploitation",
+      "source_location": "Forlagssiden dokumenterer Marx’ analyse av kapital, privat eiendom og sosiale relasjoner.",
+      "retrieval_status": "verified_2026-08-28"
+    },
+    {
+      "id": "ukr02-weber",
+      "title": "Economy and Society",
+      "publisher": "University of California Press",
+      "type": "scholarly-book",
+      "url": "https://www.ucpress.edu/book/9780520280021/economy-and-society",
+      "evidence_role": "class-status-party-social-closure-life-chances",
+      "source_location": "Forlagssiden dokumenterer Webers komparative analyse av sosial handling, normative ordener og makt.",
+      "retrieval_status": "verified_2026-08-28"
+    },
+    {
+      "id": "ukr03-bourdieu",
+      "title": "Distinction: A Social Critique of the Judgement of Taste",
+      "publisher": "Harvard Book Store / Routledge edition",
+      "type": "scholarly-book",
+      "url": "https://www.harvard.com/book/9780415567886",
+      "evidence_role": "capital-habitus-field-taste-classification",
+      "source_location": "Forlagssiden dokumenterer Bourdieus empiriske analyse av smak, klassifikasjon og sosial posisjon.",
+      "retrieval_status": "verified_2026-08-28"
+    },
+    {
+      "id": "ukr04-tilly",
+      "title": "Durable Inequality",
+      "publisher": "University of California Press",
+      "type": "scholarly-book",
+      "url": "https://www.ucpress.edu/book/9780520221703/durable-inequality",
+      "evidence_role": "categorical-inequality-opportunity-hoarding-exploitation",
+      "source_location": "Forlagssiden dokumenterer Tillys relasjonelle forklaring på varig kategorisk ulikhet.",
+      "retrieval_status": "verified_2026-08-28"
+    },
+    {
+      "id": "ukr05-acker",
+      "title": "Hierarchies, Jobs, Bodies: A Theory of Gendered Organizations",
+      "publisher": "SAGE Journals",
+      "type": "peer-reviewed-article",
+      "url": "https://journals.sagepub.com/doi/10.1177/089124390004002002",
+      "evidence_role": "gendered-organizations-job-abstraction-organizational-inequality",
+      "source_location": "Fagfellevurdert originalartikkel om hvordan organisasjonsstruktur og den abstrakte arbeidstakeren er kjønnet.",
+      "retrieval_status": "verified_2026-08-28"
+    },
+    {
+      "id": "ukr06-dubois",
+      "title": "The Souls of Black Folk",
+      "publisher": "Oxford University Press",
+      "type": "scholarly-book",
+      "url": "https://global.oup.com/academic/product/the-souls-of-black-folk-9780199555833",
+      "evidence_role": "color-line-double-consciousness-racialized-institutions",
+      "source_location": "Forlagssiden dokumenterer Du Bois’ klassiske studie av rase, kultur og utdanning.",
+      "retrieval_status": "verified_2026-08-28"
+    },
+    {
+      "id": "ukr07-crenshaw",
+      "title": "Mapping the Margins",
+      "publisher": "Stanford Law Review / JSTOR",
+      "type": "peer-reviewed-article",
+      "url": "https://www.jstor.org/stable/1229039",
+      "evidence_role": "intersectionality-institutional-blind-spots-violence",
+      "source_location": "Tidsskriftarkivet dokumenterer Crenshaws analyse av interseksjonalitet og institusjonelle blindsoner.",
+      "retrieval_status": "verified_2026-08-28"
+    },
+    {
+      "id": "ukr08-ssb-norge",
+      "title": "Økonomisk ulikhet i Norge i det 21. århundre",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "official-research-report",
+      "url": "https://www.ssb.no/inntekt-og-forbruk/inntekt-og-formue/artikler/okonomisk-ulikhet-i-norge-i-det-21.arhundre",
+      "evidence_role": "norway-income-wealth-tax-distribution",
+      "source_location": "SSB-rapporten dokumenterer utvikling i inntekt, formue, skattebyrde og progressivitet 2001–2018.",
+      "retrieval_status": "verified_2026-08-28"
+    },
+    {
+      "id": "ukr09-ssb-measurement",
+      "title": "Slik måler SSB ulikhet",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "official-method-note",
+      "url": "https://www.ssb.no/inntekt-og-forbruk/inntekt-og-formue/statistikk/inntekts-og-formuesstatistikk-for-husholdninger/artikler/slik-maler-ssb-ulikhet",
+      "evidence_role": "gini-income-wealth-measurement-boundaries",
+      "source_location": "SSBs metodenotat forklarer Gini og nødvendige skiller mellom inntekts- og formuesfordeling.",
+      "retrieval_status": "verified_2026-08-28"
+    },
+    {
+      "id": "ukr10-wid",
+      "title": "World Inequality Database Methodology",
+      "publisher": "World Inequality Lab",
+      "type": "research-data-methodology",
+      "url": "https://wid.world/methodology/",
+      "evidence_role": "distributional-national-accounts-source-combination-top-incomes",
+      "source_location": "Metodesiden dokumenterer kombinasjon av nasjonalregnskap, survey-, skatte- og formuesdata.",
+      "retrieval_status": "verified_2026-08-28"
+    },
+    {
+      "id": "ukr11-oecd",
+      "title": "Income and Wealth Distribution Databases",
+      "publisher": "OECD",
+      "type": "official-data-methodology",
+      "url": "https://www.oecd.org/en/data/datasets/income-and-wealth-distribution-database.html",
+      "evidence_role": "cross-national-income-wealth-poverty-comparison",
+      "source_location": "OECD beskriver databasenes definisjoner, dekning og løpende oppdatering for inntekt, fattigdom og formue.",
+      "retrieval_status": "verified_2026-08-28"
+    },
+    {
+      "id": "ukr12-equality-law",
+      "title": "Lov om likestilling og forbud mot diskriminering",
+      "publisher": "Lovdata",
+      "type": "primary-law",
+      "url": "https://lovdata.no/lov/2017-06-16-51",
+      "evidence_role": "discrimination-grounds-indirect-treatment-active-duty",
+      "source_location": "Gjeldende norsk lovtekst om diskrimineringsgrunnlag, direkte og indirekte forskjellsbehandling og aktivitetsplikt.",
+      "retrieval_status": "verified_2026-08-28"
+    },
+    {
+      "id": "ukr13-nesh",
+      "title": "Guidelines for Research Ethics in the Social Sciences and the Humanities",
+      "publisher": "De nasjonale forskningsetiske komiteene",
+      "type": "research-ethics-guideline",
+      "url": "https://www.forskningsetikk.no/en/guidelines/social-sciences-and-humanities/guidelines-for-research-ethics-in-the-social-sciences-and-the-humanities/",
+      "evidence_role": "sensitive-categories-data-minimization-representation",
+      "source_location": "Nasjonale retningslinjer for ansvar, personvern, sårbarhet, konfidensialitet og redelig representasjon.",
+      "retrieval_status": "verified_2026-08-28"
+    }
+  ],
+  "topic_briefs": [
+    {
+      "id": "klasse-relasjoner-arbeid-og-kapital",
+      "title": "Klasse, relasjoner, arbeid og kapital",
+      "method_ids": [
+        "met_pol_makt_og_ulikhetsanalyse",
+        "met_pol_begrepsanalyse"
+      ],
+      "boundary": "Klasse må knyttes til relasjoner, ressurser og institusjoner; yrkestittel eller inntektskvintil er ikke alene en klasseteori.",
+      "source_ids": [
+        "ukr01-marx",
+        "ukr02-weber"
+      ],
+      "planned_claims": [
+        {
+          "id": "ukr-01",
+          "text": "Marx analyserer klasse gjennom relasjoner til produksjon, arbeid og kontroll over kapital, ikke bare gjennom individuelle inntektsnivåer.",
+          "source_ids": [
+            "ukr01-marx",
+            "ukr08-ssb-norge"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "ukr-02",
+          "text": "Utbytting betegner en relasjonell mekanisme for tilegnelse av verdier og må skilles fra enhver observerbar forskjell i lønn eller forbruk.",
+          "source_ids": [
+            "ukr01-marx",
+            "ukr04-tilly"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "ukr-03",
+          "text": "Weber skiller klasseposisjonens markedssjanser fra statusgruppers sosiale ære og partiers organiserte makt.",
+          "source_ids": [
+            "ukr02-weber",
+            "ukr03-bourdieu"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "ukr-04",
+          "text": "En empirisk klasseanalyse må erklære enhet, relasjon, tidsrom og mekanisme før gruppene gis navn.",
+          "source_ids": [
+            "ukr01-marx",
+            "ukr02-weber"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "kapital-status-livssjanser-og-mobilitet",
+      "title": "Kapital, status, livssjanser og mobilitet",
+      "method_ids": [
+        "met_pol_makt_og_ulikhetsanalyse",
+        "met_pol_statistikk_og_fordelingsanalyse"
+      ],
+      "boundary": "Kapitalformer er analytiske relasjoner og mobilitet krever sammenlignbare posisjoner over tid; begrepene er ikke personlighetstyper.",
+      "source_ids": [
+        "ukr02-weber",
+        "ukr03-bourdieu",
+        "ukr11-oecd"
+      ],
+      "planned_claims": [
+        {
+          "id": "ukr-05",
+          "text": "Bourdieu skiller økonomisk, kulturell og sosial kapital som ressurser med ulik omsettelighet og verdi i bestemte felt.",
+          "source_ids": [
+            "ukr03-bourdieu",
+            "ukr02-weber"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "ukr-06",
+          "text": "Smak og utdanningspraksis kan fungere som klassifikasjon og distinksjon uten at hvert individuelt valg kan avledes direkte av klasse.",
+          "source_ids": [
+            "ukr03-bourdieu",
+            "ukr13-nesh"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "ukr-07",
+          "text": "Livssjanser beskriver sannsynligheter knyttet til posisjon og institusjoner, ikke et sikkert individuelt livsforløp.",
+          "source_ids": [
+            "ukr02-weber",
+            "ukr11-oecd"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "ukr-08",
+          "text": "Relativ mobilitet må skille endring i samfunnets posisjonsstruktur fra endring i sammenhengen mellom sosial bakgrunn og voksen posisjon.",
+          "source_ids": [
+            "ukr02-weber",
+            "ukr11-oecd"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "varig-kategorisk-ulikhet-og-sosial-lukking",
+      "title": "Varig kategorisk ulikhet og sosial lukking",
+      "method_ids": [
+        "met_pol_institusjonsanalyse",
+        "met_pol_makt_og_ulikhetsanalyse"
+      ],
+      "boundary": "Kategori i seg selv forklarer ikke ulikhet; analysen må vise grense, relasjon, ressursstrøm og organisatorisk reproduksjon.",
+      "source_ids": [
+        "ukr04-tilly",
+        "ukr02-weber"
+      ],
+      "planned_claims": [
+        {
+          "id": "ukr-09",
+          "text": "Tilly forklarer varig ulikhet gjennom relasjonelle mekanismer som utbytting, mulighetsmonopol, etterlikning og tilpasning.",
+          "source_ids": [
+            "ukr04-tilly",
+            "ukr01-marx"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "ukr-10",
+          "text": "Mulighetsmonopol oppstår når nettverk eller kategorier kontrollerer tilgang til verdifulle ressurser og holder andre utenfor.",
+          "source_ids": [
+            "ukr04-tilly",
+            "ukr02-weber"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "ukr-11",
+          "text": "Organisasjoner kan stabilisere kategoriske skiller fordi grensene reduserer transaksjonskostnader for noen samtidig som kostnadene bæres av andre.",
+          "source_ids": [
+            "ukr04-tilly",
+            "ukr05-acker"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "ukr-12",
+          "text": "Å dokumentere et gruppeskille er ikke nok; mekanismen må spores gjennom rekruttering, lønn, eierskap, regler eller tjenestetilgang.",
+          "source_ids": [
+            "ukr04-tilly",
+            "ukr12-equality-law"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "kjonnede-organisasjoner-og-fordelingskjeder",
+      "title": "Kjønnede organisasjoner og fordelingskjeder",
+      "method_ids": [
+        "met_pol_likestillingsanalyse",
+        "met_pol_institusjonsanalyse"
+      ],
+      "boundary": "Kjønnsforskjeller kan produseres av jobbdesign, arbeidstid, omsorgsansvar og vurderingsstandarder; de kan ikke forklares som gruppers essens.",
+      "source_ids": [
+        "ukr05-acker",
+        "ukr12-equality-law"
+      ],
+      "planned_claims": [
+        {
+          "id": "ukr-13",
+          "text": "Acker viser at den tilsynelatende abstrakte arbeidstakeren ofte forutsetter en kropp og livssituasjon frigjort fra omsorgsarbeid.",
+          "source_ids": [
+            "ukr05-acker",
+            "ukr03-bourdieu"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "ukr-14",
+          "text": "Kjønnet ulikhet kan bygges inn i stillingsbeskrivelser, karriereløp, kontroll, symbolske bilder og daglig samhandling.",
+          "source_ids": [
+            "ukr05-acker",
+            "ukr12-equality-law"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "ukr-15",
+          "text": "Lik formell regel kan gi indirekte ulik virkning når arbeidstid, tilgjengelighet eller dokumentasjonskrav møter systematisk forskjellige livsbetingelser.",
+          "source_ids": [
+            "ukr05-acker",
+            "ukr12-equality-law"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "ukr-16",
+          "text": "En organisasjonsanalyse må sammenligne inngang, oppgavefordeling, belønning og avansement før forskjeller tilskrives preferanser.",
+          "source_ids": [
+            "ukr05-acker",
+            "ukr13-nesh"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "rasialisering-fargelinje-og-institusjoner",
+      "title": "Rasialisering, fargelinje og institusjoner",
+      "method_ids": [
+        "met_pol_minoritet_og_representasjonsanalyse",
+        "met_pol_institusjonsanalyse"
+      ],
+      "boundary": "Rasialisering betegner sosial og institusjonell produksjon av kategorisk forskjell; den gjør ikke historiske kategorier biologisk sanne.",
+      "source_ids": [
+        "ukr06-dubois",
+        "ukr04-tilly",
+        "ukr12-equality-law"
+      ],
+      "planned_claims": [
+        {
+          "id": "ukr-17",
+          "text": "Du Bois’ fargelinje forbinder historisk raseklassifikasjon med institusjonelle grenser for utdanning, arbeid, politikk og sosial anerkjennelse.",
+          "source_ids": [
+            "ukr06-dubois",
+            "ukr04-tilly"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "ukr-18",
+          "text": "Dobbel bevissthet analyserer erfaring under et dominerende blikk og må ikke reduseres til en universell personlighetsegenskap.",
+          "source_ids": [
+            "ukr06-dubois",
+            "ukr13-nesh"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "ukr-19",
+          "text": "Rasialisering må undersøkes gjennom hvordan kategorier skapes, tilskrives og gis konsekvenser i institusjonelle praksiser.",
+          "source_ids": [
+            "ukr06-dubois",
+            "ukr12-equality-law"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "ukr-20",
+          "text": "Diskrimineringsanalyse må skille intensjon, regelutforming, indirekte virkning og dokumentert forskjellsbehandling.",
+          "source_ids": [
+            "ukr12-equality-law",
+            "ukr04-tilly"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "interseksjonalitet-mekanismer-og-blindsoner",
+      "title": "Interseksjonalitet, mekanismer og blindsoner",
+      "method_ids": [
+        "met_pol_makt_og_ulikhetsanalyse",
+        "met_pol_rettighetsanalyse"
+      ],
+      "boundary": "Interseksjonalitet undersøker samvirkende institusjonelle mekanismer og rettslige blindsoner; den er ikke en rangering av lidelse.",
+      "source_ids": [
+        "ukr07-crenshaw",
+        "ukr05-acker",
+        "ukr12-equality-law"
+      ],
+      "planned_claims": [
+        {
+          "id": "ukr-21",
+          "text": "Crenshaw viser hvordan institusjoner kan overse skade som ikke passer en enkeltaksemodell for kjønn eller rase.",
+          "source_ids": [
+            "ukr07-crenshaw",
+            "ukr12-equality-law"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "ukr-22",
+          "text": "Interseksjonalitet krever analyse av hvordan konkrete regler, ressurser og maktrelasjoner virker sammen, ikke bare en liste identiteter.",
+          "source_ids": [
+            "ukr07-crenshaw",
+            "ukr04-tilly"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "ukr-23",
+          "text": "En gruppeintern gjennomsnittsverdi kan skjule undergrupper som møter andre terskler eller kombinasjoner av institusjonelle vilkår.",
+          "source_ids": [
+            "ukr07-crenshaw",
+            "ukr09-ssb-measurement"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "ukr-24",
+          "text": "Sammenligninger må begrunnes slik at de belyser mekanismer uten å gjøre utsatte grupper til homogene problemer.",
+          "source_ids": [
+            "ukr07-crenshaw",
+            "ukr13-nesh"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "inntekt-formue-velferd-og-maling",
+      "title": "Inntekt, formue, velferd og måling",
+      "method_ids": [
+        "met_pol_statistikk_og_fordelingsanalyse",
+        "met_pol_fordelingsanalyse"
+      ],
+      "boundary": "Inntekt, formue, fattigdom, klasse og velferd er ulike størrelser; hvert mål krever enhet, populasjon, periode og datakilde.",
+      "source_ids": [
+        "ukr08-ssb-norge",
+        "ukr09-ssb-measurement",
+        "ukr10-wid",
+        "ukr11-oecd"
+      ],
+      "planned_claims": [
+        {
+          "id": "ukr-25",
+          "text": "Gini, kvotienter og toppandeler belyser ulike deler av fordelingen og kan ikke erstatte en full fordelingsprofil.",
+          "source_ids": [
+            "ukr09-ssb-measurement",
+            "ukr11-oecd"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "ukr-26",
+          "text": "Inntekt og nettoformue må analyseres separat fordi beholdning, gjeld, avkastning og løpende ressurser følger ulike fordelingsprosesser.",
+          "source_ids": [
+            "ukr08-ssb-norge",
+            "ukr11-oecd"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "ukr-27",
+          "text": "WID kombinerer survey-, skatte-, formues- og nasjonalregnskapsdata fordi hver datakilde har særskilte deknings- og toppinntektsproblemer.",
+          "source_ids": [
+            "ukr10-wid",
+            "ukr09-ssb-measurement"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "ukr-28",
+          "text": "Tverrnasjonale ulikhetstall krever harmoniserte inntektsbegreper, husholdningsenheter, prisgrunnlag og perioder før rangering tolkes.",
+          "source_ids": [
+            "ukr11-oecd",
+            "ukr10-wid"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "forklaring-politikk-og-forskningsetikk",
+      "title": "Forklaring, politikk og forskningsetikk",
+      "method_ids": [
+        "met_pol_fordelingsanalyse",
+        "met_pol_dokumentanalyse"
+      ],
+      "boundary": "Mønster, mekanisme, politisk virkning og normativ vurdering må holdes fra hverandre, særlig ved sensitive kategorier og registerdata.",
+      "source_ids": [
+        "ukr08-ssb-norge",
+        "ukr12-equality-law",
+        "ukr13-nesh"
+      ],
+      "planned_claims": [
+        {
+          "id": "ukr-29",
+          "text": "En endring etter skatt eller overføring beskriver omfordeling, men identifiserer ikke alene hvilken regel eller atferdsrespons som skapte utfallet.",
+          "source_ids": [
+            "ukr08-ssb-norge",
+            "ukr11-oecd"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "ukr-30",
+          "text": "Korrelasjon mellom kategori og utfall må ikke presenteres som kategoriens egenskap uten analyse av seleksjon, institusjon og historisk mekanisme.",
+          "source_ids": [
+            "ukr04-tilly",
+            "ukr13-nesh"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "ukr-31",
+          "text": "Sensitive ulikhetsdata krever dataminimering, proporsjonalitet, kontekst og vurdering av indirekte identifisering og gruppeskade.",
+          "source_ids": [
+            "ukr13-nesh",
+            "ukr12-equality-law"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "ukr-32",
+          "text": "En full ulikhetskonklusjon skal skille målt mønster, foreslått mekanisme, politisk konsekvens, usikkerhet og normativ vurdering.",
+          "source_ids": [
+            "ukr08-ssb-norge",
+            "ukr13-nesh"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    }
+  ],
+  "decision_scenarios": [
+    {
+      "id": "ukr-s1",
+      "title": "Bemanningssystemet",
+      "prompt": "En arbeidsgiver hevder at lik tilgjengelighetsregel er nøytral. Spor jobbdesign, omsorgsbetingelser, indirekte virkning og alternative forklaringer.",
+      "claim_ids": [
+        "ukr-13",
+        "ukr-15",
+        "ukr-16"
+      ]
+    },
+    {
+      "id": "ukr-s2",
+      "title": "Kommunens ulikhetskart",
+      "prompt": "Et kart viser store inntektsforskjeller. Skill inntekt, formue, klasse, områdekomposisjon og kausal rekkevidde.",
+      "claim_ids": [
+        "ukr-25",
+        "ukr-26",
+        "ukr-30"
+      ]
+    },
+    {
+      "id": "ukr-s3",
+      "title": "Rekrutteringsporten",
+      "prompt": "Et firma rekrutterer bare gjennom ansattes nettverk. Analyser sosial lukking, mulighetsmonopol og dokumentasjon av virkning.",
+      "claim_ids": [
+        "ukr-09",
+        "ukr-10",
+        "ukr-12"
+      ]
+    },
+    {
+      "id": "ukr-s4",
+      "title": "Enkeltakse-skjemaet",
+      "prompt": "Et hjelpetiltak registrerer bare ett diskrimineringsgrunnlag. Undersøk blindsoner uten å rangere identiteter eller lidelse.",
+      "claim_ids": [
+        "ukr-21",
+        "ukr-22",
+        "ukr-23"
+      ]
+    },
+    {
+      "id": "ukr-s5",
+      "title": "Internasjonal rangering",
+      "prompt": "To land rangeres etter Gini. Kontroller inntektsbegrep, husholdningsenhet, periode, datakilder og toppinntektsdekning.",
+      "claim_ids": [
+        "ukr-25",
+        "ukr-27",
+        "ukr-28"
+      ]
+    },
+    {
+      "id": "ukr-s6",
+      "title": "Den søkbare smågruppen",
+      "prompt": "Et registeruttrekk viser en liten minoritetsgruppe. Vurder dataminimering, indirekte identifisering, kontekst og gruppeskade.",
+      "claim_ids": [
+        "ukr-24",
+        "ukr-31",
+        "ukr-32"
+      ]
+    }
+  ],
+  "reuse_contract": {
+    "classification": "reuse_with_expansion",
+    "preserve_existing_owner_path": true,
+    "move_existing_content": false,
+    "delete_existing_content": false,
+    "existing_claims_remain_valid": true,
+    "undercategory_count_requires_new_strict_trace_and_assessment": true
+  },
+  "subcategory_upgrade_registration": {
+    "registered": false,
+    "allowed_before_strict_upgrade_gate": false
+  }
+}
