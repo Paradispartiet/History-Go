@@ -1,8 +1,45 @@
 # History GO — Fagverk IA v3 arbeidskort
 
-Status: **aktiv migrering**  
+Status: **aktiv migrering — Batch A og B merget; Batch C neste**  
 Eier: `fagverk_ia_v3`  
-Opprettet: **2026-08-28**
+Opprettet: **2026-08-28**  
+Sist oppdatert: **2026-08-28**
+
+## Gjennomført
+
+### Batch A — subject-first portal og felles shell
+
+**Merget i PR #5420** som `378d5b58b25831e4b562d429da2ac01383bf1cf9`.
+
+- Fagverkforsiden har faget som primær inngang; gamle merkesider er sekundære compatibility-lenker.
+- Subject-roten har fem hash-drevne hovedflater: **Oversikt · Emner · Lærestoff · Utforsk · Progresjon**.
+- Ingen ny `view=`-semantikk er innført.
+- Alle canonicale emner er tilgjengelige uavhengig av progresjon.
+- Emner er gruppert med progressive disclosure per fagområde og søk åpner bare relevante grupper.
+- Source-eid curriculum/studieløp gjenbrukes under Lærestoff; renderer finner ikke på rekkefølge.
+- Career Knowledge Bridge holdes inne i Utforsk.
+- Progresjon leses fra eksisterende read-model uten ny storage.
+- Den store subject-root-sidebarens duplisering er fjernet.
+- Permanent IA-test er koblet inn i general-engine-workflowen.
+- Hele PR-matrisen var grønn før merge.
+
+### Batch B — domain-, emne- og chapter-detaljer
+
+**Merget i PR #5427** som `0a7b177b9ec1cc0861004823452952f506706f5d`.
+
+- Domain-, emne- og chapter-visninger har kompakt kontekstnavigasjon tilbake til faget.
+- Den gamle fulle sidebarinventeringen skjules også på detaljflater.
+- Emnet viser beregnet dekning fra eksisterende læringssignaler, uten egen emnestatus-storage.
+- Direkte canonical chapter-binding løftes frem som primær vei til redigert lærestoff.
+- Kapitler viser canonicale emnebindinger som sammenfoldbar navigasjon uten å kopiere emneinnhold.
+- Detail-shim følger samme prioritet som base-rendereren: `chapter → emne → domain`, også når chapter-URL-er beholder emne/domain som kontekst.
+- Topplinjen bruker rollene **Merkevisning** og **Min læring** i stedet for å late som merkesiden er en parallell læringsvei.
+- Permanent detail-IA-test er koblet inn i general-engine-workflowen.
+- Alle 14 workflowene på slutt-head var grønne før merge, inkludert general-engine, TypeScript/build, Historie, Politikk, By, Natur, Vitenskap, Religion, Film/TV, Musikk, Psykologi og place-learning.
+
+## Dokumentasjonsreconciliation som står igjen
+
+`FAGVERK_NAVIGATION.md` v3 eier eksplisitt navigasjon og sideroller og er derfor bindende for IA v3. `FAGVERK.md` har fortsatt eldre beskrivende tekst i seksjonen om fire produktflater. Dette skaper ikke runtime- eller eierskapsuklarhet fordi hovedkontrakten selv delegerer navigasjon/sideroller til `FAGVERK_NAVIGATION.md`, men prose-reconciliation skal gjøres i Batch C slik at dokumentene også er språklig samstemte.
 
 ## Mål
 
@@ -73,7 +110,7 @@ Oversikten skal ikke samtidig dumpe alle fagområder, alle kapitler, alle metode
 - viser progresjon sekundært;
 - bruker eksisterende canonical `domainUrl()` og `emneUrl()`;
 - beholder dagens emnerenderer som detaljside;
-- emnedetaljen kan vise emnets beregnede progresjon og tydelig lenke til relevant redigert lærestoff.
+- emnedetaljen viser beregnet progresjon og tydelig lenke til direkte bundet redigert lærestoff når binding finnes.
 
 ### Lærestoff
 
@@ -97,7 +134,7 @@ Oversikten skal ikke samtidig dumpe alle fagområder, alle kapitler, alle metode
 - undermerker når disse er normalisert fra eide badgekilder;
 - eventuell kurs-/pensumstatus gjennom eksisterende Courses/read-model, ikke en ny lagringsmodell.
 
-## Legacy-migrering
+## Legacy-migrering — Batch C
 
 ### `emner.html`
 
@@ -128,34 +165,24 @@ Avvikles som egen canonical portal etter at Fagverkforsiden er eneste komplette 
 
 ## Implementeringsrekkefølge
 
-### Batch A — kontrakt og felles shell
+### ✅ Batch A — kontrakt og felles shell
 
-- Oppdater `docs/FAGVERK.md`, `docs/FAGVERK_NAVIGATION.md` og relevante arkitekturtekster med ny siderolle.
-- Behold eksisterende canonical query-parametere.
-- Gjør Fagverk-shellen mindre støyende: fjern permanent duplisering mellom sidebar og hovedinnhold.
-- Innfør tydelige hovedinnganger til Oversikt, Emner, Lærestoff, Utforsk og Progresjon uten ny query-state.
-- Bygg full Emner-katalog fra normalisert modell.
-- Bygg Progresjon-flate fra `MODEL.readProgress()`.
-- Bevar eksisterende domain/emne/chapter-dypkoblinger.
-- Kjør all-subject general-engine og relevante link-/browserporter.
+Runtime/product-del merget i PR #5420. Dokumentasjonsreconciliation av eldre `FAGVERK.md`-prosa flyttes eksplisitt til Batch C; `FAGVERK_NAVIGATION.md` v3 er allerede bindende eier av siderollene.
 
-### Batch B — innholdsseparasjon
+### ✅ Batch B — innholdsseparasjon
 
-- Flytt/rendyrk curriculum til Lærestoff.
-- Skill generelle fagoversikter fra fagspesifikke studieløp.
-- Rendyrk Utforsk.
-- Forbedre emnedetaljen med progresjon + sterkere overgang til relevant kapittel.
-- Rydd mobilnavigasjonen.
+Merget i PR #5427. Subject-root, domain-, emne- og chapter-visninger følger nå IA v3 uten å endre canonical ressursidentitet.
 
-### Batch C — legacy-ekvivalens og avvikling
+### ▶ Batch C — legacy-ekvivalens og avvikling
 
-- Inventer alle merkesider.
-- Migrer kun unik, gyldig kunnskap som mangler canonicalt.
-- Flytt rik runtime-funksjonalitet til Fagverk der den hører hjemme.
-- Gjør `emner.html` til Min læring/compatibility.
-- Redirect legacy merkesider etter fagvis equivalence-gate.
-- Redirect `merker/merker.html` når Fagverkforsiden er komplett.
-- Fjern døde CSS-/JS-lag etter permanent referanse- og browseraudit.
+- [ ] Reconcile eldre siderolleprosa i `FAGVERK.md` med navigasjonskontrakt v3.
+- [ ] Inventer alle merkesider.
+- [ ] Migrer kun unik, gyldig kunnskap som mangler canonicalt.
+- [ ] Flytt rik runtime-funksjonalitet til Fagverk der den hører hjemme.
+- [ ] Gjør `emner.html` til Min læring/compatibility.
+- [ ] Redirect legacy merkesider etter fagvis equivalence-gate.
+- [ ] Redirect `merker/merker.html` når Fagverkforsiden er komplett.
+- [ ] Fjern døde CSS-/JS-lag etter permanent referanse- og browseraudit.
 
 ## Representativ QA
 
@@ -172,13 +199,13 @@ Utviklingskontroll skal minst dekke:
 
 Migrasjonen er først ferdig når:
 
-1. Fagverkforsiden har én primær vei inn i hvert fag.
-2. En ny bruker kan åpne et fag og se alle canonicale emner uten å ha tatt quiz.
-3. Domain-, emne- og chapter-dypkoblinger er fortsatt stabile og fail-closed.
-4. Emne og kapittel har tydelig forskjellige roller i UI-et.
-5. Progresjon leses fra eksisterende canonical state/read-model uten ny lagring.
-6. All funksjonalitet som faktisk trengs fra aktive merkesider finnes i Fagverket før legacy-sidene redirectes.
-7. Ingen unik, gyldig fagkunnskap slettes i legacy-migreringen.
-8. `merker/merker.html` og gamle merkesider er enten avviklet eller eksplisitt compatibility-only.
-9. Mobil og desktop har forståelig hierarki uten en lang, duplisert sidebar før læringsinnholdet.
-10. Permanente all-subject-, link-, schema-, TypeScript- og browserporter er grønne på `main`.
+1. Fagverkforsiden har én primær vei inn i hvert fag. **Oppfylt i Batch A.**
+2. En ny bruker kan åpne et fag og se alle canonicale emner uten å ha tatt quiz. **Oppfylt i Batch A.**
+3. Domain-, emne- og chapter-dypkoblinger er fortsatt stabile og fail-closed. **Oppfylt og permanent testet i Batch A/B.**
+4. Emne og kapittel har tydelig forskjellige roller i UI-et. **Oppfylt i Batch B.**
+5. Progresjon leses fra eksisterende canonical state/read-model uten ny lagring. **Oppfylt og permanent testet.**
+6. All funksjonalitet som faktisk trengs fra aktive merkesider finnes i Fagverket før legacy-sidene redirectes. **Gjenstår Batch C.**
+7. Ingen unik, gyldig fagkunnskap slettes i legacy-migreringen. **Gjenstår Batch C-equivalence.**
+8. `merker/merker.html` og gamle merkesider er enten avviklet eller eksplisitt compatibility-only. **Gjenstår Batch C.**
+9. Mobil og desktop har forståelig hierarki uten en lang, duplisert sidebar før læringsinnholdet. **Strukturelt oppfylt i Batch A/B; visuell browser-sluttkontroll gjenstår før programclose.**
+10. Permanente all-subject-, link-, schema-, TypeScript- og browserporter er grønne på `main`. **Automatiske all-subject/TypeScript-porter er grønne for A/B; endelig browser- og legacy-port gjenstår Batch C.**
