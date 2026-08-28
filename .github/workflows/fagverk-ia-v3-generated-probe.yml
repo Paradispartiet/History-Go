@@ -1,0 +1,42 @@
+name: Fagverk IA v3 generated probe
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/fagverk-ia-v3-generated-probe.yml'
+      - 'data/fagverk/by/arkitektur-type-skala-byform/**'
+      - 'data/fagverk/fagverk_release.json'
+      - 'reports/fagverk/by-complete-audit.json'
+      - 'reports/fagverk/by-arkitektur-type-skala-phase4-audit.json'
+
+permissions:
+  contents: write
+
+jobs:
+  generate-and-clean:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Generate deterministic Fagverk outputs
+        run: |
+          node scripts/audit-fagverk-by-complete.mjs --write-report
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/audit-fagverk-by-arkitektur-type-skala-phase4.mjs --write-report
+      - name: Commit generated outputs and remove probe
+        env:
+          HEAD_BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/fagverk-ia-v3-generated-probe.yml
+          git add reports/fagverk/by-complete-audit.json data/fagverk/fagverk_release.json reports/fagverk/by-arkitektur-type-skala-phase4-audit.json
+          git commit -m "Regenerate By Fagverk derived reports"
+          git push origin HEAD:"$HEAD_BRANCH"
