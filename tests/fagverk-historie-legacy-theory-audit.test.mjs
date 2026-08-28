@@ -5,6 +5,9 @@ import { spawnSync } from 'node:child_process';
 
 const portal = JSON.parse(fs.readFileSync('data/fagverk/fagverk_portal.json', 'utf8'));
 const historicalTime = JSON.parse(fs.readFileSync('data/fagverk/historie/historisk_tid_periodisering/01-grunnlag.json', 'utf8'));
+const legacyArchive = 'data/fag/historie/archive/merke_historie_full_teori_legacy_20260828.html';
+const compatibilityPage = 'data/fag/historie/merke_historie (1).html';
+const progressRoute = 'fagverk.html?subject=historie#fagverkIaProgresjon';
 
 function audit() {
   const result = spawnSync(process.execPath, ['scripts/audit-fagverk-historie-legacy-theory.mjs'], { encoding: 'utf8' });
@@ -12,9 +15,10 @@ function audit() {
   return JSON.parse(result.stdout);
 }
 
-test('Historie-auditen dekker hele den gamle fullteoristrukturen', () => {
+test('Historie-auditen dekker hele den arkiverte fullteoristrukturen', () => {
   const report = audit();
   assert.equal(report.subject, 'historie');
+  assert.equal(report.legacy.badgePage, legacyArchive);
   assert.equal(report.legacy.sectionCount, 11);
   assert.equal(report.summary.knowledgeSectionCount, 10);
   assert.deepEqual(report.rows.map((row) => row.id), [
@@ -72,7 +76,12 @@ test('legacy produkttekst skilles fra Historie-kunnskapsseksjonene', () => {
   assert.equal(contribution.contentStatus, 'legacy_product_copy_no_canonical_migration_required');
 });
 
-test('Historie badgePage forblir legacy til innholdsaudit og adjudisering er fullført', () => {
+test('Historie badgePage er migrert til Progresjon mens gammel URL er compatibility-redirect', () => {
   const historie = portal.categories.find((item) => item.id === 'historie');
-  assert.equal(historie.badgePage, 'data/fag/historie/merke_historie (1).html');
+  assert.equal(historie.badgePage, progressRoute);
+  assert.ok(fs.existsSync(legacyArchive));
+  assert.ok(fs.existsSync(compatibilityPage));
+  const redirectHtml = fs.readFileSync(compatibilityPage, 'utf8');
+  assert.match(redirectHtml, /location\.replace/);
+  assert.match(redirectHtml, /subject=historie#fagverkIaProgresjon/);
 });
