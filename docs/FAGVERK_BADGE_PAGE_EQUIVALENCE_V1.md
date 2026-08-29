@@ -90,6 +90,16 @@ Kunst er fjerde `legacy_static_theory`-fag som er ført gjennom hele equivalence
 
 Kunst-auditene skal etter redirect bare lese arkivfilen. Compatibility-wrapperen er ikke en faglig kilde, og Kunst/Scenekunst-grensen skal fortsatt eies av category-contracten framfor å materialiseres som et kunstemne.
 
+### Media
+
+Media er femte `legacy_static_theory`-fag som er ført gjennom den komplette fail-closed-prosessen. Den gamle siden har ti kunnskapsseksjoner og én avsluttende produktseksjon (`bidrag`):
+
+- **#5479:** en deterministisk audit sammenlignet alle ti kunnskapsseksjoner mot Media sine fem manifesteide kjernefiler, det migrerte supplementet `populaerkultur_som_mediefelt` og den sekskapitlers registry-grafen. Det rekursive canonicale korpuset var 1 922 034 tegn. Resultatet var 10/10 full ankerdekning, null manuell restanse og dermed ingen bevist innholdsmigrering.
+- **#5481:** alle ti kunnskapsseksjoner fikk eksplisitte canonicale eiere og `canonical_supersedes`; ingen seksjon ble markert `migrated_to_canonical`. `bidrag` ble pensjonert som legacy-produkttekst uten kunstig kunnskapseier. Adjudiseringsgaten ble `redirectReady: true` mens portalruten fortsatt pekte til legacy-siden.
+- **#5482:** original fullteori bevares byte-for-byte i `data/fag/media/archive/merke_media_full_teori_legacy_20260829.html` med original Git-blob `79f7dfe5141c395e19a38bcb80f5948ac11c33b9`. `data/fag/media/merke_media.html` blir ren compatibility-redirect, mens canonical `badgePage` og `Alle merker` flyttes til `fagverk.html?subject=media#fagverkIaProgresjon`.
+
+Media-auditene leser etter route-retirement bare arkivfilen. Den rå anker-auditen forblir med vilje `redirectReady: false`; bare den eksplisitte adjudiseringsgaten kan autorisere ruten. Ingen Media-emner, metoder, kapitler, claims, kilder eller gameplaydata ble endret i equivalence-løpet.
+
 ### Religion
 
 Religion er et `legacy_stub`-fag og trenger derfor ikke fullteori-prosessen:
@@ -114,5 +124,5 @@ Ingen Scenekunst-emner, metoder, kapitler, claims eller kilder ble endret for å
 ## Ikke redirect ennå
 
 - **Politikk:** `rich_runtime`; emneprogresjon, quizhistorikk, steder, begrepsutforsker og øvrig aktiv legacy-runtime må ha dokumentert equivalence før redirect.
-- **Andre fullteorisider:** `legacy_static_theory`; hvert fag må gjennom egen innholdsaudit og eksplisitt adjudisering. By, Historie, Litteratur og Kunst er prosessbevis, ikke automatisk godkjenning av resten.
+- **Andre fullteorisider:** `legacy_static_theory`; hvert fag må gjennom egen innholdsaudit og eksplisitt adjudisering. By, Historie, Litteratur, Kunst og Media er prosessbevis, ikke automatisk godkjenning av resten.
 - **Tynne legacy-sider:** `legacy_stub`; Religion og Scenekunst er eksplisitt pensjonert; øvrige stubber må fortsatt gjennom egen unik-innhold/linkaudit før redirect.
