@@ -5,12 +5,15 @@ import { isDeepStrictEqual } from 'node:util';
 import { auditRepository as auditMusikkRepository } from './audit-fagverk-musikk.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const LEGACY_BADGE = 'data/fag/musikk/merke_musikk (1).html';
+const LEGACY_BADGE = 'data/fag/musikk/archive/merke_musikk_full_teori_legacy_20260829.html';
+const COMPATIBILITY = 'data/fag/musikk/merke_musikk (1).html';
 const MANIFEST = 'data/fag/fag_manifest.json';
 const PORTAL = 'data/fagverk/fagverk_portal.json';
 const CATEGORY_CONTRACT = 'data/categories/category_contract.json';
 const BADGE = 'data/badges/musikk.json';
 const REPORT = 'reports/fagverk/musikk-legacy-theory-audit.json';
+const TARGET = 'fagverk.html?subject=musikk#fagverkIaProgresjon';
+const RELATIVE_TARGET = '../../../fagverk.html?subject=musikk#fagverkIaProgresjon';
 const MANIFEST_FIELDS = Object.freeze(['pensum', 'emner', 'fagkart', 'methods']);
 
 const SECTION_POLICY = Object.freeze([
@@ -169,7 +172,7 @@ function anchorResult(corpus, alternatives) {
 }
 
 export function auditMusikkLegacyTheory() {
-  for (const file of [LEGACY_BADGE, MANIFEST, PORTAL, CATEGORY_CONTRACT, BADGE]) {
+  for (const file of [LEGACY_BADGE, COMPATIBILITY, MANIFEST, PORTAL, CATEGORY_CONTRACT, BADGE]) {
     if (!exists(file)) throw new Error(`Musikk legacy-audit mangler ${file}`);
   }
 
@@ -218,7 +221,11 @@ export function auditMusikkLegacyTheory() {
   const portal = readJson(PORTAL);
   const portalEntry = portal.categories?.find(item => item.id === 'musikk');
   if (!portalEntry) throw new Error('Musikk mangler i Fagverk-portalen.');
-  if (portalEntry.badgePage !== LEGACY_BADGE) throw new Error(`Musikk audit-tranchen skal være pre-redirect; badgePage er ${portalEntry.badgePage}.`);
+  const compatibilityHtml = read(COMPATIBILITY);
+  const compatibilityRedirectPresent = compatibilityHtml.includes('location.replace')
+    && compatibilityHtml.includes(RELATIVE_TARGET)
+    && !/merke-blokk|<h2>1\. Felt<\/h2>|sekundærbadge/i.test(compatibilityHtml);
+  const portalRedirected = portalEntry.badgePage === TARGET;
 
   const manualReview = rows.filter(row => row.anchorCoverage < 1).map(row => row.id);
   return {
@@ -226,6 +233,7 @@ export function auditMusikkLegacyTheory() {
     subject: 'musikk',
     legacy: {
       badgePage: LEGACY_BADGE,
+      compatibilityPage: COMPATIBILITY,
       sectionCount: rows.length,
       knowledgeSectionCount: rows.length,
       productMechanicCount: rows.reduce((count, row) => count + row.legacyProductMechanics.length, 0)
@@ -245,7 +253,10 @@ export function auditMusikkLegacyTheory() {
     navigation: {
       badgePage: portalEntry.badgePage,
       subjectPage: portalEntry.subjectPage,
-      preRedirectLocked: true
+      target: TARGET,
+      portalRedirected,
+      compatibilityRedirectPresent,
+      routeRetired: portalRedirected && compatibilityRedirectPresent
     },
     summary: {
       knowledgeSectionCount: rows.length,
@@ -253,7 +264,7 @@ export function auditMusikkLegacyTheory() {
       manualReviewCount: manualReview.length,
       manualReview,
       redirectReady: false,
-      redirectBlockReason: 'Anchor coverage establishes only candidate canonical ownership. Musikk redirect remains blocked until every knowledge section has explicit editorial adjudication and any semantic gaps are migrated or rejected with evidence.'
+      redirectBlockReason: 'Raw Musikk anchor coverage never authorizes redirect by itself. Route readiness is owned by the explicit Musikk legacy adjudication gate.'
     },
     rows
   };
