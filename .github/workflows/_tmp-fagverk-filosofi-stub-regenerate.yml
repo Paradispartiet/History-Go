@@ -31,8 +31,28 @@ jobs:
         run: |
           node tools/materialize-subkultur-runtime-v1.mjs --write
           node tools/materialize-subkultur-runtime-v1.mjs --check
-      - name: Verify Filosofi legacy stub equivalence
-        run: node scripts/audit-fagverk-filosofi-legacy-stub.mjs
+      - name: Diagnose Filosofi legacy stub equivalence
+        run: |
+          set +e
+          node scripts/audit-fagverk-filosofi-legacy-stub.mjs > /tmp/filosofi-audit.log 2>&1
+          status=$?
+          set -e
+          if [ "$status" -ne 0 ]; then
+            {
+              echo '=== FILOSOFI AUDIT FAILURE ==='
+              tail -n 120 /tmp/filosofi-audit.log
+              echo
+              echo '=== SHARED GENERATED DIFF AFTER SUBKULTUR NORMALIZATION ==='
+              git diff -- data/fagverk/fagverk_portal.json data/fag/fag_manifest.json data/fagverk/subject_inventory.json data/fagverk/subject_status.json data/fagverk/fagverk_registry.json
+            } > _tmp-filosofi-audit-failure.txt
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add _tmp-filosofi-audit-failure.txt
+            git commit -m 'Record Filosofi audit failure diagnostic'
+            git push origin HEAD:${{ github.event.pull_request.head.ref }}
+            exit "$status"
+          fi
+          cat /tmp/filosofi-audit.log
       - name: Regenerate and verify Filosofi Phase 3 report
         run: |
           node scripts/audit-fagverk-filosofi-phase3.mjs --write-report
@@ -53,10 +73,10 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          rm -f _tmp-filosofi-regression.txt
+          rm -f _tmp-filosofi-regression.txt _tmp-filosofi-audit-failure.txt
           rm .github/workflows/_tmp-fagverk-filosofi-stub-regenerate.yml
           git add data/fagverk/fagverk_portal.json reports/fagverk/filosofi-phase3-audit.json reports/fagverk/general-engine-audit.json .github/workflows/_tmp-fagverk-filosofi-stub-regenerate.yml
-          git add -u _tmp-filosofi-regression.txt 2>/dev/null || true
+          git add -u _tmp-filosofi-regression.txt _tmp-filosofi-audit-failure.txt 2>/dev/null || true
           git diff --cached --quiet && exit 0
           git commit -m 'Regenerate Filosofi route audits'
           git push origin HEAD:${{ github.event.pull_request.head.ref }}
