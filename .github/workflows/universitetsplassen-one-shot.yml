@@ -7,6 +7,7 @@ on:
     paths:
       - tools/finalize-universitetsplassen-completion.mjs
       - tools/harden-universitetsplassen-finalizer.py
+      - tools/verify-universitetsplassen-one-shot.sh
       - .github/workflows/universitetsplassen-one-shot.yml
   workflow_dispatch:
 
@@ -75,32 +76,8 @@ jobs:
         shell: bash
         run: |
           set +e
-          mkdir -p reports/place-production
-          {
-            set -e
-            echo "=== targeted Universitetsplassen test ==="
-            node --test tests/universitetsplassen-completion.test.mjs
-            echo "=== places:check ==="
-            npm run places:check
-            echo "=== place-open:check ==="
-            npm run place-open:check
-            echo "=== quiz:production:check ==="
-            npm run quiz:production:check
-            echo "=== quiz:progression:check ==="
-            npm run quiz:progression:check
-            echo "=== stories:check ==="
-            npm run stories:check
-            echo "=== leksikon:check ==="
-            npm run leksikon:check
-            echo "=== people:check ==="
-            npm run people:check
-            echo "=== place-rounds:check ==="
-            npm run place-rounds:check
-            echo "=== fagverk:release:check ==="
-            npm run fagverk:release:check
-          } > reports/place-production/universitetsplassen-verify-debug.log 2>&1
+          bash tools/verify-universitetsplassen-one-shot.sh
           code=$?
-          cat reports/place-production/universitetsplassen-verify-debug.log
           echo "exit_code=$code" >> "$GITHUB_OUTPUT"
           exit 0
       - name: Commit verification diagnostics
@@ -123,6 +100,7 @@ jobs:
         run: |
           rm .github/workflows/universitetsplassen-one-shot.yml
           rm tools/harden-universitetsplassen-finalizer.py
+          rm tools/verify-universitetsplassen-one-shot.sh
           rm -f reports/place-production/universitetsplassen-finalizer-debug.log
           rm -f reports/place-production/universitetsplassen-verify-debug.log
       - name: Commit generated production
