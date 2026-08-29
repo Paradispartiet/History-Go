@@ -30,13 +30,16 @@ test("Slottet preserves its verified coordinate and has four canonical collectio
 test("collection imagery is local, source-labelled and visually reviewed", () => {
   const brand = actors.find(item => item.id === "det_norske_kongehus");
   const person = runtime.people.find(item => item.id === "hans_ditlev_franciscus_linstow");
-  const files = [place.image, place.cardImage, place.frontImage, person.image, brand.image, ...place.objects.map(item => item.image), ...place.productions.map(item => item.image)];
+  const files = [place.image, place.cardImage, place.frontImage, place.for_na.before_image, place.for_na.now_image, person.image, brand.image, ...place.objects.map(item => item.image), ...place.productions.map(item => item.image)];
   for (const file of files) assert.equal(fs.existsSync(path.join(root, file)), true, file);
   assert.equal(place.frontImageMeta.orientation, "portrait");
   assert.equal(person.imageMeta.license, "CC0 1.0");
   assert.match(place.objects[0].imageMeta.note, /faktiske rytterstatuen/);
   assert.match(brand.imageMeta.note, /ingen godkjenning/);
   assert.match(place.productions[0].imageMeta.note, /ikke et bilde av seremonien/);
+  assert.match(place.for_na.image_pair_review, /^PASS/);
+  assert.equal(place.images.find(item => item.src === place.for_na.before_image).imageMeta.license, "Public domain");
+  assert.equal(place.images.find(item => item.src === place.for_na.now_image).imageMeta.license, "CC BY 2.0");
 });
 
 test("description and Politics packets pass with constitutional boundaries explicit", () => {
@@ -48,6 +51,10 @@ test("description and Politics packets pass with constitutional boundaries expli
   assert.ok(Object.values(politics.gates).every(gate => gate.status === "PASS"));
   assert.match(place.popupDesc, /Kongen i statsråd/);
   assert.match(place.popupDesc, /kan ikke alene bevise politisk legitimitet/);
+  assert.match(place.popupDesc, /28\. august 2026/);
+  assert.match(place.popupDesc, /Haakon VIII/);
+  assert.ok(politics.currentVerification.sourceIds.includes("source_royal_succession"));
+  assert.ok(politics.currentVerification.sourceIds.includes("source_government_succession"));
 });
 
 test("major quiz has 8x7 progression, balanced claims and delayed theory", () => {
@@ -66,12 +73,23 @@ test("major quiz has 8x7 progression, balanced claims and delayed theory", () =>
   assert.ok(questions.every(question => question.source_origin === "external"));
 });
 
-test("runtime modules and six-dimension quality gate are complete", () => {
+test("runtime modules, dated news and six-dimension quality gate are complete", () => {
   assert.equal(runtime.language.entries.length, 6);
-  assert.equal(runtime.leksikon.length, 4);
+  assert.equal(runtime.leksikon.length, 5);
+  assert.equal(runtime.leksikon.filter(item => item.type === "news_note").length, 1);
   assert.equal(runtime.lesespor.length, 4);
   assert.equal(runtime.stories.length, 4);
-  assert.equal(place.module_audit.for_na.status, "held_back");
+  assert.equal(place.module_audit.for_na.status, "produced");
+  assert.equal(place.module_audit.news.status, "produced");
+  const news = read("data/leksikon/places/oslo/politikk/leksikon_slottet_news.json");
+  assert.equal(news[0].date, "2026-08-28");
+  assert.equal(news[0].sources.length, 2);
+  const chronology = read("data/leksikon/places/oslo/politikk/leksikon_slottet.json")[0].chronology;
+  assert.equal(chronology.length, 11);
+  assert.deepEqual(chronology.at(-1).sources, [
+    "https://www.kongehuset.no/nyheter/meddelelse-i-ekstraordinaert-statsrad",
+    "https://www.regjeringen.no/no/aktuelt/offisielt-fra-statsrad-28.-august-2026/id3171470/"
+  ]);
   const dimensions = Object.values(audit.quality_score).filter(value => value && typeof value === "object" && "score" in value);
   assert.equal(dimensions.length, 6);
   assert.ok(dimensions.every(item => item.score >= 4));
