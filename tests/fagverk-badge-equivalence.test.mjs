@@ -15,9 +15,10 @@ const compatibilityBySubject = new Map([
   ['litteratur', fs.readFileSync('data/fag/litteratur/merke_litteratur (1).html', 'utf8')],
   ['religion', fs.readFileSync('data/fag/religion/merke_religion.html', 'utf8')],
   ['scenekunst', fs.readFileSync('data/fag/scenekunst/merke_scenekunst.html', 'utf8')],
-  ['filosofi', fs.readFileSync('data/fag/filosofi/merke_filosofi.html', 'utf8')]
+  ['filosofi', fs.readFileSync('data/fag/filosofi/merke_filosofi.html', 'utf8')],
+  ['psykologi', fs.readFileSync('data/fag/psykologi/merke_psykologi (1).html', 'utf8')]
 ]);
-const MIGRATED = ['by', 'historie', 'kunst', 'litteratur', 'religion', 'scenekunst', 'filosofi'];
+const MIGRATED = ['by', 'historie', 'kunst', 'litteratur', 'religion', 'scenekunst', 'filosofi', 'psykologi'];
 
 function runAudit() {
   const result = spawnSync(process.execPath, ['scripts/audit-fagverk-badge-equivalence.mjs'], { encoding: 'utf8' });
@@ -28,7 +29,7 @@ function runAudit() {
 test('badge equivalence audit klassifiserer alle canonicale fag uten ukjent familie', () => {
   const audit = runAudit();
   assert.equal(audit.rows.length, audit.canonicalSubjectCount);
-  assert.ok(audit.counts.progress_route >= 9);
+  assert.ok(audit.counts.progress_route >= 10);
   assert.ok(audit.counts.rich_runtime >= 1);
   assert.ok(audit.counts.legacy_static_theory >= 1);
   assert.equal(audit.rows.some((row) => ['unknown', 'missing'].includes(row.family)), false);
@@ -69,7 +70,8 @@ test('gamle direkte URL-er er compatibility-redirects etter arkivering', () => {
     litteratur: /id="felt"|id="begreper"/,
     religion: /Religionsfaget samler|kildebasert og respektfullt studieløp/,
     scenekunst: /Teater, dans, musikal, revy|scenografi, regi, dramaturgi/,
-    filosofi: /Kjerneområder|Eget faggrunnlag|argumentasjon, logikk og begrepsanalyse/
+    filosofi: /Kjerneområder|Eget faggrunnlag|argumentasjon, logikk og begrepsanalyse/,
+    psykologi: /Hva er dette feltet\?|Kobling til din kunnskap|psykoanalyse til kognitiv psykologi/
   };
   for (const [subject, source] of compatibilityBySubject) {
     assert.match(source, /location\.replace/);
@@ -87,6 +89,7 @@ test('Fagverkforsiden skjuler compatibility-lenken når merket allerede er integ
 test('Alle merker sender ferdigmigrerte fag til integrert Progresjon', () => {
   for (const id of MIGRATED) assert.match(badgeIndex, new RegExp(`href="\\.\\.\\/fagverk\\.html\\?subject=${id}#fagverkIaProgresjon"`));
   assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/filosofi\/merke_filosofi\.html"/);
+  assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/psykologi\/merke_psykologi \(1\)\.html"/);
 });
 
 test('rich runtime og fortsatt ikke-migrert statisk teori kan ikke auto-redirectes av equivalence-auditen', () => {
