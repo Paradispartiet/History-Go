@@ -15,10 +15,14 @@ const REGISTRY = 'data/fagverk/fagverk_registry.json';
 const PORTAL = 'data/fagverk/fagverk_portal.json';
 const BADGE_INDEX = 'merker/merker.html';
 const FAGVERK_PAGE = 'fagverk.html';
+const BADGE_PROGRESS = 'js/fagverk-ia-v3-badge-progress.js';
 const GLOBAL_PROGRESS = 'emner.html';
+const KNOWLEDGE_PAGE = 'knowledge.html';
 const TARGET = 'fagverk.html?subject=psykologi#fagverkIaProgresjon';
 const RELATIVE_TARGET = '../../../fagverk.html?subject=psykologi#fagverkIaProgresjon';
-const DEAD_KNOWLEDGE_ROUTE = '../knowledge/knowledge_psykologi.html';
+const LEGACY_KNOWLEDGE_ROUTE = '../knowledge/knowledge_psykologi.html';
+const CANONICAL_KNOWLEDGE_ROUTE = 'knowledge.html?subject=psykologi';
+const LEGACY_KNOWLEDGE_REDIRECT = '../../../knowledge.html?subject=psykologi';
 
 const abs = (file) => path.join(ROOT, file);
 const read = (file) => fs.readFileSync(abs(file), 'utf8');
@@ -77,7 +81,7 @@ function isLegacyNavigationChrome(href) {
 }
 
 export function auditPsykologiLegacyStub() {
-  for (const file of [ARCHIVE, COMPATIBILITY, BADGE, CATEGORIES, MANIFEST, REGISTRY, PORTAL, BADGE_INDEX, FAGVERK_PAGE, GLOBAL_PROGRESS]) {
+  for (const file of [ARCHIVE, COMPATIBILITY, BADGE, CATEGORIES, MANIFEST, REGISTRY, PORTAL, BADGE_INDEX, FAGVERK_PAGE, BADGE_PROGRESS, GLOBAL_PROGRESS, KNOWLEDGE_PAGE]) {
     if (!exists(file)) throw new Error(`Psykologi stub-audit mangler ${file}`);
   }
 
@@ -90,6 +94,7 @@ export function auditPsykologiLegacyStub() {
   const portal = readJson(PORTAL);
   const badgeIndex = read(BADGE_INDEX);
   const fagverkPage = read(FAGVERK_PAGE);
+  const badgeProgress = read(BADGE_PROGRESS);
   const manifestEntry = manifest.psykologi || {};
   const subjectRegistry = registry.subjects?.psykologi;
   if (!subjectRegistry) throw new Error('Psykologi mangler i Fagverk-registeret.');
@@ -133,11 +138,15 @@ export function auditPsykologiLegacyStub() {
   const missingKnowledgeAnchors = knowledgeAnchors.filter((item) => !item.found).map((item) => item.alternatives);
 
   const archiveLinks = hrefs(archive);
-  const deadKnowledgeRoutePresent = archiveLinks.includes(DEAD_KNOWLEDGE_ROUTE);
-  const deadKnowledgeTarget = resolveLegacyRoute(DEAD_KNOWLEDGE_ROUTE);
-  const deadKnowledgeTargetExists = exists(deadKnowledgeTarget);
+  const legacyKnowledgeRoutePresent = archiveLinks.includes(LEGACY_KNOWLEDGE_ROUTE);
+  const legacyKnowledgeTarget = resolveLegacyRoute(LEGACY_KNOWLEDGE_ROUTE);
+  const legacyKnowledgeTargetExists = exists(legacyKnowledgeTarget);
+  const legacyKnowledgeTargetSource = legacyKnowledgeTargetExists ? read(legacyKnowledgeTarget) : '';
+  const legacyKnowledgeTargetCanonical = legacyKnowledgeTargetExists
+    && legacyKnowledgeTargetSource.includes(`rel="canonical" href="${LEGACY_KNOWLEDGE_REDIRECT}"`)
+    && legacyKnowledgeTargetSource.includes(`location.replace("${LEGACY_KNOWLEDGE_REDIRECT}"`);
   const legacyNavigationLinks = archiveLinks.filter(isLegacyNavigationChrome);
-  const unknownArchiveLinks = archiveLinks.filter((href) => href !== DEAD_KNOWLEDGE_ROUTE && !isLegacyNavigationChrome(href));
+  const unknownArchiveLinks = archiveLinks.filter((href) => href !== LEGACY_KNOWLEDGE_ROUTE && !isLegacyNavigationChrome(href));
 
   const sectionCount = (archive.match(/class=["'][^"']*merke-blokk/g) || []).length;
   if (sectionCount !== 3) throw new Error(`Psykologi legacy-stub skal ha tre korte blokker, fant ${sectionCount}.`);
@@ -157,14 +166,19 @@ export function auditPsykologiLegacyStub() {
     && !badgeIndex.includes('href="../data/fag/psykologi/merke_psykologi (1).html"');
   const globalProgressLinked = /href="emner\.html"[^>]*>\s*Min læring\s*</i.test(fagverkPage);
   const globalProgressExists = exists(GLOBAL_PROGRESS);
+  const subjectKnowledgeActionPresent = badgeProgress.includes('knowledge.html?subject=${encodeURIComponent(model.subject.id)}')
+    && badgeProgress.includes('Åpne fagets kunnskapsprofil →');
 
   const productSummary = {
-    role: 'legacy_progress_summary',
-    deadKnowledgeRoute: DEAD_KNOWLEDGE_ROUTE,
-    deadKnowledgeTarget,
-    deadKnowledgeRoutePresent,
-    deadKnowledgeTargetExists,
-    currentProgressEquivalent: portalRedirected && globalProgressExists && globalProgressLinked,
+    role: 'legacy_subject_knowledge_navigation',
+    legacyKnowledgeRoute: LEGACY_KNOWLEDGE_ROUTE,
+    legacyKnowledgeTarget,
+    legacyKnowledgeRoutePresent,
+    legacyKnowledgeTargetExists,
+    legacyKnowledgeTargetCanonical,
+    canonicalKnowledgeRoute: CANONICAL_KNOWLEDGE_ROUTE,
+    subjectKnowledgeActionPresent,
+    currentProgressEquivalent: portalRedirected && globalProgressExists && globalProgressLinked && subjectKnowledgeActionPresent,
     migrateAsKnowledge: false
   };
 
@@ -172,8 +186,9 @@ export function auditPsykologiLegacyStub() {
     && noIndependentRuntime
     && missingKnowledgeAnchors.length === 0
     && unknownArchiveLinks.length === 0
-    && productSummary.deadKnowledgeRoutePresent
-    && !productSummary.deadKnowledgeTargetExists
+    && productSummary.legacyKnowledgeRoutePresent
+    && productSummary.legacyKnowledgeTargetExists
+    && productSummary.legacyKnowledgeTargetCanonical
     && productSummary.currentProgressEquivalent
     && compatibilityRedirectPresent
     && portalRedirected
@@ -219,12 +234,15 @@ export function auditPsykologiLegacyStub() {
       compatibilityRedirectPresent,
       globalProgressPage: GLOBAL_PROGRESS,
       globalProgressExists,
-      globalProgressLinked
+      globalProgressLinked,
+      canonicalKnowledgePage: KNOWLEDGE_PAGE,
+      canonicalKnowledgeRoute: CANONICAL_KNOWLEDGE_ROUTE,
+      subjectKnowledgeActionPresent
     },
     summary: {
       uniqueKnowledgeMigrationRequired: false,
       uniqueRuntimeMigrationRequired: false,
-      deadLegacyKnowledgeRouteRetired: deadKnowledgeRoutePresent && !deadKnowledgeTargetExists,
+      legacyKnowledgeNavigationMigrated: legacyKnowledgeRoutePresent && legacyKnowledgeTargetCanonical && subjectKnowledgeActionPresent,
       redirectReady
     }
   };
