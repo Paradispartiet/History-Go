@@ -105,12 +105,12 @@ jobs:
           first = by_id["st_universitetsplassen_grunnsteinen_1841"]
           if not any(source.get("url") == square["url"] for source in first.get("sources", [])):
               first.setdefault("sources", []).append(square)
-          first["score"] = {"narrative": 3, "historical": 2, "source": 3, "play_value": 3, "originality": 3, "total": 14}
+          first["score"] = {"narrative": 3, "historical": 2, "source": 4, "play_value": 3, "originality": 3, "total": 15}
 
           second = by_id["st_universitetsplassen_schweigaard_1883"]
           if not any(source.get("url") == square["url"] for source in second.get("sources", [])):
               second.setdefault("sources", []).append(square)
-          second["score"] = {"narrative": 3, "historical": 2, "source": 3, "play_value": 3, "originality": 3, "total": 14}
+          second["score"] = {"narrative": 3, "historical": 2, "source": 4, "play_value": 3, "originality": 3, "total": 15}
 
           third = by_id["st_universitetsplassen_aula_munch_1916"]
           third["score"] = {"narrative": 3, "historical": 2, "source": 4, "play_value": 3, "originality": 3, "total": 15}
