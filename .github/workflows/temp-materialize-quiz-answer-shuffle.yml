@@ -36,6 +36,7 @@ jobs:
           p = Path("tools/temp-materialize-quiz-answer-shuffle.sh")
           text = p.read_text()
           text = text.replace("name: Quiz schema + content integrity", "name: Category and quiz governance")
+          text = text.replace("    timeout-minutes: 20\n", "")
           text = text.replace(
               "    steps:\n      - uses: actions/checkout@v4\n'''",
               "    steps:\n      - name: Check out repository\n        uses: actions/checkout@v4\n'''",
