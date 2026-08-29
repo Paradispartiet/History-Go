@@ -9,6 +9,11 @@ on:
       - 'data/places/**'
       - 'data/leksikon/places/oslo/historie/leksikon_oslo_historie.json'
       - 'data/quiz/**'
+      - 'js/quizzes.js'
+      - 'js/quiz/answer-shuffle.js'
+      - 'scripts/audit-quiz-answer-position-bias.mjs'
+      - 'tests/quiz-answer-shuffle-runtime.test.mjs'
+      - 'tests/quiz-answer-position-governance.test.mjs'
       - 'data/knowledge/**'
       - 'data/fag/fag_manifest.json'
       - 'data/fag/*/emner*.json'
@@ -136,7 +141,7 @@ jobs:
               data/places/*|data/leksikon/places/*|docs/PLACE_PRODUCTION_CHECKLIST.md|js/map.ts|js/map.js|js/app.js|js/views/MapView.js|scripts/check-places.sh|scripts/run-place-regressions-v1.mjs|.github/ci/place-regression-registry-v1.json|tests/torggata-*|reports/place-production/torggata-*|scripts/audit-politikk-place-production.mjs|scripts/audit-historie-place-production.mjs|scripts/audit-naeringsliv-place-production.mjs|scripts/audit-subkultur-place-production.mjs|tests/politikk-place-production.test.mjs|tests/historie-place-production.test.mjs|tests/naeringsliv-place-production.test.mjs|tests/subkultur-place-production.test.mjs)
                 places=true
                 ;;
-              data/quiz/*|scripts/audit-quiz-*|scripts/build-quiz-production-context.mjs|scripts/quiz-production-lib.mjs|tests/quiz-*|tests/quiz-content-quality-audit.test.mjs)
+              data/quiz/*|js/quizzes.js|js/quiz/*|scripts/audit-quiz-*|scripts/build-quiz-production-context.mjs|scripts/quiz-production-lib.mjs|tests/quiz-*|tests/quiz-content-quality-audit.test.mjs)
                 quiz=true
                 ;;
               data/knowledge/*|scripts/knowledge-canonical-data.mts|scripts/audit-knowledge-links.mjs|js/knowledgeV2.ts|js/knowledgeClaimCore.ts|dist/web/knowledgeV2.js|js/knowledgePage.js|tests/knowledge-v2-model.test.js|tests/knowledge-canonical-storage-contract.test.js)
@@ -273,6 +278,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Setup cached Node workspace
         uses: ./.github/actions/setup-node-npm
       - name: Audit canonical categories
@@ -288,6 +295,11 @@ jobs:
         run: |
           npm run test:quiz-content-audit
           npm run test:quiz-production
+          node --test tests/quiz-answer-shuffle-runtime.test.mjs tests/quiz-answer-position-governance.test.mjs
+          if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+            BASE_SHA="$(git merge-base "origin/$GITHUB_BASE_REF" HEAD)"
+            node scripts/audit-quiz-answer-position-bias.mjs --base "$BASE_SHA" --head HEAD
+          fi
 
   knowledge:
     name: Knowledge V2

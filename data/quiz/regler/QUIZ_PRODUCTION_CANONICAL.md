@@ -1,6 +1,6 @@
 # History Go – kanonisk quizproduksjon
 
-**Versjon:** 3.3
+**Versjon:** 3.4
 
 **Status:** eneste bindende produksjonsprosedyre for nye og reviderte quizer
 
@@ -186,6 +186,19 @@ Fra sett 3 er progresjonen relativ til quizens totale lengde:
 - **sluttdel:** emner, teori, teoretikere, verk, sammenligning og syntese
 
 En quiz med tre sett kan nå fag- og teorilaget i sett 3. En kategori kan kreve senere teoristart, men aldri tidligere enn sett 3. Den globale 2 × 7-åpningen går foran kategoriens relative faseplan.
+
+### 7.1 Svarrekkefølge og posisjonsbias — obligatorisk shuffle
+
+Lagret `answerIndex` dokumenterer hvilket alternativ som er korrekt i canonical data. Det er **ikke** en instruks om hvor det riktige svaret skal vises.
+
+- Quizruntime skal lage en ny kopi av svaralternativene og shuffle dem for hvert vist spørsmål i hvert quizforsøk.
+- Når alternativene shuffles, skal korrekt indeks remappes til den nye visningsrekkefølgen før brukerens valg vurderes.
+- Runtime skal aldri mutere `options`, `choices`, `answer` eller `answerIndex` i canonical quizdata.
+- Nye og reviderte quizfiler skal fordele lagrede korrekt-svar-posisjoner og kan ikke legge alle eller nesten alle riktige svar i samme slot. Første alternativ skal spesielt aldri brukes som systematisk fasitposisjon.
+- Det er tillatt at et enkelt spørsmål tilfeldig får samme visningsposisjon som i kildefilen etter shuffle. Kravet gjelder reell randomisering, ikke at én bestemt posisjon forbys.
+- Å flytte alle riktige svar til en annen fast posisjon er ikke en løsning; både produksjonsdata og runtime skal være fri for systematisk posisjonsmønster.
+
+CI skal stoppe nye eller endrede quizfiler med fast eller ekstremt konsentrert lagret fasitposisjon, i tillegg til å kontrollere at korrekt indeks faktisk peker på `answer` når begge feltene finnes.
 
 ## 8. Innholdsbalanse
 

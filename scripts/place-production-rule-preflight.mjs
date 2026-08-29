@@ -11,6 +11,7 @@ export const STATIC_RULE_FILES = [
   "docs/PLACE_PRODUCTION_CHECKLIST.md",
   "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md",
   "docs/PLACE_PRODUCTION_PROFILES.md",
+  "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
   "data/places/README_place_rounds.md",
   "data/badges/index.json",
   "data/badges/place_production_routing_v1.json",
