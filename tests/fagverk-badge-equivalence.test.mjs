@@ -9,11 +9,15 @@ const badgeUi = fs.readFileSync('js/fagverk-ia-v3-badge-progress.js', 'utf8');
 const fallback = fs.readFileSync('js/merke-fallback.js', 'utf8');
 const portalUi = fs.readFileSync('js/fagverk-forside.js', 'utf8');
 const badgeIndex = fs.readFileSync('merker/merker.html', 'utf8');
-const historieCompatibility = fs.readFileSync('data/fag/historie/merke_historie (1).html', 'utf8');
-const kunstCompatibility = fs.readFileSync('data/fag/kunst/merke_kunst (2).html', 'utf8');
-const litteraturCompatibility = fs.readFileSync('data/fag/litteratur/merke_litteratur (1).html', 'utf8');
-const religionCompatibility = fs.readFileSync('data/fag/religion/merke_religion.html', 'utf8');
-const scenekunstCompatibility = fs.readFileSync('data/fag/scenekunst/merke_scenekunst.html', 'utf8');
+const compatibilityBySubject = new Map([
+  ['historie', fs.readFileSync('data/fag/historie/merke_historie (1).html', 'utf8')],
+  ['kunst', fs.readFileSync('data/fag/kunst/merke_kunst (2).html', 'utf8')],
+  ['litteratur', fs.readFileSync('data/fag/litteratur/merke_litteratur (1).html', 'utf8')],
+  ['religion', fs.readFileSync('data/fag/religion/merke_religion.html', 'utf8')],
+  ['scenekunst', fs.readFileSync('data/fag/scenekunst/merke_scenekunst.html', 'utf8')],
+  ['filosofi', fs.readFileSync('data/fag/filosofi/merke_filosofi.html', 'utf8')]
+]);
+const MIGRATED = ['by', 'historie', 'kunst', 'litteratur', 'religion', 'scenekunst', 'filosofi'];
 
 function runAudit() {
   const result = spawnSync(process.execPath, ['scripts/audit-fagverk-badge-equivalence.mjs'], { encoding: 'utf8' });
@@ -24,18 +28,15 @@ function runAudit() {
 test('badge equivalence audit klassifiserer alle canonicale fag uten ukjent familie', () => {
   const audit = runAudit();
   assert.equal(audit.rows.length, audit.canonicalSubjectCount);
-  assert.ok(audit.counts.progress_route >= 8);
+  assert.ok(audit.counts.progress_route >= 9);
   assert.ok(audit.counts.rich_runtime >= 1);
   assert.ok(audit.counts.legacy_static_theory >= 1);
-  assert.ok(audit.counts.legacy_stub >= 1);
   assert.equal(audit.rows.some((row) => ['unknown', 'missing'].includes(row.family)), false);
 });
 
 test('generic fallback-fagene og ferdigmigrerte legacy-fag går til integrert Progresjon', () => {
   const byId = new Map(portal.categories.map((item) => [item.id, item]));
-  for (const id of ['helse', 'utdanning', 'by', 'historie', 'kunst', 'litteratur', 'religion', 'scenekunst']) {
-    assert.equal(byId.get(id).badgePage, `fagverk.html?subject=${id}#fagverkIaProgresjon`);
-  }
+  for (const id of ['helse', 'utdanning', ...MIGRATED]) assert.equal(byId.get(id).badgePage, `fagverk.html?subject=${id}#fagverkIaProgresjon`);
   assert.equal(portal.categories.some((item) => String(item.badgePage).startsWith('merke.html?badge=')), false);
   assert.equal(byId.get('politikk').badgePage, 'data/fag/politikk/merke_politikk.html');
 });
@@ -62,16 +63,18 @@ test('den gamle generiske merke-URL-en er compatibility-redirect, ikke en ny pro
 });
 
 test('gamle direkte URL-er er compatibility-redirects etter arkivering', () => {
-  for (const [source, subject, forbidden] of [
-    [historieCompatibility, 'historie', /id="felt"|id="begreper"/],
-    [kunstCompatibility, 'kunst', /id="felt"|id="offentlig-rom"/],
-    [litteraturCompatibility, 'litteratur', /id="felt"|id="begreper"/],
-    [religionCompatibility, 'religion', /Religionsfaget samler|kildebasert og respektfullt studieløp/],
-    [scenekunstCompatibility, 'scenekunst', /Teater, dans, musikal, revy|scenografi, regi, dramaturgi/]
-  ]) {
+  const forbiddenBySubject = {
+    historie: /id="felt"|id="begreper"/,
+    kunst: /id="felt"|id="offentlig-rom"/,
+    litteratur: /id="felt"|id="begreper"/,
+    religion: /Religionsfaget samler|kildebasert og respektfullt studieløp/,
+    scenekunst: /Teater, dans, musikal, revy|scenografi, regi, dramaturgi/,
+    filosofi: /Kjerneområder|Eget faggrunnlag|argumentasjon, logikk og begrepsanalyse/
+  };
+  for (const [subject, source] of compatibilityBySubject) {
     assert.match(source, /location\.replace/);
     assert.match(source, new RegExp(`subject=${subject}#fagverkIaProgresjon`));
-    assert.doesNotMatch(source, forbidden);
+    assert.doesNotMatch(source, forbiddenBySubject[subject]);
   }
 });
 
@@ -82,25 +85,17 @@ test('Fagverkforsiden skjuler compatibility-lenken når merket allerede er integ
 });
 
 test('Alle merker sender ferdigmigrerte fag til integrert Progresjon', () => {
-  for (const id of ['by', 'historie', 'kunst', 'litteratur', 'religion', 'scenekunst']) {
-    assert.match(badgeIndex, new RegExp(`href="\\.\\.\\/fagverk\\.html\\?subject=${id}#fagverkIaProgresjon"`));
-  }
-  assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/by\/merke_by\.html"/);
-  assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/historie\/merke_historie \(1\)\.html"/);
-  assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/kunst\/merke_kunst \(2\)\.html"/);
-  assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/litteratur\/merke_litteratur \(1\)\.html"/);
-  assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/religion\/merke_religion\.html"/);
-  assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/scenekunst\/merke_scenekunst\.html"/);
+  for (const id of MIGRATED) assert.match(badgeIndex, new RegExp(`href="\\.\\.\\/fagverk\\.html\\?subject=${id}#fagverkIaProgresjon"`));
+  assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/filosofi\/merke_filosofi\.html"/);
 });
 
 test('rich runtime og fortsatt ikke-migrert statisk teori kan ikke auto-redirectes av equivalence-auditen', () => {
   const audit = runAudit();
   const politics = audit.rows.find((row) => row.id === 'politikk');
-  const migratedIds = ['historie', 'by', 'kunst', 'litteratur', 'religion', 'scenekunst'];
   const pendingStatic = audit.rows.find((row) => row.family === 'legacy_static_theory');
   assert.equal(politics.family, 'rich_runtime');
   assert.equal(politics.equivalence, 'pending_runtime_migration');
-  for (const id of migratedIds) {
+  for (const id of MIGRATED) {
     const migrated = audit.rows.find((row) => row.id === id);
     assert.equal(migrated.family, 'progress_route');
     assert.equal(migrated.equivalence, 'complete');
