@@ -89,6 +89,27 @@ jobs:
       - name: Stop on finalizer failure
         if: steps.finalize.outputs.exit_code != '0'
         run: exit 1
+      - name: Remove orphaned Universitetsplassen-only people
+        if: steps.finalize.outputs.exit_code == '0'
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("data/people/by/oslo/people_by_oslo.json")
+          people = json.loads(path.read_text())
+          orphan_ids = {"kirsten_sand", "thomas_thiis_evensen"}
+          found = {person.get("id") for person in people if person.get("id") in orphan_ids}
+          if found != orphan_ids:
+              raise SystemExit(f"Fant ikke forventede orphan-personer: {sorted(orphan_ids - found)}")
+          for person in people:
+              if person.get("id") not in orphan_ids:
+                  continue
+              if person.get("placeId") or person.get("places"):
+                  raise SystemExit(f"{person['id']} er ikke orphan etter Universitetsplassen-cleanup")
+          people = [person for person in people if person.get("id") not in orphan_ids]
+          path.write_text(json.dumps(people, ensure_ascii=False, indent=2) + "\n")
+          PY
       - name: Normalize Universitetsplassen Stories contract
         if: steps.finalize.outputs.exit_code == '0'
         run: |
