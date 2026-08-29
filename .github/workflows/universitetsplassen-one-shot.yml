@@ -37,27 +37,29 @@ jobs:
           python tools/harden-universitetsplassen-finalizer.py
           python - <<'PY'
           from pathlib import Path
+          import re
+
           path = Path("tools/finalize-universitetsplassen-completion.mjs")
           text = path.read_text()
+
           old = '      question_type: questionType,\n'
           new = '      question_type: n <= 28 ? "fact" : n <= 42 ? "context" : "concept",\n'
           if old in text:
               text = text.replace(old, new, 1)
           elif new not in text:
               raise SystemExit("question_type normalization anchor not found")
-          old_final = '''    if (setIndex === 7) {
-              item.method_id = qIndex % 2 === 0 ? "met_feltobservasjon" : "met_gaanalyse";
-              item.guidance_basis = ["data/fag/by/fagkart_by.json", "data/fag/by/methods_by.json"];
-            }'''
-          new_final = '''    if (setIndex === 7) {
-              item.method_id = qIndex % 2 === 0 ? "met_feltobservasjon" : "met_gaanalyse";
-              item.topic_hook_id = qIndex % 2 === 0 ? "byliv_aapne_rom" : "byliv_opphold_vs_gjennomgang";
-              item.guidance_basis = ["data/fag/by/fagkart_by.json", "data/fag/by/methods_by.json"];
-            }'''
-          if old_final in text:
-              text = text.replace(old_final, new_final, 1)
-          elif 'item.topic_hook_id = qIndex % 2 === 0 ? "byliv_aapne_rom" : "byliv_opphold_vs_gjennomgang";' not in text:
-              raise SystemExit("final-set theory binding anchor not found")
+
+          hook_line = 'item.topic_hook_id = qIndex % 2 === 0 ? "byliv_aapne_rom" : "byliv_opphold_vs_gjennomgang";'
+          if hook_line not in text:
+              pattern = r'(?m)^(\s*)item\.method_id = qIndex % 2 === 0 \? "met_feltobservasjon" : "met_gaanalyse";\s*$'
+              replacement = (
+                  r'\1item.method_id = qIndex % 2 === 0 ? "met_feltobservasjon" : "met_gaanalyse";\n'
+                  r'\1item.topic_hook_id = qIndex % 2 === 0 ? "byliv_aapne_rom" : "byliv_opphold_vs_gjennomgang";'
+              )
+              text, count = re.subn(pattern, replacement, text, count=1)
+              if count != 1:
+                  raise SystemExit("final-set theory binding anchor not found")
+
           path.write_text(text)
           PY
           node --check tools/finalize-universitetsplassen-completion.mjs
