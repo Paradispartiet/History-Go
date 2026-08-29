@@ -35,7 +35,7 @@ jobs:
       - name: Materialize Fagarbeider People prerequisites
         run: node scripts/TEMP_materialize_fagarbeider_readiness_prerequisites.mjs
       - name: Rebuild compiled scene registry
-        run: node scripts/build-civication-scene-registry.mjs
+        run: node scripts/build-civication-scene-registry.mjs --write
       - name: Regenerate Scenario People outputs
         run: node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
       - name: Regenerate career gameplay audit
