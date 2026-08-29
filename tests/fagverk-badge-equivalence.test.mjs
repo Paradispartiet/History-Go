@@ -16,11 +16,12 @@ const compatibilityBySubject = new Map([
   ['media', fs.readFileSync('data/fag/media/merke_media.html', 'utf8')],
   ['musikk', fs.readFileSync('data/fag/musikk/merke_musikk (1).html', 'utf8')],
   ['naeringsliv', fs.readFileSync('data/fag/naeringsliv/merke_naeringsliv (1).html', 'utf8')],
+  ['natur', fs.readFileSync('data/fag/natur/merke_natur (1).html', 'utf8')],
   ['religion', fs.readFileSync('data/fag/religion/merke_religion.html', 'utf8')],
   ['scenekunst', fs.readFileSync('data/fag/scenekunst/merke_scenekunst.html', 'utf8')],
   ['filosofi', fs.readFileSync('data/fag/filosofi/merke_filosofi.html', 'utf8')]
 ]);
-const MIGRATED = ['by', 'historie', 'kunst', 'litteratur', 'media', 'musikk', 'naeringsliv', 'religion', 'scenekunst', 'filosofi'];
+const MIGRATED = ['by', 'historie', 'kunst', 'litteratur', 'media', 'musikk', 'naeringsliv', 'natur', 'religion', 'scenekunst', 'filosofi'];
 
 function runAudit() {
   const result = spawnSync(process.execPath, ['scripts/audit-fagverk-badge-equivalence.mjs'], { encoding: 'utf8' });
@@ -31,7 +32,7 @@ function runAudit() {
 test('badge equivalence audit klassifiserer alle canonicale fag uten ukjent familie', () => {
   const audit = runAudit();
   assert.equal(audit.rows.length, audit.canonicalSubjectCount);
-  assert.ok(audit.counts.progress_route >= 12);
+  assert.ok(audit.counts.progress_route >= 13);
   assert.ok(audit.counts.rich_runtime >= 1);
   assert.ok(audit.counts.legacy_static_theory >= 1);
   assert.equal(audit.rows.some((row) => ['unknown', 'missing'].includes(row.family)), false);
@@ -73,6 +74,7 @@ test('gamle direkte URL-er er compatibility-redirects etter arkivering', () => {
     media: /id="felt"|id="begreper"|id="bidrag"/,
     musikk: /merke-blokk|sekundærbadge|<h2>1\. Felt<\/h2>/i,
     naeringsliv: /merke-blokk|<h2>1\. Felt<\/h2>|profesjonalitet|offshoring/i,
+    natur: /merke-blokk|Alle tolv Natur-områder|Natur blir ikke tildelt|Tolv canonicale fagområder|Slik arbeider Natur|Hva teller som belegg\?/i,
     religion: /Religionsfaget samler|kildebasert og respektfullt studieløp/,
     scenekunst: /Teater, dans, musikal, revy|scenografi, regi, dramaturgi/,
     filosofi: /Kjerneområder|Eget faggrunnlag|argumentasjon, logikk og begrepsanalyse/
@@ -96,6 +98,7 @@ test('Alle merker sender ferdigmigrerte fag til integrert Progresjon', () => {
   assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/media\/merke_media\.html"/);
   assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/musikk\/merke_musikk \(1\)\.html"/);
   assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/naeringsliv\/merke_naeringsliv \(1\)\.html"/);
+  assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/natur\/merke_natur \(1\)\.html"/);
 });
 
 test('rich runtime og fortsatt ikke-migrert statisk teori kan ikke auto-redirectes av equivalence-auditen', () => {
