@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { spawnSync } from 'node:child_process';
 
-const LEGACY='data/fag/naeringsliv/merke_naeringsliv (1).html';
+const LEGACY='data/fag/naeringsliv/archive/merke_naeringsliv_full_teori_legacy_20260829.html';
+const COMPATIBILITY='data/fag/naeringsliv/merke_naeringsliv (1).html';
 const TARGET='fagverk.html?subject=naeringsliv#fagverkIaProgresjon';
 function run(){const r=spawnSync(process.execPath,['scripts/audit-fagverk-naeringsliv-legacy-adjudication.mjs'],{encoding:'utf8'});assert.equal(r.status,0,r.stderr||r.stdout);return JSON.parse(r.stdout);}
 
@@ -54,12 +55,15 @@ test('bidrag er gammel produkttekst uten kunstig kunnskapseier',()=>{
   assert.match(product.rationale,/produkttekst/i);
 });
 
-test('Næringsliv-adjudiseringen er redirect-klar men holder portalruten urørt',()=>{
+test('Næringsliv-adjudiseringen låser permanent route-retirement',()=>{
   const r=run();
   assert.equal(r.summary.anchorAuditRedirectReady,false);
   assert.equal(r.summary.redirectReady,true);
   assert.equal(r.summary.redirectTarget,TARGET);
-  assert.equal(r.summary.portalRoute,LEGACY);
-  assert.equal(r.summary.portalRedirected,false);
+  assert.equal(r.summary.portalRoute,TARGET);
+  assert.equal(r.summary.portalRedirected,true);
   assert.equal(r.summary.legacyBadgeSourcePreserved,true);
+  assert.equal(r.summary.compatibilityRedirectPresent,true);
+  assert.equal(r.inputs.legacyBadgePage,LEGACY);
+  assert.equal(r.inputs.compatibilityBadgePage,COMPATIBILITY);
 });
