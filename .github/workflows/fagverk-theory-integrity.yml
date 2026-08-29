@@ -17,6 +17,7 @@ on:
       - 'reports/fagverk/media-legacy-theory-audit.json'
       - 'reports/fagverk/musikk-subject-audit.json'
       - 'reports/fagverk/musikk-theory-integrity-audit.json'
+      - 'reports/fagverk/musikk-legacy-theory-audit.json'
       - 'reports/fagverk/litteratur-theory-integrity-audit.json'
       - 'reports/fagverk/litteratur-legacy-theory-audit.json'
       - 'reports/fagverk/natur-theory-integrity-audit.json'
@@ -43,6 +44,7 @@ on:
       - 'scripts/audit-fagverk-media-legacy-theory.mjs'
       - 'scripts/audit-fagverk-media-legacy-adjudication.mjs'
       - 'scripts/audit-fagverk-musikk.mjs'
+      - 'scripts/audit-fagverk-musikk-legacy-theory.mjs'
       - 'scripts/audit-fagverk-litteratur-legacy-theory.mjs'
       - 'scripts/audit-fagverk-litteratur-legacy-adjudication.mjs'
       - 'scripts/audit-subkultur-theory-attribution-v1.mjs'
@@ -70,6 +72,7 @@ on:
       - 'tests/fagverk-media-legacy-theory-audit.test.mjs'
       - 'tests/fagverk-media-legacy-theory-adjudication.test.mjs'
       - 'tests/musikk-theory-integrity.test.mjs'
+      - 'tests/fagverk-musikk-legacy-theory-audit.test.mjs'
       - 'tests/litteratur-theory-integrity.test.mjs'
       - 'tests/fagverk-litteratur-legacy-theory-audit.test.mjs'
       - 'tests/fagverk-litteratur-legacy-theory-adjudication.test.mjs'
@@ -112,6 +115,7 @@ jobs:
           node --check scripts/audit-fagverk-litteratur-legacy-adjudication.mjs
           node --check scripts/audit-fagverk-media-legacy-theory.mjs
           node --check scripts/audit-fagverk-media-legacy-adjudication.mjs
+          node --check scripts/audit-fagverk-musikk-legacy-theory.mjs
           node --check tools/audit-by-theory-integrity.mjs
           node --check tools/audit-kunst-theory-integrity.mjs
           node --check tools/audit-media-theory-integrity.mjs
@@ -129,6 +133,7 @@ jobs:
           node scripts/audit-fagverk-theory-integrity.mjs
           node scripts/audit-fagverk-media-legacy-theory.mjs --no-check-report
           node scripts/audit-fagverk-media-legacy-adjudication.mjs
+          node scripts/audit-fagverk-musikk-legacy-theory.mjs --no-check-report
           node --test tests/by-theory-integrity.test.mjs
           node --test tests/kunst-theory-integrity.test.mjs
           node --test tests/fagverk-kunst-legacy-theory-audit.test.mjs
@@ -138,6 +143,7 @@ jobs:
           node --test tests/fagverk-media-legacy-theory-audit.test.mjs
           node --test tests/fagverk-media-legacy-theory-adjudication.test.mjs
           node --test tests/musikk-theory-integrity.test.mjs
+          node --test tests/fagverk-musikk-legacy-theory-audit.test.mjs
           node --test tests/litteratur-theory-integrity.test.mjs
           node --test tests/fagverk-litteratur-legacy-theory-audit.test.mjs
           node --test tests/fagverk-litteratur-legacy-theory-adjudication.test.mjs
