@@ -99,18 +99,6 @@ Object.assign(place, {
 delete place.rounds;
 write(placeFile, place);
 
-const imageBacklog = read("data/places/place_image_backlog_summary.json");
-if (imageBacklog.generatedFromCommit !== "slottet_complete_2026") {
-  imageBacklog.generatedAt = verifiedAt;
-  imageBacklog.generatedFromCommit = "slottet_complete_2026";
-  imageBacklog.summary.validLocal += 1;
-  imageBacklog.summary.missing -= 1;
-  imageBacklog.summary.remaining -= 1;
-  imageBacklog.byCategory.politikk.valid += 1;
-  imageBacklog.byCategory.politikk.missing -= 1;
-  write("data/places/place_image_backlog_summary.json", imageBacklog);
-}
-
 const peopleFile = "data/people/by/oslo/people_by_oslo_politics_places_batch_03.json";
 const people = read(peopleFile);
 const person = people.find(item => item.id === personId);
