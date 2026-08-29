@@ -123,7 +123,89 @@
       ]
     }
   ],
-  "related_people": [],
+  "related_people": [
+    {
+      "id": "rune_arbeidsleder_fagarbeider",
+      "name": "Rune",
+      "role": "arbeidsleder",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null,
+      "function": "Fordeler konkrete oppdrag, prioriterer mellom tid og kvalitet og krever at risiko eller uklart mandat blir løftet tidlig nok til at arbeidet kan styres uten at fagarbeideren absorberer lederansvar.",
+      "authority_relation": "Rune kan prioritere arbeid, avklare oppdrag og kreve eskalering innen sitt arbeidsledermandat, men kan ikke gjøre spillerens faglige standing til formell godkjenningsrett eller be spilleren arbeide utenfor kompetanse og sikkerhetsgrense.",
+      "mail_family_refs": [
+        "fagarbeider_profesjonelle_arbeidsrelasjoner",
+        "ansvar_som_glir"
+      ],
+      "workplace_ids": [
+        "oppdrags_og_befaringsflate"
+      ],
+      "source_scene_refs": [
+        "data/Civication/mailFamilies/naeringsliv/job/fagarbeider_intro_v2.json#job_fagarbeider_week1_first_inspection"
+      ]
+    },
+    {
+      "id": "amir_erfaren_fagarbeider",
+      "name": "Amir",
+      "role": "erfaren fagarbeider",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null,
+      "function": "Er en erfaren faglig likemann som gjør taus kunnskap, standard og praktiske snarveier sosialt synlige, slik at spilleren må skille verdifull erfaringskunnskap fra vaner som flytter risiko til neste ledd.",
+      "authority_relation": "Amir kan demonstrere praksis, utfordre vurderinger og dele kollegial faglig erfaring, men har ikke automatisk personal-, godkjennings- eller kontrollmyndighet over spilleren og kan ikke legitimere sikkerhetsbypass gjennom erfaring alene.",
+      "mail_family_refs": [
+        "fagarbeider_profesjonelle_arbeidsrelasjoner",
+        "kollega_med_snarveier",
+        "uformell_mentor"
+      ],
+      "workplace_ids": [
+        "fag_og_utstyrsplass"
+      ],
+      "source_scene_refs": [
+        "data/Civication/mailFamilies/naeringsliv/job/fagarbeider_intro_v2.json#job_fagarbeider_week1_first_inspection"
+      ]
+    },
+    {
+      "id": "selma_kvalitetskontakt_fagarbeider",
+      "name": "Selma",
+      "role": "kvalitets- og HMS-kontakt",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null,
+      "function": "Leser avvik, kontrollspor og sikkerhetsgrunnlag fra et etterprøvingsperspektiv og gjør skillet mellom lokal korrigering og forhold som må til riktig kontrollfunksjon konkret for fagarbeideren.",
+      "authority_relation": "Selma kan kreve dokumentasjon, stoppe en uklar kontrollsløyfe og løfte alvorlige avvik til riktig funksjon, men hun overfører ikke sin kontrollrolle til spilleren og kan ikke gjøre faglig tillit til rett til å selvgodkjenne alvorlige avvik.",
+      "mail_family_refs": [
+        "fagarbeider_profesjonelle_arbeidsrelasjoner",
+        "taus_fagrespekt"
+      ],
+      "workplace_ids": [
+        "kvalitets_og_avvikspunkt"
+      ],
+      "source_scene_refs": [
+        "data/Civication/workGrammars/naeringsliv/naeringsliv_fag_og_produksjon.json#sluttkontroll"
+      ]
+    },
+    {
+      "id": "liv_laerling_fagarbeider",
+      "name": "Liv",
+      "role": "lærling i fagarbeid",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null,
+      "function": "Må kunne overta en arbeidsoperasjon trygt og stiller spørsmål som tvinger spilleren til å gjøre taus fagkunnskap, restarbeid og risikogrense eksplisitt i stedet for å lære bort ubegrunnede snarveier.",
+      "authority_relation": "Liv har rett til forståelig og sikker opplæring, men hennes behov for hjelp gir ikke spilleren ledermandat; spilleren kan lære bort innen eget faglige mandat, mens godkjenning, bemanning og arbeid utenfor kompetanse fortsatt tilhører riktige roller.",
+      "mail_family_refs": [
+        "fagarbeider_profesjonelle_arbeidsrelasjoner",
+        "uformell_mentor"
+      ],
+      "workplace_ids": [
+        "overleverings_og_opplaeringsflate"
+      ],
+      "source_scene_refs": [
+        "data/Civication/workGrammars/naeringsliv/naeringsliv_fag_og_produksjon.json#overlevering"
+      ]
+    }
+  ],
   "related_places": [
     {
       "id": "oppdrags_og_befaringsflate",
@@ -182,6 +264,7 @@
   ],
   "notes": [
     "Basert på den canonicale Fagarbeider-tittelen, eksisterende to-ukers praksisflyt og naeringsliv_fag_og_produksjon FWG.",
-    "Systematic rollout: konkrete arbeidsflater er materialisert uten å endre runtime scope, plan eller mailfamilier."
+    "Systematic rollout: konkrete arbeidsflater er materialisert uten å endre runtime scope, plan eller mailfamilier.",
+    "Role World readiness prerequisite: fire eksplisitt fiktive profesjonelle scenarioaktører binder eksisterende People-mail til de fire canonicale arbeidsflatene uten å endre plan, runtime eller authority."
   ]
 }
