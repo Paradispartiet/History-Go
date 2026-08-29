@@ -13,6 +13,7 @@ on:
       - "data/brands/brand_rules_v1_1.json"
       - "reports/place-production/**"
       - "scripts/place-production-rule-preflight.mjs"
+      - "tests/place-production-rule-preflight.test.mjs"
       - ".github/workflows/place-production-read-first.yml"
   workflow_dispatch:
 
@@ -40,8 +41,10 @@ jobs:
         with:
           node-version: 22
 
-      - name: Validate preflight checker syntax
-        run: node --check scripts/place-production-rule-preflight.mjs
+      - name: Validate preflight checker
+        run: |
+          node --check scripts/place-production-rule-preflight.mjs
+          node --test tests/place-production-rule-preflight.test.mjs
 
       - name: Require current rule-read evidence for full Place production
         run: node scripts/place-production-rule-preflight.mjs check --base "${{ github.event.pull_request.base.sha }}"
