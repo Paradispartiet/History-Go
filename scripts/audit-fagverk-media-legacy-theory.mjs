@@ -263,11 +263,11 @@ export function auditMediaLegacyTheory() {
     const missingAnchors = anchors.filter((row) => !row.found).map((row) => row.alternatives);
     return {
       id: section.id,
-      heading: section.heading,
       role: policy.role,
       legacyCharacterCount: section.text.length,
+      anchorCount: anchors.length,
+      foundCount,
       anchorCoverage,
-      anchors,
       missingAnchors,
       contentStatus: policy.role === 'legacy_product_copy'
         ? 'legacy_product_copy_no_canonical_migration_required'
@@ -293,11 +293,11 @@ export function auditMediaLegacyTheory() {
     canonical: {
       manifestFiles: manifest.manifestFiles,
       supplementRoots: manifest.supplementRoots,
-      supplementFiles: manifest.supplementFiles,
-      manifestGraphFiles: manifest.graphFiles,
+      supplementFileCount: manifest.supplementFiles.length,
+      manifestGraphFileCount: manifest.graphFiles.length,
       registrySubjectPresent: registry.subjectPresent,
       registryChapterCount: registry.chapterCount,
-      registryFiles: registry.files,
+      registryFileCount: registry.files.length,
       corpusCharacterCount: canonicalCorpus.length
     },
     navigation: {
