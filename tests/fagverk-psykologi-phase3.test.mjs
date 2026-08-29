@@ -6,6 +6,9 @@ import { fileURLToPath } from 'node:url';
 import { auditPsykologiPhase3 } from '../scripts/audit-fagverk-psykologi-phase3.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const PROGRESS_ROUTE = 'fagverk.html?subject=psykologi#fagverkIaProgresjon';
+const LEGACY_ARCHIVE = 'data/fag/psykologi/archive/merke_psykologi_legacy_20260829.html';
+const COMPATIBILITY_PAGE = 'data/fag/psykologi/merke_psykologi (1).html';
 
 test('Psykologi beholder canonical Fase 3-struktur gjennom redaksjonell produksjon', () => {
   const { report } = auditPsykologiPhase3();
@@ -17,7 +20,7 @@ test('Psykologi beholder canonical Fase 3-struktur gjennom redaksjonell produksj
   assert.equal(report.subject.assessmentStatus, 'audited');
   assert.ok(['structure_ready', 'chapters_in_progress', 'complete', 'expanded_and_audited'].includes(report.subject.editorialStatus));
   assert.equal(report.subject.subjectPage, 'fagverk.html?subject=psykologi');
-  assert.equal(report.subject.badgePage, 'data/fag/psykologi/merke_psykologi (1).html');
+  assert.equal(report.subject.badgePage, PROGRESS_ROUTE);
   assert.deepEqual(
     {
       domainCount: report.summary.domainCount,
@@ -68,9 +71,13 @@ test('Psykologi-metoder, mappings og generator er synkronisert', () => {
   assert.equal(report.gates.doNotDiagnosePeopleGuardPresent, true);
 });
 
-test('Psykologi-merkesiden skiller merket fra fagsiden', () => {
-  const html = fs.readFileSync(path.join(root, 'data/fag/psykologi/merke_psykologi (1).html'), 'utf8');
-  assert.match(html, /fagverk-forside\.html/);
-  assert.match(html, /fagverk\.html\?subject=psykologi/);
-  assert.match(html, /Åpne Psykologi-faget/);
+test('Psykologi-merket er integrert i Progresjon mens original merkesidetekst er arkivert', () => {
+  const compatibility = fs.readFileSync(path.join(root, COMPATIBILITY_PAGE), 'utf8');
+  const archive = fs.readFileSync(path.join(root, LEGACY_ARCHIVE), 'utf8');
+  assert.match(compatibility, /location\.replace/);
+  assert.match(compatibility, /fagverk\.html\?subject=psykologi#fagverkIaProgresjon/);
+  assert.match(compatibility, /fagverk-forside\.html/);
+  assert.doesNotMatch(compatibility, /Åpne Psykologi-faget/);
+  assert.match(archive, /Åpne Psykologi-faget/);
+  assert.match(archive, /knowledge_psykologi\.html/);
 });
