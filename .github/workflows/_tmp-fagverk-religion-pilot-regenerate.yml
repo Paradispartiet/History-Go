@@ -28,7 +28,7 @@ jobs:
           node-version: '24'
       - name: Regenerate Religion pilot report and validate
         run: |
-          node --input-type=module -e "import { auditReligionPilot } from './scripts/milestone-audit-fagverk-religion-pilot.mjs'; auditReligionPilot({ writeReport: true, checkReport: false });"
+          node --input-type=module -e "import { auditReligionPilot } from './scripts/audit-fagverk-religion-pilot.mjs'; auditReligionPilot({ writeReport: true, checkReport: false });"
           node scripts/audit-fagverk-religion-pilot.mjs
           node scripts/audit-fagverk-religion-legacy-stub.mjs
           node scripts/audit-fagverk-general-engine.mjs
