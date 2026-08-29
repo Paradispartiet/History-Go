@@ -116,19 +116,34 @@ assert.ok(ready, 'Administrasjonsmedarbeider must remain classified by readiness
 assert.equal(ready.classification, 'rollout_ready');
 assert.equal(ready.runtime_gate, true);
 assert.equal(ready.dimensions.people_places_integrity.status, 'foundation_ready');
-assert.equal(ready.dimensions[REMAINING_REALISM_DIMENSION].status, 'needs_role_authored_work');
-assert.deepEqual(ready.authored_work_required, [REMAINING_REALISM_DIMENSION], 'Exactly one rollout-authored realism dimension must remain');
 assert.equal(ready.cross_role.need, 'not_required_for_rollout');
-assert.equal(ready.already_reference_or_pilot, false);
-assert.ok(readiness.first_wave_candidates.some((row) => row.key === KEY), 'Newly rollout-ready role must re-enter the controlled first wave');
-assert.match(readiness.gate.next_required_pr, /Role World rollout:/);
-assert.match(readiness.gate.next_required_pr, /administrasjonsmedarbeider/);
 assert.equal(readiness.gate.gate_pass, true);
 assert.equal(readiness.gate.broad_rollout_allowed_now, true);
 
 const roleWorldIndex = read('data/Civication/roleWorlds/index.json');
-assert.equal((roleWorldIndex.roles || []).some((row) => row.category === 'naeringsliv' && row.role_scope === ROLE), false, 'Prerequisite PR must not materialize Role World completion');
-assert.equal(fs.existsSync(path.join(ROOT, WORLD_PATH)), false, 'Prerequisite PR must not create a Role World file');
+const roleWorldEntry = (roleWorldIndex.roles || []).find((row) => row.category === 'naeringsliv' && row.role_scope === ROLE);
+const roleWorldExists = fs.existsSync(path.join(ROOT, WORLD_PATH));
+
+if (!roleWorldExists) {
+  assert.equal(ready.dimensions[REMAINING_REALISM_DIMENSION].status, 'needs_role_authored_work');
+  assert.deepEqual(ready.authored_work_required, [REMAINING_REALISM_DIMENSION], 'Exactly one rollout-authored realism dimension must remain before Role World completion');
+  assert.equal(ready.already_reference_or_pilot, false);
+  assert.ok(readiness.first_wave_candidates.some((row) => row.key === KEY), 'Newly rollout-ready role must re-enter the controlled first wave');
+  assert.ok((readiness.rollout_queue || []).some((row) => row.key === KEY), 'Prerequisite-complete role must remain in rollout queue until Role World completion');
+  assert.match(readiness.gate.next_required_pr, /Role World rollout:/);
+  assert.match(readiness.gate.next_required_pr, /administrasjonsmedarbeider/);
+  assert.equal(roleWorldEntry, undefined, 'Prerequisite PR must not materialize Role World completion');
+} else {
+  const completedWorld = read(WORLD_PATH);
+  assert.equal(completedWorld.status, 'role_world_complete', 'Existing Administrasjonsmedarbeider Role World must be complete');
+  assert.equal(ready.dimensions[REMAINING_REALISM_DIMENSION].status, 'foundation_ready', 'Completed Role World must replace the deferred realism debt with authored standing evidence');
+  assert.deepEqual(ready.authored_work_required, [], 'Completed Role World must leave no authored readiness debt for Administrasjonsmedarbeider');
+  assert.equal(ready.already_reference_or_pilot, true, 'Completed Role World must be recognized by readiness');
+  assert.ok(!(readiness.first_wave_candidates || []).some((row) => row.key === KEY), 'Completed Role World must leave the controlled first wave');
+  assert.ok(!(readiness.rollout_queue || []).some((row) => row.key === KEY), 'Completed Role World must leave the rollout queue');
+  assert.notEqual(readiness.gate.next_required_pr, 'Role World rollout: naeringsliv/administrasjonsmedarbeider', 'Completed Role World cannot remain the next required rollout');
+  assert.deepEqual(roleWorldEntry, { category: 'naeringsliv', role_scope: ROLE, status: 'role_world_complete', path: WORLD_PATH });
+}
 
 const registry = read('data/Civication/compiledSceneRegistryV1.json');
 for (const id of MAIL_IDS) {
@@ -141,4 +156,6 @@ for (const id of MAIL_IDS) {
   assert.equal(entry.compatibility_projection?.work_context, undefined, `${id}: compiled ordinary People scene must remain outside persistent work-object context`);
 }
 
-console.log('PASS: Administrasjonsmedarbeider professional People prerequisite closes career People/Places integrity, preserves the two-week plan and authority, and makes the role rollout_ready with exactly one deferred realism dimension.');
+console.log(roleWorldExists
+  ? 'PASS: Administrasjonsmedarbeider prerequisite foundations remain intact after Role World completion and readiness correctly removes the completed role from the rollout queue.'
+  : 'PASS: Administrasjonsmedarbeider professional People prerequisite closes career People/Places integrity, preserves the two-week plan and authority, and makes the role rollout_ready with exactly one deferred realism dimension.');
