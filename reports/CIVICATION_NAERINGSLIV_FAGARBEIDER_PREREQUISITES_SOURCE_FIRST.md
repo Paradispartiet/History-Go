@@ -36,7 +36,7 @@ Materialize exactly four explicitly fictional workplace actors. They are scenari
 1. `rune_arbeidsleder_fagarbeider` — arbeidsleder; assignment, priority and escalation boundary around the `oppdrags_og_befaringsflate`.
 2. `amir_erfaren_fagarbeider` — experienced peer; practical standard, shortcuts and craft knowledge around the `fag_og_utstyrsplass`.
 3. `selma_kvalitetskontakt_fagarbeider` — quality/HMS contact; deviation evidence and control boundary around the `kvalitets_og_avvikspunkt`.
-4. `liv_laerling_fagarbeider` — apprentice; safe explanation, handoff and teach-back around the `overleverings_og_opplaeringsflate`.
+4. `liv_laerling_fagarbeider` — lærling i fagarbeid; safe explanation, handoff and teach-back around the `overleverings_og_opplaeringsflate`.
 
 Every actor must carry both `fictional: true` and `fictional_scenario_actor: true`, plus `canonical_person_ref: null`, so the Scenario People generator cannot mistake authored workplace drama for a factual person reference.
 
