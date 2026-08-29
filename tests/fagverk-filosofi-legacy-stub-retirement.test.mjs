@@ -18,7 +18,7 @@ test('Filosofi-stubben har ingen unik kunnskap eller runtime som må migreres', 
   const report = audit();
   assert.equal(report.subject, 'filosofi');
   assert.equal(report.legacy.sectionCount, 3);
-  assert.equal(report.legacy.archiveLinkCount, 3);
+  assert.equal(report.legacy.archiveLinkCount, 4);
   assert.equal(report.legacy.noIndependentRuntime, true);
   assert.equal(report.summary.uniqueKnowledgeMigrationRequired, false);
   assert.equal(report.summary.uniqueRuntimeMigrationRequired, false);
