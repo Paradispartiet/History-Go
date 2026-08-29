@@ -30,7 +30,7 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
-      - name: Harden Commons image retrieval
+      - name: Harden finalizer source and evidence coverage
         shell: bash
         run: |
           python - <<'PY'
@@ -56,7 +56,7 @@ jobs:
               'History-Go-place-production/1.0 (github.com/Paradispartiet/History-Go)"'
           )
 
-          replacement = r'''const imageBufferCache = new Map();
+          fetch_replacement = r'''const imageBufferCache = new Map();
           const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
           async function fetchBuffer(url) {
@@ -94,9 +94,48 @@ jobs:
 
           async function outputImage'''
           pattern = r'async function fetchBuffer\(url\)\s*\{.*?\n\}\s*\n\s*async function outputImage'
-          text, count = re.subn(pattern, replacement, text, count=1, flags=re.S)
+          text, count = re.subn(pattern, fetch_replacement, text, count=1, flags=re.S)
           if count != 1:
               raise SystemExit("fetchBuffer function not found")
+
+          # Intl.Segmenter treats the spaced initials in P. A. Munch as separate
+          # sentences. Use the full name in generated prose and keep one evidence
+          # group per real semantic sentence.
+          text = text.replace("P. A. Munch", "Peter Andreas Munch")
+
+          popup_replacement = '''const popupCoverage = coverage(popupDesc, [
+            ["claim_universitetsplassen_identity"],
+            ["claim_universitetsplassen_founding"],
+            ["claim_universitetsplassen_cornerstone"],
+            ["claim_universitetsplassen_grosch"],
+            ["claim_universitetsplassen_grosch"],
+            ["claim_universitetsplassen_use_1851_54"],
+            ["claim_universitetsplassen_urbygningen"],
+            ["claim_universitetsplassen_schweigaard", "claim_universitetsplassen_pamunch"],
+            ["claim_universitetsplassen_schweigaard"],
+            ["claim_universitetsplassen_pamunch"],
+            ["claim_universitetsplassen_pamunch"],
+            ["claim_universitetsplassen_schweigaard", "claim_universitetsplassen_pamunch", "claim_universitetsplassen_munch"],
+            ["claim_universitetsplassen_aula"],
+            ["claim_universitetsplassen_munch"],
+            ["claim_universitetsplassen_munch"],
+            ["claim_universitetsplassen_aula", "claim_universitetsplassen_munch"],
+            ["claim_universitetsplassen_repaving"],
+            ["claim_universitetsplassen_repaving", "claim_universitetsplassen_immatriculation"],
+            ["claim_universitetsplassen_immatriculation"],
+            ["claim_universitetsplassen_tree"],
+            ["claim_universitetsplassen_historic_photo"],
+            ["claim_universitetsplassen_current_photo"],
+            ["claim_universitetsplassen_historic_photo", "claim_universitetsplassen_current_photo"],
+            ["claim_universitetsplassen_identity", "claim_universitetsplassen_grosch", "claim_universitetsplassen_schweigaard", "claim_universitetsplassen_pamunch", "claim_universitetsplassen_aula"],
+            ["claim_universitetsplassen_grosch"],
+            ["claim_universitetsplassen_identity"],
+            ["claim_universitetsplassen_grosch", "claim_universitetsplassen_aula", "claim_universitetsplassen_use_1851_54"]
+          ]);'''
+          popup_pattern = r'const popupCoverage = coverage\(popupDesc, \[.*?\n\]\);'
+          text, count = re.subn(popup_pattern, popup_replacement, text, count=1, flags=re.S)
+          if count != 1:
+              raise SystemExit("popupCoverage block not found")
 
           path.write_text(text)
           PY
