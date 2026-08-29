@@ -6,6 +6,7 @@ import { spawnSync } from 'node:child_process';
 const SCRIPT = 'scripts/audit-fagverk-media-legacy-theory.mjs';
 const LEGACY_BADGE = 'data/fag/media/merke_media.html';
 const PORTAL = 'data/fagverk/fagverk_portal.json';
+const REPORT = 'reports/fagverk/media-legacy-theory-audit.json';
 const EXPECTED_IDS = [
   'felt', 'normativ', 'doxa', 'metode', 'materiell', 'sosial',
   'geografisk', 'temporal', 'blindsoner', 'begreper', 'bidrag'
@@ -28,18 +29,23 @@ test('Media legacy-teori har deterministisk, fail-closed canonical coverage-audi
   assert.deepEqual(report.rows.map((row) => row.id), EXPECTED_IDS);
 
   assert.equal(report.summary.knowledgeSectionCount, 10);
+  assert.equal(report.summary.anchorCompleteCount, 10);
+  assert.equal(report.summary.manualReviewCount, 0);
+  assert.deepEqual(report.summary.manualReview, []);
   assert.equal(report.summary.redirectReady, false);
   assert.match(report.summary.redirectBlockReason, /editorial adjudication/i);
-  assert.equal(report.summary.manualReviewCount, report.summary.manualReview.length);
 
   const knowledgeRows = report.rows.filter((row) => row.role === 'knowledge');
   assert.equal(knowledgeRows.length, 10);
   for (const row of knowledgeRows) {
-    assert.ok(row.anchors.length > 0, `${row.id} mangler auditankere`);
-    assert.ok(row.anchorCoverage >= 0 && row.anchorCoverage <= 1, `${row.id} har ugyldig dekning`);
+    assert.ok(row.anchorCount > 0, `${row.id} mangler auditankere`);
+    assert.equal(row.foundCount, row.anchorCount, `${row.id} mangler canonicalt eide ankere`);
+    assert.equal(row.anchorCoverage, 1, `${row.id} skal ha full kandidatdekning`);
+    assert.deepEqual(row.missingAnchors, [], `${row.id} skal ikke ha uavklarte ankerhull`);
   }
   assert.equal(report.rows.at(-1).id, 'bidrag');
   assert.equal(report.rows.at(-1).role, 'legacy_product_copy');
+  assert.equal(report.rows.at(-1).anchorCount, 0);
 
   for (const required of [
     'data/fag/media/mediapensum_canonical_v4_5.json',
@@ -51,10 +57,11 @@ test('Media legacy-teori har deterministisk, fail-closed canonical coverage-audi
     assert.ok(report.canonical.manifestFiles.includes(required), `Mangler manifest-eid canonical fil: ${required}`);
   }
 
-  assert.ok(report.canonical.manifestGraphFiles.length >= report.canonical.manifestFiles.length);
+  assert.equal(report.canonical.supplementFileCount, 5);
+  assert.equal(report.canonical.manifestGraphFileCount, 10);
   assert.equal(report.canonical.registrySubjectPresent, true);
   assert.equal(report.canonical.registryChapterCount, 6);
-  assert.ok(report.canonical.registryFiles.length >= 6, 'Media-registry må eie kapittelgrafen');
+  assert.equal(report.canonical.registryFileCount, 36);
   assert.ok(report.canonical.corpusCharacterCount >= 50000, 'Canonical Media-korpus er uventet lite');
 
   assert.equal(report.navigation.badgePage, LEGACY_BADGE);
@@ -68,4 +75,10 @@ test('Media legacy-teori har deterministisk, fail-closed canonical coverage-audi
   assert.match(legacyHtml, /MEDIA – full teoretisk beskrivelse/);
   assert.match(legacyHtml, /id="felt"/);
   assert.match(legacyHtml, /id="bidrag"/);
+
+  assert.deepEqual(JSON.parse(fs.readFileSync(REPORT, 'utf8')), report, 'Commitet Media-rapport må matche auditresultatet byte-for-semantikk');
+});
+
+test('Media legacy-auditen validerer også den committe rapporten i normal modus', () => {
+  assert.deepEqual(runAudit(), JSON.parse(fs.readFileSync(REPORT, 'utf8')));
 });
