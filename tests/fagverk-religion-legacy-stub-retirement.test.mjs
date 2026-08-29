@@ -36,7 +36,7 @@ test('Religion 4/8/8 behandles som legacy-produktoppsummering, ikke kunnskapsinn
   assert.ok(report.canonical.runtimeCounts.methodCount > 0);
 });
 
-test('Religion gamle URL er ren compatibility-redirect og original stub er arkivert', () => {
+test('Religion compatibility-ruten kan ikke bli faglig innhold igjen og original stub er arkivert', () => {
   const report = audit();
   assert.equal(report.navigation.target, TARGET);
   assert.equal(report.navigation.portalRoute, TARGET);
