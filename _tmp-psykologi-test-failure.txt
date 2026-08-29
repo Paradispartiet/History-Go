@@ -1,0 +1,89 @@
+FAILED_TEST=tests/fagverk-psykologi-phase3.test.mjs
+✖ Psykologi beholder canonical Fase 3-struktur gjennom redaksjonell produksjon (29.969887ms)
+✖ alle 58 Psykologi-emner er dekket uten syntetiske fagområder (19.437113ms)
+✖ Psykologi-metoder, mappings og generator er synkronisert (17.48596ms)
+✖ Psykologi-merkesiden skiller merket fra fagsiden (1.078279ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 136.994718
+
+✖ failing tests:
+
+test at tests/fagverk-psykologi-phase3.test.mjs:10:1
+✖ Psykologi beholder canonical Fase 3-struktur gjennom redaksjonell produksjon (29.969887ms)
+  Error: reports/fagverk/psykologi-phase3-audit.json er utdatert. Kjør node scripts/audit-fagverk-psykologi-phase3.mjs --write-report
+      at assert (file:///home/runner/work/History-Go/History-Go/scripts/audit-fagverk-psykologi-phase3.mjs:36:64)
+      at auditPsykologiPhase3 (file:///home/runner/work/History-Go/History-Go/scripts/audit-fagverk-psykologi-phase3.mjs:241:5)
+      at TestContext.<anonymous> (file:///home/runner/work/History-Go/History-Go/tests/fagverk-psykologi-phase3.test.mjs:11:22)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at tests/fagverk-psykologi-phase3.test.mjs:44:1
+✖ alle 58 Psykologi-emner er dekket uten syntetiske fagområder (19.437113ms)
+  Error: reports/fagverk/psykologi-phase3-audit.json er utdatert. Kjør node scripts/audit-fagverk-psykologi-phase3.mjs --write-report
+      at assert (file:///home/runner/work/History-Go/History-Go/scripts/audit-fagverk-psykologi-phase3.mjs:36:64)
+      at auditPsykologiPhase3 (file:///home/runner/work/History-Go/History-Go/scripts/audit-fagverk-psykologi-phase3.mjs:241:5)
+      at TestContext.<anonymous> (file:///home/runner/work/History-Go/History-Go/tests/fagverk-psykologi-phase3.test.mjs:45:29)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests/fagverk-psykologi-phase3.test.mjs:61:1
+✖ Psykologi-metoder, mappings og generator er synkronisert (17.48596ms)
+  Error: reports/fagverk/psykologi-phase3-audit.json er utdatert. Kjør node scripts/audit-fagverk-psykologi-phase3.mjs --write-report
+      at assert (file:///home/runner/work/History-Go/History-Go/scripts/audit-fagverk-psykologi-phase3.mjs:36:64)
+      at auditPsykologiPhase3 (file:///home/runner/work/History-Go/History-Go/scripts/audit-fagverk-psykologi-phase3.mjs:241:5)
+      at TestContext.<anonymous> (file:///home/runner/work/History-Go/History-Go/tests/fagverk-psykologi-phase3.test.mjs:62:29)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/fagverk-psykologi-phase3.test.mjs:71:1
+✖ Psykologi-merkesiden skiller merket fra fagsiden (1.078279ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Åpne Psykologi-faget/. Input:
+  
+  '<!DOCTYPE html>\n' +
+    '<html lang="no">\n' +
+    '<head>\n' +
+    '  <meta charset="UTF-8">\n' +
+    '  <meta name="viewport" content="width=device-width, initial-scale=1">\n' +
+    '  <title>History Go – Psykologi-merket er flyttet</title>\n' +
+    '  <meta name="robots" content="noindex">\n' +
+    '  <meta http-equiv="refresh" content="0; url=../../../fagverk.html?subject=psykologi#fagverkIaProgresjon">\n' +
+    '  <script>\n' +
+    "    window.location.replace('../../../fagverk.html?subject=psykologi#fagverkIaProgresjon');\n" +
+    '  </script>\n' +
+    '</head>\n' +
+    '<body>\n' +
+    '  <p>Psykologi-merket er integrert i Fagverket. <a href="../../../fagverk.html?subject=psykologi#fagverkIaProgresjon">Åpne Psykologi – Progresjon</a>.</p>\n' +
+    '  <p><a href="../../../fagverk-forside.html">Se alle fag i Fagverket</a>.</p>\n' +
+    '</body>\n' +
+    '</html>\n'
+  
+      at TestContext.<anonymous> (file:///home/runner/work/History-Go/History-Go/tests/fagverk-psykologi-phase3.test.mjs:75:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: `<!DOCTYPE html>\n<html lang="no">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1">\n  <title>History Go – Psykologi-merket er flyttet</title>\n  <meta name="robots" content="noindex">\n  <meta http-equiv="refresh" content="0; url=../../../fagverk.html?subject=psykologi#fagverkIaProgresjon">\n  <script>\n    window.location.replace('../../../fagverk.html?subject=psykologi#fagverkIaProgresjon');\n  </script>\n</head>\n<body>\n  <p>Psykologi-merket er integrert i Fagverket. <a href="../../../fagverk.html?subject=psykologi#fagverkIaProgresjon">Åpne Psykologi – Progresjon</a>.</p>\n  <p><a href="../../../fagverk-forside.html">Se alle fag i Fagverket</a>.</p>\n</body>\n</html>\n`,
+    expected: /Åpne Psykologi-faget/,
+    operator: 'match',
+    diff: 'simple'
+  }
