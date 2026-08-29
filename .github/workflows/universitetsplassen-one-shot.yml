@@ -35,38 +35,33 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
+          import re
 
           path = Path("tools/finalize-universitetsplassen-completion.mjs")
           text = path.read_text()
 
-          old_api = '''  api.searchParams.set("origin", "*");
-          const response = await fetch(api, { headers: { "user-agent": "History-Go-place-production/1.0" } });'''
-          new_api = '''  api.searchParams.set("origin", "*");
-          api.searchParams.set("iiurlwidth", "1600");
-          const response = await fetch(api, { headers: { "user-agent": "History-Go-place-production/1.0 (github.com/Paradispartiet/History-Go)" } });'''
-          if old_api not in text:
-              raise SystemExit("Commons API patch target not found")
-          text = text.replace(old_api, new_api, 1)
+          if 'api.searchParams.set("iiurlwidth", "1600")' not in text:
+              marker = 'api.searchParams.set("origin", "*");'
+              if marker not in text:
+                  raise SystemExit("Commons origin marker not found")
+              text = text.replace(marker, marker + '\n  api.searchParams.set("iiurlwidth", "1600");', 1)
 
-          old_url = '''    originalUrl: info.url,'''
-          new_url = '''    originalUrl: info.thumburl || info.url,'''
-          if old_url not in text:
-              raise SystemExit("Commons thumb URL patch target not found")
-          text = text.replace(old_url, new_url, 1)
+          if 'originalUrl: info.thumburl || info.url,' not in text:
+              text, count = re.subn(r'originalUrl:\s*info\.url\s*,', 'originalUrl: info.thumburl || info.url,', text, count=1)
+              if count != 1:
+                  raise SystemExit("Commons image URL assignment not found")
 
-          old_fetch = '''async function fetchBuffer(url) {
-            const response = await fetch(url, { headers: { "user-agent": "History-Go-place-production/1.0" } });
-            if (!response.ok) throw new Error(`Kunne ikke hente bilde (${response.status}): ${url}`);
-            return Buffer.from(await response.arrayBuffer());
-          }'''
-          new_fetch = '''const imageBufferCache = new Map();
+          text = text.replace(
+              'History-Go-place-production/1.0"',
+              'History-Go-place-production/1.0 (github.com/Paradispartiet/History-Go)"'
+          )
+
+          replacement = r'''const imageBufferCache = new Map();
           const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
           async function fetchBuffer(url) {
             const parsed = new URL(url);
-            parsed.searchParams.delete("utm_source");
-            parsed.searchParams.delete("utm_campaign");
-            parsed.searchParams.delete("utm_content");
+            for (const key of ["utm_source", "utm_campaign", "utm_content"]) parsed.searchParams.delete(key);
             const cleanUrl = parsed.toString();
             if (imageBufferCache.has(cleanUrl)) return imageBufferCache.get(cleanUrl);
 
@@ -95,10 +90,13 @@ jobs:
               await sleep(delay);
             }
             throw new Error(`Kunne ikke hente bilde etter retries (${lastStatus}): ${cleanUrl}`);
-          }'''
-          if old_fetch not in text:
-              raise SystemExit("fetchBuffer patch target not found")
-          text = text.replace(old_fetch, new_fetch, 1)
+          }
+
+          async function outputImage'''
+          pattern = r'async function fetchBuffer\(url\)\s*\{.*?\n\}\s*\n\s*async function outputImage'
+          text, count = re.subn(pattern, replacement, text, count=1, flags=re.S)
+          if count != 1:
+              raise SystemExit("fetchBuffer function not found")
 
           path.write_text(text)
           PY
