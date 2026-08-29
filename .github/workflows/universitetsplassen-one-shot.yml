@@ -70,6 +70,7 @@ jobs:
           npm run epoker:places:build
           npm run civication:history-people:build
           node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-quiz-production-context.mjs --category by --target universitetsplassen --output data/quiz/production_context/by/universitetsplassen.json
       - name: Verify Universitetsplassen package
         if: steps.finalize.outputs.exit_code == '0'
         id: verify
