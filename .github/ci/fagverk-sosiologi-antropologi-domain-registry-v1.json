@@ -35,7 +35,9 @@
       "reports/fagverk/sosiologi-antropologi-culture-religion-ritual-materiality-fulltext-v1-audit.json",
       "reports/fagverk/sosiologi-antropologi-place-urbanity-migration-transnationality-source-brief-v1-audit.json",
       "reports/fagverk/sosiologi-antropologi-place-urbanity-migration-transnationality-fulltext-v1-audit.json",
-      "reports/fagverk/sosiologi-antropologi-power-politics-collective-action-source-brief-v1-audit.json"
+      "reports/fagverk/sosiologi-antropologi-power-politics-collective-action-source-brief-v1-audit.json",
+      "reports/fagverk/sosiologi-antropologi-power-politics-collective-action-fulltext-v1-audit.json",
+      "reports/fagverk/sosiologi-antropologi-digitalization-science-technology-society-source-brief-v1-audit.json"
     ]
   },
   "domains": [
@@ -150,9 +152,19 @@
       "existingChapter": "data/fagverk/politikk/konflikt-makt-sivilsamfunn.json",
       "sourceBrief": "data/fag/politikk/sosiologi_antropologi/power_politics_collective_action_source_claim_brief_v1.json",
       "sourceBriefScript": "scripts/brief-sosiologi-antropologi-power-politics-collective-action-sources-v1.mjs",
-      "sourceBriefTest": "tests/sosiologi-antropologi-power-politics-collective-action-source-brief-v1.test.mjs"
+      "sourceBriefTest": "tests/sosiologi-antropologi-power-politics-collective-action-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-sosiologi-antropologi-power-politics-collective-action-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-sosiologi-antropologi-power-politics-collective-action-fulltext-v1.mjs",
+      "fulltextTest": "tests/sosiologi-antropologi-power-politics-collective-action-fulltext-v1.test.mjs"
     },
-    { "ordinal": 11, "domainId": "digitalisering_vitenskap_teknologi_samfunn", "slug": "digitalization-science-technology-society" },
+    {
+      "ordinal": 11,
+      "domainId": "digitalisering_vitenskap_teknologi_samfunn",
+      "slug": "digitalization-science-technology-society",
+      "sourceBrief": "data/fag/politikk/sosiologi_antropologi/digitalization_science_technology_society_source_claim_brief_v1.json",
+      "sourceBriefScript": "scripts/brief-sosiologi-antropologi-digitalization-science-technology-society-sources-v1.mjs",
+      "sourceBriefTest": "tests/sosiologi-antropologi-digitalization-science-technology-society-source-brief-v1.test.mjs"
+    },
     { "ordinal": 12, "domainId": "anvendt_offentlig_etikk_avkolonisering", "slug": "applied-public-ethics-decolonization" }
   ]
 }
