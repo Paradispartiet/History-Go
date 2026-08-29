@@ -110,6 +110,16 @@ Musikk er sjette `legacy_static_theory`-fag som er ført gjennom hele equivalenc
 
 Musikk-auditene skal etter route-retirement bare lese arkivfilen. Den rå anker-auditen forblir `redirectReady: false`; den eksplisitte adjudiseringsgaten låser både 8/8 kunnskapseierskap og de to produktgrensene før den kan godkjenne ruten. Ingen Musikk-emner, metoder, kapitler, claims, kilder eller gameplaydata ble endret i equivalence-løpet.
 
+### Næringsliv
+
+Næringsliv er sjuende `legacy_static_theory`-fag som er ført gjennom hele equivalence-løpet. Den gamle siden har ti kunnskapsseksjoner og én avsluttende produktseksjon (`bidrag`):
+
+- **#5491:** en deterministisk audit sammenlignet de ti kunnskapsseksjonene mot Næringslivs manifesteide fagfiler og det tolvs-kapitlers registry-eide læreverket. To rå ordformsavvik — `profesjonalitet` og `offshoring/globalisering` — ble eksplisitt kontrollert mot eksisterende canonical dekning av profesjoner, kompetanse og yrkesmessig skjønn, samt internasjonal økonomi, internasjonal handel og globale verdikjeder. De var ikke nye kunnskapsgap, og ingen canonical fagdata ble endret.
+- **#5492:** alle ti kunnskapsseksjoner fikk eksplisitte canonicale eiere og `canonical_supersedes`, med null migreringer. `bidrag` ble pensjonert som legacy-produkttekst uten kunstig kunnskapseier. Adjudiseringsgaten ble `redirectReady: true` mens portalruten fortsatt var legacy.
+- **#5493:** original fullteori bevares byte-for-byte i `data/fag/naeringsliv/archive/merke_naeringsliv_full_teori_legacy_20260829.html` med original Git-blob `2448e80e92774549f3f34ccb7082df1d0978bee7`. `data/fag/naeringsliv/merke_naeringsliv (1).html` blir ren compatibility-redirect, mens canonical `badgePage` og `Alle merker` flyttes til `fagverk.html?subject=naeringsliv#fagverkIaProgresjon`.
+
+Næringsliv-auditene skal etter route-retirement bare lese arkivfilen. Den rå anker-auditen forblir `redirectReady: false`; bare den eksplisitte adjudiseringsgaten kan autorisere ruten. Ingen Næringsliv-emner, metoder, kapitler, claims, kilder eller gameplaydata ble endret i equivalence-løpet.
+
 ### Religion
 
 Religion er et `legacy_stub`-fag og trenger derfor ikke fullteori-prosessen:
@@ -134,5 +144,5 @@ Ingen Scenekunst-emner, metoder, kapitler, claims eller kilder ble endret for å
 ## Ikke redirect ennå
 
 - **Politikk:** `rich_runtime`; emneprogresjon, quizhistorikk, steder, begrepsutforsker og øvrig aktiv legacy-runtime må ha dokumentert equivalence før redirect.
-- **Andre fullteorisider:** `legacy_static_theory`; hvert fag må gjennom egen innholdsaudit og eksplisitt adjudisering. By, Historie, Litteratur, Kunst, Media og Musikk er prosessbevis, ikke automatisk godkjenning av resten.
+- **Andre fullteorisider:** `legacy_static_theory`; hvert fag må gjennom egen innholdsaudit og eksplisitt adjudisering. By, Historie, Litteratur, Kunst, Media, Musikk og Næringsliv er prosessbevis, ikke automatisk godkjenning av resten.
 - **Tynne legacy-sider:** `legacy_stub`; Religion og Scenekunst er eksplisitt pensjonert; øvrige stubber må fortsatt gjennom egen unik-innhold/linkaudit før redirect.
