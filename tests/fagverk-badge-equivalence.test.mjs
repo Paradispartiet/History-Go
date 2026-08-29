@@ -42,7 +42,7 @@ test('generic fallback-fagene og ferdigmigrerte legacy-fag går til integrert Pr
   assert.equal(byId.get('politikk').badgePage, 'data/fag/politikk/merke_politikk.html');
 });
 
-test('Fagverk Progresjon overtar generic merkesides badgeidentitet, nivåstige og undermerker', () => {
+test('Fagverk Progresjon overtar badgeidentitet, nivåstige, undermerker og fagets Knowledge-inngang', () => {
   assert.match(html, /href="css\/fagverk-ia-v3-badge-progress\.css"/);
   assert.match(html, /src="js\/fagverk-ia-v3\.js"[\s\S]*src="js\/fagverk-ia-v3-badge-progress\.js"/);
   assert.match(badgeUi, /data\/badges\/\$\{encodeURIComponent\(model\.subject\.id\)\}\.json/);
@@ -53,6 +53,8 @@ test('Fagverk Progresjon overtar generic merkesides badgeidentitet, nivåstige o
   assert.match(badgeUi, /progress\.visited\?\.has/);
   assert.match(badgeUi, /Nivåstige/);
   assert.match(badgeUi, /Undermerker/);
+  assert.match(badgeUi, /knowledge\.html\?subject=\$\{encodeURIComponent\(model\.subject\.id\)\}/);
+  assert.match(badgeUi, /Åpne fagets kunnskapsprofil →/);
   assert.doesNotMatch(badgeUi, /localStorage\.setItem|sessionStorage\.setItem|indexedDB/);
 });
 
