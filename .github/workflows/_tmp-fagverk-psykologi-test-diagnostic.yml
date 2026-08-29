@@ -11,6 +11,7 @@ on:
       - 'reports/fagverk/psykologi-phase3-audit.json'
       - 'reports/fagverk/general-engine-audit.json'
       - '_tmp-psykologi-test-failure.txt'
+      - '_tmp-psykologi-stub-audit-failure.txt'
       - '.github/workflows/_tmp-fagverk-psykologi-test-diagnostic.yml'
   workflow_dispatch:
 
@@ -40,7 +41,18 @@ jobs:
           node scripts/audit-fagverk-general-engine.mjs --write-report
           node scripts/audit-fagverk-general-engine.mjs
       - name: Verify Psykologi stub equivalence
-        run: node scripts/audit-fagverk-psykologi-legacy-stub.mjs
+        run: |
+          if ! node scripts/audit-fagverk-psykologi-legacy-stub.mjs > /tmp/psykologi-stub-audit.log 2>&1; then
+            cp /tmp/psykologi-stub-audit.log _tmp-psykologi-stub-audit-failure.txt
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add _tmp-psykologi-stub-audit-failure.txt
+            git commit -m 'Record Psykologi stub audit diagnostic'
+            git push origin HEAD:${{ github.event.pull_request.head.ref }}
+            cat /tmp/psykologi-stub-audit.log
+            exit 1
+          fi
+          cat /tmp/psykologi-stub-audit.log
       - name: Verify badge equivalence
         run: node scripts/audit-fagverk-badge-equivalence.mjs
       - name: Verify release manifest
@@ -82,10 +94,10 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          rm -f _tmp-psykologi-test-failure.txt
+          rm -f _tmp-psykologi-test-failure.txt _tmp-psykologi-stub-audit-failure.txt
           rm .github/workflows/_tmp-fagverk-psykologi-test-diagnostic.yml
           git add data/fagverk/fagverk_portal.json reports/fagverk/psykologi-phase3-audit.json reports/fagverk/general-engine-audit.json .github/workflows/_tmp-fagverk-psykologi-test-diagnostic.yml
-          git add -u -- _tmp-psykologi-test-failure.txt || true
+          git add -u -- _tmp-psykologi-test-failure.txt _tmp-psykologi-stub-audit-failure.txt || true
           git diff --cached --quiet && exit 0
           git commit -m 'Regenerate Psykologi route audits'
           git push origin HEAD:${{ github.event.pull_request.head.ref }}
