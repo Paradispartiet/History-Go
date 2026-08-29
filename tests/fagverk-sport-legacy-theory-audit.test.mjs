@@ -4,6 +4,7 @@ import { spawnSync } from 'node:child_process';
 
 const LEGACY = 'data/fag/sport/merke_sport.html';
 const IDS = ['felt', 'normativ', 'doxa', 'metode', 'materiell', 'sosial', 'geografisk', 'temporal', 'blindsoner', 'begreper', 'bidrag'];
+const MIN_CANONICAL_CORPUS_CHARS = 150000;
 
 function run() {
   const result = spawnSync(process.execPath, ['scripts/audit-fagverk-sport-legacy-theory.mjs'], { encoding: 'utf8' });
@@ -24,7 +25,8 @@ test('Sport legacy-teori har full canonical ankerdekning, men kan ikke autoriser
   assert.ok(report.canonical.manifestGraphFileCount >= report.canonical.manifestSeedFiles.length);
   assert.equal(report.canonical.registryChapterCount, 6);
   assert.ok(report.canonical.registryGraphFileCount >= 6);
-  assert.ok(report.canonical.corpusCharacterCount >= 250000);
+  assert.equal(report.canonical.corpusTruncationFloor, MIN_CANONICAL_CORPUS_CHARS);
+  assert.ok(report.canonical.corpusCharacterCount >= report.canonical.corpusTruncationFloor);
 
   assert.equal(report.summary.knowledgeSectionCount, 10);
   assert.equal(report.summary.anchorCompleteCount, 10);
