@@ -120,6 +120,17 @@ Næringsliv er sjuende `legacy_static_theory`-fag som er ført gjennom hele equi
 
 Næringsliv-auditene skal etter route-retirement bare lese arkivfilen. Den rå anker-auditen forblir `redirectReady: false`; bare den eksplisitte adjudiseringsgaten kan autorisere ruten. Ingen Næringsliv-emner, metoder, kapitler, claims, kilder eller gameplaydata ble endret i equivalence-løpet.
 
+### Natur
+
+Natur er åttende `legacy_static_theory`-fag som er ført gjennom den komplette fail-closed-prosessen. Legacy-siden har seks innholdsblokker: fem bærer faglig kunnskap, mens `status` er et statisk produktsammendrag. I tillegg inneholder siden fire produktmekanikker og én kategorigrense som eksplisitt holdes utenfor kunnskapseierskapet:
+
+- **#5495:** den deterministiske råauditen sammenlignet de fem kunnskapsseksjonene mot fem manifesteide Natur-kjernefiler og tolv registry-kapitler. Den rekursive canonicale flaten målte 7 manifestgraf-filer, 12 registry-graffiler og 1 208 632 normaliserte tegn. Resultatet var 5/5 full ankerdekning, 0 manuelle restanser, 16 badge-nivåer og 88 undermerker. Auditen isolerte fire produktmekanikker og `nature_assignment_requires_scientific_entry` som produktgrense og forble med vilje `redirectReady: false`.
+- **#5496:** den eneste reelle mangelen lå i produktkontrakten, ikke i Natur-faget. `data/categories/category_contract.json#decisions.natur` ble canonical eier for regelen om at Natur krever en konkret, dokumenterbar naturfaglig inngang og ikke tildeles bare fordi et sted er grønt, vakkert eller utendørs. Ingen Natur-emner, metoder, kapitler, claims eller kilder ble endret.
+- **#5498:** alle fem kunnskapsseksjoner fikk eksplisitte canonicale eiere og `canonical_supersedes`, med **0 faglige migreringer**. `status` ble `retire_legacy_product_summary`; `badge_activity_progress` og `integrated_progression_route` beholdes hos eksisterende canonical produktflater, mens `subject_completion_snapshot` og `subject_inventory_snapshot` pensjoneres som statiske legacy-snapshots. Produktgrensen bindes eksplisitt til #5496. Adjudiseringsgaten ble `redirectReady: true` uten å omskrive category-contracten.
+- **#5499:** original legacy-side bevares byte-for-byte i `data/fag/natur/archive/merke_natur_full_teori_legacy_20260829.html` med original Git-blob `719b94ae2eed2bfd11e3748a6bdcff76eb917594`. `data/fag/natur/merke_natur (1).html` blir ren compatibility-redirect, mens canonical `badgePage` og `Alle merker` flyttes til `fagverk.html?subject=natur#fagverkIaProgresjon`.
+
+Natur-auditene skal etter route-retirement bare lese arkivfilen. Den rå anker-auditen forblir `redirectReady: false`, mens adjudiseringsgaten krever bevart arkiv, ren compatibility-wrapper og canonical progresjonsrute. Ingen Natur-emner, metoder, kapitler, claims, kilder, badge tiers, undermerker, gameplay- eller progresjonsdata ble endret i route-retirement.
+
 ### Religion
 
 Religion er et `legacy_stub`-fag og trenger derfor ikke fullteori-prosessen:
@@ -144,5 +155,5 @@ Ingen Scenekunst-emner, metoder, kapitler, claims eller kilder ble endret for å
 ## Ikke redirect ennå
 
 - **Politikk:** `rich_runtime`; emneprogresjon, quizhistorikk, steder, begrepsutforsker og øvrig aktiv legacy-runtime må ha dokumentert equivalence før redirect.
-- **Andre fullteorisider:** `legacy_static_theory`; hvert fag må gjennom egen innholdsaudit og eksplisitt adjudisering. By, Historie, Litteratur, Kunst, Media, Musikk og Næringsliv er prosessbevis, ikke automatisk godkjenning av resten.
+- **Andre fullteorisider:** `legacy_static_theory`; hvert fag må gjennom egen innholdsaudit og eksplisitt adjudisering. By, Historie, Litteratur, Kunst, Media, Musikk, Næringsliv og Natur er prosessbevis, ikke automatisk godkjenning av resten.
 - **Tynne legacy-sider:** `legacy_stub`; Religion og Scenekunst er eksplisitt pensjonert; øvrige stubber må fortsatt gjennom egen unik-innhold/linkaudit før redirect.
