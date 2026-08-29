@@ -1,10 +1,10 @@
 === targeted Universitetsplassen test ===
-✔ Universitetsplassen has exact four By collections and preserved geometry (1.63215ms)
-✔ all selected images exist and portrait front is real (0.434522ms)
-✔ description packet validates without issues (17.607806ms)
-✔ language, leksikon, stories and readings are complete (0.212938ms)
-✔ major quiz is unique 8x7 with delayed methods (0.455471ms)
-✔ six-dimensional quality gate is 30/30 (0.195465ms)
+✔ Universitetsplassen has exact four By collections and preserved geometry (1.335322ms)
+✔ all selected images exist and portrait front is real (0.447385ms)
+✔ description packet validates without issues (16.379841ms)
+✔ language, leksikon, stories and readings are complete (0.219621ms)
+✔ major quiz is unique 8x7 with delayed methods (0.379422ms)
+✔ six-dimensional quality gate is 30/30 (0.16557ms)
 ℹ tests 6
 ℹ suites 0
 ℹ pass 6
@@ -12,7 +12,7 @@
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 101.174252
+ℹ duration_ms 90.830017
 === PASS targeted Universitetsplassen test ===
 === places:index:check ===
 
@@ -1354,10 +1354,31 @@ Stories integrity summary
 - Episode-v1-filer: 37
 - Episode-v1-stories: 74
 - Place-sourcefiler lest: 1544
+Stories integrity OK
+=== PASS check:stories ===
+=== leksikon:ids:check ===
 
-Stories integrity FAILED
-- Scoreavvik: story=st_universitetsplassen_grunnsteinen_1841 field=score.source expected=4 actual=3 file=data/stories/stories_universitetsplassen.json
-- Scoreavvik: story=st_universitetsplassen_grunnsteinen_1841 field=score.total expected=15 actual=14 file=data/stories/stories_universitetsplassen.json
-- Scoreavvik: story=st_universitetsplassen_schweigaard_1883 field=score.source expected=4 actual=3 file=data/stories/stories_universitetsplassen.json
-- Scoreavvik: story=st_universitetsplassen_schweigaard_1883 field=score.total expected=15 actual=14 file=data/stories/stories_universitetsplassen.json
-=== FAILED check:stories exit=1 ===
+> history-go@0.0.0 leksikon:ids:check
+> npm run build:tools && node dist/tools/check_leksikon_duplicate_ids.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+OK: no duplicate leksikon article IDs.
+=== PASS leksikon:ids:check ===
+=== audit:people-of-places ===
+
+> history-go@0.0.0 audit:people-of-places
+> npm run build:tools && node dist/tools/audit-people-of-places-status.mjs && node dist/tools/check-people-of-places-gate.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Wrote reports/people-of-places-status.json and reports/people-of-places-status.md
+People: 1423; flat files: 0; geographic files: 763; invalid refs: 0; duplicate IDs: 0
+People of Places audit gate failed:
+- peopleWithoutValidPrimaryAnchor: 2
+- peopleWithEmptyPlacesArray: 2
+=== FAILED audit:people-of-places exit=1 ===
