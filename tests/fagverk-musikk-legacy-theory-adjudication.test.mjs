@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { spawnSync } from 'node:child_process';
 
-const LEGACY_ROUTE = 'data/fag/musikk/merke_musikk (1).html';
+const LEGACY_ARCHIVE = 'data/fag/musikk/archive/merke_musikk_full_teori_legacy_20260829.html';
+const COMPATIBILITY_ROUTE = 'data/fag/musikk/merke_musikk (1).html';
 const PROGRESS_ROUTE = 'fagverk.html?subject=musikk#fagverkIaProgresjon';
 const CATEGORY_CONTRACT = 'data/categories/category_contract.json';
 const EXPECTED_IDS = [
@@ -75,12 +76,20 @@ test('secondary_badge_routing pensjoneres som produktmekanikk, ikke fagkunnskap'
   assert.equal(report.summary.productMechanicCount, 2);
 });
 
-test('Musikk-adjudiseringen er redirect-klar men portalruten er fortsatt legacy', () => {
+test('Musikk-adjudiseringen låser permanent route-retirement etter grønn gate', () => {
   const report = audit();
   assert.equal(report.summary.anchorAuditRedirectReady, false);
   assert.equal(report.summary.redirectReady, true);
   assert.equal(report.summary.redirectTarget, PROGRESS_ROUTE);
-  assert.equal(report.summary.portalRoute, LEGACY_ROUTE);
-  assert.equal(report.summary.portalRedirected, false);
+  assert.equal(report.summary.portalRoute, PROGRESS_ROUTE);
+  assert.equal(report.summary.portalRedirected, true);
   assert.equal(report.summary.legacyBadgeSourcePreserved, true);
+  assert.equal(report.summary.compatibilityRedirectPresent, true);
+  assert.equal(report.inputs.legacyBadgePage, LEGACY_ARCHIVE);
+  assert.equal(report.inputs.compatibilityBadgePage, COMPATIBILITY_ROUTE);
+
+  const compatibility = fs.readFileSync(COMPATIBILITY_ROUTE, 'utf8');
+  assert.match(compatibility, /location\.replace/);
+  assert.match(compatibility, /subject=musikk#fagverkIaProgresjon/);
+  assert.doesNotMatch(compatibility, /merke-blokk|sekundærbadge|<h2>1\. Felt<\/h2>/i);
 });
