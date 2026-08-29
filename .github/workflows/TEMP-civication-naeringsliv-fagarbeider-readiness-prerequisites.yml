@@ -42,18 +42,44 @@ jobs:
         run: node scripts/audit-civication-career-gameplay.mjs --write
       - name: Regenerate rollout readiness
         run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
-      - name: Verify focused Fagarbeider prerequisite and canonical gates
+      - name: Focused — Fagarbeider prerequisite contract
         run: |
-          node tests/civication-fagarbeider-readiness-prerequisites.test.js
-          node tests/civication-fagarbeider-first-week-praksisfortellinger.test.js
-          node tests/civication-fagarbeider-second-week-praksisfortellinger.test.js
-          node tests/civication-fagarbeider-two-week-flow.test.js
-          node tests/civication-praksisfortellinger-registry-audit.test.js
-          node tests/civication-career-gameplay-matrix.test.js
-          node tests/civication-role-world-rollout-readiness.test.js
-          node tests/civication-compiled-scene-registry-parity.test.js
-          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
-          node --test tests/civication-scenario-people.test.mjs
+          node tests/civication-fagarbeider-readiness-prerequisites.test.js > /tmp/fagarbeider-focus.log 2>&1 || { cat /tmp/fagarbeider-focus.log; exit 1; }
+      - name: Focused — first-week praksisfortellinger
+        run: |
+          node tests/civication-fagarbeider-first-week-praksisfortellinger.test.js > /tmp/fagarbeider-focus.log 2>&1 || { cat /tmp/fagarbeider-focus.log; exit 1; }
+      - name: Focused — second-week praksisfortellinger
+        run: |
+          node tests/civication-fagarbeider-second-week-praksisfortellinger.test.js > /tmp/fagarbeider-focus.log 2>&1 || { cat /tmp/fagarbeider-focus.log; exit 1; }
+      - name: Focused — two-week flow
+        run: |
+          node tests/civication-fagarbeider-two-week-flow.test.js > /tmp/fagarbeider-focus.log 2>&1 || { cat /tmp/fagarbeider-focus.log; exit 1; }
+      - name: Focused — praksisfortellinger registry audit
+        run: |
+          node tests/civication-praksisfortellinger-registry-audit.test.js > /tmp/fagarbeider-focus.log 2>&1 || { cat /tmp/fagarbeider-focus.log; exit 1; }
+      - name: Focused — career gameplay matrix
+        run: |
+          node tests/civication-career-gameplay-matrix.test.js > /tmp/fagarbeider-focus.log 2>&1 || { cat /tmp/fagarbeider-focus.log; exit 1; }
+      - name: Focused — Role World rollout readiness
+        run: |
+          node tests/civication-role-world-rollout-readiness.test.js > /tmp/fagarbeider-focus.log 2>&1 || { cat /tmp/fagarbeider-focus.log; exit 1; }
+      - name: Focused — compiled scene registry parity
+        run: |
+          node tests/civication-compiled-scene-registry-parity.test.js > /tmp/fagarbeider-focus.log 2>&1 || { cat /tmp/fagarbeider-focus.log; exit 1; }
+      - name: Focused — Scenario People generated output check
+        run: |
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check > /tmp/fagarbeider-focus.log 2>&1 || { cat /tmp/fagarbeider-focus.log; exit 1; }
+      - name: Focused — Scenario People invariants
+        run: |
+          node --test tests/civication-scenario-people.test.mjs > /tmp/fagarbeider-focus.log 2>&1 || { cat /tmp/fagarbeider-focus.log; exit 1; }
+      - name: Upload focused failure log
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fagarbeider-focused-failure
+          path: /tmp/fagarbeider-focus.log
+          if-no-files-found: ignore
+          retention-days: 1
       - name: Run full Civication suite
         run: |
           set +e
