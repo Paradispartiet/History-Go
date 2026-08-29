@@ -3,6 +3,7 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
+import { pathToFileURL } from "node:url";
 
 const root = process.cwd();
 
@@ -253,22 +254,27 @@ function check(args) {
   console.log(`Place READ-FIRST preflight PASS (${workcardsToValidate.size} workcard(s) validated).`);
 }
 
-const args = parseArgs(process.argv.slice(2));
-const command = args._[0];
-try {
-  if (command === "record") record(args);
-  else if (command === "check") check(args);
-  else if (command === "validate") {
-    if (!args.workcard) throw new Error("validate requires --workcard");
-    const errors = validateWorkcard(readJson(args.workcard), args.workcard);
-    if (errors.length) {
-      errors.forEach(error => fail(error));
+function runCli() {
+  const args = parseArgs(process.argv.slice(2));
+  const command = args._[0];
+  try {
+    if (command === "record") record(args);
+    else if (command === "check") check(args);
+    else if (command === "validate") {
+      if (!args.workcard) throw new Error("validate requires --workcard");
+      const errors = validateWorkcard(readJson(args.workcard), args.workcard);
+      if (errors.length) {
+        errors.forEach(error => fail(error));
+      } else {
+        console.log(`Place READ-FIRST preflight PASS: ${args.workcard}`);
+      }
     } else {
-      console.log(`Place READ-FIRST preflight PASS: ${args.workcard}`);
+      throw new Error("Usage: place-production-rule-preflight.mjs record|check|validate ...");
     }
-  } else {
-    throw new Error("Usage: place-production-rule-preflight.mjs record|check|validate ...");
+  } catch (error) {
+    fail(error.message);
   }
-} catch (error) {
-  fail(error.message);
 }
+
+const invokedPath = process.argv[1] ? path.resolve(process.argv[1]) : null;
+if (invokedPath && import.meta.url === pathToFileURL(invokedPath).href) runCli();
