@@ -1,0 +1,83 @@
+name: Fagverk Psykologi test diagnostic
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/psykologi/**'
+      - 'data/fagverk/fagverk_portal.json'
+      - 'scripts/audit-fagverk-psykologi-*.mjs'
+      - 'tests/fagverk-psykologi-*.test.mjs'
+      - 'tests/psykologi-theory-integrity.test.mjs'
+      - 'reports/fagverk/general-engine-audit.json'
+      - '.github/workflows/_tmp-fagverk-psykologi-test-diagnostic.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - name: Reproduce shared pre-test state
+        run: |
+          node scripts/audit-fagverk-subject-inventory.mjs --write-report
+          node scripts/audit-fagverk-general-engine.mjs --write-report
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Find first failing Psykologi test
+        run: |
+          if [ -f _tmp-psykologi-test-failure.txt ]; then
+            cat _tmp-psykologi-test-failure.txt
+            exit 1
+          fi
+          tests=(
+            tests/fagverk-subject-inventory.test.mjs
+            tests/fagverk-general-engine.test.mjs
+            tests/fagverk-psykologi-phase3.test.mjs
+            tests/fagverk-psykologi-psykisk-helse-phase4.test.mjs
+            tests/fagverk-psykologi-fagtradisjoner-teori-phase4.test.mjs
+            tests/fagverk-psykologi-utvikling-oppvekst-laring-phase4.test.mjs
+            tests/fagverk-psykologi-kognisjon-folelser-atferd-phase4.test.mjs
+            tests/fagverk-psykologi-sosialpsykologi-normalitet-stigma-phase4.test.mjs
+            tests/fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.test.mjs
+            tests/fagverk-psykologi-complete.test.mjs
+            tests/psykologi-theory-integrity.test.mjs
+            tests/fagverk-psykologi-biological-university.test.mjs
+            tests/fagverk-psykologi-cognitive-university.test.mjs
+            tests/fagverk-psykologi-developmental-university.test.mjs
+            tests/fagverk-psykologi-social-university.test.mjs
+            tests/fagverk-psykologi-personality-university.test.mjs
+            tests/fagverk-psykologi-history-science-theory-university.test.mjs
+            tests/fagverk-psykologi-topic-articles-mental-health-v1.test.mjs
+            tests/fagverk-psykologi-university-completion-v1.test.mjs
+            tests/fagverk-psykologi-editorial-quality-v2.test.mjs
+            tests/fagverk-psykologi-metadata-monotonic.test.mjs
+            tests/fagverk-psykologi-university-readiness.test.mjs
+            tests/fagverk-release-manifest.test.mjs
+          )
+          for test_file in "${tests[@]}"; do
+            echo "=== $test_file ==="
+            if ! node --test "$test_file" > /tmp/psykologi-test.log 2>&1; then
+              {
+                echo "FAILED_TEST=$test_file"
+                tail -n 100 /tmp/psykologi-test.log
+              } > _tmp-psykologi-test-failure.txt
+              git config user.name 'github-actions[bot]'
+              git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+              git add _tmp-psykologi-test-failure.txt
+              git commit -m 'Record Psykologi test diagnostic'
+              git push origin HEAD:${{ github.event.pull_request.head.ref }}
+              exit 1
+            fi
+          done
+          echo 'All existing Psykologi tests passed.'
