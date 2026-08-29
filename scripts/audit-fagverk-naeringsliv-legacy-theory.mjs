@@ -3,10 +3,13 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const LEGACY = 'data/fag/naeringsliv/merke_naeringsliv (1).html';
+const LEGACY_BADGE = 'data/fag/naeringsliv/archive/merke_naeringsliv_full_teori_legacy_20260829.html';
+const COMPATIBILITY = 'data/fag/naeringsliv/merke_naeringsliv (1).html';
 const MANIFEST = 'data/fag/fag_manifest.json';
 const REGISTRY = 'data/fagverk/fagverk_registry.json';
 const PORTAL = 'data/fagverk/fagverk_portal.json';
+const TARGET = 'fagverk.html?subject=naeringsliv#fagverkIaProgresjon';
+const RELATIVE_TARGET = '../../../fagverk.html?subject=naeringsliv#fagverkIaProgresjon';
 const OWNED_ROOTS = ['data/fag/naeringsliv/', 'data/fagverk/naeringsliv/'];
 
 const POLICY = Object.freeze({
@@ -27,7 +30,7 @@ const exists = f => fs.existsSync(abs(f));
 const read = f => fs.readFileSync(abs(f), 'utf8');
 const json = f => JSON.parse(read(f));
 const txt = v => String(v ?? '').trim();
-const norm = v => txt(v).toLocaleLowerCase('nb-NO').normalize('NFKC').replace(/[«»“”„"'’`´]/g,'').replace(/[^a-zæøå0-9]+/gi,' ').replace(/\s+/g,' ').trim();
+const norm = v => txt(v).toLocaleLowerCase('nb-NO').normalize('NFKC').replace(/[«»“”„\"'’`´]/g,'').replace(/[^a-zæøå0-9]+/gi,' ').replace(/\s+/g,' ').trim();
 
 function flatten(v,out=[]){ if(typeof v==='string') out.push(v); else if(Array.isArray(v)) for(const x of v) flatten(x,out); else if(v&&typeof v==='object') for(const x of Object.values(v)) flatten(x,out); return out; }
 function repoPath(p){ const r=path.relative(ROOT,path.resolve(p)).replaceAll('\\','/'); return !r||r.startsWith('../')||path.isAbsolute(r)?'':r; }
@@ -35,11 +38,11 @@ function owned(f){ return f.endsWith('.json') && OWNED_ROOTS.some(r=>f.startsWit
 function resolveRef(from,raw){ const v=txt(raw).replaceAll('\\','/').split(/[?#]/)[0]; if(!v.endsWith('.json')) return ''; const c=[]; if(v.startsWith('data/')) c.push(path.join(ROOT,v)); c.push(path.join(ROOT,path.dirname(from),v)); if(!v.startsWith('../')) { c.push(path.join(ROOT,'data/fag',v)); c.push(path.join(ROOT,'data/fagverk',v)); } for(const p of c){ const f=repoPath(p); if(f&&owned(f)&&exists(f)) return f; } return ''; }
 function graph(seed){ const q=[...new Set(seed.filter(f=>f&&owned(f)&&exists(f)))], seen=new Set(), strings=[]; while(q.length){ const f=q.shift(); if(seen.has(f)) continue; seen.add(f); const v=json(f), ss=flatten(v); strings.push(...ss); for(const s of ss){ const r=resolveRef(f,s); if(r&&!seen.has(r)) q.push(r); } } return {files:[...seen].sort(),strings}; }
 function stripHtml(v){ return v.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,' ').replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,' ').replace(/<[^>]+>/g,' ').replace(/&nbsp;/g,' ').replace(/&amp;/g,'&').replace(/\s+/g,' ').trim(); }
-function sections(html){ const out=[]; for(const m of html.matchAll(/<section\b([^>]*)>([\s\S]*?)<\/section>/gi)){ const cls=m[1].match(/class=["']([^"']+)["']/i)?.[1]||''; if(!cls.split(/\s+/).includes('merke-blokk')) continue; const id=m[1].match(/id=["']([^"']+)["']/i)?.[1]||''; const heading=stripHtml(m[2].match(/<h[1-6]\b[^>]*>([\s\S]*?)<\/h[1-6]>/i)?.[1]||id); if(id) out.push({id,heading,text:stripHtml(m[2])}); } return out; }
+function sections(html){ const out=[]; for(const m of html.matchAll(/<section\b([^>]*)>([\s\S]*?)<\/section>/gi)){ const cls=m[1].match(/class=[\"']([^\"']+)[\"']/i)?.[1]||''; if(!cls.split(/\s+/).includes('merke-blokk')) continue; const id=m[1].match(/id=[\"']([^\"']+)[\"']/i)?.[1]||''; const heading=stripHtml(m[2].match(/<h[1-6]\b[^>]*>([\s\S]*?)<\/h[1-6]>/i)?.[1]||id); if(id) out.push({id,heading,text:stripHtml(m[2])}); } return out; }
 
 export function auditNaeringslivLegacyTheory(){
-  for(const f of [LEGACY,MANIFEST,REGISTRY,PORTAL]) if(!exists(f)) throw new Error(`Mangler ${f}`);
-  const legacySections=sections(read(LEGACY));
+  for(const f of [LEGACY_BADGE,COMPATIBILITY,MANIFEST,REGISTRY,PORTAL]) if(!exists(f)) throw new Error(`Mangler ${f}`);
+  const legacySections=sections(read(LEGACY_BADGE));
   const expected=[...Object.keys(POLICY),'bidrag'];
   if(JSON.stringify(legacySections.map(s=>s.id))!==JSON.stringify(expected)) throw new Error(`Uventet Næringsliv-seksjonsstruktur: ${legacySections.map(s=>s.id).join(', ')}`);
 
@@ -70,9 +73,11 @@ export function auditNaeringslivLegacyTheory(){
 
   const portal=json(PORTAL); const p=portal.categories?.find(x=>x.id==='naeringsliv');
   if(!p) throw new Error('Næringsliv mangler i portalen.');
-  if(p.badgePage!==LEGACY) throw new Error(`Audit-tranchen skal være pre-redirect; badgePage=${p.badgePage}`);
+  const compatibilityHtml=read(COMPATIBILITY);
+  const compatibilityRedirectPresent=compatibilityHtml.includes('location.replace')&&compatibilityHtml.includes(RELATIVE_TARGET)&&!/merke-blokk|<h2>1\. Felt<\/h2>|profesjonalitet|offshoring/i.test(compatibilityHtml);
+  const portalRedirected=p.badgePage===TARGET;
   const knowledge=rows.filter(r=>r.role==='knowledge'); const manual=knowledge.filter(r=>r.anchorCoverage<1).map(r=>r.id);
-  return {schema:'history_go_fagverk_naeringsliv_legacy_theory_audit_v1',subject:'naeringsliv',legacy:{badgePage:LEGACY,sectionCount:rows.length,knowledgeSectionCount:knowledge.length},canonical:{manifestSeedFiles:manifestSeed,manifestGraphFileCount:manifestGraph.files.length,registryChapterCount:chapterCount,registryGraphFileCount:regGraph.files.length,corpusCharacterCount:corpus.length},navigation:{badgePage:p.badgePage,subjectPage:p.subjectPage,preRedirectLocked:true},summary:{knowledgeSectionCount:knowledge.length,anchorCompleteCount:knowledge.filter(r=>r.anchorCoverage===1).length,manualReviewCount:manual.length,manualReview:manual,redirectReady:false,redirectBlockReason:'Anchor coverage establishes only candidate canonical ownership. Næringsliv redirect remains blocked until explicit editorial adjudication and any proven semantic gaps are resolved.'},rows};
+  return {schema:'history_go_fagverk_naeringsliv_legacy_theory_audit_v1',subject:'naeringsliv',legacy:{badgePage:LEGACY_BADGE,compatibilityPage:COMPATIBILITY,sectionCount:rows.length,knowledgeSectionCount:knowledge.length},canonical:{manifestSeedFiles:manifestSeed,manifestGraphFileCount:manifestGraph.files.length,registryChapterCount:chapterCount,registryGraphFileCount:regGraph.files.length,corpusCharacterCount:corpus.length},navigation:{badgePage:p.badgePage,subjectPage:p.subjectPage,target:TARGET,portalRedirected,compatibilityRedirectPresent,routeRetired:portalRedirected&&compatibilityRedirectPresent},summary:{knowledgeSectionCount:knowledge.length,anchorCompleteCount:knowledge.filter(r=>r.anchorCoverage===1).length,manualReviewCount:manual.length,manualReview:manual,redirectReady:false,redirectBlockReason:'Raw Næringsliv anchor coverage never authorizes redirect by itself. Route readiness is owned by the explicit Næringsliv legacy adjudication gate.'},rows};
 }
 
 const report=auditNaeringslivLegacyTheory();
