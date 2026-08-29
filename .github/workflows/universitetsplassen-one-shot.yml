@@ -1,0 +1,64 @@
+name: Universitetsplassen one-shot production
+
+on:
+  push:
+    branches:
+      - work/universitetsplassen-completion-20260829
+    paths:
+      - tools/finalize-universitetsplassen-completion.mjs
+      - .github/workflows/universitetsplassen-one-shot.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: universitetsplassen-one-shot
+  cancel-in-progress: false
+
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: work/universitetsplassen-completion-20260829
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Materialize Universitetsplassen canonical package
+        run: node tools/finalize-universitetsplassen-completion.mjs
+      - name: Rebuild deterministic derived data
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+          npm run epoker:places:build
+          npm run civication:history-people:build
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Verify Universitetsplassen package
+        run: |
+          node --test tests/universitetsplassen-completion.test.mjs
+          npm run places:check
+          npm run place-open:check
+          npm run quiz:production:check
+          npm run quiz:progression:check
+          npm run stories:check
+          npm run leksikon:check
+          npm run people:check
+          npm run place-rounds:check
+          npm run fagverk:release:check
+      - name: Remove one-shot workflow
+        run: rm .github/workflows/universitetsplassen-one-shot.yml
+      - name: Commit generated production
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git status --short
+          git commit -m "Complete Universitetsplassen place production"
+          git push origin HEAD:work/universitetsplassen-completion-20260829
