@@ -27,5 +27,25 @@ jobs:
         with:
           node-version: 22
 
+      - name: Align materializer with current data-checks job shape
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 <<'PY'
+          from pathlib import Path
+          p = Path("tools/temp-materialize-quiz-answer-shuffle.sh")
+          text = p.read_text()
+          text = text.replace("name: Quiz schema + content integrity", "name: Category and quiz governance")
+          text = text.replace(
+              "    steps:\n      - uses: actions/checkout@v4\n'''",
+              "    steps:\n      - name: Check out repository\n        uses: actions/checkout@v4\n'''",
+          )
+          text = text.replace(
+              "    steps:\n      - uses: actions/checkout@v4\n        with:\n          fetch-depth: 0\n'''",
+              "    steps:\n      - name: Check out repository\n        uses: actions/checkout@v4\n        with:\n          fetch-depth: 0\n'''",
+          )
+          p.write_text(text)
+          PY
+
       - name: Materialize and validate global quiz shuffle
         run: bash tools/temp-materialize-quiz-answer-shuffle.sh
