@@ -1,0 +1,111 @@
+{
+  "schema": "history_go_phase1_24_quality_gate_v1",
+  "place_id": "slottet",
+  "verified_at": "2026-08-29",
+  "null_measurement": {
+    "existing_place": true,
+    "coordinate_changed": false,
+    "existing_quiz": "two legacy history questions outside active Politics manifest",
+    "existing_stories": "none",
+    "existing_collections": "runtime people without canonical four-collection card profile"
+  },
+  "collections": {
+    "required": [
+      "people",
+      "objects",
+      "brands",
+      "productions"
+    ],
+    "loaded_preview_images": 4,
+    "missing": 0,
+    "coverage_percent": 100
+  },
+  "people": {
+    "candidates_reviewed": [
+      "Hans Ditlev Franciscus Linstow",
+      "Carl Johan",
+      "Oscar I",
+      "Haakon VII"
+    ],
+    "selected": [
+      "hans_ditlev_franciscus_linstow"
+    ],
+    "held_back": [
+      "Linstow carries the collection because his documented design decisions connect building form to the funding conflict.",
+      "Carl Johan and Oscar I remain related and appear in Stories, avoiding duplicate royal-person emphasis.",
+      "Current office holders were excluded so the package remains stable across succession."
+    ],
+    "image_coverage_percent": 100
+  },
+  "source_conflicts": [
+    {
+      "claim": "Slottet ble bygd av kongen alene.",
+      "status": "rejected",
+      "reason": "Carl Johan tok initiativ, mens Stortinget bevilget og kunne stanse finansieringen; en kommisjon og Linstow gjennomførte prosjektet."
+    },
+    {
+      "claim": "Kongen i statsråd betyr at monarken fører regjeringens partipolitikk.",
+      "status": "rejected",
+      "reason": "Uttrykket betegner regjeringens formelle beslutningsmøte under kongens ledelse innenfor den konstitusjonelle ordningen."
+    },
+    {
+      "claim": "Kongeflagget viser hvor stor støtte monarkiet har.",
+      "status": "rejected",
+      "reason": "Flagget følger institusjonelle regler og måler ikke opinion."
+    },
+    {
+      "claim": "Sommeromvisning gjør hele Slottet fritt tilgjengelig.",
+      "status": "rejected",
+      "reason": "Besøk er tids-, rute- og adgangsregulert i en aktiv bolig og arbeidsplass."
+    }
+  ],
+  "conditional_modules": {
+    "stories": "four_episode_v1_produced",
+    "lesespor": "produced",
+    "language": "produced",
+    "for_na": "held_back_non_comparable_views",
+    "news": "not_applicable",
+    "dialect": "not_applicable"
+  },
+  "manual_image_review": {
+    "status": "PASS",
+    "reviewed_assets": [
+      "bilder/places/slottet.webp",
+      "bilder/places/slottet_front_portrait.webp",
+      "bilder/kort/people/hans_ditlev_franciscus_linstow.webp",
+      "bilder/kort/objects/slottet_karl_johan_statuen.webp",
+      "bilder/brands/det_norske_kongehus_kongeflagget.webp",
+      "bilder/kort/productions/slottet_innvielsen_1849.webp"
+    ],
+    "note": "All crops were inspected together. The front image is a real palace photograph; every preview depicts its member. The 1890 image is explicitly labelled later documentation, and the official insignia carries a restrictions and no-endorsement note."
+  },
+  "quality_score": {
+    "correctness_and_evidence": {
+      "score": 5,
+      "note": "Eleven institutional or reputable content sources and five inspectable Commons source pages; building, constitutional and access claims are bounded."
+    },
+    "coverage_and_completion": {
+      "score": 5,
+      "note": "Four image-ready collections, ten milestones, six terms, four Stories, four reading tracks and an 8×7 quiz are materialized."
+    },
+    "editorial_quality": {
+      "score": 5,
+      "note": "Building versus square, monarch versus government, symbol versus support, residens versus decision forum and guided versus free access are distinguished."
+    },
+    "technical_integrity": {
+      "score": 5,
+      "note": "Deterministic finalizer, manifests, local assets, Politics gate report, v4.2 packet, runtime build and permanent test are included."
+    },
+    "safety_and_responsibility": {
+      "score": 5,
+      "note": "No current-holder dependency, unrestricted-access claim, generated real-person portrait or unqualified use of official insignia; political support is not inferred."
+    },
+    "maintainability_and_auditability": {
+      "score": 5,
+      "note": "Claims, sentence mapping, source registry, current verification, image provenance, candidate holdbacks and source conflicts form a reproducible audit trail."
+    },
+    "total": 30,
+    "critical_findings": 0,
+    "unresolved_blockers": 0
+  }
+}

@@ -6,31 +6,31 @@ Rapporten måler om runtime kan presentere tilgjengelige canonical People-felt. 
 
 People-produksjon, claims og ferdigstatus eies av `docs/PEOPLE_PROFILE_CANONICAL.md`. Profiler uten v1-claims er `legacy_unreviewed`, selv når presentasjonsstatusen er `complete`.
 
-Source fingerprint: `d9f1b97b69c601df9eac3c793bd34cb9caa3fff443f2826864a9b49d51506e8e`
+Source fingerprint: `6d78d954f47aa807ddd8b3de1a093b67dfb2c10fed51a52b9177287a065c0cf7`
 
 ## Sammendrag
 
 | Måling | Antall |
 |---|---:|
 | Personer | 1423 |
-| Presentasjon complete | 66 |
-| Presentasjon strong | 406 |
+| Presentasjon complete | 67 |
+| Presentasjon strong | 405 |
 | Presentasjon partial | 936 |
 | Presentasjon sparse | 15 |
 | People Profile v1 ready | 72 |
 | Legacy uten v1-claims | 1351 |
 | Ødelagte bildereferanser | 286 |
-| Eksplisitt initialfallback | 1000 |
+| Eksplisitt initialfallback | 999 |
 | Implisitt initialfallback | 26 |
-| Gjennomsnittspoeng | 65.4 |
+| Gjennomsnittspoeng | 65.5 |
 
 ## Feltdekning
 
 | Presentasjonsdel | Dekket | Andel |
 |---|---:|---:|
-| identity | 126 | 8.9 % |
+| identity | 127 | 8.9 % |
 | popupDesc | 1402 | 98.5 % |
-| lifeData | 60 | 4.2 % |
+| lifeData | 61 | 4.3 % |
 | contributionsDeclared | 62 | 4.4 % |
 | educationDeclared | 62 | 4.4 % |
 | practiceDeclared | 1405 | 98.7 % |
@@ -49,7 +49,7 @@ Source fingerprint: `d9f1b97b69c601df9eac3c793bd34cb9caa3fff443f2826864a9b49d515
 | musikk | 124 | 0 | 15 | 109 | 0 | 0 | 124 | 62.2 |
 | politikk | 114 | 5 | 50 | 59 | 0 | 15 | 99 | 68.1 |
 | kunst | 84 | 7 | 64 | 13 | 0 | 9 | 75 | 73.1 |
-| by | 81 | 9 | 56 | 16 | 0 | 21 | 60 | 74.1 |
+| by | 81 | 10 | 55 | 16 | 0 | 21 | 60 | 74.4 |
 | naeringsliv | 81 | 5 | 30 | 32 | 14 | 8 | 73 | 62.9 |
 | scenekunst | 48 | 1 | 16 | 31 | 0 | 1 | 47 | 64.6 |
 | subkultur | 41 | 0 | 5 | 36 | 0 | 0 | 41 | 61.9 |
@@ -83,7 +83,7 @@ Source fingerprint: `d9f1b97b69c601df9eac3c793bd34cb9caa3fff443f2826864a9b49d515
 | lisbon_rtp | 12 | 0 | 12 | 0 | 60.8 | Catarina Furtado (57; legacy_unreviewed), José Alberto Carvalho (57; legacy_unreviewed), José Rodrigues dos Santos (57; legacy_unreviewed), Bruno Nogueira (62; legacy_unreviewed), Cândida Pinto (62; legacy_unreviewed) |
 | nrk_huset_marienlyst | 11 | 0 | 11 | 0 | 56.5 | Herman Flesvig (42; legacy_unreviewed), Morten Ramm (42; legacy_unreviewed), Anne Grosvold (57; legacy_unreviewed), Erik Bye (57; legacy_unreviewed), Fredrik Skavlan (57; legacy_unreviewed) |
 | victoria_terrasse | 10 | 0 | 0 | 10 | 72 | Christian Mohr (72; legacy_unreviewed), Christian P. Reusch (72; legacy_unreviewed), Curt Bräuer (72; legacy_unreviewed), Halvard Lange (72; legacy_unreviewed), Halvdan Koht (72; legacy_unreviewed) |
-| slottet | 10 | 0 | 0 | 9 | 73.1 | Dronning Sonja (65; legacy_unreviewed), Karl Johan (67; legacy_unreviewed), Oscar I (67; legacy_unreviewed), Dronning Maud (72; legacy_unreviewed), Hans Ditlev Franciscus Linstow (72; legacy_unreviewed) |
+| slottet | 10 | 0 | 0 | 8 | 74.9 | Dronning Sonja (65; legacy_unreviewed), Karl Johan (67; legacy_unreviewed), Oscar I (67; legacy_unreviewed), Dronning Maud (72; legacy_unreviewed), Harald V (72; legacy_unreviewed) |
 | oslo_radhus | 10 | 0 | 4 | 0 | 83.3 | Haakon VII (krigstiden) (57; legacy_unreviewed), Kong Christian IV (57; legacy_unreviewed), Sverre Pedersen (57; legacy_unreviewed), Max Manus (62; legacy_unreviewed), Arnstein Arneberg (100; legacy_unreviewed) |
 | cinemateket_oslo | 9 | 0 | 9 | 0 | 57 | Anja Breien (57; legacy_unreviewed), Arne Skouen (57; legacy_unreviewed), Bredo Greve (57; legacy_unreviewed), Edith Carlmar (57; legacy_unreviewed), Jan Erik Holst (57; legacy_unreviewed) |
 | karl_johan | 9 | 1 | 4 | 4 | 62.6 | Petter Stordalen (32; legacy_unreviewed), Aasta Hansteen (57; legacy_unreviewed), Astrid Christensen (62; legacy_unreviewed), Lars Poverud (62; legacy_unreviewed), Renald Antoinette (62; legacy_unreviewed) |

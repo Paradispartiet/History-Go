@@ -3,7 +3,7 @@
   "contract": "docs/PEOPLE_POPUP_SYSTEM.md",
   "productionContract": "docs/PEOPLE_PROFILE_CANONICAL.md",
   "generatedBy": "tools/audit-people-popup-readiness.mts",
-  "sourceFingerprint": "d9f1b97b69c601df9eac3c793bd34cb9caa3fff443f2826864a9b49d51506e8e",
+  "sourceFingerprint": "6d78d954f47aa807ddd8b3de1a093b67dfb2c10fed51a52b9177287a065c0cf7",
   "thresholds": {
     "complete": 85,
     "strong": 65,
@@ -18,20 +18,20 @@
   },
   "summary": {
     "totalPeople": 1423,
-    "complete": 66,
-    "strong": 406,
+    "complete": 67,
+    "strong": 405,
     "partial": 936,
     "sparse": 15,
     "readyPeopleV1": 72,
     "legacyUnreviewed": 1351,
     "brokenImages": 286,
-    "explicitFallbacks": 1000,
+    "explicitFallbacks": 999,
     "implicitFallbacks": 26,
-    "averageScore": 65.4
+    "averageScore": 65.5
   },
   "fieldCoverage": {
     "identity": {
-      "count": 126,
+      "count": 127,
       "percent": 8.9
     },
     "popupDesc": {
@@ -39,8 +39,8 @@
       "percent": 98.5
     },
     "lifeData": {
-      "count": 60,
-      "percent": 4.2
+      "count": 61,
+      "percent": 4.3
     },
     "contributionsDeclared": {
       "count": 62,
@@ -141,13 +141,13 @@
     {
       "category": "by",
       "total": 81,
-      "complete": 9,
-      "strong": 56,
+      "complete": 10,
+      "strong": 55,
       "partial": 16,
       "sparse": 0,
       "readyPeopleV1": 21,
       "legacyUnreviewed": 60,
-      "averageScore": 74.1
+      "averageScore": 74.4
     },
     {
       "category": "naeringsliv",
@@ -2020,8 +2020,8 @@
       "totalIncomplete": 10,
       "sparse": 0,
       "partial": 0,
-      "strong": 9,
-      "averageScore": 73.1,
+      "strong": 8,
+      "averageScore": 74.9,
       "people": [
         {
           "id": "sonja",
@@ -2052,13 +2052,6 @@
           "productionStatus": "legacy_unreviewed"
         },
         {
-          "id": "hans_ditlev_franciscus_linstow",
-          "name": "Hans Ditlev Franciscus Linstow",
-          "score": 72,
-          "status": "strong",
-          "productionStatus": "legacy_unreviewed"
-        },
-        {
           "id": "harald_v",
           "name": "Harald V",
           "score": 72,
@@ -2084,6 +2077,13 @@
           "name": "Peter Fredrik Wergmann",
           "score": 72,
           "status": "strong",
+          "productionStatus": "legacy_unreviewed"
+        },
+        {
+          "id": "hans_ditlev_franciscus_linstow",
+          "name": "Hans Ditlev Franciscus Linstow",
+          "score": 90,
+          "status": "complete",
           "productionStatus": "legacy_unreviewed"
         },
         {
@@ -59530,49 +59530,6 @@
       ]
     },
     {
-      "id": "hans_ditlev_franciscus_linstow",
-      "name": "Hans Ditlev Franciscus Linstow",
-      "category": "by",
-      "kindLabel": "",
-      "sourceFile": "data/people/by/oslo/people_by_oslo_politics_places_batch_03.json",
-      "primaryPlace": "slottet",
-      "places": [
-        "slottet"
-      ],
-      "score": 72,
-      "priority": 43,
-      "status": "strong",
-      "productionStatus": "legacy_unreviewed",
-      "profileStandard": "",
-      "claimsFile": "",
-      "paragraphCount": 1,
-      "popupLength": 291,
-      "contributionCount": 0,
-      "educationCount": 0,
-      "practiceCount": 6,
-      "sourceCount": 2,
-      "imageState": "explicit_fallback",
-      "imagePath": "",
-      "coverage": {
-        "identity": false,
-        "popupDesc": true,
-        "lifeData": false,
-        "contributionsDeclared": false,
-        "educationDeclared": false,
-        "practiceDeclared": true,
-        "placeGrounding": true,
-        "sources": true,
-        "imageContract": true,
-        "profileStandard": false
-      },
-      "issues": [
-        "missing_role_label",
-        "missing_birth_data",
-        "missing_contributions_field",
-        "legacy_unreviewed"
-      ]
-    },
-    {
       "id": "hans_jakob_sparre",
       "name": "Hans Jakob Sparre",
       "category": "politikk",
@@ -70509,6 +70466,47 @@
       "sourceCount": 4,
       "imageState": "valid_image",
       "imagePath": "bilder/kort/people/anna_rogstad.webp",
+      "coverage": {
+        "identity": true,
+        "popupDesc": true,
+        "lifeData": true,
+        "contributionsDeclared": false,
+        "educationDeclared": false,
+        "practiceDeclared": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true,
+        "profileStandard": false
+      },
+      "issues": [
+        "missing_contributions_field",
+        "legacy_unreviewed"
+      ]
+    },
+    {
+      "id": "hans_ditlev_franciscus_linstow",
+      "name": "Hans Ditlev Franciscus Linstow",
+      "category": "by",
+      "kindLabel": "Arkitekt og jurist",
+      "sourceFile": "data/people/by/oslo/people_by_oslo_politics_places_batch_03.json",
+      "primaryPlace": "slottet",
+      "places": [
+        "slottet"
+      ],
+      "score": 90,
+      "priority": 25,
+      "status": "complete",
+      "productionStatus": "legacy_unreviewed",
+      "profileStandard": "",
+      "claimsFile": "",
+      "paragraphCount": 1,
+      "popupLength": 427,
+      "contributionCount": 0,
+      "educationCount": 0,
+      "practiceCount": 6,
+      "sourceCount": 4,
+      "imageState": "valid_image",
+      "imagePath": "bilder/kort/people/hans_ditlev_franciscus_linstow.webp",
       "coverage": {
         "identity": true,
         "popupDesc": true,
