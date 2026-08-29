@@ -34,8 +34,8 @@ test('Filosofi-stubbens kjerneområder er allerede canonicalt eid', () => {
     assert.ok(found.includes(expected), `Mangler canonical dekning for ${expected}`);
   }
   assert.equal(report.canonical.runtimeCounts.domainCount, 20);
-  assert.equal(report.canonical.runtimeCounts.emneCount, 54);
-  assert.equal(report.canonical.runtimeCounts.methodCount, 27);
+  assert.equal(report.canonical.runtimeCounts.emneCount, 68);
+  assert.equal(report.canonical.runtimeCounts.methodCount, 34);
   assert.equal(report.canonical.runtimeCounts.chapterCount, 20);
 });
 
