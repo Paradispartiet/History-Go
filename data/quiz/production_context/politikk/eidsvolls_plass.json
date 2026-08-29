@@ -1,0 +1,1635 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "politikk",
+  "targetId": "eidsvolls_plass",
+  "profile": "major_8x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1190,
+    "selection_sha256": "471af075bb933451f56c444dfc39c05bace47e134f7c167c4b608dbb5d6fff68",
+    "category_id": "politikk",
+    "target_id": "eidsvolls_plass"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/politikk/politikkpensum_canonical_v4_5.json",
+      "bytes": 106999,
+      "sha256": "391418e064d0d6c01e25c8ceb605fe1ae48d9fae3e9ccdd5e3091897e185a5a0",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+      "bytes": 1205851,
+      "sha256": "0711d942ab833490f4914d7ed472a99741021bb5fce76dfb90fea573794aaa1f",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+      "bytes": 1099481,
+      "sha256": "5a81d0d09ac89093705b6343f8de09d2565ca00e2086a354caa7f652f0ef63c7",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+      "bytes": 663993,
+      "sha256": "7bd3829f922e9e96d2e5cbe2cf3e901f80dea68b9c6215aa4a0eb2137125dc24",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/politikk/supersetQUIZMAL_politikk.json",
+      "bytes": 17236,
+      "sha256": "47609c9599cdffdf53702152ca3ebf071571cbfa131e1f9a89703964546476de",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 16882,
+      "sha256": "60804db1e587faae822930a800cfebac7966fa7e009778d46d94d1f28e02545e",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/politikk/eidsvolls_plass.json",
+      "bytes": 25960,
+      "sha256": "eac9f818597d9ca8e18cc502daebc5e4b70e485f59d3a57ae2f2f16e1ef07175"
+    },
+    "target": {
+      "path": "data/places/politikk/oslo/places_politikk/eidsvolls_plass.json",
+      "bytes": 18384,
+      "sha256": "18a2e4302aef48edcc4a2c476202a655f6f2b2453863ce8de7594a0256428334"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1219,
+      "selection_sha256": "51821fa45ecc81161365be90cbe3695fe4cb17fe54ebab9956c966dcd774db06"
+    },
+    "relations": [
+      {
+        "path": "data/relations.json",
+        "matches": 5,
+        "selection_bytes": 1143,
+        "selection_sha256": "ed7e8b21425c9cbba8bf39c8b0bcaa477b6ae4758ee9c7f8d559f4a0c837b883"
+      }
+    ],
+    "stories": [
+      {
+        "path": "data/stories/stories_eidsvolls_plass.json",
+        "matches": 4,
+        "selection_bytes": 8374,
+        "selection_sha256": "b467afeae469f95f8cecfbcb8de5bdf29276b47486e8745668bbb914c25ab801"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/politikk/eidsvolls_plass_sets.json",
+  "source_registry": {
+    "storting_place": {
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/sesjonsrapporter/stortingsaret-20162017/eidsvolls-plass/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Stortinget – Eidsvolls plass"
+    },
+    "storting_rules": {
+      "url": "https://www.stortinget.no/no/Hva-skjer-pa-Stortinget/markeringer-pa-eidsvolls-plass/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Stortinget – markeringer på Eidsvolls plass"
+    },
+    "oslo_place": {
+      "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/eidsvolls-plass/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Oslo kommune – Eidsvolls plass"
+    },
+    "oslo_history": {
+      "url": "https://oslobyleksikon.no/side/Eidsvolls_plass",
+      "source_type": "reputable_secondary",
+      "review_status": "reviewed",
+      "review_note": "Oslo byleksikon – Eidsvolls plass"
+    },
+    "storting_protest": {
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Historikk/historisk-dokumentasjon/Protest/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Stortinget – protesthistorie"
+    },
+    "storting_alta": {
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Grunnloven/levende-grunnlov/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Stortinget – Alta og den levende Grunnloven"
+    },
+    "oslo_statue": {
+      "url": "https://oslobyleksikon.no/side/Henrik_Wergeland-statuen",
+      "source_type": "reputable_secondary",
+      "review_status": "reviewed",
+      "review_note": "Oslo byleksikon – Henrik Wergeland-statuen"
+    },
+    "storting_farmers": {
+      "url": "https://www.stortinget.no/no/Hva-skjer-pa-Stortinget/Nyhetsarkiv/Hva-skjer-nyheter/2016-2017/fra-sumpomradet-til-folkets-talerstol/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Stortinget – fra sumpområde til folkets talerstol"
+    },
+    "storting_calendar": {
+      "url": "https://www.stortinget.no/no/Hva-skjer-pa-Stortinget/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Stortinget – kalender"
+    },
+    "osm_square": {
+      "url": "https://www.openstreetmap.org/way/841080897",
+      "source_type": "geodata",
+      "review_status": "reviewed",
+      "review_note": "OpenStreetMap – Eidsvolls plass"
+    },
+    "commons_square": {
+      "url": "https://commons.wikimedia.org/wiki/File:Panoramic_view_of_Eidsvolls_plass_from_Stortinget_(29879274425).jpg",
+      "source_type": "archive",
+      "review_status": "reviewed",
+      "review_note": "Wikimedia Commons – Eidsvolls plass 2014"
+    },
+    "commons_history": {
+      "url": "https://commons.wikimedia.org/wiki/File:Eidsvolls_plass,_Oslo_-_Riksantikvaren-T001_01_1007.jpg",
+      "source_type": "archive",
+      "review_status": "reviewed",
+      "review_note": "Riksantikvaren via Wikimedia Commons – Eidsvolls plass ca. 1870"
+    },
+    "commons_statue": {
+      "url": "https://commons.wikimedia.org/wiki/File:2019-08-23_Oslo_67_-_Statue_of_Henrik_Wergeland_in_Oslo.jpg",
+      "source_type": "archive",
+      "review_status": "reviewed",
+      "review_note": "Wikimedia Commons – Wergelandmonumentet 2019"
+    },
+    "commons_fosen": {
+      "url": "https://commons.wikimedia.org/wiki/File:Protest_mot_Fosen-saken,_lavvo_utenfor_Stortinget_2023.jpg",
+      "source_type": "archive",
+      "review_status": "reviewed",
+      "review_note": "Wikimedia Commons – Fosen-markering 2023"
+    },
+    "oslo_vietnam_photo": {
+      "url": "https://www.oslobilder.no/OMU/OB.A11178",
+      "source_type": "archive",
+      "review_status": "reviewed",
+      "review_note": "Oslo Museum – Vietnamdemonstrasjon foran Stortinget"
+    },
+    "nkl_bergslien": {
+      "url": "https://nkl.snl.no/Brynjulf_Larsen_Bergslien",
+      "source_type": "reputable_secondary",
+      "review_status": "reviewed",
+      "review_note": "Norsk kunstnerleksikon – Brynjulf Bergslien"
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/quiz_politikk.json",
+      "data/quiz/politikk/eidsvolls_plass_sets.json"
+    ],
+    "active_before": {
+      "file": null,
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen aktiv canonical Politikk-quiz; ti legacy-spørsmål lå utenfor aktiv manifest."
+    },
+    "decisions": {
+      "keep_as_claim_basis": [
+        "navn",
+        "Wergelandmonument",
+        "Alta-aksjonen"
+      ],
+      "rewrite": "Ny kildegjennomgått 8×7-progresjon.",
+      "move": [],
+      "remove": [
+        "legacy-duplikater brukes ikke i aktiv manifest"
+      ]
+    },
+    "knowledge_migration": "Legacy-fakta er kontrollert og innordnet i stedsspesifikk progresjon med regler, offentlighet, prosessporing og evidensgrenser."
+  },
+  "profile_decision": {
+    "profile": "major",
+    "set_count": 8,
+    "questions_per_set": 7,
+    "justification": "Eidsvolls plass krever åtte selvstendige læringsjobber: identitet, navn, monument, markeringsregler, protesthistorie, Alta/Fosen, kildekritikk og syntese."
+  },
+  "held_back_candidates": [
+    "Pågående markeringer: ingen deltakeridentifisering eller representativitetsantakelse.",
+    "Plasstildeling: må ikke framstilles som institusjonell støtte.",
+    "Før/etter: ulikt ståsted og utsnitt opplyses.",
+    "Protesteffekt: krever dokumentert kjede videre til respons og vedtak."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 13,
+      "emner": 123,
+      "topic_hooks": 152,
+      "methods": 71
+    },
+    "candidate_emner": [
+      {
+        "id": "em_pol_demokrati_representasjon",
+        "title": "Demokrati og representasjon",
+        "score": 125
+      },
+      {
+        "id": "em_pol_mediert_offentlighet",
+        "title": "Mediert politisk offentlighet",
+        "score": 125
+      },
+      {
+        "id": "em_pol_offentlighet_debatt",
+        "title": "Offentlighet og debatt",
+        "score": 125
+      },
+      {
+        "id": "em_pol_demonstrasjoner_protest",
+        "title": "Demonstrasjoner og protest",
+        "score": 25
+      },
+      {
+        "id": "em_pol_fordeling_ressurser",
+        "title": "Fordeling og ressurser",
+        "score": 25
+      },
+      {
+        "id": "em_pol_ideologi_konfliktlinjer",
+        "title": "Ideologi og konfliktlinjer",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjoner_styring",
+        "title": "Institusjoner og styring",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_demokratisk_tilbakegang",
+        "title": "Demokratisk tilbakegang og institusjonell uthuling",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_domstolskontroll_konstitusjonsdomstoler",
+        "title": "Domstolskontroll og konstitusjonsdomstoler",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_enhetsstat_foderalisme",
+        "title": "Enhetsstat, føderalisme og territoriell makt",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_ett_tokammersystem",
+        "title": "Ett- og tokammersystemer",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_flertalls_konsensusdemokrati",
+        "title": "Flertalls- og konsensusdemokrati",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_koalisjoner_mindretallsregjeringer",
+        "title": "Koalisjoner og mindretallsregjeringer",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_mistillit_opplosningsrett",
+        "title": "Mistillit, kabinettspørsmål og oppløsningsrett",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_parlamentarisme_presidentstyre",
+        "title": "Parlamentarisme og presidentstyre",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_utovende_lovgivende_makt",
+        "title": "Utøvende og lovgivende makt",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_vetospillere_beslutningskapasitet",
+        "title": "Vetospillere og beslutningskapasitet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_kampanje_deltakelse_ansvar",
+        "title": "Kampanje, deltakelse og ansvarliggjøring",
+        "score": 25
+      },
+      {
+        "id": "em_pol_legitimitet_tillit",
+        "title": "Legitimitet og tillit",
+        "score": 25
+      },
+      {
+        "id": "em_pol_lokaldemokrati",
+        "title": "Lokaldemokrati",
+        "score": 25
+      },
+      {
+        "id": "em_pol_majoritet_minoritet",
+        "title": "Majoritet og minoritet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_makt_institusjoner",
+        "title": "Makt og institusjoner i byen",
+        "score": 25
+      },
+      {
+        "id": "em_pol_maktens_geografi",
+        "title": "Maktens geografi",
+        "score": 25
+      },
+      {
+        "id": "em_pol_miljopolitikk_samfunn",
+        "title": "Miljøpolitikk og samfunn",
+        "score": 25
+      },
+      {
+        "id": "em_pol_minnesteder_politisk_kamp",
+        "title": "Minnesteder og politisk kamp",
+        "score": 25
+      },
+      {
+        "id": "em_pol_norsk_politikk_mindretallsparlamentarisme_kontroll",
+        "title": "Mindretallsparlamentarisme og parlamentarisk kontroll",
+        "score": 25
+      },
+      {
+        "id": "em_pol_norsk_politikk_partisystem_skillelinjer",
+        "title": "Norsk partisystem, organisasjon og skillelinjer",
+        "score": 25
+      },
+      {
+        "id": "em_pol_norsk_politikk_styringsorganer_maktkjede",
+        "title": "Stortinget, regjeringen, departementene og komitésystemet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_parlamentarisme_maktbalanse",
+        "title": "Parlamentarisme og maktbalanse",
+        "score": 25
+      },
+      {
+        "id": "em_pol_partier_bevegelser",
+        "title": "Partier og bevegelser",
+        "score": 25
+      },
+      {
+        "id": "em_pol_partisystemer",
+        "title": "Partisystemer og konfliktlinjer",
+        "score": 25
+      },
+      {
+        "id": "em_pol_polarisering_tillit",
+        "title": "Polarisering og tillit",
+        "score": 25
+      },
+      {
+        "id": "em_pol_regjeringsdannelse",
+        "title": "Regjeringsdannelse og koalisjoner",
+        "score": 25
+      },
+      {
+        "id": "em_pol_representasjon_ulikhet",
+        "title": "Representasjon og ulikhet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_sivilsamfunn_organisering",
+        "title": "Sivilsamfunn og organisering",
+        "score": 25
+      },
+      {
+        "id": "em_pol_symbolsk_makt",
+        "title": "Symbolsk makt",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_demokrati_normativt_ideal",
+        "title": "Demokrati som normativt ideal",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_feminisme_politisk_likhet",
+        "title": "Feminisme og politisk likhet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_frihet_likhet_autoritet_legitimitet",
+        "title": "Frihet, likhet, autoritet og legitimitet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_gronn_politisk_teori",
+        "title": "Grønn politisk teori",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_ideologiske_hovedtradisjoner",
+        "title": "Liberalisme, konservatisme og sosialisme",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_nasjonalisme_statsborgerskap",
+        "title": "Nasjonalisme og statsborgerskap",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_populisme_folkebegrepet",
+        "title": "Populisme og folkebegrepet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_republikanisme_ikke_dominans",
+        "title": "Republikanisme og ikke-dominans",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_sivil_ulydighet_politisk_forpliktelse",
+        "title": "Sivil ulydighet og politisk forpliktelse",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_sosialdemokrati_demokratisk_sosialisme",
+        "title": "Sosialdemokrati og demokratisk sosialisme",
+        "score": 25
+      },
+      {
+        "id": "em_pol_valg_deltakelse",
+        "title": "Valg og deltakelse",
+        "score": 25
+      },
+      {
+        "id": "em_pol_valgsystemer",
+        "title": "Valgsystemer",
+        "score": 25
+      },
+      {
+        "id": "em_pol_velgeratferd",
+        "title": "Velgeratferd",
+        "score": 25
+      },
+      {
+        "id": "em_pol_ytringsfrihet",
+        "title": "Ytringsfrihet",
+        "score": 25
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "debattarenaer",
+        "title": "Debattarenaer",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 33
+      },
+      {
+        "id": "demokratiets_rom",
+        "title": "Demokratiets rom",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 33
+      },
+      {
+        "id": "demonstrasjoner",
+        "title": "Demonstrasjoner",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 33
+      },
+      {
+        "id": "offentlighet",
+        "title": "Offentlighet",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 33
+      },
+      {
+        "id": "polarisering",
+        "title": "Polarisering",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 33
+      },
+      {
+        "id": "politiske_symboler",
+        "title": "Politiske symboler",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 33
+      },
+      {
+        "id": "representasjon",
+        "title": "Representasjon",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 33
+      },
+      {
+        "id": "domstoler",
+        "title": "Domstoler",
+        "category_id": "rett_lov_rettssikkerhet",
+        "score": 23
+      },
+      {
+        "id": "ideologi",
+        "title": "Ideologi",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "kampanjer_medier_og_dagsorden",
+        "title": "Kampanjer, medier og dagsorden",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "konfliktens_rom",
+        "title": "Konfliktens rom",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "legitimitet_i_systemet",
+        "title": "Legitimitet i systemet",
+        "category_id": "styring_institusjoner_forvaltning",
+        "score": 23
+      },
+      {
+        "id": "lovendringer",
+        "title": "Lovendringer",
+        "category_id": "rett_lov_rettssikkerhet",
+        "score": 23
+      },
+      {
+        "id": "majoritet_minoritet",
+        "title": "Majoritet og minoritet",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 23
+      },
+      {
+        "id": "miljopolitisk_konflikt",
+        "title": "Miljøpolitisk konflikt",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "minne_og_makt",
+        "title": "Minne og makt",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "parlamentarisme",
+        "title": "Parlamentarisme",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 23
+      },
+      {
+        "id": "partiorganisasjon_og_kandidatseleksjon",
+        "title": "Partiorganisasjon og kandidatseleksjon",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "partisystemer_og_konfliktlinjer",
+        "title": "Partisystemer og konfliktlinjer",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "politisk_deltakelse_og_valgdeltakelse",
+        "title": "Politisk deltakelse og valgdeltakelse",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_demokrati_normativt_ideal",
+        "title": "Demokrati som normativt ideal",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_frihet_likhet_autoritet_legitimitet",
+        "title": "Frihet, likhet, autoritet og legitimitet",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_populisme_folkebegrepet",
+        "title": "Populisme og folkebegrepet",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_republikanisme_ikke_dominans",
+        "title": "Republikanisme og ikke-dominans",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_sivil_ulydighet_politisk_forpliktelse",
+        "title": "Sivil ulydighet og politisk forpliktelse",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 23
+      },
+      {
+        "id": "politisk_tillit_og_partilojalitet",
+        "title": "Politisk tillit og partilojalitet",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "populisme_og_anti_etablissement",
+        "title": "Populisme og anti-etablissement",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "regjeringsdannelse_og_koalisjoner",
+        "title": "Regjeringsdannelse og koalisjoner",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "representasjon_og_ansvarliggjoring",
+        "title": "Representasjon og ansvarliggjøring",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "sivilsamfunn",
+        "title": "Sivilsamfunn",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "valgsystemer_og_mandatfordeling",
+        "title": "Valgsystemer og mandatfordeling",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "velgeratferd_og_partivalg",
+        "title": "Velgeratferd og partivalg",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "politisk_tillit",
+        "title": "Politisk tillit",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 10
+      },
+      {
+        "id": "valg_og_deltakelse",
+        "title": "Valg og deltakelse",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 10
+      },
+      {
+        "id": "norsk_politikk_mindretallsparlamentarisme_kontroll",
+        "title": "Mindretallsparlamentarisme og parlamentarisk kontroll",
+        "category_id": "norsk_politikk_eos_flernivastyring",
+        "score": 3
+      },
+      {
+        "id": "norsk_politikk_partisystem_skillelinjer",
+        "title": "Norsk partisystem, organisasjon og skillelinjer",
+        "category_id": "norsk_politikk_eos_flernivastyring",
+        "score": 3
+      },
+      {
+        "id": "norsk_politikk_styringsorganer_maktkjede",
+        "title": "Stortinget, regjeringen, departementene og komitésystemet",
+        "category_id": "norsk_politikk_eos_flernivastyring",
+        "score": 3
+      },
+      {
+        "id": "politisk_teori_ideologiske_hovedtradisjoner",
+        "title": "Liberalisme, konservatisme og sosialisme",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 3
+      },
+      {
+        "id": "politisk_teori_nasjonalisme_statsborgerskap",
+        "title": "Nasjonalisme og statsborgerskap",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 3
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "konflikt_makt_sivilsamfunn",
+      "demokrati_representasjon_offentlighet",
+      "offentlig_politikk_beslutning_implementering"
+    ],
+    "emne_ids": [
+      "em_pol_demokrati_representasjon",
+      "em_pol_offentlighet_debatt",
+      "em_pol_mediert_offentlighet"
+    ],
+    "topic_hook_ids": [
+      "offentlighet"
+    ],
+    "method_ids": [
+      "met_pol_institusjonsanalyse",
+      "met_pol_dokumentanalyse",
+      "met_pol_prosessporing",
+      "met_pol_symbolanalyse"
+    ],
+    "thinker_ids": [
+      "jurgen_habermas"
+    ],
+    "works": []
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "En park og offentlig markeringsarena vest for Stortinget",
+      "source_ids": [
+        "oslo_place"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_offentlighet_debatt"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Stortinget",
+      "source_ids": [
+        "storting_place"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "1864",
+      "source_ids": [
+        "oslo_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Riksforsamlingen i 1814",
+      "source_ids": [
+        "oslo_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Huseiertomten",
+      "source_ids": [
+        "oslo_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_offentlighet_debatt"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "1858",
+      "source_ids": [
+        "oslo_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Bebyggelse på området",
+      "source_ids": [
+        "oslo_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Brynjulf Bergslien",
+      "source_ids": [
+        "oslo_statue"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "17. mai 1881",
+      "source_ids": [
+        "oslo_statue"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Henrik Wergeland",
+      "source_ids": [
+        "oslo_statue"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Bok og penn",
+      "source_ids": [
+        "oslo_statue"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Bjørnstjerne Bjørnson",
+      "source_ids": [
+        "oslo_statue"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Hvem som er gjort synlig i byrommet",
+      "source_ids": [
+        "commons_statue"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Politisk opinion",
+      "source_ids": [
+        "oslo_statue"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Over 700",
+      "source_ids": [
+        "storting_rules"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_offentlighet_debatt"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Personer som har fylt 18 år",
+      "source_ids": [
+        "storting_rules"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_offentlighet_debatt"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Politiske, religiøse og humanitære",
+      "source_ids": [
+        "storting_rules"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_offentlighet_debatt"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Salg og rene kommersielle arrangementer",
+      "source_ids": [
+        "storting_rules"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_offentlighet_debatt"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "At markeringen får bruke arenaen",
+      "source_ids": [
+        "storting_rules"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "En kort offentlig tale",
+      "source_ids": [
+        "storting_rules"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_offentlighet_debatt"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "En kollektiv offentlig ytring",
+      "source_ids": [
+        "storting_place"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_offentlighet_debatt"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_22",
+      "order": 22,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Vietnamkrigen",
+      "source_ids": [
+        "storting_place"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_23",
+      "order": 23,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Sultestreiket mot Alta-utbyggingen",
+      "source_ids": [
+        "storting_protest"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_offentlighet_debatt"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_24",
+      "order": 24,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "En midlertidig byggestans",
+      "source_ids": [
+        "storting_protest"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_25",
+      "order": 25,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Saken fikk ny behandling",
+      "source_ids": [
+        "storting_protest"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_26",
+      "order": 26,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Samiske rettigheter",
+      "source_ids": [
+        "storting_alta"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_27",
+      "order": 27,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "En lavvo på plassen den dagen",
+      "source_ids": [
+        "commons_fosen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_28",
+      "order": 28,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Traktorer kunne brukes som synlig protestmiddel",
+      "source_ids": [
+        "storting_farmers"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_29",
+      "order": 29,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Den gir ytringer synlighet nær nasjonalforsamlingen",
+      "source_ids": [
+        "storting_place"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_offentlighet_debatt"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_30",
+      "order": 30,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Det formelle beslutningsorganet",
+      "source_ids": [
+        "storting_rules"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_31",
+      "order": 31,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Hvor mange som var synlige i et dokumentert utsnitt",
+      "source_ids": [
+        "commons_fosen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_32",
+      "order": 32,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Øke synlighet og sette dagsorden",
+      "source_ids": [
+        "storting_protest"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_33",
+      "order": 33,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Arrangementer og status endres",
+      "source_ids": [
+        "storting_calendar"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_34",
+      "order": 34,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Koble protesten til dokumentert respons og senere vedtak",
+      "source_ids": [
+        "storting_protest"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_35",
+      "order": 35,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Tilgang til en synlig arena forvaltes etter kriterier",
+      "source_ids": [
+        "storting_rules"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_offentlighet_debatt"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_36",
+      "order": 36,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Markeringen ytrer krav; organet behandler og avgjør",
+      "source_ids": [
+        "storting_rules"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_37",
+      "order": 37,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Det kobler byrommet til 1814-fortellingen",
+      "source_ids": [
+        "oslo_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_38",
+      "order": 38,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Velger ut en person og verdier for offentlig synlighet",
+      "source_ids": [
+        "oslo_statue"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_39",
+      "order": 39,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Protest, regjeringsrespons og endelig vedtak må holdes fra hverandre",
+      "source_ids": [
+        "storting_protest"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_40",
+      "order": 40,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Det viser sted og protestform på en bestemt dato",
+      "source_ids": [
+        "commons_fosen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_41",
+      "order": 41,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Beskriv plass, monument og avstand uten å identifisere deltakere",
+      "source_ids": [
+        "commons_square"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_offentlighet_debatt"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_42",
+      "order": 42,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kamerastandpunkt og utsnitt er ulike",
+      "source_ids": [
+        "commons_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_43",
+      "order": 43,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Sammenligner daterte bilder, regler og hendelser",
+      "source_ids": [
+        "commons_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_44",
+      "order": 44,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Prosessporer krav, respons, vedtak og gjennomføring",
+      "source_ids": [
+        "storting_protest"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_45",
+      "order": 45,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Sammenholder deltakerdata og bredere undersøkelser",
+      "source_ids": [
+        "storting_rules"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_offentlighet_debatt"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_46",
+      "order": 46,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Symbol- og minneanalyse med evidensgrenser",
+      "source_ids": [
+        "oslo_statue"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_47",
+      "order": 47,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Institusjonsanalyse av kriterier og forvaltning",
+      "source_ids": [
+        "storting_rules"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_48",
+      "order": 48,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Den kobler offentlig ytring, institusjonsnærhet og historisk minne",
+      "source_ids": [
+        "storting_place"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_offentlighet_debatt"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_49",
+      "order": 49,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Et språk for å analysere arenaer der argumenter blir synlige og kan prøves offentlig",
+      "source_ids": [
+        "storting_rules"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_offentlighet_debatt"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_50",
+      "order": 50,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kildens avsender, dato, formål og påstand",
+      "source_ids": [
+        "storting_rules"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_51",
+      "order": 51,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Mobilisering, midlertidig respons, behandling og langsiktig virkning",
+      "source_ids": [
+        "storting_protest"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_52",
+      "order": 52,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "At bestemte markeringer kan kobles til daterte dokumenterte responser",
+      "source_ids": [
+        "storting_protest"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_53",
+      "order": 53,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Utvalg og representativitet er ukjent",
+      "source_ids": [
+        "commons_fosen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_54",
+      "order": 54,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Undersøk kriterier, likebehandling, avslag og begrunnelser",
+      "source_ids": [
+        "storting_rules"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_55",
+      "order": 55,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Plassen brukes svært ofte, men tallet sier ikke hva befolkningen mener",
+      "source_ids": [
+        "storting_rules"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_offentlighet_debatt"
+    },
+    {
+      "claim_id": "claim_eidsvolls_plass_quiz_56",
+      "order": 56,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Demokratisk synlighet oppstår på plassen, mens politisk myndighet må spores i institusjoner og dokumenter",
+      "source_ids": [
+        "storting_place"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_offentlighet_debatt"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "relation",
+      "id": "mig_haakon_vii_krigstid_eidsvolls_plass_607bd28f34",
+      "source_file": "data/relations.json",
+      "summary": "Migrert fra people.placeId/people.places."
+    },
+    {
+      "type": "relation",
+      "id": "mig_fredrikke_marie_qvam_eidsvolls_plass_c98b8b384d",
+      "source_file": "data/relations.json",
+      "summary": "Migrert fra people.placeId/people.places."
+    },
+    {
+      "type": "relation",
+      "id": "mig_gina_krog_eidsvolls_plass_bafcdcf066",
+      "source_file": "data/relations.json",
+      "summary": "Migrert fra people.placeId/people.places."
+    },
+    {
+      "type": "relation",
+      "id": "mig_christian_frederik_eidsvolls_plass_39335139b5",
+      "source_file": "data/relations.json",
+      "summary": "Migrert fra people.placeId/people.places."
+    },
+    {
+      "type": "relation",
+      "id": "rel_eidsvolls_plass_bergslien",
+      "source_file": "data/relations.json",
+      "summary": "Bergslien utførte monumentet som ble avduket på Eidsvolls plass i 1881."
+    },
+    {
+      "type": "story",
+      "id": "st_eidsvolls_plass_navnet_1864",
+      "source_file": "data/stories/stories_eidsvolls_plass.json",
+      "summary": "Navnet bandt den nye stortingsbygningen til minnet om riksforsamlingen i 1814."
+    },
+    {
+      "type": "story",
+      "id": "st_eidsvolls_plass_wergeland_1881",
+      "source_file": "data/stories/stories_eidsvolls_plass.json",
+      "summary": "Wergelandmonumentet ble avduket 17. mai og gjorde dikteren til offentlig minne på plassen."
+    },
+    {
+      "type": "story",
+      "id": "st_eidsvolls_plass_vietnam_1968",
+      "source_file": "data/stories/stories_eidsvolls_plass.json",
+      "summary": "Vietnamdemonstrasjonen viste hvordan internasjonal konflikt ble del av norsk offentlighet ved Stortinget."
+    },
+    {
+      "type": "story",
+      "id": "st_eidsvolls_plass_alta_sultestreik_1979",
+      "source_file": "data/stories/stories_eidsvolls_plass.json",
+      "summary": "Samiske aktivister gjorde Alta-konflikten synlig ved Stortinget gjennom sultestreik og lavvo."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "politikk_eidsvolls_plass_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_eidsvolls_plass_quiz_01",
+        "claim_eidsvolls_plass_quiz_02",
+        "claim_eidsvolls_plass_quiz_03",
+        "claim_eidsvolls_plass_quiz_04",
+        "claim_eidsvolls_plass_quiz_05",
+        "claim_eidsvolls_plass_quiz_06",
+        "claim_eidsvolls_plass_quiz_07"
+      ]
+    },
+    {
+      "set_id": "politikk_eidsvolls_plass_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_eidsvolls_plass_quiz_08",
+        "claim_eidsvolls_plass_quiz_09",
+        "claim_eidsvolls_plass_quiz_10",
+        "claim_eidsvolls_plass_quiz_11",
+        "claim_eidsvolls_plass_quiz_12",
+        "claim_eidsvolls_plass_quiz_13",
+        "claim_eidsvolls_plass_quiz_14"
+      ]
+    },
+    {
+      "set_id": "politikk_eidsvolls_plass_set_3",
+      "order": 3,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_eidsvolls_plass_quiz_15",
+        "claim_eidsvolls_plass_quiz_16",
+        "claim_eidsvolls_plass_quiz_17",
+        "claim_eidsvolls_plass_quiz_18",
+        "claim_eidsvolls_plass_quiz_19",
+        "claim_eidsvolls_plass_quiz_20",
+        "claim_eidsvolls_plass_quiz_21"
+      ]
+    },
+    {
+      "set_id": "politikk_eidsvolls_plass_set_4",
+      "order": 4,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_eidsvolls_plass_quiz_22",
+        "claim_eidsvolls_plass_quiz_23",
+        "claim_eidsvolls_plass_quiz_24",
+        "claim_eidsvolls_plass_quiz_25",
+        "claim_eidsvolls_plass_quiz_26",
+        "claim_eidsvolls_plass_quiz_27",
+        "claim_eidsvolls_plass_quiz_28"
+      ]
+    },
+    {
+      "set_id": "politikk_eidsvolls_plass_set_5",
+      "order": 5,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_eidsvolls_plass_quiz_29",
+        "claim_eidsvolls_plass_quiz_30",
+        "claim_eidsvolls_plass_quiz_31",
+        "claim_eidsvolls_plass_quiz_32",
+        "claim_eidsvolls_plass_quiz_33",
+        "claim_eidsvolls_plass_quiz_34",
+        "claim_eidsvolls_plass_quiz_35"
+      ]
+    },
+    {
+      "set_id": "politikk_eidsvolls_plass_set_6",
+      "order": 6,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_eidsvolls_plass_quiz_36",
+        "claim_eidsvolls_plass_quiz_37",
+        "claim_eidsvolls_plass_quiz_38",
+        "claim_eidsvolls_plass_quiz_39",
+        "claim_eidsvolls_plass_quiz_40",
+        "claim_eidsvolls_plass_quiz_41",
+        "claim_eidsvolls_plass_quiz_42"
+      ]
+    },
+    {
+      "set_id": "politikk_eidsvolls_plass_set_7",
+      "order": 7,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_eidsvolls_plass_quiz_43",
+        "claim_eidsvolls_plass_quiz_44",
+        "claim_eidsvolls_plass_quiz_45",
+        "claim_eidsvolls_plass_quiz_46",
+        "claim_eidsvolls_plass_quiz_47",
+        "claim_eidsvolls_plass_quiz_48",
+        "claim_eidsvolls_plass_quiz_49"
+      ]
+    },
+    {
+      "set_id": "politikk_eidsvolls_plass_set_8",
+      "order": 8,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_eidsvolls_plass_quiz_50",
+        "claim_eidsvolls_plass_quiz_51",
+        "claim_eidsvolls_plass_quiz_52",
+        "claim_eidsvolls_plass_quiz_53",
+        "claim_eidsvolls_plass_quiz_54",
+        "claim_eidsvolls_plass_quiz_55",
+        "claim_eidsvolls_plass_quiz_56"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 56,
+    "counts": {
+      "fact": 28,
+      "context": 14,
+      "concept_theory": 14
+    },
+    "ratios": {
+      "fact": 0.5,
+      "context": 0.25,
+      "concept_theory": 0.25
+    }
+  }
+}
