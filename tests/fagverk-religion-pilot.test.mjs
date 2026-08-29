@@ -44,10 +44,17 @@ test('Religion bruker fagkartets områder og bevarer kursmoduler som progresjon'
   assert.equal(report.gates.respectfulRepresentationPrinciplesLocked, true);
 });
 
-test('Religion-merkesiden skiller merket fra den materialiserte fagsiden', () => {
-  const html = fs.readFileSync(path.join(root, 'data/fag/religion/merke_religion.html'), 'utf8');
-  assert.match(html, /fagverk-forside\.html/);
-  assert.match(html, /fagverk\.html\?subject=religion/);
-  assert.match(html, /fire fagområder, åtte emner og åtte metoder/);
-  assert.match(html, /dokumentert observasjon fra antakelser om tro/);
+test('Religion bevarer den gamle stubben som arkiv og bruker aktiv URL kun som compatibility-redirect', () => {
+  const compatibility = fs.readFileSync(path.join(root, 'data/fag/religion/merke_religion.html'), 'utf8');
+  const archive = fs.readFileSync(path.join(root, 'data/fag/religion/archive/merke_religion_legacy_20260828.html'), 'utf8');
+
+  assert.match(compatibility, /location\.replace/);
+  assert.match(compatibility, /fagverk\.html\?subject=religion#fagverkIaProgresjon/);
+  assert.doesNotMatch(compatibility, /fire fagområder, åtte emner og åtte metoder/);
+  assert.doesNotMatch(compatibility, /dokumentert observasjon fra antakelser om tro/);
+
+  assert.match(archive, /fagverk-forside\.html/);
+  assert.match(archive, /fagverk\.html\?subject=religion/);
+  assert.match(archive, /fire fagområder, åtte emner og åtte metoder/);
+  assert.match(archive, /dokumentert observasjon fra antakelser om tro/);
 });
