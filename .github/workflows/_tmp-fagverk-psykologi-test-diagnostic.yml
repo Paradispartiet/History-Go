@@ -39,11 +39,12 @@ jobs:
           node scripts/audit-fagverk-psykologi-phase3.mjs
           node scripts/audit-fagverk-general-engine.mjs --write-report
           node scripts/audit-fagverk-general-engine.mjs
-      - name: Verify Psykologi stub equivalence and release
-        run: |
-          node scripts/audit-fagverk-psykologi-legacy-stub.mjs
-          node scripts/audit-fagverk-badge-equivalence.mjs
-          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Verify Psykologi stub equivalence
+        run: node scripts/audit-fagverk-psykologi-legacy-stub.mjs
+      - name: Verify badge equivalence
+        run: node scripts/audit-fagverk-badge-equivalence.mjs
+      - name: Verify release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs --check
       - name: Run existing Psykologi contract tests
         run: |
           tests=(
