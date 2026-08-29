@@ -14,7 +14,7 @@ const P = Object.freeze({
   mappings: 'data/fag/natur/emnemapping_natur_canonical_v4_5.json',
   overlay: NATUR_FINAL_OVERLAY_PATH,
   quiz: 'data/fag/natur/supersetQUIZMAL_natur.json',
-  badge: 'data/fag/natur/merke_natur (1).html',
+  badge: 'data/fag/natur/archive/merke_natur_full_teori_legacy_20260829.html',
   report: 'reports/fagverk/natur-quality-audit.json'
 });
 const abs = (p) => path.join(ROOT, p);
@@ -107,11 +107,11 @@ export function auditNaturQuality({ writeReport = false, checkReport = true } = 
   assert((quiz.category_rules || []).some((r) => r.includes('stedet eller fenomenet')), 'Quizprofilen mangler konkretitetsregel');
   assert(quiz.knowledge_delivery?.required === true, 'Quizprofilen mangler Knowledge-leveranse');
   assert(!JSON.stringify({ emner, methods }).includes('miljørettpferdig'), 'Naturpakken inneholder kjent språkfeil');
-  assert(!badge.includes('full teoretisk beskrivelse') && !badge.includes('fulle interne teorien'), 'Merkesiden fremstår fortsatt som intern teorifil');
-  assert(badge.includes('fagverk.html?subject=natur'), 'Merkesiden mangler fagsidelenke');
-  assert(badge.includes('77 materialiserte emner, 51 metoder og tolv redigerte kapitler'), 'Merkesiden mangler sluttfasens produksjonstall');
-  assert(badge.includes('audited') && badge.includes('complete'), 'Merkesiden mangler sluttstatus');
-  for (const domain of pensum.domains) assert(badge.includes(domain.label), `Merkesiden omtaler ikke fagområdet ${domain.label}`);
+  assert(!badge.includes('full teoretisk beskrivelse') && !badge.includes('fulle interne teorien'), 'Det byte-bevarte Natur-arkivet fremstår som intern teorifil');
+  assert(badge.includes('fagverk.html?subject=natur'), 'Det byte-bevarte Natur-arkivet mangler fagsidelenke');
+  assert(badge.includes('77 materialiserte emner, 51 metoder og tolv redigerte kapitler'), 'Det byte-bevarte Natur-arkivet mangler sluttfasens produksjonstall');
+  assert(badge.includes('audited') && badge.includes('complete'), 'Det byte-bevarte Natur-arkivet mangler sluttstatus');
+  for (const domain of pensum.domains) assert(badge.includes(domain.label), `Det byte-bevarte Natur-arkivet omtaler ikke fagområdet ${domain.label}`);
 
   const report = {
     schema: 'history_go_natur_subject_quality_audit_v1',
@@ -142,7 +142,7 @@ export function auditNaturQuality({ writeReport = false, checkReport = true } = 
       emneSpecificQuizAndBlindspots: true,
       methodProceduresAndLimits: true,
       twoTimesSevenNormalQuizOpening: true,
-      publicFacingBadgePage: true,
+      preservedLegacyBadgeSource: true,
       finalPhaseCountsVisible: true,
       finalStatusVisible: true
     }
