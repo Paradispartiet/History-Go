@@ -11,13 +11,13 @@ const OWNED_ROOTS = ['data/fag/naeringsliv/', 'data/fagverk/naeringsliv/'];
 
 const POLICY = Object.freeze({
   felt: [['arbeid'],['produksjon'],['verdiskaping'],['industri'],['handel'],['tjenester'],['innovasjon'],['teknologi'],['plattform'],['kapital'],['eierskap'],['organisasjon']],
-  normativ: [['vekst'],['konkurranse'],['effektivitet'],['produktivitet'],['profesjonalitet'],['arbeidsdisiplin','arbeid'],['innovasjon'],['marked']],
+  normativ: [['vekst'],['konkurranse'],['effektivitet'],['produktivitet'],['profesjonalitet','profesjon','kompetanse','yrkesmessig skjønn'],['arbeidsdisiplin','arbeid'],['innovasjon'],['marked']],
   doxa: [['økonomi'],['sosial'],['politikk'],['kultur'],['teknologi'],['historie'],['makt'],['pris'],['lønn'],['arbeidstid']],
   metode: [['økonomisk modell','modell'],['statistikk'],['arbeidsliv'],['profesjon'],['organisasjonsanalyse','organisasjon'],['innovasjon'],['teknologistudier','teknologi'],['logistikk'],['verdikjede'],['forbruker'],['markedsadferd','marked']],
   materiell: [['fabrikk'],['kontor'],['butikk'],['logistikk'],['havn'],['vei'],['jernbane'],['lager'],['server'],['nettverk'],['plattform'],['maskin'],['programvare'],['algoritme']],
   sosial: [['arbeider'],['eier'],['leder'],['gründer'],['fagforening'],['bransje'],['profesjon'],['forbruk'],['hierarki'],['arbeidskultur'],['arbeid'],['kapital']],
   geografisk: [['industristrøk','industri'],['havn'],['logistikk'],['finans'],['kontor'],['handel'],['by'],['akerselva','akerselvas'],['barcode']],
-  temporal: [['industriell revolusjon','industrialisering'],['mekanisering'],['offshoring','globalisering'],['digitalisering'],['automatisering'],['arbeidsliv'],['plattform'],['økonomisk krise','krise'],['omstilling']],
+  temporal: [['industriell revolusjon','industrialisering'],['mekanisering'],['offshoring','globalisering','global verdikjede','globale verdikjeder','internasjonal økonomi','internasjonal handel'],['digitalisering'],['automatisering'],['arbeidsliv'],['plattform'],['økonomisk krise','krise'],['omstilling']],
   blindsoner: [['usynlig arbeid','uformell økonomi','omsorg'],['miljøkostnad','miljø'],['ressursbruk'],['ulikhet'],['ekskludering'],['kapital'],['eierskap'],['produktiv'],['datasenter'],['lager']],
   begreper: [['verdiskaping'],['arbeid'],['kapital'],['infrastruktur'],['produksjon'],['distribusjon'],['innovasjon'],['forbruk']]
 });
