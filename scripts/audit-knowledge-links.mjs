@@ -22,7 +22,7 @@ function loadSubjectIds() {
 const SUBJECT_IDS = loadSubjectIds();
 const SUBJECT_SET = new Set(SUBJECT_IDS);
 const SCAN_EXTENSIONS = new Set([".html", ".htm", ".js", ".mjs", ".ts"]);
-const SKIP_DIRS = new Set([".git", "node_modules", "dist", "reports"]);
+const SKIP_DIRS = new Set([".git", "node_modules", "dist", "reports", "archive"]);
 
 function walk(dir) {
   const out = [];
