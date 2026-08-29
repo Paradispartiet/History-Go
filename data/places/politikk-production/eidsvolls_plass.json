@@ -1,0 +1,333 @@
+{
+  "schemaVersion": "politikk_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "eidsvolls_plass",
+  "placeFile": "data/places/politikk/oslo/places_politikk/eidsvolls_plass.json",
+  "status": "ready",
+  "primaryFunction": {
+    "statement": "Eidsvolls plass er et offentlig byrom for markeringer, protest og minnekultur ved Stortinget.",
+    "placeObjectDistinction": "Place-ID-en gjelder parken og markeringsoverflaten, ikke stortingsbygningen, Løvebakken, Stortinget som institusjon eller en bestemt demonstrasjon.",
+    "sourceIds": [
+      "source_place",
+      "source_rules",
+      "source_history"
+    ]
+  },
+  "politicsTopics": [
+    {
+      "emneId": "em_pol_demokrati_representasjon",
+      "siteSpecificRationale": "Plassen synliggjør deltakelse nær nasjonalforsamlingen uten selv å være vedtaksorgan.",
+      "evidenceChainIds": [
+        "chain_access",
+        "chain_alta"
+      ]
+    },
+    {
+      "emneId": "em_pol_offentlighet_debatt",
+      "siteSpecificRationale": "Markeringsordningen og protesthistorien viser organisert offentlighet med forvaltede adgangsvilkår.",
+      "evidenceChainIds": [
+        "chain_access",
+        "chain_visibility"
+      ]
+    },
+    {
+      "emneId": "em_pol_mediert_offentlighet",
+      "siteSpecificRationale": "Foto, monument og mediedekning må leses med grenser for representativitet og effekt.",
+      "evidenceChainIds": [
+        "chain_visibility",
+        "chain_alta"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_place",
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/sesjonsrapporter/stortingsaret-20162017/eidsvolls-plass/",
+      "sourceLocation": "Plassens rolle og dokumenterte markeringer",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "source_rules",
+      "url": "https://www.stortinget.no/no/Hva-skjer-pa-Stortinget/markeringer-pa-eidsvolls-plass/",
+      "sourceLocation": "Gjeldende kriterier for bruk av plassen",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "source_history",
+      "url": "https://oslobyleksikon.no/side/Eidsvolls_plass",
+      "sourceLocation": "Navn, eierskap og historiske inngrep",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "historical"
+    },
+    {
+      "id": "source_protest",
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Historikk/historisk-dokumentasjon/Protest/",
+      "sourceLocation": "Alta-sultestreiken og institusjonell respons",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "historical"
+    },
+    {
+      "id": "source_alta",
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Grunnloven/levende-grunnlov/",
+      "sourceLocation": "Langsiktig betydning for samiske rettigheter",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "historical"
+    },
+    {
+      "id": "source_photo_fosen",
+      "url": "https://commons.wikimedia.org/wiki/File:Protest_mot_Fosen-saken,_lavvo_utenfor_Stortinget_2023.jpg",
+      "sourceLocation": "Datert dokumentarfoto av Fosen-markering",
+      "sourceType": "archive",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "historical"
+    }
+  ],
+  "evidenceChains": [
+    {
+      "id": "chain_access",
+      "claim": "Tilgang til Eidsvolls plass forvaltes etter oppgitte kriterier uten at tildeling betyr støtte til budskapet.",
+      "stages": {
+        "institutionActor": {
+          "status": "documented",
+          "statement": "Stortinget forvalter markeringsordningen.",
+          "sourceIds": [
+            "source_rules"
+          ]
+        },
+        "competenceRole": {
+          "status": "documented",
+          "statement": "Ordningen fordeler bruk av plassen til politiske, religiøse og humanitære formål.",
+          "sourceIds": [
+            "source_rules"
+          ]
+        },
+        "ruleDecision": {
+          "status": "documented",
+          "statement": "Voksne enkeltpersoner og organisasjoner kan søke; kommersielle formål avgrenses.",
+          "sourceIds": [
+            "source_rules"
+          ]
+        },
+        "resourceInstrument": {
+          "status": "documented",
+          "statement": "Den navngitte plassflaten og søknadsordningen er ressurs og instrument.",
+          "sourceIds": [
+            "source_rules"
+          ]
+        },
+        "implementation": {
+          "status": "documented",
+          "statement": "Søknader behandles og tid på plassen fordeles.",
+          "sourceIds": [
+            "source_rules"
+          ]
+        },
+        "output": {
+          "status": "documented",
+          "statement": "Over 700 markeringer i året dokumenterer høy bruk.",
+          "sourceIds": [
+            "source_rules"
+          ]
+        },
+        "outcomeEffect": {
+          "status": "not_applicable",
+          "rationale": "Kilden måler ikke likebehandlingseffekt, representativitet eller politisk gjennomslag."
+        }
+      }
+    },
+    {
+      "id": "chain_alta",
+      "claim": "Alta-aksjonen gjorde en konflikt synlig og utløste dokumentert respons, men protesten var ikke selv det formelle vedtaket.",
+      "stages": {
+        "institutionActor": {
+          "status": "documented",
+          "statement": "Samiske aktivister, regjeringen og Stortinget hadde ulike roller.",
+          "sourceIds": [
+            "source_protest"
+          ]
+        },
+        "competenceRole": {
+          "status": "documented",
+          "statement": "Aktivistene mobiliserte; regjeringen svarte; Stortinget behandlet saken.",
+          "sourceIds": [
+            "source_protest"
+          ]
+        },
+        "ruleDecision": {
+          "status": "documented",
+          "statement": "Utbyggingssaken ble behandlet gjennom formelle beslutningsprosesser.",
+          "sourceIds": [
+            "source_protest"
+          ]
+        },
+        "resourceInstrument": {
+          "status": "documented",
+          "statement": "Sultestreik og lavvo på plassen var protestmidler.",
+          "sourceIds": [
+            "source_protest"
+          ]
+        },
+        "implementation": {
+          "status": "documented",
+          "statement": "Regjeringen stanset arbeidet midlertidig og la fram ny melding.",
+          "sourceIds": [
+            "source_protest"
+          ]
+        },
+        "output": {
+          "status": "documented",
+          "statement": "Saken ble behandlet videre og utbyggingen senere gjennomført.",
+          "sourceIds": [
+            "source_protest"
+          ]
+        },
+        "outcomeEffect": {
+          "status": "documented",
+          "statement": "Konflikten økte oppmerksomheten om samiske rettigheter og bidro til en lengre rettighetsutvikling.",
+          "sourceIds": [
+            "source_alta"
+          ]
+        }
+      }
+    },
+    {
+      "id": "chain_visibility",
+      "claim": "Fotografi og plassering dokumenterer synlighet, men ikke representativ opinion eller politisk effekt alene.",
+      "stages": {
+        "institutionActor": {
+          "status": "documented",
+          "statement": "Arrangører og deltakere bruker en arena forvaltet av Stortinget.",
+          "sourceIds": [
+            "source_rules"
+          ]
+        },
+        "competenceRole": {
+          "status": "documented",
+          "statement": "Markeringen ytrer; institusjoner behandler og beslutter.",
+          "sourceIds": [
+            "source_rules",
+            "source_protest"
+          ]
+        },
+        "ruleDecision": {
+          "status": "not_applicable",
+          "rationale": "Et fotografi dokumenterer ikke selve beslutningen."
+        },
+        "resourceInstrument": {
+          "status": "documented",
+          "statement": "Lavvo, plass, plakater og mediedekning kan være synlighetsmidler.",
+          "sourceIds": [
+            "source_photo_fosen"
+          ]
+        },
+        "implementation": {
+          "status": "documented",
+          "statement": "Fosen-lavvoen er fotografert på stedet 25. september 2023.",
+          "sourceIds": [
+            "source_photo_fosen"
+          ]
+        },
+        "output": {
+          "status": "documented",
+          "statement": "Bildet dokumenterer den synlige protestformen denne dagen.",
+          "sourceIds": [
+            "source_photo_fosen"
+          ]
+        },
+        "outcomeEffect": {
+          "status": "not_applicable",
+          "rationale": "Bildet måler ikke representativitet, årsak eller politisk virkning."
+        }
+      }
+    }
+  ],
+  "currentVerification": {
+    "status": "PASS",
+    "checkedAt": "2026-08-29",
+    "currentClaimIds": [
+      "chain_access"
+    ],
+    "sourceIds": [
+      "source_rules",
+      "source_place"
+    ]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "eidsvolls_plass",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/politikk/eidsvolls_plass.json",
+    "productionContext": "data/quiz/production_context/politikk/eidsvolls_plass.json",
+    "requiredInputs": [
+      "data/fag/politikk/politikkpensum_canonical_v4_5.json",
+      "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+      "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+      "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+      "data/fag/politikk/supersetQUIZMAL_politikk.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "PASS",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Ti milepæler og fire episode_v1-historier er kontrollert mot institusjons-, byhistorie-, protest- og arkivkilder."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "primaryFunction"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "politicsTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "evidenceChains"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "sources"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "currentVerification"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/quiz/politikk/eidsvolls_plass_sets.json"
+      ]
+    },
+    "G": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "chronologyStories"
+      ]
+    }
+  },
+  "review": {
+    "reviewer": "History GO Eidsvolls plass public sphere and protest review",
+    "reviewedAt": "2026-08-29",
+    "notes": "Arena/organ, tilgang/støtte, synlighet/representativitet, protest/respons/vedtak og foto/effekt er eksplisitt avgrenset."
+  }
+}
