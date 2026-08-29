@@ -1,0 +1,931 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "administrasjonsmedarbeider",
+  "title": "Administrasjonsmedarbeider — sporbarhet, usynlig arbeid og situert tillit",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "Å gjøre virksomhetens bilag, frister, versjoner og åpne punkter etterprøvbare når godt administrativt arbeid ofte er usynlig, mens raske lukkede saker og sikker tone kan gi høyere kortsiktig status.",
+    "description": "Role World-en lukker bare situated_reputation rundt eksisterende administrativ praksis. Den 20-stegs praksisplanen, arbeidsgrammatikken, People-forankringen, arbeidsflatene og authority-grensen beholdes uendret."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "invisible_work",
+    "bureaucratic_power",
+    "numerical_control",
+    "shame_reputation",
+    "loyalty_up_down",
+    "status_anxiety",
+    "public_private_leakage"
+  ],
+  "social_environments": [
+    "Innboks- og mottaksflaten der saker konkurrerer om oppmerksomhet og det sosialt letteste ofte er å anta en eier.",
+    "Registrerings- og kontrollflaten der tall og kategorier kan se ferdige ut før dokumentasjonen faktisk tåler etterprøving.",
+    "Arkiv- og versjonsflaten der organisasjonens hukommelse avgjøres av hvilke spor som bevares når noe korrigeres.",
+    "Frist- og oppfølgingsbordet der koordinering må holde ansvar synlig uten å bli uformell beslutningsmyndighet.",
+    "Møtet med økonomi, innkjøp og drift der samme sak leses gjennom ulike faglige evidens- og ansvarsgrenser.",
+    "Privatlivet der sakslogikk og kontrollbehov må kunne stoppe før relasjoner blir behandlet som mapper og åpne punkter."
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "nora_administrasjonskoordinator_world",
+      "social_function": "administrasjonskoordinator som fordeler og følger åpne prosesser uten å eie andres faglige godkjenning",
+      "class_position": "koordinerende rolle med prosessinnflytelse",
+      "status": "høy situert koordineringsstatus",
+      "power_over_player": "kan kreve synlig eier, frist og handoff, men kan ikke gi spilleren godkjenningsfullmakt",
+      "wants": "sporbare overleveringer, tidlig varsling og saker som ikke blir stående som nesten ferdige",
+      "conceals": "at køpress kan gjøre en antatt eier sosialt mer attraktiv enn et synlig åpent punkt",
+      "speech_style": "kort, strukturert og prosessnær; spør hvem som faktisk eier neste avklaring",
+      "teaches_player": "at koordineringsstanding bygges av å bevare ansvar, ikke av å absorbere det"
+    },
+    {
+      "id": "marius_regnskapsmedarbeider_world",
+      "social_function": "regnskapsmedarbeider som trenger etterprøvbart grunnlag før registreringen kan behandles som økonomisk fakta",
+      "class_position": "faglig sidestilt økonomirolle med spesifikt dokumentasjonsansvar",
+      "status": "høy epistemisk status i regnskapsnære spørsmål",
+      "power_over_player": "kan kreve underlag og korrigering, men kan ikke overføre sin fagmyndighet til spilleren",
+      "wants": "dokumentert grunnlag, eksplisitt usikkerhet og sporbar korreksjon",
+      "conceals": "at fristpress kan gjøre muntlig plausibilitet fristende også for økonomifunksjonen",
+      "speech_style": "presis og kildeorientert; skiller hva systemet viser fra hva underlaget faktisk beviser",
+      "teaches_player": "at økonomitillit vokser når usikkerhet får stå åpen til kilden finnes"
+    },
+    {
+      "id": "lea_innkjopskoordinator_world",
+      "social_function": "innkjøpskoordinator som eier bestillingsgrunnlag og leverandørspor, men ikke spillerens administrative registrering",
+      "class_position": "spesialist med avgrenset prosessmyndighet",
+      "status": "høy situert innkjøpstillit",
+      "power_over_player": "kan dokumentere bestillingsgrunnlag og korrigere referanser i sitt spor, men ikke godkjenne utbetaling eller skjule historikk",
+      "wants": "korrekte referanser, bevart endringshistorikk og tydelig ansvarsdeling",
+      "conceals": "at en ryddig sluttstatus kan friste organisasjonen til å glemme hvordan feilen oppstod",
+      "speech_style": "konkret og referansenær; spør hvilket dokument som beviser koblingen",
+      "teaches_player": "at korreksjon er sterkest når både gammel feil og nytt grunnlag kan rekonstrueres"
+    },
+    {
+      "id": "eirik_driftskontakt_world",
+      "social_function": "driftskontakt som leverer lokal hendelseskontekst, faktisk operativ eier og timing uten økonomisk godkjenningsmyndighet",
+      "class_position": "operativ fagkontakt med høy lokal kunnskap og begrenset formell kontrollmakt",
+      "status": "høy situert driftskredibilitet",
+      "power_over_player": "kan bekrefte operative fakta og ansvar, men ikke bestemme regnskapsklassifisering eller gi formell godkjenning",
+      "wants": "at administrasjonen bruker lokal kontekst uten å oversette den til falsk sikkerhet",
+      "conceals": "at det er fristende å la den som vet mest om hendelsen også bli behandlet som den som kan godkjenne alt",
+      "speech_style": "direkte og hendelsesnær; beskriver hva som faktisk skjedde og hvem som må svare videre",
+      "teaches_player": "at lokal kunnskap styrker sporbarhet når den beholder sin faglige grense"
+    },
+    {
+      "id": "ingrid_kontorleder_world",
+      "social_function": "kontorleder som vurderer om administrasjonen gjør frister, ansvar og kontrollspor beslutningsklare uten å kamuflere uferdighet",
+      "class_position": "formell lokal leder over administrativ arbeidsflyt",
+      "status": "høy formell status",
+      "power_over_player": "kan prioritere arbeid og kreve eskalering innen mandat, men kan ikke gjøre lojalitet eller standing til økonomisk godkjenning",
+      "wants": "pålitelig varsling, synlig risiko og arbeidsflyt som tåler etterkontroll",
+      "conceals": "at ledelsesbehovet for ryddige rapporter kan favorisere pen sluttstatus fremfor synlig usikkerhet",
+      "speech_style": "knapp og beslutningsnær; spør hva som er kjent, hva som mangler og hvem som eier neste steg",
+      "teaches_player": "at lederstanding styrkes av beslutningsklar usikkerhet, ikke av overdrevet sikkerhet"
+    },
+    {
+      "id": "etterkontroll_world",
+      "social_function": "senere kontrollør eller kollega som må rekonstruere hvorfor en registrering, versjon eller handoff ble endret",
+      "class_position": "downstream kontrollposisjon uten daglig nærhet til den opprinnelige saken",
+      "status": "lav sosial nærhet, høy etterprøvingsmakt",
+      "power_over_player": "kan avdekke svake spor og kreve forklaring, men kan ikke retroaktivt gi spilleren myndighet den aldri hadde",
+      "wants": "kilder, tidsstempler, endringsgrunnlag og tydelig skille mellom fakta og antakelse",
+      "conceals": "at kontroll ofte først ser arbeidet når noe gikk galt, og derfor kan undervurdere usynlig forebygging",
+      "speech_style": "nøktern og rekonstruktiv; spør hva en utenforstående faktisk kan vite fra sporet",
+      "teaches_player": "at profesjonell reputasjon ofte avgjøres lenge etter handlingen av hvor godt arbeidet kan rekonstrueres"
+    },
+    {
+      "id": "privat_relajon_admin_world",
+      "social_function": "privat nær relasjon som møter personen når mapper, åpne punkter og oppfølgingsspråk følger med hjem",
+      "class_position": "likemann uten arbeidsmyndighet",
+      "status": "høy emosjonell betydning",
+      "power_over_player": "kan sette grenser for hvor mye administrasjonsrollen får organisere privatlivet, men kan ikke løse arbeidsmandat eller fagspørsmål",
+      "wants": "nærvær, uformell tid og at ikke alt behandles som sak eller status",
+      "conceals": "slitasjen ved å bli møtt som et oppfølgingspunkt i stedet for en person",
+      "speech_style": "hverdagslig og direkte; ber om svar uten saksnummer, kontrollfrist eller mappe",
+      "teaches_player": "at profesjonell pålitelighet er situert og ikke behøver å bli en total identitet"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "coordination_handoff_standing",
+      "meaning": "situert koordineringsstanding for tydelig eier, frist og sporbar handoff",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "accounting_traceability_standing",
+      "meaning": "situert økonomitillit til dokumentert grunnlag og synlig evidensstatus",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "procurement_source_integrity_standing",
+      "meaning": "situert innkjøpstillit til korrekte referanser og bevart endringshistorikk",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "operations_context_boundary_standing",
+      "meaning": "situert driftstillit til presis bruk av lokal kontekst uten authority-drift",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "office_leadership_reliability_standing",
+      "meaning": "situert lederstanding for tidlig varsling, kontroll og beslutningsklar usikkerhet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "audit_reconstructability_standing",
+      "meaning": "situert etterkontrollstanding for at andre kan rekonstruere kilde, endring og ansvar",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "private_role_containment_standing",
+      "meaning": "hvor godt administrasjonsspråk, kontrollbehov og arbeidsstatus holdes situert til jobb",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "existing_work_continuity": {
+    "runtime_binding": "existing_mail_and_work_grammar",
+    "new_runtime_state": false,
+    "work_loops": [
+      "grunnlag -> kontroll -> registrering -> analyse -> rapport -> oppfølging",
+      "avvik -> datakilde -> årsak -> konsekvens -> tiltak -> dokumentasjon"
+    ],
+    "canonical_surfaces": [
+      "data/Civication/roleModels/naeringsliv/okonomi_og_administrasjonsmedarbeider.json",
+      "data/Civication/workGrammars/naeringsliv/naeringsliv_administrasjon_og_okonomistyring.json",
+      "data/Civication/mailPlans/naeringsliv/administrasjonsmedarbeider_plan.json",
+      "data/Civication/mailFamilies/naeringsliv/job/administrasjonsmedarbeider_job.json",
+      "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json",
+      "data/Civication/mailFamilies/naeringsliv/conflict/administrasjonsmedarbeider_conflict.json",
+      "data/Civication/mailFamilies/naeringsliv/story/administrasjonsmedarbeider_story.json",
+      "data/Civication/mailFamilies/naeringsliv/event/administrasjonsmedarbeider_event.json"
+    ],
+    "rule": "Den eksisterende 20-stegs to-ukers praksisplanen og de to canonical work loops forblir authoritative; Role World-en legger bare situert standing rundt eksisterende job/People-scener og skaper ingen ny oppgave-, scene- eller rytme-runtime."
+  },
+  "situated_reputation_model": {
+    "global_score_allowed": false,
+    "audiences": [
+      {
+        "id": "administrative_coordination",
+        "standing_axis": "coordination_handoff_standing",
+        "cares_about": [
+          "tydelig eier og frist",
+          "sporbar overlevering"
+        ],
+        "cannot_grant": "Koordineringsstanding kan ikke gi spilleren godkjenningsfullmakt, fagansvar eller rett til å fylle manglende eier med en antakelse."
+      },
+      {
+        "id": "accounting_economy",
+        "standing_axis": "accounting_traceability_standing",
+        "cares_about": [
+          "dokumentert økonomisk grunnlag",
+          "skille mellom fakta, estimat og usikkerhet"
+        ],
+        "cannot_grant": "Økonomitillit kan ikke gi spilleren rett til å godkjenne uten fullmakt, bestemme regnskapsklassifisering uten grunnlag eller presentere muntlig plausibilitet som bokført fakta."
+      },
+      {
+        "id": "procurement",
+        "standing_axis": "procurement_source_integrity_standing",
+        "cares_about": [
+          "korrekt bestillingsreferanse",
+          "bevart historikk når koblinger korrigeres"
+        ],
+        "cannot_grant": "Innkjøpsstanding kan ikke gi utbetalingsmyndighet, gjøre leverandørsporet til hele økonomisannheten eller la spilleren overta innkjøpsrollens fagansvar."
+      },
+      {
+        "id": "operations",
+        "standing_axis": "operations_context_boundary_standing",
+        "cares_about": [
+          "presis hendelseskontekst",
+          "faktisk operativ eier og timing"
+        ],
+        "cannot_grant": "Driftstillit kan ikke gjøre lokal forklaring til økonomisk godkjenning, regnskapsklassifisering eller generell beslutningsfullmakt."
+      },
+      {
+        "id": "office_leadership",
+        "standing_axis": "office_leadership_reliability_standing",
+        "cares_about": [
+          "tidlig varsling om avvik",
+          "beslutningsklar status uten skjult usikkerhet"
+        ],
+        "cannot_grant": "Lederstanding kan ikke erstatte delegasjon eller fullmakt og kan ikke gjøre lojalitet til grunnlag for å skjule avvik eller lukke uavklarte saker."
+      },
+      {
+        "id": "audit_downstream_control",
+        "standing_axis": "audit_reconstructability_standing",
+        "cares_about": [
+          "kilde og tidsstempel",
+          "endringsgrunnlag og etterprøvbar ansvarslinje"
+        ],
+        "cannot_grant": "Etterkontrollstanding kan ikke retroaktivt gi myndighet, gjøre manglende dokumentasjon sann eller forvandle en pen sluttstatus til et gyldig kontrollspor."
+      },
+      {
+        "id": "private_relations",
+        "standing_axis": "private_role_containment_standing",
+        "cares_about": [
+          "at private relasjoner ikke blir saker",
+          "at arbeidsstatus og kontrollbehov kan legges fra seg"
+        ],
+        "cannot_grant": "Privat støtte kan ikke gi arbeidsfullmakt, økonomisk authority eller rett til å organisere andre mennesker som administrative objekter."
+      }
+    ],
+    "divergence_examples": [
+      "Å holde et bilag åpent til eier er bekreftet kan styrke accounting- og audit-standing samtidig som koordinering opplever mer synlig kø og høyere fristpress.",
+      "Å dokumentere en korrigert bestillingsreferanse kan styrke procurement- og audit-standing selv om en leder kortsiktig foretrekker den renere sluttstatusen uten historikk.",
+      "Å bruke Eiriks lokale forklaring som kontekst, men ikke godkjenning, kan styrke operations-standing samtidig som en fristpresset økonomifunksjon opplever mindre umiddelbar beslutningsklarhet.",
+      "Å eskalere gjentatte brukerfeil som systemproblem kan styrke office-leadership-standing og samtidig svekke kollegial komfort fordi den manuelle snarveien blir synlig.",
+      "Å erkjenne at en tidligere versjon ble brukt feil kan koste kortsiktig status for presisjon og samtidig styrke downstream audit-standing fordi reparasjonen kan spores.",
+      "Å la kvitteringen hjemme forbli uviktig kan redusere personens følelse av kontroll og samtidig styrke private-relations-standing fordi administrasjonsrollen holdes situert til arbeid."
+    ],
+    "authority_separation": "Audience-spesifikk standing kan aldri gi godkjenningsfullmakt, regnskaps- eller innkjøpsmyndighet, ledermandat, rett til å skjule avvik eller rett til å presentere antakelser som dokumenterte fakta; faktisk rolle, delegasjon, kilder og faggrense forblir authoritative.",
+    "rule": "Standing er audience-spesifikk og kan divergere mellom koordinering, økonomi, innkjøp, drift, ledelse, etterkontroll og privatliv uten global sosial score."
+  },
+  "cross_role_link": {
+    "status": "not_required_for_rollout",
+    "materialized": false,
+    "new_runtime": false,
+    "rule": "Cross-role is not required for this rollout. Nora, Marius, Lea and Eirik remain authored professional People contacts inside Administrasjonsmedarbeiderens canonical work world; no genuinely shared governed work object with a second Role World is introduced."
+  },
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Et bilag uten bekreftet eier tester om spilleren gjør usikkerhet synlig før fristen gjør en antakelse sosialt fristende. Morgenen etablerer grunnlag, eier og dagens kontrollspor før tempo og kø gjør en praktisk antakelse til fristende systemfakta. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/administrasjonsmedarbeider_job.json#job_administrasjonsmedarbeider_week1_voucher_without_owner"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 1, lunch: Et bilag uten bekreftet eier tester om spilleren gjør usikkerhet synlig før fristen gjør en antakelse sosialt fristende. Midt på dagen leser en annen aktør samme sak fra sitt faglige ståsted, slik at standing kan utvikle seg ulikt mellom publikum. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#administrasjonsmedarbeider_people_nora_handoff_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 1, afternoon: Et bilag uten bekreftet eier tester om spilleren gjør usikkerhet synlig før fristen gjør en antakelse sosialt fristende. Ettermiddagen krever en konkret registrering, korreksjon, eskalering eller handoff innen den myndigheten rollen faktisk har. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#administrasjonsmedarbeider_people_marius_documentation_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "decision",
+        "summary": "Dag 1, evening: Et bilag uten bekreftet eier tester om spilleren gjør usikkerhet synlig før fristen gjør en antakelse sosialt fristende. Kvelden viser forsinket eller privat kostnad og skiller profesjonell pålitelighet fra personlig verdi og formell authority. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/administrasjonsmedarbeider_conflict.json#conflict_administrasjonsmedarbeider_close_without_owner"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "relationship",
+        "summary": "Dag 2, morning: Nora trenger en sporbar handoff, og koordineringens standing skiller seg fra den formelle beslutningsmyndigheten som fortsatt ligger hos faktisk eier. Morgenen etablerer grunnlag, eier og dagens kontrollspor før tempo og kø gjør en praktisk antakelse til fristende systemfakta. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/administrasjonsmedarbeider_story.json#story_administrasjonsmedarbeider_which_version_became_truth"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "task",
+        "summary": "Dag 2, lunch: Nora trenger en sporbar handoff, og koordineringens standing skiller seg fra den formelle beslutningsmyndigheten som fortsatt ligger hos faktisk eier. Midt på dagen leser en annen aktør samme sak fra sitt faglige ståsted, slik at standing kan utvikle seg ulikt mellom publikum. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/administrasjonsmedarbeider_event.json#event_administrasjonsmedarbeider_system_down_before_deadline"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Nora trenger en sporbar handoff, og koordineringens standing skiller seg fra den formelle beslutningsmyndigheten som fortsatt ligger hos faktisk eier. Ettermiddagen krever en konkret registrering, korreksjon, eskalering eller handoff innen den myndigheten rollen faktisk har. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#personal_administrasjonsmedarbeider_week1_receipts_at_home"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "conversation",
+        "summary": "Dag 2, evening: Nora trenger en sporbar handoff, og koordineringens standing skiller seg fra den formelle beslutningsmyndigheten som fortsatt ligger hos faktisk eier. Kvelden viser forsinket eller privat kostnad og skiller profesjonell pålitelighet fra personlig verdi og formell authority. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/administrasjonsmedarbeider_job.json#job_administrasjonsmedarbeider_week1_voucher_without_owner"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 3, morning: Marius trenger dokumentert grunnlag, og økonomitillit bygges når praktisk sannsynlighet ikke får maskere evidensstatus. Morgenen etablerer grunnlag, eier og dagens kontrollspor før tempo og kø gjør en praktisk antakelse til fristende systemfakta. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#administrasjonsmedarbeider_people_nora_handoff_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "decision",
+        "summary": "Dag 3, lunch: Marius trenger dokumentert grunnlag, og økonomitillit bygges når praktisk sannsynlighet ikke får maskere evidensstatus. Midt på dagen leser en annen aktør samme sak fra sitt faglige ståsted, slik at standing kan utvikle seg ulikt mellom publikum. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#administrasjonsmedarbeider_people_marius_documentation_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "conversation",
+        "summary": "Dag 3, afternoon: Marius trenger dokumentert grunnlag, og økonomitillit bygges når praktisk sannsynlighet ikke får maskere evidensstatus. Ettermiddagen krever en konkret registrering, korreksjon, eskalering eller handoff innen den myndigheten rollen faktisk har. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/administrasjonsmedarbeider_conflict.json#conflict_administrasjonsmedarbeider_close_without_owner"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "social",
+        "summary": "Dag 3, evening: Marius trenger dokumentert grunnlag, og økonomitillit bygges når praktisk sannsynlighet ikke får maskere evidensstatus. Kvelden viser forsinket eller privat kostnad og skiller profesjonell pålitelighet fra personlig verdi og formell authority. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/administrasjonsmedarbeider_story.json#story_administrasjonsmedarbeider_which_version_became_truth"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "decision",
+        "summary": "Dag 4, morning: Lea viser at en korrekt sluttstatus fortsatt kan være et dårlig kontrollspor dersom selve rettelsen gjøres usynlig. Morgenen etablerer grunnlag, eier og dagens kontrollspor før tempo og kø gjør en praktisk antakelse til fristende systemfakta. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/administrasjonsmedarbeider_event.json#event_administrasjonsmedarbeider_system_down_before_deadline"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Lea viser at en korrekt sluttstatus fortsatt kan være et dårlig kontrollspor dersom selve rettelsen gjøres usynlig. Midt på dagen leser en annen aktør samme sak fra sitt faglige ståsted, slik at standing kan utvikle seg ulikt mellom publikum. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#personal_administrasjonsmedarbeider_week1_receipts_at_home"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "social",
+        "summary": "Dag 4, afternoon: Lea viser at en korrekt sluttstatus fortsatt kan være et dårlig kontrollspor dersom selve rettelsen gjøres usynlig. Ettermiddagen krever en konkret registrering, korreksjon, eskalering eller handoff innen den myndigheten rollen faktisk har. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/administrasjonsmedarbeider_job.json#job_administrasjonsmedarbeider_week1_voucher_without_owner"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 4, evening: Lea viser at en korrekt sluttstatus fortsatt kan være et dårlig kontrollspor dersom selve rettelsen gjøres usynlig. Kvelden viser forsinket eller privat kostnad og skiller profesjonell pålitelighet fra personlig verdi og formell authority. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#administrasjonsmedarbeider_people_nora_handoff_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "conversation",
+        "summary": "Dag 5, morning: Eiriks driftskontekst gjør saken forståelig uten å gjøre lokal kunnskap til økonomisk godkjenning. Morgenen etablerer grunnlag, eier og dagens kontrollspor før tempo og kø gjør en praktisk antakelse til fristende systemfakta. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#administrasjonsmedarbeider_people_marius_documentation_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 5, lunch: Eiriks driftskontekst gjør saken forståelig uten å gjøre lokal kunnskap til økonomisk godkjenning. Midt på dagen leser en annen aktør samme sak fra sitt faglige ståsted, slik at standing kan utvikle seg ulikt mellom publikum. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/administrasjonsmedarbeider_conflict.json#conflict_administrasjonsmedarbeider_close_without_owner"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "consequence",
+        "summary": "Dag 5, afternoon: Eiriks driftskontekst gjør saken forståelig uten å gjøre lokal kunnskap til økonomisk godkjenning. Ettermiddagen krever en konkret registrering, korreksjon, eskalering eller handoff innen den myndigheten rollen faktisk har. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/administrasjonsmedarbeider_story.json#story_administrasjonsmedarbeider_which_version_became_truth"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Eiriks driftskontekst gjør saken forståelig uten å gjøre lokal kunnskap til økonomisk godkjenning. Kvelden viser forsinket eller privat kostnad og skiller profesjonell pålitelighet fra personlig verdi og formell authority. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/administrasjonsmedarbeider_event.json#event_administrasjonsmedarbeider_system_down_before_deadline"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "social",
+        "summary": "Dag 6, morning: Fristpress gjør det sosialt attraktivt å lukke en nesten-avklart sak, mens god administrasjon holder manglende ansvar synlig. Morgenen etablerer grunnlag, eier og dagens kontrollspor før tempo og kø gjør en praktisk antakelse til fristende systemfakta. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#personal_administrasjonsmedarbeider_week1_receipts_at_home"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "consequence",
+        "summary": "Dag 6, lunch: Fristpress gjør det sosialt attraktivt å lukke en nesten-avklart sak, mens god administrasjon holder manglende ansvar synlig. Midt på dagen leser en annen aktør samme sak fra sitt faglige ståsted, slik at standing kan utvikle seg ulikt mellom publikum. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/administrasjonsmedarbeider_job.json#job_administrasjonsmedarbeider_week1_voucher_without_owner"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, afternoon: Fristpress gjør det sosialt attraktivt å lukke en nesten-avklart sak, mens god administrasjon holder manglende ansvar synlig. Ettermiddagen krever en konkret registrering, korreksjon, eskalering eller handoff innen den myndigheten rollen faktisk har. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#administrasjonsmedarbeider_people_nora_handoff_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "info",
+        "summary": "Dag 6, evening: Fristpress gjør det sosialt attraktivt å lukke en nesten-avklart sak, mens god administrasjon holder manglende ansvar synlig. Kvelden viser forsinket eller privat kostnad og skiller profesjonell pålitelighet fra personlig verdi og formell authority. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#administrasjonsmedarbeider_people_marius_documentation_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "consequence",
+        "summary": "Dag 7, morning: En gammel dokumentversjon har blitt behandlet som sannhet, og spilleren må reparere både filen og sporene den allerede har satt. Morgenen etablerer grunnlag, eier og dagens kontrollspor før tempo og kø gjør en praktisk antakelse til fristende systemfakta. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/administrasjonsmedarbeider_conflict.json#conflict_administrasjonsmedarbeider_close_without_owner"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, lunch: En gammel dokumentversjon har blitt behandlet som sannhet, og spilleren må reparere både filen og sporene den allerede har satt. Midt på dagen leser en annen aktør samme sak fra sitt faglige ståsted, slik at standing kan utvikle seg ulikt mellom publikum. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/administrasjonsmedarbeider_story.json#story_administrasjonsmedarbeider_which_version_became_truth"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "info",
+        "summary": "Dag 7, afternoon: En gammel dokumentversjon har blitt behandlet som sannhet, og spilleren må reparere både filen og sporene den allerede har satt. Ettermiddagen krever en konkret registrering, korreksjon, eskalering eller handoff innen den myndigheten rollen faktisk har. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/administrasjonsmedarbeider_event.json#event_administrasjonsmedarbeider_system_down_before_deadline"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "relationship",
+        "summary": "Dag 7, evening: En gammel dokumentversjon har blitt behandlet som sannhet, og spilleren må reparere både filen og sporene den allerede har satt. Kvelden viser forsinket eller privat kostnad og skiller profesjonell pålitelighet fra personlig verdi og formell authority. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#personal_administrasjonsmedarbeider_week1_receipts_at_home"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, morning: Et systemavvik flytter arbeidet til midlertidige flater, og tillit avhenger av om kontrollsporet kan rekonstrueres etterpå. Morgenen etablerer grunnlag, eier og dagens kontrollspor før tempo og kø gjør en praktisk antakelse til fristende systemfakta. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/administrasjonsmedarbeider_job.json#job_administrasjonsmedarbeider_week1_voucher_without_owner"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "info",
+        "summary": "Dag 8, lunch: Et systemavvik flytter arbeidet til midlertidige flater, og tillit avhenger av om kontrollsporet kan rekonstrueres etterpå. Midt på dagen leser en annen aktør samme sak fra sitt faglige ståsted, slik at standing kan utvikle seg ulikt mellom publikum. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#administrasjonsmedarbeider_people_nora_handoff_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "relationship",
+        "summary": "Dag 8, afternoon: Et systemavvik flytter arbeidet til midlertidige flater, og tillit avhenger av om kontrollsporet kan rekonstrueres etterpå. Ettermiddagen krever en konkret registrering, korreksjon, eskalering eller handoff innen den myndigheten rollen faktisk har. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#administrasjonsmedarbeider_people_marius_documentation_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "task",
+        "summary": "Dag 8, evening: Et systemavvik flytter arbeidet til midlertidige flater, og tillit avhenger av om kontrollsporet kan rekonstrueres etterpå. Kvelden viser forsinket eller privat kostnad og skiller profesjonell pålitelighet fra personlig verdi og formell authority. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/administrasjonsmedarbeider_conflict.json#conflict_administrasjonsmedarbeider_close_without_owner"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Gjentatte små feil gjør det fristende å rydde manuelt, men profesjonell standing kan kreve at prosessproblemet gjøres synlig for ledelsen. Morgenen etablerer grunnlag, eier og dagens kontrollspor før tempo og kø gjør en praktisk antakelse til fristende systemfakta. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/administrasjonsmedarbeider_story.json#story_administrasjonsmedarbeider_which_version_became_truth"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 9, lunch: Gjentatte små feil gjør det fristende å rydde manuelt, men profesjonell standing kan kreve at prosessproblemet gjøres synlig for ledelsen. Midt på dagen leser en annen aktør samme sak fra sitt faglige ståsted, slik at standing kan utvikle seg ulikt mellom publikum. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/administrasjonsmedarbeider_event.json#event_administrasjonsmedarbeider_system_down_before_deadline"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 9, afternoon: Gjentatte små feil gjør det fristende å rydde manuelt, men profesjonell standing kan kreve at prosessproblemet gjøres synlig for ledelsen. Ettermiddagen krever en konkret registrering, korreksjon, eskalering eller handoff innen den myndigheten rollen faktisk har. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#personal_administrasjonsmedarbeider_week1_receipts_at_home"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "decision",
+        "summary": "Dag 9, evening: Gjentatte små feil gjør det fristende å rydde manuelt, men profesjonell standing kan kreve at prosessproblemet gjøres synlig for ledelsen. Kvelden viser forsinket eller privat kostnad og skiller profesjonell pålitelighet fra personlig verdi og formell authority. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/administrasjonsmedarbeider_job.json#job_administrasjonsmedarbeider_week1_voucher_without_owner"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "relationship",
+        "summary": "Dag 10, morning: Kollegial lojalitet, service og kontroll trekker i ulike retninger når en rask løsning vil gjøre en annens manglende avklaring usynlig. Morgenen etablerer grunnlag, eier og dagens kontrollspor før tempo og kø gjør en praktisk antakelse til fristende systemfakta. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#administrasjonsmedarbeider_people_nora_handoff_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "task",
+        "summary": "Dag 10, lunch: Kollegial lojalitet, service og kontroll trekker i ulike retninger når en rask løsning vil gjøre en annens manglende avklaring usynlig. Midt på dagen leser en annen aktør samme sak fra sitt faglige ståsted, slik at standing kan utvikle seg ulikt mellom publikum. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#administrasjonsmedarbeider_people_marius_documentation_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Kollegial lojalitet, service og kontroll trekker i ulike retninger når en rask løsning vil gjøre en annens manglende avklaring usynlig. Ettermiddagen krever en konkret registrering, korreksjon, eskalering eller handoff innen den myndigheten rollen faktisk har. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/administrasjonsmedarbeider_conflict.json#conflict_administrasjonsmedarbeider_close_without_owner"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "conversation",
+        "summary": "Dag 10, evening: Kollegial lojalitet, service og kontroll trekker i ulike retninger når en rask løsning vil gjøre en annens manglende avklaring usynlig. Kvelden viser forsinket eller privat kostnad og skiller profesjonell pålitelighet fra personlig verdi og formell authority. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/administrasjonsmedarbeider_story.json#story_administrasjonsmedarbeider_which_version_became_truth"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 11, morning: Etterkontroll viser at den som kommer senere vurderer arbeidet ut fra rekonstruerbarhet, ikke ut fra hvor ryddig saken så ut ved lukking. Morgenen etablerer grunnlag, eier og dagens kontrollspor før tempo og kø gjør en praktisk antakelse til fristende systemfakta. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/administrasjonsmedarbeider_event.json#event_administrasjonsmedarbeider_system_down_before_deadline"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "decision",
+        "summary": "Dag 11, lunch: Etterkontroll viser at den som kommer senere vurderer arbeidet ut fra rekonstruerbarhet, ikke ut fra hvor ryddig saken så ut ved lukking. Midt på dagen leser en annen aktør samme sak fra sitt faglige ståsted, slik at standing kan utvikle seg ulikt mellom publikum. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#personal_administrasjonsmedarbeider_week1_receipts_at_home"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "conversation",
+        "summary": "Dag 11, afternoon: Etterkontroll viser at den som kommer senere vurderer arbeidet ut fra rekonstruerbarhet, ikke ut fra hvor ryddig saken så ut ved lukking. Ettermiddagen krever en konkret registrering, korreksjon, eskalering eller handoff innen den myndigheten rollen faktisk har. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/administrasjonsmedarbeider_job.json#job_administrasjonsmedarbeider_week1_voucher_without_owner"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "social",
+        "summary": "Dag 11, evening: Etterkontroll viser at den som kommer senere vurderer arbeidet ut fra rekonstruerbarhet, ikke ut fra hvor ryddig saken så ut ved lukking. Kvelden viser forsinket eller privat kostnad og skiller profesjonell pålitelighet fra personlig verdi og formell authority. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#administrasjonsmedarbeider_people_nora_handoff_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "decision",
+        "summary": "Dag 12, morning: Ledelsen ønsker beslutningsklare tall, mens spilleren må skille dokumentert fakta, estimat og fortsatt usikkerhet uten å kjøpe status med sikker tone. Morgenen etablerer grunnlag, eier og dagens kontrollspor før tempo og kø gjør en praktisk antakelse til fristende systemfakta. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#administrasjonsmedarbeider_people_marius_documentation_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Ledelsen ønsker beslutningsklare tall, mens spilleren må skille dokumentert fakta, estimat og fortsatt usikkerhet uten å kjøpe status med sikker tone. Midt på dagen leser en annen aktør samme sak fra sitt faglige ståsted, slik at standing kan utvikle seg ulikt mellom publikum. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/administrasjonsmedarbeider_conflict.json#conflict_administrasjonsmedarbeider_close_without_owner"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "social",
+        "summary": "Dag 12, afternoon: Ledelsen ønsker beslutningsklare tall, mens spilleren må skille dokumentert fakta, estimat og fortsatt usikkerhet uten å kjøpe status med sikker tone. Ettermiddagen krever en konkret registrering, korreksjon, eskalering eller handoff innen den myndigheten rollen faktisk har. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/administrasjonsmedarbeider_story.json#story_administrasjonsmedarbeider_which_version_became_truth"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 12, evening: Ledelsen ønsker beslutningsklare tall, mens spilleren må skille dokumentert fakta, estimat og fortsatt usikkerhet uten å kjøpe status med sikker tone. Kvelden viser forsinket eller privat kostnad og skiller profesjonell pålitelighet fra personlig verdi og formell authority. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/administrasjonsmedarbeider_event.json#event_administrasjonsmedarbeider_system_down_before_deadline"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "conversation",
+        "summary": "Dag 13, morning: Arbeidsspråket begynner å lekke hjem, og privat standing bedres når personen kan la kvitteringer, åpne punkter og oppfølgingslogikk bli igjen på jobb. Morgenen etablerer grunnlag, eier og dagens kontrollspor før tempo og kø gjør en praktisk antakelse til fristende systemfakta. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#personal_administrasjonsmedarbeider_week1_receipts_at_home"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 13, lunch: Arbeidsspråket begynner å lekke hjem, og privat standing bedres når personen kan la kvitteringer, åpne punkter og oppfølgingslogikk bli igjen på jobb. Midt på dagen leser en annen aktør samme sak fra sitt faglige ståsted, slik at standing kan utvikle seg ulikt mellom publikum. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/administrasjonsmedarbeider_job.json#job_administrasjonsmedarbeider_week1_voucher_without_owner"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "consequence",
+        "summary": "Dag 13, afternoon: Arbeidsspråket begynner å lekke hjem, og privat standing bedres når personen kan la kvitteringer, åpne punkter og oppfølgingslogikk bli igjen på jobb. Ettermiddagen krever en konkret registrering, korreksjon, eskalering eller handoff innen den myndigheten rollen faktisk har. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#administrasjonsmedarbeider_people_nora_handoff_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Arbeidsspråket begynner å lekke hjem, og privat standing bedres når personen kan la kvitteringer, åpne punkter og oppfølgingslogikk bli igjen på jobb. Kvelden viser forsinket eller privat kostnad og skiller profesjonell pålitelighet fra personlig verdi og formell authority. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#administrasjonsmedarbeider_people_marius_documentation_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "social",
+        "summary": "Dag 14, morning: Moden administrativ tillit betyr å tåle synlig uferdighet, rette tidligere spor og overlevere ansvar uten å gjøre pålitelighet til uformell fullmakt. Morgenen etablerer grunnlag, eier og dagens kontrollspor før tempo og kø gjør en praktisk antakelse til fristende systemfakta. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/administrasjonsmedarbeider_conflict.json#conflict_administrasjonsmedarbeider_close_without_owner"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "consequence",
+        "summary": "Dag 14, lunch: Moden administrativ tillit betyr å tåle synlig uferdighet, rette tidligere spor og overlevere ansvar uten å gjøre pålitelighet til uformell fullmakt. Midt på dagen leser en annen aktør samme sak fra sitt faglige ståsted, slik at standing kan utvikle seg ulikt mellom publikum. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/administrasjonsmedarbeider_story.json#story_administrasjonsmedarbeider_which_version_became_truth"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, afternoon: Moden administrativ tillit betyr å tåle synlig uferdighet, rette tidligere spor og overlevere ansvar uten å gjøre pålitelighet til uformell fullmakt. Ettermiddagen krever en konkret registrering, korreksjon, eskalering eller handoff innen den myndigheten rollen faktisk har. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/administrasjonsmedarbeider_event.json#event_administrasjonsmedarbeider_system_down_before_deadline"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "info",
+        "summary": "Dag 14, evening: Moden administrativ tillit betyr å tåle synlig uferdighet, rette tidligere spor og overlevere ansvar uten å gjøre pålitelighet til uformell fullmakt. Kvelden viser forsinket eller privat kostnad og skiller profesjonell pålitelighet fra personlig verdi og formell authority. Standing er audience-spesifikk redaksjonell tolkning og kan styrkes hos én gruppe samtidig som den svekkes hos en annen; den kan aldri gi godkjenningsfullmakt, endre fagansvar eller gjøre antakelser til dokumenterte fakta.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#personal_administrasjonsmedarbeider_week1_receipts_at_home"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "ownership_and_handoff",
+      "beat_refs": [
+        "1/morning",
+        "2/lunch",
+        "6/afternoon",
+        "9/lunch",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "documentation_and_evidence",
+      "beat_refs": [
+        "1/afternoon",
+        "3/lunch",
+        "6/morning",
+        "11/afternoon",
+        "12/morning",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "version_and_reconstructability",
+      "beat_refs": [
+        "4/afternoon",
+        "7/morning",
+        "7/afternoon",
+        "10/lunch",
+        "11/lunch",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "system_deadline_and_control",
+      "beat_refs": [
+        "5/morning",
+        "8/morning",
+        "8/afternoon",
+        "9/afternoon",
+        "12/afternoon",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "situated_standing_and_private_boundary",
+      "beat_refs": [
+        "2/evening",
+        "5/evening",
+        "10/evening",
+        "12/evening",
+        "13/evening",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "kvoittering_hjem",
+      "beat_refs": [
+        "1/evening",
+        "3/evening"
+      ],
+      "meaning": "Administrasjonsblikket må kunne stoppe før private kvitteringer blir kontrollobjekter."
+    },
+    {
+      "id": "aapne_punkter_hjem",
+      "beat_refs": [
+        "5/evening",
+        "6/evening"
+      ],
+      "meaning": "Uferdige saker kan få riktig neste eier uten å bli mentalt beholdt som privat ansvar."
+    },
+    {
+      "id": "versjon_hjem",
+      "beat_refs": [
+        "7/evening",
+        "11/evening"
+      ],
+      "meaning": "En synlig feilretting er profesjonell reparasjon, ikke en total dom over personens verdi."
+    },
+    {
+      "id": "frist_hjem",
+      "beat_refs": [
+        "8/evening",
+        "12/evening"
+      ],
+      "meaning": "Fristpress kan legges fra seg når kontrollsporet faktisk er bevart og ansvar er overlevert."
+    },
+    {
+      "id": "slutt_hjem",
+      "beat_refs": [
+        "13/evening",
+        "14/evening"
+      ],
+      "meaning": "Moden administrativ standing innebærer å kunne være pålitelig på jobb uten å organisere privatlivet som en sakskø."
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "owner_return",
+      "setup_ref": "1/morning",
+      "return_ref": "6/afternoon",
+      "meaning": "Tidlig synliggjøring av manglende eier avgjør senere om fristpress kan håndteres uten å skjule ansvar."
+    },
+    {
+      "id": "handoff_return",
+      "setup_ref": "2/lunch",
+      "return_ref": "9/lunch",
+      "meaning": "Noras første handoff-standard kommer tilbake når flere saker konkurrerer om samme frist."
+    },
+    {
+      "id": "documentation_return",
+      "setup_ref": "3/lunch",
+      "return_ref": "11/afternoon",
+      "meaning": "Marius sin dokumentasjonsgrense avgjør om senere etterkontroll kan rekonstruere beslutningen."
+    },
+    {
+      "id": "version_return",
+      "setup_ref": "4/afternoon",
+      "return_ref": "11/lunch",
+      "meaning": "En tidlig korrigeringspraksis avgjør om versjonshistorien senere kan repareres uten ny usikkerhet."
+    },
+    {
+      "id": "system_return",
+      "setup_ref": "8/morning",
+      "return_ref": "12/afternoon",
+      "meaning": "Midlertidig logging under systemsvikt avgjør om fristarbeidet senere kan rekonsilieres."
+    },
+    {
+      "id": "reputation_return",
+      "setup_ref": "10/lunch",
+      "return_ref": "14/afternoon",
+      "meaning": "Audience-spesifikk standing kommer tilbake ved slutt-handoff uten å bli global authority."
+    }
+  ],
+  "employment_conditions": [
+    "Administrativt arbeid forutsetter faktisk stilling eller oppdrag; Badge-poeng alene gir ingen jobb eller fullmakt.",
+    "Frister, arbeidstid, systemtilgang og kontrollansvar er rolle-eid redaksjonelt stoff og ikke nye globale runtimefelt.",
+    "Utvidet godkjennings-, innkjøps- eller ledermyndighet krever faktisk delegasjon og kan ikke materialiseres gjennom omdømme eller pålitelighet."
+  ],
+  "professional_culture": [
+    "God administrasjon gjør usikkerhet, feil og ansvar synlig nok til at andre kan handle uten å måtte stole på personhukommelse.",
+    "Kollegial service må ikke gjøre kontrollsporet svakere eller flytte fagansvar til den som bare koordinerer.",
+    "Korreksjon behandles som profesjonell læring når den bevarer kilde, tidligere feil og begrunnelse for endringen."
+  ],
+  "materialization": {
+    "authored_dimensions": [
+      "situated_reputation"
+    ],
+    "no_new_runtime": true,
+    "existing_plan_preserved": true,
+    "existing_role_model_preserved": true,
+    "existing_work_grammar_preserved": true,
+    "existing_persistent_work_preserved": true,
+    "existing_rhythm_preserved": true,
+    "cross_role_link_materialized": false,
+    "source_refs": [
+      "data/Civication/mailFamilies/naeringsliv/job/administrasjonsmedarbeider_job.json#job_administrasjonsmedarbeider_week1_voucher_without_owner",
+      "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#administrasjonsmedarbeider_people_nora_handoff_001",
+      "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#administrasjonsmedarbeider_people_marius_documentation_001",
+      "data/Civication/mailFamilies/naeringsliv/conflict/administrasjonsmedarbeider_conflict.json#conflict_administrasjonsmedarbeider_close_without_owner",
+      "data/Civication/mailFamilies/naeringsliv/story/administrasjonsmedarbeider_story.json#story_administrasjonsmedarbeider_which_version_became_truth",
+      "data/Civication/mailFamilies/naeringsliv/event/administrasjonsmedarbeider_event.json#event_administrasjonsmedarbeider_system_down_before_deadline",
+      "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json#personal_administrasjonsmedarbeider_week1_receipts_at_home"
+    ]
+  }
+}
