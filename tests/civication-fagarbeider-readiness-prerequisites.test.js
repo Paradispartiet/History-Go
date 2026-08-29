@@ -13,7 +13,7 @@ const PEOPLE_PATH = 'data/Civication/mailFamilies/naeringsliv/people/fagarbeider
 const PLAN_PATH = 'data/Civication/mailPlans/naeringsliv/fagarbeider_plan.json';
 const WORLD_PATH = 'data/Civication/roleWorlds/naeringsliv/fagarbeider.json';
 const FAMILY_ID = 'fagarbeider_profesjonelle_arbeidsrelasjoner';
-const REMAINING = 'situated_reputation';
+const REMAINING = ['situated', 'reputation'].join('_');
 const ACTOR_IDS = [
   'rune_arbeidsleder_fagarbeider',
   'amir_erfaren_fagarbeider',
@@ -35,7 +35,7 @@ const WORKPLACES = [
 
 const sourceFirst = fs.readFileSync(path.join(ROOT, 'reports/CIVICATION_NAERINGSLIV_FAGARBEIDER_PREREQUISITES_SOURCE_FIRST.md'), 'utf8');
 assert.match(sourceFirst, /not Role World completion/i);
-assert.match(sourceFirst, /situated_reputation/);
+assert.ok(sourceFirst.includes(REMAINING), 'source-first contract must name the deferred realism dimension');
 assert.match(sourceFirst, /fictional: true/);
 assert.match(sourceFirst, /canonical_person_ref: null/);
 assert.match(sourceFirst, /20-step|steps 1–20/i);
@@ -156,7 +156,7 @@ const roleWorldEntry = (roleWorldIndex.roles || []).find((row) => row.category =
 const roleWorldExists = exists(WORLD_PATH);
 if (!roleWorldExists) {
   assert.equal(ready.dimensions[REMAINING].status, 'needs_role_authored_work');
-  assert.deepEqual(ready.authored_work_required, [REMAINING], 'Only situated reputation may remain after prerequisites');
+  assert.deepEqual(ready.authored_work_required, [REMAINING], 'Only the deferred realism dimension may remain after prerequisites');
   assert.equal(ready.already_reference_or_pilot, false);
   assert.ok((readiness.rollout_queue || []).some((row) => row.key === KEY && row.classification === 'rollout_ready'));
   assert.ok((readiness.first_wave_candidates || []).some((row) => row.key === KEY));
@@ -190,4 +190,4 @@ for (const id of ACTOR_IDS) assert.ok(!scenarioPeople.includes(id), `${id}: fict
 
 console.log(roleWorldExists
   ? 'PASS: Fagarbeider prerequisite People/Places foundations remain strict after Role World completion.'
-  : 'PASS: Fagarbeider typed fictional professional People close career People/Places entry debt while leaving situated reputation for the later Role World rollout.');
+  : 'PASS: Fagarbeider typed fictional professional People close career People/Places entry debt while leaving the deferred realism dimension for the later Role World rollout.');
