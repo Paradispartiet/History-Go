@@ -1,4 +1,4 @@
-name: Fagverk Psykologi test diagnostic
+name: Fagverk Psykologi route regenerate probe
 
 on:
   pull_request:
@@ -8,7 +8,9 @@ on:
       - 'scripts/audit-fagverk-psykologi-*.mjs'
       - 'tests/fagverk-psykologi-*.test.mjs'
       - 'tests/psykologi-theory-integrity.test.mjs'
+      - 'reports/fagverk/psykologi-phase3-audit.json'
       - 'reports/fagverk/general-engine-audit.json'
+      - '_tmp-psykologi-test-failure.txt'
       - '.github/workflows/_tmp-fagverk-psykologi-test-diagnostic.yml'
   workflow_dispatch:
 
@@ -16,7 +18,7 @@ permissions:
   contents: write
 
 jobs:
-  diagnose:
+  regenerate-and-clean:
     if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
@@ -27,19 +29,23 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: '24'
-      - name: Reproduce shared pre-test state
+      - name: Normalize shared portal projection
         run: |
-          node scripts/audit-fagverk-subject-inventory.mjs --write-report
+          node tools/materialize-subkultur-runtime-v1.mjs --write
+          node tools/materialize-subkultur-runtime-v1.mjs --check
+      - name: Regenerate route-sensitive reports
+        run: |
+          node scripts/audit-fagverk-psykologi-phase3.mjs --write-report
+          node scripts/audit-fagverk-psykologi-phase3.mjs
           node scripts/audit-fagverk-general-engine.mjs --write-report
-          node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
-          node scripts/build-fagverk-release-manifest.mjs --check
-      - name: Find first failing Psykologi test
+      - name: Verify Psykologi stub equivalence and release
         run: |
-          if [ -f _tmp-psykologi-test-failure.txt ]; then
-            cat _tmp-psykologi-test-failure.txt
-            exit 1
-          fi
+          node scripts/audit-fagverk-psykologi-legacy-stub.mjs
+          node scripts/audit-fagverk-badge-equivalence.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Run existing Psykologi contract tests
+        run: |
           tests=(
             tests/fagverk-subject-inventory.test.mjs
             tests/fagverk-general-engine.test.mjs
@@ -64,20 +70,21 @@ jobs:
             tests/fagverk-psykologi-metadata-monotonic.test.mjs
             tests/fagverk-psykologi-university-readiness.test.mjs
             tests/fagverk-release-manifest.test.mjs
+            tests/fagverk-psykologi-legacy-stub-retirement.test.mjs
+            tests/fagverk-badge-equivalence.test.mjs
           )
           for test_file in "${tests[@]}"; do
             echo "=== $test_file ==="
-            if ! node --test "$test_file" > /tmp/psykologi-test.log 2>&1; then
-              {
-                echo "FAILED_TEST=$test_file"
-                tail -n 100 /tmp/psykologi-test.log
-              } > _tmp-psykologi-test-failure.txt
-              git config user.name 'github-actions[bot]'
-              git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-              git add _tmp-psykologi-test-failure.txt
-              git commit -m 'Record Psykologi test diagnostic'
-              git push origin HEAD:${{ github.event.pull_request.head.ref }}
-              exit 1
-            fi
+            node --test "$test_file"
           done
-          echo 'All existing Psykologi tests passed.'
+      - name: Commit generated projections and remove probe
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -f _tmp-psykologi-test-failure.txt
+          rm .github/workflows/_tmp-fagverk-psykologi-test-diagnostic.yml
+          git add data/fagverk/fagverk_portal.json reports/fagverk/psykologi-phase3-audit.json reports/fagverk/general-engine-audit.json .github/workflows/_tmp-fagverk-psykologi-test-diagnostic.yml
+          git add -u -- _tmp-psykologi-test-failure.txt || true
+          git diff --cached --quiet && exit 0
+          git commit -m 'Regenerate Psykologi route audits'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
