@@ -1,0 +1,2100 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "politikk",
+  "targetId": "stortinget",
+  "profile": "major_8x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1170,
+    "selection_sha256": "110fa1cf97ec000472d2e3efe038e522535540daadd7b07e1e263b0f7137022f",
+    "category_id": "politikk",
+    "target_id": "stortinget"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/politikk/politikkpensum_canonical_v4_5.json",
+      "bytes": 106999,
+      "sha256": "391418e064d0d6c01e25c8ceb605fe1ae48d9fae3e9ccdd5e3091897e185a5a0",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+      "bytes": 1205851,
+      "sha256": "0711d942ab833490f4914d7ed472a99741021bb5fce76dfb90fea573794aaa1f",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+      "bytes": 1099481,
+      "sha256": "5a81d0d09ac89093705b6343f8de09d2565ca00e2086a354caa7f652f0ef63c7",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+      "bytes": 663993,
+      "sha256": "7bd3829f922e9e96d2e5cbe2cf3e901f80dea68b9c6215aa4a0eb2137125dc24",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/politikk/supersetQUIZMAL_politikk.json",
+      "bytes": 17236,
+      "sha256": "47609c9599cdffdf53702152ca3ebf071571cbfa131e1f9a89703964546476de",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 16882,
+      "sha256": "60804db1e587faae822930a800cfebac7966fa7e009778d46d94d1f28e02545e",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/politikk/stortinget.json",
+      "bytes": 27669,
+      "sha256": "e0463ccb6bf6689425720e0b94c718187ee57e30e869bd754378d0ea84bafde5"
+    },
+    "target": {
+      "path": "data/places/politikk/oslo/places_politikk/stortinget.json",
+      "bytes": 17723,
+      "sha256": "27e2f4ddc108865841d9e45b7de399e83eb16a7e41741057f4f30dd552437497"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1345,
+      "selection_sha256": "ed1d658cdfa1691e0af7f2cb94d60d964b5ced3b620fd50ad2e39bb63cbd4f9a"
+    },
+    "relations": [
+      {
+        "path": "data/relations.json",
+        "matches": 9,
+        "selection_bytes": 1916,
+        "selection_sha256": "9439bd3ab354481936a801b3944931f7d870a942480a2088066a1ad837981d62"
+      }
+    ],
+    "stories": [
+      {
+        "path": "data/stories/stories_stortinget.json",
+        "matches": 4,
+        "selection_bytes": 13211,
+        "selection_sha256": "70a5550b80b759cda9e984c5cc197dd8edf1631be1b9411ff6890b336d2db5bb"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/politikk/stortinget_sets.json",
+  "source_registry": {
+    "stortinget_main": {
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Stortinget – Stortinget og demokratiet"
+    },
+    "stortinget_short": {
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Storting-og-regjering/kort-om-stortinget/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Stortinget – Kort om Stortinget"
+    },
+    "stortinget_building": {
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Historikk/stortingsbygningen/om-stortingsbygningen/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Stortinget – Om stortingsbygningen"
+    },
+    "stortinget_opening": {
+      "url": "https://stortinget.no/no/Stortinget-og-demokratiet/Historikk/stortingsbygningen/om-stortingsbygningen/hoytidelig-og-lystig-innvielse-5.-mars-1866/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Stortinget – Innvielsen 5. mars 1866"
+    },
+    "stortinget_langlet": {
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Historikk/stortinget-og-unionen-med-sverige/i-unionen/en-svenske-bygger-stortingets-hus/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Stortinget – En svenske bygger Stortingets hus"
+    },
+    "stortinget_laws": {
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Arbeidet/Lovarbeidet/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Stortinget – Lovarbeidet"
+    },
+    "stortinget_budget": {
+      "url": "https://www.stortinget.no/no/stortinget-og-demokratiet/arbeidet/budsjettarbeidet/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Stortinget – Budsjettarbeidet"
+    },
+    "stortinget_control": {
+      "url": "https://www.stortinget.no/no/stortinget-og-demokratiet/arbeidet/kontrollvirksomheten/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Stortinget – Kontrollvirksomheten"
+    },
+    "stortinget_voting": {
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Arbeidet/Voteringer/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Stortinget – Voteringer"
+    },
+    "stortinget_procedure": {
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Lover-og-instrukser/forretningsorden/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Stortinget – Forretningsordenen"
+    },
+    "stortinget_anna": {
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/kvinner-pa-stortinget/Anna-Rogstad/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Stortinget – Anna Rogstad"
+    },
+    "stortinget_suffrage": {
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Historikk/kvinnestemmerett/stemmerettskampen-18901913/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Stortinget – Stemmerettskampen 1890–1913"
+    },
+    "stortinget_oath": {
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Storting-og-regjering/kongens-edsavleggelse-i-stortinget",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Stortinget – Kongens edsavleggelse"
+    },
+    "stortinget_lions": {
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Historikk/stortingsbygningen/om-stortingsbygningen/stortingslovene/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Stortinget – Stortingsløvene"
+    },
+    "stortinget_lion_art": {
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Galleri/nettgalleri/?mid=STO.K.04782",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Stortingets kunstsamling – Stortingsløvene II"
+    },
+    "stortinget_identity": {
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/stortingets-designhandbok/introduksjon/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Stortinget – Designhåndboken"
+    },
+    "commons_front": {
+      "url": "https://commons.wikimedia.org/wiki/File:The_front_entrance_of_Stortinget_(2021).jpg",
+      "source_type": "archive",
+      "review_status": "reviewed",
+      "review_note": "Wikimedia Commons – inngangen til Stortinget"
+    },
+    "commons_anna": {
+      "url": "https://commons.wikimedia.org/wiki/File:Anna_Rogstad_(Oslo_Museum).jpg",
+      "source_type": "archive",
+      "review_status": "reviewed",
+      "review_note": "Oslo Museum via Wikimedia Commons – Anna Rogstad"
+    },
+    "commons_lion": {
+      "url": "https://commons.wikimedia.org/wiki/File:L%C3%B8ve_2_ved_l%C3%B8vebakken_stortinget.jpg",
+      "source_type": "archive",
+      "review_status": "reviewed",
+      "review_note": "Wikimedia Commons – stortingsløve"
+    },
+    "commons_oath": {
+      "url": "https://commons.wikimedia.org/wiki/File:1905_swearing_in_of_Haakon_VII.jpg",
+      "source_type": "archive",
+      "review_status": "reviewed",
+      "review_note": "Norsk Folkemuseum via Wikimedia Commons – Haakon VIIs ed"
+    },
+    "commons_coat": {
+      "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_the_Storting.svg",
+      "source_type": "archive",
+      "review_status": "reviewed",
+      "review_note": "Wikimedia Commons – Stortingets riksvåpen"
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/politikk/stortinget_sets.json",
+      "data/places/politikk/oslo/places_politikk/stortinget.json"
+    ],
+    "active_before": {
+      "file": null,
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen manifest-lastet canonical Stortinget-quiz fantes."
+    },
+    "decisions": {
+      "keep_as_claim_basis": [],
+      "rewrite": "Ny kildegjennomgått 8×7-progresjon.",
+      "move": [],
+      "remove": []
+    },
+    "knowledge_migration": "Canonical Knowledge bygges fra den nye påstandsbanken med 56 unike enheter."
+  },
+  "profile_decision": {
+    "profile": "major",
+    "set_count": 8,
+    "questions_per_set": 7,
+    "justification": "Stortinget krever åtte selvstendige læringsjobber: bygg og hovedoppgaver, representasjonshistorie, lovsak, budsjett og kontroll, parlamentariske roller, offentlighet, symbol/ritual og kildekritisk syntese."
+  },
+  "held_back_candidates": [
+    "Før/etter-modul: ingen kildepar med sikkert sammenlignbart ståsted.",
+    "Eget teorisett: teori bindes bare i siste spørsmål for å bevare stedskunnskap i åpningen.",
+    "Dagsaktuelle representanter og flertall: holdes ute fordi de endres mellom valg og ikke trengs for varig institusjonsforståelse.",
+    "Politiske virkninger: vedtak og prosess er dokumentert, men utfall krever egne data."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 13,
+      "emner": 123,
+      "topic_hooks": 152,
+      "methods": 71
+    },
+    "candidate_emner": [
+      {
+        "id": "em_pol_demokrati_representasjon",
+        "title": "Demokrati og representasjon",
+        "score": 125
+      },
+      {
+        "id": "em_pol_mediert_offentlighet",
+        "title": "Mediert politisk offentlighet",
+        "score": 125
+      },
+      {
+        "id": "em_pol_parlamentarisme_maktbalanse",
+        "title": "Parlamentarisme og maktbalanse",
+        "score": 125
+      },
+      {
+        "id": "em_pol_administrativ_makt",
+        "title": "Administrativ makt",
+        "score": 25
+      },
+      {
+        "id": "em_pol_allianser_avskrekking",
+        "title": "Allianser og avskrekking",
+        "score": 25
+      },
+      {
+        "id": "em_pol_arbeidsliv_kollektiv_kamp",
+        "title": "Arbeidsliv og kollektiv kamp",
+        "score": 25
+      },
+      {
+        "id": "em_pol_budsjett_prioritering",
+        "title": "Budsjett og prioritering",
+        "score": 25
+      },
+      {
+        "id": "em_pol_byrakrati_forvaltning",
+        "title": "Byråkrati og forvaltning",
+        "score": 25
+      },
+      {
+        "id": "em_pol_desentralisering_flerniva",
+        "title": "Desentralisering og flernivåstyring",
+        "score": 25
+      },
+      {
+        "id": "em_pol_domstoler_rettspraksis",
+        "title": "Domstoler og rettspraksis",
+        "score": 25
+      },
+      {
+        "id": "em_pol_forvaltning_ressursfordeling",
+        "title": "Forvaltning og ressursfordeling",
+        "score": 25
+      },
+      {
+        "id": "em_pol_globale_utfordringer",
+        "title": "Globale og transnasjonale utfordringer",
+        "score": 25
+      },
+      {
+        "id": "em_pol_hverdagslivets_regler",
+        "title": "Hverdagslivets regler",
+        "score": 25
+      },
+      {
+        "id": "em_pol_ideologi_konfliktlinjer",
+        "title": "Ideologi og konfliktlinjer",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonell_endring",
+        "title": "Institusjonell endring og stiavhengighet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonelle_systemer",
+        "title": "Institusjonelle systemer",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjoner_styring",
+        "title": "Institusjoner og styring",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_demokratisk_tilbakegang",
+        "title": "Demokratisk tilbakegang og institusjonell uthuling",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_domstolskontroll_konstitusjonsdomstoler",
+        "title": "Domstolskontroll og konstitusjonsdomstoler",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_enhetsstat_foderalisme",
+        "title": "Enhetsstat, føderalisme og territoriell makt",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_ett_tokammersystem",
+        "title": "Ett- og tokammersystemer",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_flertalls_konsensusdemokrati",
+        "title": "Flertalls- og konsensusdemokrati",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_koalisjoner_mindretallsregjeringer",
+        "title": "Koalisjoner og mindretallsregjeringer",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_mistillit_opplosningsrett",
+        "title": "Mistillit, kabinettspørsmål og oppløsningsrett",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_parlamentarisme_presidentstyre",
+        "title": "Parlamentarisme og presidentstyre",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_utovende_lovgivende_makt",
+        "title": "Utøvende og lovgivende makt",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_vetospillere_beslutningskapasitet",
+        "title": "Vetospillere og beslutningskapasitet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_interessegrupper_organisasjoner",
+        "title": "Interessegrupper og organisasjoner",
+        "score": 25
+      },
+      {
+        "id": "em_pol_internasjonale_institusjoner",
+        "title": "Internasjonale institusjoner og samarbeid",
+        "score": 25
+      },
+      {
+        "id": "em_pol_internasjonalt_system",
+        "title": "Det internasjonale systemet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_kampanje_deltakelse_ansvar",
+        "title": "Kampanje, deltakelse og ansvarliggjøring",
+        "score": 25
+      },
+      {
+        "id": "em_pol_kommune_byraadsmodell",
+        "title": "Kommune og byrådsmodell",
+        "score": 25
+      },
+      {
+        "id": "em_pol_legitimitet_tillit",
+        "title": "Legitimitet og tillit",
+        "score": 25
+      },
+      {
+        "id": "em_pol_likeverd_rettssikkerhet",
+        "title": "Likeverd og rettssikkerhet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_lokaldemokrati",
+        "title": "Lokaldemokrati",
+        "score": 25
+      },
+      {
+        "id": "em_pol_lov_dokument_arkiv",
+        "title": "Lov, dokument og arkiv",
+        "score": 25
+      },
+      {
+        "id": "em_pol_majoritet_minoritet",
+        "title": "Majoritet og minoritet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_makt_institusjoner",
+        "title": "Makt og institusjoner i byen",
+        "score": 25
+      },
+      {
+        "id": "em_pol_makt_interesser",
+        "title": "Makt og interesser",
+        "score": 25
+      },
+      {
+        "id": "em_pol_maktbegrensning",
+        "title": "Maktbegrensning",
+        "score": 25
+      },
+      {
+        "id": "em_pol_maktens_geografi",
+        "title": "Maktens geografi",
+        "score": 25
+      },
+      {
+        "id": "em_pol_normer_doxa",
+        "title": "Normer og doxa",
+        "score": 25
+      },
+      {
+        "id": "em_pol_norsk_politikk_eos_eu_integrasjon",
+        "title": "EØS, EU og europeisk integrasjon",
+        "score": 25
+      },
+      {
+        "id": "em_pol_norsk_politikk_europeiske_regler_gjennomforing",
+        "title": "Europeiske regler i nasjonal og lokal gjennomføring",
+        "score": 25
+      },
+      {
+        "id": "em_pol_norsk_politikk_mindretallsparlamentarisme_kontroll",
+        "title": "Mindretallsparlamentarisme og parlamentarisk kontroll",
+        "score": 25
+      },
+      {
+        "id": "em_pol_norsk_politikk_partisystem_skillelinjer",
+        "title": "Norsk partisystem, organisasjon og skillelinjer",
+        "score": 25
+      },
+      {
+        "id": "em_pol_norsk_politikk_sametinget_urfolk_konsultasjon",
+        "title": "Sametinget, urfolkspolitikk og konsultasjonsordninger",
+        "score": 25
+      },
+      {
+        "id": "em_pol_norsk_politikk_statsbudsjett_kommunefinansiering",
+        "title": "Statsbudsjett, kommunefinansiering og politisk prioritering",
+        "score": 25
+      },
+      {
+        "id": "em_pol_norsk_politikk_styringsorganer_maktkjede",
+        "title": "Stortinget, regjeringen, departementene og komitésystemet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_norsk_politikk_utenriks_sikkerhetspolitikk",
+        "title": "Norsk utenriks- og sikkerhetspolitikk",
+        "score": 25
+      },
+      {
+        "id": "em_pol_norsk_politikk_utredning_horing_lovprosess",
+        "title": "Offentlig utredning, høring og lovprosess",
+        "score": 25
+      },
+      {
+        "id": "em_pol_offentlighet_debatt",
+        "title": "Offentlighet og debatt",
+        "score": 25
+      },
+      {
+        "id": "em_pol_partier_bevegelser",
+        "title": "Partier og bevegelser",
+        "score": 25
+      },
+      {
+        "id": "em_pol_partisystemer",
+        "title": "Partisystemer og konfliktlinjer",
+        "score": 25
+      },
+      {
+        "id": "em_pol_polarisering_tillit",
+        "title": "Polarisering og tillit",
+        "score": 25
+      },
+      {
+        "id": "em_pol_politi_sikkerhet_makt",
+        "title": "Politi, sikkerhet og makt",
+        "score": 25
+      },
+      {
+        "id": "em_pol_politisk_historie",
+        "title": "Politisk historie",
+        "score": 25
+      },
+      {
+        "id": "em_pol_reformer_lovendringer",
+        "title": "Reformer og lovendringer",
+        "score": 25
+      },
+      {
+        "id": "em_pol_regimer_demokratisering",
+        "title": "Regimer og demokratisering",
+        "score": 25
+      },
+      {
+        "id": "em_pol_regjeringsdannelse",
+        "title": "Regjeringsdannelse og koalisjoner",
+        "score": 25
+      },
+      {
+        "id": "em_pol_regulering_planlegging",
+        "title": "Regulering og planlegging",
+        "score": 25
+      },
+      {
+        "id": "em_pol_representasjon_ulikhet",
+        "title": "Representasjon og ulikhet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_rettigheter_plikter",
+        "title": "Rettigheter og plikter",
+        "score": 25
+      },
+      {
+        "id": "em_pol_rettslig_styring",
+        "title": "Rettslig styring",
+        "score": 25
+      },
+      {
+        "id": "em_pol_rettsstat_rettssikkerhet",
+        "title": "Rettsstat og rettssikkerhet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_sivilsamfunn_organisering",
+        "title": "Sivilsamfunn og organisering",
+        "score": 25
+      },
+      {
+        "id": "em_pol_stat_borger_relaster",
+        "title": "Stat og borger-relasjoner",
+        "score": 25
+      },
+      {
+        "id": "em_pol_stat_kommune_relaster",
+        "title": "Stat og kommune-relasjoner",
+        "score": 25
+      },
+      {
+        "id": "em_pol_statsdannelse_statskapasitet",
+        "title": "Statsdannelse og statlig kapasitet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_straff_kontroll",
+        "title": "Straff og kontroll",
+        "score": 25
+      },
+      {
+        "id": "em_pol_strukturell_vold",
+        "title": "Strukturell vold",
+        "score": 25
+      },
+      {
+        "id": "em_pol_symbolsk_makt",
+        "title": "Symbolsk makt",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teknokrati_ekspertise",
+        "title": "Teknokrati og ekspertise",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_demokrati_normativt_ideal",
+        "title": "Demokrati som normativt ideal",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_feminisme_politisk_likhet",
+        "title": "Feminisme og politisk likhet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_frihet_likhet_autoritet_legitimitet",
+        "title": "Frihet, likhet, autoritet og legitimitet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_gronn_politisk_teori",
+        "title": "Grønn politisk teori",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_ideologiske_hovedtradisjoner",
+        "title": "Liberalisme, konservatisme og sosialisme",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_nasjonalisme_statsborgerskap",
+        "title": "Nasjonalisme og statsborgerskap",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_populisme_folkebegrepet",
+        "title": "Populisme og folkebegrepet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_republikanisme_ikke_dominans",
+        "title": "Republikanisme og ikke-dominans",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_sivil_ulydighet_politisk_forpliktelse",
+        "title": "Sivil ulydighet og politisk forpliktelse",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_sosialdemokrati_demokratisk_sosialisme",
+        "title": "Sosialdemokrati og demokratisk sosialisme",
+        "score": 25
+      },
+      {
+        "id": "em_pol_utenrikspolitikk_smastat",
+        "title": "Utenrikspolitikk og småstat",
+        "score": 25
+      },
+      {
+        "id": "em_pol_valg_deltakelse",
+        "title": "Valg og deltakelse",
+        "score": 25
+      },
+      {
+        "id": "em_pol_valgsystemer",
+        "title": "Valgsystemer",
+        "score": 25
+      },
+      {
+        "id": "em_pol_velferdsstat_tjenester",
+        "title": "Velferdsstat og tjenester",
+        "score": 25
+      },
+      {
+        "id": "em_pol_velgeratferd",
+        "title": "Velgeratferd",
+        "score": 25
+      },
+      {
+        "id": "em_pol_ytringsfrihet",
+        "title": "Ytringsfrihet",
+        "score": 25
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "parlamentarisme",
+        "title": "Parlamentarisme",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 33
+      },
+      {
+        "id": "politisk_tillit",
+        "title": "Politisk tillit",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 33
+      },
+      {
+        "id": "politiske_symboler",
+        "title": "Politiske symboler",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 33
+      },
+      {
+        "id": "representasjon",
+        "title": "Representasjon",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 33
+      },
+      {
+        "id": "valg_og_deltakelse",
+        "title": "Valg og deltakelse",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 33
+      },
+      {
+        "id": "allianser_og_avskrekking",
+        "title": "Allianser og avskrekking",
+        "category_id": "internasjonal_politikk_sikkerhet_samarbeid",
+        "score": 23
+      },
+      {
+        "id": "anarki_og_maktbalanse",
+        "title": "Anarki og maktbalanse",
+        "category_id": "internasjonal_politikk_sikkerhet_samarbeid",
+        "score": 23
+      },
+      {
+        "id": "arbeidslivspolitikk",
+        "title": "Arbeidslivspolitikk",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "arkiv_dokument_lov",
+        "title": "Arkiv, dokument og lov",
+        "category_id": "styring_institusjoner_forvaltning",
+        "score": 23
+      },
+      {
+        "id": "budsjett_som_styring",
+        "title": "Budsjett som styring",
+        "category_id": "styring_institusjoner_forvaltning",
+        "score": 23
+      },
+      {
+        "id": "demokrati_og_autokrati",
+        "title": "Demokrati og autokrati",
+        "category_id": "komparativ_politikk_regimer_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "federalisme_og_desentralisering",
+        "title": "Federalisme og desentralisering",
+        "category_id": "komparativ_politikk_regimer_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "fredsbygging_og_konfliktlosning",
+        "title": "Fredsbygging og konfliktløsning",
+        "category_id": "internasjonal_politikk_sikkerhet_samarbeid",
+        "score": 23
+      },
+      {
+        "id": "global_okonomi_og_avhengighet",
+        "title": "Global økonomi og avhengighet",
+        "category_id": "internasjonal_politikk_sikkerhet_samarbeid",
+        "score": 23
+      },
+      {
+        "id": "ideologi",
+        "title": "Ideologi",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "institusjon_som_maktform",
+        "title": "Institusjon som maktform",
+        "category_id": "styring_institusjoner_forvaltning",
+        "score": 23
+      },
+      {
+        "id": "institusjonell_endring_og_stiavhengighet",
+        "title": "Institusjonell endring og stiavhengighet",
+        "category_id": "komparativ_politikk_regimer_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "interessegrupper",
+        "title": "Interessegrupper",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "internasjonale_institusjoner_og_samarbeid",
+        "title": "Internasjonale institusjoner og samarbeid",
+        "category_id": "internasjonal_politikk_sikkerhet_samarbeid",
+        "score": 23
+      },
+      {
+        "id": "kampanjer_medier_og_dagsorden",
+        "title": "Kampanjer, medier og dagsorden",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "kjonn_og_samfunn",
+        "title": "Kjønn og samfunn",
+        "category_id": "normer_identitet_hverdagsliv",
+        "score": 23
+      },
+      {
+        "id": "klima_migrasjon_og_transnasjonale_utfordringer",
+        "title": "Klima, migrasjon og transnasjonale utfordringer",
+        "category_id": "internasjonal_politikk_sikkerhet_samarbeid",
+        "score": 23
+      },
+      {
+        "id": "komparativ_velferdsstat",
+        "title": "Komparativ velferdsstat",
+        "category_id": "komparativ_politikk_regimer_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "krig_konflikt_og_sikkerhetsdilemma",
+        "title": "Krig, konflikt og sikkerhetsdilemma",
+        "category_id": "internasjonal_politikk_sikkerhet_samarbeid",
+        "score": 23
+      },
+      {
+        "id": "legitimitet_i_systemet",
+        "title": "Legitimitet i systemet",
+        "category_id": "styring_institusjoner_forvaltning",
+        "score": 23
+      },
+      {
+        "id": "likeverd",
+        "title": "Likeverd",
+        "category_id": "normer_identitet_hverdagsliv",
+        "score": 23
+      },
+      {
+        "id": "lovendringer",
+        "title": "Lovendringer",
+        "category_id": "rett_lov_rettssikkerhet",
+        "score": 23
+      },
+      {
+        "id": "lover_og_regler",
+        "title": "Lover og regler",
+        "category_id": "rett_lov_rettssikkerhet",
+        "score": 23
+      },
+      {
+        "id": "majoritet_minoritet",
+        "title": "Majoritet og minoritet",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 23
+      },
+      {
+        "id": "makt_og_interesser",
+        "title": "Makt og interesser",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "maktfordeling_og_vetospillere",
+        "title": "Maktfordeling og vetospillere",
+        "category_id": "komparativ_politikk_regimer_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "menneskerettigheter_og_humanitaer_intervensjon",
+        "title": "Menneskerettigheter og humanitær intervensjon",
+        "category_id": "internasjonal_politikk_sikkerhet_samarbeid",
+        "score": 23
+      },
+      {
+        "id": "minoritet_majoritet",
+        "title": "Minoritet og majoritet",
+        "category_id": "normer_identitet_hverdagsliv",
+        "score": 23
+      },
+      {
+        "id": "norge_som_smastat",
+        "title": "Norge som småstat",
+        "category_id": "internasjonal_politikk_sikkerhet_samarbeid",
+        "score": 23
+      },
+      {
+        "id": "omfordeling_og_legitimitet",
+        "title": "Omfordeling og legitimitet",
+        "category_id": "fordeling_velferd_ulikhet",
+        "score": 23
+      },
+      {
+        "id": "parlamentarisme_og_presidentialisme",
+        "title": "Parlamentarisme og presidentialisme",
+        "category_id": "komparativ_politikk_regimer_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "partier_og_bevegelser",
+        "title": "Partier og bevegelser",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 23
+      },
+      {
+        "id": "partiorganisasjon_og_kandidatseleksjon",
+        "title": "Partiorganisasjon og kandidatseleksjon",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "partisystemer_og_konfliktlinjer",
+        "title": "Partisystemer og konfliktlinjer",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "polarisering",
+        "title": "Polarisering",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "politisk_deltakelse_og_valgdeltakelse",
+        "title": "Politisk deltakelse og valgdeltakelse",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_demokrati_normativt_ideal",
+        "title": "Demokrati som normativt ideal",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_feminisme_politisk_likhet",
+        "title": "Feminisme og politisk likhet",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_frihet_likhet_autoritet_legitimitet",
+        "title": "Frihet, likhet, autoritet og legitimitet",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_gronn_politisk_teori",
+        "title": "Grønn politisk teori",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_ideologiske_hovedtradisjoner",
+        "title": "Liberalisme, konservatisme og sosialisme",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_nasjonalisme_statsborgerskap",
+        "title": "Nasjonalisme og statsborgerskap",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_populisme_folkebegrepet",
+        "title": "Populisme og folkebegrepet",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_republikanisme_ikke_dominans",
+        "title": "Republikanisme og ikke-dominans",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_sivil_ulydighet_politisk_forpliktelse",
+        "title": "Sivil ulydighet og politisk forpliktelse",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_sosialdemokrati_demokratisk_sosialisme",
+        "title": "Sosialdemokrati og demokratisk sosialisme",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "politisk_tillit_og_partilojalitet",
+        "title": "Politisk tillit og partilojalitet",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "populisme_og_anti_etablissement",
+        "title": "Populisme og anti-etablissement",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "regjeringsdannelse_og_koalisjoner",
+        "title": "Regjeringsdannelse og koalisjoner",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "representasjon_og_ansvarliggjoring",
+        "title": "Representasjon og ansvarliggjøring",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "rettsstat",
+        "title": "Rettsstat",
+        "category_id": "rett_lov_rettssikkerhet",
+        "score": 23
+      },
+      {
+        "id": "rettsstat_og_demokratisk_tilbakegang",
+        "title": "Rettsstat og demokratisk tilbakegang",
+        "category_id": "komparativ_politikk_regimer_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "samfunnets_grenser",
+        "title": "Samfunnets grenser",
+        "category_id": "normer_identitet_hverdagsliv",
+        "score": 23
+      },
+      {
+        "id": "sivilt_militaert_forhold",
+        "title": "Sivilt-militært forhold",
+        "category_id": "komparativ_politikk_regimer_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "statsborgerskap_og_nasjon",
+        "title": "Statsborgerskap og nasjon",
+        "category_id": "komparativ_politikk_regimer_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "statsdannelse_og_statlig_kapasitet",
+        "title": "Statsdannelse og statlig kapasitet",
+        "category_id": "komparativ_politikk_regimer_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "tause_regler",
+        "title": "Tause regler",
+        "category_id": "normer_identitet_hverdagsliv",
+        "score": 23
+      },
+      {
+        "id": "teknokratisk_styring",
+        "title": "Teknokratisk styring",
+        "category_id": "styring_institusjoner_forvaltning",
+        "score": 23
+      },
+      {
+        "id": "utenrikspolitisk_beslutning",
+        "title": "Utenrikspolitisk beslutning",
+        "category_id": "internasjonal_politikk_sikkerhet_samarbeid",
+        "score": 23
+      },
+      {
+        "id": "valgsystemer_og_mandatfordeling",
+        "title": "Valgsystemer og mandatfordeling",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "velgeratferd_og_partivalg",
+        "title": "Velgeratferd og partivalg",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "offentlighet",
+        "title": "Offentlighet",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 10
+      },
+      {
+        "id": "norsk_politikk_eos_eu_integrasjon",
+        "title": "EØS, EU og europeisk integrasjon",
+        "category_id": "norsk_politikk_eos_flernivastyring",
+        "score": 3
+      },
+      {
+        "id": "norsk_politikk_europeiske_regler_gjennomforing",
+        "title": "Europeiske regler i nasjonal og lokal gjennomføring",
+        "category_id": "norsk_politikk_eos_flernivastyring",
+        "score": 3
+      },
+      {
+        "id": "norsk_politikk_mindretallsparlamentarisme_kontroll",
+        "title": "Mindretallsparlamentarisme og parlamentarisk kontroll",
+        "category_id": "norsk_politikk_eos_flernivastyring",
+        "score": 3
+      },
+      {
+        "id": "norsk_politikk_partisystem_skillelinjer",
+        "title": "Norsk partisystem, organisasjon og skillelinjer",
+        "category_id": "norsk_politikk_eos_flernivastyring",
+        "score": 3
+      },
+      {
+        "id": "norsk_politikk_sametinget_urfolk_konsultasjon",
+        "title": "Sametinget, urfolkspolitikk og konsultasjonsordninger",
+        "category_id": "norsk_politikk_eos_flernivastyring",
+        "score": 3
+      },
+      {
+        "id": "norsk_politikk_statsbudsjett_kommunefinansiering",
+        "title": "Statsbudsjett, kommunefinansiering og politisk prioritering",
+        "category_id": "norsk_politikk_eos_flernivastyring",
+        "score": 3
+      },
+      {
+        "id": "norsk_politikk_styringsorganer_maktkjede",
+        "title": "Stortinget, regjeringen, departementene og komitésystemet",
+        "category_id": "norsk_politikk_eos_flernivastyring",
+        "score": 3
+      },
+      {
+        "id": "norsk_politikk_utenriks_sikkerhetspolitikk",
+        "title": "Norsk utenriks- og sikkerhetspolitikk",
+        "category_id": "norsk_politikk_eos_flernivastyring",
+        "score": 3
+      },
+      {
+        "id": "norsk_politikk_utredning_horing_lovprosess",
+        "title": "Offentlig utredning, høring og lovprosess",
+        "category_id": "norsk_politikk_eos_flernivastyring",
+        "score": 3
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "styring_institusjoner_forvaltning",
+      "demokrati_representasjon_offentlighet",
+      "offentlig_politikk_beslutning_implementering"
+    ],
+    "emne_ids": [
+      "em_pol_demokrati_representasjon",
+      "em_pol_parlamentarisme_maktbalanse",
+      "em_pol_mediert_offentlighet"
+    ],
+    "topic_hook_ids": [
+      "representasjon"
+    ],
+    "method_ids": [
+      "met_pol_institusjonsanalyse",
+      "met_pol_forvaltningsanalyse",
+      "met_pol_dokumentanalyse",
+      "met_pol_offentlighetsanalyse"
+    ],
+    "thinker_ids": [
+      "robert_dahl"
+    ],
+    "works": []
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_stortinget_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "5. mars 1866",
+      "source_ids": [
+        "stortinget_opening"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Emil Victor Langlet",
+      "source_ids": [
+        "stortinget_langlet"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Norges folkevalgte nasjonalforsamling",
+      "source_ids": [
+        "stortinget_main"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Å vedta lover",
+      "source_ids": [
+        "stortinget_main"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_parlamentarisme_maktbalanse"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Stortinget",
+      "source_ids": [
+        "stortinget_budget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_parlamentarisme_maktbalanse"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Regjeringen",
+      "source_ids": [
+        "stortinget_control"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_parlamentarisme_maktbalanse"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Stortingssalen",
+      "source_ids": [
+        "stortinget_building"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "I skiftende lånte lokaler",
+      "source_ids": [
+        "stortinget_building"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "I august 1860",
+      "source_ids": [
+        "stortinget_building"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "10. oktober 1861",
+      "source_ids": [
+        "stortinget_building"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "111",
+      "source_ids": [
+        "stortinget_opening"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Anna Rogstad",
+      "source_ids": [
+        "stortinget_anna"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "17. mars 1911",
+      "source_ids": [
+        "stortinget_anna"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "I 1913",
+      "source_ids": [
+        "stortinget_suffrage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Forbereder saker og avgir innstilling",
+      "source_ids": [
+        "stortinget_procedure"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_parlamentarisme_maktbalanse"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "I plenum",
+      "source_ids": [
+        "stortinget_voting"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_parlamentarisme_maktbalanse"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Et formelt forslag fra regjeringen til Stortinget",
+      "source_ids": [
+        "stortinget_laws"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_parlamentarisme_maktbalanse"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Komiteens anbefaling til Stortinget",
+      "source_ids": [
+        "stortinget_procedure"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_parlamentarisme_maktbalanse"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Representantene stemmer over forslag",
+      "source_ids": [
+        "stortinget_voting"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_parlamentarisme_maktbalanse"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Endre, vedta eller avvise det",
+      "source_ids": [
+        "stortinget_laws"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_parlamentarisme_maktbalanse"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Hvilke bevilgninger og rammer Stortinget har vedtatt",
+      "source_ids": [
+        "stortinget_budget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_parlamentarisme_maktbalanse"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_22",
+      "order": 22,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Regjeringens budsjettforslag",
+      "source_ids": [
+        "stortinget_budget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_parlamentarisme_maktbalanse"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_23",
+      "order": 23,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Behandling og vedtak i plenum",
+      "source_ids": [
+        "stortinget_budget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_parlamentarisme_maktbalanse"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_24",
+      "order": 24,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Budsjettvedtaket må sammenholdes med regnskap og gjennomføring for å si noe om faktisk ressursbruk.",
+      "source_ids": [
+        "stortinget_budget"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_parlamentarisme_maktbalanse"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_25",
+      "order": 25,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kontroll med regjeringen",
+      "source_ids": [
+        "stortinget_control"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_parlamentarisme_maktbalanse"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_26",
+      "order": 26,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Informasjon og offentlig etterprøving i en sak",
+      "source_ids": [
+        "stortinget_control"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_27",
+      "order": 27,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Et formelt uttrykk for at regjeringen eller en statsråd mangler Stortingets tillit",
+      "source_ids": [
+        "stortinget_control"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_parlamentarisme_maktbalanse"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_28",
+      "order": 28,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Søke avskjed",
+      "source_ids": [
+        "stortinget_control"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_parlamentarisme_maktbalanse"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_29",
+      "order": 29,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Mistillit krever et særskilt formelt vedtak",
+      "source_ids": [
+        "stortinget_control"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_parlamentarisme_maktbalanse"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_30",
+      "order": 30,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "En regjering kan sitte så lenge et flertall ikke feller den",
+      "source_ids": [
+        "stortinget_main"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_parlamentarisme_maktbalanse"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_31",
+      "order": 31,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Forberedelse og formelt vedtak er ulike ledd",
+      "source_ids": [
+        "stortinget_procedure"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_parlamentarisme_maktbalanse"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_32",
+      "order": 32,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Partigruppen samordner et parti; Stortinget er hele den folkevalgte forsamlingen",
+      "source_ids": [
+        "stortinget_short"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_33",
+      "order": 33,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Representanten er valgt til vervet og stemmer som representant, ikke som juridisk delegat",
+      "source_ids": [
+        "stortinget_short"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_34",
+      "order": 34,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Synliggjøre standpunkt og bruke kontroll- og debattarenaer",
+      "source_ids": [
+        "stortinget_control"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_35",
+      "order": 35,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Publikumsadgang, strømming og skriftlige referater",
+      "source_ids": [
+        "stortinget_short"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_36",
+      "order": 36,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Komité- og partigruppemøter",
+      "source_ids": [
+        "stortinget_short"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_37",
+      "order": 37,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Hva som ble sagt i det åpne møtet",
+      "source_ids": [
+        "stortinget_short"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_38",
+      "order": 38,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Hvordan forslagene ble avgjort i avstemningen",
+      "source_ids": [
+        "stortinget_voting"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_39",
+      "order": 39,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Hele saksforberedelsen og alle dokumentene",
+      "source_ids": [
+        "stortinget_short"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_40",
+      "order": 40,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Korte, tydelige replikker er lettere å klippe enn lang komitébehandling",
+      "source_ids": [
+        "stortinget_short"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_41",
+      "order": 41,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Proposisjon, komitéinnstilling, plenumsreferat og vedtak",
+      "source_ids": [
+        "stortinget_laws"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_42",
+      "order": 42,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Plassen er et eget offentlig byrom; bygningen er institusjonens arbeidssted",
+      "source_ids": [
+        "stortinget_building"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_43",
+      "order": 43,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Stortinget vedtar og kontrollerer; regjeringen og departementene forbereder og gjennomfører",
+      "source_ids": [
+        "stortinget_main"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_parlamentarisme_maktbalanse"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_44",
+      "order": 44,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "At plenum er gitt en markert arkitektonisk plass",
+      "source_ids": [
+        "stortinget_building"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_45",
+      "order": 45,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Hvordan et vedtak ble til eller virket",
+      "source_ids": [
+        "commons_front"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_46",
+      "order": 46,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Christopher Borch",
+      "source_ids": [
+        "stortinget_lion_art"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_47",
+      "order": 47,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "I 1865",
+      "source_ids": [
+        "stortinget_lions"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_48",
+      "order": 48,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Løvebakken brukes som navn og symbol for Stortinget",
+      "source_ids": [
+        "stortinget_lion_art"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_49",
+      "order": 49,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Haakon VII avla eden for Stortinget",
+      "source_ids": [
+        "stortinget_oath"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_50",
+      "order": 50,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Den faktiske edsavleggelsen i den fylte stortingssalen",
+      "source_ids": [
+        "commons_oath"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_51",
+      "order": 51,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "En kvinne tok for første gang sete som representant",
+      "source_ids": [
+        "stortinget_anna"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_52",
+      "order": 52,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Et individuelt gjennombrudd kom før allmenn stemmerett for kvinner",
+      "source_ids": [
+        "stortinget_suffrage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_53",
+      "order": 53,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Om grupper faktisk får innflytelse på saker og utfall",
+      "source_ids": [
+        "stortinget_anna"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_54",
+      "order": 54,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Regjeringen foreslår, komiteen innstiller, plenum vedtar, forvaltningen gjennomfører",
+      "source_ids": [
+        "stortinget_laws"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_parlamentarisme_maktbalanse"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_55",
+      "order": 55,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Riktig organ, kompetanse, dokument og tidspunkt",
+      "source_ids": [
+        "stortinget_procedure"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_parlamentarisme_maktbalanse"
+    },
+    {
+      "claim_id": "claim_stortinget_quiz_56",
+      "order": 56,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Formelle ordninger og vedtak kan dokumenteres, mens virkninger krever egne data",
+      "source_ids": [
+        "stortinget_main"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demokrati_representasjon"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "relation",
+      "id": "mig_gro_harlem_brundtland_stortinget_74e8b0153a",
+      "source_file": "data/relations.json",
+      "summary": "Migrert fra people.placeId/people.places."
+    },
+    {
+      "type": "relation",
+      "id": "mig_jens_stoltenberg_stortinget_25db8c0db3",
+      "source_file": "data/relations.json",
+      "summary": "Migrert fra people.placeId/people.places."
+    },
+    {
+      "type": "relation",
+      "id": "mig_johan_sverdrup_stortinget_129cb169af",
+      "source_file": "data/relations.json",
+      "summary": "Migrert fra people.placeId/people.places."
+    },
+    {
+      "type": "relation",
+      "id": "mig_ole_kopreitan_stortinget_18b10e5b8c",
+      "source_file": "data/relations.json",
+      "summary": "Migrert fra people.placeId/people.places."
+    },
+    {
+      "type": "relation",
+      "id": "mig_advokat_hermansen_stortinget_0c341a401b",
+      "source_file": "data/relations.json",
+      "summary": "Migrert fra people.placeId/people.places."
+    },
+    {
+      "type": "relation",
+      "id": "mig_fredrikke_marie_qvam_stortinget_cffae40da6",
+      "source_file": "data/relations.json",
+      "summary": "Migrert fra people.placeId/people.places."
+    },
+    {
+      "type": "relation",
+      "id": "mig_gina_krog_stortinget_5c231732ac",
+      "source_file": "data/relations.json",
+      "summary": "Migrert fra people.placeId/people.places."
+    },
+    {
+      "type": "relation",
+      "id": "mig_christian_frederik_stortinget_36cc0860e1",
+      "source_file": "data/relations.json",
+      "summary": "Migrert fra people.placeId/people.places."
+    },
+    {
+      "type": "relation",
+      "id": "rel_stortinget_anna_rogstad",
+      "source_file": "data/relations.json",
+      "summary": "Anna Rogstad tok sete i stortingssalen 17. mars 1911 som den første kvinnelige stortingsrepresentanten."
+    },
+    {
+      "type": "story",
+      "id": "st_stortinget_unionsopplosning_1905",
+      "source_file": "data/stories/stories_stortinget.json",
+      "summary": "Det 25 minutter lange stortingsmøtet 7. juni 1905 var slutten på flere døgn med konstitusjonell strategi: Stortinget brukte kongens manglende evne til å danne regjering som grunnlag for å erklære unionen med Sverige oppløst."
+    },
+    {
+      "type": "story",
+      "id": "st_stortinget_anna_rogstad_1911",
+      "source_file": "data/stories/stories_stortinget.json",
+      "summary": "Da Anna Rogstad tok sete 17. mars 1911, ble en lang strid om kvinners politiske adgang gjort fysisk synlig i stortingssalen: en kvinne var blitt representant før kvinner hadde fått allmenn statsborgerlig stemmerett."
+    },
+    {
+      "type": "story",
+      "id": "st_stortinget_kvinnestemmerett_1913",
+      "source_file": "data/stories/stories_stortinget.json",
+      "summary": "Allmenn stemmerett for kvinner i 1913 kom ikke som ett isolert vedtak, men etter tiår med nederlag, underskriftsaksjoner og skiftende flertall i Stortinget. Det som falt i 1890 og igjen i 1911, ble enstemmig vedtatt 11. juni 1913."
+    },
+    {
+      "type": "story",
+      "id": "st_stortinget_forste_mote_etter_frigjoringen_1945",
+      "source_file": "data/stories/stories_stortinget.json",
+      "summary": "Da Stortinget møttes igjen 14. juni 1945, var ikke oppgaven bare å åpne salen etter fem års okkupasjon. Representantene måtte sette folkestyret i arbeid igjen og samtidig håndtere uenighet om hvordan krigsårenes konstitusjonelle brudd skulle behandles."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "politikk_stortinget_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_stortinget_quiz_01",
+        "claim_stortinget_quiz_02",
+        "claim_stortinget_quiz_03",
+        "claim_stortinget_quiz_04",
+        "claim_stortinget_quiz_05",
+        "claim_stortinget_quiz_06",
+        "claim_stortinget_quiz_07"
+      ]
+    },
+    {
+      "set_id": "politikk_stortinget_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_stortinget_quiz_08",
+        "claim_stortinget_quiz_09",
+        "claim_stortinget_quiz_10",
+        "claim_stortinget_quiz_11",
+        "claim_stortinget_quiz_12",
+        "claim_stortinget_quiz_13",
+        "claim_stortinget_quiz_14"
+      ]
+    },
+    {
+      "set_id": "politikk_stortinget_set_3",
+      "order": 3,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_stortinget_quiz_15",
+        "claim_stortinget_quiz_16",
+        "claim_stortinget_quiz_17",
+        "claim_stortinget_quiz_18",
+        "claim_stortinget_quiz_19",
+        "claim_stortinget_quiz_20",
+        "claim_stortinget_quiz_21"
+      ]
+    },
+    {
+      "set_id": "politikk_stortinget_set_4",
+      "order": 4,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_stortinget_quiz_22",
+        "claim_stortinget_quiz_23",
+        "claim_stortinget_quiz_24",
+        "claim_stortinget_quiz_25",
+        "claim_stortinget_quiz_26",
+        "claim_stortinget_quiz_27",
+        "claim_stortinget_quiz_28"
+      ]
+    },
+    {
+      "set_id": "politikk_stortinget_set_5",
+      "order": 5,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_stortinget_quiz_29",
+        "claim_stortinget_quiz_30",
+        "claim_stortinget_quiz_31",
+        "claim_stortinget_quiz_32",
+        "claim_stortinget_quiz_33",
+        "claim_stortinget_quiz_34",
+        "claim_stortinget_quiz_35"
+      ]
+    },
+    {
+      "set_id": "politikk_stortinget_set_6",
+      "order": 6,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_stortinget_quiz_36",
+        "claim_stortinget_quiz_37",
+        "claim_stortinget_quiz_38",
+        "claim_stortinget_quiz_39",
+        "claim_stortinget_quiz_40",
+        "claim_stortinget_quiz_41",
+        "claim_stortinget_quiz_42"
+      ]
+    },
+    {
+      "set_id": "politikk_stortinget_set_7",
+      "order": 7,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_stortinget_quiz_43",
+        "claim_stortinget_quiz_44",
+        "claim_stortinget_quiz_45",
+        "claim_stortinget_quiz_46",
+        "claim_stortinget_quiz_47",
+        "claim_stortinget_quiz_48",
+        "claim_stortinget_quiz_49"
+      ]
+    },
+    {
+      "set_id": "politikk_stortinget_set_8",
+      "order": 8,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_stortinget_quiz_50",
+        "claim_stortinget_quiz_51",
+        "claim_stortinget_quiz_52",
+        "claim_stortinget_quiz_53",
+        "claim_stortinget_quiz_54",
+        "claim_stortinget_quiz_55",
+        "claim_stortinget_quiz_56"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 56,
+    "counts": {
+      "fact": 28,
+      "context": 14,
+      "concept_theory": 14
+    },
+    "ratios": {
+      "fact": 0.5,
+      "context": 0.25,
+      "concept_theory": 0.25
+    }
+  }
+}

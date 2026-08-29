@@ -6,21 +6,21 @@ Rapporten måler om runtime kan presentere tilgjengelige canonical People-felt. 
 
 People-produksjon, claims og ferdigstatus eies av `docs/PEOPLE_PROFILE_CANONICAL.md`. Profiler uten v1-claims er `legacy_unreviewed`, selv når presentasjonsstatusen er `complete`.
 
-Source fingerprint: `e47891c43c4ac8501f06f49ec6d3585d7d4dbdab814144a7e6ef9bc9e2cd5579`
+Source fingerprint: `d9f1b97b69c601df9eac3c793bd34cb9caa3fff443f2826864a9b49d51506e8e`
 
 ## Sammendrag
 
 | Måling | Antall |
 |---|---:|
-| Personer | 1420 |
-| Presentasjon complete | 63 |
+| Personer | 1423 |
+| Presentasjon complete | 66 |
 | Presentasjon strong | 406 |
 | Presentasjon partial | 936 |
 | Presentasjon sparse | 15 |
-| People Profile v1 ready | 70 |
-| Legacy uten v1-claims | 1350 |
-| Ødelagte bildereferanser | 287 |
-| Eksplisitt initialfallback | 1002 |
+| People Profile v1 ready | 72 |
+| Legacy uten v1-claims | 1351 |
+| Ødelagte bildereferanser | 286 |
+| Eksplisitt initialfallback | 1000 |
 | Implisitt initialfallback | 26 |
 | Gjennomsnittspoeng | 65.4 |
 
@@ -28,28 +28,28 @@ Source fingerprint: `e47891c43c4ac8501f06f49ec6d3585d7d4dbdab814144a7e6ef9bc9e2c
 
 | Presentasjonsdel | Dekket | Andel |
 |---|---:|---:|
-| identity | 121 | 8.5 % |
-| popupDesc | 1399 | 98.5 % |
-| lifeData | 59 | 4.2 % |
-| contributionsDeclared | 60 | 4.2 % |
-| educationDeclared | 60 | 4.2 % |
-| practiceDeclared | 1402 | 98.7 % |
-| placeGrounding | 1420 | 100 % |
-| sources | 458 | 32.3 % |
-| imageContract | 1133 | 79.8 % |
-| profileStandard | 70 | 4.9 % |
+| identity | 126 | 8.9 % |
+| popupDesc | 1402 | 98.5 % |
+| lifeData | 60 | 4.2 % |
+| contributionsDeclared | 62 | 4.4 % |
+| educationDeclared | 62 | 4.4 % |
+| practiceDeclared | 1405 | 98.7 % |
+| placeGrounding | 1423 | 100 % |
+| sources | 461 | 32.4 % |
+| imageContract | 1137 | 79.9 % |
+| profileStandard | 72 | 5.1 % |
 
 ## Kategorier
 
 | Kategori | Totalt | Complete | Strong | Partial | Sparse | v1 ready | Legacy | Snitt |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
-| sport | 323 | 0 | 23 | 300 | 0 | 0 | 323 | 62.3 |
-| historie | 233 | 2 | 110 | 121 | 0 | 1 | 232 | 64.9 |
+| sport | 324 | 0 | 24 | 300 | 0 | 0 | 324 | 62.4 |
+| historie | 235 | 3 | 111 | 121 | 0 | 2 | 233 | 65.1 |
 | litteratur | 172 | 36 | 20 | 116 | 0 | 16 | 156 | 70.5 |
 | musikk | 124 | 0 | 15 | 109 | 0 | 0 | 124 | 62.2 |
-| politikk | 114 | 4 | 51 | 59 | 0 | 15 | 99 | 67.9 |
+| politikk | 114 | 5 | 50 | 59 | 0 | 15 | 99 | 68.1 |
 | kunst | 84 | 7 | 64 | 13 | 0 | 9 | 75 | 73.1 |
-| by | 81 | 8 | 57 | 16 | 0 | 20 | 61 | 73.9 |
+| by | 81 | 9 | 56 | 16 | 0 | 21 | 60 | 74.1 |
 | naeringsliv | 81 | 5 | 30 | 32 | 14 | 8 | 73 | 62.9 |
 | scenekunst | 48 | 1 | 16 | 31 | 0 | 1 | 47 | 64.6 |
 | subkultur | 41 | 0 | 5 | 36 | 0 | 0 | 41 | 61.9 |
@@ -71,7 +71,7 @@ Source fingerprint: `e47891c43c4ac8501f06f49ec6d3585d7d4dbdab814144a7e6ef9bc9e2c
 | ullevaal_stadion | 55 | 0 | 55 | 0 | 61.3 | Ada Hegerberg (57; legacy_unreviewed), Cecilie Leganger (57; legacy_unreviewed), Erling Braut Haaland (57; legacy_unreviewed), Lyn Fotball (57; legacy_unreviewed), Nils Arne Eggen (57; legacy_unreviewed) |
 | eidsvollsbygningen | 40 | 0 | 38 | 2 | 62.1 | Carsten Anker (57; legacy_unreviewed), Christian Magnus Falsen (57; legacy_unreviewed), Wilhelm Frimann Koren Christie (57; legacy_unreviewed), Anders Lysgaard (62; legacy_unreviewed), Andreas Rogert (62; legacy_unreviewed) |
 | akershus_festning | 38 | 0 | 36 | 2 | 60.8 | Alv Erlingsson (57; legacy_unreviewed), Erik av Pommern (57; legacy_unreviewed), Eufemia av Rügen (57; legacy_unreviewed), Gregers Gram (57; legacy_unreviewed), Gunnar Sønsteby (57; legacy_unreviewed) |
-| stortinget | 24 | 0 | 18 | 6 | 61.6 | Advokat Hermansen (57; legacy_unreviewed), Berit Ås (57; legacy_unreviewed), Betzy Kjelsberg (57; legacy_unreviewed), Carl I. Hagen (57; legacy_unreviewed), Christian Michelsen (57; legacy_unreviewed) |
+| stortinget | 24 | 0 | 18 | 5 | 62.3 | Advokat Hermansen (57; legacy_unreviewed), Berit Ås (57; legacy_unreviewed), Betzy Kjelsberg (57; legacy_unreviewed), Carl I. Hagen (57; legacy_unreviewed), Christian Michelsen (57; legacy_unreviewed) |
 | nordre_aasen_idrettspark | 23 | 0 | 23 | 0 | 61.8 | Skeid Fotball (57; legacy_unreviewed), Arild Stavrum (62; legacy_unreviewed), Dagfinn Enerly (62; legacy_unreviewed), Daniel Braaten (62; legacy_unreviewed), Daniel Fredheim Holm (62; legacy_unreviewed) |
 | torggata | 22 | 0 | 5 | 17 | 74.8 | Christopher Nielsen (57; legacy_unreviewed), Don Martin (57; legacy_unreviewed), Gateavisa-miljøet (57; legacy_unreviewed), Kjetil Rolness (57; legacy_unreviewed), Warlocks (57; legacy_unreviewed) |
 | universitetets_gamle_hovedbygning | 17 | 0 | 16 | 1 | 59.4 | Fredrik Barth (57; legacy_unreviewed), Harriet Holter (57; legacy_unreviewed), Helga Eng (57; legacy_unreviewed), Jon Elster (57; legacy_unreviewed), Kristian Emil Schreiner (57; legacy_unreviewed) |
