@@ -1,0 +1,111 @@
+{
+  "schema": "history_go_phase1_24_quality_gate_v1",
+  "place_id": "slottsplassen",
+  "verified_at": "2026-08-29",
+  "null_measurement": {
+    "existing_place": true,
+    "coordinate_changed": false,
+    "existing_quiz": "none in active Politics manifest",
+    "existing_stories": "none",
+    "existing_collections": "none; legacy media-oriented place copy only"
+  },
+  "collections": {
+    "required": [
+      "people",
+      "objects",
+      "brands",
+      "productions"
+    ],
+    "loaded_preview_images": 4,
+    "missing": 0,
+    "coverage_percent": 100
+  },
+  "people": {
+    "candidates_reviewed": [
+      "Brynjulf Bergslien",
+      "Carl Johan",
+      "Haakon VII",
+      "Maud"
+    ],
+    "selected": [
+      "brynjulf_bergslien"
+    ],
+    "held_back": [
+      "Bergslien carries the people collection because his documented monument is physically anchored on the square.",
+      "Carl Johan already has a monument object in the adjacent Slottet package and remains a related person.",
+      "Haakon VII and Maud remain related people and Story actors, avoiding a second royal-person focus."
+    ],
+    "image_coverage_percent": 100
+  },
+  "source_conflicts": [
+    {
+      "claim": "Slottsplassen er bare et annet navn på Slottet.",
+      "status": "rejected",
+      "reason": "Kartgeometrien og stedsavgrensningen gjelder den navngitte plassflaten foran bygningen."
+    },
+    {
+      "claim": "Vaktskiftet er bare underholdning.",
+      "status": "rejected",
+      "reason": "Garden utfører et kontinuerlig sikkerhetsoppdrag; den offentlige seremonien er ett uttrykk for oppdraget."
+    },
+    {
+      "claim": "17. mai-tradisjonen har vært helt uforandret siden 1906.",
+      "status": "rejected",
+      "reason": "Offisiell historikk dokumenterer både etablering, utvikling og avbrudd."
+    },
+    {
+      "claim": "Publikumsmengde og monumenter beviser støtte til monarkiet.",
+      "status": "rejected",
+      "reason": "Kildene dokumenterer tilstedeværelse og symbolbruk, ikke deltakernes holdninger eller institusjonens legitimitet."
+    }
+  ],
+  "conditional_modules": {
+    "stories": "four_episode_v1_produced",
+    "lesespor": "produced",
+    "language": "produced",
+    "for_na": "held_back_non_comparable_views",
+    "news": "not_applicable",
+    "dialect": "not_applicable"
+  },
+  "manual_image_review": {
+    "status": "PASS",
+    "reviewed_assets": [
+      "bilder/places/slottsplassen.webp",
+      "bilder/places/slottsplassen_front_portrait.webp",
+      "bilder/kort/people/brynjulf_bergslien.webp",
+      "bilder/kort/objects/slottsplassen_skilderhus.webp",
+      "bilder/brands/hans_majestet_kongens_garde.webp",
+      "bilder/kort/productions/slottsplassen_17_mai_1906.webp"
+    ],
+    "note": "All crops were inspected together. The wide and portrait crops visibly emphasize the square; each collection preview depicts its actual member. Historic photos are dated and do not imply current routines or identify individuals."
+  },
+  "quality_score": {
+    "correctness_and_evidence": {
+      "score": 5,
+      "note": "Ten content and geodata sources plus five inspectable image source pages; dates, roles and evidential limits are explicit."
+    },
+    "coverage_and_completion": {
+      "score": 5,
+      "note": "Four image-ready collections, nine milestones, six terms, four Stories, four reading tracks and an 8×7 quiz are materialized."
+    },
+    "editorial_quality": {
+      "score": 5,
+      "note": "Place/building/park, security/ceremony, symbol/authority, tradition/immutability and observation/opinion are distinguished."
+    },
+    "technical_integrity": {
+      "score": 5,
+      "note": "Deterministic finalizer, manifests, local assets, Politics gate report, v4.2 packet, runtime build and permanent test are included."
+    },
+    "safety_and_responsibility": {
+      "score": 5,
+      "note": "No current-holder dependency, changing schedule claim, person-tracking task or security-detail prompt; field tasks stay in public areas."
+    },
+    "maintainability_and_auditability": {
+      "score": 5,
+      "note": "Claims, sentence mapping, source registry, image provenance, candidate holdbacks and rejected overclaims form a reproducible audit trail."
+    },
+    "total": 30,
+    "critical_findings": 0,
+    "unresolved_blockers": 0
+  }
+}

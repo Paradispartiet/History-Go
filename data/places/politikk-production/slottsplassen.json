@@ -1,0 +1,337 @@
+{
+  "schemaVersion": "politikk_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "slottsplassen",
+  "placeFile": "data/places/politikk/oslo/slottsplassen.json",
+  "status": "ready",
+  "primaryFunction": {
+    "statement": "Slottsplassen er et offentlig byrom foran Slottet der monument, vakthold og gjentatte nasjonale seremonier gjør monarkiet synlig.",
+    "placeObjectDistinction": "Place-ID-en gjelder den navngitte plassflaten, ikke slottsbygningen, slottsbalkongen, hele Slottsparken, Garden som organisasjon eller monarkiet som samlet institusjon.",
+    "sourceIds": [
+      "source_guard",
+      "source_children",
+      "source_statue"
+    ]
+  },
+  "politicsTopics": [
+    {
+      "emneId": "em_pol_institusjoner_styring",
+      "siteSpecificRationale": "Garden og statsoverhodet blir synlige som institusjonelle roller uten at plassen selv er et beslutningsorgan.",
+      "evidenceChainIds": [
+        "chain_guard",
+        "chain_may17"
+      ]
+    },
+    {
+      "emneId": "em_pol_demokrati_representasjon",
+      "siteSpecificRationale": "Barnetog, publikum og statsoverhode møtes i en organisert offentlighet med dokumenterte endringer og avbrudd.",
+      "evidenceChainIds": [
+        "chain_may17"
+      ]
+    },
+    {
+      "emneId": "em_pol_symbolsk_makt",
+      "siteSpecificRationale": "Monument, uniform, rute, plass og balkong kan analyseres som politiske symboler med tydelige evidensgrenser.",
+      "evidenceChainIds": [
+        "chain_monument",
+        "chain_guard",
+        "chain_may17"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_guard",
+      "url": "https://www.kongehuset.no/det-kongelige-hoff/hoffets-avdelinger/hans-majestet-kongens-garde",
+      "sourceLocation": "Gardens oppdrag, vakthold siden 1888 og offentlig vaktskifte",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "source_parade",
+      "url": "https://kultur.forsvaret.no/nyheter/vaktparader",
+      "sourceLocation": "Historisk utvikling og ruteendringen i 1958",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "historical"
+    },
+    {
+      "id": "source_children",
+      "url": "https://www.kongehuset.no/nyheter/barnetogets-historie",
+      "sourceLocation": "Barnetoget fra 1870 og balkonghilsenen fra 1906",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "historical"
+    },
+    {
+      "id": "source_constitution",
+      "url": "https://undervisning.stortinget.no/maktfordeling/hva-gjor-kongen/",
+      "sourceLocation": "Konstitusjonelt monarki og skillet mellom symbol og politisk ansvar",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "source_statue",
+      "url": "https://oslobyleksikon.no/side/Karl_Johan-statuen",
+      "sourceLocation": "Konkurranse, Bergslien og avduking i 1875",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "historical"
+    },
+    {
+      "id": "source_photo_1906",
+      "url": "https://commons.wikimedia.org/wiki/File:17._mai_1906_-_no-nb_digifoto_20140723_00008_bldsa_PK18649.jpg",
+      "sourceLocation": "Samtidig fotografi av barnetog og publikum ved Slottet",
+      "sourceType": "archive",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "historical"
+    }
+  ],
+  "evidenceChains": [
+    {
+      "id": "chain_monument",
+      "claim": "Bergsliens monument gjør historisk kongemakt synlig i byaksen, men kan ikke alene måle dagens legitimitet.",
+      "stages": {
+        "institutionActor": {
+          "status": "documented",
+          "statement": "En offentlig konkurranse valgte Bergslien til monumentoppdraget.",
+          "sourceIds": [
+            "source_statue"
+          ]
+        },
+        "competenceRole": {
+          "status": "documented",
+          "statement": "Monumentet representerer Carl Johan som historisk konge, ikke en nåværende beslutningstaker.",
+          "sourceIds": [
+            "source_statue",
+            "source_constitution"
+          ]
+        },
+        "ruleDecision": {
+          "status": "documented",
+          "statement": "Bergslien vant konkurransen i 1868.",
+          "sourceIds": [
+            "source_statue"
+          ]
+        },
+        "resourceInstrument": {
+          "status": "documented",
+          "statement": "Bronsemonumentet og sokkelen er det varige symbolske instrumentet.",
+          "sourceIds": [
+            "source_statue"
+          ]
+        },
+        "implementation": {
+          "status": "documented",
+          "statement": "Figuren ble støpt i København og reist på Slottsplassen.",
+          "sourceIds": [
+            "source_statue"
+          ]
+        },
+        "output": {
+          "status": "documented",
+          "statement": "Oscar II avduket monumentet 7. september 1875.",
+          "sourceIds": [
+            "source_statue"
+          ]
+        },
+        "outcomeEffect": {
+          "status": "not_applicable",
+          "rationale": "Kildene dokumenterer monumentalisering og plassering, men måler ikke politisk opinion eller legitimitet."
+        }
+      }
+    },
+    {
+      "id": "chain_guard",
+      "claim": "Gardens sikkerhetsoppdrag blir offentlig synlig gjennom vaktpost, avløsning og parade uten at seremonien erstatter oppdraget.",
+      "stages": {
+        "institutionActor": {
+          "status": "documented",
+          "statement": "Hans Majestet Kongens Garde er Kongehusets militære livgarde og del av Forsvaret.",
+          "sourceIds": [
+            "source_guard"
+          ]
+        },
+        "competenceRole": {
+          "status": "documented",
+          "statement": "Garden skal beskytte kongefamilien i fred, krise og krig.",
+          "sourceIds": [
+            "source_guard"
+          ]
+        },
+        "ruleDecision": {
+          "status": "documented",
+          "statement": "Fast vakthold ved Slottet har vært utført siden 1888.",
+          "sourceIds": [
+            "source_guard"
+          ]
+        },
+        "resourceInstrument": {
+          "status": "documented",
+          "statement": "Vaktstyrke, paradeuniform, skilderhus og musikk gjør oppdraget fysisk synlig.",
+          "sourceIds": [
+            "source_guard",
+            "source_parade"
+          ]
+        },
+        "implementation": {
+          "status": "documented",
+          "statement": "Vaktskifte og historiske vaktparader organiserer avløsningen i offentligheten.",
+          "sourceIds": [
+            "source_guard",
+            "source_parade"
+          ]
+        },
+        "output": {
+          "status": "documented",
+          "statement": "Slottsplassen fungerer som endepunkt for vaktskifte og parade.",
+          "sourceIds": [
+            "source_parade"
+          ]
+        },
+        "outcomeEffect": {
+          "status": "not_applicable",
+          "rationale": "Kildene dokumenterer oppdrag og seremoni, men ikke en sikkerhetseffekt som kan isoleres eller offentliggjøres i detalj."
+        }
+      }
+    },
+    {
+      "id": "chain_may17",
+      "claim": "Barnetoget og balkonghilsenen utviklet Slottsplassen til en gjentatt offentlig møteflate mellom skolebarn og statsoverhodet.",
+      "stages": {
+        "institutionActor": {
+          "status": "documented",
+          "statement": "Oslos skolebarn, kongefamilien og byens organisering bærer ritualet.",
+          "sourceIds": [
+            "source_children"
+          ]
+        },
+        "competenceRole": {
+          "status": "documented",
+          "statement": "Monarken opptrer som konstitusjonelt statsoverhode, ikke som partipolitisk leder.",
+          "sourceIds": [
+            "source_constitution"
+          ]
+        },
+        "ruleDecision": {
+          "status": "documented",
+          "statement": "Haakon VII og Maud etablerte balkonghilsenen i 1906.",
+          "sourceIds": [
+            "source_children"
+          ]
+        },
+        "resourceInstrument": {
+          "status": "documented",
+          "statement": "Barnetog, flagg, plassflate og balkong skaper ritualets synlige form.",
+          "sourceIds": [
+            "source_children",
+            "source_photo_1906"
+          ]
+        },
+        "implementation": {
+          "status": "documented",
+          "statement": "Toget går til Slottet og møtes av hilsenen fra balkongen.",
+          "sourceIds": [
+            "source_children"
+          ]
+        },
+        "output": {
+          "status": "documented",
+          "statement": "17. mai 1906 er dokumentert i offisiell historikk og samtidig arkivfoto.",
+          "sourceIds": [
+            "source_children",
+            "source_photo_1906"
+          ]
+        },
+        "outcomeEffect": {
+          "status": "not_applicable",
+          "rationale": "Gjentakelsen dokumenterer kontinuitet, men kildene måler ikke deltakernes politiske holdninger."
+        }
+      }
+    }
+  ],
+  "currentVerification": {
+    "status": "PASS",
+    "checkedAt": "2026-08-29",
+    "currentClaimIds": [
+      "chain_guard"
+    ],
+    "sourceIds": [
+      "source_guard",
+      "source_constitution"
+    ]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "slottsplassen",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/politikk/slottsplassen.json",
+    "productionContext": "data/quiz/production_context/politikk/slottsplassen.json",
+    "requiredInputs": [
+      "data/fag/politikk/politikkpensum_canonical_v4_5.json",
+      "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+      "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+      "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+      "data/fag/politikk/supersetQUIZMAL_politikk.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "PASS",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Ni milepæler og fire episode_v1-historier er kontrollert mot institusjons-, tradisjons-, monument- og arkivkilder."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "primaryFunction"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "politicsTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "evidenceChains"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "sources"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "currentVerification"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/quiz/politikk/slottsplassen_sets.json"
+      ]
+    },
+    "G": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "chronologyStories"
+      ]
+    }
+  },
+  "review": {
+    "reviewer": "History GO Slottsplassen institution, ritual and symbolism review",
+    "reviewedAt": "2026-08-29",
+    "notes": "Plass/bygning/park, sikkerhet/seremoni, symbol/myndighet, historikk/dagsprogram, tilstedeværelse/opinion og objekt/person er eksplisitt avgrenset."
+  }
+}

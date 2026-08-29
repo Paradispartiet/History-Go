@@ -3,7 +3,7 @@
   "contract": "docs/PEOPLE_POPUP_SYSTEM.md",
   "productionContract": "docs/PEOPLE_PROFILE_CANONICAL.md",
   "generatedBy": "tools/audit-people-popup-readiness.mts",
-  "sourceFingerprint": "6d78d954f47aa807ddd8b3de1a093b67dfb2c10fed51a52b9177287a065c0cf7",
+  "sourceFingerprint": "7ce09065ef684f6f4a44af5c443b393ddea855d2fa8e6ce238df23b6a1356492",
   "thresholds": {
     "complete": 85,
     "strong": 65,
@@ -18,29 +18,29 @@
   },
   "summary": {
     "totalPeople": 1423,
-    "complete": 67,
-    "strong": 405,
+    "complete": 68,
+    "strong": 404,
     "partial": 936,
     "sparse": 15,
     "readyPeopleV1": 72,
     "legacyUnreviewed": 1351,
     "brokenImages": 286,
-    "explicitFallbacks": 999,
+    "explicitFallbacks": 998,
     "implicitFallbacks": 26,
     "averageScore": 65.5
   },
   "fieldCoverage": {
     "identity": {
-      "count": 127,
-      "percent": 8.9
+      "count": 128,
+      "percent": 9
     },
     "popupDesc": {
       "count": 1402,
       "percent": 98.5
     },
     "lifeData": {
-      "count": 61,
-      "percent": 4.3
+      "count": 62,
+      "percent": 4.4
     },
     "contributionsDeclared": {
       "count": 62,
@@ -130,13 +130,13 @@
     {
       "category": "kunst",
       "total": 84,
-      "complete": 7,
-      "strong": 64,
+      "complete": 8,
+      "strong": 63,
       "partial": 13,
       "sparse": 0,
       "readyPeopleV1": 9,
       "legacyUnreviewed": 75,
-      "averageScore": 73.1
+      "averageScore": 73.3
     },
     {
       "category": "by",
@@ -5068,37 +5068,6 @@
       ]
     },
     {
-      "placeId": "eidsvolls_plass",
-      "totalIncomplete": 3,
-      "sparse": 0,
-      "partial": 0,
-      "strong": 3,
-      "averageScore": 72,
-      "people": [
-        {
-          "id": "arne_durban",
-          "name": "Arne Durban",
-          "score": 72,
-          "status": "strong",
-          "productionStatus": "legacy_unreviewed"
-        },
-        {
-          "id": "arne_vigeland",
-          "name": "Arne Vigeland",
-          "score": 72,
-          "status": "strong",
-          "productionStatus": "legacy_unreviewed"
-        },
-        {
-          "id": "brynjulf_bergslien",
-          "name": "Brynjulf Bergslien",
-          "score": 72,
-          "status": "strong",
-          "productionStatus": "legacy_unreviewed"
-        }
-      ]
-    },
-    {
       "placeId": "etne_tennisanlegg",
       "totalIncomplete": 3,
       "sparse": 0,
@@ -5590,6 +5559,37 @@
           "name": "Ólafia Jóhannsdóttir",
           "score": 72,
           "status": "strong",
+          "productionStatus": "legacy_unreviewed"
+        }
+      ]
+    },
+    {
+      "placeId": "eidsvolls_plass",
+      "totalIncomplete": 3,
+      "sparse": 0,
+      "partial": 0,
+      "strong": 2,
+      "averageScore": 78,
+      "people": [
+        {
+          "id": "arne_durban",
+          "name": "Arne Durban",
+          "score": 72,
+          "status": "strong",
+          "productionStatus": "legacy_unreviewed"
+        },
+        {
+          "id": "arne_vigeland",
+          "name": "Arne Vigeland",
+          "score": 72,
+          "status": "strong",
+          "productionStatus": "legacy_unreviewed"
+        },
+        {
+          "id": "brynjulf_bergslien",
+          "name": "Brynjulf Bergslien",
+          "score": 90,
+          "status": "complete",
           "productionStatus": "legacy_unreviewed"
         }
       ]
@@ -55804,50 +55804,6 @@
       ]
     },
     {
-      "id": "brynjulf_bergslien",
-      "name": "Brynjulf Bergslien",
-      "category": "kunst",
-      "kindLabel": "",
-      "sourceFile": "data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_03.json",
-      "primaryPlace": "eidsvolls_plass",
-      "places": [
-        "eidsvolls_plass",
-        "radmannsgarden_og_anatomibygget"
-      ],
-      "score": 72,
-      "priority": 43,
-      "status": "strong",
-      "productionStatus": "legacy_unreviewed",
-      "profileStandard": "",
-      "claimsFile": "",
-      "paragraphCount": 1,
-      "popupLength": 457,
-      "contributionCount": 0,
-      "educationCount": 0,
-      "practiceCount": 8,
-      "sourceCount": 3,
-      "imageState": "explicit_fallback",
-      "imagePath": "",
-      "coverage": {
-        "identity": false,
-        "popupDesc": true,
-        "lifeData": false,
-        "contributionsDeclared": false,
-        "educationDeclared": false,
-        "practiceDeclared": true,
-        "placeGrounding": true,
-        "sources": true,
-        "imageContract": true,
-        "profileStandard": false
-      },
-      "issues": [
-        "missing_role_label",
-        "missing_birth_data",
-        "missing_contributions_field",
-        "legacy_unreviewed"
-      ]
-    },
-    {
       "id": "bygdafolket_og_lions_musikkpaviljongen",
       "name": "Bygdafolket og Lions bak musikkpaviljongen",
       "category": "kunst",
@@ -70466,6 +70422,49 @@
       "sourceCount": 4,
       "imageState": "valid_image",
       "imagePath": "bilder/kort/people/anna_rogstad.webp",
+      "coverage": {
+        "identity": true,
+        "popupDesc": true,
+        "lifeData": true,
+        "contributionsDeclared": false,
+        "educationDeclared": false,
+        "practiceDeclared": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true,
+        "profileStandard": false
+      },
+      "issues": [
+        "missing_contributions_field",
+        "legacy_unreviewed"
+      ]
+    },
+    {
+      "id": "brynjulf_bergslien",
+      "name": "Brynjulf Bergslien",
+      "category": "kunst",
+      "kindLabel": "Billedhugger",
+      "sourceFile": "data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_03.json",
+      "primaryPlace": "eidsvolls_plass",
+      "places": [
+        "eidsvolls_plass",
+        "radmannsgarden_og_anatomibygget",
+        "slottsplassen"
+      ],
+      "score": 90,
+      "priority": 25,
+      "status": "complete",
+      "productionStatus": "legacy_unreviewed",
+      "profileStandard": "",
+      "claimsFile": "",
+      "paragraphCount": 1,
+      "popupLength": 379,
+      "contributionCount": 0,
+      "educationCount": 0,
+      "practiceCount": 8,
+      "sourceCount": 8,
+      "imageState": "valid_image",
+      "imagePath": "bilder/kort/people/brynjulf_bergslien.webp",
       "coverage": {
         "identity": true,
         "popupDesc": true,
