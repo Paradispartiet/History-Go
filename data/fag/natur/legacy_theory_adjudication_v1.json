@@ -1,0 +1,128 @@
+{
+  "schema": "history_go_fagverk_legacy_theory_adjudication_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "updated_at": "2026-08-29",
+  "policy": {
+    "canonical_content_wins": true,
+    "copy_legacy_prose": false,
+    "redirect_target": "fagverk.html?subject=natur#fagverkIaProgresjon",
+    "redirect_only_after_gate": true,
+    "product_mechanics_are_not_knowledge": true,
+    "product_boundaries_are_not_knowledge": true
+  },
+  "sections": [
+    {
+      "id": "merke-og-fag",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fag/natur/naturpensum_canonical_v4_5.json",
+        "data/fag/natur/emner_natur_canonical_v4_5.json",
+        "data/fag/natur/fagkart_natur_canonical_v4_5.json"
+      ],
+      "migration_refs": [],
+      "rationale": "Den faglige delen av overgangsteksten er allerede eid av Natur-pensumet, emnekatalogen og fagkartet: organismekunnskap, kjennetegn, habitat, fysiologi, hydrologi, geologi, klima og forvaltning er eksisterende canonicale innganger. Produktgrensen i samme seksjon avgjøres separat og skal ikke gjøres om til nytt faginnhold."
+    },
+    {
+      "id": "status",
+      "disposition": "retire_legacy_product_summary",
+      "owner_files": [],
+      "migration_refs": [],
+      "rationale": "Seksjonen er et datert sammendrag av materialiseringsstatus og tellinger, ikke selvstendig naturfaglig kunnskap. Den pensjoneres som legacy-produkttekst; levende status skal komme fra canonicale Fagverk-data og dagens progresjonsflate."
+    },
+    {
+      "id": "fagomrader",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fag/natur/fagkart_natur_canonical_v4_5.json",
+        "data/fag/natur/naturpensum_canonical_v4_5.json",
+        "data/fag/natur/emner_natur_canonical_v4_5.json"
+      ],
+      "migration_refs": [],
+      "rationale": "De tolv opplistede Natur-områdene er allerede canonicalt modellert i fagkart, pensum og emner og videre materialisert som tolv registry-kapitler. Legacy-opplistingen er derfor en presentasjonskopi av eksisterende fagstruktur, ikke en egen kunnskapskilde."
+    },
+    {
+      "id": "arbeidsmate",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fag/natur/methods_natur_canonical_v4_5.json",
+        "data/fag/natur/naturpensum_canonical_v4_5.json"
+      ],
+      "migration_refs": [],
+      "rationale": "Observasjon, forklaringsnivå, bestemmelsesnøkler, feltarbeid, mikroskopi, fysiologiske målinger, hydrologi, geologisk analyse, tidsserier, usikkerhet og mekanisme er allerede operasjonalisert i Natur sin canonicale metodekatalog og pensum."
+    },
+    {
+      "id": "kilder",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fag/natur/methods_natur_canonical_v4_5.json",
+        "data/fag/natur/naturpensum_canonical_v4_5.json",
+        "data/fag/natur/emner_natur_canonical_v4_5.json"
+      ],
+      "migration_refs": [],
+      "rationale": "Artsfunn, samlinger, genetiske data, felt- og laboratoriemålinger, geologiske, hydrologiske og klimatiske datasett, forvaltningsplaner, konsekvensutredninger, forskning og usikkerhet inngår allerede i canonical Natur-metodikk og faglig evidenspraksis."
+    },
+    {
+      "id": "progresjon",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fag/natur/naturpensum_canonical_v4_5.json",
+        "data/fag/natur/emner_natur_canonical_v4_5.json",
+        "data/fag/natur/fagkart_natur_canonical_v4_5.json"
+      ],
+      "migration_refs": [],
+      "rationale": "Den faglige progresjonen fra konkrete kjennetegn, organismer, materialer, vann og målinger til funksjon, livssyklus, slektskap, miljøkrav, evolusjon, økosystem, forvaltning og tidsskala finnes allerede i canonical Natur-strukturen. Selve produktlenken og de statiske tellingene avgjøres separat."
+    }
+  ],
+  "product_mechanics": [
+    {
+      "id": "badge_activity_progress",
+      "disposition": "canonical_product_state",
+      "owner_files": [
+        "data/badges/natur.json",
+        "js/fagverk-subject-model.js",
+        "js/fagverk-ia-v3-badge-progress.js"
+      ],
+      "migration_refs": [],
+      "rationale": "Legacy-siden beskriver poeng, nivåer, quiz og undersøkte steder, men inneholder ingen egen state- eller quizruntime. Canonical badge-data, subject-modelens progresjonsstate og den integrerte badge-progress-flaten eier faktisk nivå-, poeng-, undermerke- og besøksprogresjon. Legacy-prosaen er derfor ikke en konkurrerende produktkilde."
+    },
+    {
+      "id": "subject_completion_snapshot",
+      "disposition": "retire_legacy_snapshot",
+      "owner_files": [],
+      "migration_refs": [],
+      "rationale": "Påstanden om 12/12 materialiserte områder er et øyeblikksbilde fra legacy-siden. Den skal ikke beholdes som en separat statuskilde når canonical Fagverk-data allerede eier nåværende tilstand."
+    },
+    {
+      "id": "integrated_progression_route",
+      "disposition": "canonical_progression_route",
+      "owner_files": [
+        "fagverk.html",
+        "js/fagverk-ia-v3-badge-progress.js"
+      ],
+      "migration_refs": [],
+      "rationale": "Den integrerte progresjonsflaten finnes allerede i den generiske Fagverk-ruten for Natur og rendrer badgeidentitet, poeng, nivåstige og undermerker. Route-retirement kan derfor sende badge-trafikken direkte til denne flaten etter grønn adjudiseringsgate."
+    },
+    {
+      "id": "subject_inventory_snapshot",
+      "disposition": "retire_legacy_snapshot",
+      "owner_files": [],
+      "migration_refs": [],
+      "rationale": "Legacy-tellingene for emner, metoder og kapitler er statiske presentasjonstall. De pensjoneres i stedet for å bli en konkurrerende inventory-kilde."
+    }
+  ],
+  "product_boundaries": [
+    {
+      "id": "nature_assignment_requires_scientific_entry",
+      "disposition": "migrated_to_canonical_product_contract",
+      "owner_files": [
+        "data/categories/category_contract.json"
+      ],
+      "migration_refs": [
+        "data/categories/category_contract.json#decisions.natur",
+        "PR #5496"
+      ],
+      "rationale": "Legacy-siden hadde en reell kategoriseringsregel som ikke tidligere var eksplisitt i category-contracten. #5496 flyttet regelen til canonical produktkontrakt: Natur krever dokumenterbar naturfaglig relevans og skal ikke tildeles bare på grunn av grønt preg, utendørs karakter eller estetisk naturopplevelse."
+    }
+  ]
+}
