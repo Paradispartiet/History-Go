@@ -94,14 +94,25 @@ Kunst-auditene skal etter redirect bare lese arkivfilen. Compatibility-wrapperen
 
 Religion er et `legacy_stub`-fag og trenger derfor ikke fullteori-prosessen:
 
-- **#5466:** den gamle stubben ble kontrollert for unik tekst, runtime og lenker. Den har ingen egen progresjonslogikk, quiz, emnekatalog eller faglig detaljflate. Fagbeskrivelsen er allerede dekket av canonical badge-, registry- og universitetsmateriale, blant annet kildebasert/respektfull behandling, skillet mellom dokumentert observasjon og antakelser om tro og at religiøse tradisjoner er internt mangfoldige.
+- **#5466/#5469:** den gamle stubben ble kontrollert for unik tekst, runtime og lenker. Den har ingen egen progresjonslogikk, quiz, emnekatalog eller faglig detaljflate. Fagbeskrivelsen er allerede dekket av canonical badge-, registry- og universitetsmateriale, blant annet kildebasert/respektfull behandling, skillet mellom dokumentert observasjon og antakelser om tro og at religiøse tradisjoner er internt mangfoldige.
 - Den gamle formuleringen `4 fagområder / 8 emner / 8 metoder` klassifiseres som `legacy_product_summary`, ikke som kunnskapsinnhold som skal kopieres. Fagverkets runtime eier tellingene.
 - Originalstubben bevares byte-for-byte i `data/fag/religion/archive/merke_religion_legacy_20260828.html` med original Git-blob `fa4cdd97372ce1d2fd90f2a0712bf2458b1f42a4`. `data/fag/religion/merke_religion.html` er kun compatibility-redirect, mens canonical `badgePage` og `Alle merker` går til `fagverk.html?subject=religion#fagverkIaProgresjon`.
 
 Religion viser at `legacy_stub` kan pensjoneres i én tranche når en permanent audit beviser at siden ikke bærer unik kunnskap eller funksjon.
 
+### Scenekunst
+
+Scenekunst er andre `legacy_stub`-fag og følger samme smale pensjoneringsregel:
+
+- **#5471:** den gamle stubben ble kontrollert mot badge, category-contract, de fire manifesteide kjernefilene og registry. Alle begrepene i den korte ingressen — teater, dans, musikal/musikkteater, revy, standup, improvisasjon, scenografi, regi, dramaturgi og levende fremføring/performance — har allerede canonical eier. Det finnes ingen separat runtime eller faglig detaljflate på stubben.
+- Originalstubben bevares byte-for-byte i `data/fag/scenekunst/archive/merke_scenekunst_legacy_20260829.html` med original Git-blob `cb51d4c8788df292e715dade7a8b9c44ccf6d7f4`.
+- `data/fag/scenekunst/merke_scenekunst.html` er kun compatibility-redirect, mens canonical `badgePage` og `Alle merker` går til `fagverk.html?subject=scenekunst#fagverkIaProgresjon`.
+- Den eksisterende Scenekunst Phase 3-porten er reconcilet slik at den kontrollerer canonical Progresjon-rute, ren compatibility-wrapper og bevart arkiv i stedet for å kreve gammel produkttekst på aktiv URL.
+
+Ingen Scenekunst-emner, metoder, kapitler, claims eller kilder ble endret for å pensjonere stubben.
+
 ## Ikke redirect ennå
 
 - **Politikk:** `rich_runtime`; emneprogresjon, quizhistorikk, steder, begrepsutforsker og øvrig aktiv legacy-runtime må ha dokumentert equivalence før redirect.
 - **Andre fullteorisider:** `legacy_static_theory`; hvert fag må gjennom egen innholdsaudit og eksplisitt adjudisering. By, Historie, Litteratur og Kunst er prosessbevis, ikke automatisk godkjenning av resten.
-- **Tynne legacy-sider:** `legacy_stub`; Religion er første eksplisitte stub-retirement; øvrige stubber må fortsatt gjennom egen unik-innhold/linkaudit før redirect.
+- **Tynne legacy-sider:** `legacy_stub`; Religion og Scenekunst er eksplisitt pensjonert; øvrige stubber må fortsatt gjennom egen unik-innhold/linkaudit før redirect.
