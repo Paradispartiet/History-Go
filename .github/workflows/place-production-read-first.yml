@@ -1,0 +1,47 @@
+name: Place production READ-FIRST
+
+on:
+  pull_request:
+    paths:
+      - "AGENTS.md"
+      - "docs/PLACE_PRODUCTION_CHECKLIST.md"
+      - "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md"
+      - "docs/PLACE_PRODUCTION_PROFILES.md"
+      - "docs/PLACE_OBJECTS_CANONICAL.md"
+      - "data/places/**"
+      - "data/badges/**"
+      - "data/brands/brand_rules_v1_1.json"
+      - "reports/place-production/**"
+      - "scripts/place-production-rule-preflight.mjs"
+      - ".github/workflows/place-production-read-first.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  read-first:
+    name: Mandatory rule preflight
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository with base history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate preflight checker syntax
+        run: node --check scripts/place-production-rule-preflight.mjs
+
+      - name: Require current rule-read evidence for full Place production
+        run: node scripts/place-production-rule-preflight.mjs check --base "${{ github.event.pull_request.base.sha }}"
