@@ -100,6 +100,16 @@ Media er femte `legacy_static_theory`-fag som er ført gjennom den komplette fai
 
 Media-auditene leser etter route-retirement bare arkivfilen. Den rå anker-auditen forblir med vilje `redirectReady: false`; bare den eksplisitte adjudiseringsgaten kan autorisere ruten. Ingen Media-emner, metoder, kapitler, claims, kilder eller gameplaydata ble endret i equivalence-løpet.
 
+### Musikk
+
+Musikk er sjette `legacy_static_theory`-fag som er ført gjennom hele equivalence-løpet. Den gamle siden har åtte faglige seksjoner, men inneholder også to produktgrenser som må holdes utenfor kunnskapsmodellen:
+
+- **#5484:** den deterministiske auditen sammenlignet alle åtte seksjoner mot Musikk sine fire manifesteide v4.5-kjernefiler, den canonicale vitenskapspakken og åtte registry-kapitler med 96 kapittel-/evidensfiler. Det normaliserte canonicale korpuset var 1 148 237 tegn. Etter å ha tatt med hele manifestkjernen var dekningen 8/8 med null manuell restanse og null bevist kunnskapsgap. Legacy-frasen om sekundærbadge ble isolert som produktmekanikk, ikke som faglig innhold.
+- **#5489:** alle åtte kunnskapsseksjoner fikk eksplisitte canonicale eiere og `canonical_supersedes`, med null migreringer. `Utøvelse` beholder Musikk/Scenekunst-grensen som produktgrense, og `Musikk og samfunn` beholder `secondary_badge_routing` som produktmekanikk; begge eies av `data/categories/category_contract.json` kun som produktregler, aldri som Musikk-kunnskapskilde. Adjudiseringsgaten ble `redirectReady: true` mens portalruten fortsatt var legacy.
+- **#5490:** original fullteori bevares byte-for-byte i `data/fag/musikk/archive/merke_musikk_full_teori_legacy_20260829.html` med original Git-blob `4332f0292777e82d1dddbc05d58ef4651ae88774`. `data/fag/musikk/merke_musikk (1).html` blir ren compatibility-redirect, mens canonical `badgePage` og `Alle merker` flyttes til `fagverk.html?subject=musikk#fagverkIaProgresjon`.
+
+Musikk-auditene skal etter route-retirement bare lese arkivfilen. Den rå anker-auditen forblir `redirectReady: false`; den eksplisitte adjudiseringsgaten låser både 8/8 kunnskapseierskap og de to produktgrensene før den kan godkjenne ruten. Ingen Musikk-emner, metoder, kapitler, claims, kilder eller gameplaydata ble endret i equivalence-løpet.
+
 ### Religion
 
 Religion er et `legacy_stub`-fag og trenger derfor ikke fullteori-prosessen:
@@ -124,5 +134,5 @@ Ingen Scenekunst-emner, metoder, kapitler, claims eller kilder ble endret for å
 ## Ikke redirect ennå
 
 - **Politikk:** `rich_runtime`; emneprogresjon, quizhistorikk, steder, begrepsutforsker og øvrig aktiv legacy-runtime må ha dokumentert equivalence før redirect.
-- **Andre fullteorisider:** `legacy_static_theory`; hvert fag må gjennom egen innholdsaudit og eksplisitt adjudisering. By, Historie, Litteratur, Kunst og Media er prosessbevis, ikke automatisk godkjenning av resten.
+- **Andre fullteorisider:** `legacy_static_theory`; hvert fag må gjennom egen innholdsaudit og eksplisitt adjudisering. By, Historie, Litteratur, Kunst, Media og Musikk er prosessbevis, ikke automatisk godkjenning av resten.
 - **Tynne legacy-sider:** `legacy_stub`; Religion og Scenekunst er eksplisitt pensjonert; øvrige stubber må fortsatt gjennom egen unik-innhold/linkaudit før redirect.
