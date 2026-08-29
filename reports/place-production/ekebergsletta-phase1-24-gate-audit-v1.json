@@ -1,0 +1,101 @@
+{
+  "schema": "place-production-gate-audit-v1",
+  "place_id": "ekebergsletta",
+  "verified_at": "2026-08-29",
+  "profile": {
+    "production_profile": "standard",
+    "status": "confirmed",
+    "reason": "Stedet har en bred, kildebelagt historie fra offentlig idrettsflate til internasjonalt turneringslandskap, med fire naturlige og bildeklare sportssamlinger."
+  },
+  "prior_work_gate": {
+    "status": "PASS",
+    "finding": "Existing canonical Place, verified geometry, one Story and weak 2x5 quiz found; completion work preserved identity and replaced unsupported learning content."
+  },
+  "coordinates": {
+    "status": "PASS",
+    "decision": "preserved_verified_geometry",
+    "lat": 59.89467318346404,
+    "lon": 10.77769035476144,
+    "r": 320,
+    "sourceObjectId": "osm-relation:15951742"
+  },
+  "collections": {
+    "expected": [
+      "people",
+      "objects",
+      "brands",
+      "competitions"
+    ],
+    "actual": [
+      "people",
+      "objects",
+      "brands",
+      "competitions"
+    ],
+    "label": "Kamper og konkurranser",
+    "status": "PASS"
+  },
+  "chronology": {
+    "status": "PASS",
+    "exact_anchors": [
+      1946,
+      1947,
+      1948,
+      1959,
+      1972,
+      1975,
+      1976,
+      2023
+    ],
+    "held_back": [
+      "udokumentert fast bane- og kamptall"
+    ]
+  },
+  "before_after": {
+    "status": "NOT_APPLICABLE",
+    "rationale": "No viewpoint-matched rights-cleared historic/current pair was found; tournament and winter images document different uses, not a physical before/after transformation."
+  },
+  "news": {
+    "status": "NOT_APPLICABLE",
+    "rationale": "The durable historical and sports-learning package does not require a current-news module."
+  },
+  "manual_qa": {
+    "image_montage": "PASS",
+    "card_crop": "PASS",
+    "front_image_portrait": "PASS",
+    "people_preview": "PASS",
+    "object_preview": "PASS",
+    "brand_preview": "PASS",
+    "competition_preview": "PASS",
+    "source_links": "PASS"
+  },
+  "quality_score": {
+    "correctness_and_evidence": {
+      "score": 5,
+      "note": "Every description sentence has an explicit source assignment; official and institutional sources carry the central claims."
+    },
+    "coverage": {
+      "score": 5,
+      "note": "Place, four collections, chronology, two Stories, six language terms, Fagverk context and 35 quiz questions are complete."
+    },
+    "editorial_quality": {
+      "score": 5,
+      "note": "The text distinguishes permanent land, temporary tournament layers, dated records and organizer ownership boundaries."
+    },
+    "technical_quality": {
+      "score": 5,
+      "note": "Canonical paths, manifests, local assets, production packet and materializers are registered."
+    },
+    "safety_and_rights": {
+      "score": 5,
+      "note": "Public access guidance and rights metadata are present; no unsafe field action or endorsement is implied."
+    },
+    "maintainability": {
+      "score": 5,
+      "note": "A repeatable finalizer, permanent test and explicit held-back list make future updates inspectable."
+    },
+    "total": 30,
+    "critical_findings": 0,
+    "unresolved_blockers": 0
+  }
+}

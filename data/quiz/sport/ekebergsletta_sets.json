@@ -1,330 +1,400 @@
 {
-  "targetId": "ekebergsletta",
+  "generator_version": "3.3",
   "categoryId": "sport",
+  "targetId": "ekebergsletta",
+  "size_class": "rich_5x7",
+  "sources": {
+    "norway_cup_about": "https://norwaycup.no/en/om-oss/",
+    "norway_cup_hofmo": "https://norwaycup.no/om-oss/tidligere-resultater-og-vinnere/hofmos-minnepokal/",
+    "oslo_byleksikon": "https://oslobyleksikon.no/side/Ekebergsletta",
+    "oslo_idrettskrets": "https://www.idrettsforbundet.no/idrettskrets/oslo/nyhet/arkiv/historisk-vedtak-for-osloidretten/",
+    "snl_norway_cup": "https://snl.no/Norway_Cup",
+    "snl_ekeberg": "https://snl.no/Ekeberg",
+    "bekkelagets_sk": "https://bekkelagets.no/",
+    "commons_sletta": "https://commons.wikimedia.org/wiki/File:20090726_Ekebergsletta_Norway_Cup_2009.JPG",
+    "commons_winter": "https://commons.wikimedia.org/wiki/File:Ekebergsletta_(2018-03-03).jpg",
+    "commons_cup": "https://commons.wikimedia.org/wiki/File:Norway_Cup.jpg",
+    "commons_hofmo": "https://commons.wikimedia.org/wiki/File:Rolf_Hofmo.jpg"
+  },
+  "production_context": {
+    "manifest_category": "sport",
+    "profile": "rich_5x7",
+    "standard_version": "3.3",
+    "resolved_files": {
+      "pensum": "data/fag/sport/sportpensum_canonical_v4_5.json",
+      "emner": "data/fag/sport/emner_sport_canonical_v4_5.json",
+      "fagkart": "data/fag/sport/fagkart_sport_canonical_v4_5.json",
+      "methods": "data/fag/sport/methods_sport_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/sport/supersetQUIZMAL_sport.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "arenaer_steder_groundhopper",
+      "regler_spill_konkurranse",
+      "klubber_lag_frivillighet",
+      "inkludering_helse_lek_samfunn"
+    ],
+    "emne_ids": [
+      "em_sport_arena_samling",
+      "em_sport_breddeidrett",
+      "em_sport_frivillighet_dugnad",
+      "em_sport_turnering_format",
+      "em_sport_inkludering_idrett"
+    ],
+    "topic_hook_ids": [
+      "groundhopper_logikk",
+      "frivillighet_og_dugnad",
+      "breddeidrett",
+      "turnering_og_format",
+      "inkludering"
+    ],
+    "method_ids": [
+      "met_sport_arenaanalyse",
+      "met_sport_breddeidrettsanalyse",
+      "met_sport_frivillighetsanalyse",
+      "met_sport_inkluderingsanalyse",
+      "met_sport_turneringsanalyse"
+    ],
+    "thinker_ids": [
+      "john_bale",
+      "robert_putnam",
+      "roger_caillois",
+      "johan_huizinga"
+    ],
+    "works": [],
+    "source_review_status": "reviewed",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "source_brief": "data/quiz/production_briefs/sport/ekebergsletta.json",
+    "context_artifact": "data/quiz/production_context/sport/ekebergsletta.json",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/sport/ekebergsletta_sets.json",
+        "data/places/sport/europa/norway/oslo_sport/ekebergsletta.json"
+      ],
+      "active_before": {
+        "file": "data/quiz/sport/ekebergsletta_sets.json",
+        "set_count": 2,
+        "question_count": 10,
+        "finding": "Aktiv 2x5-pakke hadde tomme source-arrays i alle spørsmål."
+      },
+      "decisions": [
+        "Erstatt hele pakken med rich 5x7; behold bare dokumenterbare læringsjobber."
+      ],
+      "knowledge_migration": "Canonical question IDs and knowledge units regenerated."
+    },
+    "profile_decision": {
+      "profile": "rich",
+      "set_count": 5,
+      "questions_per_set": 7,
+      "justification": "Fem selvstendige læringsjobber bæres av 1946–1948-historien, Norway Cup-starten, arrangementsskalaen, flerbruken og sportsteori."
+    },
+    "held_back_candidates": [
+      "Et udokumentert fast antall baner eller kamper.",
+      "Samtidstall presentert som tidløse nivåer.",
+      "Påstand om at Bækkelagets Sportsklub eier hele Ekebergsletta."
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final",
+    "normal_opening": {
+      "set_1_and_2_are_source_led": true,
+      "theory_visible_from_set": 5
+    },
+    "progression": [
+      "public_sports_land",
+      "tournament_origin",
+      "scale_and_layout",
+      "multiple_uses",
+      "methods_and_theory"
+    ]
+  },
   "sets": [
     {
       "set_id": "sport_ekebergsletta_set_1",
-      "level": 1,
+      "title": "Sletta blir idrettsrom",
       "order": 1,
-      "xp": 50,
-      "title": "Ekebergsletta som turneringslandskap",
+      "level": 1,
+      "phase": "opening",
       "questions": [
         {
-          "id": "ekebergsletta_quiz_1_1",
+          "id": "ekebergsletta_quiz_01",
           "quiz_id": "sport_ekebergsletta_set_1_q1",
           "categoryId": "sport",
           "placeId": "ekebergsletta",
-          "personId": "",
           "targetId": "ekebergsletta",
           "question_scope": "place",
-          "question": "Du står på Ekebergsletta under en stor fotballturnering. Hva viser best at stedet er mer enn en vanlig fotballflate?",
+          "question": "Når ble Ekebergsletta offisielt åpnet?",
           "options": [
-            "Mange baner, lag, kamper og støttefunksjoner virker sammen som ett stort turneringsområde",
-            "Én hovedtribune samler all aktivitet rundt en enkelt kamp",
-            "Det åpne gresset har først og fremst betydning som park mellom kampene"
+            "Sommeren 1948",
+            "I 1930",
+            "I 1972"
           ],
-          "answer": "Mange baner, lag, kamper og støttefunksjoner virker sammen som ett stort turneringsområde",
+          "answer": "Sommeren 1948",
           "answerIndex": 0,
-          "dimension": "turneringslandskap",
-          "topic": "Mer enn en fotballflate",
-          "knowledge": "Ekebergsletta får sportslig betydning gjennom helheten av banefelt, samtidige kamper, lag og funksjoner rundt turneringen. Stedet må derfor leses som et turneringslandskap, ikke som én isolert bane.",
-          "trivia": [],
+          "knowledge": "Sommeren 1948",
           "difficulty": 1,
-          "question_type": "place_reading",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "sport",
-          "emne_id": "em_sport_arena_samling",
-          "related_emner": [
-            "em_sport_breddeidrett",
-            "em_sport_inkludering_idrett"
+          "question_type": "fact",
+          "emne_id": "em_sport_idrettsarena_sted",
+          "source": [
+            "oslo_byleksikon"
           ],
-          "core_concepts": [
-            "turneringslandskap",
-            "banefelt",
-            "samtidige kamper",
-            "støttefunksjoner"
-          ],
-          "concept_focus": [
-            "turneringslandskap"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "ekebergsletta",
-            "turneringslandskap",
-            "fotballflater",
-            "mange_baner",
-            "breddefotball"
-          ],
-          "required_tags": [],
-          "source": [],
-          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_far_sports_ef4766762c",
+          "source_origin": "external",
+          "claim_basis": "Sommeren 1948",
+          "claim_id": "claim_ekebergsletta_quiz_01",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_01",
           "knowledge_unit_ids": [
-            "ku_sport_ekebergsletta_far_sports_ef4766762c",
-            "ku_sport_stedet_ma_derfor_leses_s_5cfb816e50"
+            "ku_sport_ekebergsletta_01"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
           ],
           "concept_ids": [
-            "co_sport_turneringslandskap_dd7009fc5e",
-            "co_sport_banefelt_8016520f40",
-            "co_sport_samtidige_kamper_4fe94d818c",
-            "co_sport_st_ttefunksjoner_71a6750f26"
+            "co_sport_place_evidence"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
         {
-          "id": "ekebergsletta_quiz_1_2",
+          "id": "ekebergsletta_quiz_02",
           "quiz_id": "sport_ekebergsletta_set_1_q2",
           "categoryId": "sport",
           "placeId": "ekebergsletta",
-          "personId": "",
           "targetId": "ekebergsletta",
           "question_scope": "place",
-          "question": "Hva betyr det å lese Ekebergsletta som et turneringslandskap?",
+          "question": "Hva ble Ekebergsletta tatt i bruk som i 1947?",
           "options": [
-            "Å forstå hvordan baner, ferdselslinjer, møteplasser og midlertidige funksjoner bindes sammen av turneringen",
-            "Å lete etter ett stadionbygg som alene forklarer all idrettsaktiviteten",
-            "Å vurdere området bare ut fra hvor mye gress som finnes"
+            "Lukket militærleir",
+            "Park og idrettsområde",
+            "Flyplass"
           ],
-          "answer": "Å forstå hvordan baner, ferdselslinjer, møteplasser og midlertidige funksjoner bindes sammen av turneringen",
-          "answerIndex": 0,
-          "dimension": "landskapslesing",
-          "topic": "Turneringen organiserer stedet",
-          "knowledge": "Et turneringslandskap oppstår når mange fysiske og organisatoriske deler kobles sammen. Baner, ganglinjer, møteplasser og midlertidige tjenester gjør hele sletta til en samlet idrettsarena.",
-          "trivia": [],
+          "answer": "Park og idrettsområde",
+          "answerIndex": 1,
+          "knowledge": "Park og idrettsområde",
           "difficulty": 1,
-          "question_type": "concept",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "sport",
-          "emne_id": "em_sport_arena_samling",
-          "related_emner": [
-            "em_sport_breddeidrett"
+          "question_type": "fact",
+          "emne_id": "em_sport_idrettsarena_sted",
+          "source": [
+            "oslo_byleksikon"
           ],
-          "core_concepts": [
-            "turneringslandskap",
-            "ferdselslinjer",
-            "møteplasser",
-            "midlertidige funksjoner"
-          ],
-          "concept_focus": [
-            "landskapslesing"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "ekebergsletta",
-            "turnering",
-            "landskapslesing",
-            "moteplasser",
-            "idrettslogistikk"
-          ],
-          "required_tags": [],
-          "source": [],
-          "primary_knowledge_unit_id": "ku_sport_et_turneringslandskap_op_e3700f0a13",
+          "source_origin": "external",
+          "claim_basis": "Park og idrettsområde",
+          "claim_id": "claim_ekebergsletta_quiz_02",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_02",
           "knowledge_unit_ids": [
-            "ku_sport_et_turneringslandskap_op_e3700f0a13",
-            "ku_sport_baner_ganglinjer_m_tepla_38e27a9c04"
+            "ku_sport_ekebergsletta_02"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
           ],
           "concept_ids": [
-            "co_sport_turneringslandskap_dd7009fc5e",
-            "co_sport_ferdselslinjer_97198ff330",
-            "co_sport_m_teplasser_5ae9ecdd02",
-            "co_sport_midlertidige_funksjoner_54323c46c9",
-            "co_sport_landskapslesing_a1b9106b52"
+            "co_sport_place_evidence"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
         {
-          "id": "ekebergsletta_quiz_1_3",
+          "id": "ekebergsletta_quiz_03",
           "quiz_id": "sport_ekebergsletta_set_1_q3",
           "categoryId": "sport",
           "placeId": "ekebergsletta",
-          "personId": "",
           "targetId": "ekebergsletta",
           "question_scope": "place",
-          "question": "Hva betyr det at mange små kamper kan gjøre Ekebergsletta til et stort idrettssted?",
+          "question": "Hvem var sentral i å sikre sletta til idrett og friluftsliv?",
           "options": [
-            "Den samlede aktiviteten på mange baner skaper en større sportslig betydning enn hver enkelt kamp har alene",
-            "Bare finalekampen teller, mens de andre kampene ikke former stedet",
-            "Et idrettssted blir stort bare når én tribune har svært mange plasser"
+            "Rolf Wesenlund",
+            "Roald Amundsen",
+            "Rolf Hofmo"
           ],
-          "answer": "Den samlede aktiviteten på mange baner skaper en større sportslig betydning enn hver enkelt kamp har alene",
-          "answerIndex": 0,
-          "dimension": "samlet_aktivitet",
-          "topic": "Mange kamper, ett stort idrettssted",
-          "knowledge": "Ekebergslettas skala ligger i summen av aktivitet. Når mange lag spiller samtidig på mange baner, blir bredden og mengden av små kamper selve grunnlaget for stedets store idrettsbetydning.",
-          "trivia": [],
+          "answer": "Rolf Hofmo",
+          "answerIndex": 2,
+          "knowledge": "Rolf Hofmo",
           "difficulty": 1,
-          "question_type": "concept",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "sport",
-          "emne_id": "em_sport_breddeidrett",
-          "related_emner": [
-            "em_sport_arena_samling",
-            "em_sport_inkludering_idrett"
+          "question_type": "fact",
+          "emne_id": "em_sport_arena_samling",
+          "source": [
+            "norway_cup_hofmo"
           ],
-          "core_concepts": [
-            "breddefotball",
-            "mange kamper",
-            "mange baner",
-            "samlet aktivitet"
-          ],
-          "concept_focus": [
-            "samlet aktivitet"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "ekebergsletta",
-            "breddefotball",
-            "samtidige_kamper",
-            "banefelt",
-            "idrettssted"
-          ],
-          "required_tags": [],
-          "source": [],
-          "primary_knowledge_unit_id": "ku_sport_ekebergslettas_skala_lig_b012ecaa36",
+          "source_origin": "external",
+          "claim_basis": "Rolf Hofmo",
+          "claim_id": "claim_ekebergsletta_quiz_03",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_03",
           "knowledge_unit_ids": [
-            "ku_sport_ekebergslettas_skala_lig_b012ecaa36",
-            "ku_sport_nar_mange_lag_spiller_sa_822d514fc6"
+            "ku_sport_ekebergsletta_03"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
           ],
           "concept_ids": [
-            "co_sport_breddefotball_e837fade5c",
-            "co_sport_mange_kamper_9fd2679639",
-            "co_sport_mange_baner_141270b654",
-            "co_sport_samlet_aktivitet_696e91c880"
+            "co_sport_place_evidence"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
         {
-          "id": "ekebergsletta_quiz_1_4",
+          "id": "ekebergsletta_quiz_04",
           "quiz_id": "sport_ekebergsletta_set_1_q4",
           "categoryId": "sport",
           "placeId": "ekebergsletta",
-          "personId": "",
           "targetId": "ekebergsletta",
           "question_scope": "place",
-          "question": "Hva bør spilleren se etter på Ekebergsletta for å forstå hvordan breddefotballen bruker stedet?",
+          "question": "Hva måtte skje etter krigstidens bruk før sletta kunne åpnes?",
           "options": [
-            "Oppdelingen i banefelt og hvordan åpne arealer gir plass til kamper, bevegelse og samling mellom banene",
-            "Bare fasaden på den største permanente bygningen i området",
-            "Kun ett fast supporterfelt med nummererte seter"
+            "Området måtte ryddes",
+            "En tribune måtte rives",
+            "Fjorden måtte fylles igjen"
           ],
-          "answer": "Oppdelingen i banefelt og hvordan åpne arealer gir plass til kamper, bevegelse og samling mellom banene",
+          "answer": "Området måtte ryddes",
           "answerIndex": 0,
-          "dimension": "fysisk_observasjon",
-          "topic": "Les banefeltene på stedet",
-          "knowledge": "Banefelt, åpne mellomrom og bevegelsen mellom dem viser hvordan Ekebergsletta kan romme mange lag. Den fysiske flaten gjør både kampavvikling og samling mulig i stor skala.",
-          "trivia": [],
+          "knowledge": "Området måtte ryddes",
           "difficulty": 1,
-          "question_type": "observation",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "sport",
-          "emne_id": "em_sport_breddeidrett",
-          "related_emner": [
-            "em_sport_arena_samling"
+          "question_type": "fact",
+          "emne_id": "em_sport_idrettsarena_sted",
+          "source": [
+            "oslo_byleksikon"
           ],
-          "core_concepts": [
-            "banefelt",
-            "åpne arealer",
-            "bevegelse",
-            "samling"
-          ],
-          "concept_focus": [
-            "fysisk observasjon"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "ekebergsletta",
-            "banefelt",
-            "stedslæring",
-            "breddefotball",
-            "fysisk_observasjon"
-          ],
-          "required_tags": [],
-          "source": [],
-          "primary_knowledge_unit_id": "ku_sport_banefelt_apne_mellomrom__d8a4f0d5f1",
+          "source_origin": "external",
+          "claim_basis": "Området måtte ryddes",
+          "claim_id": "claim_ekebergsletta_quiz_04",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_04",
           "knowledge_unit_ids": [
-            "ku_sport_banefelt_apne_mellomrom__d8a4f0d5f1",
-            "ku_sport_den_fysiske_flaten_gj_r__93664afc82"
+            "ku_sport_ekebergsletta_04"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
           ],
           "concept_ids": [
-            "co_sport_banefelt_8016520f40",
-            "co_sport_apne_arealer_943239f3be",
-            "co_sport_bevegelse_9e3293005e",
-            "co_sport_samling_63a5c5615c",
-            "co_sport_fysisk_observasjon_546b945e9e"
+            "co_sport_place_evidence"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
         {
-          "id": "ekebergsletta_quiz_1_5",
+          "id": "ekebergsletta_quiz_05",
           "quiz_id": "sport_ekebergsletta_set_1_q5",
           "categoryId": "sport",
           "placeId": "ekebergsletta",
-          "personId": "",
           "targetId": "ekebergsletta",
           "question_scope": "place",
-          "question": "Hvordan skiller Ekebergsletta seg tydeligst fra en klubbground som KFUM Arena?",
+          "question": "Hvilken turnering har Ekebergsletta som hovedarena?",
           "options": [
-            "Sletta får identitet gjennom mange baner, lag og turneringsaktivitet, mens KFUM Arena er et avgrenset klubbhjem rundt én hovedbane",
-            "Sletta og KFUM Arena er like fordi begge først og fremst er store nasjonalstadioner",
-            "KFUM Arena mangler klubbidentitet, mens sletta tilhører ett fast hjemmelag"
+            "Holmenkollstafetten",
+            "Norway Cup",
+            "Bislett Games"
           ],
-          "answer": "Sletta får identitet gjennom mange baner, lag og turneringsaktivitet, mens KFUM Arena er et avgrenset klubbhjem rundt én hovedbane",
-          "answerIndex": 0,
-          "dimension": "arenasammenligning",
-          "topic": "Turneringslandskap og klubbground",
-          "knowledge": "Ekebergsletta representerer et åpent turneringslandskap der mange lag bruker mange flater. KFUM Arena representerer stadion- og klubbgroundkultur, med én hovedbane og en tydelig hjemmehørende klubb.",
-          "trivia": [],
+          "answer": "Norway Cup",
+          "answerIndex": 1,
+          "knowledge": "Norway Cup",
           "difficulty": 1,
-          "question_type": "comparison",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "sport",
-          "emne_id": "em_sport_klubbidentitet",
-          "related_emner": [
-            "em_sport_arena_samling",
-            "em_sport_breddeidrett"
+          "question_type": "fact",
+          "emne_id": "em_sport_turnering_format",
+          "source": [
+            "snl_norway_cup"
           ],
-          "core_concepts": [
-            "turneringslandskap",
-            "klubbground",
-            "stadionkultur",
-            "KFUM Arena"
-          ],
-          "concept_focus": [
-            "turneringslandskap mot klubbground"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "ekebergsletta",
-            "kfum_arena",
-            "klubbground",
-            "turneringslandskap",
-            "sammenligning"
-          ],
-          "required_tags": [],
-          "source": [],
-          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_represente_49659e6528",
+          "source_origin": "external",
+          "claim_basis": "Norway Cup",
+          "claim_id": "claim_ekebergsletta_quiz_05",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_05",
           "knowledge_unit_ids": [
-            "ku_sport_ekebergsletta_represente_49659e6528",
-            "ku_sport_kfum_arena_representerer_a3d5ec8f60"
+            "ku_sport_ekebergsletta_05"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
           ],
           "concept_ids": [
-            "co_sport_turneringslandskap_dd7009fc5e",
-            "co_sport_klubbground_6164d47da7",
-            "co_sport_stadionkultur_4ff9e85964",
-            "co_sport_kfum_arena_9901edb33d",
-            "co_sport_turneringslandskap_mot_klubbground_556471c378"
+            "co_sport_place_evidence"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ekebergsletta_quiz_06",
+          "quiz_id": "sport_ekebergsletta_set_1_q6",
+          "categoryId": "sport",
+          "placeId": "ekebergsletta",
+          "targetId": "ekebergsletta",
+          "question_scope": "place",
+          "question": "Hvilken institusjonell bruk kom til sletta i 1959?",
+          "options": [
+            "Vinter-OL",
+            "Verdensutstillingen",
+            "Landbruksutstillingen"
+          ],
+          "answer": "Landbruksutstillingen",
+          "answerIndex": 2,
+          "knowledge": "Landbruksutstillingen",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_sport_arena_samling",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Landbruksutstillingen",
+          "claim_id": "claim_ekebergsletta_quiz_06",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_06",
+          "knowledge_unit_ids": [
+            "ku_sport_ekebergsletta_06"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
+          ],
+          "concept_ids": [
+            "co_sport_place_evidence"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ekebergsletta_quiz_07",
+          "quiz_id": "sport_ekebergsletta_set_1_q7",
+          "categoryId": "sport",
+          "placeId": "ekebergsletta",
+          "targetId": "ekebergsletta",
+          "question_scope": "place",
+          "question": "Hva viser navnformen Eikaberg til?",
+          "options": [
+            "Eik og berg",
+            "Ekeberg skole og bane",
+            "Eiker og bekk"
+          ],
+          "answer": "Eik og berg",
+          "answerIndex": 0,
+          "knowledge": "Eik og berg",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_sport_idrettsarena_sted",
+          "source": [
+            "snl_ekeberg"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Eik og berg",
+          "claim_id": "claim_ekebergsletta_quiz_07",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_07",
+          "knowledge_unit_ids": [
+            "ku_sport_ekebergsletta_07"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
+          ],
+          "concept_ids": [
+            "co_sport_place_evidence"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
@@ -334,333 +404,1220 @@
     },
     {
       "set_id": "sport_ekebergsletta_set_2",
-      "level": 2,
+      "title": "Norway Cup begynner",
       "order": 2,
-      "xp": 70,
-      "title": "Norway Cup, breddeidrett og frivillighet",
+      "level": 2,
+      "phase": "middle",
       "questions": [
         {
-          "id": "ekebergsletta_quiz_2_1",
+          "id": "ekebergsletta_quiz_08",
           "quiz_id": "sport_ekebergsletta_set_2_q1",
           "categoryId": "sport",
           "placeId": "ekebergsletta",
-          "personId": "",
           "targetId": "ekebergsletta",
           "question_scope": "place",
-          "question": "Du står på Ekebergsletta under Norway Cup. Hva viser tydeligst turneringens betydning for stedet?",
+          "question": "Når startet Norway Cup?",
           "options": [
-            "Lag, kamper og møteplasser fyller mange baner og gjør sletta til et midlertidig sentrum for breddefotball",
-            "All oppmerksomhet er samlet om ett fast eliteserielag på én hovedbane",
-            "Turneringen gjør at de åpne flatene ikke lenger brukes til idrett"
+            "1948",
+            "1972",
+            "1984"
           ],
-          "answer": "Lag, kamper og møteplasser fyller mange baner og gjør sletta til et midlertidig sentrum for breddefotball",
-          "answerIndex": 0,
-          "dimension": "norway_cup",
-          "topic": "Norway Cup former stedet",
-          "knowledge": "Under Norway Cup blir Ekebergsletta et sentrum for mange kamper og lag. Turneringen synliggjør hvordan breddefotball kan gi et åpent landskap en tydelig, men midlertidig, idrettsstruktur.",
-          "trivia": [],
+          "answer": "1972",
+          "answerIndex": 1,
+          "knowledge": "1972",
           "difficulty": 2,
-          "question_type": "place_reading",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "sport",
-          "emne_id": "em_sport_breddeidrett",
-          "related_emner": [
-            "em_sport_arena_samling",
-            "em_sport_inkludering_idrett"
+          "question_type": "fact",
+          "emne_id": "em_sport_turnering_format",
+          "source": [
+            "norway_cup_about"
           ],
-          "core_concepts": [
-            "Norway Cup",
-            "breddefotball",
-            "turneringssentrum",
-            "midlertidig struktur"
-          ],
-          "concept_focus": [
-            "Norway Cup"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "ekebergsletta",
-            "norway_cup",
-            "breddefotball",
-            "turnering",
-            "mange_lag"
-          ],
-          "required_tags": [],
-          "source": [],
-          "primary_knowledge_unit_id": "ku_sport_under_norway_cup_blir_ek_c12c6c1efd",
+          "source_origin": "external",
+          "claim_basis": "1972",
+          "claim_id": "claim_ekebergsletta_quiz_08",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_08",
           "knowledge_unit_ids": [
-            "ku_sport_under_norway_cup_blir_ek_c12c6c1efd",
-            "ku_sport_turneringen_synliggj_r_h_1fa25e1118"
+            "ku_sport_ekebergsletta_08"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
           ],
           "concept_ids": [
-            "co_sport_norway_cup_c169d5a838",
-            "co_sport_breddefotball_e837fade5c",
-            "co_sport_turneringssentrum_2f32f9ecdb",
-            "co_sport_midlertidig_struktur_e6ab1c93a4"
+            "co_sport_place_evidence"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
         {
-          "id": "ekebergsletta_quiz_2_2",
+          "id": "ekebergsletta_quiz_09",
           "quiz_id": "sport_ekebergsletta_set_2_q2",
           "categoryId": "sport",
           "placeId": "ekebergsletta",
-          "personId": "",
           "targetId": "ekebergsletta",
           "question_scope": "place",
-          "question": "Hvorfor er Ekebergsletta viktigere som sted for breddeidrett enn for stadionkultur?",
+          "question": "Hvor mange lag deltok i den første Norway Cup?",
           "options": [
-            "Stedets særpreg kommer av at mange barn, ungdommer og lag kan delta på mange flater, ikke av én stor tribune og én hovedkamp",
-            "Breddeidrett betyr at publikum må holde seg utenfor området",
-            "Stadionkultur og breddeidrett er alltid det samme fordi begge bruker fotballbaner"
+            "42 lag",
+            "2183 lag",
+            "420 lag"
           ],
-          "answer": "Stedets særpreg kommer av at mange barn, ungdommer og lag kan delta på mange flater, ikke av én stor tribune og én hovedkamp",
-          "answerIndex": 0,
-          "dimension": "breddeidrett",
-          "topic": "Deltakelse framfor hovedtribune",
-          "knowledge": "Ekebergslettas styrke er kapasiteten for bred deltakelse. Barn, ungdommer og lag på ulike nivåer skaper idrettsstedet gjennom aktivitet på mange flater, i kontrast til stadionkulturens samling rundt én kamp.",
-          "trivia": [],
+          "answer": "420 lag",
+          "answerIndex": 2,
+          "knowledge": "420 lag",
           "difficulty": 2,
-          "question_type": "comparison",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "sport",
-          "emne_id": "em_sport_breddeidrett",
-          "related_emner": [
-            "em_sport_inkludering_idrett",
-            "em_sport_arena_samling"
+          "question_type": "fact",
+          "emne_id": "em_sport_turnering_format",
+          "source": [
+            "norway_cup_about"
           ],
-          "core_concepts": [
-            "breddeidrett",
-            "barn og ungdom",
-            "deltakelse",
-            "stadionkultur"
-          ],
-          "concept_focus": [
-            "breddeidrett framfor stadionkultur"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "ekebergsletta",
-            "breddeidrett",
-            "barn_og_ungdom",
-            "deltakelse",
-            "stadionkultur"
-          ],
-          "required_tags": [],
-          "source": [],
-          "primary_knowledge_unit_id": "ku_sport_ekebergslettas_styrke_er_7ac1848ad8",
+          "source_origin": "external",
+          "claim_basis": "420 lag",
+          "claim_id": "claim_ekebergsletta_quiz_09",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_09",
           "knowledge_unit_ids": [
-            "ku_sport_ekebergslettas_styrke_er_7ac1848ad8",
-            "ku_sport_barn_ungdommer_og_lag_pa_3ee1943fb0"
+            "ku_sport_ekebergsletta_09"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
           ],
           "concept_ids": [
-            "co_sport_breddeidrett_1011966541",
-            "co_sport_barn_og_ungdom_072ee30a9a",
-            "co_sport_deltakelse_3f762fb80d",
-            "co_sport_stadionkultur_4ff9e85964",
-            "co_sport_breddeidrett_framfor_stadionkultur_6d6d054591"
+            "co_sport_place_evidence"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
         {
-          "id": "ekebergsletta_quiz_2_3",
+          "id": "ekebergsletta_quiz_10",
           "quiz_id": "sport_ekebergsletta_set_2_q3",
           "categoryId": "sport",
           "placeId": "ekebergsletta",
-          "personId": "",
           "targetId": "ekebergsletta",
           "question_scope": "place",
-          "question": "Hvorfor er frivillighet og logistikk en del av sportshistorien på Ekebergsletta?",
+          "question": "Hvor mange deltakere oppgir arrangøren for 1972?",
           "options": [
-            "Fordi mange kamper krever mennesker og systemer som organiserer baner, lagflyt, informasjon og møteplasser",
-            "Fordi fotballkampene kan gjennomføres uten planlegging når det finnes nok gress",
-            "Fordi logistikk bare gjelder bygging av permanente tribuner"
+            "8400",
+            "840",
+            "84 000"
           ],
-          "answer": "Fordi mange kamper krever mennesker og systemer som organiserer baner, lagflyt, informasjon og møteplasser",
+          "answer": "8400",
           "answerIndex": 0,
-          "dimension": "frivillighet_og_logistikk",
-          "topic": "Arbeidet bak turneringen",
-          "knowledge": "Turneringshistorie handler også om arbeidet som gjør kampene mulige. Frivillige og logistiske systemer knytter baner, deltakere, informasjon og tjenester sammen til en fungerende helhet.",
-          "trivia": [],
+          "knowledge": "8400",
           "difficulty": 2,
-          "question_type": "historical_context",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "sport",
-          "emne_id": "em_sport_arena_samling",
-          "related_emner": [
-            "em_sport_breddeidrett",
-            "em_sport_inkludering_idrett"
+          "question_type": "fact",
+          "emne_id": "em_sport_breddeidrett",
+          "source": [
+            "norway_cup_about"
           ],
-          "core_concepts": [
-            "frivillighet",
-            "turneringslogistikk",
-            "lagflyt",
-            "organisering"
-          ],
-          "concept_focus": [
-            "frivillighet og logistikk"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "ekebergsletta",
-            "frivillighet",
-            "logistikk",
-            "turneringsorganisering",
-            "sportshistorie"
-          ],
-          "required_tags": [],
-          "source": [],
-          "primary_knowledge_unit_id": "ku_sport_turneringshistorie_handl_b2c90d9aa3",
+          "source_origin": "external",
+          "claim_basis": "8400",
+          "claim_id": "claim_ekebergsletta_quiz_10",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_10",
           "knowledge_unit_ids": [
-            "ku_sport_turneringshistorie_handl_b2c90d9aa3",
-            "ku_sport_frivillige_og_logistiske_3a928e5985"
+            "ku_sport_ekebergsletta_10"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
           ],
           "concept_ids": [
-            "co_sport_frivillighet_5d835e5375",
-            "co_sport_turneringslogistikk_df4d0f808a",
-            "co_sport_lagflyt_d4a3ec1794",
-            "co_sport_organisering_7f265c2b11",
-            "co_sport_frivillighet_og_logistikk_548201caa2"
+            "co_sport_place_evidence"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
         {
-          "id": "ekebergsletta_quiz_2_4",
+          "id": "ekebergsletta_quiz_11",
           "quiz_id": "sport_ekebergsletta_set_2_q4",
           "categoryId": "sport",
           "placeId": "ekebergsletta",
-          "personId": "",
           "targetId": "ekebergsletta",
           "question_scope": "place",
-          "question": "Hvordan oppstår et midlertidig idrettssamfunn på Ekebergsletta under en turnering?",
+          "question": "Hvor mange jentelag deltok i 1972?",
           "options": [
-            "Barn, ungdommer, lag, frivillige og besøkende fra mange steder deler baner, rutiner og møteplasser i en avgrenset periode",
-            "Én klubb overtar området permanent og stenger det for andre lag",
-            "Deltakerne spiller hver for seg uten kontakt, felles organisering eller møteplasser"
+            "Ingen",
+            "Åtte",
+            "Åtti"
           ],
-          "answer": "Barn, ungdommer, lag, frivillige og besøkende fra mange steder deler baner, rutiner og møteplasser i en avgrenset periode",
-          "answerIndex": 0,
-          "dimension": "midlertidig_idrettssamfunn",
-          "topic": "Møter mellom lag fra mange steder",
-          "knowledge": "Et midlertidig idrettssamfunn dannes når deltakere og hjelpere samles om felles kamper, rutiner og rom. Møter mellom lag fra ulike steder, også på tvers av landegrenser, gjør turneringen til mer enn kampavvikling.",
-          "trivia": [],
+          "answer": "Åtte",
+          "answerIndex": 1,
+          "knowledge": "Åtte",
           "difficulty": 2,
-          "question_type": "concept",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "sport",
+          "question_type": "fact",
           "emne_id": "em_sport_inkludering_idrett",
-          "related_emner": [
-            "em_sport_breddeidrett",
-            "em_sport_arena_samling"
+          "source": [
+            "norway_cup_about"
           ],
-          "core_concepts": [
-            "midlertidig idrettssamfunn",
-            "internasjonale møter",
-            "barn og ungdom",
-            "felles møteplasser"
-          ],
-          "concept_focus": [
-            "midlertidig idrettssamfunn"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "ekebergsletta",
-            "internasjonale_moter",
-            "idrettssamfunn",
-            "barn_og_ungdom",
-            "inkludering"
-          ],
-          "required_tags": [],
-          "source": [],
-          "primary_knowledge_unit_id": "ku_sport_et_midlertidig_idrettssa_8bc46e83a2",
+          "source_origin": "external",
+          "claim_basis": "Åtte",
+          "claim_id": "claim_ekebergsletta_quiz_11",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_11",
           "knowledge_unit_ids": [
-            "ku_sport_et_midlertidig_idrettssa_8bc46e83a2",
-            "ku_sport_m_ter_mellom_lag_fra_uli_1a118c54fb"
+            "ku_sport_ekebergsletta_11"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
           ],
           "concept_ids": [
-            "co_sport_midlertidig_idrettssamfunn_077b6a1b16",
-            "co_sport_internasjonale_m_ter_49f8734461",
-            "co_sport_barn_og_ungdom_072ee30a9a",
-            "co_sport_felles_m_teplasser_9651a6439e"
+            "co_sport_place_evidence"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
         {
-          "id": "ekebergsletta_quiz_2_5",
+          "id": "ekebergsletta_quiz_12",
           "quiz_id": "sport_ekebergsletta_set_2_q5",
           "categoryId": "sport",
           "placeId": "ekebergsletta",
-          "personId": "",
           "targetId": "ekebergsletta",
           "question_scope": "place",
-          "question": "Hvorfor er Ekebergsletta viktig i Groundhopper-systemet sammen med arenaer som KFUM Arena?",
+          "question": "Hvilket lag vant den første jenteklassen?",
           "options": [
-            "Den lærer spilleren å lese både turneringslandskapets brede deltakelse og klubbgroundens faste hjemmebaneidentitet",
-            "Den viser at bare permanente tribuner og toppkamper har verdi som fotballsteder",
-            "Den gjør alle fotballsteder like fordi forskjeller i bruk og organisering ikke betyr noe"
+            "Bækkelagets SK",
+            "Vålerenga",
+            "Amazon Grimstad"
           ],
-          "answer": "Den lærer spilleren å lese både turneringslandskapets brede deltakelse og klubbgroundens faste hjemmebaneidentitet",
-          "answerIndex": 0,
-          "dimension": "groundhopper_stedsforståelse",
-          "topic": "Flere typer fotballsteder",
-          "knowledge": "I Groundhopper-systemet utvider Ekebergsletta forståelsen av hva et fotballsted kan være. Sammenligningen med KFUM Arena viser forskjellen mellom et midlertidig turneringslandskap og en fast klubbground med hjemmebaneidentitet.",
-          "trivia": [],
+          "answer": "Amazon Grimstad",
+          "answerIndex": 2,
+          "knowledge": "Amazon Grimstad",
           "difficulty": 2,
-          "question_type": "comparison",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "sport",
-          "emne_id": "em_sport_klubbidentitet",
-          "related_emner": [
-            "em_sport_breddeidrett",
-            "em_sport_arena_samling"
+          "question_type": "fact",
+          "emne_id": "em_sport_inkludering_idrett",
+          "source": [
+            "snl_norway_cup"
           ],
-          "core_concepts": [
-            "Groundhopper",
-            "fotballsted",
-            "turneringslandskap",
-            "klubbground"
-          ],
-          "concept_focus": [
-            "ulike typer fotballsteder"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "ekebergsletta",
-            "groundhopper",
-            "kfum_arena",
-            "turneringslandskap",
-            "klubbidentitet"
-          ],
-          "required_tags": [],
-          "source": [],
-          "primary_knowledge_unit_id": "ku_sport_i_groundhopper_systemet__27662cc29b",
+          "source_origin": "external",
+          "claim_basis": "Amazon Grimstad",
+          "claim_id": "claim_ekebergsletta_quiz_12",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_12",
           "knowledge_unit_ids": [
-            "ku_sport_i_groundhopper_systemet__27662cc29b",
-            "ku_sport_sammenligningen_med_kfum_c16aa01f13"
+            "ku_sport_ekebergsletta_12"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
           ],
           "concept_ids": [
-            "co_sport_groundhopper_1eb5d98eb4",
-            "co_sport_fotballsted_dc50852a31",
-            "co_sport_turneringslandskap_dd7009fc5e",
-            "co_sport_klubbground_6164d47da7",
-            "co_sport_ulike_typer_fotballsteder_86a1b19f7e"
+            "co_sport_place_evidence"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ekebergsletta_quiz_13",
+          "quiz_id": "sport_ekebergsletta_set_2_q6",
+          "categoryId": "sport",
+          "placeId": "ekebergsletta",
+          "targetId": "ekebergsletta",
+          "question_scope": "place",
+          "question": "Hvem arrangerer Norway Cup?",
+          "options": [
+            "Bækkelagets Sportsklub",
+            "Norges Bank",
+            "Oslo Museum"
+          ],
+          "answer": "Bækkelagets Sportsklub",
+          "answerIndex": 0,
+          "knowledge": "Bækkelagets Sportsklub",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_sport_frivillighet_organisering",
+          "source": [
+            "norway_cup_about"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bækkelagets Sportsklub",
+          "claim_id": "claim_ekebergsletta_quiz_13",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_13",
+          "knowledge_unit_ids": [
+            "ku_sport_ekebergsletta_13"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
+          ],
+          "concept_ids": [
+            "co_sport_place_evidence"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ekebergsletta_quiz_14",
+          "quiz_id": "sport_ekebergsletta_set_2_q7",
+          "categoryId": "sport",
+          "placeId": "ekebergsletta",
+          "targetId": "ekebergsletta",
+          "question_scope": "place",
+          "question": "Hvorfor ble Norway Cup ikke arrangert i 1976?",
+          "options": [
+            "Sletta var stengt for alltid",
+            "Oslo Cup i håndball ble arrangert",
+            "Turneringen var ennå ikke startet"
+          ],
+          "answer": "Oslo Cup i håndball ble arrangert",
+          "answerIndex": 1,
+          "knowledge": "Oslo Cup i håndball ble arrangert",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_sport_turnering_format",
+          "source": [
+            "norway_cup_about"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oslo Cup i håndball ble arrangert",
+          "claim_id": "claim_ekebergsletta_quiz_14",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_14",
+          "knowledge_unit_ids": [
+            "ku_sport_ekebergsletta_14"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
+          ],
+          "concept_ids": [
+            "co_sport_place_evidence"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "sport_ekebergsletta_set_3",
+      "title": "Skala og turneringslandskap",
+      "order": 3,
+      "level": 3,
+      "phase": "middle",
+      "questions": [
+        {
+          "id": "ekebergsletta_quiz_15",
+          "quiz_id": "sport_ekebergsletta_set_3_q1",
+          "categoryId": "sport",
+          "placeId": "ekebergsletta",
+          "targetId": "ekebergsletta",
+          "question_scope": "place",
+          "question": "Hvor mange nasjoner oppgir Norway Cup at deltakere, spillere og dommere har kommet fra?",
+          "options": [
+            "27",
+            "227",
+            "127"
+          ],
+          "answer": "127",
+          "answerIndex": 2,
+          "knowledge": "127",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_sport_inkludering_idrett",
+          "source": [
+            "norway_cup_about"
+          ],
+          "source_origin": "external",
+          "claim_basis": "127",
+          "claim_id": "claim_ekebergsletta_quiz_15",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_15",
+          "knowledge_unit_ids": [
+            "ku_sport_ekebergsletta_15"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
+          ],
+          "concept_ids": [
+            "co_sport_place_evidence"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ekebergsletta_quiz_16",
+          "quiz_id": "sport_ekebergsletta_set_3_q2",
+          "categoryId": "sport",
+          "placeId": "ekebergsletta",
+          "targetId": "ekebergsletta",
+          "question_scope": "place",
+          "question": "Hva var den daterte lagrekorden i 2023?",
+          "options": [
+            "2183 lag",
+            "420 lag",
+            "8400 lag"
+          ],
+          "answer": "2183 lag",
+          "answerIndex": 0,
+          "knowledge": "2183 lag",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_sport_turnering_format",
+          "source": [
+            "norway_cup_about"
+          ],
+          "source_origin": "external",
+          "claim_basis": "2183 lag",
+          "claim_id": "claim_ekebergsletta_quiz_16",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_16",
+          "knowledge_unit_ids": [
+            "ku_sport_ekebergsletta_16"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
+          ],
+          "concept_ids": [
+            "co_sport_place_evidence"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ekebergsletta_quiz_17",
+          "quiz_id": "sport_ekebergsletta_set_3_q3",
+          "categoryId": "sport",
+          "placeId": "ekebergsletta",
+          "targetId": "ekebergsletta",
+          "question_scope": "place",
+          "question": "Hva gjør Ekebergsletta annerledes enn én stadionbane?",
+          "options": [
+            "Alle kamper spilles under tak",
+            "Mange baner og funksjoner virker samtidig",
+            "Bare finalen former stedet"
+          ],
+          "answer": "Mange baner og funksjoner virker samtidig",
+          "answerIndex": 1,
+          "knowledge": "Mange baner og funksjoner virker samtidig",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_sport_arena_samling",
+          "source": [
+            "norway_cup_about"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Mange baner og funksjoner virker samtidig",
+          "claim_id": "claim_ekebergsletta_quiz_17",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_17",
+          "knowledge_unit_ids": [
+            "ku_sport_ekebergsletta_17"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
+          ],
+          "concept_ids": [
+            "co_sport_place_evidence"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ekebergsletta_quiz_18",
+          "quiz_id": "sport_ekebergsletta_set_3_q4",
+          "categoryId": "sport",
+          "placeId": "ekebergsletta",
+          "targetId": "ekebergsletta",
+          "question_scope": "place",
+          "question": "Hva er flaggrekkens tydeligste stedlige funksjon?",
+          "options": [
+            "Å vise eiendomsgrenser",
+            "Å erstatte målene",
+            "Å markere turneringens internasjonale møte"
+          ],
+          "answer": "Å markere turneringens internasjonale møte",
+          "answerIndex": 2,
+          "knowledge": "Å markere turneringens internasjonale møte",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_sport_inkludering_idrett",
+          "source": [
+            "commons_cup"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Å markere turneringens internasjonale møte",
+          "claim_id": "claim_ekebergsletta_quiz_18",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_18",
+          "knowledge_unit_ids": [
+            "ku_sport_ekebergsletta_18"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
+          ],
+          "concept_ids": [
+            "co_sport_place_evidence"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ekebergsletta_quiz_19",
+          "quiz_id": "sport_ekebergsletta_set_3_q5",
+          "categoryId": "sport",
+          "placeId": "ekebergsletta",
+          "targetId": "ekebergsletta",
+          "question_scope": "place",
+          "question": "Hvorfor må 2023-tallet dateres?",
+          "options": [
+            "Rekorden beskriver ett bestemt år",
+            "Årstall er forbudt i sport",
+            "Alle turneringer har samme størrelse"
+          ],
+          "answer": "Rekorden beskriver ett bestemt år",
+          "answerIndex": 0,
+          "knowledge": "Rekorden beskriver ett bestemt år",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_sport_turnering_format",
+          "source": [
+            "norway_cup_about"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Rekorden beskriver ett bestemt år",
+          "claim_id": "claim_ekebergsletta_quiz_19",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_19",
+          "knowledge_unit_ids": [
+            "ku_sport_ekebergsletta_19"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
+          ],
+          "concept_ids": [
+            "co_sport_place_evidence"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ekebergsletta_quiz_20",
+          "quiz_id": "sport_ekebergsletta_set_3_q6",
+          "categoryId": "sport",
+          "placeId": "ekebergsletta",
+          "targetId": "ekebergsletta",
+          "question_scope": "place",
+          "question": "Hva blir midlertidig koblet sammen under turneringen?",
+          "options": [
+            "Bare ett klubbhus",
+            "Baner, ferdsel, service og møteplasser",
+            "Bare parkeringsplasser"
+          ],
+          "answer": "Baner, ferdsel, service og møteplasser",
+          "answerIndex": 1,
+          "knowledge": "Baner, ferdsel, service og møteplasser",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_sport_arena_samling",
+          "source": [
+            "commons_sletta"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Baner, ferdsel, service og møteplasser",
+          "claim_id": "claim_ekebergsletta_quiz_20",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_20",
+          "knowledge_unit_ids": [
+            "ku_sport_ekebergsletta_20"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
+          ],
+          "concept_ids": [
+            "co_sport_place_evidence"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ekebergsletta_quiz_21",
+          "quiz_id": "sport_ekebergsletta_set_3_q7",
+          "categoryId": "sport",
+          "placeId": "ekebergsletta",
+          "targetId": "ekebergsletta",
+          "question_scope": "place",
+          "question": "Hva er breddeidrettens målestokk her?",
+          "options": [
+            "Bare profesjonelle finaler",
+            "Antall faste seter",
+            "Mange deltakere og mange små kamper"
+          ],
+          "answer": "Mange deltakere og mange små kamper",
+          "answerIndex": 2,
+          "knowledge": "Mange deltakere og mange små kamper",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_sport_breddeidrett",
+          "source": [
+            "snl_norway_cup"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Mange deltakere og mange små kamper",
+          "claim_id": "claim_ekebergsletta_quiz_21",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_21",
+          "knowledge_unit_ids": [
+            "ku_sport_ekebergsletta_21"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
+          ],
+          "concept_ids": [
+            "co_sport_place_evidence"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "sport_ekebergsletta_set_4",
+      "title": "Flere brukslag",
+      "order": 4,
+      "level": 4,
+      "phase": "bridge",
+      "questions": [
+        {
+          "id": "ekebergsletta_quiz_22",
+          "quiz_id": "sport_ekebergsletta_set_4_q1",
+          "categoryId": "sport",
+          "placeId": "ekebergsletta",
+          "targetId": "ekebergsletta",
+          "question_scope": "place",
+          "question": "Fra hvilket år var sletta base for Osloløpet?",
+          "options": [
+            "1975",
+            "1959",
+            "2005"
+          ],
+          "answer": "1975",
+          "answerIndex": 0,
+          "knowledge": "1975",
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_sport_arena_samling",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "1975",
+          "claim_id": "claim_ekebergsletta_quiz_22",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_22",
+          "knowledge_unit_ids": [
+            "ku_sport_ekebergsletta_22"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
+          ],
+          "concept_ids": [
+            "co_sport_place_evidence"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ekebergsletta_quiz_23",
+          "quiz_id": "sport_ekebergsletta_set_4_q2",
+          "categoryId": "sport",
+          "placeId": "ekebergsletta",
+          "targetId": "ekebergsletta",
+          "question_scope": "place",
+          "question": "Når sluttet perioden med Osloløpet som start- og målsted?",
+          "options": [
+            "1976",
+            "2005",
+            "2023"
+          ],
+          "answer": "2005",
+          "answerIndex": 1,
+          "knowledge": "2005",
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_sport_arena_samling",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "2005",
+          "claim_id": "claim_ekebergsletta_quiz_23",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_23",
+          "knowledge_unit_ids": [
+            "ku_sport_ekebergsletta_23"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
+          ],
+          "concept_ids": [
+            "co_sport_place_evidence"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ekebergsletta_quiz_24",
+          "quiz_id": "sport_ekebergsletta_set_4_q3",
+          "categoryId": "sport",
+          "placeId": "ekebergsletta",
+          "targetId": "ekebergsletta",
+          "question_scope": "place",
+          "question": "Hva viser vinterbildet best?",
+          "options": [
+            "At området er et lukket stadion",
+            "At Norway Cup spilles om vinteren",
+            "Sletta uten turneringens midlertidige lag"
+          ],
+          "answer": "Sletta uten turneringens midlertidige lag",
+          "answerIndex": 2,
+          "knowledge": "Sletta uten turneringens midlertidige lag",
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_sport_idrettsarena_sted",
+          "source": [
+            "commons_winter"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Sletta uten turneringens midlertidige lag",
+          "claim_id": "claim_ekebergsletta_quiz_24",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_24",
+          "knowledge_unit_ids": [
+            "ku_sport_ekebergsletta_24"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
+          ],
+          "concept_ids": [
+            "co_sport_place_evidence"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ekebergsletta_quiz_25",
+          "quiz_id": "sport_ekebergsletta_set_4_q4",
+          "categoryId": "sport",
+          "placeId": "ekebergsletta",
+          "targetId": "ekebergsletta",
+          "question_scope": "place",
+          "question": "Hva kan et turneringsfoto ikke alene bevise?",
+          "options": [
+            "Det vanlige aktivitetsnivået resten av året",
+            "At det finnes gress",
+            "At mange baner kan brukes samtidig"
+          ],
+          "answer": "Det vanlige aktivitetsnivået resten av året",
+          "answerIndex": 0,
+          "knowledge": "Det vanlige aktivitetsnivået resten av året",
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_sport_arena_samling",
+          "source": [
+            "commons_sletta"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Det vanlige aktivitetsnivået resten av året",
+          "claim_id": "claim_ekebergsletta_quiz_25",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_25",
+          "knowledge_unit_ids": [
+            "ku_sport_ekebergsletta_25"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
+          ],
+          "concept_ids": [
+            "co_sport_place_evidence"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ekebergsletta_quiz_26",
+          "quiz_id": "sport_ekebergsletta_set_4_q5",
+          "categoryId": "sport",
+          "placeId": "ekebergsletta",
+          "targetId": "ekebergsletta",
+          "question_scope": "place",
+          "question": "Hva er den mest presise grensen for Place-en?",
+          "options": [
+            "Bare én målstolpe",
+            "Hele den navngitte sletta, ikke hallen eller helleristningsfeltet",
+            "Hele Ekebergåsen"
+          ],
+          "answer": "Hele den navngitte sletta, ikke hallen eller helleristningsfeltet",
+          "answerIndex": 1,
+          "knowledge": "Hele den navngitte sletta, ikke hallen eller helleristningsfeltet",
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_sport_idrettsarena_sted",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Hele den navngitte sletta, ikke hallen eller helleristningsfeltet",
+          "claim_id": "claim_ekebergsletta_quiz_26",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_26",
+          "knowledge_unit_ids": [
+            "ku_sport_ekebergsletta_26"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
+          ],
+          "concept_ids": [
+            "co_sport_place_evidence"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ekebergsletta_quiz_27",
+          "quiz_id": "sport_ekebergsletta_set_4_q6",
+          "categoryId": "sport",
+          "placeId": "ekebergsletta",
+          "targetId": "ekebergsletta",
+          "question_scope": "place",
+          "question": "Hva dokumenterer arrangørens frivillighetstall først og fremst?",
+          "options": [
+            "Hvor mange mål som scores",
+            "Hvem som eier sletta",
+            "Organisasjonsarbeidet som kreves rundt kampene"
+          ],
+          "answer": "Organisasjonsarbeidet som kreves rundt kampene",
+          "answerIndex": 2,
+          "knowledge": "Organisasjonsarbeidet som kreves rundt kampene",
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_sport_frivillighet_dugnad",
+          "source": [
+            "norway_cup_about"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Organisasjonsarbeidet som kreves rundt kampene",
+          "claim_id": "claim_ekebergsletta_quiz_27",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_27",
+          "knowledge_unit_ids": [
+            "ku_sport_ekebergsletta_27"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
+          ],
+          "concept_ids": [
+            "co_sport_place_evidence"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ekebergsletta_quiz_28",
+          "quiz_id": "sport_ekebergsletta_set_4_q7",
+          "categoryId": "sport",
+          "placeId": "ekebergsletta",
+          "targetId": "ekebergsletta",
+          "question_scope": "place",
+          "question": "Hvordan brukes arenaanalyse best på Ekebergsletta?",
+          "options": [
+            "Ved å lese hvordan flaten organiserer aktivitet og ferdsel",
+            "Ved å telle bare faste tribuneseter",
+            "Ved å ignorere rommet mellom banene"
+          ],
+          "answer": "Ved å lese hvordan flaten organiserer aktivitet og ferdsel",
+          "answerIndex": 0,
+          "knowledge": "Ved å lese hvordan flaten organiserer aktivitet og ferdsel",
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_sport_arena_samling",
+          "source": [
+            "commons_sletta"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Ved å lese hvordan flaten organiserer aktivitet og ferdsel",
+          "claim_id": "claim_ekebergsletta_quiz_28",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_28",
+          "knowledge_unit_ids": [
+            "ku_sport_ekebergsletta_28"
+          ],
+          "concepts": [
+            "stedsspesifikk sportskunnskap"
+          ],
+          "concept_ids": [
+            "co_sport_place_evidence"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "sport_ekebergsletta_set_5",
+      "title": "Arena, frivillighet og inkludering",
+      "order": 5,
+      "level": 5,
+      "phase": "final",
+      "questions": [
+        {
+          "id": "ekebergsletta_quiz_29",
+          "quiz_id": "sport_ekebergsletta_set_5_q1",
+          "categoryId": "sport",
+          "placeId": "ekebergsletta",
+          "targetId": "ekebergsletta",
+          "question_scope": "place",
+          "question": "Hva bidrar John Bales sportsgeografi med her?",
+          "options": [
+            "En fasit på kampresultater",
+            "Et språk for forholdet mellom sport, rom og landskap",
+            "En regel om at sport krever tak"
+          ],
+          "answer": "Et språk for forholdet mellom sport, rom og landskap",
+          "answerIndex": 1,
+          "knowledge": "Et språk for forholdet mellom sport, rom og landskap",
+          "difficulty": 5,
+          "question_type": "concept_theory",
+          "emne_id": "em_sport_arena_samling",
+          "source": [
+            "commons_sletta"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Et språk for forholdet mellom sport, rom og landskap",
+          "claim_id": "claim_ekebergsletta_quiz_29",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_29",
+          "knowledge_unit_ids": [
+            "ku_sport_ekebergsletta_29"
+          ],
+          "concepts": [
+            "sportsanalyse"
+          ],
+          "concept_ids": [
+            "co_sport_analysis"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_sport_arenaanalyse",
+          "guidance_basis": [
+            "data/fag/sport/fagkart_sport_canonical_v4_5.json",
+            "data/fag/sport/methods_sport_canonical_v4_5.json"
+          ],
+          "topic_hook_id": "groundhopper_logikk",
+          "thinker_id": "john_bale",
+          "theory_ref": {
+            "topic_hook_id": "groundhopper_logikk",
+            "thinker_id": "john_bale",
+            "work": "Sports Geography",
+            "why_it_helps": "Bale gjør forholdet mellom idrett, rom og landskap analytisk synlig."
+          }
+        },
+        {
+          "id": "ekebergsletta_quiz_30",
+          "quiz_id": "sport_ekebergsletta_set_5_q2",
+          "categoryId": "sport",
+          "placeId": "ekebergsletta",
+          "targetId": "ekebergsletta",
+          "question_scope": "place",
+          "question": "Hva kan Robert Putnams perspektiv belyse?",
+          "options": [
+            "Hvordan gresset vokser",
+            "Hvordan offsideregelen dømmes",
+            "Hvordan frivillig samarbeid bygger sosial kapital"
+          ],
+          "answer": "Hvordan frivillig samarbeid bygger sosial kapital",
+          "answerIndex": 2,
+          "knowledge": "Hvordan frivillig samarbeid bygger sosial kapital",
+          "difficulty": 5,
+          "question_type": "concept_theory",
+          "emne_id": "em_sport_frivillighet_dugnad",
+          "source": [
+            "norway_cup_about"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Hvordan frivillig samarbeid bygger sosial kapital",
+          "claim_id": "claim_ekebergsletta_quiz_30",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_30",
+          "knowledge_unit_ids": [
+            "ku_sport_ekebergsletta_30"
+          ],
+          "concepts": [
+            "sportsanalyse"
+          ],
+          "concept_ids": [
+            "co_sport_analysis"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_sport_frivillighetsanalyse",
+          "guidance_basis": [
+            "data/fag/sport/fagkart_sport_canonical_v4_5.json",
+            "data/fag/sport/methods_sport_canonical_v4_5.json"
+          ],
+          "topic_hook_id": "frivillighet_og_dugnad",
+          "thinker_id": "robert_putnam",
+          "theory_ref": {
+            "topic_hook_id": "frivillighet_og_dugnad",
+            "thinker_id": "robert_putnam",
+            "work": "Bowling Alone",
+            "why_it_helps": "Putnam gir et avgrenset perspektiv på frivillig samarbeid og sosial kapital."
+          }
+        },
+        {
+          "id": "ekebergsletta_quiz_31",
+          "quiz_id": "sport_ekebergsletta_set_5_q3",
+          "categoryId": "sport",
+          "placeId": "ekebergsletta",
+          "targetId": "ekebergsletta",
+          "question_scope": "place",
+          "question": "Hva må en frivillighetsanalyse også undersøke?",
+          "options": [
+            "Hvem som gjør arbeidet og hvordan det organiseres",
+            "Bare arrangørens logo",
+            "Bare finaleresultatet"
+          ],
+          "answer": "Hvem som gjør arbeidet og hvordan det organiseres",
+          "answerIndex": 0,
+          "knowledge": "Hvem som gjør arbeidet og hvordan det organiseres",
+          "difficulty": 5,
+          "question_type": "concept_theory",
+          "emne_id": "em_sport_frivillighet_dugnad",
+          "source": [
+            "norway_cup_about"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Hvem som gjør arbeidet og hvordan det organiseres",
+          "claim_id": "claim_ekebergsletta_quiz_31",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_31",
+          "knowledge_unit_ids": [
+            "ku_sport_ekebergsletta_31"
+          ],
+          "concepts": [
+            "sportsanalyse"
+          ],
+          "concept_ids": [
+            "co_sport_analysis"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_sport_frivillighetsanalyse",
+          "guidance_basis": [
+            "data/fag/sport/fagkart_sport_canonical_v4_5.json",
+            "data/fag/sport/methods_sport_canonical_v4_5.json"
+          ],
+          "topic_hook_id": "frivillighet_og_dugnad",
+          "thinker_id": "robert_putnam",
+          "theory_ref": {
+            "topic_hook_id": "frivillighet_og_dugnad",
+            "thinker_id": "robert_putnam",
+            "work": "Bowling Alone",
+            "why_it_helps": "Putnam hjelper med å undersøke hvem som bærer fellesskapsarbeidet og hva samarbeidet skaper."
+          }
+        },
+        {
+          "id": "ekebergsletta_quiz_32",
+          "quiz_id": "sport_ekebergsletta_set_5_q4",
+          "categoryId": "sport",
+          "placeId": "ekebergsletta",
+          "targetId": "ekebergsletta",
+          "question_scope": "place",
+          "question": "Hvordan hjelper turneringsanalyse?",
+          "options": [
+            "Den gjør alle år identiske",
+            "Den skiller format, logistikk og deltakelse fra enkeltkampen",
+            "Den fjerner behovet for kilder"
+          ],
+          "answer": "Den skiller format, logistikk og deltakelse fra enkeltkampen",
+          "answerIndex": 1,
+          "knowledge": "Den skiller format, logistikk og deltakelse fra enkeltkampen",
+          "difficulty": 5,
+          "question_type": "concept_theory",
+          "emne_id": "em_sport_turnering_format",
+          "source": [
+            "norway_cup_about"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den skiller format, logistikk og deltakelse fra enkeltkampen",
+          "claim_id": "claim_ekebergsletta_quiz_32",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_32",
+          "knowledge_unit_ids": [
+            "ku_sport_ekebergsletta_32"
+          ],
+          "concepts": [
+            "sportsanalyse"
+          ],
+          "concept_ids": [
+            "co_sport_analysis"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_sport_turneringsanalyse",
+          "guidance_basis": [
+            "data/fag/sport/fagkart_sport_canonical_v4_5.json",
+            "data/fag/sport/methods_sport_canonical_v4_5.json"
+          ],
+          "topic_hook_id": "turnering_og_format",
+          "thinker_id": "roger_caillois",
+          "theory_ref": {
+            "topic_hook_id": "turnering_og_format",
+            "thinker_id": "roger_caillois",
+            "work": "Man, Play and Games",
+            "why_it_helps": "Caillois gir et språk for hvordan konkurranseformen organiserer aktivitet utover enkeltkampen."
+          }
+        },
+        {
+          "id": "ekebergsletta_quiz_33",
+          "quiz_id": "sport_ekebergsletta_set_5_q5",
+          "categoryId": "sport",
+          "placeId": "ekebergsletta",
+          "targetId": "ekebergsletta",
+          "question_scope": "place",
+          "question": "Hva gjør jentelagene i 1972 analytisk viktige?",
+          "options": [
+            "De viser at alle lag var jentelag",
+            "De beviser full likestilling i 1972",
+            "De viser inkludering som faktisk deltakelse før formell anerkjennelse"
+          ],
+          "answer": "De viser inkludering som faktisk deltakelse før formell anerkjennelse",
+          "answerIndex": 2,
+          "knowledge": "De viser inkludering som faktisk deltakelse før formell anerkjennelse",
+          "difficulty": 5,
+          "question_type": "concept_theory",
+          "emne_id": "em_sport_inkludering_idrett",
+          "source": [
+            "snl_norway_cup"
+          ],
+          "source_origin": "external",
+          "claim_basis": "De viser inkludering som faktisk deltakelse før formell anerkjennelse",
+          "claim_id": "claim_ekebergsletta_quiz_33",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_33",
+          "knowledge_unit_ids": [
+            "ku_sport_ekebergsletta_33"
+          ],
+          "concepts": [
+            "sportsanalyse"
+          ],
+          "concept_ids": [
+            "co_sport_analysis"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_sport_inkluderingsanalyse",
+          "guidance_basis": [
+            "data/fag/sport/fagkart_sport_canonical_v4_5.json",
+            "data/fag/sport/methods_sport_canonical_v4_5.json"
+          ],
+          "topic_hook_id": "inkludering",
+          "thinker_id": "johan_huizinga",
+          "theory_ref": {
+            "topic_hook_id": "inkludering",
+            "thinker_id": "johan_huizinga",
+            "work": "Homo Ludens",
+            "why_it_helps": "Huizinga gjør det mulig å lese deltakelse som meningsfull, regelbundet praksis."
+          }
+        },
+        {
+          "id": "ekebergsletta_quiz_34",
+          "quiz_id": "sport_ekebergsletta_set_5_q6",
+          "categoryId": "sport",
+          "placeId": "ekebergsletta",
+          "targetId": "ekebergsletta",
+          "question_scope": "place",
+          "question": "Hva er en forsvarlig konklusjon om turneringslandskapet?",
+          "options": [
+            "Det oppstår gjennom både fysisk areal og organisert arbeid",
+            "Det finnes bare mens kameraet er på",
+            "Det er identisk med én fotballbane"
+          ],
+          "answer": "Det oppstår gjennom både fysisk areal og organisert arbeid",
+          "answerIndex": 0,
+          "knowledge": "Det oppstår gjennom både fysisk areal og organisert arbeid",
+          "difficulty": 5,
+          "question_type": "concept_theory",
+          "emne_id": "em_sport_arena_samling",
+          "source": [
+            "norway_cup_about"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Det oppstår gjennom både fysisk areal og organisert arbeid",
+          "claim_id": "claim_ekebergsletta_quiz_34",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_34",
+          "knowledge_unit_ids": [
+            "ku_sport_ekebergsletta_34"
+          ],
+          "concepts": [
+            "sportsanalyse"
+          ],
+          "concept_ids": [
+            "co_sport_analysis"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_sport_arenaanalyse",
+          "guidance_basis": [
+            "data/fag/sport/fagkart_sport_canonical_v4_5.json",
+            "data/fag/sport/methods_sport_canonical_v4_5.json"
+          ],
+          "topic_hook_id": "groundhopper_logikk",
+          "thinker_id": "john_bale",
+          "theory_ref": {
+            "topic_hook_id": "groundhopper_logikk",
+            "thinker_id": "john_bale",
+            "work": "Sports Geography",
+            "why_it_helps": "Bale samler det fysiske arealet og den organiserte bruken i én stedsanalyse."
+          }
+        },
+        {
+          "id": "ekebergsletta_quiz_35",
+          "quiz_id": "sport_ekebergsletta_set_5_q7",
+          "categoryId": "sport",
+          "placeId": "ekebergsletta",
+          "targetId": "ekebergsletta",
+          "question_scope": "place",
+          "question": "Hvilket avsluttende spørsmål samler stedets sportslige historie best?",
+          "options": [
+            "Hvilket lag eier hele Ekeberg?",
+            "Hvordan ble plass til mange gjort mulig og holdt i drift?",
+            "Hvorfor har sletta ingen historie før 1972?"
+          ],
+          "answer": "Hvordan ble plass til mange gjort mulig og holdt i drift?",
+          "answerIndex": 1,
+          "knowledge": "Hvordan ble plass til mange gjort mulig og holdt i drift?",
+          "difficulty": 5,
+          "question_type": "concept_theory",
+          "emne_id": "em_sport_breddeidrett",
+          "source": [
+            "oslo_idrettskrets"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Hvordan ble plass til mange gjort mulig og holdt i drift?",
+          "claim_id": "claim_ekebergsletta_quiz_35",
+          "primary_knowledge_unit_id": "ku_sport_ekebergsletta_35",
+          "knowledge_unit_ids": [
+            "ku_sport_ekebergsletta_35"
+          ],
+          "concepts": [
+            "sportsanalyse"
+          ],
+          "concept_ids": [
+            "co_sport_analysis"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_sport_breddeidrettsanalyse",
+          "guidance_basis": [
+            "data/fag/sport/fagkart_sport_canonical_v4_5.json",
+            "data/fag/sport/methods_sport_canonical_v4_5.json"
+          ],
+          "topic_hook_id": "breddeidrett",
+          "thinker_id": "robert_putnam",
+          "theory_ref": {
+            "topic_hook_id": "breddeidrett",
+            "thinker_id": "robert_putnam",
+            "work": "Bowling Alone",
+            "why_it_helps": "Putnam knytter beslutningen om plass til mange til det organiserte arbeidet som holder aktiviteten i drift."
+          }
         }
       ]
     }

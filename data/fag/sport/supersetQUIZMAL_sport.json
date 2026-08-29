@@ -296,5 +296,142 @@
     "ordinary_quiz_production": "active",
     "advanced_evidence_execution": "deferred",
     "full_scientific_coverage_claim": "forbidden_until_pipeline_completed"
+  },
+  "adaptive_profiles": {
+    "narrow": {
+      "sets": 3,
+      "questions_per_set": 7,
+      "use_when": "avgrenset sted med få uavhengige, sterke påstander"
+    },
+    "normal": {
+      "sets": 4,
+      "questions_per_set": 7,
+      "use_when": "sted med solid hovedhistorie og minst ett tydelig faglig broledd"
+    },
+    "rich": {
+      "sets_min": 5,
+      "sets_max": 8,
+      "questions_per_set": 7,
+      "use_when": "sted med flere kildebelagte lag, bruksmåter, metoder eller teorimuligheter"
+    },
+    "major": {
+      "sets_min": 8,
+      "sets_max": 10,
+      "questions_per_set": 7,
+      "use_when": "hovedsted med bred og uavhengig dokumentasjon som bærer flere progresjonsløp"
+    }
+  },
+  "relative_progression": {
+    "phase_sequences": {
+      "3": [
+        "opening",
+        "bridge",
+        "final"
+      ],
+      "4": [
+        "opening",
+        "middle",
+        "bridge",
+        "final"
+      ],
+      "5": [
+        "opening",
+        "middle",
+        "middle",
+        "bridge",
+        "final"
+      ],
+      "6": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "final"
+      ],
+      "7": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "bridge",
+        "final"
+      ],
+      "8": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "bridge",
+        "final"
+      ],
+      "9": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "bridge",
+        "final"
+      ],
+      "10": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "bridge",
+        "final"
+      ]
+    },
+    "phase_requirements": {
+      "opening": {
+        "focus": [
+          "sted",
+          "hovedhistorie",
+          "konkrete fakta"
+        ],
+        "minimum_fact_share": 0.5
+      },
+      "middle": {
+        "focus": [
+          "personer",
+          "hendelser",
+          "bruk",
+          "endring",
+          "synlige spor"
+        ]
+      },
+      "bridge": {
+        "focus": [
+          "årsak",
+          "sammenheng",
+          "metode",
+          "første fagbegreper"
+        ],
+        "requires_method_or_context": true
+      },
+      "final": {
+        "focus": [
+          "emner",
+          "teori",
+          "teoretikere",
+          "verk",
+          "sammenligning",
+          "syntese"
+        ],
+        "requires_theory_binding": true
+      }
+    },
+    "short_quiz_rule": "Tre og fire sett skal også nå metode-, emne- og teorilaget i siste del.",
+    "absolute_theory_set_numbers_forbidden": true
   }
 }
