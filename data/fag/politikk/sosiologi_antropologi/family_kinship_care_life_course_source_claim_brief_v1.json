@@ -1,0 +1,643 @@
+{
+  "schema": "history_go_sosiologi_antropologi_family_kinship_care_life_course_source_claim_brief_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-28",
+  "status": "source_first_ready_not_materialized",
+  "subject_id": "politikk",
+  "canonical_subcategory_id": "sosiologi_antropologi",
+  "domain": {
+    "ordinal": 6,
+    "id": "familie_slektskap_omsorg_livslop",
+    "title": "Familie, slektskap, omsorg og livsløp",
+    "production_mode": "new_production_required"
+  },
+  "source_strategy": {
+    "source_first": true,
+    "inspectable_urls_required": true,
+    "claim_level_trace_required": true,
+    "minimum_sources_per_claim": 2,
+    "fulltext_materialization_required_before_counting": true
+  },
+  "sources": [
+    {
+      "id": "fkl01-morgan",
+      "title": "Rethinking Family Practices",
+      "publisher": "Palgrave Macmillan / Springer Nature",
+      "type": "scholarly-book",
+      "url": "https://link.springer.com/book/10.1057/9780230304680",
+      "evidence_role": "family-practices-doing-family-time-space",
+      "source_location": "Forlagssiden dokumenterer Morgans praksistilnærming til familie, tid, rom, kropp, følelser og etikk.",
+      "retrieval_status": "verified_2026-08-28"
+    },
+    {
+      "id": "fkl02-finch",
+      "title": "Displaying Families",
+      "publisher": "SAGE Journals",
+      "type": "peer-reviewed-article",
+      "url": "https://journals.sagepub.com/doi/10.1177/0038038507072284",
+      "evidence_role": "family-display-recognition-audience",
+      "source_location": "Fagfellevurdert originalartikkel om hvordan familiepraksiser må kommuniseres og anerkjennes som familie.",
+      "retrieval_status": "verified_2026-08-28"
+    },
+    {
+      "id": "fkl03-schneider",
+      "title": "A Critique of the Study of Kinship",
+      "publisher": "University of Michigan Press",
+      "type": "scholarly-book",
+      "url": "https://press.umich.edu/Books/A/A-Critique-of-the-Study-of-Kinship",
+      "evidence_role": "kinship-western-bias-analytic-category",
+      "source_location": "Forlagssiden dokumenterer Schneiders kritikk av vestlig skjevhet i universelle slektskapsmodeller.",
+      "retrieval_status": "verified_2026-08-28"
+    },
+    {
+      "id": "fkl04-carsten",
+      "title": "After Kinship",
+      "publisher": "Cambridge University Press",
+      "type": "scholarly-book",
+      "url": "https://www.cambridge.org/core/books/after-kinship/BF660970EC79E6A4847E76A38CBE1DB9",
+      "evidence_role": "relatedness-substance-house-gender-reproduction",
+      "source_location": "Forlagssiden dokumenterer Carstens komparative analyse av relatedness, hus, kjønn, kropp og reproduksjon.",
+      "retrieval_status": "verified_2026-08-28"
+    },
+    {
+      "id": "fkl05-hochschild",
+      "title": "The Second Shift",
+      "publisher": "Penguin Random House",
+      "type": "scholarly-book",
+      "url": "https://www.penguinrandomhouse.com/books/310593/the-second-shift-by-arlie-hochschild-with-anne-machung/",
+      "evidence_role": "unpaid-household-labour-gender-time-strategies",
+      "source_location": "Forlagssiden dokumenterer Hochschild og Machungs forskning om lønnsarbeid, husarbeid og omsorgsfordeling.",
+      "retrieval_status": "verified_2026-08-28"
+    },
+    {
+      "id": "fkl06-tronto",
+      "title": "Caring Democracy: Markets, Equality, and Justice",
+      "publisher": "New York University Press / JSTOR",
+      "type": "scholarly-book",
+      "url": "https://www.jstor.org/stable/j.ctt9qgfvp",
+      "evidence_role": "care-responsibility-democracy-institutions",
+      "source_location": "Bokarkivet dokumenterer Trontos analyse av omsorg som politisk og institusjonelt ansvar.",
+      "retrieval_status": "verified_2026-08-28"
+    },
+    {
+      "id": "fkl07-life-course",
+      "title": "New Directions in Life Course Research",
+      "publisher": "Annual Reviews",
+      "type": "peer-reviewed-review",
+      "url": "https://www.annualreviews.org/content/journals/10.1146/annurev.soc.34.040507.134619",
+      "evidence_role": "life-course-transitions-trajectories-history-linked-lives",
+      "source_location": "Fagfellevurdert oversikt over livsløp som historisk, institusjonelt og normativt konstruerte prosesser.",
+      "retrieval_status": "verified_2026-08-28"
+    },
+    {
+      "id": "fkl08-age-inequality",
+      "title": "Centering Age Inequality",
+      "publisher": "Annual Reviews",
+      "type": "peer-reviewed-review",
+      "url": "https://www.annualreviews.org/content/journals/10.1146/annurev-soc-083121-043741",
+      "evidence_role": "age-stratification-linked-lives-institutions",
+      "source_location": "Fagfellevurdert oversikt over alder som ulikhetsdimensjon, institusjon og livsløpsposisjon.",
+      "retrieval_status": "verified_2026-08-28"
+    },
+    {
+      "id": "fkl09-ssb-family",
+      "title": "Familier og husholdninger",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "official-statistics",
+      "url": "https://www.ssb.no/befolkning/barn-familier-og-husholdninger/statistikk/familier-og-husholdninger",
+      "evidence_role": "norway-family-household-definitions-composition",
+      "source_location": "Offisiell statistikk med eksplisitte definisjoner av familie, privathusholdning, generasjoner og boforhold.",
+      "retrieval_status": "verified_2026-08-28"
+    },
+    {
+      "id": "fkl10-ssb-household-income",
+      "title": "Inntekt og formue for husholdninger",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "official-statistics",
+      "url": "https://www.ssb.no/inntekt-og-forbruk/inntekt-og-formue/statistikk/inntekts-og-formuesstatistikk-for-husholdninger",
+      "evidence_role": "household-resource-unit-income-wealth-equivalence",
+      "source_location": "Offisiell statistikk om husholdningsinntekt, formue, gjeld og fordelingsmål etter husholdningstype.",
+      "retrieval_status": "verified_2026-08-28"
+    },
+    {
+      "id": "fkl11-children-act",
+      "title": "Lov om barn og foreldre (barnelova)",
+      "publisher": "Lovdata",
+      "type": "primary-law",
+      "url": "https://lovdata.no/lov/1981-04-08-7",
+      "evidence_role": "child-parent-responsibility-participation-best-interests",
+      "source_location": "Gjeldende norsk lovtekst om foreldreansvar, barnets interesser, medvirkning og samvær.",
+      "retrieval_status": "verified_2026-08-28"
+    },
+    {
+      "id": "fkl12-care-services-act",
+      "title": "Lov om kommunale helse- og omsorgstjenester",
+      "publisher": "Lovdata",
+      "type": "primary-law",
+      "url": "https://lovdata.no/lov/2011-06-24-30",
+      "evidence_role": "municipal-care-duty-support-relatives-services",
+      "source_location": "Gjeldende norsk lovtekst om kommunens sørge-for-ansvar, omsorgstjenester og støtte til pårørende.",
+      "retrieval_status": "verified_2026-08-28"
+    },
+    {
+      "id": "fkl13-nesh",
+      "title": "Guidelines for Research Ethics in the Social Sciences and the Humanities",
+      "publisher": "De nasjonale forskningsetiske komiteene",
+      "type": "research-ethics-guideline",
+      "url": "https://www.forskningsetikk.no/en/guidelines/social-sciences-and-humanities/guidelines-for-research-ethics-in-the-social-sciences-and-the-humanities/",
+      "evidence_role": "family-sensitive-data-children-consent-confidentiality",
+      "source_location": "Nasjonale retningslinjer for forskning med barn, sårbare grupper, tredjepersoner og private relasjoner.",
+      "retrieval_status": "verified_2026-08-28"
+    }
+  ],
+  "topic_briefs": [
+    {
+      "id": "familiepraksiser-husholdning-og-display",
+      "title": "Familiepraksiser, husholdning og display",
+      "method_ids": [
+        "met_pol_praksisanalyse",
+        "met_pol_statistikk_og_fordelingsanalyse"
+      ],
+      "boundary": "Familie, husholdning og bostedsregistrering er ulike analytiske enheter; praksis og display utvider uten å oppløse begrepspresisjon.",
+      "source_ids": [
+        "fkl01-morgan",
+        "fkl02-finch",
+        "fkl09-ssb-family"
+      ],
+      "planned_claims": [
+        {
+          "id": "fkl-01",
+          "text": "Morgan analyserer familie som gjentatte praksiser gjennom hvilke relasjoner gjøres, vedlikeholdes og endres i tid og rom.",
+          "source_ids": [
+            "fkl01-morgan",
+            "fkl02-finch"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "fkl-02",
+          "text": "Finchs family display betegner hvordan praksiser kommuniseres til relevante andre og anerkjennes som familie.",
+          "source_ids": [
+            "fkl02-finch",
+            "fkl01-morgan"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "fkl-03",
+          "text": "SSBs familie og husholdning er statistiske definisjoner basert på bosted og bestemte relasjoner og dekker ikke alle levde omsorgsnettverk.",
+          "source_ids": [
+            "fkl09-ssb-family",
+            "fkl01-morgan"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "fkl-04",
+          "text": "Aleneboende, énfamiliehusholdning og sosial isolasjon er ulike påstander som krever ulike data.",
+          "source_ids": [
+            "fkl09-ssb-family",
+            "fkl13-nesh"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "slektskap-relatedness-og-komparasjon",
+      "title": "Slektskap, relatedness og komparasjon",
+      "method_ids": [
+        "met_pol_begrepsanalyse",
+        "met_pol_praksisanalyse"
+      ],
+      "boundary": "Slektskap kan ikke tas som en universell biologisk struktur; lokale kategorier, praksiser og institusjoner må dokumenteres.",
+      "source_ids": [
+        "fkl03-schneider",
+        "fkl04-carsten"
+      ],
+      "planned_claims": [
+        {
+          "id": "fkl-05",
+          "text": "Schneider kritiserer at vestlige forestillinger om biologisk slektskap brukes som universell målestokk for sosial organisasjon.",
+          "source_ids": [
+            "fkl03-schneider",
+            "fkl04-carsten"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "fkl-06",
+          "text": "Carstens relatedness åpner for å undersøke hvordan slektskapsliknende relasjoner skapes gjennom samboing, mat, minner, kropp og omsorg.",
+          "source_ids": [
+            "fkl04-carsten",
+            "fkl01-morgan"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "fkl-07",
+          "text": "Biologisk forbindelse, juridisk foreldreskap, sosial omsorg og opplevd tilhørighet må holdes analytisk fra hverandre.",
+          "source_ids": [
+            "fkl04-carsten",
+            "fkl11-children-act"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "fkl-08",
+          "text": "Komparativ slektskapsanalyse må oversette lokale begreper uten å anta at familie, hus, avstamning og person betyr det samme overalt.",
+          "source_ids": [
+            "fkl03-schneider",
+            "fkl04-carsten"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "partnerskap-foreldreskap-og-reproduksjon",
+      "title": "Partnerskap, foreldreskap og reproduksjon",
+      "method_ids": [
+        "met_pol_institusjonsanalyse",
+        "met_pol_rettighetsanalyse"
+      ],
+      "boundary": "Partnerskap, bosted, foreldreskap, omsorg og reproduktiv forbindelse overlapper, men er ikke én institusjon eller én livsform.",
+      "source_ids": [
+        "fkl04-carsten",
+        "fkl09-ssb-family",
+        "fkl11-children-act"
+      ],
+      "planned_claims": [
+        {
+          "id": "fkl-09",
+          "text": "Ekteskap, samboerskap og andre partnerskap organiseres gjennom forskjellige rettslige, økonomiske og symbolske ordninger.",
+          "source_ids": [
+            "fkl09-ssb-family",
+            "fkl04-carsten"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "fkl-10",
+          "text": "Foreldreskap omfatter juridiske posisjoner, daglig omsorg, økonomisk ansvar og relasjonell tilhørighet som ikke alltid faller sammen.",
+          "source_ids": [
+            "fkl11-children-act",
+            "fkl04-carsten"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "fkl-11",
+          "text": "Reproduksjonsteknologi og nye familieformer gjør skillet mellom biologisk og sosialt slektskap empirisk og normativt omstridt.",
+          "source_ids": [
+            "fkl04-carsten",
+            "fkl03-schneider"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "fkl-12",
+          "text": "Barnets beste og medvirkning er rettslige vurderingsprinsipper og må ikke reduseres til de voksnes preferanse eller én standardisert familieform.",
+          "source_ids": [
+            "fkl11-children-act",
+            "fkl13-nesh"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "omsorgsarbeid-tid-og-sosial-reproduksjon",
+      "title": "Omsorgsarbeid, tid og sosial reproduksjon",
+      "method_ids": [
+        "met_pol_makt_og_ulikhetsanalyse",
+        "met_pol_velferdsstatlig_analyse"
+      ],
+      "boundary": "Omsorg er arbeid, relasjon, behovsvurdering og offentlig ansvar; den kan ikke måles bare i timer eller behandles som privat naturressurs.",
+      "source_ids": [
+        "fkl05-hochschild",
+        "fkl06-tronto",
+        "fkl12-care-services-act"
+      ],
+      "planned_claims": [
+        {
+          "id": "fkl-13",
+          "text": "Hochschilds second shift viser hvordan lønnsarbeid kan etterfølges av kjønnet fordelt hus- og omsorgsarbeid i hjemmet.",
+          "source_ids": [
+            "fkl05-hochschild",
+            "fkl01-morgan"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "fkl-14",
+          "text": "Fordeling av omsorg må undersøke tid, oppgavetype, beslutningsansvar, beredskap og følelsesarbeid, ikke bare samlet timetall.",
+          "source_ids": [
+            "fkl05-hochschild",
+            "fkl06-tronto"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "fkl-15",
+          "text": "Tronto analyserer omsorg som demokratisk og institusjonelt ansvar og utfordrer at avhengighet skyves ut av offentlig og økonomisk analyse.",
+          "source_ids": [
+            "fkl06-tronto",
+            "fkl12-care-services-act"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "fkl-16",
+          "text": "Kommunens sørge-for-ansvar og støtte til pårørende må skilles fra familiens faktiske ulønnede arbeid og fra den enkelte tjenestes virkning.",
+          "source_ids": [
+            "fkl12-care-services-act",
+            "fkl06-tronto"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "barndom-generasjon-og-medvirkning",
+      "title": "Barndom, generasjon og medvirkning",
+      "method_ids": [
+        "met_pol_rettighetsanalyse",
+        "met_pol_praksisanalyse"
+      ],
+      "boundary": "Barn er relasjonelle og rettighetsbærende aktører; alder begrunner tilpasset metode, ikke at deres perspektiver automatisk erstattes av voksnes.",
+      "source_ids": [
+        "fkl11-children-act",
+        "fkl07-life-course",
+        "fkl13-nesh"
+      ],
+      "planned_claims": [
+        {
+          "id": "fkl-17",
+          "text": "Barndom er både livsfase, institusjonell posisjon og relasjon til voksne, jevnaldrende og offentlige ordninger.",
+          "source_ids": [
+            "fkl07-life-course",
+            "fkl11-children-act"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "fkl-18",
+          "text": "Barnelova knytter avgjørelser til barnets beste og gir barn rett til informasjon og medvirkning tilpasset alder og modenhet.",
+          "source_ids": [
+            "fkl11-children-act",
+            "fkl13-nesh"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "fkl-19",
+          "text": "Generasjon betegner både plass i en slektsrelasjon, fødselskohort og historisk erfaring; betydningene må ikke blandes.",
+          "source_ids": [
+            "fkl07-life-course",
+            "fkl04-carsten"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "fkl-20",
+          "text": "Forskning med barn krever tilpasset informasjon, reell frivillighet og vurdering av makt, avhengighet og tredjepersoners personvern.",
+          "source_ids": [
+            "fkl13-nesh",
+            "fkl11-children-act"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "livslop-overganger-og-linked-lives",
+      "title": "Livsløp, overganger og linked lives",
+      "method_ids": [
+        "met_pol_levekarsanalyse",
+        "met_pol_institusjonsanalyse"
+      ],
+      "boundary": "Livsløp er historisk og institusjonelt organiserte forløp med variasjon; overgangsalder er ikke universell normalitet eller individuell skjebne.",
+      "source_ids": [
+        "fkl07-life-course",
+        "fkl08-age-inequality"
+      ],
+      "planned_claims": [
+        {
+          "id": "fkl-21",
+          "text": "Livsløpsperspektivet skiller overganger, varige trajectories, timing, historisk kontekst og menneskelig handling.",
+          "source_ids": [
+            "fkl07-life-course",
+            "fkl08-age-inequality"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "fkl-22",
+          "text": "Linked lives viser at utdanning, arbeid, omsorg, migrasjon og pensjonering påvirkes av nære relasjoners samtidige forløp.",
+          "source_ids": [
+            "fkl07-life-course",
+            "fkl01-morgan"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "fkl-23",
+          "text": "Tidlig, sen og normal overgang er institusjonelle og kulturelle vurderinger og må skilles fra statistisk typisk alder.",
+          "source_ids": [
+            "fkl07-life-course",
+            "fkl08-age-inequality"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "fkl-24",
+          "text": "Kohort, periode og alder må skilles for å unngå at historiske hendelser eller generasjonsforskjeller feilaktig tolkes som aldring.",
+          "source_ids": [
+            "fkl07-life-course",
+            "fkl08-age-inequality"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "aldring-husholdning-og-velferd",
+      "title": "Aldring, husholdning og velferd",
+      "method_ids": [
+        "met_pol_levekarsanalyse",
+        "met_pol_velferdsstatlig_analyse"
+      ],
+      "boundary": "Alder, funksjon, husholdning, omsorgsbehov og sosial deltakelse er forskjellige dimensjoner; kronologisk alder forklarer ikke alene behov.",
+      "source_ids": [
+        "fkl08-age-inequality",
+        "fkl09-ssb-family",
+        "fkl10-ssb-household-income",
+        "fkl12-care-services-act"
+      ],
+      "planned_claims": [
+        {
+          "id": "fkl-25",
+          "text": "Aldersulikhet formes av institusjonelle terskler, akkumulerte ressurser og livsløp, ikke bare biologisk endring.",
+          "source_ids": [
+            "fkl08-age-inequality",
+            "fkl10-ssb-household-income"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "fkl-26",
+          "text": "Å bo alene er en husholdningsopplysning og kan ikke brukes som direkte mål på ensomhet, støtte eller omsorgsbehov.",
+          "source_ids": [
+            "fkl09-ssb-family",
+            "fkl08-age-inequality"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "fkl-27",
+          "text": "Husholdningsinntekt og formue må tolkes med husholdningssammensetning, gjeld og deling før eldres eller familiers ressurser sammenlignes.",
+          "source_ids": [
+            "fkl10-ssb-household-income",
+            "fkl09-ssb-family"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "fkl-28",
+          "text": "Formell tjenestetilgang, faktisk mottatt hjelp, pårørendebelastning og brukerens utfall er separate ledd i en omsorgskjede.",
+          "source_ids": [
+            "fkl12-care-services-act",
+            "fkl06-tronto"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "familieforskning-metode-etikk-og-anvendelse",
+      "title": "Familieforskning, metode, etikk og anvendelse",
+      "method_ids": [
+        "met_pol_praksisanalyse",
+        "met_pol_dokumentanalyse"
+      ],
+      "boundary": "Familiedata inneholder ofte opplysninger om flere enn deltakeren; analyse og formidling må håndtere relasjonelt samtykke, konflikt og indirekte identifisering.",
+      "source_ids": [
+        "fkl01-morgan",
+        "fkl02-finch",
+        "fkl13-nesh"
+      ],
+      "planned_claims": [
+        {
+          "id": "fkl-29",
+          "text": "Intervjuer om familie er situerte fortellinger og displays og kan ikke behandles som nøytral fasit om alle relasjonens parter.",
+          "source_ids": [
+            "fkl02-finch",
+            "fkl13-nesh"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "fkl-30",
+          "text": "Familiepraksiser bør studeres på tvers av utsagn, tidsbruk, hendelser, dokumenter og institusjonelle vilkår når forskningsspørsmålet krever det.",
+          "source_ids": [
+            "fkl01-morgan",
+            "fkl09-ssb-family"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "fkl-31",
+          "text": "Samtykke fra ett familiemedlem gir ikke automatisk rett til å publisere identifiserbare opplysninger om barn, partner eller andre slektninger.",
+          "source_ids": [
+            "fkl13-nesh",
+            "fkl11-children-act"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "fkl-32",
+          "text": "En ansvarlig familiekonklusjon skiller statistisk husholdning, juridisk posisjon, levd praksis, omsorgsrelasjon og normativ vurdering.",
+          "source_ids": [
+            "fkl09-ssb-family",
+            "fkl03-schneider"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    }
+  ],
+  "decision_scenarios": [
+    {
+      "id": "fkl-s1",
+      "title": "Den registrerte husholdningen",
+      "prompt": "En kommune bruker bostedsregister som mål på familie og støtte. Skill husholdning, praksis, omsorgsnettverk og databegrensning.",
+      "claim_ids": [
+        "fkl-03",
+        "fkl-04",
+        "fkl-30"
+      ]
+    },
+    {
+      "id": "fkl-s2",
+      "title": "Slektskapets oversettelse",
+      "prompt": "Et feltarbeid oversetter en lokal relasjon direkte til biologisk fetter. Undersøk lokal kategori, praksis, juridisk posisjon og analytisk skjevhet.",
+      "claim_ids": [
+        "fkl-05",
+        "fkl-06",
+        "fkl-08"
+      ]
+    },
+    {
+      "id": "fkl-s3",
+      "title": "Den usynlige omsorgsberedskapen",
+      "prompt": "En tidsbruksanalyse teller utførte oppgaver, men ikke planlegging og beredskap. Bygg en bredere omsorgsfordeling.",
+      "claim_ids": [
+        "fkl-13",
+        "fkl-14",
+        "fkl-15"
+      ]
+    },
+    {
+      "id": "fkl-s4",
+      "title": "Barnets møte",
+      "prompt": "Voksne har samtykket til forskning om en familiesak. Vurder barnets informasjon, medvirkning, frivillighet og tredjepersonvern.",
+      "claim_ids": [
+        "fkl-18",
+        "fkl-20",
+        "fkl-31"
+      ]
+    },
+    {
+      "id": "fkl-s5",
+      "title": "Sen overgang",
+      "prompt": "En rapport kaller utflytting etter 25 unormal. Skill statistisk timing, normativ standard, kohort og institusjonelle vilkår.",
+      "claim_ids": [
+        "fkl-21",
+        "fkl-23",
+        "fkl-24"
+      ]
+    },
+    {
+      "id": "fkl-s6",
+      "title": "Aleneboende eldre",
+      "prompt": "Et tjenestekart likestiller aleneboende med ensom og hjelpetrengende. Skill husholdning, nettverk, funksjon, ressurser og faktisk behov.",
+      "claim_ids": [
+        "fkl-25",
+        "fkl-26",
+        "fkl-28"
+      ]
+    }
+  ],
+  "reuse_contract": {
+    "classification": "new_production_required",
+    "preserve_existing_owner_path": false,
+    "move_existing_content": false,
+    "delete_existing_content": false,
+    "undercategory_count_requires_new_strict_trace_and_assessment": true
+  },
+  "subcategory_upgrade_registration": {
+    "registered": false,
+    "allowed_before_strict_upgrade_gate": false
+  }
+}
