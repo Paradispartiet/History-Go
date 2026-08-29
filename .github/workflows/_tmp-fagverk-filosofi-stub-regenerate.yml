@@ -1,0 +1,49 @@
+name: Fagverk IA v3 Filosofi stub regenerate probe
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/filosofi/**'
+      - 'data/fagverk/fagverk_portal.json'
+      - 'scripts/audit-fagverk-filosofi-*.mjs'
+      - 'tests/fagverk-filosofi-*.test.mjs'
+      - 'reports/fagverk/filosofi-phase3-audit.json'
+      - 'reports/fagverk/general-engine-audit.json'
+      - '.github/workflows/_tmp-fagverk-filosofi-stub-regenerate.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate-and-clean:
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Normalize portal and validate Filosofi stub retirement
+        run: |
+          node tools/materialize-subkultur-runtime-v1.mjs --write
+          node tools/materialize-subkultur-runtime-v1.mjs --check
+          node scripts/audit-fagverk-filosofi-legacy-stub.mjs
+          node scripts/audit-fagverk-filosofi-phase3.mjs --write-report
+          node scripts/audit-fagverk-filosofi-phase3.mjs
+          node scripts/audit-fagverk-general-engine.mjs --write-report
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node --test tests/fagverk-filosofi-legacy-stub-retirement.test.mjs tests/fagverk-filosofi-phase3.test.mjs tests/fagverk-badge-equivalence.test.mjs
+      - name: Commit generated projections and remove probe
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm .github/workflows/_tmp-fagverk-filosofi-stub-regenerate.yml
+          git add data/fagverk/fagverk_portal.json reports/fagverk/filosofi-phase3-audit.json reports/fagverk/general-engine-audit.json .github/workflows/_tmp-fagverk-filosofi-stub-regenerate.yml
+          git diff --cached --quiet && exit 0
+          git commit -m 'Regenerate Filosofi route audits'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
