@@ -6,17 +6,19 @@ import { auditRepository as auditMusikkRepository } from './audit-fagverk-musikk
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const LEGACY_BADGE = 'data/fag/musikk/merke_musikk (1).html';
+const MANIFEST = 'data/fag/fag_manifest.json';
 const PORTAL = 'data/fagverk/fagverk_portal.json';
 const CATEGORY_CONTRACT = 'data/categories/category_contract.json';
 const BADGE = 'data/badges/musikk.json';
 const REPORT = 'reports/fagverk/musikk-legacy-theory-audit.json';
+const MANIFEST_FIELDS = Object.freeze(['pensum', 'emner', 'fagkart', 'methods']);
 
 const SECTION_POLICY = Object.freeze([
   {
     id: 'felt',
     heading: '1. Felt',
     anchors: [
-      ['komponering', 'komposisjon'], ['improvisasjon'], ['fremføring'], ['lytting'],
+      ['komponering', 'komposisjon'], ['improvisasjon'], ['fremføring', 'framføring'], ['lytting'],
       ['innspilling'], ['produksjon'], ['distribusjon'], ['verk'], ['artist', 'utøver'],
       ['instrument'], ['scene'], ['studio'], ['musikkmiljø', 'musikkliv']
     ]
@@ -41,7 +43,7 @@ const SECTION_POLICY = Object.freeze([
     id: 'produksjon_teknologi',
     heading: '4. Produksjon og teknologi',
     anchors: [
-      ['studio'], ['mikrofon'], ['instrument'], ['forsterker'], ['programvare', 'software'],
+      ['studio'], ['mikrofon'], ['instrument'], ['forsterker', 'lydsystem', 'lydforsterkning'], ['programvare', 'software'],
       ['miksing', 'mix'], ['mastering'], ['teknologi']
     ]
   },
@@ -67,8 +69,9 @@ const SECTION_POLICY = Object.freeze([
     heading: '7. Musikk og samfunn',
     anchors: [
       ['fellesskap'], ['identitet'], ['politisk', 'politikk'], ['økonomi'], ['subkultur'],
-      ['motkultur', 'motkulturell'], ['sekundærbadge', 'sekundærmerke']
-    ]
+      ['motkultur', 'motkulturell', 'motstand']
+    ],
+    legacyProductMechanics: ['secondary_badge_routing']
   },
   {
     id: 'kjernebegreper',
@@ -128,8 +131,24 @@ function fileJson(file) {
   return readJson(file);
 }
 
+function manifestOwnedCore() {
+  const manifest = fileJson(MANIFEST);
+  const subject = manifest.musikk || {};
+  const files = MANIFEST_FIELDS.map(field => {
+    const pointer = text(subject[field]).replaceAll('\\', '/');
+    if (!pointer || pointer.startsWith('/') || pointer.includes('..')) throw new Error(`Musikk-manifestet mangler gyldig ${field}-peker.`);
+    const file = `data/fag/${pointer}`;
+    if (!file.startsWith('data/fag/musikk/') || !exists(file)) throw new Error(`Musikk-manifestets ${field}-peker er ugyldig: ${pointer}`);
+    return file;
+  });
+  if (text(subject.scientificPackage) !== 'musikk/scientific_package.json') throw new Error('Musikk-manifestet peker ikke til forventet scientificPackage.');
+  return [...new Set(files)].sort();
+}
+
 function canonicalCorpus(audit) {
   const values = [];
+  const manifestFiles = manifestOwnedCore();
+  for (const file of manifestFiles) values.push(fileJson(file));
   values.push(audit.source.index, audit.source.domainCatalog, audit.source.methods, ...audit.source.modules);
   const chapterFiles = [];
   for (const chapter of audit.chapterAudits) {
@@ -141,7 +160,7 @@ function canonicalCorpus(audit) {
   const badge = fileJson(BADGE);
   values.push(categories.decisions?.musikk || {}, categories.decisions?.scenekunst || {}, categories.decisions?.subkultur || {}, badge);
   const corpus = normalize(flattenStrings(values).join(' '));
-  return { corpus, chapterFiles: [...new Set(chapterFiles)].sort() };
+  return { corpus, manifestFiles, chapterFiles: [...new Set(chapterFiles)].sort() };
 }
 
 function anchorResult(corpus, alternatives) {
@@ -150,7 +169,7 @@ function anchorResult(corpus, alternatives) {
 }
 
 export function auditMusikkLegacyTheory() {
-  for (const file of [LEGACY_BADGE, PORTAL, CATEGORY_CONTRACT, BADGE]) {
+  for (const file of [LEGACY_BADGE, MANIFEST, PORTAL, CATEGORY_CONTRACT, BADGE]) {
     if (!exists(file)) throw new Error(`Musikk legacy-audit mangler ${file}`);
   }
 
@@ -171,7 +190,7 @@ export function auditMusikkLegacyTheory() {
     if (sections[i].heading !== SECTION_POLICY[i].heading) throw new Error(`Musikk legacy-seksjon ${i + 1} har uventet heading: ${sections[i].heading}`);
   }
 
-  const { corpus, chapterFiles } = canonicalCorpus(subjectAudit);
+  const { corpus, manifestFiles, chapterFiles } = canonicalCorpus(subjectAudit);
   if (corpus.length < 100000) throw new Error('Canonical Musikk-korpus er uventet lite; audit kan ikke kjøres sikkert.');
 
   const rows = SECTION_POLICY.map((policy, index) => {
@@ -189,6 +208,7 @@ export function auditMusikkLegacyTheory() {
       anchorCoverage,
       anchors,
       missingAnchors,
+      legacyProductMechanics: policy.legacyProductMechanics || [],
       contentStatus: anchorCoverage === 1
         ? 'canonical_anchor_coverage_complete_claim_review_pending'
         : 'canonical_anchor_gaps_manual_review_required'
@@ -207,10 +227,12 @@ export function auditMusikkLegacyTheory() {
     legacy: {
       badgePage: LEGACY_BADGE,
       sectionCount: rows.length,
-      knowledgeSectionCount: rows.length
+      knowledgeSectionCount: rows.length,
+      productMechanicCount: rows.reduce((count, row) => count + row.legacyProductMechanics.length, 0)
     },
     canonical: {
       authority: subjectAudit.report.authorityBoundary.scientificAuthority,
+      manifestFiles,
       domainCount: subjectAudit.report.summary.domainCount,
       emneCount: subjectAudit.report.summary.emneCount,
       methodCount: subjectAudit.report.summary.methodCount,
