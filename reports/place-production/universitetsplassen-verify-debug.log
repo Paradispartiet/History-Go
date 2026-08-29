@@ -1,10 +1,10 @@
 === targeted Universitetsplassen test ===
-✔ Universitetsplassen has exact four By collections and preserved geometry (1.32883ms)
-✔ all selected images exist and portrait front is real (0.299711ms)
-✔ description packet validates without issues (12.672818ms)
-✔ language, leksikon, stories and readings are complete (0.170256ms)
-✔ major quiz is unique 8x7 with delayed methods (0.259981ms)
-✔ six-dimensional quality gate is 30/30 (0.131068ms)
+✔ Universitetsplassen has exact four By collections and preserved geometry (1.024151ms)
+✔ all selected images exist and portrait front is real (0.277499ms)
+✔ description packet validates without issues (12.697292ms)
+✔ language, leksikon, stories and readings are complete (0.124367ms)
+✔ major quiz is unique 8x7 with delayed methods (0.242925ms)
+✔ six-dimensional quality gate is 30/30 (0.12399ms)
 ℹ tests 6
 ℹ suites 0
 ℹ pass 6
@@ -12,7 +12,7 @@
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 71.026557
+ℹ duration_ms 75.608717
 === PASS targeted Universitetsplassen test ===
 === places:index:check ===
 
@@ -360,7 +360,7 @@ Wrote reports/quiz_manifest_v2_audit_report.json
 > node scripts/audit-quiz-progression.mjs
 
 {
-  "status": "failed",
+  "status": "passed",
   "quizFilesChecked": 44,
   "openingPolicy": "data/quiz/regler/QUIZ_NORMAL_OPENING_POLICY_V1.json",
   "checked": [
@@ -612,13 +612,13 @@ Wrote reports/quiz_manifest_v2_audit_report.json
       "balance": {
         "total": 56,
         "counts": {
-          "fact": 25,
-          "context": 17,
+          "fact": 28,
+          "context": 14,
           "concept_theory": 14
         },
         "ratios": {
-          "fact": 0.446,
-          "context": 0.304,
+          "fact": 0.5,
+          "context": 0.25,
           "concept_theory": 0.25
         }
       },
@@ -1333,27 +1333,41 @@ Wrote reports/quiz_manifest_v2_audit_report.json
       }
     }
   ],
-  "failures": [
-    {
-      "file": "data/quiz/by/universitetsplassen_sets.json",
-      "reason": "sluttlaget mangler eksplisitt teoribinding"
-    },
-    {
-      "file": "data/quiz/by/universitetsplassen_sets.json",
-      "reason": "innholdsbalanse utenfor superset",
-      "family": "fact",
-      "ratio": 0.446,
-      "minimum": 0.5,
-      "maximum": 0.6
-    },
-    {
-      "file": "data/quiz/by/universitetsplassen_sets.json",
-      "reason": "innholdsbalanse utenfor superset",
-      "family": "context",
-      "ratio": 0.304,
-      "minimum": 0.2,
-      "maximum": 0.3
-    }
-  ]
+  "failures": []
 }
-=== FAILED audit:quiz-progression exit=1 ===
+=== PASS audit:quiz-progression ===
+=== check:stories ===
+
+> history-go@0.0.0 check:stories
+> npm run build:tools && node dist/tools/check_stories_integrity.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Stories integrity summary
+- Story-filer: 181
+- Stories: 307
+- Place-koblede stories: 307
+- Person-koblede stories: 112
+- Next scenes: 316
+- Episode-v1-filer: 37
+- Episode-v1-stories: 74
+- Place-sourcefiler lest: 1544
+
+Stories integrity FAILED
+- Episode-v1-story krever minst to kilder: story=st_universitetsplassen_grunnsteinen_1841 file=data/stories/stories_universitetsplassen.json
+- Scoreavvik: story=st_universitetsplassen_grunnsteinen_1841 field=score.historical expected=2 actual=3 file=data/stories/stories_universitetsplassen.json
+- Scoreavvik: story=st_universitetsplassen_grunnsteinen_1841 field=score.source expected=3 actual=4 file=data/stories/stories_universitetsplassen.json
+- Scoreavvik: story=st_universitetsplassen_grunnsteinen_1841 field=score.total expected=14 actual=16 file=data/stories/stories_universitetsplassen.json
+- Episode-v1-story krever minst to kilder: story=st_universitetsplassen_schweigaard_1883 file=data/stories/stories_universitetsplassen.json
+- Scoreavvik: story=st_universitetsplassen_schweigaard_1883 field=score.historical expected=2 actual=3 file=data/stories/stories_universitetsplassen.json
+- Scoreavvik: story=st_universitetsplassen_schweigaard_1883 field=score.source expected=3 actual=4 file=data/stories/stories_universitetsplassen.json
+- Scoreavvik: story=st_universitetsplassen_schweigaard_1883 field=score.total expected=14 actual=16 file=data/stories/stories_universitetsplassen.json
+- Scoreavvik: story=st_universitetsplassen_aula_munch_1916 field=score.historical expected=2 actual=3 file=data/stories/stories_universitetsplassen.json
+- Scoreavvik: story=st_universitetsplassen_aula_munch_1916 field=score.originality expected=3 actual=4 file=data/stories/stories_universitetsplassen.json
+- Scoreavvik: story=st_universitetsplassen_aula_munch_1916 field=score.total expected=15 actual=17 file=data/stories/stories_universitetsplassen.json
+- Scoreavvik: story=st_universitetsplassen_omlegging_1931 field=score.historical expected=2 actual=3 file=data/stories/stories_universitetsplassen.json
+- Scoreavvik: story=st_universitetsplassen_omlegging_1931 field=score.play_value expected=3 actual=4 file=data/stories/stories_universitetsplassen.json
+- Scoreavvik: story=st_universitetsplassen_omlegging_1931 field=score.total expected=15 actual=17 file=data/stories/stories_universitetsplassen.json
+=== FAILED check:stories exit=1 ===
