@@ -18,6 +18,7 @@ test('Scenekunst-stubben har ingen unik kunnskap eller runtime som må migreres'
   const report = audit();
   assert.equal(report.subject, 'scenekunst');
   assert.equal(report.legacy.noIndependentRuntime, true);
+  assert.equal(report.legacy.archiveLinkCount, 3);
   assert.equal(report.summary.uniqueKnowledgeMigrationRequired, false);
   assert.equal(report.summary.uniqueRuntimeMigrationRequired, false);
   assert.deepEqual(report.canonical.missingDescriptiveAnchors, []);
