@@ -1,0 +1,352 @@
+{
+  "schemaVersion": "politikk_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "stortinget",
+  "placeFile": "data/places/politikk/oslo/places_politikk/stortinget.json",
+  "status": "ready",
+  "primaryFunction": {
+    "statement": "Stortingsbygningen er hovedsetet for Norges lovgivende, bevilgende og kontrollerende nasjonalforsamling.",
+    "placeObjectDistinction": "Place-ID-en gjelder stortingsbygningen, ikke Eidsvolls plass, Regjeringskvartalet, domstolene eller alle aktiviteter som Stortinget gjennomfører andre steder.",
+    "sourceIds": [
+      "source_stortinget_main",
+      "source_stortinget_building"
+    ]
+  },
+  "politicsTopics": [
+    {
+      "emneId": "em_pol_demokrati_representasjon",
+      "siteSpecificRationale": "Bygningen og salen gjør historiske og nåværende grenser for valg, mandat og representasjon konkrete, blant annet gjennom Anna Rogstads møte i 1911.",
+      "evidenceChainIds": [
+        "chain_lovgivning",
+        "chain_kontroll_offentlighet"
+      ]
+    },
+    {
+      "emneId": "em_pol_parlamentarisme_maktbalanse",
+      "siteSpecificRationale": "Lovgivning, budsjettmyndighet, parlamentarisk kontroll og skillet mellom Stortinget og regjeringen kan følges gjennom konkrete dokument- og beslutningskjeder.",
+      "evidenceChainIds": [
+        "chain_lovgivning",
+        "chain_budsjett",
+        "chain_kontroll_offentlighet"
+      ]
+    },
+    {
+      "emneId": "em_pol_mediert_offentlighet",
+      "siteSpecificRationale": "Åpent plenum, strømmer, referater, pressebilder og lukkede forberedelsesrom viser både offentlighet og mediert seleksjon.",
+      "evidenceChainIds": [
+        "chain_kontroll_offentlighet"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_stortinget_main",
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/",
+      "sourceLocation": "Hovedoppgaver: lover, statsbudsjett og kontroll",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "source_stortinget_short",
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Storting-og-regjering/kort-om-stortinget/",
+      "sourceLocation": "Komiteer, partigrupper, åpent plenum, strømming og referater",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "source_stortinget_laws",
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Arbeidet/Lovarbeidet/",
+      "sourceLocation": "Fra regjeringsforslag via komité til plenumsvedtak",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "source_stortinget_budget",
+      "url": "https://www.stortinget.no/no/stortinget-og-demokratiet/arbeidet/budsjettarbeidet/",
+      "sourceLocation": "Regjeringens forslag, komitébehandling og budsjettvedtak",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "source_stortinget_control",
+      "url": "https://www.stortinget.no/no/stortinget-og-demokratiet/arbeidet/kontrollvirksomheten/",
+      "sourceLocation": "Spørsmål, høringer, kontrollsaker og mistillit",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "source_stortinget_building",
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Historikk/stortingsbygningen/om-stortingsbygningen/",
+      "sourceLocation": "Bygningens historie, utforming og rolle",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "historical"
+    },
+    {
+      "id": "source_stortinget_anna",
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/kvinner-pa-stortinget/Anna-Rogstad/",
+      "sourceLocation": "Anna Rogstads møte 17. mars 1911",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "historical"
+    }
+  ],
+  "evidenceChains": [
+    {
+      "id": "chain_lovgivning",
+      "claim": "En lovsak beveger seg fra forslag og komitéforberedelse til debatt og formelt plenumsvedtak, før regjeringen og forvaltningen følger opp.",
+      "stages": {
+        "institutionActor": {
+          "status": "documented",
+          "statement": "Stortinget er den lovgivende statsmakten.",
+          "sourceIds": [
+            "source_stortinget_main"
+          ]
+        },
+        "competenceRole": {
+          "status": "documented",
+          "statement": "Stortinget behandler lovforslag; regjeringen fremmer mange proposisjoner.",
+          "sourceIds": [
+            "source_stortinget_laws"
+          ]
+        },
+        "ruleDecision": {
+          "status": "documented",
+          "statement": "Komiteen avgir innstilling og Stortinget treffer vedtak i plenum.",
+          "sourceIds": [
+            "source_stortinget_laws",
+            "source_stortinget_short"
+          ]
+        },
+        "resourceInstrument": {
+          "status": "documented",
+          "statement": "Proposisjon, komitéinnstilling, debatt, votering og lovvedtak er dokumentkjeden.",
+          "sourceIds": [
+            "source_stortinget_laws"
+          ]
+        },
+        "implementation": {
+          "status": "documented",
+          "statement": "Regjeringen og forvaltningen følger opp lover innenfor vedtatte rammer.",
+          "sourceIds": [
+            "source_stortinget_main",
+            "source_stortinget_laws"
+          ]
+        },
+        "output": {
+          "status": "documented",
+          "statement": "Vedtak, referater og voteringsresultater er observerbare prosessutganger.",
+          "sourceIds": [
+            "source_stortinget_short",
+            "source_stortinget_laws"
+          ]
+        },
+        "outcomeEffect": {
+          "status": "not_applicable",
+          "rationale": "Lovkildene dokumenterer prosess og vedtak, men ikke effekten av alle lover i samfunnet."
+        }
+      }
+    },
+    {
+      "id": "chain_budsjett",
+      "claim": "Statsbudsjettet går fra regjeringens forslag gjennom komitébehandling til Stortingets bevilgningsvedtak, mens faktisk bruk må undersøkes i senere gjennomføring og regnskap.",
+      "stages": {
+        "institutionActor": {
+          "status": "documented",
+          "statement": "Regjeringen foreslår og Stortinget vedtar statsbudsjettet.",
+          "sourceIds": [
+            "source_stortinget_budget",
+            "source_stortinget_main"
+          ]
+        },
+        "competenceRole": {
+          "status": "documented",
+          "statement": "Stortinget har bevilgende myndighet over statens inntekter og utgifter.",
+          "sourceIds": [
+            "source_stortinget_main"
+          ]
+        },
+        "ruleDecision": {
+          "status": "documented",
+          "statement": "Budsjettinnstillinger og plenumsvedtak fastsetter bevilgningene.",
+          "sourceIds": [
+            "source_stortinget_budget"
+          ]
+        },
+        "resourceInstrument": {
+          "status": "documented",
+          "statement": "Budsjettproposisjoner, komitéinnstillinger og vedtak er sentrale instrumenter.",
+          "sourceIds": [
+            "source_stortinget_budget"
+          ]
+        },
+        "implementation": {
+          "status": "documented",
+          "statement": "Regjeringen og forvaltningen disponerer innenfor vedtatte fullmakter.",
+          "sourceIds": [
+            "source_stortinget_budget"
+          ]
+        },
+        "output": {
+          "status": "documented",
+          "statement": "Det vedtatte budsjettet dokumenterer rammer for budsjettåret.",
+          "sourceIds": [
+            "source_stortinget_budget"
+          ]
+        },
+        "outcomeEffect": {
+          "status": "not_applicable",
+          "rationale": "Faktisk pengebruk og samfunnsvirkninger krever regnskap og egne utfallsdata."
+        }
+      }
+    },
+    {
+      "id": "chain_kontroll_offentlighet",
+      "claim": "Spørsmål, høringer, kontrollsaker, åpne møter og dokumentasjon gjør regjeringens ansvar og Stortingets arbeid etterprøvbart, uten at hele prosessen er offentlig.",
+      "stages": {
+        "institutionActor": {
+          "status": "documented",
+          "statement": "Stortinget fører parlamentarisk kontroll med regjeringen.",
+          "sourceIds": [
+            "source_stortinget_control",
+            "source_stortinget_main"
+          ]
+        },
+        "competenceRole": {
+          "status": "documented",
+          "statement": "Kontrollordningene innhenter informasjon og plasserer politisk ansvar.",
+          "sourceIds": [
+            "source_stortinget_control"
+          ]
+        },
+        "ruleDecision": {
+          "status": "documented",
+          "statement": "Forretningsorden og kontrollprosedyrer regulerer spørsmål, høringer og behandling.",
+          "sourceIds": [
+            "source_stortinget_control",
+            "source_stortinget_short"
+          ]
+        },
+        "resourceInstrument": {
+          "status": "documented",
+          "statement": "Spørsmål, høringer, dokumenter, sendinger og referater gir kontroll- og innsynsressurser.",
+          "sourceIds": [
+            "source_stortinget_control",
+            "source_stortinget_short"
+          ]
+        },
+        "implementation": {
+          "status": "documented",
+          "statement": "Plenum er åpent og dokumenteres, mens komité- og partigruppemøter ikke er åpne på samme måte.",
+          "sourceIds": [
+            "source_stortinget_short"
+          ]
+        },
+        "output": {
+          "status": "documented",
+          "statement": "Svar, referater, innstillinger og kontrollvedtak kan etterprøves.",
+          "sourceIds": [
+            "source_stortinget_control",
+            "source_stortinget_short"
+          ]
+        },
+        "outcomeEffect": {
+          "status": "not_applicable",
+          "rationale": "Tilgjengelighet er dokumentert, men kildene måler ikke alene tillit, oppmerksomhet eller politisk effekt."
+        }
+      }
+    }
+  ],
+  "currentVerification": {
+    "status": "PASS",
+    "checkedAt": "2026-08-29",
+    "currentClaimIds": [
+      "chain_lovgivning",
+      "chain_budsjett",
+      "chain_kontroll_offentlighet"
+    ],
+    "sourceIds": [
+      "source_stortinget_main",
+      "source_stortinget_short",
+      "source_stortinget_laws",
+      "source_stortinget_budget",
+      "source_stortinget_control"
+    ]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "stortinget",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/politikk/stortinget.json",
+    "productionContext": "data/quiz/production_context/politikk/stortinget.json",
+    "requiredInputs": [
+      "data/fag/politikk/politikkpensum_canonical_v4_5.json",
+      "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+      "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+      "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+      "data/fag/politikk/supersetQUIZMAL_politikk.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "PASS",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Ti canonical milepæler og fire eksisterende episode_v1-historier er kontrollert mot Stortingets egne historikk- og institusjonssider."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "primaryFunction"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "politicsTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "evidenceChains"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "sources"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "currentVerification"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/quiz/politikk/stortinget_sets.json"
+      ]
+    },
+    "G": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "chronologyStories"
+      ]
+    }
+  },
+  "review": {
+    "reviewer": "History GO Stortinget source, institution and publicness review",
+    "reviewedAt": "2026-08-29",
+    "notes": "Komité/plenum, Storting/regjering, budsjett/full bruk, åpent/lukket arbeid, bygning/plass og mediebilde/hel prosess er eksplisitt avgrenset."
+  }
+}
