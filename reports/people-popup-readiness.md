@@ -6,21 +6,21 @@ Rapporten måler om runtime kan presentere tilgjengelige canonical People-felt. 
 
 People-produksjon, claims og ferdigstatus eies av `docs/PEOPLE_PROFILE_CANONICAL.md`. Profiler uten v1-claims er `legacy_unreviewed`, selv når presentasjonsstatusen er `complete`.
 
-Source fingerprint: `6d78d954f47aa807ddd8b3de1a093b67dfb2c10fed51a52b9177287a065c0cf7`
+Source fingerprint: `7ce09065ef684f6f4a44af5c443b393ddea855d2fa8e6ce238df23b6a1356492`
 
 ## Sammendrag
 
 | Måling | Antall |
 |---|---:|
 | Personer | 1423 |
-| Presentasjon complete | 67 |
-| Presentasjon strong | 405 |
+| Presentasjon complete | 68 |
+| Presentasjon strong | 404 |
 | Presentasjon partial | 936 |
 | Presentasjon sparse | 15 |
 | People Profile v1 ready | 72 |
 | Legacy uten v1-claims | 1351 |
 | Ødelagte bildereferanser | 286 |
-| Eksplisitt initialfallback | 999 |
+| Eksplisitt initialfallback | 998 |
 | Implisitt initialfallback | 26 |
 | Gjennomsnittspoeng | 65.5 |
 
@@ -28,9 +28,9 @@ Source fingerprint: `6d78d954f47aa807ddd8b3de1a093b67dfb2c10fed51a52b9177287a065
 
 | Presentasjonsdel | Dekket | Andel |
 |---|---:|---:|
-| identity | 127 | 8.9 % |
+| identity | 128 | 9 % |
 | popupDesc | 1402 | 98.5 % |
-| lifeData | 61 | 4.3 % |
+| lifeData | 62 | 4.4 % |
 | contributionsDeclared | 62 | 4.4 % |
 | educationDeclared | 62 | 4.4 % |
 | practiceDeclared | 1405 | 98.7 % |
@@ -48,7 +48,7 @@ Source fingerprint: `6d78d954f47aa807ddd8b3de1a093b67dfb2c10fed51a52b9177287a065
 | litteratur | 172 | 36 | 20 | 116 | 0 | 16 | 156 | 70.5 |
 | musikk | 124 | 0 | 15 | 109 | 0 | 0 | 124 | 62.2 |
 | politikk | 114 | 5 | 50 | 59 | 0 | 15 | 99 | 68.1 |
-| kunst | 84 | 7 | 64 | 13 | 0 | 9 | 75 | 73.1 |
+| kunst | 84 | 8 | 63 | 13 | 0 | 9 | 75 | 73.3 |
 | by | 81 | 10 | 55 | 16 | 0 | 21 | 60 | 74.4 |
 | naeringsliv | 81 | 5 | 30 | 32 | 14 | 8 | 73 | 62.9 |
 | scenekunst | 48 | 1 | 16 | 31 | 0 | 1 | 47 | 64.6 |
