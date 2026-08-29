@@ -27,40 +27,36 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Normalize portal and validate Filosofi stub retirement
+      - name: Normalize shared portal projection
         run: |
           node tools/materialize-subkultur-runtime-v1.mjs --write
           node tools/materialize-subkultur-runtime-v1.mjs --check
-          node scripts/audit-fagverk-filosofi-legacy-stub.mjs
+      - name: Verify Filosofi legacy stub equivalence
+        run: node scripts/audit-fagverk-filosofi-legacy-stub.mjs
+      - name: Regenerate and verify Filosofi Phase 3 report
+        run: |
           node scripts/audit-fagverk-filosofi-phase3.mjs --write-report
           node scripts/audit-fagverk-filosofi-phase3.mjs
+      - name: Regenerate and verify general engine report
+        run: |
           node scripts/audit-fagverk-general-engine.mjs --write-report
           node scripts/audit-fagverk-general-engine.mjs
-          node scripts/build-fagverk-release-manifest.mjs --check
-          for test_file in \
-            tests/fagverk-filosofi-legacy-stub-retirement.test.mjs \
-            tests/fagverk-filosofi-phase3.test.mjs \
-            tests/fagverk-badge-equivalence.test.mjs; do
-            echo "=== $test_file ==="
-            if ! node --test "$test_file" > /tmp/filosofi-test.log 2>&1; then
-              {
-                echo "FAILED_TEST=$test_file"
-                grep -E 'not ok|error:|Expected|actual:|expected:|AssertionError|Mangler|mangler|uventet|ERR_ASSERTION' /tmp/filosofi-test.log | tail -n 40 || true
-              } > _tmp-filosofi-regression.txt
-              git config user.name 'github-actions[bot]'
-              git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-              git add _tmp-filosofi-regression.txt
-              git commit -m 'Record Filosofi regression diagnostic'
-              git push origin HEAD:${{ github.event.pull_request.head.ref }}
-              exit 1
-            fi
-          done
+      - name: Verify release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Verify Filosofi stub retirement regression
+        run: node --test tests/fagverk-filosofi-legacy-stub-retirement.test.mjs
+      - name: Verify Filosofi Phase 3 regression
+        run: node --test tests/fagverk-filosofi-phase3.test.mjs
+      - name: Verify badge equivalence regression
+        run: node --test tests/fagverk-badge-equivalence.test.mjs
       - name: Commit generated projections and remove probe
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -f _tmp-filosofi-regression.txt
           rm .github/workflows/_tmp-fagverk-filosofi-stub-regenerate.yml
           git add data/fagverk/fagverk_portal.json reports/fagverk/filosofi-phase3-audit.json reports/fagverk/general-engine-audit.json .github/workflows/_tmp-fagverk-filosofi-stub-regenerate.yml
+          git add -u _tmp-filosofi-regression.txt 2>/dev/null || true
           git diff --cached --quiet && exit 0
           git commit -m 'Regenerate Filosofi route audits'
           git push origin HEAD:${{ github.event.pull_request.head.ref }}
