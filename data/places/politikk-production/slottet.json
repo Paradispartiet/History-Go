@@ -1,0 +1,352 @@
+{
+  "schemaVersion": "politikk_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "slottet",
+  "placeFile": "data/places/politikk/oslo/slottet/slottet.json",
+  "status": "ready",
+  "primaryFunction": {
+    "statement": "Det kongelige slott er statseid residens og arbeidsplass for statsoverhodet og et møtested for statsråd, audienser og offisiell representasjon.",
+    "placeObjectDistinction": "Place-ID-en gjelder bygningen på Slottsplassen 1, ikke Slottsplassen, Slottsparken, hele monarkiet eller regjeringen som politisk organ.",
+    "sourceIds": [
+      "source_royal_main",
+      "source_council"
+    ]
+  },
+  "politicsTopics": [
+    {
+      "emneId": "em_pol_institusjoner_styring",
+      "siteSpecificRationale": "Bygningen samler bolig, hoff, statsråd og diplomatisk representasjon uten å være identisk med noen av institusjonene.",
+      "evidenceChainIds": [
+        "chain_byggemakt",
+        "chain_statsrad"
+      ]
+    },
+    {
+      "emneId": "em_pol_parlamentarisme_maktbalanse",
+      "siteSpecificRationale": "Byggebevilgningene og dagens statsråd gjør forholdet mellom monark, regjering og Storting etterprøvbart i to ulike perioder.",
+      "evidenceChainIds": [
+        "chain_byggemakt",
+        "chain_statsrad"
+      ]
+    },
+    {
+      "emneId": "em_pol_symbolsk_makt",
+      "siteSpecificRationale": "Fasade, byakse, rytterstatue, flagg og ritualer kan analyseres som politiske symboler med tydelige evidensgrenser.",
+      "evidenceChainIds": [
+        "chain_symbol_offentlighet"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_royal_main",
+      "url": "https://www.kongehuset.no/kongelige-eiendommer/det-kongelige-slott",
+      "sourceLocation": "Statlig eierskap, residens, arbeid og avgrenset publikumsbruk",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "source_royal_history",
+      "url": "https://www.kongehuset.no/kongelige-eiendommer/det-kongelige-slott/slottets-historie-og-arkitektur",
+      "sourceLocation": "Bygging, bevilgninger, arkitektur, innvielse og bruk etter 1905",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "historical"
+    },
+    {
+      "id": "source_council",
+      "url": "https://www.regjeringen.no/no/dokumenter/om-statsrad/id593521/?ch=1",
+      "sourceLocation": "Kongen i statsråd, møtested og departementenes forberedelse",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "source_council_records",
+      "url": "https://www.regjeringen.no/no/dokumenter/om-statsrad/id593521/?ch=5",
+      "sourceLocation": "Protokoller og parlamentarisk kontroll",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "source_constitution",
+      "url": "https://undervisning.stortinget.no/maktfordeling/hva-gjor-kongen/",
+      "sourceLocation": "Konstitusjonelt monarki og politisk ansvar",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "source_flag",
+      "url": "https://www.kongehuset.no/monarkiet/kongelige-symboler/flagging-fra-slottet",
+      "sourceLocation": "Regelstyrt flaggbruk fra Slottet",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "source_audience",
+      "url": "https://www.kongehuset.no/monarkiet/kongens-oppgaver-som-statsoverhode/hoytidelig-audiens",
+      "sourceLocation": "Akkreditiver og høytidelig audiens",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-29",
+      "temporalStatus": "current"
+    }
+  ],
+  "evidenceChains": [
+    {
+      "id": "chain_byggemakt",
+      "claim": "Kongelig initiativ ble omsatt til et palass gjennom Stortingets bevilgninger, en byggekommisjon og Linstows reviderte plan.",
+      "stages": {
+        "institutionActor": {
+          "status": "documented",
+          "statement": "Carl Johan tok initiativ, Stortinget bevilget og Slottsbygningskommisjonen ledet arbeidene.",
+          "sourceIds": [
+            "source_royal_history"
+          ]
+        },
+        "competenceRole": {
+          "status": "documented",
+          "statement": "Stortingets bevilgningsmyndighet satte den økonomiske rammen.",
+          "sourceIds": [
+            "source_royal_history"
+          ]
+        },
+        "ruleDecision": {
+          "status": "documented",
+          "statement": "Avslaget i 1827 stanset arbeidet; senere bevilgning åpnet for gjenopptakelse.",
+          "sourceIds": [
+            "source_royal_history"
+          ]
+        },
+        "resourceInstrument": {
+          "status": "documented",
+          "statement": "Bevilgningene på 150 000 og senere 90 000 spesidaler var prosjektets finansielle instrumenter.",
+          "sourceIds": [
+            "source_royal_history"
+          ]
+        },
+        "implementation": {
+          "status": "documented",
+          "statement": "Linstow reviderte planen og byggearbeidet ble gjenopptatt i redusert form.",
+          "sourceIds": [
+            "source_royal_history"
+          ]
+        },
+        "output": {
+          "status": "documented",
+          "statement": "Det trefløyede slottet sto under tak i 1836 og ble innviet i 1849.",
+          "sourceIds": [
+            "source_royal_history"
+          ]
+        },
+        "outcomeEffect": {
+          "status": "not_applicable",
+          "rationale": "Kilden dokumenterer byggets form og framdrift, men måler ikke bred politisk legitimitet for monarkiet."
+        }
+      }
+    },
+    {
+      "id": "chain_statsrad",
+      "claim": "Regjeringssaker forberedes i departementene, avgjøres av Kongen i statsråd på Slottet og protokollføres for parlamentarisk kontroll.",
+      "stages": {
+        "institutionActor": {
+          "status": "documented",
+          "statement": "Regjeringen samles under kongens ledelse som Kongen i statsråd.",
+          "sourceIds": [
+            "source_council"
+          ]
+        },
+        "competenceRole": {
+          "status": "documented",
+          "statement": "Kongen i statsråd er det øverste forvaltningsorganet innenfor den konstitusjonelle ordningen.",
+          "sourceIds": [
+            "source_council",
+            "source_constitution"
+          ]
+        },
+        "ruleDecision": {
+          "status": "documented",
+          "statement": "Saker av viktighet og andre bestemte sakstyper behandles formelt i statsråd.",
+          "sourceIds": [
+            "source_council"
+          ]
+        },
+        "resourceInstrument": {
+          "status": "documented",
+          "statement": "Departementenes saksforberedelse og kongelige resolusjoner er sentrale dokumenter.",
+          "sourceIds": [
+            "source_council"
+          ]
+        },
+        "implementation": {
+          "status": "documented",
+          "statement": "Møtene finner normalt sted i Statsrådsalen på Slottet.",
+          "sourceIds": [
+            "source_council"
+          ]
+        },
+        "output": {
+          "status": "documented",
+          "statement": "Avgjørelsene føres i statsrådets protokoller.",
+          "sourceIds": [
+            "source_council_records"
+          ]
+        },
+        "outcomeEffect": {
+          "status": "documented",
+          "statement": "Protokollene gjennomgås som del av Stortingets parlamentariske kontroll.",
+          "sourceIds": [
+            "source_council_records"
+          ]
+        }
+      }
+    },
+    {
+      "id": "chain_symbol_offentlighet",
+      "claim": "Flagg, audiens, arkitektur og omvisning gjør institusjonen synlig, mens regler avgrenser hva uttrykkene og adgangen faktisk dokumenterer.",
+      "stages": {
+        "institutionActor": {
+          "status": "documented",
+          "statement": "Kongehuset og Det kongelige hoff forvalter offisiell symbol- og representasjonsbruk.",
+          "sourceIds": [
+            "source_royal_main",
+            "source_flag"
+          ]
+        },
+        "competenceRole": {
+          "status": "documented",
+          "statement": "Monarken er statsoverhode innenfor et konstitusjonelt monarki.",
+          "sourceIds": [
+            "source_constitution"
+          ]
+        },
+        "ruleDecision": {
+          "status": "documented",
+          "statement": "Faste regler styrer flagging, og offisielle prosedyrer styrer audiens.",
+          "sourceIds": [
+            "source_flag",
+            "source_audience"
+          ]
+        },
+        "resourceInstrument": {
+          "status": "documented",
+          "statement": "Kongeflagget, akkreditiver og representasjonsrom er synlige og dokumenterbare instrumenter.",
+          "sourceIds": [
+            "source_flag",
+            "source_audience"
+          ]
+        },
+        "implementation": {
+          "status": "documented",
+          "statement": "Nye ambassadører mottas i audiens, og deler av Slottet åpnes gjennom regulerte omvisninger.",
+          "sourceIds": [
+            "source_audience",
+            "source_royal_main"
+          ]
+        },
+        "output": {
+          "status": "documented",
+          "statement": "Flaggbruk, seremonier og publikumstilbud gjør institusjonen synlig i byrommet.",
+          "sourceIds": [
+            "source_flag",
+            "source_royal_main"
+          ]
+        },
+        "outcomeEffect": {
+          "status": "not_applicable",
+          "rationale": "Kildene dokumenterer synlighet og prosedyrer, men ikke hvor stor politisk oppslutning symbolene skaper."
+        }
+      }
+    }
+  ],
+  "currentVerification": {
+    "status": "PASS",
+    "checkedAt": "2026-08-29",
+    "currentClaimIds": [
+      "chain_statsrad",
+      "chain_symbol_offentlighet"
+    ],
+    "sourceIds": [
+      "source_royal_main",
+      "source_council",
+      "source_council_records",
+      "source_constitution",
+      "source_flag",
+      "source_audience"
+    ]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "slottet",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/politikk/slottet.json",
+    "productionContext": "data/quiz/production_context/politikk/slottet.json",
+    "requiredInputs": [
+      "data/fag/politikk/politikkpensum_canonical_v4_5.json",
+      "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+      "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+      "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+      "data/fag/politikk/supersetQUIZMAL_politikk.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "PASS",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Ti milepæler og fire episode_v1-historier er kontrollert mot Kongehusets bygningshistorie og institusjonelle kilder."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "primaryFunction"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "politicsTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "evidenceChains"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "sources"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "currentVerification"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/quiz/politikk/slottet_sets.json"
+      ]
+    },
+    "G": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "chronologyStories"
+      ]
+    }
+  },
+  "review": {
+    "reviewer": "History GO Slottet source, constitution and symbolism review",
+    "reviewedAt": "2026-08-29",
+    "notes": "Bygning/plass, residens/beslutningsorgan, konge/regjering, symbol/oppslutning, historisk/nåværende bruk og guidet/fri adgang er eksplisitt avgrenset."
+  }
+}
