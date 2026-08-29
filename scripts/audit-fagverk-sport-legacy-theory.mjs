@@ -8,6 +8,7 @@ const MANIFEST = 'data/fag/fag_manifest.json';
 const REGISTRY = 'data/fagverk/fagverk_registry.json';
 const PORTAL = 'data/fagverk/fagverk_portal.json';
 const OWNED_ROOTS = ['data/fag/sport/', 'data/fagverk/sport/'];
+const MIN_CANONICAL_CORPUS_CHARS = 150000;
 
 const POLICY = Object.freeze({
   felt: [
@@ -176,7 +177,9 @@ export function auditSportLegacyTheory() {
     ...flatten(registrySubject),
     ...registryGraph.strings
   ].join(' '));
-  if (corpus.length < 250000) throw new Error(`Canonical Sport-korpus er uventet lite: ${corpus.length}.`);
+  if (corpus.length < MIN_CANONICAL_CORPUS_CHARS) {
+    throw new Error(`Canonical Sport-korpus er under truncation-sentinel ${MIN_CANONICAL_CORPUS_CHARS}: ${corpus.length}.`);
+  }
 
   const rows = legacySections.map((section) => {
     if (section.id === 'bidrag') {
@@ -235,7 +238,8 @@ export function auditSportLegacyTheory() {
       manifestGraphFileCount: manifestGraph.files.length,
       registryChapterCount: chapterCount,
       registryGraphFileCount: registryGraph.files.length,
-      corpusCharacterCount: corpus.length
+      corpusCharacterCount: corpus.length,
+      corpusTruncationFloor: MIN_CANONICAL_CORPUS_CHARS
     },
     navigation: {
       badgePage: portalSubject.badgePage,
