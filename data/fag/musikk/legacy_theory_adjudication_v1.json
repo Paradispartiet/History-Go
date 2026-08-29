@@ -1,0 +1,131 @@
+{
+  "schema": "history_go_fagverk_legacy_theory_adjudication_v1",
+  "version": "1.0.0",
+  "subject_id": "musikk",
+  "updated_at": "2026-08-29",
+  "policy": {
+    "canonical_content_wins": true,
+    "copy_legacy_prose": false,
+    "redirect_target": "fagverk.html?subject=musikk#fagverkIaProgresjon",
+    "redirect_only_after_gate": true,
+    "product_boundaries_are_not_knowledge": true
+  },
+  "sections": [
+    {
+      "id": "felt",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fag/musikk/musikkpensum_canonical_v4_5.json",
+        "data/fagverk/musikk/musikalsk-analyse-lyd-struktur.json",
+        "data/fagverk/musikk/historisk-musikkvitenskap-historiografi.json",
+        "data/fagverk/musikk/etnomusikologi-kultur-samfunn.json",
+        "data/fagverk/musikk/framforing-praksis-samspill.json",
+        "data/fagverk/musikk/lydmedier-teknologi-beregning.json",
+        "data/fagverk/musikk/institusjoner-okonomi-politikk-offentlighet.json"
+      ],
+      "boundary_files": [],
+      "product_mechanics": [],
+      "migration_refs": [],
+      "rationale": "Legacy-sidens brede feltbeskrivelse er allerede fordelt mellom canonical Musikk-pensum og kapitlene om musikalsk analyse, historie, etnomusikologi, framføring, lydmedier og institusjoner. Komposisjon, improvisasjon, framføring, lytting, innspilling, produksjon, distribusjon, verk, utøvere, instrumenter, scener, studioer og musikkmiljøer har derfor eksisterende faglige eiere uten at legacy-prosa kopieres."
+    },
+    {
+      "id": "musikalsk_form",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fag/musikk/musikkpensum_canonical_v4_5.json",
+        "data/fagverk/musikk/musikalsk-analyse-lyd-struktur.json"
+      ],
+      "boundary_files": [],
+      "product_mechanics": [],
+      "migration_refs": [],
+      "rationale": "Rytme, puls, tempo, melodi, harmoni, klang, form, arrangement, improvisasjon, stemme, instrument og ensemble er allerede eksplisitt dekket av canonical pensum og kapitlet om musikalsk analyse, lyd og struktur."
+    },
+    {
+      "id": "utovelse",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fag/musikk/musikkpensum_canonical_v4_5.json",
+        "data/fagverk/musikk/framforing-praksis-samspill.json"
+      ],
+      "boundary_files": [
+        "data/categories/category_contract.json"
+      ],
+      "product_mechanics": [
+        "musikk_scenekunst_boundary"
+      ],
+      "migration_refs": [],
+      "rationale": "Kropp, teknikk, samspill, fortolkning, nærvær, konserter og musikkscener eies allerede av canonical framføringsfag. Setningen som skiller musikkpraksis fra teater, dans, revy og øvrig levende scenisk handling er derimot en produktgrense mellom Musikk og Scenekunst og eies av category-contracten, ikke av et nytt musikkemne."
+    },
+    {
+      "id": "produksjon_teknologi",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fag/musikk/musikkpensum_canonical_v4_5.json",
+        "data/fagverk/musikk/lydmedier-teknologi-beregning.json"
+      ],
+      "boundary_files": [],
+      "product_mechanics": [],
+      "migration_refs": [],
+      "rationale": "Studio, mikrofon, instrument, PA/lydsystem, programvare, miksing, mastering og teknologiens rolle i uttrykket er allerede canonicalt dekket av Musikk-pensum og kapitlet om lydmedier, teknologi og beregning. Legacy-ordet forsterker tilfører ikke et eget faglig gap."
+    },
+    {
+      "id": "sjangere_miljoer",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fag/musikk/musikkpensum_canonical_v4_5.json",
+        "data/fagverk/musikk/historisk-musikkvitenskap-historiografi.json",
+        "data/fagverk/musikk/etnomusikologi-kultur-samfunn.json"
+      ],
+      "boundary_files": [],
+      "product_mechanics": [],
+      "migration_refs": [],
+      "rationale": "Sjanger, identitet, publikum, jazz, klassisk, pop, rock, hiphop, elektronika, verk, personer, steder og historiske kilder er allerede koblet i canonical pensum og kapitlene om historiografi og etnomusikologi. Ingen sjanger eller miljø må migreres fra legacy-siden."
+    },
+    {
+      "id": "scener_infrastruktur",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fag/musikk/musikkpensum_canonical_v4_5.json",
+        "data/fagverk/musikk/historisk-musikkvitenskap-historiografi.json",
+        "data/fagverk/musikk/lydmedier-teknologi-beregning.json",
+        "data/fagverk/musikk/institusjoner-okonomi-politikk-offentlighet.json"
+      ],
+      "boundary_files": [],
+      "product_mechanics": [],
+      "migration_refs": [],
+      "rationale": "Konsertsteder, klubber, festivaler, studioer, plateselskaper, radio, strømmetjenester, distribusjon og musikalsk minne/arkiv har allerede canonicalt eierskap gjennom pensum og kapitlene om historisk sirkulasjon, lydmedier og institusjoner."
+    },
+    {
+      "id": "musikk_samfunn",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fag/musikk/musikkpensum_canonical_v4_5.json",
+        "data/fagverk/musikk/etnomusikologi-kultur-samfunn.json",
+        "data/fagverk/musikk/institusjoner-okonomi-politikk-offentlighet.json"
+      ],
+      "boundary_files": [
+        "data/categories/category_contract.json"
+      ],
+      "product_mechanics": [
+        "secondary_badge_routing"
+      ],
+      "migration_refs": [],
+      "rationale": "Fellesskap, identitet, politikk, økonomi, subkultur og motstand er allerede canonicalt behandlet i Musikk-pensum, etnomusikologi og institusjonskapitlet. Regelen om at Subkultur kan brukes som sekundærbadge er produktmekanikk og eies av category-contracten; den skal ikke materialiseres som musikkfaglig kunnskap."
+    },
+    {
+      "id": "kjernebegreper",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fag/musikk/musikkpensum_canonical_v4_5.json",
+        "data/fag/musikk/methods_musikk_canonical_v4_5.json",
+        "data/fagverk/musikk/musikalsk-analyse-lyd-struktur.json",
+        "data/fagverk/musikk/framforing-praksis-samspill.json",
+        "data/fagverk/musikk/lydmedier-teknologi-beregning.json"
+      ],
+      "boundary_files": [],
+      "product_mechanics": [],
+      "migration_refs": [],
+      "rationale": "Legacy-listens kjernebegreper er allerede definert og operasjonalisert i canonical Musikk-pensum, metodekatalog og kapitlene om analyse, framføring og lydmedier. Det finnes derfor ingen grunn til å opprette en parallell begrepskilde."
+    }
+  ]
+}
