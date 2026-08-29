@@ -65,6 +65,62 @@ if count != 1 and 'const imageBufferCache = new Map();' not in text:
 # Avoid Intl.Segmenter splitting spaced initials into artificial sentences.
 text = text.replace("P. A. Munch", "Peter Andreas Munch")
 
+# Keep temporal wording aligned with the v4.2.1 validator: exact timeline years
+# must occur literally in timeline claims, while comparison prose must not use
+# the validator's current-time marker "nå" unless it is genuinely current.
+text = text.replace(
+    "Universitetsplassen ble lagt om i 1930–31 etter planer av Bjercke og Eliassen.",
+    "Omleggingen av Universitetsplassen ble fullført i 1931 etter arbeid i 1930–31, etter planer av Bjercke og Eliassen."
+)
+text = text.replace(
+    "Bildene kan brukes til å sammenligne plassflate, monumenter og bygningsfront, men de er ikke et optisk identisk før-og-nå-par.",
+    "Bildene kan sammenlignes for plassflate, monumenter og bygningsfront, men ståstedet er ulikt og sammenstillingen er ikke optisk identisk."
+)
+
+# Universitetsplassen own-place cleanup across every canonical people source in
+# data/people/manifest.json. Keep each person and all other legitimate place
+# relations; remove only stale direct Universitetsplassen ownership except Grosch.
+cleanup_marker = 'const universPeopleManifestFile = "data/people/manifest.json";'
+if cleanup_marker not in text:
+    anchor = 'write(peopleFile, people);\n\nconst brandsMasterFile = "data/brands/brands_master.json";'
+    if anchor not in text:
+        raise SystemExit("People cleanup insertion anchor not found")
+    cleanup = r'''write(peopleFile, people);
+
+const universPeopleManifestFile = "data/people/manifest.json";
+const universPeopleManifest = read(universPeopleManifestFile);
+for (const relativePersonFile of universPeopleManifest.files || []) {
+  const canonicalPersonFile = `data/${relativePersonFile}`;
+  if (!fs.existsSync(path.join(root, canonicalPersonFile))) continue;
+  const rawPeople = read(canonicalPersonFile);
+  const personRecords = Array.isArray(rawPeople)
+    ? rawPeople
+    : rawPeople && typeof rawPeople === "object" && typeof rawPeople.id === "string"
+      ? [rawPeople]
+      : [];
+  let changed = false;
+  for (const person of personRecords) {
+    if (!person || person.id === "christian_heinrich_grosch") continue;
+    for (const key of ["places", "place_ids", "placeIds", "related_place_ids"]) {
+      if (!Array.isArray(person[key]) || !person[key].includes(placeId)) continue;
+      person[key] = person[key].filter((id) => id !== placeId);
+      changed = true;
+    }
+    for (const key of ["placeId", "place_id", "place", "source_place_id", "primary_place_id"]) {
+      if (person[key] !== placeId) continue;
+      const replacement = [person.places, person.place_ids, person.placeIds]
+        .find((values) => Array.isArray(values) && values.length > 0)?.[0];
+      if (replacement) person[key] = replacement;
+      else delete person[key];
+      changed = true;
+    }
+  }
+  if (changed) write(canonicalPersonFile, rawPeople);
+}
+
+const brandsMasterFile = "data/brands/brands_master.json";'''
+    text = text.replace(anchor, cleanup, 1)
+
 popup_replacement = '''const popupCoverage = coverage(popupDesc, [
   ["claim_universitetsplassen_identity"],
   ["claim_universitetsplassen_founding"],
