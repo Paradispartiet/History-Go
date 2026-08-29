@@ -6,6 +6,7 @@ on:
       - work/universitetsplassen-completion-20260829
     paths:
       - tools/finalize-universitetsplassen-completion.mjs
+      - tools/harden-universitetsplassen-finalizer.py
       - .github/workflows/universitetsplassen-one-shot.yml
   workflow_dispatch:
 
@@ -31,114 +32,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Harden finalizer source and evidence coverage
-        shell: bash
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          import re
-
-          path = Path("tools/finalize-universitetsplassen-completion.mjs")
-          text = path.read_text()
-
-          if 'api.searchParams.set("iiurlwidth", "1600")' not in text:
-              marker = 'api.searchParams.set("origin", "*");'
-              if marker not in text:
-                  raise SystemExit("Commons origin marker not found")
-              text = text.replace(marker, marker + '\n  api.searchParams.set("iiurlwidth", "1600");', 1)
-
-          if 'originalUrl: info.thumburl || info.url,' not in text:
-              text, count = re.subn(r'originalUrl:\s*info\.url\s*,', 'originalUrl: info.thumburl || info.url,', text, count=1)
-              if count != 1:
-                  raise SystemExit("Commons image URL assignment not found")
-
-          text = text.replace(
-              'History-Go-place-production/1.0"',
-              'History-Go-place-production/1.0 (github.com/Paradispartiet/History-Go)"'
-          )
-
-          fetch_replacement = r'''const imageBufferCache = new Map();
-          const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-          async function fetchBuffer(url) {
-            const parsed = new URL(url);
-            for (const key of ["utm_source", "utm_campaign", "utm_content"]) parsed.searchParams.delete(key);
-            const cleanUrl = parsed.toString();
-            if (imageBufferCache.has(cleanUrl)) return imageBufferCache.get(cleanUrl);
-
-            let lastStatus = 0;
-            for (let attempt = 0; attempt < 6; attempt += 1) {
-              const response = await fetch(cleanUrl, {
-                headers: {
-                  "user-agent": "History-Go-place-production/1.0 (github.com/Paradispartiet/History-Go)",
-                  "accept": "image/avif,image/webp,image/*,*/*;q=0.8"
-                }
-              });
-              lastStatus = response.status;
-              if (response.ok) {
-                const buffer = Buffer.from(await response.arrayBuffer());
-                imageBufferCache.set(cleanUrl, buffer);
-                await sleep(750);
-                return buffer;
-              }
-              if (![429, 500, 502, 503, 504].includes(response.status)) {
-                throw new Error(`Kunne ikke hente bilde (${response.status}): ${cleanUrl}`);
-              }
-              const retryAfter = Number(response.headers.get("retry-after"));
-              const delay = Number.isFinite(retryAfter) && retryAfter > 0
-                ? Math.min(retryAfter * 1000, 30000)
-                : Math.min(1500 * (2 ** attempt), 30000);
-              await sleep(delay);
-            }
-            throw new Error(`Kunne ikke hente bilde etter retries (${lastStatus}): ${cleanUrl}`);
-          }
-
-          async function outputImage'''
-          pattern = r'async function fetchBuffer\(url\)\s*\{.*?\n\}\s*\n\s*async function outputImage'
-          text, count = re.subn(pattern, fetch_replacement, text, count=1, flags=re.S)
-          if count != 1:
-              raise SystemExit("fetchBuffer function not found")
-
-          # Intl.Segmenter treats the spaced initials in P. A. Munch as separate
-          # sentences. Use the full name in generated prose and keep one evidence
-          # group per real semantic sentence.
-          text = text.replace("P. A. Munch", "Peter Andreas Munch")
-
-          popup_replacement = '''const popupCoverage = coverage(popupDesc, [
-            ["claim_universitetsplassen_identity"],
-            ["claim_universitetsplassen_founding"],
-            ["claim_universitetsplassen_cornerstone"],
-            ["claim_universitetsplassen_grosch"],
-            ["claim_universitetsplassen_grosch"],
-            ["claim_universitetsplassen_use_1851_54"],
-            ["claim_universitetsplassen_urbygningen"],
-            ["claim_universitetsplassen_schweigaard", "claim_universitetsplassen_pamunch"],
-            ["claim_universitetsplassen_schweigaard"],
-            ["claim_universitetsplassen_pamunch"],
-            ["claim_universitetsplassen_pamunch"],
-            ["claim_universitetsplassen_schweigaard", "claim_universitetsplassen_pamunch", "claim_universitetsplassen_munch"],
-            ["claim_universitetsplassen_aula"],
-            ["claim_universitetsplassen_munch"],
-            ["claim_universitetsplassen_munch"],
-            ["claim_universitetsplassen_aula", "claim_universitetsplassen_munch"],
-            ["claim_universitetsplassen_repaving"],
-            ["claim_universitetsplassen_repaving", "claim_universitetsplassen_immatriculation"],
-            ["claim_universitetsplassen_immatriculation"],
-            ["claim_universitetsplassen_tree"],
-            ["claim_universitetsplassen_historic_photo"],
-            ["claim_universitetsplassen_current_photo"],
-            ["claim_universitetsplassen_historic_photo", "claim_universitetsplassen_current_photo"],
-            ["claim_universitetsplassen_identity", "claim_universitetsplassen_grosch", "claim_universitetsplassen_schweigaard", "claim_universitetsplassen_pamunch", "claim_universitetsplassen_aula"],
-            ["claim_universitetsplassen_grosch"],
-            ["claim_universitetsplassen_identity"],
-            ["claim_universitetsplassen_grosch", "claim_universitetsplassen_aula", "claim_universitetsplassen_use_1851_54"]
-          ]);'''
-          popup_pattern = r'const popupCoverage = coverage\(popupDesc, \[.*?\n\]\);'
-          text, count = re.subn(popup_pattern, popup_replacement, text, count=1, flags=re.S)
-          if count != 1:
-              raise SystemExit("popupCoverage block not found")
-
-          path.write_text(text)
-          PY
+          python tools/harden-universitetsplassen-finalizer.py
           node --check tools/finalize-universitetsplassen-completion.mjs
       - name: Materialize Universitetsplassen canonical package
         id: finalize
@@ -176,24 +71,62 @@ jobs:
           node scripts/build-fagverk-release-manifest.mjs
       - name: Verify Universitetsplassen package
         if: steps.finalize.outputs.exit_code == '0'
+        id: verify
+        shell: bash
         run: |
-          node --test tests/universitetsplassen-completion.test.mjs
-          npm run places:check
-          npm run place-open:check
-          npm run quiz:production:check
-          npm run quiz:progression:check
-          npm run stories:check
-          npm run leksikon:check
-          npm run people:check
-          npm run place-rounds:check
-          npm run fagverk:release:check
-      - name: Remove one-shot workflow
-        if: steps.finalize.outputs.exit_code == '0'
+          set +e
+          mkdir -p reports/place-production
+          {
+            set -e
+            echo "=== targeted Universitetsplassen test ==="
+            node --test tests/universitetsplassen-completion.test.mjs
+            echo "=== places:check ==="
+            npm run places:check
+            echo "=== place-open:check ==="
+            npm run place-open:check
+            echo "=== quiz:production:check ==="
+            npm run quiz:production:check
+            echo "=== quiz:progression:check ==="
+            npm run quiz:progression:check
+            echo "=== stories:check ==="
+            npm run stories:check
+            echo "=== leksikon:check ==="
+            npm run leksikon:check
+            echo "=== people:check ==="
+            npm run people:check
+            echo "=== place-rounds:check ==="
+            npm run place-rounds:check
+            echo "=== fagverk:release:check ==="
+            npm run fagverk:release:check
+          } > reports/place-production/universitetsplassen-verify-debug.log 2>&1
+          code=$?
+          cat reports/place-production/universitetsplassen-verify-debug.log
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Commit verification diagnostics
+        if: steps.finalize.outputs.exit_code == '0' && steps.verify.outputs.exit_code != '0'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/place-production/universitetsplassen-verify-debug.log
+          if git diff --cached --quiet; then
+            echo "Verification diagnostic unchanged"
+          else
+            git commit -m "Capture Universitetsplassen verification failure"
+            git push origin HEAD:work/universitetsplassen-completion-20260829
+          fi
+      - name: Stop on verification failure
+        if: steps.finalize.outputs.exit_code == '0' && steps.verify.outputs.exit_code != '0'
+        run: exit 1
+      - name: Remove one-shot tooling
+        if: steps.finalize.outputs.exit_code == '0' && steps.verify.outputs.exit_code == '0'
         run: |
           rm .github/workflows/universitetsplassen-one-shot.yml
+          rm tools/harden-universitetsplassen-finalizer.py
           rm -f reports/place-production/universitetsplassen-finalizer-debug.log
+          rm -f reports/place-production/universitetsplassen-verify-debug.log
       - name: Commit generated production
-        if: steps.finalize.outputs.exit_code == '0'
+        if: steps.finalize.outputs.exit_code == '0' && steps.verify.outputs.exit_code == '0'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
