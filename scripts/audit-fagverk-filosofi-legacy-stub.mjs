@@ -101,6 +101,7 @@ export function auditFilosofiLegacyStub() {
 
   const archiveLinks = hrefs(archive);
   const expectedArchiveLinks = [
+    '../../../index.html',
     '../../../merker/merker.html',
     '../../../fagverk.html?subject=filosofi',
     '../../../fagverk-forside.html'
