@@ -114,7 +114,7 @@ const actors = [
   {
     id: 'liv_laerling_fagarbeider',
     name: 'Liv',
-    role: 'lærling',
+    role: 'lærling i fagarbeid',
     fictional: true,
     fictional_scenario_actor: true,
     canonical_person_ref: null,
