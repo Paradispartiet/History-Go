@@ -56,6 +56,18 @@
     });
   }
 
+  function ensureSubjectKnowledgeAction(host, model) {
+    const actions = host.querySelector('.fagverk-ia-progress-actions');
+    if (!actions) return;
+    const href = `knowledge.html?subject=${encodeURIComponent(model.subject.id)}`;
+    const exists = [...actions.querySelectorAll('a')].some((link) => text(link.getAttribute('href')) === href);
+    if (exists) return;
+    const link = document.createElement('a');
+    link.href = href;
+    link.textContent = 'Åpne fagets kunnskapsprofil →';
+    actions.appendChild(link);
+  }
+
   async function init() {
     const params = new URLSearchParams(global.location.search);
     const subjectId = text(params.get('subject'));
@@ -86,6 +98,7 @@
         </section>
       `);
       removeRedundantLegacyAction(host, model);
+      ensureSubjectKnowledgeAction(host, model);
     } catch (error) {
       console.error('[fagverk-ia-v3-badge-progress]', error);
     }
