@@ -3,96 +3,138 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 
 const ROOT = process.cwd();
-const ADJ = 'data/fag/natur/legacy_theory_adjudication_v1.json';
+const ADJUDICATION = 'data/fag/natur/legacy_theory_adjudication_v1.json';
 const REGISTRY = 'data/fagverk/fagverk_registry.json';
 const PORTAL = 'data/fagverk/fagverk_portal.json';
+const CATEGORY_CONTRACT = 'data/categories/category_contract.json';
 const LEGACY_BADGE = 'data/fag/natur/merke_natur (1).html';
 const BADGE = 'data/badges/natur.json';
-const CATEGORY_CONTRACT = 'data/categories/category_contract.json';
-const FAGVERK_RUNTIME = 'fagverk.html';
+const SUBJECT_MODEL = 'js/fagverk-subject-model.js';
+const BADGE_PROGRESS = 'js/fagverk-ia-v3-badge-progress.js';
+const FAGVERK_HTML = 'fagverk.html';
 const TARGET = 'fagverk.html?subject=natur#fagverkIaProgresjon';
-const KNOWLEDGE = 'canonical_supersedes';
-const PRODUCT_SUMMARY = 'retire_legacy_product_summary';
+const KNOWLEDGE_DISPOSITION = 'canonical_supersedes';
+const PRODUCT_SUMMARY_DISPOSITION = 'retire_legacy_product_summary';
+const BOUNDARY_ID = 'nature_assignment_requires_scientific_entry';
+const BOUNDARY_DISPOSITION = 'migrated_to_canonical_product_contract';
+
+const EXPECTED_PRODUCT_MECHANICS = new Map([
+  ['badge_activity_progress', {
+    disposition: 'canonical_product_state',
+    ownerFiles: [BADGE, SUBJECT_MODEL, BADGE_PROGRESS]
+  }],
+  ['subject_completion_snapshot', {
+    disposition: 'retire_legacy_snapshot',
+    ownerFiles: []
+  }],
+  ['integrated_progression_route', {
+    disposition: 'canonical_progression_route',
+    ownerFiles: [FAGVERK_HTML, BADGE_PROGRESS]
+  }],
+  ['subject_inventory_snapshot', {
+    disposition: 'retire_legacy_snapshot',
+    ownerFiles: []
+  }]
+]);
 
 const abs = file => path.join(ROOT, file);
 const exists = file => fs.existsSync(abs(file));
 const read = file => fs.readFileSync(abs(file), 'utf8');
 const json = file => JSON.parse(read(file));
 const text = value => String(value ?? '').trim();
+const normalize = value => text(value).toLocaleLowerCase('nb-NO').normalize('NFKC')
+  .replace(/[«»“”„"'’`´]/g, '')
+  .replace(/[^a-zæøå0-9]+/gi, ' ')
+  .replace(/\s+/g, ' ').trim();
 
-function anchorAudit() {
+function runAnchorAudit() {
   const result = spawnSync(process.execPath, ['scripts/audit-fagverk-natur-legacy-theory.mjs'], {
     cwd: ROOT,
     encoding: 'utf8'
   });
-  if (result.status !== 0) throw new Error(result.stderr || result.stdout);
+  if (result.status !== 0) throw new Error(`Natur legacy anchor audit feilet:\n${result.stderr || result.stdout}`);
   return JSON.parse(result.stdout);
 }
 
-for (const file of [ADJ, REGISTRY, PORTAL, LEGACY_BADGE, BADGE, CATEGORY_CONTRACT, FAGVERK_RUNTIME]) {
+for (const file of [
+  ADJUDICATION, REGISTRY, PORTAL, CATEGORY_CONTRACT, LEGACY_BADGE,
+  BADGE, SUBJECT_MODEL, BADGE_PROGRESS, FAGVERK_HTML
+]) {
   if (!exists(file)) throw new Error(`Natur-adjudisering mangler ${file}`);
 }
 
-const anchor = anchorAudit();
-const adj = json(ADJ);
+const anchorAudit = runAnchorAudit();
+const adjudication = json(ADJUDICATION);
 const registry = json(REGISTRY);
 const portal = json(PORTAL);
 const categoryContract = json(CATEGORY_CONTRACT);
 
-if (adj.schema !== 'history_go_fagverk_legacy_theory_adjudication_v1' || adj.subject_id !== 'natur') {
-  throw new Error('Ugyldig Natur-adjudisering.');
+if (adjudication.schema !== 'history_go_fagverk_legacy_theory_adjudication_v1') {
+  throw new Error(`Ukjent Natur-adjudiseringsschema: ${adjudication.schema}`);
 }
-if (
-  adj.policy?.canonical_content_wins !== true ||
-  adj.policy?.copy_legacy_prose !== false ||
-  adj.policy?.redirect_target !== TARGET ||
-  adj.policy?.redirect_only_after_gate !== true
-) {
-  throw new Error('Ugyldig Natur-adjudiseringspolicy.');
+if (adjudication.subject_id !== 'natur') throw new Error('Natur-adjudiseringen må eie subject_id=natur.');
+if (adjudication.policy?.canonical_content_wins !== true) throw new Error('Canonical Natur-innhold må vinne over legacy-prosa.');
+if (adjudication.policy?.copy_legacy_prose !== false) throw new Error('Legacy Natur-prosa kan ikke kopieres som standard.');
+if (adjudication.policy?.redirect_target !== TARGET) throw new Error('Uventet Natur redirect-target.');
+if (adjudication.policy?.redirect_only_after_gate !== true) throw new Error('Natur redirect må være blokkert til adjudiseringsgaten er grønn.');
+if (adjudication.policy?.product_mechanics_are_not_knowledge !== true) throw new Error('Natur-produktmekanikk må holdes utenfor kunnskapseierskap.');
+if (adjudication.policy?.product_boundaries_are_not_knowledge !== true) throw new Error('Natur-produktgrenser må holdes utenfor kunnskapseierskap.');
+
+if (anchorAudit.subject !== 'natur') throw new Error('Natur-adjudiseringen mottok feil anchor-audit.');
+if (anchorAudit.summary?.knowledgeSectionCount !== 5
+  || anchorAudit.summary?.anchorCompleteCount !== 5
+  || anchorAudit.summary?.manualReviewCount !== 0) {
+  throw new Error('Natur kan ikke adjudiseres før anchor-auditen beviser 5/5 dekning og 0 manuelle gap.');
 }
-if (
-  anchor.summary?.knowledgeSectionCount !== 5 ||
-  anchor.summary?.anchorCompleteCount !== 5 ||
-  anchor.summary?.manualReviewCount !== 0 ||
-  anchor.summary?.redirectReady !== false
-) {
-  throw new Error('Natur anchor-audit er ikke 5/5 fail-closed.');
+if (anchorAudit.summary?.redirectReady !== false) throw new Error('Natur anchor-auditen alene skal aldri godkjenne redirect.');
+if (anchorAudit.legacy?.sectionCount !== 6
+  || anchorAudit.legacy?.productSummarySectionCount !== 1
+  || anchorAudit.legacy?.productMechanicCount !== 4
+  || anchorAudit.legacy?.productBoundaryCount !== 1) {
+  throw new Error('Natur legacy-auditen har uventet kunnskaps-/produktstruktur.');
+}
+if (anchorAudit.canonical?.categoryContractHasNaturAssignmentBoundary !== true) {
+  throw new Error('Natur-tildelingsgrensen er ikke canonicalisert i category-contracten.');
 }
 
 const registrySubject = registry.subjects?.natur;
-const chapterRoots = (registrySubject?.chapters || []).map(chapter => text(chapter.file)).filter(Boolean);
+const chapterRoots = (registrySubject?.chapters || []).map(row => text(row?.file)).filter(Boolean);
 if (chapterRoots.length !== 12) throw new Error(`Forventet 12 Natur-kapittelrøtter, fant ${chapterRoots.length}.`);
-const allowedKnowledgeOwners = new Set([...(anchor.canonical?.manifestSeedFiles || []), ...chapterRoots]);
+const allowedKnowledgeOwners = new Set([...(anchorAudit.canonical?.manifestSeedFiles || []), ...chapterRoots]);
 
-const sectionDecisions = new Map((adj.sections || []).map(row => [text(row.id), row]));
-const expectedSections = anchor.rows.map(row => row.id);
-if (
-  expectedSections.some(id => !sectionDecisions.has(id)) ||
-  [...sectionDecisions.keys()].some(id => !expectedSections.includes(id))
-) {
-  throw new Error('Natur-adjudiseringen matcher ikke legacy-seksjonene.');
+const sectionDecisions = Array.isArray(adjudication.sections) ? adjudication.sections : [];
+const sectionById = new Map();
+for (const decision of sectionDecisions) {
+  const id = text(decision?.id);
+  if (!id) throw new Error('Natur-adjudiseringsrad mangler id.');
+  if (sectionById.has(id)) throw new Error(`Duplikat Natur-adjudisering for ${id}.`);
+  sectionById.set(id, decision);
 }
+const expectedSectionIds = anchorAudit.rows.map(row => row.id);
+const missingSectionIds = expectedSectionIds.filter(id => !sectionById.has(id));
+const unknownSectionIds = [...sectionById.keys()].filter(id => !expectedSectionIds.includes(id));
+if (missingSectionIds.length) throw new Error(`Mangler eksplisitt Natur-adjudisering: ${missingSectionIds.join(', ')}`);
+if (unknownSectionIds.length) throw new Error(`Ukjente Natur-adjudiseringsseksjoner: ${unknownSectionIds.join(', ')}`);
 
-const rows = anchor.rows.map(anchorRow => {
-  const decision = sectionDecisions.get(anchorRow.id);
-  const owners = (decision.owner_files || []).map(text).filter(Boolean);
-  const migrations = (decision.migration_refs || []).map(text).filter(Boolean);
-  if (!text(decision.rationale)) throw new Error(`${anchorRow.id} mangler rationale.`);
+const sectionRows = anchorAudit.rows.map(anchorRow => {
+  const decision = sectionById.get(anchorRow.id);
+  const ownerFiles = Array.isArray(decision.owner_files) ? decision.owner_files.map(text).filter(Boolean) : [];
+  const migrationRefs = Array.isArray(decision.migration_refs) ? decision.migration_refs.map(text).filter(Boolean) : [];
+  const rationale = text(decision.rationale);
+  if (!rationale) throw new Error(`${anchorRow.id} mangler rationale.`);
 
   if (anchorRow.role === 'legacy_product_summary') {
-    if (decision.disposition !== PRODUCT_SUMMARY || owners.length || migrations.length) {
-      throw new Error('Natur status-seksjonen skal pensjoneres som legacy-produktoppsummering uten kunnskapseier.');
+    if (decision.disposition !== PRODUCT_SUMMARY_DISPOSITION || ownerFiles.length || migrationRefs.length) {
+      throw new Error(`${anchorRow.id} skal pensjoneres som produktstatus uten kunnskapseier eller migrering.`);
     }
   } else {
-    if (decision.disposition !== KNOWLEDGE || anchorRow.anchorCoverage !== 1 || !owners.length) {
-      throw new Error(`${anchorRow.id} er ikke korrekt canonical_supersedes.`);
-    }
-    if (migrations.length) throw new Error(`${anchorRow.id} skal ikke hevde faglig migrering; #5495 fant 0 kunnskapsgap.`);
-    for (const file of owners) {
-      if (!exists(file)) throw new Error(`${anchorRow.id} peker til manglende ${file}`);
-      if (!allowedKnowledgeOwners.has(file)) {
-        throw new Error(`${anchorRow.id} peker utenfor canonical Natur-eierskap: ${file}`);
-      }
+    if (decision.disposition !== KNOWLEDGE_DISPOSITION) throw new Error(`${anchorRow.id} skal være canonical_supersedes.`);
+    if (anchorRow.anchorCoverage !== 1 || anchorRow.missingAnchors?.length) throw new Error(`${anchorRow.id} har fortsatt canonical ankerhull.`);
+    if (!ownerFiles.length) throw new Error(`${anchorRow.id} må ha minst én canonical kunnskapseier.`);
+    if (migrationRefs.length) throw new Error(`${anchorRow.id} skal ikke hevde kunnskapsmigrering; #5495 fant 0 faglige gap.`);
+    for (const file of ownerFiles) {
+      if (!exists(file)) throw new Error(`${anchorRow.id} peker til manglende owner-fil: ${file}`);
+      if (!allowedKnowledgeOwners.has(file)) throw new Error(`${anchorRow.id} peker utenfor canonical Natur-eierskap: ${file}`);
     }
   }
 
@@ -101,150 +143,127 @@ const rows = anchor.rows.map(anchorRow => {
     role: anchorRow.role,
     anchorCoverage: anchorRow.anchorCoverage,
     disposition: decision.disposition,
-    ownerFiles: owners,
-    migrationRefs: migrations,
-    rationale: decision.rationale,
+    ownerFiles,
+    migrationRefs,
+    rationale,
     adjudicated: true
   };
 });
 
-const expectedMechanics = [...new Set(anchor.rows.flatMap(row => row.legacyProductMechanics || []))].sort();
-const mechanicDecisions = new Map((adj.product_mechanics || []).map(row => [text(row.id), row]));
-if (
-  expectedMechanics.some(id => !mechanicDecisions.has(id)) ||
-  [...mechanicDecisions.keys()].some(id => !expectedMechanics.includes(id))
-) {
-  throw new Error('Natur-adjudiseringen matcher ikke de isolerte produktmekanikkene.');
+const productDecisions = Array.isArray(adjudication.product_mechanics) ? adjudication.product_mechanics : [];
+const productById = new Map(productDecisions.map(row => [text(row?.id), row]));
+if (productById.size !== EXPECTED_PRODUCT_MECHANICS.size) throw new Error('Natur-adjudiseringen skal avgjøre nøyaktig fire produktmekanikker.');
+const productRows = [];
+for (const [id, expected] of EXPECTED_PRODUCT_MECHANICS) {
+  const decision = productById.get(id);
+  if (!decision) throw new Error(`Mangler Natur-produktmekanikk: ${id}`);
+  const ownerFiles = Array.isArray(decision.owner_files) ? decision.owner_files.map(text).filter(Boolean) : [];
+  const migrationRefs = Array.isArray(decision.migration_refs) ? decision.migration_refs.map(text).filter(Boolean) : [];
+  if (decision.disposition !== expected.disposition) throw new Error(`${id} har feil disposisjon: ${decision.disposition}`);
+  if (JSON.stringify(ownerFiles) !== JSON.stringify(expected.ownerFiles)) throw new Error(`${id} har feil canonicale produkteiere.`);
+  if (migrationRefs.length) throw new Error(`${id} skal ikke hevde produktmigrering.`);
+  if (!text(decision.rationale)) throw new Error(`${id} mangler rationale.`);
+  for (const file of ownerFiles) if (!exists(file)) throw new Error(`${id} peker til manglende produkteier: ${file}`);
+  productRows.push({ id, disposition: decision.disposition, ownerFiles, migrationRefs, rationale: decision.rationale, adjudicated: true });
+}
+for (const id of productById.keys()) if (!EXPECTED_PRODUCT_MECHANICS.has(id)) throw new Error(`Ukjent Natur-produktmekanikk: ${id}`);
+
+const boundaryDecisions = Array.isArray(adjudication.product_boundaries) ? adjudication.product_boundaries : [];
+if (boundaryDecisions.length !== 1) throw new Error('Natur-adjudiseringen skal ha nøyaktig én produktgrense.');
+const boundary = boundaryDecisions[0];
+const boundaryOwners = Array.isArray(boundary.owner_files) ? boundary.owner_files.map(text).filter(Boolean) : [];
+const boundaryMigrations = Array.isArray(boundary.migration_refs) ? boundary.migration_refs.map(text).filter(Boolean) : [];
+if (text(boundary.id) !== BOUNDARY_ID || boundary.disposition !== BOUNDARY_DISPOSITION) throw new Error('Natur-tildelingsgrensen har feil id eller disposisjon.');
+if (JSON.stringify(boundaryOwners) !== JSON.stringify([CATEGORY_CONTRACT])) throw new Error('Natur-tildelingsgrensen må eies kun av category-contracten.');
+if (!boundaryMigrations.includes('data/categories/category_contract.json#decisions.natur') || !boundaryMigrations.includes('PR #5496')) {
+  throw new Error('Natur-tildelingsgrensen mangler eksplisitt #5496-migreringsbevis.');
+}
+if (!text(boundary.rationale)) throw new Error('Natur-tildelingsgrensen mangler rationale.');
+
+const naturDecision = normalize(categoryContract.decisions?.natur);
+for (const term of ['grønt', 'vakkert', 'naturfaglig inngang', 'organisme', 'habitat', 'vassdrag', 'geologisk', 'klimavirkning', 'naturforvaltning', 'dokumenterbar']) {
+  if (!naturDecision.includes(normalize(term))) throw new Error(`Category-contracten mangler Natur-grensebegrep: ${term}`);
 }
 
-const mechanics = expectedMechanics.map(id => {
-  const decision = mechanicDecisions.get(id);
-  const owners = (decision.owner_files || []).map(text).filter(Boolean);
-  const migrations = (decision.migration_refs || []).map(text).filter(Boolean);
-  if (!text(decision.rationale)) throw new Error(`${id} mangler produktrationale.`);
-
-  if (id === 'badge_activity_progress') {
-    if (decision.disposition !== 'canonical_product_state' || JSON.stringify(owners) !== JSON.stringify([BADGE]) || migrations.length) {
-      throw new Error('badge_activity_progress skal eies av canonical Natur-badge-data.');
-    }
-  } else if (id === 'integrated_progression_route') {
-    if (decision.disposition !== 'canonical_progression_route' || JSON.stringify(owners) !== JSON.stringify([FAGVERK_RUNTIME]) || migrations.length) {
-      throw new Error('integrated_progression_route skal eies av den generiske Fagverk-runtime-flaten.');
-    }
-  } else if (['subject_completion_snapshot', 'subject_inventory_snapshot'].includes(id)) {
-    if (decision.disposition !== 'retire_legacy_snapshot' || owners.length || migrations.length) {
-      throw new Error(`${id} skal pensjoneres som statisk legacy-snapshot.`);
-    }
-  } else {
-    throw new Error(`Ukjent Natur-produktmekanikk: ${id}`);
-  }
-
-  for (const file of owners) if (!exists(file)) throw new Error(`${id} peker til manglende produkteier ${file}`);
-  return { id, disposition: decision.disposition, ownerFiles: owners, migrationRefs: migrations, rationale: decision.rationale, adjudicated: true };
-});
-
-const expectedBoundaries = [...new Set(anchor.rows.flatMap(row => row.legacyProductBoundaries || []))].sort();
-const boundaryDecisions = new Map((adj.product_boundaries || []).map(row => [text(row.id), row]));
-if (
-  expectedBoundaries.some(id => !boundaryDecisions.has(id)) ||
-  [...boundaryDecisions.keys()].some(id => !expectedBoundaries.includes(id))
-) {
-  throw new Error('Natur-adjudiseringen matcher ikke de isolerte produktgrensene.');
+const progressUi = read(BADGE_PROGRESS);
+if (!progressUi.includes('data/badges/${encodeURIComponent(model.subject.id)}.json')
+  || !progressUi.includes('progress.points')
+  || !progressUi.includes('progress.visited?.has')
+  || !progressUi.includes('Nivåstige')
+  || !progressUi.includes('Undermerker')) {
+  throw new Error('Den integrerte badge-progress-runtime mangler forventet produkt-equivalence.');
 }
 
-const boundaries = expectedBoundaries.map(id => {
-  const decision = boundaryDecisions.get(id);
-  const owners = (decision.owner_files || []).map(text).filter(Boolean);
-  const migrations = (decision.migration_refs || []).map(text).filter(Boolean);
-  if (!text(decision.rationale)) throw new Error(`${id} mangler produktgrense-rationale.`);
-  if (id !== 'nature_assignment_requires_scientific_entry') throw new Error(`Ukjent Natur-produktgrense: ${id}`);
-  if (
-    decision.disposition !== 'migrated_to_canonical_product_contract' ||
-    JSON.stringify(owners) !== JSON.stringify([CATEGORY_CONTRACT]) ||
-    JSON.stringify(migrations) !== JSON.stringify([`${CATEGORY_CONTRACT}#decisions.natur`])
-  ) {
-    throw new Error('Natur-kategorigrensen skal migreres eksplisitt til category_contract decisions.natur.');
-  }
-  return { id, disposition: decision.disposition, ownerFiles: owners, migrationRefs: migrations, rationale: decision.rationale, adjudicated: true };
-});
-
-const naturDecision = text(categoryContract.decisions?.natur);
-if (!naturDecision) throw new Error('category_contract mangler decisions.natur etter produktgrense-migreringen.');
-if (!/naturfaglig relevans/i.test(naturDecision) || !/(grønt preg|estetisk naturopplevelse)/i.test(naturDecision) || !/ikke tilstrekkelig/i.test(naturDecision)) {
-  throw new Error('decisions.natur bevarer ikke den adjudiserte Natur-kategorigrensen.');
-}
-if (!Array.isArray(categoryContract.runtimeCategories) || !categoryContract.runtimeCategories.includes('natur')) {
-  throw new Error('Natur må fortsatt være canonical runtimekategori.');
-}
-if (!Array.isArray(categoryContract.fagSubjects) || !categoryContract.fagSubjects.includes('natur')) {
-  throw new Error('Natur må fortsatt være canonical fagkategori.');
-}
-
-const knowledgeRows = rows.filter(row => row.role !== 'legacy_product_summary');
-const productSummaryRows = rows.filter(row => row.role === 'legacy_product_summary');
 const portalEntry = portal.categories?.find(item => item.id === 'natur');
-if (!portalEntry) throw new Error('Natur mangler i Fagverk-portalen.');
-if (portalEntry.badgePage !== LEGACY_BADGE) {
-  throw new Error(`Adjudiseringstranchen skal være pre-redirect; badgePage=${portalEntry.badgePage}`);
-}
-
-const redirectReady =
-  knowledgeRows.length === 5 &&
-  knowledgeRows.every(row => row.adjudicated && row.anchorCoverage === 1 && row.disposition === KNOWLEDGE && row.ownerFiles.length > 0) &&
-  productSummaryRows.length === 1 &&
-  productSummaryRows[0].disposition === PRODUCT_SUMMARY &&
-  mechanics.length === 4 && mechanics.every(row => row.adjudicated) &&
-  boundaries.length === 1 && boundaries.every(row => row.adjudicated);
+if (!portalEntry) throw new Error('Natur mangler i fagverk_portal.json.');
+const portalRoute = text(portalEntry.badgePage);
+const portalRedirected = portalRoute === TARGET;
+const knowledgeRows = sectionRows.filter(row => row.role !== 'legacy_product_summary');
+const productSummaryRows = sectionRows.filter(row => row.role === 'legacy_product_summary');
+const redirectReady = knowledgeRows.length === 5
+  && knowledgeRows.every(row => row.adjudicated && row.anchorCoverage === 1 && row.disposition === KNOWLEDGE_DISPOSITION && row.ownerFiles.length > 0)
+  && productSummaryRows.length === 1
+  && productSummaryRows[0].disposition === PRODUCT_SUMMARY_DISPOSITION
+  && productRows.length === 4
+  && boundary.disposition === BOUNDARY_DISPOSITION;
 
 const report = {
   schema: 'history_go_fagverk_natur_legacy_adjudication_audit_v1',
   subject: 'natur',
   inputs: {
-    anchorAuditSchema: anchor.schema,
-    adjudicationFile: ADJ,
+    anchorAuditSchema: anchorAudit.schema,
+    adjudicationFile: ADJUDICATION,
     legacyBadgePage: LEGACY_BADGE,
-    manifestOwnerFiles: anchor.canonical.manifestSeedFiles,
+    manifestOwnerFiles: anchorAudit.canonical.manifestSeedFiles,
     registryChapterOwnerFiles: chapterRoots,
-    badgeOwnerFile: BADGE,
-    categoryBoundaryOwnerFile: CATEGORY_CONTRACT,
-    progressionRuntimeFile: FAGVERK_RUNTIME
+    boundaryOwnerFile: CATEGORY_CONTRACT,
+    productOwnerFiles: [BADGE, SUBJECT_MODEL, BADGE_PROGRESS, FAGVERK_HTML]
   },
   summary: {
-    legacySectionCount: rows.length,
+    legacySectionCount: sectionRows.length,
     knowledgeSectionCount: knowledgeRows.length,
-    adjudicatedKnowledgeCount: knowledgeRows.length,
+    adjudicatedKnowledgeCount: knowledgeRows.filter(row => row.adjudicated).length,
     allowedKnowledgeOwnerFileCount: allowedKnowledgeOwners.size,
     canonicalOwnerFileCount: new Set(knowledgeRows.flatMap(row => row.ownerFiles)).size,
-    migratedKnowledgeSectionCount: 0,
-    canonicalSupersedesCount: knowledgeRows.filter(row => row.disposition === KNOWLEDGE).length,
-    retiredProductSummaryCount: productSummaryRows.filter(row => row.disposition === PRODUCT_SUMMARY).length,
-    canonicalProductMechanicCount: mechanics.filter(row => ['canonical_product_state', 'canonical_progression_route'].includes(row.disposition)).length,
-    retiredProductSnapshotCount: mechanics.filter(row => row.disposition === 'retire_legacy_snapshot').length,
-    migratedProductBoundaryCount: boundaries.filter(row => row.disposition === 'migrated_to_canonical_product_contract').length,
-    anchorAuditRedirectReady: anchor.summary.redirectReady,
+    migratedKnowledgeSectionCount: knowledgeRows.filter(row => row.migrationRefs.length > 0).length,
+    canonicalSupersedesCount: knowledgeRows.filter(row => row.disposition === KNOWLEDGE_DISPOSITION).length,
+    retiredProductSummaryCount: productSummaryRows.filter(row => row.disposition === PRODUCT_SUMMARY_DISPOSITION).length,
+    productMechanicCount: productRows.length,
+    canonicalProductMechanicCount: productRows.filter(row => row.ownerFiles.length > 0).length,
+    retiredProductSnapshotCount: productRows.filter(row => row.disposition === 'retire_legacy_snapshot').length,
+    productBoundaryCount: boundaryDecisions.length,
+    migratedProductBoundaryCount: boundary.disposition === BOUNDARY_DISPOSITION ? 1 : 0,
+    anchorAuditRedirectReady: anchorAudit.summary.redirectReady,
     redirectReady,
     redirectTarget: TARGET,
-    portalRoute: portalEntry.badgePage,
-    portalRedirected: portalEntry.badgePage === TARGET,
-    legacyBadgeSourcePresent: exists(LEGACY_BADGE),
-    natureCategoryBoundaryCanonical: Boolean(naturDecision)
+    portalRoute,
+    portalRedirected,
+    legacyBadgeSourcePreserved: exists(LEGACY_BADGE)
   },
-  rows,
-  productMechanics: mechanics,
-  productBoundaries: boundaries
+  sections: sectionRows,
+  productMechanics: productRows,
+  productBoundaries: [{
+    id: boundary.id,
+    disposition: boundary.disposition,
+    ownerFiles: boundaryOwners,
+    migrationRefs: boundaryMigrations,
+    rationale: boundary.rationale,
+    adjudicated: true
+  }]
 };
 
-if (!report.summary.redirectReady) throw new Error('Natur adjudication er ikke redirect-klar.');
-if (report.summary.canonicalSupersedesCount !== 5 || report.summary.migratedKnowledgeSectionCount !== 0) {
-  throw new Error('Natur-adjudisering skal ha 5 canonical_supersedes og 0 faglige migreringer.');
+if (!report.summary.redirectReady) throw new Error('Natur legacy adjudication er ikke redirect-klar.');
+if (report.summary.migratedKnowledgeSectionCount !== 0 || report.summary.canonicalSupersedesCount !== 5) {
+  throw new Error('Natur-auditen fant ingen faglige gap; alle fem kunnskapsseksjoner skal canonical_supersedes uten migrering.');
 }
-if (report.summary.retiredProductSummaryCount !== 1) throw new Error('Natur status-oppsummering er ikke eksplisitt pensjonert.');
-if (report.summary.canonicalProductMechanicCount !== 2 || report.summary.retiredProductSnapshotCount !== 2) {
-  throw new Error('Natur-produktmekanikk er ikke fullstendig adjudisert.');
+if (report.summary.retiredProductSummaryCount !== 1
+  || report.summary.productMechanicCount !== 4
+  || report.summary.canonicalProductMechanicCount !== 2
+  || report.summary.retiredProductSnapshotCount !== 2
+  || report.summary.migratedProductBoundaryCount !== 1) {
+  throw new Error('Natur-produktadjudiseringen har uventet struktur.');
 }
-if (report.summary.migratedProductBoundaryCount !== 1 || !report.summary.natureCategoryBoundaryCanonical) {
-  throw new Error('Natur-produktgrensen er ikke canonicalt migrert.');
-}
-if (report.summary.portalRedirected) throw new Error('Natur-ruten skal ikke pensjoneres før egen route-retirement-tranche.');
+if (report.summary.portalRedirected) throw new Error('Adjudiserings-PR-en skal ikke redirecte Natur; route-retirement er separat tranche.');
+if (!report.summary.legacyBadgeSourcePreserved) throw new Error('Natur legacy-kilden må bevares gjennom adjudiseringsfasen.');
 
 process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
