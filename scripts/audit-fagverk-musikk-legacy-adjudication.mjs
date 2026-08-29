@@ -7,7 +7,8 @@ const ADJUDICATION = 'data/fag/musikk/legacy_theory_adjudication_v1.json';
 const SUBJECT_REPORT = 'reports/fagverk/musikk-subject-audit.json';
 const PORTAL = 'data/fagverk/fagverk_portal.json';
 const CATEGORY_CONTRACT = 'data/categories/category_contract.json';
-const LEGACY_BADGE = 'data/fag/musikk/merke_musikk (1).html';
+const LEGACY_BADGE = 'data/fag/musikk/archive/merke_musikk_full_teori_legacy_20260829.html';
+const COMPATIBILITY = 'data/fag/musikk/merke_musikk (1).html';
 const EXPECTED_TARGET = 'fagverk.html?subject=musikk#fagverkIaProgresjon';
 const KNOWLEDGE_DISPOSITION = 'canonical_supersedes';
 const EXPECTED_PRODUCT_MECHANICS = new Map([
@@ -36,7 +37,7 @@ function runAnchorAudit() {
   return JSON.parse(result.stdout);
 }
 
-for (const file of [ADJUDICATION, SUBJECT_REPORT, PORTAL, CATEGORY_CONTRACT, LEGACY_BADGE]) {
+for (const file of [ADJUDICATION, SUBJECT_REPORT, PORTAL, CATEGORY_CONTRACT, LEGACY_BADGE, COMPATIBILITY]) {
   if (!exists(file)) throw new Error(`Mangler nødvendig Musikk-adjudiseringsfil: ${file}`);
 }
 
@@ -46,6 +47,7 @@ const subjectReport = readJson(SUBJECT_REPORT);
 const portal = readJson(PORTAL);
 const categoryContract = readJson(CATEGORY_CONTRACT);
 const legacyHtml = read(LEGACY_BADGE);
+const compatibilityHtml = read(COMPATIBILITY);
 
 if (adjudication.schema !== 'history_go_fagverk_legacy_theory_adjudication_v1') throw new Error(`Ukjent Musikk-adjudiseringsschema: ${adjudication.schema}`);
 if (adjudication.subject_id !== 'musikk') throw new Error('Musikk-adjudiseringen må eie subject_id=musikk.');
@@ -75,8 +77,8 @@ if (!text(categoryContract.decisions?.musikk) || !text(categoryContract.decision
   throw new Error('Category-contracten mangler Musikk/Scenekunst-grensen.');
 }
 if (!text(categoryContract.labels?.subkultur)) throw new Error('Category-contracten mangler canonical Subkultur-label.');
-if (!/tilhører Scenekunst/i.test(legacyHtml)) throw new Error('Legacy Musikk-siden mangler den forventede Scenekunst-grensen.');
-if (!/sekundærbadge/i.test(legacyHtml)) throw new Error('Legacy Musikk-siden mangler den forventede secondary-badge-produktregelen.');
+if (!/tilhører Scenekunst/i.test(legacyHtml)) throw new Error('Arkivert Musikk-side mangler den forventede Scenekunst-grensen.');
+if (!/sekundærbadge/i.test(legacyHtml)) throw new Error('Arkivert Musikk-side mangler den forventede secondary-badge-produktregelen.');
 
 const decisions = Array.isArray(adjudication.sections) ? adjudication.sections : [];
 const decisionById = new Map();
@@ -142,6 +144,9 @@ const portalEntry = portal.categories?.find(item => item.id === 'musikk');
 if (!portalEntry) throw new Error('Musikk mangler i fagverk_portal.json.');
 const portalRoute = text(portalEntry.badgePage);
 const portalRedirected = portalRoute === EXPECTED_TARGET;
+const compatibilityRedirectPresent = compatibilityHtml.includes('location.replace')
+  && compatibilityHtml.includes('subject=musikk#fagverkIaProgresjon')
+  && !/merke-blokk|sekundærbadge|<h2>1\. Felt<\/h2>/i.test(compatibilityHtml);
 const redirectReady = rows.length === 8
   && rows.every(row => row.adjudicated && row.anchorCoverage === 1 && row.disposition === KNOWLEDGE_DISPOSITION && row.ownerFiles.length > 0);
 
@@ -152,6 +157,7 @@ const report = {
     anchorAuditSchema: anchorAudit.schema,
     adjudicationFile: ADJUDICATION,
     legacyBadgePage: LEGACY_BADGE,
+    compatibilityBadgePage: COMPATIBILITY,
     manifestOwnerFiles: anchorAudit.canonical.manifestFiles,
     registryChapterOwnerFiles: chapterRoots,
     boundaryOwnerFile: CATEGORY_CONTRACT
@@ -171,7 +177,8 @@ const report = {
     redirectTarget: EXPECTED_TARGET,
     portalRoute,
     portalRedirected,
-    legacyBadgeSourcePreserved: exists(LEGACY_BADGE)
+    legacyBadgeSourcePreserved: exists(LEGACY_BADGE),
+    compatibilityRedirectPresent
   },
   rows
 };
@@ -182,7 +189,8 @@ if (report.summary.canonicalSupersedesCount !== 8) throw new Error('Alle åtte M
 if (report.summary.productBoundarySectionCount !== 2 || report.summary.productMechanicCount !== 2) {
   throw new Error('Musikk-adjudiseringen skal skille ut nøyaktig to produktgrenser/-mekanikker.');
 }
-if (report.summary.portalRedirected) throw new Error('Musikk portalruten skal ikke endres i adjudiserings-PR-en; redirect skjer i egen tranche.');
-if (!report.summary.legacyBadgeSourcePreserved) throw new Error('Musikk legacy-teori må bevares før route-retirement.');
+if (!report.summary.portalRedirected) throw new Error(`Musikk badgePage må peke til ${EXPECTED_TARGET} etter grønn adjudisering.`);
+if (!report.summary.legacyBadgeSourcePreserved) throw new Error('Arkivert Musikk-teori må bevares som auditkilde.');
+if (!report.summary.compatibilityRedirectPresent) throw new Error('Legacy Musikk-URL må være en compatibility-redirect til Progresjon.');
 
 process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
