@@ -1,0 +1,64 @@
+name: TEMP Materialize Sport-trener Role World
+
+on:
+  push:
+    branches:
+      - agent/civication-sport-trener-role-world-rollout
+    paths:
+      - scripts/TEMP_materialize_sport_trener_role_world.mjs
+      - tests/civication-sport-trener-role-world-rollout.test.js
+      - tests/civication-role-world-rollout-readiness.test.js
+      - reports/CIVICATION_SPORT_TRENER_ROLE_WORLD_ROLLOUT_SOURCE_FIRST.md
+      - .github/workflows/TEMP-civication-sport-trener-role-world-materialize.yml
+  workflow_dispatch:
+
+concurrency:
+  group: civication-sport-trener-role-world-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  materialize-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/civication-sport-trener-role-world-rollout
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Materialize Sport-trener Role World
+        run: node scripts/TEMP_materialize_sport_trener_role_world.mjs
+      - name: Regenerate scene registry
+        run: node scripts/build-civication-scene-registry.mjs
+      - name: Regenerate career gameplay audit
+        run: node scripts/audit-civication-career-gameplay.mjs --write
+      - name: Regenerate rollout readiness
+        run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+      - name: Verify focused Sport-trener and canonical gates
+        run: |
+          node tests/civication-sport-trener-role-world-rollout.test.js
+          node tests/civication-role-world-contract.test.js
+          node tests/civication-role-world-broad-rollout-policy.test.js
+          node tests/civication-compiled-scene-registry-parity.test.js
+          node tests/civication-cross-role-shared-world.test.js
+          node tests/civication-career-gameplay-matrix.test.js
+          node tests/civication-role-world-rollout-readiness.test.js
+      - name: Run full Civication suite
+        run: npm run test:civication
+      - name: Remove temporary materialization surface
+        run: rm scripts/TEMP_materialize_sport_trener_role_world.mjs .github/workflows/TEMP-civication-sport-trener-role-world-materialize.yml
+      - name: Commit exact verified result
+        run: |
+          git diff --check
+          git config user.name "Civication rollout agent"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Complete Sport-trener Role World rollout"
+          git push origin HEAD:agent/civication-sport-trener-role-world-rollout
