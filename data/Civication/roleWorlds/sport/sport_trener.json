@@ -1,0 +1,964 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "sport",
+  "role_scope": "sport_trener",
+  "title": "Sport-trener — utvikling, uttak og situert tillit under resultatpress",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "Å utvikle spillere og lag over tid når uttak, kampresultat, belastning, offentlig press og intern rang gjør synlig handlekraft mer sosialt attraktiv enn begrunnet trenerarbeid.",
+    "description": "Role World-en lukker bare situated_reputation rundt den eksisterende trenerpraksisen. Øktplan, uttak, kampplan, belastningsoppfølging, authority og åtte-stegsplan beholdes uendret."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "status_anxiety",
+    "shame_reputation",
+    "loyalty_up_down",
+    "body_discipline",
+    "care_vs_efficiency",
+    "public_attention",
+    "public_private_leakage"
+  ],
+  "social_environments": [
+    "Treningsfeltet der læringsmål, repetisjon, belastning og feedback blir synlige for hele gruppa.",
+    "Garderoben der uttak og rolleforklaring kan beskytte eller bryte tillit selv når sportsvalget er faglig begrunnet.",
+    "Konkurransearenaen der kampplan, resultat, publikum og trenerens status blir lest samtidig under tidspress.",
+    "Trener- og analyserommet der observasjoner, uenighet og dokumenterte kriterier må bli beslutningsgrunnlag i stedet for intern rang.",
+    "Støtteapparatets belastningsflate der treneren må handle sportslig innen en faglig ramme som eies av andre.",
+    "Privatlivet der resultat og kritikk må kunne legges fra seg uten å bli en total dom over egen verdi."
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "sportslig_koordinator_ida_world",
+      "social_function": "sportslig koordinator som kobler sportslig plan til klubbens mål uten å eie trenerens faglige begrunnelse",
+      "class_position": "koordinator med organisatorisk innflytelse",
+      "status": "høy situert ledelsesstatus",
+      "power_over_player": "kan etterspørre beslutningsgrunnlag og gjøre resultater synlige, men kan ikke gjøre statuspress til sportslig evidens",
+      "wants": "begrunnede prioriteringer, tidlig varsling og konsistente kriterier",
+      "conceals": "at ledelsespress kan belønne synlige grep før analysen er ferdig",
+      "speech_style": "kort og beslutningsnær; spør hva som faktisk begrunner valget",
+      "teaches_player": "at ledelsestillit bygges av sporbar dømmekraft, ikke av maksimal lydighet"
+    },
+    {
+      "id": "assistenttrener_lina_world",
+      "social_function": "assistenttrener som leser garderobe, roller og læringsbehov fra nært hold",
+      "class_position": "faglig medarbeider i trenerstaben",
+      "status": "høy kollegial tillit",
+      "power_over_player": "kan utfordre hovedtrenerens observasjoner og påvirke gjennomføringen, men ikke arve mandat",
+      "wants": "tydelige roller, ærlig motlesning og en garderobe som forstår hva beslutninger betyr",
+      "conceals": "egen uro for at uenighet kan bli tolket som illojalitet",
+      "speech_style": "direkte og spillerorientert; ber om konkret rolleforklaring",
+      "teaches_player": "at trenerstaben blir sterkere når faglig uenighet kan korrigere planen"
+    },
+    {
+      "id": "analyseansvarlig_noah_world",
+      "social_function": "analyseansvarlig som skiller resultatstøy fra stabile prestasjonssignaler",
+      "class_position": "spesialist uten uttaksmyndighet",
+      "status": "høy epistemisk status",
+      "power_over_player": "kan gjøre svake antakelser synlige, men ikke bestemme laguttak",
+      "wants": "få observasjoner som faktisk kan brukes i kamp og evaluering",
+      "conceals": "at gode tall også kan bli brukt som sosialt skjold for treneren",
+      "speech_style": "presis og mønsterorientert; skiller signal, støy og usikkerhet",
+      "teaches_player": "at analyse-standing vokser når treneren lar evidens endre beslutningen"
+    },
+    {
+      "id": "spillerutvikler_amina_world",
+      "social_function": "spillerutvikler som følger individuell progresjon og avklarte belastningsrammer",
+      "class_position": "støttefaglig rolle med begrenset sportslig myndighet",
+      "status": "høy situert utviklingstillit",
+      "power_over_player": "kan kreve at avtalt ramme blir operativ i økta, men ikke overta hele kampplanen",
+      "wants": "bærekraftig progresjon, tydelige faggrenser og brukbare observasjoner",
+      "conceals": "frustrasjon over at resultatpress kan gjøre tidligere avklaringer symbolske",
+      "speech_style": "rolig og konkret; spør hva rammen betyr for dagens aktivitet",
+      "teaches_player": "at respekt for faggrense gjør trenerarbeidet mer presist, ikke mer passivt"
+    },
+    {
+      "id": "spillergruppe_world",
+      "social_function": "spillergruppen som både lærer av treneren og kollektivt vurderer rettferdighet",
+      "class_position": "arbeidsutøvere med lavere formell makt, men stor relasjonell betydning",
+      "status": "skiftende sportslig og sosial status",
+      "power_over_player": "kan gi eller trekke tillit, gjennomføring og åpenhet uten å eie trenermandatet",
+      "wants": "forståelige krav, rettferdige kriterier og en reell utviklingsvei",
+      "conceals": "at skuffelse ofte blir uttrykt som prinsipiell rettferdighetskritikk",
+      "speech_style": "erfaringsnær og konkret; spør hva valget betyr for neste trening",
+      "teaches_player": "at spillertrust kan øke gjennom ærlig forklaring selv når uttaket fortsatt gjør vondt"
+    },
+    {
+      "id": "sportslig_ledelse_world",
+      "social_function": "sportslig ledelse som vurderer resultat, retning og mandat på organisasjonsnivå",
+      "class_position": "formell lederrolle over sportslige rammer",
+      "status": "høy formell status",
+      "power_over_player": "kan endre oppdrag og rammer gjennom faktisk prosess, men ikke bruke omdømme som medisinsk eller kontraktsfullmakt",
+      "wants": "pålitelig retning og kriterier som tåler press",
+      "conceals": "at kortsiktig resultat kan dominere selv når utviklingssignaler er bedre",
+      "speech_style": "formell og knapp; spør om ansvar, kriterium og konsekvens",
+      "teaches_player": "at formell status og trenerfaglig sannhet ikke er det samme"
+    },
+    {
+      "id": "offentlig_press_world",
+      "social_function": "publikum, foresatte eller eksterne stemmer som ser uttak og resultat uten hele beslutningsgrunnlaget",
+      "class_position": "ekstern sosial kraft uten formell trenerauthority",
+      "status": "høy synlighetsmakt, lav formell myndighet",
+      "power_over_player": "kan øke press og omdømmekostnad, men kan ikke velge laget",
+      "wants": "tydelige resultater, gjenkjennelige forklaringer og opplevd rettferdighet",
+      "conceals": "at synlighet favoriserer enkle årsaker og raske syndebukker",
+      "speech_style": "raskt, kategorisk og resultatnært",
+      "teaches_player": "at offentlig anerkjennelse kan divergere fra faglig troverdighet"
+    },
+    {
+      "id": "privat_relajon_world",
+      "social_function": "privat nær relasjon som møter treneren etter kamp og konflikt",
+      "class_position": "likemann uten sportslig myndighet",
+      "status": "høy emosjonell betydning",
+      "power_over_player": "kan sette grenser for hvor mye trenerrollen får dominere privatlivet",
+      "wants": "at personen kan være mer enn tabell, uttak og neste økt",
+      "conceals": "slitasjen ved å leve med kontinuerlig kampanalyse hjemme",
+      "speech_style": "hverdagslig og direkte; spør hva som faktisk kan vente til i morgen",
+      "teaches_player": "at profesjonell standing er situert og ikke identisk med egenverdi"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "sports_leadership_judgment_standing",
+      "meaning": "situert ledelsestillit til dokumenterbar sportslig dømmekraft",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "coaching_staff_trust_standing",
+      "meaning": "situert stabstillit til motlesning, rolleavklaring og konsistente kriterier",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "player_development_trust_standing",
+      "meaning": "situert spillertillit til læringsmål, uttaksforklaring og utviklingsvei",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "analysis_evidence_standing",
+      "meaning": "situert analysetillit til at signal og støy behandles proporsjonalt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "load_boundary_trust_standing",
+      "meaning": "situert støtteapparattillit til at avklarte rammer faktisk blir fulgt i praksis",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "club_mandate_standing",
+      "meaning": "situert organisasjonstillit til at treneren holder seg innen faktisk mandat",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "public_result_reputation_standing",
+      "meaning": "situert ekstern vurdering av resultat og synlig handlekraft uten formell authority",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "private_coach_status_mask",
+      "meaning": "hvor sterkt resultat og profesjonell kritikk lekker inn i privat egenverdi",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "existing_work_continuity": {
+    "runtime_binding": "existing_mail_and_work_grammar",
+    "new_runtime_state": false,
+    "work_loops": [
+      "definer mål og belastning for perioden",
+      "planlegg og gjennomfør økter med tydelige observasjonspunkter",
+      "evaluer utvikling og konkurransegrunnlag",
+      "kommuniser beslutninger og juster planen på dokumenterbart grunnlag"
+    ],
+    "canonical_surfaces": [
+      "data/Civication/roleModels/sport/trener.json",
+      "data/Civication/workGrammars/sport/sport_trener.json",
+      "data/Civication/mailPlans/sport/sport_trener_plan.json",
+      "data/Civication/mailFamilies/sport/job/sport_trener_job.json",
+      "data/Civication/mailFamilies/sport/people/sport_trener_people.json",
+      "data/Civication/mailFamilies/sport/conflict/sport_trener_conflict.json",
+      "data/Civication/mailFamilies/sport/story/sport_trener_story.json",
+      "data/Civication/mailFamilies/sport/event/sport_trener_event.json",
+      "data/Civication/mailFamilies/sport/micro/sport_trener_micro.json",
+      "data/Civication/mailFamilies/sport/knowledge/sport_trener_knowledge.json",
+      "data/Civication/mailFamilies/sport/followup/sport_trener_followup.json",
+      "data/Civication/mailFamilies/sport/consequence/sport_trener_consequence.json"
+    ],
+    "rule": "Eksisterende øktplan, belastningsoppfølging, uttak, kampplan, feedback og senere konsekvens fortsetter gjennom canonical mail/work grammar; Role World-en legger bare situert standing rundt dette arbeidet."
+  },
+  "situated_reputation_model": {
+    "global_score_allowed": false,
+    "audiences": [
+      {
+        "id": "sports_leadership",
+        "standing_axis": "decision_reliability",
+        "cares_about": [
+          "begrunnede prioriteringer",
+          "stabil sportslig retning"
+        ],
+        "cannot_grant": "Kan ikke gjøre resultatomdømme til kontraktsfullmakt, medisinsk authority eller større uttaksmandat enn oppdraget gir."
+      },
+      {
+        "id": "coaching_staff",
+        "standing_axis": "staff_judgment_trust",
+        "cares_about": [
+          "motlesning",
+          "tydelig ansvarsdeling"
+        ],
+        "cannot_grant": "Kan ikke overføre andre treneres eller spesialisters authority til spilleren eller hovedtreneren gjennom kollegial tillit."
+      },
+      {
+        "id": "players",
+        "standing_axis": "selection_development_trust",
+        "cares_about": [
+          "rettferdige kriterier",
+          "konkret utviklingsvei"
+        ],
+        "cannot_grant": "Spillertillit eller popularitet kan ikke utvide trenerens formelle uttaks-, kontrakts- eller helsemyndighet."
+      },
+      {
+        "id": "performance_analysis",
+        "standing_axis": "evidence_use_trust",
+        "cares_about": [
+          "signal mot støy",
+          "sporbar justering"
+        ],
+        "cannot_grant": "Analytisk standing kan ikke gjøre analysefunnet til automatisk laguttak eller overstyre andre mandatgrenser."
+      },
+      {
+        "id": "player_development_and_load_support",
+        "standing_axis": "load_boundary_reliability",
+        "cares_about": [
+          "oppfølging av avklart ramme",
+          "observerbar progresjon"
+        ],
+        "cannot_grant": "Støtteapparatets tillit kan ikke gi treneren rett til diagnose, behandling, medisinsk klarering eller overstyring av avklart belastningsramme."
+      },
+      {
+        "id": "club_leadership",
+        "standing_axis": "mandate_integrity",
+        "cares_about": [
+          "rolleavklaring",
+          "ansvarlig resultatpress"
+        ],
+        "cannot_grant": "Klubbstatus og ledertilfredshet kan ikke erstatte faktisk ansettelse, delegasjon, kontraktsfullmakt eller faglig autorisasjon."
+      },
+      {
+        "id": "public_external_pressure",
+        "standing_axis": "visible_result_reputation",
+        "cares_about": [
+          "resultat",
+          "synlig handlekraft"
+        ],
+        "cannot_grant": "Publikums- eller foresattestøtte kan ikke bli et sportslig kriterium i seg selv og kan aldri gi treneren ny formell authority."
+      },
+      {
+        "id": "private_relations",
+        "standing_axis": "private_role_containment",
+        "cares_about": [
+          "grense mellom jobb og privatliv",
+          "egenverdi utenfor resultat"
+        ],
+        "cannot_grant": "Privat støtte kan ikke løse faglige eller organisatoriske mandatspørsmål og kan ikke gjøre profesjonell status til personlig rettighet."
+      }
+    ],
+    "divergence_examples": [
+      "Et dokumentert uttak kan styrke stabens og ledelsens tillit samtidig som spiller- og publikumsstanding faller.",
+      "En ærlig rolleforklaring kan styrke spillertillit selv om spilleren fortsatt mister startplassen.",
+      "Respekt for en belastningsramme kan styrke støtteapparattillit og samtidig bli lest som svak handlekraft av resultatorienterte observatører.",
+      "Å beholde deler av planen etter tre tap kan styrke analysetillit samtidig som offentlig omdømme svekkes.",
+      "Å innrømme at en økt må revideres kan koste kortsiktig hovedtrenerstatus og samtidig styrke langsiktig spillerutviklingstillit."
+    ],
+    "rule": "Standing er audience-spesifikk og kan divergere mellom ledelse, stab, spillere, analyse, støtteapparat, offentlighet og privatliv uten global sosial score.",
+    "authority_separation": "Ingen standing kan gi medisinsk authority, kontraktsfullmakt, større uttaksmandat, arbeidsgivermakt eller Badge-basert ledermyndighet; faktisk mandat og faggrense forblir authoritative."
+  },
+  "cross_role_link": {
+    "status": "candidate_when_shared_work_is_real",
+    "companion": "sport/sport_utover",
+    "materialized": false,
+    "new_runtime": false,
+    "rule": "Trener og utøver deler reelle trenings-, belastnings-, rolle- og konkurranseflater, men et framtidig shared work object krever egen governed proof og må bevare hver rolles authority og canonical role_scope."
+  },
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Læringsmålet må tåle at god trening ser mindre spektakulær ut enn resultatorientert aktivitet. Morgenen etablerer dagens sportslige ramme gjennom plan, observasjon og ansvar før statuspresset får definere problemet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_trener_job.json#sport_trener_job_okt_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 1, lunch: Læringsmålet må tåle at god trening ser mindre spektakulær ut enn resultatorientert aktivitet. Midt på dagen tolker spillere, stab eller ledelse samme situasjon fra et annet ståsted, slik at standing blir audience-spesifikk. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/people/sport_trener_people.json#sport_trener_people_lina_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 1, afternoon: Læringsmålet må tåle at god trening ser mindre spektakulær ut enn resultatorientert aktivitet. Ettermiddagen gjør konflikten handlingsnær i økt, uttak, kampplan eller belastning og krever et valg innen faktisk trenermandat. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/conflict/sport_trener_conflict.json#sport_trener_conflict_uttak_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "decision",
+        "summary": "Dag 1, evening: Læringsmålet må tåle at god trening ser mindre spektakulær ut enn resultatorientert aktivitet. Kvelden viser den private eller forsinkede kostnaden av arbeidet og skiller profesjonell standing fra menneskeverd og formell myndighet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/story/sport_trener_story.json#sport_trener_story_resultatkrise_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "relationship",
+        "summary": "Dag 2, morning: Uttak og rolleforklaring viser at en sportslig beslutning også produserer tillit, skuffelse og sosial rang. Morgenen etablerer dagens sportslige ramme gjennom plan, observasjon og ansvar før statuspresset får definere problemet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/event/sport_trener_event.json#sport_trener_event_kampdag_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "task",
+        "summary": "Dag 2, lunch: Uttak og rolleforklaring viser at en sportslig beslutning også produserer tillit, skuffelse og sosial rang. Midt på dagen tolker spillere, stab eller ledelse samme situasjon fra et annet ståsted, slik at standing blir audience-spesifikk. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/micro/sport_trener_micro.json#sport_trener_micro_feedback_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Uttak og rolleforklaring viser at en sportslig beslutning også produserer tillit, skuffelse og sosial rang. Ettermiddagen gjør konflikten handlingsnær i økt, uttak, kampplan eller belastning og krever et valg innen faktisk trenermandat. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/knowledge/sport_trener_knowledge.json#sport_trener_knowledge_faggrense_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "conversation",
+        "summary": "Dag 2, evening: Uttak og rolleforklaring viser at en sportslig beslutning også produserer tillit, skuffelse og sosial rang. Kvelden viser den private eller forsinkede kostnaden av arbeidet og skiller profesjonell standing fra menneskeverd og formell myndighet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/followup/sport_trener_followup.json#sport_trener_followup_belastning_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 3, morning: Kampplanen må reduseres til handlinger spillerne kan bruke under press uten at trenerens kontrollbehov tar over. Morgenen etablerer dagens sportslige ramme gjennom plan, observasjon og ansvar før statuspresset får definere problemet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/consequence/sport_trener_consequence.json#sport_trener_consequence_belastning_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "decision",
+        "summary": "Dag 3, lunch: Kampplanen må reduseres til handlinger spillerne kan bruke under press uten at trenerens kontrollbehov tar over. Midt på dagen tolker spillere, stab eller ledelse samme situasjon fra et annet ståsted, slik at standing blir audience-spesifikk. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_trener_job.json#sport_trener_job_okt_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "conversation",
+        "summary": "Dag 3, afternoon: Kampplanen må reduseres til handlinger spillerne kan bruke under press uten at trenerens kontrollbehov tar over. Ettermiddagen gjør konflikten handlingsnær i økt, uttak, kampplan eller belastning og krever et valg innen faktisk trenermandat. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/people/sport_trener_people.json#sport_trener_people_lina_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "social",
+        "summary": "Dag 3, evening: Kampplanen må reduseres til handlinger spillerne kan bruke under press uten at trenerens kontrollbehov tar over. Kvelden viser den private eller forsinkede kostnaden av arbeidet og skiller profesjonell standing fra menneskeverd og formell myndighet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/conflict/sport_trener_conflict.json#sport_trener_conflict_uttak_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "decision",
+        "summary": "Dag 4, morning: Omsorg og krav må holdes sammen slik at standarden er tydelig uten å gjøre spilleren til prestasjonen sin. Morgenen etablerer dagens sportslige ramme gjennom plan, observasjon og ansvar før statuspresset får definere problemet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/story/sport_trener_story.json#sport_trener_story_resultatkrise_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Omsorg og krav må holdes sammen slik at standarden er tydelig uten å gjøre spilleren til prestasjonen sin. Midt på dagen tolker spillere, stab eller ledelse samme situasjon fra et annet ståsted, slik at standing blir audience-spesifikk. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/event/sport_trener_event.json#sport_trener_event_kampdag_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "social",
+        "summary": "Dag 4, afternoon: Omsorg og krav må holdes sammen slik at standarden er tydelig uten å gjøre spilleren til prestasjonen sin. Ettermiddagen gjør konflikten handlingsnær i økt, uttak, kampplan eller belastning og krever et valg innen faktisk trenermandat. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/micro/sport_trener_micro.json#sport_trener_micro_feedback_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 4, evening: Omsorg og krav må holdes sammen slik at standarden er tydelig uten å gjøre spilleren til prestasjonen sin. Kvelden viser den private eller forsinkede kostnaden av arbeidet og skiller profesjonell standing fra menneskeverd og formell myndighet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/knowledge/sport_trener_knowledge.json#sport_trener_knowledge_faggrense_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "conversation",
+        "summary": "Dag 5, morning: Repetisjon blir upopulær, men treneren må skille nødvendig læringsutholdenhet fra rigid planlojalitet. Morgenen etablerer dagens sportslige ramme gjennom plan, observasjon og ansvar før statuspresset får definere problemet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/followup/sport_trener_followup.json#sport_trener_followup_belastning_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 5, lunch: Repetisjon blir upopulær, men treneren må skille nødvendig læringsutholdenhet fra rigid planlojalitet. Midt på dagen tolker spillere, stab eller ledelse samme situasjon fra et annet ståsted, slik at standing blir audience-spesifikk. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/consequence/sport_trener_consequence.json#sport_trener_consequence_belastning_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "consequence",
+        "summary": "Dag 5, afternoon: Repetisjon blir upopulær, men treneren må skille nødvendig læringsutholdenhet fra rigid planlojalitet. Ettermiddagen gjør konflikten handlingsnær i økt, uttak, kampplan eller belastning og krever et valg innen faktisk trenermandat. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_trener_job.json#sport_trener_job_okt_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Repetisjon blir upopulær, men treneren må skille nødvendig læringsutholdenhet fra rigid planlojalitet. Kvelden viser den private eller forsinkede kostnaden av arbeidet og skiller profesjonell standing fra menneskeverd og formell myndighet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/people/sport_trener_people.json#sport_trener_people_lina_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "social",
+        "summary": "Dag 6, morning: Resultatpress og profilstatus tester om uttakskriteriene fortsatt er dokumenterbare og like for alle. Morgenen etablerer dagens sportslige ramme gjennom plan, observasjon og ansvar før statuspresset får definere problemet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/conflict/sport_trener_conflict.json#sport_trener_conflict_uttak_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "consequence",
+        "summary": "Dag 6, lunch: Resultatpress og profilstatus tester om uttakskriteriene fortsatt er dokumenterbare og like for alle. Midt på dagen tolker spillere, stab eller ledelse samme situasjon fra et annet ståsted, slik at standing blir audience-spesifikk. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/story/sport_trener_story.json#sport_trener_story_resultatkrise_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, afternoon: Resultatpress og profilstatus tester om uttakskriteriene fortsatt er dokumenterbare og like for alle. Ettermiddagen gjør konflikten handlingsnær i økt, uttak, kampplan eller belastning og krever et valg innen faktisk trenermandat. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/event/sport_trener_event.json#sport_trener_event_kampdag_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "info",
+        "summary": "Dag 6, evening: Resultatpress og profilstatus tester om uttakskriteriene fortsatt er dokumenterbare og like for alle. Kvelden viser den private eller forsinkede kostnaden av arbeidet og skiller profesjonell standing fra menneskeverd og formell myndighet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/micro/sport_trener_micro.json#sport_trener_micro_feedback_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "consequence",
+        "summary": "Dag 7, morning: Belastningssignaler krever trenerfaglig tilpasning og korrekt eskalering uten at observasjon blir diagnose. Morgenen etablerer dagens sportslige ramme gjennom plan, observasjon og ansvar før statuspresset får definere problemet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/knowledge/sport_trener_knowledge.json#sport_trener_knowledge_faggrense_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, lunch: Belastningssignaler krever trenerfaglig tilpasning og korrekt eskalering uten at observasjon blir diagnose. Midt på dagen tolker spillere, stab eller ledelse samme situasjon fra et annet ståsted, slik at standing blir audience-spesifikk. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/followup/sport_trener_followup.json#sport_trener_followup_belastning_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "info",
+        "summary": "Dag 7, afternoon: Belastningssignaler krever trenerfaglig tilpasning og korrekt eskalering uten at observasjon blir diagnose. Ettermiddagen gjør konflikten handlingsnær i økt, uttak, kampplan eller belastning og krever et valg innen faktisk trenermandat. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/consequence/sport_trener_consequence.json#sport_trener_consequence_belastning_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "relationship",
+        "summary": "Dag 7, evening: Belastningssignaler krever trenerfaglig tilpasning og korrekt eskalering uten at observasjon blir diagnose. Kvelden viser den private eller forsinkede kostnaden av arbeidet og skiller profesjonell standing fra menneskeverd og formell myndighet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_trener_job.json#sport_trener_job_okt_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, morning: En avklart belastningsramme må bli synlig i dagens økt, ellers finnes den bare som symbolsk dokumentasjon. Morgenen etablerer dagens sportslige ramme gjennom plan, observasjon og ansvar før statuspresset får definere problemet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/people/sport_trener_people.json#sport_trener_people_lina_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "info",
+        "summary": "Dag 8, lunch: En avklart belastningsramme må bli synlig i dagens økt, ellers finnes den bare som symbolsk dokumentasjon. Midt på dagen tolker spillere, stab eller ledelse samme situasjon fra et annet ståsted, slik at standing blir audience-spesifikk. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/conflict/sport_trener_conflict.json#sport_trener_conflict_uttak_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "relationship",
+        "summary": "Dag 8, afternoon: En avklart belastningsramme må bli synlig i dagens økt, ellers finnes den bare som symbolsk dokumentasjon. Ettermiddagen gjør konflikten handlingsnær i økt, uttak, kampplan eller belastning og krever et valg innen faktisk trenermandat. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/story/sport_trener_story.json#sport_trener_story_resultatkrise_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "task",
+        "summary": "Dag 8, evening: En avklart belastningsramme må bli synlig i dagens økt, ellers finnes den bare som symbolsk dokumentasjon. Kvelden viser den private eller forsinkede kostnaden av arbeidet og skiller profesjonell standing fra menneskeverd og formell myndighet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/event/sport_trener_event.json#sport_trener_event_kampdag_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Staben er uenig om utviklingsbehovet, og treneren må gjøre observasjoner, mål og ansvar eksplisitte før beslutning. Morgenen etablerer dagens sportslige ramme gjennom plan, observasjon og ansvar før statuspresset får definere problemet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/micro/sport_trener_micro.json#sport_trener_micro_feedback_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 9, lunch: Staben er uenig om utviklingsbehovet, og treneren må gjøre observasjoner, mål og ansvar eksplisitte før beslutning. Midt på dagen tolker spillere, stab eller ledelse samme situasjon fra et annet ståsted, slik at standing blir audience-spesifikk. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/knowledge/sport_trener_knowledge.json#sport_trener_knowledge_faggrense_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 9, afternoon: Staben er uenig om utviklingsbehovet, og treneren må gjøre observasjoner, mål og ansvar eksplisitte før beslutning. Ettermiddagen gjør konflikten handlingsnær i økt, uttak, kampplan eller belastning og krever et valg innen faktisk trenermandat. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/followup/sport_trener_followup.json#sport_trener_followup_belastning_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "decision",
+        "summary": "Dag 9, evening: Staben er uenig om utviklingsbehovet, og treneren må gjøre observasjoner, mål og ansvar eksplisitte før beslutning. Kvelden viser den private eller forsinkede kostnaden av arbeidet og skiller profesjonell standing fra menneskeverd og formell myndighet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/consequence/sport_trener_consequence.json#sport_trener_consequence_belastning_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "relationship",
+        "summary": "Dag 10, morning: Tre svake resultater gjør raske endringer sosialt attraktive selv om flere prestasjonssignaler faktisk er stabile. Morgenen etablerer dagens sportslige ramme gjennom plan, observasjon og ansvar før statuspresset får definere problemet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_trener_job.json#sport_trener_job_okt_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "task",
+        "summary": "Dag 10, lunch: Tre svake resultater gjør raske endringer sosialt attraktive selv om flere prestasjonssignaler faktisk er stabile. Midt på dagen tolker spillere, stab eller ledelse samme situasjon fra et annet ståsted, slik at standing blir audience-spesifikk. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/people/sport_trener_people.json#sport_trener_people_lina_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Tre svake resultater gjør raske endringer sosialt attraktive selv om flere prestasjonssignaler faktisk er stabile. Ettermiddagen gjør konflikten handlingsnær i økt, uttak, kampplan eller belastning og krever et valg innen faktisk trenermandat. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/conflict/sport_trener_conflict.json#sport_trener_conflict_uttak_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "conversation",
+        "summary": "Dag 10, evening: Tre svake resultater gjør raske endringer sosialt attraktive selv om flere prestasjonssignaler faktisk er stabile. Kvelden viser den private eller forsinkede kostnaden av arbeidet og skiller profesjonell standing fra menneskeverd og formell myndighet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/story/sport_trener_story.json#sport_trener_story_resultatkrise_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 11, morning: Spillernes tillit og ledelsens tillit kan utvikle seg ulikt når treneren velger langsiktig utvikling framfor kort ro. Morgenen etablerer dagens sportslige ramme gjennom plan, observasjon og ansvar før statuspresset får definere problemet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/event/sport_trener_event.json#sport_trener_event_kampdag_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "decision",
+        "summary": "Dag 11, lunch: Spillernes tillit og ledelsens tillit kan utvikle seg ulikt når treneren velger langsiktig utvikling framfor kort ro. Midt på dagen tolker spillere, stab eller ledelse samme situasjon fra et annet ståsted, slik at standing blir audience-spesifikk. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/micro/sport_trener_micro.json#sport_trener_micro_feedback_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "conversation",
+        "summary": "Dag 11, afternoon: Spillernes tillit og ledelsens tillit kan utvikle seg ulikt når treneren velger langsiktig utvikling framfor kort ro. Ettermiddagen gjør konflikten handlingsnær i økt, uttak, kampplan eller belastning og krever et valg innen faktisk trenermandat. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/knowledge/sport_trener_knowledge.json#sport_trener_knowledge_faggrense_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "social",
+        "summary": "Dag 11, evening: Spillernes tillit og ledelsens tillit kan utvikle seg ulikt når treneren velger langsiktig utvikling framfor kort ro. Kvelden viser den private eller forsinkede kostnaden av arbeidet og skiller profesjonell standing fra menneskeverd og formell myndighet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/followup/sport_trener_followup.json#sport_trener_followup_belastning_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "decision",
+        "summary": "Dag 12, morning: En tidligere uttaks- eller belastningsbeslutning vender tilbake og viser hvem som faktisk husker begrunnelsen. Morgenen etablerer dagens sportslige ramme gjennom plan, observasjon og ansvar før statuspresset får definere problemet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/consequence/sport_trener_consequence.json#sport_trener_consequence_belastning_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: En tidligere uttaks- eller belastningsbeslutning vender tilbake og viser hvem som faktisk husker begrunnelsen. Midt på dagen tolker spillere, stab eller ledelse samme situasjon fra et annet ståsted, slik at standing blir audience-spesifikk. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_trener_job.json#sport_trener_job_okt_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "social",
+        "summary": "Dag 12, afternoon: En tidligere uttaks- eller belastningsbeslutning vender tilbake og viser hvem som faktisk husker begrunnelsen. Ettermiddagen gjør konflikten handlingsnær i økt, uttak, kampplan eller belastning og krever et valg innen faktisk trenermandat. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/people/sport_trener_people.json#sport_trener_people_lina_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 12, evening: En tidligere uttaks- eller belastningsbeslutning vender tilbake og viser hvem som faktisk husker begrunnelsen. Kvelden viser den private eller forsinkede kostnaden av arbeidet og skiller profesjonell standing fra menneskeverd og formell myndighet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/conflict/sport_trener_conflict.json#sport_trener_conflict_uttak_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "conversation",
+        "summary": "Dag 13, morning: Offentlig og klubbinternt press gjør synlig handlekraft attraktiv, mens analyse og spillerutvikling kan belønne tilbakeholdenhet. Morgenen etablerer dagens sportslige ramme gjennom plan, observasjon og ansvar før statuspresset får definere problemet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/story/sport_trener_story.json#sport_trener_story_resultatkrise_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 13, lunch: Offentlig og klubbinternt press gjør synlig handlekraft attraktiv, mens analyse og spillerutvikling kan belønne tilbakeholdenhet. Midt på dagen tolker spillere, stab eller ledelse samme situasjon fra et annet ståsted, slik at standing blir audience-spesifikk. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/event/sport_trener_event.json#sport_trener_event_kampdag_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "consequence",
+        "summary": "Dag 13, afternoon: Offentlig og klubbinternt press gjør synlig handlekraft attraktiv, mens analyse og spillerutvikling kan belønne tilbakeholdenhet. Ettermiddagen gjør konflikten handlingsnær i økt, uttak, kampplan eller belastning og krever et valg innen faktisk trenermandat. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/micro/sport_trener_micro.json#sport_trener_micro_feedback_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Offentlig og klubbinternt press gjør synlig handlekraft attraktiv, mens analyse og spillerutvikling kan belønne tilbakeholdenhet. Kvelden viser den private eller forsinkede kostnaden av arbeidet og skiller profesjonell standing fra menneskeverd og formell myndighet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/knowledge/sport_trener_knowledge.json#sport_trener_knowledge_faggrense_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "social",
+        "summary": "Dag 14, morning: Moden trenerledelse må kunne bære uenighet, skuffelse og resultatstøy uten å kjøpe status med myndighet rollen ikke har. Morgenen etablerer dagens sportslige ramme gjennom plan, observasjon og ansvar før statuspresset får definere problemet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/followup/sport_trener_followup.json#sport_trener_followup_belastning_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "consequence",
+        "summary": "Dag 14, lunch: Moden trenerledelse må kunne bære uenighet, skuffelse og resultatstøy uten å kjøpe status med myndighet rollen ikke har. Midt på dagen tolker spillere, stab eller ledelse samme situasjon fra et annet ståsted, slik at standing blir audience-spesifikk. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/consequence/sport_trener_consequence.json#sport_trener_consequence_belastning_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, afternoon: Moden trenerledelse må kunne bære uenighet, skuffelse og resultatstøy uten å kjøpe status med myndighet rollen ikke har. Ettermiddagen gjør konflikten handlingsnær i økt, uttak, kampplan eller belastning og krever et valg innen faktisk trenermandat. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_trener_job.json#sport_trener_job_okt_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "info",
+        "summary": "Dag 14, evening: Moden trenerledelse må kunne bære uenighet, skuffelse og resultatstøy uten å kjøpe status med myndighet rollen ikke har. Kvelden viser den private eller forsinkede kostnaden av arbeidet og skiller profesjonell standing fra menneskeverd og formell myndighet. Samme hendelse kan derfor styrke tillit hos én gruppe og svekke den hos en annen uten at dette oppretter en global omdømmescore eller utvider trenerens authority.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/people/sport_trener_people.json#sport_trener_people_lina_001"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "learning_and_feedback",
+      "beat_refs": [
+        "1/morning",
+        "2/afternoon",
+        "5/morning",
+        "9/afternoon",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "selection_and_trust",
+      "beat_refs": [
+        "2/lunch",
+        "4/afternoon",
+        "6/afternoon",
+        "11/lunch",
+        "13/afternoon",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "match_plan_and_results",
+      "beat_refs": [
+        "3/morning",
+        "3/afternoon",
+        "6/evening",
+        "10/afternoon",
+        "13/morning",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "load_boundary_and_progression",
+      "beat_refs": [
+        "7/morning",
+        "7/afternoon",
+        "8/morning",
+        "8/afternoon",
+        "12/morning",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "staff_and_public_standing",
+      "beat_refs": [
+        "5/lunch",
+        "9/lunch",
+        "10/lunch",
+        "11/evening",
+        "13/lunch",
+        "14/lunch"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "resultat_hjem",
+      "beat_refs": [
+        "3/evening",
+        "10/evening"
+      ],
+      "meaning": "Resultatpress følger med hjem og må skilles fra egenverdi."
+    },
+    {
+      "id": "uttak_hjem",
+      "beat_refs": [
+        "2/evening",
+        "6/evening"
+      ],
+      "meaning": "Skuffelse rundt uttak blir med hjem selv når sportsvalget står."
+    },
+    {
+      "id": "belastning_hjem",
+      "beat_refs": [
+        "7/evening",
+        "8/evening"
+      ],
+      "meaning": "Usikkerheten rundt belastning må kunne vente på riktig fagprosess."
+    },
+    {
+      "id": "stab_hjem",
+      "beat_refs": [
+        "9/evening",
+        "11/evening"
+      ],
+      "meaning": "Faglig uenighet skal ikke automatisk bli personlig rangkamp."
+    },
+    {
+      "id": "slutt_hjem",
+      "beat_refs": [
+        "13/evening",
+        "14/evening"
+      ],
+      "meaning": "Moden trenerstatus innebærer å kunne legge rollen fra seg."
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "learning_return",
+      "setup_ref": "1/morning",
+      "return_ref": "5/afternoon",
+      "meaning": "Tidlig læringspresisjon kommer tilbake når repetisjon blir upopulær."
+    },
+    {
+      "id": "selection_return",
+      "setup_ref": "2/lunch",
+      "return_ref": "6/afternoon",
+      "meaning": "Tidlig rolleforklaring påvirker senere uttakstillit."
+    },
+    {
+      "id": "plan_return",
+      "setup_ref": "3/afternoon",
+      "return_ref": "10/afternoon",
+      "meaning": "Kampplanens prinsipper blir testet av resultatkrise."
+    },
+    {
+      "id": "load_return",
+      "setup_ref": "7/morning",
+      "return_ref": "8/afternoon",
+      "meaning": "Avklart belastning må bli faktisk treningspraksis."
+    },
+    {
+      "id": "staff_return",
+      "setup_ref": "9/lunch",
+      "return_ref": "13/lunch",
+      "meaning": "Hvordan uenighet ble håndtert påvirker senere stabstillit."
+    },
+    {
+      "id": "reputation_return",
+      "setup_ref": "11/lunch",
+      "return_ref": "14/afternoon",
+      "meaning": "Audience-spesifikk standing kommer tilbake uten å bli global authority."
+    }
+  ],
+  "employment_conditions": [
+    "Trenerjobben forutsetter faktisk oppdrag eller ansettelse; Badge-poeng alene gir ingen jobb.",
+    "Arbeidstid, kampkalender og tilgjengelighetskrav er rolle-eid redaksjonelt stoff og ikke nytt globalt runtimefelt.",
+    "Hovedtrener- eller ledermyndighet krever faktisk oppdrag og kan ikke materialiseres gjennom omdømme."
+  ],
+  "professional_culture": [
+    "Trenerstaben må kunne motlese hverandre uten at uenighet automatisk blir illojalitet.",
+    "Dokumenterte sportslige kriterier skal tåle statuspress og være forklarbare for dem som berøres.",
+    "Omsorg, krav og faggrenser behandles som deler av profesjonell kvalitet, ikke som alternativer til resultatansvar."
+  ],
+  "materialization": {
+    "authored_dimensions": [
+      "situated_reputation"
+    ],
+    "no_new_runtime": true,
+    "existing_plan_preserved": true,
+    "existing_role_model_preserved": true,
+    "existing_work_grammar_preserved": true,
+    "existing_persistent_work_preserved": true,
+    "existing_rhythm_preserved": true,
+    "cross_role_link_materialized": false,
+    "source_refs": [
+      "data/Civication/mailFamilies/sport/job/sport_trener_job.json#sport_trener_job_okt_001",
+      "data/Civication/mailFamilies/sport/people/sport_trener_people.json#sport_trener_people_lina_001",
+      "data/Civication/mailFamilies/sport/conflict/sport_trener_conflict.json#sport_trener_conflict_uttak_001",
+      "data/Civication/mailFamilies/sport/story/sport_trener_story.json#sport_trener_story_resultatkrise_001",
+      "data/Civication/mailFamilies/sport/event/sport_trener_event.json#sport_trener_event_kampdag_001",
+      "data/Civication/mailFamilies/sport/micro/sport_trener_micro.json#sport_trener_micro_feedback_001",
+      "data/Civication/mailFamilies/sport/knowledge/sport_trener_knowledge.json#sport_trener_knowledge_faggrense_001",
+      "data/Civication/mailFamilies/sport/followup/sport_trener_followup.json#sport_trener_followup_belastning_001",
+      "data/Civication/mailFamilies/sport/consequence/sport_trener_consequence.json#sport_trener_consequence_belastning_001"
+    ]
+  }
+}
