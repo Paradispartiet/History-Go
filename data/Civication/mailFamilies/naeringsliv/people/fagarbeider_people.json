@@ -2689,6 +2689,274 @@
           ]
         }
       ]
+    },
+    {
+      "id": "fagarbeider_profesjonelle_arbeidsrelasjoner",
+      "description": "Profesjonelle arbeidsrelasjoner for Role World-readiness: typed, eksplisitt fiktive scenarioaktører på eksisterende Fagarbeider-arbeidsflater. Familien er prerequisite-evidens og inngår ikke som nytt plansteg.",
+      "fictional_scenario_actors": [
+        "rune_arbeidsleder_fagarbeider",
+        "amir_erfaren_fagarbeider",
+        "selma_kvalitetskontakt_fagarbeider",
+        "liv_laerling_fagarbeider"
+      ],
+      "thread_binding": {
+        "people_thread_id": "fagarbeider_profesjonelle_arbeidsrelasjoner",
+        "people_phase": "early"
+      },
+      "mails": [
+        {
+          "id": "fagarbeider_people_rune_oppdrag_001",
+          "mail_type": "people",
+          "mail_family": "fagarbeider_profesjonelle_arbeidsrelasjoner",
+          "role_scope": "fagarbeider",
+          "phase": "early",
+          "priority": 72,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "actor_id": "rune_arbeidsleder_fagarbeider",
+          "person_id": "rune_arbeidsleder_fagarbeider",
+          "people_ref": "rune_arbeidsleder_fagarbeider",
+          "place_id": "oppdrags_og_befaringsflate",
+          "channel": "work",
+          "messageChannel": "work",
+          "mail_class": "professional_message",
+          "subject": "Før du starter: hvem eier den siste avklaringen?",
+          "summary": "Rune sender et oppdrag som ser lite ut, men arbeidsgrunnlaget har én kritisk uklarhet. Scenen trener skillet mellom å være selvstendig fagarbeider og å absorbere lederens beslutningsansvar: spilleren må enten synliggjøre avklaringen eller gjøre en antakelse som senere kan se ut som faglig sikkerhet.",
+          "purpose": "Readiness-prerequisite: koble typed profesjonell relasjon til eksisterende Fagarbeider-arbeidsflate uten å endre canonical plan eller formell myndighet.",
+          "stakes": "Valget påvirker samarbeid, sporbarhet og faglig tillit, men kan aldri gi ny formell myndighet eller erstatte kompetanse- og sikkerhetsgrensen.",
+          "situation": [
+            "Rune har gitt deg en oppgave med tydelig frist, men ett punkt i arbeidsgrunnlaget kan tolkes på to måter.",
+            "Du kan gjøre en sannsynlig faglig antakelse og komme raskt i gang, eller sende den konkrete uklarheten tilbake før utførelse.",
+            "Oppdraget er ditt å utføre; beslutningen som mangler er ikke automatisk din å eie."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avklare før utførelse",
+              "reply": "Jeg sender Rune den konkrete uklarheten og beskriver hva jeg kan gjøre straks avklaringen er tatt.",
+              "effect": 0,
+              "tags": [
+                "professional_relationship"
+              ],
+              "feedback": "Du beskytter både fremdrift og ansvarsgrense: faglig selvstendighet blir synlig som presis avklaring, ikke som at du overtar beslutningsrett som aldri ble delegert.",
+              "effects": {
+                "stats": {
+                  "clarity": 2,
+                  "safety": 1,
+                  "trust_manager": 1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Velge den mest sannsynlige tolkningen",
+              "reply": "Jeg dokumenterer antakelsen og starter på den løsningen som virker mest sannsynlig.",
+              "effect": 0,
+              "tags": [
+                "professional_relationship"
+              ],
+              "feedback": "Du holder tempoet oppe, men gjør en leder-/bestilleruklarhet til ditt eget risikopunkt; dokumentasjon reduserer skaden uten å gjøre antakelsen til formell avklaring.",
+              "effects": {
+                "stats": {
+                  "speed": 1,
+                  "future_risk": 1,
+                  "clarity": -1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "fagarbeider_people_amir_standard_001",
+          "mail_type": "people",
+          "mail_family": "fagarbeider_profesjonelle_arbeidsrelasjoner",
+          "role_scope": "fagarbeider",
+          "phase": "early",
+          "priority": 72,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "actor_id": "amir_erfaren_fagarbeider",
+          "person_id": "amir_erfaren_fagarbeider",
+          "people_ref": "amir_erfaren_fagarbeider",
+          "place_id": "fag_og_utstyrsplass",
+          "channel": "work",
+          "messageChannel": "work",
+          "mail_class": "professional_message",
+          "subject": "Den raske metoden virker — helt til den ikke gjør det",
+          "summary": "Amir viser en erfaringsbasert måte å spare tid på som ofte fungerer, men som hopper over et kontrollpunkt. Scenen gjør kollegial fagrespekt konkret: spilleren kan hente ut den nyttige tause kunnskapen uten å la sosial lojalitet eller erfaring alene bli argument for å omgå standard og sikkerhet.",
+          "purpose": "Readiness-prerequisite: koble typed profesjonell relasjon til eksisterende Fagarbeider-arbeidsflate uten å endre canonical plan eller formell myndighet.",
+          "stakes": "Valget påvirker samarbeid, sporbarhet og faglig tillit, men kan aldri gi ny formell myndighet eller erstatte kompetanse- og sikkerhetsgrensen.",
+          "situation": [
+            "Amir viser deg et grep som gjør jobben raskere og forklarer hvilket tegn han bruker for å vite at det vanligvis går bra.",
+            "Grepet inneholder ekte erfaringskunnskap, men erstatter samtidig et formelt kontrollsteg som finnes av en grunn.",
+            "Du må skille det som er verdifullt i erfaringen fra det som ikke bør gjøres til ny skjult norm."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Beholde kunnskapen, ikke bypasset",
+              "reply": "Jeg ber Amir forklare tegnet han leser, men gjennomfører fortsatt det påkrevde kontrollsteget.",
+              "effect": 0,
+              "tags": [
+                "professional_relationship"
+              ],
+              "feedback": "Du viser at respekt for erfaren praksis ikke krever lydighet mot snarveien: taus kunnskap kan tas inn i faget samtidig som kontrollgrensen forblir eksplisitt og etterprøvbar.",
+              "effects": {
+                "stats": {
+                  "craft": 2,
+                  "safety": 2,
+                  "trust_colleague": 1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Følge Amir denne gangen",
+              "reply": "Jeg bruker Amirs metode og følger ekstra nøye med på utfallet.",
+              "effect": 0,
+              "tags": [
+                "professional_relationship"
+              ],
+              "feedback": "Du styrker den kollegiale flyten på kort sikt, men gjør personlig erfaring til erstatning for en kontroll som ikke var din å oppheve; risikoen flyttes fremover i arbeidskjeden.",
+              "effects": {
+                "stats": {
+                  "speed": 2,
+                  "trust_colleague": 1,
+                  "future_risk": 2
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "fagarbeider_people_selma_avvik_001",
+          "mail_type": "people",
+          "mail_family": "fagarbeider_profesjonelle_arbeidsrelasjoner",
+          "role_scope": "fagarbeider",
+          "phase": "early",
+          "priority": 72,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "actor_id": "selma_kvalitetskontakt_fagarbeider",
+          "person_id": "selma_kvalitetskontakt_fagarbeider",
+          "people_ref": "selma_kvalitetskontakt_fagarbeider",
+          "place_id": "kvalitets_og_avvikspunkt",
+          "channel": "work",
+          "messageChannel": "work",
+          "mail_class": "professional_message",
+          "subject": "Et avvik kan rettes lokalt uten å forsvinne fra sporet",
+          "summary": "Selma ser at du allerede har korrigert en feil som lå innenfor din kompetanse, men spør hva neste skift kan vite om årsaken og kontrollen. Scenen skiller håndverksmessig korrigering fra kontrollmyndighet: spilleren skal dokumentere og eskalere riktig uten å late som egen retting er alvorlig-avviks-godkjenning.",
+          "purpose": "Readiness-prerequisite: koble typed profesjonell relasjon til eksisterende Fagarbeider-arbeidsflate uten å endre canonical plan eller formell myndighet.",
+          "stakes": "Valget påvirker samarbeid, sporbarhet og faglig tillit, men kan aldri gi ny formell myndighet eller erstatte kompetanse- og sikkerhetsgrensen.",
+          "situation": [
+            "Feilen er fysisk rettet, resultatet ser riktig ut og du kan forklare hva du gjorde.",
+            "Selma peker på at kontrollsporet fortsatt mangler årsak, før/etter-status og hvem som eventuelt må godkjenne at et alvorlig avvik kan lukkes.",
+            "Godt fagarbeid må tåle at den som kommer senere kan rekonstruere både rettingen og grensen for din myndighet."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Dokumentere og sende til riktig kontroll",
+              "reply": "Jeg dokumenterer årsak, tiltak og kontrollresultat, og lar riktig kontrollfunksjon eie eventuell formell lukking.",
+              "effect": 0,
+              "tags": [
+                "professional_relationship"
+              ],
+              "feedback": "Du gjør lokalt faglig ansvar kompatibelt med institusjonell kontroll: kompetansen din reparerer problemet, mens sporet tydelig viser hvilken beslutning som fortsatt tilhører en annen funksjon.",
+              "effects": {
+                "stats": {
+                  "documentation": 2,
+                  "quality": 2,
+                  "safety": 1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukke som ferdig fordi rettingen er god",
+              "reply": "Jeg registrerer saken som ferdig siden feilen er rettet og kontrollmålingen ser riktig ut.",
+              "effect": 0,
+              "tags": [
+                "professional_relationship"
+              ],
+              "feedback": "Du forveksler godt utført korrigering med rett til å lukke hele kontrollsporet; kvaliteten kan være høy samtidig som myndighets- og sporbarhetsgrensen blir svakere.",
+              "effects": {
+                "stats": {
+                  "quality": 1,
+                  "documentation": -2,
+                  "future_risk": 2
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "fagarbeider_people_liv_overlevering_001",
+          "mail_type": "people",
+          "mail_family": "fagarbeider_profesjonelle_arbeidsrelasjoner",
+          "role_scope": "fagarbeider",
+          "phase": "early",
+          "priority": 72,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "actor_id": "liv_laerling_fagarbeider",
+          "person_id": "liv_laerling_fagarbeider",
+          "people_ref": "liv_laerling_fagarbeider",
+          "place_id": "overleverings_og_opplaeringsflate",
+          "channel": "work",
+          "messageChannel": "work",
+          "mail_class": "professional_message",
+          "subject": "Liv kan gjenta stegene — men kan hun se når hun skal stoppe?",
+          "summary": "Liv har lært arbeidsrekkefølgen og kan utføre standardtilfellet, men overleveringen viser at hun fortsatt mangler stoppkriteriet for et avvik. Scenen trener fagarbeideren som mentor uten lederglidning: spilleren må gjøre dømmekraft og kompetansegrense eksplisitt fremfor bare å demonstrere riktig håndbevegelse.",
+          "purpose": "Readiness-prerequisite: koble typed profesjonell relasjon til eksisterende Fagarbeider-arbeidsflate uten å endre canonical plan eller formell myndighet.",
+          "stakes": "Valget påvirker samarbeid, sporbarhet og faglig tillit, men kan aldri gi ny formell myndighet eller erstatte kompetanse- og sikkerhetsgrensen.",
+          "situation": [
+            "Liv gjennomfører standardrekkefølgen riktig og kan forklare hva hun gjør i hvert steg.",
+            "Når du endrer ett symptom i eksemplet, fortsetter hun likevel fordi hun ikke har lært hvilket tegn som betyr at saken må stoppes og avklares.",
+            "Overleveringen er først trygg når kunnskapen om grensen er like tydelig som kunnskapen om selve oppgaven."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lære bort stoppkriteriet og få teach-back",
+              "reply": "Jeg forklarer hvilket tegn som endrer situasjonen, og ber Liv beskrive når hun selv skal stoppe og hente hjelp.",
+              "effect": 0,
+              "tags": [
+                "professional_relationship"
+              ],
+              "feedback": "Du gjør taus dømmekraft overførbar uten å late som lærlingen kan mer enn hun kan: opplæringen styrker selvstendighet nettopp ved å gjøre kompetanse- og eskaleringsgrensen eksplisitt.",
+              "effects": {
+                "stats": {
+                  "mentoring": 2,
+                  "safety": 2,
+                  "clarity": 1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Vise henne én gang til",
+              "reply": "Jeg demonstrerer riktig håndtering av avviket og ber henne følge samme mønster neste gang.",
+              "effect": 0,
+              "tags": [
+                "professional_relationship"
+              ],
+              "feedback": "Du gir en nyttig demonstrasjon, men lar deler av vurderingen forbli personbåren; Liv kan kopiere løsningen uten å ha fått en tydelig regel for når hun må stoppe og be om faglig avklaring.",
+              "effects": {
+                "stats": {
+                  "mentoring": 1,
+                  "craft": 1,
+                  "future_risk": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
     }
   ]
 }
