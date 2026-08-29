@@ -155,4 +155,102 @@ text, count = re.subn(popup_pattern, popup_replacement, text, count=1, flags=re.
 if count != 1 and popup_replacement not in text:
     raise SystemExit("popupCoverage block not found")
 
+# Align the quiz source brief and compact production_context with the canonical
+# quiz-production 3.3 contract. The context artifact is still produced by the
+# shared builder; the quiz file carries the compact reviewed contract used by CI.
+if 'const selectedCurriculum = {' not in text:
+    anchor = 'const briefFile = "data/quiz/production_briefs/by/universitetsplassen.json";'
+    if anchor not in text:
+        raise SystemExit("Quiz brief insertion anchor not found")
+    quiz_contract = r'''const selectedCurriculum = {
+  module_ids: [
+    "kur_by_01_byrom_akser_knutepunkt",
+    "kur_by_04_historiske_lag_og_transformasjon",
+    "kur_by_06_makt_symboler_og_representasjon"
+  ],
+  emne_ids: place.emne_ids,
+  topic_hook_ids: ["byliv_aapne_rom", "byliv_opphold_vs_gjennomgang"],
+  method_ids: ["met_feltobservasjon", "met_gaanalyse"],
+  thinker_ids: [],
+  works: []
+};
+const existingQuizAudit = {
+  searched_paths: ["data/quiz/manifest.json", "data/quiz/by/universitetsplassen_sets.json", placeFile],
+  active_before: {
+    file: null,
+    set_count: 0,
+    question_count: 0,
+    finding: "Ingen aktiv canonical Universitetsplassen-quiz var registrert i manifestet før denne produksjonen."
+  },
+  decisions: {
+    keep_as_claim_basis: [],
+    rewrite: "Ny kildegjennomgått 8×7-progresjon.",
+    move: [],
+    remove: []
+  },
+  knowledge_migration: "56 unike spørsmål materialiseres gjennom den canonicale Knowledge-pipelinen."
+};
+const profileDecision = {
+  profile: "major",
+  set_count: 8,
+  questions_per_set: 7,
+  justification: "Universitetsplassen har åtte kildebelagte læringsjobber: identitet, Grosch-anlegget, monumentene, Aulaen og Munch, plassomlegging, akademiske ritualer, historiske spor og stedlig analyse."
+};
+const heldBackCandidates = [
+  "Personkoblinger uten dokumentert stedsspesifikk rolle.",
+  "Kommersielle butikkbrands uten direkte institusjonell tilknytning til universitetsplassen."
+];
+
+const briefFile = "data/quiz/production_briefs/by/universitetsplassen.json";'''
+    text = text.replace(anchor, quiz_contract, 1)
+
+if 'selected_curriculum: selectedCurriculum' not in text:
+    brief_pattern = r'(\n\s+sources:\s*sourceRegistry,\n)(\s+claims\n\s*\};)'
+    replacement = r'''\1  selected_curriculum: selectedCurriculum,
+  existing_quiz_audit: existingQuizAudit,
+  profile_decision: profileDecision,
+  held_back_candidates: heldBackCandidates,
+\2'''
+    text, count = re.subn(brief_pattern, replacement, text, count=1)
+    if count != 1:
+        raise SystemExit("Quiz brief selected_curriculum anchor not found")
+
+if 'const quizProductionContext = {' not in text:
+    call = 'const productionContext = await runBuildQuizProductionContext({ root, categoryId: "by", targetId: placeId, outputPath: contextFile });'
+    if call not in text:
+        raise SystemExit("Quiz production-context builder call not found")
+    compact_context = r'''await runBuildQuizProductionContext({ root, categoryId: "by", targetId: placeId, outputPath: contextFile });
+const quizProductionContext = {
+  manifest_category: "by",
+  profile: "major_8x7",
+  standard_version: "3.3",
+  source_brief: briefFile,
+  context_artifact: contextFile,
+  resolved_files: {
+    pensum: "data/fag/by/pensum_by.json",
+    emner: "data/fag/by/emner_by.json",
+    fagkart: "data/fag/by/fagkart_by.json",
+    methods: "data/fag/by/methods_by.json",
+    supersetQuizMal: "data/fag/by/supersetQUIZMAL_by.json",
+    quizStandard: "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+    quizQuestionSchema: "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+  },
+  required_inputs_loaded: ["pensum", "emner", "fagkart", "methods", "supersetQuizMal", "quizStandard", "quizQuestionSchema"],
+  pensum_module_ids: selectedCurriculum.module_ids,
+  emne_ids: selectedCurriculum.emne_ids,
+  topic_hook_ids: selectedCurriculum.topic_hook_ids,
+  method_ids: selectedCurriculum.method_ids,
+  thinker_ids: selectedCurriculum.thinker_ids,
+  works: selectedCurriculum.works,
+  source_review_status: "reviewed",
+  theory_start_phase: "final",
+  method_start_phase: "final",
+  existing_quiz_audit: existingQuizAudit,
+  profile_decision: profileDecision,
+  held_back_candidates: heldBackCandidates
+};'''
+    text = text.replace(call, compact_context, 1)
+
+text = text.replace('production_context: productionContext,', 'production_context: quizProductionContext,')
+
 path.write_text(text)
