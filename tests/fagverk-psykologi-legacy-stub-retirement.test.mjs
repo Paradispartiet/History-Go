@@ -42,19 +42,25 @@ test('Psykologi-stubbens faglige påstander er allerede canonicalt eid', () => {
   assert.ok(report.canonical.runtimeCounts.chapterCount > 0, 'Psykologi skal ha redigert lærestoff i Fagverket');
 });
 
-test('den gamle knowledge-lenken er eksplisitt pensjonert som død legacy-progresjonsrute', () => {
+test('legacy Knowledge-lenken bevares som canonical funksjon i Fagverk Progresjon', () => {
   const report = audit();
   const product = report.legacy.productSummary;
-  assert.equal(product.role, 'legacy_progress_summary');
-  assert.equal(product.deadKnowledgeRoute, '../knowledge/knowledge_psykologi.html');
-  assert.equal(product.deadKnowledgeRoutePresent, true);
-  assert.equal(product.deadKnowledgeTargetExists, false);
+  assert.equal(product.role, 'legacy_subject_knowledge_navigation');
+  assert.equal(product.legacyKnowledgeRoute, '../knowledge/knowledge_psykologi.html');
+  assert.equal(product.legacyKnowledgeRoutePresent, true);
+  assert.equal(product.legacyKnowledgeTargetExists, true);
+  assert.equal(product.legacyKnowledgeTargetCanonical, true);
+  assert.equal(product.canonicalKnowledgeRoute, 'knowledge.html?subject=psykologi');
+  assert.equal(product.subjectKnowledgeActionPresent, true);
   assert.equal(product.currentProgressEquivalent, true);
   assert.equal(product.migrateAsKnowledge, false);
-  assert.equal(report.summary.deadLegacyKnowledgeRouteRetired, true);
+  assert.equal(report.summary.legacyKnowledgeNavigationMigrated, true);
   assert.equal(report.navigation.globalProgressPage, 'emner.html');
   assert.equal(report.navigation.globalProgressExists, true);
   assert.equal(report.navigation.globalProgressLinked, true);
+  assert.equal(report.navigation.canonicalKnowledgePage, 'knowledge.html');
+  assert.equal(report.navigation.canonicalKnowledgeRoute, 'knowledge.html?subject=psykologi');
+  assert.equal(report.navigation.subjectKnowledgeActionPresent, true);
 });
 
 test('Psykologi compatibility-ruten er ren og originalstubben er bevart', () => {
