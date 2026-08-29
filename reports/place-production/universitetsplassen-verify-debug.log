@@ -1,88 +1,23 @@
 === targeted Universitetsplassen test ===
-✖ Universitetsplassen has exact four By collections and preserved geometry (3.29149ms)
-✔ all selected images exist and portrait front is real (0.454391ms)
-✖ description packet validates without issues (17.687997ms)
-✔ language, leksikon, stories and readings are complete (0.19189ms)
-✔ major quiz is unique 8x7 with delayed methods (0.378188ms)
-✔ six-dimensional quality gate is 30/30 (0.24049ms)
+✔ Universitetsplassen has exact four By collections and preserved geometry (1.510704ms)
+✔ all selected images exist and portrait front is real (0.457698ms)
+✔ description packet validates without issues (17.303869ms)
+✔ language, leksikon, stories and readings are complete (0.190778ms)
+✔ major quiz is unique 8x7 with delayed methods (0.417002ms)
+✔ six-dimensional quality gate is 30/30 (0.191099ms)
 ℹ tests 6
 ℹ suites 0
-ℹ pass 4
-ℹ fail 2
+ℹ pass 6
+ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 98.70743
-
-✖ failing tests:
-
-test at tests/universitetsplassen-completion.test.mjs:17:1
-✖ Universitetsplassen has exact four By collections and preserved geometry (3.29149ms)
-  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
-  + actual - expected
-  
-    [
-      'christian_heinrich_grosch',
-  +   'christopher_hansteen',
-  +   'henrik_ibsen',
-  +   'oda_krohg',
-  +   'christian_krohg',
-  +   'georg_sverdrup',
-  +   'aasta_hansteen',
-  +   'kristine_bonnevie',
-  +   'institusjonen_fritt_ord',
-  +   'eckbos_legat',
-  +   'jens_henrik_nordlie',
-  +   'jens_christian_hauge',
-  +   'finn_skedsmo'
-    ]
-  
-      at TestContext.<anonymous> (file:///home/runner/work/History-Go/History-Go/tests/universitetsplassen-completion.test.mjs:25:10)
-      at Test.runInAsyncScope (node:async_hooks:227:14)
-      at Test.run (node:internal/test_runner/test:1382:25)
-      at Test.start (node:internal/test_runner/test:1242:17)
-      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
-    generatedMessage: true,
-    code: 'ERR_ASSERTION',
-    actual: [ 'christian_heinrich_grosch', 'christopher_hansteen', 'henrik_ibsen', 'oda_krohg', 'christian_krohg', 'georg_sverdrup', 'aasta_hansteen', 'kristine_bonnevie', 'institusjonen_fritt_ord', 'eckbos_legat', 'jens_henrik_nordlie', 'jens_christian_hauge', 'finn_skedsmo' ],
-    expected: [ 'christian_heinrich_grosch' ],
-    operator: 'deepStrictEqual',
-    diff: 'simple'
-  }
-
-test at tests/universitetsplassen-completion.test.mjs:38:1
-✖ description packet validates without issues (17.687997ms)
-  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
-  + actual - expected
-  
-  + [
-  +   {
-  +     code: 'timeline_year_missing_from_claim',
-  +     message: 'claim_universitetsplassen_repaving må nevne timelineYear eksplisitt i claim-teksten.',
-  +     packetFile: 'data/places/production/universitetsplassen.json'
-  +   },
-  +   {
-  +     code: 'temporal_claim_without_status',
-  +     field: 'popupDesc',
-  +     message: 'popupDesc setning 23 inneholder nåtids- eller planopplysning uten temporalStatus.',
-  +     packetFile: 'data/places/production/universitetsplassen.json',
-  +     sentenceNumber: 23
-  +   }
-  + ]
-  - []
-  
-      at TestContext.<anonymous> (file:///home/runner/work/History-Go/History-Go/tests/universitetsplassen-completion.test.mjs:40:10)
-      at Test.runInAsyncScope (node:async_hooks:227:14)
-      at Test.run (node:internal/test_runner/test:1382:25)
-      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
-      at Test.postRun (node:internal/test_runner/test:1522:19)
-      at Test.run (node:internal/test_runner/test:1447:12)
-      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
-    generatedMessage: true,
-    code: 'ERR_ASSERTION',
-    actual: [ { code: 'timeline_year_missing_from_claim', message: 'claim_universitetsplassen_repaving må nevne timelineYear eksplisitt i claim-teksten.', packetFile: 'data/places/production/universitetsplassen.json' }, { code: 'temporal_claim_without_status', message: 'popupDesc setning 23 inneholder nåtids- eller planopplysning uten temporalStatus.', packetFile: 'data/places/production/universitetsplassen.json', field: 'popupDesc', sentenceNumber: 23 } ],
-    expected: [],
-    operator: 'deepStrictEqual',
-    diff: 'simple'
-  }
-=== FAILED targeted Universitetsplassen test exit=1 ===
+ℹ duration_ms 95.995176
+=== PASS targeted Universitetsplassen test ===
+=== places:check ===
+npm error Missing script: "places:check"
+npm error
+npm error To see a list of scripts, run:
+npm error   npm run
+npm error A complete log of this run can be found in: /home/runner/.npm/_logs/2026-08-29T20_59_53_402Z-debug-0.log
+=== FAILED places:check exit=1 ===
