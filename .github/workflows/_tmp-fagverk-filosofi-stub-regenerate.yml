@@ -37,7 +37,17 @@ jobs:
           node scripts/audit-fagverk-general-engine.mjs --write-report
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
-          node --test tests/fagverk-filosofi-legacy-stub-retirement.test.mjs tests/fagverk-filosofi-phase3.test.mjs tests/fagverk-badge-equivalence.test.mjs
+          for test_file in \
+            tests/fagverk-filosofi-legacy-stub-retirement.test.mjs \
+            tests/fagverk-filosofi-phase3.test.mjs \
+            tests/fagverk-badge-equivalence.test.mjs; do
+            echo "=== $test_file ==="
+            if ! node --test "$test_file" > /tmp/filosofi-test.log 2>&1; then
+              tail -n 80 /tmp/filosofi-test.log
+              exit 1
+            fi
+            tail -n 12 /tmp/filosofi-test.log
+          done
       - name: Commit generated projections and remove probe
         run: |
           git config user.name 'github-actions[bot]'
