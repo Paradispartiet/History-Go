@@ -4,11 +4,14 @@ import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const LEGACY_BADGE = 'data/fag/media/merke_media.html';
+const LEGACY_BADGE = 'data/fag/media/archive/merke_media_full_teori_legacy_20260829.html';
+const COMPATIBILITY = 'data/fag/media/merke_media.html';
 const MANIFEST = 'data/fag/fag_manifest.json';
 const REGISTRY = 'data/fagverk/fagverk_registry.json';
 const PORTAL = 'data/fagverk/fagverk_portal.json';
 const REPORT = 'reports/fagverk/media-legacy-theory-audit.json';
+const TARGET = 'fagverk.html?subject=media#fagverkIaProgresjon';
+const RELATIVE_TARGET = '../../../fagverk.html?subject=media#fagverkIaProgresjon';
 const SUBJECT_ROOTS = Object.freeze(['data/fag/media/', 'data/fagverk/media/']);
 const MANIFEST_KEYS = Object.freeze(['pensum', 'emner', 'fagkart', 'methods', 'emneMappings']);
 
@@ -237,7 +240,7 @@ function anchorResult(corpus, alternatives) {
 }
 
 export function auditMediaLegacyTheory() {
-  for (const required of [LEGACY_BADGE, MANIFEST, REGISTRY, PORTAL]) {
+  for (const required of [LEGACY_BADGE, COMPATIBILITY, MANIFEST, REGISTRY, PORTAL]) {
     if (!exists(required)) throw new Error(`Mangler nødvendig Media-auditfil: ${required}`);
   }
 
@@ -280,16 +283,18 @@ export function auditMediaLegacyTheory() {
   const portal = readJson(PORTAL);
   const portalEntry = portal.categories?.find((item) => item.id === 'media');
   if (!portalEntry) throw new Error('Media mangler i Fagverk-portalen.');
-  if (portalEntry.badgePage !== LEGACY_BADGE) {
-    throw new Error(`Media audit-tranchen skal være pre-redirect; badgePage er ${portalEntry.badgePage}.`);
-  }
+  const compatibilityHtml = read(COMPATIBILITY);
+  const compatibilityRedirectPresent = compatibilityHtml.includes('location.replace')
+    && compatibilityHtml.includes(RELATIVE_TARGET)
+    && !/id=["'](?:felt|begreper|bidrag)["']/i.test(compatibilityHtml);
+  const portalRedirected = portalEntry.badgePage === TARGET;
 
   const knowledgeRows = rows.filter((row) => row.role === 'knowledge');
   const manualReview = knowledgeRows.filter((row) => row.anchorCoverage < 1).map((row) => row.id);
   return {
     schema: 'history_go_fagverk_media_legacy_theory_audit_v1',
     subject: 'media',
-    legacy: { badgePage: LEGACY_BADGE, sectionCount: rows.length, knowledgeSectionCount: knowledgeRows.length },
+    legacy: { badgePage: LEGACY_BADGE, compatibilityPage: COMPATIBILITY, sectionCount: rows.length, knowledgeSectionCount: knowledgeRows.length },
     canonical: {
       manifestFiles: manifest.manifestFiles,
       supplementRoots: manifest.supplementRoots,
@@ -303,7 +308,10 @@ export function auditMediaLegacyTheory() {
     navigation: {
       badgePage: portalEntry.badgePage,
       subjectPage: portalEntry.subjectPage,
-      preRedirectLocked: true
+      target: TARGET,
+      portalRedirected,
+      compatibilityRedirectPresent,
+      routeRetired: portalRedirected && compatibilityRedirectPresent
     },
     summary: {
       knowledgeSectionCount: knowledgeRows.length,
@@ -311,7 +319,7 @@ export function auditMediaLegacyTheory() {
       manualReviewCount: manualReview.length,
       manualReview,
       redirectReady: false,
-      redirectBlockReason: 'Anchor coverage establishes only candidate canonical ownership. Media redirect remains blocked until every knowledge section has explicit editorial adjudication and any semantic gaps are migrated or rejected with evidence.'
+      redirectBlockReason: 'Raw Media anchor coverage never authorizes redirect by itself. Route readiness is owned by the explicit Media legacy adjudication gate.'
     },
     rows
   };

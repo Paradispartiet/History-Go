@@ -6,7 +6,8 @@ const ROOT = process.cwd();
 const ADJUDICATION = 'data/fag/media/legacy_theory_adjudication_v1.json';
 const REGISTRY = 'data/fagverk/fagverk_registry.json';
 const PORTAL = 'data/fagverk/fagverk_portal.json';
-const LEGACY_BADGE = 'data/fag/media/merke_media.html';
+const LEGACY_BADGE = 'data/fag/media/archive/merke_media_full_teori_legacy_20260829.html';
+const COMPAT_BADGE_PAGE = 'data/fag/media/merke_media.html';
 const EXPECTED_TARGET = 'fagverk.html?subject=media#fagverkIaProgresjon';
 const KNOWLEDGE_DISPOSITIONS = new Set(['canonical_supersedes', 'migrated_to_canonical']);
 const PRODUCT_DISPOSITIONS = new Set(['retire_legacy_product_copy']);
@@ -24,7 +25,7 @@ function runAnchorAudit() {
   return JSON.parse(result.stdout);
 }
 
-for (const required of [ADJUDICATION, REGISTRY, PORTAL, LEGACY_BADGE]) {
+for (const required of [ADJUDICATION, REGISTRY, PORTAL, LEGACY_BADGE, COMPAT_BADGE_PAGE]) {
   if (!exists(required)) throw new Error(`Mangler nødvendig Media-adjudiseringsfil: ${required}`);
 }
 
@@ -119,6 +120,11 @@ const portalEntry = portal.categories?.find((item) => item.id === 'media');
 if (!portalEntry) throw new Error('Media mangler i fagverk_portal.json.');
 const portalRoute = text(portalEntry.badgePage);
 const portalRedirected = portalRoute === EXPECTED_TARGET;
+const legacyBadgeSourcePreserved = exists(LEGACY_BADGE);
+const compatibilityRedirectHtml = fs.readFileSync(path.join(ROOT, COMPAT_BADGE_PAGE), 'utf8');
+const compatibilityRedirectPresent = compatibilityRedirectHtml.includes('location.replace')
+  && compatibilityRedirectHtml.includes('subject=media#fagverkIaProgresjon')
+  && !/id=["'](?:felt|begreper|bidrag)["']/i.test(compatibilityRedirectHtml);
 
 const redirectReady = knowledgeRows.length === anchorAudit.summary.knowledgeSectionCount
   && knowledgeRows.every((row) => row.adjudicated && row.anchorCoverage === 1 && KNOWLEDGE_DISPOSITIONS.has(row.disposition) && row.ownerFiles.length > 0)
@@ -131,6 +137,7 @@ const report = {
     anchorAuditSchema: anchorAudit.schema,
     adjudicationFile: ADJUDICATION,
     legacyBadgePage: LEGACY_BADGE,
+    compatibilityBadgePage: COMPAT_BADGE_PAGE,
     registryChapterOwnerFiles: registryOwnerFiles
   },
   summary: {
@@ -146,7 +153,8 @@ const report = {
     redirectTarget: EXPECTED_TARGET,
     portalRoute,
     portalRedirected,
-    legacyBadgeSourcePreserved: exists(LEGACY_BADGE)
+    legacyBadgeSourcePreserved,
+    compatibilityRedirectPresent
   },
   rows
 };
@@ -154,7 +162,8 @@ const report = {
 if (!report.summary.redirectReady) throw new Error('Media legacy adjudication er ikke redirect-klar.');
 if (report.summary.migratedSectionCount !== 0) throw new Error('Media-auditen fant ingen gap; adjudiseringen skal ikke hevde nye migreringer.');
 if (report.summary.canonicalSupersedesCount !== 10) throw new Error('Alle ti Media-kunnskapsseksjoner skal adjudiseres som canonical_supersedes.');
-if (report.summary.portalRedirected) throw new Error('Media portalruten skal ikke endres i adjudiserings-PR-en; redirect skjer i egen tranche.');
-if (!report.summary.legacyBadgeSourcePreserved) throw new Error('Media legacy-teori må bevares som auditkilde før redirect-tranchen.');
+if (!report.summary.portalRedirected) throw new Error(`Media badgePage må peke til ${EXPECTED_TARGET} etter grønn adjudisering.`);
+if (!report.summary.legacyBadgeSourcePreserved) throw new Error('Arkivert Media-teori må bevares som auditkilde.');
+if (!report.summary.compatibilityRedirectPresent) throw new Error('Legacy Media-URL må være en compatibility-redirect til Progresjon.');
 
 process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);

@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { spawnSync } from 'node:child_process';
 
-const LEGACY_ROUTE = 'data/fag/media/merke_media.html';
+const LEGACY_ARCHIVE = 'data/fag/media/archive/merke_media_full_teori_legacy_20260829.html';
+const COMPATIBILITY_ROUTE = 'data/fag/media/merke_media.html';
 const PROGRESS_ROUTE = 'fagverk.html?subject=media#fagverkIaProgresjon';
 const METHODS_OWNER = 'data/fag/media/methods_media_canonical_v4_5.json';
 const PENSUM_OWNER = 'data/fag/media/mediapensum_canonical_v4_5.json';
@@ -69,14 +70,22 @@ test('Media-metodene og den brede feltmodellen bindes til canonical metodekatalo
   assert.match(field.rationale, /uten at legacy-prosa kopieres/i);
 });
 
-test('Media-adjudiseringen er redirect-klar men holder portalruten urørt', () => {
+test('Media-adjudiseringen låser permanent route-retirement etter grønn gate', () => {
   const report = adjudicationAudit();
   assert.equal(report.summary.anchorAuditRedirectReady, false, 'anker-auditen alene skal aldri godkjenne redirect');
   assert.equal(report.summary.redirectReady, true);
   assert.equal(report.summary.redirectTarget, PROGRESS_ROUTE);
-  assert.equal(report.summary.portalRoute, LEGACY_ROUTE);
-  assert.equal(report.summary.portalRedirected, false);
+  assert.equal(report.summary.portalRoute, PROGRESS_ROUTE);
+  assert.equal(report.summary.portalRedirected, true);
   assert.equal(report.summary.legacyBadgeSourcePreserved, true);
+  assert.equal(report.summary.compatibilityRedirectPresent, true);
+  assert.equal(report.inputs.legacyBadgePage, LEGACY_ARCHIVE);
+  assert.equal(report.inputs.compatibilityBadgePage, COMPATIBILITY_ROUTE);
+
+  const compatibilityHtml = fs.readFileSync(COMPATIBILITY_ROUTE, 'utf8');
+  assert.match(compatibilityHtml, /location\.replace/);
+  assert.match(compatibilityHtml, /subject=media#fagverkIaProgresjon/);
+  assert.doesNotMatch(compatibilityHtml, /id="felt"|id="begreper"|id="bidrag"/);
 });
 
 test('Media bidrag er legacy-produkttekst og får ingen kunstig kunnskapseier', () => {

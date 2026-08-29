@@ -19,7 +19,7 @@ test('Media er individuelt materialisert og auditert som andre Fase 3-fag', () =
     editorialStatus: 'complete',
     nextGate: 'maintenance_source_refresh_and_place_case_expansion',
     subjectPage: 'fagverk.html?subject=media',
-    badgePage: 'data/fag/media/merke_media.html'
+    badgePage: 'fagverk.html?subject=media#fagverkIaProgresjon'
   });
   assert.deepEqual(report.summary, {
     domainCount: 6,
@@ -70,9 +70,10 @@ test('Populærkultur er komplett nested mediefelt og ikke et toppfag', () => {
   assert.equal(report.gates.noCompetingPopularCultureTopSubject, true);
 });
 
-test('Media-merkesiden skiller merket fra fagsiden', () => {
+test('Media compatibility-URL peker til integrert Progresjon og Fagverk-forsiden', () => {
   const html = fs.readFileSync(path.join(root, 'data/fag/media/merke_media.html'), 'utf8');
   assert.match(html, /fagverk-forside\.html/);
-  assert.match(html, /fagverk\.html\?subject=media/);
-  assert.match(html, /Åpne Media-faget/);
+  assert.match(html, /fagverk\.html\?subject=media#fagverkIaProgresjon/);
+  assert.match(html, /location\.replace/);
+  assert.doesNotMatch(html, /id="felt"|id="begreper"|id="bidrag"/);
 });
