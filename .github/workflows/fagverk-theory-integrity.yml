@@ -5,6 +5,7 @@ on:
     paths:
       - 'data/fag/*/**'
       - 'data/fagverk/*/**'
+      - 'data/categories/category_contract.json'
       - 'docs/FAGVERK.md'
       - 'docs/SUBJECT_FILE_CONTRACT.md'
       - 'reports/fagverk/fagverk-theory-integrity-audit.json'
@@ -49,6 +50,7 @@ on:
       - 'scripts/audit-fagverk-naeringsliv-legacy-theory.mjs'
       - 'scripts/audit-fagverk-naeringsliv-legacy-adjudication.mjs'
       - 'scripts/audit-fagverk-natur-legacy-theory.mjs'
+      - 'scripts/audit-fagverk-natur-legacy-adjudication.mjs'
       - 'scripts/audit-fagverk-litteratur-legacy-theory.mjs'
       - 'scripts/audit-fagverk-litteratur-legacy-adjudication.mjs'
       - 'scripts/audit-subkultur-theory-attribution-v1.mjs'
@@ -81,6 +83,7 @@ on:
       - 'tests/fagverk-naeringsliv-legacy-theory-audit.test.mjs'
       - 'tests/fagverk-naeringsliv-legacy-theory-adjudication.test.mjs'
       - 'tests/fagverk-natur-legacy-theory-audit.test.mjs'
+      - 'tests/fagverk-natur-legacy-theory-adjudication.test.mjs'
       - 'tests/litteratur-theory-integrity.test.mjs'
       - 'tests/fagverk-litteratur-legacy-theory-audit.test.mjs'
       - 'tests/fagverk-litteratur-legacy-theory-adjudication.test.mjs'
@@ -128,6 +131,7 @@ jobs:
           node --check scripts/audit-fagverk-naeringsliv-legacy-theory.mjs
           node --check scripts/audit-fagverk-naeringsliv-legacy-adjudication.mjs
           node --check scripts/audit-fagverk-natur-legacy-theory.mjs
+          node --check scripts/audit-fagverk-natur-legacy-adjudication.mjs
           node --check tools/audit-by-theory-integrity.mjs
           node --check tools/audit-kunst-theory-integrity.mjs
           node --check tools/audit-media-theory-integrity.mjs
@@ -150,6 +154,7 @@ jobs:
           node scripts/audit-fagverk-naeringsliv-legacy-theory.mjs
           node scripts/audit-fagverk-naeringsliv-legacy-adjudication.mjs
           node scripts/audit-fagverk-natur-legacy-theory.mjs
+          node scripts/audit-fagverk-natur-legacy-adjudication.mjs
           node --test tests/by-theory-integrity.test.mjs
           node --test tests/kunst-theory-integrity.test.mjs
           node --test tests/fagverk-kunst-legacy-theory-audit.test.mjs
@@ -164,6 +169,7 @@ jobs:
           node --test tests/fagverk-naeringsliv-legacy-theory-audit.test.mjs
           node --test tests/fagverk-naeringsliv-legacy-theory-adjudication.test.mjs
           node --test tests/fagverk-natur-legacy-theory-audit.test.mjs
+          node --test tests/fagverk-natur-legacy-theory-adjudication.test.mjs
           node --test tests/litteratur-theory-integrity.test.mjs
           node --test tests/fagverk-litteratur-legacy-theory-audit.test.mjs
           node --test tests/fagverk-litteratur-legacy-theory-adjudication.test.mjs
