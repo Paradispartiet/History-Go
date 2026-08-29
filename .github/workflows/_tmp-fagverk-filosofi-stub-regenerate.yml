@@ -43,10 +43,17 @@ jobs:
             tests/fagverk-badge-equivalence.test.mjs; do
             echo "=== $test_file ==="
             if ! node --test "$test_file" > /tmp/filosofi-test.log 2>&1; then
-              tail -n 80 /tmp/filosofi-test.log
+              {
+                echo "FAILED_TEST=$test_file"
+                grep -E 'not ok|error:|Expected|actual:|expected:|AssertionError|Mangler|mangler|uventet|ERR_ASSERTION' /tmp/filosofi-test.log | tail -n 40 || true
+              } > _tmp-filosofi-regression.txt
+              git config user.name 'github-actions[bot]'
+              git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+              git add _tmp-filosofi-regression.txt
+              git commit -m 'Record Filosofi regression diagnostic'
+              git push origin HEAD:${{ github.event.pull_request.head.ref }}
               exit 1
             fi
-            tail -n 12 /tmp/filosofi-test.log
           done
       - name: Commit generated projections and remove probe
         run: |
