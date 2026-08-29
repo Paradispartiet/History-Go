@@ -110,11 +110,16 @@ assert.equal(readiness.gate.role_blockers_documented, true);
 assert.equal(readiness.gate.gate_pass, true, 'Program-level readiness gate must remain green after policy opening');
 assert.equal(readiness.gate.broad_rollout_allowed_now, true);
 assert.equal(readiness.gate.policy_recommendation, 'controlled_rollout_open_with_role_level_gates');
-assert.match(readiness.gate.next_required_pr, /^Role World rollout: /);
+if (availableReadyFamilies > 0) {
+  assert.match(readiness.gate.next_required_pr, /^Role World rollout: /, 'A remaining rollout_ready family must name the next controlled one-role rollout PR');
+} else {
+  assert.equal(readiness.first_wave_candidates.length, 0, 'No rollout_ready families means the first wave must be empty');
+  assert.equal(readiness.gate.next_required_pr, 'Select next rollout_ready role', 'When the ready queue is exhausted, readiness must explicitly require selection/preparation of the next rollout-ready role');
+}
 
 const roleOwned = new Set(realism.role_owned_not_global || []);
 assert.ok(roleOwned.has('role_specific_employment_conditions'));
 assert.ok(roleOwned.has('role_specific_professional_culture'));
 assert.equal(realism.program_level_proofs.cross_role_links.status, 'runtime_proven');
 
-console.log(`PASS: Role World rollout readiness classifies all ${readiness.summary.canonical_career_roles} canonical career roles, quarantines role-level blockers, keeps policy controlled, and produces a deterministic varied rollout queue that can shrink as ready roles are completed.`);
+console.log(`PASS: Role World rollout readiness classifies all ${readiness.summary.canonical_career_roles} canonical career roles, quarantines role-level blockers, keeps policy controlled, and produces a deterministic varied rollout queue that can shrink through zero ready families as completed roles leave the queue.`);
