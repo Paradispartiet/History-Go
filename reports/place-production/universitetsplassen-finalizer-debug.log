@@ -1,0 +1,11 @@
+file:///home/runner/work/History-Go/History-Go/tools/finalize-universitetsplassen-completion.mjs:109
+  if (!response.ok) throw new Error(`Kunne ikke hente bilde (${response.status}): ${url}`);
+                          ^
+
+Error: Kunne ikke hente bilde (429): https://upload.wikimedia.org/wikipedia/commons/4/41/Universitetsplassen%2C_Oslo%2C_2019_%2801%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    at fetchBuffer (file:///home/runner/work/History-Go/History-Go/tools/finalize-universitetsplassen-completion.mjs:109:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async outputImage (file:///home/runner/work/History-Go/History-Go/tools/finalize-universitetsplassen-completion.mjs:116:18)
+    at async file:///home/runner/work/History-Go/History-Go/tools/finalize-universitetsplassen-completion.mjs:135:24
+
+Node.js v24.19.0
