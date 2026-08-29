@@ -1,10 +1,10 @@
 === targeted Universitetsplassen test ===
-✔ Universitetsplassen has exact four By collections and preserved geometry (1.435211ms)
-✔ all selected images exist and portrait front is real (0.407645ms)
-✔ description packet validates without issues (16.500807ms)
-✔ language, leksikon, stories and readings are complete (0.231824ms)
-✔ major quiz is unique 8x7 with delayed methods (0.407063ms)
-✔ six-dimensional quality gate is 30/30 (0.1709ms)
+✔ Universitetsplassen has exact four By collections and preserved geometry (1.901855ms)
+✔ all selected images exist and portrait front is real (0.447086ms)
+✔ description packet validates without issues (17.344064ms)
+✔ language, leksikon, stories and readings are complete (0.225832ms)
+✔ major quiz is unique 8x7 with delayed methods (0.408447ms)
+✔ six-dimensional quality gate is 30/30 (0.169456ms)
 ℹ tests 6
 ℹ suites 0
 ℹ pass 6
@@ -12,7 +12,7 @@
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 93.06054
+ℹ duration_ms 93.376315
 === PASS targeted Universitetsplassen test ===
 === places:index:check ===
 
@@ -353,163 +353,8 @@ Wrote reports/quiz_manifest_v2_audit_report.json
   ],
   "failures": [
     {
-      "file": "data/quiz/production_briefs/by/universitetsplassen.json",
-      "reason": "source_brief mangler selected_curriculum"
-    },
-    {
-      "file": "data/quiz/by/universitetsplassen_sets.json",
-      "reason": "production_context mangler manifest_category"
-    },
-    {
-      "file": "data/quiz/by/universitetsplassen_sets.json",
-      "reason": "production_context mangler standard_version"
-    },
-    {
-      "file": "data/quiz/by/universitetsplassen_sets.json",
-      "reason": "production_context mangler source_brief"
-    },
-    {
-      "file": "data/quiz/by/universitetsplassen_sets.json",
-      "reason": "production_context mangler context_artifact"
-    },
-    {
-      "file": "data/quiz/by/universitetsplassen_sets.json",
-      "reason": "production_context mangler pensum_module_ids"
-    },
-    {
-      "file": "data/quiz/by/universitetsplassen_sets.json",
-      "reason": "production_context mangler emne_ids"
-    },
-    {
-      "file": "data/quiz/by/universitetsplassen_sets.json",
-      "reason": "production_context mangler topic_hook_ids"
-    },
-    {
-      "file": "data/quiz/by/universitetsplassen_sets.json",
-      "reason": "production_context mangler method_ids"
-    },
-    {
-      "file": "data/quiz/by/universitetsplassen_sets.json",
-      "reason": "production_context mangler thinker_ids"
-    },
-    {
-      "file": "data/quiz/by/universitetsplassen_sets.json",
-      "reason": "production_context mangler works"
-    },
-    {
-      "file": "data/quiz/by/universitetsplassen_sets.json",
-      "reason": "kategori eller mål stemmer ikke med manifestet",
-      "categoryId": "by",
-      "targetId": "universitetsplassen",
-      "quizCategory": "by",
-      "quizTarget": "universitetsplassen"
-    },
-    {
-      "file": "data/quiz/by/universitetsplassen_sets.json",
-      "reason": "production_context.source_brief er feil",
-      "expected": "data/quiz/production_briefs/by/universitetsplassen.json"
-    },
-    {
-      "file": "data/quiz/by/universitetsplassen_sets.json",
-      "reason": "production_context.context_artifact er feil",
-      "expected": "data/quiz/production_context/by/universitetsplassen.json"
-    },
-    {
-      "file": "data/quiz/by/universitetsplassen_sets.json",
-      "reason": "production_context.resolved_files.pensum er feil",
-      "expected": "data/fag/by/pensum_by.json",
-      "actual": {
-        "path": "data/fag/by/pensum_by.json",
-        "bytes": 16713,
-        "sha256": "8de40f1af13426445083f0f3339cb4892f4833921c3614747c29656d165a0b2b",
-        "format": "json"
-      }
-    },
-    {
-      "file": "data/quiz/by/universitetsplassen_sets.json",
-      "reason": "production_context.resolved_files.emner er feil",
-      "expected": "data/fag/by/emner_by.json",
-      "actual": {
-        "path": "data/fag/by/emner_by.json",
-        "bytes": 594396,
-        "sha256": "7019313fc4b9efa3aa5393a0dd3180b12abba00b0672cb65b44efd0e5c27e8c6",
-        "format": "json"
-      }
-    },
-    {
-      "file": "data/quiz/by/universitetsplassen_sets.json",
-      "reason": "production_context.resolved_files.fagkart er feil",
-      "expected": "data/fag/by/fagkart_by.json",
-      "actual": {
-        "path": "data/fag/by/fagkart_by.json",
-        "bytes": 374396,
-        "sha256": "88d4d9a5e23f60e88da6542d55d84cae5ae4516fb2130163e6de013f88c50127",
-        "format": "json"
-      }
-    },
-    {
-      "file": "data/quiz/by/universitetsplassen_sets.json",
-      "reason": "production_context.resolved_files.methods er feil",
-      "expected": "data/fag/by/methods_by.json",
-      "actual": {
-        "path": "data/fag/by/methods_by.json",
-        "bytes": 44201,
-        "sha256": "14f3c0fd567a4a43c4d151867bb3d01bdb73da8c95ce6f3e3128fee0964dfd76",
-        "format": "json"
-      }
-    },
-    {
-      "file": "data/quiz/by/universitetsplassen_sets.json",
-      "reason": "production_context.resolved_files.supersetQuizMal er feil",
-      "expected": "data/fag/by/supersetQUIZMAL_by.json",
-      "actual": {
-        "path": "data/fag/by/supersetQUIZMAL_by.json",
-        "bytes": 6860,
-        "sha256": "a42443c293a254519c489a705662c46ae8593f348b329c34c3f4f3eda129945a",
-        "format": "json"
-      }
-    },
-    {
-      "file": "data/quiz/by/universitetsplassen_sets.json",
-      "reason": "production_context.resolved_files.quizStandard er feil",
-      "expected": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
-      "actual": {
-        "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
-        "bytes": 16882,
-        "sha256": "60804db1e587faae822930a800cfebac7966fa7e009778d46d94d1f28e02545e",
-        "format": "text"
-      }
-    },
-    {
-      "file": "data/quiz/by/universitetsplassen_sets.json",
-      "reason": "production_context.resolved_files.quizQuestionSchema er feil",
-      "expected": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
-      "actual": {
-        "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
-        "bytes": 4197,
-        "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
-        "format": "json"
-      }
-    },
-    {
       "file": "data/quiz/production_context/by/universitetsplassen.json",
       "reason": "kontekstarterfakt avviker fra deterministisk rebuild"
-    },
-    {
-      "file": "data/quiz/production_context/by/universitetsplassen.json",
-      "reason": "valgt fagkontekst avviker: pensum_module_ids"
-    },
-    {
-      "file": "data/quiz/production_context/by/universitetsplassen.json",
-      "reason": "valgt fagkontekst avviker: emne_ids"
-    },
-    {
-      "file": "data/quiz/production_context/by/universitetsplassen.json",
-      "reason": "valgt fagkontekst avviker: topic_hook_ids"
-    },
-    {
-      "file": "data/quiz/production_context/by/universitetsplassen.json",
-      "reason": "valgt fagkontekst avviker: method_ids"
     }
   ]
 }
