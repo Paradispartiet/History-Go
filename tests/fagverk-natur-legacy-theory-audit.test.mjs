@@ -36,6 +36,7 @@ test('Natur legacy-side har målt 5/5 canonical kunnskapsdekning uten gap', () =
   assert.equal(report.canonical.badgeTierCount, 16);
   assert.equal(report.canonical.underbadgeCount, 88);
   assert.equal(report.canonical.categoryContractHasNatur, true);
+  assert.equal(report.canonical.categoryContractHasNaturAssignmentBoundary, true);
 
   assert.equal(report.summary.knowledgeSectionCount, 5);
   assert.equal(report.summary.anchorCompleteCount, 5);

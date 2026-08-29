@@ -11,6 +11,9 @@ const BADGE = 'data/badges/natur.json';
 const CATEGORY_CONTRACT = 'data/categories/category_contract.json';
 const TARGET = 'fagverk.html?subject=natur#fagverkIaProgresjon';
 const OWNED_ROOTS = ['data/fag/natur/', 'data/fagverk/natur/'];
+const NATUR_ASSIGNMENT_BOUNDARY_TERMS = Object.freeze([
+  'grønt', 'vakkert', 'naturfaglig inngang', 'organisme', 'habitat', 'vassdrag', 'geologisk', 'klimavirkning', 'naturforvaltning', 'dokumenterbar'
+]);
 
 const SECTION_POLICY = Object.freeze({
   'merke-og-fag': {
@@ -220,6 +223,11 @@ export function auditNaturLegacyTheory() {
 
   const badge = json(BADGE);
   const categoryContract = json(CATEGORY_CONTRACT);
+  const naturDecision = normalize(categoryContract.decisions?.natur);
+  const categoryContractHasNaturAssignmentBoundary = NATUR_ASSIGNMENT_BOUNDARY_TERMS.every(term => naturDecision.includes(normalize(term)));
+  if (!categoryContractHasNaturAssignmentBoundary) {
+    throw new Error('Category-contracten mangler den canonicale Natur-tildelingsgrensen fra legacy-siden.');
+  }
   const knowledgeRows = rows.filter(row => row.role !== 'legacy_product_summary');
   const manualReview = knowledgeRows.filter(row => row.anchorCoverage < 1).map(row => row.id);
   const productMechanicCount = rows.reduce((sum, row) => sum + row.legacyProductMechanics.length, 0);
@@ -246,7 +254,8 @@ export function auditNaturLegacyTheory() {
       underbadgeCount: Array.isArray(badge.sub) ? badge.sub.length : 0,
       categoryContractHasNatur: Array.isArray(categoryContract.runtimeCategories)
         ? categoryContract.runtimeCategories.includes('natur')
-        : Boolean(categoryContract.decisions?.natur || categoryContract.labels?.natur)
+        : Boolean(categoryContract.decisions?.natur || categoryContract.labels?.natur),
+      categoryContractHasNaturAssignmentBoundary
     },
     navigation: {
       badgePage: portalEntry.badgePage,
