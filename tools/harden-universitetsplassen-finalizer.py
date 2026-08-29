@@ -253,4 +253,20 @@ const quizProductionContext = {
 
 text = text.replace('production_context: productionContext,', 'production_context: quizProductionContext,')
 
+# The production-context builder also inspects the materialized quiz. Rebuild it
+# once more after every finalizer write so the persisted artifact exactly equals
+# a deterministic post-materialization rebuild, as required by the audit.
+final_context_marker = '// Final deterministic Universitetsplassen quiz context rebuild.'
+if final_context_marker not in text:
+    text = text.rstrip() + r'''
+
+// Final deterministic Universitetsplassen quiz context rebuild.
+await runBuildQuizProductionContext({
+  root,
+  categoryId: "by",
+  targetId: placeId,
+  outputPath: "data/quiz/production_context/by/universitetsplassen.json"
+});
+'''
+
 path.write_text(text)
