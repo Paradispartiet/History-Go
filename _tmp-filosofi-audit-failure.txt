@@ -1,0 +1,269 @@
+=== FILOSOFI AUDIT FAILURE ===
+      },
+      {
+        "alternatives": [
+          "bevissthetsfilosofi",
+          "bevissthet"
+        ],
+        "found": "bevissthet"
+      },
+      {
+        "alternatives": [
+          "etikk"
+        ],
+        "found": "etikk"
+      },
+      {
+        "alternatives": [
+          "politisk filosofi"
+        ],
+        "found": "politisk filosofi"
+      },
+      {
+        "alternatives": [
+          "offentlig fornuft",
+          "offentlighet"
+        ],
+        "found": "offentlig fornuft"
+      },
+      {
+        "alternatives": [
+          "estetikk"
+        ],
+        "found": "estetikk"
+      },
+      {
+        "alternatives": [
+          "fortolkning",
+          "hermeneutikk"
+        ],
+        "found": "fortolkning"
+      },
+      {
+        "alternatives": [
+          "idehistorie",
+          "idéhistorie"
+        ],
+        "found": "idehistorie"
+      },
+      {
+        "alternatives": [
+          "vitenskapsfilosofi"
+        ],
+        "found": "vitenskapsfilosofi"
+      },
+      {
+        "alternatives": [
+          "teknologifilosofi",
+          "teknologi"
+        ],
+        "found": "teknologi"
+      },
+      {
+        "alternatives": [
+          "eksistensialisme"
+        ],
+        "found": "eksistensialisme"
+      },
+      {
+        "alternatives": [
+          "fenomenologi"
+        ],
+        "found": "fenomenologi"
+      },
+      {
+        "alternatives": [
+          "miljøfilosofi",
+          "miljo dyr klima"
+        ],
+        "found": "miljo dyr klima"
+      }
+    ],
+    "missingKnowledgeAnchors": []
+  },
+  "navigation": {
+    "archiveLinks": [
+      "../../../index.html",
+      "../../../merker/merker.html",
+      "../../../fagverk.html?subject=filosofi",
+      "../../../fagverk-forside.html"
+    ],
+    "expectedArchiveLinks": [
+      "../../../merker/merker.html",
+      "../../../fagverk.html?subject=filosofi",
+      "../../../fagverk-forside.html"
+    ],
+    "unknownArchiveLinks": [
+      "../../../index.html"
+    ],
+    "target": "fagverk.html?subject=filosofi#fagverkIaProgresjon",
+    "portalRoute": "fagverk.html?subject=filosofi#fagverkIaProgresjon",
+    "portalRedirected": true,
+    "compatibilityRedirectPresent": true
+  },
+  "summary": {
+    "uniqueKnowledgeMigrationRequired": false,
+    "uniqueRuntimeMigrationRequired": false,
+    "legacyProductSummaryRetired": true,
+    "redirectReady": false
+  }
+}
+file:///home/runner/work/History-Go/History-Go/scripts/audit-fagverk-filosofi-legacy-stub.mjs:151
+  throw new Error('Filosofi legacy stub er ikke redirect-klar.');
+        ^
+
+Error: Filosofi legacy stub er ikke redirect-klar.
+    at file:///home/runner/work/History-Go/History-Go/scripts/audit-fagverk-filosofi-legacy-stub.mjs:151:9
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.19.0
+
+=== SHARED GENERATED DIFF AFTER SUBKULTUR NORMALIZATION ===
+diff --git a/data/fagverk/fagverk_portal.json b/data/fagverk/fagverk_portal.json
+index 8f3d164ee..24f838d96 100644
+--- a/data/fagverk/fagverk_portal.json
++++ b/data/fagverk/fagverk_portal.json
+@@ -5,24 +5,122 @@
+   "title": "Fagverket",
+   "description": "Felles inngang til fag, emner, lærestoff, utforsking og progresjon i History Go.",
+   "categories": [
+-    {"id":"by","badgePage":"fagverk.html?subject=by#fagverkIaProgresjon","subjectPage":"fagverk.html?subject=by","subjectStatus":"materialized"},
+-    {"id":"historie","badgePage":"fagverk.html?subject=historie#fagverkIaProgresjon","subjectPage":"fagverk.html?subject=historie","subjectStatus":"materialized"},
+-    {"id":"kunst","badgePage":"fagverk.html?subject=kunst#fagverkIaProgresjon","subjectPage":"fagverk.html?subject=kunst","subjectStatus":"materialized"},
+-    {"id":"litteratur","badgePage":"fagverk.html?subject=litteratur#fagverkIaProgresjon","subjectPage":"fagverk.html?subject=litteratur","subjectStatus":"materialized"},
+-    {"id":"media","badgePage":"data/fag/media/merke_media.html","subjectPage":"fagverk.html?subject=media","subjectStatus":"materialized"},
+-    {"id":"musikk","badgePage":"data/fag/musikk/merke_musikk (1).html","subjectPage":"fagverk.html?subject=musikk","subjectStatus":"materialized"},
+-    {"id":"naeringsliv","badgePage":"data/fag/naeringsliv/merke_naeringsliv (1).html","subjectPage":"fagverk.html?subject=naeringsliv","subjectStatus":"materialized"},
+-    {"id":"natur","badgePage":"data/fag/natur/merke_natur (1).html","subjectPage":"fagverk.html?subject=natur","subjectStatus":"materialized"},
+-    {"id":"politikk","badgePage":"data/fag/politikk/merke_politikk.html","subjectPage":"fagverk.html?subject=politikk","subjectStatus":"materialized"},
+-    {"id":"psykologi","badgePage":"data/fag/psykologi/merke_psykologi (1).html","subjectPage":"fagverk.html?subject=psykologi","subjectStatus":"materialized"},
+-    {"id":"helse","badgePage":"fagverk.html?subject=helse#fagverkIaProgresjon","subjectPage":"fagverk.html?subject=helse","subjectStatus":"materialized","label":"Helse & medisin"},
+-    {"id":"utdanning","badgePage":"fagverk.html?subject=utdanning#fagverkIaProgresjon","subjectPage":"fagverk.html?subject=utdanning","subjectStatus":"materialized","label":"Skole & utdanning"},
+-    {"id":"religion","badgePage":"fagverk.html?subject=religion#fagverkIaProgresjon","subjectPage":"fagverk.html?subject=religion","subjectStatus":"materialized"},
+-    {"id":"scenekunst","badgePage":"fagverk.html?subject=scenekunst#fagverkIaProgresjon","subjectPage":"fagverk.html?subject=scenekunst","subjectStatus":"materialized"},
+-    {"id":"sport","badgePage":"data/fag/sport/merke_sport.html","subjectPage":"fagverk.html?subject=sport","subjectStatus":"materialized"},
+-    {"id":"subkultur","badgePage":"data/fag/subkultur/merke_subkultur.html","subjectPage":"fagverk.html?subject=subkultur","subjectStatus":"materialized"},
+-    {"id":"vitenskap","badgePage":"data/fag/vitenskap/merke_vitenskap (2).html","subjectPage":"fagverk.html?subject=vitenskap","subjectStatus":"materialized","label":"Vitenskap & teknologi"},
+-    {"id":"filosofi","badgePage":"fagverk.html?subject=filosofi#fagverkIaProgresjon","subjectPage":"fagverk.html?subject=filosofi","subjectStatus":"materialized"},
+-    {"id":"film_tv","badgePage":"data/fag/TV_og_Film/merke_film_tv.html","subjectPage":"fagverk.html?subject=film_tv","subjectStatus":"materialized"}
++    {
++      "id": "by",
++      "badgePage": "fagverk.html?subject=by#fagverkIaProgresjon",
++      "subjectPage": "fagverk.html?subject=by",
++      "subjectStatus": "materialized"
++    },
++    {
++      "id": "historie",
++      "badgePage": "fagverk.html?subject=historie#fagverkIaProgresjon",
++      "subjectPage": "fagverk.html?subject=historie",
++      "subjectStatus": "materialized"
++    },
++    {
++      "id": "kunst",
++      "badgePage": "fagverk.html?subject=kunst#fagverkIaProgresjon",
++      "subjectPage": "fagverk.html?subject=kunst",
++      "subjectStatus": "materialized"
++    },
++    {
++      "id": "litteratur",
++      "badgePage": "fagverk.html?subject=litteratur#fagverkIaProgresjon",
++      "subjectPage": "fagverk.html?subject=litteratur",
++      "subjectStatus": "materialized"
++    },
++    {
++      "id": "media",
++      "badgePage": "data/fag/media/merke_media.html",
++      "subjectPage": "fagverk.html?subject=media",
++      "subjectStatus": "materialized"
++    },
++    {
++      "id": "musikk",
++      "badgePage": "data/fag/musikk/merke_musikk (1).html",
++      "subjectPage": "fagverk.html?subject=musikk",
++      "subjectStatus": "materialized"
++    },
++    {
++      "id": "naeringsliv",
++      "badgePage": "data/fag/naeringsliv/merke_naeringsliv (1).html",
++      "subjectPage": "fagverk.html?subject=naeringsliv",
++      "subjectStatus": "materialized"
++    },
++    {
++      "id": "natur",
++      "badgePage": "data/fag/natur/merke_natur (1).html",
++      "subjectPage": "fagverk.html?subject=natur",
++      "subjectStatus": "materialized"
++    },
++    {
++      "id": "politikk",
++      "badgePage": "data/fag/politikk/merke_politikk.html",
++      "subjectPage": "fagverk.html?subject=politikk",
++      "subjectStatus": "materialized"
++    },
++    {
++      "id": "psykologi",
++      "badgePage": "data/fag/psykologi/merke_psykologi (1).html",
++      "subjectPage": "fagverk.html?subject=psykologi",
++      "subjectStatus": "materialized"
++    },
++    {
++      "id": "helse",
++      "badgePage": "fagverk.html?subject=helse#fagverkIaProgresjon",
++      "subjectPage": "fagverk.html?subject=helse",
++      "subjectStatus": "materialized",
++      "label": "Helse & medisin"
++    },
++    {
++      "id": "utdanning",
++      "badgePage": "fagverk.html?subject=utdanning#fagverkIaProgresjon",
++      "subjectPage": "fagverk.html?subject=utdanning",
++      "subjectStatus": "materialized",
++      "label": "Skole & utdanning"
++    },
++    {
++      "id": "religion",
++      "badgePage": "fagverk.html?subject=religion#fagverkIaProgresjon",
++      "subjectPage": "fagverk.html?subject=religion",
++      "subjectStatus": "materialized"
++    },
++    {
++      "id": "scenekunst",
++      "badgePage": "fagverk.html?subject=scenekunst#fagverkIaProgresjon",
++      "subjectPage": "fagverk.html?subject=scenekunst",
++      "subjectStatus": "materialized"
++    },
++    {
++      "id": "sport",
++      "badgePage": "data/fag/sport/merke_sport.html",
++      "subjectPage": "fagverk.html?subject=sport",
++      "subjectStatus": "materialized"
++    },
++    {
++      "id": "subkultur",
++      "badgePage": "data/fag/subkultur/merke_subkultur.html",
++      "subjectPage": "fagverk.html?subject=subkultur",
++      "subjectStatus": "materialized"
++    },
++    {
++      "id": "vitenskap",
++      "badgePage": "data/fag/vitenskap/merke_vitenskap (2).html",
++      "subjectPage": "fagverk.html?subject=vitenskap",
++      "subjectStatus": "materialized",
++      "label": "Vitenskap & teknologi"
++    },
++    {
++      "id": "filosofi",
++      "badgePage": "fagverk.html?subject=filosofi#fagverkIaProgresjon",
++      "subjectPage": "fagverk.html?subject=filosofi",
++      "subjectStatus": "materialized"
++    },
++    {
++      "id": "film_tv",
++      "badgePage": "data/fag/TV_og_Film/merke_film_tv.html",
++      "subjectPage": "fagverk.html?subject=film_tv",
++      "subjectStatus": "materialized"
++    }
+   ]
+ }
