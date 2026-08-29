@@ -18,7 +18,7 @@ test('digitalisering, vitenskap, teknologi og samfunn er source-first klar uten 
   assert.ok(claims.every((claim) => claim.source_ids.length >= 2));
   assert.ok(brief.sources.every((source) => source.url.startsWith('https://') && used.has(source.id)));
   assert.equal(brief.subcategory_upgrade_registration.registered, false);
-  assert.equal(production.progress.materializedDomains, 10);
+  assert.equal(production.progress.materializedDomains, 11);
   assert.equal(production.progress.strictCompletionProven, false);
   assert.equal(report.status, 'pass');
   assert.equal(report.six_part_quality_review.total, 29);
