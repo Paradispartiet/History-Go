@@ -1312,6 +1312,284 @@
           "narrative": "Du lærer at relasjoner trenger hukommelse, men ikke alltid administrasjon. Noen ting skal ikke følges opp. De skal bare få leve."
         }
       ]
+    },
+    {
+      "id": "administrasjonsmedarbeider_profesjonelle_arbeidsrelasjoner",
+      "description": "Profesjonelle arbeidsrelasjoner for Administrasjonsmedarbeider: handoff, dokumentasjon, innkjøpsgrunnlag og driftskontekst med eksplisitte fag- og myndighetsgrenser.",
+      "learning_focus": [
+        "sporbar handoff",
+        "dokumentasjonsgrunnlag",
+        "faggrense",
+        "ansvar og myndighet"
+      ],
+      "fictional_scenario_actors": [
+        "nora_administrasjonskoordinator",
+        "marius_regnskapsmedarbeider_admin",
+        "lea_innkjopskoordinator_admin",
+        "eirik_driftskontakt_admin"
+      ],
+      "mails": [
+        {
+          "id": "administrasjonsmedarbeider_people_nora_handoff_001",
+          "actor_id": "nora_administrasjonskoordinator",
+          "from": "Nora",
+          "sender": "Nora",
+          "person_id": "nora_administrasjonskoordinator",
+          "people_ref": "nora_administrasjonskoordinator",
+          "place_id": "frist_og_oppfolgingsbord",
+          "mail_type": "people",
+          "mail_family": "administrasjonsmedarbeider_profesjonelle_arbeidsrelasjoner",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "work",
+          "messageChannel": "work",
+          "mail_class": "professional_message",
+          "phase": "mid",
+          "priority": 75,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Nora vil ha et tydelig eierskap før fristen",
+          "summary": "En åpen sak har frist i dag, men mangler fortsatt tydelig eier. Nora ber deg gjøre overleveringen sporbar uten å late som koordinering gir deg rett til å ta beslutningen selv.",
+          "situation": [
+            "Nora sender status på en sak som har flyttet seg mellom innboks, drift og økonomi. Fristen er synlig, men det er fortsatt uklart hvem som eier den siste faglige avklaringen.",
+            "Hun ber deg samle dokumentert grunnlag, navngi hvem dere venter på og skrive neste steg slik at saken ikke blir stående som «nesten ferdig» i systemet.",
+            "Det raskeste ville være å fylle inn en sannsynlig eier og lukke din del. Det mest sporbare er å holde saken åpen til faktisk ansvar er bekreftet."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør manglende eier eksplisitt og send sporbar handoff.",
+              "reply": "Jeg markerer saken som åpen, skriver hvem vi venter på og hva som mangler før neste steg.",
+              "effects": {
+                "trust": 2,
+                "documentation_quality": 2,
+                "risk": -1,
+                "stress": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "admin_people_nora_traceable_handoff"
+                ]
+              },
+              "triggers_on_choice": "admin_people_nora_traceable_handoff",
+              "feedback": "Du beskytter fristen uten å skjule usikkerheten. Nora kan følge opp prosessen, mens beslutningsansvaret blir liggende hos riktig eier."
+            },
+            {
+              "id": "B",
+              "label": "Sett en sannsynlig eier for å få saken ut av køen.",
+              "reply": "Jeg setter den mest sannsynlige eieren og lukker min del så lenge resten ser riktig ut.",
+              "effects": {
+                "control": 2,
+                "documentation_quality": -2,
+                "risk": 2,
+                "trust": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "admin_people_nora_assumed_owner"
+                ]
+              },
+              "triggers_on_choice": "admin_people_nora_assumed_owner",
+              "feedback": "Køen blir penere, men du har gjort en antakelse til systemfakta. Nora får mindre synlig støy og organisasjonen får svakere sporbarhet."
+            }
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_people_marius_documentation_001",
+          "actor_id": "marius_regnskapsmedarbeider_admin",
+          "from": "Marius",
+          "sender": "Marius",
+          "person_id": "marius_regnskapsmedarbeider_admin",
+          "people_ref": "marius_regnskapsmedarbeider_admin",
+          "place_id": "registrerings_og_kontrollflate",
+          "mail_type": "people",
+          "mail_family": "administrasjonsmedarbeider_profesjonelle_arbeidsrelasjoner",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "work",
+          "messageChannel": "work",
+          "mail_class": "professional_message",
+          "phase": "mid",
+          "priority": 75,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Marius mangler dokumentasjonen bak registreringen",
+          "summary": "Marius finner en registrering som ser plausibel ut, men underlaget er ikke godt nok til å etterprøve den. Dere må skille mellom praktisk sannsynlighet og dokumentert økonomisk grunnlag.",
+          "situation": [
+            "Marius peker på en post der beløp og kategori ser rimelige ut, men vedlegget som forklarer formålet mangler. Han kan ikke rekonstruere grunnlaget fra systemteksten alene.",
+            "Du har en muntlig forklaring fra tidligere i dagen, men ingen kilde som gjør forklaringen etterprøvbar for den som kommer etter dere.",
+            "Marius ber deg velge mellom å hente dokumentasjonen nå eller la posten stå åpen med tydelig mangel og ansvarlig oppfølging."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Hold posten åpen og be om dokumentert grunnlag.",
+              "reply": "Jeg lar posten stå åpen og registrerer nøyaktig hvilket underlag som mangler og hvem som skal skaffe det.",
+              "effects": {
+                "documentation_quality": 3,
+                "trust": 2,
+                "risk": -2,
+                "control": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "admin_people_marius_documented_basis"
+                ]
+              },
+              "triggers_on_choice": "admin_people_marius_documented_basis",
+              "feedback": "Marius kan følge sporet uten å stole på hukommelse eller muntlig kontekst. Du gjør usikkerheten synlig i stedet for å kamuflere den som ferdig arbeid."
+            },
+            {
+              "id": "B",
+              "label": "Bruk den muntlige forklaringen og gå videre.",
+              "reply": "Jeg registrerer ut fra forklaringen vi allerede har og rydder dokumentasjonen hvis noen spør senere.",
+              "effects": {
+                "control": 2,
+                "documentation_quality": -3,
+                "risk": 2,
+                "trust": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "admin_people_marius_oral_basis"
+                ]
+              },
+              "triggers_on_choice": "admin_people_marius_oral_basis",
+              "feedback": "Arbeidet går raskere, men dere mister skillet mellom det dere vet og det dere antar. Marius må senere revidere en beslutning som nå ser mer sikker ut enn den er."
+            }
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_people_lea_purchase_001",
+          "actor_id": "lea_innkjopskoordinator_admin",
+          "from": "Lea",
+          "sender": "Lea",
+          "person_id": "lea_innkjopskoordinator_admin",
+          "people_ref": "lea_innkjopskoordinator_admin",
+          "place_id": "arkiv_og_versjonsflate",
+          "mail_type": "people",
+          "mail_family": "administrasjonsmedarbeider_profesjonelle_arbeidsrelasjoner",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "work",
+          "messageChannel": "work",
+          "mail_class": "professional_message",
+          "phase": "mid",
+          "priority": 75,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Lea finner bestillingen, men referansen er feil",
+          "summary": "Lea kan dokumentere hvilken bestilling leverandørfakturaen gjelder, men systemreferansen peker på feil spor. Oppgaven er å korrigere koblingen uten å omskrive historikken eller late som feilen aldri fantes.",
+          "situation": [
+            "Lea finner bestillingen i innkjøpssporet og bekrefter at varen faktisk er bestilt. Samtidig ser dere at referansen i administrasjonssystemet peker på et annet dokument.",
+            "Du kan rette feltet raskt, men da må endringen fortsatt være sporbar slik at senere kontroll kan se hva som var feil og hvorfor koblingen ble endret.",
+            "Lea eier bestillingsgrunnlaget. Du eier den administrative registreringen. Ingen av dere bør gjøre den andres ansvar usynlig."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Korriger referansen med sporbar endringsforklaring.",
+              "reply": "Jeg kobler til riktig bestilling, beholder spor etter den gamle referansen og noterer Leas dokumenterte avklaring.",
+              "effects": {
+                "documentation_quality": 3,
+                "trust": 2,
+                "risk": -2,
+                "learning": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "admin_people_lea_traceable_correction"
+                ]
+              },
+              "triggers_on_choice": "admin_people_lea_traceable_correction",
+              "feedback": "Du bruker Leas faglige grunnlag uten å overta hennes ansvar. Endringen blir forståelig for neste person og revisjonssporet forblir intakt."
+            },
+            {
+              "id": "B",
+              "label": "Bytt referansen uten å dokumentere den gamle feilen.",
+              "reply": "Jeg retter feltet til riktig bestilling og lar systemet vise den ryddige sluttstatusen.",
+              "effects": {
+                "control": 2,
+                "documentation_quality": -2,
+                "risk": 1,
+                "learning": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "admin_people_lea_silent_correction"
+                ]
+              },
+              "triggers_on_choice": "admin_people_lea_silent_correction",
+              "feedback": "Sluttstatusen ser riktig ut, men organisasjonen mister kunnskap om hvordan feilen oppstod. Neste lignende avvik blir vanskeligere å forstå og kontrollere."
+            }
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_people_eirik_drift_001",
+          "actor_id": "eirik_driftskontakt_admin",
+          "from": "Eirik",
+          "sender": "Eirik",
+          "person_id": "eirik_driftskontakt_admin",
+          "people_ref": "eirik_driftskontakt_admin",
+          "place_id": "innboks_og_mottaksflate",
+          "mail_type": "people",
+          "mail_family": "administrasjonsmedarbeider_profesjonelle_arbeidsrelasjoner",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "work",
+          "messageChannel": "work",
+          "mail_class": "professional_message",
+          "phase": "mid",
+          "priority": 75,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Eirik kan forklare driften, men ikke godkjenne tallene",
+          "summary": "Eirik gir den operative forklaringen på et avvik og vet hvem som faktisk eier neste handling. Du må bruke konteksten uten å gjøre driftsforklaringen til en økonomisk godkjenning den ikke er.",
+          "situation": [
+            "Eirik forklarer at avviket kommer fra en utsatt leveranse og en midlertidig driftsløsning. Forklaringen gjør hendelsesforløpet forståelig, men han har ikke mandat til å godkjenne økonomisk klassifisering.",
+            "Han gir deg navn på faktisk operativ eier og tidspunkt for neste bekreftelse. Det er nok til å gjøre oppfølgingen presis, men ikke nok til å lukke alle faglige spørsmål.",
+            "Du må skille mellom nyttig kontekst, dokumentert fakta og den godkjenningen som fortsatt må komme fra riktig rolle."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrer driftskonteksten og behold riktig godkjenningspunkt åpent.",
+              "reply": "Jeg dokumenterer Eiriks forklaring, setter faktisk eier og lar den formelle avklaringen stå åpen hos riktig rolle.",
+              "effects": {
+                "trust": 2,
+                "documentation_quality": 2,
+                "risk": -2,
+                "autonomy": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "admin_people_eirik_bounded_context"
+                ]
+              },
+              "triggers_on_choice": "admin_people_eirik_bounded_context",
+              "feedback": "Du får bedre kontekst uten å gjøre Eirik til godkjenner. Arbeidet blir både raskere å følge og tydeligere på hvem som fortsatt må beslutte."
+            },
+            {
+              "id": "B",
+              "label": "Bruk Eiriks forklaring som tilstrekkelig godkjenning.",
+              "reply": "Jeg lukker saken fordi driften har forklart hva som skjedde og neste steg virker opplagt.",
+              "effects": {
+                "control": 2,
+                "risk": 3,
+                "trust": -2,
+                "documentation_quality": -2
+              },
+              "next_bias": {
+                "set_flags": [
+                  "admin_people_eirik_context_as_approval"
+                ]
+              },
+              "triggers_on_choice": "admin_people_eirik_context_as_approval",
+              "feedback": "Du forveksler forklaring med myndighet. Saken blir lukket raskt, men sporbarheten bryter akkurat der organisasjonen trenger å se hvem som faktisk kunne godkjenne."
+            }
+          ]
+        }
+      ]
     }
   ]
 }
