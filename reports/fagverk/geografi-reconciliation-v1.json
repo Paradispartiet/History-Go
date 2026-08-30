@@ -5,7 +5,7 @@
   "audited_main_sha": "ffd83c30d57af5b7547bb2100e4e434a09227e50",
   "owner_subject_id": "natur",
   "canonical_subcategory_id": "geografi",
-  "status": "domains_1_2_materialized_domain_3_source_first_ready",
+  "status": "domains_1_2_3_materialized_domain_4_source_first_ready",
   "authority_files": [
     "data/categories/category_contract.json",
     "data/fagverk/subject_inventory.json",
@@ -24,20 +24,21 @@
     "method_rule": "Kartografi, GIS, geodata, koordinatreferanser, romlig analyse og fjernmåling må produseres som geografifaglig metodegrunnlag; generell kartbruk eller stedstilknytning er ikke tilstrekkelig."
   },
   "findings": [
-    {"path":"data/fag/natur/naturpensum_canonical_v4_5.json","classification":"reuse_with_expansion","reason":"Natur har allerede sterke kunnskapsfelt for vann/hydrologi, klima, geologi/landskap og biogeografi. Disse bevares hos Natur og brukes som faglig råmateriale, men må få geografisk rom-, skala-, mønster- og metodeinnramming før de kan telle i Geografi."},
-    {"path":"data/fag/natur/methods_natur_canonical_v4_5.json","classification":"reuse_with_expansion","reason":"Natur har hydrologiske, geologiske, klima- og biogeografiske analysemetoder som kan gjenbrukes. Reconciliation fant ikke en tilsvarende eksplisitt canonical pakke for kartografi, GIS, koordinatreferanser og romlig statistikk."},
-    {"path":"data/fag/natur/natur_universal_coverage_contract_v1.json","classification":"reuse_with_expansion","reason":"Kontrakten skiller allerede universell fagdekning fra geografisk produksjonsdekning. Dette skillet beholdes: geografiske stedscase i Natur er ikke det samme som en ferdig geografidisiplin."},
-    {"path":"data/fagverk/politikk/sosiologi_antropologi/sted-by-migrasjon-og-transnasjonalitet.json","classification":"secondary_link","reason":"Sterkt materiale om sted, rom, skala, urbanitet, migrasjon og transnasjonalitet er relevant for samfunnsgeografi, men Sosiologi/antropologi beholder teori- og kapitteleierskap."},
-    {"path":"data/fagverk/by/arkitektur-type-skala-byform.json","classification":"secondary_link","reason":"Byform, skala og morfologi er relevante case for urban geografi. By-faget beholder arkitektur- og byformeierskapet."},
-    {"path":"data/fagverk/by/bolig-nabolag-tilgang-endring.json","classification":"secondary_link","reason":"Bolig, nabolag, tilgang og endring støtter analyser av bosetting, segregering og urbanisering, men skal ikke flyttes ut av By."},
-    {"path":"data/fagverk/by/arbeid-naering-handel-logistikk.json","classification":"secondary_link","reason":"Transport, logistikk, handel og arbeidsgeografi kan bruke By-kapitlet som casegrunnlag uten å gjøre det til et geografikapittel."},
-    {"path":"data/fagverk/naeringsliv/logistikk-infrastruktur-okonomisk-rom.json","classification":"secondary_link","reason":"Næringsliv har allerede canonicalt eierskap til logistikk, infrastruktur og økonomisk rom. Geografi sekundærbinder dette i økonomisk geografi og lokaliseringsanalyse."},
-    {"path":"data/fagverk/naeringsliv/internasjonal-okonomi-operations-prosjekt.json","classification":"secondary_link","reason":"Globale verdikjeder, handel og grensekryssende produksjon er relevant for økonomisk geografi, men det økonomiske teori- og kapitteleierskapet forblir hos Næringsliv."},
-    {"path":"data/fagverk/politikk/konflikt-makt-sivilsamfunn.json","classification":"secondary_link","reason":"Makt, konflikt og institusjoner er nødvendige nabofelt for politisk geografi. Geografi må likevel produsere territorium, grenser, skala og romlig maktanalyse som eget disiplinært bidrag."}
+    {"path":"data/fag/natur/naturpensum_canonical_v4_5.json","classification":"reuse_with_expansion","reason":"Natur har sterke kunnskapsfelt for vann, klima, geologi/landskap og biogeografi som beholdes hos Natur og bare teller i Geografi etter eget strengt geografioverlegg."},
+    {"path":"data/fag/natur/methods_natur_canonical_v4_5.json","classification":"reuse_with_expansion","reason":"Natur-metoder kan gjenbrukes, mens eksplisitt kartografi, GIS, koordinatreferanser og romlig analyse må produseres som geografifaglig metodegrunnlag."},
+    {"path":"data/fag/natur/natur_universal_coverage_contract_v1.json","classification":"reuse_with_expansion","reason":"Universell Natur-dekning er ikke det samme som materialisert Geografi; skillet beholdes fail-closed."},
+    {"path":"data/fagverk/politikk/sosiologi_antropologi/sted-by-migrasjon-og-transnasjonalitet.json","classification":"secondary_link","reason":"Sted, rom, urbanitet, migrasjon og transnasjonalitet er relevant for samfunnsgeografi, men Sosiologi/antropologi beholder eierskapet."},
+    {"path":"data/fagverk/by/arkitektur-type-skala-byform.json","classification":"secondary_link","reason":"Byform og morfologi brukes som urban-geografiske case uten å flytte By-eierskap."},
+    {"path":"data/fagverk/by/bolig-nabolag-tilgang-endring.json","classification":"secondary_link","reason":"Bolig, nabolag og tilgang støtter bosettings- og urbaniseringsanalyse uten dobbelttelling."},
+    {"path":"data/fagverk/by/arbeid-naering-handel-logistikk.json","classification":"secondary_link","reason":"Transport, handel og arbeid kan sekundærbindes i økonomisk geografi, mens By beholder kapitteleierskapet."},
+    {"path":"data/fagverk/naeringsliv/logistikk-infrastruktur-okonomisk-rom.json","classification":"secondary_link","reason":"Næringsliv beholder logistikk- og økonomisk-rom-eierskap; Geografi bruker det som casegrunnlag."},
+    {"path":"data/fagverk/naeringsliv/internasjonal-okonomi-operations-prosjekt.json","classification":"secondary_link","reason":"Globale verdikjeder er relevante for økonomisk geografi, men økonomisk teori- og kapitteleierskap ligger hos Næringsliv."},
+    {"path":"data/fagverk/politikk/konflikt-makt-sivilsamfunn.json","classification":"secondary_link","reason":"Politisk geografi sekundærbinder makt og konflikt, men må produsere territorium, grenser og romlig maktanalyse selv."
+    }
   ],
   "move_decision": {
     "move_existing_files": [],
-    "justification": "Repository-wide reconciliation fant ingen eksisterende fil som bør flyttes for å etablere Geografi. Bevar canonicale eiere og bruk gjenbruksoverlegg eller sekundærbindinger."
+    "justification": "Repository-wide reconciliation fant ingen eksisterende fil som bør flyttes for å etablere Geografi. Canonicale eiere bevares; gjenbruk skjer gjennom eksplisitte overlegg eller sekundærbindinger."
   },
   "prohibited_actions": [
     "slette eller flytte eksisterende Natur-, By-, Næringsliv-, Politikk- eller Sosiologi/antropologi-kapitler for å fylle Geografi",
@@ -66,9 +67,9 @@
     "reuse_with_expansion": 4,
     "move_existing": 0,
     "new_production_required": 8,
-    "source_first_ready": 3,
-    "materialized": 2,
-    "next_domain": "geomorfologi_landskap_jordsystemer",
+    "source_first_ready": 4,
+    "materialized": 3,
+    "next_domain": "klima_vaer_klimasoner_endring",
     "strict_completion_proven": false
   }
 }
