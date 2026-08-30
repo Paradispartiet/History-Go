@@ -1,0 +1,28 @@
+{
+  "schema": "history_go_geografi_climate_weather_zones_change_fulltext_brief_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-30",
+  "domain_id": "klima_vaer_klimasoner_endring",
+  "sourceBriefFile": "data/fag/natur/geografi/climate_weather_zones_change_source_claim_brief_v1.json",
+  "reuseOwnerChapters": ["data/fagverk/natur/klima_energi_resiliens.json"],
+  "sections": [
+    {"id":"vaer-klima-normaler-og-referanseperioder","module":"data/fagverk/natur/geografi/klima-vaer-klimasoner-og-endring/01-vaer-normaler-og-energibalanse.json"},
+    {"id":"energibalanse-drivere-og-klimavariasjon","module":"data/fagverk/natur/geografi/klima-vaer-klimasoner-og-endring/01-vaer-normaler-og-energibalanse.json"},
+    {"id":"breddegrad-hoyde-kontinentalitet-og-sirkulasjon","module":"data/fagverk/natur/geografi/klima-vaer-klimasoner-og-endring/02-regionale-drivere-og-klimasoner.json"},
+    {"id":"klimasoner-klassifikasjon-og-grenseproblemer","module":"data/fagverk/natur/geografi/klima-vaer-klimasoner-og-endring/02-regionale-drivere-og-klimasoner.json"},
+    {"id":"stasjoner-grid-reanalyse-og-romlig-representasjon","module":"data/fagverk/natur/geografi/klima-vaer-klimasoner-og-endring/03-datarepresentasjon-og-ekstremer.json"},
+    {"id":"ekstremer-indekser-returperioder-og-sammensatte-hendelser","module":"data/fagverk/natur/geografi/klima-vaer-klimasoner-og-endring/03-datarepresentasjon-og-ekstremer.json"},
+    {"id":"regional-klimaendring-scenarier-og-nedskalering","module":"data/fagverk/natur/geografi/klima-vaer-klimasoner-og-endring/04-scenarier-nedskalering-og-mikroklima.json"},
+    {"id":"mikroklima-urban-varme-og-skalaovergang","module":"data/fagverk/natur/geografi/klima-vaer-klimasoner-og-endring/04-scenarier-nedskalering-og-mikroklima.json"}
+  ],
+  "strict_boundaries": [
+    "Enkeltvær og enkeltsesonger skal ikke brukes som klimatrend uten definert tidsserie og referanse.",
+    "Energibalanse, drivere og intern variasjon skal skilles fra enkel korrelasjon i attribusjonsresonnement.",
+    "Breddegrad, høyde og kontinentalitet behandles som samvirkende kontroller med sirkulasjon og topografi, ikke universelle énfaktorregler.",
+    "Klimasoner er terskelbaserte regionaliseringer; kartgrenser er ikke skarpe fysiske vegger.",
+    "Stasjon, grid og reanalyse skal skilles etter punkt-/arealrepresentasjon, assimilasjon, oppløsning og metadata.",
+    "Ekstremindekser og returperioder skal rapporteres med definisjon, observasjonslengde og ikke-stasjonaritetsforbehold.",
+    "Framskrivninger skal oppgi scenario eller oppvarmingsnivå, referanseperiode, ensemble, nedskalering og spredning.",
+    "Mikroklima kan brukes til lokal eksponering og prosessanalyse, men generaliseres ikke til regional trend uten representativ langtidsevidens."
+  ]
+}
