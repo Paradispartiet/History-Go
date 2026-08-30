@@ -1,0 +1,9 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { auditVitenskapLegacyAdjudication } from '../scripts/audit-fagverk-vitenskap-legacy-adjudication.mjs';
+
+test('Vitenskap adjudication covers all legacy sections with zero invented migrations',()=>{const r=auditVitenskapLegacyAdjudication();assert.equal(r.subject,'vitenskap');assert.equal(r.summary.legacySectionCount,12);assert.equal(r.summary.knowledgeSectionCount,10);assert.equal(r.summary.canonicalSupersedesCount,10);assert.equal(r.summary.migratedSectionCount,0);assert.equal(r.summary.retiredProductCopyCount,1);assert.equal(r.summary.retiredDynamicProductUiCount,1);assert.ok(r.rows.filter(x=>x.role==='knowledge').every(x=>x.disposition==='canonical_supersedes'));assert.ok(r.rows.every(x=>x.migrationRefs.length===0));});
+
+test('Vitenskap adjudication proves readiness without retiring the route early',()=>{const r=auditVitenskapLegacyAdjudication();assert.equal(r.summary.rawAuditRedirectReady,false);assert.equal(r.summary.redirectReady,true);assert.equal(r.summary.redirectTarget,'fagverk.html?subject=vitenskap#fagverkIaProgresjon');assert.equal(r.summary.portalRedirected,false);assert.equal(r.summary.portalRoute,'data/fag/vitenskap/merke_vitenskap (2).html');assert.equal(r.summary.legacySourcePreserved,true);});
+
+test('Vitenskap knowledge rows have real owners and product UI rows do not masquerade as theory',()=>{const r=auditVitenskapLegacyAdjudication();for(const row of r.rows.filter(x=>x.role==='knowledge')){assert.equal(row.anchorCoverage,1,row.id);assert.ok(row.ownerFiles.length>0,row.id);assert.ok(row.rationale.length>=100,row.id);}const bidrag=r.rows.find(x=>x.id==='bidrag');assert.equal(bidrag.disposition,'retire_legacy_product_copy');assert.deepEqual(bidrag.ownerFiles,[]);const emner=r.rows.find(x=>x.id==='emner-vitenskap');assert.equal(emner.disposition,'retire_legacy_dynamic_product_ui');assert.deepEqual(emner.ownerFiles,[]);});
