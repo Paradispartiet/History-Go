@@ -1,0 +1,268 @@
+name: Universitetsplassen PR repair
+
+on:
+  push:
+    branches:
+      - work/universitetsplassen-completion-20260829
+    paths:
+      - .github/workflows/universitetsplassen-pr-repair.yml
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/universitetsplassen-completion-20260829
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Sync current main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          set +e
+          git merge --no-edit origin/main
+          rc=$?
+          set -e
+          if [ "$rc" -ne 0 ]; then
+            conflicts="$(git diff --name-only --diff-filter=U)"
+            printf 'Merge conflicts:\n%s\n' "$conflicts"
+            test "$conflicts" = "data/fagverk/fagverk_release.json"
+            git checkout --theirs data/fagverk/fagverk_release.json
+            git add data/fagverk/fagverk_release.json
+            git commit --no-edit
+          fi
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Repair canonical Universitetsplassen integration
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          def load(path):
+              return json.loads(Path(path).read_text())
+          def save(path, data):
+              Path(path).write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
+
+          quiz_path = Path("data/quiz/by/universitetsplassen_sets.json")
+          brief_path = Path("data/quiz/production_briefs/by/universitetsplassen.json")
+          fagkart = load("data/fag/by/fagkart_by.json")
+          quiz = load(quiz_path)
+          brief = load(brief_path)
+
+          hooks = {}
+          def walk(value):
+              if isinstance(value, dict):
+                  if isinstance(value.get("id"), str) and isinstance(value.get("emne_ids"), list) and isinstance(value.get("canon"), dict):
+                      thinkers = value.get("canon", {}).get("thinkers", [])
+                      if isinstance(thinkers, list) and thinkers:
+                          hooks[value["id"]] = value
+                  for child in value.values():
+                      walk(child)
+              elif isinstance(value, list):
+                  for child in value:
+                      walk(child)
+          walk(fagkart)
+
+          preferred = {
+              50: ("byliv_aapne_rom", "william_h_whyte"),
+              51: ("byliv_aapne_rom", "william_h_whyte"),
+              52: ("his_spor_gatebilde", "pierre_nora"),
+              53: ("his_spor_gatebilde", "pierre_nora"),
+              54: ("ark_bygningstyper", "aldo_rossi"),
+              55: ("ark_materialbruk", "christian_norberg_schulz"),
+              56: ("ark_makt", None),
+          }
+          why = {
+              50: "Whytes arbeid hjelper å tolke hvordan et åpent byrom faktisk brukes og hvor mennesker velger å oppholde seg.",
+              51: "Whytes arbeid hjelper å skille mellom gjennomgang og opphold i et offentlig rom uten å gjøre observasjonen til en generell teoriøvelse.",
+              52: "Noras minnestedsbegrep hjelper å lese hvordan historiske lag blir bevart og gjort synlige i et konkret byrom.",
+              53: "Noras minnestedsbegrep hjelper å koble materielle spor på plassen til hvordan fortid lagres i offentlige steder.",
+              54: "Rossis typologibegrep hjelper å sammenligne bygningenes form og rolle som deler av et samlet byanlegg.",
+              55: "Norberg-Schulz hjelper å knytte materialbruk til romlig og sanselig erfaring i den konkrete arkitekturen.",
+              56: "Den valgte arkitekturteoretikeren hjelper å undersøke hvordan monumental form kan uttrykke institusjonell og symbolsk makt.",
+          }
+
+          questions = {}
+          def collect(value):
+              if isinstance(value, dict):
+                  qid = value.get("id")
+                  if isinstance(qid, str) and qid.startswith("universitetsplassen_quiz_"):
+                      try:
+                          questions[int(qid.rsplit("_", 1)[1])] = value
+                      except ValueError:
+                          pass
+                  for child in value.values():
+                      collect(child)
+              elif isinstance(value, list):
+                  for child in value:
+                      collect(child)
+          collect(quiz)
+
+          selected_hooks, selected_thinkers, selected_works = [], [], []
+          for n in range(50, 57):
+              q = questions[n]
+              hook_id, preferred_thinker = preferred[n]
+              hook = hooks.get(hook_id)
+              if not hook:
+                  raise SystemExit(f"Missing canonical hook {hook_id}")
+              if q.get("emne_id") not in hook.get("emne_ids", []):
+                  raise SystemExit(f"Hook {hook_id} does not own {q.get('emne_id')} for q{n}")
+              thinkers = [t for t in hook.get("canon", {}).get("thinkers", []) if isinstance(t, dict) and t.get("id") and t.get("works")]
+              thinker = next((t for t in thinkers if t.get("id") == preferred_thinker), None) or (thinkers[0] if thinkers else None)
+              if not thinker:
+                  raise SystemExit(f"Hook {hook_id} has no thinker with a canonical work")
+              work = thinker["works"][0]
+              q["topic_hook_id"] = hook_id
+              q["thinker_id"] = thinker["id"]
+              q["work"] = work
+              q["theory_ref"] = {"topic_hook_id": hook_id, "why_it_helps": why[n]}
+              for bucket, value in ((selected_hooks, hook_id), (selected_thinkers, thinker["id"]), (selected_works, work)):
+                  if value not in bucket:
+                      bucket.append(value)
+
+          for container in (quiz.get("production_context", {}), brief.setdefault("selected_curriculum", {})):
+              container["topic_hook_ids"] = selected_hooks
+              container["thinker_ids"] = selected_thinkers
+              container["works"] = selected_works
+
+          save(quiz_path, quiz)
+          save(brief_path, brief)
+
+          lesespor_path = Path("data/lesespor/oslo/lesespor_oslo_by.json")
+          lesespor = load(lesespor_path)
+          changed = 0
+          def fix_lesespor(value):
+              global changed
+              if isinstance(value, dict):
+                  if value.get("id") in {"lesespor_universitetsplassen_003", "lesespor_universitetsplassen_004"}:
+                      if value.get("source_quality") != "official":
+                          raise SystemExit(f"Unexpected source_quality for {value.get('id')}: {value.get('source_quality')}")
+                      value["source_quality"] = "recognized"
+                      changed += 1
+                  for child in value.values():
+                      fix_lesespor(child)
+              elif isinstance(value, list):
+                  for child in value:
+                      fix_lesespor(child)
+          fix_lesespor(lesespor)
+          if changed != 2:
+              raise SystemExit(f"Expected exactly two Lesespor fixes, got {changed}")
+          save(lesespor_path, lesespor)
+
+          wrong_report = Path("data/places/historie-production/universitetsplassen.json")
+          if not wrong_report.exists():
+              raise SystemExit("Expected erroneous Historie production report to exist before cleanup")
+          wrong_report.unlink()
+
+          epoke_test = Path("tests/epoke-place-index.test.mjs")
+          text = epoke_test.read_text()
+          old = "assert.equal(index.stats.canonical_story_milestone_count, 196);"
+          new = "assert.equal(index.stats.canonical_story_milestone_count, 199);"
+          if text.count(old) != 1:
+              raise SystemExit("Expected exactly one stale epoke milestone assertion")
+          epoke_test.write_text(text.replace(old, new))
+          PY
+
+      - name: Rebuild deterministic artifacts
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+          npm run epoker:places:build
+          npm run civication:history-people:build
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-quiz-production-context.mjs --category by --target universitetsplassen --output data/quiz/production_context/by/universitetsplassen.json
+          npm run knowledge:canonical:write
+
+      - name: Refresh place image backlog summary
+        run: |
+          node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path("reports/place-image-audit.json").read_text())
+          path = Path("data/places/place_image_backlog_summary.json")
+          saved = json.loads(path.read_text())
+          saved["totalPlaces"] = report["totalPlaces"]
+          saved.setdefault("summary", {})
+          saved["summary"].update({
+              "validLocal": report["summary"]["local"],
+              "validRemote": report["summary"]["remote"],
+              "optionalMissing": report["summary"]["optional"],
+              "missing": report["summary"]["missing"],
+              "invalidLocalPath": report["summary"]["invalid"],
+              "remaining": report["summary"]["missing"] + report["summary"]["invalid"],
+          })
+          old_categories = saved.get("byCategory", {})
+          rebuilt = {}
+          for category, values in report.get("byCategory", {}).items():
+              row = dict(old_categories.get(category, {}))
+              row.update({
+                  "total": values["total"],
+                  "valid": values["local"] + values["remote"],
+                  "optional": values["optional"],
+                  "missing": values["missing"],
+                  "invalid": values["invalid"],
+              })
+              rebuilt[category] = row
+          saved["byCategory"] = rebuilt
+          saved["generatedAt"] = "2026-08-30"
+          saved["generatedFromCommit"] = "universitetsplassen_complete_2026"
+          path.write_text(json.dumps(saved, ensure_ascii=False, indent=2) + "\n")
+          PY
+          rm -f reports/place-image-audit.json
+
+      - name: Record current READ-FIRST rule preflight
+        run: |
+          node scripts/place-production-rule-preflight.mjs record \
+            --workcard reports/place-production/universitetsplassen-workcard-current.json \
+            --place-id universitetsplassen \
+            --category by
+
+      - name: Validate repaired integration
+        run: |
+          npm run places:index:check
+          npm run place-open:check
+          npm run epoker:places:check
+          node --test tests/epoke-place-index.test.mjs tests/epoker-runtime-place-index.test.mjs tests/epoke-viewer.test.mjs
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run knowledge:canonical:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
+          node scripts/audit-place-images.mjs --mode=all --verify-summary=data/places/place_image_backlog_summary.json
+          node scripts/audit-historie-place-production.mjs --all
+          node scripts/place-production-rule-preflight.mjs validate --workcard reports/place-production/universitetsplassen-workcard-current.json
+          npm run check:stories
+          npm run audit:people-of-places
+          npm run civication:history-people:check
+          node --test tests/universitetsplassen-completion.test.mjs
+
+      - name: Commit repair and remove temporary workflow
+        run: |
+          rm -f .github/workflows/universitetsplassen-pr-repair.yml
+          python - <<'PY'
+          from pathlib import Path
+          p = Path("reports/people-of-places-status.md")
+          if p.exists():
+              p.write_text(p.read_text().rstrip() + "\n")
+          PY
+          git add -A
+          git diff --cached --check
+          git status --short
+          git commit -m "Repair Universitetsplassen PR integration"
+          git push origin HEAD:work/universitetsplassen-completion-20260829
