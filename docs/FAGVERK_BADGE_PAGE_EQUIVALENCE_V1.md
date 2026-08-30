@@ -152,8 +152,18 @@ Scenekunst er andre `legacy_stub`-fag og følger samme smale pensjoneringsregel:
 
 Ingen Scenekunst-emner, metoder, kapitler, claims eller kilder ble endret for å pensjonere stubben.
 
+### Politikk
+
+Politikk var det siste `rich_runtime`-faget. Den separate portalen kombinerte gameplay og canonical faginnhold, men bar ingen egen kunnskapssannhet:
+
+- Fagverkets eksisterende generelle motor eide allerede 13 fagområder, 123 emner, 13 redigerte kapitler og det søkbare registeret med 962 forklarte begreper.
+- De avgrensede funksjonsgapene er flyttet til de relevante fem flatene: detaljert quizhistorikk og merkeprofil i **Progresjon**, besøksstatus per sted i **Utforsk**, og canonicale undermerkenavn/-fagområder i den felles badgekomponenten.
+- `scripts/audit-fagverk-politikk-runtime-equivalence.mjs` binder hvert legacy-funksjonsområde til en aktiv Fagverk-eier, krever at den politikkspesifikke portal-JS/CSS-en er fjernet og verifiserer hele ruten fail-closed.
+- Originalportalen er bevart byte-for-byte i `data/fag/politikk/archive/merke_politikk_rich_runtime_legacy_20260830.html` med Git-blob `9529684894ff913bc350f64b2a553b0288c7abff`. Den gamle URL-en er kun compatibility-redirect, mens canonical `badgePage` og `Alle merker` går direkte til `fagverk.html?subject=politikk#fagverkIaProgresjon`.
+
+Politikkens øvrige compatibility-modell beholdes for kart-, sted- og popupflater, men peker nå til integrert Fagverk. Den generelle fagsiden laster fortsatt ingen politikkspesifikk modell eller fallback.
+
 ## Ikke redirect ennå
 
-- **Politikk:** `rich_runtime`; emneprogresjon, quizhistorikk, steder, begrepsutforsker og øvrig aktiv legacy-runtime må ha dokumentert equivalence før redirect.
 - **Andre fullteorisider:** `legacy_static_theory`; hvert fag må gjennom egen innholdsaudit og eksplisitt adjudisering. By, Historie, Litteratur, Kunst, Media, Musikk, Næringsliv og Natur er prosessbevis, ikke automatisk godkjenning av resten.
 - **Tynne legacy-sider:** `legacy_stub`; Religion og Scenekunst er eksplisitt pensjonert; øvrige stubber må fortsatt gjennom egen unik-innhold/linkaudit før redirect.

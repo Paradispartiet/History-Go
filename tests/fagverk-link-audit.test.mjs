@@ -124,7 +124,6 @@ test('fagverkportalen skiller merkesider fra materialiserte fagsider', () => {
 test('alle hardkodede fagverkruter i politikkmodellen har eksisterende mål', () => {
   const model = read('js/politikk-fag-model.js');
   const expectedTargets = [
-    'data/fag/politikk/merke_politikk.html',
     'fagverk.html',
     'fagverk-sted.html'
   ];

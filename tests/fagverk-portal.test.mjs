@@ -34,14 +34,15 @@ test('materialiserte fagsider har gyldige mål',()=>{
   }
 });
 
-test('politikk har separat merkeside og går gjennom den generelle fagsiden',()=>{
+test('politikkmerket er integrert i Progresjon og gammel URL er compatibility-only',()=>{
   const politics=portal.categories.find((item)=>item.id==='politikk');
-  assert.equal(politics.badgePage,'data/fag/politikk/merke_politikk.html');
+  assert.equal(politics.badgePage,'fagverk.html?subject=politikk#fagverkIaProgresjon');
   assert.equal(politics.subjectPage,'fagverk.html?subject=politikk');
-  const badgeHtml=read(politics.badgePage);
+  const badgeHtml=read('data/fag/politikk/merke_politikk.html');
   const subjectHtml=read('fagverk.html');
-  assert.match(badgeHtml,/Politikkmerket/);
-  assert.match(badgeHtml,/Politikkfaget/);
+  assert.match(badgeHtml,/location\.replace/);
+  assert.match(badgeHtml,/subject=politikk#fagverkIaProgresjon/);
+  assert.doesNotMatch(badgeHtml,/politikk-fagportal\.js|politikkEmneProgress/);
   assert.match(subjectHtml,/id="fagverkBadgeLink"/);
   assert.match(subjectHtml,/Fagverkforsiden/);
   assert.match(subjectHtml,/js\/fagverk-subject-model\.js/);

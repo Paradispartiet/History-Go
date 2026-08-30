@@ -104,7 +104,7 @@
   }
 
   function subjectUrl() {
-    return 'data/fag/politikk/merke_politikk.html';
+    return 'fagverk.html?subject=politikk#fagverkIaProgresjon';
   }
 
   function textbookUrl(extras = {}) {

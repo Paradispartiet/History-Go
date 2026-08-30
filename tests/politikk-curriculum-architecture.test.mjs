@@ -27,23 +27,23 @@ test('Politikk har et komplett studielop over det canonicale registeret', () => 
   assert.equal(result.contextualDefinitions, 0);
 });
 
-test('fagsiden og Politikk-portalen viser studielop og forklarte begreper', () => {
+test('fagsiden eier studielop og forklarte begreper etter at portalen er pensjonert', () => {
   const subjectPage = read('js/fagverk.js');
-  const portalPage = read('js/politikk-fagportal.js');
+  const ia = read('js/fagverk-ia-v3.js');
+  const badgeUi = read('js/fagverk-ia-v3-badge-progress.js');
   const subjectHtml = read('fagverk.html');
-  const portalHtml = read('data/fag/politikk/merke_politikk.html');
+  const compatibilityHtml = read('data/fag/politikk/merke_politikk.html');
 
   assert.match(subjectHtml, /css\/politikk-curriculum\.css/);
-  assert.match(portalHtml, /css\/politikk-curriculum\.css/);
   assert.match(subjectPage, /renderPolitikkCurriculumOverview/);
   assert.match(subjectPage, /politikkConceptSearch/);
   assert.match(subjectPage, /Canonicalt fagregister/);
-  assert.match(portalPage, /politikkPortalConceptSearch/);
-  assert.match(portalPage, /politikkPortalConceptDomain/);
-  assert.match(portalPage, /definition_status/);
+  assert.match(ia, /fagverk-ia-quiz-history/);
+  assert.match(ia, /profile\.html#merker/);
+  assert.match(badgeUi, /runtimeManifest\.underbadgeDomains/);
   assert.match(subjectPage, /Kildespor for begrepsreview/);
-  assert.match(portalPage, /Kildespor for begrepsreview/);
-  assert.match(portalPage, /Start her/);
+  assert.match(compatibilityHtml, /subject=politikk#fagverkIaProgresjon/);
+  assert.doesNotMatch(compatibilityHtml, /politikkPortalConceptSearch|politikk-fagportal\.js/);
 });
 
 test('begrepsregisteret er sporbart og alle oppslag har selvstendig definisjon', () => {
@@ -117,7 +117,7 @@ test('den faktiske fagsiden rendrer 41 lesbare deler og et sokbart begrepsverk',
     subjectId: 'politikk',
     schemaFamily: 'standard_canonical',
     categoryLabel: 'Politikk',
-    portalEntry: { badgePage: 'data/fag/politikk/merke_politikk.html', subjectStatus: 'materialized' },
+    portalEntry: { badgePage: 'fagverk.html?subject=politikk#fagverkIaProgresjon', subjectStatus: 'materialized' },
     statusEntry: status,
     registry,
     source: {
