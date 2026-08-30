@@ -1,0 +1,1400 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "akershus_festning",
+  "profile": "major_8x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1793,
+    "selection_sha256": "68b9c465107fc813e8af5ba1c62f960f7f07b01b9003f6f97bb1bfc00ded2d67",
+    "category_id": "historie",
+    "target_id": "akershus_festning"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "bytes": 93945,
+      "sha256": "37abfe99b9f3f1db23bb0cb307b2076407076a405c15868b0524ef5b9e31c72d",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "bytes": 2142053,
+      "sha256": "bcb20665e0a013c4f57e17719b610224874552b942b9bcd7421a7239463931ec",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "bytes": 1127330,
+      "sha256": "6db315c9b911fc04b99dd7609e493e744f919448668cf35fe3c72d3dabff59b1",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "bytes": 252328,
+      "sha256": "9462f9fc4a07c9c08593abaa75e4ee1bddd6af9e45a87304b52df66bcdb654be",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "bytes": 6935,
+      "sha256": "162f166d3c5be89d77b7529ba9186a552b791e9dbd04a590a01fdaad28944098",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/historie/akershus_festning.json",
+      "bytes": 24419,
+      "sha256": "7fb0e8d2ae2574fdcd46a3549be49389038d273e866d77c96413d465078e780c"
+    },
+    "target": {
+      "path": "data/places/historie/oslo/places_historie/akershus_festning.json",
+      "bytes": 16929,
+      "sha256": "1f2f21b59ceff2f5374a93aaca5d6c7cdc2555e9b53b8a5ee73e783762456afd"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1366,
+      "selection_sha256": "db39e2519a25946314f513d90e0b3c5f262095cd9d2346865c09b0f1ce96794f"
+    },
+    "relations": [
+      {
+        "path": "data/relations.json",
+        "matches": 2,
+        "selection_bytes": 487,
+        "selection_sha256": "61af5ffc87dab69d17533e92a265bc2a8d043bbccfd4c0fb6162c77e535a73f0"
+      }
+    ],
+    "stories": [
+      {
+        "path": "data/stories/stories_akerhus_slott.json",
+        "matches": 1,
+        "selection_bytes": 1263,
+        "selection_sha256": "baf4e958640bdd800bfe2093ee9a682cbc6a76de6a061991a388f8cda312a055"
+      },
+      {
+        "path": "data/stories/stories_akershus_festning.json",
+        "matches": 4,
+        "selection_bytes": 6724,
+        "selection_sha256": "2c1580e8ca904fa6af4341cc9400c7955f39baf99202965c0458023d45c63a6d"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/historie/akershus_festning_sets.json",
+  "source_registry": {
+    "official": {
+      "url": "https://www.forsvarsbygg.no/eiendomsforvaltning/festningene/akershus-festning",
+      "source_type": "official_site_history",
+      "review_status": "reviewed",
+      "review_note": "Identity, building phases, 1716, occupation, 42 executions, current use and management."
+    },
+    "snl": {
+      "url": "https://snl.no/Akershus_slott_og_festning",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "1299–1304 dating, 1308, Renaissance works, 1716, restoration and 1945 handover."
+    },
+    "siege": {
+      "url": "https://snl.no/beleiringen_av_Akershus_festning_-_1716",
+      "source_type": "scholarly_reference",
+      "review_status": "reviewed",
+      "review_note": "1716 chronology, garrison, Swedish limitations and withdrawal."
+    },
+    "prison": {
+      "url": "https://snl.no/Akershus_landsfengsel",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "Slaveriet, straffeanstalt, landsfengsel and institutional chronology."
+    },
+    "trail": {
+      "url": "https://www.forsvarsbygg.no/globalassets/festningene/akershus-festning/akershus-festning.pdf",
+      "source_type": "official_site_guide",
+      "review_status": "reviewed",
+      "review_note": "Retterstedet: 42 victims, execution dates and 1949 memorial unveiling."
+    },
+    "rollem": {
+      "url": "https://snl.no/Terje_Rollem",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "11 May 1945 transfer to Norwegian home forces."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/by/akershus_festning_sets.json",
+      "data/quiz/historie/akershus_festning_sets.json"
+    ],
+    "active_before": {
+      "categoryId": "by",
+      "set_count": 4,
+      "question_count": 28
+    },
+    "decisions": [
+      "Migrer legacy By-quizen til canonical Historie major 8x7; behold bare kildekorrekte fakta."
+    ],
+    "knowledge_migration": {
+      "status": "completed",
+      "retained_rule": "Bare kildekorrekte stedspåstander med gyldig History-emne beholdes."
+    }
+  },
+  "profile_decision": {
+    "profile": "major",
+    "set_count": 8,
+    "questions_per_set": 7,
+    "justification": "Akershus har uavhengige, kildebårne tidslag fra middelalder, statsbygging, beleiring, straff, restaurering, okkupasjon og minnekultur."
+  },
+  "held_back_candidates": [
+    "Udokumenterte enkelthendelser inne i slottet",
+    "Sensasjonspreget bruk av navngitte fanger eller henrettelser uten egen læringsverdi"
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 23,
+      "emner": 230,
+      "topic_hooks": 230,
+      "methods": 105
+    },
+    "candidate_emner": [
+      {
+        "id": "em_his_fangenskap_kontroll",
+        "title": "Fangenskap, kontroll og overvåkning",
+        "score": 100
+      },
+      {
+        "id": "em_his_kontroll_overvakning",
+        "title": "Kontroll og overvåkning",
+        "score": 100
+      },
+      {
+        "id": "em_his_minnesteder_historiebruk",
+        "title": "Minnesteder, ritual og offentlig historiebruk",
+        "score": 100
+      },
+      {
+        "id": "em_his_okkupasjon_motstand",
+        "title": "Okkupasjon og motstand",
+        "score": 100
+      },
+      {
+        "id": "em_his_spor_materialitet",
+        "title": "Spor og materialitet",
+        "score": 100
+      },
+      {
+        "id": "em_his_stat_institusjoner",
+        "title": "Stat og institusjoner",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "his_institusjonsbygging_funksjon",
+        "title": "Institusjonsbygging, mandat og funksjon",
+        "category_id": "his_makt_stat_institusjoner",
+        "score": 33
+      },
+      {
+        "id": "his_krig_okkupasjon_okkupasjon_og_motstand",
+        "title": "Okkupasjon og motstand: forklarings- og kildebane",
+        "category_id": "his_krig_okkupasjon_motstand",
+        "score": 33
+      },
+      {
+        "id": "his_minnested_ritual_offentlig_sorg",
+        "title": "Minnested, ritual og offentlig sorg",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 33
+      },
+      {
+        "id": "his_register_overvakning_disiplin",
+        "title": "Register, overvåkning og disiplin",
+        "category_id": "his_makt_stat_institusjoner",
+        "score": 33
+      },
+      {
+        "id": "his_rettigheter_borgerskap_forvaltning",
+        "title": "Rettigheter, medborgerskap og forvaltning",
+        "category_id": "his_makt_stat_institusjoner",
+        "score": 33
+      },
+      {
+        "id": "his_spor_materialitet",
+        "title": "Materielle spor og sted som kilde",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 33
+      },
+      {
+        "id": "his_1814_statsdannelse_embetsstat_og_kommunalt_selvstyre",
+        "title": "Embetsstat og kommunalt selvstyre: forklarings- og kildebane",
+        "category_id": "his_1814_statsdannelse",
+        "score": 23
+      },
+      {
+        "id": "his_1814_statsdannelse_nasjon_sprak_skole_og_institusjoner",
+        "title": "Nasjon, språk, skole og institusjoner: forklarings- og kildebane",
+        "category_id": "his_1814_statsdannelse",
+        "score": 23
+      },
+      {
+        "id": "his_1814_statsdannelse_nasjonal_identitet_og_historiske_fortellinger",
+        "title": "Nasjonal identitet og historiske fortellinger: forklarings- og kildebane",
+        "category_id": "his_1814_statsdannelse",
+        "score": 23
+      },
+      {
+        "id": "his_1814_statsdannelse_stemmerett_partier_og_parlamentarisme",
+        "title": "Stemmerett, partier og parlamentarisme: forklarings- og kildebane",
+        "category_id": "his_1814_statsdannelse",
+        "score": 23
+      },
+      {
+        "id": "his_arkiv_makt_orden",
+        "title": "Arkiv, klassifikasjon og makt",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 23
+      },
+      {
+        "id": "his_bevaring_restaurering_autentisitet",
+        "title": "Bevaring, restaurering og autentisitet",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 23
+      },
+      {
+        "id": "his_brudd_kontinuitet",
+        "title": "Brudd, kontinuitet og omforming",
+        "category_id": "his_tid_periodisering",
+        "score": 23
+      },
+      {
+        "id": "his_digital_kulturarv_formidling",
+        "title": "Digital kulturarv og formidling",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 23
+      },
+      {
+        "id": "his_dokument_autentisitet",
+        "title": "Dokumentform og autentisitet",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 23
+      },
+      {
+        "id": "his_fravaer_taushet_motminne",
+        "title": "Fravær, taushet og motminne",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 23
+      },
+      {
+        "id": "his_hendelse_prosess",
+        "title": "Hendelse, forløp og konsekvens",
+        "category_id": "his_tid_periodisering",
+        "score": 23
+      },
+      {
+        "id": "his_jubileum_seremoni_historiebruk",
+        "title": "Jubileum, seremoni og historiebruk",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 23
+      },
+      {
+        "id": "his_kontrovers_fjerning_omtolking",
+        "title": "Kontrovers, fjerning og omtolking",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 23
+      },
+      {
+        "id": "his_krig_okkupasjon_kald_krig_beredskap_og_sikkerhetsstat",
+        "title": "Kald krig, beredskap og sikkerhetsstat: forklarings- og kildebane",
+        "category_id": "his_krig_okkupasjon_motstand",
+        "score": 23
+      },
+      {
+        "id": "his_krig_okkupasjon_okkupasjon_samarbeid_tilpasning_og_motstand",
+        "title": "Okkupasjon, samarbeid, tilpasning og motstand: forklarings- og kildebane",
+        "category_id": "his_krig_okkupasjon_motstand",
+        "score": 23
+      },
+      {
+        "id": "his_krig_okkupasjon_propaganda_sensur_og_informasjonskontroll",
+        "title": "Propaganda, sensur og informasjonskontroll: forklarings- og kildebane",
+        "category_id": "his_krig_okkupasjon_motstand",
+        "score": 23
+      },
+      {
+        "id": "his_krig_okkupasjon_rettsoppgjor_og_etterkrig",
+        "title": "Rettsoppgjør og etterkrig: forklarings- og kildebane",
+        "category_id": "his_krig_okkupasjon_motstand",
+        "score": 23
+      },
+      {
+        "id": "his_krise_unntak_kontinuitet",
+        "title": "Krise, unntak og institusjonell kontinuitet",
+        "category_id": "his_makt_stat_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "his_kronologi_datering",
+        "title": "Kronologi, datering og usikkerhet",
+        "category_id": "his_tid_periodisering",
+        "score": 23
+      },
+      {
+        "id": "his_kulturminneutvelgelse_verdi",
+        "title": "Kulturminneutvelgelse og verdi",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 23
+      },
+      {
+        "id": "his_lang_varighet_strukturer",
+        "title": "Lang varighet og strukturell endring",
+        "category_id": "his_tid_periodisering",
+        "score": 23
+      },
+      {
+        "id": "his_lov_domstol_rettsstat",
+        "title": "Lov, domstol og rettsstat",
+        "category_id": "his_makt_stat_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "his_middelalder_by_kirke",
+        "title": "Middelalderbyen og kirkemakten",
+        "category_id": "his_middelalder_kirke_kongemakt",
+        "score": 23
+      },
+      {
+        "id": "his_middelalder_kirke_kongemakt_kirke_og_konflikt",
+        "title": "Kongemakt, kirke og konflikt: forklarings- og kildebane",
+        "category_id": "his_middelalder_kirke_kongemakt",
+        "score": 23
+      },
+      {
+        "id": "his_middelalder_kirke_lov_ting_og_jurisdiksjon",
+        "title": "Lov, ting og jurisdiksjon: forklarings- og kildebane",
+        "category_id": "his_middelalder_kirke_kongemakt",
+        "score": 23
+      },
+      {
+        "id": "his_middelalder_kirke_middelalderens_oslo",
+        "title": "Middelalderens Oslo: forklarings- og kildebane",
+        "category_id": "his_middelalder_kirke_kongemakt",
+        "score": 23
+      },
+      {
+        "id": "his_middelalder_kirke_samiske_kontaktsoner_handel_og_statsgrenser_i_middelalderen",
+        "title": "Samiske kontaktsoner, handel og statsgrenser i middelalderen: forklarings- og kildebane",
+        "category_id": "his_middelalder_kirke_kongemakt",
+        "score": 23
+      },
+      {
+        "id": "his_middelalder_kirke_skriftkultur_diplom_og_muntlig_rett",
+        "title": "Skriftkultur, diplom og muntlig rett: forklarings- og kildebane",
+        "category_id": "his_middelalder_kirke_kongemakt",
+        "score": 23
+      },
+      {
+        "id": "his_monument_symbol_makt",
+        "title": "Monument, symbol og makt",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 23
+      },
+      {
+        "id": "his_museum_samling_kanon",
+        "title": "Museum, samling og kanon",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 23
+      },
+      {
+        "id": "his_politi_fengsel_straff",
+        "title": "Politi, fengsel og strafferegime",
+        "category_id": "his_makt_stat_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "his_rettsoppgjor_legitimitet_minne",
+        "title": "Rettsoppgjør, legitimitet og minne",
+        "category_id": "his_makt_stat_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "his_samtid_ettertid_fortelling",
+        "title": "Samtid, ettertid og historisk fortelling",
+        "category_id": "his_tid_periodisering",
+        "score": 23
+      },
+      {
+        "id": "his_skrift_lesning",
+        "title": "Skrift, hånd og lesbarhet",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 23
+      },
+      {
+        "id": "his_statlig_kapasitet_ressurser",
+        "title": "Statlig kapasitet, ressurser og gjennomføring",
+        "category_id": "his_makt_stat_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "his_stedsnavn_navnepolitikk",
+        "title": "Stedsnavn og navnepolitikk",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 23
+      },
+      {
+        "id": "his_taushet_fravaer",
+        "title": "Taushet, fravær og blindsoner",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 23
+      },
+      {
+        "id": "his_tidslag_samtidighet",
+        "title": "Tidslag og samtidighet i sted",
+        "category_id": "his_tid_periodisering",
+        "score": 23
+      },
+      {
+        "id": "his_visuelle_kilder",
+        "title": "Bilder, fotografi og visuelle kilder",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 23
+      },
+      {
+        "id": "his_okkupasjon_byrom_kontroll",
+        "title": "Okkupasjon som byrom og kontroll",
+        "category_id": "his_krig_okkupasjon_motstand",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_makt_stat_institusjoner",
+      "his_krig_okkupasjon_motstand",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_stat_institusjoner",
+      "em_his_okkupasjon_motstand",
+      "em_his_fangenskap_kontroll",
+      "em_his_spor_materialitet",
+      "em_his_minnesteder_historiebruk",
+      "em_his_kontroll_overvakning"
+    ],
+    "topic_hook_ids": [
+      "his_register_overvakning_disiplin"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "michel_foucault"
+    ],
+    "works": [
+      "Discipline and Punish"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_akershus_festning_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "SNL daterer byggestarten sannsynligvis til 1299–1304; ett eksakt byggeår er ikke sikkert.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Håkon 5. knyttes til etableringen av borgen på Akersneset.",
+      "source_ids": [
+        "official",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Den nye borgen kunne allerede i 1308 motstå hertug Erik Magnussons angrep.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "SNL identifiserer hertug Erik Magnussons angrep i 1308.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Festningen lå ved fjorden og fungerte som et befestet maktpunkt ved Oslo.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Akershus var også kongelig residens og administrativt maktpunkt.",
+      "source_ids": [
+        "official",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Steddata trenger et teknisk tidsanker, mens historisk datering må beholde usikkerheten.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Nye europeiske prinsipper for artilleriforsvar endret anlegget.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Under Christian 4. ble middelalderborgen omformet til et renessanseslott.",
+      "source_ids": [
+        "official",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Sehested fikk de sentrale norske embetene og Akershus-rollen i 1642.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Høvedsmann er en historisk leder-/kommandantbetegnelse knyttet til borg og len.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Bastionen er karakteristisk for artillerifestningens forsvarsgeometri.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Kasematter er beskyttede rom integrert i festningsstrukturen.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Sehested var stattholder og høvedsmann og bodde på Akershus under store arbeider.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Karl 12. ledet den svenske invasjonen i 1716.",
+      "source_ids": [
+        "siege"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Christiania ble inntatt mens festningen holdt stand.",
+      "source_ids": [
+        "siege"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "SNL beskriver en beleiring på vel en måned / 39 dager.",
+      "source_ids": [
+        "siege",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Svenskene hadde ikke tungt artilleri eller annet beleiringsmateriell nok til å ta festningen raskt.",
+      "source_ids": [
+        "siege"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Så lenge Akershus holdt, måtte svenskene bruke styrker på å kontrollere festningen.",
+      "source_ids": [
+        "siege"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Beleiringen mislyktes, og svenskene trakk seg tilbake i slutten av april.",
+      "source_ids": [
+        "siege"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Christiania ble okkupert og beskutt mens Akershus forble et militært problem for svenskene.",
+      "source_ids": [
+        "snl",
+        "siege"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_22",
+      "order": 22,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "SNL bruker navnet Akershus festnings slaveri for perioden 1739–1854.",
+      "source_ids": [
+        "prison"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_23",
+      "order": 23,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Innsatte kunne settes til vedlikeholds- og festningsarbeid som del av straffen.",
+      "source_ids": [
+        "prison"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_24",
+      "order": 24,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Slaveriet ble avløst av Akershus straffeanstalt i 1854.",
+      "source_ids": [
+        "prison"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_25",
+      "order": 25,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Akershus landsfengsel ble etablert i 1900 og nedlagt i 1950.",
+      "source_ids": [
+        "prison"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_26",
+      "order": 26,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Landsfengselet ble nedlagt i 1950.",
+      "source_ids": [
+        "prison"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_27",
+      "order": 27,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Nye navn og ordninger dokumenterer endring, men sier ikke alene hvordan soningen faktisk ble erfart.",
+      "source_ids": [
+        "prison"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_28",
+      "order": 28,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Fengsel, depot, skole og militæradministrasjon ble viktige funksjoner.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_29",
+      "order": 29,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Sinding-Larsens undersøkelser la et viktig grunnlag for 1900-tallets restaurering.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_30",
+      "order": 30,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Arneberg fikk oppdraget i 1929.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_31",
+      "order": 31,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Restaurering og arkeologiske undersøkelser har påvirket hvilke lag som er synlige.",
+      "source_ids": [
+        "snl",
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_32",
+      "order": 32,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Tyske styrker brukte festningen til flere militære og represjonsrelaterte funksjoner.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_33",
+      "order": 33,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Forsvarsbyggs Festningsløype oppgir 42 henrettede nordmenn.",
+      "source_ids": [
+        "trail"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_34",
+      "order": 34,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Festningsløypa oppgir de konkrete henrettelsesdatoene.",
+      "source_ids": [
+        "trail"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_35",
+      "order": 35,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Haakon 7. avduket minnesmerket fire år etter frigjøringen.",
+      "source_ids": [
+        "trail"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_36",
+      "order": 36,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Norske hjemmestyrker overtok festningen 11. mai 1945.",
+      "source_ids": [
+        "rollem",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_37",
+      "order": 37,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Terje Rollem fikk ordre om å besette festningen og ledet overtakelsen.",
+      "source_ids": [
+        "rollem"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_38",
+      "order": 38,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "SNL beskriver at norske styrker overtok kommandoen og heiste flagget.",
+      "source_ids": [
+        "rollem"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_39",
+      "order": 39,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Forsvarsbygg forvalter det fredede festningsanlegget.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_40",
+      "order": 40,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Akershus er fortsatt i aktiv bruk samtidig som store deler er åpne for publikum.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_41",
+      "order": 41,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Festningen kombinerer bevaring, forvaltning, arbeid og offentlig tilgang.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_42",
+      "order": 42,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Hovedstedet skal ikke slå sammen Akershus slott, museene eller hvert navngitt delsted.",
+      "source_ids": [
+        "official",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_43",
+      "order": 43,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Maleriet er en nær-samtidig visuell kilde til anlegget, ikke et bilde av selve beleiringen.",
+      "source_ids": [
+        "siege"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_44",
+      "order": 44,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Et minneobjekt dokumenterer både personer som minnes og hvordan ettertiden har markert stedet.",
+      "source_ids": [
+        "trail"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_45",
+      "order": 45,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Kildetype og avsender påvirker hva slags påstander en kilde er sterkest på.",
+      "source_ids": [
+        "official",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_46",
+      "order": 46,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Institusjonelle navn dokumenterer endring, men erfaring og praksis må undersøkes separat.",
+      "source_ids": [
+        "prison"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_47",
+      "order": 47,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Stedets fysiske kontinuitet gjør regimeskiftet synlig.",
+      "source_ids": [
+        "trail",
+        "rollem"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_48",
+      "order": 48,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Ulike kamerastandpunkt krever at visuelle sammenligninger formuleres forsiktig.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_49",
+      "order": 49,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Akershus har mange bygge- og restaureringslag som må skilles.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_50",
+      "order": 50,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Akershus kombinerer territorial kontroll, institusjonsmakt og materiell arkitektur.",
+      "source_ids": [
+        "official",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_51",
+      "order": 51,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Fysisk kontinuitet kan eksistere samtidig med politisk og institusjonell endring.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_52",
+      "order": 52,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Historiebruk handler om hvordan fortid velges, markeres og gis betydning i ettertiden.",
+      "source_ids": [
+        "trail",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_53",
+      "order": 53,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Institusjonelle ordninger får fysisk form og etterlater spor i et anlegg.",
+      "source_ids": [
+        "prison"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kontroll_overvakning"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_54",
+      "order": 54,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Dagens funksjoner overlapper uten at stedet mister institusjonell eller historisk betydning.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_55",
+      "order": 55,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Hendelsen i 1945 og minnesmerket fra 1949 er ulike historiske lag.",
+      "source_ids": [
+        "trail"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_akershus_festning_quiz_56",
+      "order": 56,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Akershus forstås best gjennom både fysisk kontinuitet og gjentatte funksjonsskifter.",
+      "source_ids": [
+        "official",
+        "snl",
+        "prison",
+        "trail"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "relation",
+      "id": "mig_harald_harfagre_akerhus_slott_9ac48923f0",
+      "source_file": "data/relations.json",
+      "summary": "Migrert fra people.placeId/people.places. NB: place finnes ikke i places.json (ID mismatch eller mangler)."
+    },
+    {
+      "type": "relation",
+      "id": "rel_akershus_hannibal_sehested",
+      "source_file": "data/relations.json",
+      "summary": null
+    },
+    {
+      "type": "story",
+      "id": "st_akershus_terboven_1940",
+      "source_file": "data/stories/stories_akerhus_slott.json",
+      "summary": "I september 1940 erklærte Reichskommissar Josef Terboven at den norske regjeringen og kongen var avsatt. Akershus ble sentral arena."
+    },
+    {
+      "type": "story",
+      "id": "st_akershus_1308_borgen_holder",
+      "source_file": "data/stories/stories_akershus_festning.json",
+      "summary": "Den nyanlagte borgen ble satt på sin første store prøve da hertug Erik Magnusson angrep."
+    },
+    {
+      "type": "story",
+      "id": "st_akershus_1716_beleiringen",
+      "source_file": "data/stories/stories_akershus_festning.json",
+      "summary": "Karl 12. tok Christiania, men festningen gjorde okkupasjonen av byen strategisk usikker."
+    },
+    {
+      "type": "story",
+      "id": "st_akershus_slaveriet_1739",
+      "source_file": "data/stories/stories_akershus_festning.json",
+      "summary": "Akershus festnings slaveri bandt straff, tvangsarbeid og festningens vedlikehold sammen."
+    },
+    {
+      "type": "story",
+      "id": "st_akershus_11_mai_1945",
+      "source_file": "data/stories/stories_akershus_festning.json",
+      "summary": "11. mai 1945 overtok norske hjemmestyrker festningen fra de tyske styrkene."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "historie_akershus_festning_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_akershus_festning_quiz_01",
+        "claim_akershus_festning_quiz_02",
+        "claim_akershus_festning_quiz_03",
+        "claim_akershus_festning_quiz_04",
+        "claim_akershus_festning_quiz_05",
+        "claim_akershus_festning_quiz_06",
+        "claim_akershus_festning_quiz_07"
+      ]
+    },
+    {
+      "set_id": "historie_akershus_festning_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_akershus_festning_quiz_08",
+        "claim_akershus_festning_quiz_09",
+        "claim_akershus_festning_quiz_10",
+        "claim_akershus_festning_quiz_11",
+        "claim_akershus_festning_quiz_12",
+        "claim_akershus_festning_quiz_13",
+        "claim_akershus_festning_quiz_14"
+      ]
+    },
+    {
+      "set_id": "historie_akershus_festning_set_3",
+      "order": 3,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_akershus_festning_quiz_15",
+        "claim_akershus_festning_quiz_16",
+        "claim_akershus_festning_quiz_17",
+        "claim_akershus_festning_quiz_18",
+        "claim_akershus_festning_quiz_19",
+        "claim_akershus_festning_quiz_20",
+        "claim_akershus_festning_quiz_21"
+      ]
+    },
+    {
+      "set_id": "historie_akershus_festning_set_4",
+      "order": 4,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_akershus_festning_quiz_22",
+        "claim_akershus_festning_quiz_23",
+        "claim_akershus_festning_quiz_24",
+        "claim_akershus_festning_quiz_25",
+        "claim_akershus_festning_quiz_26",
+        "claim_akershus_festning_quiz_27",
+        "claim_akershus_festning_quiz_28"
+      ]
+    },
+    {
+      "set_id": "historie_akershus_festning_set_5",
+      "order": 5,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_akershus_festning_quiz_29",
+        "claim_akershus_festning_quiz_30",
+        "claim_akershus_festning_quiz_31",
+        "claim_akershus_festning_quiz_32",
+        "claim_akershus_festning_quiz_33",
+        "claim_akershus_festning_quiz_34",
+        "claim_akershus_festning_quiz_35"
+      ]
+    },
+    {
+      "set_id": "historie_akershus_festning_set_6",
+      "order": 6,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_akershus_festning_quiz_36",
+        "claim_akershus_festning_quiz_37",
+        "claim_akershus_festning_quiz_38",
+        "claim_akershus_festning_quiz_39",
+        "claim_akershus_festning_quiz_40",
+        "claim_akershus_festning_quiz_41",
+        "claim_akershus_festning_quiz_42"
+      ]
+    },
+    {
+      "set_id": "historie_akershus_festning_set_7",
+      "order": 7,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_akershus_festning_quiz_43",
+        "claim_akershus_festning_quiz_44",
+        "claim_akershus_festning_quiz_45",
+        "claim_akershus_festning_quiz_46",
+        "claim_akershus_festning_quiz_47",
+        "claim_akershus_festning_quiz_48",
+        "claim_akershus_festning_quiz_49"
+      ]
+    },
+    {
+      "set_id": "historie_akershus_festning_set_8",
+      "order": 8,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_akershus_festning_quiz_50",
+        "claim_akershus_festning_quiz_51",
+        "claim_akershus_festning_quiz_52",
+        "claim_akershus_festning_quiz_53",
+        "claim_akershus_festning_quiz_54",
+        "claim_akershus_festning_quiz_55",
+        "claim_akershus_festning_quiz_56"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 56,
+    "counts": {
+      "fact": 30,
+      "context": 12,
+      "concept_theory": 14
+    },
+    "ratios": {
+      "fact": 0.536,
+      "context": 0.214,
+      "concept_theory": 0.25
+    }
+  }
+}
