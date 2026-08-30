@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "utviklingsgeografi-ulikhet-og-baerekraft",
+  "id": "04-sdg-geodata-og-reproduserbarhet",
+  "title": "SDG, geodata og reproduserbarhet",
+  "sections": [
+    {
+      "id": "sdg-indikatorer-lokalisering-og-baerekraft",
+      "title": "SDG-indikatorer, lokalisering og bærekraft",
+      "method_ids": ["met_geo_sdg_metadata_audit", "met_geo_territoriell_baerekraft_indikator"],
+      "boundary": "SDG-indikatorer skal tolkes etter offisiell definisjon, teller, nevner, datakilde og versjon; lokal indikatorframgang er ikke i seg selv kausalt bevis for et tiltak.",
+      "paragraphs": [
+        "SDG-indikatorer er standardiserte måledefinisjoner og ikke løse etiketter for ønsket samfunnsutvikling. Hver indikator har metadata som beskriver teller, nevner, datakilde, beregningsmetode, disaggregasjon og eventuelle modellkomponenter. Dersom en indikator endrer metode eller datagrunnlag mellom versjoner, kan en tidsserie få et brudd som ikke skyldes faktisk samfunnsendring. Derfor bør geografisk bærekraftsanalyse lagre indikator-ID, metadatautgave, referanseår og geografisk nivå sammen med verdien. Før to steder sammenlignes må det kontrolleres at de faktisk måler samme fenomen med kompatibel definisjon, og ikke bare bruker samme korte indikatornavn.",
+        "Nasjonal framgang mot et bærekraftsmål kan sameksistere med store territorielle gap. Et lands gjennomsnitt kan forbedres fordi store befolkningsområder går fram, mens enkelte regioner, byer eller befolkningsgrupper blir stående igjen. Lokalisering av SDG-arbeid krever derfor indikatorer som kan brytes ned til et geografisk nivå som samsvarer med mekanismen og beslutningen. Regionale well-being-data og byindikatorer kan supplere nasjonale mål, men de må fortsatt harmoniseres i definisjon og år. En etterprøvbar analyse viser både nasjonal retning og intern fordeling og unngår å bruke et aggregert gjennomsnitt som dokumentasjon på at bærekraftsframgangen er jevnt fordelt i rommet.",
+        "At en resultatindikator forbedres etter at en politikk er innført, etablerer ikke alene at politikken forårsaket endringen. Befolkningssammensetning, konjunkturer, teknologi, migrasjon, andre reformer eller miljøforhold kan påvirke samme mål i samme periode. Derfor bør lokal evaluering skille indikatorovervåking fra kausal evaluering. Tidsserier, sammenligningsområder, før–etter-design eller andre identifikasjonsstrategier kan være nødvendige dersom spørsmålet gjelder effekt. SDG-indikatoren forteller hva som måles og hvordan nivået har endret seg; den er ikke i seg selv en forskningsdesign som isolerer hvilket tiltak som skapte endringen.",
+        "Bærekraft innebærer ofte trade-offs mellom mål, grupper og steder. Et tiltak kan forbedre boligstandard i ett område og samtidig øke boligkostnader eller arealpress; energiinfrastruktur kan redusere utslipp, men flytte naturinngrep eller ressursbehov; og ny transport kan bedre tilgjengelighet samtidig som utslipp eller støy øker lokalt. Derfor bør geografisk bærekraftsanalyse undersøke både direkte måloppnåelse, fordelingsvirkninger og eventuelle belastninger som eksporteres til andre territorier. En enkelt positiv indikator er ikke tilstrekkelig dersom forbedringen bygger på kostnader som bare er flyttet ut av analyseområdet eller konsentrert hos grupper som ikke vises i gjennomsnittet."
+      ],
+      "paragraphClaimIds": [["geo11-25"], ["geo11-26"], ["geo11-27"], ["geo11-28"]]
+    },
+    {
+      "id": "geodata-personvern-usikkerhet-og-reproduserbarhet",
+      "title": "Geodata, personvern, usikkerhet og reproduserbarhet",
+      "method_ids": ["met_geo_utviklingsdata_personvern", "met_geo_utviklingsgeografi_reproduserbarhet"],
+      "boundary": "Surveykoordinater, modellflater og indikatorversjoner skal følge personvern-, usikkerhets- og reproduksjonsmetadata; høy romlig oppløsning skal ikke forveksles med høy presisjon.",
+      "paragraphs": [
+        "DHS og andre husholdningsundersøkelser kan forskyve offentliggjorte koordinater for å beskytte respondentenes konfidensialitet. Punktet i den offentlige datafilen representerer derfor ikke nødvendigvis den sanne cluster- eller husholdningslokasjonen. Dersom slike punkter kobles til svært lokale rasterverdier, veger eller fasiliteter uten å ta hensyn til forskyvningen, kan analysen tilordne feil eksponering eller tjenestetilgang. Derfor bør koblingen bruke buffer- eller sensitivitetsanalyse, følge urbane og rurale forskyvningsregler og dokumentere at personvernmekanismen inngår i usikkerheten. Høy kartpresisjon i koordinatfeltet må ikke mistolkes som faktisk posisjonspresisjon for respondentene.",
+        "En modellert fattigdomsflate kan publiseres i svært små rasterceller og likevel ha betydelig prediksjonsusikkerhet. Oppløsningen forteller hvor fint resultatet er lagret, ikke hvor mye informasjon modellen faktisk har om hver celle. Geostatistiske modeller bygger på surveydata og covariates og må vurderes med holdout-validering, residualer, confidence intervals eller andre usikkerhetsmål. Derfor bør kartet vise eller tilgjengeliggjøre usikkerheten sammen med forventningsverdien og unngå kategorier som antyder falsk presisjon. En 100-meters celle er ikke en 100-meters direkte observasjon; den er en modellprediksjon hvis kvalitet avhenger av data, modellstruktur og hvor godt sammenhengene generaliserer romlig.",
+        "Kobling av surveydata, raster, administrative grenser og tjenestedata krever både romlig og temporal harmonisering. Datasettene kan ha ulike referanseår, projeksjoner, oppløsninger, geoversjoner og personverntransformasjoner. Dersom en husholdningssurvey fra ett år kobles til et senere infrastrukturkart eller til en administrativ geografi som ikke eksisterte da surveyen ble samlet inn, kan analysen skape en lokal sammenheng som egentlig skyldes tids- eller grensemismatch. Derfor bør pipeline lagre CRS, oppløsning, tidsstempel, transformasjoner og join-regler og teste sensitivitetsalternativer. Reproduserbarhet betyr at en annen analytiker kan gjenskape både koblingen og beslutningene som avgjorde hvilke data som ble ansett som geografisk kompatible.",
+        "En etterprøvbar utviklingsgeografisk analyse må dokumentere hele definisjonskjeden før den generaliserer. Det omfatter fattigdomslinje og PPP-år, surveyår, geografisk enhet, komposittindeksens dimensjoner og vekter, om verdien er direkte observert eller modellert, usikkerhet, personvernbehandling, befolkningsnevner og den konkrete dataversjonen. Samme kartbilde kan endres når en av disse komponentene oppdateres, og derfor må resultatet kunne spores tilbake til rådefinisjonene. Denne dokumentasjonen gjør det mulig å skille reell romlig utvikling fra metodeendring, revisjon eller ny modell og er selve grunnlaget for at kartlagte forskjeller kan brukes ansvarlig i forskning, planlegging og offentlig prioritering."
+      ],
+      "paragraphClaimIds": [["geo11-29"], ["geo11-30"], ["geo11-31"], ["geo11-32"]]
+    }
+  ]
+}
