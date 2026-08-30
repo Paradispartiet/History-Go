@@ -183,6 +183,7 @@ export function auditFilmTvPhase3({ writeReport = false, checkReport = true } = 
     assert(source.pensum.summary?.[key] === value, `Pensumsammendraget har feil ${key}`);
     assert(generator.canonical_inputs?.[key] === value, `Generatoren har feil ${key}`);
   }
+  assert(source.pensum.summary?.all_emners_have_mapping === true || source.pensum.summary?.all_emners_have_mapping === undefined || source.pensum.summary?.all_emners_have_mapping === null || source.pensum.summary?.all_emners_have_mapping === false ? source.pensum.summary?.all_emners_have_mapping !== false : true, '');
   assert(source.pensum.summary?.all_emner_have_mapping === true, 'Pensumet rapporterer ufullstendig emnemapping');
   assert(source.pensum.summary?.all_method_refs_valid === true, 'Pensumet rapporterer uløste metodekoblinger');
   assert(generator.hard_rules?.external_film_tv_source_first_all_sets === true, 'Film & TV-generatoren mangler source-first-port');
@@ -197,8 +198,9 @@ export function auditFilmTvPhase3({ writeReport = false, checkReport = true } = 
   assert(principles.emne_prefix_required === 'em_film_tv_', 'Fagkartet mangler canonical emneprefix');
 
   const badgePage = read(P.badgePage);
-  assert(badgePage.includes('../../../fagverk.html?subject=film_tv'), 'Film & TV-merkesiden mangler separat fagsidelenke');
-  assert(badgePage.includes('../../../fagverk-forside.html'), 'Film & TV-merkesiden mangler Fagverk-forsiden');
+  assert(portalEntry?.badgePage === 'fagverk.html?subject=film_tv#fagverkIaProgresjon', 'Film & TV-portalen peker ikke til integrert Progresjon');
+  assert(badgePage.includes("../../../fagverk.html?subject=film_tv#fagverkIaProgresjon"), 'Film & TV compatibility-siden peker ikke til Progresjon');
+  assert(badgePage.includes('location.replace'), 'Film & TV compatibility-siden mangler redirect');
 
   const report = {
     schema: 'history_go_fagverk_film_tv_phase3_audit_v1',
