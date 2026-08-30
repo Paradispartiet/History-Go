@@ -1,0 +1,64 @@
+name: TEMP quiz answer shuffle context rebuild
+
+on:
+  push:
+    branches:
+      - governance/quiz-answer-shuffle-20260829
+    paths:
+      - ".github/workflows/temp-quiz-answer-shuffle-context-rebuild.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temp-quiz-answer-shuffle-context-rebuild
+  cancel-in-progress: false
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out quiz branch
+        uses: actions/checkout@v4
+        with:
+          ref: governance/quiz-answer-shuffle-20260829
+          fetch-depth: 0
+
+      - name: Merge current main without rewriting branch history
+        run: |
+          git fetch origin main
+          git merge --no-edit origin/main
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Rebuild every existing quiz production context
+        run: npm run quiz:context
+
+      - name: Verify deterministic contexts and shuffle governance
+        run: |
+          npm run audit:quiz-production-context
+          node --test tests/quiz-answer-shuffle-runtime.test.mjs tests/quiz-answer-position-governance.test.mjs
+          node scripts/audit-quiz-answer-position-bias.mjs --base origin/main --head HEAD
+          git diff --check
+
+      - name: Commit generated contexts and remove temporary runner
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/temp-quiz-answer-shuffle-context-rebuild.yml
+          git add data/quiz/production_context
+          if git diff --cached --quiet; then
+            echo "Expected either regenerated contexts or runner removal."
+            exit 1
+          fi
+          git commit -m "Regenerate quiz contexts for shuffled-answer standard"
+          git push origin HEAD:governance/quiz-answer-shuffle-20260829
