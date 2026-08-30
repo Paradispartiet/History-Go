@@ -76,6 +76,8 @@
 .fagverk-ia-start-grid strong,.fagverk-ia-chapter strong,.fagverk-ia-place strong{font-size:16px;line-height:1.25;}
 .fagverk-ia-start-grid small,.fagverk-ia-chapter span:not(.fagverk-kicker),.fagverk-ia-place span{color:var(--fv-muted);font-size:12px;line-height:1.5;}
 .fagverk-ia-chapter small,.fagverk-ia-place small{margin-top:auto;color:var(--fv-accent);font-weight:800;}
+.fagverk-ia-place.is-visited{border-color:rgba(112,224,166,.35);background:rgba(112,224,166,.06);}
+.fagverk-ia-place.is-visited strong>span{color:#70e0a6;}
 
 .fagverk-ia-search{display:grid;gap:7px;margin-bottom:9px;}
 .fagverk-ia-search span{color:var(--fv-muted);font-size:12px;font-weight:800;}
@@ -137,6 +139,12 @@
 
 .fagverk-ia-domain-progress{margin-top:18px;}
 .fagverk-ia-domain-progress h4{margin:0 0 12px;font-size:16px;}
+.fagverk-ia-quiz-history{margin-top:20px;padding-top:18px;border-top:1px solid var(--fv-line);}
+.fagverk-ia-quiz-history h4{margin:0 0 12px;font-size:16px;}
+.fagverk-ia-quiz-history>div{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}
+.fagverk-ia-quiz-history article{display:flex;flex-direction:column;gap:4px;padding:11px 12px;border:1px solid rgba(255,255,255,.08);border-radius:13px;background:rgba(255,255,255,.025);}
+.fagverk-ia-quiz-history article strong{font-size:12px;line-height:1.4;}
+.fagverk-ia-quiz-history article span{color:var(--fv-muted);font-size:10px;}
 .fagverk-ia-progress-row{display:grid;grid-template-columns:minmax(120px,220px) minmax(100px,1fr) 42px;gap:10px;align-items:center;padding:7px 0;}
 .fagverk-ia-progress-row>span{font-size:12px;}
 .fagverk-ia-progress-row>div{height:7px;overflow:hidden;border-radius:999px;background:rgba(255,255,255,.08);}
@@ -167,4 +175,5 @@ body.fagverk-ia-v3-root .fagverk-shell{grid-template-columns:minmax(220px,280px)
   .fagverk-ia-emne-group>summary{align-items:flex-start;}
   .fagverk-ia-emne-group>summary>small{white-space:normal;text-align:right;}
   .fagverk-ia-progress-row{grid-template-columns:minmax(90px,1fr) minmax(80px,1fr) 38px;}
+  .fagverk-ia-quiz-history>div{grid-template-columns:1fr;}
 }

@@ -24,9 +24,10 @@ const compatibilityBySubject = new Map([
   ['subkultur', fs.readFileSync('data/fag/subkultur/merke_subkultur.html', 'utf8')],
   ['vitenskap', fs.readFileSync('data/fag/vitenskap/merke_vitenskap (2).html', 'utf8')],
   ['filosofi', fs.readFileSync('data/fag/filosofi/merke_filosofi.html', 'utf8')],
-  ['film_tv', fs.readFileSync('data/fag/TV_og_Film/merke_film_tv.html', 'utf8')]
+  ['film_tv', fs.readFileSync('data/fag/TV_og_Film/merke_film_tv.html', 'utf8')],
+  ['politikk', fs.readFileSync('data/fag/politikk/merke_politikk.html', 'utf8')]
 ]);
-const MIGRATED = ['by', 'historie', 'kunst', 'litteratur', 'media', 'musikk', 'naeringsliv', 'natur', 'psykologi', 'religion', 'scenekunst', 'sport', 'subkultur', 'vitenskap', 'filosofi', 'film_tv'];
+const MIGRATED = ['by', 'historie', 'kunst', 'litteratur', 'media', 'musikk', 'naeringsliv', 'natur', 'politikk', 'psykologi', 'religion', 'scenekunst', 'sport', 'subkultur', 'vitenskap', 'filosofi', 'film_tv'];
 
 function runAudit() {
   const result = spawnSync(process.execPath, ['scripts/audit-fagverk-badge-equivalence.mjs'], { encoding: 'utf8' });
@@ -37,8 +38,8 @@ function runAudit() {
 test('badge equivalence audit klassifiserer alle canonicale fag uten ukjent familie', () => {
   const audit = runAudit();
   assert.equal(audit.rows.length, audit.canonicalSubjectCount);
-  assert.ok(audit.counts.progress_route >= 18);
-  assert.ok(audit.counts.rich_runtime >= 1);
+  assert.equal(audit.counts.progress_route, audit.canonicalSubjectCount);
+  assert.equal(audit.counts.rich_runtime ?? 0, 0);
   assert.equal(audit.counts.legacy_static_theory ?? 0, 0);
   assert.equal(audit.rows.some((row) => ['unknown', 'missing'].includes(row.family)), false);
 });
@@ -47,7 +48,6 @@ test('generic fallback-fagene og ferdigmigrerte legacy-fag går til integrert Pr
   const byId = new Map(portal.categories.map((item) => [item.id, item]));
   for (const id of ['helse', 'utdanning', ...MIGRATED]) assert.equal(byId.get(id).badgePage, `fagverk.html?subject=${id}#fagverkIaProgresjon`);
   assert.equal(portal.categories.some((item) => String(item.badgePage).startsWith('merke.html?badge=')), false);
-  assert.equal(byId.get('politikk').badgePage, 'data/fag/politikk/merke_politikk.html');
 });
 
 test('Fagverk Progresjon overtar badgeidentitet, nivåstige, undermerker og fagets Knowledge-inngang', () => {
@@ -89,7 +89,8 @@ test('gamle direkte URL-er er compatibility-redirects etter arkivering', () => {
     subkultur: /merke-blokk|SUBKULTUR\s*[–-]\s*full teoretisk beskrivelse|<h2>1\. Felt<\/h2>|id="begreper"/i,
     vitenskap: /merke-blokk|VITENSKAP\s*&\s*TEKNOLOGI\s*[–-]\s*full teoretisk beskrivelse|<h2>1\. Felt<\/h2>|emner-vitenskap/i,
     filosofi: /Kjerneområder|Eget faggrunnlag|argumentasjon, logikk og begrepsanalyse/,
-    film_tv: /merke-blokk|FILM\s*&\s*TV\s*[–-]\s*full teoretisk beskrivelse|<h2>1\. Felt<\/h2>|id="begreper"/i
+    film_tv: /merke-blokk|FILM\s*&\s*TV\s*[–-]\s*full teoretisk beskrivelse|<h2>1\. Felt<\/h2>|id="begreper"/i,
+    politikk: /politikk-fagportal\.js|politikkEmneProgress|politikkQuizHistory|politikkConcepts/i
   };
   for (const [subject, source] of compatibilityBySubject) {
     assert.match(source, /location\.replace/);
@@ -116,13 +117,14 @@ test('Alle merker sender ferdigmigrerte fag til integrert Progresjon', () => {
   assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/subkultur\/merke_subkultur\.html"/);
   assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/vitenskap\/merke_vitenskap \(2\)\.html"/);
   assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/TV_og_Film\/merke_film_tv\.html"/);
+  assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/politikk\/merke_politikk\.html"/);
 });
 
-test('Politikk rich runtime forblir separat mens all canonical legacy static theory er pensjonert', () => {
+test('Politikk rich runtime og all canonical legacy static theory er pensjonert', () => {
   const audit = runAudit();
   const politics = audit.rows.find((row) => row.id === 'politikk');
-  assert.equal(politics.family, 'rich_runtime');
-  assert.equal(politics.equivalence, 'pending_runtime_migration');
+  assert.equal(politics.family, 'progress_route');
+  assert.equal(politics.equivalence, 'complete');
   for (const id of MIGRATED) {
     const migrated = audit.rows.find((row) => row.id === id);
     assert.equal(migrated.family, 'progress_route');

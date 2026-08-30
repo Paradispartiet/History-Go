@@ -30,7 +30,7 @@
 
     const path=document.getElementById('fagverkPlaceBadgePath');
     if(path){
-      path.innerHTML=`<h2>Fra merke til fag</h2><p>Undermerkene organiserer stedene. Emnene og fagområdene gir den faglige forklaringen.</p><div class="fagverk-canonical-underbadges">${model.underbadges.map((x)=>`<a href="data/fag/politikk/merke_politikk.html#underbadge-${esc(x.id)}">${esc(x.label)}</a>`).join('')}</div><div class="fagverk-canonical-domain-grid">${model.domains.map((d)=>`<a class="fagverk-case" href="${esc(global.HGPolitikkFagModel.domainUrl(d.domain_id,{place:placeId}))}"><strong>${esc(d.label)}</strong><span>${esc(d.tagline)}</span><small>Åpne fagområdet →</small></a>`).join('')}</div>`;
+      path.innerHTML=`<h2>Fra merke til fag</h2><p>Undermerkene organiserer stedene. Emnene og fagområdene gir den faglige forklaringen.</p><div class="fagverk-canonical-underbadges">${model.underbadges.map((x)=>`<a href="fagverk.html?subject=politikk#underbadge-${esc(x.id)}">${esc(x.label)}</a>`).join('')}</div><div class="fagverk-canonical-domain-grid">${model.domains.map((d)=>`<a class="fagverk-case" href="${esc(global.HGPolitikkFagModel.domainUrl(d.domain_id,{place:placeId}))}"><strong>${esc(d.label)}</strong><span>${esc(d.tagline)}</span><small>Åpne fagområdet →</small></a>`).join('')}</div>`;
       path.hidden=false;
     }
 

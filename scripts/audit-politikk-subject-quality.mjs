@@ -13,7 +13,7 @@ const P = Object.freeze({
   mappings: 'data/fag/politikk/emnemapping_politikk_canonical_v4_5.json',
   quiz: 'data/fag/politikk/supersetQUIZMAL_politikk.json',
   badge: 'data/badges/politikk.json',
-  badgePage: 'data/fag/politikk/merke_politikk.html',
+  compatibilityPage: 'data/fag/politikk/merke_politikk.html',
   registry: 'data/fagverk/fagverk_registry.json',
   report: 'reports/fagverk/politikk-quality-audit.json'
 });
@@ -44,7 +44,7 @@ export function auditPolitikkQuality({ writeReport = false, checkReport = true }
   const mappings = json(P.mappings);
   const quiz = json(P.quiz);
   const badge = json(P.badge);
-  const badgePage = read(P.badgePage);
+  const compatibilityPage = read(P.compatibilityPage);
   const registry = json(P.registry);
   const methods = methodsDoc.methods || [];
   const domains = pensum.domains || [];
@@ -134,8 +134,10 @@ export function auditPolitikkQuality({ writeReport = false, checkReport = true }
 
   assert(text(badge.description).length >= 120, 'Politikkmerket har en for vag beskrivelse');
   assert(!(badge.tiers || []).some((tier) => ['President', 'Diktator'].includes(text(tier.label))), 'Politikkmerket bruker maktposisjoner som uegnede toppnivåer');
-  assert(!badgePage.includes('123 canonicale emner'), 'Merkesiden har hardkodet emnetall');
-  assert(badgePage.includes('fagverk.html?subject=politikk'), 'Merkesiden mangler canonical fagsidelenke');
+  assert(!compatibilityPage.includes('123 canonicale emner'), 'Compatibility-siden har hardkodet emnetall');
+  assert(compatibilityPage.includes('fagverk.html?subject=politikk#fagverkIaProgresjon'), 'Compatibility-siden mangler canonical progresjonsrute');
+  assert(compatibilityPage.includes('location.replace'), 'Compatibility-siden er ikke en redirect');
+  assert(!compatibilityPage.includes('politikk-fagportal.js'), 'Compatibility-siden laster fortsatt legacy-runtime');
   assert(registry.subjects?.politikk?.canonicalModel?.sourceOfTruth === true, 'Fagverkregisteret peker ikke til canonical politikkmodell');
 
   assert(pensum.summary?.emne_count === emner.length, 'Pensumsammendraget har feil emnetall');
@@ -176,7 +178,7 @@ export function auditPolitikkQuality({ writeReport = false, checkReport = true }
       twoTimesSevenNormalQuizOpening: true,
       knowledgeDeliveryRequired: true,
       learningOrientedBadgeProgression: true,
-      publicFacingBadgePage: true
+      integratedBadgeProgression: true
     }
   };
   if (writeReport) {

@@ -102,7 +102,7 @@ Den permanente auditen klassifiserer hvert `badgePage` som:
 - [ ] Reconcile eldre siderolleprosa i `FAGVERK.md` med navigasjonskontrakt v3.
 - [ ] Kjør innholdsaudit av `legacy_static_theory`, med By som representativt førstefag.
 - [ ] Migrer kun unik, gyldig teori som mangler canonicalt til riktig emne/metode/begrep/kapittel/fagoversikt.
-- [ ] Migrer Politikkens `rich_runtime`-funksjoner som fortsatt mangler equivalence i Progresjon/Emner/Utforsk.
+- [x] Migrer Politikkens `rich_runtime`-funksjoner til Progresjon/Emner/Utforsk, arkiver originalen byte-for-byte og pensjoner separat portalruntime.
 - [ ] Audit `legacy_stub` for unik tekst og aktive lenker; redirect etter grønn gate.
 - [ ] Gjør `emner.html` eksplisitt til **Min læring** / global progresjonsflate.
 - [ ] Redirect resterende legacy `badgePage` fagvis etter equivalence-gate.
@@ -128,7 +128,7 @@ Migrasjonen er først ferdig når:
 4. Emne og kapittel har tydelig forskjellige roller. **Oppfylt.**
 5. Progresjon bruker eksisterende state/read-model uten ny lagring. **Oppfylt og testet.**
 6. Badgeidentitet, nivåstige og undermerker finnes i Fagverket. **Implementert i første Batch C-tranche; CI gjenstår.**
-7. Alle funksjoner som faktisk trengs fra rich legacy-sider finnes i Fagverket før redirect. **Gjenstår særlig Politikk.**
+7. Alle funksjoner som faktisk trengs fra rich legacy-sider finnes i Fagverket før redirect. **Oppfylt; Politikk er migrert og låst med permanent runtime-equivalence-port.**
 8. Ingen unik gyldig fagkunnskap slettes. **Gjenstår innholdsaudit av statiske teorisider.**
 9. Alle gamle merkesider er redirect/compatibility-only og `merker/merker.html` er avviklet. **Gjenstår.**
 10. Permanente all-subject-, equivalence-, TypeScript- og browserporter er grønne på `main`. **Gjenstår sluttfase.**

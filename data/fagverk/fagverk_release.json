@@ -18,7 +18,7 @@
     "schema": "history_go_fagverk_subject_inventory_v1",
     "version": "1.12.0",
     "updated_at": "2026-08-20",
-    "content_sha256": "ffeac66504a3ddd98ca52d9f344f9e103affac4abddc8cc73b1e2adc98933680",
+    "content_sha256": "1cdf54ba9dc36ffb21da65a7f01f547953afa13a13da52d189f1b0f83975fd2b",
     "root_subject_count": 19,
     "specialization_count": 1
   },
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "f275312286dc85b0b6fda8318d2d62ac03334a10fa3d93bbf6c834f8e2f628e3"
+    "content_sha256": "42b63abab70436dde17dfb0c75ddda5be975d141787e5f1baaefe35362404a56"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 17,
     "chapter_count": 189,
     "module_file_count": 497,
-    "package_file_count": 350,
+    "package_file_count": 351,
     "chapter_referenced_file_count": 933,
-    "referenced_file_count": 1212,
+    "referenced_file_count": 1213,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -4689,6 +4689,7 @@
       "optional_manifest_fields": [
         "curriculum",
         "concepts",
+        "runtimeManifest",
         "supersetQuizMal",
         "quizStandard",
         "quizQuestionSchema"
@@ -4702,12 +4703,13 @@
         "pensum",
         "quizQuestionSchema",
         "quizStandard",
+        "runtimeManifest",
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 9,
+      "package_file_count": 10,
       "required_package_file_count": 4,
-      "optional_package_file_count": 5,
+      "optional_package_file_count": 6,
       "package_files": [
         {
           "path": "data/fag/politikk/concepts_politikk_canonical_v1.json",
@@ -4770,6 +4772,18 @@
           "content_sha256": "2ff2f66cd86dcee12924fcb778d435955dea5638714d1b45595cc5a6e9ad8e13"
         },
         {
+          "path": "data/fag/politikk/politikk_runtime_manifest.json",
+          "required": false,
+          "fields": [
+            "runtimeManifest"
+          ],
+          "key_paths": [
+            "runtimeManifest"
+          ],
+          "exists": true,
+          "content_sha256": "b611c0ab7e7cd4eb45f1203aa2e160b133e26fb185d7b7e7260cea1cec0a5fb6"
+        },
+        {
           "path": "data/fag/politikk/politikkpensum_canonical_v4_5.json",
           "required": true,
           "fields": [
@@ -4818,20 +4832,20 @@
           "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
         }
       ],
-      "package_content_sha256": "bd9fe460ae613ad028ffbdb3827e5357f8bf197caf18054a3e4febf6079b9f54",
+      "package_content_sha256": "9dc5cd872d02f04a7b822fd3af5a2649b8dd501282260a729ef37fea66c5cdb1",
       "chapter_count": 13,
       "module_file_count": 39,
       "brief_file_count": 13,
       "claims_file_count": 13,
       "chapter_referenced_file_count": 78,
       "chapter_content_sha256": "49a9ecd379041fe7827b0fd0386c66cf5f91e4fa547b8fbef04a07ae12ad582d",
-      "referenced_file_count": 87,
+      "referenced_file_count": 88,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "55e818cf86a82450dfe365ef47a56bd3ce2ecd2159c8325a09cb7c6b669833ad",
-      "content_sha256": "f81ac063c10c9b15699196914be0c008de18fa446358c5f13342d5ade606f035",
+      "structure_sha256": "d3e22b0239edea8db974c6f4bac304fbd47a9e63ba5c76a7bbfc5a63441f09c6",
+      "content_sha256": "beeed0ac57d2ecab595c747148dfe5d2bc860e20f91b8274134c9bf4421c8767",
       "chapters": [
         {
           "chapter_id": "forvaltning",
@@ -6902,5 +6916,5 @@
       ]
     }
   },
-  "release_sha256": "f2b0145aa3a52fe453f6a96f296638aad0acb4cca5fdeda92876a6cfefe5ce89"
+  "release_sha256": "741125daa41f640a599da93b7616dca219cb9ab6c0c43411b8da7b61aca49be6"
 }
