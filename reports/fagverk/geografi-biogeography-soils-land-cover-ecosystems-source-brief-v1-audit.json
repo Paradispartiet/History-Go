@@ -1,0 +1,41 @@
+{
+  "schema": "history_go_geografi_biogeography_soils_land_cover_ecosystems_source_brief_audit_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-30",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "domain_id": "biogeografi_jord_arealdekke_okosystem",
+  "status": "pass_source_first_ready_not_materialized",
+  "counts": {
+    "verifiedSources": 13,
+    "topicBriefs": 8,
+    "plannedClaims": 32,
+    "decisionScenarios": 6,
+    "plannedAssessments": 8,
+    "reuseOwnerChapters": 3
+  },
+  "gates": {
+    "ownership": true,
+    "reuse_owner_preserved": true,
+    "source_first": true,
+    "inspectable_sources": true,
+    "multi_source_claim_trace": true,
+    "soil_prediction_observation_boundary": true,
+    "occurrence_absence_boundary": true,
+    "land_cover_land_use_boundary": true,
+    "classification_version_control": true,
+    "sampling_scale_uncertainty": true,
+    "ecosystem_multi_driver_boundary": true,
+    "fulltext_fail_closed": true
+  },
+  "six_part_quality_review": {
+    "correctness_and_evidence": 5,
+    "biogeography_and_ecosystems": 5,
+    "soils_and_prediction": 5,
+    "land_cover_and_remote_sensing": 5,
+    "occurrence_sampling_and_connectivity": 5,
+    "scale_uncertainty_and_reproducibility": 5,
+    "total": 30
+  },
+  "next_gate": "materialize_biogeography_soils_land_cover_ecosystems_fulltext_and_reverify_all_32_claims"
+}

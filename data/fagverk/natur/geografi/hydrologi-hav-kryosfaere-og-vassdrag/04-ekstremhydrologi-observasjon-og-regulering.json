@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "hydrologi-hav-kryosfaere-og-vassdrag",
+  "id": "04-ekstremhydrologi-observasjon-og-regulering",
+  "title": "Ekstremhydrologi, observasjon og regulering",
+  "sections": [
+    {
+      "id": "flom-torke-ekstremhydrologi-og-varsling",
+      "title": "Flom, tørke, ekstremhydrologi og varsling",
+      "method_ids": ["met_geo_flomfrekvens_og_hydrograph", "met_geo_torke_og_ensemblevarsling"],
+      "boundary": "Varsel, returperiode og observert hendelse er forskjellige evidenstyper; sannsynlighet og modellspredning skal ikke presenteres som deterministisk framtid.",
+      "paragraphs": [
+        "Flomrespons bestemmes av mer enn hendelsens nedbørsmengde. Forutgående jordfuktighet, snølagring, grunnvannsnivå, innsjøer, terreng, arealdekke, drenering og regulering påvirker hvor raskt vannet når vassdraget og hvor høy flomtoppen blir. En kraftig regnhendelse i et tørt felt kan gi mindre respons enn moderat regn på et allerede mettet felt, og regn på snø kan kombinere to vannkilder. Geografisk flomanalyse bør derfor starte med feltets tilstand før hendelsen og følge strømveiene gjennom systemet. Å rangere flomfare kun etter nedbørkart kan overse både lagring og transportkapasitet og gir et ufullstendig kausalt bilde.",
+        "Hydrologisk tørke beskriver underskudd i vannføring eller lagre som grunnvann, innsjøer eller magasiner, og kan utvikle seg på en annen tidsplan enn meteorologisk tørke definert ved nedbør. Langvarig lav nedbør kan først redusere jordfuktighet, deretter recharge og til slutt grunnvann og baseflow, mens store lagre kan dempe eller forsinke responsen. Omvendt kan vannuttak eller regulering forsterke lavvann selv uten ekstrem nedbørsmangel. Derfor bør tørkeanalyse angi hvilken variabel og terskel som brukes, hvor lenge underskuddet varer og hvilke lagre som er berørt. Begrepet tørke er ikke én måleserie, men en familie av relaterte tilstander som må skilles metodisk.",
+        "Ensemblebaserte flomvarsler representerer flere mulige framtidige forløp i stedet for ett sikkert vannføringstall. Spredningen kan komme fra meteorologiske innganger, hydrologisk modell, starttilstand og parameterusikkerhet, og er derfor viktig informasjon for beredskap. Medianen kan være et nyttig sammendrag, men kan skjule lavsannsynlige utfall over kritiske terskler. Geografisk risikokommunikasjon bør derfor vise sannsynlighet for relevante nivåer, tidspunkt og varighet, og oppgi hvilke målesteder eller modellceller varselet gjelder. Et varsel er en betinget framtidsvurdering som må oppdateres, ikke en observert sannhet som kan brukes som historisk hendelsesdata.",
+        "Historiske returperioder bygger på statistiske antakelser om hvordan ekstremhendelser er fordelt. Når klima, arealbruk, regulering eller observasjonssystem endres, kan prosessen bli ikke-stasjonær slik at en historisk beregnet sannsynlighet ikke uten videre beskriver framtiden. Dette betyr ikke at frekvensanalyse er verdiløs, men at dataseriens lengde, modellvalg og stabilitet må undersøkes og suppleres med nyere observasjoner og relevant scenarioinformasjon. Geografisk analyse bør også skille mellom sannsynlighet for vannføring ved ett punkt og konsekvens i et flomutsatt område. Returperiode er et statistisk mål, ikke en kalender som sier at en hendelse må vente et bestemt antall år."
+      ],
+      "paragraphClaimIds": [["geo5-25"],["geo5-26"],["geo5-27"],["geo5-28"]]
+    },
+    {
+      "id": "observasjon-regulering-og-menneskelig-vannsystem",
+      "title": "Observasjon, regulering og menneskelig vannsystem",
+      "method_ids": ["met_geo_hydrologisk_datakildekritikk", "met_geo_regulert_nedborfelt_sammenligning"],
+      "boundary": "Målestasjon, reanalyse, modell og regulert serie representerer ulike systemtilstander; menneskelig påvirkning må eksplisitt inn i hydrologisk kausalitet og generalisering.",
+      "paragraphs": [
+        "Hydrologiske målinger trenger metadata for å bli etterprøvbare. Målested, instrument, referansenivå, tidsoppløsning, kvalitetskontroll, hull i serien og beregningsmetode påvirker hvordan vannstand, vannføring, snø eller grunnvann kan brukes. En stasjon kan flyttes, en vannføringskurve kan revideres, eller målepraksis kan endres uten at selve elven har endret seg tilsvarende. Derfor bør tidsserieanalyse kontrollere dokumenterte brudd og versjoner før trend beregnes. Geografisk representasjon må også angis: en stasjon måler et punkt eller et feltutløp, ikke automatisk alle steder innenfor samme administrative område eller klimaregion.",
+        "Dammer, overføringer, uttak, drenering og urbanisering kan endre hydrologien gjennom både volum og timing. Et magasin kan holde tilbake vårflom og øke vintervannføring, et vannuttak kan senke grunnvann, og tette flater kan øke rask avrenning til ledningsnett og bekker. Slike påvirkninger bør behandles som aktive drivere som kan analyseres romlig, ikke som tilfeldige avvik som fjernes for å få en penere naturserie. Når målet er å undersøke klimaeffekt, må graden av menneskelig påvirkning dokumenteres eller kontrolleres; når målet er å forstå faktisk vannsystem, er inngrepene en integrert del av årsakskjeden som skal forklares.",
+        "Modellert eller varslet vannføring er et beregnet produkt og må valideres mot observasjoner på relevant skala og periode før det brukes som dokumentasjon på lokal hydrologisk tilstand. God ytelse i middel kan skjule systematiske feil i flomtopper, lavvann eller bestemte sesonger, og en global modellcelle kan representere et annet areal enn et lokalt målefelt. Derfor bør validering bruke flere mål som passer formålet og undersøke både tidsseriens dynamikk og romlig representasjon. Dersom observasjoner mangler, må usikkerheten økes og produktet omtales som modellbasert evidens. Det er metodisk feil å konvertere en prognose eller reanalyse til «målt verdi» bare fordi den er tilgjengelig som kartlag.",
+        "En etterprøvbar geografisk hydrologianalyse dokumenterer systemgrense, variabel, datakilde, tidsperiode, romlig representasjon, menneskelig påvirkning og usikkerhet før resultatet generaliseres. Dette gjelder både en enkel sammenligning av to elver og en avansert modell av framtidig flom. Uten disse opplysningene er det vanskelig å vite om forskjellen skyldes fysikk, målemetode, skala eller databehandling. Reproduserbarhet betyr også at avgrensning av nedbørfelt, filtrering av data, beregning av indikatorer og eventuelle normaliseringer beskrives slik at en annen analytiker kan gjenta prosessen. Metodisk transparens er derfor en del av det geografiske resultatet, ikke bare dokumentasjon etterpå."
+      ],
+      "paragraphClaimIds": [["geo5-29"],["geo5-30"],["geo5-31"],["geo5-32"]]
+    }
+  ]
+}
