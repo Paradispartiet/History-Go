@@ -6,6 +6,7 @@ on:
       - work/tullin-completion-20260830
     paths:
       - 'tools/finalize-tullin-completion.mjs'
+      - 'tools/tullin-fetch-retry.mjs'
       - '.github/workflows/tullin-place-production.yml'
 
 permissions:
@@ -44,7 +45,7 @@ jobs:
         run: |
           rm -f reports/place-production/tullin-producer-error.log
           set +e
-          node tools/finalize-tullin-completion.mjs > /tmp/tullin-producer.log 2>&1
+          node --import ./tools/tullin-fetch-retry.mjs tools/finalize-tullin-completion.mjs > /tmp/tullin-producer.log 2>&1
           STATUS=$?
           set -e
           cat /tmp/tullin-producer.log
@@ -120,6 +121,7 @@ jobs:
       - name: Commit permanent package and remove temporary producer
         run: |
           rm -f reports/place-production/tullin-producer-error.log
+          rm -f tools/tullin-fetch-retry.mjs
           rm .github/workflows/tullin-place-production.yml
           git add -A
           if git diff --cached --quiet; then
