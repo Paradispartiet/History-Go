@@ -132013,6 +132013,534 @@
     {
       "category": "naeringsliv",
       "compatibility_projection": {
+        "actor_id": "ingrid_omradesjef_mellomleder",
+        "category": "naeringsliv",
+        "channel": "work",
+        "choices": [
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "clarity": 2,
+                "decision_quality": 2,
+                "integrity": 2
+              }
+            },
+            "feedback": "Du gir Ingrid et kort styringssignal som fortsatt kan etterprøves. Rapporten skiller målt resultat fra kjent kostnad og ukjent belastning, slik at hun kan prioritere videre uten at du har funnet opp verken en personalsak eller en rett til nye ressurser. Det beskytter både beslutningskvalitet og mandatgrensen.",
+            "id": "A",
+            "label": "Rapportere resultat, kostnad og usikkerhet",
+            "reply": "Jeg markerer leveransen som oppnådd, viser registrert overtid og skriver eksplisitt at bærekraftig kapasitet ikke kan konkluderes før vi har bedre grunnlag.",
+            "tags": [
+              "professional_relationship"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "ambiguity": 2,
+                "future_risk": 2,
+                "presentation": 2
+              }
+            },
+            "feedback": "Du sender et enkelt signal oppover, men gjør fravær av data til en implisitt bekreftelse på at leveransen er bærekraftig. Ingrid får mindre friksjon i møtet, mens kostnaden og usikkerheten blir vanskeligere å koble til beslutningen dersom teamet senere ikke holder samme tempo.",
+            "id": "B",
+            "label": "Holde rapporten entydig grønn",
+            "reply": "Jeg rapporterer 101 prosent levering og moderat overtid som grønt, og lar kapasitetsusikkerheten vente til vi har sikrere tegn.",
+            "tags": [
+              "professional_relationship"
+            ]
+          }
+        ],
+        "cooldown": 2,
+        "id": "mellomleder_people_ingrid_rapport_001",
+        "mail_class": "professional_message",
+        "mail_family": "mellomleder_profesjonelle_arbeidsrelasjoner",
+        "mail_type": "people",
+        "messageChannel": "work",
+        "people_ref": "ingrid_omradesjef_mellomleder",
+        "person_id": "ingrid_omradesjef_mellomleder",
+        "phase": "early",
+        "place_id": "analyse_og_rapporteringsflate",
+        "priority": 72,
+        "purpose": "Readiness-prerequisite: koble en typed profesjonell relasjon til en eksisterende Mellomleder-arbeidsflate uten å endre canonical plan eller formell myndighet.",
+        "repeatable": false,
+        "role_scope": "mellomleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/people/mellomleder_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Leveransen er 101 prosent, registrert overtid er moderat, og det finnes ikke en ny måling av arbeidsmiljø eller skjult støttearbeid.",
+          "Ingrid spør om rapporten kan stå grønn og ber om én kort forklaring dersom noe må løftes videre.",
+          "Du skal gjøre rapporten beslutningsbar uten å gjøre ukjent kapasitet til enten dokumentert krise eller dokumentert ro."
+        ],
+        "source_scene_ref": "data/Civication/mailFamilies/naeringsliv/job/mellomleder_job.json#job_mellomleder_week1_first_monday_report",
+        "stage": "stable",
+        "stakes": "Valget påvirker beslutningskvalitet, tillit og sporbarhet, men kan aldri utvide mandat, erstatte korrekt personalprosess eller gjøre et styringssignal sannere enn kildene.",
+        "subject": "Ingrid trenger ett styringssignal før ledermøtet",
+        "summary": "Mandagsrapporten viser 101 prosent leveranse og moderat registrert overtid, men sier ingenting sikkert om hvordan tempoet oppleves eller hvor mye uformell støtte som holder resultatet oppe. Ingrid trenger ett styringssignal før ledermøtet. Mellomlederen må gjøre både resultat, kjent kostnad og usikkerhet synlig uten å diagnostisere laget, kreve bemanning som ikke er besluttet eller late som et grønt tall alene beskriver gjennomføringsevnen."
+      },
+      "id": "mellomleder_people_ingrid_rapport_001",
+      "mail_type": "people",
+      "role_scope": "mellomleder",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du gir Ingrid et kort styringssignal som fortsatt kan etterprøves. Rapporten skiller målt resultat fra kjent kostnad og ukjent belastning, slik at hun kan prioritere videre uten at du har funnet opp verken en personalsak eller en rett til nye ressurser. Det beskytter både beslutningskvalitet og mandatgrensen.",
+            "id": "A",
+            "label": "Rapportere resultat, kostnad og usikkerhet",
+            "reply": "Jeg markerer leveransen som oppnådd, viser registrert overtid og skriver eksplisitt at bærekraftig kapasitet ikke kan konkluderes før vi har bedre grunnlag."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du sender et enkelt signal oppover, men gjør fravær av data til en implisitt bekreftelse på at leveransen er bærekraftig. Ingrid får mindre friksjon i møtet, mens kostnaden og usikkerheten blir vanskeligere å koble til beslutningen dersom teamet senere ikke holder samme tempo.",
+            "id": "B",
+            "label": "Holde rapporten entydig grønn",
+            "reply": "Jeg rapporterer 101 prosent levering og moderat overtid som grønt, og lar kapasitetsusikkerheten vente til vi har sikrere tegn."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Leveransen er 101 prosent, registrert overtid er moderat, og det finnes ikke en ny måling av arbeidsmiljø eller skjult støttearbeid.",
+            "Ingrid spør om rapporten kan stå grønn og ber om én kort forklaring dersom noe må løftes videre.",
+            "Du skal gjøre rapporten beslutningsbar uten å gjøre ukjent kapasitet til enten dokumentert krise eller dokumentert ro."
+          ],
+          "subject": "Ingrid trenger ett styringssignal før ledermøtet",
+          "summary": "Mandagsrapporten viser 101 prosent leveranse og moderat registrert overtid, men sier ingenting sikkert om hvordan tempoet oppleves eller hvor mye uformell støtte som holder resultatet oppe. Ingrid trenger ett styringssignal før ledermøtet. Mellomlederen må gjøre både resultat, kjent kostnad og usikkerhet synlig uten å diagnostisere laget, kreve bemanning som ikke er besluttet eller late som et grønt tall alene beskriver gjennomføringsevnen."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "mellomleder_people_ingrid_rapport_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "analyse_og_rapporteringsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "mellomleder_people_ingrid_rapport_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/people/mellomleder_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "mellomleder.mail.mellomleder_people_ingrid_rapport_001",
+        "version": 1
+      },
+      "source_hash": "80a494c90292b4f32ca0c49e6b79b287cd567b1cc62f232351fcc1f065189be3",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/people/mellomleder_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "actor_id": "mads_sidestilt_leder_mellomleder",
+        "category": "naeringsliv",
+        "channel": "work",
+        "choices": [
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "decision_quality": 2,
+                "transparency": 2,
+                "trust_peer": 1
+              }
+            },
+            "feedback": "Du bruker Mads som en kilde til politisk forståelse uten å låne en myndighet han ikke har. Ledergruppen får se både hensikten og kostnaden, og kan dermed velge prioritet på et sannferdig grunnlag. Rapporten blir strategisk lesbar uten at den operative virkeligheten redigeres bort.",
+            "id": "A",
+            "label": "Vise investering og kapasitetskostnad sammen",
+            "reply": "Jeg beskriver opplæringen som en begrunnet investering og tallfester samtidig hvilken kortsiktig kapasitet og usikkerhet beslutningen medfører.",
+            "tags": [
+              "professional_relationship"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "future_risk": 2,
+                "influence": 2,
+                "transparency": -2
+              }
+            },
+            "feedback": "Du øker sjansen for støtte til opplæringen, men lar presentasjonsformen avgjøre hvor synlig kostnaden blir. Dersom ukens leveranse svikter, kan beslutningstakerne med rette si at de aldri fikk det samtidige avveiningsgrunnlaget, og Mads sitt råd kan ikke brukes som godkjenning i etterkant.",
+            "id": "B",
+            "label": "Lede med investeringshistorien alene",
+            "reply": "Jeg fremhever kompetanseinvesteringen og lar kapasitetskostnaden ligge i vedlegget dersom noen spør etter den.",
+            "tags": [
+              "professional_relationship"
+            ]
+          }
+        ],
+        "cooldown": 2,
+        "id": "mellomleder_people_mads_styringspolitikk_001",
+        "mail_class": "professional_message",
+        "mail_family": "mellomleder_profesjonelle_arbeidsrelasjoner",
+        "mail_type": "people",
+        "messageChannel": "work",
+        "people_ref": "mads_sidestilt_leder_mellomleder",
+        "person_id": "mads_sidestilt_leder_mellomleder",
+        "phase": "early",
+        "place_id": "strategi_og_beslutningsrom",
+        "priority": 72,
+        "purpose": "Readiness-prerequisite: koble en typed profesjonell relasjon til en eksisterende Mellomleder-arbeidsflate uten å endre canonical plan eller formell myndighet.",
+        "repeatable": false,
+        "role_scope": "mellomleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/people/mellomleder_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den planlagte opplæringen bygger nødvendig kompetanse, men opptar timer som ellers ville gått til ukens leveranse.",
+          "Mads sier at investeringsrammen vil møte mindre motstand enn en rapport som legger hovedvekten på kapasitetskostnaden.",
+          "Du kan bruke rådet til å gjøre saken lesbar, men Mads har verken godkjenningsmyndighet eller ansvar for faktagrunnlaget ditt."
+        ],
+        "source_scene_ref": "data/Civication/mailFamilies/naeringsliv/job/mellomleder_job.json#job_mellomleder_week2_numbers_become_politics",
+        "stage": "stable",
+        "stakes": "Valget påvirker beslutningskvalitet, tillit og sporbarhet, men kan aldri utvide mandat, erstatte korrekt personalprosess eller gjøre et styringssignal sannere enn kildene.",
+        "subject": "Mads ser to sanne historier i de samme tallene",
+        "summary": "Opplæringstiden kan beskrives som en investering i fremtidig kapasitet, men den reduserer samtidig leveransekapasiteten denne uken. Mads forklarer at ledergruppen sannsynligvis vil belønne investeringsspråket og utfordre kostnadsspråket. Mellomlederen må bevare begge de sanne sidene, skille kollegialt råd fra godkjenning og unngå at strategisk innpakning skjuler den operative konsekvensen som beslutningstakerne faktisk trenger å ta stilling til."
+      },
+      "id": "mellomleder_people_mads_styringspolitikk_001",
+      "mail_type": "people",
+      "role_scope": "mellomleder",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du bruker Mads som en kilde til politisk forståelse uten å låne en myndighet han ikke har. Ledergruppen får se både hensikten og kostnaden, og kan dermed velge prioritet på et sannferdig grunnlag. Rapporten blir strategisk lesbar uten at den operative virkeligheten redigeres bort.",
+            "id": "A",
+            "label": "Vise investering og kapasitetskostnad sammen",
+            "reply": "Jeg beskriver opplæringen som en begrunnet investering og tallfester samtidig hvilken kortsiktig kapasitet og usikkerhet beslutningen medfører."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du øker sjansen for støtte til opplæringen, men lar presentasjonsformen avgjøre hvor synlig kostnaden blir. Dersom ukens leveranse svikter, kan beslutningstakerne med rette si at de aldri fikk det samtidige avveiningsgrunnlaget, og Mads sitt råd kan ikke brukes som godkjenning i etterkant.",
+            "id": "B",
+            "label": "Lede med investeringshistorien alene",
+            "reply": "Jeg fremhever kompetanseinvesteringen og lar kapasitetskostnaden ligge i vedlegget dersom noen spør etter den."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den planlagte opplæringen bygger nødvendig kompetanse, men opptar timer som ellers ville gått til ukens leveranse.",
+            "Mads sier at investeringsrammen vil møte mindre motstand enn en rapport som legger hovedvekten på kapasitetskostnaden.",
+            "Du kan bruke rådet til å gjøre saken lesbar, men Mads har verken godkjenningsmyndighet eller ansvar for faktagrunnlaget ditt."
+          ],
+          "subject": "Mads ser to sanne historier i de samme tallene",
+          "summary": "Opplæringstiden kan beskrives som en investering i fremtidig kapasitet, men den reduserer samtidig leveransekapasiteten denne uken. Mads forklarer at ledergruppen sannsynligvis vil belønne investeringsspråket og utfordre kostnadsspråket. Mellomlederen må bevare begge de sanne sidene, skille kollegialt råd fra godkjenning og unngå at strategisk innpakning skjuler den operative konsekvensen som beslutningstakerne faktisk trenger å ta stilling til."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "mellomleder_people_mads_styringspolitikk_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "strategi_og_beslutningsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "mellomleder_people_mads_styringspolitikk_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/people/mellomleder_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "mellomleder.mail.mellomleder_people_mads_styringspolitikk_001",
+        "version": 1
+      },
+      "source_hash": "0910051d0472334772d550edc89d5c05c3028a8e4cf691bc27ca5e5933c40591",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/people/mellomleder_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "actor_id": "rana_teamkoordinator_mellomleder",
+        "category": "naeringsliv",
+        "channel": "work",
+        "choices": [
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "capacity": 2,
+                "evidence_quality": 2,
+                "privacy": 2
+              }
+            },
+            "feedback": "Du bruker lokal kunnskap som driftsevidens og holder personvern- og mandatgrensen lesbar. Tiltaket kan prøves, måles og korrigeres uten at Rana gjøres til personalansvarlig eller at enkeltpersoners tempo forklares med antakelser. Ved behov finnes det nå et bedre grunnlag for riktig eskalering.",
+            "id": "A",
+            "label": "Justere oppgaver og samle avgrenset evidens",
+            "reply": "Jeg fordeler opplæring og kritiske oppgaver på nytt, avtaler hvilke flaskehalser Rana skal logge, og holder årsakstolkninger utenfor kapasitetsbildet.",
+            "tags": [
+              "professional_relationship"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "ambiguity": 2,
+                "pressure": 2,
+                "trust_team": -2
+              }
+            },
+            "feedback": "Du sender et tydelig krav, men lar den kjente strukturen bak kapasitetsgapet stå urørt. Rana blir samtidig bedt om å overvåke personer fremfor arbeidsflyt, noe som kan gjøre støttebehov til sosial eksponering uten at dataene blir bedre eller ledermandatet mer presist.",
+            "id": "B",
+            "label": "Be hele laget øke tempoet",
+            "reply": "Jeg minner alle om leveransekravet og ber Rana følge ekstra med på hvem som fortsatt trenger støtte gjennom dagen.",
+            "tags": [
+              "professional_relationship"
+            ]
+          }
+        ],
+        "cooldown": 2,
+        "id": "mellomleder_people_rana_kapasitet_001",
+        "mail_class": "professional_message",
+        "mail_family": "mellomleder_profesjonelle_arbeidsrelasjoner",
+        "mail_type": "people",
+        "messageChannel": "work",
+        "people_ref": "rana_teamkoordinator_mellomleder",
+        "person_id": "rana_teamkoordinator_mellomleder",
+        "phase": "early",
+        "place_id": "drift_og_kapasitetsgjennomgang",
+        "priority": 72,
+        "purpose": "Readiness-prerequisite: koble en typed profesjonell relasjon til en eksisterende Mellomleder-arbeidsflate uten å endre canonical plan eller formell myndighet.",
+        "repeatable": false,
+        "role_scope": "mellomleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/people/mellomleder_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Arket viser full bemanning, samtidig som opplæring, lavere tempo og uformell veiledning reduserer tilgjengelige leveringstimer.",
+          "Rana kan beskrive hvilke oppgaver som stopper og hvem som hjelper hvem, men hun kjenner ikke medisinske årsaker eller formell status.",
+          "Du må velge en lokal kapasitetsrespons som er tydelig nok til å måles uten å gjøre medarbeiderobservasjoner til sladder eller personalsak."
+        ],
+        "source_scene_ref": "data/Civication/mailFamilies/naeringsliv/job/mellomleder_job.json#job_mellomleder_week1_peace_below_speed_above",
+        "stage": "stable",
+        "stakes": "Valget påvirker beslutningskvalitet, tillit og sporbarhet, men kan aldri utvide mandat, erstatte korrekt personalprosess eller gjøre et styringssignal sannere enn kildene.",
+        "subject": "Rana kjenner kapasiteten bak åtte av åtte navn",
+        "summary": "Bemanningsarket viser åtte av åtte på jobb, men Nadia er i opplæring, Thomas leverer langsommere enn planlagt og Ida bruker tid på uformell veiledning. Rana kjenner arbeidsflyten og kan vise hvor kapasiteten faktisk forsvinner. Mellomlederen må behandle observasjonene som avgrenset driftsevidens, ikke som diagnose eller tillatelse til å dele personopplysninger, og justere arbeid innen eget mandat før en bredere sak eventuelt eskaleres."
+      },
+      "id": "mellomleder_people_rana_kapasitet_001",
+      "mail_type": "people",
+      "role_scope": "mellomleder",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du bruker lokal kunnskap som driftsevidens og holder personvern- og mandatgrensen lesbar. Tiltaket kan prøves, måles og korrigeres uten at Rana gjøres til personalansvarlig eller at enkeltpersoners tempo forklares med antakelser. Ved behov finnes det nå et bedre grunnlag for riktig eskalering.",
+            "id": "A",
+            "label": "Justere oppgaver og samle avgrenset evidens",
+            "reply": "Jeg fordeler opplæring og kritiske oppgaver på nytt, avtaler hvilke flaskehalser Rana skal logge, og holder årsakstolkninger utenfor kapasitetsbildet."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du sender et tydelig krav, men lar den kjente strukturen bak kapasitetsgapet stå urørt. Rana blir samtidig bedt om å overvåke personer fremfor arbeidsflyt, noe som kan gjøre støttebehov til sosial eksponering uten at dataene blir bedre eller ledermandatet mer presist.",
+            "id": "B",
+            "label": "Be hele laget øke tempoet",
+            "reply": "Jeg minner alle om leveransekravet og ber Rana følge ekstra med på hvem som fortsatt trenger støtte gjennom dagen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Arket viser full bemanning, samtidig som opplæring, lavere tempo og uformell veiledning reduserer tilgjengelige leveringstimer.",
+            "Rana kan beskrive hvilke oppgaver som stopper og hvem som hjelper hvem, men hun kjenner ikke medisinske årsaker eller formell status.",
+            "Du må velge en lokal kapasitetsrespons som er tydelig nok til å måles uten å gjøre medarbeiderobservasjoner til sladder eller personalsak."
+          ],
+          "subject": "Rana kjenner kapasiteten bak åtte av åtte navn",
+          "summary": "Bemanningsarket viser åtte av åtte på jobb, men Nadia er i opplæring, Thomas leverer langsommere enn planlagt og Ida bruker tid på uformell veiledning. Rana kjenner arbeidsflyten og kan vise hvor kapasiteten faktisk forsvinner. Mellomlederen må behandle observasjonene som avgrenset driftsevidens, ikke som diagnose eller tillatelse til å dele personopplysninger, og justere arbeid innen eget mandat før en bredere sak eventuelt eskaleres."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "mellomleder_people_rana_kapasitet_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "drift_og_kapasitetsgjennomgang",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "mellomleder_people_rana_kapasitet_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/people/mellomleder_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "mellomleder.mail.mellomleder_people_rana_kapasitet_001",
+        "version": 1
+      },
+      "source_hash": "3ae691f93461bc625408e555414d0b37da68361683c2cb6662f84656cd8e8bf5",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/people/mellomleder_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "actor_id": "thomas_medarbeider_oppfolging_mellomleder",
+        "category": "naeringsliv",
+        "channel": "work",
+        "choices": [
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "clarity": 2,
+                "privacy": 2,
+                "trust_employee": 2
+              }
+            },
+            "feedback": "Du gjør prosessgrensen eksplisitt og gir Thomas mulighet til å korrigere faktagrunnlaget. Dokumentasjonen knyttes til observerbart arbeid, avtalte tiltak og gjeldende innsyn, uten diagnose eller ubegrenset fortrolighetsløfte. Dersom en formell prosess senere blir aktuell, må den startes i riktig linje og varsles som det.",
+            "id": "A",
+            "label": "Avklare status og begrense dokumentasjonen",
+            "reply": "Jeg sier hva som er støtte og ordinære forventninger nå, bekrefter at ingen skjult formell prosess er startet, og avtaler bare nødvendig faktadokumentasjon og innsyn.",
+            "tags": [
+              "professional_relationship"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "flexibility": 1,
+                "privacy": -2,
+                "process_risk": 2
+              }
+            },
+            "feedback": "Du unngår å låse prosessen, men lar Thomas bære usikkerheten mens tolkninger samles uten tydelig formål eller innsynsgrense. Bred dokumentasjon er ikke det samme som godt grunnlag, og en senere formell prosess blir mindre ryddig dersom uavklarte helse- eller motivantakelser allerede ligger i saken.",
+            "id": "B",
+            "label": "Beholde fleksibilitet og dokumentere bredt",
+            "reply": "Jeg sier at vi foreløpig følger opp uformelt, men beholder alle notatene slik at vi har et komplett bilde dersom saken blir mer alvorlig.",
+            "tags": [
+              "professional_relationship"
+            ]
+          }
+        ],
+        "cooldown": 2,
+        "id": "mellomleder_people_thomas_oppfolging_001",
+        "mail_class": "professional_message",
+        "mail_family": "mellomleder_profesjonelle_arbeidsrelasjoner",
+        "mail_type": "people",
+        "messageChannel": "work",
+        "people_ref": "thomas_medarbeider_oppfolging_mellomleder",
+        "person_id": "thomas_medarbeider_oppfolging_mellomleder",
+        "phase": "early",
+        "place_id": "risiko_og_oppfolgingsbord",
+        "priority": 72,
+        "purpose": "Readiness-prerequisite: koble en typed profesjonell relasjon til en eksisterende Mellomleder-arbeidsflate uten å endre canonical plan eller formell myndighet.",
+        "repeatable": false,
+        "role_scope": "mellomleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/people/mellomleder_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Thomas har fått støtte og en ordinær forventningsavklaring, men det er ikke besluttet at en formell personalprosess er startet.",
+          "Noen notater beskriver konkret arbeid og frister, mens andre tolker energi og motivasjon uten sikkert grunnlag.",
+          "Han ber om et klart svar på hva som skjer, hva som dokumenteres og hvem som kan få innsyn."
+        ],
+        "source_scene_ref": "data/Civication/mailFamilies/naeringsliv/job/mellomleder_job.json#job_mellomleder_week2_thomas_followup_aftershock",
+        "stage": "stable",
+        "stakes": "Valget påvirker beslutningskvalitet, tillit og sporbarhet, men kan aldri utvide mandat, erstatte korrekt personalprosess eller gjøre et styringssignal sannere enn kildene.",
+        "subject": "Thomas spør hva oppfølgingen faktisk betyr",
+        "summary": "Etter samtalen spør Thomas om dette fortsatt er vanlig støtte, en tydelig forventningsavklaring eller starten på en formell personalsak. Notatene inneholder observerbart arbeid, men også løse formuleringer om energi og motivasjon som ikke er avklart. Mellomlederen må beskrive kjent status, korrigere dokumentasjonen til nødvendige fakta og avtale neste steg uten å diagnostisere, love fortrolighet utenfor policy eller gjøre helse-adjacent informasjon til stoff for teamet."
+      },
+      "id": "mellomleder_people_thomas_oppfolging_001",
+      "mail_type": "people",
+      "role_scope": "mellomleder",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du gjør prosessgrensen eksplisitt og gir Thomas mulighet til å korrigere faktagrunnlaget. Dokumentasjonen knyttes til observerbart arbeid, avtalte tiltak og gjeldende innsyn, uten diagnose eller ubegrenset fortrolighetsløfte. Dersom en formell prosess senere blir aktuell, må den startes i riktig linje og varsles som det.",
+            "id": "A",
+            "label": "Avklare status og begrense dokumentasjonen",
+            "reply": "Jeg sier hva som er støtte og ordinære forventninger nå, bekrefter at ingen skjult formell prosess er startet, og avtaler bare nødvendig faktadokumentasjon og innsyn."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du unngår å låse prosessen, men lar Thomas bære usikkerheten mens tolkninger samles uten tydelig formål eller innsynsgrense. Bred dokumentasjon er ikke det samme som godt grunnlag, og en senere formell prosess blir mindre ryddig dersom uavklarte helse- eller motivantakelser allerede ligger i saken.",
+            "id": "B",
+            "label": "Beholde fleksibilitet og dokumentere bredt",
+            "reply": "Jeg sier at vi foreløpig følger opp uformelt, men beholder alle notatene slik at vi har et komplett bilde dersom saken blir mer alvorlig."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Thomas har fått støtte og en ordinær forventningsavklaring, men det er ikke besluttet at en formell personalprosess er startet.",
+            "Noen notater beskriver konkret arbeid og frister, mens andre tolker energi og motivasjon uten sikkert grunnlag.",
+            "Han ber om et klart svar på hva som skjer, hva som dokumenteres og hvem som kan få innsyn."
+          ],
+          "subject": "Thomas spør hva oppfølgingen faktisk betyr",
+          "summary": "Etter samtalen spør Thomas om dette fortsatt er vanlig støtte, en tydelig forventningsavklaring eller starten på en formell personalsak. Notatene inneholder observerbart arbeid, men også løse formuleringer om energi og motivasjon som ikke er avklart. Mellomlederen må beskrive kjent status, korrigere dokumentasjonen til nødvendige fakta og avtale neste steg uten å diagnostisere, love fortrolighet utenfor policy eller gjøre helse-adjacent informasjon til stoff for teamet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "mellomleder_people_thomas_oppfolging_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "risiko_og_oppfolgingsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "mellomleder_people_thomas_oppfolging_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/people/mellomleder_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "mellomleder.mail.mellomleder_people_thomas_oppfolging_001",
+        "version": 1
+      },
+      "source_hash": "174b4e4dbd3e1517068386c71f729997e303b2c6b2562cfddef4ccf365c59eb6",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/people/mellomleder_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
         "category": "naeringsliv",
         "choices": [
           {
@@ -195913,7 +196441,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "b8969ed07ce2c24cbeaac77c4ff17a7f5da5e2df63653c44ceba9a98391d2d49",
+  "registry_hash": "d3aa97b4343b37a748b9675453eb46d25c4cd3402f4d09e5aa37fe104ad7ad14",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -196817,6 +197345,10 @@
       "ml_people_christen_smith_001",
       "ml_people_christen_smith_002",
       "ml_people_christen_smith_003",
+      "mellomleder_people_ingrid_rapport_001",
+      "mellomleder_people_mads_styringspolitikk_001",
+      "mellomleder_people_rana_kapasitet_001",
+      "mellomleder_people_thomas_oppfolging_001",
       "ml_core_007",
       "ml_core_008",
       "ml_core_009",
@@ -197241,7 +197773,7 @@
     "ignored_source_file_count": 1,
     "input_file_count": 351,
     "role_count": 44,
-    "scene_count": 1206,
+    "scene_count": 1210,
     "shadowed_duplicate_count": 0
   },
   "version": 1
