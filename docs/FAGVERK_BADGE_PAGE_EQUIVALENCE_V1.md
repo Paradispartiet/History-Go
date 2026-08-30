@@ -172,7 +172,13 @@ Den separate statiske indeksen `merker/merker.html` bar ingen unik kunnskap elle
 - Profilens merkebibliotek eier det brukeren faktisk har oppnådd; Fagverkforsiden eier utforsking av alle 19 fag og integrerte merker.
 - Badge-equivalence-testen låser arkivhash, redirect, aktive innlenker og fravær av den gamle kortgriden på aktiv URL.
 
-## Ikke redirect ennå
+## Canonicale `badgePage`-ruter er ferdigmigrert
 
-- **Andre fullteorisider:** `legacy_static_theory`; hvert fag må gjennom egen innholdsaudit og eksplisitt adjudisering. By, Historie, Litteratur, Kunst, Media, Musikk, Næringsliv og Natur er prosessbevis, ikke automatisk godkjenning av resten.
-- **Tynne legacy-sider:** `legacy_stub`; Religion og Scenekunst er eksplisitt pensjonert; øvrige stubber må fortsatt gjennom egen unik-innhold/linkaudit før redirect.
+Den permanente badge-equivalence-auditen rapporterer nå `progress_route: 19`, `rich_runtime: 0`, `legacy_static_theory: 0` og `legacy_stub: 0`. Alle canonicale `badgePage`-mål i portalregisteret går dermed til integrert Progresjon etter fagvis evidens og grønn gate.
+
+Dette autoriserer ikke automatisk sletting eller redirect av enhver direkte legacy-URL som ikke lenger er et portalregistermål. Sluttfasen skal fortsatt:
+
+- inventere direkte innlenker til gjenværende legacy-HTML;
+- bevare bytearkiver og adjudiseringsbevis;
+- redirecte eller fjerne bare når referanse- og browseraudit er grønn;
+- fjerne CSS-/JS-lag først når ingen aktiv eller eksplisitt bevart flate trenger dem.

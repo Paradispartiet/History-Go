@@ -97,15 +97,15 @@ Den permanente auditen klassifiserer hvert `badgePage` som:
 - [x] Gjør `merke.html?badge=<id>` til fail-closed compatibility-redirect til fagets Progresjon.
 - [x] Kjør full CI og merge første Batch C-tranche.
 
-### Gjenstående Batch C
+### Batch C-status
 
 - [x] Reconcile eldre siderolleprosa i `FAGVERK.md` med navigasjonskontrakt v3.
-- [ ] Kjør innholdsaudit av `legacy_static_theory`, med By som representativt førstefag.
-- [ ] Migrer kun unik, gyldig teori som mangler canonicalt til riktig emne/metode/begrep/kapittel/fagoversikt.
+- [x] Kjør innholdsaudit av `legacy_static_theory`, med By som representativt førstefag.
+- [x] Migrer kun unik, gyldig teori som mangler canonicalt til riktig emne/metode/begrep/kapittel/fagoversikt.
 - [x] Migrer Politikkens `rich_runtime`-funksjoner til Progresjon/Emner/Utforsk, arkiver originalen byte-for-byte og pensjoner separat portalruntime.
-- [ ] Audit `legacy_stub` for unik tekst og aktive lenker; redirect etter grønn gate.
+- [x] Audit `legacy_stub` for unik tekst og aktive lenker; redirect etter grønn gate.
 - [x] Gjør `emner.html` eksplisitt til **Min læring** / global progresjonsflate.
-- [ ] Redirect resterende legacy `badgePage` fagvis etter equivalence-gate.
+- [x] Redirect resterende legacy `badgePage` fagvis etter equivalence-gate.
 - [x] Redirect `merker/merker.html` når ingen canonical brukerreise trenger portalen.
 - [ ] Fjern døde CSS-/JS-lag etter permanent referanse- og browseraudit.
 
@@ -127,8 +127,8 @@ Migrasjonen er først ferdig når:
 3. Domain-, emne- og chapter-dypkoblinger er stabile og fail-closed. **Oppfylt og testet.**
 4. Emne og kapittel har tydelig forskjellige roller. **Oppfylt.**
 5. Progresjon bruker eksisterende state/read-model uten ny lagring. **Oppfylt og testet.**
-6. Badgeidentitet, nivåstige og undermerker finnes i Fagverket. **Implementert i første Batch C-tranche; CI gjenstår.**
+6. Badgeidentitet, nivåstige og undermerker finnes i Fagverket. **Oppfylt og verifisert med full grønn CI i de mergede Batch C-tranchene.**
 7. Alle funksjoner som faktisk trengs fra rich legacy-sider finnes i Fagverket før redirect. **Oppfylt; Politikk er migrert og låst med permanent runtime-equivalence-port.**
-8. Ingen unik gyldig fagkunnskap slettes. **Gjenstår innholdsaudit av statiske teorisider.**
-9. Alle gamle merkesider er redirect/compatibility-only og `merker/merker.html` er avviklet. **Gjenstår.**
-10. Permanente all-subject-, equivalence-, TypeScript- og browserporter er grønne på `main`. **Gjenstår sluttfase.**
+8. Ingen unik gyldig fagkunnskap slettes. **Oppfylt for alle canonicale `badgePage`-ruter gjennom arkiv, råaudit, eksplisitt adjudisering og gapmigrering der det var nødvendig.**
+9. Alle gamle merkesider er redirect/compatibility-only og `merker/merker.html` er avviklet. **Indeksen og alle canonicale `badgePage`-mål er avviklet; direkte legacy-URL-er utenfor portalregisteret gjenstår i sluttoppryddingen.**
+10. Permanente all-subject-, equivalence-, TypeScript- og browserporter er grønne på `main`. **Oppfylt for hver merget tranche; avsluttende referanse-/browseraudit og dødlagsopprydding gjenstår.**
