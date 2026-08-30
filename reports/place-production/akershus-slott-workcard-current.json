@@ -1,0 +1,161 @@
+{
+  "schema": "history_go_place_workcard_v1",
+  "place_id": "akershus_slott",
+  "category": "historie",
+  "status": "complete",
+  "source_review": "complete",
+  "canonical_identity": "Akershus slott som den avgrensede middelalderborgen og det senere renessanseslottet innenfor Akershus festning; ikke hele festningsområdet, Forsvarsmuseet, Norges Hjemmefrontmuseum, Akershus slottskirke eller Det kongelige mausoleum som egne canonicale steder.",
+  "legacy_identity_decision": "Den feilstavede legacy-ID-en akerhus_slott forblir alias til akershus_festning. Den nye korrekt stavede ID-en akershus_slott er en separat, source-backed bygningsidentitet og gjenbruker ikke legacy-containerne som source of truth.",
+  "primary_badge": "historie",
+  "underbadge_ids": [
+    "middelalder",
+    "tidlig_modernetid",
+    "attenhundretallet",
+    "nittenhundre_1900_1945",
+    "etterkrigstid",
+    "kulturminner_og_bevaring"
+  ],
+  "production_profile": "rich",
+  "profile_status": "confirmed",
+  "profile_reason": "Slottet har flere selvstendige og kildebårne lag: middelalderborg og kongelig residens, renessanseombygging, tap av boligfunksjon, restaureringskonflikt og restaurering fra 1890-årene til 1962, etterkrigstidens representasjonsbruk og nyere bevaringsarbeid.",
+  "collections": [
+    "people",
+    "objects",
+    "brands",
+    "productions"
+  ],
+  "objects_category_boundary": "Objects eier identifiserbare fysiske interiørgjenstander og kunstverk i slottets egne saler. Productions eier avgrensede, daterte historiske hendelser i slottets bygnings- og brukshistorie. Slottskirken og mausoleet brukes ikke som proxy.",
+  "coordinate_decision": "create_verified_geometry_from_osm_relation_13931023",
+  "null_measurement": {
+    "canonical_place": "missing",
+    "duplicate_and_alias_audit": "complete",
+    "manifest_source": "missing",
+    "description_package": "missing",
+    "history_production_report": "missing",
+    "coordinate_evidence": "missing",
+    "placecard_collections": "missing",
+    "people": "three reusable canonical candidates found; place linkage missing",
+    "objects": "missing",
+    "brands": "Akershus Slotts Venner qualifies; canonical record and asset missing",
+    "productions": "missing",
+    "stories": "restoration narrative absent; fortress stories remain owned by fortress",
+    "quiz": "no active quiz for correctly spelled target; legacy typo file targets fortress",
+    "language": "missing",
+    "before_after": "missing",
+    "news": "missing",
+    "reading_tracks": "missing",
+    "chronology_and_epoke": "missing",
+    "ui": "not materialized"
+  },
+  "sanitation_and_production_plan": {
+    "preserve": [
+      "akerhus_slott alias to akershus_festning",
+      "legacy typo-named quiz and story containers whose internal target is akershus_festning",
+      "existing Akershus festning and museum Places"
+    ],
+    "rewrite": [],
+    "move": [],
+    "remove": [],
+    "produce": [
+      "new manifest-loaded canonical Place",
+      "description claims and reviews",
+      "coordinate evidence",
+      "History production report",
+      "People links",
+      "two castle-owned Objects",
+      "Akershus Slotts Venner Brand with authentic official logo",
+      "three castle-specific historical-event Productions",
+      "restoration Story",
+      "source-led rich 7x7 quiz",
+      "Leksikon chronology, news, reading track and language entries",
+      "historical/current image pair and all collection previews"
+    ]
+  },
+  "active_phase": "identity_sources_and_materialization",
+  "active_file_scope": "Akershus slott source data, directly dependent entity records, manifests, media, generated indexes and place-specific tests only",
+  "previous_phase_merged_and_live_checked": "Akershus festning, Forsvarsmuseet and Norges Hjemmefrontmuseum are merged on main; this is the first Akershus slott phase.",
+  "content_plan": {
+    "people": "PRODUSER",
+    "objects": "PRODUSER",
+    "brands": "PRODUSER",
+    "category_expression": "PRODUSER",
+    "stories": "PRODUSER",
+    "before_after": "PRODUSER",
+    "news": "PRODUSER",
+    "reading_tracks": "PRODUSER",
+    "language": "PRODUSER"
+  },
+  "rule_preflight": {
+    "schema": "history_go_place_rule_preflight_v1",
+    "status": "PASS",
+    "place_id": "akershus_slott",
+    "category": "historie",
+    "recorded_at": "2026-08-30T17:46:40.796Z",
+    "rule": "Files must be read in full before this evidence is recorded; hashes prove freshness, not comprehension.",
+    "files": [
+      {
+        "path": "docs/PLACE_PRODUCTION_CHECKLIST.md",
+        "sha256": "4072b5ad6b18bd4fb5f70f30b317936f4f96e2f8e17c7a033c0109c569538513"
+      },
+      {
+        "path": "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md",
+        "sha256": "74b21736c8ed6bd175fe1d0e82a3f439c90de4f92d2710db377af855f14f6826"
+      },
+      {
+        "path": "docs/PLACE_PRODUCTION_PROFILES.md",
+        "sha256": "de9e0a61fb5bef40547828db077a5cc424c04fa7e662c56cc44834a27f83c92a"
+      },
+      {
+        "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+        "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd"
+      },
+      {
+        "path": "data/places/README_place_rounds.md",
+        "sha256": "3cf5c0a1310f99cacf951326b9660b97ed2f14f53040b473058d5c12e762c31e"
+      },
+      {
+        "path": "data/badges/index.json",
+        "sha256": "7a796a0902c6ec0f651241d062363f2dfd8a196e9eebfc78baf960e4f507fdbf"
+      },
+      {
+        "path": "data/badges/place_production_routing_v1.json",
+        "sha256": "7482f4cfad0ac715e27a8aab6dc420f9f36575d4ac3be19ba0ad4fd3108a670f"
+      },
+      {
+        "path": "docs/PLACE_OBJECTS_CANONICAL.md",
+        "sha256": "fe721b133cdb2d0a14de3363260b634de012ba5520e5fb02e58c90ccfc41d6ac"
+      },
+      {
+        "path": "data/brands/brand_rules_v1_1.json",
+        "sha256": "c8009c5f872560c46a164d3399e193cd7fd33d80ecb70f37496f8ad1b89b786a"
+      },
+      {
+        "path": "data/badges/historie.json",
+        "sha256": "f33595ccbd1bf21e2cb5048a855d1077e29be8b2cde95decd2ff6ccbed010b9c"
+      }
+    ],
+    "contract_snapshot": {
+      "full_place_collection_count": 4,
+      "candidate_collections": [
+        "people",
+        "objects",
+        "brands",
+        "productions"
+      ],
+      "category_expression": "productions",
+      "related_is_placecard_collection": false,
+      "no_filler": true,
+      "routing_order": [
+        "universal_canonical_core",
+        "primary_badge_family",
+        "active_underbadge_ids",
+        "place_specific_source_review",
+        "confirmed_production_profile",
+        "final_content_plan"
+      ]
+    }
+  },
+  "production_verified_at": "2026-08-30",
+  "quiz_profile": "rich_7x7",
+  "quality_gate": "reports/place-production/akershus-slott-phase1-24-gate-audit-v1.json"
+}

@@ -6,7 +6,7 @@ Rapporten måler om runtime kan presentere tilgjengelige canonical People-felt. 
 
 People-produksjon, claims og ferdigstatus eies av `docs/PEOPLE_PROFILE_CANONICAL.md`. Profiler uten v1-claims er `legacy_unreviewed`, selv når presentasjonsstatusen er `complete`.
 
-Source fingerprint: `78d09a197c01d68b373d70accde6a3d2fb41ec2731168e55a4742852c924ef80`
+Source fingerprint: `6f5d0950190a78bfa5f42a3f96d354a495a5636127c655496bb485b947141e05`
 
 ## Sammendrag
 
@@ -14,15 +14,15 @@ Source fingerprint: `78d09a197c01d68b373d70accde6a3d2fb41ec2731168e55a4742852c92
 |---|---:|
 | Personer | 1421 |
 | Presentasjon complete | 67 |
-| Presentasjon strong | 404 |
-| Presentasjon partial | 935 |
+| Presentasjon strong | 406 |
+| Presentasjon partial | 933 |
 | Presentasjon sparse | 15 |
 | People Profile v1 ready | 75 |
 | Legacy uten v1-claims | 1346 |
-| Ødelagte bildereferanser | 283 |
+| Ødelagte bildereferanser | 280 |
 | Eksplisitt initialfallback | 995 |
 | Implisitt initialfallback | 26 |
-| Gjennomsnittspoeng | 65.4 |
+| Gjennomsnittspoeng | 65.5 |
 
 ## Feltdekning
 
@@ -35,8 +35,8 @@ Source fingerprint: `78d09a197c01d68b373d70accde6a3d2fb41ec2731168e55a4742852c92
 | educationDeclared | 61 | 4.3 % |
 | practiceDeclared | 1403 | 98.7 % |
 | placeGrounding | 1421 | 100 % |
-| sources | 460 | 32.4 % |
-| imageContract | 1138 | 80.1 % |
+| sources | 462 | 32.5 % |
+| imageContract | 1141 | 80.3 % |
 | profileStandard | 75 | 5.3 % |
 
 ## Kategorier
@@ -44,7 +44,7 @@ Source fingerprint: `78d09a197c01d68b373d70accde6a3d2fb41ec2731168e55a4742852c92
 | Kategori | Totalt | Complete | Strong | Partial | Sparse | v1 ready | Legacy | Snitt |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
 | sport | 324 | 0 | 24 | 300 | 0 | 0 | 324 | 62.4 |
-| historie | 235 | 3 | 111 | 121 | 0 | 3 | 232 | 65.1 |
+| historie | 235 | 3 | 113 | 119 | 0 | 3 | 232 | 65.2 |
 | litteratur | 172 | 36 | 20 | 116 | 0 | 16 | 156 | 70.5 |
 | musikk | 124 | 0 | 15 | 109 | 0 | 0 | 124 | 62.2 |
 | politikk | 114 | 5 | 50 | 59 | 0 | 17 | 97 | 68.1 |
@@ -70,7 +70,7 @@ Source fingerprint: `78d09a197c01d68b373d70accde6a3d2fb41ec2731168e55a4742852c92
 | det_norske_teatret | 70 | 0 | 70 | 0 | 62 | Amund Rydland (62; legacy_unreviewed), Ane Dahl Torp (62; legacy_unreviewed), Anton Heiberg (62; legacy_unreviewed), Arne Garborg (62; legacy_unreviewed), Arne Lygre (62; legacy_unreviewed) |
 | ullevaal_stadion | 55 | 0 | 55 | 0 | 61.3 | Ada Hegerberg (57; legacy_unreviewed), Cecilie Leganger (57; legacy_unreviewed), Erling Braut Haaland (57; legacy_unreviewed), Lyn Fotball (57; legacy_unreviewed), Nils Arne Eggen (57; legacy_unreviewed) |
 | eidsvollsbygningen | 40 | 0 | 38 | 2 | 62.1 | Carsten Anker (57; legacy_unreviewed), Christian Magnus Falsen (57; legacy_unreviewed), Wilhelm Frimann Koren Christie (57; legacy_unreviewed), Anders Lysgaard (62; legacy_unreviewed), Andreas Rogert (62; legacy_unreviewed) |
-| akershus_festning | 38 | 0 | 36 | 2 | 60.8 | Alv Erlingsson (57; legacy_unreviewed), Erik av Pommern (57; legacy_unreviewed), Eufemia av Rügen (57; legacy_unreviewed), Gregers Gram (57; legacy_unreviewed), Gunnar Sønsteby (57; legacy_unreviewed) |
+| akershus_festning | 38 | 0 | 35 | 3 | 61.2 | Alv Erlingsson (57; legacy_unreviewed), Erik av Pommern (57; legacy_unreviewed), Eufemia av Rügen (57; legacy_unreviewed), Gregers Gram (57; legacy_unreviewed), Gunnar Sønsteby (57; legacy_unreviewed) |
 | stortinget | 24 | 0 | 18 | 5 | 62.3 | Advokat Hermansen (57; legacy_unreviewed), Berit Ås (57; legacy_unreviewed), Betzy Kjelsberg (57; legacy_unreviewed), Carl I. Hagen (57; legacy_unreviewed), Christian Michelsen (57; legacy_unreviewed) |
 | nordre_aasen_idrettspark | 23 | 0 | 23 | 0 | 61.8 | Skeid Fotball (57; legacy_unreviewed), Arild Stavrum (62; legacy_unreviewed), Dagfinn Enerly (62; legacy_unreviewed), Daniel Braaten (62; legacy_unreviewed), Daniel Fredheim Holm (62; legacy_unreviewed) |
 | torggata | 22 | 0 | 5 | 17 | 74.8 | Christopher Nielsen (57; legacy_unreviewed), Don Martin (57; legacy_unreviewed), Gateavisa-miljøet (57; legacy_unreviewed), Kjetil Rolness (57; legacy_unreviewed), Warlocks (57; legacy_unreviewed) |
@@ -86,7 +86,7 @@ Source fingerprint: `78d09a197c01d68b373d70accde6a3d2fb41ec2731168e55a4742852c92
 | karl_johan | 10 | 1 | 5 | 4 | 62 | Petter Stordalen (32; legacy_unreviewed), Georg Sverdrup (57; legacy_unreviewed), Aasta Hansteen (57; legacy_unreviewed), Astrid Christensen (62; legacy_unreviewed), Lars Poverud (62; legacy_unreviewed) |
 | victoria_terrasse | 10 | 0 | 0 | 10 | 72 | Christian Mohr (72; legacy_unreviewed), Christian P. Reusch (72; legacy_unreviewed), Curt Bräuer (72; legacy_unreviewed), Halvard Lange (72; legacy_unreviewed), Halvdan Koht (72; legacy_unreviewed) |
 | slottet | 10 | 0 | 0 | 8 | 74.9 | Dronning Sonja (65; legacy_unreviewed), Karl Johan (67; legacy_unreviewed), Oscar I (67; legacy_unreviewed), Dronning Maud (72; legacy_unreviewed), Johannes Flintoe (72; legacy_unreviewed) |
-| oslo_radhus | 10 | 0 | 4 | 0 | 83.3 | Haakon VII (krigstiden) (57; legacy_unreviewed), Kong Christian IV (57; legacy_unreviewed), Sverre Pedersen (57; legacy_unreviewed), Max Manus (62; legacy_unreviewed), Arnstein Arneberg (100; legacy_unreviewed) |
+| oslo_radhus | 10 | 0 | 4 | 0 | 83.3 | Haakon VII (krigstiden) (57; legacy_unreviewed), Kong Christian IV (57; legacy_unreviewed), Sverre Pedersen (57; legacy_unreviewed), Max Manus (62; legacy_unreviewed), Alf Rolfsen (100; legacy_unreviewed) |
 | cinemateket_oslo | 9 | 0 | 9 | 0 | 57 | Anja Breien (57; legacy_unreviewed), Arne Skouen (57; legacy_unreviewed), Bredo Greve (57; legacy_unreviewed), Edith Carlmar (57; legacy_unreviewed), Jan Erik Holst (57; legacy_unreviewed) |
 | nasjonalbiblioteket | 9 | 0 | 3 | 6 | 67.6 | Per Petterson (57; legacy_unreviewed), Rolf Jacobsen (57; legacy_unreviewed), Linn Ullmann (62; legacy_unreviewed), Axel Revold (72; legacy_unreviewed), Bjørnstjerne Bjørnson (72; legacy_unreviewed) |
 | stensparken | 9 | 0 | 1 | 0 | 95.8 | Halvor C. Reiersen (62; legacy_unreviewed), Hagbarth Schytte-Berg (100; legacy_unreviewed), Harald Aars (100; legacy_unreviewed), Jo Visdal (100; legacy_unreviewed), Kjersti Wexelsen Goksøyr (100; legacy_unreviewed) |
@@ -181,7 +181,6 @@ Source fingerprint: `78d09a197c01d68b373d70accde6a3d2fb41ec2731168e55a4742852c92
 | 92 | Catarina Furtado | media | lisbon_rtp | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/media/europe/portugal/lisbon/people_media_lisbon.json` |
 | 92 | Cecilie Leganger | sport | ullevaal_stadion | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/sport/oslo/people_sport_oslo.json` |
 | 92 | Cecilie Løveid | litteratur | sofienbergparken | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/litteratur/oslo/people_litteratur_oslo.json` |
-| 92 | Christian IV | historie | christiania_torv | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/historie/oslo/people_historie_oslo.json` |
 | 92 | Christian Magnus Falsen | historie | eidsvollsbygningen | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/historie/oslo/people_historie_oslo.json` |
 | 92 | Christian Michelsen | politikk | stortinget | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/politikk/oslo/people_politikk_oslo.json` |
 | 92 | Christian Norberg-Schulz | by | gamle_deichman | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/by/oslo/people_by_oslo.json` |
@@ -245,7 +244,6 @@ Source fingerprint: `78d09a197c01d68b373d70accde6a3d2fb41ec2731168e55a4742852c92
 | 92 | Håkon jarl | historie | lade_gard | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json` |
 | 92 | Haakon Lie | politikk | youngstorget | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/politikk/oslo/people_politikk_oslo.json` |
 | 92 | Haakon Nyhuus | historie | gamle_deichman | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/historie/oslo/people_historie_oslo.json` |
-| 92 | Håkon V Magnusson | historie | akershus_festning | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/historie/oslo/people_historie_oslo.json` |
 | 92 | Håkon VI Magnusson | historie | akershus_festning | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json` |
 | 92 | Håkon VI Magnusson | historie | akershus_festning | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/historie/oslo/people_historie_oslo.json` |
 | 92 | Haakon VII (krigstiden) | historie | oslo_radhus | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/historie/oslo/people_historie_oslo.json` |
@@ -269,6 +267,8 @@ Source fingerprint: `78d09a197c01d68b373d70accde6a3d2fb41ec2731168e55a4742852c92
 | 92 | Jon Raude | historie | nidarosdomen | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json` |
 | 92 | Jonas Collett | litteratur | camilla_collett_statue | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/litteratur/oslo/people_litteratur_oslo.json` |
 | 92 | José Alberto Carvalho | media | lisbon_rtp | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/media/europe/portugal/lisbon/people_media_lisbon.json` |
+| 92 | José Rodrigues dos Santos | media | lisbon_rtp | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/media/europe/portugal/lisbon/people_media_lisbon.json` |
+| 92 | Kalv Arnesson | historie | stiklestad | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json` |
 
 ## Tolkning
 

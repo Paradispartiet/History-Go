@@ -1,12 +1,12 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-08-30T18:25:47.691Z
+Generert: 2026-08-30T18:37:12.972Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-08-30T18:25:47.691Z |
+| generatedAt | 2026-08-30T18:37:12.972Z |
 | peopleFilesRead | 763 |
 | totalPeople | 1421 |
 | uniquePeopleIds | 1421 |
@@ -1649,7 +1649,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 
 ## Image/cardImage audit
 
-Mangler filer for image/cardImage/media: 582
+Mangler filer for image/cardImage/media: 576
 
 | Fil | Person | Felt | Bane |
 |---|---|---|---|
@@ -1661,8 +1661,6 @@ Mangler filer for image/cardImage/media: 582
 | data/people/by/oslo/people_by_oslo.json | arne_korsmo / Arne Korsmo | cardImage | bilder/kort/people/arne_korsmo.PNG |
 | data/people/by/oslo/people_by_oslo.json | kong_christian_iv / Kong Christian IV | image | bilder/kort/people/kong_christian_iv.PNG |
 | data/people/by/oslo/people_by_oslo.json | kong_christian_iv / Kong Christian IV | cardImage | bilder/kort/people/kong_christian_iv.PNG |
-| data/people/by/oslo/people_by_oslo.json | arnstein_arneberg / Arnstein Arneberg | image | bilder/kort/people/arnstein_arneberg.PNG |
-| data/people/by/oslo/people_by_oslo.json | arnstein_arneberg / Arnstein Arneberg | cardImage | bilder/kort/people/arnstein_arneberg.PNG |
 | data/people/by/oslo/people_by_oslo.json | sverre_fehn / Sverre Fehn | image | bilder/kort/people/sverre_fehn.PNG |
 | data/people/by/oslo/people_by_oslo.json | sverre_fehn / Sverre Fehn | cardImage | bilder/kort/people/sverre_fehn.PNG |
 | data/people/by/oslo/people_by_oslo.json | ove_bang / Ove Bang | image | bilder/kort/people/ove_bang.PNG |
@@ -1803,14 +1801,10 @@ Mangler filer for image/cardImage/media: 582
 | data/people/historie/oslo/people_historie_oslo.json | roald_amundsen / Roald Amundsen | cardImage | bilder/kort/people/roald_amundsen.PNG |
 | data/people/historie/oslo/people_historie_oslo.json | fridtjof_nansen / Fridtjof Nansen | image | bilder/kort/people/fridtjof_nansen.PNG |
 | data/people/historie/oslo/people_historie_oslo.json | fridtjof_nansen / Fridtjof Nansen | cardImage | bilder/kort/people/fridtjof_nansen.PNG |
-| data/people/historie/oslo/people_historie_oslo.json | haakon_v_magnusson / Håkon V Magnusson | image | bilder/kort/people/haakon_v_magnusson.PNG |
-| data/people/historie/oslo/people_historie_oslo.json | haakon_v_magnusson / Håkon V Magnusson | cardImage | bilder/kort/people/haakon_v_magnusson.PNG |
 | data/people/historie/oslo/people_historie_oslo.json | st_hallvard / St. Hallvard | image | bilder/kort/people/st_hallvard.PNG |
 | data/people/historie/oslo/people_historie_oslo.json | st_hallvard / St. Hallvard | cardImage | bilder/kort/people/st_hallvard.PNG |
 | data/people/historie/oslo/people_historie_oslo.json | harald_hardrade / Harald Hardråde | image | bilder/kort/people/harald_hardrade.PNG |
 | data/people/historie/oslo/people_historie_oslo.json | harald_hardrade / Harald Hardråde | cardImage | bilder/kort/people/harald_hardrade.PNG |
-| data/people/historie/oslo/people_historie_oslo.json | christian_iv / Christian IV | image | bilder/kort/people/christian_iv.PNG |
-| data/people/historie/oslo/people_historie_oslo.json | christian_iv / Christian IV | cardImage | bilder/kort/people/christian_iv.PNG |
 | data/people/historie/oslo/people_historie_oslo.json | christopher_hansteen / Christopher Hansteen | image | bilder/kort/people/christopher_hansteen.PNG |
 | data/people/historie/oslo/people_historie_oslo.json | christopher_hansteen / Christopher Hansteen | cardImage | bilder/kort/people/christopher_hansteen.PNG |
 | data/people/historie/oslo/people_historie_oslo.json | kong_karl_johan / Karl Johan | image | bilder/kort/people/kong_karl_johan.PNG |

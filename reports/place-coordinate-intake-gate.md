@@ -1,6 +1,6 @@
 # Place coordinate intake gate
 
-Generert: 2026-08-11T17:21:01.348Z
+Generert: 2026-08-30T18:37:26.401Z
 
 ## Hvorfor denne gaten finnes
 
@@ -12,13 +12,13 @@ Koordinatfeil oppstår fordi aktive place-filer kan få lat/lon uten nok metadat
 
 - Modus: **--strict-new**
 - Strict-new: **true**
-- Base for nye/endrede place-objekter: **origin/main**
-- Base method: **origin/${GITHUB_BASE_REF}**
-- Aktive manifest-filer lest: **1449**
-- Place-objekter validert: **1449**
-- Nye/endrede koordinatobjekter mot base: **0**
+- Base for nye/endrede place-objekter: **d25a8ffa185a57888f8e0c7817a2b6d7de12d711**
+- Base method: **git merge-base HEAD origin/main**
+- Aktive manifest-filer lest: **1545**
+- Place-objekter validert: **1545**
+- Nye/endrede koordinatobjekter mot base: **1**
 - Blokkerende feil i denne kjøringen: **0**
-- Backlog-funn: **2539**
+- Backlog-funn: **2541**
 - Rapport-warnings: **0**
 
 ## Regler som håndheves
@@ -543,4 +543,4 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | loiten_braenderi | Løiten Brænderi | data/places/naeringsliv/innlandet/loiten_braenderi/loiten_braenderi.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 
 
-_Listen er avkortet til 500 av 2539 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
+_Listen er avkortet til 500 av 2541 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
