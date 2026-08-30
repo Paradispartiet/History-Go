@@ -1,0 +1,27 @@
+{
+  "schema": "history_go_geografi_population_demography_migration_mobility_fulltext_brief_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-30",
+  "domain_id": "befolkning_demografi_migrasjon_mobilitet",
+  "sourceBriefFile": "data/fag/natur/geografi/population_demography_migration_mobility_source_claim_brief_v1.json",
+  "sections": [
+    {"id":"folketelling-befolkningsstock-og-vanlig-bosted","module":"data/fagverk/natur/geografi/befolkning-demografi-migrasjon-og-mobilitet/01-folketelling-demografiske-komponenter-og-projeksjon.json"},
+    {"id":"fertilitet-dodelighet-naturlig-vekst-og-projeksjon","module":"data/fagverk/natur/geografi/befolkning-demografi-migrasjon-og-mobilitet/01-folketelling-demografiske-komponenter-og-projeksjon.json"},
+    {"id":"tetthet-rutenett-og-romlig-aggregering","module":"data/fagverk/natur/geografi/befolkning-demografi-migrasjon-og-mobilitet/02-tetthet-aldersstruktur-og-romlig-aggregering.json"},
+    {"id":"alder-kjonn-livslop-og-romlig-struktur","module":"data/fagverk/natur/geografi/befolkning-demografi-migrasjon-og-mobilitet/02-tetthet-aldersstruktur-og-romlig-aggregering.json"},
+    {"id":"migrasjon-stock-flow-opprinnelse-og-destinasjon","module":"data/fagverk/natur/geografi/befolkning-demografi-migrasjon-og-mobilitet/03-migrasjon-fordrivelse-og-opprinnelse-destinasjon.json"},
+    {"id":"tvungen-fordrivelse-registrering-og-sammenlignbarhet","module":"data/fagverk/natur/geografi/befolkning-demografi-migrasjon-og-mobilitet/03-migrasjon-fordrivelse-og-opprinnelse-destinasjon.json"},
+    {"id":"urbanisering-bygrenser-og-funksjonelle-regioner","module":"data/fagverk/natur/geografi/befolkning-demografi-migrasjon-og-mobilitet/04-urbanisering-funksjonelle-regioner-og-befolkningsraster.json"},
+    {"id":"griddede-befolkningsmodeller-validering-og-usikkerhet","module":"data/fagverk/natur/geografi/befolkning-demografi-migrasjon-og-mobilitet/04-urbanisering-funksjonelle-regioner-og-befolkningsraster.json"}
+  ],
+  "strict_boundaries": [
+    "Folketelling, register, estimat og projeksjon skal holdes atskilt med referansedato, vanlig bosted, dekning og geografisk enhet.",
+    "Fødsler, dødsfall og migrasjon skal dekomponeres for samme territorium og periode; projeksjoner skal merkes som modell- og antakelsesavhengige.",
+    "Tetthet og aggregering skal dokumentere areal, grid eller administrativ enhet og teste følsomhet for geografisk skala.",
+    "Alders- og kjønnsstruktur skal tolkes med kohort- og komponentdata; pyramideform alene er ikke kausal evidens.",
+    "Migrant stock, flow, netto migrasjon og opprinnelse–destinasjon skal ikke brukes synonymt.",
+    "Flyktning, asylsøker, internt fordreven og statsløs skal behandles som separate statistiske kategorier med dato- og registreringskontroll.",
+    "Nasjonal urban-definisjon, gridbasert Degree of Urbanisation og funksjonelt byområde skal holdes metodisk atskilt.",
+    "Befolkningsraster skal merkes som censusaggregert eller modellert og dokumentere inngangsdata, oppløsning, constraint, validering og usikkerhet."
+  ]
+}
