@@ -1,0 +1,890 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "by",
+  "targetId": "ankerbrua",
+  "profile": "rich_5x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1154,
+    "selection_sha256": "bdfd1c02aed562d8187a06b3279f691048320d1340e6e22fec21bfa232b995ca",
+    "category_id": "by",
+    "target_id": "ankerbrua"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/by/pensum_by.json",
+      "bytes": 16713,
+      "sha256": "8de40f1af13426445083f0f3339cb4892f4833921c3614747c29656d165a0b2b",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/by/emner_by.json",
+      "bytes": 594396,
+      "sha256": "7019313fc4b9efa3aa5393a0dd3180b12abba00b0672cb65b44efd0e5c27e8c6",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/by/fagkart_by.json",
+      "bytes": 374396,
+      "sha256": "88d4d9a5e23f60e88da6542d55d84cae5ae4516fb2130163e6de013f88c50127",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/by/methods_by.json",
+      "bytes": 44201,
+      "sha256": "14f3c0fd567a4a43c4d151867bb3d01bdb73da8c95ce6f3e3128fee0964dfd76",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/by/supersetQUIZMAL_by.json",
+      "bytes": 6860,
+      "sha256": "a42443c293a254519c489a705662c46ae8593f348b329c34c3f4f3eda129945a",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/by/ankerbrua.json",
+      "bytes": 16774,
+      "sha256": "e67723af6c2a8f50b6bcffeb632b21778d31226c71443db095e6e440e2db0e5b"
+    },
+    "target": {
+      "path": "data/places/natur/oslo/places_oslo_natur_akerselvarute/ankerbrua.json",
+      "bytes": 19417,
+      "sha256": "c45b846d038a16edf9f18b9ce582042e1f87943fac492713f2460207b14b996f"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1180,
+      "selection_sha256": "95faf0dbbc335f56373adba0adcd1612c4413bcfa530faf7b0cbb061aaaf675b"
+    },
+    "relations": [],
+    "stories": [
+      {
+        "path": "data/stories/stories_ankerbrua.json",
+        "matches": 1,
+        "selection_bytes": 2085,
+        "selection_sha256": "2337022a57987679c846c1c828dde4d6e240f0976ca0a361e66f19b1a8fdcf42"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/by/ankerbrua_sets.json",
+  "source_registry": {
+    "oslo_bridge": {
+      "url": "https://oslobyleksikon.no/side/Ankerbrua",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for brohistorie, 1926-konstruksjon, Oscar Hoff, materialer, motiver og tilnavn."
+    },
+    "oslo_ankerlokka": {
+      "url": "https://oslobyleksikon.no/side/Ankerl%C3%B8kken",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for navneopprinnelse og løkkehistorie."
+    },
+    "nkl_vaa": {
+      "url": "https://nkl.snl.no/Dyre_Vaa",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for Dyre Vaa, konkurransen i 1931 og utføring/oppsetting i 1937."
+    },
+    "akerselva_friends": {
+      "url": "https://www.akerselvasvenner.no/2016/01/01/ankerbrua/",
+      "source_type": "local_history",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for broprosjektering og stedlig kontekst; brukt supplerende."
+    },
+    "oslo_byes_vel": {
+      "url": "https://www.oslobyesvel.no/kalender/avduking-av-bl-skilt-og-guidet-tur-over-broer-langs-nedre-akerselva/10",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for skiltmarkeringen i 2019."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/historie/ankerbrua_sets.json",
+      "data/quiz/by/ankerbrua_sets.json",
+      "data/quiz/manifest.json"
+    ],
+    "active_before": {
+      "file": "data/quiz/historie/ankerbrua_sets.json",
+      "set_count": 6,
+      "question_count": 42,
+      "finding": "Legacy-filen var ikke manifestaktiv, lå under feil fagkategori og hadde systematisk svarposisjon."
+    },
+    "decisions": {
+      "keep_as_claim_basis": [
+        "1874–76",
+        "1926",
+        "Oscar Hoff",
+        "1937",
+        "Dyre Vaa",
+        "de fire motivene",
+        "Ankerløkken"
+      ],
+      "rewrite": "35 spørsmål er omskrevet til en kildeledet By-progresjon med fordelt fasitposisjon.",
+      "move": "Canonical pakke flyttes til data/quiz/by/ankerbrua_sets.json.",
+      "remove": [
+        "Nature-rundingsspørsmål",
+        "interne canonical-/batchspørsmål",
+        "gjentakelser"
+      ]
+    },
+    "knowledge_migration": "Nye unike Knowledge-ID-er eies av By-pakken; legacy-filen fjernes etter migreringen."
+  },
+  "profile_decision": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "justification": "Fem selvstendige læringsjobber dekker broidentitet, eventyrskulpturer, navn/tidslag, forholdet mellom kunst og struktur samt kilde- og feltmetode. Et sjette sett ville gjenta de samme påstandene."
+  },
+  "held_back_candidates": [
+    "Tyrihans som motiv fordi direkte museumsregistreringer og fagkilder støtter Veslefrikk.",
+    "Et sjette sett som ville gjenta de fem dokumenterte læringsjobbene."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 7,
+      "emner": 82,
+      "topic_hooks": 81,
+      "methods": 14
+    },
+    "candidate_emner": [
+      {
+        "id": "em_by_historiske_lag_i_hverdagsrom",
+        "title": "Historiske lag i hverdagsrom",
+        "score": 100
+      },
+      {
+        "id": "em_by_infrastruktur_mobilitet",
+        "title": "Infrastruktur og mobilitet",
+        "score": 100
+      },
+      {
+        "id": "em_by_materialitet_og_sanseerfaring",
+        "title": "Materialitet og sanseerfaring",
+        "score": 100
+      },
+      {
+        "id": "em_by_symbolsk_makt_og_representasjon",
+        "title": "Symbolsk makt og representasjon",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "arb_industri_havn",
+        "title": "Industri og havn",
+        "category_id": "arbeid_og_naering",
+        "score": 10
+      },
+      {
+        "id": "arb_logistikk",
+        "title": "Logistikk og varelevering",
+        "category_id": "arbeid_og_naering",
+        "score": 10
+      },
+      {
+        "id": "arb_turisme",
+        "title": "Turisme",
+        "category_id": "arbeid_og_naering",
+        "score": 10
+      },
+      {
+        "id": "ark_bygningstyper",
+        "title": "Bygningstyper",
+        "category_id": "arkitektur",
+        "score": 10
+      },
+      {
+        "id": "ark_estetikk_funksjon",
+        "title": "Estetikk vs funksjon",
+        "category_id": "arkitektur",
+        "score": 10
+      },
+      {
+        "id": "ark_makt",
+        "title": "Arkitektur og makt",
+        "category_id": "arkitektur",
+        "score": 10
+      },
+      {
+        "id": "ark_materialbruk",
+        "title": "Materialbruk",
+        "category_id": "arkitektur",
+        "score": 10
+      },
+      {
+        "id": "ark_symbolbygg",
+        "title": "Symbolbygg",
+        "category_id": "arkitektur",
+        "score": 10
+      },
+      {
+        "id": "bolig_endring_tid",
+        "title": "Endring over tid",
+        "category_id": "bolig_og_nabolag",
+        "score": 10
+      },
+      {
+        "id": "bolig_identitet",
+        "title": "Lokal identitet",
+        "category_id": "bolig_og_nabolag",
+        "score": 10
+      },
+      {
+        "id": "byliv_stemning_sansning",
+        "title": "Stemning, lyd og sansning",
+        "category_id": "byliv",
+        "score": 10
+      },
+      {
+        "id": "his_bevaring",
+        "title": "Bevaring",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "his_epoker",
+        "title": "Arkitektoniske epoker",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "his_glemt_historie",
+        "title": "Hva som glemmes",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "his_navn_symboler",
+        "title": "Navn og symboler",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "his_spor_gatebilde",
+        "title": "Historiske spor i gatebildet",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "his_tid_materialer",
+        "title": "Tid i materialer",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "makt_politisk_symbolikk",
+        "title": "Politisk symbolikk",
+        "category_id": "makt_og_konflikt",
+        "score": 10
+      },
+      {
+        "id": "plan_skilting_regulering",
+        "title": "Skilting og regulering",
+        "category_id": "administrasjon_og_plan",
+        "score": 10
+      },
+      {
+        "id": "urb_bil_vs_menneske",
+        "title": "Bilby vs menneskeby",
+        "category_id": "urbanisme",
+        "score": 10
+      },
+      {
+        "id": "urb_byidealer",
+        "title": "Byidealer",
+        "category_id": "urbanisme",
+        "score": 10
+      },
+      {
+        "id": "urb_historiske_visjoner",
+        "title": "Historiske byvisjoner",
+        "category_id": "urbanisme",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "kur_by_01_byrom_akser_knutepunkt",
+      "kur_by_04_historiske_lag_og_transformasjon",
+      "kur_by_06_makt_symboler_og_representasjon"
+    ],
+    "emne_ids": [
+      "em_by_infrastruktur_mobilitet",
+      "em_by_materialitet_og_sanseerfaring",
+      "em_by_historiske_lag_i_hverdagsrom",
+      "em_by_symbolsk_makt_og_representasjon"
+    ],
+    "topic_hook_ids": [
+      "his_spor_gatebilde",
+      "ark_materialbruk",
+      "ark_makt",
+      "byliv_opphold_vs_gjennomgang"
+    ],
+    "method_ids": [
+      "met_feltobservasjon",
+      "met_gaanalyse"
+    ],
+    "thinker_ids": [
+      "pierre_nora"
+    ],
+    "works": [
+      "Les Lieux de Mémoire"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_ankerbrua_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Broen som står over Akerselva ble oppført i 1926.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Forgjengeren var en trebro oppført i 1874–76.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Arkitekt Oscar Hoff tegnet den eksisterende broen.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kilden beskriver broen som utført i betong og huggen stein.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Ankerbrua fører ferdselen over Akerselva.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Den første Ankerbrua ble oppført i tre i perioden 1874–76.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Canonical år følger den fysiske broen som står her.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "De fire gruppene ble plassert på Ankerbrua i 1937.",
+      "source_ids": [
+        "nkl_vaa"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Dyre Vaa utførte de fire gruppene.",
+      "source_ids": [
+        "nkl_vaa"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Utsmykningen består av fire grupper.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kari Trestakk er ett av de fire dokumenterte motivene.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kvitebjørn kong Valemon står som bronsegruppe på broen.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Museums- og oppslagskildene bruker skrivemåtene Per eller Peer Gynt.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Direkte museumsregistreringer identifiserer gruppen som Veslefrikk med fela.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "De fire eventyr- og sagnmotivene ga tilnavnet Eventyrbrua.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "De fire verkene er skulpturgrupper støpt i bronse.",
+      "source_ids": [
+        "nkl_vaa"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Norsk kunstnerleksikon oppgir konkurranseseieren i 1931.",
+      "source_ids": [
+        "nkl_vaa"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Dyre Vaa var billedhugger og maler.",
+      "source_ids": [
+        "nkl_vaa"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Broen fikk navn etter Ankerløkken på vestsiden av elva.",
+      "source_ids": [
+        "oslo_ankerlokka"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Løkken fikk navn etter Karen og Christian Ancher.",
+      "source_ids": [
+        "oslo_ankerlokka"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Trebroen etablerte krysningsstedet før 1926-broen og skulpturene.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Skulpturgruppene kom i 1937, elleve år etter den eksisterende broen.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Skiltet er et senere historieformidlingslag.",
+      "source_ids": [
+        "oslo_byes_vel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Oslo Byes Vel dokumenterer skiltmarkeringen.",
+      "source_ids": [
+        "oslo_byes_vel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Konstruksjon og kunst tilhører to ulike, dokumenterte tidslag.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Personkoblingen bygger på fire fysiske verk på stedet.",
+      "source_ids": [
+        "nkl_vaa"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Tilnavnet oppstod gjennom den stedsspesifikke utsmykningen.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Årene beskriver to ulike konstruksjoner på samme krysningssted.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Bildeparet har ulike kamerastandpunkter og egner seg ikke som geometrisk overlay.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Materialer og plassering gjør tidslagene synlige fra offentlig areal.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "En gåanalyse kan følge forbindelsen mellom de to elvebreddene.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Materialene kan sammenlignes visuelt uten berøring eller risikofylt ferdsel.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Direkte objektregistreringer og flere fagkilder støtter Veslefrikk.",
+      "source_ids": [
+        "nkl_vaa"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "År, materialer og kildeproveniens skiller bro, kunst og skilt.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Historiske påstander krever andre kilder enn ett senere fotografi.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "story",
+      "id": "st_ankerbrua_broen_som_ble_et_eventyr",
+      "source_file": "data/stories/stories_ankerbrua.json",
+      "summary": "I 1937 fikk en elleve år gammel bybro fire bronsegrupper, og den tekniske forbindelsen over Akerselva fikk en ny offentlig identitet som Eventyrbrua."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "by_ankerbrua_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_ankerbrua_quiz_01",
+        "claim_ankerbrua_quiz_02",
+        "claim_ankerbrua_quiz_03",
+        "claim_ankerbrua_quiz_04",
+        "claim_ankerbrua_quiz_05",
+        "claim_ankerbrua_quiz_06",
+        "claim_ankerbrua_quiz_07"
+      ]
+    },
+    {
+      "set_id": "by_ankerbrua_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_ankerbrua_quiz_08",
+        "claim_ankerbrua_quiz_09",
+        "claim_ankerbrua_quiz_10",
+        "claim_ankerbrua_quiz_11",
+        "claim_ankerbrua_quiz_12",
+        "claim_ankerbrua_quiz_13",
+        "claim_ankerbrua_quiz_14"
+      ]
+    },
+    {
+      "set_id": "by_ankerbrua_set_3",
+      "order": 3,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_ankerbrua_quiz_15",
+        "claim_ankerbrua_quiz_16",
+        "claim_ankerbrua_quiz_17",
+        "claim_ankerbrua_quiz_18",
+        "claim_ankerbrua_quiz_19",
+        "claim_ankerbrua_quiz_20",
+        "claim_ankerbrua_quiz_21"
+      ]
+    },
+    {
+      "set_id": "by_ankerbrua_set_4",
+      "order": 4,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_ankerbrua_quiz_22",
+        "claim_ankerbrua_quiz_23",
+        "claim_ankerbrua_quiz_24",
+        "claim_ankerbrua_quiz_25",
+        "claim_ankerbrua_quiz_26",
+        "claim_ankerbrua_quiz_27",
+        "claim_ankerbrua_quiz_28"
+      ]
+    },
+    {
+      "set_id": "by_ankerbrua_set_5",
+      "order": 5,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_ankerbrua_quiz_29",
+        "claim_ankerbrua_quiz_30",
+        "claim_ankerbrua_quiz_31",
+        "claim_ankerbrua_quiz_32",
+        "claim_ankerbrua_quiz_33",
+        "claim_ankerbrua_quiz_34",
+        "claim_ankerbrua_quiz_35"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 35,
+    "counts": {
+      "fact": 20,
+      "context": 8,
+      "concept_theory": 7
+    },
+    "ratios": {
+      "fact": 0.571,
+      "context": 0.229,
+      "concept_theory": 0.2
+    }
+  }
+}
