@@ -1,12 +1,11 @@
-file:///home/runner/work/History-Go/History-Go/tools/tullin-fetch-retry.mjs:92
-    throw new Error("Statsbygg official black logo download link not found on the official press page");
-          ^
+file:///home/runner/work/History-Go/History-Go/scripts/quiz-production-lib.mjs:681
+        throw new Error(`${claim.claim_id}: planned_phase stemmer ikke med relativ progresjon`);
+              ^
 
-Error: Statsbygg official black logo download link not found on the official press page
-    at rateLimitTolerantFetch (file:///home/runner/work/History-Go/History-Go/tools/tullin-fetch-retry.mjs:92:11)
-    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
-    at async fetchOk (file:///home/runner/work/History-Go/History-Go/tools/finalize-tullin-completion.mjs:28:20)
-    at async statsbyggLogo (file:///home/runner/work/History-Go/History-Go/tools/finalize-tullin-completion.mjs:105:23)
-    at async file:///home/runner/work/History-Go/History-Go/tools/finalize-tullin-completion.mjs:133:27
+Error: claim_tullin_quiz_08: planned_phase stemmer ikke med relativ progresjon
+    at file:///home/runner/work/History-Go/History-Go/scripts/quiz-production-lib.mjs:681:15
+    at Function.from (<anonymous>)
+    at buildQuizProductionContext (file:///home/runner/work/History-Go/History-Go/scripts/quiz-production-lib.mjs:674:25)
+    at async file:///home/runner/work/History-Go/History-Go/tools/finalize-tullin-completion.mjs:518:22
 
 Node.js v22.23.2
