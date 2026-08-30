@@ -1,4 +1,4 @@
-name: Finalize Tullin checkpoint v7
+name: Finalize Tullin checkpoint v8
 
 on:
   push:
@@ -135,7 +135,7 @@ jobs:
         run: npm run check:stories
 
       - name: Validate v4.2 description production
-        run: node scripts/validate-place-description-production-v4_2_policy.mjs --all --report=/tmp/place-description-validation-v4_2.json
+        run: node scripts/validate-place-description-production-v4_2_policy.mjs --all --report /tmp/place-description-validation-v4_2.json
 
       - name: Validate place and epoch projections
         run: |
