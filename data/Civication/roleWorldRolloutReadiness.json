@@ -29,13 +29,13 @@
   "summary": {
     "canonical_career_roles": 85,
     "classifications": {
-      "rollout_ready": 37,
-      "needs_role_authored_work": 46,
+      "rollout_ready": 38,
+      "needs_role_authored_work": 45,
       "blocked": 2
     },
     "role_world_complete_or_pilot": 37,
     "rollout_queue_roles": 48,
-    "first_wave_candidate_count": 0,
+    "first_wave_candidate_count": 1,
     "role_level_blocked_count": 2,
     "structural_families_in_queue": 7
   },
@@ -51,21 +51,32 @@
     "gate_pass": true,
     "broad_rollout_allowed_now": true,
     "policy_recommendation": "controlled_rollout_open_with_role_level_gates",
-    "next_required_pr": "Select next rollout_ready role",
+    "next_required_pr": "Role World rollout: naeringsliv/formann",
     "rule": "A green readiness gate proves the program can safely begin controlled rollout. It does not make every role rollout_ready and it does not itself flip broad_rollout_allowed."
   },
-  "first_wave_candidates": [],
+  "first_wave_candidates": [
+    {
+      "rank": 1,
+      "key": "naeringsliv/formann",
+      "classification": "rollout_ready",
+      "structural_family": "economy_business",
+      "priority_score": 1285,
+      "blockers": [],
+      "authored_work_required": [
+        "situated_reputation"
+      ],
+      "cross_role_need": "candidate_when_shared_work_is_real"
+    }
+  ],
   "rollout_queue": [
     {
       "rank": 1,
       "key": "naeringsliv/formann",
-      "classification": "needs_role_authored_work",
+      "classification": "rollout_ready",
       "structural_family": "economy_business",
-      "priority_score": 775,
+      "priority_score": 1285,
       "blockers": [],
       "authored_work_required": [
-        "career:people",
-        "people_places_integrity",
         "situated_reputation"
       ],
       "cross_role_need": "candidate_when_shared_work_is_real"
@@ -4894,6 +4905,7 @@
         "tests/civication-fagarbeider-rollout-playability.test.js",
         "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
         "tests/civication-fagarbeider-two-week-flow.test.js",
+        "tests/civication-formann-readiness-prerequisites.test.js",
         "tests/civication-inbox-channels.test.js",
         "tests/civication-job-eligibility.test.js",
         "tests/civication-naeringsliv-life-career-split.test.js",
@@ -5132,8 +5144,8 @@
       "runtime_gate": true,
       "role_world_status": "role_world_not_started",
       "structural_family": "economy_business",
-      "classification": "needs_role_authored_work",
-      "priority_score": 775,
+      "classification": "rollout_ready",
+      "priority_score": 1285,
       "dimensions": {
         "persistent_work_object": {
           "status": "foundation_ready",
@@ -5178,13 +5190,13 @@
           "rationale": "Situated reputation audiences are not yet explicit for this role; do not substitute the legacy/global reputation summary."
         },
         "people_places_integrity": {
-          "status": "needs_role_authored_work",
+          "status": "foundation_ready",
           "evidence": [
             "data/Civication/mailFamilies/naeringsliv/people/formann_people.json",
             "data/Civication/roleModels/naeringsliv/formann_arbeidsleder.json",
             "data/Civication/workGrammars/naeringsliv/naeringsliv_operativ_ledelse.json"
           ],
-          "rationale": "People=partial, Places=complete; role-authored integration is incomplete."
+          "rationale": "Career People and Places coverage is complete; rollout still must verify factual canonical references and keep invented workplace drama explicitly fictional."
         },
         "provenance": {
           "status": "foundation_ready",
@@ -5194,9 +5206,9 @@
             "data/Civication/workGrammars/naeringsliv/naeringsliv_operativ_ledelse.json",
             "tests/civication-career-outcome-reachability.test.js",
             "tests/civication-formann-first-week-praksisfortellinger.test.js",
+            "tests/civication-formann-readiness-prerequisites.test.js",
             "tests/civication-formann-rollout-playability.test.js",
-            "tests/civication-formann-second-week-praksisfortellinger.test.js",
-            "tests/civication-formann-two-week-flow.test.js"
+            "tests/civication-formann-second-week-praksisfortellinger.test.js"
           ],
           "rationale": "Role-specific tests and authored source paths exist; rollout must add strict scene-registry parity and source provenance for new realism scenes."
         }
@@ -5214,8 +5226,6 @@
       },
       "blockers": [],
       "authored_work_required": [
-        "career:people",
-        "people_places_integrity",
         "situated_reputation"
       ],
       "source_refs": [
@@ -5224,6 +5234,7 @@
         "data/Civication/workGrammars/naeringsliv/naeringsliv_operativ_ledelse.json",
         "tests/civication-career-outcome-reachability.test.js",
         "tests/civication-formann-first-week-praksisfortellinger.test.js",
+        "tests/civication-formann-readiness-prerequisites.test.js",
         "tests/civication-formann-rollout-playability.test.js",
         "tests/civication-formann-second-week-praksisfortellinger.test.js",
         "tests/civication-formann-two-week-flow.test.js",
