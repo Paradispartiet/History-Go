@@ -1,0 +1,76 @@
+name: Repair Tullin quiz context projection
+
+on:
+  push:
+    branches:
+      - work/tullin-completion-20260830
+    paths:
+      - '.github/workflows/tullin-context-projection-repair.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/tullin-completion-20260830
+          fetch-depth: 0
+      - name: Repair quiz production context projection
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('tools/finalize-tullin-completion.mjs')
+          text = path.read_text()
+          old = '''const builtContext = await buildQuizProductionContext({ root, categoryId: "by", targetId: placeId });
+write(contextFile, builtContext);
+quiz.production_context = { ...builtContext, existing_quiz_audit: brief.existing_quiz_audit, profile_decision: brief.profile_decision, held_back_candidates: brief.held_back_candidates, theory_start_phase: "final", method_start_phase: "final" };
+write(quizFile, quiz);'''
+          new = '''const builtContext = await buildQuizProductionContext({ root, categoryId: "by", targetId: placeId });
+write(contextFile, builtContext);
+quiz.production_context = {
+  manifest_category: "by",
+  profile: "rich_6x7",
+  standard_version: "3.3",
+  source_brief: briefFile,
+  context_artifact: contextFile,
+  resolved_files: {
+    pensum: "data/fag/by/pensum_by.json",
+    emner: "data/fag/by/emner_by.json",
+    fagkart: "data/fag/by/fagkart_by.json",
+    methods: "data/fag/by/methods_by.json",
+    supersetQuizMal: "data/fag/by/supersetQUIZMAL_by.json",
+    quizStandard: "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+    quizQuestionSchema: "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+  },
+  required_inputs_loaded: ["pensum", "emner", "fagkart", "methods", "supersetQuizMal", "quizStandard", "quizQuestionSchema"],
+  pensum_module_ids: brief.selected_curriculum.module_ids,
+  emne_ids: brief.selected_curriculum.emne_ids,
+  topic_hook_ids: brief.selected_curriculum.topic_hook_ids,
+  method_ids: brief.selected_curriculum.method_ids,
+  thinker_ids: brief.selected_curriculum.thinker_ids,
+  works: brief.selected_curriculum.works,
+  source_review_status: brief.status,
+  theory_start_phase: "final",
+  method_start_phase: "final",
+  existing_quiz_audit: brief.existing_quiz_audit,
+  profile_decision: brief.profile_decision,
+  held_back_candidates: brief.held_back_candidates
+};
+write(quizFile, quiz);'''
+          count = text.count(old)
+          if count != 1:
+              raise SystemExit(f'expected one context projection block, found {count}')
+          path.write_text(text.replace(old, new))
+          PY
+          rm -f .github/workflows/tullin-context-projection-repair.yml
+          git diff --check
+      - name: Commit repair
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Repair Tullin quiz context projection"
+          git push origin HEAD:work/tullin-completion-20260830
