@@ -1,0 +1,13 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import fs from "node:fs";
+const read=p=>JSON.parse(fs.readFileSync(p,"utf8"));
+const place=read("data/places/by/oslo/places/tullin.json");
+const prod=read("data/places/production/tullin.json");
+const quiz=read("data/quiz/by/tullin_sets.json");
+const stories=read("data/stories/stories_tullin.json");
+test("Tullin preserves verified geometry and identity",()=>{assert.equal(place.lat,59.91651);assert.equal(place.lon,10.73644);assert.equal(place.coordStatus,"verified_geometry");assert.match(place.popupDesc,/Claus Tullin/);assert.doesNotMatch(place.popupDesc,/navn etter dikteren Christian/);});
+test("Tullin has exactly four canonical full-place collections",()=>{assert.deepEqual(place.place_card_profile.collection_ids,["people","objects","brands","structures"]);assert.equal(place.place_card_profile.category_collection_label,"Byrom og anlegg");assert.ok(place.objects.length>=2);assert.ok(place.structures.length>=3);});
+test("Tullin has image-complete visible collections",()=>{for(const o of place.objects)assert.ok(o.image&&fs.existsSync(o.image));for(const s of place.structures)assert.ok(s.image&&fs.existsSync(s.image));assert.ok(fs.existsSync("bilder/kort/people/bjornstjerne_bjornson.jpg"));assert.ok(fs.existsSync("bilder/kort/brands/statsbygg.webp"));assert.ok(fs.existsSync(place.frontImage));});
+test("Tullin rich quiz is 6x7 with distributed answer positions",()=>{assert.equal(quiz.sets.length,6);assert.ok(quiz.sets.every(s=>s.questions.length===7));const qs=quiz.sets.flatMap(s=>s.questions);assert.equal(qs.length,42);assert.deepEqual([...new Set(qs.slice(0,14).map(q=>q.question_type))],["fact"]);assert.ok(new Set(qs.map(q=>q.answerIndex)).size===3);});
+test("Tullin completion package is source-backed and complete",()=>{assert.equal(prod.status,"ready_v4_2");assert.equal(prod.claims.length,16);assert.equal(stories.length,4);assert.ok(stories.every(s=>s.quality_profile==="episode_v1"));assert.equal(prod.factualRepair.status,"complete");});

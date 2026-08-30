@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "ae73e20465d7e42a47b5833f4e970c3ca17f2f20fec7234a23a52813e3d818c1"
+    "content_sha256": "bc1da9690c598ccd4d7eb69d378f2d71be54d8dc5efce74315a3b9adfca5a165"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 17,
     "chapter_count": 189,
     "module_file_count": 497,
-    "package_file_count": 357,
+    "package_file_count": 360,
     "chapter_referenced_file_count": 933,
-    "referenced_file_count": 1219,
+    "referenced_file_count": 1222,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -76,9 +76,9 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 45,
+      "package_file_count": 48,
       "required_package_file_count": 4,
-      "optional_package_file_count": 41,
+      "optional_package_file_count": 44,
       "package_files": [
         {
           "path": "data/fag/by/emner_by.json",
@@ -273,6 +273,18 @@
           "content_sha256": "cf6eafa10b607b1ce5e5f6c3d29f42b965d9dfed596ad37d45e18eca119bcdfd"
         },
         {
+          "path": "data/quiz/by/tullin_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.tullin.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "b973aa212dce84177efd7a5fdb50afb07b7061a72409269947ced0dca0719ee0"
+        },
+        {
           "path": "data/quiz/by/universitetsplassen_sets.json",
           "required": false,
           "fields": [
@@ -415,6 +427,18 @@
           ],
           "exists": true,
           "content_sha256": "e19e930817be069930e5273fef95c1b7aa19d3e1f303f0ca64b2ad8d2d86250f"
+        },
+        {
+          "path": "data/quiz/production_briefs/by/tullin.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.tullin.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "73ee04ca976d4334ab96c3db757f0744c8d05d7771104800df7b59989266bda6"
         },
         {
           "path": "data/quiz/production_briefs/by/universitetsplassen.json",
@@ -561,6 +585,18 @@
           "content_sha256": "c55e1664b7c172594d1b0807b29f333963b512c5165311480fcca4f9969ad3d4"
         },
         {
+          "path": "data/quiz/production_context/by/tullin.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.tullin.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "cac01859529c5bda63656b141545f6d39d83e324efa0d02e28b7a530da04cb1c"
+        },
+        {
           "path": "data/quiz/production_context/by/universitetsplassen.json",
           "required": false,
           "fields": [
@@ -621,20 +657,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "755f26cdb96ecd1ad802a38518d6bd486d42d35d155d9b7a45e58b1a557c0c6d",
+      "package_content_sha256": "3755e096865aacbec71df3fe3e6a6bfc52f802d7158788432248408b3eb3b2db",
       "chapter_count": 17,
       "module_file_count": 51,
       "brief_file_count": 17,
       "claims_file_count": 17,
       "chapter_referenced_file_count": 102,
       "chapter_content_sha256": "38e5be5259e0aa3d733f4ddeeb46df87769c935ad9dd76cd175f8bb645ee79fa",
-      "referenced_file_count": 147,
+      "referenced_file_count": 150,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "93006d4c5b1ded6e1444c9614f043aba1d8a6a3a47b0f7e23e46e75b7242ca26",
-      "content_sha256": "8f6e2489736e445f0dd0aee2ae2b4a0bf00b03016abecb2ce25ddc12d493440e",
+      "structure_sha256": "10f6153596c6744cb65731bca743ea861079e75adc0bfe57ae73f6527758c9d0",
+      "content_sha256": "cd79db2a045a9c5e37dc8505ddf54fc19ea7b1be4d34bd0942b387e1da04947d",
       "chapters": [
         {
           "chapter_id": "byliv-offentlige-rom",
@@ -6988,5 +7024,5 @@
       ]
     }
   },
-  "release_sha256": "9d6527957dcc755edc1250641030a459ce744cf2cd8cced62ec92399e9fc1752"
+  "release_sha256": "0735962a037126ec2a2a81af5d75be32bfb28848ef5d32fd06e08c4e19c9e10b"
 }
