@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "befolkning-demografi-migrasjon-og-mobilitet",
+  "id": "02-tetthet-aldersstruktur-og-romlig-aggregering",
+  "title": "Tetthet, aldersstruktur og romlig aggregering",
+  "sections": [
+    {
+      "id": "tetthet-rutenett-og-romlig-aggregering",
+      "title": "Tetthet, rutenett og romlig aggregering",
+      "method_ids": ["met_geo_befolkningstetthet_grid", "met_geo_maup_sensitivitetsanalyse"],
+      "boundary": "Tetthet avhenger av telleren, arealet og enhetsgrensene; grid og administrative områder er alternative representasjoner med ulike generaliseringer.",
+      "paragraphs": [
+        "Befolkningstetthet beregnes som befolkning delt på areal, men verdien er sterkt avhengig av hvordan geografien avgrenses. En stor kommune med mye ubebodd fjell eller skog kan få lav gjennomsnittstetthet selv om innbyggerne bor svært konsentrert i ett tettsted, mens en liten sentrumsenhet kan få svært høy tetthet. Derfor bør tetthet alltid ledsages av arealdefinisjon og analyseenhet. Ved sammenligning av steder er det ofte nyttig å supplere administrative gjennomsnitt med rutenett eller bebygd areal. Geografisk tolkning må skille den matematiske tettheten i en valgt flate fra det faktiske bosettingsmønsteret innenfor flaten.",
+        "Regelmessige befolkningsrutenett kan gjøre romlige sammenligninger mer konsistente fordi cellene har lik form og omtrent samme areal, i motsetning til kommuner og regioner som varierer sterkt i størrelse. Et ett-kilometers grid kan derfor synliggjøre sammenhengende befolkningstetthet på tvers av administrative grenser og støtte klassifikasjon av urbane og rurale områder. Likevel er gridet også en valgt representasjon: celleoppløsningen avgjør hvor mye lokal variasjon som glattes ut, og plasseringen av celler kan påvirke hvilke bosettinger som havner sammen. Geografen bør derfor behandle rutenettet som et analytisk verktøy med eksplisitt oppløsning, ikke som den naturlige og eneste riktige geografien.",
+        "Når befolkningsdata aggregeres til ulike geografiske enheter kan både korrelasjoner, gjennomsnitt og kartmønstre endre seg, selv om individene og observasjonene under er de samme. Dette er en variant av det modifiable areal unit-problemet og betyr at statistiske sammenhenger kan være følsomme for både skala og grensedesign. En sammenheng mellom inntekt og befolkningstetthet på kommunenivå kan for eksempel svekkes eller styrkes på bydels- eller gridnivå. Derfor bør romlige demografiske analyser teste alternative enheter når konklusjonen er viktig, og dokumentere om resultatet er robust eller om det i stor grad er et produkt av aggregeringsvalget.",
+        "Et modellert befolkningsraster gjør det mulig å aggregere mennesker til funksjonelle geografier som nedbørfelt, gangavstander, transportsone eller risikoområde, selv når offisiell statistikk bare publiseres for administrative enheter. Denne fleksibiliteten er analytisk verdifull, men hver celle er vanligvis en disaggregert eller modellert befolkningsmengde, ikke en liste over observerte personer. Hvis rasteret brukes til eksponerings- eller tilgjengelighetsanalyse, bør modellen, referanseåret og oppløsningen dokumenteres og totalsummer kontrolleres mot kildestatistikken. Et detaljert kart kan ellers gi falsk presisjon, særlig der censusgrunnlaget er gammelt eller romlig grovt."
+      ],
+      "paragraphClaimIds": [["geo7-09"],["geo7-10"],["geo7-11"],["geo7-12"]]
+    },
+    {
+      "id": "alder-kjonn-livslop-og-romlig-struktur",
+      "title": "Alder, kjønn, livsløp og romlig struktur",
+      "method_ids": ["met_geo_aldersstruktur_pyramide", "met_geo_kohort_romlig_sammenligning"],
+      "boundary": "Alders- og kjønnsstruktur skal måles med samme definisjoner og referansetid; rå totaler kan skjule kohort-, livsløps- og seleksjonseffekter.",
+      "paragraphs": [
+        "Aldersstruktur påvirker hvilke tjenester, boliger og arbeidsmarkeder et sted trenger, og den geografiske fordelingen kan være minst like viktig som total folkemengde. To kommuner med samme innbyggertall kan ha svært ulik andel barn, unge voksne eller eldre og dermed helt forskjellige behov for skolekapasitet, kollektivtransport, boliger eller omsorg. Analyse bør derfor kartlegge både absolutte antall og andeler etter harmoniserte aldersgrupper. Samtidig må referanseåret holdes likt fordi aldersstruktur kan endres raskt ved store studentkull, arbeidsinnvandring eller aldring. Befolkningsgeografi handler dermed ikke bare om hvor mange som bor et sted, men også om hvilke kohorter som befinner seg hvor.",
+        "En befolkningspyramide viser fordelingen av alder og kjønn på ett tidspunkt og kan gi hypoteser om demografisk historie, men formen kan ikke alene forklare årsaken. En innsnevring i en aldersgruppe kan skyldes lavere fødselskull, høyere dødelighet eller selektiv utflytting, mens en bulge kan skyldes babyboom, innflytting eller registereffekter. For å skille mekanismene må pyramiden kobles til kohortdata og tidsserier over fertilitet, dødelighet og migrasjon. Geografisk sammenligning bør også kontrollere at aldersintervaller og kjønnskategorier er kompatible. Pyramiden er derfor et beskrivende strukturverktøy, ikke en kausal forklaring i seg selv.",
+        "Flytting gjennom livsløpet er ofte aldersselektiv. Unge voksne kan konsentreres i studie- og arbeidsmarkedsregioner, familier kan flytte til områder med andre boligtyper, og eldre kan bli boende eller flytte nær tjenester og familie. Dermed kan lokal aldring oppstå både fordi kohorter blir eldre og fordi yngre grupper flytter ut, mens foryngelse kan skyldes innflytting snarere enn høy lokal fertilitet. En befolkningsgeografisk analyse bør derfor følge kohorter over tid og skille naturlig endring fra migrasjonsseleksjon. Det gjør det mulig å forstå hvorfor samme nasjonale demografiske utvikling kan gi svært ulike lokale aldersprofiler.",
+        "Aldersdata finnes i ulike formater: census kan publisere femårsgrupper, raster kan bruke bredere kategorier og internasjonale estimater kan ha egne standardintervall. Dersom disse sammenlignes direkte uten harmonisering, kan forskjeller skyldes kategorigrensene i stedet for befolkningen. Referanseår er like viktig fordi en femårsperiode flytter hele kohorter mellom aldersklasser. Derfor bør analysen enten reaggregere til felles intervaller eller forklare begrensningen, og den bør dokumentere om gridverdier er direkte censusaggregert eller modellert. Slik blir sammenligningen av livsløpsstruktur reproduserbar på tvers av datakilder og geografiske skalaer."
+      ],
+      "paragraphClaimIds": [["geo7-13"],["geo7-14"],["geo7-15"],["geo7-16"]]
+    }
+  ]
+}
