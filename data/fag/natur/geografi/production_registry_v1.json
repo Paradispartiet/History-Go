@@ -4,9 +4,9 @@
   "updated_at": "2026-08-30",
   "owner_subject_id": "natur",
   "canonical_subcategory_id": "geografi",
-  "status": "source_first_in_progress",
+  "status": "production_in_progress",
   "progress": {
-    "materializedDomains": 0,
+    "materializedDomains": 1,
     "totalDomains": 12,
     "strictCompletionProven": false
   },
@@ -19,6 +19,17 @@
     "complete_requires_all_domains_and_strict_proof": true,
     "geography_requires_explicit_spatial_methods": true
   },
-  "next_gate": "geographic_thinking_source_first_then_fulltext",
-  "materialized": []
+  "next_gate": "cartography_gis_geodata_remote_sensing_fulltext",
+  "materialized": [
+    {
+      "ordinal": 1,
+      "domain_id": "geografisk_tenkning_sted_rom_skala_region",
+      "chapter": "data/fagverk/natur/geografi/geografisk-tenkning-sted-rom-skala-og-region.json",
+      "claims": "data/fagverk/natur/geografi/geografisk-tenkning-sted-rom-skala-og-region/claims.json",
+      "assessment": "data/fagverk/natur/geografi/geografisk-tenkning-sted-rom-skala-og-region/assessment.json",
+      "audit": "reports/fagverk/geografi-geographic-thinking-fulltext-v1-audit.json",
+      "source_brief": "data/fag/natur/geografi/geographic_thinking_place_space_scale_region_source_claim_brief_v1.json",
+      "source_brief_audit": "reports/fagverk/geografi-geographic-thinking-source-brief-v1-audit.json"
+    }
+  ]
 }
