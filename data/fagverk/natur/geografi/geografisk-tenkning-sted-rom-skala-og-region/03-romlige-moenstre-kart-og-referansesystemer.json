@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "geografisk-tenkning-sted-rom-skala-og-region",
+  "id": "03-romlige-moenstre-kart-og-referansesystemer",
+  "title": "Romlige mønstre, kart og referansesystemer",
+  "sections": [
+    {
+      "id": "romlige-moenstre-klynger-og-avvik",
+      "title": "Romlige mønstre, klynger, autokorrelasjon og avvik",
+      "method_ids": ["met_geo_romlig_autokorrelasjon", "met_geo_lokal_moensteranalyse"],
+      "boundary": "En statistisk klynge er et mønster under en bestemt modell og romlig vekting; den er ikke automatisk en naturlig region eller en årsak.",
+      "paragraphs": [
+        "Lokale indikatorer for romlig assosiasjon, ofte omtalt som LISA, er utviklet for å undersøke hvordan hver observasjon bidrar til et romlig mønster. Anselin viser at slike indikatorer kan fremheve lokale klynger av høye eller lave verdier og observasjoner som avviker fra naboene. Det er analytisk kraftig fordi et globalt mål kan skjule lokale forskjeller. Samtidig er resultatet avhengig av variabelen, romlig enhet, vektingen og inferensprosedyren. «Hotspot» er derfor en statistisk klassifikasjon under en eksplisitt modell, ikke navnet på en årsak eller en naturlig region.",
+        "Et hotspot bør rapporteres slik at en annen analytiker kan forstå hvordan det ble produsert. Det innebærer minst hvilken variabel som er analysert, tidsrommet, geografisk enhet, hvordan naboer er definert, hvilken statistikk som brukes og hvordan signifikans eller simuleringsresultat er vurdert. Uten denne informasjonen kan en fargeflekk på kartet se mer sikker ut enn analysen faktisk er. NESHs krav om nøyaktighet og transparens gjelder også romlig analyse: metodiske valg som kan endre hvem eller hvilke områder som fremstår som avvikende, må være synlige i formidlingen.",
+        "Global og lokal romlig autokorrelasjon svarer på forskjellige spørsmål. Et globalt mål oppsummerer om like verdier generelt ligger nær hverandre i hele studieområdet, mens lokale indikatorer undersøker hvor bestemte observasjoner inngår i klynger eller avviker fra sine naboer. Et svakt globalt mønster kan derfor eksistere samtidig med tydelige lokale strukturer, og et sterkt globalt mønster kan bestå av regioner med ulike lokale mekanismer. Tolkningen bør følge nivået på statistikken og ikke bruke ett samlet tall som erstatning for geografisk variasjon.",
+        "Romlig mønsteranalyse er særlig nyttig som overgang mellom beskrivelse og forklaring. En klynge kan peke mot hypoteser om felles miljø, kontakt, infrastruktur, seleksjon eller institusjonell organisering, men ingen av disse mekanismene følger logisk av klyngen alene. Rediscovering Geography understreker geografiens bidrag gjennom å koble romlige mønstre til prosesser og stedsspesifikk kontekst. Neste analytiske steg er derfor å samle data som kan skille hypotesene: tidsrekkefølge, eksponering, nettverk, policyendring, fysiske strømmer eller andre observerbare mekanismemarkører."
+      ],
+      "paragraphClaimIds": [["geo-17"], ["geo-18"], ["geo-19"], ["geo-20"]]
+    },
+    {
+      "id": "kart-representasjon-projeksjon-og-koordinatreferanse",
+      "title": "Kart, representasjon, projeksjon og koordinatreferanse",
+      "method_ids": ["met_geo_kartografisk_representasjon", "met_geo_crs_projeksjonskontroll"],
+      "boundary": "Kartet er en valgt representasjon. Projeksjon, klassifisering, symbolisering og koordinatreferanse påvirker hva som kan måles og sammenlignes.",
+      "paragraphs": [
+        "En kule- eller ellipsoideformet jordoverflate kan ikke legges flatt uten forvrengning. USGS' projeksjonsmanual dokumenterer hvordan ulike projeksjoner prioriterer egenskaper som form, areal, avstand eller retning. Valget må derfor følge oppgaven. Et kart som skal sammenligne areal mellom regioner trenger andre egenskaper enn et detaljkart for lokal navigasjon. Å bruke en kjent projeksjon uten å undersøke dens forvrengning kan skape systematiske visuelle og numeriske feil selv om kartet ser teknisk profesjonelt ut.",
+        "Koordinater får geografisk mening gjennom et koordinatreferansesystem. ISO 19111 beskriver den konseptuelle modellen for koordinatbasert referering og hvilke opplysninger som kreves for å definere et slikt system. Tallet 10,75 og 59,91 kan for eksempel ikke tolkes sikkert som lengde- og breddegrad uten å vite system, akser og referanse. I geodataarbeid må derfor CRS følge datasettet som metadata og kontrolleres før måling, sammenstilling eller transformasjon. Høy numerisk presisjon kan ellers skjule at tallene refererer til forskjellige romlige rammer.",
+        "OGCs Simple Features-modell knytter geometriske objekter som punkt, kurve og flate til et romlig referansesystem. Det gjør det mulig å lagre og analysere forskjellige typer geografiske fenomener på en standardisert måte, men standardisering fjerner ikke behovet for faglig kontroll. To lag kan ha gyldige geometrier og likevel være uforenlige dersom de bruker forskjellige referansesystemer uten korrekt transformasjon, eller representerer fenomener på svært ulik målestokk. Før areal, avstand eller overlapp beregnes, må geometri, CRS, oppløsning og formål derfor vurderes samlet.",
+        "Et kart er en argumenterende representasjon fordi valg av utsnitt, projeksjon, klassegrenser, symbolstørrelse og farge påvirker hva leseren legger merke til. USGS viser de matematiske avveiningene i projeksjon, mens romlig-tenkning-litteraturen minner om at representasjon er en del av selve resonneringen. Derfor bør kartkritikk spørre hva som er utelatt, hvilken nevner en choropleth bruker, om symbolene passer datatypen og om usikkerhet er synlig. Estetisk klarhet og høy oppløsning er ikke erstatninger for dokumentert datagrunnlag og riktige kartografiske valg."
+      ],
+      "paragraphClaimIds": [["geo-21"], ["geo-22"], ["geo-23"], ["geo-24"]]
+    }
+  ]
+}

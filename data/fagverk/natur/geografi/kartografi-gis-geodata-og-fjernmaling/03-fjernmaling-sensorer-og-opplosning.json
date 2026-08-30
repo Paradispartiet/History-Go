@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "kartografi-gis-geodata-og-fjernmaling",
+  "id": "03-fjernmaling-sensorer-og-opplosning",
+  "title": "Fjernmåling, sensorer og oppløsning",
+  "sections": [
+    {
+      "id": "gis-operasjoner-interoperabilitet-og-sporrbarhet",
+      "title": "GIS-operasjoner, interoperabilitet og sporbar dataflyt",
+      "method_ids": ["met_geo_gis_operasjonskjede", "met_geo_interoperabilitet_proveniens"],
+      "boundary": "En GIS-prosess må kunne rekonstrueres fra input, CRS, filter, operasjoner, versjoner og output; klikksekvens alene er ikke reproduserbar metode.",
+      "paragraphs": [
+        "GIS-operasjoner som buffer, overlay og spatial query må kobles til en eksplisitt geografisk problemstilling og dokumenterte inputdata. En buffer har for eksempel bare faglig mening dersom avstanden uttrykker en relevant prosess, terskel eller operasjonell definisjon. Overlay kan vise samlokalisering uten å dokumentere årsak, og en spatial query avhenger av hvordan geometri og relasjon er definert. Derfor bør hver GIS-operasjon knyttes til en hypotese eller eksplisitt beslutningsregel, med dokumenterte input, parameterverdier og forventet output før programvaren kjøres.",
+        "Interoperable standarder reduserer format- og tilgangsfriksjon, men eliminerer ikke forskjeller i datamodell, CRS, oppløsning eller semantikk. Felles standarder kan sørge for at data leses av flere systemer, men to kompatible filer kan fortsatt representere ulike tider, definisjoner eller romlige enheter. Integrasjon krever derfor harmonisering som er eksplisitt og etterprøvbar: skjema, klassifikasjon, CRS, oppløsning, tidsdekning og semantikk må vurderes. Ellers kan teknisk vellykket sammenføyning skape et analytisk datasett hvor forskjeller mellom kildene feilaktig tolkes som geografiske mønstre.",
+        "STAC knytter spatiotemporale assets til strukturert metadata om blant annet tid, geometri, lenker og samlinger og kan støtte sporbar datadiscovery. STAC kan fungere som et søkbart indekslag mellom analyse og geospatiale assets ved å registrere tid, geometri, samlinger, egenskaper og lenker til faktiske data. Det gjør det mulig å lagre identiteten til de konkrete inputfilene i stedet for bare et generisk produktnavn. For reproduserbarhet bør katalogmetadata kombineres med versjons- eller assetreferanser og prosesseringskode, slik at en annen analytiker kan finne samme datagrunnlag og forstå hvilke varianter som ble valgt.",
+        "Reproduserbar geodataanalyse krever at dataversjon, tidsrom, filter, CRS og sentrale transformasjoner kan rekonstrueres, ikke bare at sluttkartet er lagret. Et sluttkart er en komprimert presentasjon av en kjede av valg og kan ikke alene rekonstruere analysen. En sporbar pipeline registrerer kilder og versjoner, tidsavgrensning, uttrekksfilter, CRS, geometrireparasjoner, reprojeksjoner, avledede felt, analyseparametre og programvare- eller kodeversjon. Det gir grunnlag for å gjenta beregningen, teste alternative valg og oppdage hvor et avvik oppstod uten å gjøre GIS-verktøyets brukergrensesnitt til den egentlige metoden."
+      ],
+      "paragraphClaimIds": [["geo2-17"],["geo2-18"],["geo2-19"],["geo2-20"]]
+    },
+    {
+      "id": "fjernmaling-spektral-romlig-radiometrisk-og-temporal-opplosning",
+      "title": "Fjernmåling: spektral, romlig, radiometrisk og temporal oppløsning",
+      "method_ids": ["met_geo_sensoropplosningsanalyse", "met_geo_multispektral_tolkning"],
+      "boundary": "Sensoroppløsning er flerdimensjonal; høyere romlig oppløsning betyr ikke automatisk bedre spektral, radiometrisk eller temporal informasjon.",
+      "paragraphs": [
+        "Landsat 9 kombinerer spektralbånd med ulike bakkepikselstørrelser, blant annet 15 m pankromatisk, 30 m OLI-bånd og 100 m termiske TIRS-bånd. Landsat-eksemplet viser at ett sensorsystem kan levere bånd med forskjellige romlige egenskaper og måle ulike deler av spekteret. Panskarping eller sammenslåing kan ikke behandles som om alle opprinnelige målinger hadde samme native detalj. Ved sammenligning mellom bånd må analysekjeden derfor oppgi nominell GSD, eventuell resampling og hvilke sensorbegrensninger som styrer tolkningen, særlig når små objekter eller temperaturmønstre analyseres.",
+        "Sentinel-2s multispektrale instrument bruker 13 spektralbånd og en konstellasjon som kombinerer høy romlig detalj med hyppig gjenbesøk for landobservasjon. Sentinel-2 kombinerer flere spektralbånd, ulik båndoppløsning og kort gjenbesøkstid, noe som gjør systemet egnet til mange landprosesser. Men valget mellom sensorprodukter bør følge fenomenets spektrale signatur, romlige skala og endringstakt. En analyse av vegetasjon, vann eller urbant arealdekke kan kreve ulike bånd og tidsvinduer. Sensorens imponerende spesifikasjon er derfor ikke i seg selv et bevis på at den valgte dataserien passer spørsmålet.",
+        "Spektral oppløsning beskriver hvordan sensoren skiller bølgelengdeområder, mens romlig oppløsning beskriver den geografiske samplingstørrelsen; de må ikke blandes. Romlig og spektral oppløsning beskriver ulike dimensjoner: den ene handler om geografisk sampling, den andre om hvordan energi deles inn i bølgelengdeintervaller. En sensor kan ha små piksler og få brede bånd, eller grovere piksler og informasjon i andre spektralområder. Faglig sensorvalg må derfor spesifisere hvilken kontrast i fenomenet som forventes å være målbar, og ikke bruke ordet «høy oppløsning» som et enkelt samlet kvalitetsmål.",
+        "Temporal oppløsning og skydekke påvirker hvilke endringsprosesser som faktisk kan observeres, selv når sensorens romlige oppløsning er høy. En teoretisk revisit betyr ikke at skyfrie og sammenlignbare observasjoner finnes på hver passering. Skydekke, solgeometri, sensorfeil og datakvalitetsmasker kan redusere den effektive tidsoppløsningen kraftig. Endringsanalyse må derfor rapportere de faktiske observasjonsdatoene og tilgjengeligheten etter kvalitetsfiltrering, og vurdere om tidsserien kan skille en varig endring fra sesongvariasjon eller et kortvarig fenomen."
+      ],
+      "paragraphClaimIds": [["geo2-21"],["geo2-22"],["geo2-23"],["geo2-24"]]
+    }
+  ]
+}

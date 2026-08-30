@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "geomorfologi-landskap-og-jordsystemer",
+  "id": "01-prosess-form-terreng-og-skala",
+  "title": "Prosess, form, terreng og skala",
+  "sections": [
+    {
+      "id": "prosess-form-system-og-skala",
+      "title": "Prosess, form, system og skala",
+      "method_ids": ["met_geo_geomorfologisk_prosessformanalyse", "met_geo_massebalanse_og_systemavgrensning"],
+      "boundary": "En landform er ikke et entydig prosessbevis; form, materiale, prosess, tidsrom og systemgrense må skilles før årsak sluttes.",
+      "paragraphs": [
+        "Geomorfologisk analyse kobler landformer til prosesser, materialegenskaper og tid, men samme synlige form kan ha flere mulige dannelseshistorier som må skilles med uavhengige spor. En dal, terrasse eller rygg er derfor først en observert geometri, ikke en ferdig årsaksforklaring. Analysen bør registrere form, materiale, struktur, høyde, orientering og relasjon til naboelementer før prosesshypoteser rangeres. Deretter kan sediment, erosjonsspor, kronologi og sammenlignbare former brukes til å teste om is, elv, skred, bølger, vind eller menneskelige inngrep gir den mest konsistente forklaringen på den avgrensede landformen.",
+        "Forvitring bryter ned materiale på eller nær stedet, mens erosjon innebærer løsning eller fjerning og transport; prosessene kan samvirke uten å være synonymer. Denne distinksjonen er viktig fordi et forvitret bergparti kan være sterkt kjemisk eller mekanisk endret uten at massen ennå er flyttet, mens erosjon krever at materiale faktisk fjernes av vann, is, vind, bølger eller tyngdekraft. I felt bør derfor nedbrytning, løsning, transportretning og avsetningssted dokumenteres separat. Ellers kan samme observasjon telle dobbelt i en prosessforklaring og gjøre sedimentbudsjettet eller tidsrekkefølgen mindre etterprøvbar.",
+        "En geomorfologisk massebalanse bør skille tilførsel, midlertidig lagring og eksport av sediment innen en definert systemgrense og tidsperiode. Et nedbørfelt kan for eksempel motta materiale fra skråninger, lagre det i vifter, terrasser og flomsletter og bare eksportere en liten del under normale vannføringer. Under ekstreme hendelser kan eldre lagre remobiliseres. Derfor er sedimentmengden ved utløpet ikke et direkte mål på samtidig erosjon i hele feltet. En eksplisitt systemgrense, tidsperiode og oversikt over kilder, lagre og utløp gjør det mulig å teste om den foreslåtte balansen faktisk lukker eller om viktige flukser mangler.",
+        "Prosesser og mekanismer må vurderes på relevant romlig og temporal skala; en lokal ekstremhendelse er ikke automatisk hovedforklaring på et langtidsutviklet landskap. En enkelt flom kan flytte store sedimentmengder og samtidig være liten i forhold til millioner av års dalutvikling, mens sjeldne hendelser i andre systemer kan dominere langtidsbudsjettet. Analysen bør derfor skille hendelsesskala, responsperiode og den tiden topografien integrerer. Når en mekanisme generaliseres fra et lokalt case, må det vises at den også er plausibel ved den skalaen og frekvensen som kreves for å forklare den observerte landformen eller landskapsendringen."
+      ],
+      "paragraphClaimIds": [["geo3-01"],["geo3-02"],["geo3-03"],["geo3-04"]]
+    },
+    {
+      "id": "terreng-dem-geomorfometri-og-landformavgrensning",
+      "title": "Terreng, DEM, geomorfometri og landformavgrensning",
+      "method_ids": ["met_geo_dem_terrenganalyse", "met_geo_geomorfometri_landformavgrensning"],
+      "boundary": "En høydemodell er en målt eller avledet overflaterepresentasjon; celleverdier og terrengderivater må tolkes ut fra produkttype, oppløsning og preprocessing.",
+      "paragraphs": [
+        "Digitale høydemodeller brukes som samlebetegnelse for elevation-data, mens DSM- og terrengmodeller kan representere forskjellige fysiske overflater og derfor gi ulike geomorfologiske mål. Før helning, relieff eller drenering beregnes må produktets representerte overflate avklares: en DSM kan følge tretopper og bygg, mens en terrengmodell søker å beskrive bakken. Dette påvirker både absolutte høyder og avledede former. En geomorfologisk analyse bør derfor registrere produktdefinisjon, sensor, cellestørrelse, vertikal referanse og eventuelle filtreringstrinn, og bruke kontrollpunkter eller bedre lokale data der forskjellen mellom overflate og terreng kan påvirke konklusjonen.",
+        "Copernicus DEM er en digital overflatemodell der bygninger, infrastruktur og vegetasjon kan inngå i høyden, og kan derfor ikke behandles som automatisk bar-jord-topografi. I skog og tettbygde områder kan slike objekter påvirke beregnet helning, vannveier og lokale rygger eller forsenkninger. Det betyr ikke at produktet er dårlig; det betyr at bruken må matche hva produktet faktisk måler. Ved analyse av små raviner, skråninger eller urbane terrengformer bør derfor DSM-egenskapene sammenholdes med høyoppløselig terrengdata eller feltobservasjon før avledede mønstre tolkes som naturlig topografi.",
+        "Helning, kurvatur og andre terrengderivater avhenger av celleoppløsning, glatting, sensor og preprocessing, slik at samme landskap kan få ulike numeriske signaturer i ulike DEM-produkter. Et bratt lite skråningsparti kan forsvinne ved grov oppløsning, mens støy i svært detaljerte data kan skape kunstige lokale ekstremverdier. Metoden bør derfor spesifisere nabolagsstørrelse, derivatalgoritme og eventuell glatting og teste sensitivitet mot minst ett alternativ når terskler brukes til klassifikasjon. En numerisk landformgrense er først robust når den er stabil nok mot rimelige parameterendringer og samtidig samsvarer med uavhengige terrengobservasjoner.",
+        "Landformgrenser kan være skalaavhengige og gradvise; automatisk segmentering må derfor valideres mot felt, kart eller andre uavhengige observasjoner før klassene tolkes som naturlige enheter. Overgangen mellom dalbunn og dalside kan være skarp i ett landskap og diffus i et annet, og en algoritme vil uansett tvinge fram bestemte terskler. En sterk landformkartlegging dokumenterer definisjon, skala, parametere og feiltilfeller og skiller mellom den beregnede segmenteringen og den geomorfologiske tolkningen. Når ulike kart gir ulike grenser, er dette informasjon om metode og skala som må undersøkes, ikke nødvendigvis bevis på at ett av kartene er feil."
+      ],
+      "paragraphClaimIds": [["geo3-05"],["geo3-06"],["geo3-07"],["geo3-08"]]
+    }
+  ]
+}

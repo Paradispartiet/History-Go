@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "kartografi-gis-geodata-og-fjernmaling",
+  "id": "04-validering-kvalitet-og-reproduserbarhet",
+  "title": "Validering, kvalitet og reproduserbarhet",
+  "sections": [
+    {
+      "id": "forprosessering-reflektans-klassifikasjon-og-validering",
+      "title": "Forprosessering, reflektans, klassifikasjon og validering",
+      "method_ids": ["met_geo_fjernmaling_forprosessering", "met_geo_klassifikasjonsvalidering"],
+      "boundary": "Et klassifisert satellittkart må valideres mot uavhengige eller bedre referansedata; visuell plausibilitet er ikke nøyaktighetsmål.",
+      "paragraphs": [
+        "Landsat Level-2 surface reflectance korrigerer for atmosfæriske effekter for å gi et produkt som er bedre egnet til sammenligning av landoverflatens reflektans. Surface-reflectance-produkter reduserer en viktig kilde til variasjon mellom opptak ved å korrigere atmosfæriske effekter, men de er fortsatt prosesserte estimater med algoritmer, gyldighetsbetingelser og kvalitetsflagg. Sammenligning mellom datoer bør derfor bruke konsistente produktnivåer og dokumentere skaleringsfaktorer, maskering og andre preprocessingvalg. At data er Level-2 gjør dem mer analyseklar, men erstatter ikke kontroll av om produktet passer den konkrete overflaten og perioden.",
+        "Quality-assurance-bånd og prosesseringsmetadata bør inngå i filtrering og dokumentasjon fremfor å behandle alle piksler som like pålitelige. QA-informasjon er en del av datagrunnlaget, ikke støy som kan ignoreres for å få et komplett kart. Sky, skygge, snø, metning og prosesseringsstatus kan gjøre piksler uegnede til bestemte analyser. Filtreringsreglene bør lagres sammen med analysen og rapporteres slik at datatap og mulig seleksjon blir synlig. Ellers kan forskjeller i kvalitet mellom datoer eller områder bli tolket som miljøendring selv om de egentlig følger observasjonsforholdene.",
+        "Nøyaktighetsvurdering av klassifiserte endringskart bør bruke et eksplisitt sampling- og responsdesign med referansedata som er mer pålitelige enn kartklassifikasjonen som testes. Validering krever et design som er uavhengig av kartets egen klassifikasjonslogikk. Utvalg av referansepunkter, definisjon av klasser, tidspunkt for referansedata og responsprotokoll påvirker estimert nøyaktighet. Sannsynlighetsbasert sampling gjør det mulig å knytte estimater og usikkerhet til målpopulasjonen. En robust rapport skiller derfor treningsdata fra valideringsdata og forklarer hvordan referanseetikettene ble bestemt før feilmatrisen beregnes.",
+        "Overall, user- og producer-accuracy beskriver ulike sider av klassifikasjonsfeil og bør rapporteres sammen med usikkerhet når kart brukes til areal- eller endringsestimat. Overall accuracy oppsummerer andel korrekt klassifiserte referanseenheter, mens user- og producer-accuracy belyser ulike feilretninger for hver klasse. De kan derfor gi svært forskjellig bilde når klassene er ubalanserte eller enkelte overganger er sjeldne. Når kartet brukes til arealestimat eller endringsanalyse, bør rapporten kombinere feilmatrise med klassevise mål og konfidensintervall, slik at et enkelt høyt prosenttall ikke skjuler systematiske feil i bestemte klasser."
+      ],
+      "paragraphClaimIds": [["geo2-25"],["geo2-26"],["geo2-27"],["geo2-28"]]
+    },
+    {
+      "id": "metadata-kvalitet-proveniens-og-reproduserbarhet",
+      "title": "Metadata, kvalitet, proveniens og reproduserbarhet",
+      "method_ids": ["met_geo_geodatakvalitet", "met_geo_proveniens_reproduserbarhet"],
+      "boundary": "Datakvalitet er egnethet for en definert bruk, ikke ett universelt kvalitetsstempel; kjente begrensninger og prosesseringssteg må følge resultatet.",
+      "paragraphs": [
+        "ISO 19157-1 behandler geodatakvalitet gjennom definerte komponenter, evaluering og rapportering, men fastsetter ikke ett universelt minimumsnivå for alle bruksformål. Geodatakvalitet må derfor vurderes mot et spesifisert bruksformål og med relevante kvalitetskomponenter, ikke gjennom en løs merkelapp som «høy kvalitet». Fullstendighet, tematisk korrekthet, posisjonsnøyaktighet, temporal kvalitet og logisk konsistens kan være viktige i ulik grad for forskjellige analyser. Rapporten bør angi hvilke komponenter som ble evaluert, etter hvilken metode og mot hvilke behov, og synliggjøre kvalitet som ikke ble testet.",
+        "Et datasett kan være egnet for regional visualisering og samtidig utilstrekkelig for lokal beslutning dersom oppløsning, aktualitet eller tematisk kvalitet ikke passer formålet. Egnethet er skala- og beslutningsavhengig. Et raster kan være tilstrekkelig til å vise et regionalt mønster og samtidig være for grovt eller gammelt til å avgjøre forhold på en enkelt eiendom. Før data brukes normativt eller operativt må derfor krav til romlig detalj, tidsaktualitet, tematisk presisjon og usikkerhet settes opp mot datakildens dokumenterte egenskaper. Dette hindrer at en vellykket visualisering forveksles med beslutningsrelevant evidens.",
+        "Metadata om asset, tid, geometri, datakilde og lenker gjør det lettere å finne og rekonstruere hvilke geodata som faktisk inngikk i en analyse. Metadata gir sporbarhet når de peker fra et analysert resultat tilbake til de faktiske assetene, tidspunktene, geografien og relasjonene mellom produkter. STAC kan støtte denne kjeden, men metadata må bevares sammen med lokale prosesseringsvalg og eventuelle avledede filer. En god provenance-post gjør det mulig å identifisere nøyaktig hvilken versjon som ble brukt, hvorfor den ble valgt, og hvilke transformasjoner som skjedde etter at data ble hentet.",
+        "En etterprøvbar fjernmålingsanalyse bør rapportere sensor og produktnivå, tidsrom, preprocessing, maskering, klassifikasjonsmetode, referansedata og valideringsresultater. Et etterprøvbart fjernmålingsresultat beskriver hele evidenskjeden fra sensor til påstand. Sensor og produktnivå, tidsperiode, valgte assets, preprocessing, atmosfære- og kvalitetsmaskering, reprojeksjon, avledede variabler, klassifikasjonsmetode, referansedata, sampling og valideringsmål bør rapporteres i den graden de påvirker resultatet. Slik kan en annen analytiker reprodusere arbeidet eller lokalisere avvik uten å måtte gjette hvilke skjulte standardvalg programvaren gjorde."
+      ],
+      "paragraphClaimIds": [["geo2-29"],["geo2-30"],["geo2-31"],["geo2-32"]]
+    }
+  ]
+}

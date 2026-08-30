@@ -1,0 +1,30 @@
+{
+  "schema": "history_go_fagverk_fulltext_brief_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "domain_id": "kartografi_gis_geodata_fjernmaling",
+  "chapter_id": "kartografi-gis-geodata-og-fjernmaling",
+  "sourceBriefFile": "data/fag/natur/geografi/cartography_gis_geodata_remote_sensing_source_claim_brief_v1.json",
+  "sections": [
+    {"id":"kartografisk-formal-projeksjon-og-forvrengning","title":"Kartografisk formål, projeksjon og forvrengning","method_ids":["met_geo_projeksjonsvalg","met_geo_kartografisk_kvalitetskontroll"],"boundary":"Ingen flat projeksjon bevarer alle geometriske egenskaper; projeksjonsvalg må følge måle- og kommunikasjonsformålet.","source_ids":["geo2-02-usgs-projections","geo2-03-iso19111","geo2-01-goodchild-giscience"],"claim_ids":["geo2-01","geo2-02","geo2-03","geo2-04"]},
+    {"id":"crs-datum-akser-og-transformasjon","title":"CRS, datum, akser og koordinattransformasjon","method_ids":["met_geo_crs_identifikasjon","met_geo_koordinattransformasjon"],"boundary":"Like tall betyr ikke samme lokasjon uten samme CRS; koordinattransformasjon er en definert operasjon med kilde- og målreferanse.","source_ids":["geo2-03-iso19111","geo2-04-ogc-simple-features","geo2-08-ogc-api-features"],"claim_ids":["geo2-05","geo2-06","geo2-07","geo2-08"]},
+    {"id":"vektor-feature-geometri-og-topologi","title":"Vektor, feature, geometri og topologiske relasjoner","method_ids":["met_geo_vektordatamodell","met_geo_topologisk_kontroll"],"boundary":"Punkt, kurve og flate er abstraherte geometrier; de er ikke fenomenet selv og må velges etter målestokk og analysebehov.","source_ids":["geo2-04-ogc-simple-features","geo2-08-ogc-api-features","geo2-05-iso19157-1"],"claim_ids":["geo2-09","geo2-10","geo2-11","geo2-12"]},
+    {"id":"raster-georeferering-opplosning-og-cloud-tilgang","title":"Raster, georeferering, oppløsning og cloud-tilgang","method_ids":["met_geo_rasterdatamodell","met_geo_rastertilgang_og_overviews"],"boundary":"Pikselstørrelse, georeferering og lagringsoptimalisering beskriver forskjellige egenskaper; en rask rasterfil er ikke automatisk et nøyaktig rasterprodukt.","source_ids":["geo2-06-ogc-geotiff","geo2-07-ogc-cog","geo2-05-iso19157-1"],"claim_ids":["geo2-13","geo2-14","geo2-15","geo2-16"]},
+    {"id":"gis-operasjoner-interoperabilitet-og-sporrbarhet","title":"GIS-operasjoner, interoperabilitet og sporbar dataflyt","method_ids":["met_geo_gis_operasjonskjede","met_geo_interoperabilitet_proveniens"],"boundary":"En GIS-prosess må kunne rekonstrueres fra input, CRS, filter, operasjoner, versjoner og output; klikksekvens alene er ikke reproduserbar metode.","source_ids":["geo2-01-goodchild-giscience","geo2-08-ogc-api-features","geo2-09-ogc-stac"],"claim_ids":["geo2-17","geo2-18","geo2-19","geo2-20"]},
+    {"id":"fjernmaling-spektral-romlig-radiometrisk-og-temporal-opplosning","title":"Fjernmåling: spektral, romlig, radiometrisk og temporal oppløsning","method_ids":["met_geo_sensoropplosningsanalyse","met_geo_multispektral_tolkning"],"boundary":"Sensoroppløsning er flerdimensjonal; høyere romlig oppløsning betyr ikke automatisk bedre spektral, radiometrisk eller temporal informasjon.","source_ids":["geo2-10-usgs-landsat9","geo2-12-esa-sentinel2","geo2-01-goodchild-giscience"],"claim_ids":["geo2-21","geo2-22","geo2-23","geo2-24"]},
+    {"id":"forprosessering-reflektans-klassifikasjon-og-validering","title":"Forprosessering, reflektans, klassifikasjon og validering","method_ids":["met_geo_fjernmaling_forprosessering","met_geo_klassifikasjonsvalidering"],"boundary":"Et klassifisert satellittkart må valideres mot uavhengige eller bedre referansedata; visuell plausibilitet er ikke nøyaktighetsmål.","source_ids":["geo2-11-usgs-landsat-l2","geo2-13-olofsson-accuracy","geo2-05-iso19157-1"],"claim_ids":["geo2-25","geo2-26","geo2-27","geo2-28"]},
+    {"id":"metadata-kvalitet-proveniens-og-reproduserbarhet","title":"Metadata, kvalitet, proveniens og reproduserbarhet","method_ids":["met_geo_geodatakvalitet","met_geo_proveniens_reproduserbarhet"],"boundary":"Datakvalitet er egnethet for en definert bruk, ikke ett universelt kvalitetsstempel; kjente begrensninger og prosesseringssteg må følge resultatet.","source_ids":["geo2-05-iso19157-1","geo2-09-ogc-stac","geo2-13-olofsson-accuracy"],"claim_ids":["geo2-29","geo2-30","geo2-31","geo2-32"]}
+  ],
+  "strict_boundaries": [
+    "Ingen flat projeksjon bevarer alle geometriske egenskaper; projeksjonsvalg må følge måle- og kommunikasjonsformålet.",
+    "Like tall betyr ikke samme lokasjon uten samme CRS; koordinattransformasjon er en definert operasjon med kilde- og målreferanse.",
+    "Punkt, kurve og flate er abstraherte geometrier; de er ikke fenomenet selv og må velges etter målestokk og analysebehov.",
+    "Pikselstørrelse, georeferering og lagringsoptimalisering beskriver forskjellige egenskaper; en rask rasterfil er ikke automatisk et nøyaktig rasterprodukt.",
+    "En GIS-prosess må kunne rekonstrueres fra input, CRS, filter, operasjoner, versjoner og output; klikksekvens alene er ikke reproduserbar metode.",
+    "Sensoroppløsning er flerdimensjonal; høyere romlig oppløsning betyr ikke automatisk bedre spektral, radiometrisk eller temporal informasjon.",
+    "Et klassifisert satellittkart må valideres mot uavhengige eller bedre referansedata; visuell plausibilitet er ikke nøyaktighetsmål.",
+    "Datakvalitet er egnethet for en definert bruk, ikke ett universelt kvalitetsstempel; kjente begrensninger og prosesseringssteg må følge resultatet."
+  ],
+  "fulltext_contract": {"modules":4,"sections":8,"paragraphs":32,"verifiedClaims":32,"verifiedSources":13,"assessments":8,"decisionCases":6}
+}

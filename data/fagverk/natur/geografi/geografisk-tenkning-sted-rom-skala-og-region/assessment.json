@@ -1,0 +1,105 @@
+{
+  "schema": "history_go_fagverk_assessment_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "geografisk-tenkning-sted-rom-skala-og-region",
+  "questions": [
+    {
+      "id": "geo-q1",
+      "type": "multiple_choice",
+      "question": "Et tydelig kartmønster er funnet. Hva er det sterkeste neste steget før en årsak konkluderes?",
+      "options": ["Navngi klyngen som årsak", "Formulere konkurrerende mekanismer og teste dem med relevante data", "Øke symbolstørrelsen på kartet"],
+      "answerIndex": 1,
+      "answer": "Formulere konkurrerende mekanismer og teste dem med relevante data",
+      "claim_id": "geo-02",
+      "source": ["geo02-nap-rediscovering-geography", "geo07-anselin-lisa"],
+      "learner_typing": false
+    },
+    {
+      "id": "geo-q2",
+      "type": "multiple_choice",
+      "question": "To personer bor på samme adresse, men beskriver stedet svært ulikt. Hva følger geografisk?",
+      "options": ["Bare én erfaring kan være gyldig", "Stedsmening kan variere selv ved samme lokasjon og må undersøkes empirisk", "Koordinaten bestemmer stedsopplevelsen"],
+      "answerIndex": 1,
+      "answer": "Stedsmening kan variere selv ved samme lokasjon og må undersøkes empirisk",
+      "claim_id": "geo-06",
+      "source": ["geo04-tuan-space-place", "geo13-nesh"],
+      "learner_typing": false
+    },
+    {
+      "id": "geo-q3",
+      "type": "multiple_choice",
+      "question": "Hvorfor må skala behandles som et metodevalg?",
+      "options": ["Fordi den kan endre hvilke mønstre og relasjoner som blir synlige", "Fordi alle datasett må vises globalt", "Fordi administrative grenser alltid er feil"],
+      "answerIndex": 0,
+      "answer": "Fordi den kan endre hvilke mønstre og relasjoner som blir synlige",
+      "claim_id": "geo-09",
+      "source": ["geo01-nap-spatial-thinking", "geo02-nap-rediscovering-geography"],
+      "learner_typing": false
+    },
+    {
+      "id": "geo-q4",
+      "type": "multiple_choice",
+      "question": "Hva er best avstandsmål for tilgang til et sykehus når fjorder og vegnett styrer reisen?",
+      "options": ["Alltid luftlinje", "Et mål som følger den relevante reiseprosessen, for eksempel nettverksreisetid", "Avstand trenger ikke defineres"],
+      "answerIndex": 1,
+      "answer": "Et mål som følger den relevante reiseprosessen, for eksempel nettverksreisetid",
+      "claim_id": "geo-14",
+      "source": ["geo01-nap-spatial-thinking", "geo08-usgs-gis"],
+      "learner_typing": false
+    },
+    {
+      "id": "geo-q5",
+      "type": "multiple_choice",
+      "question": "Hva dokumenterer en LISA-hotspot direkte?",
+      "options": ["En lokal romlig klynge under spesifisert modell og vekting", "Den endelige årsaken", "En naturlig region som aldri endrer seg"],
+      "answerIndex": 0,
+      "answer": "En lokal romlig klynge under spesifisert modell og vekting",
+      "claim_id": "geo-17",
+      "source": ["geo07-anselin-lisa", "geo05-goodchild-giscience"],
+      "learner_typing": false
+    },
+    {
+      "id": "geo-q6",
+      "type": "multiple_choice",
+      "question": "Du skal sammenligne areal mellom verdensregioner. Hva bør styre projeksjonsvalget?",
+      "options": ["At projeksjonen er visuelt kjent", "At projeksjonen ivaretar areal godt nok for analyseformålet", "At kartet får flest mulig meridianer"],
+      "answerIndex": 1,
+      "answer": "At projeksjonen ivaretar areal godt nok for analyseformålet",
+      "claim_id": "geo-21",
+      "source": ["geo09-usgs-projections", "geo01-nap-spatial-thinking"],
+      "learner_typing": false
+    },
+    {
+      "id": "geo-q7",
+      "type": "multiple_choice",
+      "question": "Hva skiller GIS-bruk fra faglig gyldig geografisk analyse?",
+      "options": ["Ingen forskjell", "Gyldig analyse krever også begrunnet problem, datamodell, datakvalitet og metode", "Bare programvareversjonen"],
+      "answerIndex": 1,
+      "answer": "Gyldig analyse krever også begrunnet problem, datamodell, datakvalitet og metode",
+      "claim_id": "geo-25",
+      "source": ["geo08-usgs-gis", "geo05-goodchild-giscience"],
+      "learner_typing": false
+    },
+    {
+      "id": "geo-q8",
+      "type": "multiple_choice",
+      "question": "Et punktdatasett over en liten sårbar gruppe har fått navn fjernet. Hva må fortsatt vurderes før publisering?",
+      "options": ["Ingenting, koordinater er anonyme", "Om presise lokasjoner kan gi reidentifisering eller skade og bør generaliseres", "Bare filstørrelsen"],
+      "answerIndex": 1,
+      "answer": "Om presise lokasjoner kan gi reidentifisering eller skade og bør generaliseres",
+      "claim_id": "geo-31",
+      "source": ["geo13-nesh", "geo05-goodchild-giscience"],
+      "learner_typing": false
+    }
+  ],
+  "caseTasks": [
+    {"id":"geo-scenario-01","title":"Kommuneprofilen som blir individpåstand","purpose":"Skille områdemønster, nevner og individnivå og avvise økologisk feilslutning.","source_ids":["geo12-eurostat-degurba","geo13-nesh"],"responseMode":"guided_discussion_no_required_typing"},
+    {"id":"geo-scenario-02","title":"Nær i luftlinje, langt i nettverket","purpose":"Velge og begrunne avstandsmål ut fra den faktiske bevegelsesprosessen.","source_ids":["geo01-nap-spatial-thinking","geo08-usgs-gis"],"responseMode":"guided_discussion_no_required_typing"},
+    {"id":"geo-scenario-03","title":"Mønsteret endres når enheten endres","purpose":"Analysere skala- og enhetssensitivitet mellom kommune og rutenett.","source_ids":["geo12-eurostat-degurba","geo01-nap-spatial-thinking"],"responseMode":"guided_discussion_no_required_typing"},
+    {"id":"geo-scenario-04","title":"Verdenskart for arealsammenligning","purpose":"Velge projeksjon og CRS etter måleformål i stedet for estetikk.","source_ids":["geo09-usgs-projections","geo10-iso-19111"],"responseMode":"guided_discussion_no_required_typing"},
+    {"id":"geo-scenario-05","title":"Hotspot uten mekanisme","purpose":"Skille lokal romlig assosiasjon fra årsaksforklaring og formulere neste evidenssteg.","source_ids":["geo07-anselin-lisa","geo02-nap-rediscovering-geography"],"responseMode":"guided_discussion_no_required_typing"},
+    {"id":"geo-scenario-06","title":"Presise koordinater for en sårbar gruppe","purpose":"Vurdere reidentifiseringsrisiko og riktig geografisk generalisering før publisering.","source_ids":["geo13-nesh","geo05-goodchild-giscience"],"responseMode":"guided_discussion_no_required_typing"}
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schema": "history_go_canonical_subcategory_production_registry_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-30",
+  "owner_subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "status": "production_in_progress",
+  "progress": {
+    "materializedDomains": 3,
+    "totalDomains": 12,
+    "strictCompletionProven": false
+  },
+  "rules": {
+    "subcategory_is_not_top_level_subject": true,
+    "existing_owner_content_is_not_moved_or_deleted": true,
+    "reuse_requires_explicit_strict_upgrade": true,
+    "secondary_links_do_not_count_as_materialized": true,
+    "source_brief_does_not_count_as_materialized": true,
+    "complete_requires_all_domains_and_strict_proof": true,
+    "geography_requires_explicit_spatial_methods": true
+  },
+  "next_gate": "climate_weather_zones_change_fulltext",
+  "materialized": [
+    {
+      "ordinal": 1,
+      "domain_id": "geografisk_tenkning_sted_rom_skala_region",
+      "chapter": "data/fagverk/natur/geografi/geografisk-tenkning-sted-rom-skala-og-region.json",
+      "claims": "data/fagverk/natur/geografi/geografisk-tenkning-sted-rom-skala-og-region/claims.json",
+      "assessment": "data/fagverk/natur/geografi/geografisk-tenkning-sted-rom-skala-og-region/assessment.json",
+      "audit": "reports/fagverk/geografi-geographic-thinking-fulltext-v1-audit.json",
+      "source_brief": "data/fag/natur/geografi/geographic_thinking_place_space_scale_region_source_claim_brief_v1.json",
+      "source_brief_audit": "reports/fagverk/geografi-geographic-thinking-source-brief-v1-audit.json"
+    },
+    {
+      "ordinal": 2,
+      "domain_id": "kartografi_gis_geodata_fjernmaling",
+      "chapter": "data/fagverk/natur/geografi/kartografi-gis-geodata-og-fjernmaling.json",
+      "claims": "data/fagverk/natur/geografi/kartografi-gis-geodata-og-fjernmaling/claims.json",
+      "assessment": "data/fagverk/natur/geografi/kartografi-gis-geodata-og-fjernmaling/assessment.json",
+      "audit": "reports/fagverk/geografi-cartography-gis-geodata-remote-sensing-fulltext-v1-audit.json",
+      "source_brief": "data/fag/natur/geografi/cartography_gis_geodata_remote_sensing_source_claim_brief_v1.json",
+      "source_brief_audit": "reports/fagverk/geografi-cartography-gis-geodata-remote-sensing-source-brief-v1-audit.json"
+    },
+    {
+      "ordinal": 3,
+      "domain_id": "geomorfologi_landskap_jordsystemer",
+      "chapter": "data/fagverk/natur/geografi/geomorfologi-landskap-og-jordsystemer.json",
+      "claims": "data/fagverk/natur/geografi/geomorfologi-landskap-og-jordsystemer/claims.json",
+      "assessment": "data/fagverk/natur/geografi/geomorfologi-landskap-og-jordsystemer/assessment.json",
+      "audit": "reports/fagverk/geografi-geomorphology-landscape-earth-systems-fulltext-v1-audit.json",
+      "source_brief": "data/fag/natur/geografi/geomorphology_landscape_earth_systems_source_claim_brief_v1.json",
+      "source_brief_audit": "reports/fagverk/geografi-geomorphology-landscape-earth-systems-source-brief-v1-audit.json"
+    }
+  ]
+}

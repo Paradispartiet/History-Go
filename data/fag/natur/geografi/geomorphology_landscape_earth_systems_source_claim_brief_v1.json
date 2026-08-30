@@ -1,0 +1,134 @@
+{
+  "schema": "history_go_geografi_geomorphology_landscape_earth_systems_source_claim_brief_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-30",
+  "status": "source_first_ready_not_materialized",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "domain": {
+    "ordinal": 3,
+    "id": "geomorfologi_landskap_jordsystemer",
+    "title": "Geomorfologi, landskap og jordsystemer",
+    "production_mode": "reuse_with_expansion"
+  },
+  "reuse_contract": {
+    "owner_subject_id": "natur",
+    "owner_chapters": [
+      "data/fagverk/natur/geologi_landskap_tid.json",
+      "data/fagverk/natur/geologi_naturhistorie_v5_3.json"
+    ],
+    "existing_owner_content_remains_owned_by_natur": true,
+    "reuse_does_not_count_without_geography_fulltext_claim_assessment_audit_overlay": true,
+    "move_existing_files": false,
+    "geography_expansion_role": "Tilføre eksplisitt geomorfologisk prosess–form-slutning, terreng- og DEM-analyse, skala, terskler, sedimentkobling, tidsrespons og menneskelig terrengmodifikasjon uten å kopiere Natur-geologiens mineral-, platetektonikk- eller dyp-tid-eierskap."
+  },
+  "source_strategy": {
+    "source_first": true,
+    "inspectable_urls_required": true,
+    "claim_level_trace_required": true,
+    "minimum_sources_per_claim": 2,
+    "fulltext_materialization_required_before_counting": true,
+    "process_form_scale_and_uncertainty_required": true,
+    "dem_or_landform_map_does_not_count_as_process_validation": true
+  },
+  "sources": [
+    {"id":"geo3-01-anderson-geomorphology","publisher":"Cambridge University Press","title":"Geomorphology: The Mechanics and Chemistry of Landscapes","url":"https://doi.org/10.1017/CBO9780511794827","type":"scholarly-quantitative-textbook","evidence_role":"process-form-mechanics-chemistry-scale-landscape-evolution","source_location":"Prosessorientert kvantitativ geomorfologi som kobler landformer til mekanikk, kjemi, transport og landskapsutvikling.","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo3-02-leopold-fluvial","publisher":"U.S. Geological Survey","title":"Fluvial Processes in Geomorphology","url":"https://pubs.usgs.gov/publication/70185663","type":"scholarly-classic-government-record","evidence_role":"fluvial-processes-drainage-basins-channel-form-sediment","source_location":"Klassisk syntese av Leopold, Wolman og Miller om nedbørfelt, kanalprosesser, sediment og fluvial landskapsutvikling.","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo3-03-usgs-river-geomorphology","publisher":"U.S. Geological Survey","title":"Geomorphology, Sediment, and Habitat","url":"https://www.usgs.gov/centers/wyoming-montana-water-science-center/science/geomorphology-sediment-and-habitat","type":"official-science-program","evidence_role":"river-hydraulics-sediment-sources-transport-channel-form-stability-human-change","source_location":"USGS-forskning om elvehydraulikk, sedimentkilder og -transport, kanalform, stabilitet, klima, arealbruk og menneskelige strukturer.","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo3-04-ngu-geological-maps","publisher":"Norges geologiske undersøkelse","title":"Geologiske kart","url":"https://www.ngu.no/geologiske-kart","type":"official-national-geodata-resource","evidence_role":"bedrock-superficial-deposits-map-scale-quality-interpretation","source_location":"NGUs inngang til berggrunns- og løsmassekart med ulike målestokker, datagrunnlag og kvalitetsnivåer.","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo3-05-ngu-landforms","publisher":"Norges geologiske undersøkelse","title":"Landformer – kvartærgeologiske kartdata","url":"https://geo.ngu.no/kart/losmasse_mobil/","type":"official-national-geodata-resource","evidence_role":"quaternary-landforms-genesis-scale-point-line-polygon-mapping","source_location":"NGUs løsmasse- og landformdata brukes til å tolke kvartære avsetninger og landformer; representasjonen er målestokk- og produktsensitiv.","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo3-06-usgs-dem","publisher":"U.S. Geological Survey","title":"Digital elevation models: terminology and definitions","url":"https://www.usgs.gov/programs/national-geospatial-program/digital-elevation-models","type":"official-geospatial-documentation","evidence_role":"dem-dsm-dtm-elevation-surface-terrain-sensor-use","source_location":"USGS-dokumentasjon av digitale høydemodeller og forskjellen mellom generiske elevation models og datasett med ulike overflate-/terrengrepresentasjoner.","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo3-07-copernicus-dem","publisher":"Copernicus Space Component Data Access","title":"Copernicus DEM","url":"https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM","type":"official-elevation-product-documentation","evidence_role":"dsm-resolution-buildings-vegetation-acquisition-gap-filling","source_location":"Dokumenterer Copernicus DEM som en digital overflatemodell med 10/30/90 m produkter, der bygninger, infrastruktur og vegetasjon kan inngå i overflaten.","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo3-08-bgs-landforms","publisher":"British Geological Survey","title":"Landforms","url":"https://www.bgs.ac.uk/discovering-geology/landscapes/landforms/","type":"official-geoscience-explainer","evidence_role":"landform-classification-process-material-relief-landscape","source_location":"BGS-ressurs om hvordan erosjon, transport, avsetning, materiale og geologisk struktur danner forskjellige landformer.","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo3-09-bgs-erosion","publisher":"British Geological Survey","title":"Erosion","url":"https://www.bgs.ac.uk/discovering-geology/geological-processes/erosion/","type":"official-geoscience-explainer","evidence_role":"erosion-weathering-water-wind-ice-gravity-transport","source_location":"BGS skiller erosjon fra forvitring og beskriver transport ved vann, vind, is, hav og tyngdekraft.","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo3-10-bgs-landslides","publisher":"British Geological Survey","title":"Understanding landslides","url":"https://www.bgs.ac.uk/discovering-geology/earth-hazards/landslides/","type":"official-geoscience-hazard-resource","evidence_role":"mass-movement-slide-flow-fall-water-slope-geology-human-activity","source_location":"BGS beskriver massebevegelsestyper og samspillet mellom skråning, vann, geologi, erosjon, vegetasjon og menneskelig aktivitet.","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo3-11-bracken-connectivity","publisher":"Earth Surface Processes and Landforms / Wiley","title":"Sediment connectivity: a framework for understanding sediment transfer at multiple scales","url":"https://doi.org/10.1002/esp.3635","type":"peer-reviewed-method-synthesis","evidence_role":"sediment-connectivity-sources-pathways-storage-multiscale-catchments","source_location":"Syntese av sediment connectivity som ramme for kilde, transportvei, lagring, kobling og skala i nedbørfelt.","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo3-12-evans-landform","publisher":"Geomorphology / Elsevier","title":"Geomorphometry and landform mapping: What is a landform?","url":"https://doi.org/10.1016/j.geomorph.2010.09.029","type":"peer-reviewed-method-review","evidence_role":"geomorphometry-landform-definition-scale-boundaries-terrain-derivatives","source_location":"Metodeartikkel om geomorfometri, landformbegrepet, terrengderivater, skala og utfordringer ved automatisk landformavgrensning.","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo3-13-whipple-tucker","publisher":"Journal of Geophysical Research / AGU","title":"Dynamics of the stream-power river incision model: Implications for height limits of mountain ranges, landscape response timescales, and research needs","url":"https://doi.org/10.1029/1999JB900120","type":"peer-reviewed-process-model-article","evidence_role":"stream-power-incision-uplift-slope-discharge-response-time-model-assumptions","source_location":"Prosessmodell for elveinnskjæring og implikasjoner for landskapsrespons, relieff, oppløfting og modellforutsetninger.","retrieval_status":"verified_2026-08-30"}
+  ],
+  "topic_briefs": [
+    {
+      "id":"prosess-form-system-og-skala","title":"Prosess, form, system og skala","method_ids":["met_geo_geomorfologisk_prosessformanalyse","met_geo_massebalanse_og_systemavgrensning"],"boundary":"En landform er ikke et entydig prosessbevis; form, materiale, prosess, tidsrom og systemgrense må skilles før årsak sluttes.","source_ids":["geo3-01-anderson-geomorphology","geo3-08-bgs-landforms","geo3-09-bgs-erosion"],"planned_claims":[
+        {"id":"geo3-01","text":"Geomorfologisk analyse kobler landformer til prosesser, materialegenskaper og tid, men samme synlige form kan ha flere mulige dannelseshistorier som må skilles med uavhengige spor.","source_ids":["geo3-01-anderson-geomorphology","geo3-08-bgs-landforms"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo3-02","text":"Forvitring bryter ned materiale på eller nær stedet, mens erosjon innebærer løsning eller fjerning og transport; prosessene kan samvirke uten å være synonymer.","source_ids":["geo3-09-bgs-erosion","geo3-01-anderson-geomorphology"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo3-03","text":"En geomorfologisk massebalanse bør skille tilførsel, midlertidig lagring og eksport av sediment innen en definert systemgrense og tidsperiode.","source_ids":["geo3-11-bracken-connectivity","geo3-01-anderson-geomorphology"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo3-04","text":"Prosesser og mekanismer må vurderes på relevant romlig og temporal skala; en lokal ekstremhendelse er ikke automatisk hovedforklaring på et langtidsutviklet landskap.","source_ids":["geo3-01-anderson-geomorphology","geo3-13-whipple-tucker"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"terreng-dem-geomorfometri-og-landformavgrensning","title":"Terreng, DEM, geomorfometri og landformavgrensning","method_ids":["met_geo_dem_terrenganalyse","met_geo_geomorfometri_landformavgrensning"],"boundary":"En høydemodell er en målt eller avledet overflaterepresentasjon; celleverdier og terrengderivater må tolkes ut fra produkttype, oppløsning og preprocessing.","source_ids":["geo3-06-usgs-dem","geo3-07-copernicus-dem","geo3-12-evans-landform"],"planned_claims":[
+        {"id":"geo3-05","text":"Digitale høydemodeller brukes som samlebetegnelse for elevation-data, mens DSM- og terrengmodeller kan representere forskjellige fysiske overflater og derfor gi ulike geomorfologiske mål.","source_ids":["geo3-06-usgs-dem","geo3-07-copernicus-dem"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo3-06","text":"Copernicus DEM er en digital overflatemodell der bygninger, infrastruktur og vegetasjon kan inngå i høyden, og kan derfor ikke behandles som automatisk bar-jord-topografi.","source_ids":["geo3-07-copernicus-dem","geo3-06-usgs-dem"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo3-07","text":"Helning, kurvatur og andre terrengderivater avhenger av celleoppløsning, glatting, sensor og preprocessing, slik at samme landskap kan få ulike numeriske signaturer i ulike DEM-produkter.","source_ids":["geo3-12-evans-landform","geo3-06-usgs-dem"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo3-08","text":"Landformgrenser kan være skalaavhengige og gradvise; automatisk segmentering må derfor valideres mot felt, kart eller andre uavhengige observasjoner før klassene tolkes som naturlige enheter.","source_ids":["geo3-12-evans-landform","geo3-05-ngu-landforms"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"forvitring-skraninger-og-massebevegelse","title":"Forvitring, skråninger og massebevegelse","method_ids":["met_geo_skraningsprosessanalyse","met_geo_massebevegelse_klassifikasjon"],"boundary":"Bratt terreng alene dokumenterer ikke skredprosess eller fare; materiale, struktur, vann, erosjon, spor og menneskelig påvirkning må undersøkes.","source_ids":["geo3-09-bgs-erosion","geo3-10-bgs-landslides","geo3-01-anderson-geomorphology"],"planned_claims":[
+        {"id":"geo3-09","text":"Skråningsutvikling formes av samspill mellom tyngdekraft, forvitring, materialstyrke, vann og erosjon ved skråningsfoten, og kan ikke forklares med helningsvinkel alene.","source_ids":["geo3-10-bgs-landslides","geo3-01-anderson-geomorphology"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo3-10","text":"Massebevegelser omfatter blant annet fall, velting, skred og strømning, og en hendelse kan kombinere flere bevegelsesformer langs samme forløp.","source_ids":["geo3-10-bgs-landslides","geo3-09-bgs-erosion"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo3-11","text":"Vann kan redusere stabilitet gjennom poretrykk, erosjon eller materialendring, men effekten må vurderes sammen med geologi, struktur og skråningsgeometri.","source_ids":["geo3-10-bgs-landslides","geo3-01-anderson-geomorphology"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo3-12","text":"Skjæringer, fyllinger, drenering, urbanisering og vibrasjon kan endre skråningsprosesser og må inngå i analysen når terrenget er menneskelig modifisert.","source_ids":["geo3-10-bgs-landslides","geo3-03-usgs-river-geomorphology"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"elver-nedborfelt-sediment-og-kobling","title":"Elver, nedbørfelt, sediment og kobling","method_ids":["met_geo_fluvial_geomorfologi","met_geo_sedimentkobling_nedborfelt"],"boundary":"En elvestrekning kan ikke forstås isolert fra oppstrøms kilder, lagring, sidebekker, flomslette og menneskelige inngrep i nedbørfeltet.","source_ids":["geo3-02-leopold-fluvial","geo3-03-usgs-river-geomorphology","geo3-11-bracken-connectivity"],"planned_claims":[
+        {"id":"geo3-13","text":"Nedbørfeltet er en sentral geomorfologisk analyseenhet fordi skråninger, sidebekker, hovedkanal, flomslette og nedstrøms områder kobles gjennom vann- og sedimenttransport.","source_ids":["geo3-02-leopold-fluvial","geo3-11-bracken-connectivity"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo3-14","text":"Elvekanalens form og stabilitet responderer på både vannføring og sedimenttilførsel samt materiale, vegetasjon eller ved og menneskelige strukturer som påvirker strøm og transport.","source_ids":["geo3-03-usgs-river-geomorphology","geo3-02-leopold-fluvial"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo3-15","text":"Sediment connectivity beskriver hvor effektivt kilder, transportveier og lagringsområder er koblet, og koblingen kan endres med skala, hendelser og barrierer.","source_ids":["geo3-11-bracken-connectivity","geo3-03-usgs-river-geomorphology"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo3-16","text":"Tolkning av kanalendring styrkes når historiske kart eller bilder kombineres med samtidige målinger og kunnskap om klima, arealbruk og menneskelige inngrep.","source_ids":["geo3-03-usgs-river-geomorphology","geo3-02-leopold-fluvial"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"glasiale-kvartare-landskap-og-arv","title":"Glasiale og kvartære landskap og landskapsarv","method_ids":["met_geo_glasial_landformanalyse","met_geo_kvartar_landformkartlegging"],"boundary":"En U-dal, morenerygg eller marin avsetning er et tolkningsgrunnlag, ikke et selvtilstrekkelig bevis for én prosess, alder eller hendelsesrekkefølge.","source_ids":["geo3-04-ngu-geological-maps","geo3-05-ngu-landforms","geo3-08-bgs-landforms"],"planned_claims":[
+        {"id":"geo3-17","text":"Isbreer eroderer, transporterer og avsetter materiale, og glasiale landformer må tolkes sammen med sedimenttype, geometri og kunnskap om isens bevegelse og smeltevannsprosesser.","source_ids":["geo3-08-bgs-landforms","geo3-05-ngu-landforms"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo3-18","text":"Kvartærgeologiske kart klassifiserer løsmasser og landformer etter dannelsesmåte og egenskaper, men detaljnivå og sikkerhet varierer mellom produkter og målestokker.","source_ids":["geo3-04-ngu-geological-maps","geo3-05-ngu-landforms"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo3-19","text":"Landformer kan representeres som punkt, linje eller flate avhengig av målestokk og kartleggingsprodukt, og kartgeometrien er derfor ikke alltid identisk med landformens fulle fysiske utstrekning.","source_ids":["geo3-05-ngu-landforms","geo3-12-evans-landform"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo3-20","text":"Dagens terreng kan bevare arv fra tidligere klima- og isforhold samtidig som nyere elveprosesser, skred, kystprosesser og menneskelige inngrep overtrykker eller omformer eldre spor.","source_ids":["geo3-01-anderson-geomorphology","geo3-08-bgs-landforms"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"kyst-vind-sedimentbudsjett-og-mobile-former","title":"Kyst, vind, sedimentbudsjett og mobile former","method_ids":["met_geo_kystgeomorfologisk_analyse","met_geo_sedimentbudsjett_og_mobile_former"],"boundary":"Lokal erosjon eller avsetning må vurderes som del av et sedimentbudsjett og en transportkjede; én strandlinjeposisjon beviser ikke varig trend.","source_ids":["geo3-01-anderson-geomorphology","geo3-08-bgs-landforms","geo3-11-bracken-connectivity"],"planned_claims":[
+        {"id":"geo3-21","text":"Kystlandskap formes av samspill mellom bølger, strøm, vind, sedimenttilførsel, erosjon og avsetning, slik at lokal tilbaketrekning må tolkes i lys av sedimentbudsjettet.","source_ids":["geo3-01-anderson-geomorphology","geo3-08-bgs-landforms"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo3-22","text":"Vinddrevne sandformer avhenger av kornstørrelse, tilgjengelig sediment, vegetasjon og vindregime, og formen alene dokumenterer ikke ett stabilt transportforløp.","source_ids":["geo3-01-anderson-geomorphology","geo3-08-bgs-landforms"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo3-23","text":"Midlertidig sedimentlagring kan forsinke eller omdirigere transport mellom kilde og utløp, slik at mobilisering under senere hendelser må inngå i massebalansen.","source_ids":["geo3-11-bracken-connectivity","geo3-01-anderson-geomorphology"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo3-24","text":"Tidsserier av strand- eller terrengposisjon er sterkere endringsevidens enn én observasjon, men datakilde, oppløsning og definisjonen av målbar grense må holdes konsistent eller korrigeres eksplisitt.","source_ids":["geo3-12-evans-landform","geo3-04-ngu-geological-maps"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"tektonikk-elveinnskjaring-og-landskapsrespons","title":"Tektonikk, elveinnskjæring og landskapsrespons","method_ids":["met_geo_tektonisk_geomorfologi","met_geo_landscape_response_modeling"],"boundary":"Relieff eller bratte elveprofiler er ikke alene bevis på aktiv oppløfting; modellforutsetninger og alternative kontroller må prøves.","source_ids":["geo3-01-anderson-geomorphology","geo3-13-whipple-tucker","geo3-02-leopold-fluvial"],"planned_claims":[
+        {"id":"geo3-25","text":"Tektonisk geomorfologi undersøker hvordan deformasjon og oppløfting uttrykkes gjennom landskapsformer etter at erosjon, sedimenttransport og andre overflateprosesser har transformert signalet.","source_ids":["geo3-01-anderson-geomorphology","geo3-13-whipple-tucker"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo3-26","text":"Stream-power-modeller kobler elveinnskjæring til blant annet kanalhelning og vannførings- eller dreneringsarealproxyer, men tolkningen avhenger av modellform og parameterforutsetninger.","source_ids":["geo3-13-whipple-tucker","geo3-02-leopold-fluvial"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo3-27","text":"Landskapets respons på endret oppløfting, klima eller basisnivå kan ta lang tid, slik at dagens topografi kan være transient og ikke i likevekt med dagens drivere.","source_ids":["geo3-13-whipple-tucker","geo3-01-anderson-geomorphology"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo3-28","text":"Slutninger om oppløfting fra relieff eller elveprofil bør testes mot feltdata og alternative kontroller som bergartsstyrke, klima, sedimenttilførsel og ekstreme flommer.","source_ids":["geo3-13-whipple-tucker","geo3-03-usgs-river-geomorphology"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"geomorfologisk-kartlegging-usikkerhet-og-menneskelig-modifikasjon","title":"Geomorfologisk kartlegging, usikkerhet og menneskelig modifikasjon","method_ids":["met_geo_geomorfologisk_kartlegging","met_geo_endringsdeteksjon_og_kildekritikk"],"boundary":"Et geomorfologisk kart kombinerer måling og tolkning; presise linjer skal ikke presenteres som sikrere enn datagrunnlag, skala og klassifikasjon tillater.","source_ids":["geo3-04-ngu-geological-maps","geo3-05-ngu-landforms","geo3-12-evans-landform","geo3-03-usgs-river-geomorphology"],"planned_claims":[
+        {"id":"geo3-29","text":"Geomorfologiske kart kombinerer observerte eller avledede former med klassifikasjon og prosessfortolkning, og må derfor dokumentere datagrunnlag, målestokk og definisjoner.","source_ids":["geo3-12-evans-landform","geo3-05-ngu-landforms"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo3-30","text":"Geologiske og kvartærgeologiske kart kan variere i detalj, kartleggingshistorie og kvalitet, slik at lokal bruk krever kontroll av produktets målestokk og begrensninger.","source_ids":["geo3-04-ngu-geological-maps","geo3-05-ngu-landforms"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo3-31","text":"Flomverk, veier, fyllinger, drenering og kanalregulering kan endre vann- og sedimenttransport og må behandles som aktive geomorfologiske modifikasjoner når landskapet analyseres.","source_ids":["geo3-03-usgs-river-geomorphology","geo3-10-bgs-landslides"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo3-32","text":"En sterk geomorfologisk konklusjon skiller målte data fra prosessfortolkning, oppgir alternative forklaringer og usikkerhet og beskriver hvilke nye observasjoner som kunne svekke tolkningen.","source_ids":["geo3-01-anderson-geomorphology","geo3-12-evans-landform"],"status":"planned_requires_fulltext_verification"}
+      ]
+    }
+  ],
+  "decision_scenarios": [
+    {"id":"geo3-scenario-01","prompt":"En dal har tydelig U-form, men dagens elv er aktiv og det finnes terrasser langs dalsiden. Kan dalformen alene brukes som bevis for én glasial prosesshistorie?","expected_decision":"Nei. Bruk dalformen som hypotesegrunnlag og kombiner sediment, høyde, kart, feltspor og hendelsesrekkefølge for å skille glasial arv fra senere fluvial og menneskelig omforming.","source_ids":["geo3-08-bgs-landforms","geo3-05-ngu-landforms","geo3-01-anderson-geomorphology"]},
+    {"id":"geo3-scenario-02","prompt":"Et globalt 30-meters DEM brukes til å kartlegge små urbane raviner. Hvilke spørsmål må besvares før helning og landformklasser tolkes?","expected_decision":"Kontroller om produktet er DSM eller terrengmodell, native oppløsning, sensor og preprocessing, effekten av bygninger og vegetasjon, og valider ravinegrenser mot bedre lokale data.","source_ids":["geo3-06-usgs-dem","geo3-07-copernicus-dem","geo3-12-evans-landform"]},
+    {"id":"geo3-scenario-03","prompt":"En bratt skråning har fått mer overvann etter utbygging. Er helningsvinkelen nok til å klassifisere framtidig massebevegelse?","expected_decision":"Nei. Klassifiser materiale, struktur, vannforhold, erosjon og observerte bevegelsesspor og inkluder inngrep i drenering og terreng før en prosesshypotese eller farevurdering formuleres.","source_ids":["geo3-10-bgs-landslides","geo3-01-anderson-geomorphology"]},
+    {"id":"geo3-scenario-04","prompt":"Et elveløp har endret form etter flom, skogrydding og nye flomverk. Hvordan unngår du å tilskrive endringen til bare én hendelse?","expected_decision":"Analyser sedimentkilder, lagring og connectivity i nedbørfeltet, historiske kanalposisjoner, flomhendelser og effekten av flomverk og arealbruk før årsaksbidrag avgrenses.","source_ids":["geo3-03-usgs-river-geomorphology","geo3-11-bracken-connectivity","geo3-02-leopold-fluvial"]},
+    {"id":"geo3-scenario-05","prompt":"Bratte elveprofiler i et fjellområde brukes som direkte bevis på rask tektonisk oppløfting. Hva må testes før konklusjonen holder?","expected_decision":"Test modellform og parametere, landskapsrespons og transient topografi samt alternative kontroller som bergartsstyrke, klima, sedimenttilførsel og ekstreme flommer mot felt- og tidsdata.","source_ids":["geo3-13-whipple-tucker","geo3-01-anderson-geomorphology","geo3-03-usgs-river-geomorphology"]},
+    {"id":"geo3-scenario-06","prompt":"To geomorfologiske kart gir ulike grenser for samme landform. Skal det nyeste kartet automatisk behandles som fasit?","expected_decision":"Nei. Sammenlign datagrunnlag, målestokk, definisjon, kartleggingsmetode, tidspunkt og kvalitetsinformasjon og bruk uavhengige felt- eller terrengdata for å vurdere hvilken avgrensning som passer analysen.","source_ids":["geo3-04-ngu-geological-maps","geo3-05-ngu-landforms","geo3-12-evans-landform"]}
+  ],
+  "fulltext_requirements": {
+    "module_count": 4,
+    "section_count": 8,
+    "paragraph_count": 32,
+    "verified_claim_count": 32,
+    "assessment_item_count": 8,
+    "all_planned_claims_must_be_reverified_during_materialization": true,
+    "all_assessment_items_must_test_reasoning_not_source_recall": true,
+    "reuse_owner_content_must_remain_unmoved": true,
+    "source_brief_does_not_count_as_materialized": true
+  }
+}

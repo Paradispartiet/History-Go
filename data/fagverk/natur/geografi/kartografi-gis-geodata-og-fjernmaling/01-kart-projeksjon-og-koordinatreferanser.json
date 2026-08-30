@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "kartografi-gis-geodata-og-fjernmaling",
+  "id": "01-kart-projeksjon-og-koordinatreferanser",
+  "title": "Kart, projeksjon og koordinatreferanser",
+  "sections": [
+    {
+      "id": "kartografisk-formal-projeksjon-og-forvrengning",
+      "title": "Kartografisk formål, projeksjon og forvrengning",
+      "method_ids": ["met_geo_projeksjonsvalg", "met_geo_kartografisk_kvalitetskontroll"],
+      "boundary": "Ingen flat projeksjon bevarer alle geometriske egenskaper; projeksjonsvalg må følge måle- og kommunikasjonsformålet.",
+      "paragraphs": [
+        "En kartprojeksjon transformerer en krum jordmodell til et plant koordinatsystem og medfører derfor systematiske avveininger mellom geometriske egenskaper. Analysen må derfor starte med å angi jordmodell, områdeutstrekning og hvilken egenskap som skal prioriteres, for eksempel areal, retning, lokal form eller avstand. Den valgte projeksjonen bør behandles som en del av målemodellen, ikke som kosmetikk. Når et resultat sammenlignes på tvers av regioner, skal mulige projeksjonsinduserte forskjeller skilles fra reelle geografiske forskjeller og være synlige i metodebeskrivelsen.",
+        "Projeksjon bør velges etter hva som skal sammenlignes eller måles, ikke etter hvilken verdenskartform som er mest kjent. Et kjent verdenskart kan fungere godt for navigasjon eller oversikt og samtidig være uegnet for en bestemt statistisk sammenligning. Faglig projeksjonsvalg betyr å formulere toleranse for forvrengning, avgrense studieområdet og kontrollere om egenskapen som måles faktisk bevares godt nok. Programvarens standardvalg er bare et utgangspunkt; analysen må kunne begrunne hvorfor den geometriske avveiningen passer problemstillingen.",
+        "Kartets målestokk og projeksjon påvirker hvilke avstander, arealer og former som kan tolkes direkte og bør dokumenteres sammen med analysen. Den samme kartfilen kan gi forskjellige numeriske resultater dersom areal eller lengde beregnes i ulike referansesystemer eller ved ulik målestokk. Derfor bør metodefeltet dokumentere CRS, projeksjon, enheter, eventuelle transformasjoner og relevant skala før tallene tolkes. Dette gjør det mulig å skille en måleforskjell som følger av representasjonen fra en geografisk forskjell i fenomenet som faktisk undersøkes.",
+        "Kartdesign kan gjøre et datasett visuelt overbevisende uten å rette feil i georeferering, klassifikasjon eller datakvalitet. Visuell orden, fargevalg og symbolisering kan forbedre kommunikasjon, men de reparerer ikke feil geometri eller manglende kvalitetsinformasjon. Et profesjonelt kart må derfor vurderes i to separate lag: om representasjonen er lesbar og formålstjenlig, og om dataene er korrekt referert, aktuelle, komplette og tematisk troverdige. En sterk kartkritikk spør eksplisitt hva som er målt og validert før den vurderer hvor overbevisende figuren ser ut."
+      ],
+      "paragraphClaimIds": [["geo2-01"],["geo2-02"],["geo2-03"],["geo2-04"]]
+    },
+    {
+      "id": "crs-datum-akser-og-transformasjon",
+      "title": "CRS, datum, akser og koordinattransformasjon",
+      "method_ids": ["met_geo_crs_identifikasjon", "met_geo_koordinattransformasjon"],
+      "boundary": "Like tall betyr ikke samme lokasjon uten samme CRS; koordinattransformasjon er en definert operasjon med kilde- og målreferanse.",
+      "paragraphs": [
+        "Et koordinatreferansesystem beskriver hvordan koordinatverdier refererer til et rom og må identifiseres før koordinater kan sammenlignes eller tolkes. Koordinater er derfor ikke selvforklarende posisjoner. Før overlay, avstandsmåling eller kobling mellom datasett må analysen fastslå CRS-identifikator, datum eller referanseramme, akser og enheter. Dersom metadata mangler, skal det behandles som en usikkerhet som må løses eller dokumenteres, ikke som tillatelse til å gjette. Denne kontrollen er særlig viktig når filer kommer fra ulike institusjoner eller API-er med forskjellige standardkonvensjoner.",
+        "En koordinatoperasjon må angi kilde- og mål-CRS og kan inkludere transformasjoner som avhenger av datum og andre referanseparametre. En transformasjon er ikke bare at programvaren «får lagene til å passe». Den er en spesifisert koordinatoperasjon mellom definerte referanser, og nøyaktighet kan avhenge av valgt transformasjon, geografisk gyldighetsområde og tilgjengelige parametre. En reproduserbar arbeidsflyt lagrer derfor både kilde- og mål-CRS, operasjonen som ble brukt og eventuell oppgitt transformasjonsnøyaktighet, slik at senere analyser kan forstå hvordan posisjonene ble endret.",
+        "Akseorden og enheter er del av referansekontrakten; bytte mellom lengdegrad/breddegrad og breddegrad/lengdegrad kan gi alvorlig feilplassering. Akseorden er et klassisk interoperabilitetsproblem fordi samme koordinatpar kan tolkes forskjellig av ulike grensesnitt. En robust pipeline validerer derfor forventet rekkefølge og enhet ved innlesing og tester et kjent kontrollpunkt før store datasett prosesseres. Feil på dette nivået kan flytte objekter tusenvis av kilometer uten at syntaksen er ugyldig, og skal derfor fanges av eksplisitte kontrakter snarere enn visuell etterkontroll alene.",
+        "Geometriske målinger bør gjøres i et CRS som er egnet for måleformålet, fremfor ukritisk i et web- eller lagrings-CRS. Et lagrings- eller web-CRS kan være praktisk for distribusjon uten å være egnet for beregning av areal, avstand eller retning. Måleoperasjonen bør utføres i et referansesystem eller med en geodetisk metode som passer studieområdet og ønsket egenskap. Resultatet skal angi enheter og metode, og ved store områder bør analysen kontrollere hvor mye valg av referansesystem påvirker estimatet før forskjeller tilskrives fenomenet."
+      ],
+      "paragraphClaimIds": [["geo2-05"],["geo2-06"],["geo2-07"],["geo2-08"]]
+    }
+  ]
+}
