@@ -32,7 +32,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Merge current main and discard only rematerialized conflict snapshots
+      - name: Merge current main and discard only rebuildable conflict snapshots
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -68,18 +68,8 @@ jobs:
             git commit --no-edit
           fi
 
-      - name: Rematerialize Tullin on current main
-        run: |
-          rm -f reports/place-production/tullin-producer-error.log
-          set +e
-          node --import ./tools/tullin-fetch-retry.mjs tools/finalize-tullin-completion.mjs > /tmp/tullin-rematerialize.log 2>&1
-          STATUS=$?
-          set -e
-          cat /tmp/tullin-rematerialize.log
-          if [ "$STATUS" -ne 0 ]; then
-            echo "Tullin rematerialization failed"
-            exit "$STATUS"
-          fi
+      - name: Reapply canonical Tullin merge deltas
+        run: node tools/tullin-merge-deltas.mjs
 
       - name: Repair canonical Tullin source contracts
         run: node tools/tullin-finalize-repair.mjs pre
@@ -183,6 +173,7 @@ jobs:
           rm -f reports/place-production/tullin-producer-error.log
           rm -f tools/tullin-fetch-retry.mjs
           rm -f tools/tullin-finalize-repair.mjs
+          rm -f tools/tullin-merge-deltas.mjs
           rm -f tools/finalize-tullin-completion.mjs
           rm -f .github/workflows/tullin-place-production.yml
           rm -f .github/workflows/tullin-finalize-checkpoint.yml
