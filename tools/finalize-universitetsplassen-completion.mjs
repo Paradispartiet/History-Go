@@ -70,7 +70,8 @@ async function commonsInfo(fileName) {
   api.searchParams.set("iiprop", "url|size|extmetadata");
   api.searchParams.set("titles", title);
   api.searchParams.set("origin", "*");
-  const response = await fetch(api, { headers: { "user-agent": "History-Go-place-production/1.0" } });
+  api.searchParams.set("iiurlwidth", "1600");
+  const response = await fetch(api, { headers: { "user-agent": "History-Go-place-production/1.0 (github.com/Paradispartiet/History-Go)" } });
   if (!response.ok) throw new Error(`Commons API ${response.status}: ${fileName}`);
   const payload = await response.json();
   const page = Object.values(payload?.query?.pages || {})[0];
@@ -86,7 +87,7 @@ async function commonsInfo(fileName) {
   const pageUrl = `https://commons.wikimedia.org/wiki/${encodeURIComponent(title).replace(/%20/g, "_")}`;
   return {
     fileName,
-    originalUrl: info.url,
+    originalUrl: info.thumburl || info.url,
     width: info.width,
     height: info.height,
     meta: {
@@ -104,10 +105,40 @@ async function commonsInfo(fileName) {
   };
 }
 
+const imageBufferCache = new Map();
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 async function fetchBuffer(url) {
-  const response = await fetch(url, { headers: { "user-agent": "History-Go-place-production/1.0" } });
-  if (!response.ok) throw new Error(`Kunne ikke hente bilde (${response.status}): ${url}`);
-  return Buffer.from(await response.arrayBuffer());
+  const parsed = new URL(url);
+  for (const key of ["utm_source", "utm_campaign", "utm_content"]) parsed.searchParams.delete(key);
+  const cleanUrl = parsed.toString();
+  if (imageBufferCache.has(cleanUrl)) return imageBufferCache.get(cleanUrl);
+
+  let lastStatus = 0;
+  for (let attempt = 0; attempt < 6; attempt += 1) {
+    const response = await fetch(cleanUrl, {
+      headers: {
+        "user-agent": "History-Go-place-production/1.0 (github.com/Paradispartiet/History-Go)",
+        "accept": "image/avif,image/webp,image/*,*/*;q=0.8"
+      }
+    });
+    lastStatus = response.status;
+    if (response.ok) {
+      const buffer = Buffer.from(await response.arrayBuffer());
+      imageBufferCache.set(cleanUrl, buffer);
+      await sleep(750);
+      return buffer;
+    }
+    if (![429, 500, 502, 503, 504].includes(response.status)) {
+      throw new Error(`Kunne ikke hente bilde (${response.status}): ${cleanUrl}`);
+    }
+    const retryAfter = Number(response.headers.get("retry-after"));
+    const delay = Number.isFinite(retryAfter) && retryAfter > 0
+      ? Math.min(retryAfter * 1000, 30000)
+      : Math.min(1500 * (2 ** attempt), 30000);
+    await sleep(delay);
+  }
+  throw new Error(`Kunne ikke hente bilde etter retries (${lastStatus}): ${cleanUrl}`);
 }
 
 async function outputImage(info, file, width, height, position = "centre") {
@@ -143,14 +174,14 @@ const domusBibliothecaImageMeta = await outputImage(imageInfo.bibliotheca, "bild
 const aulaImageMeta = await outputImage(imageInfo.aula, "bilder/kort/structures/universitetsplassen_aulaen.webp", 900, 520, "centre");
 
 const place = read(placeFile);
-const desc = "Universitetsplassen er universitetets monumentale forplass mot Karl Johans gate. Grunnsteinen til anlegget ble lagt i 1841, og Christian Heinrich Groschs tre hovedbygninger ble tatt i bruk i perioden 1851–54. Schweigaard-statuen kom i 1883, Aulaen i 1911, Edvard Munchs utsmykning ble permanent montert i 1916, og P. A. Munch-statuen ble reist i 1933. Plassen fungerer som akademisk representasjonsrom, møtested og immatrikuleringsarena.";
+const desc = "Universitetsplassen er universitetets monumentale forplass mot Karl Johans gate. Grunnsteinen til anlegget ble lagt i 1841, og Christian Heinrich Groschs tre hovedbygninger ble tatt i bruk i perioden 1851–54. Schweigaard-statuen kom i 1883, Aulaen i 1911, Edvard Munchs utsmykning ble permanent montert i 1916, og Peter Andreas Munch-statuen ble reist i 1933. Plassen fungerer som akademisk representasjonsrom, møtested og immatrikuleringsarena.";
 const popupDesc = [
   "Universitetsplassen ligger foran de historiske universitetsbygningene ved Karl Johans gate og danner institusjonens åpne front mot byen. Universitetet ble grunnlagt i 1811, men det monumentale anlegget på dette stedet kom senere. Grunnsteinen ble lagt 2. september 1841.",
   "Christian Heinrich Grosch utarbeidet planene for Domus Media, Domus Academica og Domus Bibliotheca. Karl Friedrich Schinkel i Berlin vurderte tegningene og foreslo endringer som påvirket den klassisistiske utformingen. De tre bygningene ble tatt i bruk i perioden 1851–54 og organiserer plassen med Domus Media i midten og sidebygningene på hver side. Domus Academica er også kjent som Urbygningen etter uret mot gaten.",
-  "Monumentene er en del av plassens fysiske orden. Julius Middelthuns statue av Anton Martin Schweigaard ble reist i 1883. Stinius Fredriksens statue av historikeren P. A. Munch ble reist i 1933. Da P. A. Munch-monumentet kom, ble monumentene ordnet på hver side av inngangen til Domus Media. De to statuene er konkrete objekter i byrommet og må skilles fra kunstverkene inne i Aulaen.",
+  "Monumentene er en del av plassens fysiske orden. Julius Middelthuns statue av Anton Martin Schweigaard ble reist i 1883. Stinius Fredriksens statue av historikeren Peter Andreas Munch ble reist i 1933. Da Peter Andreas Munch-monumentet kom, ble monumentene ordnet på hver side av inngangen til Domus Media. De to statuene er konkrete objekter i byrommet og må skilles fra kunstverkene inne i Aulaen.",
   "Aulaen ble reist bak Domus Media til universitetets hundreårsjubileum i 1911, med Harald Bødtker og Holger Sinding-Larsen som arkitekter. Edvard Munch arbeidet med elleve monumentale lerretsmalerier til Aulaen i årene 1909–1916. Serien ble permanent montert i 1916. Utsmykningen hører til Aulaens kunsthistorie, mens Aulaen selv er en navngitt del av universitetsanlegget.",
   "Selve plassflaten ble lagt om i 1930–31 etter planer av Bjercke og Eliassen. Omleggingen ga en hellelagt flate med fall mot midtbygningen og gjorde plassen bedre egnet for immatrikulering. Nye studenter samles på plassen når rektor ønsker dem velkommen ved studiestart. Julegranen på Universitetsplassen har vært en årlig tradisjon siden 1919.",
-  "Et historisk fotografi fra Nasjonalbiblioteket er datert til intervallet 1945–1960 og viser P. A. Munch-monumentet og universitetsfronten. Et fotografi fra 2019 viser samme plassmiljø fra et annet ståsted. Bildene kan brukes til å sammenligne plassflate, monumenter og bygningsfront, men de er ikke et optisk identisk før-og-nå-par.",
+  "Et historisk fotografi fra Nasjonalbiblioteket er datert til intervallet 1945–1960 og viser Peter Andreas Munch-monumentet og universitetsfronten. Et fotografi fra 2019 viser samme plassmiljø fra et annet ståsted. Bildene kan sammenlignes for plassflate, monumenter og bygningsfront, men ståstedet er ulikt og sammenstillingen er ikke optisk identisk.",
   "Universitetsplassen samler arkitektur, monumenter, institusjonsidentitet og akademiske ritualer i ett avgrenset byrom. Grosch kvalifiserer som personkobling fordi universitetsanlegget er et sentralt verk i hans produksjon. Universitetet i Oslo kvalifiserer som institusjonsmerke gjennom direkte eierskap til identiteten og bruken av anlegget. Domus Media, Domus Academica, Domus Bibliotheca og Aulaen er egne navngitte strukturer med dokumentert rolle på stedet."
 ].join("\n\n");
 
@@ -204,12 +235,12 @@ Object.assign(place, {
     },
     {
       id: "universitetsplassen_pa_munch_statuen",
-      name: "P. A. Munch-statuen",
+      name: "Peter Andreas Munch-statuen",
       title: "Peter Andreas Munch",
       type: "offentlig_monument",
       kind: "bronze_statue",
       year: 1933,
-      desc: "Stinius Fredriksens bronsemonument over historikeren P. A. Munch ble reist på Universitetsplassen i 1933.",
+      desc: "Stinius Fredriksens bronsemonument over historikeren Peter Andreas Munch ble reist på Universitetsplassen i 1933.",
       physicalObject: true,
       placeSpecific: true,
       collectable: true,
@@ -278,7 +309,7 @@ Object.assign(place, {
     nowImage: "bilder/places/universitetsplassen.webp",
     nowImageLabel: "Universitetsplassen 2019 · Bahnfrend · Wikimedia Commons",
     nowImageMeta: { ...mainImageMeta, assetType: "documentary_place_photo" },
-    before: "Arkivbildet viser P. A. Munch-monumentet, plassflaten og universitetsfronten en gang mellom 1945 og 1960.",
+    before: "Arkivbildet viser Peter Andreas Munch-monumentet, plassflaten og universitetsfronten en gang mellom 1945 og 1960.",
     now: "Fotografiet fra 2019 viser universitetsfronten og den åpne plassflaten fra et annet ståsted.",
     change: "Ståsted, utsnitt og fotograferingstid er ulike. Sammenstillingen egner seg til å lese bevarte strukturer og plassorganisering, ikke til pikselnøyaktig før-og-nå-sammenligning.",
     lookFor: ["Domus Media som midtpunkt.", "Monumentenes forhold til hovedtrappen.", "Den åpne plassflaten mellom bygningene og Karl Johan."],
@@ -339,6 +370,37 @@ for (const person of people) {
 }
 write(peopleFile, people);
 
+const universPeopleManifestFile = "data/people/manifest.json";
+const universPeopleManifest = read(universPeopleManifestFile);
+for (const relativePersonFile of universPeopleManifest.files || []) {
+  const canonicalPersonFile = `data/${relativePersonFile}`;
+  if (!fs.existsSync(path.join(root, canonicalPersonFile))) continue;
+  const rawPeople = read(canonicalPersonFile);
+  const personRecords = Array.isArray(rawPeople)
+    ? rawPeople
+    : rawPeople && typeof rawPeople === "object" && typeof rawPeople.id === "string"
+      ? [rawPeople]
+      : [];
+  let changed = false;
+  for (const person of personRecords) {
+    if (!person || person.id === "christian_heinrich_grosch") continue;
+    for (const key of ["places", "place_ids", "placeIds", "related_place_ids"]) {
+      if (!Array.isArray(person[key]) || !person[key].includes(placeId)) continue;
+      person[key] = person[key].filter((id) => id !== placeId);
+      changed = true;
+    }
+    for (const key of ["placeId", "place_id", "place", "source_place_id", "primary_place_id"]) {
+      if (person[key] !== placeId) continue;
+      const replacement = [person.places, person.place_ids, person.placeIds]
+        .find((values) => Array.isArray(values) && values.length > 0)?.[0];
+      if (replacement) person[key] = replacement;
+      else delete person[key];
+      changed = true;
+    }
+  }
+  if (changed) write(canonicalPersonFile, rawPeople);
+}
+
 const brandsMasterFile = "data/brands/brands_master.json";
 const brandsMaster = read(brandsMasterFile);
 const uio = brandsMaster.find((brand) => brand.id === "universitetet_i_oslo");
@@ -365,7 +427,7 @@ const chronology = [
   [1916, "Munch-utsmykningen", "Edvard Munchs monumentale malerier blir permanent montert i Aulaen.", urls.uioAula],
   [1919, "Julegrantradisjonen", "Julegranen på Universitetsplassen etableres som årlig tradisjon.", urls.square],
   [1931, "Plassen legges om", "Omleggingen fra 1930–31 fullføres med ny hellelagt plassflate.", urls.paMunch],
-  [1933, "P. A. Munch-monumentet", "Stinius Fredriksens monument over P. A. Munch blir reist.", urls.paMunch],
+  [1933, "Peter Andreas Munch-monumentet", "Stinius Fredriksens monument over Peter Andreas Munch blir reist.", urls.paMunch],
   [2011, "Aulaen gjenåpner", "Aulaen åpner igjen i juni etter konserveringsarbeid med Munch-utsmykningen.", urls.uioAula]
 ].map(([year, period, desc, source], index) => ({
   id: `chrono_universitetsplassen_${String(index + 1).padStart(2, "0")}`,
@@ -386,7 +448,7 @@ const leksikon = [
     popupDesc: "Universitetets monumentale forplass mot Karl Johans gate.",
     wikiText: [
       "Universitetsplassen ble formet som den åpne fronten for Christian Heinrich Groschs tre universitetsbygninger. Grunnsteinen ble lagt i 1841, og anlegget ble tatt i bruk i perioden 1851–54.",
-      "Senere lag omfatter Schweigaard-monumentet fra 1883, Aulaen fra 1911, Munch-utsmykningen fra 1916 og P. A. Munch-monumentet fra 1933."
+      "Senere lag omfatter Schweigaard-monumentet fra 1883, Aulaen fra 1911, Munch-utsmykningen fra 1916 og Peter Andreas Munch-monumentet fra 1933."
     ],
     summary: { one_liner: "Akademisk forplass der arkitektur, monumenter og ritualer møtes.", themes: ["byrom", "universitet", "representasjon"], tone: ["nøktern", "kildebasert"] },
     facts: [
@@ -426,15 +488,15 @@ const leksikon = [
     place_id: placeId,
     title: "Monumentene og omleggingen",
     version: 1,
-    popupDesc: "Schweigaard- og P. A. Munch-monumentene rammer inn hovedinngangen.",
+    popupDesc: "Schweigaard- og Peter Andreas Munch-monumentene rammer inn hovedinngangen.",
     wikiText: [
-      "Schweigaard-monumentet fra 1883 og P. A. Munch-monumentet fra 1933 er to separate fysiske objekter på plassen.",
+      "Schweigaard-monumentet fra 1883 og Peter Andreas Munch-monumentet fra 1933 er to separate fysiske objekter på plassen.",
       "Omleggingen i 1930–31 endret plassflaten og inngikk i organiseringen av monumentene og immatrikuleringsarenaen."
     ],
     summary: { one_liner: "To monumenter og en ny plassflate formet inngangen på nytt.", themes: ["monument", "byrom", "minnekultur"], tone: ["nøktern", "kildebasert"] },
     facts: [
       { id: "fact_01", label: "Schweigaard", desc: "Monumentet ble reist i 1883 av Julius Middelthun.", confidence: "high", sources: [urls.schweigaard] },
-      { id: "fact_02", label: "P. A. Munch", desc: "Monumentet ble reist i 1933 av Stinius Fredriksen.", confidence: "high", sources: [urls.paMunch] },
+      { id: "fact_02", label: "Peter Andreas Munch", desc: "Monumentet ble reist i 1933 av Stinius Fredriksen.", confidence: "high", sources: [urls.paMunch] },
       { id: "fact_03", label: "Plassflate", desc: "Plassen ble lagt om i 1930–31 etter planer av Bjercke og Eliassen.", confidence: "high", sources: [urls.paMunch] }
     ],
     sources: [urls.square, urls.schweigaard, urls.paMunch]
@@ -499,7 +561,7 @@ const stories = [
     place_id: placeId,
     person_id: null,
     summary: "I 1883 ble Julius Middelthuns monument over Anton Martin Schweigaard reist foran universitetet.",
-    story: "Da Schweigaard-monumentet ble reist i 1883, fikk Universitetsplassen et tydelig minnespor knyttet til universitet, politikk og samfunnsliv. Figuren ble utført av Julius Middelthun.\n\nMonumentet stod senere i et endret romlig forhold til hovedtrappen da P. A. Munch-statuen kom i 1933. Slik ble minnekulturen en del av den konkrete organiseringen av inngangen.",
+    story: "Da Schweigaard-monumentet ble reist i 1883, fikk Universitetsplassen et tydelig minnespor knyttet til universitet, politikk og samfunnsliv. Figuren ble utført av Julius Middelthun.\n\nMonumentet stod senere i et endret romlig forhold til hovedtrappen da Peter Andreas Munch-statuen kom i 1933. Slik ble minnekulturen en del av den konkrete organiseringen av inngangen.",
     episode: {
       actors: ["Julius Middelthun", "Universitetet"],
       date: "1883",
@@ -546,7 +608,7 @@ const stories = [
     place_id: placeId,
     person_id: null,
     summary: "Omleggingen i 1930–31 ga Universitetsplassen en ny hellelagt form som styrket rollen som immatrikuleringsarena.",
-    story: "I 1930–31 ble Universitetsplassen lagt om etter planer av Bjercke og Eliassen. Den nye flaten fikk fall mot midtbygningen og ble bedre egnet til store akademiske samlinger.\n\nTo år senere kom Stinius Fredriksens monument over P. A. Munch. Sammen med Schweigaard-monumentet inngikk det i den nye organiseringen rundt hovedinngangen til Domus Media.",
+    story: "I 1930–31 ble Universitetsplassen lagt om etter planer av Bjercke og Eliassen. Den nye flaten fikk fall mot midtbygningen og ble bedre egnet til store akademiske samlinger.\n\nTo år senere kom Stinius Fredriksens monument over Peter Andreas Munch. Sammen med Schweigaard-monumentet inngikk det i den nye organiseringen rundt hovedinngangen til Domus Media.",
     episode: {
       actors: ["Bjercke og Eliassen", "Universitetet", "Stinius Fredriksen"],
       date: "1931",
@@ -554,7 +616,7 @@ const stories = [
       consequence: "Plassen fikk en form som bedre støttet immatrikulering og en tydeligere monumental innramming av hovedinngangen."
     },
     sources: [
-      { title: "Oslo byleksikon – P. A. Munch-statuen", url: urls.paMunch },
+      { title: "Oslo byleksikon – Peter Andreas Munch-statuen", url: urls.paMunch },
       { title: "Oslo byleksikon – Universitetsplassen", url: urls.square }
     ],
     tags: ["byplanlegging", "immatrikulering", "monument"],
@@ -689,9 +751,9 @@ const questionSpecs = [
   ["Hva viser Aulaen i anleggets tidslag?", ["At hele anlegget ble bygget samtidig", "At et 1900-tallsbygg ble lagt til et eldre klassisistisk anlegg", "At Domus Media ble revet"], 1, "oslo_university", "em_by_historiske_lag_i_hverdagsrom", "context", "historiske_lag"],
   ["Når ble Schweigaard-monumentet reist?", ["1883", "1919", "1933"], 0, "oslo_schweigaard", "em_by_historiske_lag_i_hverdagsrom", "fact", "monument"],
   ["Hvem laget Schweigaard-monumentet?", ["Julius Middelthun", "Stinius Fredriksen", "Gustav Vigeland"], 0, "oslo_schweigaard", "em_by_symbolsk_makt_og_representasjon", "fact", "monument"],
-  ["Når ble P. A. Munch-monumentet reist?", ["1883", "1911", "1933"], 2, "oslo_pa_munch", "em_by_historiske_lag_i_hverdagsrom", "fact", "monument"],
-  ["Hvem laget P. A. Munch-monumentet?", ["Julius Middelthun", "Stinius Fredriksen", "Christian Heinrich Grosch"], 1, "oslo_pa_munch", "em_by_symbolsk_makt_og_representasjon", "fact", "monument"],
-  ["Hva skjedde med monumentenes plassering da P. A. Munch-statuen kom?", ["De ble samlet inne i Aulaen", "De ble ordnet på hver side av hovedinngangen", "Schweigaard-statuen ble fjernet fra byen"], 1, "oslo_pa_munch", "em_by_symbolsk_makt_og_representasjon", "context", "romlig_orden"],
+  ["Når ble Peter Andreas Munch-monumentet reist?", ["1883", "1911", "1933"], 2, "oslo_pa_munch", "em_by_historiske_lag_i_hverdagsrom", "fact", "monument"],
+  ["Hvem laget Peter Andreas Munch-monumentet?", ["Julius Middelthun", "Stinius Fredriksen", "Christian Heinrich Grosch"], 1, "oslo_pa_munch", "em_by_symbolsk_makt_og_representasjon", "fact", "monument"],
+  ["Hva skjedde med monumentenes plassering da Peter Andreas Munch-statuen kom?", ["De ble samlet inne i Aulaen", "De ble ordnet på hver side av hovedinngangen", "Schweigaard-statuen ble fjernet fra byen"], 1, "oslo_pa_munch", "em_by_symbolsk_makt_og_representasjon", "context", "romlig_orden"],
   ["Hvorfor er statuene Objects og ikke Structures?", ["De er flyttbare, identifiserbare monumentgjenstander", "De er egne universitetsbygninger", "De er gatenavn"], 0, "oslo_square", "em_by_bygningstyper_og_typologier", "context", "objektstruktur"],
   ["Hvorfor er Munchs Aula-malerier ikke Objects i dette PlaceCard-settet?", ["De er abstrakte lover", "De tilhører kunstutsmykningen inne i Aulaen, mens objektsporet her er plassens fysiske monumenter", "De står utendørs på plassen"], 1, "uio_aula", "em_by_historiske_lag_i_hverdagsrom", "context", "eierskap"],
   ["Når ble Universitetsplassen lagt om i ny form?", ["1930–31", "1851–54", "2003–04"], 0, "oslo_pa_munch", "em_by_historiske_lag_i_hverdagsrom", "fact", "byplanlegging"],
@@ -707,12 +769,12 @@ const questionSpecs = [
   ["Hva var maleriene laget for?", ["Aulaens arkitektoniske nisjer og veggflater", "Utendørs sokler", "Domus Bibliothecas tak"], 0, "uio_aula", "em_by_bygningstyper_og_typologier", "context", "kunst_i_arkitektur"],
   ["Hva viser Munch-utsmykningen om Aulaen?", ["At kunst og arkitektur er planlagt som sammenhengende romopplevelse", "At Aulaen er en butikk", "At Grosch malte veggene"], 0, "uio_aula", "em_by_materialitet_og_sanseerfaring", "context", "kunst_i_arkitektur"],
   ["Når åpnet Aulaen igjen etter konserveringsarbeidet omtalt av UiO?", ["Juni 2011", "Juni 1883", "Juni 1933"], 0, "uio_aula", "em_by_historiske_lag_i_hverdagsrom", "fact", "bevaring"],
-  ["Hva må holdes atskilt i samlingsmodellen?", ["Aulaen som Structure og Munchs kunstverk som kunsthistorisk innhold", "Domus Media og Karl Johan som samme bygning", "P. A. Munch og Edvard Munch som samme person"], 0, "uio_aula", "em_by_bygningstyper_og_typologier", "context", "eierskap"],
+  ["Hva må holdes atskilt i samlingsmodellen?", ["Aulaen som Structure og Munchs kunstverk som kunsthistorisk innhold", "Domus Media og Karl Johan som samme bygning", "Peter Andreas Munch og Edvard Munch som samme person"], 0, "uio_aula", "em_by_bygningstyper_og_typologier", "context", "eierskap"],
   ["Hva uttrykker den brede trappen og tempelfronten på Domus Media?", ["En tydelig institusjonell front mot plassen", "En skjult bakgård", "En industrikai"], 0, "oslo_university", "em_by_symbolsk_makt_og_representasjon", "analysis", "representasjon"],
-  ["Hvorfor er Grosch en sterk People-kobling akkurat her?", ["Universitetsanlegget er et sentralt dokumentert verk av ham", "Han studerte her i 1933", "Han laget P. A. Munch-statuen"], 0, "oslo_university", "em_by_symbolsk_makt_og_representasjon", "analysis", "personsted"],
+  ["Hvorfor er Grosch en sterk People-kobling akkurat her?", ["Universitetsanlegget er et sentralt dokumentert verk av ham", "Han studerte her i 1933", "Han laget Peter Andreas Munch-statuen"], 0, "oslo_university", "em_by_symbolsk_makt_og_representasjon", "analysis", "personsted"],
   ["Hvorfor kvalifiserer Universitetet i Oslo som Brand her?", ["Institusjonsidentiteten er direkte knyttet til anlegget og har egen verifisert logo", "Det er nærmeste kafé", "Det er et gatenavn"], 0, "oslo_university", "em_by_symbolsk_makt_og_representasjon", "analysis", "institusjonsidentitet"],
   ["Hva kan et foto fra 2019 dokumentere sikkert?", ["Synlig plassform og bygninger på fotograferingstidspunktet", "Hva alle brukere mener om plassen", "Nøyaktig hvordan plassen så ut i 1841"], 0, "oslo_square", "em_by_materialitet_og_sanseerfaring", "analysis", "bildekilde"],
-  ["Hva kan et historisk foto datert 1945–1960 ikke gi alene?", ["Et sikkert enkeltår innen intervallet", "At P. A. Munch-statuen er synlig", "At Domus Media finnes i motivet"], 0, "oslo_square", "em_by_historiske_lag_i_hverdagsrom", "analysis", "kildekritikk"],
+  ["Hva kan et historisk foto datert 1945–1960 ikke gi alene?", ["Et sikkert enkeltår innen intervallet", "At Peter Andreas Munch-statuen er synlig", "At Domus Media finnes i motivet"], 0, "oslo_square", "em_by_historiske_lag_i_hverdagsrom", "analysis", "kildekritikk"],
   ["Hva viser plassens historiske lag best?", ["Grosch-anlegget, monumentene, Aulaen og omleggingen er kommet til i ulike perioder", "Alt ble ferdig i 1811", "Ingen fysiske elementer er endret"], 0, "oslo_university", "em_by_historiske_lag_i_hverdagsrom", "analysis", "historiske_lag"],
   ["Hva er en presis own-place-avgrensning?", ["Selve forplassen og dens direkte monumenter og universitetsfront", "Hele Universitetet i Oslo på alle campuser", "Hele Karl Johans gate"], 0, "oslo_square", "em_by_offentlige_rom_motesteder", "analysis", "avgrensning"],
   ["Hva betyr symbolsk makt i lesningen av plassen?", ["At arkitektur og monumenter kan gjøre institusjoner og personer synlige som autoritative", "At stein automatisk vedtar lover", "At alle besøkende mener det samme"], 0, "oslo_university", "em_by_symbolsk_makt_og_representasjon", "concept", "symbolsk_makt"],
@@ -770,7 +832,7 @@ for (let setIndex = 0; setIndex < 8; setIndex += 1) {
       knowledge: `${answer}. Spørsmålet er knyttet til ${concept.replaceAll("_", " ")} på Universitetsplassen.`,
       core_concepts: [concept],
       difficulty: Math.min(4, 1 + Math.floor(setIndex / 2)),
-      question_type: questionType,
+      question_type: n <= 28 ? "fact" : n <= 42 ? "context" : "concept",
       emne_id: emneId,
       source: [sourceId],
       source_origin: "external",
@@ -779,6 +841,7 @@ for (let setIndex = 0; setIndex < 8; setIndex += 1) {
     };
     if (setIndex === 7) {
       item.method_id = qIndex % 2 === 0 ? "met_feltobservasjon" : "met_gaanalyse";
+      item.topic_hook_id = qIndex % 2 === 0 ? "byliv_aapne_rom" : "byliv_opphold_vs_gjennomgang";
       item.guidance_basis = ["data/fag/by/fagkart_by.json", "data/fag/by/methods_by.json"];
     }
     questions.push(item);
@@ -794,6 +857,45 @@ for (let setIndex = 0; setIndex < 8; setIndex += 1) {
   });
 }
 
+const selectedCurriculum = {
+  module_ids: [
+    "kur_by_01_byrom_akser_knutepunkt",
+    "kur_by_04_historiske_lag_og_transformasjon",
+    "kur_by_06_makt_symboler_og_representasjon"
+  ],
+  emne_ids: place.emne_ids,
+  topic_hook_ids: ["byliv_aapne_rom", "byliv_opphold_vs_gjennomgang"],
+  method_ids: ["met_feltobservasjon", "met_gaanalyse"],
+  thinker_ids: [],
+  works: []
+};
+const existingQuizAudit = {
+  searched_paths: ["data/quiz/manifest.json", "data/quiz/by/universitetsplassen_sets.json", placeFile],
+  active_before: {
+    file: null,
+    set_count: 0,
+    question_count: 0,
+    finding: "Ingen aktiv canonical Universitetsplassen-quiz var registrert i manifestet før denne produksjonen."
+  },
+  decisions: {
+    keep_as_claim_basis: [],
+    rewrite: "Ny kildegjennomgått 8×7-progresjon.",
+    move: [],
+    remove: []
+  },
+  knowledge_migration: "56 unike spørsmål materialiseres gjennom den canonicale Knowledge-pipelinen."
+};
+const profileDecision = {
+  profile: "major",
+  set_count: 8,
+  questions_per_set: 7,
+  justification: "Universitetsplassen har åtte kildebelagte læringsjobber: identitet, Grosch-anlegget, monumentene, Aulaen og Munch, plassomlegging, akademiske ritualer, historiske spor og stedlig analyse."
+};
+const heldBackCandidates = [
+  "Personkoblinger uten dokumentert stedsspesifikk rolle.",
+  "Kommersielle butikkbrands uten direkte institusjonell tilknytning til universitetsplassen."
+];
+
 const briefFile = "data/quiz/production_briefs/by/universitetsplassen.json";
 const brief = {
   schema_version: "1.0",
@@ -805,6 +907,10 @@ const brief = {
   profile_hint: "major_8x7",
   scope: "Universitetsplassens institusjonsfront, Grosch-anlegget, monumentene, 1930–31-omleggingen, Aulaen, Munch-utsmykningen, immatrikulering og kildekritisk byromslesning.",
   sources: sourceRegistry,
+  selected_curriculum: selectedCurriculum,
+  existing_quiz_audit: existingQuizAudit,
+  profile_decision: profileDecision,
+  held_back_candidates: heldBackCandidates,
   claims
 };
 write(briefFile, brief);
@@ -819,7 +925,36 @@ fagManifest.by.quizProduction.targets[placeId] = {
 write(fagManifestFile, fagManifest);
 
 const contextFile = "data/quiz/production_context/by/universitetsplassen.json";
-const productionContext = await runBuildQuizProductionContext({ root, categoryId: "by", targetId: placeId, outputPath: contextFile });
+await runBuildQuizProductionContext({ root, categoryId: "by", targetId: placeId, outputPath: contextFile });
+const quizProductionContext = {
+  manifest_category: "by",
+  profile: "major_8x7",
+  standard_version: "3.3",
+  source_brief: briefFile,
+  context_artifact: contextFile,
+  resolved_files: {
+    pensum: "data/fag/by/pensum_by.json",
+    emner: "data/fag/by/emner_by.json",
+    fagkart: "data/fag/by/fagkart_by.json",
+    methods: "data/fag/by/methods_by.json",
+    supersetQuizMal: "data/fag/by/supersetQUIZMAL_by.json",
+    quizStandard: "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+    quizQuestionSchema: "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+  },
+  required_inputs_loaded: ["pensum", "emner", "fagkart", "methods", "supersetQuizMal", "quizStandard", "quizQuestionSchema"],
+  pensum_module_ids: selectedCurriculum.module_ids,
+  emne_ids: selectedCurriculum.emne_ids,
+  topic_hook_ids: selectedCurriculum.topic_hook_ids,
+  method_ids: selectedCurriculum.method_ids,
+  thinker_ids: selectedCurriculum.thinker_ids,
+  works: selectedCurriculum.works,
+  source_review_status: "reviewed",
+  theory_start_phase: "final",
+  method_start_phase: "final",
+  existing_quiz_audit: existingQuizAudit,
+  profile_decision: profileDecision,
+  held_back_candidates: heldBackCandidates
+};
 const quizFile = "data/quiz/by/universitetsplassen_sets.json";
 write(quizFile, {
   targetId: placeId,
@@ -828,7 +963,7 @@ write(quizFile, {
   generator_version: "history_go_manual_reviewed_v1",
   generated_from: briefFile,
   sources: Object.fromEntries(Object.entries(sourceRegistry).map(([id, source]) => [id, source.url])),
-  production_context: productionContext,
+  production_context: quizProductionContext,
   sets
 });
 const quizManifestFile = "data/quiz/manifest.json";
@@ -848,9 +983,9 @@ const sourceClaims = [
   ["aula", "Aulaen ble reist til universitetets hundreårsjubileum i 1911.", urls.university, "Aulaen", "institutional", "ordinary", "direct", "historical", 1911],
   ["munch", "Edvard Munch arbeidet med elleve monumentale lerretsmalerier til Aulaen i 1909–1916, og serien ble permanent montert i 1916.", urls.uioAula, "Aula paintings and conservation", "official", "ordinary", "direct", "historical", 1916],
   ["tree", "Julegranen på Universitetsplassen har vært en årlig tradisjon siden 1919.", urls.square, "Plassens bruk", "institutional", "ordinary", "direct", "current"],
-  ["repaving", "Universitetsplassen ble lagt om i 1930–31 etter planer av Bjercke og Eliassen.", urls.paMunch, "Plassomleggingen", "institutional", "ordinary", "direct", "historical", 1931],
+  ["repaving", "Omleggingen av Universitetsplassen ble fullført i 1931 etter arbeid i 1930–31, etter planer av Bjercke og Eliassen.", urls.paMunch, "Plassomleggingen", "institutional", "ordinary", "direct", "historical", 1931],
   ["immatriculation", "Omleggingen gjorde plassen bedre egnet til immatrikulering, og nye studenter samles der ved rektors velkomst.", urls.square, "Plassens bruk og immatrikulering", "institutional", "ordinary", "direct", "current"],
-  ["pamunch", "Stinius Fredriksens P. A. Munch-monument ble reist på Universitetsplassen i 1933.", urls.paMunch, "Monumentets historikk", "institutional", "ordinary", "direct", "historical", 1933],
+  ["pamunch", "Stinius Fredriksens Peter Andreas Munch-monument ble reist på Universitetsplassen i 1933.", urls.paMunch, "Monumentets historikk", "institutional", "ordinary", "direct", "historical", 1933],
   ["historic_photo", "Nasjonalbibliotekets fotografi av Universitetsplassen er datert til intervallet 1945–1960.", imageInfo.historic.meta.sourcePage, "Commons metadata / Nasjonalbiblioteket", "archive", "ordinary", "direct", "historical"],
   ["current_photo", "Bahnfrends fotografi viser Universitetsplassen 31. august 2019.", imageInfo.main.meta.sourcePage, "Commons metadata", "catalogue", "ordinary", "direct", "historical", 2019],
   ["aula_reopen", "Aulaen åpnet igjen i juni 2011 etter konserveringsarbeid med Munch-utsmykningen.", urls.uioAula, "Conservation completion", "official", "ordinary", "direct", "historical", 2011]
@@ -887,6 +1022,7 @@ const popupCoverage = coverage(popupDesc, [
   ["claim_universitetsplassen_grosch"],
   ["claim_universitetsplassen_use_1851_54"],
   ["claim_universitetsplassen_urbygningen"],
+  ["claim_universitetsplassen_schweigaard", "claim_universitetsplassen_pamunch"],
   ["claim_universitetsplassen_schweigaard"],
   ["claim_universitetsplassen_pamunch"],
   ["claim_universitetsplassen_pamunch"],
@@ -894,6 +1030,7 @@ const popupCoverage = coverage(popupDesc, [
   ["claim_universitetsplassen_aula"],
   ["claim_universitetsplassen_munch"],
   ["claim_universitetsplassen_munch"],
+  ["claim_universitetsplassen_aula", "claim_universitetsplassen_munch"],
   ["claim_universitetsplassen_repaving"],
   ["claim_universitetsplassen_repaving", "claim_universitetsplassen_immatriculation"],
   ["claim_universitetsplassen_immatriculation"],
@@ -947,7 +1084,7 @@ const packet = {
       { question: "Når ble Schweigaard-monumentet reist?", answer: "1883", type: "når", normalKnowledgeQuestion: true, claimIds: ["claim_universitetsplassen_schweigaard"] },
       { question: "Hvilket bygg ble reist i 1911?", answer: "Aulaen", type: "hvilket_verk_eller_objekt", normalKnowledgeQuestion: true, claimIds: ["claim_universitetsplassen_aula"] },
       { question: "Hva skjedde i 1930–31?", answer: "Universitetsplassen ble lagt om", type: "hva_skjedde", normalKnowledgeQuestion: true, claimIds: ["claim_universitetsplassen_repaving"] },
-      { question: "Hvem laget P. A. Munch-monumentet?", answer: "Stinius Fredriksen", type: "hvem", normalKnowledgeQuestion: true, claimIds: ["claim_universitetsplassen_pamunch"] },
+      { question: "Hvem laget Peter Andreas Munch-monumentet?", answer: "Stinius Fredriksen", type: "hvem", normalKnowledgeQuestion: true, claimIds: ["claim_universitetsplassen_pamunch"] },
       { question: "Hva ble permanent montert i 1916?", answer: "Edvard Munchs Aula-serie", type: "hva_ble_bygget_produsert_eller_endret", normalKnowledgeQuestion: true, claimIds: ["claim_universitetsplassen_munch"] }
     ]
   },
@@ -1011,7 +1148,7 @@ write("data/places/historie-production/universitetsplassen.json", {
   sources: [
     { id: "source_up_square", url: urls.square, sourceLocation: "Universitetsplassen", sourceType: "institutional", verifiedAt, temporalCoverage: "retrospective", provenance: "Redigert Oslo-spesifikt oppslagsverk.", limitations: "Kortfattet framstilling." },
     { id: "source_up_university", url: urls.university, sourceLocation: "Universitetets anlegg ved Karl Johan", sourceType: "institutional", verifiedAt, temporalCoverage: "retrospective", provenance: "Redigert Oslo-spesifikt oppslagsverk.", limitations: "Institusjonshistorie med bredere scope enn plassen." },
-    { id: "source_up_pa_munch", url: urls.paMunch, sourceLocation: "P. A. Munch-statuen og plassomleggingen", sourceType: "institutional", verifiedAt, temporalCoverage: "retrospective", provenance: "Redigert Oslo-spesifikt oppslagsverk.", limitations: "Monumentfokus." },
+    { id: "source_up_pa_munch", url: urls.paMunch, sourceLocation: "Peter Andreas Munch-statuen og plassomleggingen", sourceType: "institutional", verifiedAt, temporalCoverage: "retrospective", provenance: "Redigert Oslo-spesifikt oppslagsverk.", limitations: "Monumentfokus." },
     { id: "source_up_aula", url: urls.uioAula, sourceLocation: "Aula paintings and conservation", sourceType: "official", verifiedAt, temporalCoverage: "retrospective", provenance: "Universitetet i Oslo.", limitations: "Fokuserer på Munch-utsmykningen og konservering." }
   ],
   caseRealizations: [
@@ -1021,7 +1158,7 @@ write("data/places/historie-production/universitetsplassen.json", {
       temporalSequence: {
         scope: { start: "1841", end: "1933", precision: "period", rationale: "Caset følger hovedanleggets etablering til monument- og plassomlegging." },
         startPoint: "Grunnsteinen ble lagt i 1841.",
-        endPoint: "P. A. Munch-monumentet ble reist i 1933 etter plassomleggingen 1930–31.",
+        endPoint: "Peter Andreas Munch-monumentet ble reist i 1933 etter plassomleggingen 1930–31.",
         breaks: ["Aulaen kom i 1911.", "Munch-serien ble permanent montert i 1916.", "Plassflaten ble lagt om i 1930–31."],
         continuities: ["Universitetets front mot Karl Johan består som hovedramme.", "Plassen brukes som akademisk samlingsrom."],
         sourceIds: ["source_up_square", "source_up_university", "source_up_pa_munch", "source_up_aula"]
@@ -1033,7 +1170,7 @@ write("data/places/historie-production/universitetsplassen.json", {
       conflictOrNegotiation: { statement: "Plassen er resultat av flere design- og monumentvalg over tid, ikke én samtidig komposisjon.", sourceIds: ["source_up_university", "source_up_pa_munch"] },
       materialEvidence: [
         { trace: "Groschs tre hovedbygninger", interpretation: "1840-tallets institusjonsarkitektur.", sourceIds: ["source_up_university"] },
-        { trace: "Schweigaard- og P. A. Munch-monumentene", interpretation: "Akademisk og samfunnspolitisk minnekultur.", sourceIds: ["source_up_square", "source_up_pa_munch"] },
+        { trace: "Schweigaard- og Peter Andreas Munch-monumentene", interpretation: "Akademisk og samfunnspolitisk minnekultur.", sourceIds: ["source_up_square", "source_up_pa_munch"] },
         { trace: "Aulaen", interpretation: "Et senere seremonielt lag bak midtbygningen.", sourceIds: ["source_up_aula"] }
       ],
       uncertainty: { statement: "Historisk fotografi er datert 1945–1960 og skal ikke gis et eksakt år.", sourceIds: ["source_up_square"] }
@@ -1154,3 +1291,11 @@ test("six-dimensional quality gate is 30/30", () => {
 fs.writeFileSync(path.join(root, "tests/universitetsplassen-completion.test.mjs"), testFile);
 
 console.log("Universitetsplassen canonical production materialized.");
+
+// Final deterministic Universitetsplassen quiz context rebuild.
+await runBuildQuizProductionContext({
+  root,
+  categoryId: "by",
+  targetId: placeId,
+  outputPath: "data/quiz/production_context/by/universitetsplassen.json"
+});
