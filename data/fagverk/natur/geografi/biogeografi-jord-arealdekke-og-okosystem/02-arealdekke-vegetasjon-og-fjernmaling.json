@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "biogeografi-jord-arealdekke-og-okosystem",
+  "id": "02-arealdekke-vegetasjon-og-fjernmaling",
+  "title": "Arealdekke, vegetasjon og fjernmåling",
+  "sections": [
+    {
+      "id": "arealdekke-arealbruk-og-klassifikasjon",
+      "title": "Arealdekke, arealbruk og klassifikasjon",
+      "method_ids": ["met_geo_arealdekke_klassifikasjonskritikk", "met_geo_arealbruk_arealdekke_skille"],
+      "boundary": "Arealdekke beskriver fysisk overflate mens arealbruk beskriver menneskelig funksjon; kartklasser, oppløsning og algoritmeversjon skal ikke blandes uten harmonisering.",
+      "paragraphs": [
+        "Arealdekke og arealbruk beskriver to forskjellige dimensjoner av landskapet. Arealdekke handler om den fysiske overflaten som skog, vann, bart areal eller bebyggelse, mens arealbruk handler om menneskelig funksjon eller forvaltning som bolig, jordbruk, rekreasjon eller industri. Det samme arealdekket kan ha flere bruksformer, og samme brukstype kan romme ulike fysiske dekker. Geografiske analyser må derfor velge begrep etter spørsmålet og ikke bruke kategoriene som synonymer. Dette er særlig viktig i endringsstudier: et område kan skifte bruk uten stor endring i dekke, eller skifte dekke innen samme formelle arealbruk, og de to prosessene har ulike økologiske og samfunnsmessige konsekvenser.",
+        "ESA WorldCover gir globale landdekkekart for 2020 og 2021 med omtrent ti meters oppløsning basert på Sentinel-1- og Sentinel-2-data. Den høye romlige detaljen gjør produktet nyttig for å beskrive store mønstre og relativt små landskapselementer, men hver klasse er fortsatt resultat av en klassifikasjonsalgoritme som generaliserer sensorinformasjon og nabolag til en label. En piksel merket som skog eller bebyggelse er derfor ikke en full økologisk eller funksjonell beskrivelse av arealet. Ved lokal bruk bør kartklasse, oppløsning, referanseår og produktdokumentasjon følge analysen, og kritiske beslutninger bør kontrolleres mot uavhengige data eller feltkunnskap.",
+        "Forskjeller mellom WorldCover 2020 og 2021 kan skyldes faktisk endring i landskapet, men også forskjeller i algoritme, treningsdata, komposittperiode eller andre deler av produksjonskjeden. Derfor bør to klassifiserte kart ikke trekkes fra hverandre piksel for piksel og automatisk omtales som ettårig arealendring. Før en endringspåstand formuleres må produktversjoner og metodiske forskjeller undersøkes, og helst må en bruke et endringsprodukt eller en harmonisert metode som er utviklet for sammenligningen. Dette prinsippet gjelder bredt i geografisk fjernmåling: når måleinstrument eller klassifikasjonsregel endres, må metodesignalet skilles fra det miljøsignalet analysen forsøker å beskrive.",
+        "CORINE Land Cover illustrerer hvorfor kartleggingsenhet er avgjørende i endringsanalyse. Statuskart og egne endringslag kan bruke ulike minimumskrav til areal eller bredde, slik at en enkel differanse mellom to statuskart ikke nødvendigvis gjenskaper det offisielle endringslaget. Små endringer kan være under statuskartets generaliseringsgrense, mens et dedikert endringsprodukt kan være konstruert for å fange dem. En geografisk analyse må derfor lese teknisk dokumentasjon før arealtall beregnes og angi hvilket produkt og hvilken minste kartleggingsenhet som ligger bak resultatet. Uten denne kontrollen kan forskjeller i kartdesign feilaktig presenteres som forskjeller i landskapet."
+      ],
+      "paragraphClaimIds": [["geo6-09"],["geo6-10"],["geo6-11"],["geo6-12"]]
+    },
+    {
+      "id": "vegetasjon-produktivitet-og-fjernmaling",
+      "title": "Vegetasjon, produktivitet og fjernmåling",
+      "method_ids": ["met_geo_vegetasjons_fjernmaling", "met_geo_landcover_fraksjon_validering"],
+      "boundary": "Fjernmålt grønnhet eller arealdekkeklasse er proxyer med sensor-, sesong- og klassifikasjonsavhengighet; de er ikke direkte artsliste eller økosystemhelse.",
+      "paragraphs": [
+        "En landdekkeklasse kan være en nyttig proxy for dominerende vegetasjonsstruktur, men den inneholder ikke automatisk informasjon om alle arter, naturtypekvalitet eller økologisk tilstand. To områder klassifisert som samme skogstype kan ha svært ulik alder, treslagssammensetning, død ved, hydrologi eller påvirkningshistorie. Derfor bør økologiske spørsmål koble landdekkekart med artsdata, naturtypeinformasjon, feltobservasjoner eller andre relevante mål. Geografisk presisjon i et kart løser ikke semantisk presisjon: selv en ti-meters piksel kan bare uttrykke de klassene produktet er designet for. Analysen må derfor eksplisitt skille hva kartet faktisk måler fra den økologiske egenskapen man ønsker å slutte noe om.",
+        "Fraksjonslag for vegetasjon, trekroner eller bart areal kan bevare informasjon om blandede piksler som går tapt når hver celle tvinges inn i én dominerende klasse. I mosaikklandskap med spredt skog, jordbruk, bebyggelse og våtmark kan slike kontinuerlige fraksjoner derfor gi et mer nyansert bilde av overflatestrukturen enn en enkelt label. De er likevel modell- eller sensoravledede estimater og må tolkes med samme oppmerksomhet på oppløsning, sesong og validering. Valget mellom fraksjonsdata og kategoriske klasser bør knyttes til spørsmålet: heterogenitet, kantsoner og gradvise overganger krever ofte andre representasjoner enn kartlegging av brede dominerende dekker.",
+        "Satellittbaserte vegetasjons- og landdekkeserier påvirkes av når og hvordan observasjonene samles. Skydekke kan endre hvilke datoer som inngår i kompositter, fenologi kan gjøre samme vegetasjon spektralt forskjellig gjennom sesongen, og endringer i sensor eller bearbeiding kan påvirke verdiene. Derfor bør en observert forskjell mellom år eller sesonger først vurderes opp mot datagrunnlaget før den tolkes som biologisk endring. En robust tidsserie dokumenterer sensor, tidsvindu, komposittmetode, sky- eller kvalitetsmaskering og eventuelle algoritmeendringer. Slik hindres det at forskjeller i observasjonssystemet forveksles med endringer i produktivitet, vegetasjonsdekke eller økosystemtilstand.",
+        "Fjernmålte vegetasjons- og landdekkekart bør valideres mot uavhengige referansedata på samme relevante skala som analysen skal brukes på. En god global eller nasjonal nøyaktighet betyr ikke at en bestemt lokal klasse er like sikker, særlig når klassen er sjelden eller landskapet er heterogent. Referansedata kan komme fra feltkartlegging, høyoppløselige bilder eller andre uavhengige kilder, men de må være tidsmessig og definisjonsmessig sammenlignbare. Før et kart brukes til å trekke lokale økologiske konklusjoner, bør analysen derfor vise hvordan kartets klasse samsvarer med referansen og hvor feiltypene opptrer. Validering er en egen evidensfase, ikke et valgfritt tillegg."
+      ],
+      "paragraphClaimIds": [["geo6-13"],["geo6-14"],["geo6-15"],["geo6-16"]]
+    }
+  ]
+}
