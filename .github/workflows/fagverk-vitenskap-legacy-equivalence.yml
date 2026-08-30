@@ -1,0 +1,45 @@
+name: Fagverk Vitenskap legacy equivalence
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/vitenskap/**'
+      - 'data/fagverk/vitenskap/**'
+      - 'data/fagverk/fagverk_portal.json'
+      - 'reports/fagverk/vitenskap-theory-integrity-audit.json'
+      - 'merker/merker.html'
+      - 'scripts/audit-fagverk-vitenskap-legacy-theory.mjs'
+      - 'scripts/audit-fagverk-vitenskap-legacy-adjudication.mjs'
+      - 'tests/fagverk-vitenskap-legacy-theory-audit.test.mjs'
+      - 'tests/fagverk-vitenskap-legacy-theory-adjudication.test.mjs'
+      - 'tests/fagverk-badge-equivalence.test.mjs'
+      - '.github/workflows/fagverk-vitenskap-legacy-equivalence.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - name: Verify Vitenskap legacy equivalence evidence
+        run: |
+          node --check scripts/audit-fagverk-vitenskap-legacy-theory.mjs
+          node scripts/audit-fagverk-vitenskap-legacy-theory.mjs
+          node --test tests/fagverk-vitenskap-legacy-theory-audit.test.mjs
+          if [ -f scripts/audit-fagverk-vitenskap-legacy-adjudication.mjs ]; then
+            node --check scripts/audit-fagverk-vitenskap-legacy-adjudication.mjs
+            node scripts/audit-fagverk-vitenskap-legacy-adjudication.mjs
+          fi
+          if [ -f tests/fagverk-vitenskap-legacy-theory-adjudication.test.mjs ]; then
+            node --test tests/fagverk-vitenskap-legacy-theory-adjudication.test.mjs
+          fi
