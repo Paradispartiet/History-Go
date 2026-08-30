@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "politisk-geografi-grenser-territorium-og-geopolitikk",
+  "id": "03-de-jure-de-facto-kontroll-og-konflikt",
+  "title": "De jure-status, de facto-kontroll og konflikt",
+  "sections": [
+    {
+      "id": "de-jure-status-de-facto-kontroll-og-okkupasjon",
+      "title": "De jure-status, de facto-kontroll og okkupasjon",
+      "method_ids": ["met_geo_dejure_defacto_status", "met_geo_effektiv_kontroll_analyse"],
+      "boundary": "Juridisk suverenitet og effektiv kontroll skal kartlegges separat; okkupasjon bestemmes av faktiske kontrollforhold og overfører ikke suverenitet.",
+      "paragraphs": [
+        "Et territorium kan være internasjonalt anerkjent som del av én stat samtidig som en annen aktør faktisk kontrollerer adgang, sikkerhet eller administrasjon på bakken. De jure status og de facto kontroll beskriver derfor forskjellige egenskaper og må lagres i separate felt eller lag. Natural Earths kartpolicy illustrerer hvorfor kartprodusenter kan trenge både de facto grenselinjer og alternative de jure krav, mens juridiske vurderinger må støtte seg på rettskilder. En analyse som bare viser hvem som administrerer et område i dag kan være nyttig for logistikk eller sikkerhet, men den kan ikke uten videre presenteres som en avgjørelse av suverenitet. Statusetikett, datokilde og kontrollbegrep må følge kartet.",
+        "Internasjonal humanitær rett knytter okkupasjon til faktisk effektiv kontroll som utøves av fremmede styrker uten gyldig samtykke over territorium de ikke har suveren tittel til. Det avgjørende er dermed faktiske maktforhold, ikke hvilken betegnelse en part bruker om situasjonen. Samtidig understreker ICRC at okkupasjon er midlertidig i rettslig forstand og ikke overfører suverenitet til okkupasjonsmakten. Politisk geografi må derfor kunne kartlegge kontroll uten å endre det juridiske suverenitetslaget. Å slå disse dimensjonene sammen kan gjøre et empirisk kontrollkart til en utilsiktet normativ anerkjennelse av territorieendring.",
+        "Kontroll på bakken kan endres fra uke til uke, mens juridisk status og diplomatisk anerkjennelse kan være uendret over lange perioder. Derfor trenger tidsserier over politisk territorium minst to klokker: én for observerte kontrollforhold og én for rettslig eller internasjonalt anerkjent status. Dersom kartdatabasen oppdaterer en de facto linje etter nye kilder, må også observasjonsdato og kildeversjon lagres, slik at endringen kan skilles fra en faktisk hendelse på bakken. Dette er særlig viktig i konfliktområder, der sen rapportering, usikkerhet og ulik geografisk presisjon kan gjøre en tilsynelatende kartendring til resultat av bedre informasjon snarere enn ny kontroll.",
+        "Omstridte områder bør ikke symboliseres som om all statusinformasjon kunne komprimeres til én ubrutt strek. Ett lag kan vise en internasjonalt anerkjent eller juridisk hevdet grense, et annet en de facto administrativ linje, og et tredje eventuelle sikkerhetssoner eller kontrollområder med tidsstempel. Metadata bør forklare hva hvert lag betyr og hvilke kilder som ligger bak. UN Geospatial bruker disclaimere og klare retningslinjer for omstridte grenser nettopp fordi kartutseende kan oppfattes som politisk stillingtagen. En eksplisitt statusmodell gjør analysen mer presis og lar brukeren skille krav, anerkjennelse, administrasjon og effektiv kontroll uten at én grafisk linje får representere alle fire.
+      ],
+      "paragraphClaimIds": [["geo10-17"], ["geo10-18"], ["geo10-19"], ["geo10-20"]]
+    },
+    {
+      "id": "territoriell-konflikt-hendelser-og-kontrollendring",
+      "title": "Territoriell konflikt, hendelser og kontrollendring",
+      "method_ids": ["met_geo_konflikthendelse_spatial", "met_geo_territoriell_kontrollendring"],
+      "boundary": "Konflikthendelser, konfliktdefinisjoner og territoriell kontroll er separate observasjonsnivåer; hendelsesdata etablerer ikke alene juridisk status eller full flatekontroll.",
+      "paragraphs": [
+        "UCDP bruker en eksplisitt definisjon av væpnet konflikt som kombinerer organisert maktbruk med en uttalt inkompatibilitet om regjering eller territorium og terskler for kamprelaterte dødsfall. Det betyr at datasettets konfliktkategori er et metodisk konstruert fenomen og ikke synonymt med enhver protest, voldshendelse eller politisk spenning. ACLED registrerer et bredere sett av politiske voldshendelser og demonstrasjoner etter et annet kodeverk. Geografisk analyse må derfor dokumentere hvilket datasett og hvilken hendelsesdefinisjon som brukes før konflikttall sammenlignes. To kart kan vise ulike mønstre uten at ett nødvendigvis er feil, fordi de måler forskjellige typer politisk aktivitet.",
+        "ACLEDs grunnenhet er en hendelse med aktører, dato, sted og hendelsestype. Punktene kan brukes til å analysere konsentrasjon, spredning og endring i politisk vold, men de gir ikke automatisk et polygon for territoriell kontroll. En væpnet gruppe kan gjennomføre et angrep langt fra områder den administrerer, og fravær av registrerte hendelser kan skyldes lav rapportering snarere enn stabil kontroll. Derfor må kontrollflater bygges fra egne kilder som dokumenterer varig tilstedeværelse, administrasjon, adgang eller annen relevant effektiv kontroll. Hendelsesdata kan støtte vurderingen, men de bør ikke interpoleres ukritisk til en sammenhengende politisk flate bare fordi GIS-programvaren kan gjøre det.",
+        "En territoriell konflikt kan dreie seg om kontroll, løsrivelse eller autonomi for et bestemt område, men det politiske kravet og den faktiske geografien for kamp er ikke nødvendigvis sammenfallende. UCDP knytter territorial inkompatibilitet til et spesifisert område, mens hendelser kan finne sted utenfor dette området gjennom angrep på hovedsteder, transportknutepunkter eller militære mål. På samme måte kan administrativ kontroll være mer begrenset enn det territoriet en aktør hevder. En robust analyse bør derfor ha separate lag for konfliktens deklarerte territorielle objekt, hendelsesgeografien og dokumentert kontroll. Dette gjør det mulig å studere hvordan kampen om et område faktisk organiseres uten å la retoriske krav definere hele den empiriske flaten.",
+        "Påstander om kontrollendring krever sterkere evidens enn observasjonen av en enkelt trefning eller militær tilstedeværelse. Varig kontroll kan innebære evne til å regulere adgang, opprettholde styrker, administrere eller hindre motpartens myndighetsutøvelse over tid. I konfliktdata bør derfor kontrollendring registreres med eksplisitt kilde, tidspunkt og definisjon, gjerne med usikkerhetsgrad. ACLED kan dokumentere hvor en hendelse fant sted, mens ICRCs effektive-kontrollbegrep viser at juridisk relevante vurderinger krever bredere faktiske forhold. Denne disiplinen hindrer at raske nyhetsbaserte kart framstiller bevegelser på fronten som stabile territoriale endringer uten tilstrekkelig dokumentasjon.
+      ],
+      "paragraphClaimIds": [["geo10-21"], ["geo10-22"], ["geo10-23"], ["geo10-24"]]
+    }
+  ]
+}
