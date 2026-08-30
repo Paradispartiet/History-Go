@@ -271,7 +271,7 @@ for (const [index, title, publication, url, relevance, themes] of [
   [1, "Ankerbrua", "Oslo byleksikon", urls.bridge, "Direkte stedsartikkel om broene, Oscar Hoff, materialene og skulpturene.", ["brohistorie", "infrastruktur", "offentlig kunst"]],
   [2, "Dyre Vaa", "Norsk kunstnerleksikon", urls.vaaNkl, "Faglig biografi og verkopplysninger om konkurransen og bronsegruppene.", ["Dyre Vaa", "skulptur", "1937"]],
   [3, "Blå skilt i Oslo", "Selskabet for Oslo Byes Vel", urls.plaqueOrg, "Organisasjonens egen oversikt over blåskiltformidlingen, med Ankerbrua som markert sted.", ["blåskilt", "byhistorie", "formidling"]]
-]) lesespor.items.push({ id: `lesespor_ankerbrua_00${index}`, title, popupDesc: relevance, author: null, publication, type: "faglig_kilde", subjects: [{ type: "place", name: "Ankerbrua", id: placeId }], place_ids: [placeId], person_ids: [], category_hints: ["by", "historie"], summary: { themes }, classification: { tags: ["Ankerbrua", ...themes] }, url, access: "open", rights: "link_only", source_quality: index === 3 ? "official" : "recognized", curation_status: "strong_candidate", relevance, verifiedAt });
+]) lesespor.items.push({ id: `lesespor_ankerbrua_00${index}`, title, popupDesc: relevance, author: null, publication, type: "faglig_kilde", subjects: [{ type: "place", name: "Ankerbrua", id: placeId }], place_ids: [placeId], person_ids: [], category_hints: ["by", "historie"], summary: { themes }, classification: { tags: ["Ankerbrua", ...themes] }, url, access: "open", rights: "link_only", source_quality: "recognized", curation_status: "strong_candidate", relevance, verifiedAt });
 write(lesesporFile, lesespor);
 
 const sourceRegistry = {
