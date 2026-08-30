@@ -1,15 +1,10 @@
 name: Add Tullin selected curriculum contract
-
 on:
   push:
-    branches:
-      - work/tullin-completion-20260830
-    paths:
-      - .github/workflows/tullin-selected-curriculum-repair.yml
-
+    branches: [work/tullin-completion-20260830]
+    paths: [.github/workflows/tullin-selected-curriculum-repair.yml]
 permissions:
   contents: write
-
 jobs:
   repair:
     runs-on: ubuntu-latest
@@ -18,32 +13,21 @@ jobs:
         with:
           ref: work/tullin-completion-20260830
           fetch-depth: 0
-      - name: Add canonical selected curriculum to Tullin brief
+      - name: Patch producer
         run: |
           python - <<'PY'
           from pathlib import Path
-          path = Path('tools/finalize-tullin-completion.mjs')
-          text = path.read_text()
-          needle = '  sources: Object.fromEntries(sources.map(s => [s.id, { url: s.url, source_type: s.type, review_status: s.review_status, review_note: s.review_note }])),\n  claims: claimsBrief,'
-          replacement = '''  sources: Object.fromEntries(sources.map(s => [s.id, { url: s.url, source_type: s.type, review_status: s.review_status, review_note: s.review_note }])),
-  selected_curriculum: {
-    module_ids: ["kur_by_01_byrom_akser_knutepunkt", "kur_by_04_historiske_lag_og_transformasjon", "kur_by_06_makt_symboler_og_representasjon"],
-    emne_ids: ["em_by_offentlige_rom_motesteder", "em_by_historiske_lag_i_hverdagsrom", "em_by_bygningstyper_og_typologier", "em_by_symbolsk_makt_og_representasjon", "em_by_materialitet_og_sanseerfaring"],
-    topic_hook_ids: ["byliv_aapne_rom", "his_spor_gatebilde", "ark_bygningstyper", "ark_materialbruk"],
-    method_ids: ["met_feltobservasjon", "met_for_etter", "met_gaanalyse"],
-    thinker_ids: ["william_h_whyte", "pierre_nora", "aldo_rossi", "christian_norberg_schulz"],
-    works: ["The Social Life of Small Urban Spaces", "Les Lieux de Mémoire", "The Architecture of the City", "Genius Loci"]
-  },
-  claims: claimsBrief,'''
-          count = text.count(needle)
-          if count != 1:
-              raise SystemExit(f'expected one source/claims insertion point, found {count}')
-          path.write_text(text.replace(needle, replacement))
+          p=Path('tools/finalize-tullin-completion.mjs')
+          t=p.read_text()
+          needle='  claims: claimsBrief,'
+          insert='  selected_curriculum: { module_ids: ["kur_by_01_byrom_akser_knutepunkt", "kur_by_04_historiske_lag_og_transformasjon", "kur_by_06_makt_symboler_og_representasjon"], emne_ids: ["em_by_offentlige_rom_motesteder", "em_by_historiske_lag_i_hverdagsrom", "em_by_bygningstyper_og_typologier", "em_by_symbolsk_makt_og_representasjon", "em_by_materialitet_og_sanseerfaring"], topic_hook_ids: ["byliv_aapne_rom", "his_spor_gatebilde", "ark_bygningstyper", "ark_materialbruk"], method_ids: ["met_feltobservasjon", "met_for_etter", "met_gaanalyse"], thinker_ids: ["william_h_whyte", "pierre_nora", "aldo_rossi", "christian_norberg_schulz"], works: ["The Social Life of Small Urban Spaces", "Les Lieux de Mémoire", "The Architecture of the City", "Genius Loci"] },\n  claims: claimsBrief,'
+          if t.count(needle)!=1: raise SystemExit(f'claims insertion count={t.count(needle)}')
+          p.write_text(t.replace(needle,insert))
           PY
           rm -f reports/place-production/tullin-producer-error.log
           rm -f .github/workflows/tullin-selected-curriculum-repair.yml
           git diff --check
-      - name: Commit repair
+      - name: Commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
