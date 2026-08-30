@@ -94,3 +94,7 @@ After verified prerequisite materialization:
 ## Completion proof
 
 A valid permanent prerequisite head must pass the focused Formann gate, Career Gameplay audit, rollout-readiness audit, compiled Scene Registry parity, Scenario People invariants and full `test:civication`; regenerate the compiled Scene Registry and generated Scenario People; remove all TEMP materializer/workflow files before commit; and leave only verified permanent authored/generated state.
+
+## Reconciliation checkpoint
+
+This prerequisite is reconciled against `main` commit `48efecdfad1834e70ee5771dd3d39a0102789e18`, which includes PR #5514's canonical Universitetsplassen social-place regression correction and the later non-overlapping Subkultur audit merge. The fail-closed verifier must run again from this baseline and may commit permanent Formann state only after the full Civication suite passes.
