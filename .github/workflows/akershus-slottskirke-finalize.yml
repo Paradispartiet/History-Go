@@ -1,4 +1,4 @@
-name: Finalize Akershus slottskirke
+name: Finalize Akershus slottskirke v2
 
 on:
   push:
@@ -41,6 +41,9 @@ jobs:
 
       - name: Materialize canonical Akershus slottskirke package
         run: node tools/finalize-akershus-slottskirke-completion.mjs
+
+      - name: Apply source-backed target repairs
+        run: node tools/repair-akershus-slottskirke-finalizer.mjs
 
       - name: Rebuild place and epoch projections
         run: |
@@ -172,6 +175,7 @@ jobs:
       - name: Commit permanent Akershus slottskirke package and remove temporary helpers
         run: |
           rm -f tools/finalize-akershus-slottskirke-completion.mjs
+          rm -f tools/repair-akershus-slottskirke-finalizer.mjs
           rm -f .github/workflows/akershus-slottskirke-finalize.yml
           rm -f reports/place-production/akershus-slottskirke-intake.json
           git add -A
