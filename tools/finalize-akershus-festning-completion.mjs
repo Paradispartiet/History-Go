@@ -25,6 +25,7 @@ const urls = {
   invasion1716: "https://snl.no/den_svenske_invasjonen_av_Norge_i_1716",
   prison: "https://snl.no/Akershus_landsfengsel",
   hannibal: "https://snl.no/Hannibal_Sehested",
+  gamleRadhus: "https://lokalhistoriewiki.no/Gamle_r%C3%A5dhus_(Oslo)",
   rollem: "https://snl.no/Terje_Rollem",
   festningsplassen: "https://snl.no/Festningsplassen",
   visualProfile: "https://www.forsvarsbygg.no/om-oss/skilt-og-visuell-profil",
@@ -110,15 +111,27 @@ delete place.productions;
 write(placeFile, place);
 
 const personFile = "data/people/historie/oslo/akershus_festning/hannibal_sehested.json";
+const personClaimsFile = "data/people/claims/historie/oslo/akershus_festning/hannibal_sehested.claims.json";
 const personPack = read(personFile); const person = Array.isArray(personPack) ? personPack[0] : personPack;
-Object.assign(person, { desc: "Stattholder og høvedsmann på Akershus fra 1642, sentral i den militære og administrative styrkingen av Norge under Christian 4.", popupDesc: "Hannibal Sehested ble stattholder i Norge, høvedsmann på Akershus og lensherre i Akershus len i 1642. Han bodde på festningen mens store arbeider på slott og forsvarsverk pågikk, og Akershus ble et direkte sentrum for hans forsøk på å samle militær, økonomisk og administrativ makt. Sehested organiserte også en mer varig norsk hær under Hannibalfeiden. Rollen hans gjør ham til en stedsspesifikk nøkkelperson ved Akershus, ikke bare en generell 1600-tallspolitiker.", places: [...new Set([placeId, "gamle_radhus"])], image: "bilder/kort/people/hannibal_sehested.webp", cardImage: "bilder/kort/people/hannibal_sehested.webp", imageMeta: portraitMeta, source_urls: [urls.hannibal, urls.snl] });
+Object.assign(person, { desc: "Stattholder og høvedsmann på Akershus fra 1642, sentral i den militære og administrative styrkingen av Norge under Christian 4.", popupDesc: "Hannibal Sehested ble stattholder i Norge, høvedsmann på Akershus og lensherre i Akershus len i 1642. Han bodde på festningen mens store arbeider på slott og forsvarsverk pågikk, og Akershus ble et direkte sentrum for hans forsøk på å samle militær, økonomisk og administrativ makt. Sehested organiserte også en mer varig norsk hær under Hannibalfeiden. Rollen hans gjør ham til en stedsspesifikk nøkkelperson ved Akershus, ikke bare en generell 1600-tallspolitiker.", places: [...new Set([placeId, "gamle_radhus"])], image: "bilder/kort/people/hannibal_sehested.webp", cardImage: "bilder/kort/people/hannibal_sehested.webp", imageMeta: portraitMeta, source_urls: [urls.hannibal, urls.snl, urls.gamleRadhus, urls.hannibalPortrait], profileStandard: "people_profile_v1.0", profileStatus: "ready_people_v1", claimsFile: personClaimsFile });
 write(personFile, Array.isArray(personPack) ? [person] : person);
 const peopleAttrs = read("data/people/people_image_attributions.json"); if (!peopleAttrs[personId]) peopleAttrs[personId] = {}; Object.assign(peopleAttrs[personId], { image: person.image, ...portraitMeta }); write("data/people/people_image_attributions.json", peopleAttrs);
-write("data/people/claims/historie/oslo/akershus_festning/hannibal_sehested.claims.json", { schema: "history_go_people_claims_v1", person_id: personId, place_id: placeId, verified_at: verifiedAt, claims: [
-  { id: "claim_hannibal_akershus_1642", claim: "Hannibal Sehested ble stattholder i Norge og høvedsmann på Akershus i 1642.", status: "verified", sources: [urls.hannibal] },
-  { id: "claim_hannibal_akershus_residence", claim: "Sehested bodde på Akershus mens omfattende arbeider på slott og festning pågikk.", status: "verified", sources: [urls.snl] },
-  { id: "claim_hannibal_akershus_army", claim: "Sehested organiserte en mer varig norsk hær under Hannibalfeiden.", status: "verified", sources: [urls.hannibal] }
-] });
+const personClaims = [
+  ["identity", "Hannibal Sehested levde fra 1609 til 1666 og var dansk-norsk adelsmann og stattholder.", urls.hannibal, "biografiens innledning", "recognized_reference", "explicit"],
+  ["akershus_role", "Hannibal Sehested ble stattholder i Norge, høvedsmann på Akershus og lensherre i Akershus len i 1642.", urls.hannibal, "avsnittet om utnevnelsen i 1642", "recognized_reference", "explicit"],
+  ["akershus_residence", "Sehested bodde på Akershus mens omfattende arbeider på slott og festning pågikk.", urls.snl, "avsnittet om Christian 4.s og Sehesteds byggearbeider", "recognized_reference", "direct"],
+  ["army", "Sehested organiserte en mer varig norsk hær under Hannibalfeiden.", urls.hannibal, "avsnittet om Hannibalfeiden og hærorganiseringen", "recognized_reference", "direct"],
+  ["gamle_radhus_office", "Sehesteds generalkommissariat hadde kontorer i Gamle rådhus i de første årene etter 1641.", urls.gamleRadhus, "avsnittet om rådhusbygningens tidlige bruk", "local_history_reference", "direct"],
+  ["portrait", "Commons-filen identifiserer portrettet som Hannibal Sehested og oppgir Karel van Mander III som kunstner.", urls.hannibalPortrait, "Summary og Licensing", "archive", "direct"]
+].map(([id, claim, source_url, source_location, source_type, evidence_level]) => ({ id, claim, status: "verified", source_url, source_location, source_type, temporal_status: "historical", verified_at: verifiedAt, evidence_level }));
+write(personClaimsFile, {
+  schema: "history_go_people_claims_v1", version: "1.0.0", person_id: personId, place_id: placeId, profile_file: personFile,
+  identity: { canonical_identity: "Den dansk-norske adelsmannen og stattholderen Hannibal Sehested (1609–1666).", name_variants: ["Hannibal Sehested"], not: ["andre medlemmer av Sehested-slekten"], identity_status: "verified" },
+  claims: personClaims,
+  field_claim_map: { name: ["identity"], year: ["akershus_role"], placeId: ["akershus_role"], "places[akershus_festning]": ["akershus_role", "akershus_residence"], "places[gamle_radhus]": ["gamle_radhus_office"], image: ["portrait"], cardImage: ["portrait"] },
+  sentence_claim_map: { desc: [{ sentence: 1, claim_ids: ["akershus_role", "army"] }], popupDesc: [{ sentence: 1, claim_ids: ["akershus_role"] }, { sentence: 2, claim_ids: ["akershus_residence"] }, { sentence: 3, claim_ids: ["army"] }, { sentence: 4, claim_ids: ["akershus_role", "akershus_residence"] }] },
+  completion: { completed_under: "people_profile_v1.0", claims_verified: `${personClaims.length}/${personClaims.length}`, fact_review: "passed", editorial_review: "passed", source_verified_at: verifiedAt, validator_version: "1.0.0", current_status: "ready_people_v1" }
+});
 
 const brands = read("data/brands/brands_master.json");
 upsertById(brands, { id: brandId, name: "Forsvarsbygg", brand_group: "professional_brand", brand_type: "institution_brand", brand_kind: "public_agency", sector: "defence_estates_and_heritage", state: "catalog", status: "active", verification: "verified", verified_at: verifiedAt, desc: "Statlig eiendoms- og forvaltningsetat for forsvarssektoren og dokumentert forvalter av Akershus festning.", popupdesc: "Forsvarsbygg forvalter Akershus festning som fredet kulturmiljø, arbeidssted og publikumsarena. Brand-koblingen gjelder den navngitte etaten som operatør og forvalter, ikke festningen som sted. Previewet bruker et CC-lisensiert fotografi av en autentisk informasjonstavle på Akershus, ikke Forsvarsbyggs begrensede logopakke.", tags: ["brand", "offentlig", "forsvar", "kulturminne", "akershus_festning"], place_ids: [placeId], source_urls: [urls.official, urls.visualProfile, urls.brandSign], logo: "bilder/kort/brands/forsvarsbygg_akershus_wordmark.webp", imageMeta: brandMeta });
