@@ -7,7 +7,9 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ADJUDICATION = 'data/fag/sport/legacy_theory_adjudication_v1.json';
 const RAW_AUDIT = 'scripts/audit-fagverk-sport-legacy-theory.mjs';
 const PORTAL = 'data/fagverk/fagverk_portal.json';
-const LEGACY = 'data/fag/sport/merke_sport.html';
+const ARCHIVE = 'data/fag/sport/archive/merke_sport_full_teori_legacy_20260830.html';
+const COMPATIBILITY = 'data/fag/sport/merke_sport.html';
+const ORIGINAL_LEGACY_BLOB = '609a42de3f8bcaa59efc5b46807fa191dafbfba3';
 const TARGET = 'fagverk.html?subject=sport#fagverkIaProgresjon';
 const IDS = ['felt', 'normativ', 'doxa', 'metode', 'materiell', 'sosial', 'geografisk', 'temporal', 'blindsoner', 'begreper', 'bidrag'];
 const KNOWLEDGE_IDS = IDS.filter((id) => id !== 'bidrag');
@@ -36,21 +38,29 @@ function assert(condition, message) {
 }
 
 export function auditSportLegacyAdjudication() {
-  for (const file of [ADJUDICATION, PORTAL, LEGACY]) {
+  for (const file of [ADJUDICATION, PORTAL, ARCHIVE, COMPATIBILITY]) {
     assert(fs.existsSync(abs(file)), `Mangler ${file}`);
   }
 
   const raw = rawAudit();
   assert(raw.subject === 'sport', 'Raw audit har feil subject.');
   assert(raw.summary?.knowledgeSectionCount === 10, 'Raw audit skal ha 10 kunnskapsseksjoner.');
-  assert(raw.summary?.anchorCompleteCount === 10, 'Sport må ha 10/10 canonical ankerdekning før adjudikering.');
+  assert(raw.summary?.anchorCompleteCount === 10, 'Sport må ha 10/10 canonical ankerdekning før retirement.');
   assert(raw.summary?.manualReviewCount === 0, 'Sport har fortsatt uavklarte raw audit-gap.');
   assert(raw.summary?.redirectReady === false, 'Raw audit får aldri autorisere redirect alene.');
+  assert(raw.legacy?.badgePage === ARCHIVE, 'Raw audit leser ikke det bytebevarte Sport-arkivet.');
+  assert(raw.legacy?.compatibilityPage === COMPATIBILITY, 'Raw audit har feil compatibility-side.');
+  assert(raw.legacy?.sourcePreserved === true, 'Sport legacy-kilden er ikke bytebevart.');
+  assert(raw.legacy?.originalBlobSha === ORIGINAL_LEGACY_BLOB, 'Sport original legacy-blob mismatch.');
+  assert(raw.legacy?.archiveBlobSha === ORIGINAL_LEGACY_BLOB, 'Sport arkiv-blob mismatch.');
+  assert(raw.navigation?.portalRedirected === true, 'Sport-portalen er ikke migrert til Progresjon.');
+  assert(raw.navigation?.compatibilityRedirectPresent === true, 'Sport compatibility-redirect mangler.');
+  assert(raw.navigation?.routeRetired === true, 'Sport legacy-ruten er ikke ferdig pensjonert.');
 
   const adjudication = readJson(ADJUDICATION);
   assert(adjudication.schema === 'history_go_fagverk_sport_legacy_adjudication_v1', 'Uventet adjudication schema.');
   assert(adjudication.subject === 'sport', 'Adjudication subject må være sport.');
-  assert(adjudication.legacyBadgePage === LEGACY, 'Legacy badgePage mismatch.');
+  assert(adjudication.legacyBadgePage === COMPATIBILITY, 'Historisk legacy badgePage skal være compatibility-URL-en.');
   assert(adjudication.redirectTarget === TARGET, 'Redirect target mismatch.');
   assert(Array.isArray(adjudication.sections), 'Adjudication mangler sections.');
   assert(JSON.stringify(adjudication.sections.map((row) => row.id)) === JSON.stringify(IDS), 'Adjudication-seksjoner matcher ikke legacy-strukturen.');
@@ -94,7 +104,8 @@ export function auditSportLegacyAdjudication() {
   const portal = readJson(PORTAL);
   const portalSubject = portal.categories?.find((item) => item.id === 'sport');
   assert(portalSubject, 'Sport mangler i Fagverk-portalen.');
-  assert(portalSubject.badgePage === LEGACY, 'Adjudication-PR skal ikke endre Sport-ruten før retirement.');
+  assert(portalSubject.badgePage === TARGET, `Sport badgePage må være ${TARGET} etter retirement.`);
+  assert(raw.navigation.badgePage === TARGET, 'Raw audit og portal er uenige om Sport-ruten.');
 
   const migrated = adjudication.sections.filter((row) => row.disposition === 'migrated_to_canonical');
   const superseded = adjudication.sections.filter((row) => row.disposition === 'canonical_supersedes');
@@ -107,7 +118,8 @@ export function auditSportLegacyAdjudication() {
     inputs: {
       rawAuditSchema: raw.schema,
       adjudicationFile: ADJUDICATION,
-      legacyBadgePage: LEGACY
+      legacyBadgePage: ARCHIVE,
+      compatibilityBadgePage: COMPATIBILITY
     },
     summary: {
       legacySectionCount: adjudication.sections.length,
@@ -121,7 +133,9 @@ export function auditSportLegacyAdjudication() {
       redirectReady: true,
       redirectTarget: TARGET,
       portalRoute: portalSubject.badgePage,
-      portalRedirected: false
+      portalRedirected: true,
+      legacyBadgeSourcePreserved: raw.legacy.sourcePreserved,
+      compatibilityRedirectPresent: raw.navigation.compatibilityRedirectPresent
     },
     rows: adjudication.sections.map((row) => ({
       ...row,

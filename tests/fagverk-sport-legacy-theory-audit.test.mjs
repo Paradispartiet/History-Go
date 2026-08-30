@@ -3,7 +3,10 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { spawnSync } from 'node:child_process';
 
-const LEGACY = 'data/fag/sport/merke_sport.html';
+const LEGACY = 'data/fag/sport/archive/merke_sport_full_teori_legacy_20260830.html';
+const COMPATIBILITY = 'data/fag/sport/merke_sport.html';
+const ORIGINAL_BLOB = '609a42de3f8bcaa59efc5b46807fa191dafbfba3';
+const TARGET = 'fagverk.html?subject=sport#fagverkIaProgresjon';
 const EXCLUSION_OWNER = 'data/fagverk/sport/inkludering-helse-lek-samfunn.json';
 const IDS = ['felt', 'normativ', 'doxa', 'metode', 'materiell', 'sosial', 'geografisk', 'temporal', 'blindsoner', 'begreper', 'bidrag'];
 const MIN_CANONICAL_CORPUS_CHARS = 150000;
@@ -14,11 +17,15 @@ function run() {
   return JSON.parse(result.stdout);
 }
 
-test('Sport legacy-teori har 10/10 canonical ankerdekning etter eksplisitt ekskluderingsmigrering', () => {
+test('Sport legacy-teori er bytebevart og har 10/10 canonical ankerdekning etter retirement', () => {
   const report = run();
   assert.equal(report.schema, 'history_go_fagverk_sport_legacy_theory_audit_v1');
   assert.equal(report.subject, 'sport');
   assert.equal(report.legacy.badgePage, LEGACY);
+  assert.equal(report.legacy.compatibilityPage, COMPATIBILITY);
+  assert.equal(report.legacy.originalBlobSha, ORIGINAL_BLOB);
+  assert.equal(report.legacy.archiveBlobSha, ORIGINAL_BLOB);
+  assert.equal(report.legacy.sourcePreserved, true);
   assert.equal(report.legacy.sectionCount, 11);
   assert.equal(report.legacy.knowledgeSectionCount, 10);
   assert.deepEqual(report.rows.map((row) => row.id), IDS);
@@ -35,7 +42,7 @@ test('Sport legacy-teori har 10/10 canonical ankerdekning etter eksplisitt ekskl
   assert.equal(report.summary.manualReviewCount, 0);
   assert.deepEqual(report.summary.manualReview, []);
   assert.equal(report.summary.redirectReady, false);
-  assert.match(report.summary.redirectBlockReason, /explicit editorial adjudication/i);
+  assert.match(report.summary.redirectBlockReason, /explicit Sport legacy adjudication gate/i);
 
   for (const row of report.rows.filter((item) => item.role === 'knowledge')) {
     assert.ok(row.anchorCount > 0, `${row.id} mangler ankere`);
@@ -64,7 +71,15 @@ test('Sport legacy-teori har 10/10 canonical ankerdekning etter eksplisitt ekskl
   assert.equal(product.role, 'legacy_product_copy');
   assert.equal(product.anchorCount, 0);
 
-  assert.equal(report.navigation.badgePage, LEGACY);
+  const compatibility = fs.readFileSync(COMPATIBILITY, 'utf8');
+  assert.match(compatibility, /location\.replace/);
+  assert.match(compatibility, /subject=sport#fagverkIaProgresjon/);
+  assert.doesNotMatch(compatibility, /merke-blokk|SPORT & LEK\s*[–-]\s*full teoretisk beskrivelse|<h2>1\. Felt<\/h2>|Groundhopper-logikk/i);
+
+  assert.equal(report.navigation.badgePage, TARGET);
   assert.equal(report.navigation.subjectPage, 'fagverk.html?subject=sport');
-  assert.equal(report.navigation.preRedirectLocked, true);
+  assert.equal(report.navigation.target, TARGET);
+  assert.equal(report.navigation.portalRedirected, true);
+  assert.equal(report.navigation.compatibilityRedirectPresent, true);
+  assert.equal(report.navigation.routeRetired, true);
 });

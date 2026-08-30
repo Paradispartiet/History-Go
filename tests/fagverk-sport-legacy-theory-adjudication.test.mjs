@@ -2,6 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 
+const TARGET = 'fagverk.html?subject=sport#fagverkIaProgresjon';
+const ARCHIVE = 'data/fag/sport/archive/merke_sport_full_teori_legacy_20260830.html';
+const COMPATIBILITY = 'data/fag/sport/merke_sport.html';
+
 function run() {
   const result = spawnSync(process.execPath, ['scripts/audit-fagverk-sport-legacy-adjudication.mjs'], { encoding: 'utf8' });
   assert.equal(result.status, 0, result.stderr || result.stdout);
@@ -51,9 +55,13 @@ test('bidrag pensjoneres som legacy-produkttekst uten kunstig kunnskapseier', ()
   assert.deepEqual(product.migrationRefs, []);
 });
 
-test('adjudisering åpner retirement-gaten uten å endre aktiv Sport-rute i samme PR', () => {
+test('adjudisering låser bytearkiv, compatibility-URL og canonical Progresjon etter retirement', () => {
   const report = run();
-  assert.equal(report.summary.redirectTarget, 'fagverk.html?subject=sport#fagverkIaProgresjon');
-  assert.equal(report.summary.portalRoute, 'data/fag/sport/merke_sport.html');
-  assert.equal(report.summary.portalRedirected, false);
+  assert.equal(report.inputs.legacyBadgePage, ARCHIVE);
+  assert.equal(report.inputs.compatibilityBadgePage, COMPATIBILITY);
+  assert.equal(report.summary.redirectTarget, TARGET);
+  assert.equal(report.summary.portalRoute, TARGET);
+  assert.equal(report.summary.portalRedirected, true);
+  assert.equal(report.summary.legacyBadgeSourcePreserved, true);
+  assert.equal(report.summary.compatibilityRedirectPresent, true);
 });
