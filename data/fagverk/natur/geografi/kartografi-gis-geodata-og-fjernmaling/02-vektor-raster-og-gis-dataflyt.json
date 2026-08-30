@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "kartografi-gis-geodata-og-fjernmaling",
+  "id": "02-vektor-raster-og-gis-dataflyt",
+  "title": "Vektor, raster og GIS-dataflyt",
+  "sections": [
+    {
+      "id": "vektor-feature-geometri-og-topologi",
+      "title": "Vektor, feature, geometri og topologiske relasjoner",
+      "method_ids": ["met_geo_vektordatamodell", "met_geo_topologisk_kontroll"],
+      "boundary": "Punkt, kurve og flate er abstraherte geometrier; de er ikke fenomenet selv og må velges etter målestokk og analysebehov.",
+      "paragraphs": [
+        "Simple Features skiller blant annet punkt, kurve, flate og geometrisamlinger som standardiserte måter å representere geografiske features på. Standardiserte geometriobjekter gjør datasett interoperable, men valg av type er en faglig abstraksjon. En by kan representeres som punkt i en global nettverksanalyse og som flate i en arealstudie; en elv kan være senterlinje i et transportnett og polygon der bredde og areal er viktige. Datamodellen må derfor beskrive hva feature-en står for, hvilken skala den gjelder på, og hvilke egenskaper som bevisst er utelatt.",
+        "Valg av vektorgeometri bestemmer hvilke romlige egenskaper som bevares og hvilke operasjoner som gir faglig mening. Geometritypen styrer hvilke operasjoner som er meningsfulle. Avstand mellom punkt, kryssing mellom linjer og arealoverlapp mellom flater uttrykker ulike relasjoner og kan ikke brukes om hverandre uten begrunnelse. Før buffer, overlay eller nettverksanalyse bør forskeren derfor formulere den geografiske relasjonen som skal måles og kontrollere at geometri, oppløsning og topologiske regler faktisk representerer denne relasjonen tilstrekkelig.",
+        "Geometriens tekniske gyldighet er ikke nok til å dokumentere at feature-avgrensningen er tematisk korrekt eller aktuell. En polygon kan være lukket og syntaktisk gyldig selv om grensen bygger på gammel kartlegging, feil klassifikasjon eller en administrativ definisjon som ikke passer forskningsspørsmålet. Kvalitetskontroll må derfor skille geometrisk validitet fra tematisk korrekthet, aktualitet og fullstendighet. Ved grensetilfeller bør avgrensningsregel og dato dokumenteres, slik at brukeren ikke tolker en presis digital linje som mer sikker enn kildegrunnlaget tillater.",
+        "Web-API-er kan standardisere tilgang til features, men semantikk, datakvalitet og analyseformål må fortsatt vurderes av brukeren. Standardiserte API-er gjør det enklere å hente og filtrere features, men de garanterer ikke at feltnavn, klassifikasjoner eller geometrier betyr det samme på tvers av kilder. Ved integrasjon må analysen kontrollere skjema, definisjoner, CRS, tidsstempel og kvalitetsmetadata før lag kobles. En vellykket HTTP-respons eller gyldig GeoJSON er teknisk interoperabilitet; faglig interoperabilitet krever at semantikken og bruksformålet også er kompatible."
+      ],
+      "paragraphClaimIds": [["geo2-09"],["geo2-10"],["geo2-11"],["geo2-12"]]
+    },
+    {
+      "id": "raster-georeferering-opplosning-og-cloud-tilgang",
+      "title": "Raster, georeferering, oppløsning og cloud-tilgang",
+      "method_ids": ["met_geo_rasterdatamodell", "met_geo_rastertilgang_og_overviews"],
+      "boundary": "Pikselstørrelse, georeferering og lagringsoptimalisering beskriver forskjellige egenskaper; en rask rasterfil er ikke automatisk et nøyaktig rasterprodukt.",
+      "paragraphs": [
+        "GeoTIFF lagrer bilde- eller rasterdata sammen med georefereringsinformasjon som gjør pikselmatrisen geografisk plasserbar. Georefereringen knytter rad- og kolonneposisjonene i rasteret til et geografisk referansesystem. For å tolke eller kombinere rasteret må analysen kjenne transformasjonen fra pikselrom til kartkoordinater, CRS og eventuell nodata-konvensjon. En fil som kan åpnes som bilde uten korrekt georeferering er ikke geografisk plassert pålitelig. Kontroll med kjente posisjoner eller metadata bør derfor inngå før rasterverdier brukes i videre romlig analyse.",
+        "Cloud Optimized GeoTIFF bruker blant annet tiles, overviews og HTTP range for å hente nødvendige deler av store rastere effektivt over web. COG er først og fremst en distribusjons- og tilgangsarkitektur: intern tiling, overviews og byte-range-forespørsler gjør det mulig å lese utsnitt og oppløsningsnivåer uten å hente hele filen. Dette forbedrer ytelse og skalerbarhet, men endrer ikke automatisk sensorens oppløsning, klassifikasjonskvalitet eller geometriske nøyaktighet. En evaluering må derfor skille effektiv datatilgang fra kvaliteten på det vitenskapelige produktet som distribueres.",
+        "Rasterets pikselstørrelse er ikke det samme som den minste pålitelige objektdetaljen, fordi sensor, prosessering og tematisk kvalitet også begrenser tolkningen. En piksel på 10 eller 30 meter beskriver sampling på bakken, ikke en garanti for at alle objekter av samme størrelse kan identifiseres eller at pikselen inneholder ett rent fenomen. Sensorens punktspredning, spektrale bånd, geolokalisering, prosessering og blandede overflater påvirker tolkningen. Derfor må minste pålitelige kartleggingsenhet og tematisk nøyaktighet valideres empirisk i stedet for å utledes direkte fra nominell pikselstørrelse.",
+        "Resampling og reprojeksjon endrer rasterverdienes geometriske eller numeriske representasjon og bør dokumenteres når de påvirker videre analyse. Ved reprojeksjon må et nytt rastergitter beregnes, og resampling bestemmer hvordan verdier fra kildegitteret overføres til målgitteret. Nærmeste nabo, bilineær og andre metoder har ulike konsekvenser for kategoriske og kontinuerlige data. Arbeidsflyten bør dokumentere metode, utgangs- og mål-CRS og pikselstørrelse, og kontrollere om transformasjonen endrer klasser, ekstremverdier eller romlige grenser på en måte som er relevant for analysen."
+      ],
+      "paragraphClaimIds": [["geo2-13"],["geo2-14"],["geo2-15"],["geo2-16"]]
+    }
+  ]
+}
