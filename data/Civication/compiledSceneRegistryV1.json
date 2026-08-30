@@ -102608,6 +102608,137 @@
     {
       "category": "naeringsliv",
       "compatibility_projection": {
+        "actor_id": "amir_erfaren_fagarbeider",
+        "category": "naeringsliv",
+        "channel": "work",
+        "choices": [
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "craft": 2,
+                "safety": 2,
+                "trust_colleague": 1
+              }
+            },
+            "feedback": "Du viser at respekt for erfaren praksis ikke krever lydighet mot snarveien: taus kunnskap kan tas inn i faget samtidig som kontrollgrensen forblir eksplisitt og etterprøvbar.",
+            "id": "A",
+            "label": "Beholde kunnskapen, ikke bypasset",
+            "reply": "Jeg ber Amir forklare tegnet han leser, men gjennomfører fortsatt det påkrevde kontrollsteget.",
+            "tags": [
+              "professional_relationship"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "future_risk": 2,
+                "speed": 2,
+                "trust_colleague": 1
+              }
+            },
+            "feedback": "Du styrker den kollegiale flyten på kort sikt, men gjør personlig erfaring til erstatning for en kontroll som ikke var din å oppheve; risikoen flyttes fremover i arbeidskjeden.",
+            "id": "B",
+            "label": "Følge Amir denne gangen",
+            "reply": "Jeg bruker Amirs metode og følger ekstra nøye med på utfallet.",
+            "tags": [
+              "professional_relationship"
+            ]
+          }
+        ],
+        "cooldown": 2,
+        "id": "fagarbeider_people_amir_standard_001",
+        "mail_class": "professional_message",
+        "mail_family": "fagarbeider_profesjonelle_arbeidsrelasjoner",
+        "mail_type": "people",
+        "messageChannel": "work",
+        "people_ref": "amir_erfaren_fagarbeider",
+        "person_id": "amir_erfaren_fagarbeider",
+        "phase": "early",
+        "place_id": "fag_og_utstyrsplass",
+        "priority": 72,
+        "purpose": "Readiness-prerequisite: koble typed profesjonell relasjon til eksisterende Fagarbeider-arbeidsflate uten å endre canonical plan eller formell myndighet.",
+        "repeatable": false,
+        "role_scope": "fagarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/people/fagarbeider_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Amir viser deg et grep som gjør jobben raskere og forklarer hvilket tegn han bruker for å vite at det vanligvis går bra.",
+          "Grepet inneholder ekte erfaringskunnskap, men erstatter samtidig et formelt kontrollsteg som finnes av en grunn.",
+          "Du må skille det som er verdifullt i erfaringen fra det som ikke bør gjøres til ny skjult norm."
+        ],
+        "stage": "stable",
+        "stakes": "Valget påvirker samarbeid, sporbarhet og faglig tillit, men kan aldri gi ny formell myndighet eller erstatte kompetanse- og sikkerhetsgrensen.",
+        "subject": "Den raske metoden virker — helt til den ikke gjør det",
+        "summary": "Amir viser en erfaringsbasert måte å spare tid på som ofte fungerer, men som hopper over et kontrollpunkt. Scenen gjør kollegial fagrespekt konkret: spilleren kan hente ut den nyttige tause kunnskapen uten å la sosial lojalitet eller erfaring alene bli argument for å omgå standard og sikkerhet."
+      },
+      "id": "fagarbeider_people_amir_standard_001",
+      "mail_type": "people",
+      "role_scope": "fagarbeider",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du viser at respekt for erfaren praksis ikke krever lydighet mot snarveien: taus kunnskap kan tas inn i faget samtidig som kontrollgrensen forblir eksplisitt og etterprøvbar.",
+            "id": "A",
+            "label": "Beholde kunnskapen, ikke bypasset",
+            "reply": "Jeg ber Amir forklare tegnet han leser, men gjennomfører fortsatt det påkrevde kontrollsteget."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du styrker den kollegiale flyten på kort sikt, men gjør personlig erfaring til erstatning for en kontroll som ikke var din å oppheve; risikoen flyttes fremover i arbeidskjeden.",
+            "id": "B",
+            "label": "Følge Amir denne gangen",
+            "reply": "Jeg bruker Amirs metode og følger ekstra nøye med på utfallet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Amir viser deg et grep som gjør jobben raskere og forklarer hvilket tegn han bruker for å vite at det vanligvis går bra.",
+            "Grepet inneholder ekte erfaringskunnskap, men erstatter samtidig et formelt kontrollsteg som finnes av en grunn.",
+            "Du må skille det som er verdifullt i erfaringen fra det som ikke bør gjøres til ny skjult norm."
+          ],
+          "subject": "Den raske metoden virker — helt til den ikke gjør det",
+          "summary": "Amir viser en erfaringsbasert måte å spare tid på som ofte fungerer, men som hopper over et kontrollpunkt. Scenen gjør kollegial fagrespekt konkret: spilleren kan hente ut den nyttige tause kunnskapen uten å la sosial lojalitet eller erfaring alene bli argument for å omgå standard og sikkerhet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "fagarbeider_people_amir_standard_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "fag_og_utstyrsplass",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "fagarbeider_people_amir_standard_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/people/fagarbeider_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "fagarbeider.mail.fagarbeider_people_amir_standard_001",
+        "version": 1
+      },
+      "source_hash": "23d8bc284998de6041fc7e62e4eccd43a79c3840a738b4c8638fa3d92adbb77f",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/people/fagarbeider_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
         "category": "naeringsliv",
         "choices": [
           {
@@ -102824,6 +102955,137 @@
         "version": 1
       },
       "source_hash": "9442b683397bf4109a9da1cf1dd54ecebcc1ddaa1a22f79399be5f3b94ff3530",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/people/fagarbeider_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "actor_id": "liv_laerling_fagarbeider",
+        "category": "naeringsliv",
+        "channel": "work",
+        "choices": [
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "clarity": 1,
+                "mentoring": 2,
+                "safety": 2
+              }
+            },
+            "feedback": "Du gjør taus dømmekraft overførbar uten å late som lærlingen kan mer enn hun kan: opplæringen styrker selvstendighet nettopp ved å gjøre kompetanse- og eskaleringsgrensen eksplisitt.",
+            "id": "A",
+            "label": "Lære bort stoppkriteriet og få teach-back",
+            "reply": "Jeg forklarer hvilket tegn som endrer situasjonen, og ber Liv beskrive når hun selv skal stoppe og hente hjelp.",
+            "tags": [
+              "professional_relationship"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "craft": 1,
+                "future_risk": 1,
+                "mentoring": 1
+              }
+            },
+            "feedback": "Du gir en nyttig demonstrasjon, men lar deler av vurderingen forbli personbåren; Liv kan kopiere løsningen uten å ha fått en tydelig regel for når hun må stoppe og be om faglig avklaring.",
+            "id": "B",
+            "label": "Vise henne én gang til",
+            "reply": "Jeg demonstrerer riktig håndtering av avviket og ber henne følge samme mønster neste gang.",
+            "tags": [
+              "professional_relationship"
+            ]
+          }
+        ],
+        "cooldown": 2,
+        "id": "fagarbeider_people_liv_overlevering_001",
+        "mail_class": "professional_message",
+        "mail_family": "fagarbeider_profesjonelle_arbeidsrelasjoner",
+        "mail_type": "people",
+        "messageChannel": "work",
+        "people_ref": "liv_laerling_fagarbeider",
+        "person_id": "liv_laerling_fagarbeider",
+        "phase": "early",
+        "place_id": "overleverings_og_opplaeringsflate",
+        "priority": 72,
+        "purpose": "Readiness-prerequisite: koble typed profesjonell relasjon til eksisterende Fagarbeider-arbeidsflate uten å endre canonical plan eller formell myndighet.",
+        "repeatable": false,
+        "role_scope": "fagarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/people/fagarbeider_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Liv gjennomfører standardrekkefølgen riktig og kan forklare hva hun gjør i hvert steg.",
+          "Når du endrer ett symptom i eksemplet, fortsetter hun likevel fordi hun ikke har lært hvilket tegn som betyr at saken må stoppes og avklares.",
+          "Overleveringen er først trygg når kunnskapen om grensen er like tydelig som kunnskapen om selve oppgaven."
+        ],
+        "stage": "stable",
+        "stakes": "Valget påvirker samarbeid, sporbarhet og faglig tillit, men kan aldri gi ny formell myndighet eller erstatte kompetanse- og sikkerhetsgrensen.",
+        "subject": "Liv kan gjenta stegene — men kan hun se når hun skal stoppe?",
+        "summary": "Liv har lært arbeidsrekkefølgen og kan utføre standardtilfellet, men overleveringen viser at hun fortsatt mangler stoppkriteriet for et avvik. Scenen trener fagarbeideren som mentor uten lederglidning: spilleren må gjøre dømmekraft og kompetansegrense eksplisitt fremfor bare å demonstrere riktig håndbevegelse."
+      },
+      "id": "fagarbeider_people_liv_overlevering_001",
+      "mail_type": "people",
+      "role_scope": "fagarbeider",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du gjør taus dømmekraft overførbar uten å late som lærlingen kan mer enn hun kan: opplæringen styrker selvstendighet nettopp ved å gjøre kompetanse- og eskaleringsgrensen eksplisitt.",
+            "id": "A",
+            "label": "Lære bort stoppkriteriet og få teach-back",
+            "reply": "Jeg forklarer hvilket tegn som endrer situasjonen, og ber Liv beskrive når hun selv skal stoppe og hente hjelp."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du gir en nyttig demonstrasjon, men lar deler av vurderingen forbli personbåren; Liv kan kopiere løsningen uten å ha fått en tydelig regel for når hun må stoppe og be om faglig avklaring.",
+            "id": "B",
+            "label": "Vise henne én gang til",
+            "reply": "Jeg demonstrerer riktig håndtering av avviket og ber henne følge samme mønster neste gang."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Liv gjennomfører standardrekkefølgen riktig og kan forklare hva hun gjør i hvert steg.",
+            "Når du endrer ett symptom i eksemplet, fortsetter hun likevel fordi hun ikke har lært hvilket tegn som betyr at saken må stoppes og avklares.",
+            "Overleveringen er først trygg når kunnskapen om grensen er like tydelig som kunnskapen om selve oppgaven."
+          ],
+          "subject": "Liv kan gjenta stegene — men kan hun se når hun skal stoppe?",
+          "summary": "Liv har lært arbeidsrekkefølgen og kan utføre standardtilfellet, men overleveringen viser at hun fortsatt mangler stoppkriteriet for et avvik. Scenen trener fagarbeideren som mentor uten lederglidning: spilleren må gjøre dømmekraft og kompetansegrense eksplisitt fremfor bare å demonstrere riktig håndbevegelse."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "fagarbeider_people_liv_overlevering_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "overleverings_og_opplaeringsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "fagarbeider_people_liv_overlevering_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/people/fagarbeider_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "fagarbeider.mail.fagarbeider_people_liv_overlevering_001",
+        "version": 1
+      },
+      "source_hash": "0737e11e0aac394d898c492a7d2682bb4bc9031520644ace8c8fe6b06e46228d",
       "source_path": "data/Civication/mailFamilies/naeringsliv/people/fagarbeider_people.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -103268,6 +103530,268 @@
         "version": 1
       },
       "source_hash": "e24ab5e9e26ddef57fe63666b9b57c3937e2497b0459068f4d569ea96e1a7427",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/people/fagarbeider_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "actor_id": "rune_arbeidsleder_fagarbeider",
+        "category": "naeringsliv",
+        "channel": "work",
+        "choices": [
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "clarity": 2,
+                "safety": 1,
+                "trust_manager": 1
+              }
+            },
+            "feedback": "Du beskytter både fremdrift og ansvarsgrense: faglig selvstendighet blir synlig som presis avklaring, ikke som at du overtar beslutningsrett som aldri ble delegert.",
+            "id": "A",
+            "label": "Avklare før utførelse",
+            "reply": "Jeg sender Rune den konkrete uklarheten og beskriver hva jeg kan gjøre straks avklaringen er tatt.",
+            "tags": [
+              "professional_relationship"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "clarity": -1,
+                "future_risk": 1,
+                "speed": 1
+              }
+            },
+            "feedback": "Du holder tempoet oppe, men gjør en leder-/bestilleruklarhet til ditt eget risikopunkt; dokumentasjon reduserer skaden uten å gjøre antakelsen til formell avklaring.",
+            "id": "B",
+            "label": "Velge den mest sannsynlige tolkningen",
+            "reply": "Jeg dokumenterer antakelsen og starter på den løsningen som virker mest sannsynlig.",
+            "tags": [
+              "professional_relationship"
+            ]
+          }
+        ],
+        "cooldown": 2,
+        "id": "fagarbeider_people_rune_oppdrag_001",
+        "mail_class": "professional_message",
+        "mail_family": "fagarbeider_profesjonelle_arbeidsrelasjoner",
+        "mail_type": "people",
+        "messageChannel": "work",
+        "people_ref": "rune_arbeidsleder_fagarbeider",
+        "person_id": "rune_arbeidsleder_fagarbeider",
+        "phase": "early",
+        "place_id": "oppdrags_og_befaringsflate",
+        "priority": 72,
+        "purpose": "Readiness-prerequisite: koble typed profesjonell relasjon til eksisterende Fagarbeider-arbeidsflate uten å endre canonical plan eller formell myndighet.",
+        "repeatable": false,
+        "role_scope": "fagarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/people/fagarbeider_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Rune har gitt deg en oppgave med tydelig frist, men ett punkt i arbeidsgrunnlaget kan tolkes på to måter.",
+          "Du kan gjøre en sannsynlig faglig antakelse og komme raskt i gang, eller sende den konkrete uklarheten tilbake før utførelse.",
+          "Oppdraget er ditt å utføre; beslutningen som mangler er ikke automatisk din å eie."
+        ],
+        "stage": "stable",
+        "stakes": "Valget påvirker samarbeid, sporbarhet og faglig tillit, men kan aldri gi ny formell myndighet eller erstatte kompetanse- og sikkerhetsgrensen.",
+        "subject": "Før du starter: hvem eier den siste avklaringen?",
+        "summary": "Rune sender et oppdrag som ser lite ut, men arbeidsgrunnlaget har én kritisk uklarhet. Scenen trener skillet mellom å være selvstendig fagarbeider og å absorbere lederens beslutningsansvar: spilleren må enten synliggjøre avklaringen eller gjøre en antakelse som senere kan se ut som faglig sikkerhet."
+      },
+      "id": "fagarbeider_people_rune_oppdrag_001",
+      "mail_type": "people",
+      "role_scope": "fagarbeider",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du beskytter både fremdrift og ansvarsgrense: faglig selvstendighet blir synlig som presis avklaring, ikke som at du overtar beslutningsrett som aldri ble delegert.",
+            "id": "A",
+            "label": "Avklare før utførelse",
+            "reply": "Jeg sender Rune den konkrete uklarheten og beskriver hva jeg kan gjøre straks avklaringen er tatt."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du holder tempoet oppe, men gjør en leder-/bestilleruklarhet til ditt eget risikopunkt; dokumentasjon reduserer skaden uten å gjøre antakelsen til formell avklaring.",
+            "id": "B",
+            "label": "Velge den mest sannsynlige tolkningen",
+            "reply": "Jeg dokumenterer antakelsen og starter på den løsningen som virker mest sannsynlig."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Rune har gitt deg en oppgave med tydelig frist, men ett punkt i arbeidsgrunnlaget kan tolkes på to måter.",
+            "Du kan gjøre en sannsynlig faglig antakelse og komme raskt i gang, eller sende den konkrete uklarheten tilbake før utførelse.",
+            "Oppdraget er ditt å utføre; beslutningen som mangler er ikke automatisk din å eie."
+          ],
+          "subject": "Før du starter: hvem eier den siste avklaringen?",
+          "summary": "Rune sender et oppdrag som ser lite ut, men arbeidsgrunnlaget har én kritisk uklarhet. Scenen trener skillet mellom å være selvstendig fagarbeider og å absorbere lederens beslutningsansvar: spilleren må enten synliggjøre avklaringen eller gjøre en antakelse som senere kan se ut som faglig sikkerhet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "fagarbeider_people_rune_oppdrag_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "oppdrags_og_befaringsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "fagarbeider_people_rune_oppdrag_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/people/fagarbeider_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "fagarbeider.mail.fagarbeider_people_rune_oppdrag_001",
+        "version": 1
+      },
+      "source_hash": "11807565b06c3a183330660f056364345bd481697cebd6e9ef0121e2d67911ef",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/people/fagarbeider_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "actor_id": "selma_kvalitetskontakt_fagarbeider",
+        "category": "naeringsliv",
+        "channel": "work",
+        "choices": [
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "documentation": 2,
+                "quality": 2,
+                "safety": 1
+              }
+            },
+            "feedback": "Du gjør lokalt faglig ansvar kompatibelt med institusjonell kontroll: kompetansen din reparerer problemet, mens sporet tydelig viser hvilken beslutning som fortsatt tilhører en annen funksjon.",
+            "id": "A",
+            "label": "Dokumentere og sende til riktig kontroll",
+            "reply": "Jeg dokumenterer årsak, tiltak og kontrollresultat, og lar riktig kontrollfunksjon eie eventuell formell lukking.",
+            "tags": [
+              "professional_relationship"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "documentation": -2,
+                "future_risk": 2,
+                "quality": 1
+              }
+            },
+            "feedback": "Du forveksler godt utført korrigering med rett til å lukke hele kontrollsporet; kvaliteten kan være høy samtidig som myndighets- og sporbarhetsgrensen blir svakere.",
+            "id": "B",
+            "label": "Lukke som ferdig fordi rettingen er god",
+            "reply": "Jeg registrerer saken som ferdig siden feilen er rettet og kontrollmålingen ser riktig ut.",
+            "tags": [
+              "professional_relationship"
+            ]
+          }
+        ],
+        "cooldown": 2,
+        "id": "fagarbeider_people_selma_avvik_001",
+        "mail_class": "professional_message",
+        "mail_family": "fagarbeider_profesjonelle_arbeidsrelasjoner",
+        "mail_type": "people",
+        "messageChannel": "work",
+        "people_ref": "selma_kvalitetskontakt_fagarbeider",
+        "person_id": "selma_kvalitetskontakt_fagarbeider",
+        "phase": "early",
+        "place_id": "kvalitets_og_avvikspunkt",
+        "priority": 72,
+        "purpose": "Readiness-prerequisite: koble typed profesjonell relasjon til eksisterende Fagarbeider-arbeidsflate uten å endre canonical plan eller formell myndighet.",
+        "repeatable": false,
+        "role_scope": "fagarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/people/fagarbeider_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Feilen er fysisk rettet, resultatet ser riktig ut og du kan forklare hva du gjorde.",
+          "Selma peker på at kontrollsporet fortsatt mangler årsak, før/etter-status og hvem som eventuelt må godkjenne at et alvorlig avvik kan lukkes.",
+          "Godt fagarbeid må tåle at den som kommer senere kan rekonstruere både rettingen og grensen for din myndighet."
+        ],
+        "stage": "stable",
+        "stakes": "Valget påvirker samarbeid, sporbarhet og faglig tillit, men kan aldri gi ny formell myndighet eller erstatte kompetanse- og sikkerhetsgrensen.",
+        "subject": "Et avvik kan rettes lokalt uten å forsvinne fra sporet",
+        "summary": "Selma ser at du allerede har korrigert en feil som lå innenfor din kompetanse, men spør hva neste skift kan vite om årsaken og kontrollen. Scenen skiller håndverksmessig korrigering fra kontrollmyndighet: spilleren skal dokumentere og eskalere riktig uten å late som egen retting er alvorlig-avviks-godkjenning."
+      },
+      "id": "fagarbeider_people_selma_avvik_001",
+      "mail_type": "people",
+      "role_scope": "fagarbeider",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du gjør lokalt faglig ansvar kompatibelt med institusjonell kontroll: kompetansen din reparerer problemet, mens sporet tydelig viser hvilken beslutning som fortsatt tilhører en annen funksjon.",
+            "id": "A",
+            "label": "Dokumentere og sende til riktig kontroll",
+            "reply": "Jeg dokumenterer årsak, tiltak og kontrollresultat, og lar riktig kontrollfunksjon eie eventuell formell lukking."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du forveksler godt utført korrigering med rett til å lukke hele kontrollsporet; kvaliteten kan være høy samtidig som myndighets- og sporbarhetsgrensen blir svakere.",
+            "id": "B",
+            "label": "Lukke som ferdig fordi rettingen er god",
+            "reply": "Jeg registrerer saken som ferdig siden feilen er rettet og kontrollmålingen ser riktig ut."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Feilen er fysisk rettet, resultatet ser riktig ut og du kan forklare hva du gjorde.",
+            "Selma peker på at kontrollsporet fortsatt mangler årsak, før/etter-status og hvem som eventuelt må godkjenne at et alvorlig avvik kan lukkes.",
+            "Godt fagarbeid må tåle at den som kommer senere kan rekonstruere både rettingen og grensen for din myndighet."
+          ],
+          "subject": "Et avvik kan rettes lokalt uten å forsvinne fra sporet",
+          "summary": "Selma ser at du allerede har korrigert en feil som lå innenfor din kompetanse, men spør hva neste skift kan vite om årsaken og kontrollen. Scenen skiller håndverksmessig korrigering fra kontrollmyndighet: spilleren skal dokumentere og eskalere riktig uten å late som egen retting er alvorlig-avviks-godkjenning."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "fagarbeider_people_selma_avvik_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kvalitets_og_avvikspunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "fagarbeider_people_selma_avvik_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/people/fagarbeider_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "fagarbeider.mail.fagarbeider_people_selma_avvik_001",
+        "version": 1
+      },
+      "source_hash": "42daada626fd0c078aa32b19fde4e4f4cc1f16410c53e61d7700690b12007eef",
       "source_path": "data/Civication/mailFamilies/naeringsliv/people/fagarbeider_people.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -117812,6 +118336,137 @@
     {
       "category": "naeringsliv",
       "compatibility_projection": {
+        "actor_id": "arvid_erfaren_fagarbeider_formann",
+        "category": "naeringsliv",
+        "channel": "work",
+        "choices": [
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "capacity": 1,
+                "fairness": 2,
+                "trust_team": 2
+              }
+            },
+            "feedback": "Du bruker arbeidsledermandatet uten å gjøre den mest pålitelige medarbeideren til permanent buffer. Kapasitet og rettferdighet blir behandlet som deler av samme risikobeslutning, og laget kan se hvorfor fordelingen ble som den ble.",
+            "id": "A",
+            "label": "Fordele med synlig belastningsvurdering",
+            "reply": "Jeg avklarer hvilken kompetanse som faktisk trengs, fordeler resten av laget først og bruker Arvid bare der erfaringen er nødvendig.",
+            "tags": [
+              "professional_relationship"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "fatigue_risk": 2,
+                "speed": 2,
+                "trust_team": -1
+              }
+            },
+            "feedback": "Du kjøper kortsiktig flyt med kjent kompetanse, men gjør tidligere pålitelighet til grunn for ny belastning. Det kan være innen fullmakten og likevel bygge en skjult norm der de sterkeste alltid bærer planens svakheter.",
+            "id": "B",
+            "label": "Gi Arvid sonen for å sikre tempo",
+            "reply": "Jeg gir Arvid sonen fordi han kan levere den raskest og tar resten av bemanningen etterpå.",
+            "tags": [
+              "professional_relationship"
+            ]
+          }
+        ],
+        "cooldown": 2,
+        "id": "formann_people_arvid_fordeling_001",
+        "mail_class": "professional_message",
+        "mail_family": "formann_profesjonelle_arbeidsrelasjoner",
+        "mail_type": "people",
+        "messageChannel": "work",
+        "people_ref": "arvid_erfaren_fagarbeider_formann",
+        "person_id": "arvid_erfaren_fagarbeider_formann",
+        "phase": "early",
+        "place_id": "produksjons_og_arbeidsomrade",
+        "priority": 72,
+        "purpose": "Readiness-prerequisite: koble typed profesjonell relasjon til eksisterende Formann-arbeidsflate uten å endre canonical plan eller formell myndighet.",
+        "repeatable": false,
+        "role_scope": "formann",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/people/formann_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "En fraværssituasjon har gjort bemanningen strammere enn planlagt, og Arvid kan teknisk sett dekke den mest krevende sonen.",
+          "Han har allerede tatt flere tunge oppgaver denne uken og sier rolig at han kan gjøre det igjen dersom det er nødvendig.",
+          "Du må fordele arbeid innen fullmakt uten å gjøre pålitelighet til en automatisk begrunnelse for skjev belastning."
+        ],
+        "stage": "stable",
+        "stakes": "Valget påvirker samarbeid, sporbarhet og operativ tillit, men kan aldri utvide fullmakt, oppheve sikkerhetsrutiner eller erstatte riktig kontroll- og eskaleringslinje.",
+        "subject": "Arvid kan ta den tunge sonen igjen — men bør han?",
+        "summary": "Tavla går enklest opp dersom Arvid får enda en krevende sone fordi han er den mest erfarne og sjelden protesterer. Scenen gjør arbeidsfordeling til mer enn kapasitetsregning: Formannen må se både leveranse, kompetanse, belastning og hva laget lærer om rettferdighet når den sterkeste alltid absorberer usikkerheten."
+      },
+      "id": "formann_people_arvid_fordeling_001",
+      "mail_type": "people",
+      "role_scope": "formann",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du bruker arbeidsledermandatet uten å gjøre den mest pålitelige medarbeideren til permanent buffer. Kapasitet og rettferdighet blir behandlet som deler av samme risikobeslutning, og laget kan se hvorfor fordelingen ble som den ble.",
+            "id": "A",
+            "label": "Fordele med synlig belastningsvurdering",
+            "reply": "Jeg avklarer hvilken kompetanse som faktisk trengs, fordeler resten av laget først og bruker Arvid bare der erfaringen er nødvendig."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du kjøper kortsiktig flyt med kjent kompetanse, men gjør tidligere pålitelighet til grunn for ny belastning. Det kan være innen fullmakten og likevel bygge en skjult norm der de sterkeste alltid bærer planens svakheter.",
+            "id": "B",
+            "label": "Gi Arvid sonen for å sikre tempo",
+            "reply": "Jeg gir Arvid sonen fordi han kan levere den raskest og tar resten av bemanningen etterpå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "En fraværssituasjon har gjort bemanningen strammere enn planlagt, og Arvid kan teknisk sett dekke den mest krevende sonen.",
+            "Han har allerede tatt flere tunge oppgaver denne uken og sier rolig at han kan gjøre det igjen dersom det er nødvendig.",
+            "Du må fordele arbeid innen fullmakt uten å gjøre pålitelighet til en automatisk begrunnelse for skjev belastning."
+          ],
+          "subject": "Arvid kan ta den tunge sonen igjen — men bør han?",
+          "summary": "Tavla går enklest opp dersom Arvid får enda en krevende sone fordi han er den mest erfarne og sjelden protesterer. Scenen gjør arbeidsfordeling til mer enn kapasitetsregning: Formannen må se både leveranse, kompetanse, belastning og hva laget lærer om rettferdighet når den sterkeste alltid absorberer usikkerheten."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "formann_people_arvid_fordeling_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "produksjons_og_arbeidsomrade",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "formann_people_arvid_fordeling_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/people/formann_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "formann.mail.formann_people_arvid_fordeling_001",
+        "version": 1
+      },
+      "source_hash": "3c6f876a5fc065ab28faee0ed2823c78848fe44535adf2545a9a1eb9b8437595",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/people/formann_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
         "category": "naeringsliv",
         "choices": [
           {
@@ -118124,6 +118779,268 @@
     {
       "category": "naeringsliv",
       "compatibility_projection": {
+        "actor_id": "maja_neste_skiftleder_formann",
+        "category": "naeringsliv",
+        "channel": "work",
+        "choices": [
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "documentation": 2,
+                "handoff": 2,
+                "trust_peer": 2
+              }
+            },
+            "feedback": "Du gjør skiftresultatet etterprøvbart uten å redusere prestasjonen. Neste leder kan skille ferdig arbeid fra restarbeid og ta egne prioriteringer på et sant grunnlag, mens ansvarsgrensen mellom skiftene forblir lesbar.",
+            "id": "A",
+            "label": "Overlevere både resultat og restansvar",
+            "reply": "Jeg gir Maja grønnstatusen, men lister de to gule punktene med midlertidig tiltak, eier og hva som må kontrolleres videre.",
+            "tags": [
+              "professional_relationship"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "future_risk": 2,
+                "handoff": -2,
+                "presentation": 1
+              }
+            },
+            "feedback": "Du unngår en dramatisk overlevering, men gjør Maja avhengig av å oppdage betydningen selv. Når restansvar er kjent men ikke løftet tydelig, blir grønnstatusen mindre informativ enn den ser ut og risiko flyttes mellom skift.",
+            "id": "B",
+            "label": "Rapportere bare det som faktisk er rødt",
+            "reply": "Jeg sier at skiftet er levert og nevner at det finnes noen små oppfølgingspunkter i loggen.",
+            "tags": [
+              "professional_relationship"
+            ]
+          }
+        ],
+        "cooldown": 2,
+        "id": "formann_people_maja_overlevering_001",
+        "mail_class": "professional_message",
+        "mail_family": "formann_profesjonelle_arbeidsrelasjoner",
+        "mail_type": "people",
+        "messageChannel": "work",
+        "people_ref": "maja_neste_skiftleder_formann",
+        "person_id": "maja_neste_skiftleder_formann",
+        "phase": "early",
+        "place_id": "skift_og_overleveringsrom",
+        "priority": 72,
+        "purpose": "Readiness-prerequisite: koble typed profesjonell relasjon til eksisterende Formann-arbeidsflate uten å endre canonical plan eller formell myndighet.",
+        "repeatable": false,
+        "role_scope": "formann",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/people/formann_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Dashboardet viser grønn leveranse, og begge restpunktene kan sannsynligvis løses tidlig i neste skift.",
+          "Maja spør om det er noe hun må vite før hun tar over, og det er fristende å svare med bare det som faktisk stoppet produksjonen.",
+          "Det som ikke stanset ditt skift kan likevel være avgjørende for hvordan det neste prioriterer bemanning, kontroll og risiko."
+        ],
+        "stage": "stable",
+        "stakes": "Valget påvirker samarbeid, sporbarhet og operativ tillit, men kan aldri utvide fullmakt, oppheve sikkerhetsrutiner eller erstatte riktig kontroll- og eskaleringslinje.",
+        "subject": "Maja ser et grønt skift — men du vet om to gule punkter",
+        "summary": "Skiftet ditt leverte hovedmålet, men to restpunkter er fortsatt åpne: ett midlertidig tiltak og én bemanningsusikkerhet som neste skift må følge opp. Scenen gjør overlevering til en ansvarshandling: Formannen kan rapportere et godt resultat uten å pynte bort risiko som ellers havner usynlig hos Maja."
+      },
+      "id": "formann_people_maja_overlevering_001",
+      "mail_type": "people",
+      "role_scope": "formann",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du gjør skiftresultatet etterprøvbart uten å redusere prestasjonen. Neste leder kan skille ferdig arbeid fra restarbeid og ta egne prioriteringer på et sant grunnlag, mens ansvarsgrensen mellom skiftene forblir lesbar.",
+            "id": "A",
+            "label": "Overlevere både resultat og restansvar",
+            "reply": "Jeg gir Maja grønnstatusen, men lister de to gule punktene med midlertidig tiltak, eier og hva som må kontrolleres videre."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du unngår en dramatisk overlevering, men gjør Maja avhengig av å oppdage betydningen selv. Når restansvar er kjent men ikke løftet tydelig, blir grønnstatusen mindre informativ enn den ser ut og risiko flyttes mellom skift.",
+            "id": "B",
+            "label": "Rapportere bare det som faktisk er rødt",
+            "reply": "Jeg sier at skiftet er levert og nevner at det finnes noen små oppfølgingspunkter i loggen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Dashboardet viser grønn leveranse, og begge restpunktene kan sannsynligvis løses tidlig i neste skift.",
+            "Maja spør om det er noe hun må vite før hun tar over, og det er fristende å svare med bare det som faktisk stoppet produksjonen.",
+            "Det som ikke stanset ditt skift kan likevel være avgjørende for hvordan det neste prioriterer bemanning, kontroll og risiko."
+          ],
+          "subject": "Maja ser et grønt skift — men du vet om to gule punkter",
+          "summary": "Skiftet ditt leverte hovedmålet, men to restpunkter er fortsatt åpne: ett midlertidig tiltak og én bemanningsusikkerhet som neste skift må følge opp. Scenen gjør overlevering til en ansvarshandling: Formannen kan rapportere et godt resultat uten å pynte bort risiko som ellers havner usynlig hos Maja."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "formann_people_maja_overlevering_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "skift_og_overleveringsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "formann_people_maja_overlevering_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/people/formann_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "formann.mail.formann_people_maja_overlevering_001",
+        "version": 1
+      },
+      "source_hash": "d108287398fc7b5c581ead6b619591ca1a7bbb7c27cca649873b82bda20c2568",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/people/formann_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "actor_id": "noor_nyansatt_fagarbeider_formann",
+        "category": "naeringsliv",
+        "channel": "work",
+        "choices": [
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "clarity": 2,
+                "safety": 2,
+                "trust_team": 1
+              }
+            },
+            "feedback": "Du beholder fremdrift samtidig som instruksen tåler usikkerhet. Noor får et tydelig arbeid innenfor faktisk kompetanse, og lederrollen blir en kanal for trygg eskalering i stedet for et sosialt press om å late som alt er kjent.",
+            "id": "A",
+            "label": "Avklare kompetanse før fordeling",
+            "reply": "Jeg skiller hovedoppgaven fra kontrollpunktet og avtaler hvem Noor skal hente inn dersom hun møter det hun ikke er godkjent for alene.",
+            "tags": [
+              "professional_relationship"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "ambiguity": 2,
+                "safety": -1,
+                "speed": 1
+              }
+            },
+            "feedback": "Du gjør oppstarten enkel, men flytter kompetansevurderingen inn i selve utførelsen. Når den nyansatte allerede kjenner på tidspress, kan terskelen for å si fra bli høyere enn den burde være, selv uten et eksplisitt regelbrudd.",
+            "id": "B",
+            "label": "Be henne prøve og si fra hvis det stopper",
+            "reply": "Jeg ber Noor starte hele oppgaven og komme tilbake dersom kontrollpunktet blir vanskelig.",
+            "tags": [
+              "professional_relationship"
+            ]
+          }
+        ],
+        "cooldown": 2,
+        "id": "formann_people_noor_mandat_001",
+        "mail_class": "professional_message",
+        "mail_family": "formann_profesjonelle_arbeidsrelasjoner",
+        "mail_type": "people",
+        "messageChannel": "work",
+        "people_ref": "noor_nyansatt_fagarbeider_formann",
+        "person_id": "noor_nyansatt_fagarbeider_formann",
+        "phase": "early",
+        "place_id": "arbeidslederpunkt",
+        "priority": 72,
+        "purpose": "Readiness-prerequisite: koble typed profesjonell relasjon til eksisterende Formann-arbeidsflate uten å endre canonical plan eller formell myndighet.",
+        "repeatable": false,
+        "role_scope": "formann",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/people/formann_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Du ser at Noor kjenner hovedoppgaven, men ikke har gjennomført det siste kontrollpunktet selvstendig tidligere.",
+          "Hun sier at det sikkert går fint og virker mer opptatt av å ikke forsinke laget enn av å beskrive hva hun faktisk er trygg på.",
+          "Som arbeidsleder kan du fordele arbeid, men du må også gjøre kompetanse- og eskaleringsgrensen mulig å si høyt."
+        ],
+        "stage": "stable",
+        "stakes": "Valget påvirker samarbeid, sporbarhet og operativ tillit, men kan aldri utvide fullmakt, oppheve sikkerhetsrutiner eller erstatte riktig kontroll- og eskaleringslinje.",
+        "subject": "Noor nikker — men oppgaven er større enn introduksjonen hennes",
+        "summary": "Noor får en oppgave som ligger nær det hun allerede kan, men inkluderer ett kontrollpunkt hun ikke har gjort alene. Hun nikker fordi tavla er presset og de andre står klare. Scenen tester om Formannen kan skape fremdrift uten å gjøre taushet til kompetansebevis eller bruke lederposisjonen som utilbørlig press."
+      },
+      "id": "formann_people_noor_mandat_001",
+      "mail_type": "people",
+      "role_scope": "formann",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du beholder fremdrift samtidig som instruksen tåler usikkerhet. Noor får et tydelig arbeid innenfor faktisk kompetanse, og lederrollen blir en kanal for trygg eskalering i stedet for et sosialt press om å late som alt er kjent.",
+            "id": "A",
+            "label": "Avklare kompetanse før fordeling",
+            "reply": "Jeg skiller hovedoppgaven fra kontrollpunktet og avtaler hvem Noor skal hente inn dersom hun møter det hun ikke er godkjent for alene."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du gjør oppstarten enkel, men flytter kompetansevurderingen inn i selve utførelsen. Når den nyansatte allerede kjenner på tidspress, kan terskelen for å si fra bli høyere enn den burde være, selv uten et eksplisitt regelbrudd.",
+            "id": "B",
+            "label": "Be henne prøve og si fra hvis det stopper",
+            "reply": "Jeg ber Noor starte hele oppgaven og komme tilbake dersom kontrollpunktet blir vanskelig."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Du ser at Noor kjenner hovedoppgaven, men ikke har gjennomført det siste kontrollpunktet selvstendig tidligere.",
+            "Hun sier at det sikkert går fint og virker mer opptatt av å ikke forsinke laget enn av å beskrive hva hun faktisk er trygg på.",
+            "Som arbeidsleder kan du fordele arbeid, men du må også gjøre kompetanse- og eskaleringsgrensen mulig å si høyt."
+          ],
+          "subject": "Noor nikker — men oppgaven er større enn introduksjonen hennes",
+          "summary": "Noor får en oppgave som ligger nær det hun allerede kan, men inkluderer ett kontrollpunkt hun ikke har gjort alene. Hun nikker fordi tavla er presset og de andre står klare. Scenen tester om Formannen kan skape fremdrift uten å gjøre taushet til kompetansebevis eller bruke lederposisjonen som utilbørlig press."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "formann_people_noor_mandat_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "arbeidslederpunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "formann_people_noor_mandat_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/people/formann_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "formann.mail.formann_people_noor_mandat_001",
+        "version": 1
+      },
+      "source_hash": "c63991b0f3ad26a53fba21193bc2972fcc3a52a5c605ec76dd9efed72a0bf67f",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/people/formann_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
         "category": "naeringsliv",
         "choices": [
           {
@@ -118326,6 +119243,137 @@
         "version": 1
       },
       "source_hash": "cbb7c7bb1fb4dc416eb0188a8868517db9b06afbf0d8e2bcd56f09bdf7c273bb",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/people/formann_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "actor_id": "selma_hms_kvalitetskontakt_formann",
+        "category": "naeringsliv",
+        "channel": "work",
+        "choices": [
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "documentation": 2,
+                "integrity": 2,
+                "safety": 2
+              }
+            },
+            "feedback": "Du bruker operativ myndighet presist: situasjonen blir sikret uten at du later som en lokal funksjonstest avgjør hele saken. Sporbarhet og ansvar bevares, og produksjonspresset får ikke omskrive hvem som faktisk kan lukke avviket.",
+            "id": "A",
+            "label": "Sikre fakta og eskalere riktig",
+            "reply": "Jeg holder berørt aktivitet på nødvendig nivå, dokumenterer hva vi vet og ikke vet, og sender beslutningen om full gjenstart til riktig kontrollinje.",
+            "tags": [
+              "professional_relationship"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "documentation": -1,
+                "future_risk": 2,
+                "speed": 2
+              }
+            },
+            "feedback": "Du beskytter kapasiteten, men skiller kontrollsporet fra beslutningen det skulle informere. Dersom årsaken viser seg å være bredere enn den synlige feilen, har gjenstarten allerede gjort tidsgevinsten til en risikobeslutning uten riktig grunnlag.",
+            "id": "B",
+            "label": "Starte opp fordi faren er fjernet",
+            "reply": "Jeg starter normal drift og ber Selma ferdigstille avviksdokumentasjonen parallelt.",
+            "tags": [
+              "professional_relationship"
+            ]
+          }
+        ],
+        "cooldown": 2,
+        "id": "formann_people_selma_avvik_001",
+        "mail_class": "professional_message",
+        "mail_family": "formann_profesjonelle_arbeidsrelasjoner",
+        "mail_type": "people",
+        "messageChannel": "work",
+        "people_ref": "selma_hms_kvalitetskontakt_formann",
+        "person_id": "selma_hms_kvalitetskontakt_formann",
+        "phase": "early",
+        "place_id": "hms_og_avvikspunkt",
+        "priority": 72,
+        "purpose": "Readiness-prerequisite: koble typed profesjonell relasjon til eksisterende Formann-arbeidsflate uten å endre canonical plan eller formell myndighet.",
+        "repeatable": false,
+        "role_scope": "formann",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/people/formann_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den konkrete faren er fjernet og en enkel funksjonstest ser normal ut, så produksjonspresset peker mot rask gjenstart.",
+          "Selma mangler fortsatt et presist hendelsesforløp, hvem som eier årsaksavklaringen og hvilket kontrollsteg som må være dokumentert før saken kan lukkes.",
+          "Du kan sikre og eskalere innen fullmakt; du kan ikke gjøre fravær av synlig fare til fullmakt til å hoppe over kontrollsporet."
+        ],
+        "stage": "stable",
+        "stakes": "Valget påvirker samarbeid, sporbarhet og operativ tillit, men kan aldri utvide fullmakt, oppheve sikkerhetsrutiner eller erstatte riktig kontroll- og eskaleringslinje.",
+        "subject": "Produksjonen kan starte igjen — men avviket er ikke ferdig",
+        "summary": "Et område er fysisk sikret etter en nestenulykke, og den umiddelbare faren er fjernet. Selma peker på at hendelsesforløpet og årsaken fortsatt er uavklart. Scenen skiller Formannens operative stans- og sikringsansvar fra retten til å lukke avvik eller gjøre et ufullstendig faktagrunnlag til grønt lys for normal drift."
+      },
+      "id": "formann_people_selma_avvik_001",
+      "mail_type": "people",
+      "role_scope": "formann",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du bruker operativ myndighet presist: situasjonen blir sikret uten at du later som en lokal funksjonstest avgjør hele saken. Sporbarhet og ansvar bevares, og produksjonspresset får ikke omskrive hvem som faktisk kan lukke avviket.",
+            "id": "A",
+            "label": "Sikre fakta og eskalere riktig",
+            "reply": "Jeg holder berørt aktivitet på nødvendig nivå, dokumenterer hva vi vet og ikke vet, og sender beslutningen om full gjenstart til riktig kontrollinje."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du beskytter kapasiteten, men skiller kontrollsporet fra beslutningen det skulle informere. Dersom årsaken viser seg å være bredere enn den synlige feilen, har gjenstarten allerede gjort tidsgevinsten til en risikobeslutning uten riktig grunnlag.",
+            "id": "B",
+            "label": "Starte opp fordi faren er fjernet",
+            "reply": "Jeg starter normal drift og ber Selma ferdigstille avviksdokumentasjonen parallelt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den konkrete faren er fjernet og en enkel funksjonstest ser normal ut, så produksjonspresset peker mot rask gjenstart.",
+            "Selma mangler fortsatt et presist hendelsesforløp, hvem som eier årsaksavklaringen og hvilket kontrollsteg som må være dokumentert før saken kan lukkes.",
+            "Du kan sikre og eskalere innen fullmakt; du kan ikke gjøre fravær av synlig fare til fullmakt til å hoppe over kontrollsporet."
+          ],
+          "subject": "Produksjonen kan starte igjen — men avviket er ikke ferdig",
+          "summary": "Et område er fysisk sikret etter en nestenulykke, og den umiddelbare faren er fjernet. Selma peker på at hendelsesforløpet og årsaken fortsatt er uavklart. Scenen skiller Formannens operative stans- og sikringsansvar fra retten til å lukke avvik eller gjøre et ufullstendig faktagrunnlag til grønt lys for normal drift."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "formann_people_selma_avvik_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "hms_og_avvikspunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "formann_people_selma_avvik_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/people/formann_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "formann.mail.formann_people_selma_avvik_001",
+        "version": 1
+      },
+      "source_hash": "4432e06a8fd760165c138d7cc26312d01b3156958b25b98b7f2b1ea49be09d94",
       "source_path": "data/Civication/mailFamilies/naeringsliv/people/formann_people.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -194269,7 +195317,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "2ea4abb83ed659afad6f75e4d74c9c6c6a2ccceacc6667bb2dc3fa348b3db945",
+  "registry_hash": "b3bd79555953d4c3da2a5a0e68de736660287391e7d861b2929b9f59726263d6",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -194951,6 +195999,10 @@
       "fagarbeider_people_respekt_002",
       "fagarbeider_people_ansvar_001",
       "fagarbeider_people_ansvar_002",
+      "fagarbeider_people_rune_oppdrag_001",
+      "fagarbeider_people_amir_standard_001",
+      "fagarbeider_people_selma_avvik_001",
+      "fagarbeider_people_liv_overlevering_001",
       "fagarbeider_story_kunnskap_001",
       "fagarbeider_story_kunnskap_002",
       "fagarbeider_story_stolthet_001",
@@ -195054,6 +196106,10 @@
       "personal_formann_week2_answers_like_team",
       "personal_formann_week2_sleep_after_near_miss",
       "personal_formann_week2_weekend_not_responsible",
+      "formann_people_arvid_fordeling_001",
+      "formann_people_noor_mandat_001",
+      "formann_people_selma_avvik_001",
+      "formann_people_maja_overlevering_001",
       "formann_story_mellomposisjon_001",
       "formann_story_mellomposisjon_002",
       "formann_story_ansvar_001",
@@ -195585,7 +196641,7 @@
     "ignored_source_file_count": 1,
     "input_file_count": 351,
     "role_count": 44,
-    "scene_count": 1194,
+    "scene_count": 1202,
     "shadowed_duplicate_count": 0
   },
   "version": 1
