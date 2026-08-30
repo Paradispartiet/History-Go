@@ -1,0 +1,130 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "olav_v",
+  "place_id": "forsvarsmuseet",
+  "profile_file": "data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json",
+  "identity": {
+    "canonical_identity": "Kong Olav V (1903–1991), Norges konge 1957–1991.",
+    "name_variants": [
+      "Olav V",
+      "Olav 5."
+    ],
+    "not": [
+      "Harald V"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity",
+      "claim": "Olav V var Norges konge fra 1957 til 1991.",
+      "status": "verified",
+      "source_url": "https://snl.no/Olav_5.",
+      "source_location": "biografiens innledning",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-30",
+      "evidence_level": "explicit"
+    },
+    {
+      "id": "slottet_anchor",
+      "claim": "Slottet var Olav Vs primære institusjonelle arbeids- og representasjonssted som konge.",
+      "status": "verified",
+      "source_url": "https://www.kongehuset.no/kongelige-eiendommer/det-kongelige-slott/slottets-historie-og-arkitektur",
+      "source_location": "Slottets funksjon og historie",
+      "source_type": "official",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-30",
+      "evidence_level": "explicit"
+    },
+    {
+      "id": "museum_opening",
+      "claim": "Olav V åpnet Forsvarsmuseet 22. august 1978.",
+      "status": "verified",
+      "source_url": "https://snl.no/Forsvarshistorisk_museum",
+      "source_location": "avsnittet om åpningen i 1978",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-30",
+      "evidence_level": "explicit"
+    },
+    {
+      "id": "portrait",
+      "claim": "Commons-filen identifiserer portrettet som Olav V og daterer det til 1957.",
+      "status": "verified",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Olav_V_of_Norway.jpg",
+      "source_location": "Summary og Licensing",
+      "source_type": "archive",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-30",
+      "evidence_level": "explicit"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity"
+    ],
+    "year": [
+      "identity"
+    ],
+    "placeId": [
+      "slottet_anchor"
+    ],
+    "places[slottet]": [
+      "slottet_anchor"
+    ],
+    "places[forsvarsmuseet]": [
+      "museum_opening"
+    ],
+    "image": [
+      "portrait"
+    ],
+    "cardImage": [
+      "portrait"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity",
+          "slottet_anchor",
+          "museum_opening"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity",
+          "slottet_anchor"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "museum_opening"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "slottet_anchor",
+          "museum_opening"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "4/4",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-30",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}

@@ -1,0 +1,536 @@
+{
+  "schema_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "forsvarsmuseet",
+  "scope": "place",
+  "status": "reviewed",
+  "reviewed_at": "2026-08-30",
+  "profile_hint": "rich_5x7",
+  "review_note": "Offisiell museumskilde, SNL, statlig endringsregister og to katalogiserte gjenstander er krysskontrollert; museet holdes fra festningen og gjenstandenes produksjonssteder.",
+  "sources": {
+    "official": {
+      "url": "https://www.forsvarshistoriskmuseum.no/forsvarsmuseet",
+      "source_type": "official_site_history",
+      "review_status": "reviewed",
+      "review_note": "Current identity, location and exhibition focus."
+    },
+    "snl": {
+      "url": "https://snl.no/Forsvarshistorisk_museum",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "Institution chronology, occupation losses and 1978 opening."
+    },
+    "sikt": {
+      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/57606/endringshistorie",
+      "source_type": "government_registry",
+      "review_status": "reviewed",
+      "review_note": "Names and organizational milestones from 1860 to 1978."
+    },
+    "lund": {
+      "url": "https://digitaltmuseum.no/011022702335/kammerladingsgevaer-18-lodig-lund-marine",
+      "source_type": "museum_collection_record",
+      "review_status": "reviewed",
+      "review_note": "Lund naval trial rifle, made at Kongsberg in 1858; no procurement result inferred."
+    },
+    "krag": {
+      "url": "https://digitaltmuseum.no/011022701945/provekarabin-65x55-krag-jorgensen-1911",
+      "source_type": "museum_collection_record",
+      "review_status": "reviewed",
+      "review_note": "Krag-Jørgensen trial carbine made in 1911 and ordered for cavalry bayonet tests in 1912."
+    }
+  },
+  "selected_curriculum": {
+    "emne_ids": [
+      "em_his_stat_institusjoner",
+      "em_his_spor_materialitet",
+      "em_his_minnesteder_historiebruk",
+      "em_his_samtid_ettertid_fortelling",
+      "em_his_museum_samling_kanon"
+    ],
+    "topic_hook_ids": [
+      "his_museum_samling_kanon"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "tony_bennett"
+    ],
+    "works": [
+      "The Birth of the Museum"
+    ]
+  },
+  "profile_decision": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "justification": "Fem uavhengige kildebårne settplaner dekker sted/identitet, institusjonsforløp, krig/tap, åpning/samling og kildekritisk gjenstandslesning."
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/by/forsvarsmuseet_sets.json",
+      "data/quiz/historie/forsvarsmuseet_sets.json",
+      "data/quiz/historie/arkiv/forsvarsmuseet_sets.json"
+    ],
+    "active_before": {
+      "categoryId": null,
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "Ingen aktiv, arkivert eller alternativ Forsvarsmuseet-quiz ble funnet; produser ny canonical Historie rich 5x7."
+    ],
+    "knowledge_migration": {
+      "status": "not_applicable",
+      "retained_rule": "Ingen eldre spørsmål å migrere."
+    }
+  },
+  "held_back_candidates": [
+    "Generisk våpenquiz uten stedskobling",
+    "Påstander om testresultater eller serieanskaffelser som katalogpostene ikke dokumenterer",
+    "Hendelser som tilhører hele Akershus festning"
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Museet holder til i det tidligere arsenalbygget på Akershus festning.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Artillerimuseets forløper ble opprettet som modellkammer i 1860.",
+      "source_ids": [
+        "snl",
+        "sikt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Intendanturmuseet samlet blant annet faner, uniformer og utrustning.",
+      "source_ids": [
+        "snl",
+        "sikt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Hærmuseet ble formelt opprettet i 1940.",
+      "source_ids": [
+        "snl",
+        "sikt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Hærmuseet bygde på artilleri- og intendantursamlingene.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Forsvarsmuseet må holdes fra hele festningen og de andre museene.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Hovedarsenalets opprinnelige funksjon var knyttet til militært materiell.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Okkupasjonen avbrøt videre museumsplanlegging.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Samlingene ble rammet av beslag, brann og evakuering.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "SNL oppgir at om lag 3000 objekter gikk tapt i brannen.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "De evakuerte samlingene vendte tilbake i 1946.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Bevaring krever konkrete valg om lagring, flytting og risiko.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Modellkammer, Artillerimuseum, Hærmuseum og Forsvarsmuseum markerer ulike institusjonelle faser.",
+      "source_ids": [
+        "snl",
+        "sikt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Institusjonskilder dokumenterer samlingsforløpet bedre enn alle individuelle erfaringer.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Museet åpnet 22. august 1978.",
+      "source_ids": [
+        "snl",
+        "sikt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kong Olav V sto for åpningen.",
+      "source_ids": [
+        "snl",
+        "sikt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Åpningen falt sammen med Hærens 350-årsjubileum.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Personkoblingen gjelder åpningen i 1978, ikke daglig museumsarbeid.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Den offisielle presentasjonen kobler militærhistorie til flere aktører og systemer.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Åpningen er en navngitt offentlig hendelse med aktør, dato og sted.",
+      "source_ids": [
+        "snl",
+        "sikt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Museumsposten avgrenser hva gjenstanden dokumenterer.",
+      "source_ids": [
+        "lund"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Katalogposten dokumenterer prøveformål, men ikke hele anskaffelsesutfallet.",
+      "source_ids": [
+        "krag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Museet er samlingsanker, ikke produksjonssted for prøvevåpnene.",
+      "source_ids": [
+        "lund",
+        "krag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Gjenstand og katalogpost gir et avgrenset spor som må suppleres for bredere forklaringer.",
+      "source_ids": [
+        "lund",
+        "krag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Kildene bærer prøveformål, men ikke en automatisk konklusjon om innføring.",
+      "source_ids": [
+        "lund",
+        "krag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Museumsutstillinger er kuraterte fortellinger, ikke komplette speil av fortiden.",
+      "source_ids": [
+        "official",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Avsender og formål påvirker hvilke spørsmål kilden er sterkest på.",
+      "source_ids": [
+        "official",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Ulike kamerastandpunkt krever forsiktig visuell sammenligning.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Samlingsansvaret fortsetter selv om navn, organisasjon og lokaler endres.",
+      "source_ids": [
+        "snl",
+        "sikt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Krigsårene avbrøt den planlagte institusjonsutviklingen.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Bygningen gir en stedlig forbindelse mellom militær logistikk og museum.",
+      "source_ids": [
+        "official",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Bennetts museumsperspektiv retter oppmerksomheten mot museet som kunnskaps-, ordens- og styringsinstitusjon.",
+      "source_ids": [
+        "official",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_museum_samling_kanon"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kildene er sterkest på institusjon, samling og offentlig formidling.",
+      "source_ids": [
+        "snl",
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Forsvarsmuseet forstås gjennom både bygning, organisasjon, samling og offentlig historiebruk.",
+      "source_ids": [
+        "official",
+        "snl",
+        "sikt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_forsvarsmuseet_quiz_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Stedsgrensen hindrer at Kongsberg-hendelser flyttes til Hovedarsenalet.",
+      "source_ids": [
+        "lund",
+        "krag",
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    }
+  ]
+}
