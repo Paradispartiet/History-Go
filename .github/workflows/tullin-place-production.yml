@@ -91,14 +91,23 @@ jobs:
           npm run place-open:check
           npm run epoker:places:check
 
-      - name: Validate quiz package and Knowledge
-        run: |
-          npm run audit:quiz-manifest:v2
-          npm run audit:quiz-production-context
-          npm run audit:quiz-progression
-          npm run audit:quiz-theory-binding
-          npm run knowledge:canonical:check
-          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Audit quiz manifest v2
+        run: npm run audit:quiz-manifest:v2
+
+      - name: Audit quiz production context
+        run: npm run audit:quiz-production-context
+
+      - name: Audit quiz progression
+        run: npm run audit:quiz-progression
+
+      - name: Audit quiz theory binding
+        run: npm run audit:quiz-theory-binding
+
+      - name: Check canonical Knowledge
+        run: npm run knowledge:canonical:check
+
+      - name: Check Fagverk release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs --check
 
       - name: Validate content integration
         run: |
