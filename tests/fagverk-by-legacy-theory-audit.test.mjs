@@ -31,6 +31,10 @@ test('By-auditen dekker hele den gamle fullteoristrukturen', () => {
 
 test('By-merkesiden sammenlignes mot separat legacy teori og manifest-resolvert canonicalt korpus', () => {
   const report = audit();
+  assert.equal(report.legacy.badgePage, 'data/fag/by/archive/merke_by_full_teori_legacy_20260830.html');
+  assert.equal(report.legacy.compatibilityPage, 'data/fag/by/merke_by.html');
+  assert.equal(report.legacy.sourcePreserved, true);
+  assert.equal(report.legacy.archiveBlobSha, 'bdc5ffef999db78ab2670571615f7fcf1327216f');
   assert.ok(report.legacy.duplicateSectionCount >= 8, `For få dupliserte legacy-seksjoner: ${report.legacy.duplicateSectionCount}`);
   assert.ok(report.canonical.manifestFiles.includes('data/fag/by/pensum_by.json'));
   assert.ok(report.canonical.manifestFiles.includes('data/fag/by/emner_by.json'));
@@ -86,6 +90,8 @@ test('adjudisering holder redirecten fail-closed og portalruten permanent migrer
   assert.equal(report.summary.portalRoute, report.summary.redirectTarget);
   assert.equal(report.summary.portalRedirected, true);
   assert.equal(report.summary.legacyBadgeSourcePreserved, true);
+  assert.equal(report.summary.archiveBlobSha, 'bdc5ffef999db78ab2670571615f7fcf1327216f');
+  assert.equal(report.summary.routeRetired, true);
   const contribution = report.rows.find((row) => row.id === 'bidrag');
   assert.equal(contribution.disposition, 'retire_legacy_product_copy');
 });

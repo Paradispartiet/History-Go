@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
+import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 
 const portal = JSON.parse(fs.readFileSync('data/fagverk/fagverk_portal.json', 'utf8'));
@@ -13,8 +14,10 @@ const badgeIndex = fs.readFileSync('merker/merker.html', 'utf8');
 const badgeIndexArchive = fs.readFileSync('merker/archive/merker_index_legacy_20260830.html', 'utf8');
 const profile = fs.readFileSync('profile.html', 'utf8');
 const byLegacy = fs.readFileSync('data/fag/by/merke_by.html', 'utf8');
+const byLegacyArchive = fs.readFileSync('data/fag/by/archive/merke_by_full_teori_legacy_20260830.html', 'utf8');
 const popularCultureLegacy = fs.readFileSync('data/fag/media/populaerkultur_som_mediefelt/merke_populaerkultur.html', 'utf8');
 const compatibilityBySubject = new Map([
+  ['by', byLegacy],
   ['historie', fs.readFileSync('data/fag/historie/merke_historie (1).html', 'utf8')],
   ['kunst', fs.readFileSync('data/fag/kunst/merke_kunst (2).html', 'utf8')],
   ['litteratur', fs.readFileSync('data/fag/litteratur/merke_litteratur (1).html', 'utf8')],
@@ -43,6 +46,18 @@ function runAudit() {
 function gitBlob(content) {
   const body = Buffer.from(content, 'utf8');
   return crypto.createHash('sha1').update(Buffer.from(`blob ${body.length}\0`)).update(body).digest('hex');
+}
+
+function legacyBadgeHtmlFiles(directory, files = []) {
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    const file = path.join(directory, entry.name);
+    if (entry.isDirectory()) {
+      if (!['archive', 'arkiv'].includes(entry.name)) legacyBadgeHtmlFiles(file, files);
+    } else if (/^merke.*\.html$/.test(entry.name)) {
+      files.push(file.replaceAll(path.sep, '/'));
+    }
+  }
+  return files;
 }
 
 test('badge equivalence audit klassifiserer alle canonicale fag uten ukjent familie', () => {
@@ -85,6 +100,7 @@ test('den gamle generiske merke-URL-en er compatibility-redirect, ikke en ny pro
 
 test('gamle direkte URL-er er compatibility-redirects etter arkivering', () => {
   const forbiddenBySubject = {
+    by: /merke-blokk|<h2>1\. Felt<\/h2>|id="begreper"/i,
     historie: /id="felt"|id="begreper"/,
     kunst: /id="felt"|id="offentlig-rom"/,
     litteratur: /id="felt"|id="begreper"/,
@@ -109,6 +125,15 @@ test('gamle direkte URL-er er compatibility-redirects etter arkivering', () => {
   }
 });
 
+test('direkte legacy-inventar har bare Populærkultur-underfeltet igjen som innholdsflate', () => {
+  const fullContentRoutes = legacyBadgeHtmlFiles('data/fag')
+    .filter((file) => !/location\.replace/.test(fs.readFileSync(file, 'utf8')))
+    .sort();
+  assert.deepEqual(fullContentRoutes, [
+    'data/fag/media/populaerkultur_som_mediefelt/merke_populaerkultur.html'
+  ]);
+});
+
 test('Fagverkforsiden skjuler compatibility-lenken når merket allerede er integrert i Progresjon', () => {
   assert.match(portalUi, /integratedBadgeRoute = subjectReady && badgePage === `\$\{subjectPage\}#fagverkIaProgresjon`/);
   assert.match(portalUi, /badgePage && !integratedBadgeRoute/);
@@ -125,8 +150,8 @@ test('den separate merkeindeksen er bytearkivert og gammel URL går til Fagverke
   assert.doesNotMatch(profile, /href="merker\/merker\.html"/);
   assert.match(profile, /href="fagverk-forside\.html"[^>]*>Utforsk alle fag og merker/);
   assert.match(profile, /href="fagverk-forside\.html">Fagverket<\/a>/);
+  assert.equal(gitBlob(byLegacyArchive), 'bdc5ffef999db78ab2670571615f7fcf1327216f');
   assert.doesNotMatch(byLegacy, /href="\.\.\/\.\.\/\.\.\/merker\/merker\.html"/);
-  assert.match(byLegacy, /href="\.\.\/\.\.\/\.\.\/fagverk-forside\.html"/);
   assert.doesNotMatch(popularCultureLegacy, /href="\.\.\/\.\.\/\.\.\/merker\/merker\.html"/);
   assert.match(popularCultureLegacy, /href="\.\.\/\.\.\/\.\.\/fagverk\.html\?subject=media"/);
 });

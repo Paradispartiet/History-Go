@@ -56,7 +56,7 @@ By er første `legacy_static_theory`-fag som ble fullført gjennom hele equivale
 - **#5437:** alle ti kunnskapsseksjoner fikk eksplisitt canonical eier og redaksjonell disposisjon; gammel produkttekst ble eksplisitt pensjonert.
 - **#5440:** canonical `badgePage` ble flyttet til `fagverk.html?subject=by#fagverkIaProgresjon`, og migreringen ble låst med permanente regresjonsporter.
 
-Den gamle statiske By-merkesiden beholdes foreløpig som audit- og arkivkilde, men er ikke lenger en aktiv produkt- eller navigasjonsflate.
+Sluttfasens direkte-URL-kontroll har nå bevart den gamle statiske By-merkesiden byte-for-byte i `data/fag/by/archive/merke_by_full_teori_legacy_20260830.html` med original Git-blob `bdc5ffef999db78ab2670571615f7fcf1327216f`. Råauditen og adjudiseringen leser arkivet, mens `data/fag/by/merke_by.html` er en ren compatibility-redirect til By i Progresjon. Dermed er teorien fortsatt etterprøvbar uten at den gamle URL-en fungerer som en parallell innholdsflate.
 
 ### Historie
 
@@ -182,3 +182,5 @@ Dette autoriserer ikke automatisk sletting eller redirect av enhver direkte lega
 - bevare bytearkiver og adjudiseringsbevis;
 - redirecte eller fjerne bare når referanse- og browseraudit er grønn;
 - fjerne CSS-/JS-lag først når ingen aktiv eller eksplisitt bevart flate trenger dem.
+
+Den direkte By-URL-en er ferdig behandlet etter denne regelen. `data/fag/media/populaerkultur_som_mediefelt/merke_populaerkultur.html` er fortsatt en selvstendig underfeltsflate og må inventeres mot sin faktiske Media-eier før eventuell pensjonering; den skal ikke følge automatisk av toppnivåets `badgePage`-migrering.
