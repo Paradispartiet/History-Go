@@ -39,6 +39,53 @@ jobs:
           git fetch origin main
           git merge --no-edit origin/main
 
+      - name: Repair Tullin quiz taxonomy
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const path = 'data/quiz/by/tullin_sets.json';
+          const quiz = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const questions = quiz.sets.flatMap((set) => set.questions);
+          const byId = new Map(questions.map((question) => [question.id, question]));
+          const assignments = {
+            fact: [
+              'tullin_quiz_16',
+              'tullin_quiz_19',
+              'tullin_quiz_20',
+              'tullin_quiz_22',
+              'tullin_quiz_23',
+              'tullin_quiz_24',
+              'tullin_quiz_26'
+            ],
+            concept_theory: [
+              'tullin_quiz_29',
+              'tullin_quiz_31'
+            ]
+          };
+          for (const [type, ids] of Object.entries(assignments)) {
+            for (const id of ids) {
+              const question = byId.get(id);
+              if (!question) throw new Error(`Missing expected Tullin quiz question: ${id}`);
+              if (question.question_type !== 'context') {
+                throw new Error(`${id} expected context before taxonomy repair, got ${question.question_type}`);
+              }
+              question.question_type = type;
+            }
+          }
+          const counts = questions.reduce((acc, question) => {
+            acc[question.question_type] = (acc[question.question_type] || 0) + 1;
+            return acc;
+          }, {});
+          const expected = { fact: 22, context: 12, concept_theory: 8 };
+          for (const [type, count] of Object.entries(expected)) {
+            if (counts[type] !== count) {
+              throw new Error(`Unexpected ${type} count: ${counts[type]} (expected ${count})`);
+            }
+          }
+          fs.writeFileSync(path, `${JSON.stringify(quiz, null, 2)}\n`);
+          console.log(JSON.stringify({ status: 'repaired', counts }, null, 2));
+          NODE
+
       - name: Rebuild place and epoch projections
         run: |
           npm run places:index:build
