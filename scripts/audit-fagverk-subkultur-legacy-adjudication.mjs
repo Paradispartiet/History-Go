@@ -7,7 +7,8 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ADJUDICATION = 'data/fag/subkultur/legacy_theory_adjudication_v1.json';
 const RAW_AUDIT = 'scripts/audit-fagverk-subkultur-legacy-theory.mjs';
 const PORTAL = 'data/fagverk/fagverk_portal.json';
-const LEGACY_BADGE = 'data/fag/subkultur/merke_subkultur.html';
+const COMPAT_BADGE = 'data/fag/subkultur/merke_subkultur.html';
+const LEGACY_ARCHIVE = 'data/fag/subkultur/archive/merke_subkultur_full_teori_legacy_20260830.html';
 const ORIGINAL_LEGACY_BLOB = '562ac143c3f26fd7fb6bc817dc320f3b088246bb';
 const TARGET = 'fagverk.html?subject=subkultur#fagverkIaProgresjon';
 const IDS = ['felt', 'normativ', 'doxa', 'metode', 'materiell', 'sosial', 'geografisk', 'temporal', 'blindsoner', 'begreper', 'bidrag'];
@@ -36,25 +37,28 @@ function rawAudit() {
 }
 
 export function auditSubkulturLegacyAdjudication() {
-  for (const file of [ADJUDICATION, PORTAL, LEGACY_BADGE]) {
+  for (const file of [ADJUDICATION, PORTAL, COMPAT_BADGE, LEGACY_ARCHIVE]) {
     assert(fs.existsSync(abs(file)), `Mangler ${file}`);
   }
 
   const raw = rawAudit();
   assert(raw.subject === 'subkultur', 'Raw audit har feil subject.');
   assert(raw.summary?.knowledgeSectionCount === 10, 'Raw audit skal ha 10 kunnskapsseksjoner.');
-  assert(raw.summary?.anchorCompleteCount === 10, 'Subkultur må ha 10/10 canonical ankerdekning før adjudikering.');
+  assert(raw.summary?.anchorCompleteCount === 10, 'Subkultur må ha 10/10 canonical ankerdekning.');
   assert(raw.summary?.manualReviewCount === 0, 'Subkultur har fortsatt uavklarte raw audit-gap.');
   assert(raw.summary?.redirectReady === false, 'Raw audit får aldri autorisere redirect alene.');
-  assert(raw.legacy?.sourcePreserved === true, 'Subkultur legacy-kilden er ikke bevart før retirement.');
+  assert(raw.legacy?.sourcePreserved === true, 'Subkultur legacy-kilden er ikke bevart i bytearkivet.');
   assert(raw.legacy?.originalBlobSha === ORIGINAL_LEGACY_BLOB, 'Subkultur original legacy-blob mismatch.');
-  assert(raw.legacy?.activeBlobSha === ORIGINAL_LEGACY_BLOB, 'Aktiv Subkultur-side matcher ikke original blob.');
-  assert(raw.navigation?.legacyRouteActive === true && raw.navigation?.routeRetired === false, 'Råauditen må fortsatt stå på aktiv legacy-rute i adjudication-fasen.');
+  assert(raw.legacy?.archiveBlobSha === ORIGINAL_LEGACY_BLOB, 'Subkultur archive blob matcher ikke originalen.');
+  assert(raw.legacy?.archivePage === LEGACY_ARCHIVE, 'Subkultur raw audit peker ikke til canonicalt legacy-arkiv.');
+  assert(raw.legacy?.compatibilityPage === COMPAT_BADGE, 'Subkultur raw audit peker ikke til compatibility-URL-en.');
+  assert(raw.navigation?.legacyRouteActive === false && raw.navigation?.routeRetired === true, 'Subkultur-ruten er ikke markert pensjonert etter adjudikering.');
+  assert(raw.navigation?.portalRedirected === true && raw.navigation?.badgePage === TARGET, 'Subkultur raw audit bekrefter ikke portalredirect til Progresjon.');
 
   const adjudication = readJson(ADJUDICATION);
   assert(adjudication.schema === 'history_go_fagverk_subkultur_legacy_adjudication_v1', 'Uventet adjudication schema.');
   assert(adjudication.subject === 'subkultur', 'Adjudication subject må være subkultur.');
-  assert(adjudication.legacyBadgePage === LEGACY_BADGE, 'Legacy badgePage mismatch.');
+  assert(adjudication.legacyBadgePage === COMPAT_BADGE, 'Legacy badgePage mismatch.');
   assert(adjudication.redirectTarget === TARGET, 'Redirect target mismatch.');
   assert(Array.isArray(adjudication.sections), 'Adjudication mangler sections.');
   assert(JSON.stringify(adjudication.sections.map((row) => row.id)) === JSON.stringify(IDS), 'Adjudication-seksjoner matcher ikke legacy-strukturen.');
@@ -77,7 +81,7 @@ export function auditSubkulturLegacyAdjudication() {
     if (row.role === 'knowledge') {
       assert(rawRow.anchorCoverage === 1, `${row.id}: raw coverage er ikke 1.`);
       assert(row.ownerFiles.length > 0, `${row.id}: kunnskapsseksjon mangler canonical eier.`);
-      assert(row.disposition === 'canonical_supersedes', `${row.id}: alle Subkultur-kunnskapsseksjoner skal være canonical_supersedes når råauditen har 10/10 uten gap.`);
+      assert(row.disposition === 'canonical_supersedes', `${row.id}: alle Subkultur-kunnskapsseksjoner skal være canonical_supersedes.`);
     } else {
       assert(row.id === 'bidrag', 'Kun bidrag kan være legacy_product_copy.');
       assert(row.disposition === 'retire_legacy_product_copy', 'bidrag skal pensjoneres som produkttekst.');
@@ -93,7 +97,8 @@ export function auditSubkulturLegacyAdjudication() {
   const portal = readJson(PORTAL);
   const portalSubject = portal.categories?.find((item) => item.id === 'subkultur');
   assert(portalSubject, 'Subkultur mangler i Fagverk-portalen.');
-  assert(portalSubject.badgePage === LEGACY_BADGE, 'Adjudication-fasen skal ikke endre Subkultur-ruten ennå.');
+  assert(portalSubject.badgePage === TARGET, 'Subkultur-portalen er ikke pensjonert til integrert Progresjon.');
+  assert(portalSubject.subjectPage === 'fagverk.html?subject=subkultur', 'Subkultur subjectPage er endret utilsiktet.');
 
   const ownerFiles = [...new Set(adjudication.sections.flatMap((row) => row.ownerFiles))].sort();
   return {
@@ -102,7 +107,8 @@ export function auditSubkulturLegacyAdjudication() {
     inputs: {
       rawAuditSchema: raw.schema,
       adjudicationFile: ADJUDICATION,
-      legacyBadgePage: LEGACY_BADGE
+      compatibilityPage: COMPAT_BADGE,
+      archivePage: LEGACY_ARCHIVE
     },
     summary: {
       legacySectionCount: adjudication.sections.length,
@@ -116,8 +122,10 @@ export function auditSubkulturLegacyAdjudication() {
       redirectReady: true,
       redirectTarget: TARGET,
       portalRoute: portalSubject.badgePage,
-      portalRedirected: false,
-      legacyBadgeSourcePreserved: raw.legacy.sourcePreserved
+      portalRedirected: true,
+      routeRetired: true,
+      legacyBadgeSourcePreserved: raw.legacy.sourcePreserved,
+      archiveBlobSha: raw.legacy.archiveBlobSha
     },
     rows: adjudication.sections.map((row) => ({
       ...row,
@@ -127,5 +135,11 @@ export function auditSubkulturLegacyAdjudication() {
   };
 }
 
-const report = auditSubkulturLegacyAdjudication();
-process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  try {
+    process.stdout.write(`${JSON.stringify(auditSubkulturLegacyAdjudication(), null, 2)}\n`);
+  } catch (error) {
+    process.stderr.write(`Subkultur legacy adjudication FEIL: ${error.message}\n`);
+    process.exitCode = 1;
+  }
+}
