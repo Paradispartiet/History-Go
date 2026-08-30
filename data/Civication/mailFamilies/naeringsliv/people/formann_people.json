@@ -2678,6 +2678,274 @@
           ]
         }
       ]
+    },
+    {
+      "id": "formann_profesjonelle_arbeidsrelasjoner",
+      "description": "Profesjonelle arbeidsrelasjoner for Formann Role World-readiness: typed, eksplisitt fiktive scenarioaktører på de eksisterende operative arbeidsflatene. Familien er prerequisite-evidens og er ikke et nytt steg i canonical plan.",
+      "fictional_scenario_actors": [
+        "arvid_erfaren_fagarbeider_formann",
+        "noor_nyansatt_fagarbeider_formann",
+        "selma_hms_kvalitetskontakt_formann",
+        "maja_neste_skiftleder_formann"
+      ],
+      "thread_binding": {
+        "people_thread_id": "formann_profesjonelle_arbeidsrelasjoner",
+        "people_phase": "early"
+      },
+      "mails": [
+        {
+          "id": "formann_people_arvid_fordeling_001",
+          "mail_type": "people",
+          "mail_family": "formann_profesjonelle_arbeidsrelasjoner",
+          "role_scope": "formann",
+          "phase": "early",
+          "priority": 72,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "actor_id": "arvid_erfaren_fagarbeider_formann",
+          "person_id": "arvid_erfaren_fagarbeider_formann",
+          "people_ref": "arvid_erfaren_fagarbeider_formann",
+          "place_id": "produksjons_og_arbeidsomrade",
+          "channel": "work",
+          "messageChannel": "work",
+          "mail_class": "professional_message",
+          "subject": "Arvid kan ta den tunge sonen igjen — men bør han?",
+          "summary": "Tavla går enklest opp dersom Arvid får enda en krevende sone fordi han er den mest erfarne og sjelden protesterer. Scenen gjør arbeidsfordeling til mer enn kapasitetsregning: Formannen må se både leveranse, kompetanse, belastning og hva laget lærer om rettferdighet når den sterkeste alltid absorberer usikkerheten.",
+          "purpose": "Readiness-prerequisite: koble typed profesjonell relasjon til eksisterende Formann-arbeidsflate uten å endre canonical plan eller formell myndighet.",
+          "stakes": "Valget påvirker samarbeid, sporbarhet og operativ tillit, men kan aldri utvide fullmakt, oppheve sikkerhetsrutiner eller erstatte riktig kontroll- og eskaleringslinje.",
+          "situation": [
+            "En fraværssituasjon har gjort bemanningen strammere enn planlagt, og Arvid kan teknisk sett dekke den mest krevende sonen.",
+            "Han har allerede tatt flere tunge oppgaver denne uken og sier rolig at han kan gjøre det igjen dersom det er nødvendig.",
+            "Du må fordele arbeid innen fullmakt uten å gjøre pålitelighet til en automatisk begrunnelse for skjev belastning."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Fordele med synlig belastningsvurdering",
+              "reply": "Jeg avklarer hvilken kompetanse som faktisk trengs, fordeler resten av laget først og bruker Arvid bare der erfaringen er nødvendig.",
+              "effect": 0,
+              "tags": [
+                "professional_relationship"
+              ],
+              "feedback": "Du bruker arbeidsledermandatet uten å gjøre den mest pålitelige medarbeideren til permanent buffer. Kapasitet og rettferdighet blir behandlet som deler av samme risikobeslutning, og laget kan se hvorfor fordelingen ble som den ble.",
+              "effects": {
+                "stats": {
+                  "fairness": 2,
+                  "capacity": 1,
+                  "trust_team": 2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Gi Arvid sonen for å sikre tempo",
+              "reply": "Jeg gir Arvid sonen fordi han kan levere den raskest og tar resten av bemanningen etterpå.",
+              "effect": 0,
+              "tags": [
+                "professional_relationship"
+              ],
+              "feedback": "Du kjøper kortsiktig flyt med kjent kompetanse, men gjør tidligere pålitelighet til grunn for ny belastning. Det kan være innen fullmakten og likevel bygge en skjult norm der de sterkeste alltid bærer planens svakheter.",
+              "effects": {
+                "stats": {
+                  "speed": 2,
+                  "fatigue_risk": 2,
+                  "trust_team": -1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "formann_people_noor_mandat_001",
+          "mail_type": "people",
+          "mail_family": "formann_profesjonelle_arbeidsrelasjoner",
+          "role_scope": "formann",
+          "phase": "early",
+          "priority": 72,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "actor_id": "noor_nyansatt_fagarbeider_formann",
+          "person_id": "noor_nyansatt_fagarbeider_formann",
+          "people_ref": "noor_nyansatt_fagarbeider_formann",
+          "place_id": "arbeidslederpunkt",
+          "channel": "work",
+          "messageChannel": "work",
+          "mail_class": "professional_message",
+          "subject": "Noor nikker — men oppgaven er større enn introduksjonen hennes",
+          "summary": "Noor får en oppgave som ligger nær det hun allerede kan, men inkluderer ett kontrollpunkt hun ikke har gjort alene. Hun nikker fordi tavla er presset og de andre står klare. Scenen tester om Formannen kan skape fremdrift uten å gjøre taushet til kompetansebevis eller bruke lederposisjonen som utilbørlig press.",
+          "purpose": "Readiness-prerequisite: koble typed profesjonell relasjon til eksisterende Formann-arbeidsflate uten å endre canonical plan eller formell myndighet.",
+          "stakes": "Valget påvirker samarbeid, sporbarhet og operativ tillit, men kan aldri utvide fullmakt, oppheve sikkerhetsrutiner eller erstatte riktig kontroll- og eskaleringslinje.",
+          "situation": [
+            "Du ser at Noor kjenner hovedoppgaven, men ikke har gjennomført det siste kontrollpunktet selvstendig tidligere.",
+            "Hun sier at det sikkert går fint og virker mer opptatt av å ikke forsinke laget enn av å beskrive hva hun faktisk er trygg på.",
+            "Som arbeidsleder kan du fordele arbeid, men du må også gjøre kompetanse- og eskaleringsgrensen mulig å si høyt."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avklare kompetanse før fordeling",
+              "reply": "Jeg skiller hovedoppgaven fra kontrollpunktet og avtaler hvem Noor skal hente inn dersom hun møter det hun ikke er godkjent for alene.",
+              "effect": 0,
+              "tags": [
+                "professional_relationship"
+              ],
+              "feedback": "Du beholder fremdrift samtidig som instruksen tåler usikkerhet. Noor får et tydelig arbeid innenfor faktisk kompetanse, og lederrollen blir en kanal for trygg eskalering i stedet for et sosialt press om å late som alt er kjent.",
+              "effects": {
+                "stats": {
+                  "clarity": 2,
+                  "safety": 2,
+                  "trust_team": 1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Be henne prøve og si fra hvis det stopper",
+              "reply": "Jeg ber Noor starte hele oppgaven og komme tilbake dersom kontrollpunktet blir vanskelig.",
+              "effect": 0,
+              "tags": [
+                "professional_relationship"
+              ],
+              "feedback": "Du gjør oppstarten enkel, men flytter kompetansevurderingen inn i selve utførelsen. Når den nyansatte allerede kjenner på tidspress, kan terskelen for å si fra bli høyere enn den burde være, selv uten et eksplisitt regelbrudd.",
+              "effects": {
+                "stats": {
+                  "speed": 1,
+                  "ambiguity": 2,
+                  "safety": -1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "formann_people_selma_avvik_001",
+          "mail_type": "people",
+          "mail_family": "formann_profesjonelle_arbeidsrelasjoner",
+          "role_scope": "formann",
+          "phase": "early",
+          "priority": 72,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "actor_id": "selma_hms_kvalitetskontakt_formann",
+          "person_id": "selma_hms_kvalitetskontakt_formann",
+          "people_ref": "selma_hms_kvalitetskontakt_formann",
+          "place_id": "hms_og_avvikspunkt",
+          "channel": "work",
+          "messageChannel": "work",
+          "mail_class": "professional_message",
+          "subject": "Produksjonen kan starte igjen — men avviket er ikke ferdig",
+          "summary": "Et område er fysisk sikret etter en nestenulykke, og den umiddelbare faren er fjernet. Selma peker på at hendelsesforløpet og årsaken fortsatt er uavklart. Scenen skiller Formannens operative stans- og sikringsansvar fra retten til å lukke avvik eller gjøre et ufullstendig faktagrunnlag til grønt lys for normal drift.",
+          "purpose": "Readiness-prerequisite: koble typed profesjonell relasjon til eksisterende Formann-arbeidsflate uten å endre canonical plan eller formell myndighet.",
+          "stakes": "Valget påvirker samarbeid, sporbarhet og operativ tillit, men kan aldri utvide fullmakt, oppheve sikkerhetsrutiner eller erstatte riktig kontroll- og eskaleringslinje.",
+          "situation": [
+            "Den konkrete faren er fjernet og en enkel funksjonstest ser normal ut, så produksjonspresset peker mot rask gjenstart.",
+            "Selma mangler fortsatt et presist hendelsesforløp, hvem som eier årsaksavklaringen og hvilket kontrollsteg som må være dokumentert før saken kan lukkes.",
+            "Du kan sikre og eskalere innen fullmakt; du kan ikke gjøre fravær av synlig fare til fullmakt til å hoppe over kontrollsporet."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sikre fakta og eskalere riktig",
+              "reply": "Jeg holder berørt aktivitet på nødvendig nivå, dokumenterer hva vi vet og ikke vet, og sender beslutningen om full gjenstart til riktig kontrollinje.",
+              "effect": 0,
+              "tags": [
+                "professional_relationship"
+              ],
+              "feedback": "Du bruker operativ myndighet presist: situasjonen blir sikret uten at du later som en lokal funksjonstest avgjør hele saken. Sporbarhet og ansvar bevares, og produksjonspresset får ikke omskrive hvem som faktisk kan lukke avviket.",
+              "effects": {
+                "stats": {
+                  "safety": 2,
+                  "documentation": 2,
+                  "integrity": 2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Starte opp fordi faren er fjernet",
+              "reply": "Jeg starter normal drift og ber Selma ferdigstille avviksdokumentasjonen parallelt.",
+              "effect": 0,
+              "tags": [
+                "professional_relationship"
+              ],
+              "feedback": "Du beskytter kapasiteten, men skiller kontrollsporet fra beslutningen det skulle informere. Dersom årsaken viser seg å være bredere enn den synlige feilen, har gjenstarten allerede gjort tidsgevinsten til en risikobeslutning uten riktig grunnlag.",
+              "effects": {
+                "stats": {
+                  "speed": 2,
+                  "future_risk": 2,
+                  "documentation": -1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "formann_people_maja_overlevering_001",
+          "mail_type": "people",
+          "mail_family": "formann_profesjonelle_arbeidsrelasjoner",
+          "role_scope": "formann",
+          "phase": "early",
+          "priority": 72,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "actor_id": "maja_neste_skiftleder_formann",
+          "person_id": "maja_neste_skiftleder_formann",
+          "people_ref": "maja_neste_skiftleder_formann",
+          "place_id": "skift_og_overleveringsrom",
+          "channel": "work",
+          "messageChannel": "work",
+          "mail_class": "professional_message",
+          "subject": "Maja ser et grønt skift — men du vet om to gule punkter",
+          "summary": "Skiftet ditt leverte hovedmålet, men to restpunkter er fortsatt åpne: ett midlertidig tiltak og én bemanningsusikkerhet som neste skift må følge opp. Scenen gjør overlevering til en ansvarshandling: Formannen kan rapportere et godt resultat uten å pynte bort risiko som ellers havner usynlig hos Maja.",
+          "purpose": "Readiness-prerequisite: koble typed profesjonell relasjon til eksisterende Formann-arbeidsflate uten å endre canonical plan eller formell myndighet.",
+          "stakes": "Valget påvirker samarbeid, sporbarhet og operativ tillit, men kan aldri utvide fullmakt, oppheve sikkerhetsrutiner eller erstatte riktig kontroll- og eskaleringslinje.",
+          "situation": [
+            "Dashboardet viser grønn leveranse, og begge restpunktene kan sannsynligvis løses tidlig i neste skift.",
+            "Maja spør om det er noe hun må vite før hun tar over, og det er fristende å svare med bare det som faktisk stoppet produksjonen.",
+            "Det som ikke stanset ditt skift kan likevel være avgjørende for hvordan det neste prioriterer bemanning, kontroll og risiko."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Overlevere både resultat og restansvar",
+              "reply": "Jeg gir Maja grønnstatusen, men lister de to gule punktene med midlertidig tiltak, eier og hva som må kontrolleres videre.",
+              "effect": 0,
+              "tags": [
+                "professional_relationship"
+              ],
+              "feedback": "Du gjør skiftresultatet etterprøvbart uten å redusere prestasjonen. Neste leder kan skille ferdig arbeid fra restarbeid og ta egne prioriteringer på et sant grunnlag, mens ansvarsgrensen mellom skiftene forblir lesbar.",
+              "effects": {
+                "stats": {
+                  "handoff": 2,
+                  "trust_peer": 2,
+                  "documentation": 2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Rapportere bare det som faktisk er rødt",
+              "reply": "Jeg sier at skiftet er levert og nevner at det finnes noen små oppfølgingspunkter i loggen.",
+              "effect": 0,
+              "tags": [
+                "professional_relationship"
+              ],
+              "feedback": "Du unngår en dramatisk overlevering, men gjør Maja avhengig av å oppdage betydningen selv. Når restansvar er kjent men ikke løftet tydelig, blir grønnstatusen mindre informativ enn den ser ut og risiko flyttes mellom skift.",
+              "effects": {
+                "stats": {
+                  "presentation": 1,
+                  "handoff": -2,
+                  "future_risk": 2
+                }
+              }
+            }
+          ]
+        }
+      ]
     }
   ]
 }
