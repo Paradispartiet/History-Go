@@ -1635,6 +1635,10 @@
                 {
                   "id": "em_his_krig_okkupasjon_krig_mobilisering_og_statsdannelse",
                   "label": "Okkupasjon, samarbeid, tilpasning og motstand"
+                },
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
                 }
               ],
               "milestones": [
@@ -1659,18 +1663,138 @@
                     "Hovedforløpet er godt dokumentert, men den eksakte byggestarten og fasene i den tidlige borgen angis ofte omtrentlig.",
                     "Festningen kan leses både som vern av byen og som en materiell demonstrasjon av kongemakt, skattlegging og kontroll."
                   ]
+                },
+                {
+                  "id": "production_claim_akershus_festning_popup_01",
+                  "year": 1299,
+                  "title": "Akershus ble sannsynligvis påbegynt av Håkon 5. i perioden 1299–1304.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Identity, building phases, 1716, occupation, 42 executions, current use and management. – popup, setning 1",
+                      "url": "https://www.forsvarsbygg.no/eiendomsforvaltning/festningene/akershus-festning",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/akershus_festning.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_akershus_festning_popup_01",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_akershus_festning_popup_03",
+                  "year": 1308,
+                  "title": "Allerede i 1308 kunne den nye borgen motstå hertug Erik Magnussons angrep. `year: 1299` beholdes som teknisk tidsanker i steddataene, men kildene støtter ikke ett sikkert byggeår.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Identity, building phases, 1716, occupation, 42 executions, current use and management. – popup, setning 3",
+                      "url": "https://www.forsvarsbygg.no/eiendomsforvaltning/festningene/akershus-festning",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/akershus_festning.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_akershus_festning_popup_03",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "story_st_akershus_1308_borgen_holder",
+                  "year": 1308,
+                  "title": "Borgen holder i 1308",
+                  "consequence": "Den nyanlagte borgen ble satt på sin første store prøve da hertug Erik Magnusson angrep.",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "SNL – Akershus slott og festning",
+                      "url": "https://snl.no/Akershus_slott_og_festning",
+                      "verifiedAt": ""
+                    },
+                    {
+                      "title": "Forsvarsbygg – Akershus festning",
+                      "url": "https://www.forsvarsbygg.no/eiendomsforvaltning/festningene/akershus-festning",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/runtime/stories-all/part-004.json",
+                  "evidence_type": "canonical_story",
+                  "claim_id": "",
+                  "story_id": "st_akershus_1308_borgen_holder",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_akershus_1_1308",
+                  "year": 1308,
+                  "title": "Første dokumenterte store angrep",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Første dokumenterte store angrep",
+                      "url": "https://snl.no/Akershus_slott_og_festning",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_akershus_festning.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_akershus_festning_popup_05",
+                  "year": 1500,
+                  "title": "På 1500- og 1600-tallet ble Akershus modernisert etter europeiske prinsipper for artilleriforsvar.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Identity, building phases, 1716, occupation, 42 executions, current use and management. – popup, setning 5",
+                      "url": "https://www.forsvarsbygg.no/eiendomsforvaltning/festningene/akershus-festning",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/akershus_festning.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_akershus_festning_popup_05",
+                  "story_id": "",
+                  "limitations": []
                 }
               ],
               "period_cases": [],
               "connections": {
-                "person_ids": [],
+                "person_ids": [
+                  "hannibal_sehested"
+                ],
                 "works": [],
                 "stories": [
                   {
-                    "id": "st_akershus_terboven_1940",
-                    "title": "Terboven tar over Akershus, september 1940",
-                    "year": 1940,
-                    "type": "historical"
+                    "id": "st_akershus_1308_borgen_holder",
+                    "title": "Borgen holder i 1308",
+                    "year": 1308,
+                    "type": "turning_point"
+                  },
+                  {
+                    "id": "st_akershus_1716_beleiringen",
+                    "title": "39 dager foran Akershus",
+                    "year": 1716,
+                    "type": "conflict"
+                  },
+                  {
+                    "id": "st_akershus_slaveriet_1739",
+                    "title": "Da festningsarbeid ble straff",
+                    "year": 1739,
+                    "type": "historical_event"
+                  },
+                  {
+                    "id": "st_akershus_11_mai_1945",
+                    "title": "Akershus skifter hender",
+                    "year": 1945,
+                    "type": "turning_point"
                   }
                 ]
               }
@@ -3843,7 +3967,7 @@
             }
           ],
           "placeCount": 21,
-          "milestoneCount": 64
+          "milestoneCount": 69
         },
         "historie_tidlig_moderne_stat_handel_og_reformasjon": {
           "places": [
@@ -3854,12 +3978,28 @@
               "source_file": "places/historie/oslo/places_historie/akershus_festning.json",
               "roles": [
                 {
+                  "id": "arbeid_og_okonomi",
+                  "label": "Arbeid og økonomi"
+                },
+                {
                   "id": "em_his_embetsstat_forvaltning",
                   "label": "Embetsstat"
                 },
                 {
+                  "id": "konflikt_og_motstand",
+                  "label": "Konflikt og motstand"
+                },
+                {
+                  "id": "makt_og_styring",
+                  "label": "Makt og styring"
+                },
+                {
                   "id": "em_his_stat_institusjoner",
                   "label": "Stat/institusjon"
+                },
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
                 }
               ],
               "milestones": [
@@ -3884,18 +4024,219 @@
                     "Kilden beskriver oppgavemessig kontinuitet og lokaliserer kanselliet ved Akershus, men omtrent år 1600 er en bred tidsangivelse for tidlig 1600-tall og sier ikke at organisasjon, personale eller rutiner var uendret.",
                     "Kontinuiteten kan forstås som institusjonell arv i sekretariatsoppgaver, men 1814 var samtidig et statsrettslig og organisatorisk brudd som skapte nye norske departementer."
                   ]
+                },
+                {
+                  "id": "production_claim_akershus_festning_popup_07",
+                  "year": 1642,
+                  "title": "Hannibal Sehested bodde her som stattholder fra 1642, mens store arbeider gjorde festningen til et tydeligere militært og administrativt maktsentrum.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Retterstedet: 42 victims, execution dates and 1949 memorial unveiling. – popup, setning 7",
+                      "url": "https://www.forsvarsbygg.no/globalassets/festningene/akershus-festning/akershus-festning.pdf",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/akershus_festning.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_akershus_festning_popup_07",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_akershus_2_1642",
+                  "year": 1642,
+                  "title": "Hannibal Sehested på Akershus",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Hannibal Sehested på Akershus",
+                      "url": "https://snl.no/Hannibal_Sehested",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_akershus_festning.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "story_st_akershus_1716_beleiringen",
+                  "year": 1716,
+                  "title": "39 dager foran Akershus",
+                  "consequence": "Karl 12. tok Christiania, men festningen gjorde okkupasjonen av byen strategisk usikker.",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "SNL – beleiringen av Akershus festning 1716",
+                      "url": "https://snl.no/beleiringen_av_Akershus_festning_-_1716",
+                      "verifiedAt": ""
+                    },
+                    {
+                      "title": "SNL – den svenske invasjonen av Norge i 1716",
+                      "url": "https://snl.no/den_svenske_invasjonen_av_Norge_i_1716",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/runtime/stories-all/part-004.json",
+                  "evidence_type": "canonical_story",
+                  "claim_id": "",
+                  "story_id": "st_akershus_1716_beleiringen",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_akershus_festning_desc_03",
+                  "year": 1716,
+                  "title": "Anlegget motsto beleiringer, blant annet Karl 12.s angrep i 1716.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "1716 chronology, garrison, Swedish limitations and withdrawal. – desc, setning 3",
+                      "url": "https://snl.no/beleiringen_av_Akershus_festning_-_1716",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/akershus_festning.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_akershus_festning_desc_03",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_akershus_festning_popup_08",
+                  "year": 1716,
+                  "title": "I 1716 inntok Karl 12.s svenske hær Christiania, men ikke Akershus.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "1716 chronology, garrison, Swedish limitations and withdrawal. – popup, setning 8",
+                      "url": "https://snl.no/beleiringen_av_Akershus_festning_-_1716",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/akershus_festning.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_akershus_festning_popup_08",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_akershus_3_1716",
+                  "year": 1716,
+                  "title": "Karl 12. beleirer Akershus",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Karl 12. beleirer Akershus",
+                      "url": "https://snl.no/beleiringen_av_Akershus_festning_-_1716",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_akershus_festning.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_akershus_4_1739",
+                  "year": 1739,
+                  "title": "Akershus festnings slaveri",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Akershus festnings slaveri",
+                      "url": "https://snl.no/Akershus_landsfengsel",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_akershus_festning.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "story_st_akershus_slaveriet_1739",
+                  "year": 1739,
+                  "title": "Da festningsarbeid ble straff",
+                  "consequence": "Akershus festnings slaveri bandt straff, tvangsarbeid og festningens vedlikehold sammen.",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "SNL – Akershus landsfengsel",
+                      "url": "https://snl.no/Akershus_landsfengsel",
+                      "verifiedAt": ""
+                    },
+                    {
+                      "title": "SNL – Akershus slott og festning",
+                      "url": "https://snl.no/Akershus_slott_og_festning",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/runtime/stories-all/part-004.json",
+                  "evidence_type": "canonical_story",
+                  "claim_id": "",
+                  "story_id": "st_akershus_slaveriet_1739",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_akershus_festning_popup_13",
+                  "year": 1814,
+                  "title": "Etter 1814 ble Akershus gradvis mindre viktig som aktivt forsvarsverk, men området mistet ikke funksjon.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Identity, building phases, 1716, occupation, 42 executions, current use and management. – popup, setning 13",
+                      "url": "https://www.forsvarsbygg.no/eiendomsforvaltning/festningene/akershus-festning",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/akershus_festning.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_akershus_festning_popup_13",
+                  "story_id": "",
+                  "limitations": []
                 }
               ],
               "period_cases": [],
               "connections": {
-                "person_ids": [],
+                "person_ids": [
+                  "hannibal_sehested"
+                ],
                 "works": [],
                 "stories": [
                   {
-                    "id": "st_akershus_terboven_1940",
-                    "title": "Terboven tar over Akershus, september 1940",
-                    "year": 1940,
-                    "type": "historical"
+                    "id": "st_akershus_1308_borgen_holder",
+                    "title": "Borgen holder i 1308",
+                    "year": 1308,
+                    "type": "turning_point"
+                  },
+                  {
+                    "id": "st_akershus_1716_beleiringen",
+                    "title": "39 dager foran Akershus",
+                    "year": 1716,
+                    "type": "conflict"
+                  },
+                  {
+                    "id": "st_akershus_slaveriet_1739",
+                    "title": "Da festningsarbeid ble straff",
+                    "year": 1739,
+                    "type": "historical_event"
+                  },
+                  {
+                    "id": "st_akershus_11_mai_1945",
+                    "title": "Akershus skifter hender",
+                    "year": 1945,
+                    "type": "turning_point"
                   }
                 ]
               }
@@ -8088,7 +8429,7 @@
             }
           ],
           "placeCount": 43,
-          "milestoneCount": 106
+          "milestoneCount": 115
         },
         "historie_revolusjoner_industri_og_demokratisering": {
           "places": [
@@ -8235,6 +8576,110 @@
                     "title": "Elva som ikke slutter ved kartkanten",
                     "year": 2014,
                     "type": "environmental"
+                  }
+                ]
+              }
+            },
+            {
+              "place_id": "akershus_festning",
+              "name": "Akershus festning",
+              "category": "historie",
+              "source_file": "places/historie/oslo/places_historie/akershus_festning.json",
+              "roles": [
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "chrono_akershus_5_1854",
+                  "year": 1854,
+                  "title": "Akershus straffeanstalt",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Akershus straffeanstalt",
+                      "url": "https://snl.no/Akershus_landsfengsel",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_akershus_festning.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_akershus_6_1900",
+                  "year": 1900,
+                  "title": "Akershus landsfengsel",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Akershus landsfengsel",
+                      "url": "https://snl.no/Akershus_landsfengsel",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_akershus_festning.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_akershus_7_1905",
+                  "year": 1905,
+                  "title": "Restaureringsundersøkelser",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Restaureringsundersøkelser",
+                      "url": "https://snl.no/Akershus_slott_og_festning",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_akershus_festning.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [
+                  "hannibal_sehested"
+                ],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_akershus_1308_borgen_holder",
+                    "title": "Borgen holder i 1308",
+                    "year": 1308,
+                    "type": "turning_point"
+                  },
+                  {
+                    "id": "st_akershus_1716_beleiringen",
+                    "title": "39 dager foran Akershus",
+                    "year": 1716,
+                    "type": "conflict"
+                  },
+                  {
+                    "id": "st_akershus_slaveriet_1739",
+                    "title": "Da festningsarbeid ble straff",
+                    "year": 1739,
+                    "type": "historical_event"
+                  },
+                  {
+                    "id": "st_akershus_11_mai_1945",
+                    "title": "Akershus skifter hender",
+                    "year": 1945,
+                    "type": "turning_point"
                   }
                 ]
               }
@@ -9385,7 +9830,7 @@
                       "verifiedAt": ""
                     }
                   ],
-                  "source_file": "data/runtime/stories-all/part-003.json",
+                  "source_file": "data/runtime/stories-all/part-002.json",
                   "evidence_type": "canonical_story",
                   "claim_id": "",
                   "story_id": "st_bla_skilt_helverschous_fra_lokke_til_minneskilt",
@@ -16149,7 +16594,7 @@
                       "verifiedAt": ""
                     }
                   ],
-                  "source_file": "data/runtime/stories-all/part-004.json",
+                  "source_file": "data/runtime/stories-all/part-003.json",
                   "evidence_type": "canonical_story",
                   "claim_id": "",
                   "story_id": "st_slottsplassen_monument_1875",
@@ -16173,7 +16618,7 @@
                       "verifiedAt": ""
                     }
                   ],
-                  "source_file": "data/runtime/stories-all/part-004.json",
+                  "source_file": "data/runtime/stories-all/part-003.json",
                   "evidence_type": "canonical_story",
                   "claim_id": "",
                   "story_id": "st_slottsplassen_garden_1888",
@@ -19391,8 +19836,8 @@
               }
             }
           ],
-          "placeCount": 98,
-          "milestoneCount": 330
+          "placeCount": 99,
+          "milestoneCount": 333
         },
         "historie_nasjon_massepolitikk_og_moderne_institusjoner": {
           "places": [
@@ -19438,6 +19883,72 @@
                     "title": "Elva som ikke slutter ved kartkanten",
                     "year": 2014,
                     "type": "environmental"
+                  }
+                ]
+              }
+            },
+            {
+              "place_id": "akershus_festning",
+              "name": "Akershus festning",
+              "category": "historie",
+              "source_file": "places/historie/oslo/places_historie/akershus_festning.json",
+              "roles": [
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "chrono_akershus_8_1929",
+                  "year": 1929,
+                  "title": "Arneberg får restaureringsoppdrag",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Arneberg får restaureringsoppdrag",
+                      "url": "https://snl.no/Akershus_slott_og_festning",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_akershus_festning.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [
+                  "hannibal_sehested"
+                ],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_akershus_1308_borgen_holder",
+                    "title": "Borgen holder i 1308",
+                    "year": 1308,
+                    "type": "turning_point"
+                  },
+                  {
+                    "id": "st_akershus_1716_beleiringen",
+                    "title": "39 dager foran Akershus",
+                    "year": 1716,
+                    "type": "conflict"
+                  },
+                  {
+                    "id": "st_akershus_slaveriet_1739",
+                    "title": "Da festningsarbeid ble straff",
+                    "year": 1739,
+                    "type": "historical_event"
+                  },
+                  {
+                    "id": "st_akershus_11_mai_1945",
+                    "title": "Akershus skifter hender",
+                    "year": 1945,
+                    "type": "turning_point"
                   }
                 ]
               }
@@ -20152,7 +20663,7 @@
                       "verifiedAt": ""
                     }
                   ],
-                  "source_file": "data/runtime/stories-all/part-003.json",
+                  "source_file": "data/runtime/stories-all/part-002.json",
                   "evidence_type": "canonical_story",
                   "claim_id": "",
                   "story_id": "st_bla_skilt_hornsrud_fra_hjem_til_statsministerhistorie",
@@ -20707,7 +21218,7 @@
                       "verifiedAt": ""
                     }
                   ],
-                  "source_file": "data/runtime/stories-all/part-002.json",
+                  "source_file": "data/runtime/stories-all/part-001.json",
                   "evidence_type": "canonical_story",
                   "claim_id": "",
                   "story_id": "st_folketeateret_folkets_scene",
@@ -26334,8 +26845,8 @@
               }
             }
           ],
-          "placeCount": 82,
-          "milestoneCount": 178
+          "placeCount": 83,
+          "milestoneCount": 179
         },
         "historie_krig_okkupasjon_og_etterkrigsoppgjor": {
           "places": [
@@ -26441,6 +26952,10 @@
                   "label": "Makt og styring"
                 },
                 {
+                  "id": "minne_og_historiebruk",
+                  "label": "Minne og historiebruk"
+                },
+                {
                   "id": "em_his_minnesteder_historiebruk",
                   "label": "Minnesteder"
                 },
@@ -26459,6 +26974,10 @@
                 {
                   "id": "em_his_stat_institusjoner",
                   "label": "Stat/institusjon"
+                },
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
                 }
               ],
               "milestones": [
@@ -26490,22 +27009,103 @@
                   ]
                 },
                 {
-                  "id": "story_st_akershus_terboven_1940",
+                  "id": "production_claim_akershus_festning_popup_21",
                   "year": 1940,
-                  "title": "Terboven tar over Akershus, september 1940",
-                  "consequence": "I september 1940 erklærte Reichskommissar Josef Terboven at den norske regjeringen og kongen var avsatt. Akershus ble sentral arena.",
+                  "title": "Under den tyske okkupasjonen 1940–1945 ble Akershus brukt som forlegning, fengsel og rettersted.",
+                  "consequence": "",
                   "confidence": "",
                   "sources": [
                     {
-                      "title": "SNL: Josef Terboven",
-                      "url": "https://snl.no/Josef_Terboven",
+                      "title": "Slaveriet, straffeanstalt, landsfengsel and institutional chronology. – popup, setning 21",
+                      "url": "https://snl.no/Akershus_landsfengsel",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/akershus_festning.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_akershus_festning_popup_21",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "story_st_akershus_11_mai_1945",
+                  "year": 1945,
+                  "title": "Akershus skifter hender",
+                  "consequence": "11. mai 1945 overtok norske hjemmestyrker festningen fra de tyske styrkene.",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "SNL – Terje Rollem",
+                      "url": "https://snl.no/Terje_Rollem",
+                      "verifiedAt": ""
+                    },
+                    {
+                      "title": "SNL – Festningsplassen",
+                      "url": "https://snl.no/Festningsplassen",
                       "verifiedAt": ""
                     }
                   ],
-                  "source_file": "data/runtime/stories-all/part-001.json",
+                  "source_file": "data/runtime/stories-all/part-004.json",
                   "evidence_type": "canonical_story",
                   "claim_id": "",
-                  "story_id": "st_akershus_terboven_1940",
+                  "story_id": "st_akershus_11_mai_1945",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_akershus_10_1945",
+                  "year": 1945,
+                  "title": "Akershus tilbake på norske hender",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Akershus tilbake på norske hender",
+                      "url": "https://snl.no/Terje_Rollem",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_akershus_festning.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_akershus_festning_popup_25",
+                  "year": 1945,
+                  "title": "Den 11. mai 1945 overtok norske hjemmestyrker festningen fra de tyske styrkene, en hendelse som senere ble et sterkt frigjøringssymbol.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "11 May 1945 transfer to Norwegian home forces. – popup, setning 25",
+                      "url": "https://snl.no/Terje_Rollem",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/akershus_festning.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_akershus_festning_popup_25",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_akershus_9_1945",
+                  "year": 1945,
+                  "title": "Henrettelser ved Retterstedet",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Henrettelser ved Retterstedet",
+                      "url": "https://www.forsvarsbygg.no/globalassets/festningene/akershus-festning/akershus-festning.pdf",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_akershus_festning.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
                   "limitations": []
                 },
                 {
@@ -26531,6 +27131,25 @@
                   ]
                 },
                 {
+                  "id": "production_claim_akershus_festning_popup_22",
+                  "year": 1945,
+                  "title": "På eksekusjonsplassen ble 42 nordmenn henrettet 9. og 10. februar og 17. mars 1945.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Retterstedet: 42 victims, execution dates and 1949 memorial unveiling. – popup, setning 22",
+                      "url": "https://www.forsvarsbygg.no/globalassets/festningene/akershus-festning/akershus-festning.pdf",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/akershus_festning.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_akershus_festning_popup_22",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
                   "id": "claim_claim_his_akershus_postwar_mobilization_operations_planning_1947_1970",
                   "year": 1947,
                   "title": "Okkupasjon, samarbeid, tilpasning og motstand",
@@ -26551,18 +27170,76 @@
                     "Kilden dokumenterer formell struktur, oppgaver og lokalisering, men ikke de konkrete operative planenes innhold, ressurser, øvelsesfrekvens eller samtidige trusselanslag.",
                     "Planleggingsansvaret viser varig institusjonalisert beredskap, men er ikke et direkte mål på hvor sannsynlig myndighetene vurderte krig i hvert enkelt år."
                   ]
+                },
+                {
+                  "id": "production_claim_akershus_festning_popup_24",
+                  "year": 1949,
+                  "title": "8. mai 1949.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Retterstedet: 42 victims, execution dates and 1949 memorial unveiling. – popup, setning 24",
+                      "url": "https://www.forsvarsbygg.no/globalassets/festningene/akershus-festning/akershus-festning.pdf",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/akershus_festning.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_akershus_festning_popup_24",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_akershus_11_1949",
+                  "year": 1949,
+                  "title": "Minnesmerket avdukes",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Minnesmerket avdukes",
+                      "url": "https://www.forsvarsbygg.no/globalassets/festningene/akershus-festning/akershus-festning.pdf",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_akershus_festning.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
                 }
               ],
               "period_cases": [],
               "connections": {
-                "person_ids": [],
+                "person_ids": [
+                  "hannibal_sehested"
+                ],
                 "works": [],
                 "stories": [
                   {
-                    "id": "st_akershus_terboven_1940",
-                    "title": "Terboven tar over Akershus, september 1940",
-                    "year": 1940,
-                    "type": "historical"
+                    "id": "st_akershus_1308_borgen_holder",
+                    "title": "Borgen holder i 1308",
+                    "year": 1308,
+                    "type": "turning_point"
+                  },
+                  {
+                    "id": "st_akershus_1716_beleiringen",
+                    "title": "39 dager foran Akershus",
+                    "year": 1716,
+                    "type": "conflict"
+                  },
+                  {
+                    "id": "st_akershus_slaveriet_1739",
+                    "title": "Da festningsarbeid ble straff",
+                    "year": 1739,
+                    "type": "historical_event"
+                  },
+                  {
+                    "id": "st_akershus_11_mai_1945",
+                    "title": "Akershus skifter hender",
+                    "year": 1945,
+                    "type": "turning_point"
                   }
                 ]
               }
@@ -29855,7 +30532,7 @@
             }
           ],
           "placeCount": 41,
-          "milestoneCount": 86
+          "milestoneCount": 93
         },
         "historie_velferdsstat_kald_krig_og_sosialdemokrati": {
           "places": [
@@ -29947,6 +30624,72 @@
                     "title": "Elva som ikke slutter ved kartkanten",
                     "year": 2014,
                     "type": "environmental"
+                  }
+                ]
+              }
+            },
+            {
+              "place_id": "akershus_festning",
+              "name": "Akershus festning",
+              "category": "historie",
+              "source_file": "places/historie/oslo/places_historie/akershus_festning.json",
+              "roles": [
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "chrono_akershus_12_1950",
+                  "year": 1950,
+                  "title": "Landsfengselet nedlegges",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Landsfengselet nedlegges",
+                      "url": "https://snl.no/Akershus_landsfengsel",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_akershus_festning.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [
+                  "hannibal_sehested"
+                ],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_akershus_1308_borgen_holder",
+                    "title": "Borgen holder i 1308",
+                    "year": 1308,
+                    "type": "turning_point"
+                  },
+                  {
+                    "id": "st_akershus_1716_beleiringen",
+                    "title": "39 dager foran Akershus",
+                    "year": 1716,
+                    "type": "conflict"
+                  },
+                  {
+                    "id": "st_akershus_slaveriet_1739",
+                    "title": "Da festningsarbeid ble straff",
+                    "year": 1739,
+                    "type": "historical_event"
+                  },
+                  {
+                    "id": "st_akershus_11_mai_1945",
+                    "title": "Akershus skifter hender",
+                    "year": 1945,
+                    "type": "turning_point"
                   }
                 ]
               }
@@ -34691,8 +35434,8 @@
               }
             }
           ],
-          "placeCount": 57,
-          "milestoneCount": 122
+          "placeCount": 58,
+          "milestoneCount": 123
         },
         "historie_senmoderne_globalisering_og_markedsvending": {
           "places": [
@@ -41728,14 +42471,34 @@
               ],
               "period_cases": [],
               "connections": {
-                "person_ids": [],
+                "person_ids": [
+                  "hannibal_sehested"
+                ],
                 "works": [],
                 "stories": [
                   {
-                    "id": "st_akershus_terboven_1940",
-                    "title": "Terboven tar over Akershus, september 1940",
-                    "year": 1940,
-                    "type": "historical"
+                    "id": "st_akershus_1308_borgen_holder",
+                    "title": "Borgen holder i 1308",
+                    "year": 1308,
+                    "type": "turning_point"
+                  },
+                  {
+                    "id": "st_akershus_1716_beleiringen",
+                    "title": "39 dager foran Akershus",
+                    "year": 1716,
+                    "type": "conflict"
+                  },
+                  {
+                    "id": "st_akershus_slaveriet_1739",
+                    "title": "Da festningsarbeid ble straff",
+                    "year": 1739,
+                    "type": "historical_event"
+                  },
+                  {
+                    "id": "st_akershus_11_mai_1945",
+                    "title": "Akershus skifter hender",
+                    "year": 1945,
+                    "type": "turning_point"
                   }
                 ]
               }
@@ -55038,6 +55801,10 @@
                   "label": "Kald krig, beredskap og sikkerhetsstat"
                 },
                 {
+                  "id": "minne_og_historiebruk",
+                  "label": "Minne og historiebruk"
+                },
+                {
                   "id": "em_his_minnesteder_historiebruk",
                   "label": "Minnesteder"
                 },
@@ -55095,6 +55862,25 @@
                     "Den offisielle koblingen dokumenterer anerkjennelsespolitikk, men ikke at alle veteraner identifiserer seg med samme historiske fortelling.",
                     "Sammenkoblingen kan styrke kontinuitet og anerkjennelse, men kan også overskygge forskjeller mellom okkupasjonserfaring, internasjonale operasjoner og hjemkomst."
                   ]
+                },
+                {
+                  "id": "chrono_akershus_11_1949",
+                  "year": 1949,
+                  "title": "Minnesmerket avdukes",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Minnesmerket avdukes",
+                      "url": "https://www.forsvarsbygg.no/globalassets/festningene/akershus-festning/akershus-festning.pdf",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_akershus_festning.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
                 },
                 {
                   "id": "claim_claim_his_akershus_2018_medal_recipient_experiences",
@@ -55175,14 +55961,34 @@
               ],
               "period_cases": [],
               "connections": {
-                "person_ids": [],
+                "person_ids": [
+                  "hannibal_sehested"
+                ],
                 "works": [],
                 "stories": [
                   {
-                    "id": "st_akershus_terboven_1940",
-                    "title": "Terboven tar over Akershus, september 1940",
-                    "year": 1940,
-                    "type": "historical"
+                    "id": "st_akershus_1308_borgen_holder",
+                    "title": "Borgen holder i 1308",
+                    "year": 1308,
+                    "type": "turning_point"
+                  },
+                  {
+                    "id": "st_akershus_1716_beleiringen",
+                    "title": "39 dager foran Akershus",
+                    "year": 1716,
+                    "type": "conflict"
+                  },
+                  {
+                    "id": "st_akershus_slaveriet_1739",
+                    "title": "Da festningsarbeid ble straff",
+                    "year": 1739,
+                    "type": "historical_event"
+                  },
+                  {
+                    "id": "st_akershus_11_mai_1945",
+                    "title": "Akershus skifter hender",
+                    "year": 1945,
+                    "type": "turning_point"
                   }
                 ]
               }
@@ -58595,7 +59401,7 @@
                       "verifiedAt": ""
                     }
                   ],
-                  "source_file": "data/runtime/stories-all/part-004.json",
+                  "source_file": "data/runtime/stories-all/part-003.json",
                   "evidence_type": "canonical_story",
                   "claim_id": "",
                   "story_id": "st_slottsplassen_monument_1875",
@@ -59611,7 +60417,7 @@
             }
           ],
           "placeCount": 45,
-          "milestoneCount": 118
+          "milestoneCount": 119
         }
       },
       "oslo_coverage": {
@@ -74955,14 +75761,14 @@
     "canonical_source_count": 256,
     "place_evidence_link_count": 325,
     "period_case_count": 9,
-    "connected_people_count": 49,
+    "connected_people_count": 50,
     "connected_work_count": 164,
-    "connected_story_count": 230,
-    "canonical_story_milestone_count": 199,
-    "verified_place_production_milestone_count": 259,
+    "connected_story_count": 233,
+    "canonical_story_milestone_count": 202,
+    "verified_place_production_milestone_count": 270,
     "indexed_place_count": 264,
-    "epoch_place_relations": 529,
-    "milestone_count": 1222
+    "epoch_place_relations": 532,
+    "milestone_count": 1248
   },
   "warnings": {
     "missing_source_files": [
