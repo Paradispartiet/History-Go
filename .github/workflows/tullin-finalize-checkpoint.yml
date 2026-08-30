@@ -1,4 +1,4 @@
-name: Finalize Tullin checkpoint v11
+name: Finalize Tullin checkpoint v12
 
 on:
   push:
@@ -187,6 +187,16 @@ jobs:
           npm run audit:people-of-places
           npm run civication:history-people:check
           node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
+
+      - name: Normalize generated People report
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'reports/people-of-places-status.md';
+          const text = fs.readFileSync(file, 'utf8');
+          fs.writeFileSync(file, `${text.trimEnd()}\n`);
+          console.log('Normalized People report to one trailing newline');
+          NODE
 
       - name: Validate Tullin runtime projections
         run: |
