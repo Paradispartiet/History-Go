@@ -22,6 +22,12 @@ question.theory_ref = {
   theory_explanation: theoryExplanation
 };
 
+// The Rossi rewrite changes the sentence-level canonical claims. Any pre-existing
+// Knowledge IDs were derived from the old prose and must be regenerated from the
+// new claims by knowledge-canonical-data rather than reused across different claims.
+delete question.primary_knowledge_unit_id;
+delete question.knowledge_unit_ids;
+
 if (!question.claim_basis || !question.source?.includes('riksantikvaren_nasjonalgalleriet')) {
   throw new Error('tullin_quiz_41 lost its source-backed claim binding');
 }
@@ -33,5 +39,6 @@ console.log(JSON.stringify({
   topicHook: question.topic_hook_id,
   thinker: question.thinker_id,
   work: question.work,
+  knowledgeIdsReset: true,
   source: question.source
 }, null, 2));
