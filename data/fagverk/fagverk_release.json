@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "e3a75ce3a4390327c9aa4533ce6068969870ad23c37bd6b409c6c6e0ee72b0ac"
+    "content_sha256": "ae73e20465d7e42a47b5833f4e970c3ca17f2f20fec7234a23a52813e3d818c1"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 17,
     "chapter_count": 189,
     "module_file_count": 497,
-    "package_file_count": 354,
+    "package_file_count": 357,
     "chapter_referenced_file_count": 933,
-    "referenced_file_count": 1216,
+    "referenced_file_count": 1219,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -1948,9 +1948,9 @@
         "version"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 59,
+      "package_file_count": 62,
       "required_package_file_count": 4,
-      "optional_package_file_count": 55,
+      "optional_package_file_count": 58,
       "package_files": [
         {
           "path": "data/fag/historie/case_requirements_historie_canonical_v1.json",
@@ -2241,6 +2241,18 @@
           "content_sha256": "03b329a3d5754efcf3f9248ea677e9ca269cbc8f76b0e850e626aff47e1e2f59"
         },
         {
+          "path": "data/quiz/historie/norges_hjemmefrontmuseum_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.norges_hjemmefrontmuseum.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "19b5b3ea6c254985f0fc7fac61d6764d86859edfab35eb68eb58c4cdc860bdfe"
+        },
+        {
           "path": "data/quiz/historie/oslo_hospital_sets.json",
           "required": false,
           "fields": [
@@ -2407,6 +2419,18 @@
           ],
           "exists": true,
           "content_sha256": "309ed881d26d29421f1b6442e2c892e021cbf55789ed1a3eb1b41723bc6127a5"
+        },
+        {
+          "path": "data/quiz/production_briefs/historie/norges_hjemmefrontmuseum.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.norges_hjemmefrontmuseum.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "c97326de463dc1ee63bb201241cb3a917afe5c37d01623eb89341e1e04757642"
         },
         {
           "path": "data/quiz/production_briefs/historie/oslo_hospital.json",
@@ -2577,6 +2601,18 @@
           "content_sha256": "a3b26bffad2215955e0b5b6864b009a4c47dfd014dd55994b05c7aa2f51f4a32"
         },
         {
+          "path": "data/quiz/production_context/historie/norges_hjemmefrontmuseum.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.norges_hjemmefrontmuseum.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "5b0c820a66beff4e1e6089d660f2502cdb85f7ce67112891f80a4a0cdfc0b54a"
+        },
+        {
           "path": "data/quiz/production_context/historie/oslo_hospital.json",
           "required": false,
           "fields": [
@@ -2661,20 +2697,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "9cede561a888e4afecb23f778bb3302a0abdfc1e87882fdb4a1e0362d002f349",
+      "package_content_sha256": "c9d2cb985da5c5e5fbd615751836c7840b0f8473b887dcfdc1472ad3d308b05a",
       "chapter_count": 23,
       "module_file_count": 69,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 92,
       "chapter_content_sha256": "bedfd019dc2fa60ba92a540bf6b9f2504e0f6b1680350762a5fe074e82153148",
-      "referenced_file_count": 151,
+      "referenced_file_count": 154,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "b0891464f214499206d854156049d18bf0bd1a14f2658472b2de993233b8cfb7",
-      "content_sha256": "b4223c1734fb9c796c1321e6df6d98323a9d4225893ee4f1cb1cf93f5b894b95",
+      "structure_sha256": "59720635918d177b154294db18cfb7781c6e56f73e62781636f1cd1eb7ec4eb1",
+      "content_sha256": "4054aa93ffd6f689b8bc399d49db6fc9bc50ad15e3c08b6e9a00167cf92e9fb7",
       "chapters": [
         {
           "chapter_id": "historisk_tid_periodisering",
@@ -6952,5 +6988,5 @@
       ]
     }
   },
-  "release_sha256": "f611302a867c665929a4bd012c53e61ea899f53347094dc2685887e552b825cb"
+  "release_sha256": "9d6527957dcc755edc1250641030a459ce744cf2cd8cced62ec92399e9fc1752"
 }

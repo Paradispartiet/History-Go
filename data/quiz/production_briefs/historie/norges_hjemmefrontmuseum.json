@@ -1,0 +1,552 @@
+{
+  "schema_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "norges_hjemmefrontmuseum",
+  "scope": "place",
+  "status": "reviewed",
+  "reviewed_at": "2026-08-30",
+  "profile_hint": "rich_5x7",
+  "review_note": "Offisiell museumsside, Kongehuset, SNL, Sikt og to lisensierte utstillingsdokumentasjoner er krysskontrollert; museet holdes fra festningen, Forsvarsmuseet og hendelsesstedene til de historiske kildene.",
+  "sources": {
+    "official": {
+      "url": "https://www.forsvarshistoriskmuseum.no/norges-hjemmefrontmuseum",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Current identity, collection scope and archive scale."
+    },
+    "snl": {
+      "url": "https://snl.no/Norges_Hjemmefrontmuseum",
+      "source_type": "reputable_secondary",
+      "review_status": "reviewed",
+      "review_note": "Building, collection, private-foundation origin and transfer to the Armed Forces."
+    },
+    "sikt": {
+      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Decision in 1962, committee support, foundation in 1966, opening and institutional transfer in 1995."
+    },
+    "royal": {
+      "url": "https://www.kongehuset.no/nyheter/besokte-krigsveteraner",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Public opening by Crown Prince Harald on 7 May 1970."
+    },
+    "plaque": {
+      "url": "https://commons.wikimedia.org/wiki/File:Norway%27s_WW2_Resistance_Museum,_Oslo_(Hjemmefrontmuseet)._History_of_building_on_plaque_(Det_dobbelte_batteri,_bindingsverkhuset,_restaurering_1967%E2%80%9368,_%C3%A5pning_1970)._Photo_2017-11-30.jpg",
+      "source_type": "catalogue",
+      "review_status": "reviewed",
+      "review_note": "Building plaque documents restoration in 1967–1968 and opening in 1970."
+    },
+    "radio": {
+      "url": "https://commons.wikimedia.org/wiki/File:Norway%27s_WW2_Resistance_Museum,_Oslo_(Hjemmefrontmuseet)._Camouflaged_illegal_radio_receivers_(kamuflerte_radiomottakere)._Photo_2017-11-30_b.jpg",
+      "source_type": "catalogue",
+      "review_status": "reviewed",
+      "review_note": "Camouflaged radio receivers photographed in the museum exhibition; no use site inferred."
+    },
+    "armband": {
+      "url": "https://commons.wikimedia.org/wiki/File:Norwegian_World_War_II_Resistance_Home_Forces_armband_(armbind_brukt_av_Hjemmestyrkene)_displayed_at_Norway%27s_Resistance_Museum_in_Oslo,_photo_2017-11-30.jpg",
+      "source_type": "catalogue",
+      "review_status": "reviewed",
+      "review_note": "Home Forces armband photographed in the museum exhibition; no individual wearer inferred."
+    }
+  },
+  "selected_curriculum": {
+    "emne_ids": [
+      "em_his_okkupasjon_motstand",
+      "em_his_minnesteder_historiebruk",
+      "em_his_spor_materialitet",
+      "em_his_samtid_ettertid_fortelling",
+      "em_his_museum_samling_kanon"
+    ],
+    "topic_hook_ids": [
+      "his_museum_samling_kanon"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "tony_bennett"
+    ],
+    "works": [
+      "The Birth of the Museum"
+    ]
+  },
+  "profile_decision": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "justification": "Fem uavhengige kildebårne settplaner dekker sted/identitet, institusjonsforløp, åpning, gjenstander, kildekritikk og historiebruk."
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/by/norges_hjemmefrontmuseum_sets.json",
+      "data/quiz/historie/norges_hjemmefrontmuseum_sets.json",
+      "data/quiz/historie/arkiv/norges_hjemmefrontmuseum_sets.json"
+    ],
+    "active_before": {
+      "categoryId": null,
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "Ingen aktiv, arkivert eller alternativ Norges Hjemmefrontmuseum-quiz ble funnet; produser ny canonical Historie rich 5x7."
+    ],
+    "knowledge_migration": {
+      "status": "not_applicable",
+      "retained_rule": "Ingen eldre spørsmål å migrere."
+    }
+  },
+  "held_back_candidates": [
+    "Generisk krigsquiz uten museumstilknytning",
+    "Heltefortellinger uten kilde- og perspektivkritikk",
+    "Hendelser som tilhører hele Akershus festning eller andre okkupasjonssteder"
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Museet holder til i Det dobbelte batteri og Bindingsverkshuset.",
+      "source_ids": [
+        "official",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Sikt dokumenterer beslutningsmøtet i juni 1962.",
+      "source_ids": [
+        "sikt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Møtet samlet framtredende representanter for motstandsbevegelsen.",
+      "source_ids": [
+        "sikt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Midler gjorde videre institusjonsarbeid mulig.",
+      "source_ids": [
+        "sikt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Museet ble etablert som egen stiftelse våren 1966.",
+      "source_ids": [
+        "sikt",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Museet må holdes fra festningen, slottet og Forsvarsmuseet.",
+      "source_ids": [
+        "official",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "SNL beskriver de fredede bygningsdelene.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Bygningsplaketten dokumenterer restaureringen.",
+      "source_ids": [
+        "plaque",
+        "sikt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kongehuset oppgir den presise åpningsdatoen.",
+      "source_ids": [
+        "royal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Harald åpnet museet før han ble konge.",
+      "source_ids": [
+        "royal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "7. mai 1970 lå dagen før 25-årsdagen for frigjøringen.",
+      "source_ids": [
+        "royal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Etablering og offentlig åpning må holdes kronologisk fra hverandre.",
+      "source_ids": [
+        "sikt",
+        "royal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Forvaltningsformen endret seg i mai 1995.",
+      "source_ids": [
+        "sikt",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Den offisielle siden oppgir mer enn 600 hyllemeter arkiver.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kildetypene utfyller hverandre, men har ulike grenser.",
+      "source_ids": [
+        "official",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Commons-fotografiet dokumenterer mottakerne i utstillingen.",
+      "source_ids": [
+        "radio"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Form og beholder var en del av gjenstandens skjulefunksjon.",
+      "source_ids": [
+        "radio"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Fotografiet viser armbindet utstilt i museet.",
+      "source_ids": [
+        "armband"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "concept_theory",
+      "statement": "En gjenstand trenger proveniens og andre kilder for personhistorie.",
+      "source_ids": [
+        "armband"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Museet samler og formidler spor fra mange steder.",
+      "source_ids": [
+        "official",
+        "radio",
+        "armband"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Stedsgrensen hindrer at nasjonale hendelser flyttes til museumsbygningen.",
+      "source_ids": [
+        "official",
+        "sikt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "SNL beskriver museet som skapt av hjemmefrontens folk.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "SNL oppgir bidrag fra industri og næringsliv.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "1995 markerer et organisatorisk brudd.",
+      "source_ids": [
+        "snl",
+        "sikt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Kildenes avsender og formål bestemmer styrkene deres.",
+      "source_ids": [
+        "official",
+        "sikt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Utstillinger ordner spor og skaper en fortelling.",
+      "source_ids": [
+        "official",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Museets etablering er et etterkrigsvalg om historiebruk.",
+      "source_ids": [
+        "snl",
+        "sikt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Fravær og utvalg må undersøkes, ikke fylles med antakelser.",
+      "source_ids": [
+        "official",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Formålet fortsetter gjennom organisatoriske skifter.",
+      "source_ids": [
+        "official",
+        "sikt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Eier- og styringsformen endret seg.",
+      "source_ids": [
+        "sikt",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Taksonomien skiller materiell fra institusjonshendelser.",
+      "source_ids": [
+        "official",
+        "sikt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Perspektivet retter oppmerksomheten mot museet som kunnskaps- og ordningsinstitusjon.",
+      "source_ids": [
+        "official",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_museum_samling_kanon"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Institusjonskilder er sterkere på organisasjon og samling enn alle personhistorier.",
+      "source_ids": [
+        "official",
+        "sikt",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Formidlingssted og historisk hendelsessted er ulike relasjoner.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_norges_hjemmefrontmuseum_quiz_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Stedet forstås gjennom bygning, institusjon, samling og historiebruk.",
+      "source_ids": [
+        "official",
+        "snl",
+        "sikt",
+        "royal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    }
+  ]
+}
