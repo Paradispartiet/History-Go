@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import crypto from 'node:crypto';
+import { summarizeQuestionBalance } from '../scripts/quiz-production-lib.mjs';
 
 const stage = process.argv[2];
 const readJson = (path) => JSON.parse(fs.readFileSync(path, 'utf8'));
@@ -162,7 +163,7 @@ function repairQuizTaxonomy() {
       'tullin_quiz_24',
       'tullin_quiz_26'
     ],
-    concept_theory: [
+    concept: [
       'tullin_quiz_31'
     ]
   };
@@ -176,16 +177,15 @@ function repairQuizTaxonomy() {
       question.question_type = type;
     }
   }
-  const counts = questions.reduce((acc, question) => {
-    acc[question.question_type] = (acc[question.question_type] || 0) + 1;
-    return acc;
-  }, {});
-  const expected = { fact: 22, context: 12, concept_theory: 8 };
-  for (const [type, count] of Object.entries(expected)) {
-    if (counts[type] !== count) throw new Error(`Unexpected ${type} count: ${counts[type]} (expected ${count})`);
+  const balance = summarizeQuestionBalance(questions);
+  const expected = { fact: 23, context: 12, concept_theory: 7 };
+  for (const [family, count] of Object.entries(expected)) {
+    if (balance.counts[family] !== count) {
+      throw new Error(`Unexpected ${family} family count: ${balance.counts[family]} (expected ${count})`);
+    }
   }
   writeJson(path, quiz);
-  console.log(JSON.stringify({ status: 'quiz-taxonomy-repaired', counts }, null, 2));
+  console.log(JSON.stringify({ status: 'quiz-taxonomy-repaired', balance }, null, 2));
 }
 
 function refreshEpochAndRoundSnapshots() {
