@@ -7,6 +7,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = 'data/fag/politikk/sosiologi_antropologi/applied_public_ethics_decolonization_source_claim_brief_v1.json';
 const REPORT = 'reports/fagverk/sosiologi-antropologi-applied-public-ethics-decolonization-source-brief-v1-audit.json';
 const RECONCILIATION = 'reports/fagverk/sosiologi-antropologi-reconciliation-v1.json';
+const PRODUCTION = 'data/fag/politikk/sosiologi_antropologi/production_registry_v1.json';
 const abs = (file) => path.join(ROOT, file);
 const read = (file) => JSON.parse(fs.readFileSync(abs(file), 'utf8'));
 const write = (file, value) => { fs.mkdirSync(path.dirname(abs(file)), { recursive: true }); fs.writeFileSync(abs(file), `${JSON.stringify(value, null, 2)}\n`); };
@@ -98,13 +99,16 @@ export function buildBrief() {
 
 export function generate() {
   const brief = buildBrief(); write(OUT, brief);
-  const reconciliation = read(RECONCILIATION); reconciliation.updated_at = '2026-08-29'; reconciliation.production_plan.source_first_ready = 12; reconciliation.production_plan.materialized = 11; reconciliation.production_plan.next_domain = 'anvendt_offentlig_etikk_avkolonisering'; write(RECONCILIATION, reconciliation);
+  const production = read(PRODUCTION);
+  if (production.progress.strictCompletionProven !== true) {
+    const reconciliation = read(RECONCILIATION); reconciliation.updated_at = '2026-08-29'; reconciliation.production_plan.source_first_ready = 12; reconciliation.production_plan.materialized = 11; reconciliation.production_plan.next_domain = 'anvendt_offentlig_etikk_avkolonisering'; write(RECONCILIATION, reconciliation);
+  }
   const claims = brief.topic_briefs.flatMap((entry) => entry.planned_claims);
   write(REPORT, { schema: 'history_go_sosiologi_antropologi_applied_public_ethics_decolonization_source_brief_audit_v1', version: '1.0.0', updated_at: '2026-08-29', status: 'pass', conclusion: 'applied_public_ethics_decolonization_source_first_ready_not_materialized', subject_id: 'politikk', canonical_subcategory_id: 'sosiologi_antropologi', domain_id: brief.domain.id,
     counts: { sources: brief.sources.length, topicBriefs: brief.topic_briefs.length, plannedClaims: claims.length, decisionScenarios: brief.decision_scenarios.length, currentlyMaterializedDomains: 11, targetDomains: 12 },
     gates: { allSourcesInspectable: true, everyClaimHasAtLeastTwoSources: true, everySourceUsed: true, appliedPublicAndProfessionalRoleBoundaries: true, normativeEvaluationAndDistributionBoundaries: true, participationEpistemicInjusticeAndRepresentationBoundaries: true, decolonizationIndigenousRightsAndFPICBoundaries: true, samiDataRepairAndResponsibleInferenceBoundaries: true, sourceBriefDoesNotCountAsMaterialized: true, categoryStatusMustRemainExpansionPlanned: true },
     six_part_quality_review: { correctness_and_evidence: 5, coverage_and_completion: 5, disciplinary_editorial_quality: 5, technical_integrity: 5, safety_and_responsibility: 5, maintainability_and_auditability: 4, total: 29, maximum: 30, note: 'Felt 12 har et verifisert source-first-grunnlag, men er uttrykkelig ikke fulltekstmaterialisert.' } });
-  console.log(`Anvendt/offentlig sosiologi, etikk og avkolonisering source-first klar: ${brief.sources.length} kilder, ${claims.length} claims, materialisert fortsatt 11/12.`); return brief;
+  console.log(`Anvendt/offentlig sosiologi, etikk og avkolonisering source-first klar: ${brief.sources.length} kilder, ${claims.length} claims; ${production.progress.strictCompletionProven ? 'strict completion bevart' : 'materialisert fortsatt 11/12'}.`); return brief;
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) generate();

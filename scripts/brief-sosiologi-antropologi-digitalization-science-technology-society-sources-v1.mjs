@@ -7,6 +7,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = 'data/fag/politikk/sosiologi_antropologi/digitalization_science_technology_society_source_claim_brief_v1.json';
 const REPORT = 'reports/fagverk/sosiologi-antropologi-digitalization-science-technology-society-source-brief-v1-audit.json';
 const RECONCILIATION = 'reports/fagverk/sosiologi-antropologi-reconciliation-v1.json';
+const PRODUCTION = 'data/fag/politikk/sosiologi_antropologi/production_registry_v1.json';
 const abs = (file) => path.join(ROOT, file);
 const write = (file, value) => { fs.mkdirSync(path.dirname(abs(file)), { recursive: true }); fs.writeFileSync(abs(file), `${JSON.stringify(value, null, 2)}\n`); };
 const read = (file) => JSON.parse(fs.readFileSync(abs(file), 'utf8'));
@@ -93,7 +94,10 @@ export function buildBrief() {
 
 export function generate() {
   const brief = buildBrief(); write(OUT, brief);
-  const reconciliation = read(RECONCILIATION); reconciliation.production_plan.source_first_ready = Math.max(reconciliation.production_plan.source_first_ready, 12); reconciliation.production_plan.materialized = Math.max(reconciliation.production_plan.materialized, 11); reconciliation.production_plan.next_domain = 'anvendt_offentlig_etikk_avkolonisering'; write(RECONCILIATION, reconciliation);
+  const production = read(PRODUCTION);
+  if (production.progress.strictCompletionProven !== true) {
+    const reconciliation = read(RECONCILIATION); reconciliation.production_plan.source_first_ready = Math.max(reconciliation.production_plan.source_first_ready, 12); reconciliation.production_plan.materialized = Math.max(reconciliation.production_plan.materialized, 11); reconciliation.production_plan.next_domain = 'anvendt_offentlig_etikk_avkolonisering'; write(RECONCILIATION, reconciliation);
+  }
   const claims = brief.topic_briefs.flatMap((entry) => entry.planned_claims);
   write(REPORT, { schema: 'history_go_sosiologi_antropologi_digitalization_science_technology_society_source_brief_audit_v1', version: '1.0.0', updated_at: '2026-08-29', status: 'pass', conclusion: 'digitalization_science_technology_society_source_brief_verified_fulltext_audited_separately', subject_id: 'politikk', canonical_subcategory_id: 'sosiologi_antropologi', domain_id: brief.domain.id, counts: { sources: brief.sources.length, topicBriefs: brief.topic_briefs.length, plannedClaims: claims.length, decisionScenarios: brief.decision_scenarios.length, currentlyMaterializedDomains: 11, targetDomains: 12 }, gates: { allSourcesInspectable: true, everyClaimHasAtLeastTwoSources: true, everySourceUsed: true, stsConstructionAndCoproductionBoundaries: true, classificationInfrastructureAndDataBoundaries: true, platformWorkPrivacyAndAIRiskBoundaries: true, internetResearchEthicsAndResponsibleInferenceBoundaries: true, sourceBriefDoesNotCountAsMaterialized: true, categoryStatusMustRemainExpansionPlanned: true }, six_part_quality_review: { correctness_and_evidence: 5, coverage_and_completion: 5, disciplinary_editorial_quality: 5, technical_integrity: 5, safety_and_responsibility: 5, maintainability_and_auditability: 4, total: 29, maximum: 30, note: 'Kildebriefet er verifisert; felt 11 teller nå gjennom en separat fulltekstaudit, aldri gjennom kildebriefet alene.' } });
   console.log(`Digitalisering, vitenskap, teknologi og samfunn source-first verifisert: ${brief.sources.length} kilder, ${claims.length} claims, fulltekststatus håndteres separat.`);
