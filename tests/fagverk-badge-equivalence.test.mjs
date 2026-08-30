@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import { spawnSync } from 'node:child_process';
 
@@ -9,6 +10,10 @@ const badgeUi = fs.readFileSync('js/fagverk-ia-v3-badge-progress.js', 'utf8');
 const fallback = fs.readFileSync('js/merke-fallback.js', 'utf8');
 const portalUi = fs.readFileSync('js/fagverk-forside.js', 'utf8');
 const badgeIndex = fs.readFileSync('merker/merker.html', 'utf8');
+const badgeIndexArchive = fs.readFileSync('merker/archive/merker_index_legacy_20260830.html', 'utf8');
+const profile = fs.readFileSync('profile.html', 'utf8');
+const byLegacy = fs.readFileSync('data/fag/by/merke_by.html', 'utf8');
+const popularCultureLegacy = fs.readFileSync('data/fag/media/populaerkultur_som_mediefelt/merke_populaerkultur.html', 'utf8');
 const compatibilityBySubject = new Map([
   ['historie', fs.readFileSync('data/fag/historie/merke_historie (1).html', 'utf8')],
   ['kunst', fs.readFileSync('data/fag/kunst/merke_kunst (2).html', 'utf8')],
@@ -33,6 +38,11 @@ function runAudit() {
   const result = spawnSync(process.execPath, ['scripts/audit-fagverk-badge-equivalence.mjs'], { encoding: 'utf8' });
   assert.equal(result.status, 0, result.stderr || result.stdout);
   return JSON.parse(result.stdout);
+}
+
+function gitBlob(content) {
+  const body = Buffer.from(content, 'utf8');
+  return crypto.createHash('sha1').update(Buffer.from(`blob ${body.length}\0`)).update(body).digest('hex');
 }
 
 test('badge equivalence audit klassifiserer alle canonicale fag uten ukjent familie', () => {
@@ -105,19 +115,20 @@ test('Fagverkforsiden skjuler compatibility-lenken når merket allerede er integ
   assert.match(portalUi, /class="fagverk-portal-compat"/);
 });
 
-test('Alle merker sender ferdigmigrerte fag til integrert Progresjon', () => {
-  for (const id of MIGRATED) assert.match(badgeIndex, new RegExp(`href="\\.\\.\\/fagverk\\.html\\?subject=${id}#fagverkIaProgresjon"`));
-  assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/filosofi\/merke_filosofi\.html"/);
-  assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/media\/merke_media\.html"/);
-  assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/musikk\/merke_musikk \(1\)\.html"/);
-  assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/naeringsliv\/merke_naeringsliv \(1\)\.html"/);
-  assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/natur\/merke_natur \(1\)\.html"/);
-  assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/psykologi\/merke_psykologi \(1\)\.html"/);
-  assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/sport\/merke_sport\.html"/);
-  assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/subkultur\/merke_subkultur\.html"/);
-  assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/vitenskap\/merke_vitenskap \(2\)\.html"/);
-  assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/TV_og_Film\/merke_film_tv\.html"/);
-  assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/politikk\/merke_politikk\.html"/);
+test('den separate merkeindeksen er bytearkivert og gammel URL går til Fagverket', () => {
+  assert.equal(gitBlob(badgeIndexArchive), 'bb0cf746552d671d4341da198c210b41bacc55d1');
+  assert.equal((badgeIndexArchive.match(/class="merke-kort"/g) || []).length, 18);
+  assert.match(badgeIndexArchive, /data\/fag\/populaerkultur\/merke_populaerkultur\.html/);
+  assert.match(badgeIndex, /rel="canonical" href="\.\.\/fagverk-forside\.html"/);
+  assert.match(badgeIndex, /location\.replace\('\.\.\/fagverk-forside\.html'\)/);
+  assert.doesNotMatch(badgeIndex, /class="merke-kort"|populaerkultur|subject=/);
+  assert.doesNotMatch(profile, /href="merker\/merker\.html"/);
+  assert.match(profile, /href="fagverk-forside\.html"[^>]*>Utforsk alle fag og merker/);
+  assert.match(profile, /href="fagverk-forside\.html">Fagverket<\/a>/);
+  assert.doesNotMatch(byLegacy, /href="\.\.\/\.\.\/\.\.\/merker\/merker\.html"/);
+  assert.match(byLegacy, /href="\.\.\/\.\.\/\.\.\/fagverk-forside\.html"/);
+  assert.doesNotMatch(popularCultureLegacy, /href="\.\.\/\.\.\/\.\.\/merker\/merker\.html"/);
+  assert.match(popularCultureLegacy, /href="\.\.\/\.\.\/\.\.\/fagverk\.html\?subject=media"/);
 });
 
 test('Politikk rich runtime og all canonical legacy static theory er pensjonert', () => {
