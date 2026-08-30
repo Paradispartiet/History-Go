@@ -3,7 +3,7 @@
 Status: **aktiv migrering — Batch A og B merget; Batch C pågår**  
 Eier: `fagverk_ia_v3`  
 Opprettet: **2026-08-28**  
-Sist oppdatert: **2026-08-28**
+Sist oppdatert: **2026-08-30**
 
 ## Gjennomført
 
@@ -95,11 +95,11 @@ Den permanente auditen klassifiserer hvert `badgePage` som:
 - [x] Flytt badgeidentitet, poeng/nivå, nivåstige og badge-undermerker inn i Fagverkets Progresjon.
 - [x] Flytt Helse og Utdanning fra generisk `merke.html`-produktflate til direkte Progresjon-ruter i portalregisteret.
 - [x] Gjør `merke.html?badge=<id>` til fail-closed compatibility-redirect til fagets Progresjon.
-- [ ] Kjør full CI og merge første Batch C-tranche.
+- [x] Kjør full CI og merge første Batch C-tranche.
 
 ### Gjenstående Batch C
 
-- [ ] Reconcile eldre siderolleprosa i `FAGVERK.md` med navigasjonskontrakt v3.
+- [x] Reconcile eldre siderolleprosa i `FAGVERK.md` med navigasjonskontrakt v3.
 - [ ] Kjør innholdsaudit av `legacy_static_theory`, med By som representativt førstefag.
 - [ ] Migrer kun unik, gyldig teori som mangler canonicalt til riktig emne/metode/begrep/kapittel/fagoversikt.
 - [x] Migrer Politikkens `rich_runtime`-funksjoner til Progresjon/Emner/Utforsk, arkiver originalen byte-for-byte og pensjoner separat portalruntime.

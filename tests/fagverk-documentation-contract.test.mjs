@@ -56,7 +56,7 @@ function markdownMentionsPath(markdown, relativePath) {
 test('FAGVERK.md is the explicit canonical all-subject production contract', () => {
   const master = read(MASTER);
 
-  assert.match(master, /canonical og bindende fagverkskontrakt v9/i);
+  assert.match(master, /canonical og bindende fagverkskontrakt v10/i);
   assert.match(master, /eneste samlede kontrakten/i);
   assert.match(master, /én felles fagsidemotor/i);
   assert.match(master, /fagverk\.html\?subject=<subject_id>/);
@@ -70,6 +70,18 @@ test('FAGVERK.md is the explicit canonical all-subject production contract', () 
   assert.match(master, /Theory-quality programchecklist/);
   assert.match(master, /strictCompletionGateReady=true/);
   assert.doesNotMatch(master, /Status: canonical politikk-integrasjon/i);
+});
+
+test('master contract follows the v3 integrated badge and progression role', () => {
+  const master = read(MASTER);
+
+  assert.match(master, /Oversikt · Emner · Lærestoff · Utforsk · Progresjon/);
+  assert.match(master, /Merket er integrert gameplay- og progresjonsidentitet/i);
+  assert.match(master, /compatibility-ruter/i);
+  assert.match(master, /personlig, tverrfaglig \*\*Min læring\*\*-/i);
+  assert.doesNotMatch(master, /Fagverket består av fire forskjellige produktflater/i);
+  assert.doesNotMatch(master, /skiller eksplisitt mellom \*\*Åpne merket\*\* og \*\*Åpne faget\*\*/i);
+  assert.doesNotMatch(master, /merkeside og fagside er forskjellige mål/i);
 });
 
 test('editorial completeness follows relevant subject matter rather than fixed quotas', () => {
