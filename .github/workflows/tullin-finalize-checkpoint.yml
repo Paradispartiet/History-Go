@@ -1,4 +1,4 @@
-name: Finalize Tullin checkpoint v10
+name: Finalize Tullin checkpoint v11
 
 on:
   push:
@@ -139,11 +139,11 @@ jobs:
       - name: Rebuild canonical Knowledge
         run: npm run knowledge:canonical:write
 
-      - name: Rebuild Fagverk release
-        run: node scripts/build-fagverk-release-manifest.mjs
-
       - name: Rebuild Tullin quiz context
         run: node tools/tullin-finalize-repair.mjs quiz-context
+
+      - name: Rebuild Fagverk release after quiz context
+        run: node scripts/build-fagverk-release-manifest.mjs
 
       - name: Refresh place image backlog summary
         run: |
