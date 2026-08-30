@@ -5,7 +5,7 @@
   "audited_main_sha": "ffd83c30d57af5b7547bb2100e4e434a09227e50",
   "owner_subject_id": "natur",
   "canonical_subcategory_id": "geografi",
-  "status": "authority_audit_complete_first_source_brief_ready",
+  "status": "domain_1_materialized_domain_2_source_first_ready",
   "authority_files": [
     "data/categories/category_contract.json",
     "data/fagverk/subject_inventory.json",
@@ -24,56 +24,16 @@
     "method_rule": "Kartografi, GIS, geodata, koordinatreferanser, romlig analyse og fjernmåling må produseres som geografifaglig metodegrunnlag; generell kartbruk eller stedstilknytning er ikke tilstrekkelig."
   },
   "findings": [
-    {
-      "path": "data/fag/natur/naturpensum_canonical_v4_5.json",
-      "classification": "reuse_with_expansion",
-      "reason": "Natur har allerede sterke kunnskapsfelt for vann/hydrologi, klima, geologi/landskap og biogeografi. Disse bevares hos Natur og brukes som faglig råmateriale, men må få geografisk rom-, skala-, mønster- og metodeinnramming før de kan telle i Geografi."
-    },
-    {
-      "path": "data/fag/natur/methods_natur_canonical_v4_5.json",
-      "classification": "reuse_with_expansion",
-      "reason": "Natur har hydrologiske, geologiske, klima- og biogeografiske analysemetoder som kan gjenbrukes. Reconciliation fant ikke en tilsvarende eksplisitt canonical pakke for kartografi, GIS, koordinatreferanser og romlig statistikk."
-    },
-    {
-      "path": "data/fag/natur/natur_universal_coverage_contract_v1.json",
-      "classification": "reuse_with_expansion",
-      "reason": "Kontrakten skiller allerede universell fagdekning fra geografisk produksjonsdekning. Dette skillet beholdes: geografiske stedscase i Natur er ikke det samme som en ferdig geografidisiplin."
-    },
-    {
-      "path": "data/fagverk/politikk/sosiologi_antropologi/sted-by-migrasjon-og-transnasjonalitet.json",
-      "classification": "secondary_link",
-      "reason": "Sterkt materiale om sted, rom, skala, urbanitet, migrasjon og transnasjonalitet er relevant for samfunnsgeografi, men Sosiologi/antropologi beholder teori- og kapitteleierskap."
-    },
-    {
-      "path": "data/fagverk/by/arkitektur-type-skala-byform.json",
-      "classification": "secondary_link",
-      "reason": "Byform, skala og morfologi er relevante case for urban geografi. By-faget beholder arkitektur- og byformeierskapet."
-    },
-    {
-      "path": "data/fagverk/by/bolig-nabolag-tilgang-endring.json",
-      "classification": "secondary_link",
-      "reason": "Bolig, nabolag, tilgang og endring støtter analyser av bosetting, segregering og urbanisering, men skal ikke flyttes ut av By."
-    },
-    {
-      "path": "data/fagverk/by/arbeid-naering-handel-logistikk.json",
-      "classification": "secondary_link",
-      "reason": "Transport, logistikk, handel og arbeidsgeografi kan bruke By-kapitlet som casegrunnlag uten å gjøre det til et geografikapittel."
-    },
-    {
-      "path": "data/fagverk/naeringsliv/logistikk-infrastruktur-okonomisk-rom.json",
-      "classification": "secondary_link",
-      "reason": "Næringsliv har allerede canonicalt eierskap til logistikk, infrastruktur og økonomisk rom. Geografi sekundærbinder dette i økonomisk geografi og lokaliseringsanalyse."
-    },
-    {
-      "path": "data/fagverk/naeringsliv/internasjonal-okonomi-operations-prosjekt.json",
-      "classification": "secondary_link",
-      "reason": "Globale verdikjeder, handel og grensekryssende produksjon er relevant for økonomisk geografi, men det økonomiske teori- og kapitteleierskapet forblir hos Næringsliv."
-    },
-    {
-      "path": "data/fagverk/politikk/konflikt-makt-sivilsamfunn.json",
-      "classification": "secondary_link",
-      "reason": "Makt, konflikt og institusjoner er nødvendige nabofelt for politisk geografi. Geografi må likevel produsere territorium, grenser, skala og romlig maktanalyse som eget disiplinært bidrag."
-    }
+    {"path":"data/fag/natur/naturpensum_canonical_v4_5.json","classification":"reuse_with_expansion","reason":"Natur har allerede sterke kunnskapsfelt for vann/hydrologi, klima, geologi/landskap og biogeografi. Disse bevares hos Natur og brukes som faglig råmateriale, men må få geografisk rom-, skala-, mønster- og metodeinnramming før de kan telle i Geografi."},
+    {"path":"data/fag/natur/methods_natur_canonical_v4_5.json","classification":"reuse_with_expansion","reason":"Natur har hydrologiske, geologiske, klima- og biogeografiske analysemetoder som kan gjenbrukes. Reconciliation fant ikke en tilsvarende eksplisitt canonical pakke for kartografi, GIS, koordinatreferanser og romlig statistikk."},
+    {"path":"data/fag/natur/natur_universal_coverage_contract_v1.json","classification":"reuse_with_expansion","reason":"Kontrakten skiller allerede universell fagdekning fra geografisk produksjonsdekning. Dette skillet beholdes: geografiske stedscase i Natur er ikke det samme som en ferdig geografidisiplin."},
+    {"path":"data/fagverk/politikk/sosiologi_antropologi/sted-by-migrasjon-og-transnasjonalitet.json","classification":"secondary_link","reason":"Sterkt materiale om sted, rom, skala, urbanitet, migrasjon og transnasjonalitet er relevant for samfunnsgeografi, men Sosiologi/antropologi beholder teori- og kapitteleierskap."},
+    {"path":"data/fagverk/by/arkitektur-type-skala-byform.json","classification":"secondary_link","reason":"Byform, skala og morfologi er relevante case for urban geografi. By-faget beholder arkitektur- og byformeierskapet."},
+    {"path":"data/fagverk/by/bolig-nabolag-tilgang-endring.json","classification":"secondary_link","reason":"Bolig, nabolag, tilgang og endring støtter analyser av bosetting, segregering og urbanisering, men skal ikke flyttes ut av By."},
+    {"path":"data/fagverk/by/arbeid-naering-handel-logistikk.json","classification":"secondary_link","reason":"Transport, logistikk, handel og arbeidsgeografi kan bruke By-kapitlet som casegrunnlag uten å gjøre det til et geografikapittel."},
+    {"path":"data/fagverk/naeringsliv/logistikk-infrastruktur-okonomisk-rom.json","classification":"secondary_link","reason":"Næringsliv har allerede canonicalt eierskap til logistikk, infrastruktur og økonomisk rom. Geografi sekundærbinder dette i økonomisk geografi og lokaliseringsanalyse."},
+    {"path":"data/fagverk/naeringsliv/internasjonal-okonomi-operations-prosjekt.json","classification":"secondary_link","reason":"Globale verdikjeder, handel og grensekryssende produksjon er relevant for økonomisk geografi, men det økonomiske teori- og kapitteleierskapet forblir hos Næringsliv."},
+    {"path":"data/fagverk/politikk/konflikt-makt-sivilsamfunn.json","classification":"secondary_link","reason":"Makt, konflikt og institusjoner er nødvendige nabofelt for politisk geografi. Geografi må likevel produsere territorium, grenser, skala og romlig maktanalyse som eget disiplinært bidrag."}
   ],
   "move_decision": {
     "move_existing_files": [],
@@ -88,27 +48,27 @@
     "bruke administrative områder som naturlige analysegrenser uten å begrunne skala, enhet og datagrunnlag"
   ],
   "domains": [
-    {"ordinal": 1, "domain_id": "geografisk_tenkning_sted_rom_skala_region", "title": "Geografisk tenkning: sted, rom, skala og region", "classification": "new_production_required"},
-    {"ordinal": 2, "domain_id": "kartografi_gis_geodata_fjernmaling", "title": "Kartografi, GIS, geodata og fjernmåling", "classification": "new_production_required"},
-    {"ordinal": 3, "domain_id": "geomorfologi_landskap_jordsystemer", "title": "Geomorfologi, landskap og jordsystemer", "classification": "reuse_with_expansion"},
-    {"ordinal": 4, "domain_id": "klima_vaer_klimasoner_endring", "title": "Klima, vær, klimasoner og endring", "classification": "reuse_with_expansion"},
-    {"ordinal": 5, "domain_id": "hydrologi_hav_kryosfaere_vassdrag", "title": "Hydrologi, hav, kryosfære og vassdrag", "classification": "reuse_with_expansion"},
-    {"ordinal": 6, "domain_id": "biogeografi_jord_arealdekke_okosystem", "title": "Biogeografi, jord, arealdekke og økosystem", "classification": "reuse_with_expansion"},
-    {"ordinal": 7, "domain_id": "befolkning_demografi_migrasjon_mobilitet", "title": "Befolkning, demografi, migrasjon og mobilitet", "classification": "new_production_required"},
-    {"ordinal": 8, "domain_id": "bosetting_by_land_urbanisering", "title": "Bosetting, by–land og urbanisering", "classification": "new_production_required"},
-    {"ordinal": 9, "domain_id": "okonomisk_geografi_ressurser_transport_verdikjeder", "title": "Økonomisk geografi, ressurser, transport og verdikjeder", "classification": "new_production_required"},
-    {"ordinal": 10, "domain_id": "politisk_geografi_grenser_territorium_geopolitikk", "title": "Politisk geografi, grenser, territorium og geopolitikk", "classification": "new_production_required"},
-    {"ordinal": 11, "domain_id": "utviklingsgeografi_ulikhet_baerekraft", "title": "Utviklingsgeografi, ulikhet og bærekraft", "classification": "new_production_required"},
-    {"ordinal": 12, "domain_id": "naturfare_risiko_saarbarhet_planlegging_tilpasning", "title": "Naturfare, risiko, sårbarhet, planlegging og tilpasning", "classification": "new_production_required"}
+    {"ordinal":1,"domain_id":"geografisk_tenkning_sted_rom_skala_region","title":"Geografisk tenkning: sted, rom, skala og region","classification":"new_production_required"},
+    {"ordinal":2,"domain_id":"kartografi_gis_geodata_fjernmaling","title":"Kartografi, GIS, geodata og fjernmåling","classification":"new_production_required"},
+    {"ordinal":3,"domain_id":"geomorfologi_landskap_jordsystemer","title":"Geomorfologi, landskap og jordsystemer","classification":"reuse_with_expansion"},
+    {"ordinal":4,"domain_id":"klima_vaer_klimasoner_endring","title":"Klima, vær, klimasoner og endring","classification":"reuse_with_expansion"},
+    {"ordinal":5,"domain_id":"hydrologi_hav_kryosfaere_vassdrag","title":"Hydrologi, hav, kryosfære og vassdrag","classification":"reuse_with_expansion"},
+    {"ordinal":6,"domain_id":"biogeografi_jord_arealdekke_okosystem","title":"Biogeografi, jord, arealdekke og økosystem","classification":"reuse_with_expansion"},
+    {"ordinal":7,"domain_id":"befolkning_demografi_migrasjon_mobilitet","title":"Befolkning, demografi, migrasjon og mobilitet","classification":"new_production_required"},
+    {"ordinal":8,"domain_id":"bosetting_by_land_urbanisering","title":"Bosetting, by–land og urbanisering","classification":"new_production_required"},
+    {"ordinal":9,"domain_id":"okonomisk_geografi_ressurser_transport_verdikjeder","title":"Økonomisk geografi, ressurser, transport og verdikjeder","classification":"new_production_required"},
+    {"ordinal":10,"domain_id":"politisk_geografi_grenser_territorium_geopolitikk","title":"Politisk geografi, grenser, territorium og geopolitikk","classification":"new_production_required"},
+    {"ordinal":11,"domain_id":"utviklingsgeografi_ulikhet_baerekraft","title":"Utviklingsgeografi, ulikhet og bærekraft","classification":"new_production_required"},
+    {"ordinal":12,"domain_id":"naturfare_risiko_saarbarhet_planlegging_tilpasning","title":"Naturfare, risiko, sårbarhet, planlegging og tilpasning","classification":"new_production_required"}
   ],
   "production_plan": {
     "total_domains": 12,
     "reuse_with_expansion": 4,
     "move_existing": 0,
     "new_production_required": 8,
-    "source_first_ready": 1,
-    "materialized": 0,
-    "next_domain": "geografisk_tenkning_sted_rom_skala_region",
+    "source_first_ready": 2,
+    "materialized": 1,
+    "next_domain": "kartografi_gis_geodata_fjernmaling",
     "strict_completion_proven": false
   }
 }
