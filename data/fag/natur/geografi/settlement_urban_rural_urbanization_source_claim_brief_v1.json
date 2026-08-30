@@ -1,0 +1,129 @@
+{
+  "schema": "history_go_geografi_settlement_urban_rural_urbanization_source_claim_brief_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-30",
+  "status": "source_first_ready_not_materialized",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "domain": {"ordinal":8,"id":"bosetting_by_land_urbanisering","title":"Bosetting, by–land og urbanisering","production_mode":"new_production"},
+  "source_strategy": {
+    "source_first": true,
+    "inspectable_urls_required": true,
+    "claim_level_trace_required": true,
+    "minimum_sources_per_claim": 2,
+    "fulltext_materialization_required_before_counting": true,
+    "administrative_morphological_functional_geographies_must_be_distinguished": true,
+    "urban_and_rural_are_method_dependent_not_natural_binary_labels": true,
+    "built_up_surface_is_not_population_or_function": true,
+    "boundary_change_must_be_distinguished_from_settlement_growth": true,
+    "urban_rural_linkages_require_flows_and_relations_not_proximity_alone": true,
+    "settlement_time_series_require_version_and_geography_harmonization": true
+  },
+  "sources": [
+    {"id":"geo8-01-un-wup2025","publisher":"United Nations Population Division","title":"World Urbanization Prospects 2025 methodology","url":"https://population.un.org/wup/methodology","type":"official-urbanization-methodology","evidence_role":"urban-agglomerations-national-definitions-growth-administrative-change","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo8-02-eurostat-degurba","publisher":"Eurostat","title":"Degree of urbanisation methodology","url":"https://ec.europa.eu/eurostat/web/degree-of-urbanisation/methodology","type":"official-grid-based-settlement-methodology","evidence_role":"grid-density-contiguity-city-town-suburb-rural","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo8-03-oecd-fua","publisher":"OECD","title":"Definition of Cities and Functional Urban Areas","url":"https://www.oecd.org/en/data/datasets/oecd-definition-of-cities-and-functional-urban-areas.html","type":"official-functional-urban-methodology","evidence_role":"city-core-commuting-zone-functional-connections","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo8-04-oecd-fua-paper","publisher":"OECD","title":"The EU-OECD definition of a functional urban area","url":"https://www.oecd.org/en/publications/the-eu-oecd-definition-of-a-functional-urban-area_d58cb34d-en.html","type":"peer-reviewed-method-working-paper","evidence_role":"fua-algorithm-commuting-data-city-definition","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo8-05-eurostat-rural","publisher":"Eurostat","title":"Rural development methodology — urban-rural typology","url":"https://ec.europa.eu/eurostat/web/rural-development/methodology","type":"official-regional-urban-rural-methodology","evidence_role":"rural-grid-cells-nuts3-urban-rural-regional-classes","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo8-06-eurostat-typologies","publisher":"Eurostat","title":"Territorial typologies","url":"https://ec.europa.eu/eurostat/web/nuts/territorial-typologies","type":"official-territorial-classification","evidence_role":"grid-lau-nuts-urban-rural-metropolitan-fua-typologies","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo8-07-eurostat-lau","publisher":"Eurostat","title":"Local administrative units (LAU)","url":"https://ec.europa.eu/eurostat/web/nuts/local-administrative-units","type":"official-administrative-geography-reference","evidence_role":"local-administrative-units-change-correspondence-fua-components","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo8-08-unhabitat-url","publisher":"UN-Habitat","title":"Urban-Rural Linkages: Guiding Principles","url":"https://unhabitat.org/urban-rural-linkages-guiding-principles","type":"official-territorial-development-guidance","evidence_role":"urban-rural-continuum-flows-integrated-territorial-development","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo8-09-unhabitat-land","publisher":"UN-Habitat","title":"Urban-Rural Land Linkages: A Concept and Framework for Action","url":"https://unhabitat.org/urban-rural-land-linkages-a-concept-and-framework-for-action","type":"official-land-governance-framework","evidence_role":"land-tenure-periurban-urban-rural-continuum","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo8-10-unhabitat-policy","publisher":"UN-Habitat","title":"National Urban Policy Guide: Mainstreaming Urban-Rural Linkages in National Urban Policies","url":"https://unhabitat.org/national-urban-policy-guide-mainstreaming-urban-rural-linkages-in-national-urban-policies","type":"official-policy-method-guide","evidence_role":"multi-level-territorial-planning-urban-rural-linkages","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo8-11-ghsl-data","publisher":"European Commission Joint Research Centre","title":"Global Human Settlement Layer datasets and methods","url":"https://human-settlement.emergency.copernicus.eu/datasets.php","type":"official-earth-observation-settlement-data","evidence_role":"built-up-population-settlement-multitemporal-products","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo8-12-ghsl-smod","publisher":"European Commission Joint Research Centre","title":"GHS-SMOD R2023A settlement model","url":"https://human-settlement.emergency.copernicus.eu/ghs_smod2023.php","type":"official-global-settlement-classification","evidence_role":"degree-urbanisation-global-grid-population-built-up","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo8-13-ghsl-built","publisher":"European Commission Joint Research Centre","title":"EMC-BUILT R2025A built-up surface grid","url":"https://human-settlement.emergency.copernicus.eu/emc_built_s.php","type":"official-earth-observation-built-up-product","evidence_role":"built-up-surface-sentinel2-observed-physical-settlement-footprint","retrieval_status":"verified_2026-08-30"}
+  ],
+  "topic_briefs": [
+    {
+      "id":"bosetting-lokalitet-og-geografisk-enhet","title":"Bosetting, lokalitet og geografisk enhet","method_ids":["met_geo_bosettingsavgrensning","met_geo_geografisk_enhetskontroll"],"boundary":"Bosetting kan avgrenses administrativt, statistisk eller morfologisk; enhetsdefinisjon og referanseår skal følge alle sammenligninger.",
+      "source_ids":["geo8-01-un-wup2025","geo8-02-eurostat-degurba","geo8-07-eurostat-lau"],
+      "planned_claims":[
+        {"id":"geo8-01","text":"En bosetting kan avgrenses som administrativ enhet, statistisk lokalitet eller sammenhengende bebygd eller befolket område, og disse grensene kan gi ulike folketall og arealer for samme navngitte sted.","source_ids":["geo8-01-un-wup2025","geo8-02-eurostat-degurba","geo8-07-eurostat-lau"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo8-02","text":"Administrative grenser er nyttige for styring og statistikk, men de følger ikke nødvendigvis den fysiske bosettingens utstrekning eller daglige funksjonelle forbindelser.","source_ids":["geo8-07-eurostat-lau","geo8-03-oecd-fua"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo8-03","text":"Gridbaserte bosettingsklassifikasjoner reduserer noe av avhengigheten av svært ulike administrative enhetsstørrelser, men innfører egne terskler for tetthet, sammenheng og befolkning.","source_ids":["geo8-02-eurostat-degurba","geo8-12-ghsl-smod"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo8-04","text":"Sammenligning av bosettinger over tid krever kontroll av grense- og klassifikasjonsendringer fordi et sted kan skifte kategori eller areal uten tilsvarende fysisk flytting av hele befolkningen.","source_ids":["geo8-01-un-wup2025","geo8-07-eurostat-lau"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"urban-rural-kontinuum-og-klassifikasjon","title":"Urban–rural-kontinuum og klassifikasjon","method_ids":["met_geo_degurba_klassifikasjon","met_geo_urban_rural_typologi"],"boundary":"Urban og rural er metodeavhengige kategorier; grid-, LAU- og regionsklassifikasjoner skal ikke behandles som samme geografiske nivå.",
+      "source_ids":["geo8-02-eurostat-degurba","geo8-05-eurostat-rural","geo8-06-eurostat-typologies"],
+      "planned_claims":[
+        {"id":"geo8-05","text":"Degree of Urbanisation klassifiserer først befolkningsgrid etter tetthet, sammenheng og størrelse og bruker deretter fordelingen av befolkningen i slike celler til å klassifisere lokale administrative enheter.","source_ids":["geo8-02-eurostat-degurba","geo8-12-ghsl-smod"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo8-06","text":"Byer, tettsteder og forsteder og rurale områder i DEGURBA er harmoniserte statistiske klasser og skal ikke uten videre likestilles med lokale juridiske betegnelser som by, tettsted eller kommune.","source_ids":["geo8-02-eurostat-degurba","geo8-07-eurostat-lau"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo8-07","text":"Eurostats urbane-rurale regiontypologi klassifiserer NUTS 3-regioner etter andelen befolkning i rurale gridceller og opererer derfor på et annet nivå enn DEGURBA-klassene for lokale administrative enheter.","source_ids":["geo8-05-eurostat-rural","geo8-06-eurostat-typologies"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo8-08","text":"Et område kan samtidig inngå i en overordnet rural region og inneholde en urban klynge eller by, slik at urban–rural analyse bør behandle skala og klassifikasjonsnivå eksplisitt fremfor å bruke én binær etikett.","source_ids":["geo8-05-eurostat-rural","geo8-02-eurostat-degurba"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"urbanisering-agglomerasjon-og-grenseendring","title":"Urbanisering, agglomerasjon og grenseendring","method_ids":["met_geo_urban_vekst_dekomponering","met_geo_agglomerasjons_harmonisering"],"boundary":"Urban vekst skal dekomponere demografi, migrasjon, fysisk utvidelse og administrative/statistiske grenseendringer.",
+      "source_ids":["geo8-01-un-wup2025","geo8-02-eurostat-degurba","geo8-11-ghsl-data"],
+      "planned_claims":[
+        {"id":"geo8-09","text":"Vekst i en urban agglomerasjons folketall kan skyldes naturlig befolkningsvekst, migrasjon eller at forsteder og nabobyer innlemmes gjennom fysisk eller administrativ ekspansjon.","source_ids":["geo8-01-un-wup2025","geo8-02-eurostat-degurba"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo8-10","text":"En endring i administrativ bygrense kan skape et brudd i tidsserien selv om den fysiske bosettingsutviklingen er gradvis, og tidsserieanalyse bør derfor harmonisere geografien eller markere bruddet.","source_ids":["geo8-01-un-wup2025","geo8-07-eurostat-lau"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo8-11","text":"Fysisk urban ekspansjon kan måles med bebygd overflate fra fjernmåling, men økt bebygd areal er ikke i seg selv det samme som befolkningsvekst eller funksjonell urban integrasjon.","source_ids":["geo8-13-ghsl-built","geo8-03-oecd-fua"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo8-12","text":"Urbaniseringsanalyse bør sammenholde befolkning, bebygd areal og bosettingsklasse fordi fortetting, spredt utbygging og grensereklassifisering kan gi ulike kombinasjoner av demografisk og fysisk vekst.","source_ids":["geo8-11-ghsl-data","geo8-12-ghsl-smod","geo8-13-ghsl-built"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"morfologi-bebygd-overflate-og-tetthet","title":"Morfologi, bebygd overflate og tetthet","method_ids":["met_geo_bebygd_overflate_analyse","met_geo_morfologisk_tetthet"],"boundary":"Bebygd overflate beskriver fysisk konstruksjon; befolkningstetthet, arealbruk og funksjon krever egne data.",
+      "source_ids":["geo8-13-ghsl-built","geo8-11-ghsl-data","geo8-02-eurostat-degurba"],
+      "planned_claims":[
+        {"id":"geo8-13","text":"Satellittavledet bebygd overflate beskriver fysisk areal dekket av bygde strukturer og skal ikke tolkes som direkte mål på antall innbyggere eller aktivitet i bygningene.","source_ids":["geo8-13-ghsl-built","geo8-11-ghsl-data"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo8-14","text":"To bosettinger med likt bebygd areal kan ha svært ulik befolkningstetthet dersom boligtyper, bygningshøyde, tomtebruk eller andel næringsareal er forskjellige.","source_ids":["geo8-11-ghsl-data","geo8-02-eurostat-degurba"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo8-15","text":"Fortetting kan øke befolkning eller bygningsvolum uten tilsvarende horisontal ekspansjon, mens spredt utbygging kan øke bebygd flate raskere enn befolkningen.","source_ids":["geo8-11-ghsl-data","geo8-13-ghsl-built"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo8-16","text":"Morfologisk sammenheng avhenger av rasteroppløsning og regler for hvilke celler som regnes som sammenhengende, slik at urban form bør analyseres med eksplisitt skala og klassifikasjonsmetode.","source_ids":["geo8-02-eurostat-degurba","geo8-12-ghsl-smod"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"funksjonelle-byregioner-pendling-og-periurbanitet","title":"Funksjonelle byregioner, pendling og periurbanitet","method_ids":["met_geo_fua_pendling", "met_geo_periurban_funksjonsanalyse"],"boundary":"Funksjonell integrasjon må dokumenteres med forbindelser som pendling; fysisk nærhet eller sammenheng er ikke alene tilstrekkelig.",
+      "source_ids":["geo8-03-oecd-fua","geo8-04-oecd-fua-paper","geo8-08-unhabitat-url"],
+      "planned_claims":[
+        {"id":"geo8-17","text":"Et funksjonelt byområde består av en by og en pendlingssone og kan derfor strekke seg utover både den sammenhengende bebyggelsen og de administrative grensene rundt bykjernen.","source_ids":["geo8-03-oecd-fua","geo8-04-oecd-fua-paper"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo8-18","text":"Arbeidsreiseflyt gir evidens for økonomisk og funksjonell tilknytning mellom omkringliggende områder og bykjernen, men beskriver ikke alle andre former for sosial eller tjenestebasert mobilitet.","source_ids":["geo8-03-oecd-fua","geo8-04-oecd-fua-paper"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo8-19","text":"Periurbane områder kan kombinere urbane og rurale arealbruksmønstre og sterke forbindelser til byen, slik at de ikke bør defineres bare som en fast avstandssone rundt en administrativ bygrense.","source_ids":["geo8-08-unhabitat-url","geo8-09-unhabitat-land"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo8-20","text":"Sammenligning av boligmarked, arbeidsmarked eller transport fungerer ofte bedre i funksjonelle byområder enn i kommunegrenser når de relevante daglige forbindelsene krysser administrative enheter.","source_ids":["geo8-03-oecd-fua","geo8-10-unhabitat-policy"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"rurale-bosettinger-smabyer-og-mellomsteder","title":"Rurale bosettinger, småbyer og mellomsteder","method_ids":["met_geo_rural_bosettingsstruktur","met_geo_intermediaer_stedsanalyse"],"boundary":"Rurale områder er heterogene og kan inneholde tettsteder og regionale sentra; regionetikett skal ikke erstatte lokal bosettingsanalyse.",
+      "source_ids":["geo8-05-eurostat-rural","geo8-08-unhabitat-url","geo8-10-unhabitat-policy"],
+      "planned_claims":[
+        {"id":"geo8-21","text":"Predominantly rural-regioner defineres ut fra andelen befolkning i rurale gridceller og kan samtidig inneholde mindre byer eller urbane sentra som påvirker regionens funksjoner.","source_ids":["geo8-05-eurostat-rural","geo8-06-eurostat-typologies"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo8-22","text":"Små og mellomstore byer kan fungere som koblingspunkter for tjenester, markeder og mobilitet mellom rurale områder og større byregioner og bør analyseres som del av et stedssystem.","source_ids":["geo8-08-unhabitat-url","geo8-10-unhabitat-policy"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo8-23","text":"Ruralitet bør analyseres med både bosettingsstruktur og funksjonelle forbindelser fordi like lave lokale tettheter kan ha svært ulik tilgang til arbeidsmarkeder og tjenester.","source_ids":["geo8-05-eurostat-rural","geo8-03-oecd-fua"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo8-24","text":"Planlegging som behandler by og land som isolerte beholdere kan overse avhengigheter i transport, tjenester, mat, arbeidskraft og miljøressurser som går på tvers av bosettingskategorier.","source_ids":["geo8-08-unhabitat-url","geo8-10-unhabitat-policy"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"urban-rural-flyt-land-og-territoriell-kobling","title":"Urban–rural flyt, land og territoriell kobling","method_ids":["met_geo_urban_rural_flytanalyse","met_geo_territoriell_landkobling"],"boundary":"Urban–rural-kobling skal underbygges av observerte eller dokumenterte strømmer, institusjoner eller landrelasjoner og ikke bare av geografisk nærhet.",
+      "source_ids":["geo8-08-unhabitat-url","geo8-09-unhabitat-land","geo8-10-unhabitat-policy"],
+      "planned_claims":[
+        {"id":"geo8-25","text":"Urban–rural-koblinger omfatter gjentatte strømmer av mennesker, varer, tjenester, informasjon, kapital og miljøgoder mellom steder og kan strekke seg langt utover nærmeste naboområde.","source_ids":["geo8-08-unhabitat-url","geo8-10-unhabitat-policy"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo8-26","text":"Landforvaltning i periurbane soner kan påvirkes av både urbant utbyggingspress og rurale bruks- og rettighetsregimer, slik at eierskap og forvaltning må analyseres på tvers av administrative sektorer.","source_ids":["geo8-09-unhabitat-land","geo8-10-unhabitat-policy"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo8-27","text":"Funksjonelle urban–rural-relasjoner kan ikke utledes bare av fysisk avstand; transportnett, markedsforbindelser, institusjoner og mobilitetsmønstre avgjør hvilke steder som faktisk er koblet.","source_ids":["geo8-08-unhabitat-url","geo8-03-oecd-fua"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo8-28","text":"Integrert territoriell planlegging krever at virkninger og ressurser vurderes på tvers av by-, periurban- og ruralgeografier når de samme strøm- eller landssystemene krysser slike kategorier.","source_ids":["geo8-08-unhabitat-url","geo8-09-unhabitat-land","geo8-10-unhabitat-policy"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"bosettingsendring-validering-og-usikkerhet","title":"Bosettingsendring, validering og usikkerhet","method_ids":["met_geo_bosetting_tidsserieharmonisering","met_geo_bosettingskart_validering"],"boundary":"Bosettingstidsserier krever harmoniserte produktversjoner, referanseår, oppløsning og geografier; kartendring skal ikke automatisk likestilles med samfunnsendring.",
+      "source_ids":["geo8-11-ghsl-data","geo8-12-ghsl-smod","geo8-13-ghsl-built","geo8-01-un-wup2025"],
+      "planned_claims":[
+        {"id":"geo8-29","text":"En multitemporal bosettingstidsserie må bruke kompatible produktversjoner og klasseregler fordi endret sensor, modell eller klassifikasjon kan skape kartendring uten tilsvarende endring på bakken.","source_ids":["geo8-11-ghsl-data","geo8-12-ghsl-smod"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo8-30","text":"Bebygd-overflatekart bør valideres og tolkes etter produktets oppløsning og observasjonsgrunnlag før små lokale endringer brukes som evidens for ny bosetting eller transformasjon.","source_ids":["geo8-13-ghsl-built","geo8-11-ghsl-data"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo8-31","text":"Bosettingsklasse, befolkningsendring og bebygd areal kan utvikle seg i forskjellig tempo, og attribusjon av urbanisering bør derfor bruke flere indikatorer i stedet for én kartserie alene.","source_ids":["geo8-01-un-wup2025","geo8-11-ghsl-data","geo8-12-ghsl-smod"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo8-32","text":"En etterprøvbar bosettingsgeografisk analyse dokumenterer geografisk definisjon, referanseår, grenseversjon, gridoppløsning, befolknings- og built-up-kilder, funksjonelle relasjoner og usikkerhet før urban–rural forskjeller generaliseres.","source_ids":["geo8-02-eurostat-degurba","geo8-03-oecd-fua","geo8-11-ghsl-data"],"status":"planned_requires_fulltext_verification"}
+      ]
+    }
+  ],
+  "decision_scenarios": [
+    {"id":"geo8-scenario-01","prompt":"Avstem en kommunes administrative bygrense mot sammenhengende bosetting og gridbasert bosettingsklasse før folketall og areal sammenlignes.","source_ids":["geo8-01-un-wup2025","geo8-02-eurostat-degurba","geo8-07-eurostat-lau"]},
+    {"id":"geo8-scenario-02","prompt":"Forklar et hopp i urban agglomerasjons befolkning ved å skille naturlig vekst, migrasjon, fysisk ekspansjon og grenseendring.","source_ids":["geo8-01-un-wup2025","geo8-11-ghsl-data"]},
+    {"id":"geo8-scenario-03","prompt":"Sammenlign administrativ by, DEGURBA-by og funksjonelt byområde og vis hvilke spørsmål hver geografi kan og ikke kan svare på.","source_ids":["geo8-02-eurostat-degurba","geo8-03-oecd-fua","geo8-07-eurostat-lau"]},
+    {"id":"geo8-scenario-04","prompt":"Analyser spredt utbygging ved å sammenholde bebygd overflate, befolkning og bosettingsklasse uten å gjøre built-up til en befolkningsproxy.","source_ids":["geo8-11-ghsl-data","geo8-12-ghsl-smod","geo8-13-ghsl-built"]},
+    {"id":"geo8-scenario-05","prompt":"Kartlegg urban–rural kobling for et mellomsted ved å bruke dokumenterte strømmer av pendling, tjenester, varer og landrelasjoner fremfor en fast buffersone.","source_ids":["geo8-03-oecd-fua","geo8-08-unhabitat-url","geo8-09-unhabitat-land"]},
+    {"id":"geo8-scenario-06","prompt":"Bygg en bosettingstidsserie som harmoniserer geografi, produktversjon, oppløsning og klasseregler før urbanisering attribueres.","source_ids":["geo8-01-un-wup2025","geo8-11-ghsl-data","geo8-12-ghsl-smod"]}
+  ],
+  "planned_assessments": 8,
+  "fulltext_requirements": {"modules":4,"sections":8,"paragraphs":32,"verified_claims":32,"assessments":8,"decision_cases":6}
+}
