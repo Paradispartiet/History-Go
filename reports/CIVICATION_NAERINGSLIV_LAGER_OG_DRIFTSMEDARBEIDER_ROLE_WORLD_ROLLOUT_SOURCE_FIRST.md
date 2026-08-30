@@ -64,3 +64,11 @@ Readiness says `cross_role_need: not_required_for_rollout`. This rollout therefo
 ## Completion proof
 
 A valid permanent head must prove 14 days / 56 unique beats, six primary threads with 5–10 refs each, all twelve source refs resolved and used, seven bounded audience standings, no global score, unchanged plan/model/People/grammar/job foundations, no cross-role runtime, synchronized Role World index/checklist/theme/readiness, Career Gameplay still playable, full `test:civication` green, and both TEMP files removed before commit.
+
+## Verified materialization checkpoint
+
+- Fail-closed workflow run: `33323018764` — success.
+- Source-first head: `0565cd82d2ccc234e4d45c69f3359a053a7deeba`.
+- Permanent materialized head: `959f9e6298bff8f7966db99872d630d67c2adbc7`.
+- The workflow resolved all 12 sources, produced 14 days / 56 unique beats, passed the strict role and readiness gates, passed full Civication, removed both TEMP surfaces and committed only permanent state.
+- This checkpoint is connector-authored after the bot commit so ordinary exact-head PR workflows can evaluate the verified permanent tree.
