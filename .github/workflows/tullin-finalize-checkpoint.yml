@@ -39,7 +39,7 @@ jobs:
           git fetch origin main
           git merge --no-edit origin/main
 
-      - name: Repair corrected Tullin source contracts
+      - name: Repair canonical Tullin source contracts
         run: node tools/tullin-finalize-repair.mjs pre
 
       - name: Rebuild place and epoch projections
