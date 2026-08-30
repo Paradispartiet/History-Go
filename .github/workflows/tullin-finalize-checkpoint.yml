@@ -1,4 +1,4 @@
-name: Finalize Tullin checkpoint v9
+name: Finalize Tullin checkpoint v10
 
 on:
   push:
@@ -119,7 +119,7 @@ jobs:
           console.log('Tullin velociped Story score repaired to source=4 total=15');
           NODE
 
-      - name: Repair source-grounded Rossi theory binding
+      - name: Repair source-grounded theory bindings
         run: node tools/tullin-theory-binding-fix.mjs
 
       - name: Rebuild place and epoch projections
