@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "politisk-geografi-grenser-territorium-og-geopolitikk",
+  "id": "04-geopolitikk-politisk-kartografi-og-reproduserbarhet",
+  "title": "Geopolitikk, politisk kartografi og reproduserbarhet",
+  "sections": [
+    {
+      "id": "geopolitikk-strategiske-rom-og-fortellinger",
+      "title": "Geopolitikk, strategiske rom og fortellinger",
+      "method_ids": ["met_geo_geopolitisk_fortellingsanalyse", "met_geo_strategisk_nettverk_rom"],
+      "boundary": "Geopolitiske begreper og strategiske regioner skal behandles som fortolkninger og politiske konstruksjoner som må testes mot konkrete strømmer, institusjoner og kapasiteter.",
+      "paragraphs": [
+        "Geopolitiske regionnavn som «indre», «vestlig», «arktisk» eller «strategisk periferi» kan være analytisk nyttige, men de er ikke naturgitte beholdere med én stabil mening. Slike regioner avgrenses gjennom politiske interesser, sikkerhetspraksiser, transportkorridorer, identiteter og forskningsbegreper som kan endres over tid. Paasis regionteori og Agnews kritikk av faste territorielle antakelser viser hvorfor analysen må spørre hvem som definerer regionen, etter hvilke kriterier og til hvilket formål. Et godt geopolitisk kart bør derfor vise hvilke relasjoner eller institusjoner som begrunner avgrensningen, og ikke la en farget flate framstå som selvforklarende geografisk realitet.",
+        "Et strategisk chokepunkt eller grenseområde får betydning gjennom samspillet mellom fysisk geografi og organiserte nettverk. Et trangt sund kan være viktig fordi store transportstrømmer passerer der og alternative ruter er dyre; en fjellpassasje kan være viktig fordi infrastruktur og grensekontroll konsentrerer mobilitet; en korridor kan miste betydning dersom nye ruter, havner eller teknologier endrer nettverket. Derfor bør strategisk betydning måles med trafikk, kapasitet, substitusjonsmuligheter, institusjonell kontroll og tid, ikke bare med plassering på kartet. En fysisk flaskehals er en geografisk forutsetning, men geopolitisk betydning oppstår først når samfunnsmessige forbindelser gjør stedet vanskelig å erstatte.",
+        "Geopolitiske fortellinger deler ofte verden i tydelige innenfor- og utenforområder, vennlige og fiendtlige soner eller konkurrerende blokker. Slike narrativer kan påvirke politikk og investering og er derfor reelle studieobjekter, men de må ikke forveksles med full beskrivelse av de empiriske forbindelsene. Handel, migrasjon, digitale nettverk, energiflyt og institusjonelt samarbeid kan krysse de samme blokkgrensene og variere etter sektor. Agnews territoriale-felle-kritikk gjør det nødvendig å teste om den valgte territorielle inndelingen faktisk forklarer prosessen. Analysen bør derfor sammenholde narrativet med nettverksdata og flere skalaer, slik at retorisk kartdeling ikke automatisk blir modell for all maktorganisering.",
+        "Kart brukes ofte som argument i territorielle og geopolitiske debatter fordi en presis linje eller ensartet farge kan få en politisk påstand til å framstå som geografisk faktum. Derfor bør normative krav, strategiske mål og empiriske beskrivelser lagres og presenteres hver for seg. Et kravkart kan vise hva en aktør hevder, mens et kontrollkart kan vise hva som er dokumentert administrert på en gitt dato, og et juridisk kart kan følge en bestemt rettslig statuskilde. UN Geospatial sine retningslinjer og eksplisitte disclaimere illustrerer dette behovet. Politisk kartografi er mest analytisk når den gjør statusvalget synlig i stedet for å skjule det bak et tilsynelatende nøytralt visuelt uttrykk."
+      ],
+      "paragraphClaimIds": [["geo10-25"], ["geo10-26"], ["geo10-27"], ["geo10-28"]]
+    },
+    {
+      "id": "politisk-kartografi-statusmetadata-og-reproduserbarhet",
+      "title": "Politisk kartografi, statusmetadata og reproduserbarhet",
+      "method_ids": ["met_geo_politisk_kart_statusmetadata", "met_geo_politisk_geografi_reproduserbarhet"],
+      "boundary": "Politiske kart skal dokumentere statuskilde, dato, de jure/de facto-policy, tvist, skala og generalisering; kartutseende skal ikke erstatte juridisk eller empirisk evidens.",
+      "paragraphs": [
+        "Et globalt politisk datasett trenger en eksplisitt policy for hvilke grenselinjer som vises. Noen produkter prioriterer de facto administrasjon for å gi et praktisk navigasjonskart, mens andre viser de jure krav eller parallelle linjer for omstridte områder. Begge tilnærmingene kan være internt konsistente dersom policyen er dokumentert, men de svarer på forskjellige spørsmål. Natural Earth gjør forskjellen synlig gjennom en uttalt disputed-boundaries policy, og UN Geospatial bruker egne standarder for kartpublisering. En reproduserbar analyse bør derfor lagre boundary-status som data og ikke bare som symbologi, slik at en bruker kan filtrere eller sammenligne alternative statusrepresentasjoner uten å rekonstruere redaksjonelle valg fra kartbildet.",
+        "Politiske grenser og kontrollflater er tidsavhengige datasett og trenger versjonering. Dersom en leverandør endrer sin vurdering av en omstridt linje, kan to kartversjoner vise forskjell selv om ingen fysisk eller juridisk endring har skjedd samme dag. Derfor bør hvert objekt ha kilde, observasjons- eller gyldighetsdato, disputed-status og policyversjon, og analysepipelines bør registrere hvilken versjon som ble brukt. Ved tidsserieanalyse må redaksjonelle databaseoppdateringer skilles fra faktiske politiske hendelser. Denne dokumentasjonen gjør det mulig å etterprøve om et rapportert arealskifte skyldes kontrollendring, ny avtale, bedre kildegrunnlag eller bare endret kartografisk policy hos dataleverandøren.",
+        "Konflikthendelser og territoriell status har ulike dataenheter og bør ikke lagres i samme tabell som om de var varianter av én observasjon. UCDP og ACLED organiserer hendelser og konflikter etter definerte aktører, steder, datoer og terskler, mens et grense- eller kontrollpolygon representerer en romlig status som kan vare over et tidsintervall og krever andre kilder. Ved å holde lagene separate kan analysen undersøke om hendelser samler seg nær kontrollgrenser uten å la punktene definere grensen. Dette reduserer risikoen for sirkulær evidens, der et kontrollkart først interpoleres fra hendelser og deretter brukes til å forklare de samme hendelsene som om flaten var uavhengig observert.",
+        "En etterprøvbar politisk-geografisk analyse dokumenterer både rettslige og empiriske definisjoner før den trekker konklusjoner. Den oppgir hvilken suverenitets- eller jurisdiksjonskilde som brukes, hvordan effektiv kontroll er definert, hvilke datoer observasjonene gjelder, hvilken grensepolicy kartet følger, hvilken skala og generalisering som er valgt, og hvilke konfliktdata og hendelsesdefinisjoner som inngår. For omstridte områder må usikkerhet og parallelle statuslag beholdes i stedet for å tvinges til én sann linje. Denne sporbarheten gjør analysen reproduserbar og reduserer faren for at programvarens polygoner eller symboler får sterkere politisk betydning enn kildene faktisk støtter."
+      ],
+      "paragraphClaimIds": [["geo10-29"], ["geo10-30"], ["geo10-31"], ["geo10-32"]]
+    }
+  ]
+}
