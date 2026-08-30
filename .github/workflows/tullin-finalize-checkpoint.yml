@@ -1,4 +1,4 @@
-name: Finalize Tullin checkpoint v5
+name: Finalize Tullin checkpoint v6
 
 on:
   push:
@@ -105,10 +105,11 @@ jobs:
           node scripts/audit-place-images.mjs --mode=all --report=/tmp/tullin-place-image-audit.json
           node tools/tullin-finalize-repair.mjs image-summary
 
-      - name: Validate Tullin target and Stories
-        run: |
-          node --test tests/tullin-completion.test.mjs
-          npm run check:stories
+      - name: Validate Tullin target
+        run: node --test tests/tullin-completion.test.mjs
+
+      - name: Validate Stories
+        run: npm run check:stories
 
       - name: Validate v4.2 description production
         run: node scripts/validate-place-description-production-v4_2_policy.mjs --all --report=/tmp/place-description-validation-v4_2.json
