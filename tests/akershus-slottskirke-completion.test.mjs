@@ -77,7 +77,7 @@ test("front image and all visible collection previews are real local media",asyn
 });
 
 test("People and Forsvarsbygg reuse are direct and preserve existing canonical identities",()=>{
-  assert.deepEqual(place.related_people_ids,["haakon_vii","olav_v","arnstein_arneberg"]);
+  assert.deepEqual(place.related_people_ids,["christian_iv","olav_v","arnstein_arneberg"]);
   for(const id of place.related_people_ids)assert.ok(relations.some(rel=>rel.type==="person_place"&&rel.personId===id&&rel.placeId===place.id),id);
   assert.deepEqual(byPlace.akershus_slottskirke,["forsvarsbygg"]);
   const brand=brands.find(item=>item.id==="forsvarsbygg");
