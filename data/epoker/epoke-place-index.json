@@ -7937,92 +7937,6 @@
               }
             },
             {
-              "place_id": "tullin",
-              "name": "Tullin",
-              "category": "by",
-              "source_file": "places/by/oslo/places/tullin.json",
-              "roles": [
-                {
-                  "id": "stedshistorisk_spor",
-                  "label": "Stedshistorisk spor"
-                }
-              ],
-              "milestones": [
-                {
-                  "id": "chrono_tullin_1807",
-                  "year": 1807,
-                  "title": "Claus Tullin kjøper Ruseløkken",
-                  "consequence": "Claus Tullin blir eier av den større løkkeeiendommen.",
-                  "confidence": "high",
-                  "sources": [
-                    {
-                      "title": "Oslo byleksikon – Tullinløkka",
-                      "url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/leksikon/places/oslo/by/leksikon_tullin.json",
-                  "evidence_type": "leksikon_chronology",
-                  "claim_id": "",
-                  "story_id": "",
-                  "limitations": []
-                },
-                {
-                  "id": "production_claim_tullin_namesake",
-                  "year": 1807,
-                  "title": "Tullinløkka har navn etter Claus Tullin, som kjøpte Ruseløkken i 1807.",
-                  "consequence": "",
-                  "confidence": "",
-                  "sources": [
-                    {
-                      "title": "Oslo byleksikon – Tullinløkka",
-                      "url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/places/production/tullin.json",
-                  "evidence_type": "verified_place_production_claim",
-                  "claim_id": "claim_tullin_namesake",
-                  "story_id": "",
-                  "limitations": []
-                }
-              ],
-              "period_cases": [],
-              "connections": {
-                "person_ids": [
-                  "bjornstjerne_bjornson",
-                  "claus_tullin"
-                ],
-                "works": [],
-                "stories": [
-                  {
-                    "id": "st_tullin_fradelingen_1869",
-                    "title": "Da Tullinløkka ble en egen løkke",
-                    "year": 1869,
-                    "type": "turning_point"
-                  },
-                  {
-                    "id": "st_tullin_industriutstillingen_1883",
-                    "title": "Da en utstillingsby fylte løkka",
-                    "year": 1883,
-                    "type": "historical_event"
-                  },
-                  {
-                    "id": "st_tullin_velociped_1885",
-                    "title": "To morgentimer for velocipeden",
-                    "year": 1885,
-                    "type": "microhistory"
-                  },
-                  {
-                    "id": "st_tullin_fra_kunsthall_til_park_2011",
-                    "title": "Fra midlertidig kunsthall til park",
-                    "year": 2011,
-                    "type": "turning_point"
-                  }
-                ]
-              }
-            },
-            {
               "place_id": "universitetsplassen",
               "name": "Universitetsplassen",
               "category": "by",
@@ -8514,8 +8428,8 @@
               }
             }
           ],
-          "placeCount": 44,
-          "milestoneCount": 117
+          "placeCount": 43,
+          "milestoneCount": 115
         },
         "historie_revolusjoner_industri_og_demokratisering": {
           "places": [
@@ -11401,6 +11315,18 @@
               "source_file": "places/historie/oslo/places_historie_atlas_obscura_museum_batch_06/forsvarsmuseet.json",
               "roles": [
                 {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                },
+                {
+                  "id": "makt_og_styring",
+                  "label": "Makt og styring"
+                },
+                {
+                  "id": "minne_og_historiebruk",
+                  "label": "Minne og historiebruk"
+                },
+                {
                   "id": "em_his_vitenskap_teknologi_profesjoner_standardisering_og_autoritet",
                   "label": "Profesjoner, standardisering og autoritet"
                 },
@@ -11435,13 +11361,60 @@
                     "Katalogposten er presis om objekt, produsent, år og prøveformål, men gir ikke en komplett anskaffelses-, test- eller produksjonskjede.",
                     "Forsøksobjektet kan leses som militær etterspørsel etter teknisk utvikling, men også som et forkastet eller begrenset prøveforløp uten dokumentert serieanskaffelse."
                   ]
+                },
+                {
+                  "id": "chrono_forsvarsmuseet_1_1860",
+                  "year": 1860,
+                  "title": "Modellkammeret opprettes",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Modellkammeret opprettes",
+                      "url": "https://snl.no/Forsvarshistorisk_museum",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_forsvarsmuseet.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_forsvarsmuseet_popup_03",
+                  "year": 1860,
+                  "title": "Museumshistorien begynner med Artillerimuseets modellkammer fra 1860, som senere fikk våpen, faner, uniformer og musikkinstrumenter i samlingen.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Institution chronology, occupation losses and 1978 opening. – popup, setning 3",
+                      "url": "https://snl.no/Forsvarshistorisk_museum",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/forsvarsmuseet.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_forsvarsmuseet_popup_03",
+                  "story_id": "",
+                  "limitations": []
                 }
               ],
               "period_cases": [],
               "connections": {
-                "person_ids": [],
+                "person_ids": [
+                  "olav_v"
+                ],
                 "works": [],
-                "stories": []
+                "stories": [
+                  {
+                    "id": "st_forsvarsmuseet_samlingen_som_matte_reddes",
+                    "title": "Samlingen som måtte reddes",
+                    "year": 1941,
+                    "type": "conflict"
+                  }
+                ]
               }
             },
             {
@@ -18131,454 +18104,6 @@
               }
             },
             {
-              "place_id": "tullin",
-              "name": "Tullin",
-              "category": "by",
-              "source_file": "places/by/oslo/places/tullin.json",
-              "roles": [
-                {
-                  "id": "arbeid_og_okonomi",
-                  "label": "Arbeid og økonomi"
-                },
-                {
-                  "id": "by_og_infrastruktur",
-                  "label": "By og infrastruktur"
-                },
-                {
-                  "id": "konflikt_og_motstand",
-                  "label": "Konflikt og motstand"
-                },
-                {
-                  "id": "kultur_og_offentlighet",
-                  "label": "Kultur og offentlighet"
-                },
-                {
-                  "id": "makt_og_styring",
-                  "label": "Makt og styring"
-                },
-                {
-                  "id": "minne_og_historiebruk",
-                  "label": "Minne og historiebruk"
-                },
-                {
-                  "id": "religion_og_livssyn",
-                  "label": "Religion og livssyn"
-                },
-                {
-                  "id": "stedshistorisk_spor",
-                  "label": "Stedshistorisk spor"
-                }
-              ],
-              "milestones": [
-                {
-                  "id": "chrono_tullin_1837",
-                  "year": 1837,
-                  "title": "Staten overtar",
-                  "consequence": "Staten overtar Ruseløkken.",
-                  "confidence": "high",
-                  "sources": [
-                    {
-                      "title": "Oslo byleksikon – Tullinløkka",
-                      "url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/leksikon/places/oslo/by/leksikon_tullin.json",
-                  "evidence_type": "leksikon_chronology",
-                  "claim_id": "",
-                  "story_id": "",
-                  "limitations": []
-                },
-                {
-                  "id": "production_claim_tullin_state",
-                  "year": 1837,
-                  "title": "Staten overtok Ruseløkken i 1837.",
-                  "consequence": "",
-                  "confidence": "",
-                  "sources": [
-                    {
-                      "title": "Oslo byleksikon – Tullinløkka",
-                      "url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/places/production/tullin.json",
-                  "evidence_type": "verified_place_production_claim",
-                  "claim_id": "claim_tullin_state",
-                  "story_id": "",
-                  "limitations": []
-                },
-                {
-                  "id": "story_st_tullin_fradelingen_1869",
-                  "year": 1869,
-                  "title": "Da Tullinløkka ble en egen løkke",
-                  "consequence": "Etter at Claus Tullin hadde eid Ruseløkken og staten overtok i 1837, ble den åpne Tullinløkka skilt ut i 1869.",
-                  "confidence": "",
-                  "sources": [
-                    {
-                      "title": "Oslo byleksikon – Tullinløkka",
-                      "url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
-                      "verifiedAt": ""
-                    },
-                    {
-                      "title": "Riksantikvaren – Nasjonalgalleriet og Tullinløkka",
-                      "url": "https://riksantikvaren.no/content/uploads/2020/11/Historikk_nationalgalleriet.pdf",
-                      "verifiedAt": ""
-                    }
-                  ],
-                  "source_file": "data/runtime/stories-all/part-004.json",
-                  "evidence_type": "canonical_story",
-                  "claim_id": "",
-                  "story_id": "st_tullin_fradelingen_1869",
-                  "limitations": []
-                },
-                {
-                  "id": "production_claim_tullin_separation",
-                  "year": 1869,
-                  "title": "Tullinløkka ble skilt ut fra Ruseløkken i 1869.",
-                  "consequence": "",
-                  "confidence": "",
-                  "sources": [
-                    {
-                      "title": "Oslo byleksikon – Tullinløkka",
-                      "url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/places/production/tullin.json",
-                  "evidence_type": "verified_place_production_claim",
-                  "claim_id": "claim_tullin_separation",
-                  "story_id": "",
-                  "limitations": []
-                },
-                {
-                  "id": "chrono_tullin_1869",
-                  "year": 1869,
-                  "title": "Tullinløkka skilles ut",
-                  "consequence": "Den åpne løkka skilles ut fra Ruseløkken.",
-                  "confidence": "high",
-                  "sources": [
-                    {
-                      "title": "Oslo byleksikon – Tullinløkka",
-                      "url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
-                      "verifiedAt": "2026-08-30"
-                    },
-                    {
-                      "title": "Riksantikvaren – Nasjonalgalleriet og Tullinløkka",
-                      "url": "https://riksantikvaren.no/content/uploads/2020/11/Historikk_nationalgalleriet.pdf",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/leksikon/places/oslo/by/leksikon_tullin.json",
-                  "evidence_type": "leksikon_chronology",
-                  "claim_id": "",
-                  "story_id": "",
-                  "limitations": []
-                },
-                {
-                  "id": "chrono_tullin_1876",
-                  "year": 1876,
-                  "title": "Løkka deles",
-                  "consequence": "Tullinløkka deles i to tomter; museumskanten utvikles videre.",
-                  "confidence": "high",
-                  "sources": [
-                    {
-                      "title": "Oslo byleksikon – Tullinløkka",
-                      "url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/leksikon/places/oslo/by/leksikon_tullin.json",
-                  "evidence_type": "leksikon_chronology",
-                  "claim_id": "",
-                  "story_id": "",
-                  "limitations": []
-                },
-                {
-                  "id": "chrono_tullin_1881",
-                  "year": 1881,
-                  "title": "Skulpturmuseet åpner",
-                  "consequence": "Kjernen i det senere Nasjonalgalleriet åpner ved løkka.",
-                  "confidence": "high",
-                  "sources": [
-                    {
-                      "title": "Oslo byleksikon – Tullinløkka",
-                      "url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
-                      "verifiedAt": "2026-08-30"
-                    },
-                    {
-                      "title": "Riksantikvaren – Nasjonalgalleriet og Tullinløkka",
-                      "url": "https://riksantikvaren.no/content/uploads/2020/11/Historikk_nationalgalleriet.pdf",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/leksikon/places/oslo/by/leksikon_tullin.json",
-                  "evidence_type": "leksikon_chronology",
-                  "claim_id": "",
-                  "story_id": "",
-                  "limitations": []
-                },
-                {
-                  "id": "production_claim_tullin_gallery",
-                  "year": 1881,
-                  "title": "Skulpturmuseet, kjernen i senere Nasjonalgalleriet, åpnet i 1881.",
-                  "consequence": "",
-                  "confidence": "",
-                  "sources": [
-                    {
-                      "title": "Oslo byleksikon – Tullinløkka",
-                      "url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/places/production/tullin.json",
-                  "evidence_type": "verified_place_production_claim",
-                  "claim_id": "claim_tullin_gallery",
-                  "story_id": "",
-                  "limitations": []
-                },
-                {
-                  "id": "story_st_tullin_industriutstillingen_1883",
-                  "year": 1883,
-                  "title": "Da en utstillingsby fylte løkka",
-                  "consequence": "Den norske Industri- og Kunstudstilling fylte Tullinløkka med en stor midlertidig hovedbygning og 2245 utstillere.",
-                  "confidence": "",
-                  "sources": [
-                    {
-                      "title": "Oslo byleksikon – Tullinløkka",
-                      "url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
-                      "verifiedAt": ""
-                    },
-                    {
-                      "title": "Lokalhistoriewiki – Den norske Industri- og Kunstudstilling 1883",
-                      "url": "https://lokalhistoriewiki.no/wiki/Den_norske_Industri-_og_Kunstudstilling_1883",
-                      "verifiedAt": ""
-                    },
-                    {
-                      "title": "Oslo Museum/Oslobilder – OB.03774",
-                      "url": "https://www.oslobilder.no/OMU/OB.03774",
-                      "verifiedAt": ""
-                    }
-                  ],
-                  "source_file": "data/runtime/stories-all/part-004.json",
-                  "evidence_type": "canonical_story",
-                  "claim_id": "",
-                  "story_id": "st_tullin_industriutstillingen_1883",
-                  "limitations": []
-                },
-                {
-                  "id": "production_claim_tullin_exhibition",
-                  "year": 1883,
-                  "title": "Den norske Industri- og Kunstudstilling ble holdt på Tullinløkka i 1883 med 2245 utstillere.",
-                  "consequence": "",
-                  "confidence": "",
-                  "sources": [
-                    {
-                      "title": "Oslo byleksikon – Tullinløkka",
-                      "url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/places/production/tullin.json",
-                  "evidence_type": "verified_place_production_claim",
-                  "claim_id": "claim_tullin_exhibition",
-                  "story_id": "",
-                  "limitations": []
-                },
-                {
-                  "id": "chrono_tullin_1883",
-                  "year": 1883,
-                  "title": "Industri- og Kunstudstillingen",
-                  "consequence": "Den store landsutstillingen fyller Tullinløkka.",
-                  "confidence": "high",
-                  "sources": [
-                    {
-                      "title": "Oslo byleksikon – Tullinløkka",
-                      "url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
-                      "verifiedAt": "2026-08-30"
-                    },
-                    {
-                      "title": "Lokalhistoriewiki – Den norske Industri- og Kunstudstilling 1883",
-                      "url": "https://lokalhistoriewiki.no/wiki/Den_norske_Industri-_og_Kunstudstilling_1883",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/leksikon/places/oslo/by/leksikon_tullin.json",
-                  "evidence_type": "leksikon_chronology",
-                  "claim_id": "",
-                  "story_id": "",
-                  "limitations": []
-                },
-                {
-                  "id": "production_claim_tullin_organ",
-                  "year": 1883,
-                  "title": "Oslo Museums kilder dokumenterer kirkeorgel som fysisk utstillingsgjenstand under industriutstillingen 1883.",
-                  "consequence": "",
-                  "confidence": "",
-                  "sources": [
-                    {
-                      "title": "Oslo Museum/Oslobilder – OB.03774",
-                      "url": "https://www.oslobilder.no/OMU/OB.03774",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/places/production/tullin.json",
-                  "evidence_type": "verified_place_production_claim",
-                  "claim_id": "claim_tullin_organ",
-                  "story_id": "",
-                  "limitations": []
-                },
-                {
-                  "id": "production_claim_tullin_velocipede",
-                  "year": 1885,
-                  "title": "I 1885 ble Velociped-Ridning tillatt på Tullinløkka klokken 6–8 om morgenen.",
-                  "consequence": "",
-                  "confidence": "",
-                  "sources": [
-                    {
-                      "title": "Oslo byleksikon – Tullinløkka",
-                      "url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/places/production/tullin.json",
-                  "evidence_type": "verified_place_production_claim",
-                  "claim_id": "claim_tullin_velocipede",
-                  "story_id": "",
-                  "limitations": []
-                },
-                {
-                  "id": "story_st_tullin_velociped_1885",
-                  "year": 1885,
-                  "title": "To morgentimer for velocipeden",
-                  "consequence": "I 1885 ble det gitt tillatelse til «Velociped-Ridning» på Tullinløkka, men bare mellom klokken seks og åtte om morgenen.",
-                  "confidence": "",
-                  "sources": [
-                    {
-                      "title": "Oslo byleksikon – Tullinløkka",
-                      "url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
-                      "verifiedAt": ""
-                    }
-                  ],
-                  "source_file": "data/runtime/stories-all/part-004.json",
-                  "evidence_type": "canonical_story",
-                  "claim_id": "",
-                  "story_id": "st_tullin_velociped_1885",
-                  "limitations": []
-                },
-                {
-                  "id": "chrono_tullin_1885",
-                  "year": 1885,
-                  "title": "Velociped-Ridning",
-                  "consequence": "Sykling med velociped tillates kl. 6–8.",
-                  "confidence": "high",
-                  "sources": [
-                    {
-                      "title": "Oslo byleksikon – Tullinløkka",
-                      "url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/leksikon/places/oslo/by/leksikon_tullin.json",
-                  "evidence_type": "leksikon_chronology",
-                  "claim_id": "",
-                  "story_id": "",
-                  "limitations": []
-                },
-                {
-                  "id": "chrono_tullin_1890",
-                  "year": 1890,
-                  "title": "Demonstrasjonsplass i 1890-årene",
-                  "consequence": "Store demonstrasjoner bruker løkka; Bjørnson er blant talerne.",
-                  "confidence": "high",
-                  "sources": [
-                    {
-                      "title": "Oslo byleksikon – Tullinløkka",
-                      "url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/leksikon/places/oslo/by/leksikon_tullin.json",
-                  "evidence_type": "leksikon_chronology",
-                  "claim_id": "",
-                  "story_id": "",
-                  "limitations": []
-                },
-                {
-                  "id": "production_claim_tullin_museum",
-                  "year": 1903,
-                  "title": "Historisk museum ble reist i perioden 1898–1903.",
-                  "consequence": "",
-                  "confidence": "",
-                  "sources": [
-                    {
-                      "title": "Oslo byleksikon – Tullinløkka",
-                      "url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/places/production/tullin.json",
-                  "evidence_type": "verified_place_production_claim",
-                  "claim_id": "claim_tullin_museum",
-                  "story_id": "",
-                  "limitations": []
-                },
-                {
-                  "id": "chrono_tullin_1903",
-                  "year": 1903,
-                  "title": "Historisk museum fullføres",
-                  "consequence": "Museumsbygningen reist 1898–1903 rammer inn løkka.",
-                  "confidence": "high",
-                  "sources": [
-                    {
-                      "title": "Oslo byleksikon – Tullinløkka",
-                      "url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/leksikon/places/oslo/by/leksikon_tullin.json",
-                  "evidence_type": "leksikon_chronology",
-                  "claim_id": "",
-                  "story_id": "",
-                  "limitations": []
-                }
-              ],
-              "period_cases": [],
-              "connections": {
-                "person_ids": [
-                  "bjornstjerne_bjornson",
-                  "claus_tullin"
-                ],
-                "works": [],
-                "stories": [
-                  {
-                    "id": "st_tullin_fradelingen_1869",
-                    "title": "Da Tullinløkka ble en egen løkke",
-                    "year": 1869,
-                    "type": "turning_point"
-                  },
-                  {
-                    "id": "st_tullin_industriutstillingen_1883",
-                    "title": "Da en utstillingsby fylte løkka",
-                    "year": 1883,
-                    "type": "historical_event"
-                  },
-                  {
-                    "id": "st_tullin_velociped_1885",
-                    "title": "To morgentimer for velocipeden",
-                    "year": 1885,
-                    "type": "microhistory"
-                  },
-                  {
-                    "id": "st_tullin_fra_kunsthall_til_park_2011",
-                    "title": "Fra midlertidig kunsthall til park",
-                    "year": 2011,
-                    "type": "turning_point"
-                  }
-                ]
-              }
-            },
-            {
               "place_id": "universitetet_i_oslo_blindern",
               "name": "Universitetet i Oslo, Blindern",
               "category": "vitenskap",
@@ -20370,8 +19895,8 @@
               }
             }
           ],
-          "placeCount": 100,
-          "milestoneCount": 351
+          "placeCount": 99,
+          "milestoneCount": 335
         },
         "historie_nasjon_massepolitikk_og_moderne_institusjoner": {
           "places": [
@@ -21950,8 +21475,16 @@
               "source_file": "places/historie/oslo/places_historie_atlas_obscura_museum_batch_06/forsvarsmuseet.json",
               "roles": [
                 {
+                  "id": "makt_og_styring",
+                  "label": "Makt og styring"
+                },
+                {
                   "id": "em_his_vitenskap_teknologi_profesjoner_standardisering_og_autoritet",
                   "label": "Profesjoner, standardisering og autoritet"
+                },
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
                 },
                 {
                   "id": "em_his_vitenskap_teknologi_teknologi_infrastruktur_og_samfunn",
@@ -21984,13 +21517,79 @@
                     "Objektposten dokumenterer produsent, produksjonsår, kontrollmerking og prøveformål, men ikke hele krav-, beslutnings- eller resultatforløpet.",
                     "Kontroll og utprøving kan forstås som kvalitetssikring og brukerorientert utvikling, men viser også hvordan militære prioriteringer avgrenset hvilke tekniske løsninger industrien skulle prøve."
                   ]
+                },
+                {
+                  "id": "production_claim_forsvarsmuseet_popup_04",
+                  "year": 1928,
+                  "title": "Intendanturmuseet ble opprettet i 1928 med blant annet faner, uniformer og utrustningsgjenstander.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Institution chronology, occupation losses and 1978 opening. – popup, setning 4",
+                      "url": "https://snl.no/Forsvarshistorisk_museum",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/forsvarsmuseet.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_forsvarsmuseet_popup_04",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_forsvarsmuseet_2_1928",
+                  "year": 1928,
+                  "title": "Intendanturmuseet opprettes",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Intendanturmuseet opprettes",
+                      "url": "https://snl.no/Forsvarshistorisk_museum",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_forsvarsmuseet.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_forsvarsmuseet_3_1934",
+                  "year": 1934,
+                  "title": "Komité for Hærmuseet",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Komité for Hærmuseet",
+                      "url": "https://snl.no/Forsvarshistorisk_museum",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_forsvarsmuseet.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
                 }
               ],
               "period_cases": [],
               "connections": {
-                "person_ids": [],
+                "person_ids": [
+                  "olav_v"
+                ],
                 "works": [],
-                "stories": []
+                "stories": [
+                  {
+                    "id": "st_forsvarsmuseet_samlingen_som_matte_reddes",
+                    "title": "Samlingen som måtte reddes",
+                    "year": 1941,
+                    "type": "conflict"
+                  }
+                ]
               }
             },
             {
@@ -27380,7 +26979,7 @@
             }
           ],
           "placeCount": 83,
-          "milestoneCount": 179
+          "milestoneCount": 182
         },
         "historie_krig_okkupasjon_og_etterkrigsoppgjor": {
           "places": [
@@ -28181,6 +27780,170 @@
                     "title": "Åtte jentelag på startstreken",
                     "year": 1972,
                     "type": "historical_event"
+                  }
+                ]
+              }
+            },
+            {
+              "place_id": "forsvarsmuseet",
+              "name": "Forsvarsmuseet",
+              "category": "historie",
+              "source_file": "places/historie/oslo/places_historie_atlas_obscura_museum_batch_06/forsvarsmuseet.json",
+              "roles": [
+                {
+                  "id": "konflikt_og_motstand",
+                  "label": "Konflikt og motstand"
+                },
+                {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                },
+                {
+                  "id": "makt_og_styring",
+                  "label": "Makt og styring"
+                },
+                {
+                  "id": "minne_og_historiebruk",
+                  "label": "Minne og historiebruk"
+                },
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "chrono_forsvarsmuseet_4_1940",
+                  "year": 1940,
+                  "title": "Hærmuseet opprettes",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Hærmuseet opprettes",
+                      "url": "https://snl.no/Forsvarshistorisk_museum",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_forsvarsmuseet.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_forsvarsmuseet_popup_07",
+                  "year": 1941,
+                  "title": "Museumskomiteen ble oppløst av nazistyret i 1941.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Institution chronology, occupation losses and 1978 opening. – popup, setning 7",
+                      "url": "https://snl.no/Forsvarshistorisk_museum",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/forsvarsmuseet.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_forsvarsmuseet_popup_07",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_forsvarsmuseet_5_1941",
+                  "year": 1941,
+                  "title": "Planleggingen avbrytes",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Planleggingen avbrytes",
+                      "url": "https://snl.no/Forsvarshistorisk_museum",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_forsvarsmuseet.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "story_st_forsvarsmuseet_samlingen_som_matte_reddes",
+                  "year": 1941,
+                  "title": "Samlingen som måtte reddes",
+                  "consequence": "Okkupasjonen stanset museumsplanen, spredte samlingene og kostet tusenvis av gjenstander.",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "SNL – Forsvarshistorisk museum",
+                      "url": "https://snl.no/Forsvarshistorisk_museum",
+                      "verifiedAt": ""
+                    },
+                    {
+                      "title": "Sikt – Forsvarsmuseets endringshistorie",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/57606/endringshistorie",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/runtime/stories-all/part-004.json",
+                  "evidence_type": "canonical_story",
+                  "claim_id": "",
+                  "story_id": "st_forsvarsmuseet_samlingen_som_matte_reddes",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_forsvarsmuseet_popup_09",
+                  "year": 1946,
+                  "title": "Samlingene kom tilbake til Akershus i 1946, men ble flyttet mellom ulike lokaler.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Institution chronology, occupation losses and 1978 opening. – popup, setning 9",
+                      "url": "https://snl.no/Forsvarshistorisk_museum",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/forsvarsmuseet.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_forsvarsmuseet_popup_09",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_forsvarsmuseet_6_1946",
+                  "year": 1946,
+                  "title": "Samlingene vender tilbake",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Samlingene vender tilbake",
+                      "url": "https://snl.no/Forsvarshistorisk_museum",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_forsvarsmuseet.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [
+                  "olav_v"
+                ],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_forsvarsmuseet_samlingen_som_matte_reddes",
+                    "title": "Samlingen som måtte reddes",
+                    "year": 1941,
+                    "type": "conflict"
                   }
                 ]
               }
@@ -29450,6 +29213,62 @@
                     "title": "Hvem skulle få åpne Nationaltheatret?",
                     "year": 1899,
                     "type": "cultural"
+                  }
+                ]
+              }
+            },
+            {
+              "place_id": "norges_hjemmefrontmuseum",
+              "name": "Norges Hjemmefrontmuseum",
+              "category": "historie",
+              "source_file": "places/historie/oslo/places_historie_atlas_obscura_museum_batch_06/norges_hjemmefrontmuseum.json",
+              "roles": [
+                {
+                  "id": "konflikt_og_motstand",
+                  "label": "Konflikt og motstand"
+                },
+                {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                },
+                {
+                  "id": "minne_og_historiebruk",
+                  "label": "Minne og historiebruk"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_norges_hjemmefrontmuseum_desc_03",
+                  "year": 1940,
+                  "title": "Samlingene dokumenterer okkupasjonen og motstanden 1940–1945 gjennom autentiske gjenstander, fotografier, dokumenter og mer enn 600 hyllemeter arkiver.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Current identity, collection scope and archive scale. – desc, setning 3",
+                      "url": "https://www.forsvarshistoriskmuseum.no/norges-hjemmefrontmuseum",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/norges_hjemmefrontmuseum.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_norges_hjemmefrontmuseum_desc_03",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [
+                  "harald_v"
+                ],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_norges_hjemmefrontmuseum_fra_motstandserfaring_til_museum",
+                    "title": "Fra motstandserfaring til museum",
+                    "year": 1962,
+                    "type": "historical_event"
                   }
                 ]
               }
@@ -31065,8 +30884,8 @@
               }
             }
           ],
-          "placeCount": 41,
-          "milestoneCount": 93
+          "placeCount": 43,
+          "milestoneCount": 100
         },
         "historie_velferdsstat_kald_krig_og_sosialdemokrati": {
           "places": [
@@ -32804,6 +32623,108 @@
               }
             },
             {
+              "place_id": "forsvarsmuseet",
+              "name": "Forsvarsmuseet",
+              "category": "historie",
+              "source_file": "places/historie/oslo/places_historie_atlas_obscura_museum_batch_06/forsvarsmuseet.json",
+              "roles": [
+                {
+                  "id": "by_og_infrastruktur",
+                  "label": "By og infrastruktur"
+                },
+                {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                },
+                {
+                  "id": "makt_og_styring",
+                  "label": "Makt og styring"
+                },
+                {
+                  "id": "minne_og_historiebruk",
+                  "label": "Minne og historiebruk"
+                },
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_forsvarsmuseet_popup_10",
+                  "year": 1978,
+                  "title": "Den omflakkende perioden tok slutt da kong Olav V åpnet Forsvarsmuseet i den renoverte bygningen 22. august 1978.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Institution chronology, occupation losses and 1978 opening. – popup, setning 10",
+                      "url": "https://snl.no/Forsvarshistorisk_museum",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/forsvarsmuseet.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_forsvarsmuseet_popup_10",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_forsvarsmuseet_7_1978",
+                  "year": 1978,
+                  "title": "Forsvarsmuseet åpner",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Forsvarsmuseet åpner",
+                      "url": "https://snl.no/Forsvarshistorisk_museum",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_forsvarsmuseet.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_forsvarsmuseet_desc_03",
+                  "year": 1978,
+                  "title": "Museet åpnet i det renoverte arsenalbygget 22. august 1978 og er et eget besøkssted, ikke hele Akershus festning eller Norges Hjemmefrontmuseum.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Institution chronology, occupation losses and 1978 opening. – desc, setning 3",
+                      "url": "https://snl.no/Forsvarshistorisk_museum",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/forsvarsmuseet.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_forsvarsmuseet_desc_03",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [
+                  "olav_v"
+                ],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_forsvarsmuseet_samlingen_som_matte_reddes",
+                    "title": "Samlingen som måtte reddes",
+                    "year": 1941,
+                    "type": "conflict"
+                  }
+                ]
+              }
+            },
+            {
               "place_id": "frette_kapell",
               "name": "Frette kapell",
               "category": "religion",
@@ -33999,6 +33920,285 @@
                     "title": "Skeids hjem på Nordre Åsen",
                     "year": 1950,
                     "type": "sporting"
+                  }
+                ]
+              }
+            },
+            {
+              "place_id": "norges_hjemmefrontmuseum",
+              "name": "Norges Hjemmefrontmuseum",
+              "category": "historie",
+              "source_file": "places/historie/oslo/places_historie_atlas_obscura_museum_batch_06/norges_hjemmefrontmuseum.json",
+              "roles": [
+                {
+                  "id": "arbeid_og_okonomi",
+                  "label": "Arbeid og økonomi"
+                },
+                {
+                  "id": "konflikt_og_motstand",
+                  "label": "Konflikt og motstand"
+                },
+                {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                },
+                {
+                  "id": "minne_og_historiebruk",
+                  "label": "Minne og historiebruk"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "story_st_norges_hjemmefrontmuseum_fra_motstandserfaring_til_museum",
+                  "year": 1962,
+                  "title": "Fra motstandserfaring til museum",
+                  "consequence": "En komité fikk oppgaven med å gjøre ulike motstandserfaringer, gjenstander og arkiver til en offentlig museumsfortelling.",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Sikt – Norges Hjemmefrontmuseum",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": ""
+                    },
+                    {
+                      "title": "Kongehuset – Besøkte krigsveteraner",
+                      "url": "https://www.kongehuset.no/nyheter/besokte-krigsveteraner",
+                      "verifiedAt": ""
+                    },
+                    {
+                      "title": "SNL – Norges Hjemmefrontmuseum",
+                      "url": "https://snl.no/Norges_Hjemmefrontmuseum",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/runtime/stories-all/part-004.json",
+                  "evidence_type": "canonical_story",
+                  "claim_id": "",
+                  "story_id": "st_norges_hjemmefrontmuseum_fra_motstandserfaring_til_museum",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_norges_hjemmefrontmuseum_1_1962",
+                  "year": 1962,
+                  "title": "Museumsplanen besluttes",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Museumsplanen besluttes",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_norges_hjemmefrontmuseum.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_norges_hjemmefrontmuseum_popup_03",
+                  "year": 1962,
+                  "title": "Planene ble besluttet på et møte i juni 1962 med representanter for norsk motstandsbevegelse.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Decision in 1962, committee support, foundation in 1966, opening and institutional transfer in 1995. – popup, setning 3",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/norges_hjemmefrontmuseum.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_norges_hjemmefrontmuseum_popup_03",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_norges_hjemmefrontmuseum_popup_04",
+                  "year": 1963,
+                  "title": "En komité skulle arbeide videre, og fra september 1963 fikk den lønnsmidler gjennom Forsvarsdepartementet.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Decision in 1962, committee support, foundation in 1966, opening and institutional transfer in 1995. – popup, setning 4",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/norges_hjemmefrontmuseum.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_norges_hjemmefrontmuseum_popup_04",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_norges_hjemmefrontmuseum_2_1963",
+                  "year": 1963,
+                  "title": "Komiteen får driftsmidler",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Komiteen får driftsmidler",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_norges_hjemmefrontmuseum.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_norges_hjemmefrontmuseum_desc_02",
+                  "year": 1966,
+                  "title": "Museet ble etablert som egen stiftelse våren 1966 og åpnet for publikum 7. mai 1970 ved daværende kronprins Harald.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Public opening by Crown Prince Harald on 7 May 1970. – desc, setning 2",
+                      "url": "https://www.kongehuset.no/nyheter/besokte-krigsveteraner",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/norges_hjemmefrontmuseum.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_norges_hjemmefrontmuseum_desc_02",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_norges_hjemmefrontmuseum_popup_06",
+                  "year": 1966,
+                  "title": "Norges Hjemmefrontmuseum ble etablert som egen stiftelse våren 1966.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Decision in 1962, committee support, foundation in 1966, opening and institutional transfer in 1995. – popup, setning 6",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/norges_hjemmefrontmuseum.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_norges_hjemmefrontmuseum_popup_06",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_norges_hjemmefrontmuseum_3_1966",
+                  "year": 1966,
+                  "title": "Stiftelsen etableres",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Stiftelsen etableres",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_norges_hjemmefrontmuseum.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_norges_hjemmefrontmuseum_popup_07",
+                  "year": 1967,
+                  "title": "Bindingsverkshuset og hvelvene i Det dobbelte batteri ble restaurert for museumsbruk i 1967–1968.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Building plaque documents restoration in 1967–1968 and opening in 1970. – popup, setning 7",
+                      "url": "https://commons.wikimedia.org/wiki/File:Norway%27s_WW2_Resistance_Museum,_Oslo_(Hjemmefrontmuseet)._History_of_building_on_plaque_(Det_dobbelte_batteri,_bindingsverkhuset,_restaurering_1967%E2%80%9368,_%C3%A5pning_1970)._Photo_2017-11-30.jpg",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/norges_hjemmefrontmuseum.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_norges_hjemmefrontmuseum_popup_07",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_norges_hjemmefrontmuseum_4_1968",
+                  "year": 1968,
+                  "title": "Restaureringen fullføres",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Restaureringen fullføres",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_norges_hjemmefrontmuseum.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_norges_hjemmefrontmuseum_popup_08",
+                  "year": 1970,
+                  "title": "Daværende kronprins Harald åpnet museet for publikum 7. mai 1970, dagen før 25-årsdagen for frigjøringen.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Public opening by Crown Prince Harald on 7 May 1970. – popup, setning 8",
+                      "url": "https://www.kongehuset.no/nyheter/besokte-krigsveteraner",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/norges_hjemmefrontmuseum.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_norges_hjemmefrontmuseum_popup_08",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_norges_hjemmefrontmuseum_5_1970",
+                  "year": 1970,
+                  "title": "Museet åpner",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Museet åpner",
+                      "url": "https://www.kongehuset.no/nyheter/besokte-krigsveteraner",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_norges_hjemmefrontmuseum.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [
+                  "harald_v"
+                ],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_norges_hjemmefrontmuseum_fra_motstandserfaring_til_museum",
+                    "title": "Fra motstandserfaring til museum",
+                    "year": 1962,
+                    "type": "historical_event"
                   }
                 ]
               }
@@ -35968,8 +36168,8 @@
               }
             }
           ],
-          "placeCount": 58,
-          "milestoneCount": 123
+          "placeCount": 60,
+          "milestoneCount": 138
         },
         "historie_senmoderne_globalisering_og_markedsvending": {
           "places": [
@@ -39754,6 +39954,62 @@
               }
             },
             {
+              "place_id": "norges_hjemmefrontmuseum",
+              "name": "Norges Hjemmefrontmuseum",
+              "category": "historie",
+              "source_file": "places/historie/oslo/places_historie_atlas_obscura_museum_batch_06/norges_hjemmefrontmuseum.json",
+              "roles": [
+                {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                },
+                {
+                  "id": "makt_og_styring",
+                  "label": "Makt og styring"
+                },
+                {
+                  "id": "minne_og_historiebruk",
+                  "label": "Minne og historiebruk"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "chrono_norges_hjemmefrontmuseum_6_1995",
+                  "year": 1995,
+                  "title": "Museet blir statlig",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Museet blir statlig",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_norges_hjemmefrontmuseum.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [
+                  "harald_v"
+                ],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_norges_hjemmefrontmuseum_fra_motstandserfaring_til_museum",
+                    "title": "Fra motstandserfaring til museum",
+                    "year": 1962,
+                    "type": "historical_event"
+                  }
+                ]
+              }
+            },
+            {
               "place_id": "norsk_folkemuseum",
               "name": "Norsk Folkemuseum",
               "category": "historie",
@@ -41716,97 +41972,6 @@
               }
             },
             {
-              "place_id": "tullin",
-              "name": "Tullin",
-              "category": "by",
-              "source_file": "places/by/oslo/places/tullin.json",
-              "roles": [
-                {
-                  "id": "kultur_og_offentlighet",
-                  "label": "Kultur og offentlighet"
-                }
-              ],
-              "milestones": [
-                {
-                  "id": "chrono_tullin_2005",
-                  "year": 2005,
-                  "title": "Kunsthallen åpner",
-                  "consequence": "Nasjonalmuseet tar den midlertidige Kunsthallen i bruk på Tullinløkka.",
-                  "confidence": "high",
-                  "sources": [
-                    {
-                      "title": "Nasjonalmuseet – årsmelding 2005",
-                      "url": "https://www.nasjonalmuseet.no/contentassets/98adac84980c4555ae99de8a5ed00e80/aarsmelding_2005.pdf",
-                      "verifiedAt": "2026-08-30"
-                    },
-                    {
-                      "title": "Statsbygg – stedsanalyse Nationaltheatret/Tullinløkka",
-                      "url": "https://dok.statsbygg.no/wp-content/uploads/2020/05/stedsanalyseNationaltheatret.pdf",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/leksikon/places/oslo/by/leksikon_tullin.json",
-                  "evidence_type": "leksikon_chronology",
-                  "claim_id": "",
-                  "story_id": "",
-                  "limitations": []
-                },
-                {
-                  "id": "production_claim_tullin_kunsthall",
-                  "year": 2005,
-                  "title": "Nasjonalmuseet tok i 2005 i bruk en midlertidig Kunsthall på Tullinløkka.",
-                  "consequence": "",
-                  "confidence": "",
-                  "sources": [
-                    {
-                      "title": "Nasjonalmuseet – årsmelding 2005",
-                      "url": "https://www.nasjonalmuseet.no/contentassets/98adac84980c4555ae99de8a5ed00e80/aarsmelding_2005.pdf",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/places/production/tullin.json",
-                  "evidence_type": "verified_place_production_claim",
-                  "claim_id": "claim_tullin_kunsthall",
-                  "story_id": "",
-                  "limitations": []
-                }
-              ],
-              "period_cases": [],
-              "connections": {
-                "person_ids": [
-                  "bjornstjerne_bjornson",
-                  "claus_tullin"
-                ],
-                "works": [],
-                "stories": [
-                  {
-                    "id": "st_tullin_fradelingen_1869",
-                    "title": "Da Tullinløkka ble en egen løkke",
-                    "year": 1869,
-                    "type": "turning_point"
-                  },
-                  {
-                    "id": "st_tullin_industriutstillingen_1883",
-                    "title": "Da en utstillingsby fylte løkka",
-                    "year": 1883,
-                    "type": "historical_event"
-                  },
-                  {
-                    "id": "st_tullin_velociped_1885",
-                    "title": "To morgentimer for velocipeden",
-                    "year": 1885,
-                    "type": "microhistory"
-                  },
-                  {
-                    "id": "st_tullin_fra_kunsthall_til_park_2011",
-                    "title": "Fra midlertidig kunsthall til park",
-                    "year": 2011,
-                    "type": "turning_point"
-                  }
-                ]
-              }
-            },
-            {
               "place_id": "universitetets_gamle_hovedbygning",
               "name": "Universitetets gamle hovedbygning",
               "category": "vitenskap",
@@ -42627,7 +42792,7 @@
             }
           ],
           "placeCount": 89,
-          "milestoneCount": 157
+          "milestoneCount": 156
         },
         "historie_digital_samtid_kriser_og_ny_offentlighet": {
           "places": [
@@ -48154,124 +48319,6 @@
               }
             },
             {
-              "place_id": "tullin",
-              "name": "Tullin",
-              "category": "by",
-              "source_file": "places/by/oslo/places/tullin.json",
-              "roles": [
-                {
-                  "id": "by_og_infrastruktur",
-                  "label": "By og infrastruktur"
-                },
-                {
-                  "id": "kultur_og_offentlighet",
-                  "label": "Kultur og offentlighet"
-                },
-                {
-                  "id": "makt_og_styring",
-                  "label": "Makt og styring"
-                }
-              ],
-              "milestones": [
-                {
-                  "id": "story_st_tullin_fra_kunsthall_til_park_2011",
-                  "year": 2011,
-                  "title": "Fra midlertidig kunsthall til park",
-                  "consequence": "Etter Kunsthallen fra 2005 og beslutningen om nytt Nasjonalmuseum på Vestbanen ble Tullinløkka i 2011 omgjort til park og aktivitetsflate av Statsbygg.",
-                  "confidence": "",
-                  "sources": [
-                    {
-                      "title": "Nasjonalmuseet – årsmelding 2005",
-                      "url": "https://www.nasjonalmuseet.no/contentassets/98adac84980c4555ae99de8a5ed00e80/aarsmelding_2005.pdf",
-                      "verifiedAt": ""
-                    },
-                    {
-                      "title": "Statsbygg – stedsanalyse Nationaltheatret/Tullinløkka",
-                      "url": "https://dok.statsbygg.no/wp-content/uploads/2020/05/stedsanalyseNationaltheatret.pdf",
-                      "verifiedAt": ""
-                    }
-                  ],
-                  "source_file": "data/runtime/stories-all/part-004.json",
-                  "evidence_type": "canonical_story",
-                  "claim_id": "",
-                  "story_id": "st_tullin_fra_kunsthall_til_park_2011",
-                  "limitations": []
-                },
-                {
-                  "id": "chrono_tullin_2011",
-                  "year": 2011,
-                  "title": "Park over løkka",
-                  "consequence": "Statsbygg anlegger park og fleksibel aktivitetsflate.",
-                  "confidence": "high",
-                  "sources": [
-                    {
-                      "title": "Statsbygg – stedsanalyse Nationaltheatret/Tullinløkka",
-                      "url": "https://dok.statsbygg.no/wp-content/uploads/2020/05/stedsanalyseNationaltheatret.pdf",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/leksikon/places/oslo/by/leksikon_tullin.json",
-                  "evidence_type": "leksikon_chronology",
-                  "claim_id": "",
-                  "story_id": "",
-                  "limitations": []
-                },
-                {
-                  "id": "production_claim_tullin_park",
-                  "year": 2011,
-                  "title": "Statsbygg anla park over Tullinløkka i 2011 og beholdt et fleksibelt midtfelt for aktivitet.",
-                  "consequence": "",
-                  "confidence": "",
-                  "sources": [
-                    {
-                      "title": "Statsbygg – stedsanalyse Nationaltheatret/Tullinløkka",
-                      "url": "https://dok.statsbygg.no/wp-content/uploads/2020/05/stedsanalyseNationaltheatret.pdf",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/places/production/tullin.json",
-                  "evidence_type": "verified_place_production_claim",
-                  "claim_id": "claim_tullin_park",
-                  "story_id": "",
-                  "limitations": []
-                }
-              ],
-              "period_cases": [],
-              "connections": {
-                "person_ids": [
-                  "bjornstjerne_bjornson",
-                  "claus_tullin"
-                ],
-                "works": [],
-                "stories": [
-                  {
-                    "id": "st_tullin_fradelingen_1869",
-                    "title": "Da Tullinløkka ble en egen løkke",
-                    "year": 1869,
-                    "type": "turning_point"
-                  },
-                  {
-                    "id": "st_tullin_industriutstillingen_1883",
-                    "title": "Da en utstillingsby fylte løkka",
-                    "year": 1883,
-                    "type": "historical_event"
-                  },
-                  {
-                    "id": "st_tullin_velociped_1885",
-                    "title": "To morgentimer for velocipeden",
-                    "year": 1885,
-                    "type": "microhistory"
-                  },
-                  {
-                    "id": "st_tullin_fra_kunsthall_til_park_2011",
-                    "title": "Fra midlertidig kunsthall til park",
-                    "year": 2011,
-                    "type": "turning_point"
-                  }
-                ]
-              }
-            },
-            {
               "place_id": "toyen_torg",
               "name": "Tøyen torg",
               "category": "by",
@@ -48852,8 +48899,8 @@
               }
             }
           ],
-          "placeCount": 76,
-          "milestoneCount": 153
+          "placeCount": 75,
+          "milestoneCount": 150
         }
       },
       "parallel_tracks": {
@@ -50109,6 +50156,18 @@
               "source_file": "places/historie/oslo/places_historie_atlas_obscura_museum_batch_06/forsvarsmuseet.json",
               "roles": [
                 {
+                  "id": "konflikt_og_motstand",
+                  "label": "Konflikt og motstand"
+                },
+                {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                },
+                {
+                  "id": "minne_og_historiebruk",
+                  "label": "Minne og historiebruk"
+                },
+                {
                   "id": "em_his_vitenskap_teknologi_profesjoner_standardisering_og_autoritet",
                   "label": "Profesjoner, standardisering og autoritet"
                 },
@@ -50145,6 +50204,25 @@
                   ]
                 },
                 {
+                  "id": "production_claim_forsvarsmuseet_popup_03",
+                  "year": 1860,
+                  "title": "Museumshistorien begynner med Artillerimuseets modellkammer fra 1860, som senere fikk våpen, faner, uniformer og musikkinstrumenter i samlingen.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Institution chronology, occupation losses and 1978 opening. – popup, setning 3",
+                      "url": "https://snl.no/Forsvarshistorisk_museum",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/forsvarsmuseet.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_forsvarsmuseet_popup_03",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
                   "id": "claim_claim_his_forsvarsmuseet_krag_cavalry_trial_carbine_1911_1912",
                   "year": 1911,
                   "title": "Profesjoner, standardisering og autoritet",
@@ -50165,13 +50243,84 @@
                     "Objektposten dokumenterer produsent, produksjonsår, kontrollmerking og prøveformål, men ikke hele krav-, beslutnings- eller resultatforløpet.",
                     "Kontroll og utprøving kan forstås som kvalitetssikring og brukerorientert utvikling, men viser også hvordan militære prioriteringer avgrenset hvilke tekniske løsninger industrien skulle prøve."
                   ]
+                },
+                {
+                  "id": "production_claim_forsvarsmuseet_popup_07",
+                  "year": 1941,
+                  "title": "Museumskomiteen ble oppløst av nazistyret i 1941.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Institution chronology, occupation losses and 1978 opening. – popup, setning 7",
+                      "url": "https://snl.no/Forsvarshistorisk_museum",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/forsvarsmuseet.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_forsvarsmuseet_popup_07",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "story_st_forsvarsmuseet_samlingen_som_matte_reddes",
+                  "year": 1941,
+                  "title": "Samlingen som måtte reddes",
+                  "consequence": "Okkupasjonen stanset museumsplanen, spredte samlingene og kostet tusenvis av gjenstander.",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "SNL – Forsvarshistorisk museum",
+                      "url": "https://snl.no/Forsvarshistorisk_museum",
+                      "verifiedAt": ""
+                    },
+                    {
+                      "title": "Sikt – Forsvarsmuseets endringshistorie",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/57606/endringshistorie",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/runtime/stories-all/part-004.json",
+                  "evidence_type": "canonical_story",
+                  "claim_id": "",
+                  "story_id": "st_forsvarsmuseet_samlingen_som_matte_reddes",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_forsvarsmuseet_desc_03",
+                  "year": 1978,
+                  "title": "Museet åpnet i det renoverte arsenalbygget 22. august 1978 og er et eget besøkssted, ikke hele Akershus festning eller Norges Hjemmefrontmuseum.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Institution chronology, occupation losses and 1978 opening. – desc, setning 3",
+                      "url": "https://snl.no/Forsvarshistorisk_museum",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/forsvarsmuseet.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_forsvarsmuseet_desc_03",
+                  "story_id": "",
+                  "limitations": []
                 }
               ],
               "period_cases": [],
               "connections": {
-                "person_ids": [],
+                "person_ids": [
+                  "olav_v"
+                ],
                 "works": [],
-                "stories": []
+                "stories": [
+                  {
+                    "id": "st_forsvarsmuseet_samlingen_som_matte_reddes",
+                    "title": "Samlingen som måtte reddes",
+                    "year": 1941,
+                    "type": "conflict"
+                  }
+                ]
               }
             },
             {
@@ -51565,6 +51714,327 @@
                 "person_ids": [],
                 "works": [],
                 "stories": []
+              }
+            },
+            {
+              "place_id": "norges_hjemmefrontmuseum",
+              "name": "Norges Hjemmefrontmuseum",
+              "category": "historie",
+              "source_file": "places/historie/oslo/places_historie_atlas_obscura_museum_batch_06/norges_hjemmefrontmuseum.json",
+              "roles": [
+                {
+                  "id": "arbeid_og_okonomi",
+                  "label": "Arbeid og økonomi"
+                },
+                {
+                  "id": "konflikt_og_motstand",
+                  "label": "Konflikt og motstand"
+                },
+                {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                },
+                {
+                  "id": "makt_og_styring",
+                  "label": "Makt og styring"
+                },
+                {
+                  "id": "minne_og_historiebruk",
+                  "label": "Minne og historiebruk"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_norges_hjemmefrontmuseum_desc_03",
+                  "year": 1940,
+                  "title": "Samlingene dokumenterer okkupasjonen og motstanden 1940–1945 gjennom autentiske gjenstander, fotografier, dokumenter og mer enn 600 hyllemeter arkiver.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Current identity, collection scope and archive scale. – desc, setning 3",
+                      "url": "https://www.forsvarshistoriskmuseum.no/norges-hjemmefrontmuseum",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/norges_hjemmefrontmuseum.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_norges_hjemmefrontmuseum_desc_03",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "story_st_norges_hjemmefrontmuseum_fra_motstandserfaring_til_museum",
+                  "year": 1962,
+                  "title": "Fra motstandserfaring til museum",
+                  "consequence": "En komité fikk oppgaven med å gjøre ulike motstandserfaringer, gjenstander og arkiver til en offentlig museumsfortelling.",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Sikt – Norges Hjemmefrontmuseum",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": ""
+                    },
+                    {
+                      "title": "Kongehuset – Besøkte krigsveteraner",
+                      "url": "https://www.kongehuset.no/nyheter/besokte-krigsveteraner",
+                      "verifiedAt": ""
+                    },
+                    {
+                      "title": "SNL – Norges Hjemmefrontmuseum",
+                      "url": "https://snl.no/Norges_Hjemmefrontmuseum",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/runtime/stories-all/part-004.json",
+                  "evidence_type": "canonical_story",
+                  "claim_id": "",
+                  "story_id": "st_norges_hjemmefrontmuseum_fra_motstandserfaring_til_museum",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_norges_hjemmefrontmuseum_1_1962",
+                  "year": 1962,
+                  "title": "Museumsplanen besluttes",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Museumsplanen besluttes",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_norges_hjemmefrontmuseum.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_norges_hjemmefrontmuseum_popup_03",
+                  "year": 1962,
+                  "title": "Planene ble besluttet på et møte i juni 1962 med representanter for norsk motstandsbevegelse.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Decision in 1962, committee support, foundation in 1966, opening and institutional transfer in 1995. – popup, setning 3",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/norges_hjemmefrontmuseum.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_norges_hjemmefrontmuseum_popup_03",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_norges_hjemmefrontmuseum_popup_04",
+                  "year": 1963,
+                  "title": "En komité skulle arbeide videre, og fra september 1963 fikk den lønnsmidler gjennom Forsvarsdepartementet.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Decision in 1962, committee support, foundation in 1966, opening and institutional transfer in 1995. – popup, setning 4",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/norges_hjemmefrontmuseum.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_norges_hjemmefrontmuseum_popup_04",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_norges_hjemmefrontmuseum_2_1963",
+                  "year": 1963,
+                  "title": "Komiteen får driftsmidler",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Komiteen får driftsmidler",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_norges_hjemmefrontmuseum.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_norges_hjemmefrontmuseum_desc_02",
+                  "year": 1966,
+                  "title": "Museet ble etablert som egen stiftelse våren 1966 og åpnet for publikum 7. mai 1970 ved daværende kronprins Harald.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Public opening by Crown Prince Harald on 7 May 1970. – desc, setning 2",
+                      "url": "https://www.kongehuset.no/nyheter/besokte-krigsveteraner",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/norges_hjemmefrontmuseum.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_norges_hjemmefrontmuseum_desc_02",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_norges_hjemmefrontmuseum_popup_06",
+                  "year": 1966,
+                  "title": "Norges Hjemmefrontmuseum ble etablert som egen stiftelse våren 1966.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Decision in 1962, committee support, foundation in 1966, opening and institutional transfer in 1995. – popup, setning 6",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/norges_hjemmefrontmuseum.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_norges_hjemmefrontmuseum_popup_06",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_norges_hjemmefrontmuseum_3_1966",
+                  "year": 1966,
+                  "title": "Stiftelsen etableres",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Stiftelsen etableres",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_norges_hjemmefrontmuseum.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_norges_hjemmefrontmuseum_popup_07",
+                  "year": 1967,
+                  "title": "Bindingsverkshuset og hvelvene i Det dobbelte batteri ble restaurert for museumsbruk i 1967–1968.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Building plaque documents restoration in 1967–1968 and opening in 1970. – popup, setning 7",
+                      "url": "https://commons.wikimedia.org/wiki/File:Norway%27s_WW2_Resistance_Museum,_Oslo_(Hjemmefrontmuseet)._History_of_building_on_plaque_(Det_dobbelte_batteri,_bindingsverkhuset,_restaurering_1967%E2%80%9368,_%C3%A5pning_1970)._Photo_2017-11-30.jpg",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/norges_hjemmefrontmuseum.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_norges_hjemmefrontmuseum_popup_07",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_norges_hjemmefrontmuseum_4_1968",
+                  "year": 1968,
+                  "title": "Restaureringen fullføres",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Restaureringen fullføres",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_norges_hjemmefrontmuseum.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_norges_hjemmefrontmuseum_popup_08",
+                  "year": 1970,
+                  "title": "Daværende kronprins Harald åpnet museet for publikum 7. mai 1970, dagen før 25-årsdagen for frigjøringen.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Public opening by Crown Prince Harald on 7 May 1970. – popup, setning 8",
+                      "url": "https://www.kongehuset.no/nyheter/besokte-krigsveteraner",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/norges_hjemmefrontmuseum.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_norges_hjemmefrontmuseum_popup_08",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_norges_hjemmefrontmuseum_5_1970",
+                  "year": 1970,
+                  "title": "Museet åpner",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Museet åpner",
+                      "url": "https://www.kongehuset.no/nyheter/besokte-krigsveteraner",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_norges_hjemmefrontmuseum.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_norges_hjemmefrontmuseum_6_1995",
+                  "year": 1995,
+                  "title": "Museet blir statlig",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Museet blir statlig",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_norges_hjemmefrontmuseum.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [
+                  "harald_v"
+                ],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_norges_hjemmefrontmuseum_fra_motstandserfaring_til_museum",
+                    "title": "Fra motstandserfaring til museum",
+                    "year": 1962,
+                    "type": "historical_event"
+                  }
+                ]
               }
             },
             {
@@ -53788,174 +54258,6 @@
               }
             },
             {
-              "place_id": "tullin",
-              "name": "Tullin",
-              "category": "by",
-              "source_file": "places/by/oslo/places/tullin.json",
-              "roles": [
-                {
-                  "id": "arbeid_og_okonomi",
-                  "label": "Arbeid og økonomi"
-                },
-                {
-                  "id": "by_og_infrastruktur",
-                  "label": "By og infrastruktur"
-                },
-                {
-                  "id": "kultur_og_offentlighet",
-                  "label": "Kultur og offentlighet"
-                },
-                {
-                  "id": "makt_og_styring",
-                  "label": "Makt og styring"
-                },
-                {
-                  "id": "minne_og_historiebruk",
-                  "label": "Minne og historiebruk"
-                },
-                {
-                  "id": "religion_og_livssyn",
-                  "label": "Religion og livssyn"
-                }
-              ],
-              "milestones": [
-                {
-                  "id": "chrono_tullin_1876",
-                  "year": 1876,
-                  "title": "Løkka deles",
-                  "consequence": "Tullinløkka deles i to tomter; museumskanten utvikles videre.",
-                  "confidence": "high",
-                  "sources": [
-                    {
-                      "title": "Oslo byleksikon – Tullinløkka",
-                      "url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/leksikon/places/oslo/by/leksikon_tullin.json",
-                  "evidence_type": "leksikon_chronology",
-                  "claim_id": "",
-                  "story_id": "",
-                  "limitations": []
-                },
-                {
-                  "id": "production_claim_tullin_organ",
-                  "year": 1883,
-                  "title": "Oslo Museums kilder dokumenterer kirkeorgel som fysisk utstillingsgjenstand under industriutstillingen 1883.",
-                  "consequence": "",
-                  "confidence": "",
-                  "sources": [
-                    {
-                      "title": "Oslo Museum/Oslobilder – OB.03774",
-                      "url": "https://www.oslobilder.no/OMU/OB.03774",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/places/production/tullin.json",
-                  "evidence_type": "verified_place_production_claim",
-                  "claim_id": "claim_tullin_organ",
-                  "story_id": "",
-                  "limitations": []
-                },
-                {
-                  "id": "production_claim_tullin_museum",
-                  "year": 1903,
-                  "title": "Historisk museum ble reist i perioden 1898–1903.",
-                  "consequence": "",
-                  "confidence": "",
-                  "sources": [
-                    {
-                      "title": "Oslo byleksikon – Tullinløkka",
-                      "url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/places/production/tullin.json",
-                  "evidence_type": "verified_place_production_claim",
-                  "claim_id": "claim_tullin_museum",
-                  "story_id": "",
-                  "limitations": []
-                },
-                {
-                  "id": "chrono_tullin_1903",
-                  "year": 1903,
-                  "title": "Historisk museum fullføres",
-                  "consequence": "Museumsbygningen reist 1898–1903 rammer inn løkka.",
-                  "confidence": "high",
-                  "sources": [
-                    {
-                      "title": "Oslo byleksikon – Tullinløkka",
-                      "url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/leksikon/places/oslo/by/leksikon_tullin.json",
-                  "evidence_type": "leksikon_chronology",
-                  "claim_id": "",
-                  "story_id": "",
-                  "limitations": []
-                },
-                {
-                  "id": "story_st_tullin_fra_kunsthall_til_park_2011",
-                  "year": 2011,
-                  "title": "Fra midlertidig kunsthall til park",
-                  "consequence": "Etter Kunsthallen fra 2005 og beslutningen om nytt Nasjonalmuseum på Vestbanen ble Tullinløkka i 2011 omgjort til park og aktivitetsflate av Statsbygg.",
-                  "confidence": "",
-                  "sources": [
-                    {
-                      "title": "Nasjonalmuseet – årsmelding 2005",
-                      "url": "https://www.nasjonalmuseet.no/contentassets/98adac84980c4555ae99de8a5ed00e80/aarsmelding_2005.pdf",
-                      "verifiedAt": ""
-                    },
-                    {
-                      "title": "Statsbygg – stedsanalyse Nationaltheatret/Tullinløkka",
-                      "url": "https://dok.statsbygg.no/wp-content/uploads/2020/05/stedsanalyseNationaltheatret.pdf",
-                      "verifiedAt": ""
-                    }
-                  ],
-                  "source_file": "data/runtime/stories-all/part-004.json",
-                  "evidence_type": "canonical_story",
-                  "claim_id": "",
-                  "story_id": "st_tullin_fra_kunsthall_til_park_2011",
-                  "limitations": []
-                }
-              ],
-              "period_cases": [],
-              "connections": {
-                "person_ids": [
-                  "bjornstjerne_bjornson",
-                  "claus_tullin"
-                ],
-                "works": [],
-                "stories": [
-                  {
-                    "id": "st_tullin_fradelingen_1869",
-                    "title": "Da Tullinløkka ble en egen løkke",
-                    "year": 1869,
-                    "type": "turning_point"
-                  },
-                  {
-                    "id": "st_tullin_industriutstillingen_1883",
-                    "title": "Da en utstillingsby fylte løkka",
-                    "year": 1883,
-                    "type": "historical_event"
-                  },
-                  {
-                    "id": "st_tullin_velociped_1885",
-                    "title": "To morgentimer for velocipeden",
-                    "year": 1885,
-                    "type": "microhistory"
-                  },
-                  {
-                    "id": "st_tullin_fra_kunsthall_til_park_2011",
-                    "title": "Fra midlertidig kunsthall til park",
-                    "year": 2011,
-                    "type": "turning_point"
-                  }
-                ]
-              }
-            },
-            {
               "place_id": "tune_skipet_funnsted",
               "name": "Tune-skipets funnsted",
               "category": "historie",
@@ -54545,7 +54847,7 @@
             }
           ],
           "placeCount": 58,
-          "milestoneCount": 138
+          "milestoneCount": 151
         },
         "historie_migrasjon_minoritet_og_tilhorighet": {
           "places": [
@@ -57780,6 +58082,18 @@
               "source_file": "places/historie/oslo/places_historie_atlas_obscura_museum_batch_06/forsvarsmuseet.json",
               "roles": [
                 {
+                  "id": "konflikt_og_motstand",
+                  "label": "Konflikt og motstand"
+                },
+                {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                },
+                {
+                  "id": "minne_og_historiebruk",
+                  "label": "Minne og historiebruk"
+                },
+                {
                   "id": "em_his_vitenskap_teknologi_profesjoner_standardisering_og_autoritet",
                   "label": "Profesjoner, standardisering og autoritet"
                 },
@@ -57816,6 +58130,25 @@
                   ]
                 },
                 {
+                  "id": "production_claim_forsvarsmuseet_popup_03",
+                  "year": 1860,
+                  "title": "Museumshistorien begynner med Artillerimuseets modellkammer fra 1860, som senere fikk våpen, faner, uniformer og musikkinstrumenter i samlingen.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Institution chronology, occupation losses and 1978 opening. – popup, setning 3",
+                      "url": "https://snl.no/Forsvarshistorisk_museum",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/forsvarsmuseet.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_forsvarsmuseet_popup_03",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
                   "id": "claim_claim_his_forsvarsmuseet_krag_cavalry_trial_carbine_1911_1912",
                   "year": 1911,
                   "title": "Profesjoner, standardisering og autoritet",
@@ -57836,13 +58169,84 @@
                     "Objektposten dokumenterer produsent, produksjonsår, kontrollmerking og prøveformål, men ikke hele krav-, beslutnings- eller resultatforløpet.",
                     "Kontroll og utprøving kan forstås som kvalitetssikring og brukerorientert utvikling, men viser også hvordan militære prioriteringer avgrenset hvilke tekniske løsninger industrien skulle prøve."
                   ]
+                },
+                {
+                  "id": "production_claim_forsvarsmuseet_popup_07",
+                  "year": 1941,
+                  "title": "Museumskomiteen ble oppløst av nazistyret i 1941.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Institution chronology, occupation losses and 1978 opening. – popup, setning 7",
+                      "url": "https://snl.no/Forsvarshistorisk_museum",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/forsvarsmuseet.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_forsvarsmuseet_popup_07",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "story_st_forsvarsmuseet_samlingen_som_matte_reddes",
+                  "year": 1941,
+                  "title": "Samlingen som måtte reddes",
+                  "consequence": "Okkupasjonen stanset museumsplanen, spredte samlingene og kostet tusenvis av gjenstander.",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "SNL – Forsvarshistorisk museum",
+                      "url": "https://snl.no/Forsvarshistorisk_museum",
+                      "verifiedAt": ""
+                    },
+                    {
+                      "title": "Sikt – Forsvarsmuseets endringshistorie",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/57606/endringshistorie",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/runtime/stories-all/part-004.json",
+                  "evidence_type": "canonical_story",
+                  "claim_id": "",
+                  "story_id": "st_forsvarsmuseet_samlingen_som_matte_reddes",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_forsvarsmuseet_desc_03",
+                  "year": 1978,
+                  "title": "Museet åpnet i det renoverte arsenalbygget 22. august 1978 og er et eget besøkssted, ikke hele Akershus festning eller Norges Hjemmefrontmuseum.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Institution chronology, occupation losses and 1978 opening. – desc, setning 3",
+                      "url": "https://snl.no/Forsvarshistorisk_museum",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/forsvarsmuseet.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_forsvarsmuseet_desc_03",
+                  "story_id": "",
+                  "limitations": []
                 }
               ],
               "period_cases": [],
               "connections": {
-                "person_ids": [],
+                "person_ids": [
+                  "olav_v"
+                ],
                 "works": [],
-                "stories": []
+                "stories": [
+                  {
+                    "id": "st_forsvarsmuseet_samlingen_som_matte_reddes",
+                    "title": "Samlingen som måtte reddes",
+                    "year": 1941,
+                    "type": "conflict"
+                  }
+                ]
               }
             },
             {
@@ -58844,6 +59248,327 @@
                     "title": "Fossilet Ida blir verdensnyhet",
                     "year": 2009,
                     "type": "natural_history"
+                  }
+                ]
+              }
+            },
+            {
+              "place_id": "norges_hjemmefrontmuseum",
+              "name": "Norges Hjemmefrontmuseum",
+              "category": "historie",
+              "source_file": "places/historie/oslo/places_historie_atlas_obscura_museum_batch_06/norges_hjemmefrontmuseum.json",
+              "roles": [
+                {
+                  "id": "arbeid_og_okonomi",
+                  "label": "Arbeid og økonomi"
+                },
+                {
+                  "id": "konflikt_og_motstand",
+                  "label": "Konflikt og motstand"
+                },
+                {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                },
+                {
+                  "id": "makt_og_styring",
+                  "label": "Makt og styring"
+                },
+                {
+                  "id": "minne_og_historiebruk",
+                  "label": "Minne og historiebruk"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_norges_hjemmefrontmuseum_desc_03",
+                  "year": 1940,
+                  "title": "Samlingene dokumenterer okkupasjonen og motstanden 1940–1945 gjennom autentiske gjenstander, fotografier, dokumenter og mer enn 600 hyllemeter arkiver.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Current identity, collection scope and archive scale. – desc, setning 3",
+                      "url": "https://www.forsvarshistoriskmuseum.no/norges-hjemmefrontmuseum",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/norges_hjemmefrontmuseum.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_norges_hjemmefrontmuseum_desc_03",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "story_st_norges_hjemmefrontmuseum_fra_motstandserfaring_til_museum",
+                  "year": 1962,
+                  "title": "Fra motstandserfaring til museum",
+                  "consequence": "En komité fikk oppgaven med å gjøre ulike motstandserfaringer, gjenstander og arkiver til en offentlig museumsfortelling.",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Sikt – Norges Hjemmefrontmuseum",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": ""
+                    },
+                    {
+                      "title": "Kongehuset – Besøkte krigsveteraner",
+                      "url": "https://www.kongehuset.no/nyheter/besokte-krigsveteraner",
+                      "verifiedAt": ""
+                    },
+                    {
+                      "title": "SNL – Norges Hjemmefrontmuseum",
+                      "url": "https://snl.no/Norges_Hjemmefrontmuseum",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/runtime/stories-all/part-004.json",
+                  "evidence_type": "canonical_story",
+                  "claim_id": "",
+                  "story_id": "st_norges_hjemmefrontmuseum_fra_motstandserfaring_til_museum",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_norges_hjemmefrontmuseum_1_1962",
+                  "year": 1962,
+                  "title": "Museumsplanen besluttes",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Museumsplanen besluttes",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_norges_hjemmefrontmuseum.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_norges_hjemmefrontmuseum_popup_03",
+                  "year": 1962,
+                  "title": "Planene ble besluttet på et møte i juni 1962 med representanter for norsk motstandsbevegelse.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Decision in 1962, committee support, foundation in 1966, opening and institutional transfer in 1995. – popup, setning 3",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/norges_hjemmefrontmuseum.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_norges_hjemmefrontmuseum_popup_03",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_norges_hjemmefrontmuseum_popup_04",
+                  "year": 1963,
+                  "title": "En komité skulle arbeide videre, og fra september 1963 fikk den lønnsmidler gjennom Forsvarsdepartementet.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Decision in 1962, committee support, foundation in 1966, opening and institutional transfer in 1995. – popup, setning 4",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/norges_hjemmefrontmuseum.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_norges_hjemmefrontmuseum_popup_04",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_norges_hjemmefrontmuseum_2_1963",
+                  "year": 1963,
+                  "title": "Komiteen får driftsmidler",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Komiteen får driftsmidler",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_norges_hjemmefrontmuseum.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_norges_hjemmefrontmuseum_desc_02",
+                  "year": 1966,
+                  "title": "Museet ble etablert som egen stiftelse våren 1966 og åpnet for publikum 7. mai 1970 ved daværende kronprins Harald.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Public opening by Crown Prince Harald on 7 May 1970. – desc, setning 2",
+                      "url": "https://www.kongehuset.no/nyheter/besokte-krigsveteraner",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/norges_hjemmefrontmuseum.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_norges_hjemmefrontmuseum_desc_02",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_norges_hjemmefrontmuseum_popup_06",
+                  "year": 1966,
+                  "title": "Norges Hjemmefrontmuseum ble etablert som egen stiftelse våren 1966.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Decision in 1962, committee support, foundation in 1966, opening and institutional transfer in 1995. – popup, setning 6",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/norges_hjemmefrontmuseum.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_norges_hjemmefrontmuseum_popup_06",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_norges_hjemmefrontmuseum_3_1966",
+                  "year": 1966,
+                  "title": "Stiftelsen etableres",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Stiftelsen etableres",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_norges_hjemmefrontmuseum.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_norges_hjemmefrontmuseum_popup_07",
+                  "year": 1967,
+                  "title": "Bindingsverkshuset og hvelvene i Det dobbelte batteri ble restaurert for museumsbruk i 1967–1968.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Building plaque documents restoration in 1967–1968 and opening in 1970. – popup, setning 7",
+                      "url": "https://commons.wikimedia.org/wiki/File:Norway%27s_WW2_Resistance_Museum,_Oslo_(Hjemmefrontmuseet)._History_of_building_on_plaque_(Det_dobbelte_batteri,_bindingsverkhuset,_restaurering_1967%E2%80%9368,_%C3%A5pning_1970)._Photo_2017-11-30.jpg",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/norges_hjemmefrontmuseum.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_norges_hjemmefrontmuseum_popup_07",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_norges_hjemmefrontmuseum_4_1968",
+                  "year": 1968,
+                  "title": "Restaureringen fullføres",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Restaureringen fullføres",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_norges_hjemmefrontmuseum.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_norges_hjemmefrontmuseum_popup_08",
+                  "year": 1970,
+                  "title": "Daværende kronprins Harald åpnet museet for publikum 7. mai 1970, dagen før 25-årsdagen for frigjøringen.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Public opening by Crown Prince Harald on 7 May 1970. – popup, setning 8",
+                      "url": "https://www.kongehuset.no/nyheter/besokte-krigsveteraner",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/places/production/norges_hjemmefrontmuseum.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_norges_hjemmefrontmuseum_popup_08",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_norges_hjemmefrontmuseum_5_1970",
+                  "year": 1970,
+                  "title": "Museet åpner",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Museet åpner",
+                      "url": "https://www.kongehuset.no/nyheter/besokte-krigsveteraner",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_norges_hjemmefrontmuseum.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_norges_hjemmefrontmuseum_6_1995",
+                  "year": 1995,
+                  "title": "Museet blir statlig",
+                  "consequence": "",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Museet blir statlig",
+                      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+                      "verifiedAt": "2026-08-30"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_norges_hjemmefrontmuseum.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [
+                  "harald_v"
+                ],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_norges_hjemmefrontmuseum_fra_motstandserfaring_til_museum",
+                    "title": "Fra motstandserfaring til museum",
+                    "year": 1962,
+                    "type": "historical_event"
                   }
                 ]
               }
@@ -60676,174 +61401,6 @@
               }
             },
             {
-              "place_id": "tullin",
-              "name": "Tullin",
-              "category": "by",
-              "source_file": "places/by/oslo/places/tullin.json",
-              "roles": [
-                {
-                  "id": "arbeid_og_okonomi",
-                  "label": "Arbeid og økonomi"
-                },
-                {
-                  "id": "by_og_infrastruktur",
-                  "label": "By og infrastruktur"
-                },
-                {
-                  "id": "kultur_og_offentlighet",
-                  "label": "Kultur og offentlighet"
-                },
-                {
-                  "id": "makt_og_styring",
-                  "label": "Makt og styring"
-                },
-                {
-                  "id": "minne_og_historiebruk",
-                  "label": "Minne og historiebruk"
-                },
-                {
-                  "id": "religion_og_livssyn",
-                  "label": "Religion og livssyn"
-                }
-              ],
-              "milestones": [
-                {
-                  "id": "chrono_tullin_1876",
-                  "year": 1876,
-                  "title": "Løkka deles",
-                  "consequence": "Tullinløkka deles i to tomter; museumskanten utvikles videre.",
-                  "confidence": "high",
-                  "sources": [
-                    {
-                      "title": "Oslo byleksikon – Tullinløkka",
-                      "url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/leksikon/places/oslo/by/leksikon_tullin.json",
-                  "evidence_type": "leksikon_chronology",
-                  "claim_id": "",
-                  "story_id": "",
-                  "limitations": []
-                },
-                {
-                  "id": "production_claim_tullin_organ",
-                  "year": 1883,
-                  "title": "Oslo Museums kilder dokumenterer kirkeorgel som fysisk utstillingsgjenstand under industriutstillingen 1883.",
-                  "consequence": "",
-                  "confidence": "",
-                  "sources": [
-                    {
-                      "title": "Oslo Museum/Oslobilder – OB.03774",
-                      "url": "https://www.oslobilder.no/OMU/OB.03774",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/places/production/tullin.json",
-                  "evidence_type": "verified_place_production_claim",
-                  "claim_id": "claim_tullin_organ",
-                  "story_id": "",
-                  "limitations": []
-                },
-                {
-                  "id": "production_claim_tullin_museum",
-                  "year": 1903,
-                  "title": "Historisk museum ble reist i perioden 1898–1903.",
-                  "consequence": "",
-                  "confidence": "",
-                  "sources": [
-                    {
-                      "title": "Oslo byleksikon – Tullinløkka",
-                      "url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/places/production/tullin.json",
-                  "evidence_type": "verified_place_production_claim",
-                  "claim_id": "claim_tullin_museum",
-                  "story_id": "",
-                  "limitations": []
-                },
-                {
-                  "id": "chrono_tullin_1903",
-                  "year": 1903,
-                  "title": "Historisk museum fullføres",
-                  "consequence": "Museumsbygningen reist 1898–1903 rammer inn løkka.",
-                  "confidence": "high",
-                  "sources": [
-                    {
-                      "title": "Oslo byleksikon – Tullinløkka",
-                      "url": "https://oslobyleksikon.no/side/Tullinl%C3%B8kka",
-                      "verifiedAt": "2026-08-30"
-                    }
-                  ],
-                  "source_file": "data/leksikon/places/oslo/by/leksikon_tullin.json",
-                  "evidence_type": "leksikon_chronology",
-                  "claim_id": "",
-                  "story_id": "",
-                  "limitations": []
-                },
-                {
-                  "id": "story_st_tullin_fra_kunsthall_til_park_2011",
-                  "year": 2011,
-                  "title": "Fra midlertidig kunsthall til park",
-                  "consequence": "Etter Kunsthallen fra 2005 og beslutningen om nytt Nasjonalmuseum på Vestbanen ble Tullinløkka i 2011 omgjort til park og aktivitetsflate av Statsbygg.",
-                  "confidence": "",
-                  "sources": [
-                    {
-                      "title": "Nasjonalmuseet – årsmelding 2005",
-                      "url": "https://www.nasjonalmuseet.no/contentassets/98adac84980c4555ae99de8a5ed00e80/aarsmelding_2005.pdf",
-                      "verifiedAt": ""
-                    },
-                    {
-                      "title": "Statsbygg – stedsanalyse Nationaltheatret/Tullinløkka",
-                      "url": "https://dok.statsbygg.no/wp-content/uploads/2020/05/stedsanalyseNationaltheatret.pdf",
-                      "verifiedAt": ""
-                    }
-                  ],
-                  "source_file": "data/runtime/stories-all/part-004.json",
-                  "evidence_type": "canonical_story",
-                  "claim_id": "",
-                  "story_id": "st_tullin_fra_kunsthall_til_park_2011",
-                  "limitations": []
-                }
-              ],
-              "period_cases": [],
-              "connections": {
-                "person_ids": [
-                  "bjornstjerne_bjornson",
-                  "claus_tullin"
-                ],
-                "works": [],
-                "stories": [
-                  {
-                    "id": "st_tullin_fradelingen_1869",
-                    "title": "Da Tullinløkka ble en egen løkke",
-                    "year": 1869,
-                    "type": "turning_point"
-                  },
-                  {
-                    "id": "st_tullin_industriutstillingen_1883",
-                    "title": "Da en utstillingsby fylte løkka",
-                    "year": 1883,
-                    "type": "historical_event"
-                  },
-                  {
-                    "id": "st_tullin_velociped_1885",
-                    "title": "To morgentimer for velocipeden",
-                    "year": 1885,
-                    "type": "microhistory"
-                  },
-                  {
-                    "id": "st_tullin_fra_kunsthall_til_park_2011",
-                    "title": "Fra midlertidig kunsthall til park",
-                    "year": 2011,
-                    "type": "turning_point"
-                  }
-                ]
-              }
-            },
-            {
               "place_id": "universitetets_gamle_hovedbygning",
               "name": "Universitetets gamle hovedbygning",
               "category": "vitenskap",
@@ -61496,7 +62053,7 @@
             }
           ],
           "placeCount": 46,
-          "milestoneCount": 124
+          "milestoneCount": 137
         }
       },
       "oslo_coverage": {
@@ -61509,9 +62066,9 @@
           {
             "category": "by",
             "total": 96,
-            "dated_evidence": 42,
+            "dated_evidence": 41,
             "documented_case": 0,
-            "awaiting_source_backed_history": 54
+            "awaiting_source_backed_history": 55
           },
           {
             "category": "film_tv",
@@ -61530,9 +62087,9 @@
           {
             "category": "historie",
             "total": 93,
-            "dated_evidence": 46,
+            "dated_evidence": 47,
             "documented_case": 1,
-            "awaiting_source_backed_history": 46
+            "awaiting_source_backed_history": 45
           },
           {
             "category": "kunst",
@@ -64187,7 +64744,7 @@
             "name": "Norges Hjemmefrontmuseum",
             "category": "historie",
             "source_file": "places/historie/oslo/places_historie_atlas_obscura_museum_batch_06/norges_hjemmefrontmuseum.json",
-            "status": "awaiting_source_backed_history"
+            "status": "dated_evidence"
           },
           {
             "place_id": "norges_varemesse",
@@ -65279,7 +65836,7 @@
             "name": "Tullin",
             "category": "by",
             "source_file": "places/by/oslo/places/tullin.json",
-            "status": "dated_evidence"
+            "status": "awaiting_source_backed_history"
           },
           {
             "place_id": "tveita_miljostasjon",
@@ -76840,14 +77397,14 @@
     "canonical_source_count": 256,
     "place_evidence_link_count": 325,
     "period_case_count": 9,
-    "connected_people_count": 51,
+    "connected_people_count": 52,
     "connected_work_count": 164,
-    "connected_story_count": 237,
-    "canonical_story_milestone_count": 206,
-    "verified_place_production_milestone_count": 280,
+    "connected_story_count": 235,
+    "canonical_story_milestone_count": 204,
+    "verified_place_production_milestone_count": 283,
     "indexed_place_count": 265,
-    "epoch_place_relations": 536,
-    "milestone_count": 1273
+    "epoch_place_relations": 537,
+    "milestone_count": 1276
   },
   "warnings": {
     "missing_source_files": [

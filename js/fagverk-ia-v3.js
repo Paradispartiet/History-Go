@@ -214,10 +214,17 @@
     }
   }
 
-  function renderUtforsk(model) {
+  function renderUtforsk(model, progress) {
     const host = document.getElementById('fagverkIaUtforskContent');
     if (!host) return;
-    const renderPlace = (place) => `<a class="fagverk-ia-place" href="${escapeHtml(place.route)}"><strong>${escapeHtml(place.title)}</strong><span>${escapeHtml(place.intro)}</span><small>Åpne stedets fagverkside →</small></a>`;
+    const renderPlace = (place) => {
+      const visited = progress.visited?.has?.(place.id);
+      return `<a class="fagverk-ia-place${visited ? ' is-visited' : ''}" href="${escapeHtml(place.route)}" data-place-id="${escapeHtml(place.id)}">
+        <strong>${visited ? '<span aria-hidden="true">✓</span> ' : ''}${escapeHtml(place.title)}</strong>
+        <span>${escapeHtml(place.intro)}</span>
+        <small>${visited ? 'Besøkt · åpne igjen →' : 'Åpne stedets fagverkside →'}</small>
+      </a>`;
+    };
     const primary = model.places.slice(0, 12);
     const rest = model.places.slice(12);
     const placesHtml = model.places.length
@@ -246,6 +253,18 @@
       const domain = model.domainsById.get(row.domainId);
       return `<div class="fagverk-ia-progress-row"><span>${escapeHtml(domain?.label || row.domainId)}</span><div><i style="width:${Math.max(0, Math.min(100, Number(row.percent || 0)))}%"></i></div><b>${Number(row.percent || 0)}%</b></div>`;
     }).join('');
+    const quizRows = progress.quizHistory.slice()
+      .sort((a, b) => new Date(b?.date || b?.timestamp || 0) - new Date(a?.date || a?.timestamp || 0))
+      .slice(0, 12)
+      .map((item) => {
+        const correct = Number(item?.correctCount || (Array.isArray(item?.correctAnswers) ? item.correctAnswers.length : 0) || 0);
+        const total = Number(item?.total || correct || 0);
+        const rawDate = item?.date || item?.timestamp;
+        const parsedDate = rawDate ? new Date(rawDate) : null;
+        const date = parsedDate && !Number.isNaN(parsedDate.getTime()) ? parsedDate.toLocaleDateString('nb-NO') : '';
+        const meta = [date, total ? `${correct}/${total} riktige` : ''].filter(Boolean).join(' · ');
+        return `<article><strong>${escapeHtml(item?.name || item?.title || item?.id || `${model.subject.title}-quiz`)}</strong>${meta ? `<span>${escapeHtml(meta)}</span>` : ''}</article>`;
+      }).join('');
 
     host.innerHTML = `
       <div class="fagverk-ia-progress-summary">
@@ -257,8 +276,13 @@
         <article><strong>${progress.visitedPlaces}</strong><span>besøkte fagsteder</span></article>
       </div>
       <section class="fagverk-ia-domain-progress"><h4>Dekning per fagområde</h4>${domainRows}</section>
+      <section class="fagverk-ia-quiz-history" aria-labelledby="fagverkIaQuizHistoryTitle">
+        <h4 id="fagverkIaQuizHistoryTitle">Fullførte fagquizer</h4>
+        <div>${quizRows || '<p class="fagverk-ia-empty">Ingen fagquiz er fullført ennå.</p>'}</div>
+      </section>
       <div class="fagverk-ia-progress-actions">
         <a href="emner.html">Åpne samlet læringsprogresjon →</a>
+        <a href="profile.html#merker">Åpne merkeprofilen →</a>
         ${model.subject.routes.badge ? `<a href="${escapeHtml(model.subject.routes.badge)}">Åpne merkevisningen →</a>` : ''}
       </div>
     `;
@@ -285,7 +309,7 @@
       renderOverview(model, progress);
       renderEmner(model, progress, placeId);
       renderLaerestoff(model, placeId);
-      renderUtforsk(model);
+      renderUtforsk(model, progress);
       renderProgresjon(model, progress);
       installRootNavigation(nav, root);
 

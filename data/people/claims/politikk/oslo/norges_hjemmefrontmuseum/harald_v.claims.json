@@ -1,0 +1,132 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "harald_v",
+  "place_id": "norges_hjemmefrontmuseum",
+  "profile_file": "data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json",
+  "identity": {
+    "canonical_identity": "Harald V (1937–2026), Norges konge 1991–2026.",
+    "name_variants": [
+      "Harald V",
+      "Harald 5."
+    ],
+    "not": [
+      "Harald V av Danmark"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity",
+      "claim": "Harald V var Norges konge fra 17. januar 1991 til 28. august 2026.",
+      "status": "verified",
+      "source_url": "https://www.kongehuset.no/nyheter/kong-harald-v-er-dod",
+      "source_location": "dødsmeddelelsen og kongeperioden",
+      "source_type": "official",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-30",
+      "evidence_level": "explicit"
+    },
+    {
+      "id": "slottet_anchor",
+      "claim": "Slottet var Harald Vs primære institusjonelle arbeids- og representasjonssted som konge.",
+      "status": "verified",
+      "source_url": "https://www.kongehuset.no/historie/alt-for-norge/kong-harald-v/kong-haralds-biografi",
+      "source_location": "biografien og embetsfunksjonen",
+      "source_type": "official",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-30",
+      "evidence_level": "explicit"
+    },
+    {
+      "id": "museum_opening",
+      "claim": "Daværende kronprins Harald åpnet Norges Hjemmefrontmuseum 7. mai 1970.",
+      "status": "verified",
+      "source_url": "https://www.kongehuset.no/nyheter/besokte-krigsveteraner",
+      "source_location": "avsnittet 40-årsjubileum",
+      "source_type": "official",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-30",
+      "evidence_level": "explicit"
+    },
+    {
+      "id": "portrait",
+      "claim": "Det kongelige hoff publiserte portrettet som offisielt bilde av Harald V med fri redaksjonell bruk mot kreditering.",
+      "status": "verified",
+      "source_url": "https://www.kongehuset.no/nyheter/nye-offisielle-bilder",
+      "source_location": "offisielle bilder og bruksvilkår",
+      "source_type": "official",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-30",
+      "evidence_level": "explicit"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity"
+    ],
+    "year": [
+      "identity"
+    ],
+    "period": [
+      "identity"
+    ],
+    "placeId": [
+      "slottet_anchor"
+    ],
+    "places[slottet]": [
+      "slottet_anchor"
+    ],
+    "places[norges_hjemmefrontmuseum]": [
+      "museum_opening"
+    ],
+    "image": [
+      "portrait"
+    ],
+    "cardImage": [
+      "portrait"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity",
+          "museum_opening"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity",
+          "slottet_anchor"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "museum_opening"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "slottet_anchor",
+          "museum_opening"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "4/4",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-30",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}

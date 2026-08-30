@@ -580,6 +580,7 @@
         curriculum: source.curriculum || null,
         periodGuides: source.periodGuides || null,
         periodModules: source.periodModules || null,
+        runtimeManifest: source.runtimeManifest || null,
         manifestEntry: input?.manifestEntry || {},
         inventoryEntry: input?.inventoryEntry || {},
         statusEntry,

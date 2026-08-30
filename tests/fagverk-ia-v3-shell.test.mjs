@@ -10,6 +10,7 @@ const model = read('js/fagverk-subject-model.js');
 const portalHtml = read('fagverk-forside.html');
 const portalJs = read('js/fagverk-forside.js');
 const portalCss = read('css/fagverk-forside.css');
+const learningHtml = read('emner.html');
 
 function functionSource(source, startToken, endToken) {
   const start = source.indexOf(startToken);
@@ -110,6 +111,18 @@ test('Fagverkforsiden har faget som primær vei og merkesiden kun som compatibil
   assert.match(portalJs, /Åpne eksisterende merkevisning/);
   assert.match(portalCss, /\.fagverk-portal-action\.is-primary/);
   assert.match(portalCss, /\.fagverk-portal-compat/);
+});
+
+test('emner.html er eksplisitt Min læring og ikke canonical emnekatalog', () => {
+  assert.match(learningHtml, /<title>History Go – Min læring<\/title>/);
+  assert.match(learningHtml, /<h1>Min læring<\/h1>/);
+  assert.match(learningHtml, /personlige, tverrfaglige progresjon/i);
+  assert.match(learningHtml, /href="fagverk-forside\.html">Åpne Fagverket/);
+  assert.match(learningHtml, /contract\.fagSubjects/);
+  assert.match(learningHtml, /computeEmneDekningV2\(concepts, emner, \{ emneHits \}\)/);
+  assert.match(learningHtml, /availableSubjects = subjects\.filter\(\(subject\) => coverageBySubject\[subject\.id\]\)/);
+  assert.doesNotMatch(learningHtml, /<h1>Dine emner &amp; pensum<\/h1>|<h1>Dine emner & pensum<\/h1>/);
+  assert.doesNotMatch(learningHtml, /localStorage\.setItem|sessionStorage\.setItem|indexedDB/);
 });
 
 test('IA v3 reduserer subject-root sidebar uten å endre dypkoblingssidene', () => {

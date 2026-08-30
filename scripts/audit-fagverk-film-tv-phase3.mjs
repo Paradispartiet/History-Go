@@ -197,8 +197,9 @@ export function auditFilmTvPhase3({ writeReport = false, checkReport = true } = 
   assert(principles.emne_prefix_required === 'em_film_tv_', 'Fagkartet mangler canonical emneprefix');
 
   const badgePage = read(P.badgePage);
-  assert(badgePage.includes('../../../fagverk.html?subject=film_tv'), 'Film & TV-merkesiden mangler separat fagsidelenke');
-  assert(badgePage.includes('../../../fagverk-forside.html'), 'Film & TV-merkesiden mangler Fagverk-forsiden');
+  assert(portalEntry?.badgePage === 'fagverk.html?subject=film_tv#fagverkIaProgresjon', 'Film & TV-portalen peker ikke til integrert Progresjon');
+  assert(badgePage.includes('../../../fagverk.html?subject=film_tv#fagverkIaProgresjon'), 'Film & TV compatibility-siden peker ikke til Progresjon');
+  assert(badgePage.includes('location.replace'), 'Film & TV compatibility-siden mangler redirect');
 
   const report = {
     schema: 'history_go_fagverk_film_tv_phase3_audit_v1',

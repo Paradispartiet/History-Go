@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "geografisk-tenkning-sted-rom-skala-og-region",
+  "id": "02-skala-region-avstand-og-naerhet",
+  "title": "Skala, region, avstand og nærhet",
+  "sections": [
+    {
+      "id": "skala-region-og-avgrensning",
+      "title": "Skala, region og analytisk avgrensning",
+      "method_ids": ["met_geo_skala_enhetsanalyse", "met_geo_regionklassifikasjon"],
+      "boundary": "Administrative grenser og regionnavn er ikke naturgitte analysegrenser; de må begrunnes ut fra spørsmål, prosess og datakilde.",
+      "paragraphs": [
+        "Skala bestemmer hvilket utsnitt av et fenomen analysen gjør synlig. En temperaturserie kan studeres på målestasjon, dalføre, landsdel eller globalt nivå; boligpriser kan undersøkes per adresse, grunnkrets, kommune eller arbeidsmarkedsregion. Når enheten endres, kan både variasjon, gjennomsnitt og sammenhenger endre seg. Geografisk metode krever derfor at skala ikke bare nevnes i en figurtekst, men begrunnes i forhold til mekanismen, datakildens oppløsning og den slutningen analysen skal støtte.",
+        "En region er en analytisk eller institusjonell avgrensning, ikke nødvendigvis et objekt med én naturlig grense. Regioner kan være administrative, funksjonelle, fysiske, kulturelle eller statistiske. Et nedbørfelt følger terreng og vannstrøm, mens et arbeidsmarked kan avgrenses gjennom pendling og en kommune gjennom lov og forvaltning. Rediscovering Geography legger vekt på steder og regioner som organiserende geografiske enheter, men den faglige oppgaven er å vise hvilke kriterier regionen bygger på og hvilke fenomener kriteriene faktisk fanger.",
+        "Eurostats grad av urbanisering viser hvorfor klassifikasjon må skilles fra administrative grenser. Metoden identifiserer først rutenettceller etter befolkningstetthet, sammenheng og befolkningsstørrelse, og klassifiserer deretter lokale administrative enheter ut fra hvor innbyggerne bor i disse cellene. En kommune blir altså ikke «urban» bare fordi den heter bykommune, og stor fysisk utstrekning blir ikke forvekslet med lav tetthet. Eksemplet viser hvordan geografisk klassifikasjon kan bygges nedenfra fra et harmonisert rutenett før resultatet kobles til forvaltningsenheter.",
+        "Når et fenomen overskrider en administrativ grense, bør analysen teste om en funksjonell eller relasjonell avgrensning passer bedre. Pendling, luftforurensning, vassdrag, varestrømmer og boligmarkeder følger ofte andre geografier enn kommune- og landegrenser. Masseys relasjonelle perspektiv gjør dette til et grunnspørsmål: hvilke forbindelser konstituerer faktisk området vi analyserer? Den administrative enheten kan fortsatt være nødvendig for statistikk eller styring, men den skal da beskrives som en datamessig eller institusjonell ramme, ikke som en automatisk årsaksenhet."
+      ],
+      "paragraphClaimIds": [["geo-09"], ["geo-10"], ["geo-11"], ["geo-12"]]
+    },
+    {
+      "id": "avstand-naerhet-og-romlig-avhengighet",
+      "title": "Avstand, nærhet og romlig avhengighet",
+      "method_ids": ["met_geo_avstandsmaal", "met_geo_romlig_vekting"],
+      "boundary": "Nærhet kan måles på flere måter; euklidisk avstand, reisetid, nettverksavstand og sosial forbindelse er ikke utskiftbare mål.",
+      "paragraphs": [
+        "Toblers første geografilov brukes ofte som kortform for romlig avhengighet: fenomener som ligger nær hverandre kan være mer like eller sterkere forbundet enn fenomener langt fra hverandre. Formuleringen er nyttig som forventning, men skal ikke behandles som naturgesetz. I den opprinnelige sammenhengen var den en modellantakelse. En moderne analyse må definere hva som regnes som nabo, hvordan avstanden måles og hvorfor den valgte relasjonen er relevant for akkurat sykdomsspredning, boligmarked, vannstrøm eller den andre prosessen som studeres.",
+        "Avstandsmål bør følge mekanismen. Luftlinjeavstand kan være hensiktsmessig for enkelte fysiske prosesser, mens reisetid eller nettverksavstand kan være bedre for tilgang til skole, sykehus eller arbeidsplass. En fjord, tunnel, enveiskjørt gate eller kollektivrute kan gjøre to geografisk nære punkter funksjonelt fjerne. GIS gjør det mulig å sammenligne slike mål, men programvaren velger ikke hvilket mål som er teoretisk riktig. Valget må knyttes til spørsmålet og dokumenteres sammen med nettverk, hastigheter og andre forutsetninger.",
+        "Romlige vekter oversetter en nabodefinisjon til analyse. Naboer kan defineres gjennom felles grense, avstandsterskel, nærmeste observasjoner eller en kontinuerlig avstandsfunksjon. Hver løsning fremhever ulike relasjoner og kan endre styrken eller plasseringen av romlige klynger. Anselins lokale indikatorer forutsetter nettopp en spesifisert romlig struktur. Derfor bør resultater ikke presenteres som egenskaper ved kartet alene; de er egenskaper ved dataene under en bestemt vekting, og følsomhet for plausible alternative vekter bør undersøkes når konklusjonen er viktig.",
+        "Romlig nærhet er ikke det samme som kausal påvirkning. Nabo-områder kan ligne fordi de deler topografi, institusjoner, demografi eller datakonstruksjon, uten at det ene området påvirker det andre direkte. Omvendt kan fjerne steder være tett koblet gjennom flyruter, verdikjeder eller digitale nettverk. Geografisk analyse bruker derfor avstand og naboskap som eksplisitte hypoteser om relasjon, ikke som ferdige årsaksforklaringer. En påstand om påvirkning krever tidsrekkefølge, mekanisme og data som passer den forbindelsen som foreslås."
+      ],
+      "paragraphClaimIds": [["geo-13"], ["geo-14"], ["geo-15"], ["geo-16"]]
+    }
+  ]
+}

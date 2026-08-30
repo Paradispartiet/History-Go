@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "klima-vaer-klimasoner-og-endring",
+  "id": "02-regionale-drivere-og-klimasoner",
+  "title": "Regionale drivere og klimasoner",
+  "sections": [
+    {
+      "id": "breddegrad-hoyde-kontinentalitet-og-sirkulasjon",
+      "title": "Breddegrad, høyde, kontinentalitet og sirkulasjon",
+      "method_ids": ["met_geo_klimagradientanalyse", "met_geo_sirkulasjonsregionalisering"],
+      "boundary": "Breddegrad eller høyde alene bestemmer ikke lokalt klima; topografi, avstand til hav, havstrømmer og atmosfærisk sirkulasjon må inngå.",
+      "paragraphs": [
+        "Solinnstrålingens geografiske fordeling og jordens sirkulasjon bidrar til brede klimagradienter, men regionale mønstre modifiseres av hav, topografi og atmosfærisk transport. Breddegrad gir derfor en viktig første forklaring på energitilførselen, men er utilstrekkelig som lokal klimamodell. Kystnære områder kan få dempet temperaturamplitude, fjell kan omdirigere luftmasser, og havstrømmer kan transportere varme langt fra der solenergien opprinnelig ble absorbert. En geografisk klimaanalyse bør derfor kombinere strålingsgeometri med sirkulasjon og overflateforhold før temperatur- eller nedbørssoner forklares.",
+        "Temperatur avtar ofte med høyde i troposfæren, men lokale inversjoner, strålingsforhold og luftmasser gjør at høydegradienter ikke kan brukes som en universell konstant. En standardisert lapse rate kan være nyttig som grov referanse, men daler kan samle kald luft om natten, solvendte skråninger kan være varmere enn høyden tilsier, og fuktige luftmasser kan ha andre vertikale profiler enn tørre. Derfor bør høydekorreksjon testes mot observerte eller reanalyserte profiler i den aktuelle regionen. Når temperatur regionaliseres mellom stasjoner, må terreng, eksponering og tidsperiode dokumenteres sammen med selve høyden.",
+        "Kontinentalitet påvirker temperaturamplitude og fuktighet fordi land og hav lagrer og transporterer varme forskjellig, men effekten avhenger også av dominerende vind og havsirkulasjon. To steder like langt fra havet kan få ulike klima dersom det ene ofte mottar maritim luft og det andre ligger i le eller under mer kontinentale luftmasser. Geografisk analyse bør derfor ikke bruke avstand til kyst som eneste indikator. En bedre tilnærming kombinerer avstand, sirkulasjonsretning, havtemperatur, topografi og sesong, og undersøker om observasjoner faktisk viser den forventede forskjellen i temperaturspenn og fuktighet.",
+        "Orografi kan skape sterke nedbørskontraster gjennom løft, skyggeeffekter og sirkulasjonsmønstre, slik at regionale middelverdier kan skjule store lokale forskjeller. Når fuktig luft tvinges opp over terreng, kan avkjøling og kondensasjon øke nedbøren på en side, mens synkende luft på lesiden kan gi tørrere forhold. Effekten varierer med vindretning, stabilitet og luftmassens fuktighet. Derfor bør regionale nedbørskart tolkes med terreng og sirkulasjon i samme analyse, og lokale stasjoner brukes til å teste om gridverdier fanger de sterkeste gradientene."
+      ],
+      "paragraphClaimIds": [["geo4-09"],["geo4-10"],["geo4-11"],["geo4-12"]]
+    },
+    {
+      "id": "klimasoner-klassifikasjon-og-grenseproblemer",
+      "title": "Klimasoner, klassifikasjon og grenseproblemer",
+      "method_ids": ["met_geo_klimaklassifikasjon", "met_geo_sonegrense_sensitivitet"],
+      "boundary": "Klimasoner er klassifikasjoner basert på terskler og periodestatistikk; kartgrensen er ikke en fysisk vegg og kan flytte seg når data, periode eller metode endres.",
+      "paragraphs": [
+        "Köppen-Geiger-systemet klassifiserer klima ved terskler i temperatur og nedbør og er derfor en regelbasert regionalisering, ikke en direkte måling av økosystem eller vegetasjon. Systemet er nyttig fordi det komprimerer komplekse klimavariabler til kartbare klasser, men klassene må forstås som resultater av bestemte terskelregler. Et område kan derfor skifte klasse når én variabel krysser en grense uten at alle økologiske forhold endres samtidig. I geografisk analyse bør klimaklassen brukes sammen med de underliggende temperatur- og nedbørsseriene, særlig når overgangssoner eller framtidige endringer diskuteres.",
+        "Klimaklassegrenser avhenger av datasettets oppløsning, normalperiode og interpolasjon, og små romlige forskyvninger bør ikke tolkes som skarpe naturgrenser. Et 1-kilometers grid og et grovere globalt produkt kan plassere terskelkryssingen forskjellig i fjell eller kystlandskap, og en ny normalperiode kan flytte gjennomsnittsverdier nok til at enkelte celler endrer klasse. Slike kartforskjeller kan være metodisk forventede. Derfor bør sammenligning av klimasoner dokumentere datasett, oppløsning, periode og algoritme før arealendring beregnes eller brukes som evidens for en fysisk grense i landskapet.",
+        "To klimaklassifikasjoner kan være faglig konsistente selv om de deler regioner ulikt fordi formålet og terskelreglene kan være forskjellige. Ett system kan prioritere temperatur- og nedbørsterskler, mens et annet kan være laget for agroklima, ariditet eller bestemte biologiske forhold. Ulike kart trenger derfor ikke bety at ett av dem er feil; de kan svare på ulike spørsmål. En sterk geografisk sammenligning starter med å lese definisjonene, identifisere hvilke variabler og tidsperioder som brukes, og undersøke hvilke romlige mønstre som er robuste på tvers av metodene og hvilke som bare følger klassifikasjonsvalget.",
+        "Endring i klassifisert klimasone er et avledet resultat som bør følges av de underliggende temperatur- og nedbørsendringene og usikkerheten i terskelkryssingen. Dersom en gridcelle beveger seg fra én Köppen-Geiger-klasse til en annen, viser det at kriteriene har skiftet side av en definert terskel, ikke at landskapet øyeblikkelig har fått et helt nytt klima eller økosystem. Analysen bør derfor vise hvilke variabler som drev skiftet, hvor langt verdiene ligger fra terskelen, hvor stabile resultatene er mellom datasett, og om endringen består under alternative perioder eller modellensembler."
+      ],
+      "paragraphClaimIds": [["geo4-13"],["geo4-14"],["geo4-15"],["geo4-16"]]
+    }
+  ]
+}

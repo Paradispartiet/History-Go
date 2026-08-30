@@ -56,7 +56,7 @@ By er første `legacy_static_theory`-fag som ble fullført gjennom hele equivale
 - **#5437:** alle ti kunnskapsseksjoner fikk eksplisitt canonical eier og redaksjonell disposisjon; gammel produkttekst ble eksplisitt pensjonert.
 - **#5440:** canonical `badgePage` ble flyttet til `fagverk.html?subject=by#fagverkIaProgresjon`, og migreringen ble låst med permanente regresjonsporter.
 
-Den gamle statiske By-merkesiden beholdes foreløpig som audit- og arkivkilde, men er ikke lenger en aktiv produkt- eller navigasjonsflate.
+Sluttfasens direkte-URL-kontroll har nå bevart den gamle statiske By-merkesiden byte-for-byte i `data/fag/by/archive/merke_by_full_teori_legacy_20260830.html` med original Git-blob `bdc5ffef999db78ab2670571615f7fcf1327216f`. Råauditen og adjudiseringen leser arkivet, mens `data/fag/by/merke_by.html` er en ren compatibility-redirect til By i Progresjon. Dermed er teorien fortsatt etterprøvbar uten at den gamle URL-en fungerer som en parallell innholdsflate.
 
 ### Historie
 
@@ -152,8 +152,44 @@ Scenekunst er andre `legacy_stub`-fag og følger samme smale pensjoneringsregel:
 
 Ingen Scenekunst-emner, metoder, kapitler, claims eller kilder ble endret for å pensjonere stubben.
 
-## Ikke redirect ennå
+### Politikk
 
-- **Politikk:** `rich_runtime`; emneprogresjon, quizhistorikk, steder, begrepsutforsker og øvrig aktiv legacy-runtime må ha dokumentert equivalence før redirect.
-- **Andre fullteorisider:** `legacy_static_theory`; hvert fag må gjennom egen innholdsaudit og eksplisitt adjudisering. By, Historie, Litteratur, Kunst, Media, Musikk, Næringsliv og Natur er prosessbevis, ikke automatisk godkjenning av resten.
-- **Tynne legacy-sider:** `legacy_stub`; Religion og Scenekunst er eksplisitt pensjonert; øvrige stubber må fortsatt gjennom egen unik-innhold/linkaudit før redirect.
+Politikk var det siste `rich_runtime`-faget. Den separate portalen kombinerte gameplay og canonical faginnhold, men bar ingen egen kunnskapssannhet:
+
+- Fagverkets eksisterende generelle motor eide allerede 13 fagområder, 123 emner, 13 redigerte kapitler og det søkbare registeret med 962 forklarte begreper.
+- De avgrensede funksjonsgapene er flyttet til de relevante fem flatene: detaljert quizhistorikk og merkeprofil i **Progresjon**, besøksstatus per sted i **Utforsk**, og canonicale undermerkenavn/-fagområder i den felles badgekomponenten.
+- `scripts/audit-fagverk-politikk-runtime-equivalence.mjs` binder hvert legacy-funksjonsområde til en aktiv Fagverk-eier, krever at den politikkspesifikke portal-JS/CSS-en er fjernet og verifiserer hele ruten fail-closed.
+- Originalportalen er bevart byte-for-byte i `data/fag/politikk/archive/merke_politikk_rich_runtime_legacy_20260830.html` med Git-blob `9529684894ff913bc350f64b2a553b0288c7abff`. Den gamle URL-en er kun compatibility-redirect, mens canonical `badgePage` og `Alle merker` går direkte til `fagverk.html?subject=politikk#fagverkIaProgresjon`.
+
+Politikkens øvrige compatibility-modell beholdes for kart-, sted- og popupflater, men peker nå til integrert Fagverk. Den generelle fagsiden laster fortsatt ingen politikkspesifikk modell eller fallback.
+
+### Felles merkeindeks
+
+Den separate statiske indeksen `merker/merker.html` bar ingen unik kunnskap eller runtime. Den var dessuten ufullstendig mot de 19 canonicale fagene og løftet legacy-aliaset Populærkultur som en egen merke-kategori i strid med category-contracten.
+
+- Originalindeksen er bevart byte-for-byte i `merker/archive/merker_index_legacy_20260830.html` med Git-blob `bb0cf746552d671d4341da198c210b41bacc55d1`.
+- Den gamle URL-en er en ren compatibility-redirect til `fagverk-forside.html`.
+- Profilens merkebibliotek eier det brukeren faktisk har oppnådd; Fagverkforsiden eier utforsking av alle 19 fag og integrerte merker.
+- Badge-equivalence-testen låser arkivhash, redirect, aktive innlenker og fravær av den gamle kortgriden på aktiv URL.
+
+## Canonicale `badgePage`-ruter er ferdigmigrert
+
+Den permanente badge-equivalence-auditen rapporterer nå `progress_route: 19`, `rich_runtime: 0`, `legacy_static_theory: 0` og `legacy_stub: 0`. Alle canonicale `badgePage`-mål i portalregisteret går dermed til integrert Progresjon etter fagvis evidens og grønn gate.
+
+Dette autoriserer ikke automatisk sletting eller redirect av enhver direkte legacy-URL som ikke lenger er et portalregistermål. Sluttfasen skal fortsatt:
+
+- inventere direkte innlenker til gjenværende legacy-HTML;
+- bevare bytearkiver og adjudiseringsbevis;
+- redirecte eller fjerne bare når referanse- og browseraudit er grønn;
+- fjerne CSS-/JS-lag først når ingen aktiv eller eksplisitt bevart flate trenger dem.
+
+Den direkte By-URL-en er ferdig behandlet etter denne regelen. Populærkultur-underfeltet er også fullført gjennom en egen, strengere delfeltsport:
+
+- Category-contracten eier `populaerkultur` som alias til `media` og sier eksplisitt at Populærkultur er tagg/linse og mediefaglig delfelt, ikke toppdomene.
+- Media Phase 3 beviser et komplett nested felt med 6 områder, 56 emner, 48 metoder og 56 mappinger.
+- Alle ti kunnskapsseksjoner på den gamle direkte siden har eksplisitt canonical Media-eier og `canonical_supersedes`; `bidrag` er pensjonert produkttekst. Det ble funnet null innholdsgap og derfor gjort null kunstige migreringer.
+- Originalen er bevart byte-for-byte i `data/fag/media/populaerkultur_som_mediefelt/archive/merke_populaerkultur_full_teori_legacy_20260830.html` med Git-blob `737ea0dd1a8233d108877d8b58030ba96417c43d`.
+- `data/fag/media/populaerkultur_som_mediefelt/merke_populaerkultur.html` er en ren compatibility-redirect til Media-emner. En resolver-basert referanseaudit finner null aktive innlenker til den gamle innholdsflaten.
+- `merker/merker.css` er fjernet etter at den samme auditen beviste null aktive HTML-referanser. Ingen JavaScript-fil var eid av denne legacy-flaten.
+
+Det permanente direkte-URL-inventaret tillater nå ingen `data/fag/**/merke*.html`-innholdsflater utenfor bytearkivene. Alle aktive slike URL-er er compatibility-redirects.

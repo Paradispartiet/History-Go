@@ -1,16 +1,16 @@
 # History GO — canonical kontrakt for Fagverket og alle fagsider
 
-Status: **canonical og bindende fagverkskontrakt v9**
+Status: **canonical og bindende fagverkskontrakt v10**
 Eier: `fagverk_subject_page_architecture` og `fagverk_subject_page_production`
 Gjelder: alle canonicale fag i `data/categories/category_contract.json`
-Sist kontrollert: **2026-08-20**
+Sist kontrollert: **2026-08-30**
 
 Dette er den **eneste samlede kontrakten** for hvordan History GO bygger, materialiserer, kvalitetssikrer og ferdigstiller fagsidene i Fagverket.
 
 Dokumentet eier:
 
 - den felles fagsidearkitekturen;
-- skillet mellom fagverkforside, merkeside, fagside og stedsside;
+- skillet mellom fagverkforside, integrert fagside, globale læringsflater, compatibility-ruter og stedsside;
 - den normaliserte runtime-modellen som alle fag skal vises gjennom;
 - produksjonsrekkefølgen fra planlagt fag til fullverdig læreverk;
 - statusbetydningene for teknisk materialisering og redaksjonell ferdigstillelse;
@@ -58,7 +58,7 @@ Arbeid med Fagverket skal starte i denne rekkefølgen:
 4. [`SUBJECT_FILE_CONTRACT.md`](./SUBJECT_FILE_CONTRACT.md) — én universell fagmodell per fag og separate geografiske produksjonslag.
 5. [`../data/fag/fagverk_theory_quality_contract_v1.json`](../data/fag/fagverk_theory_quality_contract_v1.json) — maskinlesbar teori-, teoretiker- og modellstandard, fagtypeprofiler og strict integrity-gate.
 6. **Dette dokumentet** — fagsidearkitektur, materialisering, status, produksjonsrekkefølge og ferdigkrav.
-7. [`FAGVERK_NAVIGATION.md`](./FAGVERK_NAVIGATION.md) — den smale navigasjonskontrakten for portal, merkesider, fagsider, dypkoblinger og stedssider.
+7. [`FAGVERK_NAVIGATION.md`](./FAGVERK_NAVIGATION.md) — den smale navigasjonskontrakten for portal, fagsider, integrert merkeprogresjon, compatibility-ruter, dypkoblinger og stedssider.
 8. [`../README/README.pensum.md`](../README/README.pensum.md) — forholdet mellom merke, fagkart, emner, quiz, Knowledge, learning log og pensumprogresjon.
 9. [`../README/fagstrukturREADME.md`](../README/fagstrukturREADME.md) — operativ guide til manifest-resolverte fagpakker og filstruktur.
 10. [`DATA_PRODUCTION_CONTRACT.md`](./DATA_PRODUCTION_CONTRACT.md) — produksjon og integrasjon av canonical data.
@@ -77,17 +77,15 @@ Ved konflikt gjelder dokumentet som eier det aktuelle ansvarsområdet. Ingen lok
 
 ## 3. Entydige sideroller
 
-Fagverket består av fire forskjellige produktflater:
+Fagverket består av tre canonicale produktflater. Merket er integrert gameplay- og progresjonsidentitet på fagsiden, ikke en fjerde parallell innholdsflate:
 
 ```text
 FAGVERKFORSIDEN
 alle canonicale fag
         │
-        ├── MERKESIDEN
-        │   spill, badge, undermerker, poeng, nivå, quiz og steder
-        │
         └── FAGSIDEN
-            fagstruktur, pensum, fagområder, emner, metoder og lærekapitler
+            Oversikt · Emner · Lærestoff · Utforsk · Progresjon
+            fagstruktur, pensum, kapitler, steder og integrert merkeidentitet
                     │
                     └── STEDSSIDEN
                         konkret sted koblet til fag gjennom canonical ID-er
@@ -105,22 +103,11 @@ Rolle:
 
 - felles inngang fra headerens **Fagverket**;
 - viser alle canonicale fag i canonical rekkefølge;
-- skiller eksplisitt mellom **Åpne merket** og **Åpne faget**;
+- bruker **Åpne faget** som primær handling for materialiserte fag;
+- kan under migreringen vise en sekundær compatibility-lenke, men aldri som en likestilt faglig hovedvei;
 - viser ikke en klikkbar fagsidelenke før siden er teknisk materialisert.
 
-### 3.2 Merkesiden
-
-Rolle:
-
-- fagets spill- og progresjonsidentitet;
-- badge, undermerker, poeng og nivå;
-- quizaktivitet og relevante steder;
-- kan vise fagområdedekning som progresjonsoversikt;
-- skal lenke tydelig videre til fagsiden når den finnes.
-
-Merkesiden er ikke læreverket og skal ikke omtales som fagsiden.
-
-### 3.3 Fagsiden
+### 3.2 Fagsiden
 
 Adresse:
 
@@ -130,12 +117,15 @@ fagverk.html?subject=<subject_id>
 
 Rolle:
 
-- presenterer den universelle fagmodellen;
-- viser fagområder, emner, begreper, metoder og progresjon;
-- viser redigerte lærekapitler der de finnes;
-- kobler videre til stedssider uten å kopiere stedets innhold inn i faget.
+- presenterer den universelle fagmodellen gjennom **Oversikt**, **Emner**, **Lærestoff**, **Utforsk** og **Progresjon**;
+- viser fagområder, emner, begreper, metoder og redigerte lærekapitler der de finnes;
+- beholder merket som integrert spill- og progresjonsidentitet med badge, undermerker, poeng, nivå, fagområdedekning og quizhistorikk;
+- kobler videre til stedssider uten å kopiere stedets innhold inn i faget;
+- bruker eksisterende progresjons-read-model uten å opprette ny lagring.
 
-### 3.4 Stedssiden
+Faglig struktur og lærestoff eies av Fagverket. Merket beskriver brukerens gameplay- og progresjonsidentitet og skal ikke opprette en parallell fagstruktur.
+
+### 3.3 Stedssiden
 
 Adresse:
 
@@ -149,6 +139,12 @@ Rolle:
 - bruker canonical `underbadge_ids`, `emne_ids`, steder, personer, Works, kilder og andre eide systemer;
 - er selvstendig og kan være tverrfaglig;
 - skal ikke reduseres til et kopiert «casekapittel» i én fagside.
+
+### 3.4 Compatibility-ruter og globale læringsflater
+
+Gamle merkeside-URL-er kan bestå midlertidig som compatibility-ruter. De skal auditeres for unik gyldig kunnskap og aktiv funksjonalitet før de redirectes til fagets integrerte Progresjon. De er ikke canonicale produktflater.
+
+`emner.html` er en personlig, tverrfaglig **Min læring**-/progresjonsflate. Den eier ikke fagets canonicale emnekatalog; alle canonicale emner skal kunne finnes på fagsiden uavhengig av brukerprogresjon.
 
 ---
 
@@ -612,11 +608,11 @@ Et fag kan først settes til `structure_ready` når:
 5. alle aktive emner vises og peker til gyldig fagområde;
 6. alle viste metode-ID-er finnes;
 7. mappings peker bare til eksisterende objekter;
-8. fagets badge- og merkesidelenke løses gjennom eide registre;
+8. fagets badgekilde og integrerte Progresjon-rute løses gjennom eide registre;
 9. progresjon leses uten ny lokal storage;
 10. dypkobling til fagområde og emne fungerer;
 11. sideinnholdet inneholder ingen politikkspesifikk resttekst;
-12. siden har tydelig lenke tilbake til fagverkforsiden og riktig merkeside;
+12. siden har tydelig lenke tilbake til fagverkforsiden, integrert Progresjon og globale **Min læring**;
 13. alle permanente tester og audits er grønne.
 
 `structure_ready` er en teknisk og referensiell integritetsstatus. Den sier at det registrerte inventaret virker, ikke at fagets relevante kunnskapsområde er ferdig kartlagt.
@@ -675,7 +671,7 @@ Bygg:
 - adaptergrense;
 - normalisert fagmodell;
 - generell renderer;
-- generell badge-/merkesideresolver;
+- generell badge- og progresjonsresolver;
 - generelle dypkoblinger;
 - feilflate som aldri faller tilbake til politikkinnhold;
 - permanent all-subject audit.
@@ -747,7 +743,7 @@ Fag: <subject_id>
 
 [ ] Finnes i category_contract.json
 [ ] Finnes i data/fag/fag_manifest.json
-[ ] Badgekilde og merkeside er løst
+[ ] Badgekilde og integrert Progresjon-rute er løst
 [ ] Pensum kan lastes
 [ ] Emner kan lastes
 [ ] Fagkart kan lastes
@@ -766,7 +762,7 @@ Fag: <subject_id>
 [ ] Fagforside fungerer
 [ ] Domain-dypkobling fungerer
 [ ] Emne-dypkobling fungerer
-[ ] Riktig merkesidelenke fungerer
+[ ] Integrert Progresjon-rute fungerer
 [ ] Stedssider åpnes separat
 [ ] Progresjon bruker eksisterende read-model
 [ ] Portalstatus er fortsatt planned før grønn gate
@@ -894,10 +890,10 @@ Fagverk-workflowen skal etter hvert håndheve minst:
 
 - alle `materialized` fag åpnes;
 - alle `planned` fag er ikke-klikkbare i portalen;
-- merkeside og fagside er forskjellige mål;
+- badgeidentitet rendres i fagsidens Progresjon uten parallell fagstruktur;
 - domain- og emnedypkoblinger virker;
 - stedssider åpnes separat;
-- ingen fagside har hardkodet politikkmerkeside.
+- ingen fagside har hardkodet politikk- eller legacy-merkerute.
 
 ### 16.4 Kapitler
 

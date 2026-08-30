@@ -1,38 +1,17 @@
-<!doctype html>
-<html lang="nb">
+<!DOCTYPE html>
+<html lang="no">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#05070c">
-  <base href="../../../">
-  <title>Politikkmerket – History Go</title>
-  <meta name="description" content="Merkesiden for Politikk & samfunn: poeng, nivå, undermerker, steder og koblingen videre til politikkfaget.">
-  <link rel="stylesheet" href="css/theme.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/politikk-fagportal.css">
-  <link rel="stylesheet" href="css/politikk-curriculum.css">
-  <link rel="stylesheet" href="css/fagverk-premium.css">
-  <link rel="stylesheet" href="css/politikk-merke-role.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>History Go – Politikkmerket er flyttet</title>
+  <meta name="robots" content="noindex">
+  <meta http-equiv="refresh" content="0; url=../../../fagverk.html?subject=politikk#fagverkIaProgresjon">
+  <script>
+    window.location.replace('../../../fagverk.html?subject=politikk#fagverkIaProgresjon');
+  </script>
 </head>
-<body class="politikk-fagportal-page politikk-merke-page">
-  <a class="fagverk-skip-link" href="#politikkMain">Hopp til politikkmerket</a>
-  <header class="politikk-topbar">
-    <a class="politikk-brand" href="index.html" aria-label="Tilbake til History Go"><img src="bilder/logo_historygo.PNG" alt="History Go"></a>
-    <nav aria-label="Politikkmerket"><a href="fagverk-forside.html">Fagverket</a><a href="fagverk.html?subject=politikk">Politikkfaget</a><a href="emner.html">Min progresjon</a><a href="index.html">Kartet</a></nav>
-  </header>
-  <main id="politikkMain" class="politikk-shell">
-    <div id="politikkLoading" class="politikk-loading">Laster politikkmerket …</div>
-    <div id="politikkContent" hidden>
-      <header class="politikk-hero"><div class="politikk-hero-copy"><p class="politikk-kicker">Merke · progresjon · undermerker · steder</p><h1 id="politikkTitle">Politikk & samfunn</h1><p id="politikkPurpose" class="politikk-lead"></p><div id="politikkSummary" class="politikk-summary" aria-label="Merkets og fagets omfang"></div></div><div id="politikkBadgeProgress" class="politikk-badge-progress"></div></header>
-      <section class="politikk-section" aria-labelledby="politikkUnderbadgeTitle"><div class="politikk-section-head"><div><p class="politikk-kicker">Spillstruktur</p><h2 id="politikkUnderbadgeTitle">Undermerker</h2></div><p>Undermerkene organiserer steder og progresjon. Hvert undermerke peker videre til ett eller flere canonicale fagområder.</p></div><div id="politikkUnderbadges" class="politikk-card-grid politikk-underbadge-grid"></div></section>
-      <section class="politikk-section" aria-labelledby="politikkDomainsTitle"><div class="politikk-section-head"><div><p class="politikk-kicker">Koblingen til faget</p><h2 id="politikkDomainsTitle">Fagområder</h2></div><p>Merkesiden viser hvilke fagområder progresjonen er koblet til. Selve pensumet og fordypningen leses på politikkfagets egen side.</p></div><div id="politikkDomains" class="politikk-domain-grid"></div></section>
-      <section class="politikk-section" aria-labelledby="politikkFagverkTitle"><div class="politikk-section-head"><div><p class="politikk-kicker">Videre til lærestoffet</p><h2 id="politikkFagverkTitle">Politikkfaget</h2></div><p>Dette er inngangen fra merket til den separate fagsiden for Politikk & samfunn. Der ligger de ferdigskrevne kapitlene sammen med alle canonicale emner, begreper og metoder.</p></div><div id="politikkFagverkChapters" class="politikk-card-grid"></div></section>
-      <section class="politikk-section" aria-labelledby="politikkEmneTitle"><div class="politikk-section-head"><div><p class="politikk-kicker">Canonicale emner</p><h2 id="politikkEmneTitle">Emner og progresjon</h2></div><p>Progresjonen beregnes fra læringsloggen og de samme kjernebegrepene som brukes i quizsystemet.</p></div><div class="politikk-toolbar"><label for="politikkEmneSearch">Finn emne</label><input id="politikkEmneSearch" type="search" placeholder="Søk i emner, begreper eller fagområde"></div><div id="politikkEmneProgress" class="politikk-emne-groups"></div></section>
-      <section class="politikk-section politikk-two-column" aria-label="Quiz og steder"><div><div class="politikk-section-head politikk-section-head-compact"><div><p class="politikk-kicker">Spillhistorikk</p><h2>Fullførte politikkquizer</h2></div></div><div id="politikkQuizHistory" class="politikk-list"></div></div><div><div class="politikk-section-head politikk-section-head-compact"><div><p class="politikk-kicker">Stedslæring</p><h2>Politikksteder</h2></div></div><div id="politikkPlaces" class="politikk-place-list"></div></div></section>
-      <section class="politikk-section" aria-labelledby="politikkConceptTitle"><div class="politikk-section-head"><div><p class="politikk-kicker">Felles ordforråd</p><h2 id="politikkConceptTitle">Begrepsregister</h2></div><p>Alle canonicale begreps- og stikkordsoppføringer kan søkes og åpnes med definisjon, faglig avgrensning, vanlig feilbruk, analytiske skiller og lenke til emnet der begrepet brukes.</p></div><div id="politikkConcepts" class="politikk-concept-explorer"></div></section>
-    </div>
-    <div id="politikkError" class="politikk-error" hidden></div>
-  </main>
-  <script src="js/learningLog.js"></script><script src="dist/web/knowledge.js"></script><script src="dist/web/hgInsights.js"></script><script src="dist/web/emnerLoader.js"></script><script src="dist/web/courses.js"></script><script src="js/dataHub.js"></script><script src="js/politikk-fag-model.js"></script><script src="js/politikk-fagportal.js"></script>
+<body>
+  <p>Politikkmerket er integrert i Fagverket. <a href="../../../fagverk.html?subject=politikk#fagverkIaProgresjon">Åpne Politikk – Progresjon</a>.</p>
+  <p><a href="../../../fagverk-forside.html">Se alle fag i Fagverket</a>.</p>
 </body>
 </html>

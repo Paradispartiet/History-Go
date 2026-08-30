@@ -1,0 +1,41 @@
+{
+  "schema": "history_go_geografi_climate_weather_zones_change_source_brief_audit_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-30",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "domain_id": "klima_vaer_klimasoner_endring",
+  "status": "pass_source_first_ready_not_materialized",
+  "counts": {
+    "verifiedSources": 13,
+    "topicBriefs": 8,
+    "plannedClaims": 32,
+    "decisionScenarios": 6,
+    "plannedAssessments": 8,
+    "reuseOwnerChapters": 1
+  },
+  "gates": {
+    "ownership": true,
+    "reuse_owner_preserved": true,
+    "source_first": true,
+    "climate_normals": true,
+    "station_metadata": true,
+    "energy_and_drivers": true,
+    "spatial_climate_controls": true,
+    "classification_boundaries": true,
+    "station_grid_reanalysis": true,
+    "extremes_and_nonstationarity": true,
+    "regional_projection_uncertainty": true,
+    "scale_transition": true
+  },
+  "six_part_quality_review": {
+    "correctness_and_evidence": 5,
+    "climatology_depth": 5,
+    "spatial_and_regional_method": 5,
+    "observation_and_reanalysis_precision": 5,
+    "extremes_and_change_uncertainty": 5,
+    "reuse_and_reproducibility": 5,
+    "total": 30
+  },
+  "next_gate": "materialize_climate_weather_zones_change_fulltext_and_reverify_all_32_claims"
+}

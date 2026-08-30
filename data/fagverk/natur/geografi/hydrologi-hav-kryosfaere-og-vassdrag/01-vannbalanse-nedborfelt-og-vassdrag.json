@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "hydrologi-hav-kryosfaere-og-vassdrag",
+  "id": "01-vannbalanse-nedborfelt-og-vassdrag",
+  "title": "Vannbalanse, nedbørfelt og vassdrag",
+  "sections": [
+    {
+      "id": "vannkretslop-vannbalanse-og-nedborfelt",
+      "title": "Vannkretsløp, vannbalanse og nedbørfelt",
+      "method_ids": ["met_geo_nedborfelt_vannbalanse", "met_geo_hydrologisk_systemavgrensning"],
+      "boundary": "Vannkretsløpet skal kvantifiseres innen en eksplisitt romlig grense og tidsperiode; et globalt prosessdiagram er ikke i seg selv en lokal vannbalanse.",
+      "paragraphs": [
+        "En hydrologisk vannbalanse er først meningsfull når systemgrensen er eksplisitt. For et nedbørfelt kan nedbør behandles som hovedtilførsel, mens evapotranspirasjon og avrenning er utgående strømmer og snø, jordvann, grunnvann, innsjøer og magasiner inngår som lagre. Endring i lagring må tas med når periodens inn- og utstrømmer ikke balanserer. Geografisk analyse må samtidig angi tidsoppløsningen: en månedlig balanse kan skjule raske flomhendelser, mens en årlig balanse kan være egnet for langsiktige sammenligninger. Uten romlig grense, tidsperiode og lagerledd blir vannbalansen bare en løs prosessliste og kan ikke brukes til etterprøvbar kvantitativ sammenligning.",
+        "Nedbørfeltet fungerer som en sentral geografisk analyseenhet fordi topografiske vannskiller kobler oppstrøms arealer til et felles utløp. Det betyr at nedbør, arealbruk, jord, geologi, innsjøer og regulering i ulike deler av feltet kan påvirke samme målte vannføring nedstrøms. Likevel er et kartlagt vannskille ikke alltid hele hydrologien: grunnvannsstrøm kan krysse topografiske skiller, kunstige overføringer kan flytte vann mellom felt, og urbane ledningsnett kan omdirigere avrenning. Derfor bør feltavgrensningen behandles som en modell av systemet som må dokumenteres og, der det er relevant, suppleres med hydrogeologiske og menneskeskapte strømveier.",
+        "Nedbør når ikke nødvendigvis vassdraget umiddelbart. Vann kan mellomlagres som snø, jordfuktighet, grunnvann, innsjøvann eller i menneskeskapte magasiner, og oppholdstiden varierer fra minutter til år eller lenger. Denne tidsforskyvningen forklarer hvorfor en kraftig nedbørhendelse kan gi rask respons i et lite bratt felt, men langt senere og mer dempet respons i et felt med dype jordlag, stor grunnvannskapasitet eller mange innsjøer. En geografisk hydrologianalyse må derfor skille mellom tilførselstidspunkt og respons ved utløpet, og undersøke hvilke lagre og transportveier som er aktive under den aktuelle hendelsen eller sesongen før årsak konkluderes.",
+        "Menneskelig aktivitet er en del av moderne vannbalanser, ikke et tillegg som kan legges bort som støy. Vannuttak kan redusere grunnvann og vannføring, dammer kan flytte avrenning i tid, drenering kan forkorte oppholdstid, urbanisering kan øke rask overflateavrenning, og overføringer kan endre hvilket nedbørfelt vannet faktisk følger. Virkningen avhenger av skala og drift: et lite lokalt tiltak kan være ubetydelig i en stor elv, mens et stort reguleringssystem kan dominere sesongmønsteret. Derfor bør hydrologisk sammenligning alltid registrere relevante inngrep og skille observerte naturprosesser fra styrte eller omdirigerte strømmer."
+      ],
+      "paragraphClaimIds": [["geo5-01"],["geo5-02"],["geo5-03"],["geo5-04"]]
+    },
+    {
+      "id": "vassdrag-vannforing-og-romlig-kobling",
+      "title": "Vassdrag, vannføring og romlig kobling",
+      "method_ids": ["met_geo_vannforing_tidsserie", "met_geo_vassdragsnettverk_oppstrom_nedstrom"],
+      "boundary": "Vannstand, vannføring og nedbør er forskjellige variable; ett målested representerer ikke automatisk hele vassdraget eller alle tilløp.",
+      "paragraphs": [
+        "Vannføring beskriver volum vann som passerer et tverrsnitt per tidsenhet, mens vannstand beskriver høyden på vannflaten ved et bestemt sted og referansenivå. De to størrelsene er ofte koblet gjennom en lokal vannføringskurve, men koblingen kan endres dersom elveløpet eroderes, sediment avsettes, vegetasjon endrer strømningsmotstanden eller is påvirker profilet. Derfor er en høy vannstand ikke i seg selv et universelt mål på vannføring, og vannføring ved to stasjoner kan ikke sammenlignes uten å kjenne feltareal og lokale forhold. Geografisk analyse bør uttrykkelig skille målvariabelen, målestedet og den romlige enheten den brukes til å representere.",
+        "En vannføringsserie får først sammenlignbar faglig verdi når metadata følger med. Stasjonens plassering, nedbørfeltareal, høyde, reguleringsgrad, målemetode, tidsoppløsning, manglende perioder og kvalitetskontroll kan påvirke både nivå og trend. To elver med samme middelvannføring kan ha svært ulike spesifikke avrenninger dersom feltarealene er forskjellige, og to lange serier kan ha ulik verdi for klimaanalyse dersom den ene er sterkt regulert. Derfor bør sammenligninger enten normalisere relevante størrelser eller begrunne hvorfor rå vannføring er riktig mål. Metadata er en del av evidensen, ikke administrativ bakgrunnsinformasjon.",
+        "Et vassdragsnettverk kobler oppstrøms og nedstrøms områder gjennom transport av vann, sediment, næringsstoffer og oppløste stoffer. Signalene bevares likevel ikke uendret: sideelver tilfører nytt vann, innsjøer og flomsletter lagrer og demper pulser, erosjon og sedimentasjon endrer materialtransport, og kjemiske prosesser kan endre konsentrasjoner. Derfor må en geografisk forklaring av en nedstrøms observasjon undersøke både oppstrøms kilder og mellomliggende prosesser. Å finne en mulig påvirkning høyt i feltet er ikke tilstrekkelig; analysen må vise hvordan påvirkningen kan transporteres, fortynnes, lagres eller transformeres fram til målestedet.",
+        "Hydrologiske referanseserier med liten menneskelig påvirkning er verdifulle når langsiktig klimarespons skal undersøkes, fordi de reduserer risikoen for at regulering, uttak eller arealendring forveksles med klimadrevet hydrologisk endring. Referanseserier er likevel ikke automatisk representative for alle vassdrag. Et høytliggende, lite regulert felt kan reagere annerledes enn et lavlandsfelt med jordbruk, innsjøer og stor grunnvannslagring. Derfor bør referansedata brukes som kontroll eller sammenligningsgrunnlag og kobles til feltets klima, topografi, geologi og lagringsegenskaper. Fravær av direkte menneskelig påvirkning er en styrke for kausal analyse, men ikke en garanti for romlig representativitet."
+      ],
+      "paragraphClaimIds": [["geo5-05"],["geo5-06"],["geo5-07"],["geo5-08"]]
+    }
+  ]
+}

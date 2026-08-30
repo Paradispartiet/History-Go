@@ -33,7 +33,7 @@ Multiple distinct apps live in this single repo, each its own HTML entry point w
 - `profile.html` + `js/profile.js` — canonical full profile page.
 - `Civication.html` + `js/Civication/**` — a separate career/economy/identity simulation game ("Civication"). It is currently kept out of the active browser TypeScript strangler scope; this is a migration-scope decision, not a permanent exemption from the target client architecture.
 - `AHA/index.html` + `js/aha*.js` + `AHA/*.js` — "AHA" insight/echo layer; imports evidence exported by History GO and has its own current runtime/deployment history. Do not fold it into the shared production backend without a separate documented integration decision.
-- Other pages: `knowledge.html`, `emner.html`, `notater.html`, `merker/merker.html`.
+- Other pages: `knowledge.html`, `emner.html`, `notater.html`, and the compatibility redirect `merker/merker.html`.
 - Per-domain knowledge pages live under `knowledge/` (e.g. `knowledge/knowledge_historie.html`); root files like `knowledge_by.html` are thin redirect shells into that folder.
 
 Key directories: `js/` (browser/client code), `data/` (manifest-driven JSON content, the source of truth for editorial content), `tools/` and `scripts/` (Node-only CLI utilities), `tests/`, `css/`, `schemas/`, `reports/`, `README/`, and `docs/`.

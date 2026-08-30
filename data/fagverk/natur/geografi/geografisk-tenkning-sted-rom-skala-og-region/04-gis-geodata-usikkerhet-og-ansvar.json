@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "geografisk-tenkning-sted-rom-skala-og-region",
+  "id": "04-gis-geodata-usikkerhet-og-ansvar",
+  "title": "GIS, geodata, usikkerhet og ansvar",
+  "sections": [
+    {
+      "id": "gis-geodata-og-romlige-datamodeller",
+      "title": "GIS, geodata og romlige datamodeller",
+      "method_ids": ["met_geo_gis_datamodell", "met_geo_geodata_kvalitetskontroll"],
+      "boundary": "GIS er et analyse- og representasjonssystem, ikke en automatisk sannhetsmaskin; datamodell, georeferering og kildekvalitet må vurderes separat.",
+      "paragraphs": [
+        "USGS definerer GIS som et datasystem som analyserer og viser geografisk referert informasjon. Det sentrale er ikke bare at data kan tegnes på et kart, men at lokasjon brukes som nøkkel for å kombinere, måle og undersøke forhold mellom datasett. En GIS-analyse kan for eksempel koble terreng, nedbør, veier og observasjoner for å finne områder med bestemte kombinasjoner av egenskaper. Resultatet blir likevel bare så relevant som problemformuleringen, georefereringen, datakvaliteten og de romlige operasjonene som er valgt; programvaren garanterer ikke faglig gyldighet.",
+        "Goodchilds begrep geografisk informasjonsvitenskap flytter oppmerksomheten fra programvarefunksjoner til vitenskapelige spørsmål om hvordan geografiske fenomener representeres som data. Det omfatter blant annet skala, usikkerhet, datamodeller, romlige relasjoner og hvilke slutninger som er mulige når kontinuerlige prosesser gjøres til punkt, linje, flate eller rutenett. Å kunne klikke seg gjennom et GIS-grensesnitt er derfor ikke det samme som geografisk metodekompetanse. Kompetansen ligger i å begrunne representasjonene, kjenne feilkildene og teste om analysen svarer på spørsmålet.",
+        "OGCs Simple Features-standard viser en grunnleggende datamodell der geografiske objekter kan representeres som punkt, kurve, flate eller samlinger av slike geometrier. Dette er nyttig fordi samme virkelighet må abstraheres forskjellig for ulike analyser. En elv kan modelleres som linje i et regionalt transport- eller nettverkskart, men som flate når bredde, flomareal eller habitat undersøkes lokalt. Geometritypen er dermed ikke bare et filformat; den uttrykker et valg om hvilke egenskaper ved fenomenet som skal bevares på den aktuelle skalaen.",
+        "Romlig overlay kan avdekke hvor datasett overlapper eller hvilke observasjoner som ligger innenfor en definert sone. En slik operasjon er verdifull for å finne kandidater til videre analyse, men den kan ikke alene etablere årsak. Hvis sykdomstilfeller og en miljøeksponering overlapper geografisk, må analysen fortsatt undersøke tidsrekkefølge, individuell eksponering, seleksjon og alternative forklaringer. GIS gjør den romlige samvariasjonen synlig og målbar; kausal slutning krever ytterligere design og evidens. Skillet er avgjørende fordi kartlig overlapp ellers lett kan kommunisere mer sikkerhet enn dataene støtter."
+      ],
+      "paragraphClaimIds": [["geo-25"], ["geo-26"], ["geo-27"], ["geo-28"]]
+    },
+    {
+      "id": "geografisk-slutning-usikkerhet-og-ansvar",
+      "title": "Geografisk slutning, usikkerhet og ansvarlig representasjon",
+      "method_ids": ["met_geo_kildekritikk_geodata", "met_geo_etisk_romlig_representasjon"],
+      "boundary": "Romlige data kan gi høy presisjon uten høy gyldighet. Usikkerhet, aggregasjon, personvern og risiko for stigmatiserende områdebeskrivelser skal eksplisitt vurderes.",
+      "paragraphs": [
+        "Geodata kan være numerisk presise og samtidig ha begrenset tematisk gyldighet. Et GPS-punkt kan lagres med mange desimaler, mens fenomenet som punktet skal representere er dårlig definert, registrert på feil tidspunkt eller valgt fra en skjev observasjonsprosess. Goodchilds GIScience-perspektiv skiller dermed spørsmål om representasjon og datakvalitet fra ren koordinatpresisjon, mens ISO 19111 sikrer at koordinatene har et definert referansesystem. En robust analyse dokumenterer begge deler: hvor presist lokasjonen er kjent og hvor godt observasjonen faktisk representerer variabelen som diskuteres.",
+        "Områdestatistikk gjelder den geografiske enheten den er beregnet for. Dersom en kommune har høy andel av en bestemt egenskap, følger det ikke at en tilfeldig innbygger har egenskapen eller at kommunen i seg selv forårsaker mønsteret. Eurostats klassifikasjonsmetode illustrerer hvor eksplisitt en romlig enhet må konstrueres, og NESH krever ansvarlig representasjon av personer og grupper. Geografisk formidling bør derfor oppgi nevner, variasjon, aggregasjonsnivå og eventuelle økologiske begrensninger før områdeegenskaper brukes i forklaringer eller beskrivelser av mennesker.",
+        "Detaljerte koordinater kan gjøre et datasett mer identifiserbart enn tabellkolonnene antyder. En sjelden diagnose, sårbar art eller liten sosial gruppe kan i praksis kobles til individer eller eiendommer når punktlokasjon kombineres med annen offentlig informasjon. NESH understreker reidentifiseringsrisiko, privatliv og ansvarlig deling. Derfor må publiseringsnivået vurderes etter formålet: aggregering, romlig generalisering, forskyvning eller tilgangskontroll kan være riktige tiltak dersom eksakt lokasjon ikke er nødvendig for etterprøvbarhet og nytte.",
+        "En sterk geografisk konklusjon gjør analysevalgene synlige. Leseren bør kunne se datakilde og dato, romlig enhet, målestokk, koordinatreferanse når den er relevant, definisjon av nabo eller avstand, sentrale mangler i dekningen og hvordan alternative tolkninger er vurdert. National Academies beskriver representasjon og resonnering som integrerte deler av romlig tenkning, mens NESH gjør transparens og nøyaktighet til forskningsetiske normer. Sluttproduktet skal derfor ikke bare vise et overbevisende kart, men forklare hvor langt mønsteret kan generaliseres og hva som fortsatt er usikkert."
+      ],
+      "paragraphClaimIds": [["geo-29"], ["geo-30"], ["geo-31"], ["geo-32"]]
+    }
+  ]
+}

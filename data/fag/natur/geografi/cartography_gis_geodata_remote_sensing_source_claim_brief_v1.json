@@ -1,0 +1,162 @@
+{
+  "schema": "history_go_geografi_cartography_gis_geodata_remote_sensing_source_claim_brief_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-30",
+  "status": "source_first_ready_not_materialized",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "domain": {
+    "ordinal": 2,
+    "id": "kartografi_gis_geodata_fjernmaling",
+    "title": "Kartografi, GIS, geodata og fjernmåling",
+    "production_mode": "new_production_required"
+  },
+  "source_strategy": {
+    "source_first": true,
+    "inspectable_urls_required": true,
+    "claim_level_trace_required": true,
+    "minimum_sources_per_claim": 2,
+    "fulltext_materialization_required_before_counting": true,
+    "standards_and_sensor_documentation_required": true,
+    "map_or_software_output_does_not_count_as_validation": true
+  },
+  "sources": [
+    {"id":"geo2-01-goodchild-giscience","publisher":"International Journal of Geographical Information Systems / Taylor & Francis","title":"Geographical information science","url":"https://doi.org/10.1080/02693799208901893","type":"peer-reviewed-theory-article","evidence_role":"giscience-representation-analysis-uncertainty","source_location":"Goodchilds 1992-artikkel om vitenskapelige spørsmål knyttet til geografisk informasjon utover GIS-programvare.","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo2-02-usgs-projections","publisher":"U.S. Geological Survey","title":"Map projections: A working manual","url":"https://www.usgs.gov/publications/map-projections-a-working-manual","type":"official-technical-report","evidence_role":"projection-properties-distortion-formulas-purpose","source_location":"USGS Professional Paper 1395 om projeksjoners egenskaper, bruksformål og fram-/inversberegning.","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo2-03-iso19111","publisher":"International Organization for Standardization","title":"ISO 19111:2019 Geographic information — Referencing by coordinates","url":"https://www.iso.org/standard/74039.html","type":"international-standard","evidence_role":"crs-datum-coordinate-operation-transformation","source_location":"Gjeldende ISO-standard, bekreftet i 2024, for konseptuell beskrivelse av koordinatreferansesystemer og koordinatoperasjoner.","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo2-04-ogc-simple-features","publisher":"Open Geospatial Consortium","title":"Simple Feature Access – Part 1: Common Architecture","url":"https://www.ogc.org/standards/sfa/","type":"geospatial-standard","evidence_role":"vector-geometry-feature-model-spatial-reference","source_location":"OGC/ISO 19125-arkitektur for Point, Curve, Surface og GeometryCollection assosiert med romlig referansesystem.","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo2-05-iso19157-1","publisher":"International Organization for Standardization","title":"ISO 19157-1:2023 Geographic information — Data quality — Part 1: General requirements","url":"https://www.iso.org/standard/78900.html","type":"international-standard","evidence_role":"geodata-quality-evaluation-measures-reporting-fitness-for-use","source_location":"Gjeldende standard for kvalitetskomponenter, evaluering, kvalitetsmål og rapportering av geografiske data.","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo2-06-ogc-geotiff","publisher":"Open Geospatial Consortium","title":"OGC GeoTIFF Standard 1.1","url":"https://www.ogc.org/standards/geotiff/","type":"geospatial-standard","evidence_role":"raster-georeferencing-imagery-exchange","source_location":"Krav og encodingregler for georeferert/geokodet TIFF-bildeinformasjon og kobling til EPSG-parametre.","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo2-07-ogc-cog","publisher":"Open Geospatial Consortium","title":"OGC Cloud Optimized GeoTIFF Standard 1.0","url":"https://www.ogc.org/standards/ogc-cloud-optimized-geotiff/","type":"geospatial-standard","evidence_role":"cloud-raster-tiling-overviews-http-range-efficient-access","source_location":"Standard for TIFF-tiling, reduced-resolution subfiles, GeoTIFF-georeferering og HTTP range for selektiv rastertilgang.","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo2-08-ogc-api-features","publisher":"Open Geospatial Consortium","title":"OGC API – Features Standard","url":"https://www.ogc.org/standards/ogcapi-features/","type":"geospatial-api-standard","evidence_role":"web-feature-discovery-query-interoperability","source_location":"Part 1 Core for discovery og spørring av feature collections og features på web; Part 2 utvider CRS-støtte.","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo2-09-ogc-stac","publisher":"Open Geospatial Consortium","title":"SpatioTemporal Asset Catalog (STAC) Community Standard 1.1.0","url":"https://www.ogc.org/standards/stac/","type":"geospatial-community-standard","evidence_role":"spatiotemporal-asset-metadata-catalog-discovery-provenance","source_location":"Standardisert struktur og spørring for metadata om geospatiale assets, opprinnelig satellittbilder og nå flere datatyper.","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo2-10-usgs-landsat9","publisher":"U.S. Geological Survey","title":"Landsat 9","url":"https://www.usgs.gov/landsat-missions/landsat-9","type":"official-sensor-mission-documentation","evidence_role":"landsat-spectral-spatial-radiometric-temporal-resolution","source_location":"Offisiell spesifikasjon av OLI/TIRS, spektralbånd, 15/30/100 m GSD, 16-dagers syklus og radiometrisk oppløsning.","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo2-11-usgs-landsat-l2","publisher":"U.S. Geological Survey","title":"Landsat Collection 2 Level-2 Science Products","url":"https://www.usgs.gov/landsat-missions/landsat-collection-2-level-2-science-products","type":"official-processed-product-documentation","evidence_role":"surface-reflectance-temperature-atmospheric-correction-quality-bands","source_location":"Dokumentasjon av Level-2 surface reflectance, surface temperature, atmosfærekorreksjon, skalering og QA-bånd.","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo2-12-esa-sentinel2","publisher":"European Space Agency","title":"Sentinel-2","url":"https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-2","type":"official-sensor-mission-documentation","evidence_role":"sentinel2-multispectral-bands-resolution-swath-revisit","source_location":"ESA-misjonsdokumentasjon: multispektral sensor med 13 bånd, opptil 10 m oppløsning, 290 km swath og femdagers revisit for konstellasjonen.","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo2-13-olofsson-accuracy","publisher":"Remote Sensing of Environment / Elsevier","title":"Good practices for estimating area and assessing accuracy of land change","url":"https://doi.org/10.1016/j.rse.2014.02.015","type":"peer-reviewed-method-review","evidence_role":"classification-validation-sampling-error-matrix-area-uncertainty","source_location":"Good-practice-anbefalinger for probability sampling, referansedata, error matrix, user/producer accuracy, arealestimat og konfidensintervall.","retrieval_status":"verified_2026-08-30"}
+  ],
+  "topic_briefs": [
+    {
+      "id":"kartografisk-formal-projeksjon-og-forvrengning",
+      "title":"Kartografisk formål, projeksjon og forvrengning",
+      "method_ids":["met_geo_projeksjonsvalg","met_geo_kartografisk_kvalitetskontroll"],
+      "boundary":"Ingen flat projeksjon bevarer alle geometriske egenskaper; projeksjonsvalg må følge måle- og kommunikasjonsformålet.",
+      "source_ids":["geo2-02-usgs-projections","geo2-03-iso19111","geo2-01-goodchild-giscience"],
+      "planned_claims":[
+        {"id":"geo2-01","text":"En kartprojeksjon transformerer en krum jordmodell til et plant koordinatsystem og medfører derfor systematiske avveininger mellom geometriske egenskaper.","source_ids":["geo2-02-usgs-projections","geo2-03-iso19111"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo2-02","text":"Projeksjon bør velges etter hva som skal sammenlignes eller måles, ikke etter hvilken verdenskartform som er mest kjent.","source_ids":["geo2-02-usgs-projections","geo2-01-goodchild-giscience"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo2-03","text":"Kartets målestokk og projeksjon påvirker hvilke avstander, arealer og former som kan tolkes direkte og bør dokumenteres sammen med analysen.","source_ids":["geo2-02-usgs-projections","geo2-03-iso19111"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo2-04","text":"Kartdesign kan gjøre et datasett visuelt overbevisende uten å rette feil i georeferering, klassifikasjon eller datakvalitet.","source_ids":["geo2-01-goodchild-giscience","geo2-05-iso19157-1"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"crs-datum-akser-og-transformasjon",
+      "title":"CRS, datum, akser og koordinattransformasjon",
+      "method_ids":["met_geo_crs_identifikasjon","met_geo_koordinattransformasjon"],
+      "boundary":"Like tall betyr ikke samme lokasjon uten samme CRS; koordinattransformasjon er en definert operasjon med kilde- og målreferanse.",
+      "source_ids":["geo2-03-iso19111","geo2-04-ogc-simple-features","geo2-08-ogc-api-features"],
+      "planned_claims":[
+        {"id":"geo2-05","text":"Et koordinatreferansesystem beskriver hvordan koordinatverdier refererer til et rom og må identifiseres før koordinater kan sammenlignes eller tolkes.","source_ids":["geo2-03-iso19111","geo2-04-ogc-simple-features"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo2-06","text":"En koordinatoperasjon må angi kilde- og mål-CRS og kan inkludere transformasjoner som avhenger av datum og andre referanseparametre.","source_ids":["geo2-03-iso19111","geo2-08-ogc-api-features"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo2-07","text":"Akseorden og enheter er del av referansekontrakten; bytte mellom lengdegrad/breddegrad og breddegrad/lengdegrad kan gi alvorlig feilplassering.","source_ids":["geo2-03-iso19111","geo2-08-ogc-api-features"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo2-08","text":"Geometriske målinger bør gjøres i et CRS som er egnet for måleformålet, fremfor ukritisk i et web- eller lagrings-CRS.","source_ids":["geo2-02-usgs-projections","geo2-03-iso19111"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"vektor-feature-geometri-og-topologi",
+      "title":"Vektor, feature, geometri og topologiske relasjoner",
+      "method_ids":["met_geo_vektordatamodell","met_geo_topologisk_kontroll"],
+      "boundary":"Punkt, kurve og flate er abstraherte geometrier; de er ikke fenomenet selv og må velges etter målestokk og analysebehov.",
+      "source_ids":["geo2-04-ogc-simple-features","geo2-08-ogc-api-features","geo2-05-iso19157-1"],
+      "planned_claims":[
+        {"id":"geo2-09","text":"Simple Features skiller blant annet punkt, kurve, flate og geometrisamlinger som standardiserte måter å representere geografiske features på.","source_ids":["geo2-04-ogc-simple-features","geo2-08-ogc-api-features"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo2-10","text":"Valg av vektorgeometri bestemmer hvilke romlige egenskaper som bevares og hvilke operasjoner som gir faglig mening.","source_ids":["geo2-04-ogc-simple-features","geo2-01-goodchild-giscience"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo2-11","text":"Geometriens tekniske gyldighet er ikke nok til å dokumentere at feature-avgrensningen er tematisk korrekt eller aktuell.","source_ids":["geo2-04-ogc-simple-features","geo2-05-iso19157-1"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo2-12","text":"Web-API-er kan standardisere tilgang til features, men semantikk, datakvalitet og analyseformål må fortsatt vurderes av brukeren.","source_ids":["geo2-08-ogc-api-features","geo2-05-iso19157-1"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"raster-georeferering-opplosning-og-cloud-tilgang",
+      "title":"Raster, georeferering, oppløsning og cloud-tilgang",
+      "method_ids":["met_geo_rasterdatamodell","met_geo_rastertilgang_og_overviews"],
+      "boundary":"Pikselstørrelse, georeferering og lagringsoptimalisering beskriver forskjellige egenskaper; en rask rasterfil er ikke automatisk et nøyaktig rasterprodukt.",
+      "source_ids":["geo2-06-ogc-geotiff","geo2-07-ogc-cog","geo2-05-iso19157-1"],
+      "planned_claims":[
+        {"id":"geo2-13","text":"GeoTIFF lagrer bilde- eller rasterdata sammen med georefereringsinformasjon som gjør pikselmatrisen geografisk plasserbar.","source_ids":["geo2-06-ogc-geotiff","geo2-03-iso19111"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo2-14","text":"Cloud Optimized GeoTIFF bruker blant annet tiles, overviews og HTTP range for å hente nødvendige deler av store rastere effektivt over web.","source_ids":["geo2-07-ogc-cog","geo2-06-ogc-geotiff"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo2-15","text":"Rasterets pikselstørrelse er ikke det samme som den minste pålitelige objektdetaljen, fordi sensor, prosessering og tematisk kvalitet også begrenser tolkningen.","source_ids":["geo2-05-iso19157-1","geo2-10-usgs-landsat9"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo2-16","text":"Resampling og reprojeksjon endrer rasterverdienes geometriske eller numeriske representasjon og bør dokumenteres når de påvirker videre analyse.","source_ids":["geo2-02-usgs-projections","geo2-05-iso19157-1"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"gis-operasjoner-interoperabilitet-og-sporrbarhet",
+      "title":"GIS-operasjoner, interoperabilitet og sporbar dataflyt",
+      "method_ids":["met_geo_gis_operasjonskjede","met_geo_interoperabilitet_proveniens"],
+      "boundary":"En GIS-prosess må kunne rekonstrueres fra input, CRS, filter, operasjoner, versjoner og output; klikksekvens alene er ikke reproduserbar metode.",
+      "source_ids":["geo2-01-goodchild-giscience","geo2-08-ogc-api-features","geo2-09-ogc-stac"],
+      "planned_claims":[
+        {"id":"geo2-17","text":"GIS-operasjoner som buffer, overlay og spatial query må kobles til en eksplisitt geografisk problemstilling og dokumenterte inputdata.","source_ids":["geo2-01-goodchild-giscience","geo2-08-ogc-api-features"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo2-18","text":"Interoperable standarder reduserer format- og tilgangsfriksjon, men eliminerer ikke forskjeller i datamodell, CRS, oppløsning eller semantikk.","source_ids":["geo2-08-ogc-api-features","geo2-04-ogc-simple-features"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo2-19","text":"STAC knytter spatiotemporale assets til strukturert metadata om blant annet tid, geometri, lenker og samlinger og kan støtte sporbar datadiscovery.","source_ids":["geo2-09-ogc-stac","geo2-07-ogc-cog"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo2-20","text":"Reproduserbar geodataanalyse krever at dataversjon, tidsrom, filter, CRS og sentrale transformasjoner kan rekonstrueres, ikke bare at sluttkartet er lagret.","source_ids":["geo2-05-iso19157-1","geo2-09-ogc-stac"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"fjernmaling-spektral-romlig-radiometrisk-og-temporal-opplosning",
+      "title":"Fjernmåling: spektral, romlig, radiometrisk og temporal oppløsning",
+      "method_ids":["met_geo_sensoropplosningsanalyse","met_geo_multispektral_tolkning"],
+      "boundary":"Sensoroppløsning er flerdimensjonal; høyere romlig oppløsning betyr ikke automatisk bedre spektral, radiometrisk eller temporal informasjon.",
+      "source_ids":["geo2-10-usgs-landsat9","geo2-12-esa-sentinel2","geo2-01-goodchild-giscience"],
+      "planned_claims":[
+        {"id":"geo2-21","text":"Landsat 9 kombinerer spektralbånd med ulike bakkepikselstørrelser, blant annet 15 m pankromatisk, 30 m OLI-bånd og 100 m termiske TIRS-bånd.","source_ids":["geo2-10-usgs-landsat9","geo2-01-goodchild-giscience"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo2-22","text":"Sentinel-2s multispektrale instrument bruker 13 spektralbånd og en konstellasjon som kombinerer høy romlig detalj med hyppig gjenbesøk for landobservasjon.","source_ids":["geo2-12-esa-sentinel2","geo2-10-usgs-landsat9"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo2-23","text":"Spektral oppløsning beskriver hvordan sensoren skiller bølgelengdeområder, mens romlig oppløsning beskriver den geografiske samplingstørrelsen; de må ikke blandes.","source_ids":["geo2-10-usgs-landsat9","geo2-12-esa-sentinel2"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo2-24","text":"Temporal oppløsning og skydekke påvirker hvilke endringsprosesser som faktisk kan observeres, selv når sensorens romlige oppløsning er høy.","source_ids":["geo2-10-usgs-landsat9","geo2-12-esa-sentinel2"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"forprosessering-reflektans-klassifikasjon-og-validering",
+      "title":"Forprosessering, reflektans, klassifikasjon og validering",
+      "method_ids":["met_geo_fjernmaling_forprosessering","met_geo_klassifikasjonsvalidering"],
+      "boundary":"Et klassifisert satellittkart må valideres mot uavhengige eller bedre referansedata; visuell plausibilitet er ikke nøyaktighetsmål.",
+      "source_ids":["geo2-11-usgs-landsat-l2","geo2-13-olofsson-accuracy","geo2-05-iso19157-1"],
+      "planned_claims":[
+        {"id":"geo2-25","text":"Landsat Level-2 surface reflectance korrigerer for atmosfæriske effekter for å gi et produkt som er bedre egnet til sammenligning av landoverflatens reflektans.","source_ids":["geo2-11-usgs-landsat-l2","geo2-10-usgs-landsat9"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo2-26","text":"Quality-assurance-bånd og prosesseringsmetadata bør inngå i filtrering og dokumentasjon fremfor å behandle alle piksler som like pålitelige.","source_ids":["geo2-11-usgs-landsat-l2","geo2-05-iso19157-1"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo2-27","text":"Nøyaktighetsvurdering av klassifiserte endringskart bør bruke et eksplisitt sampling- og responsdesign med referansedata som er mer pålitelige enn kartklassifikasjonen som testes.","source_ids":["geo2-13-olofsson-accuracy","geo2-05-iso19157-1"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo2-28","text":"Overall, user- og producer-accuracy beskriver ulike sider av klassifikasjonsfeil og bør rapporteres sammen med usikkerhet når kart brukes til areal- eller endringsestimat.","source_ids":["geo2-13-olofsson-accuracy","geo2-05-iso19157-1"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"metadata-kvalitet-proveniens-og-reproduserbarhet",
+      "title":"Metadata, kvalitet, proveniens og reproduserbarhet",
+      "method_ids":["met_geo_geodatakvalitet","met_geo_proveniens_reproduserbarhet"],
+      "boundary":"Datakvalitet er egnethet for en definert bruk, ikke ett universelt kvalitetsstempel; kjente begrensninger og prosesseringssteg må følge resultatet.",
+      "source_ids":["geo2-05-iso19157-1","geo2-09-ogc-stac","geo2-13-olofsson-accuracy"],
+      "planned_claims":[
+        {"id":"geo2-29","text":"ISO 19157-1 behandler geodatakvalitet gjennom definerte komponenter, evaluering og rapportering, men fastsetter ikke ett universelt minimumsnivå for alle bruksformål.","source_ids":["geo2-05-iso19157-1","geo2-01-goodchild-giscience"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo2-30","text":"Et datasett kan være egnet for regional visualisering og samtidig utilstrekkelig for lokal beslutning dersom oppløsning, aktualitet eller tematisk kvalitet ikke passer formålet.","source_ids":["geo2-05-iso19157-1","geo2-10-usgs-landsat9"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo2-31","text":"Metadata om asset, tid, geometri, datakilde og lenker gjør det lettere å finne og rekonstruere hvilke geodata som faktisk inngikk i en analyse.","source_ids":["geo2-09-ogc-stac","geo2-05-iso19157-1"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo2-32","text":"En etterprøvbar fjernmålingsanalyse bør rapportere sensor og produktnivå, tidsrom, preprocessing, maskering, klassifikasjonsmetode, referansedata og valideringsresultater.","source_ids":["geo2-11-usgs-landsat-l2","geo2-13-olofsson-accuracy"],"status":"planned_requires_fulltext_verification"}
+      ]
+    }
+  ],
+  "decision_scenarios": [
+    {"id":"geo2-scenario-01","prompt":"Et globalt kart skal sammenligne areal mellom regioner, men standard webkartprojeksjon brukes fordi den allerede finnes i verktøyet. Hva gjør du?","expected_decision":"Velg eller transformer til en projeksjon som er egnet for arealsammenligning, og dokumenter CRS og eventuell transformasjon fremfor å la standardvisningen styre målingen.","source_ids":["geo2-02-usgs-projections","geo2-03-iso19111"]},
+    {"id":"geo2-scenario-02","prompt":"To vektorlag har nesten like koordinattall, men objektene havner langt fra hverandre ved overlay. Hva undersøkes først?","expected_decision":"Kontroller begge CRS, akseorden, enheter og eventuell nødvendig koordinatoperasjon før geometrien eller dataene endres manuelt.","source_ids":["geo2-03-iso19111","geo2-04-ogc-simple-features"]},
+    {"id":"geo2-scenario-03","prompt":"En 10 m satellittpiksel viser en blanding av tak, tre og asfalt. Kan den tolkes som ett entydig objekt fordi pikselen er 10 m?","expected_decision":"Nei. Pikselstørrelse er sampling, ikke garanti for rent objektinnhold; vurder blandede signaler, sensorens spektrale respons og analyseformålet.","source_ids":["geo2-12-esa-sentinel2","geo2-01-goodchild-giscience"]},
+    {"id":"geo2-scenario-04","prompt":"Et landdekkekart ser visuelt svært plausibelt ut. Er dette nok til å rapportere 95 prosent nøyaktighet?","expected_decision":"Nei. Nøyaktighet må estimeres med et eksplisitt referanse-, sampling- og analysedesign; visuell plausibilitet er ikke et kvantitativt valideringsmål.","source_ids":["geo2-13-olofsson-accuracy","geo2-05-iso19157-1"]},
+    {"id":"geo2-scenario-05","prompt":"En COG åpnes øyeblikkelig i nettleseren og behandles derfor som høyere kvalitet enn en vanlig GeoTIFF. Er det riktig?","expected_decision":"Nei. COG-optimalisering gjelder effektiv tilgang og lagring; tematisk, geometrisk og temporal kvalitet må vurderes separat.","source_ids":["geo2-07-ogc-cog","geo2-05-iso19157-1"]},
+    {"id":"geo2-scenario-06","prompt":"En satellittanalyse kan ikke gjenskapes fordi bare sluttkartet er lagret. Hvilke minimumsopplysninger bør hentes inn?","expected_decision":"Dokumenter minst sensor og produktversjon, tidsrom, input-assets, CRS, preprocessing og maskering, analyse- eller klassifikasjonstrinn samt valideringsgrunnlaget.","source_ids":["geo2-09-ogc-stac","geo2-11-usgs-landsat-l2","geo2-13-olofsson-accuracy"]}
+  ],
+  "fulltext_requirements": {
+    "module_count": 4,
+    "section_count": 8,
+    "paragraph_count": 32,
+    "verified_claim_count": 32,
+    "assessment_item_count": 8,
+    "all_planned_claims_must_be_reverified_during_materialization": true,
+    "all_assessment_items_must_test_reasoning_not_source_recall": true,
+    "source_brief_does_not_count_as_materialized": true
+  }
+}

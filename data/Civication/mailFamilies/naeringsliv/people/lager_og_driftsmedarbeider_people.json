@@ -2441,6 +2441,353 @@
           ]
         }
       ]
+    },
+    {
+      "id": "lager_profesjonelle_arbeidsrelasjoner",
+      "purpose": "Typed profesjonelle arbeidsrelasjoner for Role World-readiness på de fire eksisterende lagerflatene; familien er prerequisite-evidens og ikke et nytt steg i canonical plan.",
+      "learning_focus": [
+        "profesjonelle arbeidsrelasjoner",
+        "people_places_integrity",
+        "sporbarhet",
+        "HMS",
+        "myndighetsgrense"
+      ],
+      "fictional_scenario_actors": [
+        "ragnhild_driftsleder_lager",
+        "pavel_erfaren_lagermedarbeider",
+        "marius_okonomikontakt_lager",
+        "helle_hms_og_skiftkontakt_lager"
+      ],
+      "thread_binding": {
+        "people_thread_id": "lager_profesjonelle_arbeidsrelasjoner",
+        "people_phase": "early"
+      },
+      "mails": [
+        {
+          "id": "lager_people_ragnhild_mottak_001",
+          "mail_type": "people",
+          "mail_family": "lager_profesjonelle_arbeidsrelasjoner",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "early",
+          "priority": 72,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "actor_id": "ragnhild_driftsleder_lager",
+          "person_id": "ragnhild_driftsleder_lager",
+          "people_ref": "ragnhild_driftsleder_lager",
+          "from": "Ragnhild",
+          "place_id": "varemottak_og_kollikontroll",
+          "channel": "work",
+          "messageChannel": "work",
+          "mail_class": "professional_message",
+          "subject": "Ragnhild trenger et mottakstall — men du ser fortsatt bare 17 kolli",
+          "summary": "Følgeseddelen sier 18 kolli, den fysiske opptellingen viser 17 og transporten vil videre. Ragnhild trenger et beslutningsklart mottak, ikke et pent tall. Scenen gjør driftslederrelasjonen konkret: spilleren må skille kontroll av eget arbeid fra myndigheten til å avgjøre hva virksomheten gjør med et dokumentert avvik.",
+          "purpose": "Binde mottakskontroll og avvik til den eksisterende driftslederstemmen uten å gjøre tempo eller lederstøtte til godkjenning av et usant mottak.",
+          "stakes": "Valget påvirker samarbeid, sporbarhet og sikker flyt, men kan aldri utvide spillerens fullmakt, oppheve HMS eller erstatte riktig godkjennings- og eskaleringslinje.",
+          "situation": [
+            "Du har telt 17 synlige kolli mot 18 på følgeseddelen, og sjåføren viser til et nytt tidsvindu som allerede er i ferd med å ryke.",
+            "Ragnhild spør hva du faktisk kan bekrefte nå, og hva hun må ta videre med transportør og intern drift.",
+            "Du kan kontrollere, registrere avvik og be om avklaring; du kan ikke gjøre sannsynlig etterlevering til et kolli som allerede er mottatt."
+          ],
+          "task_domain": "mottak_og_kollikontroll",
+          "competency": "leveransekontroll_og_avviksrapportering",
+          "pressure": "transporttid_og_driftsflyt",
+          "choice_axis": "tempo_vs_sporbarhet",
+          "consequence_axis": "rask_port_vs_sant_mottaksgrunnlag",
+          "narrative_arc": "lager_profesjonelle_arbeidsrelasjoner_prerequisite",
+          "learning_focus": [
+            "profesjonell relasjon",
+            "sporbar vareflyt",
+            "authority-grense",
+            "people_places_integrity"
+          ],
+          "source_scene_ref": "data/Civication/mailFamilies/naeringsliv/job/lager_og_driftsmedarbeider_job.json#job_lager_og_driftsmedarbeider_week1_receiving_almost_matched",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gi et sant mottaksgrunnlag",
+              "reply": "Jeg bekrefter 17 kolli, registrerer avviket og gir deg hva som er kontrollert, hva som mangler og hva transportør må avklare.",
+              "effect": 0,
+              "tags": [
+                "professional_relationship",
+                "receiving",
+                "integrity"
+              ],
+              "feedback": "Du holder fysisk vare, dokument og beslutningslinje fra hverandre uten å stoppe all videre handling. Ragnhild får et grunnlag hun kan prioritere fra, mens signaturen fortsatt betyr det spilleren faktisk har kontrollert.",
+              "effects": {
+                "stats": {
+                  "accuracy": 3,
+                  "traceability": 3,
+                  "management_trust": 2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Signere 18 for å holde porten i flyt",
+              "reply": "Jeg signerer 18 og legger inn en intern merknad om at ett kolli trolig kommer senere.",
+              "effect": 0,
+              "tags": [
+                "professional_relationship",
+                "shortcut",
+                "receiving"
+              ],
+              "feedback": "Du gjør porten raskere, men lar signaturen påstå mer enn opptellingen beviser. Avviket mister sitt tydeligste kontrollpunkt, og Ragnhild får en grønn status som kan spre feil til beholdning, økonomi og senere plukk.",
+              "effects": {
+                "stats": {
+                  "speed": 2,
+                  "traceability": -3,
+                  "future_risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "lager_people_pavel_sporbarhet_001",
+          "mail_type": "people",
+          "mail_family": "lager_profesjonelle_arbeidsrelasjoner",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "early",
+          "priority": 72,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "actor_id": "pavel_erfaren_lagermedarbeider",
+          "person_id": "pavel_erfaren_lagermedarbeider",
+          "people_ref": "pavel_erfaren_lagermedarbeider",
+          "from": "Pavel",
+          "place_id": "plukk_pakk_og_systemflate",
+          "channel": "work",
+          "messageChannel": "work",
+          "mail_class": "professional_message",
+          "subject": "Pavel kan åpne køen — hvis flyttingen får vente i systemet",
+          "summary": "Plukksonen står, og Pavel viser den uformelle flyttingen som laget bruker når systemregistreringen blir flaskehals. Snarveien er praktisk kunnskap og reell risiko samtidig. Scenen tester om spilleren kan respektere erfaringen, bevare kollegial tillit og likevel nekte at fysisk vare får et skjult mellomliv uten lokasjonsspor.",
+          "purpose": "Binde den eksisterende snarvei-scenen til en typed kollegarelasjon der erfaring kan brukes uten å gjøre uregistrert flytting til normal drift.",
+          "stakes": "Valget påvirker samarbeid, sporbarhet og sikker flyt, men kan aldri utvide spillerens fullmakt, oppheve HMS eller erstatte riktig godkjennings- og eskaleringslinje.",
+          "situation": [
+            "Pavel peker ut de riktige varene og en ledig plass i plukksonen, men den ordinære registreringskøen gjør at flyttingen ikke blir synlig med én gang.",
+            "Han sier at laget har gjort dette før og at registreringen kan tas når trykket har lagt seg.",
+            "Du kan håndtere varen innen rutine og melde et prosessproblem; du kan ikke la lojalitet til laget erstatte det systemsporet neste person trenger."
+          ],
+          "task_domain": "plukk_pakk_og_systemspor",
+          "competency": "lokasjon_og_registrering",
+          "pressure": "kollegial_lojalitet_og_plukkkø",
+          "choice_axis": "laghjelp_vs_sporbarhet",
+          "consequence_axis": "øyeblikkelig_flyt_vs_rekonstruerbar_varebevegelse",
+          "narrative_arc": "lager_profesjonelle_arbeidsrelasjoner_prerequisite",
+          "learning_focus": [
+            "profesjonell relasjon",
+            "sporbar vareflyt",
+            "authority-grense",
+            "people_places_integrity"
+          ],
+          "source_scene_ref": "data/Civication/mailFamilies/naeringsliv/people/lager_og_driftsmedarbeider_people.json#lager_people_snarvei_002",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Flytte bare med samtidig spor",
+              "reply": "Jeg hjelper Pavel med flyttingen når vi kan registrere den samtidig, og melder at prosessen trenger en raskere lovlig flyt.",
+              "effect": 0,
+              "tags": [
+                "professional_relationship",
+                "teamwork",
+                "system"
+              ],
+              "feedback": "Du tar den praktiske innsikten på alvor uten å gjøre den usynlig. Pavel blir samarbeidspartner i en forbedring, og plukksonen får en løsning som neste medarbeider kan rekonstruere i stedet for en privat lagerhistorie.",
+              "effects": {
+                "stats": {
+                  "teamwork": 2,
+                  "traceability": 3,
+                  "improvement": 2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Bruke snarveien og registrere senere",
+              "reply": "Jeg flytter varene nå og avtaler med Pavel at vi rydder hele systemsporet sammen etter køen.",
+              "effect": 0,
+              "tags": [
+                "professional_relationship",
+                "shortcut",
+                "loyalty"
+              ],
+              "feedback": "Du beskytter laget i øyeblikket, men gjør hukommelse og ledig tid til kontrollsystem. Hvis varen plukkes, flyttes igjen eller glemmes før oppryddingen, blir kollegial tillit også kilden til en ny differanse.",
+              "effects": {
+                "stats": {
+                  "speed": 2,
+                  "team_trust": 1,
+                  "traceability": -3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "lager_people_marius_avstemming_001",
+          "mail_type": "people",
+          "mail_family": "lager_profesjonelle_arbeidsrelasjoner",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "early",
+          "priority": 72,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "actor_id": "marius_okonomikontakt_lager",
+          "person_id": "marius_okonomikontakt_lager",
+          "people_ref": "marius_okonomikontakt_lager",
+          "from": "Marius",
+          "place_id": "telling_og_avvikspunkt",
+          "channel": "work",
+          "messageChannel": "work",
+          "mail_class": "professional_message",
+          "subject": "Marius trenger avstemming — systemet sier 24 og gulvet sier 19",
+          "summary": "Økonomien skal lukke et enkelt grunnlag, men kontrolltellingen av samme lokasjon viser fem færre varer enn systemet. Marius trenger forklaring, ikke bare samsvar. Scenen gjør lagerdifferansen til en profesjonell handoff mellom fysisk kontroll og økonomisk avstemming uten å gi spilleren myndighet til å velge hvilket tall som skal bli sant.",
+          "purpose": "Binde telling, avviksspor og økonomisk konsekvens til en typed nedstrøms relasjon med tydelig korrigerings- og godkjenningsgrense.",
+          "stakes": "Valget påvirker samarbeid, sporbarhet og sikker flyt, men kan aldri utvide spillerens fullmakt, oppheve HMS eller erstatte riktig godkjennings- og eskaleringslinje.",
+          "situation": [
+            "Du har kontrolltelt 19 enheter der systemet viser 24, og samme reol har nylig hatt både feilplukk og en forsinket etterlevering.",
+            "Marius spør hva som er verifisert før økonomigrunnlaget lukkes, og om differansen kan korrigeres i dag.",
+            "Du kan telle, undersøke bevegelser og registrere avvik; du kan ikke gjøre en uforklart korreksjon til bevis på hvor de fem enhetene ble av."
+          ],
+          "task_domain": "telling_og_lageravvik",
+          "competency": "kontrolltelling_og_transaksjonsspor",
+          "pressure": "periodeavslutning_og_tallro",
+          "choice_axis": "rask_avstemming_vs_forklart_differanse",
+          "consequence_axis": "pent_systemtall_vs_etterprøvbar_lagerhistorie",
+          "narrative_arc": "lager_profesjonelle_arbeidsrelasjoner_prerequisite",
+          "learning_focus": [
+            "profesjonell relasjon",
+            "sporbar vareflyt",
+            "authority-grense",
+            "people_places_integrity"
+          ],
+          "source_scene_ref": "data/Civication/mailFamilies/naeringsliv/job/lager_og_driftsmedarbeider_job.json#job_lager_og_driftsmedarbeider_week2_count_mismatch",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Overlevere fakta og åpent avvik",
+              "reply": "Jeg gir deg dobbelttellingen, siste kjente bevegelser og det åpne avviket, men lar riktig kontrollinje avgjøre selve korreksjonen.",
+              "effect": 0,
+              "tags": [
+                "professional_relationship",
+                "counting",
+                "handoff"
+              ],
+              "feedback": "Du gir økonomien et presist, avgrenset grunnlag og bevarer forskjellen mellom observasjon, årsak og godkjenning. Avstemmingen kan ta lengre tid, men den kan senere forklares uten at systemendringen skjuler det opprinnelige problemet.",
+              "effects": {
+                "stats": {
+                  "accuracy": 3,
+                  "documentation": 3,
+                  "finance_trust": 2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Korrigere systemet til fysisk telling",
+              "reply": "Jeg endrer systemet til 19 nå, så kan vi undersøke årsaken etter at avstemmingen er lukket.",
+              "effect": 0,
+              "tags": [
+                "professional_relationship",
+                "correction",
+                "shortcut"
+              ],
+              "feedback": "Du skaper samsvar, men fjerner selve signalet før årsaken og myndigheten er avklart. Et riktig fysisk tall kan fortsatt bli en feil kontrollhandling når historikken ikke viser hvorfor korreksjonen ble gjort eller hvem som godkjente den.",
+              "effects": {
+                "stats": {
+                  "closure": 2,
+                  "auditability": -3,
+                  "future_risk": 2
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "lager_people_helle_hms_handoff_001",
+          "mail_type": "people",
+          "mail_family": "lager_profesjonelle_arbeidsrelasjoner",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "early",
+          "priority": 72,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "actor_id": "helle_hms_og_skiftkontakt_lager",
+          "person_id": "helle_hms_og_skiftkontakt_lager",
+          "people_ref": "helle_hms_og_skiftkontakt_lager",
+          "from": "Helle",
+          "place_id": "hms_og_overleveringsflate",
+          "channel": "work",
+          "messageChannel": "work",
+          "mail_class": "professional_message",
+          "subject": "Helle spør hva neste skift må vite om pallen alle gikk forbi",
+          "summary": "Ingen ble skadet da en ansatt måtte hoppe unna en pall i den trange gangsonen, og den fysiske hindringen er nå flyttet. Helle trenger et spor som neste skift kan handle på. Scenen skiller rydding fra læring, faktabeskrivelse fra skyld og spillerens rett til å stoppe eget arbeid fra myndigheten til å lukke HMS-saken.",
+          "purpose": "Binde nestenulykke og skiftoverlevering til en typed HMS-relasjon som bevarer fakta, restansvar og riktig kontrollmyndighet.",
+          "stakes": "Valget påvirker samarbeid, sporbarhet og sikker flyt, men kan aldri utvide spillerens fullmakt, oppheve HMS eller erstatte riktig godkjennings- og eskaleringslinje.",
+          "situation": [
+            "Pallen er flyttet og ingen har synlig skade, men flere så at gangsonen var trang og at flyttingen skjedde under høyt tidspress.",
+            "Helle spør hva som er kjent, hva som fortsatt må undersøkes og hvilket midlertidig tiltak neste skift faktisk skal følge.",
+            "Du kan stoppe eget arbeid, isolere risiko og melde hendelsen; du kan ikke la fravær av skade bli grunn til å skjule eller selvlukke nestenulykken."
+          ],
+          "task_domain": "hms_og_skiftoverlevering",
+          "competency": "nestenulykke_og_risikohandoff",
+          "pressure": "normal_flyt_og_lagets_status",
+          "choice_axis": "rask_normalisering_vs_synlig_læring",
+          "consequence_axis": "ryddet_gangsone_vs_varig_sikkerhetsforbedring",
+          "narrative_arc": "lager_profesjonelle_arbeidsrelasjoner_prerequisite",
+          "learning_focus": [
+            "profesjonell relasjon",
+            "sporbar vareflyt",
+            "authority-grense",
+            "people_places_integrity"
+          ],
+          "source_scene_ref": "data/Civication/mailFamilies/naeringsliv/job/lager_og_driftsmedarbeider_job.json#job_lager_og_driftsmedarbeider_week2_near_miss_everyone_passed",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Overlevere fakta, tiltak og åpent ansvar",
+              "reply": "Jeg beskriver hendelsen uten å gjette skyld, registrerer gangsonen og tidspresset, og gir neste skift midlertidig tiltak og navngitt eskaleringspunkt.",
+              "effect": 0,
+              "tags": [
+                "professional_relationship",
+                "hms",
+                "handoff"
+              ],
+              "feedback": "Du gjør flaks til informasjon før den blir skade. Helle får et etterprøvbart spor, neste skift vet hva som er midlertidig og åpent, og spilleren holder seg innen retten til å sikre og melde uten å late som saken er formelt lukket.",
+              "effects": {
+                "stats": {
+                  "safety": 3,
+                  "handoff": 3,
+                  "learning": 2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Si at området er ryddet og saken løst",
+              "reply": "Jeg sier at pallen er flyttet, ingen ble skadet og neste skift kan arbeide normalt.",
+              "effect": 0,
+              "tags": [
+                "professional_relationship",
+                "normalization",
+                "concealment"
+              ],
+              "feedback": "Du overleverer en fysisk forbedring, men skjuler forholdene som gjorde nestenulykken mulig. Neste skift får ingen grunn til å beskytte gangsonen mot samme tidspress, og fravær av skade blir feilaktig behandlet som full kontroll.",
+              "effects": {
+                "stats": {
+                  "flow": 2,
+                  "safety_learning": -3,
+                  "future_risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
     }
   ]
 }
