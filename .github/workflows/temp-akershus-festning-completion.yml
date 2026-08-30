@@ -110,7 +110,12 @@ jobs:
             sources: Object.fromEntries(Object.entries(sourceRegistry).map(([id, source]) => [id, { url: source.url, source_type: source.source_type, review_status: "reviewed", review_note: source.review_note }])),
             selected_curriculum: { emne_ids: [...place.emne_ids], topic_hook_ids: ["his_register_overvakning_disiplin"], method_ids: ["met_sporlesning", "met_kildekritikk"], thinker_ids: ["michel_foucault"], works: ["Discipline and Punish"] },
             profile_decision: { profile: "major", set_count: 8, questions_per_set: 7, justification: "Akershus har uavhengige, kildebårne tidslag fra middelalder, statsbygging, beleiring, straff, restaurering, okkupasjon og minnekultur." },
-            existing_quiz_audit: { active_before: { categoryId: "by", set_count: 4, question_count: 28 }, decision: "Migrer legacy By-quizen til canonical Historie major 8x7; behold bare kildekorrekte fakta." },
+            existing_quiz_audit: {
+              searched_paths: ["data/quiz/by/akershus_festning_sets.json", quizFile],
+              active_before: { categoryId: "by", set_count: 4, question_count: 28 },
+              decisions: ["Migrer legacy By-quizen til canonical Historie major 8x7; behold bare kildekorrekte fakta."],
+              knowledge_migration: { status: "completed", retained_rule: "Bare kildekorrekte stedspåstander med gyldig History-emne beholdes." }
+            },
             held_back_candidates: ["Udokumenterte enkelthendelser inne i slottet", "Sensasjonspreget bruk av navngitte fanger eller henrettelser uten egen læringsverdi"],
             claims: briefClaims
           });
@@ -119,7 +124,27 @@ jobs:
           write("data/fag/fag_manifest.json", fagManifest);
           const builtQuizContext = await runBuildQuizProductionContext({ root, categoryId: "historie", targetId: placeId, outputPath: contextFile });
           const contextQuizPack = read(quizFile);
-          contextQuizPack.production_context = builtQuizContext;
+          contextQuizPack.production_context = {
+            manifest_category: "historie",
+            profile: builtQuizContext.profile,
+            standard_version: "3.4",
+            source_brief: briefFile,
+            context_artifact: contextFile,
+            resolved_files: Object.fromEntries(Object.entries(builtQuizContext.resolved_files).map(([key, metadata]) => [key, metadata.path])),
+            required_inputs_loaded: builtQuizContext.required_inputs_loaded,
+            pensum_module_ids: builtQuizContext.selected_curriculum.module_ids,
+            emne_ids: builtQuizContext.selected_curriculum.emne_ids,
+            topic_hook_ids: builtQuizContext.selected_curriculum.topic_hook_ids,
+            method_ids: builtQuizContext.selected_curriculum.method_ids,
+            thinker_ids: builtQuizContext.selected_curriculum.thinker_ids,
+            works: builtQuizContext.selected_curriculum.works,
+            source_review_status: builtQuizContext.source_review_status,
+            existing_quiz_audit: builtQuizContext.existing_quiz_audit,
+            profile_decision: builtQuizContext.profile_decision,
+            held_back_candidates: builtQuizContext.held_back_candidates,
+            theory_start_phase: "final",
+            method_start_phase: "final"
+          };
           write(quizFile, contextQuizPack);
 
           '''

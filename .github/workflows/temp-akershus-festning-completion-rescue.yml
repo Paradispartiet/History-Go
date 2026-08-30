@@ -69,6 +69,14 @@ jobs:
           async function download(url, attempts = 8) {
             const cacheFile = path.join(mediaCacheDir, sha256(url));
             if (fs.existsSync(cacheFile)) return fs.readFileSync(cacheFile);
+            const legacyName = decodeURIComponent(new URL(url).pathname.split("/").at(-1)).replaceAll("_", " ");
+            const legacyUrl = `https://commons.wikimedia.org/wiki/Special:Redirect/file/${encodeURIComponent(legacyName)}`;
+            const legacyCacheFile = path.join(mediaCacheDir, sha256(legacyUrl));
+            if (fs.existsSync(legacyCacheFile)) {
+              const buffer = fs.readFileSync(legacyCacheFile);
+              fs.writeFileSync(cacheFile, buffer);
+              return buffer;
+            }
             let lastError;
             for (let attempt = 1; attempt <= attempts; attempt += 1) {
               const res = await fetch(url, { redirect: "follow", headers: { "user-agent": "History-Go-place-production/1.0 (Paradispartiet/History-Go)" } });
