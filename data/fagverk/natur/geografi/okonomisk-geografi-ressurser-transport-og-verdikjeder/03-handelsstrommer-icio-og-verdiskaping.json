@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "okonomisk-geografi-ressurser-transport-og-verdikjeder",
+  "id": "03-handelsstrommer-icio-og-verdiskaping",
+  "title": "Handelsstrømmer, ICIO og verdiskaping",
+  "sections": [
+    {
+      "id": "handelsstrommer-produkter-og-opprinnelse-destinasjon",
+      "title": "Handelsstrømmer, produkter og opprinnelse–destinasjon",
+      "method_ids": ["met_geo_handelsstrom_od", "met_geo_handelsklassifikasjon_harmonisering"],
+      "boundary": "Rapportert handelsverdi, mengde, partner, opprinnelse, avsender og destinasjon skal følge datadefinisjonen; monetær strøm skal ikke brukes som fysisk masseproxy.",
+      "paragraphs": [
+        "UN Comtrade organiserer varehandel etter reporter, partner, produktkode, handelsstrøm og tidsperiode. Et bilateralt kart blir derfor bare forståelig når analysen sier hvem som rapporterer, om strømmen er import eller eksport, hvilken produktklassifikasjon og revisjon som brukes, og hvilket år eller måned datasettet representerer. Speilstatistikk fra partneren kan avvike på grunn av verdsettingsprinsipper, timing og rapportering. Derfor bør handelsgeografi behandle retning og metadata som del av evidensen. En linje mellom to land er ikke en selvforklarende økonomisk relasjon før varen, rapporteringssiden og måleenheten er eksplisitt definert.",
+        "Monetær handelsverdi påvirkes både av fysisk mengde og pris. Dersom råvareprisen dobles, kan eksportverdien øke kraftig selv om samme tonnasje sendes, mens valutabevegelser og endret produktmiks kan gi ytterligere forskjeller. Transportnett belastes derimot av fysisk masse, volum, antall enheter og distanse. Derfor kan verdikart og transportkart utvikle seg forskjellig. En analyse som undersøker markedseksponering kan med god grunn bruke verdi, mens en analyse av havne- eller jernbanekapasitet trenger fysiske mål. Når begge spørsmål er relevante, bør verdi og mengde vises side om side i stedet for at den ene brukes som ubegrunnet proxy for den andre.",
+        "Bilateral eksport sier hvilket land som rapporterer varen sendt til hvilken partner, men den avslører ikke nødvendigvis hvor all verdiskapingen bak varen oppsto. En eksportert maskin kan inneholde metall, elektronikk, programvare og tjenester produsert i flere økonomier, og enkelte innsatsvarer kan ha krysset grenser flere ganger. Derfor bør brutto varehandel brukes til å beskrive rapporterte grensekryssende transaksjoner, mens spørsmål om nasjonal verdiskaping krever input-output- eller TiVA-baserte mål. Dette skillet er avgjørende i økonomisk geografi fordi et land kan være et stort eksportknutepunkt uten at hele eksportverdien representerer innenlandsk produksjonsbidrag.",
+        "Lange handelstidsserier kan få metodiske brudd når produktklassifikasjoner revideres, land eller tollområder endres, rapporteringssystemer forbedres eller pris- og valutagrunnlag varierer. Dersom to perioder sammenlignes uten harmonisering, kan en kodeendring se ut som at handel har flyttet mellom næringer eller geografier. Derfor bør analyse bruke korrespondansetabeller eller stabil aggregering, dokumentere reporter- og partnergeografi og skille nominell verdi fra fysisk mengde eller realverdi der det er nødvendig. Reproduserbar økonomisk geografi krever at endringen i kartet kan spores til økonomisk prosess og ikke bare til endringen i datasystemet."
+      ],
+      "paragraphClaimIds": [["geo9-17"], ["geo9-18"], ["geo9-19"], ["geo9-20"]]
+    },
+    {
+      "id": "globale-verdikjeder-icio-og-verdiskaping",
+      "title": "Globale verdikjeder, ICIO og verdiskaping",
+      "method_ids": ["met_geo_icio_verdiskapingsspor", "met_geo_gvc_deltakelse"],
+      "boundary": "Bruttoeksport og innenlandsk eller utenlandsk verdiskaping skal skilles; ICIO/TiVA er harmoniserte input-output-baserte estimater og ikke firma-for-firma sporingsdata.",
+      "paragraphs": [
+        "Bruttoeksport summerer verdien som krysser grensen, men denne verdien kan inneholde importerte innsatsvarer og tjenester. I globale produksjonsnett kan dessuten den samme underliggende verdiskapingen passere flere grenser i ulike mellomprodukter før sluttproduktet selges. Derfor er bruttoeksport ikke det samme som innenlandsk verdiskaping. TiVA forsøker å bryte strømmen ned i opprinnelsen til verdiskapingen og gjør det mulig å undersøke hvor mye innenlandsk og utenlandsk verdi som er innbakt. For geografisk analyse betyr dette at eksportorientering og lokal produksjonsforankring er to relaterte, men separate dimensjoner som må måles med passende indikatorer.",
+        "OECDs Inter-Country Input-Output-database kobler harmoniserte produksjons-, forbruks-, investerings- og handelsstrømmer mellom næringer og økonomier til et globalt konsistent regnskap. Harmonisering er nødvendig fordi nasjonale tabeller opprinnelig kan ha ulike klassifikasjoner, årganger og balanser. Resultatet gir et kraftig rammeverk for å følge indirekte koblinger: etterspørsel i ett land kan skape produksjon og verdiskaping gjennom flere mellomledd andre steder. Samtidig er geografien aggregert til økonomier og næringer. ICIO bør derfor brukes til systemkoblinger på dette nivået og ikke presenteres som om databasen observerte hver bedrift, kontrakt eller konkrete forsyningsrute direkte.",
+        "TiVA-indikatorene er beregnet fra ICIO og arver både styrken og begrensningene til et harmonisert input-output-system. De kan estimere innenlandsk og utenlandsk verdiskaping i eksport eller sluttetterspørsel og dermed vise globale produksjonskoblinger som brutto handelsstatistikk skjuler. Men de er modell- og regnskapsbaserte aggregater; de er ikke en database over navngitte leverandører og kjøpere. Derfor bør analysen ikke bruke et TiVA-resultat til å hevde at en bestemt bedrift kjøper en bestemt innsatsvare fra et bestemt sted. Firma- og stedsnivå krever egne kilder, mens TiVA er egnet til å beskrive strukturen i verdiskapingsnett på aggregert nivå.",
+        "Global verdikjededeltakelse kan endres gjennom flere prosesser samtidig. Produksjon kan regionaliseres, tjenester kan utgjøre en større del av verdien, teknologi kan endre innsatsbehov, handelspolitikk kan flytte sourcing, og utenlandsinvestering kan etablere nye produksjonsnoder. Derfor er det svakt å konkludere om «deglobalisering» eller «resiliens» fra én bilateral varestrøm. En sterkere analyse kombinerer bruttohandel, TiVA- eller ICIO-indikatorer, investeringsdata og relevante sektoropplysninger og undersøker om verdiskaping, mellomvarehandel og produksjonskapasitet flytter i samme retning. Geografisk reconfigurering er et flerindikatorproblem, ikke én kartlinje."
+      ],
+      "paragraphClaimIds": [["geo9-21"], ["geo9-22"], ["geo9-23"], ["geo9-24"]]
+    }
+  ]
+}
