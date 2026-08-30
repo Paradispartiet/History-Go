@@ -267,10 +267,10 @@ jobs:
         run: |
           npm run places:index:build
           npm run knowledge:canonical:write
-          npm run epoker:places:build
           npm run civication:history-people:build
           node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --write
           npm run place-open:build
+          npm run epoker:places:build
           node scripts/build-fagverk-release-manifest.mjs
 
       - name: Verify Akershus target and repository contracts

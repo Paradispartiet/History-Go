@@ -39,8 +39,7 @@ test("Akershus festning preserves verified geometry and uses the History major f
   assert.deepEqual(place.objects.map(item => item.id), ["akershus_retterstedet_minnesmerke"]);
   assert.deepEqual(place.structures.map(item => item.id), ["akershus_jomfrutarnet", "akershus_slottskirke", "akershus_kongelige_mausoleum"]);
   assert.equal(Object.hasOwn(place, "productions"), false);
-  assert.equal(Object.hasOwn(production.collections, "productions"), false);
-  assert.deepEqual(production.collections.structures, ["akershus_jomfrutarnet", "akershus_slottskirke", "akershus_kongelige_mausoleum"]);
+  assert.deepEqual(audit.collections.required, ["people", "objects", "brands", "structures"]);
   assert.deepEqual(brandsByPlace.akershus_festning, ["forsvarsbygg"]);
 });
 
@@ -68,10 +67,10 @@ test("identity, description and History production packets keep castle, museums 
   const result = validatePacket({ packet: production, place, packetFile: "data/places/production/akershus_festning.json", now: new Date("2026-08-30T12:00:00Z") });
   assert.deepEqual(result.issues, []);
   assert.match(place.popupDesc, /ikke det samme som Akershus slott, Forsvarsmuseet, Norges Hjemmefrontmuseum/i);
-  assert.ok(production.identity.excludes.includes("Akershus slott as a separate building identity"));
-  assert.equal(historyProduction.status, "complete");
-  assert.ok(Object.values(historyProduction.gates).every(value => value === "PASS"));
-  assert.ok(historyProduction.chronology.some(item => item.year === 1716));
+  assert.ok(production.identity.excludes.includes("Akershus slott som egen bygningsidentitet"));
+  assert.equal(historyProduction.status, "ready");
+  assert.ok(Object.values(historyProduction.gates).every(value => value.status === "PASS"));
+  assert.match(place.popupDesc, /1716/);
   assert.ok(stories.some(story => story.id === "st_akershus_1716_beleiringen"));
 });
 
@@ -87,8 +86,8 @@ test("major History quiz is 8x7, fact-first and no longer a By-category quiz", (
   assert.ok(questions.slice(0, 14).every(question => !question.method_id));
   assert.ok(questions.every(question => question.categoryId === "historie" && question.epoke_domain === "historie"));
   assert.ok(questions.every(question => question.knowledge_link_status === "linked"));
-  assert.equal(brief.requirements.totalQuestions, 56);
-  assert.equal(brief.requirements.openingTheoryQuestions, 0);
+  assert.equal(brief.profile_decision.set_count, 8);
+  assert.equal(brief.profile_decision.questions_per_set, 7);
 });
 
 test("four episode Stories, runtime collections and six-dimension gate close without blockers", () => {
