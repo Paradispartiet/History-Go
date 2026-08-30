@@ -9,6 +9,7 @@ const ORIGINAL='7715e611f048fb0e73184d06329c76c450578d74';
 const PORTAL='data/fagverk/fagverk_portal.json';
 const HOLISTIC='reports/fagverk/film-tv-holistic-completion-v1-audit.json';
 const PRODUCTION_OWNER='data/fagverk/film_tv/produksjon-studio-og-filmarbeid.json';
+const ADJUDICATION='data/fag/TV_og_Film/legacy_theory_adjudication_v1.json';
 const TARGET='fagverk.html?subject=film_tv#fagverkIaProgresjon';
 const ROOTS=['data/fag/TV_og_Film','data/fagverk/film_tv'];
 const EXPECTED=['felt','normativ','doxa','metode','materiell','sosial','geografisk','temporal','blindsoner','begreper','bidrag'];
@@ -37,7 +38,7 @@ export function auditFilmTvLegacyTheory(){
   for(const f of [LEGACY,PORTAL,HOLISTIC,PRODUCTION_OWNER])assert(fs.existsSync(abs(f)),`Mangler ${f}`);
   const buffer=fs.readFileSync(abs(LEGACY)),activeSha=blobSha(buffer);assert(activeSha===ORIGINAL,`Film & TV legacy-blob mismatch: ${activeSha}`);
   const legacySections=sections(buffer.toString('utf8'));assert(JSON.stringify(legacySections.map(x=>x.id))===JSON.stringify(EXPECTED),`Uventet Film & TV legacy-struktur: ${legacySections.map(x=>x.id).join(', ')}`);
-  const files=ROOTS.flatMap(r=>walk(r)).filter(f=>f!==LEGACY);const strings=[];for(const f of files){try{flatten(json(f),strings)}catch{}}
+  const files=ROOTS.flatMap(r=>walk(r)).filter(f=>f!==LEGACY&&f!==ADJUDICATION);const strings=[];for(const f of files){try{flatten(json(f),strings)}catch{}}
   const corpus=norm(strings.join(' '));assert(corpus.length>=MIN_CORPUS,`Film & TV canonical-korpus under truncation-sentinel: ${corpus.length}`);
   const holistic=json(HOLISTIC);assert(holistic.status==='complete','Film & TV holistic completion er ikke complete');assert(holistic.summary?.canonical_domain_count===10,'Film & TV holistic baseline skal ha 10 domener');assert(holistic.summary?.canonical_emne_count===192,'Film & TV holistic baseline skal ha 192 emner');assert(holistic.summary?.required_method_count===119,'Film & TV holistic baseline skal ha 119 metoder');assert(holistic.summary?.registered_chapter_count===17,'Film & TV holistic baseline skal ha 17 kapitler');assert(holistic.summary?.verified_claim_count===663,'Film & TV holistic baseline skal ha 663 claims');assert(holistic.summary?.inspectable_source_registration_count===416,'Film & TV holistic baseline skal ha 416 kilderegistreringer');
   const productionOwner=json(PRODUCTION_OWNER);const productionTeamEmne=productionOwner.emne_ids?.includes('em_film_tv_produksjonsteam_roller_og_samarbeid')===true;const invisibleProductionAlias=productionOwner.legacyAliasReaudit?.source_emne_ids?.includes('em_film_tv_usynlig_filmproduksjon')===true;const responsibilityEvidence=flatten(productionOwner).some(v=>norm(v).includes('ansvarsdelingen mellom produsent regi foto lyd produksjonsdesign klipp og manus'));assert(productionTeamEmne&&invisibleProductionAlias&&responsibilityEvidence,'Film & TV tekniker-blindsone mangler eksplisitt canonicalt eierbevis i produksjonskapittelet');
