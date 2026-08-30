@@ -39,199 +39,8 @@ jobs:
           git fetch origin main
           git merge --no-edit origin/main
 
-      - name: Repair Tullin story contract
-        run: |
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-          const path = 'data/stories/stories_tullin.json';
-          const stories = JSON.parse(fs.readFileSync(path, 'utf8'));
-          const byId = new Map(stories.map((story) => [story.id, story]));
-          const scores = {
-            st_tullin_fradelingen_1869: { narrative: 3, historical: 2, source: 4, play_value: 3, originality: 3, total: 15 },
-            st_tullin_industriutstillingen_1883: { narrative: 3, historical: 4, source: 5, play_value: 3, originality: 3, total: 18 },
-            st_tullin_velociped_1885: { narrative: 3, historical: 2, source: 3, play_value: 3, originality: 3, total: 14 },
-            st_tullin_fra_kunsthall_til_park_2011: { narrative: 3, historical: 2, source: 4, play_value: 4, originality: 3, total: 16 }
-          };
-          for (const [id, score] of Object.entries(scores)) {
-            const story = byId.get(id);
-            if (!story) throw new Error(`Missing expected Tullin story: ${id}`);
-            story.score = score;
-          }
-          const velociped = byId.get('st_tullin_velociped_1885');
-          velociped.type = 'historical_event';
-          const secondaryUrl = 'https://upload.wikimedia.org/wikipedia/commons/4/4a/Kristianias_historie._Bind_V._1878-1924.pdf';
-          velociped.sources ??= [];
-          if (!velociped.sources.some((source) => source.url === secondaryUrl)) {
-            velociped.sources.push({
-              title: 'Kristianias historie, bind V – 1878–1924',
-              url: secondaryUrl
-            });
-          }
-          fs.writeFileSync(path, `${JSON.stringify(stories, null, 2)}\n`);
-          NODE
-
-      - name: Repair Tullin v4.2 description completion
-        run: |
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-          import crypto from 'node:crypto';
-
-          const placePath = 'data/places/by/oslo/places/tullin.json';
-          const packetPath = 'data/places/production/tullin.json';
-          const placeData = JSON.parse(fs.readFileSync(placePath, 'utf8'));
-          const place = Array.isArray(placeData)
-            ? placeData.find((candidate) => candidate.id === 'tullin')
-            : placeData?.id === 'tullin'
-              ? placeData
-              : Array.isArray(placeData?.places)
-                ? placeData.places.find((candidate) => candidate.id === 'tullin')
-                : null;
-          if (!place) throw new Error('Could not resolve canonical Tullin place');
-
-          const replaceRequired = (value, before, after, label) => {
-            if (value.includes(before)) return value.replace(before, after);
-            if (value.includes(after)) return value;
-            throw new Error(`Expected ${label} text not found`);
-          };
-
-          place.desc = replaceRequired(
-            place.desc,
-            'Tullin er History Go-stedet for Tullinløkka, ',
-            'Tullin er forankret i Tullinløkka, ',
-            'desc identity'
-          );
-          place.popupDesc = replaceRequired(
-            place.popupDesc,
-            'History Go-stedet Tullin er geografisk forankret',
-            'Tullin er geografisk forankret',
-            'popup identity'
-          );
-          place.popupDesc = replaceRequired(
-            place.popupDesc,
-            'De er egne strukturer i Tullin-pakken fordi de fysisk rammer inn løkka, men selve History Go-stedet er den åpne plassen og dens bruks- og transformasjonshistorie.',
-            'De er egne strukturer fordi de fysisk rammer inn løkka, men selve stedet er den åpne plassen og dens bruks- og transformasjonshistorie.',
-            'popup structure meta text'
-          );
-          place.popupDesc = replaceRequired(
-            place.popupDesc,
-            'Tullinløkka kan derfor leses som et byrom',
-            'Tullinløkka kan leses som et byrom',
-            'popup strong-claim marker'
-          );
-          if (/History Go/i.test(place.desc) || /History Go/i.test(place.popupDesc)) {
-            throw new Error('Forbidden user-facing History Go meta text remains in Tullin description');
-          }
-          fs.writeFileSync(placePath, `${JSON.stringify(placeData, null, 2)}\n`);
-
-          const packet = JSON.parse(fs.readFileSync(packetPath, 'utf8'));
-          const claimById = new Map(packet.claims.map((claim) => [claim.id, claim]));
-          const requiredClaimIds = [
-            'claim_tullin_identity',
-            'claim_tullin_namesake',
-            'claim_tullin_separation',
-            'claim_tullin_exhibition',
-            'claim_tullin_velocipede',
-            'claim_tullin_parking',
-            'claim_tullin_kunsthall',
-            'claim_tullin_park'
-          ];
-          for (const id of requiredClaimIds) {
-            if (!claimById.has(id)) throw new Error(`Missing required production claim: ${id}`);
-          }
-          const nowClaim = claimById.get('claim_tullin_now');
-          if (!nowClaim) throw new Error('Missing claim_tullin_now');
-          delete nowClaim.timelineYear;
-
-          const digest = (value) => crypto.createHash('sha256').update(value, 'utf8').digest('hex');
-          packet.textHashes = {
-            algorithm: 'sha256',
-            desc: digest(place.desc),
-            popupDesc: digest(place.popupDesc)
-          };
-          packet.reviews = {
-            factual: {
-              status: 'passed',
-              reviewedAt: '2026-08-30',
-              reviewer: 'Tullin completion factual review',
-              notes: 'Claim-register, kildereview og setningsdekning kontrollert mot verifiserte kilder.'
-            },
-            editorial: {
-              status: 'passed',
-              reviewedAt: '2026-08-30',
-              reviewer: 'Tullin completion editorial review',
-              introducedNewFacts: false,
-              notes: 'Brukertekst kontrollert mot eksisterende claims; kun metatekst og sterk-markør ble fjernet.'
-            }
-          };
-          packet.quizReadiness = {
-            questions: [
-              { question: 'Hvem har Tullinløkka navn etter?', answer: 'Claus Tullin', type: 'hvem', normalKnowledgeQuestion: true, claimIds: ['claim_tullin_namesake'] },
-              { question: 'Når ble Tullinløkka skilt ut fra Ruseløkken?', answer: '1869', type: 'når', normalKnowledgeQuestion: true, claimIds: ['claim_tullin_separation'] },
-              { question: 'Hva ble holdt på Tullinløkka i 1883?', answer: 'Den norske Industri- og Kunstudstilling', type: 'hva_skjedde', normalKnowledgeQuestion: true, claimIds: ['claim_tullin_exhibition'] },
-              { question: 'Når ble Velociped-Ridning tillatt på Tullinløkka?', answer: '1885', type: 'når', normalKnowledgeQuestion: true, claimIds: ['claim_tullin_velocipede'] },
-              { question: 'Hva ble Tullinløkka brukt til gjennom store deler av 1900-tallet?', answer: 'Bilparkering', type: 'hva', normalKnowledgeQuestion: true, claimIds: ['claim_tullin_parking'] },
-              { question: 'Hva åpnet Nasjonalmuseet på Tullinløkka i 2005?', answer: 'En midlertidig Kunsthall', type: 'hva_ble_bygget_produsert_eller_endret', normalKnowledgeQuestion: true, claimIds: ['claim_tullin_kunsthall'] },
-              { question: 'Hvem anla park over Tullinløkka i 2011?', answer: 'Statsbygg', type: 'hvem', normalKnowledgeQuestion: true, claimIds: ['claim_tullin_park'] },
-              { question: 'Hvor ligger Tullinløkka i denne stedsidentiteten?', answer: 'Mellom Nasjonalgalleriet og Historisk museum', type: 'hvor', normalKnowledgeQuestion: true, claimIds: ['claim_tullin_identity'] }
-            ]
-          };
-          const verified = packet.claims.filter((claim) => claim.status === 'verified').length;
-          packet.completion = {
-            completedUnder: '4.2',
-            currentStatus: 'current',
-            sourceVerifiedAt: '2026-08-30',
-            claimsVerified: { verified, total: packet.claims.length },
-            factualReview: 'passed',
-            editorialReview: 'passed',
-            validatorVersion: packet.validatorVersion
-          };
-          fs.writeFileSync(packetPath, `${JSON.stringify(packet, null, 2)}\n`);
-          NODE
-
-      - name: Repair Tullin quiz taxonomy
-        run: |
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-          const path = 'data/quiz/by/tullin_sets.json';
-          const quiz = JSON.parse(fs.readFileSync(path, 'utf8'));
-          const questions = quiz.sets.flatMap((set) => set.questions);
-          const byId = new Map(questions.map((question) => [question.id, question]));
-          const assignments = {
-            fact: [
-              'tullin_quiz_16',
-              'tullin_quiz_19',
-              'tullin_quiz_20',
-              'tullin_quiz_22',
-              'tullin_quiz_23',
-              'tullin_quiz_24',
-              'tullin_quiz_26'
-            ],
-            concept_theory: [
-              'tullin_quiz_29',
-              'tullin_quiz_31'
-            ]
-          };
-          for (const [type, ids] of Object.entries(assignments)) {
-            for (const id of ids) {
-              const question = byId.get(id);
-              if (!question) throw new Error(`Missing expected Tullin quiz question: ${id}`);
-              if (question.question_type !== 'context' && question.question_type !== type) {
-                throw new Error(`${id} expected context or ${type}, got ${question.question_type}`);
-              }
-              question.question_type = type;
-            }
-          }
-          const counts = questions.reduce((acc, question) => {
-            acc[question.question_type] = (acc[question.question_type] || 0) + 1;
-            return acc;
-          }, {});
-          const expected = { fact: 22, context: 12, concept_theory: 8 };
-          for (const [type, count] of Object.entries(expected)) {
-            if (counts[type] !== count) throw new Error(`Unexpected ${type} count: ${counts[type]} (expected ${count})`);
-          }
-          fs.writeFileSync(path, `${JSON.stringify(quiz, null, 2)}\n`);
-          console.log(JSON.stringify({ status: 'repaired', counts }, null, 2));
-          NODE
+      - name: Repair Tullin source contracts
+        run: node tools/tullin-finalize-repair.mjs pre
 
       - name: Rebuild place and epoch projections
         run: |
@@ -239,110 +48,34 @@ jobs:
           npm run place-open:build
           npm run epoker:places:build
 
-      - name: Refresh exact epoch snapshot expectations
-        run: |
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-          const index = JSON.parse(fs.readFileSync('data/epoker/epoke-place-index.json', 'utf8'));
-          const path = 'tests/epoke-place-index.test.mjs';
-          let text = fs.readFileSync(path, 'utf8');
-          const replacements = [
-            ['index.stats.canonical_claim_count', index.stats.canonical_claim_count],
-            ['index.stats.canonical_source_count', index.stats.canonical_source_count],
-            ['index.stats.place_evidence_link_count', index.stats.place_evidence_link_count],
-            ['index.stats.period_case_count', index.stats.period_case_count],
-            ['index.stats.canonical_story_milestone_count', index.stats.canonical_story_milestone_count],
-            ['index.stats.verified_place_production_milestone_count', index.stats.verified_place_production_milestone_count],
-            ['coverage.canonical_place_count', index.domains.historie.oslo_coverage.canonical_place_count],
-            ['coverage.dated_evidence_place_count', index.domains.historie.oslo_coverage.dated_evidence_place_count],
-            ['coverage.documented_case_place_count', index.domains.historie.oslo_coverage.documented_case_place_count],
-            ['coverage.awaiting_source_backed_history_count', index.domains.historie.oslo_coverage.awaiting_source_backed_history_count]
-          ];
-          for (const [expression, value] of replacements) {
-            const escaped = expression.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            const pattern = new RegExp(`assert\\.equal\\(${escaped}, \\d+\\);`);
-            if (!pattern.test(text)) throw new Error(`Could not locate epoch snapshot assertion for ${expression}`);
-            text = text.replace(pattern, `assert.equal(${expression}, ${value});`);
-          }
-          fs.writeFileSync(path, text);
-          NODE
-
-      - name: Repair Statsbygg round snapshot
-        run: |
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-          const path = 'tests/regjeringskvartalet-brands-phase.test.mjs';
-          let text = fs.readFileSync(path, 'utf8');
-          const oldLine = "      assert.deepEqual(brand.place_ids, ['regjeringskvartalet']);";
-          const newLines = "      assert.deepEqual(\n        brand.place_ids,\n        id === 'statsbygg' ? ['regjeringskvartalet', 'tullin'] : ['regjeringskvartalet']\n      );";
-          if (text.includes(oldLine)) text = text.replace(oldLine, newLines);
-          else if (!text.includes("id === 'statsbygg' ? ['regjeringskvartalet', 'tullin']")) throw new Error('Could not locate Statsbygg round snapshot');
-          fs.writeFileSync(path, text);
-          NODE
+      - name: Refresh exact epoch and round snapshots
+        run: node tools/tullin-finalize-repair.mjs snapshots
 
       - name: Rebuild People projections
         run: |
           npm run civication:history-people:build
           node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
 
-      - name: Rebuild canonical Knowledge
-        run: npm run knowledge:canonical:write
-
-      - name: Rebuild Fagverk release after Knowledge
-        run: node scripts/build-fagverk-release-manifest.mjs
-
-      - name: Rebuild Tullin quiz context after all upstream projections
+      - name: Rebuild canonical Knowledge and Fagverk release
         run: |
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-          import { buildQuizProductionContext } from './scripts/quiz-production-lib.mjs';
-          const context = await buildQuizProductionContext({ root: process.cwd(), categoryId: 'by', targetId: 'tullin' });
-          fs.writeFileSync('data/quiz/production_context/by/tullin.json', `${JSON.stringify(context, null, 2)}\n`);
-          NODE
+          npm run knowledge:canonical:write
+          node scripts/build-fagverk-release-manifest.mjs
+
+      - name: Rebuild Tullin quiz context
+        run: node tools/tullin-finalize-repair.mjs quiz-context
 
       - name: Refresh place image backlog summary
         run: |
           node scripts/audit-place-images.mjs --mode=all --report=/tmp/tullin-place-image-audit.json
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-          const report = JSON.parse(fs.readFileSync('/tmp/tullin-place-image-audit.json', 'utf8'));
-          const path = 'data/places/place_image_backlog_summary.json';
-          const saved = JSON.parse(fs.readFileSync(path, 'utf8'));
-          saved.generatedAt = '2026-08-30';
-          saved.generatedFromCommit = 'tullin_complete_2026';
-          saved.totalPlaces = report.totalPlaces;
-          saved.summary = {
-            validLocal: report.summary.local,
-            validRemote: report.summary.remote,
-            optionalMissing: report.summary.optional,
-            missing: report.summary.missing,
-            invalidLocalPath: report.summary.invalid,
-            remaining: report.summary.missing + report.summary.invalid
-          };
-          saved.byCategory ??= {};
-          for (const [category, bucket] of Object.entries(report.byCategory)) {
-            const previous = saved.byCategory[category] || {};
-            saved.byCategory[category] = {
-              total: bucket.total,
-              valid: bucket.local + bucket.remote,
-              optional: bucket.optional,
-              missing: bucket.missing,
-              invalid: bucket.invalid,
-              ...Object.fromEntries(Object.entries(previous).filter(([key]) => !['total', 'valid', 'optional', 'missing', 'invalid'].includes(key)))
-            };
-          }
-          fs.writeFileSync(path, `${JSON.stringify(saved, null, 2)}\n`);
-          NODE
+          node tools/tullin-finalize-repair.mjs image-summary
 
-      - name: Validate Tullin target
-        run: node --test tests/tullin-completion.test.mjs
-
-      - name: Validate Stories governance
-        run: npm run check:stories
+      - name: Validate Tullin target and Stories
+        run: |
+          node --test tests/tullin-completion.test.mjs
+          npm run check:stories
 
       - name: Validate v4.2 description production
-        run: |
-          node scripts/validate-place-description-production-v4_2_policy.mjs --all --report=/tmp/place-description-validation-v4_2.json
+        run: node scripts/validate-place-description-production-v4_2_policy.mjs --all --report=/tmp/place-description-validation-v4_2.json
 
       - name: Validate place and epoch projections
         run: |
@@ -385,6 +118,7 @@ jobs:
         run: |
           rm -f reports/place-production/tullin-producer-error.log
           rm -f tools/tullin-fetch-retry.mjs
+          rm -f tools/tullin-finalize-repair.mjs
           rm -f .github/workflows/tullin-place-production.yml
           rm -f .github/workflows/tullin-finalize-checkpoint.yml
           git add -A
