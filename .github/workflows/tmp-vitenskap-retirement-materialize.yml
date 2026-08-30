@@ -1,0 +1,37 @@
+name: Temporary Vitenskap retirement materializer
+
+on:
+  push:
+    branches:
+      - agent/fagverk-ia-v3-vitenskap-badge-route-completion-20260830
+    paths:
+      - '.github/workflows/tmp-vitenskap-retirement-materialize.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - name: Materialize Fagverk projections
+        run: |
+          node scripts/audit-fagverk-general-engine.mjs --write-report
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Commit generated projections
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/fagverk/general-engine-audit.json data/fagverk/fagverk_release.json
+          if git diff --cached --quiet; then
+            echo 'Projections already current.'
+            exit 0
+          fi
+          git commit -m 'Regenerate Vitenskap retirement projections'
+          git push origin HEAD:${{ github.ref_name }}
