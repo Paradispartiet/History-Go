@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "befolkning-demografi-migrasjon-og-mobilitet",
+  "id": "01-folketelling-demografiske-komponenter-og-projeksjon",
+  "title": "Folketelling, demografiske komponenter og projeksjon",
+  "sections": [
+    {
+      "id": "folketelling-befolkningsstock-og-vanlig-bosted",
+      "title": "Folketelling, befolkningsstock og vanlig bosted",
+      "method_ids": ["met_geo_census_geografisk_enhet", "met_geo_befolkningsstock_referansetid"],
+      "boundary": "Folketelling, register, midtårsestimat og projeksjon er ulike evidenstyper; referansetid, vanlig bosted, dekningsgrad og geografisk enhet skal følge tallet.",
+      "paragraphs": [
+        "Et befolkningstall er ikke meningsfullt uten en tydelig definisjon av hvem som telles, når de telles og hvilket territorium tallet gjelder. Folketellinger bygger ofte på vanlig bosted på en bestemt referansedato, mens registre kan oppdateres løpende og internasjonale indikatorer kan bruke midtårsestimater. Personer med midlertidig opphold, studenter, pendlere eller nylig flyttede kan derfor håndteres ulikt mellom systemene. Når geografiske tall sammenlignes, må analysen dokumentere referansetid, bostedsdefinisjon, geografisk enhet og datakilde. Uten dette kan forskjeller mellom to tall feilaktig tolkes som befolkningsvekst eller -nedgang selv om de egentlig skyldes ulike måleprinsipper.",
+        "En moderne folketelling søker omfattende dekning av personer og husholdninger på et definert tidspunkt, men resultatet er fortsatt et statistisk produkt med regler for innsamling, usual residence og kvalitet. Befolkningsestimater mellom tellinger kan derimot kombinere tidligere census, registre, fødsler, dødsfall, migrasjon og modellbasert justering for å beskrive en nyere periode. De to evidenstypene svarer derfor på beslektede, men ikke identiske spørsmål. Geografisk analyse bør angi om tallet er direkte censusbasert, registerbasert eller estimert, og bør ikke omtale et modelljustert mellomårsestimat som om hele befolkningen ble observert på nytt det året.",
+        "World Banks indikator for total befolkning er et harmonisert de facto midtårsestimat utviklet for sammenligning mellom land og år. Det gjør serien nyttig i internasjonal analyse, men betyr også at tallet ikke nødvendigvis er identisk med et nasjonalt publisert censusresultat fra en annen dato eller med en de jure registrert befolkning. Dersom et lands telling fant sted tidlig på året, eller bostedsdefinisjonen avviker, kan forskjellen være metodisk snarere enn demografisk. En etterprøvbar sammenligning bør derfor beholde metadata om referansedato, populasjonskonsept og revisjoner, og forklare hvorfor den harmoniserte serien er valgt fremfor eller sammen med nasjonale tall.",
+        "Administrative grenser kan endres mellom folketellinger gjennom kommunesammenslåinger, delinger eller justerte statistiske soner. Da kan et område vise stor befolkningsvekst i tabellen selv om mye av endringen bare skyldes at territoriet har blitt større. For å sammenligne steder over tid bør geografen bruke stabile geografier, reaggregere eldre data til nye grenser, bruke griddata eller eksplisitt kontrollere grenseendringer. Dette er et kjerneproblem i romlig demografi fordi befolkningen og måleenheten kan endres samtidig. Uten geografisk harmonisering risikerer man å attribuere en kartteknisk eller administrativ endring til migrasjon, urbanisering eller naturlig befolkningsvekst."
+      ],
+      "paragraphClaimIds": [["geo7-01"],["geo7-02"],["geo7-03"],["geo7-04"]]
+    },
+    {
+      "id": "fertilitet-dodelighet-naturlig-vekst-og-projeksjon",
+      "title": "Fertilitet, dødelighet, naturlig vekst og projeksjon",
+      "method_ids": ["met_geo_kohortkomponentanalyse", "met_geo_demografisk_scenarioanalyse"],
+      "boundary": "Observerte rater, estimerte rater og projeksjonsforutsetninger skal skilles; framtidig folketall er scenario- eller modellavhengig og ikke en observert trendlinje.",
+      "paragraphs": [
+        "Befolkningsendring i et avgrenset territorium kan dekomponeres i fødsler, dødsfall, innflytting og utflytting, eller uttrykkes som naturlig endring pluss netto migrasjon. Denne identiteten er enkel, men den geografiske tolkningen krever at alle komponenter gjelder samme sted og samme periode. Dersom en grense endres eller migrasjon måles med en annen bostedsregel enn befolkningsstocken, kan komponentbalansen brytes metodisk. Analysen bør derfor starte med en eksplisitt regnskapsramme og først deretter undersøke hvorfor komponentene varierer mellom steder. Slik unngår man å omtale all lokal vekst som innflytting eller all nedgang som utflytting når fødsels- og dødsbalansen kan være like viktig.",
+        "Rå fødsels- og dødsrater påvirkes sterkt av befolkningens aldersstruktur. Et område med mange eldre kan ha høy rå dødsrate selv om aldersspesifikk dødelighet er lav, mens et student- eller familieområde kan ha en annen fødselsprofil uten at individuell fertilitetsatferd nødvendigvis avviker like mye. Derfor bør demografisk geografi skille rå rater fra aldersspesifikke eller standardiserte mål når steder sammenlignes. Aldersstrukturen er ikke bare en kontrollvariabel; den er selv et resultat av tidligere fertilitet, dødelighet og migrasjon. En robust analyse viser dermed både komponentraten og den befolkningssammensetningen som gjør at den observerte totalraten oppstår.",
+        "Kohort-komponentmetoden projiserer en befolkning framover ved å la alders- og kjønnsgrupper eldes og anvende antakelser om framtidig fertilitet, dødelighet og migrasjon. Resultatet er derfor en modellert framtidsbane som er betinget av forutsetningene, ikke et observert framtidstall. Geografisk bruk krever særlig forsiktighet med migrasjon fordi lokale og regionale strømmer kan endres raskt med arbeidsmarked, bolig, politikk eller konflikt. Når en projeksjon brukes i planlegging, bør det framgå hvilke komponentforutsetninger som driver utfallet, hvilke geografiske enheter som er modellert, og om scenariet beskriver en sannsynlighetsfordeling, en medianbane eller en normativ planforutsetning.",
+        "Usikkerheten i befolkningsprojeksjoner vokser når tidshorisonten blir lengre fordi små avvik i fertilitet, dødelighet og migrasjon kan akkumuleres gjennom kohortene. Migrasjon er ofte særlig vanskelig å forutsi, og lokale prognoser kan være mer volatile enn nasjonale. Derfor bør sterke framtidspåstander ledsages av scenarioer, intervaller eller sensitivitetsanalyser som viser hvordan resultatet endres når forutsetningene varierer. Ett enkelt framtidstall kan være praktisk i en tabell, men det skjuler modellens betingelser. En faglig geografisk framstilling gjør usikkerheten synlig og skiller mellom historisk estimat, kortsiktig framskriving og langsiktig scenario før kapasitet eller arealbehov dimensjoneres."
+      ],
+      "paragraphClaimIds": [["geo7-05"],["geo7-06"],["geo7-07"],["geo7-08"]]
+    }
+  ]
+}
