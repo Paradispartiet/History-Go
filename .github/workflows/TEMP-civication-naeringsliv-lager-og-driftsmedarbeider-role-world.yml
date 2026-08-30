@@ -1,0 +1,77 @@
+name: TEMP Materialize Lager og driftsmedarbeider Role World
+
+on:
+  push:
+    branches:
+      - agent/civication-naeringsliv-lager-og-driftsmedarbeider-role-world
+    paths:
+      - scripts/TEMP_materialize_lager_og_driftsmedarbeider_role_world.mjs
+      - tests/civication-lager-og-driftsmedarbeider-role-world-rollout.test.js
+      - tests/civication-lager-og-driftsmedarbeider-readiness-prerequisites.test.js
+      - reports/CIVICATION_NAERINGSLIV_LAGER_OG_DRIFTSMEDARBEIDER_ROLE_WORLD_ROLLOUT_SOURCE_FIRST.md
+      - .github/workflows/TEMP-civication-naeringsliv-lager-og-driftsmedarbeider-role-world.yml
+  workflow_dispatch:
+
+concurrency:
+  group: civication-naeringsliv-lager-og-driftsmedarbeider-role-world-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  materialize-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/civication-naeringsliv-lager-og-driftsmedarbeider-role-world
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Materialize Lager og driftsmedarbeider Role World
+        run: node scripts/TEMP_materialize_lager_og_driftsmedarbeider_role_world.mjs
+      - name: Regenerate Career Gameplay audit
+        run: node scripts/audit-civication-career-gameplay.mjs --write
+      - name: Regenerate rollout readiness
+        run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+      - name: Verify Role World contract
+        run: node tests/civication-lager-og-driftsmedarbeider-role-world-rollout.test.js
+      - name: Verify prerequisite foundations remain strict
+        run: node tests/civication-lager-og-driftsmedarbeider-readiness-prerequisites.test.js
+      - name: Verify existing role package
+        run: node tests/civication-lager-og-driftsmedarbeider-role-package.test.js
+      - name: Verify rollout playability
+        run: node tests/civication-lager-og-driftsmedarbeider-rollout-playability.test.js
+      - name: Verify rollout readiness gate
+        run: node tests/civication-role-world-rollout-readiness.test.js
+      - name: Verify Career Gameplay baseline
+        run: node tests/civication-career-gameplay-matrix.test.js
+      - name: Run full Civication suite
+        run: |
+          set +e
+          npm run test:civication > /tmp/civication.log 2>&1
+          status=$?
+          set -e
+          if [ "$status" -ne 0 ]; then
+            echo "=== relevant Civication failure output ==="
+            grep -E -B 8 -A 24 'AssertionError|ERR_ASSERTION|not ok|FAIL|Error:|error:' /tmp/civication.log | tail -n 220 || tail -n 220 /tmp/civication.log
+            exit "$status"
+          fi
+          echo "Full Civication suite passed."
+          tail -n 50 /tmp/civication.log
+      - name: Remove temporary Role World surfaces
+        run: rm scripts/TEMP_materialize_lager_og_driftsmedarbeider_role_world.mjs .github/workflows/TEMP-civication-naeringsliv-lager-og-driftsmedarbeider-role-world.yml
+      - name: Commit exact verified Role World
+        run: |
+          git diff --check
+          git config user.name "Civication rollout agent"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && { echo "No permanent changes produced"; exit 1; }
+          git commit -m "Complete Lager og driftsmedarbeider Role World"
+          git push origin HEAD:agent/civication-naeringsliv-lager-og-driftsmedarbeider-role-world
