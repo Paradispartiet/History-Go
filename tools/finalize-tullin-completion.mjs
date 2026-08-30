@@ -494,10 +494,10 @@ const contextFile = `data/quiz/production_context/by/${placeId}.json`;
 const quiz = {
   targetId: placeId, categoryId: "by", size_class: "rich_6x7", generator_version: "history_go_manual_reviewed_v1", generated_from: briefFile,
   sources: Object.fromEntries(sources.map(s => [s.id, s.url])),
-  sets: setTitles.map((title, index) => ({ set_id: `by_${placeId}_set_${index + 1}`, title, level: index + 1, order: index + 1, phase: index < 2 ? "opening" : index < 4 ? "middle" : index === 4 ? "bridge" : "final", xp: 50 + index * 10, questions: questions.slice(index * 7, index * 7 + 7) }))
+  sets: setTitles.map((title, index) => ({ set_id: `by_${placeId}_set_${index + 1}`, title, level: index + 1, order: index + 1, phase: index === 0 ? "opening" : index < 4 ? "middle" : index === 4 ? "bridge" : "final", xp: 50 + index * 10, questions: questions.slice(index * 7, index * 7 + 7) }))
 };
 write(quizFile, quiz);
-const claimsBrief = rawQuestions.map((row, index) => ({ claim_id: `claim_${placeId}_quiz_${String(index + 1).padStart(2, "0")}`, order: index + 1, planned_phase: index < 14 ? "opening" : index < 28 ? "middle" : index < 35 ? "bridge" : "final", family: index < 14 ? "fact" : index < 35 ? "context" : "concept_theory", statement: row.correct, source_ids: [row.sourceId], source_origin: "external", emne_id: row.emneId }));
+const claimsBrief = rawQuestions.map((row, index) => ({ claim_id: `claim_${placeId}_quiz_${String(index + 1).padStart(2, "0")}`, order: index + 1, planned_phase: index < 7 ? "opening" : index < 28 ? "middle" : index < 35 ? "bridge" : "final", family: index < 14 ? "fact" : index < 35 ? "context" : "concept_theory", statement: row.correct, source_ids: [row.sourceId], source_origin: "external", emne_id: row.emneId }));
 const brief = {
   schema_version: "1.0", categoryId: "by", targetId: placeId, status: "reviewed", reviewed_at: verifiedAt,
   review_note: "Oslo byleksikon, Riksantikvaren, Statsbygg, Nasjonalmuseet, Lokalhistoriewiki og arkiv-/Commons-kilder er lest og sammenholdt. Claus Tullin/Christian Braunmann Tullin-feilen er eksplisitt rettet, fremtidsplaner er holdt utenfor, og midlertidige historiske strukturer presenteres som historiske.",
