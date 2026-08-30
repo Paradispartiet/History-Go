@@ -1,4 +1,4 @@
-name: Finalize Tullin checkpoint v8
+name: Finalize Tullin checkpoint v9
 
 on:
   push:
@@ -73,6 +73,28 @@ jobs:
 
       - name: Repair canonical Tullin source contracts
         run: node tools/tullin-finalize-repair.mjs pre
+
+      - name: Preserve shared Statsbygg context across both places
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const path = 'data/brands/brands_master.json';
+          const brands = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const brand = brands.find((candidate) => candidate.id === 'statsbygg');
+          if (!brand) throw new Error('Missing canonical Statsbygg brand');
+          for (const id of ['regjeringskvartalet', 'tullin']) {
+            if (!brand.place_ids?.includes(id)) throw new Error(`Statsbygg missing place binding: ${id}`);
+          }
+          if (!brand.source_urls?.some((url) => /nytt-regjeringskvartal/i.test(url))) {
+            throw new Error('Statsbygg Regjeringskvartalet source is missing');
+          }
+          if (!brand.source_urls?.some((url) => /stedsanalyseNationaltheatret\.pdf/i.test(url))) {
+            throw new Error('Statsbygg Tullin source is missing');
+          }
+          brand.popupdesc = 'Statsbygg er statens byggherre og eiendomsaktør. Ved Regjeringskvartalet er virksomheten byggherre og prosjektorganisasjon for det nye Regjeringskvartalet. Ved Tullin er koblingen dokumentert gjennom at Statsbygg anla parken over Tullinløkka i 2011 etter at det nye Nasjonalmuseet ble lagt til Vestbanen.';
+          fs.writeFileSync(path, `${JSON.stringify(brands, null, 2)}\n`);
+          console.log('Statsbygg popup preserves Regjeringskvartalet and Tullin context');
+          NODE
 
       - name: Repair velociped Story score after source enrichment
         run: |
