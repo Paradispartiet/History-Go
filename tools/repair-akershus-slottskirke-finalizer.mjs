@@ -7,6 +7,8 @@ const read=file=>JSON.parse(fs.readFileSync(path.join(root,file),"utf8"));
 const write=(file,value)=>fs.writeFileSync(path.join(root,file),`${JSON.stringify(value,null,2)}\n`);
 const placeFile="data/places/religion/oslo/akershus_slottskirke/akershus_slottskirke.json";
 const packetFile="data/places/production/akershus_slottskirke.json";
+const storyFile="data/stories/stories_akershus_slottskirke.json";
+const storyId="st_akershus_slottskirke_olav_v_1991";
 const place=read(placeFile);
 const packet=read(packetFile);
 
@@ -46,4 +48,27 @@ for(const sentenceNumber of [6,23]){
 }
 write(packetFile,packet);
 
-console.log(JSON.stringify({people:place.related_people_ids,strongPopupSentences:[6,23],independentSource:independent},null,2));
+// Stories integrity contract. The generated Olav V story is a canonical
+// historical event, and its stored score must equal the runtime score derived
+// by tools/check_stories_integrity.mts from the story text and two sources.
+const storyDoc=read(storyFile);
+const story=storyDoc.stories?.find(item=>item.id===storyId);
+if(!story)throw new Error(`Missing generated Story ${storyId}`);
+if(!Array.isArray(story.sources)||story.sources.length!==2)throw new Error(`Unexpected Story source count for ${storyId}`);
+story.type="historical_event";
+story.score={
+  narrative:3,
+  historical:2,
+  source:4,
+  play_value:3,
+  originality:3,
+  total:15
+};
+write(storyFile,storyDoc);
+
+console.log(JSON.stringify({
+  people:place.related_people_ids,
+  strongPopupSentences:[6,23],
+  independentSource:independent,
+  story:{id:storyId,type:story.type,score:story.score}
+},null,2));
