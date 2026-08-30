@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "biogeografi-jord-arealdekke-og-okosystem",
+  "id": "01-utbredelser-gradienter-og-jord",
+  "title": "Utbredelser, miljøgradienter og jord",
+  "sections": [
+    {
+      "id": "biogeografiske-utbredelser-og-miljogradienter",
+      "title": "Biogeografiske utbredelser og miljøgradienter",
+      "method_ids": ["met_geo_utbredelsesgradientanalyse", "met_geo_biogeografisk_skalaavgrensning"],
+      "boundary": "Utbredelser er observerte eller modellerte romlige mønstre, ikke skarpe naturgitte grenser; miljøgradient, sampling og tidsperiode må dokumenteres.",
+      "paragraphs": [
+        "Biogeografisk utbredelse må analyseres som et resultat av flere samvirkende gradienter, ikke som et enkelt svar på én klimavariabel. Temperatur og nedbør kan sette brede energimessige og fysiologiske rammer, men topografi, jordegenskaper, forstyrrelseshistorie, habitatstruktur, konkurranse, predasjon og spredningsbarrierer kan endre hvor en art faktisk forekommer. Et kart som viser observasjoner bør derfor leses sammen med miljølag og kunnskap om arten, og analysen må angi hvilken romlig og tidslig skala som brukes. Først når flere drivere vurderes eksplisitt, kan et mønster langs høyde, breddegrad eller kyst–innland behandles som en dokumentert miljøgradient fremfor en løs visuell korrelasjon.",
+        "En kartlagt utbredelsesgrense ser presis ut fordi den tegnes som en linje eller polygonkant, men den representerer vanligvis en kombinasjon av observasjonsdekning, definisjoner, modellvalg og valgt kartskala. I områder med få registreringer kan grensen være svakere støttet enn i intensivt undersøkte områder, og en grov polygon kan inkludere store arealer uten dokumenterte forekomster. Analysen bør derfor skille mellom kjent forekomst, modellert sannsynlighet, ekspertavgrenset område og faktisk kontinuerlig okkupasjon. Det er særlig viktig når utbredelseskart brukes i lokal planlegging, fordi kartets geometriske skarphet ellers kan gi inntrykk av en biologisk presisjon datagrunnlaget ikke har.",
+        "Naturtype- og økosystemkart deler kontinuerlig naturvariasjon inn i kategorier som er praktiske for analyse og forvaltning. Slike regionaliseringer er likevel regelbaserte: hvilke variabler som prioriteres, terskelverdier, minste kartleggingsenhet og skala påvirker hvor grensene trekkes. To klassifikasjonssystemer kan derfor gi ulike kart over samme landskap uten at naturen i seg selv har endret seg. Når geografiske sammenligninger gjøres over tid eller mellom datasett, må klassifikasjonssystem, versjon og kartleggingsskala følge med som metadata. Uten denne kontrollen kan en metodeforskjell feilaktig tolkes som økologisk forskjell eller reell landskapsendring.",
+        "En påstand om at en arts utbredelse har flyttet seg krever mer enn at nyere observasjoner ligger nordligere, høyere eller lenger inn i landet enn eldre funn. Observasjonene må være sammenlignbare i tid og rom, og en må vurdere om søkeinnsats, rapporteringspraksis, arealbruk, restaurering, introduksjoner eller annen menneskelig påvirkning har endret seg. Klimasignaler kan være viktige, men attribusjonen styrkes først når alternative forklaringer undersøkes og når tidsserien har tilstrekkelig dekning. En robust analyse beskriver derfor både selve forskyvningsmønsteret og hvilke ikke-klimatiske drivere eller dataskjevheter som kan ha bidratt til det observerte resultatet."
+      ],
+      "paragraphClaimIds": [["geo6-01"],["geo6-02"],["geo6-03"],["geo6-04"]]
+    },
+    {
+      "id": "jord-egenskaper-profiler-og-romlig-prediksjon",
+      "title": "Jordegenskaper, profiler og romlig prediksjon",
+      "method_ids": ["met_geo_jordprofil_dybdeanalyse", "met_geo_jordkart_prediksjonsusikkerhet"],
+      "boundary": "Jordegenskaper varierer med dybde og landskap; griddede jordkart er prediksjoner med usikkerhet og skal ikke omtales som direkte feltobservasjoner i hver piksel.",
+      "paragraphs": [
+        "Jordegenskaper varierer både horisontalt i landskapet og vertikalt gjennom jordprofilet. Terrengposisjon styrer drenering og erosjon, klima påvirker forvitring og organisk omsetning, vegetasjon og organismer påvirker karbon og struktur, og opphavsmateriale og tid setter langsiktige rammer. Derfor må en jordmåling alltid knyttes til prøvedybde, sted og landskapsposisjon før den sammenlignes med andre observasjoner. En prøve fra øvre mineraljord kan ikke uten videre representere dypere lag, og en prøve fra en dalbunn kan avvike systematisk fra en rygg. Geografisk jordanalyse krever dermed både profilforståelse og romlig sampling, ikke bare én verdi per lokalitet.",
+        "SoilGrids tilbyr globale prediksjoner av flere jordegenskaper på et standardisert rutenett og for flere dybdeintervaller. Den geografiske nytten ligger i at samme modellramme kan gi sammenhengende dekning der feltobservasjoner er ujevnt fordelt, men hver celle er fortsatt en prediksjon og ikke en direkte måling av hele jordprofilet. Oppløsningen på rundt 250 meter betyr dessuten at lokale variasjoner innenfor cellen kan være betydelige, særlig i bratt terreng, urbane områder eller mosaikklandskap. Når slike data brukes, bør analysen angi egenskap, dybdeintervall, celleoppløsning og modellversjon, og unngå å komprimere et flerlags jordprodukt til én tilsynelatende homogen stedssannhet.",
+        "En verdi hentet fra SoilGrids er modellert fra tilgjengelige jordprofiler og miljøkovariater, og den må derfor behandles som romlig prediksjon. På et konkret sted kan lokal jordbrukshistorie, fyllmasser, erosjon, mikrotopografi eller andre forhold gjøre at feltverdien avviker fra gridestimatet. Dersom en beslutning krever høy lokal presisjon, bør prediksjonen kontrolleres mot feltprøver eller andre lokale data i stedet for å brukes som erstatning for observasjon. Dette skillet mellom modell og måling er avgjørende i geografisk metode: et sømløst kart kan være svært nyttig for regional analyse, men kartets kontinuitet betyr ikke at alle pikselverdier er direkte observerte eller like sikre.",
+        "Usikkerheten i romlige jordprediksjoner varierer fordi både observasjonstetthet, representativitet og modellens evne til å forklare variasjon endres geografisk. Et enkelt kart over forventet verdi kan derfor skjule at to områder med samme predikerte jordegenskap har svært ulik støtte i data. Når prediksjonsintervall eller annen usikkerhetsinformasjon finnes, bør den rapporteres sammen med hovedestimatet og brukes aktivt i videre analyser. Det er særlig viktig hvis jordlaget inngår i habitatmodellering, erosjonsanalyse eller arealplanlegging, fordi usikkerhet ellers kan forsvinne i kartkjeden. En etterprøvbar analyse dokumenterer dermed både predikert verdi og hvor godt modellen kan forventes å representere lokal virkelighet."
+      ],
+      "paragraphClaimIds": [["geo6-05"],["geo6-06"],["geo6-07"],["geo6-08"]]
+    }
+  ]
+}
