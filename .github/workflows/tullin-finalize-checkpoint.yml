@@ -1,4 +1,4 @@
-name: Finalize Tullin checkpoint v2
+name: Finalize Tullin checkpoint v3
 
 on:
   push:
@@ -73,6 +73,9 @@ jobs:
 
       - name: Repair canonical Tullin source contracts
         run: node tools/tullin-finalize-repair.mjs pre
+
+      - name: Repair source-grounded Rossi theory binding
+        run: node tools/tullin-theory-binding-fix.mjs
 
       - name: Rebuild place and epoch projections
         run: |
@@ -174,6 +177,7 @@ jobs:
           rm -f tools/tullin-fetch-retry.mjs
           rm -f tools/tullin-finalize-repair.mjs
           rm -f tools/tullin-merge-deltas.mjs
+          rm -f tools/tullin-theory-binding-fix.mjs
           rm -f tools/finalize-tullin-completion.mjs
           rm -f .github/workflows/tullin-place-production.yml
           rm -f .github/workflows/tullin-finalize-checkpoint.yml
