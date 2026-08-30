@@ -1,4 +1,4 @@
-name: Finalize Tullin checkpoint v6
+name: Finalize Tullin checkpoint v7
 
 on:
   push:
@@ -73,6 +73,29 @@ jobs:
 
       - name: Repair canonical Tullin source contracts
         run: node tools/tullin-finalize-repair.mjs pre
+
+      - name: Repair velociped Story score after source enrichment
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const path = 'data/stories/stories_tullin.json';
+          const stories = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const story = stories.find((candidate) => candidate.id === 'st_tullin_velociped_1885');
+          if (!story) throw new Error('Missing st_tullin_velociped_1885');
+          if (!Array.isArray(story.sources) || story.sources.length < 2) {
+            throw new Error('Velociped Story source enrichment is missing');
+          }
+          story.score = {
+            narrative: 3,
+            historical: 2,
+            source: 4,
+            play_value: 3,
+            originality: 3,
+            total: 15
+          };
+          fs.writeFileSync(path, `${JSON.stringify(stories, null, 2)}\n`);
+          console.log('Tullin velociped Story score repaired to source=4 total=15');
+          NODE
 
       - name: Repair source-grounded Rossi theory binding
         run: node tools/tullin-theory-binding-fix.mjs
