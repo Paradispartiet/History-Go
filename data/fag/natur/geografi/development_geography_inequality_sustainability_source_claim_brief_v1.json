@@ -1,0 +1,125 @@
+{
+  "schema": "history_go_geografi_development_geography_inequality_sustainability_source_claim_brief_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-30",
+  "status": "source_first_ready_not_materialized",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "domain": {"ordinal":11,"id":"utviklingsgeografi_ulikhet_baerekraft","title":"Utviklingsgeografi, ulikhet og bærekraft","production_mode":"new_production"},
+  "source_strategy": {
+    "source_first": true,
+    "inspectable_urls_required": true,
+    "claim_level_trace_required": true,
+    "minimum_sources_per_claim": 2,
+    "fulltext_materialization_required_before_counting": true,
+    "income_and_human_development_must_be_distinguished": true,
+    "monetary_and_multidimensional_poverty_must_be_distinguished": true,
+    "national_average_is_not_spatial_distribution": true,
+    "survey_direct_estimate_and_small_area_model_estimate_must_be_distinguished": true,
+    "modelled_spatial_surface_requires_uncertainty_and_validation": true,
+    "displaced_survey_coordinates_are_not_true_household_locations": true,
+    "hazard_exposure_vulnerability_and_realized_loss_must_be_distinguished": true,
+    "sdg_indicator_progress_does_not_itself_establish_policy_causality": true,
+    "composite_indices_require_dimension_weight_and_version_metadata": true,
+    "place_based_targeting_requires_population_and_rate_denominators": true
+  },
+  "sources": [
+    {"id":"geo11-01-wb-pip","publisher":"World Bank","title":"Poverty and Inequality Platform — methodology and data","url":"https://pip.worldbank.org/about","type":"official-poverty-inequality-data-methodology","evidence_role":"household-survey-income-consumption-poverty-inequality-versions-ppp","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo11-02-wb-poverty-lines","publisher":"World Bank","title":"June 2025 Update to Global Poverty Lines","url":"https://www.worldbank.org/en/news/factsheet/2025/06/05/june-2025-update-to-global-poverty-lines","type":"official-poverty-line-method-update","evidence_role":"2021-ppp-international-poverty-lines-comparability-breaks","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo11-03-wb-ppp2024","publisher":"World Bank","title":"Poverty, Prosperity, and Planet Report 2024","url":"https://www.worldbank.org/en/publication/poverty-prosperity-and-planet","type":"official-global-development-assessment","evidence_role":"poverty-shared-prosperity-inequality-livable-planet-inclusive-growth","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo11-04-undp-hdi","publisher":"UNDP Human Development Reports","title":"Human Development Index","url":"https://hdr.undp.org/data-center/human-development-index","type":"official-human-development-methodology","evidence_role":"health-education-income-composite-development-average-achievement","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo11-05-undp-ihdi","publisher":"UNDP Human Development Reports","title":"Inequality-adjusted Human Development Index","url":"https://hdr.undp.org/inequality-adjusted-human-development-index","type":"official-inequality-adjusted-development-methodology","evidence_role":"distribution-sensitive-human-development-inequality-loss","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo11-06-undp-mpi2025","publisher":"UNDP Human Development Reports and OPHI","title":"Global Multidimensional Poverty Index 2025 — FAQs and methodology","url":"https://hdr.undp.org/mpi-2025-faqs","type":"official-multidimensional-poverty-methodology","evidence_role":"deprivation-incidence-intensity-household-survey-disaggregation","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo11-07-unsd-sdg-metadata","publisher":"United Nations Statistics Division","title":"Global SDG Indicator Metadata Repository","url":"https://unstats.un.org/sdgs/metadata/","type":"official-sustainable-development-indicator-metadata","evidence_role":"indicator-definition-computation-tier-version-disaggregation-metadata","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo11-08-oecd-regional-wellbeing","publisher":"OECD","title":"OECD Regional Well-Being","url":"https://www.oecd.org/en/data/tools/oecd-regional-well-being.html","type":"official-regional-wellbeing-framework","evidence_role":"regional-disparities-income-jobs-housing-health-services-environment-education","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo11-09-ipcc-wg2","publisher":"IPCC","title":"AR6 WGII Summary for Policymakers — Impacts, Adaptation and Vulnerability","url":"https://www.ipcc.ch/report/ar6/wg2/chapter/summary-for-policymakers/","type":"assessed-climate-vulnerability-synthesis","evidence_role":"exposure-vulnerability-equity-development-climate-resilient-development","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo11-10-wb-sae","publisher":"World Bank","title":"Geospatial Poverty Portal — Small Area Estimation","url":"https://pipmaps.worldbank.org/en/data/datatopics/poverty-portal/sae","type":"official-small-area-estimation-guidance","evidence_role":"survey-direct-estimates-small-area-models-precision-subnational-poverty","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo11-11-worldpop-poverty","publisher":"WorldPop","title":"Mapping poverty — spatial modelling methods","url":"https://www.worldpop.org/focus_areas/mapping_poverty/","type":"peer-reviewed-spatial-poverty-modelling-method","evidence_role":"geostatistical-model-survey-covariates-prediction-confidence-intervals","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo11-12-dhs-displacement","publisher":"The DHS Program","title":"Geographic Displacement Procedure and Georeferenced Data Release Policy for DHS","url":"https://dhsprogram.com/pubs/pdf/SAR7/SAR7.pdf","type":"official-survey-geoprivacy-methodology","evidence_role":"gps-displacement-urban-rural-confidentiality-spatial-linkage-uncertainty","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo11-13-unhabitat-housing","publisher":"UN-Habitat","title":"SDG 11.1.1 — adequate housing, slums and informal settlements","url":"https://unhabitat.org/11-1-adequate-housing","type":"official-urban-development-indicator-methodology","evidence_role":"housing-adequacy-affordability-slums-basic-services-urban-inequality","retrieval_status":"verified_2026-08-30"}
+  ],
+  "topic_briefs": [
+    {
+      "id":"utvikling-inntekt-hdi-og-levekar","title":"Utvikling, inntekt, HDI og levekår","method_ids":["met_geo_utviklingsindikator_sammenligning","met_geo_komposittindeks_dekomponering"],"boundary":"Inntekt, HDI og andre levekårsindikatorer må tolkes som forskjellige dimensjoner; komposittindekser skal dekomponeres før geografiske forskjeller forklares.","source_ids":["geo11-04-undp-hdi","geo11-05-undp-ihdi","geo11-03-wb-ppp2024"],
+      "planned_claims":[
+        {"id":"geo11-01","text":"Human Development Index kombinerer helse, utdanning og inntekt og er derfor et bredere mål på gjennomsnittlig menneskelig utvikling enn inntekt per innbygger alene, men dekker fortsatt ikke alle sider ved velferd eller makt.","source_ids":["geo11-04-undp-hdi","geo11-03-wb-ppp2024"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo11-02","text":"To steder med lik inntekt per innbygger kan ha ulike helse- og utdanningsutfall, slik at økonomisk produksjon ikke bør brukes som direkte proxy for menneskelig utvikling uten separate resultatindikatorer.","source_ids":["geo11-04-undp-hdi","geo11-08-oecd-regional-wellbeing"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo11-03","text":"Komposittindekser kan skjule hvilke dimensjoner som driver forskjellen mellom steder, og geografisk analyse bør derfor rapportere både samlet indeks og relevante komponenter før årsaker eller prioriteringer utledes.","source_ids":["geo11-04-undp-hdi","geo11-05-undp-ihdi"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo11-04","text":"Utviklingsrangeringer er avhengige av dataversjon, indikatorvalg, normalisering og vekting, slik at små rangendringer ikke bør behandles som robuste samfunnsendringer uten kontroll av metode og underliggende data.","source_ids":["geo11-04-undp-hdi","geo11-07-unsd-sdg-metadata"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"monetaer-og-flerdimensjonal-fattigdom","title":"Monetær og flerdimensjonal fattigdom","method_ids":["met_geo_fattigdomsgrenseanalyse","met_geo_mpi_dekomponering"],"boundary":"Monetær fattigdom og multidimensjonal deprivasjon skal måles og kartlegges separat; terskel, PPP-år, surveyår, dimensjoner og vekter skal følge resultatet.","source_ids":["geo11-01-wb-pip","geo11-02-wb-poverty-lines","geo11-06-undp-mpi2025"],
+      "planned_claims":[
+        {"id":"geo11-05","text":"Internasjonal monetær fattigdom måles mot eksplisitte fattigdomslinjer i kjøpekraftsjusterte priser, og revisjon av PPP-grunnlag kan gi brudd som gjør tall fra ulike metodiske utgaver ikke direkte sammenlignbare.","source_ids":["geo11-01-wb-pip","geo11-02-wb-poverty-lines"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo11-06","text":"Global MPI bruker overlappende deprivasjoner i helse, utdanning og levestandard fra samme husholdningssurvey og måler både andelen multidimensjonalt fattige og intensiteten i deprivasjonene.","source_ids":["geo11-06-undp-mpi2025","geo11-04-undp-hdi"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo11-07","text":"Et område kan ha lavere monetær fattigdom uten tilsvarende lav multidimensjonal fattigdom dersom inntekt eller forbruk forbedres raskere enn tilgang til utdanning, helse, bolig eller grunnleggende tjenester.","source_ids":["geo11-01-wb-pip","geo11-06-undp-mpi2025","geo11-13-unhabitat-housing"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo11-08","text":"Fattigdomstall bør følge surveyår og datakilde fordi oppdatering til et nyere befolkningsår eller nowcast kan innebære antakelser om uendret rate eller modellert endring snarere enn ny full husholdningsmåling.","source_ids":["geo11-01-wb-pip","geo11-06-undp-mpi2025"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"ulikhet-fordeling-og-delt-velstand","title":"Ulikhet, fordeling og delt velstand","method_ids":["met_geo_fordelingsanalyse","met_geo_ulikhetsjustert_utvikling"],"boundary":"Gjennomsnitt, fattigdomsrate, ulikhetsmål og fordelingssensitiv menneskelig utvikling beskriver ulike deler av fordelingen og skal ikke brukes om hverandre.","source_ids":["geo11-03-wb-ppp2024","geo11-05-undp-ihdi","geo11-01-wb-pip"],
+      "planned_claims":[
+        {"id":"geo11-09","text":"Gjennomsnittlig inntektsvekst kan sameksistere med svak delt velstand dersom gevinstene er skjevt fordelt, slik at utviklingsanalyse bør kombinere nivå, vekst og fordelingsmål.","source_ids":["geo11-03-wb-ppp2024","geo11-01-wb-pip"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo11-10","text":"IHDI reduserer den målte menneskelige utviklingen når helse, utdanning eller inntekt er ulikt fordelt og viser derfor et fordelingssensitivt tap som HDI-gjennomsnittet alene ikke viser.","source_ids":["geo11-05-undp-ihdi","geo11-04-undp-hdi"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo11-11","text":"En fallende fattigdomsrate innebærer ikke nødvendigvis fallende ulikhet fordi personer kan krysse fattigdomsterskelen samtidig som avstanden mellom andre deler av inntekts- eller forbruksfordelingen øker.","source_ids":["geo11-01-wb-pip","geo11-03-wb-ppp2024"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo11-12","text":"Fordelingsmål er følsomme for hvilken velferdsvariabel, befolkning og geografisk enhet som brukes, og sammenligning bør dokumentere om grunnlaget er inntekt, forbruk, husholdning, person eller regionalt aggregat.","source_ids":["geo11-01-wb-pip","geo11-05-undp-ihdi"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"romlig-ulikhet-subnasjonale-data-og-small-area-estimation","title":"Romlig ulikhet, subnasjonale data og small area estimation","method_ids":["met_geo_subnasjonal_ulikhetsanalyse","met_geo_small_area_estimation_kontroll"],"boundary":"Nasjonale gjennomsnitt, direkte surveyestimater og modelbaserte småområdeestimater skal skilles; presisjon, sample, modell og geografisk harmonisering må følge kartet.","source_ids":["geo11-08-oecd-regional-wellbeing","geo11-10-wb-sae","geo11-11-worldpop-poverty"],
+      "planned_claims":[
+        {"id":"geo11-13","text":"Nasjonale gjennomsnitt kan skjule store regionale forskjeller i inntekt, arbeid, bolig, helse, tjenester og miljø og bør derfor suppleres med subnasjonale indikatorer når politikken eller mekanismen er stedsspesifikk.","source_ids":["geo11-08-oecd-regional-wellbeing","geo11-10-wb-sae"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo11-14","text":"Direkte surveyestimater blir ofte mindre presise når utvalget brytes ned til små geografiske områder, og et detaljert kart er derfor ikke nødvendigvis mer pålitelig bare fordi polygonene er mindre.","source_ids":["geo11-10-wb-sae","geo11-01-wb-pip"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo11-15","text":"Small Area Estimation kombinerer surveyinformasjon med modeller og hjelpevariabler for å estimere områder der direkte utvalg er utilstrekkelige, og slike resultater skal merkes som modellestimater med usikkerhet.","source_ids":["geo11-10-wb-sae","geo11-11-worldpop-poverty"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo11-16","text":"Romlig fattigdomssammenligning over tid krever harmoniserte geografiske enheter eller eksplisitt behandling av grenseendringer, ellers kan administrativ omorganisering framstå som endret lokal fattigdom eller ulikhet.","source_ids":["geo11-10-wb-sae","geo11-08-oecd-regional-wellbeing"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"bolig-tjenestetilgang-og-stedlige-levekar","title":"Bolig, tjenestetilgang og stedlige levekår","method_ids":["met_geo_bolig_deprivasjonsanalyse","met_geo_tjenestetilgjengelighet"],"boundary":"Boligstandard, affordability, grunnleggende tjenester og fysisk tilgjengelighet er separate levekårsdimensjoner; urban/rural etikett erstatter ikke stedlig tjenesteanalyse.","source_ids":["geo11-13-unhabitat-housing","geo11-08-oecd-regional-wellbeing","geo11-06-undp-mpi2025"],
+      "planned_claims":[
+        {"id":"geo11-17","text":"UN-Habitat måler slum, uformell bosetting og utilstrekkelig bolig gjennom konkrete deprivasjons- og adequacy-kriterier, og slike boligindikatorer er ikke det samme som husholdningens monetære fattigdomsstatus.","source_ids":["geo11-13-unhabitat-housing","geo11-01-wb-pip"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo11-18","text":"Tilgang til tjenester avhenger av både om tilbudet finnes og hvor enkelt det kan nås i tid, kostnad og transport, slik at regionalt tjenestenivå ikke kan reduseres til antall fasiliteter per administrativ enhet.","source_ids":["geo11-08-oecd-regional-wellbeing","geo11-13-unhabitat-housing"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo11-19","text":"Urban og rural befolkning kan ha ulike mønstre av bolig-, infrastruktur- og tjenestedeprivasjon, men kategoriene er heterogene og bør dekomponeres etter konkrete levekårsindikatorer fremfor å brukes som forklaring i seg selv.","source_ids":["geo11-06-undp-mpi2025","geo11-13-unhabitat-housing"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo11-20","text":"Stedbasert utviklingsanalyse bør kombinere rate og antall berørte fordi et lite område kan ha svært høy deprivasjonsrate men færre personer enn en stor region med moderat rate.","source_ids":["geo11-10-wb-sae","geo11-13-unhabitat-housing"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"klimarisiko-saarbarhet-fattigdom-og-rettferdighet","title":"Klimarisiko, sårbarhet, fattigdom og rettferdighet","method_ids":["met_geo_klima_utvikling_overlay","met_geo_saarbarhet_rettferdighet"],"boundary":"Fare, eksponering, sårbarhet, tilpasningskapasitet og realisert tap skal skilles; romlig overlapp mellom fattigdom og fare etablerer ikke alene kausal effekt.","source_ids":["geo11-09-ipcc-wg2","geo11-06-undp-mpi2025","geo11-11-worldpop-poverty"],
+      "planned_claims":[
+        {"id":"geo11-21","text":"Klimarisiko formes av fare, eksponering og sårbarhet, og et område med høy fysisk fare trenger ikke ha størst menneskelig risiko dersom eksponeringen eller sårbarheten er lavere enn andre steder.","source_ids":["geo11-09-ipcc-wg2","geo11-11-worldpop-poverty"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo11-22","text":"Fattigdom og andre utviklingsgap kan øke sårbarhet og redusere tilpasningskapasitet, samtidig som klimaskader kan forsterke eksisterende ulikheter, slik at retningen i årsakssammenhengen må undersøkes eksplisitt.","source_ids":["geo11-09-ipcc-wg2","geo11-03-wb-ppp2024"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo11-23","text":"Et romlig overlay mellom multidimensjonal fattigdom og klimafarer identifiserer samtidig eksponering, men beviser ikke at faren har forårsaket den observerte fattigdommen eller hvilket tap et framtidig sjokk vil gi.","source_ids":["geo11-06-undp-mpi2025","geo11-09-ipcc-wg2"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo11-24","text":"Klimarobust utvikling krever at tilpasning, utslippsreduksjon, utviklingsmål og fordelingsvirkninger vurderes sammen fordi tiltak kan ha ulike gevinster, kostnader og trade-offs mellom steder og grupper.","source_ids":["geo11-09-ipcc-wg2","geo11-07-unsd-sdg-metadata"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"sdg-indikatorer-lokalisering-og-baerekraft","title":"SDG-indikatorer, lokalisering og bærekraft","method_ids":["met_geo_sdg_metadata_audit","met_geo_territoriell_baerekraft_indikator"],"boundary":"SDG-indikatorer skal tolkes etter offisiell definisjon, teller, nevner, datakilde og versjon; lokal indikatorframgang er ikke i seg selv kausalt bevis for et tiltak.","source_ids":["geo11-07-unsd-sdg-metadata","geo11-08-oecd-regional-wellbeing","geo11-13-unhabitat-housing"],
+      "planned_claims":[
+        {"id":"geo11-25","text":"SDG-indikatorer har egne metadata for definisjon, beregning, datakilde og disaggregasjon og skal ikke sammenlignes på tvers av versjoner eller steder uten å kontrollere at indikatoren faktisk er metodisk kompatibel.","source_ids":["geo11-07-unsd-sdg-metadata","geo11-13-unhabitat-housing"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo11-26","text":"Lokalisering av bærekraftsmål krever territorielt relevante indikatorer fordi nasjonal framgang kan sameksistere med tilbakegang eller store gap i bestemte regioner, byer eller befolkningsgrupper.","source_ids":["geo11-07-unsd-sdg-metadata","geo11-08-oecd-regional-wellbeing"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo11-27","text":"Framgang i en resultatindikator etter et politisk tiltak etablerer ikke alene at tiltaket forårsaket endringen, fordi samtidige økonomiske, demografiske eller miljømessige prosesser kan påvirke samme mål.","source_ids":["geo11-07-unsd-sdg-metadata","geo11-03-wb-ppp2024"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo11-28","text":"Bærekraftsanalyse bør synliggjøre trade-offs og fordelingsvirkninger fordi forbedring i én indikator eller ett område kan ledsages av kostnader, risiko eller ressursbruk som flyttes til andre grupper eller steder.","source_ids":["geo11-09-ipcc-wg2","geo11-07-unsd-sdg-metadata"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"geodata-personvern-usikkerhet-og-reproduserbarhet","title":"Geodata, personvern, usikkerhet og reproduserbarhet","method_ids":["met_geo_utviklingsdata_personvern","met_geo_utviklingsgeografi_reproduserbarhet"],"boundary":"Surveykoordinater, modellflater og indikatorversjoner skal følge personvern-, usikkerhets- og reproduksjonsmetadata; høy romlig oppløsning skal ikke forveksles med høy presisjon.","source_ids":["geo11-12-dhs-displacement","geo11-10-wb-sae","geo11-11-worldpop-poverty","geo11-07-unsd-sdg-metadata"],
+      "planned_claims":[
+        {"id":"geo11-29","text":"DHS forskyver offentliggjorte survey-clusterkoordinater for å beskytte respondenter, og punktet i den offentlige filen skal derfor ikke behandles som husholdningenes sanne lokasjon eller kobles til svært lokale covariates uten usikkerhetsanalyse.","source_ids":["geo11-12-dhs-displacement","geo11-11-worldpop-poverty"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo11-30","text":"En finmasket modellert fattigdomsflate kan ha høy kartoppløsning men betydelig prediksjonsusikkerhet, og analyser bør rapportere confidence intervals eller andre usikkerhetsmål og validere modellen mot holdout- eller uavhengige data.","source_ids":["geo11-11-worldpop-poverty","geo11-10-wb-sae"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo11-31","text":"Spatial kobling av survey, raster og administrative data krever kontroll av år, geografi, projeksjon, oppløsning og personvernsforskyvning fordi feiljustering kan skape kunstige lokale sammenhenger eller feil målgruppe.","source_ids":["geo11-12-dhs-displacement","geo11-10-wb-sae","geo11-11-worldpop-poverty"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo11-32","text":"En etterprøvbar utviklingsgeografisk analyse dokumenterer indikator- og fattigdomsdefinisjon, PPP- og surveyår, geografisk enhet, komposittvekter, modellstatus, usikkerhet, personvernbehandling, befolkningsnevner og dataversjon før romlig ulikhet eller bærekraftsframgang generaliseres.","source_ids":["geo11-01-wb-pip","geo11-07-unsd-sdg-metadata","geo11-10-wb-sae","geo11-12-dhs-displacement"],"status":"planned_requires_fulltext_verification"}
+      ]
+    }
+  ],
+  "decision_scenarios": [
+    {"id":"geo11-scenario-01","prompt":"Sammenlign to regioner med lik inntekt per innbygger, men ulike helse-, utdannings- og IHDI-resultater, og vis hvorfor inntekt ikke er tilstrekkelig utviklingsmål.","source_ids":["geo11-04-undp-hdi","geo11-05-undp-ihdi","geo11-08-oecd-regional-wellbeing"]},
+    {"id":"geo11-scenario-02","prompt":"Avstem monetær fattigdom mot MPI i samme område og forklar forskjeller i surveyår, terskel, dimensjoner og befolkningsgrunnlag.","source_ids":["geo11-01-wb-pip","geo11-02-wb-poverty-lines","geo11-06-undp-mpi2025"]},
+    {"id":"geo11-scenario-03","prompt":"Bygg et subnasjonalt fattigdomskart og marker hvilke områder som bygger på direkte surveyestimater og hvilke som bygger på Small Area Estimation med usikkerhet.","source_ids":["geo11-10-wb-sae","geo11-11-worldpop-poverty"]},
+    {"id":"geo11-scenario-04","prompt":"Koble fattigdom og klimafare uten å gjøre romlig overlapp til kausal forklaring, og skill fare, eksponering, sårbarhet og mulig tap.","source_ids":["geo11-09-ipcc-wg2","geo11-06-undp-mpi2025","geo11-11-worldpop-poverty"]},
+    {"id":"geo11-scenario-05","prompt":"Evaluer lokal SDG-framgang ved å kontrollere metadata, teller, nevner, versjon og parallelle trender før en kommunal politikk tilskrives effekten.","source_ids":["geo11-07-unsd-sdg-metadata","geo11-13-unhabitat-housing","geo11-08-oecd-regional-wellbeing"]},
+    {"id":"geo11-scenario-06","prompt":"Koble DHS-clustere til geodata med eksplisitt håndtering av GPS-forskyvning, buffer/sensitivitet, år, rasteroppløsning og modellusikkerhet.","source_ids":["geo11-12-dhs-displacement","geo11-11-worldpop-poverty","geo11-10-wb-sae"]}
+  ],
+  "planned_assessments": 8,
+  "fulltext_requirements": {"modules":4,"sections":8,"paragraphs":32,"verified_claims":32,"assessments":8,"decision_cases":6}
+}
