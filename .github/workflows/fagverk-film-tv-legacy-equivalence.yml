@@ -32,15 +32,12 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: '24'
-      - name: Verify Film TV legacy equivalence evidence
+      - name: Verify Film TV legacy equivalence and retired route
         run: |
           node --check scripts/audit-fagverk-film-tv-legacy-theory.mjs
           node scripts/audit-fagverk-film-tv-legacy-theory.mjs
           node --test tests/fagverk-film-tv-legacy-theory-audit.test.mjs
-          if [ -f scripts/audit-fagverk-film-tv-legacy-adjudication.mjs ]; then
-            node --check scripts/audit-fagverk-film-tv-legacy-adjudication.mjs
-            node scripts/audit-fagverk-film-tv-legacy-adjudication.mjs
-          fi
-          if [ -f tests/fagverk-film-tv-legacy-theory-adjudication.test.mjs ]; then
-            node --test tests/fagverk-film-tv-legacy-theory-adjudication.test.mjs
-          fi
+          node --check scripts/audit-fagverk-film-tv-legacy-adjudication.mjs
+          node scripts/audit-fagverk-film-tv-legacy-adjudication.mjs
+          node --test tests/fagverk-film-tv-legacy-theory-adjudication.test.mjs
+          node --test tests/fagverk-badge-equivalence.test.mjs
