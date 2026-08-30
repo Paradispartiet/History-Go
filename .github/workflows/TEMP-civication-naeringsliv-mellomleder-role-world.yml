@@ -1,0 +1,81 @@
+name: TEMP Materialize Mellomleder Role World
+
+on:
+  push:
+    branches:
+      - agent/civication-naeringsliv-mellomleder-role-world
+    paths:
+      - scripts/TEMP_materialize_mellomleder_role_world.mjs
+      - tests/civication-mellomleder-role-world-rollout.test.js
+      - reports/CIVICATION_NAERINGSLIV_MELLOMLEDER_ROLE_WORLD_ROLLOUT_SOURCE_FIRST.md
+      - .github/workflows/TEMP-civication-naeringsliv-mellomleder-role-world.yml
+  workflow_dispatch:
+
+concurrency:
+  group: civication-naeringsliv-mellomleder-role-world-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  materialize-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/civication-naeringsliv-mellomleder-role-world
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Materialize Mellomleder Role World
+        run: node scripts/TEMP_materialize_mellomleder_role_world.mjs
+      - name: Regenerate Career Gameplay audit
+        run: node scripts/audit-civication-career-gameplay.mjs --write
+      - name: Regenerate rollout readiness
+        run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+      - name: Verify dedicated Role World contract
+        run: node tests/civication-mellomleder-role-world-rollout.test.js
+      - name: Verify prerequisite contract remains strict
+        run: node tests/civication-mellomleder-readiness-prerequisites.test.js
+      - name: Verify existing rollout playability
+        run: node tests/civication-mellomleder-rollout-playability.test.js
+      - name: Verify both practice weeks
+        run: |
+          node tests/civication-mellomleder-first-week-praksisfortellinger.test.js
+          node tests/civication-mellomleder-second-week-praksisfortellinger.test.js
+          node tests/civication-mellomleder-two-week-flow.test.js
+      - name: Verify readiness gate
+        run: node tests/civication-role-world-rollout-readiness.test.js
+      - name: Verify compiled Scene Registry parity
+        run: node scripts/build-civication-scene-registry.mjs --check
+      - name: Verify Scenario People state and invariants
+        run: |
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
+          node --test tests/civication-scenario-people.test.mjs
+      - name: Run full Civication suite
+        run: |
+          set +e
+          npm run test:civication > /tmp/civication.log 2>&1
+          status=$?
+          set -e
+          if [ "$status" -ne 0 ]; then
+            grep -E -B 8 -A 24 'AssertionError|ERR_ASSERTION|not ok|FAIL|Error:|error:' /tmp/civication.log | tail -n 220 || tail -n 220 /tmp/civication.log
+            exit "$status"
+          fi
+          tail -n 50 /tmp/civication.log
+      - name: Remove temporary rollout surfaces
+        run: rm scripts/TEMP_materialize_mellomleder_role_world.mjs .github/workflows/TEMP-civication-naeringsliv-mellomleder-role-world.yml
+      - name: Commit exact verified Role World state
+        run: |
+          git diff --check
+          git config user.name "Civication rollout agent"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && { echo "No permanent changes produced"; exit 1; }
+          git commit -m "Complete Mellomleder Role World"
+          git push origin HEAD:agent/civication-naeringsliv-mellomleder-role-world
