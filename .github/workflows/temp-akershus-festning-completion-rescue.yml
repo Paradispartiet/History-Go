@@ -114,6 +114,7 @@ jobs:
           npm run place-open:build
           npm run epoker:places:build
           node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-quiz-production-context.mjs --category historie --target akershus_festning --output data/quiz/production_context/historie/akershus_festning.json
 
       - name: Verify Akershus target and repository contracts
         shell: bash
