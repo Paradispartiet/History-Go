@@ -21,6 +21,9 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/setup-node-npm
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
 
       - name: Reuse canonical Akershus normalization step
         shell: bash
