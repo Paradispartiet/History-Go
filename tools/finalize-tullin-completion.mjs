@@ -518,7 +518,35 @@ fagManifest.by.quizProduction.targets[placeId] = { source_brief: `../quiz/produc
 write("data/fag/fag_manifest.json", fagManifest);
 const builtContext = await buildQuizProductionContext({ root, categoryId: "by", targetId: placeId });
 write(contextFile, builtContext);
-quiz.production_context = { ...builtContext, existing_quiz_audit: brief.existing_quiz_audit, profile_decision: brief.profile_decision, held_back_candidates: brief.held_back_candidates, theory_start_phase: "final", method_start_phase: "final" };
+quiz.production_context = {
+  manifest_category: "by",
+  profile: "rich_6x7",
+  standard_version: "3.3",
+  source_brief: briefFile,
+  context_artifact: contextFile,
+  resolved_files: {
+    pensum: "data/fag/by/pensum_by.json",
+    emner: "data/fag/by/emner_by.json",
+    fagkart: "data/fag/by/fagkart_by.json",
+    methods: "data/fag/by/methods_by.json",
+    supersetQuizMal: "data/fag/by/supersetQUIZMAL_by.json",
+    quizStandard: "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+    quizQuestionSchema: "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+  },
+  required_inputs_loaded: ["pensum", "emner", "fagkart", "methods", "supersetQuizMal", "quizStandard", "quizQuestionSchema"],
+  pensum_module_ids: brief.selected_curriculum.module_ids,
+  emne_ids: brief.selected_curriculum.emne_ids,
+  topic_hook_ids: brief.selected_curriculum.topic_hook_ids,
+  method_ids: brief.selected_curriculum.method_ids,
+  thinker_ids: brief.selected_curriculum.thinker_ids,
+  works: brief.selected_curriculum.works,
+  source_review_status: brief.status,
+  theory_start_phase: "final",
+  method_start_phase: "final",
+  existing_quiz_audit: brief.existing_quiz_audit,
+  profile_decision: brief.profile_decision,
+  held_back_candidates: brief.held_back_candidates
+};
 write(quizFile, quiz);
 const quizManifest = read("data/quiz/manifest.json");
 quizManifest.sets = (quizManifest.sets || []).filter(item => item.targetId !== placeId);
