@@ -41,7 +41,21 @@ jobs:
           git merge --no-edit origin/main
 
       - name: Materialize canonical Tullin package
-        run: node tools/finalize-tullin-completion.mjs
+        run: |
+          rm -f reports/place-production/tullin-producer-error.log
+          set +e
+          node tools/finalize-tullin-completion.mjs > /tmp/tullin-producer.log 2>&1
+          STATUS=$?
+          set -e
+          cat /tmp/tullin-producer.log
+          if [ "$STATUS" -ne 0 ]; then
+            mkdir -p reports/place-production
+            cp /tmp/tullin-producer.log reports/place-production/tullin-producer-error.log
+            git add reports/place-production/tullin-producer-error.log
+            git commit -m "Capture Tullin producer failure"
+            git push origin HEAD:work/tullin-completion-20260830
+            exit "$STATUS"
+          fi
 
       - name: Record current READ-FIRST rule preflight
         run: |
@@ -105,6 +119,7 @@ jobs:
 
       - name: Commit permanent package and remove temporary producer
         run: |
+          rm -f reports/place-production/tullin-producer-error.log
           rm .github/workflows/tullin-place-production.yml
           git add -A
           if git diff --cached --quiet; then
