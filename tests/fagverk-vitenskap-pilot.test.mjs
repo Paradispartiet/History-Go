@@ -49,10 +49,10 @@ test('Teknologi forblir nested spesialisering under Vitenskap', () => {
   assert.equal(report.gates.technologyRemainsNested, true);
 });
 
-test('Vitenskap-merkesiden skiller merket fra fagsiden', () => {
+test('Vitenskap-merke-URL-en er compatibility redirect til integrert Progresjon', () => {
   const html = fs.readFileSync(path.join(root, 'data/fag/vitenskap/merke_vitenskap (2).html'), 'utf8');
-  assert.match(html, /fagverk-forside\.html/);
-  assert.match(html, /fagverk\.html\?subject=vitenskap/);
-  assert.match(html, /Åpne Vitenskap-faget/);
+  assert.match(html, /location\.replace/);
+  assert.match(html, /fagverk\.html\?subject=vitenskap#fagverkIaProgresjon/);
+  assert.doesNotMatch(html, /fagverk-forside\.html|Åpne Vitenskap-faget|merke-blokk|emner-vitenskap/i);
   assert.doesNotMatch(html, /fagverk\.html\?subject=teknologi/);
 });
