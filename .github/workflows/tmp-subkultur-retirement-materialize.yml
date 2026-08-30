@@ -1,0 +1,35 @@
+name: Temporary Subkultur retirement materializer
+
+on:
+  push:
+    branches:
+      - agent/fagverk-ia-v3-subkultur-badge-route-completion-20260830
+    paths:
+      - '.github/workflows/tmp-subkultur-retirement-materialize.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - name: Materialize general-engine report
+        run: node scripts/audit-fagverk-general-engine.mjs --write-report
+      - name: Commit generated report
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/fagverk/general-engine-audit.json
+          if git diff --cached --quiet; then
+            echo 'Report already current.'
+            exit 0
+          fi
+          git commit -m 'Regenerate Subkultur retirement projection'
+          git push origin HEAD:${{ github.ref_name }}
