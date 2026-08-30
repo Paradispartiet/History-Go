@@ -6,7 +6,7 @@
   "canonical_subcategory_id": "geografi",
   "status": "production_in_progress",
   "progress": {
-    "materializedDomains": 3,
+    "materializedDomains": 4,
     "totalDomains": 12,
     "strictCompletionProven": false
   },
@@ -19,7 +19,7 @@
     "complete_requires_all_domains_and_strict_proof": true,
     "geography_requires_explicit_spatial_methods": true
   },
-  "next_gate": "climate_weather_zones_change_fulltext",
+  "next_gate": "hydrology_ocean_cryosphere_rivers_fulltext",
   "materialized": [
     {
       "ordinal": 1,
@@ -50,6 +50,16 @@
       "audit": "reports/fagverk/geografi-geomorphology-landscape-earth-systems-fulltext-v1-audit.json",
       "source_brief": "data/fag/natur/geografi/geomorphology_landscape_earth_systems_source_claim_brief_v1.json",
       "source_brief_audit": "reports/fagverk/geografi-geomorphology-landscape-earth-systems-source-brief-v1-audit.json"
+    },
+    {
+      "ordinal": 4,
+      "domain_id": "klima_vaer_klimasoner_endring",
+      "chapter": "data/fagverk/natur/geografi/klima-vaer-klimasoner-og-endring.json",
+      "claims": "data/fagverk/natur/geografi/klima-vaer-klimasoner-og-endring/claims.json",
+      "assessment": "data/fagverk/natur/geografi/klima-vaer-klimasoner-og-endring/assessment.json",
+      "audit": "reports/fagverk/geografi-climate-weather-zones-change-fulltext-v1-audit.json",
+      "source_brief": "data/fag/natur/geografi/climate_weather_zones_change_source_claim_brief_v1.json",
+      "source_brief_audit": "reports/fagverk/geografi-climate-weather-zones-change-source-brief-v1-audit.json"
     }
   ]
 }

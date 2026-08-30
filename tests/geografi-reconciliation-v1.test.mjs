@@ -6,12 +6,12 @@ test('Geografi reconciliation låser eierskap, 12-domeneplan og fail-closed frem
   const result = audit();
   assert.equal(result.status, 'pass');
   assert.equal(result.domains, 12);
-  assert.equal(result.materialized, 3);
-  assert.equal(result.sourceFirstReady, 4);
+  assert.equal(result.materialized, 4);
+  assert.equal(result.sourceFirstReady, 5);
   assert.equal(result.strictCompletionProven, false);
   assert.equal(result.reuseWithExpansion, 4);
   assert.equal(result.newProductionRequired, 8);
   assert.equal(result.moveExisting, 0);
-  assert.equal(result.nextDomain, 'klima_vaer_klimasoner_endring');
+  assert.equal(result.nextDomain, 'hydrologi_hav_kryosfaere_vassdrag');
   assert.ok(result.findings >= 10);
 });

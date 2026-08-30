@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import test from "node:test";
 
 import {
@@ -41,4 +42,18 @@ test("domain routing selects affected subjects and fans shared changes into one 
     registries,
     changedFiles: ["data/fagverk/subject_inventory.json"],
   }), ["helse", "utdanning", "sosiologi_antropologi", "geografi"]);
+});
+
+test("shared domain workflow triggers on every Geografi surface routed by the registry", () => {
+  const workflow = readFileSync(".github/workflows/fagverk-domain-registry.yml", "utf8");
+  for (const pathPattern of [
+    "data/fag/natur/geografi/**",
+    "data/fagverk/natur/geografi/**",
+    "reports/fagverk/geografi-*.json",
+    "scripts/*geografi*",
+    "tests/geografi-*.test.mjs",
+    ".github/ci/fagverk-geografi-domain-registry-v1.json",
+  ]) {
+    assert.match(workflow, new RegExp(pathPattern.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")), `workflow mangler Geografi-trigger ${pathPattern}`);
+  }
 });
