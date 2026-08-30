@@ -7,7 +7,8 @@ const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const ADJ='data/fag/vitenskap/legacy_theory_adjudication_v1.json';
 const RAW='scripts/audit-fagverk-vitenskap-legacy-theory.mjs';
 const PORTAL='data/fagverk/fagverk_portal.json';
-const LEGACY='data/fag/vitenskap/merke_vitenskap (2).html';
+const COMPAT='data/fag/vitenskap/merke_vitenskap (2).html';
+const ARCHIVE='data/fag/vitenskap/archive/merke_vitenskap_full_teori_legacy_20260830.html';
 const ORIGINAL='519bb6541d2e25606f714e5a1d22d2bfa06b3a2c';
 const TARGET='fagverk.html?subject=vitenskap#fagverkIaProgresjon';
 const IDS=['felt','normativ','doxa','metode','materiell','sosial','geografisk','temporal','blindsoner','begreper','bidrag','emner-vitenskap'];
@@ -25,7 +26,7 @@ const abs=p=>path.join(ROOT,p);const readJson=p=>JSON.parse(fs.readFileSync(abs(
 function rawAudit(){const r=spawnSync(process.execPath,[abs(RAW)],{cwd:ROOT,encoding:'utf8'});if(r.status!==0)throw new Error(r.stderr||r.stdout||'Vitenskap raw audit failed');return JSON.parse(r.stdout)}
 
 export function auditVitenskapLegacyAdjudication(){
-  for(const f of [ADJ,PORTAL,LEGACY])assert(fs.existsSync(abs(f)),`Mangler ${f}`);
+  for(const f of [ADJ,PORTAL,COMPAT,ARCHIVE])assert(fs.existsSync(abs(f)),`Mangler ${f}`);
   const raw=rawAudit();
   assert(raw.subject==='vitenskap','Raw audit subject mismatch');
   assert(raw.summary?.knowledgeSectionCount===10,'Raw audit skal ha 10 kunnskapsseksjoner');
@@ -33,14 +34,17 @@ export function auditVitenskapLegacyAdjudication(){
   assert(raw.summary?.manualReviewCount===0,'Vitenskap har uavklarte raw gap');
   assert(raw.summary?.redirectReady===false,'Raw audit får ikke autorisere redirect');
   assert(raw.legacy?.sourcePreserved===true,'Vitenskap legacy-kilden er ikke bevart');
-  assert(raw.legacy?.originalBlobSha===ORIGINAL&&raw.legacy?.activeBlobSha===ORIGINAL,'Vitenskap legacy blob mismatch');
-  assert(raw.navigation?.legacyRouteActive===true&&raw.navigation?.routeRetired===false,'Adjudication-fasen skal fortsatt bruke aktiv legacy-rute');
+  assert(raw.legacy?.originalBlobSha===ORIGINAL&&raw.legacy?.archiveBlobSha===ORIGINAL,'Vitenskap archive blob mismatch');
+  assert(raw.legacy?.archivePage===ARCHIVE,'Vitenskap raw audit peker ikke til canonicalt legacy-arkiv');
+  assert(raw.legacy?.compatibilityPage===COMPAT,'Vitenskap raw audit peker ikke til compatibility-URL');
+  assert(raw.navigation?.legacyRouteActive===false&&raw.navigation?.routeRetired===true,'Vitenskap-ruten er ikke pensjonert etter adjudikering');
+  assert(raw.navigation?.portalRedirected===true&&raw.navigation?.badgePage===TARGET,'Vitenskap raw audit bekrefter ikke portalredirect');
   assert(raw.canonical?.strictEmners===117&&raw.canonical?.strictClaims===178&&raw.canonical?.strictSources===103,'Vitenskap strict-integrity baseline mismatch');
 
   const adj=readJson(ADJ);
   assert(adj.schema==='history_go_fagverk_vitenskap_legacy_adjudication_v1','Uventet adjudication schema');
   assert(adj.subject==='vitenskap','Adjudication subject mismatch');
-  assert(adj.legacyBadgePage===LEGACY,'Legacy badge path mismatch');
+  assert(adj.legacyBadgePage===COMPAT,'Legacy badge path mismatch');
   assert(adj.redirectTarget===TARGET,'Redirect target mismatch');
   assert(JSON.stringify(adj.sections?.map(x=>x.id))===JSON.stringify(IDS),'Adjudication matcher ikke legacy-seksjonsrekkefølgen');
   const rawById=new Map(raw.rows.map(x=>[x.id,x]));
@@ -61,8 +65,8 @@ export function auditVitenskapLegacyAdjudication(){
   const knowledge=adj.sections.filter(x=>KNOWLEDGE.includes(x.id));
   assert(knowledge.length===10&&knowledge.every(x=>x.disposition==='canonical_supersedes'),'Alle 10 Vitenskap-kunnskapsseksjoner skal være canonical_supersedes');
   assert(adj.sections.filter(x=>x.disposition==='migrated_to_canonical').length===0,'Vitenskap skal ha 0 migrated_to_canonical');
-  const portal=readJson(PORTAL).categories?.find(x=>x.id==='vitenskap');assert(portal?.badgePage===LEGACY,'Adjudication-fasen skal ikke endre Vitenskap-ruten');
+  const portal=readJson(PORTAL).categories?.find(x=>x.id==='vitenskap');assert(portal?.badgePage===TARGET,'Vitenskap-portalen er ikke pensjonert til integrert Progresjon');assert(portal?.subjectPage==='fagverk.html?subject=vitenskap','Vitenskap subjectPage er endret utilsiktet');
   const ownerFiles=[...new Set(adj.sections.flatMap(x=>x.ownerFiles))].sort();
-  return{schema:'history_go_fagverk_vitenskap_legacy_adjudication_audit_v1',subject:'vitenskap',summary:{legacySectionCount:12,knowledgeSectionCount:10,canonicalSupersedesCount:10,migratedSectionCount:0,retiredProductCopyCount:1,retiredDynamicProductUiCount:1,canonicalOwnerFileCount:ownerFiles.length,rawAuditRedirectReady:raw.summary.redirectReady,redirectReady:true,redirectTarget:TARGET,portalRoute:portal.badgePage,portalRedirected:false,legacySourcePreserved:raw.legacy.sourcePreserved},rows:adj.sections.map(x=>({...x,anchorCoverage:rawById.get(x.id)?.anchorCoverage??null,adjudicated:true}))};
+  return{schema:'history_go_fagverk_vitenskap_legacy_adjudication_audit_v1',subject:'vitenskap',inputs:{adjudicationFile:ADJ,compatibilityPage:COMPAT,archivePage:ARCHIVE},summary:{legacySectionCount:12,knowledgeSectionCount:10,canonicalSupersedesCount:10,migratedSectionCount:0,retiredProductCopyCount:1,retiredDynamicProductUiCount:1,canonicalOwnerFileCount:ownerFiles.length,rawAuditRedirectReady:raw.summary.redirectReady,redirectReady:true,redirectTarget:TARGET,portalRoute:portal.badgePage,portalRedirected:true,routeRetired:true,legacySourcePreserved:raw.legacy.sourcePreserved,archiveBlobSha:raw.legacy.archiveBlobSha},rows:adj.sections.map(x=>({...x,anchorCoverage:rawById.get(x.id)?.anchorCoverage??null,adjudicated:true}))};
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){try{process.stdout.write(`${JSON.stringify(auditVitenskapLegacyAdjudication(),null,2)}\n`)}catch(e){process.stderr.write(`Vitenskap legacy adjudication FEIL: ${e.message}\n`);process.exitCode=1}}
