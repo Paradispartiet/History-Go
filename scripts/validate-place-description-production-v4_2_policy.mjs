@@ -5,7 +5,7 @@ import { pathToFileURL } from 'node:url';
 import { validateRepository } from './validate-place-description-production-v4_2.mjs';
 
 export const LENGTH_POLICY_REVISION = '4.2.1-source-led-length';
-export const PR_SCOPE_POLICY_REVISION = '4.2.2-canonical-place-production-index';
+export const PR_SCOPE_POLICY_REVISION = '4.2.4-canonical-onboarding-coordinate-evidence';
 export const MICRO_PLACE_POLICY_REVISION = '4.2.3-micro-place-reduced-quiz';
 
 const WORD_COUNT_ONLY_CODES = new Set([
@@ -14,6 +14,7 @@ const WORD_COUNT_ONLY_CODES = new Set([
   'popup_above_maximum'
 ]);
 const GENERATED_INDEX_ISSUE_CODE = 'generated_index_in_description_pr';
+const COORDINATE_SCOPE_ISSUE_CODE = 'mixed_description_and_coordinate_scope';
 const MICRO_QUIZ_CODES = new Set([
   'too_few_quiz_questions',
   'too_few_normal_quiz_questions',
@@ -23,6 +24,13 @@ const PLACE_PREFIX = 'data/places/';
 const PACKET_PREFIX = 'data/places/production/';
 const RULES_PREFIX = 'data/places/regler/';
 const PLACE_MANIFEST_PATH = 'data/places/manifest.json';
+const COORDINATE_EVIDENCE_PREFIX = 'data/coordinate-evidence/';
+const COORDINATE_EVIDENCE_MANIFEST_PATH = 'data/coordinate-evidence/manifest.json';
+const CANONICAL_ONBOARDING_COORDINATE_REPORTS = new Set([
+  'reports/coordinate-evidence-audit.md',
+  'reports/place-coordinate-intake-gate.md',
+  'reports/place-coordinate-quality-gate.md'
+]);
 
 function isGeneratedPlaceIndexPath(file) {
   return /(?:^|\/)(?:places_index|places-index)\.json$/u.test(String(file ?? '')) || String(file ?? '').includes('/generated/');
@@ -145,11 +153,13 @@ export function applyMicroPlaceQuizPolicy(report) {
 
 /**
  * A canonical Place onboarding or complete Place production must be allowed to
- * commit its synchronized generated place index in the same PR. This does not
- * relax the isolation rule for ordinary description-only work: onboarding
- * requires an added Place plus manifest synchronization, while full production
- * requires a changed canonical Place and its matching production packet. Other
- * PR-isolation findings remain blocking.
+ * commit its synchronized generated place index in the same PR. A new Place may
+ * additionally carry one newly added, ID-matched coordinate-evidence record,
+ * the evidence manifest and the three deterministic coordinate reports. This
+ * does not relax the isolation rule for existing Places or unrelated coordinate
+ * files. Onboarding requires an added Place plus manifest synchronization,
+ * while full production requires a changed canonical Place and its matching
+ * production packet. Other PR-isolation findings remain blocking.
  */
 export function applyCanonicalPlaceOnboardingScopePolicy(report, changedEntries = []) {
   const entries = normalizeChangedEntries(changedEntries);
@@ -175,27 +185,57 @@ export function applyCanonicalPlaceOnboardingScopePolicy(report, changedEntries 
   const canonicalOnboarding = addedPlaceFiles.length > 0 && manifestChanged && generatedIndexesChanged.length > 0;
   const canonicalPlaceProduction = matchingProductionPlaceIds.length > 0 && generatedIndexesChanged.length > 0;
 
+  const addedPlaceIds = new Set(addedPlaceFiles.map(placeIdFromJsonPath).filter(Boolean));
+  const coordinateScopeEntries = entries.filter((entry) => entry.file.startsWith(COORDINATE_EVIDENCE_PREFIX)
+    || /coordinate/iu.test(path.basename(entry.file)));
+  const addedCoordinateEvidenceEntries = coordinateScopeEntries.filter((entry) => entry.file.startsWith(COORDINATE_EVIDENCE_PREFIX)
+    && entry.file !== COORDINATE_EVIDENCE_MANIFEST_PATH
+    && entry.status.startsWith('A'));
+  const coordinateEvidenceManifestChanged = coordinateScopeEntries.some((entry) => entry.file === COORDINATE_EVIDENCE_MANIFEST_PATH);
+  const allowedCoordinateFiles = new Set([
+    COORDINATE_EVIDENCE_MANIFEST_PATH,
+    ...addedCoordinateEvidenceEntries.map((entry) => entry.file),
+    ...CANONICAL_ONBOARDING_COORDINATE_REPORTS
+  ]);
+  const coordinateEvidenceMatchesAddedPlaces = addedCoordinateEvidenceEntries.length > 0
+    && addedCoordinateEvidenceEntries.every((entry) => addedPlaceIds.has(placeIdFromJsonPath(entry.file)));
+  const coordinateScopeContainsOnlyOnboardingFiles = coordinateScopeEntries.length > 0
+    && coordinateScopeEntries.every((entry) => allowedCoordinateFiles.has(entry.file));
+  const canonicalOnboardingCoordinates = canonicalOnboarding
+    && coordinateEvidenceManifestChanged
+    && coordinateEvidenceMatchesAddedPlaces
+    && coordinateScopeContainsOnlyOnboardingFiles;
+
   if (!canonicalOnboarding && !canonicalPlaceProduction) return report;
 
   const issues = Array.isArray(report?.issues) ? report.issues : [];
-  const removedIssues = issues.filter((issue) => String(issue?.code ?? '') === GENERATED_INDEX_ISSUE_CODE);
+  const removableIssueCodes = new Set([GENERATED_INDEX_ISSUE_CODE]);
+  if (canonicalOnboardingCoordinates) removableIssueCodes.add(COORDINATE_SCOPE_ISSUE_CODE);
+  const removedIssues = issues.filter((issue) => removableIssueCodes.has(String(issue?.code ?? '')));
   if (removedIssues.length === 0) return report;
 
-  const blockingIssues = issues.filter((issue) => String(issue?.code ?? '') !== GENERATED_INDEX_ISSUE_CODE);
+  const blockingIssues = issues.filter((issue) => !removableIssueCodes.has(String(issue?.code ?? '')));
+  const removedGeneratedIndexIssues = removedIssues.filter((issue) => String(issue?.code ?? '') === GENERATED_INDEX_ISSUE_CODE);
+  const removedCoordinateScopeIssues = removedIssues.filter((issue) => String(issue?.code ?? '') === COORDINATE_SCOPE_ISSUE_CODE);
   return {
     ...report,
     prScopePolicy: {
       revision: PR_SCOPE_POLICY_REVISION,
       canonicalPlaceOnboarding: canonicalOnboarding,
       canonicalPlaceProduction,
+      canonicalOnboardingCoordinates,
       addedPlaceFiles,
       changedPlaceFiles,
       changedProductionPackets,
       matchingProductionPlaceIds,
       manifestChanged,
       generatedIndexesChanged,
-      removedGeneratedIndexIssueCount: removedIssues.length,
-      removedGeneratedIndexIssues: removedIssues
+      addedCoordinateEvidenceFiles: addedCoordinateEvidenceEntries.map((entry) => entry.file),
+      coordinateEvidenceManifestChanged,
+      removedGeneratedIndexIssueCount: removedGeneratedIndexIssues.length,
+      removedGeneratedIndexIssues,
+      removedCoordinateScopeIssueCount: removedCoordinateScopeIssues.length,
+      removedCoordinateScopeIssues
     },
     errorCount: blockingIssues.length,
     issues: blockingIssues
