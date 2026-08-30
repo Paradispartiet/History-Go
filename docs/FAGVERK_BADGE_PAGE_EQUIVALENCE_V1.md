@@ -163,6 +163,15 @@ Politikk var det siste `rich_runtime`-faget. Den separate portalen kombinerte ga
 
 Politikkens øvrige compatibility-modell beholdes for kart-, sted- og popupflater, men peker nå til integrert Fagverk. Den generelle fagsiden laster fortsatt ingen politikkspesifikk modell eller fallback.
 
+### Felles merkeindeks
+
+Den separate statiske indeksen `merker/merker.html` bar ingen unik kunnskap eller runtime. Den var dessuten ufullstendig mot de 19 canonicale fagene og løftet legacy-aliaset Populærkultur som en egen merke-kategori i strid med category-contracten.
+
+- Originalindeksen er bevart byte-for-byte i `merker/archive/merker_index_legacy_20260830.html` med Git-blob `bb0cf746552d671d4341da198c210b41bacc55d1`.
+- Den gamle URL-en er en ren compatibility-redirect til `fagverk-forside.html`.
+- Profilens merkebibliotek eier det brukeren faktisk har oppnådd; Fagverkforsiden eier utforsking av alle 19 fag og integrerte merker.
+- Badge-equivalence-testen låser arkivhash, redirect, aktive innlenker og fravær av den gamle kortgriden på aktiv URL.
+
 ## Ikke redirect ennå
 
 - **Andre fullteorisider:** `legacy_static_theory`; hvert fag må gjennom egen innholdsaudit og eksplisitt adjudisering. By, Historie, Litteratur, Kunst, Media, Musikk, Næringsliv og Natur er prosessbevis, ikke automatisk godkjenning av resten.

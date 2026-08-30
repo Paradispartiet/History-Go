@@ -14,8 +14,7 @@ const P = Object.freeze({
   subjectCore: 'js/fagverk-subject-core.js',
   subjectPage: 'js/fagverk.js',
   ia: 'js/fagverk-ia-v3.js',
-  badgeUi: 'js/fagverk-ia-v3-badge-progress.js',
-  badgeIndex: 'merker/merker.html'
+  badgeUi: 'js/fagverk-ia-v3-badge-progress.js'
 });
 
 const EXPECTED_ARCHIVE_BLOB = '9529684894ff913bc350f64b2a553b0288c7abff';
@@ -42,7 +41,6 @@ export function auditPolitikkRuntimeEquivalence() {
   const subjectPage = read(P.subjectPage);
   const ia = read(P.ia);
   const badgeUi = read(P.badgeUi);
-  const badgeIndex = read(P.badgeIndex);
   const portalEntry = portal.categories.find((entry) => entry.id === 'politikk');
   const underbadgeIds = list(badge.sub);
 
@@ -53,7 +51,6 @@ export function auditPolitikkRuntimeEquivalence() {
   assert(compatibility.includes(`location.replace('../../../${TARGET}')`), 'Politikk-wrapperen redirecter ikke til integrert Progresjon');
   assert(!/politikk-fagportal\.js|politikkEmneProgress|politikkQuizHistory|politikkConcepts/.test(compatibility), 'Politikk-wrapperen inneholder fortsatt aktiv legacy-runtime');
   assert(portalEntry?.badgePage === TARGET, 'Portalregisteret peker ikke Politikk-merket direkte til Progresjon');
-  assert(badgeIndex.includes(`../${TARGET}`), 'Alle merker peker ikke Politikk direkte til Progresjon');
 
   assert(fagManifest.politikk?.runtimeManifest === 'politikk/politikk_runtime_manifest.json', 'Fagmanifestet eier ikke Politikk runtime-manifestet');
   assert(subjectModel.includes('manifestEntry.runtimeManifest'), 'Den generelle subject-modellen laster ikke valgfritt runtime-manifest');

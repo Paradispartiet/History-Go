@@ -162,7 +162,7 @@ export function auditPsykologiLegacyStub() {
   const compatibilityRedirectPresent = compatibility.includes('location.replace')
     && compatibility.includes(RELATIVE_TARGET)
     && !/Hva er dette feltet\?|Kobling til din kunnskap|psykoanalyse til kognitiv psykologi/i.test(compatibility);
-  const badgeIndexRedirected = badgeIndex.includes(`href="../${TARGET}"`)
+  const badgeIndexRedirected = badgeIndex.includes('location.replace(\'../fagverk-forside.html\')')
     && !badgeIndex.includes('href="../data/fag/psykologi/merke_psykologi (1).html"');
   const globalProgressLinked = /href="emner\.html"[^>]*>\s*Min læring\s*</i.test(fagverkPage);
   const globalProgressExists = exists(GLOBAL_PROGRESS);

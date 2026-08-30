@@ -106,7 +106,7 @@ Den permanente auditen klassifiserer hvert `badgePage` som:
 - [ ] Audit `legacy_stub` for unik tekst og aktive lenker; redirect etter grønn gate.
 - [x] Gjør `emner.html` eksplisitt til **Min læring** / global progresjonsflate.
 - [ ] Redirect resterende legacy `badgePage` fagvis etter equivalence-gate.
-- [ ] Redirect `merker/merker.html` når ingen canonical brukerreise trenger portalen.
+- [x] Redirect `merker/merker.html` når ingen canonical brukerreise trenger portalen.
 - [ ] Fjern døde CSS-/JS-lag etter permanent referanse- og browseraudit.
 
 ## Representativ QA
