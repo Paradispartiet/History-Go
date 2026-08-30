@@ -81,3 +81,7 @@ After verified prerequisite materialization:
 ## Completion proof
 
 A valid permanent prerequisite head must pass the focused prerequisite and existing role-package gates, Career Gameplay audit, rollout-readiness audit, compiled Scene Registry parity, Scenario People generated-state and invariant checks, and the full `test:civication` suite. It must regenerate generated artifacts, remove both TEMP files before commit and leave only verified permanent authored/generated state.
+
+## Verified materialization checkpoint
+
+Fail-closed run `33321730951` materialized and verified the prerequisite from source head `605c38137340391d9ba9ed4658d3c7b9db4294e4` against `main` `60111c4b041221945448f65cd03f14d0628de9b0`. Every materialization, generated-state, focused, full Civication and TEMP-removal step passed before the runner wrote permanent head `3e6307b11519e23ba861eb3e6e562795e8fc4287`.
