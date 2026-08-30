@@ -49,3 +49,7 @@ The Jahn source is used as historical context for the difference between a measu
 ## Completion target
 
 The permanent head must materialize one complete Role World, register it in the index, checklist and theme bank, remove Mellomleder from the readiness queue, preserve Career playability and pass the strict role test, prerequisite test, all existing two-week tests, generated-state checks, full Civication and `git diff --check`. The fail-closed workflow removes both TEMP surfaces before it publishes permanent state.
+
+## Verified permanent checkpoint
+
+The fail-closed run completed successfully on source-first head `4aa811da5b6b1924987ac6dc4fb99d6f11e060b1` and produced permanent content head `b2f26e28c651052ca76f7c7db66ccffee46b664b`. Materialization, Career Gameplay, readiness, focused contracts, generated-state checks and full Civication all passed, and the workflow removed both temporary surfaces before publishing the permanent commit. This checkpoint records that verified transition without changing the Role World contract.
