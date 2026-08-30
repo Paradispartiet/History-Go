@@ -175,6 +175,16 @@ jobs:
       - name: Stop on verification failure
         if: steps.finalize.outputs.exit_code == '0' && steps.verify.outputs.exit_code != '0'
         run: exit 1
+      - name: Normalize generated report whitespace
+        if: steps.finalize.outputs.exit_code == '0' && steps.verify.outputs.exit_code == '0'
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("reports/people-of-places-status.md")
+          if path.exists():
+              path.write_text(path.read_text().rstrip() + "\n")
+          PY
       - name: Remove one-shot tooling
         if: steps.finalize.outputs.exit_code == '0' && steps.verify.outputs.exit_code == '0'
         run: |
