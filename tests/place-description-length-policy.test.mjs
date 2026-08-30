@@ -70,6 +70,86 @@ test('canonical Place onboarding may carry its required generated index', () => 
   assert.deepEqual(report.issues.map((issue) => issue.code), ['sentence_without_claim']);
 });
 
+test('canonical Place onboarding may carry ID-matched coordinate evidence and deterministic reports', () => {
+  const report = applyCanonicalPlaceOnboardingScopePolicy({
+    packetCount: 1,
+    readyPacketCount: 1,
+    errorCount: 3,
+    issues: [
+      { code: 'generated_index_in_description_pr', message: 'indeks' },
+      { code: 'mixed_description_and_coordinate_scope', message: 'koordinater' },
+      { code: 'sentence_without_claim', message: 'mangler claim' }
+    ]
+  }, [
+    { status: 'A', file: 'data/places/historie/oslo/akershus_slott.json' },
+    { status: 'M', file: 'data/places/manifest.json' },
+    { status: 'M', file: 'data/places/places_index.json' },
+    { status: 'A', file: 'data/coordinate-evidence/oslo/historie/akershus_slott.json' },
+    { status: 'M', file: 'data/coordinate-evidence/manifest.json' },
+    { status: 'M', file: 'reports/coordinate-evidence-audit.md' },
+    { status: 'M', file: 'reports/place-coordinate-intake-gate.md' },
+    { status: 'M', file: 'reports/place-coordinate-quality-gate.md' }
+  ]);
+
+  assert.equal(report.prScopePolicy.canonicalPlaceOnboarding, true);
+  assert.equal(report.prScopePolicy.canonicalOnboardingCoordinates, true);
+  assert.deepEqual(report.prScopePolicy.addedCoordinateEvidenceFiles, [
+    'data/coordinate-evidence/oslo/historie/akershus_slott.json'
+  ]);
+  assert.equal(report.prScopePolicy.removedGeneratedIndexIssueCount, 1);
+  assert.equal(report.prScopePolicy.removedCoordinateScopeIssueCount, 1);
+  assert.equal(report.errorCount, 1);
+  assert.deepEqual(report.issues.map((issue) => issue.code), ['sentence_without_claim']);
+});
+
+test('canonical Place onboarding still blocks coordinate evidence for another Place', () => {
+  const report = applyCanonicalPlaceOnboardingScopePolicy({
+    packetCount: 1,
+    readyPacketCount: 1,
+    errorCount: 2,
+    issues: [
+      { code: 'generated_index_in_description_pr', message: 'indeks' },
+      { code: 'mixed_description_and_coordinate_scope', message: 'koordinater' }
+    ]
+  }, [
+    { status: 'A', file: 'data/places/historie/oslo/akershus_slott.json' },
+    { status: 'M', file: 'data/places/manifest.json' },
+    { status: 'M', file: 'data/places/places_index.json' },
+    { status: 'A', file: 'data/coordinate-evidence/oslo/historie/bankplassen.json' },
+    { status: 'M', file: 'data/coordinate-evidence/manifest.json' }
+  ]);
+
+  assert.equal(report.prScopePolicy.canonicalOnboardingCoordinates, false);
+  assert.equal(report.prScopePolicy.removedGeneratedIndexIssueCount, 1);
+  assert.equal(report.prScopePolicy.removedCoordinateScopeIssueCount, 0);
+  assert.equal(report.errorCount, 1);
+  assert.deepEqual(report.issues.map((issue) => issue.code), ['mixed_description_and_coordinate_scope']);
+});
+
+test('existing Place production still blocks coordinate evidence changes', () => {
+  const report = applyCanonicalPlaceOnboardingScopePolicy({
+    packetCount: 1,
+    readyPacketCount: 1,
+    errorCount: 2,
+    issues: [
+      { code: 'generated_index_in_description_pr', message: 'indeks' },
+      { code: 'mixed_description_and_coordinate_scope', message: 'koordinater' }
+    ]
+  }, [
+    { status: 'M', file: 'data/places/by/oslo/places/bankplassen.json' },
+    { status: 'M', file: 'data/places/production/bankplassen.json' },
+    { status: 'M', file: 'data/places/places_index.json' },
+    { status: 'M', file: 'data/coordinate-evidence/oslo/by/bankplassen.json' }
+  ]);
+
+  assert.equal(report.prScopePolicy.canonicalPlaceProduction, true);
+  assert.equal(report.prScopePolicy.canonicalOnboardingCoordinates, false);
+  assert.equal(report.prScopePolicy.removedGeneratedIndexIssueCount, 1);
+  assert.equal(report.prScopePolicy.removedCoordinateScopeIssueCount, 0);
+  assert.equal(report.errorCount, 1);
+  assert.deepEqual(report.issues.map((issue) => issue.code), ['mixed_description_and_coordinate_scope']);
+});
+
 test('description-only PR still blocks generated index changes', () => {
   const report = applyCanonicalPlaceOnboardingScopePolicy({
     packetCount: 1,
