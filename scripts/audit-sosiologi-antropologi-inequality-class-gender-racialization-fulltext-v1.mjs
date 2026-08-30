@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
+import { projectSociologyMilestone } from './lib/sosiologi-antropologi-progress.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OWNER_CHAPTER_ID = 'fordeling-velferd-ulikhet';
@@ -98,6 +99,7 @@ export function audit() {
   const nextSourceBrief = read(P.nextSourceBrief);
   const production = read(P.production);
   const category = read(P.category);
+  projectSociologyMilestone(production, category, 5);
   const modules = overlay.expansionModuleFiles.map(read);
   const sections = modules.flatMap((module) => module.sections);
   const paragraphs = sections.flatMap((section) => section.paragraphs);
@@ -148,4 +150,3 @@ try {
   console.error(`Ulikhet, klasse, kjønn og rasialisering fulltekstaudit FEIL: ${error.message}`);
   process.exitCode = 1;
 }
-
