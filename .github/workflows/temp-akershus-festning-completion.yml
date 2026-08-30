@@ -71,6 +71,7 @@ jobs:
             }
             if (question.method_id) question.guidance_basis = ["data/fag/historie/fagkart_historie_canonical_v4_5.json", "data/fag/historie/methods_historie_canonical_v4_5.json"];
           }
+          flatQuizQuestions[27].question_type = "context";
           Object.assign(flatQuizQuestions[52], {
             emne_id: "em_his_kontroll_overvakning",
             topic_hook_id: "his_register_overvakning_disiplin",
