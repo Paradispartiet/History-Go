@@ -16,6 +16,7 @@ const profile = fs.readFileSync('profile.html', 'utf8');
 const byLegacy = fs.readFileSync('data/fag/by/merke_by.html', 'utf8');
 const byLegacyArchive = fs.readFileSync('data/fag/by/archive/merke_by_full_teori_legacy_20260830.html', 'utf8');
 const popularCultureLegacy = fs.readFileSync('data/fag/media/populaerkultur_som_mediefelt/merke_populaerkultur.html', 'utf8');
+const popularCultureArchive = fs.readFileSync('data/fag/media/populaerkultur_som_mediefelt/archive/merke_populaerkultur_full_teori_legacy_20260830.html', 'utf8');
 const compatibilityBySubject = new Map([
   ['by', byLegacy],
   ['historie', fs.readFileSync('data/fag/historie/merke_historie (1).html', 'utf8')],
@@ -125,13 +126,11 @@ test('gamle direkte URL-er er compatibility-redirects etter arkivering', () => {
   }
 });
 
-test('direkte legacy-inventar har bare Populærkultur-underfeltet igjen som innholdsflate', () => {
+test('direkte legacy-inventar har ingen gjenværende parallelle innholdsflater', () => {
   const fullContentRoutes = legacyBadgeHtmlFiles('data/fag')
     .filter((file) => !/location\.replace/.test(fs.readFileSync(file, 'utf8')))
     .sort();
-  assert.deepEqual(fullContentRoutes, [
-    'data/fag/media/populaerkultur_som_mediefelt/merke_populaerkultur.html'
-  ]);
+  assert.deepEqual(fullContentRoutes, []);
 });
 
 test('Fagverkforsiden skjuler compatibility-lenken når merket allerede er integrert i Progresjon', () => {
@@ -151,9 +150,12 @@ test('den separate merkeindeksen er bytearkivert og gammel URL går til Fagverke
   assert.match(profile, /href="fagverk-forside\.html"[^>]*>Utforsk alle fag og merker/);
   assert.match(profile, /href="fagverk-forside\.html">Fagverket<\/a>/);
   assert.equal(gitBlob(byLegacyArchive), 'bdc5ffef999db78ab2670571615f7fcf1327216f');
+  assert.equal(gitBlob(popularCultureArchive), '737ea0dd1a8233d108877d8b58030ba96417c43d');
   assert.doesNotMatch(byLegacy, /href="\.\.\/\.\.\/\.\.\/merker\/merker\.html"/);
   assert.doesNotMatch(popularCultureLegacy, /href="\.\.\/\.\.\/\.\.\/merker\/merker\.html"/);
-  assert.match(popularCultureLegacy, /href="\.\.\/\.\.\/\.\.\/fagverk\.html\?subject=media"/);
+  assert.match(popularCultureLegacy, /location\.replace\(target\)/);
+  assert.match(popularCultureLegacy, /href="\.\.\/\.\.\/\.\.\/\.\.\/fagverk\.html\?subject=media#fagverkIaEmner"/);
+  assert.equal(fs.existsSync('merker/merker.css'), false);
 });
 
 test('Politikk rich runtime og all canonical legacy static theory er pensjonert', () => {

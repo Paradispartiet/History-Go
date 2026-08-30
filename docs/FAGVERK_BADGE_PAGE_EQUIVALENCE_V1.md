@@ -183,4 +183,13 @@ Dette autoriserer ikke automatisk sletting eller redirect av enhver direkte lega
 - redirecte eller fjerne bare når referanse- og browseraudit er grønn;
 - fjerne CSS-/JS-lag først når ingen aktiv eller eksplisitt bevart flate trenger dem.
 
-Den direkte By-URL-en er ferdig behandlet etter denne regelen. `data/fag/media/populaerkultur_som_mediefelt/merke_populaerkultur.html` er fortsatt en selvstendig underfeltsflate og må inventeres mot sin faktiske Media-eier før eventuell pensjonering; den skal ikke følge automatisk av toppnivåets `badgePage`-migrering.
+Den direkte By-URL-en er ferdig behandlet etter denne regelen. Populærkultur-underfeltet er også fullført gjennom en egen, strengere delfeltsport:
+
+- Category-contracten eier `populaerkultur` som alias til `media` og sier eksplisitt at Populærkultur er tagg/linse og mediefaglig delfelt, ikke toppdomene.
+- Media Phase 3 beviser et komplett nested felt med 6 områder, 56 emner, 48 metoder og 56 mappinger.
+- Alle ti kunnskapsseksjoner på den gamle direkte siden har eksplisitt canonical Media-eier og `canonical_supersedes`; `bidrag` er pensjonert produkttekst. Det ble funnet null innholdsgap og derfor gjort null kunstige migreringer.
+- Originalen er bevart byte-for-byte i `data/fag/media/populaerkultur_som_mediefelt/archive/merke_populaerkultur_full_teori_legacy_20260830.html` med Git-blob `737ea0dd1a8233d108877d8b58030ba96417c43d`.
+- `data/fag/media/populaerkultur_som_mediefelt/merke_populaerkultur.html` er en ren compatibility-redirect til Media-emner. En resolver-basert referanseaudit finner null aktive innlenker til den gamle innholdsflaten.
+- `merker/merker.css` er fjernet etter at den samme auditen beviste null aktive HTML-referanser. Ingen JavaScript-fil var eid av denne legacy-flaten.
+
+Det permanente direkte-URL-inventaret tillater nå ingen `data/fag/**/merke*.html`-innholdsflater utenfor bytearkivene. Alle aktive slike URL-er er compatibility-redirects.
