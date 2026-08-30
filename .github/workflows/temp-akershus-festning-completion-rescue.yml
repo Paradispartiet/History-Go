@@ -69,7 +69,7 @@ jobs:
               lastError = new Error(`download failed ${res.status} ${url}`);
               if (!(res.status === 429 || res.status >= 500) || attempt === attempts) throw lastError;
               const retryAfterSeconds = Number(res.headers.get("retry-after"));
-              const waitMs = Number.isFinite(retryAfterSeconds) && retryAfterSeconds > 0 ? retryAfterSeconds * 1000 : Math.min(20000, 2000 * 2 ** (attempt - 1));
+              const waitMs = Math.min(20000, Number.isFinite(retryAfterSeconds) && retryAfterSeconds > 0 ? retryAfterSeconds * 1000 : 2000 * 2 ** (attempt - 1));
               console.warn(`retrying ${url} after HTTP ${res.status}; attempt ${attempt}/${attempts}; waiting ${waitMs} ms`);
               await sleep(waitMs);
             }
