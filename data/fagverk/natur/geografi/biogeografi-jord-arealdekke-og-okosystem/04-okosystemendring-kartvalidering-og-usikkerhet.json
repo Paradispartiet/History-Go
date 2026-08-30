@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "biogeografi-jord-arealdekke-og-okosystem",
+  "id": "04-okosystemendring-kartvalidering-og-usikkerhet",
+  "title": "Økosystemendring, kartvalidering og usikkerhet",
+  "sections": [
+    {
+      "id": "okosystemendring-klima-og-biomegrenser",
+      "title": "Økosystemendring, klima og biomegrenser",
+      "method_ids": ["met_geo_okosystem_endringsattribusjon", "met_geo_biomegrense_tidsserie"],
+      "boundary": "Klimaendring virker sammen med arealbruk og andre drivere; observerte økosystem- og utbredelsesendringer krever flerdriveranalyse og tidslig sammenlignbarhet.",
+      "paragraphs": [
+        "Endringer i artsutbredelse, fenologi og økosystemprosesser er observert i mange regioner i sammenheng med klimaendring, men geografisk attribusjon krever fortsatt kontroll for lokale drivere. Arealbruk, forstyrrelse, restaurering, forurensning, høsting og endret observasjonsinnsats kan påvirke samme indikator og noen ganger virke i motsatt retning av klimasignalet. Derfor bør analyser bruke tidsserier og romlige sammenligninger som eksplisitt inkluderer alternative forklaringer. Det styrker ikke klimaforklaringen å ignorere lokale påvirkninger; tvert imot blir attribusjonen mer troverdig når flere drivere undersøkes og deres relative bidrag vurderes mot samme datagrunnlag.",
+        "Arealbruk og habitatendring kan forsterke eller dempe klimarelaterte økosystemendringer og bør inngå som eksplisitte variable i romlige kausalmodeller. Et klima som blir mer egnet for en art hjelper lite dersom habitatet samtidig forsvinner eller fragmenteres, mens restaurering eller nye korridorer kan gjøre spredning mulig. På samme måte kan irrigasjon, hogst, brannregime eller urbanisering endre lokale mikroklima og hydrologiske forhold. Geografisk analyse må derfor unngå å behandle klimascenarioer og landskapsendring som uavhengige baktepper. Når de kombineres i samme modell, må datakilder, tidsperioder og scenarioforutsetninger harmoniseres slik at interaksjonene kan tolkes meningsfullt.",
+        "Økosystem- og biomegrenser kan reagere tregere enn klimavariablene som påvirker dem. Et varmere klima kan oppstå raskt, mens etablering av nye arter, dispersjon, jordutvikling, endret forstyrrelsesregime og konkurranse kan bruke tiår eller lenger. Historisk arealbruk og tidligere klima kan dessuten skape arv i dagens vegetasjon og jordsmonn. Derfor bør en geografisk analyse ikke forvente at biologiske grenser følger en klimaisolinje momentant eller lineært. Tidsforsinkelse og hysterese er reelle egenskaper ved systemet og må inngå når kart fra ulike år sammenlignes eller når framtidige biomegrenser modelleres fra klimascenarioer.",
+        "En overgang fra én naturtype- eller landdekkeklasse til en annen er bare økologisk meningsfull dersom klassifikasjonen, kartleggingsmetoden og skalaen er sammenlignbar. Hvis systemet har fått nye kategorier, endrede terskler eller finere oppløsning, kan store arealer skifte label uten tilsvarende fysisk endring. Dette gjelder både nasjonale naturtypekart og globale fjernmålingsprodukter. Før en tidsserie tolkes bør derfor versjoner harmoniseres, krysstabeller mellom klassesystemer dokumenteres og metodiske brudd flagges. Geografisk endringsanalyse er sterkest når den kan vise at observerte klasseoverganger overstiger det som rimeligvis kan forklares av endret kartleggings- eller klassifikasjonspraksis."
+      ],
+      "paragraphClaimIds": [["geo6-25"],["geo6-26"],["geo6-27"],["geo6-28"]]
+    },
+    {
+      "id": "kartvalidering-skala-og-usikkerhet",
+      "title": "Kartvalidering, skala og usikkerhet",
+      "method_ids": ["met_geo_biogeografisk_kartvalidering", "met_geo_usikkerhetspropagering"],
+      "boundary": "Kartnøyaktighet er knyttet til klassedefinisjon, oppløsning, referansedata og utvalg; prediksjons- og klassifikasjonsusikkerhet skal følge videre analyser.",
+      "paragraphs": [
+        "Et samlet nøyaktighetstall for et landdekkekart kan skjule store forskjeller mellom klasser og steder. En dominerende klasse kan drive totalnøyaktigheten opp selv om en sjelden våtmarks- eller urban klasse har mange feil, og lokal ytelse kan avvike fra global gjennomsnitt. Derfor bør validering undersøke klassevise feil, utvalgsdesign og representativitet i tillegg til én samlet prosent. Referansedata må være uavhengige og definisjonsmessig kompatible med kartet. Når et kart brukes i et bestemt område, bør analysen så langt mulig vise hvordan nøyaktighetsinformasjonen gjelder for den aktuelle klassen og skalaen i stedet for å bruke et globalt kvalitetsmål som universell garanti.",
+        "Usikkerhet i et prediktivt jord-, habitat- eller økosystemlag forsvinner ikke når laget legges inn i en GIS-modell. Dersom flere usikre innganger kombineres, kan et visuelt skarpt sluttkart tvert imot skjule en kompleks akkumulert usikkerhet. Derfor bør analysen videreføre tilgjengelige prediksjonsintervall, sensitivitetsmål eller scenarioalternativer og undersøke hvordan de påvirker sluttresultatet. Det er metodisk feil å omtale en modellert celle som mer observert bare fordi flere kartlag er kombinert. En etterprøvbar arbeidsflyt beskriver hvilke inngangsdata som er målte, modellerte eller klassifiserte og hvordan usikkerheten fra hvert ledd er håndtert i konklusjonen.",
+        "Endringsanalyse mellom kartprodukter krever harmonisering før pikselforskjeller kan få betydning som faktisk arealendring. Klassedefinisjoner må bety det samme, oppløsningen må være kompatibel, referanseperiodene må kunne sammenlignes og algoritmeversjoner må dokumenteres. Hvis ett produkt generaliserer små objekter mens et annet bevarer dem, vil en differanse produsere tilsynelatende endring langs kanter og mosaikker. Derfor bør geografen enten bruke et dedikert harmonisert endringsprodukt eller gjennomføre en eksplisitt harmonisering og validering. Først etter denne metodiske kontrollen kan arealtall og endringskart brukes som evidens for landskaps- eller økosystemendring.",
+        "En etterprøvbar biogeografisk analyse må dokumentere hele kjeden fra kilde til konklusjon. Datakilde og nedlastingsdato viser hvilken versjon som er brukt; koordinatsystem og oppløsning bestemmer hvordan lag kan sammenstilles; klassifikasjon og sampling beskriver hva observasjonene faktisk representerer; og usikkerhet viser grensene for generalisering. Disse opplysningene bør følge både kart, tabeller og modeller slik at en annen analytiker kan forstå og gjenta arbeidsflyten. Når utbredelse eller økologisk endring presenteres uten slike metadata, blir resultatet vanskelig å skille fra en illustrasjon. Reproduserbar geografi gjør representasjonens premisser synlige før den gjør sterke biologiske påstander."
+      ],
+      "paragraphClaimIds": [["geo6-29"],["geo6-30"],["geo6-31"],["geo6-32"]]
+    }
+  ]
+}
