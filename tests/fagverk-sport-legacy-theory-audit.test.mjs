@@ -12,7 +12,7 @@ function run() {
   return JSON.parse(result.stdout);
 }
 
-test('Sport legacy-teori har full canonical ankerdekning, men kan ikke autorisere redirect alene', () => {
+test('Sport legacy-teori rapporterer det ene reelle canonicale gapet uten å autorisere redirect', () => {
   const report = run();
   assert.equal(report.schema, 'history_go_fagverk_sport_legacy_theory_audit_v1');
   assert.equal(report.subject, 'sport');
@@ -29,13 +29,21 @@ test('Sport legacy-teori har full canonical ankerdekning, men kan ikke autoriser
   assert.ok(report.canonical.corpusCharacterCount >= report.canonical.corpusTruncationFloor);
 
   assert.equal(report.summary.knowledgeSectionCount, 10);
-  assert.equal(report.summary.anchorCompleteCount, 10);
-  assert.equal(report.summary.manualReviewCount, 0);
-  assert.deepEqual(report.summary.manualReview, []);
+  assert.equal(report.summary.anchorCompleteCount, 9);
+  assert.equal(report.summary.manualReviewCount, 1);
+  assert.deepEqual(report.summary.manualReview, ['sosial']);
   assert.equal(report.summary.redirectReady, false);
   assert.match(report.summary.redirectBlockReason, /explicit editorial adjudication/i);
 
-  for (const row of report.rows.filter((item) => item.role === 'knowledge')) {
+  const social = report.rows.find((row) => row.id === 'sosial');
+  assert.ok(social, 'Mangler sosial-seksjonen');
+  assert.equal(social.anchorCount, 11);
+  assert.equal(social.foundCount, 10);
+  assert.equal(social.anchorCoverage, 0.909);
+  assert.deepEqual(social.missingAnchors, [['ekskludering']]);
+  assert.equal(social.contentStatus, 'canonical_anchor_gaps_manual_review_required');
+
+  for (const row of report.rows.filter((item) => item.role === 'knowledge' && item.id !== 'sosial')) {
     assert.ok(row.anchorCount > 0, `${row.id} mangler ankere`);
     assert.equal(row.foundCount, row.anchorCount, `${row.id} mangler canonical dekning`);
     assert.equal(row.anchorCoverage, 1, `${row.id} skal ha full canonical dekning`);
