@@ -1,6 +1,6 @@
 # History GO — Fagverk IA v3 arbeidskort
 
-Status: **aktiv migrering — Batch A og B merget; Batch C pågår**  
+Status: **fullført — Batch A, B og C**
 Eier: `fagverk_ia_v3`  
 Opprettet: **2026-08-28**  
 Sist oppdatert: **2026-08-30**
@@ -108,8 +108,8 @@ Den permanente auditen klassifiserer hvert `badgePage` som:
 - [x] Redirect resterende legacy `badgePage` fagvis etter equivalence-gate.
 - [x] Redirect `merker/merker.html` når ingen canonical brukerreise trenger portalen.
 - [x] Bytearkiver og redirect direkte `data/fag/by/merke_by.html` etter eksisterende råaudit og eksplisitt adjudisering.
-- [ ] Avgjør den selvstendige Populærkultur-underfeltsiden mot canonical Media-eier før eventuell redirect.
-- [ ] Fjern døde CSS-/JS-lag etter permanent referanse- og browseraudit.
+- [x] Avgjør den selvstendige Populærkultur-underfeltsiden mot canonical Media-eier, bytearkiver originalen og redirect til Media-emner.
+- [x] Fjern det siste beviselig døde laget `merker/merker.css` etter permanent resolver- og DOM/browseraudit; ingen tilhørende legacy-JS finnes.
 
 ## Representativ QA
 
@@ -132,5 +132,5 @@ Migrasjonen er først ferdig når:
 6. Badgeidentitet, nivåstige og undermerker finnes i Fagverket. **Oppfylt og verifisert med full grønn CI i de mergede Batch C-tranchene.**
 7. Alle funksjoner som faktisk trengs fra rich legacy-sider finnes i Fagverket før redirect. **Oppfylt; Politikk er migrert og låst med permanent runtime-equivalence-port.**
 8. Ingen unik gyldig fagkunnskap slettes. **Oppfylt for alle canonicale `badgePage`-ruter gjennom arkiv, råaudit, eksplisitt adjudisering og gapmigrering der det var nødvendig.**
-9. Alle gamle merkesider er redirect/compatibility-only og `merker/merker.html` er avviklet. **Indeksen, alle canonicale `badgePage`-mål og den direkte By-URL-en er avviklet; Populærkultur-underfeltets selvstendige Media-side gjenstår i sluttoppryddingen.**
-10. Permanente all-subject-, equivalence-, TypeScript- og browserporter er grønne på `main`. **Oppfylt for hver merget tranche; avsluttende referanse-/browseraudit og dødlagsopprydding gjenstår.**
+9. Alle gamle merkesider er redirect/compatibility-only og `merker/merker.html` er avviklet. **Oppfylt; direkte-URL-inventaret har null gjenværende parallelle `merke*.html`-innholdsflater.**
+10. Permanente all-subject-, equivalence-, TypeScript- og browserporter er grønne på `main`. **Oppfylt gjennom fagvise porter, resolverbasert innlenke-/stilreferanseaudit og DOM-kontroll av den siste compatibility-wrapperen.**

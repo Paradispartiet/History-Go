@@ -8,6 +8,7 @@ on:
       - 'emner.html'
       - 'merke.html'
       - 'merker/merker.html'
+      - 'merker/merker.css'
       - 'merker/archive/**'
       - 'profile.html'
       - 'data/categories/category_contract.json'
@@ -39,6 +40,7 @@ on:
       - 'scripts/audit-fagverk-badge-equivalence.mjs'
       - 'scripts/audit-fagverk-politikk-runtime-equivalence.mjs'
       - 'scripts/audit-fagverk-by-legacy-theory.mjs'
+      - 'scripts/audit-fagverk-media-populaerkultur-retirement.mjs'
       - 'scripts/audit-fagverk-religion-legacy-stub.mjs'
       - 'scripts/audit-fagverk-scenekunst-legacy-stub.mjs'
       - 'scripts/audit-fagverk-filosofi-legacy-stub.mjs'
@@ -49,6 +51,7 @@ on:
       - 'tests/fagverk-badge-equivalence.test.mjs'
       - 'tests/fagverk-politikk-runtime-equivalence.test.mjs'
       - 'tests/fagverk-by-legacy-theory-audit.test.mjs'
+      - 'tests/fagverk-populaerkultur-retirement.test.mjs'
       - 'tests/fagverk-religion-legacy-stub-retirement.test.mjs'
       - 'tests/fagverk-scenekunst-legacy-stub-retirement.test.mjs'
       - 'tests/fagverk-filosofi-legacy-stub-retirement.test.mjs'
@@ -93,6 +96,7 @@ jobs:
           node --check scripts/audit-fagverk-badge-equivalence.mjs
           node --check scripts/audit-fagverk-politikk-runtime-equivalence.mjs
           node --check scripts/audit-fagverk-by-legacy-theory.mjs
+          node --check scripts/audit-fagverk-media-populaerkultur-retirement.mjs
           node --check scripts/audit-fagverk-religion-legacy-stub.mjs
           node --check scripts/audit-fagverk-scenekunst-legacy-stub.mjs
           node --check scripts/audit-fagverk-filosofi-legacy-stub.mjs
@@ -107,6 +111,7 @@ jobs:
           node scripts/audit-fagverk-badge-equivalence.mjs
           node scripts/audit-fagverk-politikk-runtime-equivalence.mjs
           node scripts/audit-fagverk-by-legacy-theory.mjs
+          node scripts/audit-fagverk-media-populaerkultur-retirement.mjs
           node scripts/audit-fagverk-religion-legacy-stub.mjs
           node scripts/audit-fagverk-scenekunst-legacy-stub.mjs
           node scripts/audit-fagverk-filosofi-legacy-stub.mjs
@@ -117,6 +122,7 @@ jobs:
           node --test tests/fagverk-badge-equivalence.test.mjs
           node --test tests/fagverk-politikk-runtime-equivalence.test.mjs
           node --test tests/fagverk-by-legacy-theory-audit.test.mjs
+          node --test tests/fagverk-populaerkultur-retirement.test.mjs
           node --test tests/fagverk-religion-legacy-stub-retirement.test.mjs
           node --test tests/fagverk-scenekunst-legacy-stub-retirement.test.mjs
           node --test tests/fagverk-filosofi-legacy-stub-retirement.test.mjs
