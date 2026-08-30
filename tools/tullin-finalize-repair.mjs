@@ -214,10 +214,16 @@ function refreshEpochAndRoundSnapshots() {
 
   const roundPath = 'tests/regjeringskvartalet-brands-phase.test.mjs';
   let roundTest = fs.readFileSync(roundPath, 'utf8');
-  const oldLine = "      assert.deepEqual(brand.place_ids, ['regjeringskvartalet']);";
-  const replacement = "      assert.deepEqual(\n        brand.place_ids,\n        id === 'statsbygg' ? ['regjeringskvartalet', 'tullin'] : ['regjeringskvartalet']\n      );";
-  if (roundTest.includes(oldLine)) roundTest = roundTest.replace(oldLine, replacement);
-  else if (!roundTest.includes("id === 'statsbygg' ? ['regjeringskvartalet', 'tullin']")) {
+  const legacyPattern = /^(\s*)assert\.deepEqual\(brand\.place_ids, \['regjeringskvartalet'\]\);$/m;
+  const canonicalMarker = "id === 'statsbygg' ? ['regjeringskvartalet', 'tullin'] : ['regjeringskvartalet']";
+  if (legacyPattern.test(roundTest)) {
+    roundTest = roundTest.replace(legacyPattern, (_match, indent) => [
+      `${indent}assert.deepEqual(`,
+      `${indent}  brand.place_ids,`,
+      `${indent}  ${canonicalMarker}`,
+      `${indent});`
+    ].join('\n'));
+  } else if (!roundTest.includes(canonicalMarker)) {
     throw new Error('Could not locate Statsbygg round snapshot');
   }
   fs.writeFileSync(roundPath, roundTest);
