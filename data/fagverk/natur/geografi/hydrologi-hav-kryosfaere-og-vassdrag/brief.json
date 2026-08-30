@@ -1,0 +1,28 @@
+{
+  "schema": "history_go_geografi_hydrology_ocean_cryosphere_rivers_fulltext_brief_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-30",
+  "domain_id": "hydrologi_hav_kryosfaere_vassdrag",
+  "sourceBriefFile": "data/fag/natur/geografi/hydrology_ocean_cryosphere_rivers_source_claim_brief_v1.json",
+  "reuseOwnerChapters": ["data/fagverk/natur/vann_hydrologi_kretslop.json"],
+  "sections": [
+    {"id":"vannkretslop-vannbalanse-og-nedborfelt","module":"data/fagverk/natur/geografi/hydrologi-hav-kryosfaere-og-vassdrag/01-vannbalanse-nedborfelt-og-vassdrag.json"},
+    {"id":"vassdrag-vannforing-og-romlig-kobling","module":"data/fagverk/natur/geografi/hydrologi-hav-kryosfaere-og-vassdrag/01-vannbalanse-nedborfelt-og-vassdrag.json"},
+    {"id":"grunnvann-infiltrasjon-og-overflatekobling","module":"data/fagverk/natur/geografi/hydrologi-hav-kryosfaere-og-vassdrag/02-grunnvann-innsjoer-og-vatmark.json"},
+    {"id":"innsjoer-vatmark-og-hydrologisk-lagring","module":"data/fagverk/natur/geografi/hydrologi-hav-kryosfaere-og-vassdrag/02-grunnvann-innsjoer-og-vatmark.json"},
+    {"id":"hav-tidevann-strommer-og-havniva","module":"data/fagverk/natur/geografi/hydrologi-hav-kryosfaere-og-vassdrag/03-hav-havniva-og-kryosfaere.json"},
+    {"id":"kryosfaere-sno-bre-havis-og-frossen-grunn","module":"data/fagverk/natur/geografi/hydrologi-hav-kryosfaere-og-vassdrag/03-hav-havniva-og-kryosfaere.json"},
+    {"id":"flom-torke-ekstremhydrologi-og-varsling","module":"data/fagverk/natur/geografi/hydrologi-hav-kryosfaere-og-vassdrag/04-ekstremhydrologi-observasjon-og-regulering.json"},
+    {"id":"observasjon-regulering-og-menneskelig-vannsystem","module":"data/fagverk/natur/geografi/hydrologi-hav-kryosfaere-og-vassdrag/04-ekstremhydrologi-observasjon-og-regulering.json"}
+  ],
+  "strict_boundaries": [
+    "Vannbalanse skal ha eksplisitt nedbørfelt eller annen systemgrense, tidsperiode og lagerledd; prosessdiagram alene teller ikke som lokal kvantifisering.",
+    "Vannføring, vannstand og nedbør skal skilles etter variabel, målested og representert areal før vassdrag sammenlignes.",
+    "Grunnvann skal behandles som tredimensjonalt lager- og strømningssystem; én brønn generaliseres ikke til regional tilstand uten romlig støtte.",
+    "Innsjø- og våtmarkslagring skal skille vannflateareal fra volum og dokumentere tilførsel, utløp, fordamping, grunnvann og regulering.",
+    "Tidevann, strøm, stormpådriv og langsiktig relativt havnivå skal holdes metodisk adskilt og knyttes til riktig datum og periode.",
+    "Snø, bre, havis og permafrost skal behandles som ulike kryosfærekomponenter med forskjellige massebalanser og hydrologiske roller.",
+    "Flomvarsel, observert hendelse og statistisk returperiode er forskjellige evidenstyper; ensemble og ikke-stasjonaritet skal kommuniseres eksplisitt.",
+    "Målestasjon, modell og regulert hydrologisk serie skal dokumentere metadata, romlig representasjon og menneskelig påvirkning før generalisering."
+  ]
+}
