@@ -6,6 +6,8 @@ const ROOT = process.cwd();
 const ADJUDICATION = 'data/fagverk/by/legacy_theory_adjudication_v1.json';
 const PORTAL = 'data/fagverk/fagverk_portal.json';
 const LEGACY_BADGE = 'data/fag/by/merke_by.html';
+const LEGACY_ARCHIVE = 'data/fag/by/archive/merke_by_full_teori_legacy_20260830.html';
+const ORIGINAL_BLOB_SHA = 'bdc5ffef999db78ab2670571615f7fcf1327216f';
 const EXPECTED_TARGET = 'fagverk.html?subject=by#fagverkIaProgresjon';
 const KNOWLEDGE_DISPOSITIONS = new Set(['canonical_supersedes', 'migrated_to_canonical']);
 const PRODUCT_DISPOSITIONS = new Set(['retire_legacy_product_copy']);
@@ -25,7 +27,7 @@ function runAnchorAudit() {
   return JSON.parse(result.stdout);
 }
 
-for (const required of [ADJUDICATION, PORTAL, LEGACY_BADGE]) {
+for (const required of [ADJUDICATION, PORTAL, LEGACY_BADGE, LEGACY_ARCHIVE]) {
   if (!exists(required)) throw new Error(`Mangler nødvendig adjudiseringsfil: ${required}`);
 }
 
@@ -40,6 +42,9 @@ if (adjudication.subject_id !== 'by') throw new Error('Adjudiseringen må eie su
 if (adjudication.policy?.canonical_content_wins !== true) throw new Error('Canonical content must win over legacy prose.');
 if (adjudication.policy?.copy_legacy_prose !== false) throw new Error('Legacy prose cannot be copied by default.');
 if (adjudication.policy?.redirect_target !== EXPECTED_TARGET) throw new Error('Uventet By redirect-target.');
+if (!adjudication.legacy_sources?.includes(LEGACY_ARCHIVE) || adjudication.legacy_sources?.includes(LEGACY_BADGE)) {
+  throw new Error('By-adjudiseringen må lese bytearkivet, ikke compatibility-wrapperen.');
+}
 
 const anchorRows = new Map(anchorAudit.rows.map((row) => [row.id, row]));
 const decisions = Array.isArray(adjudication.sections) ? adjudication.sections : [];
@@ -118,7 +123,10 @@ const redirectReady = knowledgeRows.length === anchorAudit.summary.knowledgeSect
   && productRows.every((row) => PRODUCT_DISPOSITIONS.has(row.disposition));
 const portalRoute = text(byPortal.badgePage);
 const portalRedirected = portalRoute === EXPECTED_TARGET;
-const legacyBadgeSourcePreserved = exists(LEGACY_BADGE);
+const legacyBadgeSourcePreserved = anchorAudit.legacy?.sourcePreserved === true
+  && anchorAudit.legacy?.archiveBlobSha === ORIGINAL_BLOB_SHA;
+const routeRetired = anchorAudit.navigation?.routeRetired === true
+  && anchorAudit.navigation?.legacyRouteActive === false;
 
 const report = {
   schema: 'history_go_fagverk_by_legacy_adjudication_audit_v1',
@@ -126,7 +134,8 @@ const report = {
   inputs: {
     anchorAuditSchema: anchorAudit.schema,
     adjudicationFile: ADJUDICATION,
-    legacyBadgePage: LEGACY_BADGE
+    legacyBadgePage: LEGACY_BADGE,
+    legacyArchivePage: LEGACY_ARCHIVE
   },
   summary: {
     legacySectionCount: rows.length,
@@ -140,7 +149,9 @@ const report = {
     redirectTarget: EXPECTED_TARGET,
     portalRoute,
     portalRedirected,
-    legacyBadgeSourcePreserved
+    legacyBadgeSourcePreserved,
+    archiveBlobSha: anchorAudit.legacy.archiveBlobSha,
+    routeRetired
   },
   rows
 };
@@ -148,5 +159,6 @@ const report = {
 if (!report.summary.redirectReady) throw new Error('By legacy adjudication er ikke redirect-klar.');
 if (!report.summary.portalRedirected) throw new Error(`By badgePage må peke til ${EXPECTED_TARGET} etter grønn adjudisering.`);
 if (!report.summary.legacyBadgeSourcePreserved) throw new Error('Legacy By-merkeside må beholdes som auditkilde til arkivfasen er eksplisitt fullført.');
+if (!report.summary.routeRetired) throw new Error('Direkte By-legacy-URL er ikke pensjonert som ren compatibility-rute.');
 
 process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);

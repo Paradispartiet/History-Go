@@ -1,11 +1,15 @@
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 
 const ROOT = process.cwd();
-const LEGACY_BADGE = 'data/fag/by/merke_by.html';
+const LEGACY_BADGE = 'data/fag/by/archive/merke_by_full_teori_legacy_20260830.html';
+const LEGACY_ROUTE = 'data/fag/by/merke_by.html';
 const LEGACY_THEORY = 'data/fag/by/teori.html';
 const MANIFEST = 'data/fag/fag_manifest.json';
 const REGISTRY = 'data/fagverk/fagverk_registry.json';
+const ORIGINAL_BLOB_SHA = 'bdc5ffef999db78ab2670571615f7fcf1327216f';
+const REDIRECT_TARGET = '../../../fagverk.html?subject=by#fagverkIaProgresjon';
 
 const SECTION_POLICY = Object.freeze({
   felt: {
@@ -120,6 +124,10 @@ const text = (value) => String(value == null ? '' : value).trim();
 const read = (file) => fs.readFileSync(path.join(ROOT, file), 'utf8');
 const exists = (file) => fs.existsSync(path.join(ROOT, file));
 
+function blobSha(buffer) {
+  return crypto.createHash('sha1').update(Buffer.from(`blob ${buffer.length}\0`)).update(buffer).digest('hex');
+}
+
 function decodeEntities(value) {
   return value
     .replaceAll('&amp;', '&')
@@ -218,8 +226,21 @@ function anchorResult(corpus, alternatives) {
   return { alternatives, found: found || null };
 }
 
-for (const required of [LEGACY_BADGE, LEGACY_THEORY, MANIFEST]) {
+for (const required of [LEGACY_BADGE, LEGACY_ROUTE, LEGACY_THEORY, MANIFEST]) {
   if (!exists(required)) throw new Error(`Mangler nødvendig By-auditfil: ${required}`);
+}
+
+const archiveBuffer = fs.readFileSync(path.join(ROOT, LEGACY_BADGE));
+const archiveBlobSha = blobSha(archiveBuffer);
+if (archiveBlobSha !== ORIGINAL_BLOB_SHA) {
+  throw new Error(`By-arkivet er ikke byte-identisk med originalen: ${archiveBlobSha}`);
+}
+const legacyRouteHtml = read(LEGACY_ROUTE);
+if (!legacyRouteHtml.includes('location.replace') || !legacyRouteHtml.includes(REDIRECT_TARGET)) {
+  throw new Error('By compatibility-ruten peker ikke fail-closed til Progresjon.');
+}
+if (/merke-blokk|<h2>1\. Felt<\/h2>|id=["']begreper["']/i.test(legacyRouteHtml)) {
+  throw new Error('By compatibility-ruten inneholder fortsatt legacy-teori.');
 }
 
 const badgeSections = extractSections(read(LEGACY_BADGE));
@@ -277,9 +298,18 @@ const report = {
   subject: 'by',
   legacy: {
     badgePage: LEGACY_BADGE,
+    compatibilityPage: LEGACY_ROUTE,
     theoryPage: LEGACY_THEORY,
     sectionCount: rows.length,
-    duplicateSectionCount: duplicateCount
+    duplicateSectionCount: duplicateCount,
+    sourcePreserved: true,
+    originalBlobSha: ORIGINAL_BLOB_SHA,
+    archiveBlobSha
+  },
+  navigation: {
+    redirectTarget: REDIRECT_TARGET.replace(/^\.\.\/\.\.\/\.\.\//, ''),
+    legacyRouteActive: false,
+    routeRetired: true
   },
   canonical: {
     manifestFiles: sourceFiles,

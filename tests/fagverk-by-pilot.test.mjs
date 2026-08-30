@@ -45,10 +45,9 @@ test('By bruker bare fagkartets tolv områder og dekker alle source-emner', () =
   assert.equal(report.gates.byPlaceFallbackCorrected, true);
 });
 
-test('By-merkesiden skiller merket fra den materialiserte fagsiden', () => {
+test('By-merkesiden er en ren compatibility-rute til materialisert Progresjon', () => {
   const html = fs.readFileSync(path.join(root, 'data/fag/by/merke_by.html'), 'utf8');
-  assert.match(html, /fagverk-forside\.html/);
-  assert.match(html, /fagverk\.html\?subject=by/);
-  assert.match(html, /Åpne By-faget/);
-  assert.doesNotMatch(html, /\.\.\/by\/knowledge_by\.html/);
+  assert.match(html, /location\.replace\(target\)/);
+  assert.match(html, /fagverk\.html\?subject=by#fagverkIaProgresjon/);
+  assert.doesNotMatch(html, /merke-blokk|<h2>1\. Felt<\/h2>|id="begreper"/i);
 });
