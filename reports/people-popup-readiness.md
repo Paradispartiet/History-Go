@@ -6,21 +6,21 @@ Rapporten måler om runtime kan presentere tilgjengelige canonical People-felt. 
 
 People-produksjon, claims og ferdigstatus eies av `docs/PEOPLE_PROFILE_CANONICAL.md`. Profiler uten v1-claims er `legacy_unreviewed`, selv når presentasjonsstatusen er `complete`.
 
-Source fingerprint: `6f5d0950190a78bfa5f42a3f96d354a495a5636127c655496bb485b947141e05`
+Source fingerprint: `7b1135b5dd43da33169d9e0a25e8f8973053db2529a0875e489633db0a759de0`
 
 ## Sammendrag
 
 | Måling | Antall |
 |---|---:|
 | Personer | 1421 |
-| Presentasjon complete | 67 |
-| Presentasjon strong | 406 |
+| Presentasjon complete | 68 |
+| Presentasjon strong | 405 |
 | Presentasjon partial | 933 |
 | Presentasjon sparse | 15 |
-| People Profile v1 ready | 75 |
-| Legacy uten v1-claims | 1346 |
+| People Profile v1 ready | 76 |
+| Legacy uten v1-claims | 1345 |
 | Ødelagte bildereferanser | 280 |
-| Eksplisitt initialfallback | 995 |
+| Eksplisitt initialfallback | 994 |
 | Implisitt initialfallback | 26 |
 | Gjennomsnittspoeng | 65.5 |
 
@@ -28,16 +28,16 @@ Source fingerprint: `6f5d0950190a78bfa5f42a3f96d354a495a5636127c655496bb485b9471
 
 | Presentasjonsdel | Dekket | Andel |
 |---|---:|---:|
-| identity | 127 | 8.9 % |
+| identity | 128 | 9 % |
 | popupDesc | 1400 | 98.5 % |
-| lifeData | 61 | 4.3 % |
+| lifeData | 62 | 4.4 % |
 | contributionsDeclared | 61 | 4.3 % |
 | educationDeclared | 61 | 4.3 % |
 | practiceDeclared | 1403 | 98.7 % |
 | placeGrounding | 1421 | 100 % |
 | sources | 462 | 32.5 % |
 | imageContract | 1141 | 80.3 % |
-| profileStandard | 75 | 5.3 % |
+| profileStandard | 76 | 5.3 % |
 
 ## Kategorier
 
@@ -48,7 +48,7 @@ Source fingerprint: `6f5d0950190a78bfa5f42a3f96d354a495a5636127c655496bb485b9471
 | litteratur | 172 | 36 | 20 | 116 | 0 | 16 | 156 | 70.5 |
 | musikk | 124 | 0 | 15 | 109 | 0 | 0 | 124 | 62.2 |
 | politikk | 114 | 5 | 50 | 59 | 0 | 17 | 97 | 68.1 |
-| kunst | 84 | 8 | 63 | 13 | 0 | 9 | 75 | 73.3 |
+| kunst | 84 | 9 | 62 | 13 | 0 | 10 | 74 | 73.5 |
 | naeringsliv | 81 | 5 | 30 | 32 | 14 | 8 | 73 | 62.9 |
 | by | 79 | 9 | 55 | 15 | 0 | 21 | 58 | 74.3 |
 | scenekunst | 48 | 1 | 16 | 31 | 0 | 1 | 47 | 64.6 |
