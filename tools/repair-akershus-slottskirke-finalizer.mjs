@@ -48,11 +48,13 @@ for(const sentenceNumber of [6,23]){
 }
 write(packetFile,packet);
 
-// Stories integrity contract. The generated Olav V story is a canonical
-// historical event, and its stored score must equal the runtime score derived
-// by tools/check_stories_integrity.mts from the story text and two sources.
+// Stories integrity contract. The generator serializes this Story file as a
+// top-level array. Keep a defensive object fallback so the repair fails closed
+// if the serialization contract changes again.
 const storyDoc=read(storyFile);
-const story=storyDoc.stories?.find(item=>item.id===storyId);
+const stories=Array.isArray(storyDoc)?storyDoc:storyDoc.stories;
+if(!Array.isArray(stories))throw new Error(`Unexpected Story document shape in ${storyFile}`);
+const story=stories.find(item=>item.id===storyId);
 if(!story)throw new Error(`Missing generated Story ${storyId}`);
 if(!Array.isArray(story.sources)||story.sources.length!==2)throw new Error(`Unexpected Story source count for ${storyId}`);
 story.type="historical_event";
