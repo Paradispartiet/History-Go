@@ -1,272 +1,55 @@
 {
   "version": "1.11",
   "status": "canonical",
-  "updatedAt": "2026-08-29",
+  "updatedAt": "2026-08-31",
   "rule": "Én kategori har én runtime-id og én fag-id. Populærkultur brukes som tverrgående tagg og mediefaglig analysefelt, ikke som toppkategori. Faglige canonicalSubcategories og stedlige canonicalPlaceSubcategories er separate kontrakter: stedsunderkategorier kan styre stedstype og presentasjon uten å opprette ny toppkategori, fag-id eller kartfarge.",
-  "runtimeCategories": [
-    "by",
-    "historie",
-    "kunst",
-    "litteratur",
-    "media",
-    "musikk",
-    "naeringsliv",
-    "natur",
-    "politikk",
-    "psykologi",
-    "helse",
-    "utdanning",
-    "religion",
-    "scenekunst",
-    "sport",
-    "subkultur",
-    "vitenskap",
-    "filosofi",
-    "film_tv"
-  ],
-  "fagSubjects": [
-    "by",
-    "historie",
-    "kunst",
-    "litteratur",
-    "media",
-    "musikk",
-    "naeringsliv",
-    "natur",
-    "politikk",
-    "psykologi",
-    "helse",
-    "utdanning",
-    "religion",
-    "scenekunst",
-    "sport",
-    "subkultur",
-    "vitenskap",
-    "filosofi",
-    "film_tv"
-  ],
+  "runtimeCategories": ["by","historie","kunst","litteratur","media","musikk","naeringsliv","natur","politikk","psykologi","helse","utdanning","religion","scenekunst","sport","subkultur","vitenskap","filosofi","film_tv"],
+  "fagSubjects": ["by","historie","kunst","litteratur","media","musikk","naeringsliv","natur","politikk","psykologi","helse","utdanning","religion","scenekunst","sport","subkultur","vitenskap","filosofi","film_tv"],
   "runtimeToFag": {},
   "fagToRuntime": {},
   "aliases": {
-    "popkultur": "media",
-    "populaerkultur": "media",
-    "philosophy": "filosofi",
-    "teater": "scenekunst",
-    "theatre": "scenekunst",
-    "theater": "scenekunst",
-    "film": "film_tv",
-    "tv": "film_tv",
-    "journalistikk": "media",
-    "health": "helse",
-    "medicine": "helse",
-    "medisin": "helse",
-    "education": "utdanning",
-    "skole": "utdanning",
-    "technology": "vitenskap",
-    "teknologi": "vitenskap",
-    "it": "vitenskap",
-    "informasjonsteknologi": "vitenskap",
-    "økonomi": "naeringsliv",
-    "okonomi": "naeringsliv",
-    "næringsliv": "naeringsliv",
-    "naeringsliv": "naeringsliv",
-    "økonomi og næringsliv": "naeringsliv",
-    "okonomi og naeringsliv": "naeringsliv",
-    "økonomi & næringsliv": "naeringsliv",
-    "science": "vitenskap",
-    "sci": "vitenskap",
-    "tech": "vitenskap"
+    "popkultur":"media","populaerkultur":"media","philosophy":"filosofi","teater":"scenekunst","theatre":"scenekunst","theater":"scenekunst","film":"film_tv","tv":"film_tv","journalistikk":"media","health":"helse","medicine":"helse","medisin":"helse","education":"utdanning","skole":"utdanning","technology":"vitenskap","teknologi":"vitenskap","it":"vitenskap","informasjonsteknologi":"vitenskap","økonomi":"naeringsliv","okonomi":"naeringsliv","næringsliv":"naeringsliv","naeringsliv":"naeringsliv","økonomi og næringsliv":"naeringsliv","okonomi og naeringsliv":"naeringsliv","økonomi & næringsliv":"naeringsliv","science":"vitenskap","sci":"vitenskap","tech":"vitenskap"
   },
   "nonPlaceBadges": [],
-  "labels": {
-    "by": "By & arkitektur",
-    "historie": "Historie",
-    "kunst": "Kunst",
-    "litteratur": "Språk & litteratur",
-    "media": "Medier",
-    "musikk": "Musikk",
-    "naeringsliv": "Økonomi og næringsliv",
-    "natur": "Natur & miljø",
-    "politikk": "Politikk & samfunn",
-    "psykologi": "Psykologi",
-    "helse": "Helse & medisin",
-    "utdanning": "Skole & utdanning",
-    "religion": "Religion",
-    "scenekunst": "Scenekunst",
-    "sport": "Sport & lek",
-    "subkultur": "Subkultur",
-    "vitenskap": "Vitenskap & teknologi",
-    "filosofi": "Filosofi",
-    "film_tv": "Film & TV"
-  },
+  "labels": {"by":"By & arkitektur","historie":"Historie","kunst":"Kunst","litteratur":"Språk & litteratur","media":"Medier","musikk":"Musikk","naeringsliv":"Økonomi og næringsliv","natur":"Natur & miljø","politikk":"Politikk & samfunn","psykologi":"Psykologi","helse":"Helse & medisin","utdanning":"Skole & utdanning","religion":"Religion","scenekunst":"Scenekunst","sport":"Sport & lek","subkultur":"Subkultur","vitenskap":"Vitenskap & teknologi","filosofi":"Filosofi","film_tv":"Film & TV"},
   "decisions": {
-    "kunst": "Billedkunst, visuell kunst, design, museer, gallerier, kunsthaller og offentlig kunst.",
-    "scenekunst": "Teater, dans, musikal, revy, standup, improvisasjon og sceneinstitusjoner.",
-    "musikk": "Musikk, artister, konserter, musikkscener, lyd og musikkproduksjon.",
-    "kultur": "Ikke egen badge. Kultur brukes som tverrfaglig beskrivelse, ikke som toppkategori.",
-    "film_tv": "Egen kategori, ikke under populærkultur.",
-    "media": "Egen kategori, ikke under populærkultur.",
-    "religion": "Egen kategori for religion, trospraksis og aktive hellige rom.",
-    "filosofi": "Egen runtime- og fagkategori med eget pensum, emnekart, metoder, fagkart og quizprofil. Reell tverrfaglighet uttrykkes med secondaryBadgeIds.",
-    "vitenskap": "Vitenskap & teknologi er én canonical toppkategori. Den omfatter empirisk og formell kunnskapsproduksjon, naturvitenskap, matematikk, modeller og vitenskapelige institusjoner, samt teknologi, ingeniørfag og IT: maskiner, materialer, energi, elektronikk, programvare, algoritmer, data, nettverk, robotikk, cybersikkerhet og digital infrastruktur. Biomedisinske mekanismer og vitenskapelige metoder kan sekundærbindes hit, mens klinisk medisin, folkehelse og helsetjenester eies av Helse & medisin. Teknologi er en faglig spesialisering under vitenskap, ikke et eget toppmerke. Bedriften som virksomhet hører primært til næringsliv; den tekniske løsningen hører til Vitenskap & teknologi.",
-    "litteratur": "Visningsnavnet er Språk & litteratur, mens canonical ID forblir litteratur. Litteraturvitenskap og språk/lingvistikk samles her med tydelig felt- og emneeierskap.",
-    "helse": "Canonical toppfag for medisin, helsevitenskap, folkehelse, klinisk praksis, helsetjenester og medisinsk etikk. Faget gir kun generell undervisning og skal ikke produsere individuell diagnose, prognose eller behandlingsanbefaling.",
-    "utdanning": "Canonical toppfag for pedagogikk, didaktikk, skole, barnehage, høyere utdanning, vurdering, inkludering, lærerprofesjon og utdanningsledelse. Psykologisk læringsforskning sekundærbindes uten å overta pedagogikkens eierskap.",
-    "naeringsliv": "Visningsnavnet er Økonomi og næringsliv. Den kanoniske runtime- og fag-ID-en forblir naeringsliv, og alle emner beholder em_naering_-prefikset. Kategorien omfatter samfunnsøkonomi, bedriftsøkonomi og finans, arbeidsliv og organisasjon, politisk økonomi og økonomisk historie, økonomisk geografi og teknologi samt bærekraftsøkonomi, alltid forankret i konkrete steder, virksomheter, institusjoner, arbeid, kapital, markeder eller infrastruktur.",
-    "natur": "Natur & miljø tildeles ikke bare fordi et sted er grønt, vakkert eller utendørs. Kategorien krever en konkret, dokumenterbar naturfaglig inngang, for eksempel organisme eller artskjennetegn, habitat, fysiologisk tilpasning, vassdrag eller hydrologi, geologisk materiale eller prosess, klimavirkning eller naturforvaltning. Kategoriavgjørelsen skal kunne begrunnes i observerbart eller kildebelagt naturfaglig innhold.",
-    "populaerkultur": "Ikke eget domene. Beholdes som tagg/linse; fagpakken er flyttet til media som delfelt.",
-    "sosial_laering": "Ikke canonical badge, runtimekategori eller fag. ID-en kan kun forekomme som historisk intern HG Social/Civication-namespace i legacy-innhold; den skal ikke registreres i data/badges/index.json eller brukes som kilde for nye jobbtilbud."
+    "kunst":"Billedkunst, visuell kunst, design, museer, gallerier, kunsthaller og offentlig kunst.",
+    "scenekunst":"Teater, dans, musikal, revy, standup, improvisasjon og sceneinstitusjoner.",
+    "musikk":"Musikk, artister, konserter, musikkscener, lyd og musikkproduksjon.",
+    "kultur":"Ikke egen badge. Kultur brukes som tverrfaglig beskrivelse, ikke som toppkategori.",
+    "film_tv":"Egen kategori, ikke under populærkultur.",
+    "media":"Egen kategori, ikke under populærkultur.",
+    "religion":"Egen kategori for religion, trospraksis og aktive hellige rom.",
+    "filosofi":"Egen runtime- og fagkategori med eget pensum, emnekart, metoder, fagkart og quizprofil. Reell tverrfaglighet uttrykkes med secondaryBadgeIds.",
+    "vitenskap":"Vitenskap & teknologi er én canonical toppkategori. Den omfatter empirisk og formell kunnskapsproduksjon, naturvitenskap, matematikk, modeller og vitenskapelige institusjoner, samt teknologi, ingeniørfag og IT: maskiner, materialer, energi, elektronikk, programvare, algoritmer, data, nettverk, robotikk, cybersikkerhet og digital infrastruktur. Biomedisinske mekanismer og vitenskapelige metoder kan sekundærbindes hit, mens klinisk medisin, folkehelse og helsetjenester eies av Helse & medisin. Teknologi er en faglig spesialisering under vitenskap, ikke et eget toppmerke. Bedriften som virksomhet hører primært til næringsliv; den tekniske løsningen hører til Vitenskap & teknologi.",
+    "litteratur":"Visningsnavnet er Språk & litteratur, mens canonical ID forblir litteratur. Litteraturvitenskap og språk/lingvistikk samles her med tydelig felt- og emneeierskap.",
+    "helse":"Canonical toppfag for medisin, helsevitenskap, folkehelse, klinisk praksis, helsetjenester og medisinsk etikk. Faget gir kun generell undervisning og skal ikke produsere individuell diagnose, prognose eller behandlingsanbefaling.",
+    "utdanning":"Canonical toppfag for pedagogikk, didaktikk, skole, barnehage, høyere utdanning, vurdering, inkludering, lærerprofesjon og utdanningsledelse. Psykologisk læringsforskning sekundærbindes uten å overta pedagogikkens eierskap.",
+    "naeringsliv":"Visningsnavnet er Økonomi og næringsliv. Den kanoniske runtime- og fag-ID-en forblir naeringsliv, og alle emner beholder em_naering_-prefikset. Kategorien omfatter samfunnsøkonomi, bedriftsøkonomi og finans, arbeidsliv og organisasjon, politisk økonomi og økonomisk historie, økonomisk geografi og teknologi samt bærekraftsøkonomi, alltid forankret i konkrete steder, virksomheter, institusjoner, arbeid, kapital, markeder eller infrastruktur.",
+    "natur":"Natur & miljø tildeles ikke bare fordi et sted er grønt, vakkert eller utendørs. Kategorien krever en konkret, dokumenterbar naturfaglig inngang, for eksempel organisme eller artskjennetegn, habitat, fysiologisk tilpasning, vassdrag eller hydrologi, geologisk materiale eller prosess, klimavirkning eller naturforvaltning. Kategoriavgjørelsen skal kunne begrunnes i observerbart eller kildebelagt naturfaglig innhold.",
+    "populaerkultur":"Ikke eget domene. Beholdes som tagg/linse; fagpakken er flyttet til media som delfelt.",
+    "sosial_laering":"Ikke canonical badge, runtimekategori eller fag. ID-en kan kun forekomme som historisk intern HG Social/Civication-namespace i legacy-innhold; den skal ikke registreres i data/badges/index.json eller brukes som kilde for nye jobbtilbud."
   },
   "canonicalSubcategories": {
-    "natur": [
-      {
-        "id": "geografi",
-        "label": "Geografi",
-        "status": "expansion_planned"
-      }
-    ],
-    "litteratur": [
-      {
-        "id": "sprak_lingvistikk",
-        "label": "Språk & lingvistikk",
-        "status": "expansion_planned"
-      }
-    ],
-    "politikk": [
-      {
-        "id": "juss_rettsvitenskap",
-        "label": "Juss & rettsvitenskap",
-        "status": "expansion_planned"
-      },
-      {
-        "id": "sosiologi_antropologi",
-        "label": "Sosiologi & antropologi",
-        "status": "foundation_materialized"
-      }
-    ],
-    "helse": [
-      {
-        "id": "medisin_helsevitenskap",
-        "label": "Medisin & helsevitenskap",
-        "status": "foundation_materialized"
-      }
-    ],
-    "utdanning": [
-      {
-        "id": "pedagogikk_utdanningsvitenskap",
-        "label": "Pedagogikk & utdanningsvitenskap",
-        "status": "foundation_materialized"
-      }
-    ]
+    "natur": [{"id":"geografi","label":"Geografi","status":"foundation_materialized"}],
+    "litteratur": [{"id":"sprak_lingvistikk","label":"Språk & lingvistikk","status":"expansion_planned"}],
+    "politikk": [{"id":"juss_rettsvitenskap","label":"Juss & rettsvitenskap","status":"expansion_planned"},{"id":"sosiologi_antropologi","label":"Sosiologi & antropologi","status":"foundation_materialized"}],
+    "helse": [{"id":"medisin_helsevitenskap","label":"Medisin & helsevitenskap","status":"foundation_materialized"}],
+    "utdanning": [{"id":"pedagogikk_utdanningsvitenskap","label":"Pedagogikk & utdanningsvitenskap","status":"foundation_materialized"}]
   },
   "canonicalPlaceSubcategories": {
-    "by": [
-      {
-        "id": "bla_skilt",
-        "label": "Blått skilt",
-        "status": "phase2_materialized"
-      }
-    ],
-    "helse": [
-      {
-        "id": "bla_skilt",
-        "label": "Blått skilt",
-        "status": "phase2_materialized"
-      }
-    ],
-    "historie": [
-      {
-        "id": "snublestein",
-        "label": "Snublestein",
-        "status": "pilot_materialized"
-      },
-      {
-        "id": "bla_skilt",
-        "label": "Blått skilt",
-        "status": "phase2_materialized"
-      }
-    ],
-    "natur": [
-      {
-        "id": "miljo_gjenbruk",
-        "label": "Miljø & gjenbruk",
-        "status": "foundation_materialized",
-        "fagverkChapterIds": [
-          "miljopavirkning_forvaltning_regenerasjon",
-          "sirkulaer_okonomi_avfall_ombruk"
-        ]
-      }
-    ],
-    "politikk": [
-      {
-        "id": "bla_skilt",
-        "label": "Blått skilt",
-        "status": "phase2_materialized"
-      }
-    ],
-    "sport": [
-      {
-        "id": "bla_skilt",
-        "label": "Blått skilt",
-        "status": "pilot_materialized"
-      }
-    ],
-    "litteratur": [
-      {
-        "id": "lesekiosk",
-        "label": "Lesekiosk",
-        "status": "foundation_materialized",
-        "fagverkChapterIds": [
-          "lesekultur_bokdeling_offentlighet"
-        ]
-      },
-      {
-        "id": "bla_skilt",
-        "label": "Blått skilt",
-        "status": "phase2_materialized"
-      }
-    ],
-    "vitenskap": [
-      {
-        "id": "bla_skilt",
-        "label": "Blått skilt",
-        "status": "phase2_materialized"
-      }
-    ],
-    "scenekunst": [
-      {
-        "id": "bla_skilt",
-        "label": "Blått skilt",
-        "status": "phase2_materialized"
-      }
-    ],
-    "naeringsliv": [
-      {
-        "id": "bla_skilt",
-        "label": "Blått skilt",
-        "status": "phase2_materialized"
-      }
-    ],
-    "kunst": [
-      {
-        "id": "bla_skilt",
-        "label": "Blått skilt",
-        "status": "phase2_materialized"
-      }
-    ],
-    "musikk": [
-      {
-        "id": "bla_skilt",
-        "label": "Blått skilt",
-        "status": "phase2_materialized"
-      }
-    ],
-    "utdanning": [
-      {
-        "id": "bla_skilt",
-        "label": "Blått skilt",
-        "status": "phase2_materialized"
-      }
-    ]
+    "by":[{"id":"bla_skilt","label":"Blått skilt","status":"phase2_materialized"}],
+    "helse":[{"id":"bla_skilt","label":"Blått skilt","status":"phase2_materialized"}],
+    "historie":[{"id":"snublestein","label":"Snublestein","status":"pilot_materialized"},{"id":"bla_skilt","label":"Blått skilt","status":"phase2_materialized"}],
+    "natur":[{"id":"miljo_gjenbruk","label":"Miljø & gjenbruk","status":"foundation_materialized","fagverkChapterIds":["miljopavirkning_forvaltning_regenerasjon","sirkulaer_okonomi_avfall_ombruk"]}],
+    "politikk":[{"id":"bla_skilt","label":"Blått skilt","status":"phase2_materialized"}],
+    "sport":[{"id":"bla_skilt","label":"Blått skilt","status":"pilot_materialized"}],
+    "litteratur":[{"id":"lesekiosk","label":"Lesekiosk","status":"foundation_materialized","fagverkChapterIds":["lesekultur_bokdeling_offentlighet"]},{"id":"bla_skilt","label":"Blått skilt","status":"phase2_materialized"}],
+    "vitenskap":[{"id":"bla_skilt","label":"Blått skilt","status":"phase2_materialized"}],
+    "scenekunst":[{"id":"bla_skilt","label":"Blått skilt","status":"phase2_materialized"}],
+    "naeringsliv":[{"id":"bla_skilt","label":"Blått skilt","status":"phase2_materialized"}],
+    "kunst":[{"id":"bla_skilt","label":"Blått skilt","status":"phase2_materialized"}],
+    "musikk":[{"id":"bla_skilt","label":"Blått skilt","status":"phase2_materialized"}],
+    "utdanning":[{"id":"bla_skilt","label":"Blått skilt","status":"phase2_materialized"}]
   }
 }
