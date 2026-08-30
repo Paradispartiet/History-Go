@@ -484,7 +484,7 @@ const questions = rawQuestions.map((row, index) => {
     core_concepts: row.concepts, difficulty: index < 14 ? 1 : index < 28 ? 2 : index < 35 ? 3 : 4,
     question_type: binding ? "theory_application" : index < 14 ? "fact" : index < 35 ? "context" : "method",
     emne_id: row.emneId, source: [row.sourceId], source_origin: "external", claim_basis: row.correct, claim_id: claimId,
-    ...(binding ? { method_id: binding.method_id, topic_hook_id: binding.topic_hook_id, thinker_id: binding.thinker_id, work: binding.work, theory_ref: { topic_hook_id: binding.topic_hook_id, thinker_id: binding.thinker_id, work: binding.work }, guidance_basis: ["data/fag/by/emner_by.json", "data/fag/by/methods_by.json", "data/fag/by/fagkart_by.json"] } : {})
+    ...(binding ? { method_id: binding.method_id, topic_hook_id: binding.topic_hook_id, thinker_id: binding.thinker_id, work: binding.work, theory_ref: { topic_hook_id: binding.topic_hook_id, thinker_id: binding.thinker_id, work: binding.work, why_it_helps: "Knytter det dokumenterte stedssporet til et eksplisitt byfaglig tolkningsgrep uten å erstatte kildegrunnlaget." }, guidance_basis: ["data/fag/by/emner_by.json", "data/fag/by/methods_by.json", "data/fag/by/fagkart_by.json"] } : {})
   };
 });
 const setTitles = ["Navnet og den åpne løkka", "Utstillingen og velocipeden", "Demonstrasjoner og museumskanter", "Kunsthall, parkering og park", "Spor, objekter og byrom", "Feltblikk og teori"];
