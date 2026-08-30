@@ -1,0 +1,497 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+
+const ROOT = process.cwd();
+const KEY = 'naeringsliv/formann';
+const WORLD_PATH = 'data/Civication/roleWorlds/naeringsliv/formann.json';
+const INDEX_PATH = 'data/Civication/roleWorlds/index.json';
+const CHECKLIST_PATH = 'data/Civication/roleWorldAuthoringChecklist.json';
+const THEME_BANK_PATH = 'data/Civication/roleWorldThemeBank.json';
+const READINESS_PATH = 'data/Civication/roleWorldRolloutReadiness.json';
+const PLAN_PATH = 'data/Civication/mailPlans/naeringsliv/formann_plan.json';
+const MODEL_PATH = 'data/Civication/roleModels/naeringsliv/formann_arbeidsleder.json';
+const GRAMMAR_PATH = 'data/Civication/workGrammars/naeringsliv/naeringsliv_operativ_ledelse.json';
+const JOB_PATH = 'data/Civication/mailFamilies/naeringsliv/job/formann_job.json';
+const PEOPLE_PATH = 'data/Civication/mailFamilies/naeringsliv/people/formann_people.json';
+const CONFLICT_PATH = 'data/Civication/mailFamilies/naeringsliv/conflict/formann_conflict.json';
+const STORY_PATH = 'data/Civication/mailFamilies/naeringsliv/story/formann_story.json';
+
+const readText = (rel) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
+const read = (rel) => JSON.parse(readText(rel));
+const write = (rel, value) => {
+  const abs = path.join(ROOT, rel);
+  fs.mkdirSync(path.dirname(abs), { recursive: true });
+  fs.writeFileSync(abs, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
+};
+const assert = (condition, message) => {
+  if (!condition) throw new Error(message);
+};
+const sha = (rel) => crypto.createHash('sha256').update(readText(rel)).digest('hex');
+
+const protectedPaths = [PLAN_PATH, MODEL_PATH, GRAMMAR_PATH, JOB_PATH, PEOPLE_PATH, CONFLICT_PATH, STORY_PATH];
+const protectedHashes = Object.fromEntries(protectedPaths.map((rel) => [rel, sha(rel)]));
+assert(!fs.existsSync(path.join(ROOT, WORLD_PATH)), 'Formann Role World already exists; refuse overwrite');
+
+const readinessBefore = read(READINESS_PATH);
+const queueRow = (readinessBefore.rollout_queue || []).find((row) => row.key === KEY);
+assert(queueRow, 'Formann must still be present in rollout queue before Role World materialization');
+assert(queueRow.classification === 'rollout_ready', `Formann must be rollout_ready, got ${queueRow.classification}`);
+assert(JSON.stringify(queueRow.authored_work_required) === JSON.stringify(['situated_reputation']), `unexpected authored debt: ${JSON.stringify(queueRow.authored_work_required)}`);
+assert(queueRow.cross_role_need === 'candidate_when_shared_work_is_real', `unexpected cross-role need: ${queueRow.cross_role_need}`);
+
+const plan = read(PLAN_PATH);
+assert(plan.id === 'formann_naeringsliv_v1', `unexpected plan id: ${plan.id}`);
+assert(plan.role_scope === 'formann', `unexpected plan role scope: ${plan.role_scope}`);
+assert(Array.isArray(plan.sequence) && plan.sequence.length === 31, 'Formann plan must remain exactly 31 steps');
+for (let i = 0; i < 20; i += 1) {
+  const step = plan.sequence[i];
+  assert(step.step === i + 1, `practice step ${i + 1} numbering drift`);
+  assert(step.type === (i % 2 === 0 ? 'job' : 'people'), `practice step ${i + 1} type drift`);
+  assert(Array.isArray(step.fallback_types) && step.fallback_types.length === 0, `practice step ${i + 1} fallback drift`);
+}
+assert(plan.sequence[20]?.step === 21 && plan.sequence[20]?.type === 'job', 'later arc entry drift');
+assert(plan.sequence[30]?.step === 31 && plan.sequence[30]?.type === 'story', 'climax step drift');
+
+const model = read(MODEL_PATH);
+assert(model.role_scope === 'formann_arbeidsleder', 'roleModel scope drift');
+assert(JSON.stringify(model.related_people.map((p) => p.id)) === JSON.stringify([
+  'arvid_erfaren_fagarbeider_formann',
+  'noor_nyansatt_fagarbeider_formann',
+  'selma_hms_kvalitetskontakt_formann',
+  'maja_neste_skiftleder_formann'
+]), 'professional People foundation drift');
+for (const person of model.related_people) {
+  assert(person.fictional === true && person.fictional_scenario_actor === true && person.canonical_person_ref === null, `${person.id}: fictional boundary drift`);
+}
+assert(JSON.stringify(model.work_life.workplaces) === JSON.stringify([
+  'produksjons_og_arbeidsomrade',
+  'arbeidslederpunkt',
+  'hms_og_avvikspunkt',
+  'skift_og_overleveringsrom'
+]), 'workplace foundation drift');
+
+const grammar = read(GRAMMAR_PATH);
+const workLoops = [
+  'mål -> kapasitet -> bemanning -> gjennomføring -> kontroll -> oppfølging',
+  'hendelse -> sikre -> fakta -> ansvar -> tiltak -> læring'
+];
+const authorityMay = [
+  'prioritere drift innen fullmakt',
+  'fordele arbeid',
+  'eskalere kapasitets- og sikkerhetskonflikter'
+];
+const authorityMayNot = [
+  'omgå arbeids- eller sikkerhetsrutiner',
+  'skjule hendelser',
+  'bruke utilbørlig press',
+  'ta beslutninger uten fullmakt'
+];
+assert(JSON.stringify(grammar.work_loops) === JSON.stringify(workLoops), 'Formann work loops drifted');
+assert(JSON.stringify(grammar.authority_boundary?.may) === JSON.stringify(authorityMay), 'Formann may-authority drifted');
+assert(JSON.stringify(grammar.authority_boundary?.may_not) === JSON.stringify(authorityMayNot), 'Formann may-not authority drifted');
+
+const sourceRefs = [
+  `${JOB_PATH}#job_formann_week1_first_shift_board`,
+  `${PEOPLE_PATH}#formann_people_arvid_fordeling_001`,
+  `${PEOPLE_PATH}#formann_people_noor_mandat_001`,
+  `${PEOPLE_PATH}#formann_people_selma_avvik_001`,
+  `${PEOPLE_PATH}#formann_people_maja_overlevering_001`,
+  `${CONFLICT_PATH}#formann_conflict_tempo_early_001`,
+  `${CONFLICT_PATH}#formann_conflict_lojalitet_early_001`,
+  `${STORY_PATH}#formann_story_ansvar_001`,
+  `${PEOPLE_PATH}#personal_formann_week2_sleep_after_near_miss`
+];
+for (const ref of sourceRefs) {
+  const [rel, id] = ref.split('#');
+  const catalog = read(rel);
+  const mails = (catalog.families || []).flatMap((family) => family.mails || []);
+  assert(mails.some((mail) => mail.id === id), `canonical provenance ref missing: ${ref}`);
+}
+
+const themeIds = [
+  'professional_culture',
+  'class_power',
+  'bureaucratic_power',
+  'numerical_control',
+  'loyalty_up_down',
+  'care_vs_efficiency',
+  'shame_reputation',
+  'invisible_work',
+  'status_anxiety',
+  'public_private_leakage',
+  'local_knowledge_vs_system'
+];
+const themeBank = read(THEME_BANK_PATH);
+const validThemes = new Set((themeBank.themes || []).map((theme) => theme.id));
+for (const themeId of themeIds) assert(validThemes.has(themeId), `unknown Role World theme: ${themeId}`);
+assert(!themeBank.reference_profiles[KEY], 'Formann theme profile already exists; refuse duplicate materialization');
+
+const recurringPeopleArchetypes = [
+  {
+    id: 'kari_driftsleder_formann_world',
+    social_function: 'driftsleder som setter mål og kapasitetspress, men trenger at Formannen gjør umulige planer og lokal risiko synlige før resultatet svikter',
+    class_position: 'leder over gulvnivå med resultat- og bemanningsmakt',
+    status: 'høy formell status og sterk innflytelse på spillerens videre handlingsrom',
+    power_over_player: 'kan prioritere mål, bemanning og støtte innen virksomhetens linje, men kan ikke gjøre leveransepress til tillatelse for sikkerhetsbrudd, skjulte hendelser eller beslutninger uten fullmakt',
+    wants: 'forutsigbar drift, tidlig eskalering og et beslutningsgrunnlag som skiller faktisk kapasitet fra ønsket kapasitet',
+    conceals: 'at tallpress ovenfra lett belønner en grønn tavle før det belønner sannheten om hva laget måtte bære for å få den grønn',
+    speech_style: 'kort, målorientert og avklarende; spør hva som kan leveres, hva som må prioriteres og hva som må løftes',
+    teaches_player: 'at oppoverlojalitet er mest profesjonell når ledelsen får et sant kapasitets- og risikobilde'
+  },
+  {
+    id: 'arvid_erfaren_fagarbeider_formann_world',
+    social_function: 'erfaren fagarbeider som gjør reell kapasitet, håndverksdømmekraft og skjev belastning synlig nedenfra',
+    class_position: 'faglig sterk medarbeider med høy uformell status og lavere formell myndighet enn Formannen',
+    status: 'høy faglig tillit i laget',
+    power_over_player: 'kan påvirke om arbeidsfordelingen oppfattes som legitim og gjennomførbar, men kan ikke overta Formannens mandat eller gjøre erfaring til sikkerhetsunntak',
+    wants: 'rettferdig bruk av erfaring, realistisk arbeidsfordeling og respekt for den faktiske belastningen bak tavletallene',
+    conceals: 'at lojalitet og stolthet kan gjøre det lettere å si ja én gang til enn å synliggjøre slitasjen som planen bygger på',
+    speech_style: 'rolig, konkret og erfaringsnær; beskriver hva laget faktisk tåler uten å dramatisere',
+    teaches_player: 'at legitim ledelse fordeler både oppgaver, belastning og læringsmuligheter'
+  },
+  {
+    id: 'noor_nyansatt_fagarbeider_formann_world',
+    social_function: 'nyansatt som tester om instruks, kompetansegrense og retten til å si fra er reelle når gulvet er travelt',
+    class_position: 'junior medarbeider med lav uformell status og høy avhengighet av tydelig ledelse',
+    status: 'lav posisjonsstatus, men stor betydning som test på lagets psykologiske og praktiske sikkerhet',
+    power_over_player: 'kan avsløre om lederens beskjed faktisk tåler spørsmål, men gir ikke spilleren kontroll- eller godkjenningsmyndighet',
+    wants: 'et avgrenset oppdrag, forståelige kontrollpunkter og en reell vei for å melde usikkerhet før utførelse',
+    conceals: 'at ønsket om å fremstå nyttig kan gjøre et nikk sosialt enklere enn en presis innrømmelse av hva hun ikke kan ennå',
+    speech_style: 'forsiktig konkret; bekrefter raskt, men stiller bedre spørsmål når lederen åpner rommet tydelig',
+    teaches_player: 'at taushet aldri er et sikkert kompetansebevis og at god instruks inkluderer en brukbar eskaleringsvei'
+  },
+  {
+    id: 'selma_hms_kvalitetskontakt_formann_world',
+    social_function: 'HMS- og kvalitetskontakt som skiller sikret situasjon fra ferdig hendelsesforløp, kontrollspor og lovlig gjenstart',
+    class_position: 'avgrenset kontrollfunksjon med etterprøvingsmakt',
+    status: 'høy situert sikkerhets- og kvalitetstillit',
+    power_over_player: 'kan kreve dokumentasjon og riktig kontrollinje, men kan ikke overføre kontrollfunksjonens myndighet til Formannen eller lukke virksomhetens kapasitetsproblem alene',
+    wants: 'synlige fakta, riktig hendelsesrekkefølge, eksplisitt restusikkerhet og en gjenstart som hviler på faktisk mandat',
+    conceals: 'at kontrollrollen lettere ser dokumenterte avvik enn den daglige omsorgen og koordineringen som hindrer dem',
+    speech_style: 'presis og sekvensiell; spør hva som er sikret, kjent, ukjent, besluttet og fortsatt åpent',
+    teaches_player: 'at sikkerhetsstanding bygges ved å bevare spor og grenser også når produksjonen allerede vil videre'
+  },
+  {
+    id: 'maja_neste_skiftleder_formann_world',
+    social_function: 'neste skiftleder som må kunne overta status, restarbeid, risiko og eierskap uten å dele forrige skifts hukommelse',
+    class_position: 'operativ lederlikemann i neste tidsledd',
+    status: 'situert peer- og overleveringstillit',
+    power_over_player: 'kan returnere uklart arbeid og avsløre pyntet status, men kan ikke gi tilbakevirkende myndighet eller overta ansvaret for det forrige skiftet skjulte',
+    wants: 'en overlevering som skiller grønt resultat fra gule restpunkter og navngir hvem som eier neste kontroll',
+    conceals: 'at gjensidig lederlojalitet kan gjøre det fristende å tone ned svakheter som begge helst vil slippe å forklare oppover',
+    speech_style: 'kort, kollegial og operativ; spør hva hun kan stole på, hva hun må følge opp og hva som ikke må normaliseres',
+    teaches_player: 'at lederkollegialitet er sannferdig overlevering, ikke gjensidig forskjønning'
+  },
+  {
+    id: 'plan_og_leveransepress_formann_world',
+    social_function: 'plan-, kunde- og produksjonspress som belønner synlig fremdrift før bemanning, restarbeid og sikkerhetskostnad er fullt synlige',
+    class_position: 'etterspørsels- og styringssiden med sterk tidsmakt, men uten automatisk lokal fag- eller HMS-myndighet',
+    status: 'høy påvirkningskraft på prioritering og resultatfortelling',
+    power_over_player: 'kan kreve prognose og prioritering, men kan ikke oppheve arbeidsrutiner, sikkerhetskrav eller Formannens plikt til å eskalere umulige tradeoffs',
+    wants: 'forutsigbar levering, få overraskelser og et enkelt svar på når flyten er normal igjen',
+    conceals: 'at en enkel prognose kan skjule hvem som absorberer usikkerhet, venting og rework på gulvet',
+    speech_style: 'tall-, frist- og konsekvensorientert; spør hva som kan hentes inn og hva avviket gjør med planen',
+    teaches_player: 'at leveransestanding krever sann prognose, ikke bare midlertidig ro i rapporteringen'
+  },
+  {
+    id: 'privat_relasjon_formann_world',
+    social_function: 'privat nær relasjon som møter beredskap, beslutningsspråk og ansvarskropp etter at skiftet formelt er over',
+    class_position: 'likemann uten arbeidsmyndighet',
+    status: 'høy emosjonell betydning uten profesjonell rang',
+    power_over_player: 'kan sette grenser for fravær og ledermodus hjemme, men kan ikke løse bemanning, avvik eller arbeidsmandat',
+    wants: 'nærvær, restitusjon og samtaler der alt ikke blir behandlet som et skift som må fordeles og kontrolleres',
+    conceals: 'at gjentatt beredskap og raske lederbeskjeder også blir en sosial kostnad for dem som aldri var del av arbeidsdagen',
+    speech_style: 'hverdagslig og direkte; avvæpner tavlespråk og spør hva ansvaret faktisk gjør med personen',
+    teaches_player: 'at operativ autoritet må kunne legges fra seg uten at omsorg og ansvar forsvinner'
+  }
+];
+
+const slowAxes = [
+  { id: 'management_capacity_honesty_standing', meaning: 'situert standing oppover for realistisk kapasitet, tidlig eskalering og beslutningsklart risikobilde', runtime_binding: 'editorial_only_until_governed' },
+  { id: 'crew_fairness_voice_standing', meaning: 'situert standing i laget for rettferdig belastning, tydelig retning og reell mulighet til å si fra', runtime_binding: 'editorial_only_until_governed' },
+  { id: 'quality_hms_restart_standing', meaning: 'situert kvalitet- og HMS-standing for sikring, sporbarhet og riktig myndighet ved stans og gjenstart', runtime_binding: 'editorial_only_until_governed' },
+  { id: 'learning_instruction_standing', meaning: 'situert standing hos nye medarbeidere for forståelig instruks, teach-back og eksplisitt kompetansegrense', runtime_binding: 'editorial_only_until_governed' },
+  { id: 'peer_handoff_truth_standing', meaning: 'situert peer-standing mellom skiftledere for sann status, restarbeid, risiko og eierskap', runtime_binding: 'editorial_only_until_governed' },
+  { id: 'delivery_integrity_standing', meaning: 'situert standing mot plan og leveransepress for prognoser som inkluderer kvalitet, bemanning og sikkerhet', runtime_binding: 'editorial_only_until_governed' },
+  { id: 'private_role_containment_standing', meaning: 'hvor godt beredskap, ansvar og arbeidsrang holdes situert uten å styre privatlivet', runtime_binding: 'editorial_only_until_governed' }
+];
+
+const audiences = [
+  {
+    id: 'operations_management', standing_axis: 'management_capacity_honesty_standing',
+    cares_about: ['realistisk kapasitet og tidlig varsling om umulige planer', 'prioriteringer som gjør risiko og konsekvens beslutningsklare'],
+    cannot_grant: 'Standing hos driftsledelsen kan ikke gi Formannen større fullmakt, rett til å skjule hendelser eller adgang til å omgå arbeids- og sikkerhetsrutiner.'
+  },
+  {
+    id: 'work_crew', standing_axis: 'crew_fairness_voice_standing',
+    cares_about: ['rettferdig fordeling av belastning, risiko og læringsmuligheter', 'tydelig retning og en reell mulighet til å si fra uten utilbørlig press'],
+    cannot_grant: 'Standing i laget kan ikke gjøre kameratskap til personalmyndighet, oppheve Formannens ansvar eller legitimere skjulte snarveier.'
+  },
+  {
+    id: 'quality_hms', standing_axis: 'quality_hms_restart_standing',
+    cares_about: ['sikring, synlige fakta og sporbar hendelsesbehandling', 'gjenstart på riktig kontrollgrunnlag og innen faktisk mandat'],
+    cannot_grant: 'Kvalitet- og HMS-standing kan ikke gi Formannen kontrollfunksjonens godkjenningsmyndighet eller rett til å lukke et uavklart avvik.'
+  },
+  {
+    id: 'new_workers_learning', standing_axis: 'learning_instruction_standing',
+    cares_about: ['instruks som skiller oppgave, kontrollpunkt og kompetansegrense', 'en trygg og praktisk brukbar vei for spørsmål, stoppsignal og eskalering'],
+    cannot_grant: 'Opplæringsstanding kan ikke gjøre veiledning til kompetansegodkjenning, personalmyndighet eller beslutning uten fullmakt.'
+  },
+  {
+    id: 'peer_shift_leadership', standing_axis: 'peer_handoff_truth_standing',
+    cares_about: ['sann status på resultat, restarbeid og risiko', 'navngitt eierskap og kontrollpunkt som neste skift kan rekonstruere'],
+    cannot_grant: 'Peer-standing kan ikke erstatte påkrevd dokumentasjon, skjule forrige skifts ansvar eller gi tilbakevirkende myndighet.'
+  },
+  {
+    id: 'planning_delivery_pressure', standing_axis: 'delivery_integrity_standing',
+    cares_about: ['forutsigbar levering og tydelige tradeoffs', 'at kvalitet, bemanning og sikkerhet inngår i prognosen fremfor å bli skjulte kostnader'],
+    cannot_grant: 'Leveransestanding kan ikke gjøre frist eller kundepress til myndighet over HMS, kompetansegrenser eller formelle eskaleringslinjer.'
+  },
+  {
+    id: 'private_relations', standing_axis: 'private_role_containment_standing',
+    cares_about: ['restitusjon og faktisk nærvær etter skiftet', 'at ansvarsspråk og arbeidsrang kan legges bort uten at omsorg og ærlighet forsvinner'],
+    cannot_grant: 'Privat standing kan ikke løse arbeidsmandat, og profesjonell Standing kan ikke brukes som rang eller styringsrett hjemme.'
+  }
+];
+
+const REF = Object.freeze({
+  board: sourceRefs[0], arvid: sourceRefs[1], noor: sourceRefs[2], selma: sourceRefs[3], maja: sourceRefs[4],
+  tempo: sourceRefs[5], loyalty: sourceRefs[6], responsibility: sourceRefs[7], privateNearMiss: sourceRefs[8]
+});
+const dayBlueprints = [
+  {
+    morning: ['Morgenmøtet gjør den første tavla til en offentlig fordeling av tung sone, opprydding, restpunkt og opplæring; du må spørre etter faktisk kompetanse og belastning før navn blir stående som tilsynelatende nøytrale brikker.', REF.board],
+    lunch: ['Arvid leser tavla som en historie om hvem som alltid absorberer usikkerhet, mens Kari vil vite om skiftet holder planen; samme fordeling kan derfor se effektiv ut oppover og urettferdig ut nedenfra.', REF.arvid],
+    afternoon: ['En forsinkelse gjør det fristende å flytte Arvid tilbake til den tunge sonen og la Noor dekke et kontrollpunkt hun ikke eier; du må omfordele innen fullmakt og gjøre kapasitetsgapet eksplisitt.', REF.noor],
+    evening: ['Hjemme fortsetter hodet å plassere mennesker i soner, og en privat relasjon merker at svaret på et enkelt spørsmål kommer som en ordre; det første lederarbeidet blir synlig som beredskap utenfor arbeidstiden.', REF.responsibility]
+  },
+  {
+    morning: ['Belastningshistorikken viser at Arvid har båret tung sone oftere enn de andre; du må skille høy kompetanse fra ubegrenset kapasitet og forklare rotasjonen før laget gjør den til dom over hvem som er sterk eller svak.', REF.arvid],
+    lunch: ['Arvid sier at han kan ta sonen igjen, mens en kollega leser rotasjon som særbehandling; du må tåle at faglig respekt og opplevd rettferdighet peker i ulike retninger uten å kjøpe ro med skjult belastning.', REF.loyalty],
+    afternoon: ['Planen går raskest dersom den pålitelige medarbeideren blir buffer, men du fordeler de øvrige oppgavene først og navngir hvilken del som faktisk krever Arvids erfaring; effektivitet blir dermed begrunnet og begrenset.', REF.arvid],
+    evening: ['Når noen privat kaller rollen mer makt, merker du at dagens viktigste handling var å avstå fra den enkleste maktbruken; å forklare det uten tavlespråk tester om arbeidsstatus kan forbli situert.', REF.responsibility]
+  },
+  {
+    morning: ['Noor nikker til en oppgave som inneholder ett kontrollpunkt hun ikke har gjort alene; du må bryte instruksen i utførelse, stoppunkt og eskaleringsvei før lagets hastverk gjør nikket til falskt kompetansebevis.', REF.noor],
+    lunch: ['En erfaren kollega mener Noor lærer raskest ved å prøve, mens Noor følger samtalen uten å motsi noen; du må gjøre spørsmålet mulig uten å ydmyke henne eller gjøre erfaring til uformell godkjenningsmyndighet.', REF.noor],
+    afternoon: ['Når kontrollpunktet kommer, stanser Noor på avtalt sted og henter hjelp; produksjonen mister minutter, men laget får et synlig eksempel på at kompetansegrensen faktisk gjelder også når tavla er rød.', REF.noor],
+    evening: ['Du oppdager at du hjemme fortsatt svarer med korte avklaringer og kontrollspørsmål; en privat relasjon trenger et menneske som kan være usikker uten straks å organisere usikkerheten som et arbeidsproblem.', REF.responsibility]
+  },
+  {
+    morning: ['Gulvet er uvanlig stille og tavla ser grønn ut, men små avvik blir meldt sjeldnere; du må gå ut i arbeidet og finne ut om roen skyldes mestring eller at folk har lært at spørsmål forsinker skiftet.', REF.tempo],
+    lunch: ['Laget verdsetter at du ikke avbryter flyten, mens Selma savner tidlige observasjoner; du må gjøre det legitimt å melde små signaler uten å gjøre hvert signal til en personalsak eller full stans.', REF.selma],
+    afternoon: ['En endret lyd og et uklart restpunkt peker mot begynnende rework; du avgrenser berørt arbeid, samler fakta og lar resten fortsette, slik at lokal sikring ikke forveksles med dramatikk eller passivitet.', REF.selma],
+    evening: ['Fraværet av en stor hendelse gir lite å fortelle hjemme, men kroppen holder fortsatt vakt etter den lyden du fanget; usynlig forebygging mangler applaus og må likevel kunne avsluttes for kvelden.', REF.privateNearMiss]
+  },
+  {
+    morning: ['Kari ber om høyere tempo etter flere dager med rotasjon og opplæring; du må svare med hvor kapasitet faktisk kan hentes, hvilke kontrollpunkt som ikke kan kuttes og hva ledelsen må velge hvis målet står fast.', REF.tempo],
+    lunch: ['Oppover blir tydelig prognose lest som pålitelighet, mens laget følger med på om du bare sender presset videre; du må vise at et nei til skjult overbelastning samtidig er et ja til en konkret prioritering.', REF.loyalty],
+    afternoon: ['Du samler to restoppgaver, flytter én ikke-kritisk aktivitet og eskalerer manglende kapasitet med konsekvens; leveransen blir mindre enn ønsket, men planen slutter å late som alle krav kan oppfylles samtidig.', REF.tempo],
+    evening: ['Etter skiftet frister det å måle dagen bare mot tallet som manglet; privat nærvær krever at du også ser den skaden, reworken og tillitssvikten som ikke ble produsert fordi grensen ble synlig.', REF.responsibility]
+  },
+  {
+    morning: ['Simen mener den nye rotasjonen straffer dem som faktisk protesterer, mens andre mener de stille endelig blir sett; du må skille kritikk av fordelingen fra personens verdi og åpne begrunnelsen for kontroll.', REF.loyalty],
+    lunch: ['Arvid støtter deler av vurderingen, men advarer mot at rettferdighet blir matematisk likhet; laget trenger en leder som kan begrunne ulikhet med kompetanse og risiko uten å gjøre favorisering uetterprøvbar.', REF.arvid],
+    afternoon: ['Du reviderer én tildeling, beholder en annen og dokumenterer hva som avgjorde forskjellen; ingen får alt de ønsket, men beslutningen kan etterprøves uten at kameratskap eller protestvolum blir skjult kriterium.', REF.loyalty],
+    evening: ['Hjemme hører du deg selv forberede et forsvar for hver liten avgjørelse; privat Standing styrkes først når du kan fortelle om uenigheten uten å føre saken videre som om kjøkkenet var et nytt møte.', REF.responsibility]
+  },
+  {
+    morning: ['En nestenulykke ved bakre sone stanser bevegelsen et øyeblikk; du må sikre området, bevare hendelsesforløpet og beskytte Noor mot at fravær av skade gjør observasjonen mindre virkelig.', REF.selma],
+    lunch: ['Produksjonen ser klar ut til å starte, mens Selma fortsatt mangler årsak, eier og kontrollpunkt; ledelsen ser tapt tid, laget ser om sikkerhetsord faktisk gjelder når ingenting alvorlig skjedde.', REF.selma],
+    afternoon: ['Du holder berørt aktivitet på nødvendig nivå og sender full gjenstart til riktig kontrollinje; lokal handlekraft brukes til sikring og fakta, ikke til å overta myndigheten som tidspresset gjerne vil låne deg.', REF.selma],
+    evening: ['Noor ble ikke skadet, men kroppen spiller av foten, balansen og utstyret flere ganger; privat Standing krever at du kan si at nesten ingenting var mye uten å gjøre deg selv til eneste barriere mot alle framtidige hendelser.', REF.privateNearMiss]
+  },
+  {
+    morning: ['Fravær, opplæring og restarbeid gjør dagens plan matematisk mulig bare dersom sikkerhetsmarginen behandles som ledig kapasitet; du må navngi umuligheten før gulvet begynner å løse den med taus improvisasjon.', REF.tempo],
+    lunch: ['Kari trenger et valg, ikke bare et problem, mens laget trenger at valget ikke skyver all usikkerhet nedover; du presenterer tre prioriteringer med tydelig leveranse-, belastnings- og HMS-konsekvens.', REF.board],
+    afternoon: ['Ledelsen velger lavere produksjon og utsatt ikke-kritisk arbeid; du oversetter beslutningen tilbake til tavla uten å late som den var din alene eller bruke oppoverstøtten som ny personlig rang.', REF.responsibility],
+    evening: ['Dagen ga deg formell støtte, men hjemme merker du lysten til å fortelle den som seier over tvilen; moden privat Standing lar lettelsen være sann uten at jobbrang blir målestokk for resten av relasjonen.', REF.responsibility]
+  },
+  {
+    morning: ['Maja møter en grønn leveransestatus og to gule restpunkter; du må gjøre midlertidig tiltak, bemanningsusikkerhet og neste kontroll synlige før overleveringens vennlige tone skjuler den operative forskjellen.', REF.maja],
+    lunch: ['Maja utfordrer formuleringen noen små oppfølgingspunkter og ber om eier og frist; peer-respekt kan svekkes i øyeblikket når hun krever presisjon, men styrkes dersom statusen tåler overtakelse.', REF.maja],
+    afternoon: ['Dere går gjennom ferdig, uferdig, risiko og beslutning i fast rekkefølge; overleveringen gjør neste skift selvstendig uten å flytte forrige skifts ansvar eller skape ny myndighet mellom likemenn.', REF.maja],
+    evening: ['Det er uvant at tavla nå eies av noen andre, og hodet leter fortsatt etter hva Maja kan ha misforstått; privat Standing krever å tåle at ansvar faktisk kan overleveres når sporet er godt nok.', REF.maja]
+  },
+  {
+    morning: ['To mindre stans oppstår samtidig, og begge arbeidslag forventer at deres problem kommer først; du må prioritere etter sikkerhet, følgekonsekvens og tilgjengelig kompetanse fremfor hvem som roper høyest.', REF.tempo],
+    lunch: ['Det nedprioriterte laget leser valget som rang, mens driftsledelsen bare ser samlet nedetid; du må forklare prioriteringen i språk begge kan kontrollere uten å gjøre misnøye til illojalitet.', REF.loyalty],
+    afternoon: ['Du omdirigerer personell, setter ett stopp i vent med definert sikring og eskalerer reservedelsbehovet; flyten gjenoppstår fordi avhengigheter blir eid, ikke fordi Formannen personlig løser alle fagproblem.', REF.board],
+    evening: ['Hjemme blir et enkelt valg om middag møtt med et altfor detaljert prioriteringsregnestykke; privat Standing svekkes når operativ beslutningsevne glir over i behov for å kontrollere enhver liten felles handling.', REF.responsibility]
+  },
+  {
+    morning: ['Laget forventer at du beskytter dem mot et urealistisk krav, mens Kari forventer at du får beslutningen gjennomført; mellomposisjonen krever at du bærer informasjon begge veier uten å love mer makt enn du har.', REF.loyalty],
+    lunch: ['Arvid spør om du fortsatt er en av dem, og ledelsen spør om du har kontroll; du må avvise valget mellom kamerat og kontrollør og vise hvilken konkret plikt rollen har til begge sider.', REF.responsibility],
+    afternoon: ['Du stanser et lokalt pressgrep, dokumenterer kapasitetskonflikten og ber rett nivå velge mellom tid og bemanning; laget ser beskyttelse, men også at du ikke kan gi dem utfallet alene.', REF.responsibility],
+    evening: ['Ansvar uten herredømme etterlater en rest av skam når ingen side er helt fornøyd; privat Standing styrkes når du kan skille en begrenset rolle fra forestillingen om at enhver misnøye beviser personlig svikt.', REF.responsibility]
+  },
+  {
+    morning: ['En senere gjennomgang kobler nestenulykken til utstyrsplassering, tidspress og uklar overlevering; du må la flere årsaker stå samtidig uten å redusere hendelsen til Noors fot eller én enkel syndebukk.', REF.selma],
+    lunch: ['Selma verdsetter sporet, Kari spør hvorfor årsaken ikke ble lukket raskere, og laget frykter nye regler; du må oversette læring til avgrensede tiltak uten å love null risiko eller produsere symbolsk kontroll.', REF.selma],
+    afternoon: ['Tiltaket fordeler ansvar for ganglinje, kontroll og overlevering og setter tidspunkt for evaluering; sikkerhetsarbeidet blir en faktisk loop fremfor et dokument som bare beskytter omdømmet etterpå.', REF.selma],
+    evening: ['Når hendelsen endelig har et læringsspor, kommer trettheten som beredskapen holdt unna; privat Standing handler nå om å motta omsorg uten å bruke lederrollen til å bagatellisere egen belastning.', REF.privateNearMiss]
+  },
+  {
+    morning: ['Tavla, hendelsen og de gule restpunktene følger deg inn i fridagen som en indre kø; du må avgjøre hvilke tanker som er nødvendig beredskap og hvilke som bare gjentar arbeidsrollen uten ny handling.', REF.privateNearMiss],
+    lunch: ['En privat relasjon ber deg slutte å svare alle som om de var laget ditt; kritikken utfordrer en lederstil som fungerer på skiftet, men blir asymmetrisk og kald når ingen hjemme har gitt deg mandat.', REF.responsibility],
+    afternoon: ['Du setter en konkret grense for når arbeidsmeldinger leses og hvem som faktisk har vakt; ansvar blir delegert til virksomhetens ordning i stedet for å bæres som personlig allestedsnærvær.', REF.maja],
+    evening: ['Nærvær uten tavle føles først som å miste kontroll, men gjør det mulig å møte andre uten rang; privat Standing styrkes når Formannen kan være ansvarlig på jobb og gjensidig hjemme.', REF.responsibility]
+  },
+  {
+    morning: ['Den siste tavla samler belastning, opplæring, avvik og restarbeid i ett bilde; du må vise at moden operativ autoritet er evnen til å gjøre prioriteringer lesbare, ikke å være den eneste som vet alt.', REF.board],
+    lunch: ['Arvid, Noor, Selma og Maja vurderer deg fra ulike posisjoner: rettferdighet, trygg instruks, kontrollspor og overlevering kan ikke reduseres til ett samlet omdømmetall uten å miste det vesentlige.', REF.arvid],
+    afternoon: ['Du fordeler arbeidet, avgrenser en kompetanserisiko, beholder et HMS-punkt åpent og gir Maja sann status; beslutningene henger sammen, men hver authority-grense forblir hos riktig rolle.', REF.maja],
+    evening: ['Rollen kan nå legges fra seg uten at ansvaret fornektes: det som er dokumentert og overlevert får bli på jobb, mens stolthet og tvil kan eksistere privat uten å bli ny styringsrett.', REF.responsibility]
+  }
+];
+
+const phases = ['morning', 'lunch', 'afternoon', 'evening'];
+const beatTypes = ['info', 'relationship', 'task', 'decision', 'conversation', 'social', 'consequence', 'private_consequence'];
+const standingRule = 'Standing er audience-spesifikk redaksjonell tolkning: den kan styrkes hos ett publikum og svekkes hos et annet, men kan aldri utvide fullmakt, oppheve HMS- eller arbeidsrutiner, gi kontroll- eller godkjenningsmyndighet, legitimere utilbørlig press eller gjøre skjult risiko til akseptabel drift.';
+const coverage = [];
+for (let day = 1; day <= dayBlueprints.length; day += 1) {
+  const blueprint = dayBlueprints[day - 1];
+  for (let phaseIndex = 0; phaseIndex < phases.length; phaseIndex += 1) {
+    const phase = phases[phaseIndex];
+    const [authoredText, materializationRef] = blueprint[phase];
+    coverage.push({
+      day,
+      phase,
+      beat_type: beatTypes[((day - 1) * phases.length + phaseIndex) % beatTypes.length],
+      summary: `Dag ${day}, ${phase}: ${authoredText} ${standingRule}`,
+      materialization_refs: [materializationRef]
+    });
+  }
+}
+
+const world = {
+  schema: 'civication_role_world_v1',
+  version: 1,
+  category: 'naeringsliv',
+  role_scope: 'formann',
+  title: 'Formann — kapasitet, mellomposisjon og situert operativ legitimitet',
+  status: 'role_world_complete',
+  sociological_core: {
+    main_problem: 'Å skape legitim flyt mellom ledelsens mål og lagets faktiske kapasitet når Formannen har ansvar for fordeling, sikkerhet og overlevering uten å eie alle beslutningene som former arbeidet.',
+    description: 'Role World-en lukker bare situated reputation rundt eksisterende Formann-praksis. Den etablerte 31-stegsplanen, operative arbeidsgrammatikken, People-forankringen, arbeidsflatene og authority-grensen beholdes uendret.'
+  },
+  theme_ids: themeIds,
+  social_environments: [
+    'Produksjons- og arbeidsområdet der tavlas abstrakte kapasitet møter kropp, kompetanse, slitasje og praktiske avhengigheter.',
+    'Arbeidslederpunktet der fordeling blir lest samtidig som prioritering, rang, omsorg, rettferdighet og forventning om levering.',
+    'HMS- og avvikspunktet der lokal sikring må skilles fra full kontroll, lukking og myndighet til gjenstart.',
+    'Skift- og overleveringsrommet der grønn status, gule restpunkter, risiko og eierskap må tåle at neste leder ikke deler forrige skifts hukommelse.',
+    'Møtet med driftsledelse, plan og leveransepress der umulige planer må bli beslutningsklare uten at presset bare sendes nedover.',
+    'Privatlivet der beredskap, kommandospråk og ansvarskropp må kunne legges bort uten at arbeidsansvaret fornektes.'
+  ],
+  recurring_people_archetypes: recurringPeopleArchetypes,
+  slow_axes: slowAxes,
+  existing_work_continuity: {
+    runtime_binding: 'existing_mail_and_work_grammar',
+    new_runtime_state: false,
+    work_loops: workLoops,
+    canonical_surfaces: [MODEL_PATH, GRAMMAR_PATH, PLAN_PATH, JOB_PATH, PEOPLE_PATH, CONFLICT_PATH, STORY_PATH],
+    rule: 'Den eksisterende 31-stegs Formann-planen, to-ukers praksisblokken, den senere rollen og de to canonical work loops forblir authoritative; Role World-en legger bare situert Standing rundt eksisterende scener og skaper ingen ny scene-, plan-, work-object- eller rytme-runtime.'
+  },
+  situated_reputation_model: {
+    global_score_allowed: false,
+    audiences,
+    authority_separation: 'Standing uttrykker situert tillit hos ulike publikum. Den kan aldri utvide Formannens fullmakt eller personalmyndighet, oppheve sikkerhets- og HMS-krav, gi kontroll-/godkjenningsrett, legitimere utilbørlig press eller skjule hendelser og restarbeid.',
+    rule: 'Standing er audience-spesifikk og kan divergere mellom driftsledelse, arbeidslag, kvalitet/HMS, nye medarbeidere, neste skiftleder, plan-/leveransepress og privatliv uten global sosial score.'
+  },
+  cross_role_link: {
+    status: 'candidate_when_shared_work_is_real',
+    materialized: false,
+    new_runtime: false,
+    companion_keys: ['naeringsliv/avdelingsleder', 'naeringsliv/controller', 'naeringsliv/finansanalytiker', 'naeringsliv/mellomleder', 'naeringsliv/okonomi_og_finanssjef'],
+    rule: 'Adjacent roles are plausible companions, but no governed shared persistent object with explicit ownership, handoff state and authority contract exists in this rollout. No cross-role object or runtime is invented merely to satisfy candidacy.'
+  },
+  season: {
+    days: 14,
+    day_phases: phases,
+    coverage
+  },
+  primary_threads: [
+    { id: 'allocation_capacity_and_fairness', beat_refs: ['1/morning', '2/morning', '2/afternoon', '6/morning', '8/lunch', '14/morning'] },
+    { id: 'competence_voice_and_learning', beat_refs: ['1/afternoon', '3/morning', '3/lunch', '3/afternoon', '4/lunch', '14/afternoon'] },
+    { id: 'safety_quality_and_restart', beat_refs: ['4/afternoon', '7/morning', '7/lunch', '7/afternoon', '12/morning', '12/afternoon'] },
+    { id: 'legitimacy_between_floor_and_management', beat_refs: ['5/morning', '5/lunch', '6/lunch', '8/afternoon', '11/morning', '11/afternoon'] },
+    { id: 'handoff_memory_and_peer_truth', beat_refs: ['9/morning', '9/lunch', '9/afternoon', '10/afternoon', '13/afternoon', '14/lunch'] },
+    { id: 'private_role_containment', beat_refs: ['1/evening', '5/evening', '7/evening', '11/evening', '13/evening', '14/evening'] }
+  ],
+  private_aftermath: [
+    { id: 'tavla_i_hodet', beat_refs: ['1/evening', '2/evening'], meaning: 'Arbeidsfordelingen kan avsluttes som oppgave uten at menneskene reduseres til en privat indre bemanningsplan.' },
+    { id: 'ledermodus_hjemme', beat_refs: ['3/evening', '10/evening'], meaning: 'Operativt beslutningsspråk må kunne vike for gjensidighet når ingen privat har gitt spilleren styringsmandat.' },
+    { id: 'nestenulykken_i_kroppen', beat_refs: ['7/evening', '12/evening'], meaning: 'Beredskap etter nestenulykke kan erkjennes og restitueres uten å bli total personlig skyld eller permanent vakt.' },
+    { id: 'ansvar_uten_herredomme_hjem', beat_refs: ['8/evening', '11/evening'], meaning: 'Begrenset myndighet kan være profesjonelt sant uten at manglende kontroll over utfallet blir privat skam.' },
+    { id: 'overlevert_og_avsluttet', beat_refs: ['9/evening', '13/evening', '14/evening'], meaning: 'Godt dokumentert og overlevert arbeid kan få bli på jobb, slik at ansvar ikke betyr personlig allestedsnærvær.' }
+  ],
+  delayed_consequences: [
+    { id: 'first_board_return', setup_ref: '1/morning', return_ref: '6/afternoon', meaning: 'Den første begrunnelsen for arbeidsfordeling avgjør senere om en konflikt kan etterprøves eller bare blir kamp om person og rang.' },
+    { id: 'arvid_load_return', setup_ref: '2/morning', return_ref: '5/lunch', meaning: 'Tidlig synliggjort belastning avgjør om senere tempopress kan møtes med reell kapasitet i stedet for den påliteliges skjulte reserve.' },
+    { id: 'noor_voice_return', setup_ref: '3/morning', return_ref: '7/morning', meaning: 'En brukbar eskaleringsvei gjør det mulig for Noor å melde risiko før nestenulykken blir lest som hennes individuelle feil.' },
+    { id: 'quiet_floor_return', setup_ref: '4/morning', return_ref: '12/morning', meaning: 'Tidlige små signaler avgjør om den senere hendelsesanalysen har et mønster å lære av eller bare én dramatisk episode.' },
+    { id: 'capacity_escalation_return', setup_ref: '5/morning', return_ref: '8/lunch', meaning: 'Den første sanne prognosen avgjør om ledelsen senere kan velge kapasitet eksplisitt fremfor å oppdage umuligheten gjennom skade eller rework.' },
+    { id: 'handoff_return', setup_ref: '9/morning', return_ref: '14/afternoon', meaning: 'Presis overlevering kommer tilbake når flere authority-grenser må holdes samtidig uten at noen bygger på skjult restarbeid.' },
+    { id: 'private_boundary_return', setup_ref: '1/evening', return_ref: '13/evening', meaning: 'Tidlig ledermodus hjemme blir senere en konkret prøve på om rollen kan avgrenses uten at ansvar og omsorg forsvinner.' }
+  ],
+  employment_conditions: [
+    'Formann- og skiftlederansvar forutsetter faktisk stilling, delegasjon, virksomhetslinje og relevant kompetanse; Badge-poeng eller Standing gir ingen jobb eller myndighet.',
+    'Bemanning, arbeidstid, personalsak, HMS-kontroll og gjenstartsmyndighet er institusjonelle forhold og ikke nye globale runtimefelt.',
+    'Utvidet personal-, budsjett-, kontroll- eller godkjenningsmyndighet krever faktisk delegasjon og kan ikke materialiseres gjennom lagets tillit eller ledelsens gode omdømme.'
+  ],
+  professional_culture: [
+    'God operativ lederkultur gjør kapasitet, belastning og sikkerhet synlige før de blir individuelle feil eller skjulte snarveier.',
+    'Lojalitet oppover og nedover er forenlige bare når Formannen oversetter sann informasjon begge veier uten å love makt rollen ikke har.',
+    'En grønn tavle er ikke et komplett resultat dersom den skjuler gule restpunkter, uavklart kontroll, skjev belastning eller arbeid som neste skift må oppdage selv.'
+  ],
+  materialization: {
+    authored_dimensions: ['situated_reputation'],
+    no_new_runtime: true,
+    existing_plan_preserved: true,
+    existing_role_model_preserved: true,
+    existing_people_foundation_preserved: true,
+    existing_work_grammar_preserved: true,
+    existing_persistent_work_preserved: true,
+    existing_rhythm_preserved: true,
+    cross_role_link_materialized: false,
+    source_refs: sourceRefs
+  }
+};
+
+assert(world.season.coverage.length === 56, 'Formann coverage must be 56 beats');
+assert(new Set(world.season.coverage.map((beat) => beat.summary)).size === 56, 'Formann beat summaries must all be unique');
+for (const beat of world.season.coverage) assert(beat.summary.length >= 220, `${beat.day}/${beat.phase}: authored beat too shallow`);
+
+write(WORLD_PATH, world);
+
+const index = read(INDEX_PATH);
+assert(!index.roles.some((entry) => entry.category === 'naeringsliv' && entry.role_scope === 'formann'), 'Formann already registered in Role World index');
+index.roles.push({ category: 'naeringsliv', role_scope: 'formann', status: 'role_world_complete', path: WORLD_PATH });
+index.status = `${index.roles.length}_role_worlds_materialized`;
+write(INDEX_PATH, index);
+
+const checklist = read(CHECKLIST_PATH);
+assert(!checklist.reference_worlds.includes(WORLD_PATH), 'Formann already present in authoring checklist');
+checklist.reference_worlds.push(WORLD_PATH);
+write(CHECKLIST_PATH, checklist);
+
+themeBank.reference_profiles[KEY] = themeIds;
+write(THEME_BANK_PATH, themeBank);
+
+for (const [rel, beforeHash] of Object.entries(protectedHashes)) {
+  assert(sha(rel) === beforeHash, `${rel} changed during Role World materialization`);
+}
+
+console.log(JSON.stringify({
+  role_world: WORLD_PATH,
+  index_status: index.status,
+  source_refs: sourceRefs.length,
+  days: world.season.days,
+  beats: world.season.coverage.length,
+  unique_summaries: new Set(world.season.coverage.map((beat) => beat.summary)).size,
+  audiences: world.situated_reputation_model.audiences.length,
+  protected_surfaces_unchanged: Object.keys(protectedHashes)
+}, null, 2));
