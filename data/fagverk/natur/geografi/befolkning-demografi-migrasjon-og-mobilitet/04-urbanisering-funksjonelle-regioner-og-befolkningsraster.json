@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "befolkning-demografi-migrasjon-og-mobilitet",
+  "id": "04-urbanisering-funksjonelle-regioner-og-befolkningsraster",
+  "title": "Urbanisering, funksjonelle regioner og befolkningsraster",
+  "sections": [
+    {
+      "id": "urbanisering-bygrenser-og-funksjonelle-regioner",
+      "title": "Urbanisering, bygrenser og funksjonelle regioner",
+      "method_ids": ["met_geo_degurba_gridklassifikasjon", "met_geo_fua_pendling"],
+      "boundary": "Urbanandel, bykjerne og funksjonelt byområde bygger på forskjellige definisjoner; administrativ bygrense, gridklassifikasjon og pendlingssone skal holdes adskilt.",
+      "paragraphs": [
+        "Internasjonale serier over urban befolkning kan bygge på landenes egne definisjoner av hva som regnes som urbant og ruralt. Disse definisjonene kan bruke administrative kriterier, befolkningsstørrelse, tetthet, infrastruktur eller kombinasjoner, og de kan endres over tid. Dermed kan forskjeller i urbanandel mellom land delvis skyldes definisjonsforskjeller i tillegg til faktiske bosettingsmønstre. En geografisk sammenligning bør derfor dokumentere den nasjonale urban-definisjonen eller bruke en harmonisert klassifikasjon når sammenlignbarhet er hovedmålet. Et enkelt prosenttall er ikke nok til å vise hvordan by og land er operasjonalisert i datagrunnlaget.",
+        "Degree of Urbanisation bruker et regelmessig befolkningsrutenett og kriterier for tetthet, sammenheng og samlet befolkning for å identifisere bysentre, urbane klynger og rurale celler. Metoden søker å gjøre romlige klasser mer sammenlignbare på tvers av administrative systemer, men resultatet er fortsatt avhengig av gridoppløsning og terskelregler. En kommune kan inneholde både urban og rural befolkning selv om kommunen administrativt har én kategori. Derfor bør analyser skille den gridbaserte morfologiske klassifikasjonen fra kommunegrenser og nasjonale betegnelser og oppgi hvilken versjon av metoden som er brukt.",
+        "Et funksjonelt byområde kombinerer en tett eller morfologisk bykjerne med en pendlingssone som er arbeidsmarkedsmessig knyttet til kjernen. Denne geografien kan krysse kommune- og regiongrenser og er derfor egnet for spørsmål om arbeidsreiser, boligmarked og funksjonell integrasjon som ikke stopper ved administrative grenser. Den er likevel ikke identisk med det sammenhengende bebygde området: en pendlingssone kan inkludere mindre tettbygde arealer dersom arbeidsmarkedsbindingen er sterk. Geografisk analyse må derfor forklare om byen er definert administrativt, morfologisk eller funksjonelt før folketall, tetthet eller vekst sammenlignes.",
+        "Vekst i en urban agglomerasjon kan komme fra naturlig befolkningsendring, innflytting, utflytting eller at den statistiske eller administrative avgrensningen utvides. Når et tettsted vokser fysisk og nærliggende bosettinger innlemmes i samme agglomerasjon, kan folketallet hoppe selv uten at like mange personer faktisk har flyttet i perioden. Derfor bør urban vekst dekomponeres i demografiske komponenter og grenseeffekter. En etterprøvbar analyse beholder samme geografiske definisjon over tid eller dokumenterer hvordan serien er harmonisert. Ellers kan kartlagt urbanisering blande reell befolkningsvekst med endringer i hva som telles som byen."
+      ],
+      "paragraphClaimIds": [["geo7-25"],["geo7-26"],["geo7-27"],["geo7-28"]]
+    },
+    {
+      "id": "griddede-befolkningsmodeller-validering-og-usikkerhet",
+      "title": "Griddede befolkningsmodeller, validering og usikkerhet",
+      "method_ids": ["met_geo_populasjonsdisaggregering", "met_geo_befolkningsmodell_validering"],
+      "boundary": "Top-down og bottom-up befolkningsraster er modellerte romlige fordelinger; inngangscensus, kovariater, constraint, oppløsning og usikkerhet skal dokumenteres.",
+      "paragraphs": [
+        "Top-down befolkningskart starter med en kjent eller estimert totalsum for administrative enheter og fordeler denne summen til mindre gridceller ved hjelp av geospatiale kovariater som bebyggelse, veier eller landdekke. Modellen kan være pyknofylaktisk, slik at cellene summerer tilbake til den opprinnelige administrative totalen, men fordelingen mellom cellene er fortsatt modellert. Det gjør rasteret langt mer fleksibelt for romlige analyser enn grove administrative tabeller, samtidig som lokal presisjon avhenger av modellens inngangsdata. Geografen bør derfor skille den observerte eller estimerte totalsummen fra den modellerte interne fordelingen og dokumentere constraint og referanseår.",
+        "Bottom-up befolkningsmodeller brukes særlig der fullstendige og oppdaterte folketellinger mangler, og kombinerer representative utvalgsdata med geospatiale kovariater for å predikere befolkning i områder uten direkte telling. Metoden kan gi viktig beslutningsstøtte i datagap, men resultatet er en statistisk prediksjon med modell- og samplingusikkerhet. Det skal derfor ikke omtales som om alle personer i hver celle er direkte observert. Ved bruk bør analysebeskrivelsen angi surveygrunnlag, modelltype, kovariater, validering og usikkerhetsmål, og vurdere om modellen er egnet for den lokale geografien og perioden som undersøkes.",
+        "Et befolkningsraster med 100 meters eller annen fin celleoppløsning kan se svært detaljert ut, men den faktiske lokale nøyaktigheten bestemmes ikke av cellestørrelsen alene. Hvis inngangscensus er gammel, geografisk grov eller ufullstendig, må modellen fordele en usikker totalsum ved hjelp av indirekte geodata, og detaljnivået i kartet kan overstige evidensgrunnlaget. Validering mot uavhengige lokale data og dokumentasjon av inngangsdato er derfor avgjørende. Geografisk presisjon bør vurderes som en kombinasjon av oppløsning, kildekvalitet, modell og validering, ikke som antall meter i rastercellen alene.",
+        "En reproduserbar befolkningsgeografisk analyse dokumenterer referansedato, populasjonsdefinisjon og geografisk enhet før den kombinerer census, migrasjon, urbanisering eller rasterdata. Dersom modellerte grid brukes, må modelltype, oppløsning, constraint og usikkerhet følge med; dersom migrantdata brukes, må stock, flow eller netto mål angis; og dersom urbane områder sammenlignes, må grensedefinisjonen være tydelig. Denne metadata-kjeden gjør det mulig å avgjøre om to kart faktisk måler samme fenomen. Uten den kan en visuelt presis analyse skjule forskjeller i tid, definisjon og modell som er større enn den romlige variasjonen den hevder å forklare."
+      ],
+      "paragraphClaimIds": [["geo7-29"],["geo7-30"],["geo7-31"],["geo7-32"]]
+    }
+  ]
+}

@@ -6,12 +6,12 @@ test('Geografi reconciliation låser eierskap, 12-domeneplan og fail-closed frem
   const result = audit();
   assert.equal(result.status, 'pass');
   assert.equal(result.domains, 12);
-  assert.equal(result.materialized, 6);
-  assert.equal(result.sourceFirstReady, 7);
+  assert.equal(result.materialized, 7);
+  assert.equal(result.sourceFirstReady, 8);
   assert.equal(result.strictCompletionProven, false);
   assert.equal(result.reuseWithExpansion, 4);
   assert.equal(result.newProductionRequired, 8);
   assert.equal(result.moveExisting, 0);
-  assert.equal(result.nextDomain, 'befolkning_demografi_migrasjon_mobilitet');
+  assert.equal(result.nextDomain, 'bosetting_by_land_urbanisering');
   assert.ok(result.findings >= 10);
 });
