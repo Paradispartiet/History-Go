@@ -104,7 +104,7 @@ Den permanente auditen klassifiserer hvert `badgePage` som:
 - [ ] Migrer kun unik, gyldig teori som mangler canonicalt til riktig emne/metode/begrep/kapittel/fagoversikt.
 - [x] Migrer Politikkens `rich_runtime`-funksjoner til Progresjon/Emner/Utforsk, arkiver originalen byte-for-byte og pensjoner separat portalruntime.
 - [ ] Audit `legacy_stub` for unik tekst og aktive lenker; redirect etter grønn gate.
-- [ ] Gjør `emner.html` eksplisitt til **Min læring** / global progresjonsflate.
+- [x] Gjør `emner.html` eksplisitt til **Min læring** / global progresjonsflate.
 - [ ] Redirect resterende legacy `badgePage` fagvis etter equivalence-gate.
 - [ ] Redirect `merker/merker.html` når ingen canonical brukerreise trenger portalen.
 - [ ] Fjern døde CSS-/JS-lag etter permanent referanse- og browseraudit.
