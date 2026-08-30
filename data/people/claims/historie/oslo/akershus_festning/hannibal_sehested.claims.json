@@ -1,0 +1,156 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "hannibal_sehested",
+  "place_id": "akershus_festning",
+  "profile_file": "data/people/historie/oslo/akershus_festning/hannibal_sehested.json",
+  "identity": {
+    "canonical_identity": "Den dansk-norske adelsmannen og stattholderen Hannibal Sehested (1609–1666).",
+    "name_variants": [
+      "Hannibal Sehested"
+    ],
+    "not": [
+      "andre medlemmer av Sehested-slekten"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity",
+      "claim": "Hannibal Sehested levde fra 1609 til 1666 og var dansk-norsk adelsmann og stattholder.",
+      "status": "verified",
+      "source_url": "https://snl.no/Hannibal_Sehested",
+      "source_location": "biografiens innledning",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-30",
+      "evidence_level": "explicit"
+    },
+    {
+      "id": "akershus_role",
+      "claim": "Hannibal Sehested ble stattholder i Norge, høvedsmann på Akershus og lensherre i Akershus len i 1642.",
+      "status": "verified",
+      "source_url": "https://snl.no/Hannibal_Sehested",
+      "source_location": "avsnittet om utnevnelsen i 1642",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-30",
+      "evidence_level": "explicit"
+    },
+    {
+      "id": "akershus_residence",
+      "claim": "Sehested bodde på Akershus mens omfattende arbeider på slott og festning pågikk.",
+      "status": "verified",
+      "source_url": "https://snl.no/Akershus_slott_og_festning",
+      "source_location": "avsnittet om Christian 4.s og Sehesteds byggearbeider",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-30",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "army",
+      "claim": "Sehested organiserte en mer varig norsk hær under Hannibalfeiden.",
+      "status": "verified",
+      "source_url": "https://snl.no/Hannibal_Sehested",
+      "source_location": "avsnittet om Hannibalfeiden og hærorganiseringen",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-30",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "gamle_radhus_office",
+      "claim": "Sehesteds generalkommissariat hadde kontorer i Gamle rådhus i de første årene etter 1641.",
+      "status": "verified",
+      "source_url": "https://lokalhistoriewiki.no/Gamle_r%C3%A5dhus_(Oslo)",
+      "source_location": "avsnittet om rådhusbygningens tidlige bruk",
+      "source_type": "local_history_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-30",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "portrait",
+      "claim": "Commons-filen identifiserer portrettet som Hannibal Sehested og oppgir Karel van Mander III som kunstner.",
+      "status": "verified",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Hannibal_Sehested.jpg",
+      "source_location": "Summary og Licensing",
+      "source_type": "archive",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-30",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity"
+    ],
+    "year": [
+      "akershus_role"
+    ],
+    "placeId": [
+      "akershus_role"
+    ],
+    "places[akershus_festning]": [
+      "akershus_role",
+      "akershus_residence"
+    ],
+    "places[gamle_radhus]": [
+      "gamle_radhus_office"
+    ],
+    "image": [
+      "portrait"
+    ],
+    "cardImage": [
+      "portrait"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "akershus_role",
+          "army"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "akershus_role"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "akershus_residence"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "army"
+        ]
+      },
+      {
+        "sentence": 4,
+        "claim_ids": [
+          "akershus_role",
+          "akershus_residence"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "6/6",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-30",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}

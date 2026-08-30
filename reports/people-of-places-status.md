@@ -1,12 +1,12 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-08-30T08:18:11.494Z
+Generert: 2026-08-30T10:53:54.680Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-08-30T08:18:11.494Z |
+| generatedAt | 2026-08-30T10:53:54.680Z |
 | peopleFilesRead | 763 |
 | totalPeople | 1421 |
 | uniquePeopleIds | 1421 |
@@ -2269,4 +2269,4 @@ Mangler filer for image/cardImage/media: 582
 - Ingen people entries ble lagt til.
 - Ingen people entries ble flyttet.
 - Ingen nye place IDs ble opprettet.
-- Scriptet leser data og skriver kun rapportene `reports/people-of-places-status.json` og `reports/people-of-places-status.md`.
+- Scriptet leser data og skriver kun rapportene `reports/people-of-places-status.json` og `reports/people-of-places-status.md`.\n
