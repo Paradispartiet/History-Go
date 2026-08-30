@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
+import { projectSociologyMilestone } from './lib/sosiologi-antropologi-progress.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CHAPTER_ID = 'kultur-religion-ritual-og-materialitet';
@@ -21,6 +22,7 @@ function expectedReport(sourceBrief) {
 
 export function audit() {
   const chapter = read(P.chapter); const brief = read(P.brief); const claimFile = read(P.claims); const assessment = read(P.assessment); const sourceBrief = read(P.sourceBrief); const production = read(P.production); const category = read(P.category);
+  projectSociologyMilestone(production, category, 8);
   const modules = chapter.moduleFiles.map(read); const sections = modules.flatMap((module) => module.sections); const paragraphs = sections.flatMap((section) => section.paragraphs); const traces = sections.flatMap((section) => section.paragraphClaimIds);
   const planned = sourceBrief.topic_briefs.flatMap((topic) => topic.planned_claims); const plannedIds = planned.map((claim) => claim.id); const claims = new Map(claimFile.claims.map((claim) => [claim.id, claim])); const sourceIds = new Set(claimFile.sources.map((source) => source.id));
   assert(chapter.subject_id === 'politikk' && chapter.canonical_subcategory_id === 'sosiologi_antropologi' && chapter.domain_id === 'kultur_religion_ritual_materialitet', 'Kapittelet har feil canonicalt eierskap');

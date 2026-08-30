@@ -1,0 +1,9 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { auditVitenskapLegacyTheory } from '../scripts/audit-fagverk-vitenskap-legacy-theory.mjs';
+
+test('Vitenskap raw audit preserves original source and enumerates all sections',()=>{const r=auditVitenskapLegacyTheory();assert.equal(r.subject,'vitenskap');assert.equal(r.legacy.sourcePreserved,true);assert.equal(r.legacy.originalBlobSha,'519bb6541d2e25606f714e5a1d22d2bfa06b3a2c');assert.equal(r.legacy.activeBlobSha,r.legacy.originalBlobSha);assert.equal(r.legacy.sectionCount,12);assert.equal(r.legacy.knowledgeSectionCount,10);assert.equal(r.legacy.productSectionCount,2);assert.deepEqual(r.rows.map(x=>x.id),['felt','normativ','doxa','metode','materiell','sosial','geografisk','temporal','blindsoner','begreper','bidrag','emner-vitenskap']);});
+
+test('Vitenskap raw audit is evidence-only and cannot authorize redirect',()=>{const r=auditVitenskapLegacyTheory();assert.equal(r.canonical.registryChapterCount,5);assert.equal(r.canonical.strictMajorFields,6);assert.equal(r.canonical.strictEmners,117);assert.equal(r.canonical.strictClaims,178);assert.equal(r.canonical.strictSources,103);assert.ok(r.canonical.corpusCharacterCount>=r.canonical.corpusTruncationFloor);assert.equal(r.navigation.legacyRouteActive,true);assert.equal(r.navigation.routeRetired,false);assert.equal(r.summary.redirectReady,false);});
+
+test('Vitenskap raw audit reports anchor coverage without hiding gaps',()=>{const r=auditVitenskapLegacyTheory();const k=r.rows.filter(x=>x.role==='knowledge');assert.equal(k.length,10);assert.ok(k.every(x=>x.anchorCount>0&&x.foundCount<=x.anchorCount));assert.equal(r.summary.anchorCompleteCount+r.summary.manualReviewCount,10);assert.equal(r.rows.find(x=>x.id==='bidrag').role,'legacy_product_copy');assert.equal(r.rows.find(x=>x.id==='emner-vitenskap').role,'legacy_dynamic_product_ui');});

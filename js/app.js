@@ -210,6 +210,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadHGUnlocks", () => loadScriptOnce("js/hg_unlocks.js"));
     await safeRun("loadHGDebates", () => loadScriptOnce("js/hgDebates.js"));
     await safeRun("loadHGReads", () => loadScriptOnce("js/hgReads.js"));
+    await safeRun("loadQuizAnswerShuffle", () => loadScriptOnce("js/quiz/answer-shuffle.js"));
     await safeRun("loadQuizzes", () => loadScriptOnce("js/quizzes.js"));
 
     // QuizEngine må bindes til det ekte app-API-et (window.PLACES) FØR routeren

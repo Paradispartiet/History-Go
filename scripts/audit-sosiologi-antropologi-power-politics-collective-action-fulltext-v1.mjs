@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
+import { projectSociologyMilestone } from './lib/sosiologi-antropologi-progress.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OWNER = 'konflikt-makt-sivilsamfunn';
@@ -29,6 +30,7 @@ export function audit() {
   const ownerChapter = JSON.parse(ownerChapterText); const ownerClaims = JSON.parse(ownerClaimsText);
   const overlay = read(P.overlay); const brief = read(P.brief); const claimFile = read(P.claims); const assessment = read(P.assessment);
   const sourceBrief = read(P.sourceBrief); const next = read(P.nextSourceBrief); const production = read(P.production); const category = read(P.category);
+  projectSociologyMilestone(production, category, 10);
   const modules = overlay.expansionModuleFiles.map(read); const sections = modules.flatMap((module) => module.sections);
   const paragraphs = sections.flatMap((section) => section.paragraphs); const traces = sections.flatMap((section) => section.paragraphClaimIds);
   const planned = sourceBrief.topic_briefs.flatMap((topic) => topic.planned_claims); const plannedIds = planned.map((claim) => claim.id);

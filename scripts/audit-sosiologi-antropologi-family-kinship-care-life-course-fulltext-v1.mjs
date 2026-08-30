@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
+import { projectSociologyMilestone } from './lib/sosiologi-antropologi-progress.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CHAPTER_ID = 'familie-slektskap-omsorg-og-livslop';
@@ -71,6 +72,7 @@ export function audit() {
   const sourceBrief = read(P.sourceBrief);
   const production = read(P.production);
   const category = read(P.category);
+  projectSociologyMilestone(production, category, 6);
   const modules = chapter.moduleFiles.map(read);
   const sections = modules.flatMap((module) => module.sections);
   const paragraphs = sections.flatMap((section) => section.paragraphs);
@@ -111,4 +113,3 @@ try {
   console.error(`Familie, slektskap, omsorg og livsløp fulltekstaudit FEIL: ${error.message}`);
   process.exitCode = 1;
 }
-
