@@ -73,7 +73,9 @@
     "category_knowledge": [
       "Hvordan fysisk vareflyt, systemdata og intern kontroll kobler lageret til butikk, transport, økonomi og kunde."
     ],
-    "history_go_badges": ["naeringsliv"],
+    "history_go_badges": [
+      "naeringsliv"
+    ],
     "place_connections": [],
     "people_connections": []
   },
@@ -97,14 +99,22 @@
       "title": "Tempo mot nøyaktighet",
       "description": "Driften venter på varen, men små feil i mottak, plukk eller registrering blir større når de flyttes videre.",
       "pressure": "tempo_vs_noyaktighet",
-      "affects": ["trust", "flow", "risk"]
+      "affects": [
+        "trust",
+        "flow",
+        "risk"
+      ]
     },
     {
       "id": "sikkerhet_vs_produksjonspress",
       "title": "Sikkerhet mot produksjonspress",
       "description": "Fysisk arbeid kan gjøres raskere på kort sikt, men HMS svikter hvis kroppen eller arbeidsområdet blir den skjulte bufferen.",
       "pressure": "sikkerhet_vs_produksjonspress",
-      "affects": ["stability", "health", "output"]
+      "affects": [
+        "stability",
+        "health",
+        "output"
+      ]
     }
   ],
   "dilemmas": [
@@ -114,10 +124,93 @@
       "setup": "Du kan hjelpe køen ved å slippe varen raskt videre, eller stoppe lenge nok til at system, fysisk lager og avvik stemmer.",
       "choice_axis": "flyt_vs_sporbarhet",
       "consequence_axis": "lokal_flyt_vs_langsiktig_tillit",
-      "mail_hooks": ["job", "conflict", "story", "event", "people"]
+      "mail_hooks": [
+        "job",
+        "conflict",
+        "story",
+        "event",
+        "people"
+      ]
     }
   ],
-  "related_people": [],
+  "related_people": [
+    {
+      "id": "ragnhild_driftsleder_lager",
+      "name": "Ragnhild",
+      "role": "driftsleder for lager og mottak",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null,
+      "function": "Representerer virksomhetens operative prioritering ved varemottaket, der fysisk opptelling, dokumentasjon og transportpress må bli ett lesbart mottaksgrunnlag. Relasjonen gjør det mulig å be om avklaring og rapportere avvik uten at driftslederens tempoønske omskriver det spilleren faktisk har kontrollert.",
+      "authority_relation": "Ragnhild kan prioritere arbeid, avklare mottaksrutine og eie beslutninger i driftslinjen. Spilleren kan kontrollere og stanse eget mottak ved avvik, men kan verken signere et usant antall for å hjelpe flyten eller bruke Ragnhilds støtte som egen godkjenningsmyndighet.",
+      "mail_family_refs": [
+        "lager_profesjonelle_arbeidsrelasjoner"
+      ],
+      "workplace_ids": [
+        "varemottak_og_kollikontroll"
+      ],
+      "source_scene_refs": [
+        "data/Civication/mailFamilies/naeringsliv/job/lager_og_driftsmedarbeider_job.json#job_lager_og_driftsmedarbeider_week1_receiving_almost_matched"
+      ]
+    },
+    {
+      "id": "pavel_erfaren_lagermedarbeider",
+      "name": "Pavel",
+      "role": "erfaren lager- og plukkmedarbeider",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null,
+      "function": "Bærer erfaringen fra lagergulvet og kjenner både reelle flaskehalser og snarveiene laget bruker når systemet ikke følger tempoet. Relasjonen gjør kollegial tillit, praktisk kunnskap og sporbarhet synlige samtidig, slik at erfaring ikke reduseres til verken fasit eller regelbrudd.",
+      "authority_relation": "Pavel kan vise arbeidsmåter, advare om konsekvenser og støtte sikker utførelse, men erfaring gir ikke myndighet til å hoppe over registrering eller endre lagerstatus uten spor. Spilleren kan avvise en snarvei og melde prosessbehov uten å behandle kollegaen som en formell godkjenner.",
+      "mail_family_refs": [
+        "lager_profesjonelle_arbeidsrelasjoner"
+      ],
+      "workplace_ids": [
+        "plukk_pakk_og_systemflate"
+      ],
+      "source_scene_refs": [
+        "data/Civication/mailFamilies/naeringsliv/people/lager_og_driftsmedarbeider_people.json#lager_people_snarvei_002"
+      ]
+    },
+    {
+      "id": "marius_okonomikontakt_lager",
+      "name": "Marius",
+      "role": "økonomi- og lageravstemmingskontakt",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null,
+      "function": "Representerer det nedstrøms behovet for en beholdning som kan forklares, periodiseres og etterprøves. Relasjonen viser hvorfor en fysisk differanse ikke bare er et tall som skal lukkes, men et spor gjennom mottak, lokasjon, plukk, etterlevering og mulig faktisk tap.",
+      "authority_relation": "Marius kan be om et avstemmingsgrunnlag og forklare økonomiske konsekvenser, men kan ikke instruere spilleren til å gjøre fysisk vare og system kunstig like. Spilleren kan telle, dokumentere og eskalere, men kan ikke selvgodkjenne en lagerkorreksjon som krever kontroll i en annen linje.",
+      "mail_family_refs": [
+        "lager_profesjonelle_arbeidsrelasjoner"
+      ],
+      "workplace_ids": [
+        "telling_og_avvikspunkt"
+      ],
+      "source_scene_refs": [
+        "data/Civication/mailFamilies/naeringsliv/job/lager_og_driftsmedarbeider_job.json#job_lager_og_driftsmedarbeider_week2_count_mismatch"
+      ]
+    },
+    {
+      "id": "helle_hms_og_skiftkontakt_lager",
+      "name": "Helle",
+      "role": "HMS- og skiftoverleveringskontakt",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null,
+      "function": "Gjør nestenulykke, gangsoner, kroppslig risiko og restarbeid til et felles overleveringsgrunnlag før neste skift gjentar samme situasjon. Relasjonen skiller det å sikre og beskrive hendelsen fra skyldjakt, formell lukking og påstanden om at fravær av skade betyr fravær av læring.",
+      "authority_relation": "Helle kan kreve et tydelig HMS- og handoff-spor og sende saken til riktig kontrollnivå. Spilleren kan stoppe eget arbeid, isolere risiko og beskrive fakta, men kan ikke lukke hendelsen alene, skjule den for å beskytte laget eller gjenstarte uten nødvendig avklaring.",
+      "mail_family_refs": [
+        "lager_profesjonelle_arbeidsrelasjoner"
+      ],
+      "workplace_ids": [
+        "hms_og_overleveringsflate"
+      ],
+      "source_scene_refs": [
+        "data/Civication/mailFamilies/naeringsliv/job/lager_og_driftsmedarbeider_job.json#job_lager_og_driftsmedarbeider_week2_near_miss_everyone_passed"
+      ]
+    }
+  ],
   "related_places": [
     {
       "id": "varemottak_og_kollikontroll",
@@ -143,7 +236,14 @@
   "mail_integration": {
     "role_scope": "lager_og_driftsmedarbeider",
     "mail_profile": "naer_lager_og_driftsmedarbeider",
-    "can_feed_mail_types": ["job", "story", "conflict", "event", "people", "faction_choice"],
+    "can_feed_mail_types": [
+      "job",
+      "story",
+      "conflict",
+      "event",
+      "people",
+      "faction_choice"
+    ],
     "mail_variables": {
       "role_title": "Lager- og driftsmedarbeider",
       "category": "naeringsliv",
@@ -158,10 +258,23 @@
     ],
     "role_model_refs_supported": true
   },
-  "competence_axes": ["vareflyt", "mottak", "plukk_pakk", "avvik", "systemregistrering", "HMS", "fysisk_arbeid_og_driftsansvar"],
-  "ideal_type_problems": ["tempo_vs_noyaktighet", "flyt_vs_sporbarhet", "sikkerhet_vs_produksjonspress"],
+  "competence_axes": [
+    "vareflyt",
+    "mottak",
+    "plukk_pakk",
+    "avvik",
+    "systemregistrering",
+    "HMS",
+    "fysisk_arbeid_og_driftsansvar"
+  ],
+  "ideal_type_problems": [
+    "tempo_vs_noyaktighet",
+    "flyt_vs_sporbarhet",
+    "sikkerhet_vs_produksjonspress"
+  ],
   "notes": [
     "Basert på eksisterende to-ukers Lager- og driftsmedarbeider-plan og canonical Praksisfortellinger-registrering.",
-    "Systematic rollout: konkrete arbeidsflater er materialisert uten å endre den etablerte 20-stegs praksisplanen."
+    "Systematic rollout: konkrete arbeidsflater er materialisert uten å endre den etablerte 20-stegs praksisplanen.",
+    "Role World readiness prerequisite: fire eksplisitt fiktive profesjonelle scenarioaktører binder mottak, plukk/system, telling/avvik og HMS/overlevering til eksisterende arbeidsflater uten å endre plan, runtime, shared work grammar eller formell authority."
   ]
 }
