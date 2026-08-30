@@ -6,12 +6,12 @@ test('Geografi reconciliation låser eierskap, 12-domeneplan og fail-closed frem
   const result = audit();
   assert.equal(result.status, 'pass');
   assert.equal(result.domains, 12);
-  assert.equal(result.materialized, 1);
-  assert.equal(result.sourceFirstReady, 2);
+  assert.equal(result.materialized, 2);
+  assert.equal(result.sourceFirstReady, 3);
   assert.equal(result.strictCompletionProven, false);
   assert.equal(result.reuseWithExpansion, 4);
   assert.equal(result.newProductionRequired, 8);
   assert.equal(result.moveExisting, 0);
-  assert.equal(result.nextDomain, 'kartografi_gis_geodata_fjernmaling');
+  assert.equal(result.nextDomain, 'geomorfologi_landskap_jordsystemer');
   assert.ok(result.findings >= 10);
 });
