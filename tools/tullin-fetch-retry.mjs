@@ -1,3 +1,7 @@
+import { execFile } from "node:child_process";
+import { promisify } from "node:util";
+
+const execFileAsync = promisify(execFile);
 const nativeFetch = globalThis.fetch;
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 let lastWikimediaFetchAt = 0;
@@ -34,7 +38,8 @@ function htmlText(value) {
 }
 
 function findOfficialStatsbyggLogo(html) {
-  const anchors = [...String(html).matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)];
+  const source = String(html || "");
+  const anchors = [...source.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)];
   for (const match of anchors) {
     const attrs = match[1] || "";
     const label = htmlText(match[2]);
@@ -43,7 +48,39 @@ function findOfficialStatsbyggLogo(html) {
     if (!href) continue;
     return new URL(href, statsbyggPressUrl).href;
   }
-  return null;
+
+  const candidates = [...source.matchAll(/(?:href|src)=["']([^"']+\.png(?:\?[^"']*)?)["']/gi)]
+    .map(match => new URL(match[1], statsbyggPressUrl).href)
+    .filter(url => {
+      try {
+        return new URL(url).hostname.endsWith("statsbygg.no");
+      } catch {
+        return false;
+      }
+    });
+  return candidates.find(url => /statsbygg.*logo.*(?:svart|black)|(?:svart|black).*statsbygg.*logo|statsbygglogofrittst/i.test(url)) || null;
+}
+
+async function renderStatsbyggPressPage() {
+  const commands = ["google-chrome", "google-chrome-stable", "chromium", "chromium-browser"];
+  let lastError = null;
+  for (const command of commands) {
+    try {
+      const { stdout } = await execFileAsync(command, [
+        "--headless=new",
+        "--disable-gpu",
+        "--no-sandbox",
+        "--disable-dev-shm-usage",
+        "--virtual-time-budget=12000",
+        "--dump-dom",
+        statsbyggPressUrl
+      ], { maxBuffer: 20 * 1024 * 1024, timeout: 45000 });
+      if (stdout && /Statsbygg/i.test(stdout)) return stdout;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  throw new Error(`Unable to render Statsbygg press page in headless browser: ${lastError?.message || "no browser command succeeded"}`);
 }
 
 async function paceWikimedia() {
@@ -86,13 +123,20 @@ globalThis.fetch = async function rateLimitTolerantFetch(input, init) {
   const response = await retryingFetch(input, init);
   if (url !== statsbyggPressUrl || !response.ok) return response;
 
-  const html = await response.text();
-  statsbyggLogoTarget = findOfficialStatsbyggLogo(html);
+  const rawHtml = await response.text();
+  let sourceHtml = rawHtml;
+  statsbyggLogoTarget = findOfficialStatsbyggLogo(rawHtml);
+
   if (!statsbyggLogoTarget) {
-    throw new Error("Statsbygg official black logo download link not found on the official press page");
+    sourceHtml = await renderStatsbyggPressPage();
+    statsbyggLogoTarget = findOfficialStatsbyggLogo(sourceHtml);
   }
 
-  const injected = `${html}\n<img src="${statsbyggSyntheticLogoUrl}" alt="Statsbygg official logo resolver">\n`;
+  if (!statsbyggLogoTarget) {
+    throw new Error("Statsbygg official black logo download link not found in raw or rendered official press page");
+  }
+
+  const injected = `${sourceHtml}\n<img src="${statsbyggSyntheticLogoUrl}" alt="Statsbygg official logo resolver">\n`;
   const headers = new Headers(response.headers);
   headers.delete("content-length");
   return new Response(injected, {
