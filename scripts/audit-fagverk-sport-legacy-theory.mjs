@@ -1,12 +1,17 @@
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const LEGACY_BADGE = 'data/fag/sport/merke_sport.html';
+const LEGACY_BADGE = 'data/fag/sport/archive/merke_sport_full_teori_legacy_20260830.html';
+const COMPATIBILITY = 'data/fag/sport/merke_sport.html';
+const ORIGINAL_LEGACY_BLOB = '609a42de3f8bcaa59efc5b46807fa191dafbfba3';
 const MANIFEST = 'data/fag/fag_manifest.json';
 const REGISTRY = 'data/fagverk/fagverk_registry.json';
 const PORTAL = 'data/fagverk/fagverk_portal.json';
+const TARGET = 'fagverk.html?subject=sport#fagverkIaProgresjon';
+const RELATIVE_TARGET = '../../../fagverk.html?subject=sport#fagverkIaProgresjon';
 const OWNED_ROOTS = ['data/fag/sport/', 'data/fagverk/sport/'];
 const MIN_CANONICAL_CORPUS_CHARS = 150000;
 
@@ -67,6 +72,11 @@ const norm = (value) => text(value)
   .replace(/[^a-zæøå0-9]+/gi, ' ')
   .replace(/\s+/g, ' ')
   .trim();
+
+function gitBlobSha(buffer) {
+  const header = Buffer.from(`blob ${buffer.length}\0`);
+  return crypto.createHash('sha1').update(header).update(buffer).digest('hex');
+}
 
 function flatten(value, out = []) {
   if (typeof value === 'string') out.push(value);
@@ -145,11 +155,17 @@ function sections(html) {
 }
 
 export function auditSportLegacyTheory() {
-  for (const file of [LEGACY_BADGE, MANIFEST, REGISTRY, PORTAL]) {
+  for (const file of [LEGACY_BADGE, COMPATIBILITY, MANIFEST, REGISTRY, PORTAL]) {
     if (!exists(file)) throw new Error(`Mangler ${file}`);
   }
 
-  const legacySections = sections(read(LEGACY_BADGE));
+  const archiveBuffer = fs.readFileSync(abs(LEGACY_BADGE));
+  const archiveBlobSha = gitBlobSha(archiveBuffer);
+  if (archiveBlobSha !== ORIGINAL_LEGACY_BLOB) {
+    throw new Error(`Sport-arkivet er ikke byte-identisk med original legacy-blob: ${archiveBlobSha} != ${ORIGINAL_LEGACY_BLOB}`);
+  }
+
+  const legacySections = sections(archiveBuffer.toString('utf8'));
   const expected = [...Object.keys(POLICY), 'bidrag'];
   if (JSON.stringify(legacySections.map((section) => section.id)) !== JSON.stringify(expected)) {
     throw new Error(`Uventet Sport-seksjonsstruktur: ${legacySections.map((section) => section.id).join(', ')}`);
@@ -221,15 +237,26 @@ export function auditSportLegacyTheory() {
   const portal = json(PORTAL);
   const portalSubject = portal.categories?.find((item) => item.id === 'sport');
   if (!portalSubject) throw new Error('Sport mangler i portalen.');
+  const compatibilityHtml = read(COMPATIBILITY);
+  const compatibilityRedirectPresent = compatibilityHtml.includes('location.replace')
+    && compatibilityHtml.includes(RELATIVE_TARGET)
+    && !/merke-blokk|SPORT & LEK\s*[–-]\s*full teoretisk beskrivelse|<h2>1\. Felt<\/h2>|Groundhopper-logikk/i.test(compatibilityHtml);
+  const portalRedirected = portalSubject.badgePage === TARGET;
+  if (!portalRedirected) throw new Error(`Sport badgePage må peke til ${TARGET} etter route-retirement.`);
+  if (!compatibilityRedirectPresent) throw new Error('Legacy Sport-URL er ikke en ren compatibility-redirect til Progresjon.');
+
   const knowledge = rows.filter((row) => row.role === 'knowledge');
   const manualReview = knowledge.filter((row) => row.anchorCoverage < 1).map((row) => row.id);
-  const preRedirectLocked = portalSubject.badgePage === LEGACY_BADGE;
 
   return {
     schema: 'history_go_fagverk_sport_legacy_theory_audit_v1',
     subject: 'sport',
     legacy: {
       badgePage: LEGACY_BADGE,
+      compatibilityPage: COMPATIBILITY,
+      originalBlobSha: ORIGINAL_LEGACY_BLOB,
+      archiveBlobSha,
+      sourcePreserved: archiveBlobSha === ORIGINAL_LEGACY_BLOB,
       sectionCount: rows.length,
       knowledgeSectionCount: knowledge.length
     },
@@ -244,7 +271,10 @@ export function auditSportLegacyTheory() {
     navigation: {
       badgePage: portalSubject.badgePage,
       subjectPage: portalSubject.subjectPage,
-      preRedirectLocked
+      target: TARGET,
+      portalRedirected,
+      compatibilityRedirectPresent,
+      routeRetired: portalRedirected && compatibilityRedirectPresent
     },
     summary: {
       knowledgeSectionCount: knowledge.length,
@@ -252,7 +282,7 @@ export function auditSportLegacyTheory() {
       manualReviewCount: manualReview.length,
       manualReview,
       redirectReady: false,
-      redirectBlockReason: 'Raw Sport anchor coverage never authorizes redirect by itself. Route readiness requires explicit editorial adjudication.'
+      redirectBlockReason: 'Raw Sport anchor coverage never authorizes redirect by itself. Route readiness is owned by the explicit Sport legacy adjudication gate.'
     },
     rows
   };
