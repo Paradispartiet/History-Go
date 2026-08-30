@@ -39,7 +39,7 @@ test('badge equivalence audit klassifiserer alle canonicale fag uten ukjent fami
   assert.equal(audit.rows.length, audit.canonicalSubjectCount);
   assert.ok(audit.counts.progress_route >= 18);
   assert.ok(audit.counts.rich_runtime >= 1);
-  assert.equal(audit.counts.legacy_static_theory, 0);
+  assert.equal(audit.counts.legacy_static_theory ?? 0, 0);
   assert.equal(audit.rows.some((row) => ['unknown', 'missing'].includes(row.family)), false);
 });
 
