@@ -132,6 +132,7 @@ jobs:
           npm run check:stories
           npm run audit:people-profile-canonical
           npm run audit:people-of-places
+          python3 -c 'from pathlib import Path; p=Path("reports/people-of-places-status.md"); p.write_text(p.read_text().rstrip() + "\\n")'
           npm run audit:quiz-manifest:v2
           npm run audit:quiz-production-context
           npm run audit:quiz-progression
