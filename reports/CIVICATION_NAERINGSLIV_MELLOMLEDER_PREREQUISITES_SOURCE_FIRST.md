@@ -86,3 +86,7 @@ After verified prerequisite materialization:
 ## Completion proof
 
 A valid permanent prerequisite head must pass the focused prerequisite test, existing Mellomleder playability and two-week tests, Career Gameplay audit, rollout-readiness audit, compiled Scene Registry parity, Scenario People generated-state and invariant checks, and full `test:civication`. The fail-closed runner must regenerate generated artifacts, remove both TEMP files before commit and leave only verified permanent authored/generated state.
+
+## Verified permanent checkpoint
+
+The fail-closed materialization run completed successfully on source-first head `81596244596254a7a07c07d105d9efae5168bae9` and produced permanent content head `2577eb5497ed91e4a31efb366e7ad2361109e39c`. Every focused prerequisite and existing Mellomleder gate passed, full Civication passed, and the workflow removed both temporary surfaces before publishing the permanent commit. This checkpoint records that verified transition without changing any authored gameplay contract.
