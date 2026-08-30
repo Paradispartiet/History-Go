@@ -1,0 +1,159 @@
+{
+  "schema": "history_go_fagverk_sport_legacy_adjudication_v1",
+  "version": "1.0.0",
+  "subject": "sport",
+  "legacyBadgePage": "data/fag/sport/merke_sport.html",
+  "redirectTarget": "fagverk.html?subject=sport#fagverkIaProgresjon",
+  "sections": [
+    {
+      "id": "felt",
+      "role": "knowledge",
+      "disposition": "canonical_supersedes",
+      "ownerFiles": [
+        "data/fag/sport/sportpensum_canonical_v4_5.json",
+        "data/fagverk/sport/arenaer-steder-groundhopper.json",
+        "data/fagverk/sport/regler-spill-konkurranse.json",
+        "data/fagverk/sport/kropp-trening-prestasjon.json",
+        "data/fagverk/sport/klubber-lag-frivillighet.json",
+        "data/fagverk/sport/inkludering-helse-lek-samfunn.json"
+      ],
+      "migrationRefs": [],
+      "rationale": "Legacy-feltet om kropp, bevegelse, regler, konkurranse, trening, mestring, arenaer og fellesskap er allerede fordelt mellom Sport-pensumet og de canonicale kapitlene om arenaer, regler, kropp/trening, klubber og inkludering. Legacy-siden er derfor ikke en egen kunnskapseier."
+    },
+    {
+      "id": "normativ",
+      "role": "knowledge",
+      "disposition": "canonical_supersedes",
+      "ownerFiles": [
+        "data/fag/sport/sportpensum_canonical_v4_5.json",
+        "data/fagverk/sport/regler-spill-konkurranse.json",
+        "data/fagverk/sport/inkludering-helse-lek-samfunn.json"
+      ],
+      "migrationRefs": [],
+      "rationale": "Fair play, regler og sportslig etikk eies av regelkapitlet, mens faktisk deltakelse, tilgang, kjønn, klasse og funksjonsevne eies av inkluderingskapitlet. Pensumet binder disse normative spørsmålene sammen uten behov for parallell legacy-teori."
+    },
+    {
+      "id": "doxa",
+      "role": "knowledge",
+      "disposition": "canonical_supersedes",
+      "ownerFiles": [
+        "data/fag/sport/sportpensum_canonical_v4_5.json",
+        "data/fagverk/sport/regler-spill-konkurranse.json",
+        "data/fagverk/sport/kropp-trening-prestasjon.json",
+        "data/fagverk/sport/klubber-lag-frivillighet.json",
+        "data/fagverk/sport/supportere-publikum-kultur.json",
+        "data/fagverk/sport/inkludering-helse-lek-samfunn.json"
+      ],
+      "migrationRefs": [],
+      "rationale": "Legacy-kritikken av at sport reduseres til resultater og rekorder er allerede canonicalt utvidet med kroppslig læring, helse, frivillighet, organisasjon, supporterkultur, identitet, inkludering og ulikhet. Resultat- og rekordlogikken behandles dessuten eksplisitt i regelkapitlet."
+    },
+    {
+      "id": "metode",
+      "role": "knowledge",
+      "disposition": "canonical_supersedes",
+      "ownerFiles": [
+        "data/fag/sport/methods_sport_canonical_v4_5.json",
+        "data/fagverk/sport/arenaer-steder-groundhopper.json",
+        "data/fagverk/sport/regler-spill-konkurranse.json",
+        "data/fagverk/sport/kropp-trening-prestasjon.json",
+        "data/fagverk/sport/klubber-lag-frivillighet.json",
+        "data/fagverk/sport/supportere-publikum-kultur.json",
+        "data/fagverk/sport/inkludering-helse-lek-samfunn.json"
+      ],
+      "migrationRefs": [],
+      "rationale": "Idrettshistorisk, steds-, organisasjons-, prestasjons-, trenings-, regel-, supporter-, aktivitets-, inkluderings- og ulikhetsanalyse finnes allerede som canonicale Sport-metoder og anvendes i de seks kapitlene. Ingen metode må migreres fra legacy-siden."
+    },
+    {
+      "id": "materiell",
+      "role": "knowledge",
+      "disposition": "canonical_supersedes",
+      "ownerFiles": [
+        "data/fag/sport/sportpensum_canonical_v4_5.json",
+        "data/fagverk/sport/arenaer-steder-groundhopper.json",
+        "data/fagverk/sport/regler-spill-konkurranse.json",
+        "data/fagverk/sport/supportere-publikum-kultur.json"
+      ],
+      "migrationRefs": [],
+      "rationale": "Baner, stadioner, haller, parker og treningsinfrastruktur eies av arenakapitlet; data, statistikk, rekorder og konkurranseformat eies av regelkapitlet; supporterobjekter og tribunepraksis eies av kulturkapitlet. Sport-pensumet gir den overordnede materielle rammen."
+    },
+    {
+      "id": "sosial",
+      "role": "knowledge",
+      "disposition": "migrated_to_canonical",
+      "ownerFiles": [
+        "data/fagverk/sport/klubber-lag-frivillighet.json",
+        "data/fagverk/sport/supportere-publikum-kultur.json",
+        "data/fagverk/sport/inkludering-helse-lek-samfunn.json"
+      ],
+      "migrationRefs": [
+        "data/fagverk/sport/inkludering-helse-lek-samfunn.json",
+        "PR #5509"
+      ],
+      "rationale": "Lag, klubber, trenere, frivillighet, bredde/elite, seleksjon og frafall var allerede canonicalt dekket av klubbkapitlet; supportere og ritualer av kulturkapitlet; inkludering, tilgang og barrierer av inkluderingskapitlet. #5509 gjorde det eneste manglende legacy-ankeret, ekskludering, eksplisitt i den eksisterende inkluderings-eieren uten nye emner, metoder eller kapitler."
+    },
+    {
+      "id": "geografisk",
+      "role": "knowledge",
+      "disposition": "canonical_supersedes",
+      "ownerFiles": [
+        "data/fag/sport/sportpensum_canonical_v4_5.json",
+        "data/fagverk/sport/arenaer-steder-groundhopper.json",
+        "data/fagverk/sport/inkludering-helse-lek-samfunn.json"
+      ],
+      "migrationRefs": [],
+      "rationale": "Stadioner, løkker, haller, parker, byrom, idrettslandskap og stedsidentitet er allerede hovedinnhold i arena-/Groundhopper-kapitlet. Inkluderingskapitlet eier den romlige tilgangsdimensjonen og Sport-pensumet den overordnede geografiske strukturen."
+    },
+    {
+      "id": "temporal",
+      "role": "knowledge",
+      "disposition": "canonical_supersedes",
+      "ownerFiles": [
+        "data/fag/sport/sportpensum_canonical_v4_5.json",
+        "data/fagverk/sport/arenaer-steder-groundhopper.json",
+        "data/fagverk/sport/regler-spill-konkurranse.json",
+        "data/fagverk/sport/kropp-trening-prestasjon.json",
+        "data/fagverk/sport/supportere-publikum-kultur.json"
+      ],
+      "migrationRefs": [],
+      "rationale": "Amatørisme, profesjonalisering, kommersialisering, rekord, data, teknologi og arenaendring er allerede historisert i Sport-pensumet og kapitlene om arenaer, konkurranse, prestasjon og idrettskultur. Legacy-seksjonen tilfører ingen unik tidslinje."
+    },
+    {
+      "id": "blindsoner",
+      "role": "knowledge",
+      "disposition": "canonical_supersedes",
+      "ownerFiles": [
+        "data/fag/sport/sportpensum_canonical_v4_5.json",
+        "data/fagverk/sport/klubber-lag-frivillighet.json",
+        "data/fagverk/sport/supportere-publikum-kultur.json",
+        "data/fagverk/sport/inkludering-helse-lek-samfunn.json"
+      ],
+      "migrationRefs": [],
+      "rationale": "Breddeidrett, frivillighet, barn, kjønn, minoriteter, økonomiske barrierer, ulikhet, frafall, funksjonsevne og tilgang er allerede eksplisitte canonicale analysetemaer i pensum, klubb-, kultur- og inkluderingskapitlene. Blindsonene skal fortsatt behandles som evidensspørsmål, ikke som en parallell legacy-fasit."
+    },
+    {
+      "id": "begreper",
+      "role": "knowledge",
+      "disposition": "canonical_supersedes",
+      "ownerFiles": [
+        "data/fag/sport/sportpensum_canonical_v4_5.json",
+        "data/fag/sport/methods_sport_canonical_v4_5.json",
+        "data/fagverk/sport/arenaer-steder-groundhopper.json",
+        "data/fagverk/sport/regler-spill-konkurranse.json",
+        "data/fagverk/sport/kropp-trening-prestasjon.json",
+        "data/fagverk/sport/klubber-lag-frivillighet.json",
+        "data/fagverk/sport/supportere-publikum-kultur.json",
+        "data/fagverk/sport/inkludering-helse-lek-samfunn.json"
+      ],
+      "migrationRefs": [],
+      "rationale": "Idrett, lek, regler, prestasjon, trening, mestring, lag, klubb, arena, supporter, fair play, bredde, elite, kroppslig læring, rekord og rivalisering er allerede definert eller operasjonalisert i canonical pensum, metodekatalog og kapittelsett."
+    },
+    {
+      "id": "bidrag",
+      "role": "legacy_product_copy",
+      "disposition": "retire_legacy_product_copy",
+      "ownerFiles": [],
+      "migrationRefs": [],
+      "rationale": "Seksjonen beskriver hvordan steder, personer, Groundhopper-logikk, lag og spillere skulle bidra til den gamle merkeproduktflaten. Dette er produkttekst og navigasjons-/gameplaybeskrivelse, ikke selvstendig idrettsfaglig kunnskap, og får derfor ingen kunstig canonical kunnskapseier."
+    }
+  ]
+}
