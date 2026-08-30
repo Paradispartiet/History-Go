@@ -1,0 +1,128 @@
+{
+  "schema": "history_go_geografi_population_demography_migration_mobility_source_claim_brief_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-30",
+  "status": "source_first_ready_not_materialized",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "domain": {"ordinal":7,"id":"befolkning_demografi_migrasjon_mobilitet","title":"Befolkning, demografi, migrasjon og mobilitet","production_mode":"new_production"},
+  "source_strategy": {
+    "source_first": true,
+    "inspectable_urls_required": true,
+    "claim_level_trace_required": true,
+    "minimum_sources_per_claim": 2,
+    "fulltext_materialization_required_before_counting": true,
+    "census_estimate_projection_must_be_distinguished": true,
+    "stock_flow_and_rate_must_be_distinguished": true,
+    "absence_of_registration_is_not_absence_of_population_or_mobility": true,
+    "urban_definition_and_spatial_unit_must_be_explicit": true,
+    "gridded_population_is_model_or_aggregation_not_person_level_observation": true
+  },
+  "sources": [
+    {"id":"geo7-01-unsd-census","publisher":"United Nations Statistics Division","title":"Population and Housing Censuses — Principles and Recommendations Revision 4","url":"https://unstats.un.org/unsd/demographic-social/census/","type":"international-statistical-standard","evidence_role":"census-usual-residence-enumeration-coverage-geography","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo7-02-un-wpp2024","publisher":"United Nations Population Division","title":"World Population Prospects 2024","url":"https://www.un.org/development/desa/pd/world-population-prospects-2024","type":"official-population-estimates-projections","evidence_role":"population-fertility-mortality-migration-estimates-projections","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo7-03-un-wpp-method","publisher":"United Nations Population Division","title":"World Population Prospects 2024 methodology report","url":"https://www.un.org/development/desa/pd/content/documentation","type":"official-methodology","evidence_role":"cohort-component-data-sources-uncertainty-projection-method","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo7-04-un-wup2025","publisher":"United Nations Population Division","title":"World Urbanization Prospects 2025 methodology","url":"https://population.un.org/wup/methodology","type":"official-urbanization-methodology","evidence_role":"urban-rural-definitions-agglomerations-national-definitions-change","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo7-05-un-migrant-stock","publisher":"United Nations Population Division","title":"International Migrant Stock 2024","url":"https://www.un.org/development/desa/pd/content/international-migrant-stock","type":"official-migration-estimates","evidence_role":"international-migrant-stock-origin-destination-definition","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo7-06-unhcr-method","publisher":"UNHCR","title":"Refugee Data Finder methodology","url":"https://www.unhcr.org/refugee-statistics/methodology","type":"official-forced-displacement-statistics-methodology","evidence_role":"refugee-idp-statelessness-definitions-sources-comparability","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo7-07-eurostat-grid","publisher":"Eurostat GISCO","title":"Census population grids 2021","url":"https://ec.europa.eu/eurostat/web/gisco/geodata/population-distribution/population-grids","type":"official-gridded-census-data","evidence_role":"one-km-grid-usual-residence-age-sex-birthplace-mobility","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo7-08-eurostat-degurba","publisher":"Eurostat","title":"Degree of urbanisation methodology","url":"https://ec.europa.eu/eurostat/web/degree-of-urbanisation/methodology","type":"official-spatial-classification-methodology","evidence_role":"density-contiguity-population-grid-city-town-rural","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo7-09-oecd-fua","publisher":"OECD","title":"Definition of Cities and Functional Urban Areas","url":"https://www.oecd.org/en/data/datasets/oecd-definition-of-cities-and-functional-urban-areas.html","type":"official-functional-geography-methodology","evidence_role":"city-core-commuting-zone-functional-urban-area","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo7-10-worldpop-methods","publisher":"WorldPop","title":"Gridded population estimate datasets and tools","url":"https://www.worldpop.org/methods/populations/","type":"peer-reviewed-population-mapping-methodology","evidence_role":"top-down-bottom-up-gridded-estimates-census-disaggregation-uncertainty","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo7-11-worldpop-book","publisher":"WorldPop","title":"WorldPop Book of Methods","url":"https://www.worldpop.org/book-of-methods/","type":"open-methodology-reference","evidence_role":"spatial-modelling-validation-census-survey-satellite-integration","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo7-12-worldbank-pop","publisher":"World Bank","title":"Population, total — metadata glossary","url":"https://databank.worldbank.org/metadataglossary/world-development-indicators/series/SP.POP.TOTL","type":"official-indicator-metadata","evidence_role":"de-facto-population-midyear-estimate-source-definition","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo7-13-worldbank-urban","publisher":"World Bank","title":"Urban population (% of total) — metadata glossary","url":"https://databank.worldbank.org/metadataglossary/world-development-indicators/series/SP.URB.TOTL.IN.ZS","type":"official-indicator-metadata","evidence_role":"national-urban-definitions-comparability-urban-share","retrieval_status":"verified_2026-08-30"}
+  ],
+  "topic_briefs": [
+    {
+      "id":"folketelling-befolkningsstock-og-vanlig-bosted","title":"Folketelling, befolkningsstock og vanlig bosted","method_ids":["met_geo_census_geografisk_enhet","met_geo_befolkningsstock_referansetid"],"boundary":"Folketelling, register, midtårsestimat og projeksjon er ulike evidenstyper; referansetid, vanlig bosted, dekningsgrad og geografisk enhet skal følge tallet.",
+      "source_ids":["geo7-01-unsd-census","geo7-02-un-wpp2024","geo7-12-worldbank-pop"],
+      "planned_claims":[
+        {"id":"geo7-01","text":"Et befolkningstall må knyttes til referansetid, definisjon av vanlig bosted og geografisk enhet fordi samme sted kan få ulike tall dersom census, register eller midtårsestimat måler ulike populasjoner eller tidspunkter.","source_ids":["geo7-01-unsd-census","geo7-12-worldbank-pop"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo7-02","text":"En folketelling søker bred individuell eller husholdningsbasert dekning på et bestemt referansetidspunkt, mens et befolkningsestimat kan kombinere census, registre og demografiske modeller for perioder mellom tellinger.","source_ids":["geo7-01-unsd-census","geo7-02-un-wpp2024"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo7-03","text":"World Banks totale befolkningsindikator er et de facto midtårsestimat og skal ikke uten videre behandles som identisk med et lands publiserte censusantall på en annen referansedato.","source_ids":["geo7-12-worldbank-pop","geo7-02-un-wpp2024"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo7-04","text":"Romlig sammenligning av censusdata krever kontroll av grenseendringer og geografiske enheter fordi endret administrativ inndeling kan skape tilsynelatende befolkningsendring uten tilsvarende flytting av mennesker.","source_ids":["geo7-01-unsd-census","geo7-07-eurostat-grid"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"fertilitet-dodelighet-naturlig-vekst-og-projeksjon","title":"Fertilitet, dødelighet, naturlig vekst og projeksjon","method_ids":["met_geo_kohortkomponentanalyse","met_geo_demografisk_scenarioanalyse"],"boundary":"Observerte rater, estimerte rater og projeksjonsforutsetninger skal skilles; framtidig folketall er scenario- eller modellavhengig og ikke en observert trendlinje.",
+      "source_ids":["geo7-02-un-wpp2024","geo7-03-un-wpp-method","geo7-12-worldbank-pop"],
+      "planned_claims":[
+        {"id":"geo7-05","text":"Befolkningsendring kan dekomponeres i fødsler, dødsfall og netto migrasjon, men bidragene varierer geografisk og over tid og må beregnes for samme territorium og periode.","source_ids":["geo7-02-un-wpp2024","geo7-03-un-wpp-method"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo7-06","text":"Fertilitets- og dødelighetsrater er aldersstrukturerte prosesser, slik at to områder med samme rå fødsels- eller dødsrate kan ha ulike underliggende demografiske mønstre dersom aldersfordelingen er forskjellig.","source_ids":["geo7-02-un-wpp2024","geo7-03-un-wpp-method"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo7-07","text":"Kohort-komponentprojeksjoner viderefører befolkningen etter alder og kjønn med antakelser om framtidig fertilitet, dødelighet og migrasjon og skal derfor behandles som modellbaserte framtidsbaner, ikke observerte fakta.","source_ids":["geo7-02-un-wpp2024","geo7-03-un-wpp-method"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo7-08","text":"Usikkerheten i langsiktige befolkningsprojeksjoner øker når framtidige demografiske rater og migrasjon er usikre, slik at flere scenarioer eller sannsynlighetsintervall bør følge sterke framtidspåstander.","source_ids":["geo7-02-un-wpp2024","geo7-03-un-wpp-method"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"tetthet-rutenett-og-romlig-aggregering","title":"Tetthet, rutenett og romlig aggregering","method_ids":["met_geo_befolkningstetthet_grid","met_geo_maup_sensitivitetsanalyse"],"boundary":"Tetthet avhenger av telleren, arealet og enhetsgrensene; grid og administrative områder er alternative representasjoner med ulike generaliseringer.",
+      "source_ids":["geo7-07-eurostat-grid","geo7-08-eurostat-degurba","geo7-10-worldpop-methods"],
+      "planned_claims":[
+        {"id":"geo7-09","text":"Befolkningstetthet er et forhold mellom befolkning og areal og kan endre verdi kraftig når analyseenheten endres, selv om de samme menneskene bor på de samme stedene.","source_ids":["geo7-07-eurostat-grid","geo7-08-eurostat-degurba"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo7-10","text":"Regelmessige befolkningsrutenett reduserer noen sammenligningsproblemer som skyldes administrative enheter med svært ulik størrelse, men rutenettet innfører fortsatt en valgt oppløsning og celleinndeling.","source_ids":["geo7-07-eurostat-grid","geo7-08-eurostat-degurba"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo7-11","text":"Aggregert befolkning kan gi ulike romlige korrelasjoner når grenser eller skala endres, slik at analyser bør teste hvor følsomme resultater er for geografisk aggregering før de generaliseres.","source_ids":["geo7-07-eurostat-grid","geo7-10-worldpop-methods"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo7-12","text":"Et modellert befolkningsraster kan gjøre det mulig å aggregere til nedbørfelt, serviceområder eller andre funksjonelle soner, men modellcellene skal ikke omtales som direkte personregistreringer.","source_ids":["geo7-10-worldpop-methods","geo7-11-worldpop-book"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"alder-kjonn-livslop-og-romlig-struktur","title":"Alder, kjønn, livsløp og romlig struktur","method_ids":["met_geo_aldersstruktur_pyramide","met_geo_kohort_romlig_sammenligning"],"boundary":"Alders- og kjønnsstruktur skal måles med samme definisjoner og referansetid; rå totaler kan skjule kohort-, livsløps- og seleksjonseffekter.",
+      "source_ids":["geo7-02-un-wpp2024","geo7-07-eurostat-grid","geo7-12-worldbank-pop"],
+      "planned_claims":[
+        {"id":"geo7-13","text":"Aldersstruktur påvirker lokale behov for skole, arbeid, bolig og omsorg og bør derfor analyseres romlig i tillegg til total folkemengde.","source_ids":["geo7-02-un-wpp2024","geo7-07-eurostat-grid"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo7-14","text":"En befolkningspyramide beskriver fordelingen etter alder og kjønn på et tidspunkt og kan ikke alene forklare om formen skyldes fertilitet, dødelighet eller selektiv migrasjon uten tids- og komponentdata.","source_ids":["geo7-02-un-wpp2024","geo7-03-un-wpp-method"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo7-15","text":"Kohorter kan ha ulike geografiske flyttemønstre gjennom livsløpet, slik at lokal aldring eller foryngelse kan skyldes både naturlig endring og aldersselektiv migrasjon.","source_ids":["geo7-02-un-wpp2024","geo7-05-un-migrant-stock"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo7-16","text":"Sammenligning av aldersgrupper mellom raster, census og estimater krever harmoniserte aldersintervall og referanseår fordi kategorier og datakilder ellers kan produsere kunstige forskjeller.","source_ids":["geo7-07-eurostat-grid","geo7-02-un-wpp2024"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"migrasjon-stock-flow-opprinnelse-og-destinasjon","title":"Migrasjon: stock, flow, opprinnelse og destinasjon","method_ids":["met_geo_migrasjonsstock_flow","met_geo_opprinnelse_destinasjon"],"boundary":"Migrant stock, migrasjonsstrøm og netto migrasjon er forskjellige mål; definisjon av internasjonal migrant, periode og opprinnelse/destinasjon må være eksplisitt.",
+      "source_ids":["geo7-05-un-migrant-stock","geo7-02-un-wpp2024","geo7-01-unsd-census"],
+      "planned_claims":[
+        {"id":"geo7-17","text":"International Migrant Stock måler antallet personer som regnes som internasjonale migranter på et tidspunkt og er derfor ikke det samme som antallet grensekryssinger eller migrasjoner i løpet av året.","source_ids":["geo7-05-un-migrant-stock","geo7-01-unsd-census"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo7-18","text":"Statistiske definisjoner av internasjonal migrant bygger på skifte av bostedsland og vanligvis en tidsdimensjon og sier i seg selv ikke hvorfor personen flyttet eller hvilken juridisk status personen har.","source_ids":["geo7-05-un-migrant-stock","geo7-06-unhcr-method"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo7-19","text":"Opprinnelses- og destinasjonsmatriser beskriver geografiske forbindelser mellom steder, men kan ikke alene vise migrasjonsrute, tidspunkt eller alle mellomliggende opphold uten mer detaljerte data.","source_ids":["geo7-05-un-migrant-stock","geo7-01-unsd-census"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo7-20","text":"Netto migrasjon er differansen mellom inn- og utvandring eller en modellert restkomponent og kan skjule store samtidige strømmer i begge retninger dersom bare nettotallet rapporteres.","source_ids":["geo7-02-un-wpp2024","geo7-03-un-wpp-method"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"tvungen-fordrivelse-registrering-og-sammenlignbarhet","title":"Tvungen fordrivelse, registrering og sammenlignbarhet","method_ids":["met_geo_fordrivelsesstatistikk","met_geo_definisjons_sammenligning"],"boundary":"Flyktning, asylsøker, internt fordreven og statsløs er ulike statistiske kategorier; registreringssystem, mandat, dato og geografi må følge tallene.",
+      "source_ids":["geo7-06-unhcr-method","geo7-05-un-migrant-stock","geo7-01-unsd-census"],
+      "planned_claims":[
+        {"id":"geo7-21","text":"UNHCR-statistikk skiller flere grupper som flyktninger, asylsøkere, internt fordrevne og statsløse, og kategoriene skal ikke summeres eller sammenlignes uten å kontrollere definisjon og mulig overlapp.","source_ids":["geo7-06-unhcr-method","geo7-01-unsd-census"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo7-22","text":"Tvungen fordrivelse kan være intern eller internasjonal, slik at internasjonal migrant stock ikke dekker alle mennesker som er fordrevet fra hjemmet sitt.","source_ids":["geo7-06-unhcr-method","geo7-05-un-migrant-stock"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo7-23","text":"Registrerte tall over fordrevne påvirkes av datakilder, tilgang, registreringsordninger og oppdateringstidspunkt og bør derfor behandles som statistikk med dokumentert dekning fremfor komplett personsporing.","source_ids":["geo7-06-unhcr-method","geo7-01-unsd-census"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo7-24","text":"Geografisk sammenligning av fordrivelsesdata krever samme referansedato og kategori fordi raske bevegelser og administrative oppdateringer kan gjøre to samtidige kart tidsmessig inkompatible.","source_ids":["geo7-06-unhcr-method","geo7-05-un-migrant-stock"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"urbanisering-bygrenser-og-funksjonelle-regioner","title":"Urbanisering, bygrenser og funksjonelle regioner","method_ids":["met_geo_degurba_gridklassifikasjon","met_geo_fua_pendling"],"boundary":"Urbanandel, bykjerne og funksjonelt byområde bygger på forskjellige definisjoner; administrativ bygrense, gridklassifikasjon og pendlingssone skal holdes adskilt.",
+      "source_ids":["geo7-04-un-wup2025","geo7-08-eurostat-degurba","geo7-09-oecd-fua","geo7-13-worldbank-urban"],
+      "planned_claims":[
+        {"id":"geo7-25","text":"Internasjonale urbaniseringsserier kan bygge på nasjonale definisjoner av urban og rural befolkning, og forskjeller mellom land kan derfor reflektere både reelle bosettingsmønstre og definisjonsforskjeller.","source_ids":["geo7-04-un-wup2025","geo7-13-worldbank-urban"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo7-26","text":"Degree of Urbanisation bruker befolkningstetthet, cellenes sammenheng og befolkningsstørrelse i et 1 km²-rutenett for å skape mer sammenlignbare by-, tettsteds- og ruralklasser.","source_ids":["geo7-08-eurostat-degurba","geo7-07-eurostat-grid"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo7-27","text":"Et funksjonelt byområde utvider den morfologiske eller tette bykjernen med en pendlingssone og beskriver derfor arbeidsmarkedsforbindelser som kan krysse administrative kommunegrenser.","source_ids":["geo7-09-oecd-fua","geo7-08-eurostat-degurba"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo7-28","text":"Endring i en urban agglomerasjons folketall kan skyldes naturlig vekst, migrasjon og endrede administrative eller statistiske grenser, og komponentene må skilles før vekst attribueres.","source_ids":["geo7-04-un-wup2025","geo7-09-oecd-fua"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"griddede-befolkningsmodeller-validering-og-usikkerhet","title":"Griddede befolkningsmodeller, validering og usikkerhet","method_ids":["met_geo_populasjonsdisaggregering","met_geo_befolkningsmodell_validering"],"boundary":"Top-down og bottom-up befolkningsraster er modellerte romlige fordelinger; inngangscensus, kovariater, constraint, oppløsning og usikkerhet skal dokumenteres.",
+      "source_ids":["geo7-10-worldpop-methods","geo7-11-worldpop-book","geo7-07-eurostat-grid"],
+      "planned_claims":[
+        {"id":"geo7-29","text":"Top-down befolkningskart disaggerer kjente eller estimerte totalsummer fra administrative enheter til gridceller ved hjelp av geodata og bevarer derfor en totalsum samtidig som den modellerer den interne romlige fordelingen.","source_ids":["geo7-10-worldpop-methods","geo7-11-worldpop-book"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo7-30","text":"Bottom-up befolkningsmodeller kan brukes der full telling mangler ved å kombinere utvalgsdata og geospatiale kovariater, men resultatet er en statistisk prediksjon med usikkerhet og ikke en erstatning for all censusinformasjon.","source_ids":["geo7-10-worldpop-methods","geo7-11-worldpop-book"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo7-31","text":"Nøyaktigheten i griddede befolkningsestimater avhenger sterkt av hvor oppdatert og romlig detaljert census- eller surveygrunnlaget er, slik at modelloppløsningen alene ikke bestemmer faktisk lokal presisjon.","source_ids":["geo7-10-worldpop-methods","geo7-11-worldpop-book"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo7-32","text":"En etterprøvbar befolkningsgeografisk analyse dokumenterer referansedato, definisjon, geografisk enhet, datakilde, modelltype, oppløsning, migrasjons- eller urbaniseringsmål og usikkerhet før romlige forskjeller generaliseres.","source_ids":["geo7-01-unsd-census","geo7-10-worldpop-methods","geo7-04-un-wup2025"],"status":"planned_requires_fulltext_verification"}
+      ]
+    }
+  ],
+  "decision_scenarios": [
+    {"id":"geo7-scenario-01","prompt":"Avstem censusantall og midtårsestimat for samme område ved å kontrollere referansedato, vanlig bosted, dekningsgrad og grenseendringer.","source_ids":["geo7-01-unsd-census","geo7-02-un-wpp2024","geo7-12-worldbank-pop"]},
+    {"id":"geo7-scenario-02","prompt":"Forklar lokal befolkningsvekst ved å dekomponere fødsler, dødsfall og netto migrasjon og skille observasjon fra projeksjonsforutsetning.","source_ids":["geo7-02-un-wpp2024","geo7-03-un-wpp-method"]},
+    {"id":"geo7-scenario-03","prompt":"Sammenlign befolkningstetthet mellom kommuner og 1 km²-grid og test om konklusjonen endres med geografisk aggregering.","source_ids":["geo7-07-eurostat-grid","geo7-08-eurostat-degurba","geo7-10-worldpop-methods"]},
+    {"id":"geo7-scenario-04","prompt":"Skill migrant stock, årlig flow og netto migrasjon i et land med store bevegelser begge veier.","source_ids":["geo7-05-un-migrant-stock","geo7-02-un-wpp2024"]},
+    {"id":"geo7-scenario-05","prompt":"Sammenlign administrativ by, Degree of Urbanisation og funksjonelt byområde uten å blande morfologisk tetthet med pendling eller nasjonal urban-definisjon.","source_ids":["geo7-04-un-wup2025","geo7-08-eurostat-degurba","geo7-09-oecd-fua"]},
+    {"id":"geo7-scenario-06","prompt":"Vurder et 100-meters befolkningsraster ved å dokumentere om det er censusaggregert eller modellert, inngangsdata, constraint, validering og lokal usikkerhet.","source_ids":["geo7-10-worldpop-methods","geo7-11-worldpop-book","geo7-07-eurostat-grid"]}
+  ],
+  "planned_assessments": 8,
+  "fulltext_requirements": {"modules":4,"sections":8,"paragraphs":32,"verified_claims":32,"assessments":8,"decision_cases":6}
+}

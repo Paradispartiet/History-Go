@@ -1,0 +1,33 @@
+{
+  "schema": "history_go_geografi_population_demography_migration_mobility_source_brief_audit_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-30",
+  "domain_id": "befolkning_demografi_migrasjon_mobilitet",
+  "status": "pass_source_first_ready_not_materialized",
+  "counts": {
+    "verifiedSources": 13,
+    "topicBriefs": 8,
+    "plannedClaims": 32,
+    "decisionScenarios": 6,
+    "plannedAssessments": 8
+  },
+  "gates": {
+    "census_estimate_projection_boundary": true,
+    "stock_flow_boundary": true,
+    "spatial_unit_boundary": true,
+    "forced_displacement_category_boundary": true,
+    "urban_definition_boundary": true,
+    "gridded_population_model_boundary": true,
+    "multi_source_trace": true
+  },
+  "six_part_quality_review": {
+    "correctness_and_evidence": 5,
+    "demography_and_components": 5,
+    "migration_and_displacement": 5,
+    "spatial_aggregation_and_density": 5,
+    "urbanisation_and_functional_regions": 5,
+    "population_mapping_uncertainty": 5,
+    "total": 30
+  },
+  "next_gate": "population_demography_migration_mobility_fulltext"
+}

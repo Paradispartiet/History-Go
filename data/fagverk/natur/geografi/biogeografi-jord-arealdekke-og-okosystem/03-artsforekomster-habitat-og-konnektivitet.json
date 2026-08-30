@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "biogeografi-jord-arealdekke-og-okosystem",
+  "id": "03-artsforekomster-habitat-og-konnektivitet",
+  "title": "Artsforekomster, habitat og konnektivitet",
+  "sections": [
+    {
+      "id": "artsforekomster-sampling-og-romlig-skjevhet",
+      "title": "Artsforekomster, sampling og romlig skjevhet",
+      "method_ids": ["met_geo_occurrence_sampling_bias", "met_geo_artsdata_koordinatusikkerhet"],
+      "boundary": "En forekomstpost dokumenterer tilstedeværelse på sted og dato; manglende post er ikke dokumentert fravær uten kjent og tilstrekkelig samplinginnsats.",
+      "paragraphs": [
+        "En artsforekomstpost dokumenterer at et takson er registrert på et bestemt sted og tidspunkt under et gitt datasett eller registreringsopplegg. Den sier derimot ikke at hele området rundt punktet er okkupert, og den sier heller ikke hvor arten mangler. Forekomstdata må derfor behandles som punktvis evidens og kombineres med informasjon om habitat, sampling og eventuelle utbredelsesmodeller før de generaliseres. I store åpne databaser kan registreringer komme fra ulike metoder og perioder, noe som gjør metadata om dato, koordinater og observasjonstype viktige. Geografisk analyse bør alltid holde klart skille mellom dokumentert forekomst, antatt egnet område og komplett geografisk utbredelse.",
+        "Manglende artsforekomst i en database er ikke det samme som dokumentert fravær. Et område kan være lite besøkt, arten kan være vanskelig å oppdage, registreringer kan finnes i andre systemer, eller søkeinnsatsen kan ha vært lav på tidspunktet som analyseres. Før fravær brukes som biologisk signal, må datainnsamlingen ha et design som gjør fravær informativt, for eksempel kjent innsats, gjentatte søk eller annen dokumentert deteksjonskontroll. Dette er et grunnleggende geografisk skille fordi kart med bare forekomstpunkter ofte ser ut som om tomme områder er artsløse. En forsvarlig analyse kartlegger derfor både hvor data finnes og hvor søkeinnsatsen faktisk er kjent.",
+        "Koordinater i artsdata kan vises med mange desimaler uten at den reelle lokasjonskunnskapen er tilsvarende presis. Eldre observasjoner kan være georeferert fra stedsnavn, sensitive arter kan være romlig generalisert, og GPS- eller registreringsfeil kan gi ytterligere usikkerhet. Når et forekomstpunkt kobles til små habitatflater, jordceller eller landdekkepiksler, må koordinatusikkerheten derfor vurderes i forhold til kartets oppløsning. Hvis usikkerhetsradiusen er større enn analyseenheten, er det metodisk svakt å tilordne punktet én bestemt celle. En robust arbeidsflyt dokumenterer koordinatpresisjon, usikkerhet og eventuelle filtre før romlig kobling gjennomføres.",
+        "Åpne artsdatasett er ofte romlig skjeve fordi registreringer følger hvor mennesker bor, reiser og leter. Veier, byområder, naturreservater og populære turmål kan få mange observasjoner, mens vanskelig tilgjengelige områder får få, selv om den biologiske rikdommen er høy. Rå antall datapunkter kan derfor ikke behandles som direkte kart over artsrikdom eller bestandsstørrelse. Geografiske analyser bør undersøke innsatsproxyer, datakilder og romlig dekning, og eventuelt bruke standardisering eller modeller som tar samplingbias med i beregningen. Først når observasjonsprosessen er analysert kan forskjeller i registreringstetthet tolkes som støtte for forskjeller i biologisk mønster."
+      ],
+      "paragraphClaimIds": [["geo6-17"],["geo6-18"],["geo6-19"],["geo6-20"]]
+    },
+    {
+      "id": "habitat-fragmentering-og-konnektivitet",
+      "title": "Habitat, fragmentering og konnektivitet",
+      "method_ids": ["met_geo_habitat_patch_konnektivitet", "met_geo_fragmentering_skalaanalyse"],
+      "boundary": "Habitat avledes fra arts- eller prosesskrav og kartdata; patcher og korridorer er skala- og artsspesifikke og kan ikke defineres universelt fra landdekke alene.",
+      "paragraphs": [
+        "Et habitatkart må bygge på den aktuelle artens eller prosessens krav og kan ikke avledes mekanisk fra en generell landdekkeklasse. En skogspiksel kan for eksempel være egnet for én art, uegnet for en annen og bare sesongmessig relevant for en tredje, avhengig av struktur, fuktighet, alder, kantpåvirkning og tilknytning til andre arealer. Derfor må habitatmodellering uttrykkelig definere hvilken organisme eller økologisk funksjon som analyseres og hvilke miljøvariabler som brukes. Landdekke er ofte en viktig inngang, men ikke selve habitatbegrepet. Geografisk habitatkartlegging bør også angi tidsperiode og skala, fordi egnethet kan endres raskere enn basiskartet oppdateres.",
+        "Fragmentering er ikke én universell egenskap ved landskapet; resultatet avhenger av oppløsning, terskler og hvilken art eller prosess som studeres. Et sammenhengende skogområde på et grovt kart kan bestå av mange atskilte flekker på et finere kart, og en smal vei kan være en sterk barriere for én organisme men nærmest irrelevant for en annen. Derfor må patchdefinisjon, minste areal, kantregel og analyseenhet dokumenteres før fragmenteringsmål sammenlignes. Geografisk analyse bør også teste skalasensitivitet når konklusjonen brukes i planlegging. Uten dette kan et enkelt kartmål gis en biologisk betydning som egentlig skyldes valg i GIS-operasjonen snarere enn landskapets funksjon.",
+        "En geometrisk korridor mellom to habitatflater er ikke nødvendigvis funksjonell konnektivitet. For at korridoren skal ha økologisk betydning må den være brukbar for den aktuelle arten eller prosessen og faktisk bidra til bevegelse, genflyt eller annen kobling. Avstand, matriksmotstand, barrierer, sesong og atferd kan være avgjørende selv om polygonene ser sammenhengende ut på kartet. Derfor bør konnektivitetsanalyse kombinere geometri med biologisk kunnskap eller empiriske bevegelsesdata der det finnes. Kartleggingen må også angi om den beskriver strukturell nærhet eller dokumentert funksjonell kobling, fordi de to evidenstypene ikke kan brukes om hverandre uten begrunnelse.",
+        "IUCN-utbredelsespolygoner gir standardiserte romlige representasjoner av kjent eller vurdert geografisk utbredelse, men de skal ikke leses som kart over kontinuerlig okkupert habitat i hele polygonet. Store polygoner kan inkludere uegnede områder, og forekomsten innenfor dem kan være flekkvis, sesongmessig eller usikker. Ved lokal habitat- eller arealplanlegging bør polygonene derfor kombineres med mer detaljerte forekomst-, habitat- og landdekkedata fremfor å brukes alene som bevis på tilstedeværelse. Geografisk metode må skille mellom range, occupancy og habitat: en arts overordnede utbredelsesområde er en annen romlig størrelse enn arealet der individer faktisk finnes på et gitt tidspunkt."
+      ],
+      "paragraphClaimIds": [["geo6-21"],["geo6-22"],["geo6-23"],["geo6-24"]]
+    }
+  ]
+}
