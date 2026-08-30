@@ -1,4 +1,4 @@
-# Trigger final run after selected curriculum repair
+# Trigger final run with canonical quiz context projection
 name: Tullin fail-closed place production
 
 on:
@@ -42,6 +42,51 @@ jobs:
           git fetch origin main
           git merge --no-edit origin/main
 
+      - name: Normalize Tullin quiz context projection
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import textwrap
+          path = Path('tools/finalize-tullin-completion.mjs')
+          text = path.read_text()
+          old = 'quiz.production_context = { ...builtContext, existing_quiz_audit: brief.existing_quiz_audit, profile_decision: brief.profile_decision, held_back_candidates: brief.held_back_candidates, theory_start_phase: "final", method_start_phase: "final" };'
+          new = textwrap.dedent('''\
+          quiz.production_context = {
+            manifest_category: "by",
+            profile: "rich_6x7",
+            standard_version: "3.3",
+            source_brief: briefFile,
+            context_artifact: contextFile,
+            resolved_files: {
+              pensum: "data/fag/by/pensum_by.json",
+              emner: "data/fag/by/emner_by.json",
+              fagkart: "data/fag/by/fagkart_by.json",
+              methods: "data/fag/by/methods_by.json",
+              supersetQuizMal: "data/fag/by/supersetQUIZMAL_by.json",
+              quizStandard: "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+              quizQuestionSchema: "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+            },
+            required_inputs_loaded: ["pensum", "emner", "fagkart", "methods", "supersetQuizMal", "quizStandard", "quizQuestionSchema"],
+            pensum_module_ids: brief.selected_curriculum.module_ids,
+            emne_ids: brief.selected_curriculum.emne_ids,
+            topic_hook_ids: brief.selected_curriculum.topic_hook_ids,
+            method_ids: brief.selected_curriculum.method_ids,
+            thinker_ids: brief.selected_curriculum.thinker_ids,
+            works: brief.selected_curriculum.works,
+            source_review_status: brief.status,
+            theory_start_phase: "final",
+            method_start_phase: "final",
+            existing_quiz_audit: brief.existing_quiz_audit,
+            profile_decision: brief.profile_decision,
+            held_back_candidates: brief.held_back_candidates
+          };''')
+          count = text.count(old)
+          if count != 1:
+              raise SystemExit(f'expected one legacy quiz context assignment, found {count}')
+          path.write_text(text.replace(old, new))
+          PY
+          git diff --check tools/finalize-tullin-completion.mjs
+
       - name: Materialize canonical Tullin package
         run: |
           rm -f reports/place-production/tullin-producer-error.log
@@ -53,7 +98,7 @@ jobs:
           if [ "$STATUS" -ne 0 ]; then
             mkdir -p reports/place-production
             cp /tmp/tullin-producer.log reports/place-production/tullin-producer-error.log
-            git add reports/place-production/tullin-producer-error.log
+            git add -A
             git commit -m "Capture Tullin producer failure"
             git push origin HEAD:work/tullin-completion-20260830
             exit "$STATUS"
@@ -82,6 +127,16 @@ jobs:
 
       - name: Rebuild Fagverk release after Knowledge
         run: node scripts/build-fagverk-release-manifest.mjs
+
+      - name: Checkpoint materialized Tullin package
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No Tullin checkpoint changes"
+          else
+            git commit -m "Checkpoint Tullin completion package"
+            git push origin HEAD:work/tullin-completion-20260830
+          fi
 
       - name: Validate Tullin target
         run: node --test tests/tullin-completion.test.mjs
@@ -135,7 +190,7 @@ jobs:
           rm .github/workflows/tullin-place-production.yml
           git add -A
           if git diff --cached --quiet; then
-            echo "No permanent Tullin changes were produced"
+            echo "No final cleanup changes were produced"
             exit 1
           fi
           git commit -m "Complete Tullin place production"
