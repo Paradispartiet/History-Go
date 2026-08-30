@@ -49,9 +49,14 @@ test('Brands-N/A krever kandidatsøk og kan ikke utledes av null registertreff',
   assert.match(profiles, /Badge\/underbadge.*kan ikke brukes til å dikte/i);
 });
 
-test('Quizkontrakten krever eksisterende-quiz-audit og evidensstyrt eksakt settantall', () => {
-  assert.match(quiz, /\*\*Versjon:\*\* 3\.3/);
+test('Quizkontrakten krever eksisterende-quiz-audit, shuffle og evidensstyrt eksakt settantall', () => {
+  assert.match(quiz, /\*\*Versjon:\*\* 3\.4/);
   assert.match(quiz, /Eksisterende quiz skal auditeres før profilvalg/);
+  assert.match(quiz, /Svarrekkefølge og posisjonsbias — obligatorisk shuffle/);
+  assert.match(quiz, /shuffle dem for hvert vist spørsmål i hvert quizforsøk/);
+  assert.match(quiz, /korrekt indeks remappes til den nye visningsrekkefølgen/);
+  assert.match(quiz, /Første alternativ skal spesielt aldri brukes som systematisk fasitposisjon/);
+  assert.match(quiz, /Å flytte alle riktige svar til en annen fast posisjon er ikke en løsning/);
   assert.match(quiz, /`narrow` \| 3/);
   assert.match(quiz, /`normal` \| 4/);
   assert.match(quiz, /`rich` \| 5–8/);

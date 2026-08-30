@@ -8,6 +8,7 @@ on:
       - "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md"
       - "docs/PLACE_PRODUCTION_PROFILES.md"
       - "docs/PLACE_OBJECTS_CANONICAL.md"
+      - "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
       - "data/places/**"
       - "data/badges/**"
       - "data/brands/brand_rules_v1_1.json"
@@ -36,6 +37,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Fetch current pull-request base
+        run: git fetch origin "${{ github.base_ref }}:refs/remotes/origin/${{ github.base_ref }}"
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
@@ -47,4 +51,4 @@ jobs:
           node --test tests/place-production-rule-preflight.test.mjs
 
       - name: Require current rule-read evidence for full Place production
-        run: node scripts/place-production-rule-preflight.mjs check --base "${{ github.event.pull_request.base.sha }}"
+        run: node scripts/place-production-rule-preflight.mjs check --base "origin/${{ github.base_ref }}"

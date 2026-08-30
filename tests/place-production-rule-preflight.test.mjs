@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
 import test from "node:test";
 import {
   STATIC_RULE_FILES,
@@ -40,4 +41,11 @@ test("fresh rule evidence validates and a stale hash is rejected", () => {
   const stale = structuredClone(workcard);
   stale.rule_preflight.files[0].sha256 = "0".repeat(64);
   assert.ok(validateWorkcard(stale, "fixture.json").some(error => error.includes("stale preflight")));
+});
+
+test("READ-FIRST compares place workcards against the current pull-request base branch", () => {
+  const workflow = fs.readFileSync(".github/workflows/place-production-read-first.yml", "utf8");
+  assert.match(workflow, /git fetch origin \"\$\{\{ github\.base_ref \}\}:refs\/remotes\/origin\/\$\{\{ github\.base_ref \}\}\"/);
+  assert.match(workflow, /check --base \"origin\/\$\{\{ github\.base_ref \}\}\"/);
+  assert.doesNotMatch(workflow, /pull_request\.base\.sha/);
 });
