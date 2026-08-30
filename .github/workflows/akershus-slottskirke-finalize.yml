@@ -1,0 +1,183 @@
+name: Finalize Akershus slottskirke
+
+on:
+  push:
+    branches:
+      - work/akershus-slottskirke-completion-20260830
+    paths:
+      - '.github/workflows/akershus-slottskirke-finalize.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: akershus-slottskirke-finalize
+  cancel-in-progress: true
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/akershus-slottskirke-completion-20260830
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Merge current main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+
+      - name: Materialize canonical Akershus slottskirke package
+        run: node tools/finalize-akershus-slottskirke-completion.mjs
+
+      - name: Rebuild place and epoch projections
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+          npm run epoker:places:build
+
+      - name: Rebuild People projections
+        run: |
+          npm run civication:history-people:build
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+
+      - name: Rebuild canonical Knowledge
+        run: npm run knowledge:canonical:write
+
+      - name: Rebuild Fagverk release
+        run: node scripts/build-fagverk-release-manifest.mjs
+
+      - name: Refresh place image backlog summary
+        run: |
+          node scripts/audit-place-images.mjs --mode=all --report=/tmp/akershus-slottskirke-place-image-audit.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const report = JSON.parse(fs.readFileSync('/tmp/akershus-slottskirke-place-image-audit.json','utf8'));
+          const file = 'data/places/place_image_backlog_summary.json';
+          const previous = JSON.parse(fs.readFileSync(file,'utf8'));
+          const byCategory = {};
+          for (const [category,bucket] of Object.entries(report.byCategory || {})) {
+            byCategory[category] = {
+              total: bucket.total,
+              valid: bucket.local + bucket.remote,
+              optional: bucket.optional,
+              missing: bucket.missing,
+              invalid: bucket.invalid
+            };
+            if (previous.byCategory?.[category]?.designAlias) byCategory[category].designAlias = previous.byCategory[category].designAlias;
+          }
+          const next = {
+            ...previous,
+            generatedAt: '2026-08-30',
+            generatedFromCommit: 'akershus_slottskirke_complete_2026',
+            totalPlaces: report.totalPlaces,
+            summary: {
+              validLocal: report.summary.local,
+              validRemote: report.summary.remote,
+              optionalMissing: report.summary.optional,
+              missing: report.summary.missing,
+              invalidLocalPath: report.summary.invalid,
+              remaining: report.summary.missing + report.summary.invalid
+            },
+            byCategory
+          };
+          fs.writeFileSync(file, `${JSON.stringify(next,null,2)}\n`);
+          NODE
+
+      - name: Validate Akershus slottskirke target
+        run: node --test tests/akershus-slottskirke-completion.test.mjs
+
+      - name: Validate Stories
+        run: npm run check:stories
+
+      - name: Validate v4.2 description production
+        run: node scripts/validate-place-description-production-v4_2_policy.mjs --all --report /tmp/place-description-validation-v4_2.json
+
+      - name: Validate place, coordinate and epoch projections
+        run: |
+          npm run places:index:check
+          npm run place-open:check
+          npm run epoker:places:check
+          npm run places:coords:evidence:audit
+          npm run places:coords:quality
+          npm run places:coords:intake
+          node --test tests/epoke-place-index.test.mjs
+
+      - name: Validate People projections
+        run: |
+          npm run audit:people-of-places
+          npm run civication:history-people:check
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
+
+      - name: Validate image backlog materialization
+        run: node scripts/audit-place-images.mjs --mode=all --report=/tmp/place-image-audit-verify.json --verify-summary=data/places/place_image_backlog_summary.json
+
+      - name: Validate quiz, Knowledge and Fagverk contracts
+        run: |
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run knowledge:canonical:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+
+      - name: Validate content integration
+        run: npm run leksikon:ids:check
+
+      - name: Validate Akershus slottskirke runtime projections
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          const placeOpen = 'data/runtime/place-open/akershus_slottskirke.json';
+          if (!fs.existsSync(placeOpen)) throw new Error('Akershus slottskirke place-open payload mangler');
+          const reading = fs.readFileSync('data/runtime/lesespor-all.json','utf8');
+          if (!/lesespor_akershus_slottskirke_/i.test(reading)) throw new Error('Akershus slottskirke Lesespor runtime mangler');
+          const scan = dir => fs.readdirSync(dir).filter(name=>name.endsWith('.json')).map(name=>fs.readFileSync(path.join(dir,name),'utf8')).join('\n');
+          if (!/st_akershus_slottskirke_/i.test(scan('data/runtime/stories-all'))) throw new Error('Akershus slottskirke Story runtime mangler');
+          console.log('Akershus slottskirke runtime projections present');
+          NODE
+
+      - name: Validate READ-FIRST against merged main
+        run: |
+          BASE=$(git merge-base HEAD origin/main)
+          node scripts/place-production-rule-preflight.mjs check --base "$BASE"
+
+      - name: Normalize generated People report
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file='reports/people-of-places-status.md';
+          if (fs.existsSync(file)) {
+            const text=fs.readFileSync(file,'utf8');
+            fs.writeFileSync(file, `${text.trimEnd()}\n`);
+          }
+          NODE
+
+      - name: Validate repository diff
+        run: git diff --check
+
+      - name: Commit permanent Akershus slottskirke package and remove temporary helpers
+        run: |
+          rm -f tools/finalize-akershus-slottskirke-completion.mjs
+          rm -f .github/workflows/akershus-slottskirke-finalize.yml
+          rm -f reports/place-production/akershus-slottskirke-intake.json
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No final Akershus slottskirke changes were produced"
+            exit 1
+          fi
+          git commit -m "Complete Akershus slottskirke place production"
+          git push origin HEAD:work/akershus-slottskirke-completion-20260830
