@@ -24,6 +24,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - uses: actions/cache@v4
+        with:
+          path: .cache/akershus-media
+          key: akershus-media-v1
 
       - name: Reuse canonical Akershus normalization step
         shell: bash
@@ -60,12 +64,17 @@ jobs:
           s = s.replace(old, new)
           old = '''async function download(url) { const res = await fetch(url, { redirect: "follow", headers: { "user-agent": "History-Go-place-production/1.0" } }); if (!res.ok) throw new Error(`download failed ${res.status} ${url}`); return Buffer.from(await res.arrayBuffer()); }'''
           new = '''const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+          const mediaCacheDir = path.join(root, ".cache/akershus-media");
+          fs.mkdirSync(mediaCacheDir, { recursive: true });
           async function download(url, attempts = 8) {
+            const cacheFile = path.join(mediaCacheDir, sha256(url));
+            if (fs.existsSync(cacheFile)) return fs.readFileSync(cacheFile);
             let lastError;
             for (let attempt = 1; attempt <= attempts; attempt += 1) {
               const res = await fetch(url, { redirect: "follow", headers: { "user-agent": "History-Go-place-production/1.0 (Paradispartiet/History-Go)" } });
               if (res.ok) {
                 const buffer = Buffer.from(await res.arrayBuffer());
+                fs.writeFileSync(cacheFile, buffer);
                 await sleep(30000);
                 return buffer;
               }
