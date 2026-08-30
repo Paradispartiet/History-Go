@@ -4,7 +4,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const LEGACY_BADGE = 'data/fag/subkultur/merke_subkultur.html';
+const COMPAT_BADGE = 'data/fag/subkultur/merke_subkultur.html';
+const LEGACY_ARCHIVE = 'data/fag/subkultur/archive/merke_subkultur_full_teori_legacy_20260830.html';
 const ORIGINAL_LEGACY_BLOB = '562ac143c3f26fd7fb6bc817dc320f3b088246bb';
 const MANIFEST = 'data/fag/fag_manifest.json';
 const REGISTRY = 'data/fagverk/fagverk_registry.json';
@@ -69,6 +70,10 @@ const norm = (value) => text(value)
   .replace(/[^a-zæøå0-9]+/gi, ' ')
   .replace(/\s+/g, ' ')
   .trim();
+
+function assert(condition, message) {
+  if (!condition) throw new Error(message);
+}
 
 function gitBlobSha(buffer) {
   const header = Buffer.from(`blob ${buffer.length}\0`);
@@ -152,34 +157,41 @@ function sections(html) {
 }
 
 export function auditSubkulturLegacyTheory() {
-  for (const file of [LEGACY_BADGE, MANIFEST, REGISTRY, PORTAL]) {
-    if (!exists(file)) throw new Error(`Mangler ${file}`);
+  for (const file of [COMPAT_BADGE, LEGACY_ARCHIVE, MANIFEST, REGISTRY, PORTAL]) {
+    assert(exists(file), `Mangler ${file}`);
   }
 
-  const legacyBuffer = fs.readFileSync(abs(LEGACY_BADGE));
+  const legacyBuffer = fs.readFileSync(abs(LEGACY_ARCHIVE));
   const legacyBlobSha = gitBlobSha(legacyBuffer);
-  if (legacyBlobSha !== ORIGINAL_LEGACY_BLOB) {
-    throw new Error(`Aktiv Subkultur legacy-side er ikke original blob: ${legacyBlobSha} != ${ORIGINAL_LEGACY_BLOB}`);
-  }
+  assert(
+    legacyBlobSha === ORIGINAL_LEGACY_BLOB,
+    `Subkultur-arkivet er ikke original blob: ${legacyBlobSha} != ${ORIGINAL_LEGACY_BLOB}`
+  );
+
+  const compatibility = read(COMPAT_BADGE);
+  assert(/location\.replace\s*\(/.test(compatibility), 'Subkultur compatibility-side mangler location.replace.');
+  assert(compatibility.includes('../../../fagverk.html?subject=subkultur#fagverkIaProgresjon'), 'Subkultur compatibility-side peker ikke til integrert Progresjon.');
+  assert(!/merke-blokk|SUBKULTUR\s*[–-]\s*full teoretisk beskrivelse|id=[\"']felt[\"']/i.test(compatibility), 'Subkultur compatibility-side beholder legacy teori.');
 
   const legacySections = sections(legacyBuffer.toString('utf8'));
   const expected = [...Object.keys(POLICY), 'bidrag'];
-  if (JSON.stringify(legacySections.map((section) => section.id)) !== JSON.stringify(expected)) {
-    throw new Error(`Uventet Subkultur-seksjonsstruktur: ${legacySections.map((section) => section.id).join(', ')}`);
-  }
+  assert(
+    JSON.stringify(legacySections.map((section) => section.id)) === JSON.stringify(expected),
+    `Uventet Subkultur-seksjonsstruktur: ${legacySections.map((section) => section.id).join(', ')}`
+  );
 
   const manifestSubject = json(MANIFEST).subkultur || {};
   const manifestSeed = [...new Set(flatten(manifestSubject)
     .map((value) => resolveRef(MANIFEST, value))
     .filter(Boolean))].sort();
-  if (manifestSeed.length < 4) throw new Error(`For få manifesteide Subkultur-filer: ${manifestSeed.length}`);
+  assert(manifestSeed.length >= 4, `For få manifesteide Subkultur-filer: ${manifestSeed.length}`);
   const manifestGraph = graph(manifestSeed);
 
   const registry = json(REGISTRY);
   const registrySubject = registry.subjects?.subkultur;
-  if (!registrySubject) throw new Error('Subkultur mangler i Fagverk-registeret.');
+  assert(registrySubject, 'Subkultur mangler i Fagverk-registeret.');
   const chapterCount = Array.isArray(registrySubject.chapters) ? registrySubject.chapters.length : 0;
-  if (chapterCount !== 8) throw new Error(`Subkultur-registry skal ha 8 kapitler, fant ${chapterCount}.`);
+  assert(chapterCount === 8, `Subkultur-registry skal ha 8 kapitler, fant ${chapterCount}.`);
   const registrySeed = flatten(registrySubject)
     .map((value) => resolveRef(REGISTRY, value))
     .filter(Boolean);
@@ -190,9 +202,10 @@ export function auditSubkulturLegacyTheory() {
     ...flatten(registrySubject),
     ...registryGraph.strings
   ].join(' '));
-  if (corpus.length < MIN_CANONICAL_CORPUS_CHARS) {
-    throw new Error(`Canonical Subkultur-korpus er under truncation-sentinel ${MIN_CANONICAL_CORPUS_CHARS}: ${corpus.length}.`);
-  }
+  assert(
+    corpus.length >= MIN_CANONICAL_CORPUS_CHARS,
+    `Canonical Subkultur-korpus er under truncation-sentinel ${MIN_CANONICAL_CORPUS_CHARS}: ${corpus.length}.`
+  );
 
   const rows = legacySections.map((section) => {
     if (section.id === 'bidrag') {
@@ -233,10 +246,9 @@ export function auditSubkulturLegacyTheory() {
 
   const portal = json(PORTAL);
   const portalSubject = portal.categories?.find((item) => item.id === 'subkultur');
-  if (!portalSubject) throw new Error('Subkultur mangler i portalen.');
-  if (portalSubject.badgePage !== LEGACY_BADGE) {
-    throw new Error(`Råauditen krever aktiv legacy-rute før adjudikering: ${portalSubject.badgePage}`);
-  }
+  assert(portalSubject, 'Subkultur mangler i portalen.');
+  assert(portalSubject.badgePage === TARGET, `Subkultur-portalen er ikke pensjonert til Progresjon: ${portalSubject.badgePage}`);
+  assert(portalSubject.subjectPage === 'fagverk.html?subject=subkultur', 'Subkultur subjectPage er endret utilsiktet.');
 
   const knowledge = rows.filter((row) => row.role === 'knowledge');
   const manualReview = knowledge.filter((row) => row.anchorCoverage < 1).map((row) => row.id);
@@ -245,9 +257,10 @@ export function auditSubkulturLegacyTheory() {
     schema: 'history_go_fagverk_subkultur_legacy_theory_audit_v1',
     subject: 'subkultur',
     legacy: {
-      badgePage: LEGACY_BADGE,
+      compatibilityPage: COMPAT_BADGE,
+      archivePage: LEGACY_ARCHIVE,
       originalBlobSha: ORIGINAL_LEGACY_BLOB,
-      activeBlobSha: legacyBlobSha,
+      archiveBlobSha: legacyBlobSha,
       sourcePreserved: legacyBlobSha === ORIGINAL_LEGACY_BLOB,
       sectionCount: rows.length,
       knowledgeSectionCount: knowledge.length
@@ -263,9 +276,11 @@ export function auditSubkulturLegacyTheory() {
     navigation: {
       badgePage: portalSubject.badgePage,
       subjectPage: portalSubject.subjectPage,
-      futureTarget: TARGET,
-      legacyRouteActive: true,
-      routeRetired: false
+      compatibilityPage: COMPAT_BADGE,
+      target: TARGET,
+      legacyRouteActive: false,
+      routeRetired: true,
+      portalRedirected: true
     },
     summary: {
       knowledgeSectionCount: knowledge.length,
@@ -273,11 +288,17 @@ export function auditSubkulturLegacyTheory() {
       manualReviewCount: manualReview.length,
       manualReview,
       redirectReady: false,
-      redirectBlockReason: 'Raw Subkultur anchor coverage never authorizes redirect by itself. Route readiness requires explicit section adjudication and any proven gap migration.'
+      redirectBlockReason: 'Raw Subkultur anchor coverage never authorizes redirect by itself; the retired route is valid only together with the explicit adjudication contract.'
     },
     rows
   };
 }
 
-const report = auditSubkulturLegacyTheory();
-process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  try {
+    process.stdout.write(`${JSON.stringify(auditSubkulturLegacyTheory(), null, 2)}\n`);
+  } catch (error) {
+    process.stderr.write(`Subkultur raw legacy audit FEIL: ${error.message}\n`);
+    process.exitCode = 1;
+  }
+}
