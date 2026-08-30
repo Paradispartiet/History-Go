@@ -2,7 +2,7 @@
 <html lang="no">
 <head>
   <meta charset="UTF-8">
-  <title>History Go – Emner & pensum</title>
+  <title>History Go – Min læring</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="css/base.css">
@@ -12,6 +12,7 @@
   <style>
     .emner-page { max-width: 1100px; margin: 0 auto; padding: 16px; }
     .emner-header { margin-bottom: 20px; }
+    .emner-header-nav { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; }
     .emner-header h1 { margin: 8px 0 4px; }
     .emner-layout { display: grid; grid-template-columns: 260px 1fr; gap: 20px; align-items: flex-start; }
     .emner-sidebar { background: rgba(0,0,0,.25); border-radius: 10px; padding: 12px; }
@@ -40,27 +41,30 @@
 <body class="knowledge-page">
   <div class="emner-page">
     <header class="emner-header">
-      <a class="back-link" href="profile.html">← Tilbake til profil</a>
+      <nav class="emner-header-nav" aria-label="Min læring-navigasjon">
+        <a class="back-link" href="profile.html">← Tilbake til profil</a>
+        <a class="back-link" href="fagverk-forside.html">Åpne Fagverket →</a>
+      </nav>
       <img src="bilder/ui/historygo_logo.PNG" class="knowledge-logo" alt="History Go logo">
-      <h1>Dine emner & pensum</h1>
-      <p>Her ser du hvordan det du har lært gjennom quiz henger sammen med emnene i History Go.</p>
+      <h1>Min læring</h1>
+      <p>Din personlige, tverrfaglige progresjon viser hvordan det du har lært gjennom quiz henger sammen med faglige emner. Alle emner og alt lærestoff finner du i Fagverket.</p>
     </header>
 
     <section class="emner-layout">
       <aside class="emner-sidebar">
-        <h2>Fagfelt</h2>
-        <p class="muted" style="font-size:.8rem;margin-bottom:8px">Velg et felt for å se emnene du dekker der.</p>
+        <h2>Faglig progresjon</h2>
+        <p class="muted" style="font-size:.8rem;margin-bottom:8px">Velg et fag for å se din beregnede emnedekning.</p>
         <ul id="emneSubjectList" class="emne-subject-list"></ul>
       </aside>
 
       <section class="emner-main">
-        <h2 id="emneSubjectTitle">Laster fagfelt …</h2>
-        <span id="emneSubjectDesc" class="muted" style="font-size:.85rem">Emnene hentes fra det kanoniske fagmanifestet.</span>
+        <h2 id="emneSubjectTitle">Laster progresjon …</h2>
+        <span id="emneSubjectDesc" class="muted" style="font-size:.85rem">Progresjonen beregnes fra læringsevidensen din og fagdataene i Fagverket.</span>
         <ul id="emneList" class="emne-list"></ul>
       </section>
 
       <section id="coursesPanel" class="panel">
-        <h2>Kurs</h2>
+        <h2>Kursprogresjon</h2>
         <div id="coursesStatus" class="muted"></div>
         <div id="coursesList"></div>
       </section>
@@ -190,7 +194,7 @@
           button.classList.toggle("active", button.dataset.subject === subjectId);
         });
         elTitle.textContent = subject?.label || "Emner";
-        elDesc.textContent = "Hvert emne består av kjernebegreper. Vi viser hvor mange du har dekket gjennom quizer.";
+        elDesc.textContent = "Din dekning beregnes fra kjernebegreper og emnetreff du har oppnådd gjennom quizer.";
         elList.innerHTML = coverage.map((row) => {
           const total = Number(row.total) || 0;
           const matchCount = Number(row.matchCount) || 0;
