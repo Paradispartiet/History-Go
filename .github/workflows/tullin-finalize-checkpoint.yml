@@ -32,12 +32,27 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Merge current main without discarding Tullin
+      - name: Merge current main and resolve generated Fagverk release
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
+          set +e
           git merge --no-edit origin/main
+          MERGE_STATUS=$?
+          set -e
+          if [ "$MERGE_STATUS" -ne 0 ]; then
+            CONFLICTS=$(git diff --name-only --diff-filter=U)
+            echo "Merge conflicts:"
+            printf '%s\n' "$CONFLICTS"
+            if [ "$CONFLICTS" != "data/fagverk/fagverk_release.json" ]; then
+              echo "Unexpected merge conflict set; refusing automatic resolution"
+              exit 1
+            fi
+            git checkout --theirs -- data/fagverk/fagverk_release.json
+            git add data/fagverk/fagverk_release.json
+            git commit --no-edit
+          fi
 
       - name: Repair canonical Tullin source contracts
         run: node tools/tullin-finalize-repair.mjs pre
