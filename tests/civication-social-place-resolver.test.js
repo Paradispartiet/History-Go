@@ -81,6 +81,11 @@ assert.ok(litteratur.some((p) => p.id === 'alexander_kiellands_plass'));
 assert.ok(subkultur.some((p) => p.id === 'bla'));
 assert.ok(sport.length && playgrounds.length);
 assert.ok(canonicalSourceIds.has('ekebergparken'), 'hele canonical manifestet skal inneholde Ekebergparken');
+assert.deepStrictEqual(
+  brandByPlace.universitetsplassen,
+  ['universitetet_i_oslo'],
+  'Universitetsplassen skal bruke den kildebelagte UiO-identiteten, ikke eldre nærliggende butikk-/kafébindinger'
+);
 
 const pairs = (list) => list.map((m) => `${m.sourcePlaceId}->${m.brandId || '(place)'}`).sort();
 const type = (id) => resolver.getSocialPlaceTypeForBrand(resolver.getBrandById(id, opts));
@@ -97,8 +102,7 @@ assert.deepStrictEqual(pairs(resolver.getCoffeeSocialPlaces(opts)), [
   'grunerlokka_helgesens_tm->tim_wendelboe',
   'karl_johan->stockfleths',
   'majorstuen_tbanestasjon->kaffebrenneriet',
-  'st_hanshaugen_park->java_kaffebar',
-  'universitetsplassen->fuglen'
+  'st_hanshaugen_park->java_kaffebar'
 ]);
 
 const java = resolver.getSocialPlaceByLocationId('brand_place:st_hanshaugen_park:java_kaffebar', opts);
@@ -109,7 +113,7 @@ assert.strictEqual(java.lon, 10.7414);
 
 for (const [kind, wanted] of Object.entries({
   culture: ['youngstorget->mono', 'bla->bla', 'olaf_ryes_plass->parkteatret'],
-  book_library: ['universitetsplassen->tronsmo_bokhandel', 'deichman_bjorvika->(place)'],
+  book_library: ['deichman_bjorvika->(place)'],
   hospitality_food: ['karl_johan->grand_cafe', 'bjorvika->maaemo'],
   retail_social: ['markveien->froken_dianas_salonger', 'grensen_kjopesenter->outland']
 })) {
