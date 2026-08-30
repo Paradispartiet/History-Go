@@ -16,7 +16,7 @@ const P = Object.freeze({
   overlay: NATUR_FINAL_OVERLAY_PATH,
   status: 'data/fagverk/subject_status.json',
   registry: 'data/fagverk/fagverk_registry.json',
-  badge: 'data/fag/natur/merke_natur (1).html',
+  badge: 'data/fag/natur/archive/merke_natur_full_teori_legacy_20260829.html',
   report: 'reports/fagverk/natur-universal-coverage-audit.json'
 });
 
@@ -74,7 +74,7 @@ export function auditNaturUniversalCoverage({ writeReport = false, checkReport =
     'Geologi og naturhistorie', 'Urban økologi', 'Miljøpåvirkning og forvaltning'
   ];
   assert(requiredLabels.every((label) => domains.some((domain) => domain.label === label)), 'Naturpensum mangler ett eller flere bindende fagområder');
-  assert(requiredLabels.every((label) => badge.includes(label)), 'Merkesiden viser ikke alle tolv fagområder');
+  assert(requiredLabels.every((label) => badge.includes(label)), 'Det byte-bevarte Natur-arkivet viser ikke alle tolv fagområder');
 
   const biologyIds = [
     'artskunnskap_systematikk', 'evolusjon_biologisk_mangfold', 'botanikk_vegetasjon',
@@ -116,7 +116,7 @@ export function auditNaturUniversalCoverage({ writeReport = false, checkReport =
   assert(naturStatus?.nextGate === 'complete', 'Natur har feil sluttport');
   assert(chapters.length === 12, `Forventet tolv registrerte Natur-kapitler, fikk ${chapters.length}`);
   assert(pensum.summary?.editorial_complete === true, 'Pensumets komponerte summary er ikke complete');
-  assert(badge.includes('77 materialiserte emner, 51 metoder og tolv redigerte kapitler'), 'Merkesiden viser ikke sluttfasens produksjonstall');
+  assert(badge.includes('77 materialiserte emner, 51 metoder og tolv redigerte kapitler'), 'Det byte-bevarte Natur-arkivet viser ikke sluttfasens produksjonstall');
 
   const report = {
     schema: 'history_go_natur_universal_coverage_audit_v1',

@@ -37,6 +37,7 @@ on:
       - 'scripts/audit-fagverk-religion-legacy-stub.mjs'
       - 'scripts/audit-fagverk-scenekunst-legacy-stub.mjs'
       - 'scripts/audit-fagverk-filosofi-legacy-stub.mjs'
+      - 'scripts/audit-fagverk-psykologi-legacy-stub.mjs'
       - 'tests/fagverk-general-engine.test.mjs'
       - 'tests/fagverk-ia-v3-shell.test.mjs'
       - 'tests/fagverk-ia-v3-detail.test.mjs'
@@ -45,6 +46,7 @@ on:
       - 'tests/fagverk-religion-legacy-stub-retirement.test.mjs'
       - 'tests/fagverk-scenekunst-legacy-stub-retirement.test.mjs'
       - 'tests/fagverk-filosofi-legacy-stub-retirement.test.mjs'
+      - 'tests/fagverk-psykologi-legacy-stub-retirement.test.mjs'
       - 'reports/fagverk/general-engine-audit.json'
       - 'tests/politikk-fag-integration.test.mjs'
       - '.github/workflows/fagverk-general-engine.yml'
@@ -85,6 +87,7 @@ jobs:
           node --check scripts/audit-fagverk-religion-legacy-stub.mjs
           node --check scripts/audit-fagverk-scenekunst-legacy-stub.mjs
           node --check scripts/audit-fagverk-filosofi-legacy-stub.mjs
+          node --check scripts/audit-fagverk-psykologi-legacy-stub.mjs
       - name: Verify inventory and status progression
         run: |
           node scripts/audit-fagverk-subject-inventory.mjs
@@ -97,6 +100,7 @@ jobs:
           node scripts/audit-fagverk-religion-legacy-stub.mjs
           node scripts/audit-fagverk-scenekunst-legacy-stub.mjs
           node scripts/audit-fagverk-filosofi-legacy-stub.mjs
+          node scripts/audit-fagverk-psykologi-legacy-stub.mjs
           node --test tests/fagverk-general-engine.test.mjs
           node --test tests/fagverk-ia-v3-shell.test.mjs
           node --test tests/fagverk-ia-v3-detail.test.mjs
@@ -105,4 +109,5 @@ jobs:
           node --test tests/fagverk-religion-legacy-stub-retirement.test.mjs
           node --test tests/fagverk-scenekunst-legacy-stub-retirement.test.mjs
           node --test tests/fagverk-filosofi-legacy-stub-retirement.test.mjs
+          node --test tests/fagverk-psykologi-legacy-stub-retirement.test.mjs
           node --test tests/politikk-fag-integration.test.mjs

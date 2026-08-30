@@ -50,6 +50,49 @@ Connector-only skriving er ikke en nødprosedyre som krever særskilt godkjennin
 - Bruk tilsvarende connectoroperasjoner for PR-, CI- og mergeflyt når connectoren er arbeidskanalen og operasjonene er tilgjengelige.
 - Oppgi konkret branch, commit, PR, head-SHA og kontroller i sluttrapporten når disse finnes.
 
+## Place production: obligatorisk READ-FIRST-gate
+
+Disse reglene gjelder hver gang en agent, assistent eller automasjon oppretter, fullfører eller vesentlig reviderer et canonical Place.
+
+**Stedsproduksjon skal aldri starte fra hukommelse, chatsammendrag, gamle workcards eller mønsterkopiering fra et annet sted.** Før produksjonsprofil, samlinger, medlemmer, kategoriuttrykk, Stories, quizomfang eller annen stedsspesifikk innholdsplan bestemmes, skal gjeldende branch-versjoner av disse filene leses:
+
+1. `docs/PLACE_PRODUCTION_CHECKLIST.md`
+2. `docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md`
+3. `docs/PLACE_PRODUCTION_PROFILES.md`
+4. `data/places/README_place_rounds.md`
+5. `data/badges/index.json`
+6. `data/badges/place_production_routing_v1.json`
+7. gjeldende Place-kategoris canonical `data/badges/<badge>.json`
+8. `docs/PLACE_OBJECTS_CANONICAL.md`
+9. `data/brands/brand_rules_v1_1.json`
+
+Deretter skal den canonicale rekkefølgen gjennomføres: **Hovedbadge → underbadges → source review → confirmed produksjonsprofil → endelig innholdsplan**.
+
+### Obligatorisk preflight-bevis
+
+Et nytt eller vesentlig revidert fullprofil-sted skal ha et aktuelt stedsproduksjons-workcard med `rule_preflight`-bevis som registreres **etter at filene over er lest**:
+
+```bash
+node scripts/place-production-rule-preflight.mjs record \
+  --workcard reports/place-production/<place>-workcard-current.json \
+  --place-id <canonical_place_id> \
+  --category <canonical_category>
+```
+
+Hjelperen registrerer SHA-256 for de eksakte regelfilene. Den erstatter ikke selve lesingen. CI avviser manglende eller foreldet preflight når et Place går inn i eller tilbake til fullproduksjon.
+
+### Harde regler
+
+- Et tidligere chatsammendrag eller husket regelsett kan aldri erstatte lesing av gjeldende repo-dokumentasjon.
+- Samlingsvalg skal ikke gjøres før kategori-Badge, routingfil og PlaceCard-samlingskontrakt er lest.
+- Et annet Place kan ikke brukes som semantisk mal uten at det aktuelle stedets Badge-/source-preflight gjennomføres på nytt.
+- Hvis én obligatorisk regelfil endres etter preflight, skal den leses på nytt og preflight registreres på nytt før videre stedsproduksjon.
+- CI-/schema-PASS overstyrer aldri semantiske eierskapsregler i canonical dokumentasjon.
+- `related`, bilder, Stories, kronologi, Badges og popup-handlinger er aldri reservesamlinger.
+- Ingen filler-entities. Mangler en obligatorisk fullprofil-samling en ekte kandidat, forblir stedet blokkert til source-bounded research løser det eller canonical scope vurderes på nytt.
+
+Repoets READ-FIRST-CI finnes uttrykkelig for at denne sekvensen ikke skal kunne hoppes over og likevel nå merge.
+
 ## Obligatorisk kvalitetsvurdering før ferdigstatus
 
 Alt arbeid som skal omtales som `complete`, «ferdig», produksjonsklart eller klart for merge, skal først ha en eksplisitt og etterprøvbar kvalitetsvurdering. Grønn CI, stor datamengde, ordtelling eller utfylt schema er nødvendige signaler der de er relevante, men er aldri alene bevis på høy kvalitet.

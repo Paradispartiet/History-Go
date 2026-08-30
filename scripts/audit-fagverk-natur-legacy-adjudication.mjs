@@ -7,12 +7,14 @@ const ADJUDICATION = 'data/fag/natur/legacy_theory_adjudication_v1.json';
 const REGISTRY = 'data/fagverk/fagverk_registry.json';
 const PORTAL = 'data/fagverk/fagverk_portal.json';
 const CATEGORY_CONTRACT = 'data/categories/category_contract.json';
-const LEGACY_BADGE = 'data/fag/natur/merke_natur (1).html';
+const LEGACY_BADGE = 'data/fag/natur/archive/merke_natur_full_teori_legacy_20260829.html';
+const COMPATIBILITY = 'data/fag/natur/merke_natur (1).html';
 const BADGE = 'data/badges/natur.json';
 const SUBJECT_MODEL = 'js/fagverk-subject-model.js';
 const BADGE_PROGRESS = 'js/fagverk-ia-v3-badge-progress.js';
 const FAGVERK_HTML = 'fagverk.html';
 const TARGET = 'fagverk.html?subject=natur#fagverkIaProgresjon';
+const RELATIVE_TARGET = '../../../fagverk.html?subject=natur#fagverkIaProgresjon';
 const KNOWLEDGE_DISPOSITION = 'canonical_supersedes';
 const PRODUCT_SUMMARY_DISPOSITION = 'retire_legacy_product_summary';
 const BOUNDARY_ID = 'nature_assignment_requires_scientific_entry';
@@ -57,7 +59,7 @@ function runAnchorAudit() {
 }
 
 for (const file of [
-  ADJUDICATION, REGISTRY, PORTAL, CATEGORY_CONTRACT, LEGACY_BADGE,
+  ADJUDICATION, REGISTRY, PORTAL, CATEGORY_CONTRACT, LEGACY_BADGE, COMPATIBILITY,
   BADGE, SUBJECT_MODEL, BADGE_PROGRESS, FAGVERK_HTML
 ]) {
   if (!exists(file)) throw new Error(`Natur-adjudisering mangler ${file}`);
@@ -68,6 +70,7 @@ const adjudication = json(ADJUDICATION);
 const registry = json(REGISTRY);
 const portal = json(PORTAL);
 const categoryContract = json(CATEGORY_CONTRACT);
+const compatibilityHtml = read(COMPATIBILITY);
 
 if (adjudication.schema !== 'history_go_fagverk_legacy_theory_adjudication_v1') {
   throw new Error(`Ukjent Natur-adjudiseringsschema: ${adjudication.schema}`);
@@ -95,6 +98,14 @@ if (anchorAudit.legacy?.sectionCount !== 6
 }
 if (anchorAudit.canonical?.categoryContractHasNaturAssignmentBoundary !== true) {
   throw new Error('Natur-tildelingsgrensen er ikke canonicalisert i category-contracten.');
+}
+if (anchorAudit.legacy?.badgePage !== LEGACY_BADGE || anchorAudit.legacy?.compatibilityPage !== COMPATIBILITY) {
+  throw new Error('Natur anchor-auditen må lese arkivet og behandle gammel URL som compatibility-side.');
+}
+if (anchorAudit.navigation?.portalRedirected !== true
+  || anchorAudit.navigation?.compatibilityRedirectPresent !== true
+  || anchorAudit.navigation?.routeRetired !== true) {
+  throw new Error('Natur anchor-auditen bekrefter ikke ferdig route-retirement.');
 }
 
 const registrySubject = registry.subjects?.natur;
@@ -198,6 +209,9 @@ const portalEntry = portal.categories?.find(item => item.id === 'natur');
 if (!portalEntry) throw new Error('Natur mangler i fagverk_portal.json.');
 const portalRoute = text(portalEntry.badgePage);
 const portalRedirected = portalRoute === TARGET;
+const compatibilityRedirectPresent = compatibilityHtml.includes('location.replace')
+  && compatibilityHtml.includes(RELATIVE_TARGET)
+  && !/merke-blokk|Alle tolv Natur-områder|Natur blir ikke tildelt/i.test(compatibilityHtml);
 const knowledgeRows = sectionRows.filter(row => row.role !== 'legacy_product_summary');
 const productSummaryRows = sectionRows.filter(row => row.role === 'legacy_product_summary');
 const redirectReady = knowledgeRows.length === 5
@@ -214,6 +228,7 @@ const report = {
     anchorAuditSchema: anchorAudit.schema,
     adjudicationFile: ADJUDICATION,
     legacyBadgePage: LEGACY_BADGE,
+    compatibilityBadgePage: COMPATIBILITY,
     manifestOwnerFiles: anchorAudit.canonical.manifestSeedFiles,
     registryChapterOwnerFiles: chapterRoots,
     boundaryOwnerFile: CATEGORY_CONTRACT,
@@ -238,7 +253,8 @@ const report = {
     redirectTarget: TARGET,
     portalRoute,
     portalRedirected,
-    legacyBadgeSourcePreserved: exists(LEGACY_BADGE)
+    legacyBadgeSourcePreserved: exists(LEGACY_BADGE),
+    compatibilityRedirectPresent
   },
   sections: sectionRows,
   productMechanics: productRows,
@@ -263,7 +279,8 @@ if (report.summary.retiredProductSummaryCount !== 1
   || report.summary.migratedProductBoundaryCount !== 1) {
   throw new Error('Natur-produktadjudiseringen har uventet struktur.');
 }
-if (report.summary.portalRedirected) throw new Error('Adjudiserings-PR-en skal ikke redirecte Natur; route-retirement er separat tranche.');
-if (!report.summary.legacyBadgeSourcePreserved) throw new Error('Natur legacy-kilden må bevares gjennom adjudiseringsfasen.');
+if (!report.summary.portalRedirected) throw new Error(`Natur badgePage må peke til ${TARGET} etter grønn adjudisering.`);
+if (!report.summary.legacyBadgeSourcePreserved) throw new Error('Arkivert Natur-kilde må bevares etter route-retirement.');
+if (!report.summary.compatibilityRedirectPresent) throw new Error('Legacy Natur-URL må være en compatibility-redirect til Progresjon.');
 
 process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
