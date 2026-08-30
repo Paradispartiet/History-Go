@@ -97,4 +97,4 @@ A valid permanent prerequisite head must pass the focused Formann gate, Career G
 
 ## Reconciliation checkpoint
 
-This prerequisite is reconciled against `main` commit `48efecdfad1834e70ee5771dd3d39a0102789e18`, which includes PR #5514's canonical Universitetsplassen social-place regression correction and the later non-overlapping Subkultur audit merge. The fail-closed verifier must run again from this baseline and may commit permanent Formann state only after the full Civication suite passes.
+This prerequisite was fail-closed verified on `main` commit `48efecdfad1834e70ee5771dd3d39a0102789e18` by run `33302470634`, including PR #5514's canonical Universitetsplassen social-place regression correction. The permanent verified state is reconciled against later `main` commit `85f5266b9cc87c41aa54dc92a6d28e221d7de3ba`, whose Subkultur adjudication files are non-overlapping with the Civication scope.
