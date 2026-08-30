@@ -4,7 +4,8 @@ import fs from 'node:fs';
 import { spawnSync } from 'node:child_process';
 
 const TARGET = 'fagverk.html?subject=natur#fagverkIaProgresjon';
-const LEGACY = 'data/fag/natur/merke_natur (1).html';
+const ARCHIVE = 'data/fag/natur/archive/merke_natur_full_teori_legacy_20260829.html';
+const COMPATIBILITY = 'data/fag/natur/merke_natur (1).html';
 
 function run() {
   const result = spawnSync(process.execPath, ['scripts/audit-fagverk-natur-legacy-adjudication.mjs'], { encoding: 'utf8' });
@@ -91,11 +92,18 @@ test('Natur-kategorigrensen er migrert til canonical category contract via #5496
   assert.match(contract.decisions.natur, /dokumenterbar/i);
 });
 
-test('Natur-adjudiseringen er redirect-klar men holder route-retirement i egen tranche', () => {
+test('Natur-adjudiseringen låser arkiv, compatibility-URL og canonical Progresjon etter retirement', () => {
   const report = run();
+  const compatibility = fs.readFileSync(COMPATIBILITY, 'utf8');
+  assert.equal(report.inputs.legacyBadgePage, ARCHIVE);
+  assert.equal(report.inputs.compatibilityBadgePage, COMPATIBILITY);
   assert.equal(report.summary.redirectTarget, TARGET);
-  assert.equal(report.summary.portalRoute, LEGACY);
-  assert.equal(report.summary.portalRedirected, false);
+  assert.equal(report.summary.portalRoute, TARGET);
+  assert.equal(report.summary.portalRedirected, true);
   assert.equal(report.summary.legacyBadgeSourcePreserved, true);
+  assert.equal(report.summary.compatibilityRedirectPresent, true);
   assert.equal(report.summary.redirectReady, true);
+  assert.match(compatibility, /location\.replace/);
+  assert.match(compatibility, /subject=natur#fagverkIaProgresjon/);
+  assert.doesNotMatch(compatibility, /merke-blokk|Alle tolv Natur-områder|Natur blir ikke tildelt/i);
 });

@@ -1,14 +1,14 @@
 {
   "schema": "history_go_canonical_subcategory_production_registry_v1",
   "version": "1.0.0",
-  "updated_at": "2026-08-28",
+  "updated_at": "2026-08-30",
   "owner_subject_id": "politikk",
   "canonical_subcategory_id": "sosiologi_antropologi",
-  "status": "fulltext_production_in_progress",
+  "status": "strict_completion_proven",
   "progress": {
-    "materializedDomains": 10,
+    "materializedDomains": 12,
     "totalDomains": 12,
-    "strictCompletionProven": false
+    "strictCompletionProven": true
   },
   "rules": {
     "subcategory_is_not_top_level_subject": true,
@@ -18,7 +18,7 @@
     "source_brief_does_not_count_as_materialized": true,
     "complete_requires_all_domains_and_strict_proof": true
   },
-  "next_gate": "digitalization_science_technology_society_fulltext_materialization",
+  "next_gate": "maintenance_source_refresh_and_case_expansion",
   "materialized": [
     {
       "ordinal": 1,
@@ -102,6 +102,22 @@
       "claims": "data/fagverk/politikk/sosiologi_antropologi/konflikt-makt-sivilsamfunn-strict-upgrade/claims.json",
       "assessment": "data/fagverk/politikk/sosiologi_antropologi/konflikt-makt-sivilsamfunn-strict-upgrade/assessment.json",
       "audit": "reports/fagverk/sosiologi-antropologi-power-politics-collective-action-fulltext-v1-audit.json"
+    },
+    {
+      "ordinal": 11,
+      "domain_id": "digitalisering_vitenskap_teknologi_samfunn",
+      "chapter": "data/fagverk/politikk/sosiologi_antropologi/digitalisering-vitenskap-teknologi-og-samfunn.json",
+      "claims": "data/fagverk/politikk/sosiologi_antropologi/digitalisering-vitenskap-teknologi-og-samfunn/claims.json",
+      "assessment": "data/fagverk/politikk/sosiologi_antropologi/digitalisering-vitenskap-teknologi-og-samfunn/assessment.json",
+      "audit": "reports/fagverk/sosiologi-antropologi-digitalization-science-technology-society-fulltext-v1-audit.json"
+    },
+    {
+      "ordinal": 12,
+      "domain_id": "anvendt_offentlig_etikk_avkolonisering",
+      "chapter": "data/fagverk/politikk/sosiologi_antropologi/anvendt-offentlig-sosiologi-etikk-og-avkolonisering.json",
+      "claims": "data/fagverk/politikk/sosiologi_antropologi/anvendt-offentlig-sosiologi-etikk-og-avkolonisering/claims.json",
+      "assessment": "data/fagverk/politikk/sosiologi_antropologi/anvendt-offentlig-sosiologi-etikk-og-avkolonisering/assessment.json",
+      "audit": "reports/fagverk/sosiologi-antropologi-applied-public-ethics-decolonization-fulltext-v1-audit.json"
     }
   ]
 }

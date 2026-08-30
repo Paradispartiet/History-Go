@@ -52,6 +52,7 @@ on:
       - 'scripts/audit-fagverk-natur-legacy-adjudication.mjs'
       - 'scripts/audit-fagverk-litteratur-legacy-theory.mjs'
       - 'scripts/audit-fagverk-litteratur-legacy-adjudication.mjs'
+      - 'scripts/audit-fagverk-sport-legacy-theory.mjs'
       - 'scripts/audit-subkultur-theory-attribution-v1.mjs'
       - 'tools/audit-historie-theory-integrity.mjs'
       - 'tools/audit-by-theory-integrity.mjs'
@@ -83,6 +84,7 @@ on:
       - 'tests/fagverk-naeringsliv-legacy-theory-adjudication.test.mjs'
       - 'tests/fagverk-natur-legacy-theory-audit.test.mjs'
       - 'tests/fagverk-natur-legacy-theory-adjudication.test.mjs'
+      - 'tests/fagverk-sport-legacy-theory-audit.test.mjs'
       - 'tests/litteratur-theory-integrity.test.mjs'
       - 'tests/fagverk-litteratur-legacy-theory-audit.test.mjs'
       - 'tests/fagverk-litteratur-legacy-theory-adjudication.test.mjs'
@@ -131,6 +133,7 @@ jobs:
           node --check scripts/audit-fagverk-naeringsliv-legacy-adjudication.mjs
           node --check scripts/audit-fagverk-natur-legacy-theory.mjs
           node --check scripts/audit-fagverk-natur-legacy-adjudication.mjs
+          node --check scripts/audit-fagverk-sport-legacy-theory.mjs
           node --check tools/audit-by-theory-integrity.mjs
           node --check tools/audit-kunst-theory-integrity.mjs
           node --check tools/audit-media-theory-integrity.mjs
@@ -154,6 +157,7 @@ jobs:
           node scripts/audit-fagverk-naeringsliv-legacy-adjudication.mjs
           node scripts/audit-fagverk-natur-legacy-theory.mjs
           node scripts/audit-fagverk-natur-legacy-adjudication.mjs
+          node scripts/audit-fagverk-sport-legacy-theory.mjs
           node --test tests/by-theory-integrity.test.mjs
           node --test tests/kunst-theory-integrity.test.mjs
           node --test tests/fagverk-kunst-legacy-theory-audit.test.mjs
@@ -169,6 +173,7 @@ jobs:
           node --test tests/fagverk-naeringsliv-legacy-theory-adjudication.test.mjs
           node --test tests/fagverk-natur-legacy-theory-audit.test.mjs
           node --test tests/fagverk-natur-legacy-theory-adjudication.test.mjs
+          node --test tests/fagverk-sport-legacy-theory-audit.test.mjs
           node --test tests/litteratur-theory-integrity.test.mjs
           node --test tests/fagverk-litteratur-legacy-theory-audit.test.mjs
           node --test tests/fagverk-litteratur-legacy-theory-adjudication.test.mjs

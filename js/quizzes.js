@@ -611,11 +611,10 @@ function runQuizFlow({ title, targetId, questions, onEnd, titleSuffix = "", prog
   function step() {
     const q = questions[i];
 
-    const options = arr(q.options || q.choices);
-    const answerIndex =
-      typeof q.answerIndex === "number"
-        ? q.answerIndex
-        : options.findIndex((o) => o === q.answer);
+    const presentation = window.HGQuizAnswerShuffle?.shuffleQuestion?.(q);
+    if (!presentation) throw new Error("HGQuizAnswerShuffle mangler");
+    const options = presentation.options;
+    const answerIndex = presentation.answerIndex;
 
     qs.q.textContent = q.question || q.text || "";
     qs.choices.innerHTML = options

@@ -3,13 +3,15 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const LEGACY = 'data/fag/natur/merke_natur (1).html';
+const LEGACY_BADGE = 'data/fag/natur/archive/merke_natur_full_teori_legacy_20260829.html';
+const COMPATIBILITY = 'data/fag/natur/merke_natur (1).html';
 const MANIFEST = 'data/fag/fag_manifest.json';
 const REGISTRY = 'data/fagverk/fagverk_registry.json';
 const PORTAL = 'data/fagverk/fagverk_portal.json';
 const BADGE = 'data/badges/natur.json';
 const CATEGORY_CONTRACT = 'data/categories/category_contract.json';
 const TARGET = 'fagverk.html?subject=natur#fagverkIaProgresjon';
+const RELATIVE_TARGET = '../../../fagverk.html?subject=natur#fagverkIaProgresjon';
 const OWNED_ROOTS = ['data/fag/natur/', 'data/fagverk/natur/'];
 const NATUR_ASSIGNMENT_BOUNDARY_TERMS = Object.freeze([
   'grønt', 'vakkert', 'naturfaglig inngang', 'organisme', 'habitat', 'vassdrag', 'geologisk', 'klimavirkning', 'naturforvaltning', 'dokumenterbar'
@@ -161,11 +163,11 @@ function sections(html) {
 }
 
 export function auditNaturLegacyTheory() {
-  for (const file of [LEGACY, MANIFEST, REGISTRY, PORTAL, BADGE, CATEGORY_CONTRACT]) {
+  for (const file of [LEGACY_BADGE, COMPATIBILITY, MANIFEST, REGISTRY, PORTAL, BADGE, CATEGORY_CONTRACT]) {
     if (!exists(file)) throw new Error(`Natur legacy-audit mangler ${file}`);
   }
 
-  const legacySections = sections(read(LEGACY));
+  const legacySections = sections(read(LEGACY_BADGE));
   const expectedIds = Object.keys(SECTION_POLICY);
   if (JSON.stringify(legacySections.map(row => row.id)) !== JSON.stringify(expectedIds)) {
     throw new Error(`Uventet Natur-seksjonsstruktur: ${legacySections.map(row => row.id).join(', ')}`);
@@ -219,7 +221,13 @@ export function auditNaturLegacyTheory() {
   const portal = json(PORTAL);
   const portalEntry = portal.categories?.find(item => item.id === 'natur');
   if (!portalEntry) throw new Error('Natur mangler i Fagverk-portalen.');
-  if (portalEntry.badgePage !== LEGACY) throw new Error(`Audit-tranchen skal være pre-redirect; badgePage=${portalEntry.badgePage}`);
+  const compatibilityHtml = read(COMPATIBILITY);
+  const compatibilityRedirectPresent = compatibilityHtml.includes('location.replace')
+    && compatibilityHtml.includes(RELATIVE_TARGET)
+    && !/merke-blokk|Alle tolv Natur-områder|Natur blir ikke tildelt/i.test(compatibilityHtml);
+  const portalRedirected = portalEntry.badgePage === TARGET;
+  if (!portalRedirected) throw new Error(`Natur badgePage må peke til ${TARGET} etter route-retirement.`);
+  if (!compatibilityRedirectPresent) throw new Error('Legacy Natur-URL er ikke en ren compatibility-redirect til Progresjon.');
 
   const badge = json(BADGE);
   const categoryContract = json(CATEGORY_CONTRACT);
@@ -237,7 +245,8 @@ export function auditNaturLegacyTheory() {
     schema: 'history_go_fagverk_natur_legacy_theory_audit_v1',
     subject: 'natur',
     legacy: {
-      badgePage: LEGACY,
+      badgePage: LEGACY_BADGE,
+      compatibilityPage: COMPATIBILITY,
       sectionCount: rows.length,
       knowledgeSectionCount: knowledgeRows.length,
       productSummarySectionCount: rows.filter(row => row.role === 'legacy_product_summary').length,
@@ -261,7 +270,9 @@ export function auditNaturLegacyTheory() {
       badgePage: portalEntry.badgePage,
       subjectPage: portalEntry.subjectPage,
       target: TARGET,
-      preRedirectLocked: true
+      portalRedirected,
+      compatibilityRedirectPresent,
+      routeRetired: portalRedirected && compatibilityRedirectPresent
     },
     summary: {
       knowledgeSectionCount: knowledgeRows.length,
@@ -269,7 +280,7 @@ export function auditNaturLegacyTheory() {
       manualReviewCount: manualReview.length,
       manualReview,
       redirectReady: false,
-      redirectBlockReason: 'Raw Natur anchor coverage never authorizes redirect by itself. Product mechanics/boundaries and every knowledge section require explicit editorial adjudication before route retirement.'
+      redirectBlockReason: 'Raw Natur anchor coverage never authorizes redirect by itself. Route readiness is owned by the explicit Natur legacy adjudication gate.'
     },
     rows
   };

@@ -106,7 +106,84 @@
       ]
     }
   ],
-  "related_people": [],
+  "related_people": [
+    {
+      "id": "arvid_erfaren_fagarbeider_formann",
+      "name": "Arvid",
+      "role": "erfaren fagarbeider",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null,
+      "function": "Representerer den erfarne delen av laget som kjenner faktisk kapasitet, faglig kvalitet og belastningen bak tavletallene. Relasjonen gjør det mulig å vise hvordan arbeidsfordeling oppleves nedenfra uten å redusere Arvid til bare en ressurs i bemanningsplanen.",
+      "authority_relation": "Formannen kan fordele oppgaver og prioritere drift innen fullmakt, mens Arvid kan gjøre kompetanse, belastning og faglig risiko synlig. Erfaring eller lojalitet gir ingen av dem rett til å omgå sikkerhetsrutiner, skjule hendelser eller flytte formell beslutningsmyndighet.",
+      "mail_family_refs": [
+        "formann_profesjonelle_arbeidsrelasjoner"
+      ],
+      "workplace_ids": [
+        "produksjons_og_arbeidsomrade"
+      ],
+      "source_scene_refs": [
+        "data/Civication/workGrammars/naeringsliv/naeringsliv_operativ_ledelse.json#frist"
+      ]
+    },
+    {
+      "id": "noor_nyansatt_fagarbeider_formann",
+      "name": "Noor",
+      "role": "nyansatt fagarbeider",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null,
+      "function": "Gjør kompetansegrense, instrukskvalitet og muligheten til å si fra konkret i skiftstarten. Noor trenger et oppdrag som er tydelig nok til å utføres sikkert og en lederrelasjon der usikkerhet kan meldes før den blir til skjult risiko eller feil bemanning.",
+      "authority_relation": "Formannen kan avklare prioritet, oppgave og forventet kontroll, men kan ikke bruke tids- eller statuspress til å få Noor til å late som nødvendig kompetanse finnes. Noor kan melde usikkerhet og stoppsignal uten at dette i seg selv gjør henne til kontroll- eller godkjenningsmyndighet.",
+      "mail_family_refs": [
+        "formann_profesjonelle_arbeidsrelasjoner"
+      ],
+      "workplace_ids": [
+        "arbeidslederpunkt"
+      ],
+      "source_scene_refs": [
+        "data/Civication/workGrammars/naeringsliv/naeringsliv_operativ_ledelse.json#fravaer"
+      ]
+    },
+    {
+      "id": "selma_hms_kvalitetskontakt_formann",
+      "name": "Selma",
+      "role": "HMS- og kvalitetskontakt",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null,
+      "function": "Representerer etterprøvings- og sikkerhetsperspektivet når en hendelse, kvalitetsfeil eller nestenulykke truer flyten. Hun gjør skillet mellom å sikre situasjonen, dokumentere fakta, avklare ansvar og faktisk ha mandat til å lukke eller gjenstarte tydelig.",
+      "authority_relation": "Formannen kan stanse lokal drift, sikre området og eskalere sikkerhetskonflikter, mens Selma kan kreve et lesbart avviksgrunnlag og riktig kontrollspor. Ingen av relasjonene gir rett til å skjule hendelser, oppheve rutiner eller ta beslutninger uten fullmakt.",
+      "mail_family_refs": [
+        "formann_profesjonelle_arbeidsrelasjoner"
+      ],
+      "workplace_ids": [
+        "hms_og_avvikspunkt"
+      ],
+      "source_scene_refs": [
+        "data/Civication/workGrammars/naeringsliv/naeringsliv_operativ_ledelse.json#hendelse"
+      ]
+    },
+    {
+      "id": "maja_neste_skiftleder_formann",
+      "name": "Maja",
+      "role": "neste skiftleder",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null,
+      "function": "Overtar konsekvensene av det foregående skiftets prioriteringer og gjør derfor sannferdig overlevering til et sosialt ansvar, ikke bare et notat. Relasjonen synliggjør restarbeid, risiko, åpne beslutninger og hva neste skift faktisk kan stole på.",
+      "authority_relation": "Formannen eier kvaliteten på egen overlevering, men kan ikke gjøre åpne risikoer usynlige for å beskytte eget skiftresultat. Maja kan utfordre uklar status og kreve avklaring, men overtakelsen gir henne ikke tilbakevirkende myndighet over beslutninger utenfor hennes fullmakt.",
+      "mail_family_refs": [
+        "formann_profesjonelle_arbeidsrelasjoner"
+      ],
+      "workplace_ids": [
+        "skift_og_overleveringsrom"
+      ],
+      "source_scene_refs": [
+        "data/Civication/roleModels/naeringsliv/formann_arbeidsleder.json#skift_og_overleveringsrom"
+      ]
+    }
+  ],
   "related_places": [
     {
       "id": "produksjons_og_arbeidsomrade",
@@ -154,6 +231,7 @@
   "ideal_type_problems": [],
   "notes": [
     "Basert på badges.json: naeringsliv / Formann / arbeidsleder.",
-    "Systematic rollout: konkrete arbeidsflater er eksplisitt materialisert for å knytte den allerede testede arbeidsdagen til et fysisk/operativt work-world-lag."
+    "Systematic rollout: konkrete arbeidsflater er eksplisitt materialisert for å knytte den allerede testede arbeidsdagen til et fysisk/operativt work-world-lag.",
+    "Role World readiness prerequisite: fire eksplisitt fiktive profesjonelle scenarioaktører binder Formannens arbeidsrelasjoner til de fire eksisterende operative flatene uten å endre plan, runtime, shared work grammar eller formell authority."
   ]
 }

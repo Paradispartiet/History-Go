@@ -23,7 +23,7 @@ const collectionImageFiles = [
   hannibal.image,
   place.objects[0].image,
   brands.find(item => item.id === "forsvarsbygg").logo,
-  place.productions[0].image
+  place.structures[0].image
 ];
 
 test("Akershus festning preserves verified geometry and uses the History major four-collection contract", () => {
@@ -35,14 +35,17 @@ test("Akershus festning preserves verified geometry and uses the History major f
   assert.equal(place.coordStatus, "verified_geometry");
   assert.equal(place.coordSourceId, "forsvarsbygg:akershus-festning");
   assert.equal(place.production_profile, "major");
-  assert.deepEqual(place.place_card_profile.collection_ids, ["people", "objects", "brands", "productions"]);
+  assert.deepEqual(place.place_card_profile.collection_ids, ["people", "objects", "brands", "structures"]);
   assert.deepEqual(place.objects.map(item => item.id), ["akershus_retterstedet_minnesmerke"]);
-  assert.deepEqual(place.productions.map(item => item.id), ["akershus_beleiringen_1716"]);
+  assert.deepEqual(place.structures.map(item => item.id), ["akershus_jomfrutarnet", "akershus_slottskirke", "akershus_kongelige_mausoleum"]);
+  assert.equal(Object.hasOwn(place, "productions"), false);
+  assert.equal(Object.hasOwn(production.collections, "productions"), false);
+  assert.deepEqual(production.collections.structures, ["akershus_jomfrutarnet", "akershus_slottskirke", "akershus_kongelige_mausoleum"]);
   assert.deepEqual(brandsByPlace.akershus_festning, ["forsvarsbygg"]);
 });
 
 test("place, before-now and four collection previews are local and rights-labelled", async () => {
-  const files = [place.image, place.cardImage, place.frontImage, place.for_na.beforeImage, place.for_na.nowImage, ...collectionImageFiles];
+  const files = [place.image, place.cardImage, place.frontImage, place.for_na.beforeImage, place.for_na.nowImage, ...collectionImageFiles, ...place.structures.map(item => item.image)];
   for (const file of files) assert.equal(fs.existsSync(path.join(root, file)), true, file);
   const { default: sharp } = await import("sharp");
   const frontMeta = await sharp(path.join(root, place.frontImage)).metadata();
@@ -50,6 +53,7 @@ test("place, before-now and four collection previews are local and rights-labell
   assert.equal(place.imageMeta.license, "CC BY-SA 4.0");
   assert.match(place.for_na.comparisonNote, /ikke tatt fra identisk kamerastandpunkt/i);
   assert.match(place.objects[0].imageMeta.license, /CC BY-SA 2\.5/);
+  assert.deepEqual(place.structures.map(item => item.imageMeta.license), ["Public domain", "CC BY-SA 3.0", "Public domain"]);
   const brand = brands.find(item => item.id === "forsvarsbygg");
   assert.ok(brand);
   assert.equal(brand.imageMeta.generated, false);
@@ -61,12 +65,14 @@ test("place, before-now and four collection previews are local and rights-labell
 });
 
 test("identity, description and History production packets keep castle, museums and microplaces separate", () => {
-  const result = validatePacket({ packet: production, place, packetFile: "data/places/production/akershus_festning.json", now: new Date("2026-08-29T12:00:00Z") });
+  const result = validatePacket({ packet: production, place, packetFile: "data/places/production/akershus_festning.json", now: new Date("2026-08-30T12:00:00Z") });
   assert.deepEqual(result.issues, []);
   assert.match(place.popupDesc, /ikke det samme som Akershus slott, Forsvarsmuseet, Norges Hjemmefrontmuseum/i);
   assert.ok(production.identity.excludes.includes("Akershus slott as a separate building identity"));
   assert.equal(historyProduction.status, "complete");
   assert.ok(Object.values(historyProduction.gates).every(value => value === "PASS"));
+  assert.ok(historyProduction.chronology.some(item => item.year === 1716));
+  assert.ok(stories.some(story => story.id === "st_akershus_1716_beleiringen"));
 });
 
 test("major History quiz is 8x7, fact-first and no longer a By-category quiz", () => {

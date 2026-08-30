@@ -1,0 +1,43 @@
+name: Fagverk Subkultur legacy equivalence
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/subkultur/**'
+      - 'data/fagverk/subkultur/**'
+      - 'data/fagverk/fagverk_portal.json'
+      - 'merker/merker.html'
+      - 'scripts/audit-fagverk-subkultur-legacy-theory.mjs'
+      - 'scripts/audit-fagverk-subkultur-legacy-adjudication.mjs'
+      - 'scripts/audit-fagverk-badge-equivalence.mjs'
+      - 'tests/fagverk-subkultur-legacy-theory-audit.test.mjs'
+      - 'tests/fagverk-subkultur-legacy-theory-adjudication.test.mjs'
+      - 'tests/fagverk-badge-equivalence.test.mjs'
+      - '.github/workflows/fagverk-subkultur-legacy-equivalence.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - name: Verify Subkultur legacy equivalence and retired route
+        run: |
+          node --check scripts/audit-fagverk-subkultur-legacy-theory.mjs
+          node --check scripts/audit-fagverk-subkultur-legacy-adjudication.mjs
+          node --check scripts/audit-fagverk-badge-equivalence.mjs
+          node scripts/audit-fagverk-subkultur-legacy-theory.mjs
+          node scripts/audit-fagverk-subkultur-legacy-adjudication.mjs
+          node --test tests/fagverk-subkultur-legacy-theory-audit.test.mjs
+          node --test tests/fagverk-subkultur-legacy-theory-adjudication.test.mjs
+          node --test tests/fagverk-badge-equivalence.test.mjs

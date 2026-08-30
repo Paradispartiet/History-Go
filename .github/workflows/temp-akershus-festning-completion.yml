@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   materialize:
-    if: github.actor != 'github-actions[bot]'
+    if: ${{ false }} # Canonical normalization source only; rescue workflow owns the single materialization run.
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -314,7 +314,9 @@ jobs:
             'bilder/kort/people/hannibal_sehested.webp': [720,900],
             'bilder/kort/objects/akershus_festning_retterstedet.webp': [900,520],
             'bilder/kort/brands/forsvarsbygg_akershus_wordmark.webp': [900,520],
-            'bilder/kort/productions/akershus_festning_beleiring_1716.webp': [900,520]
+            'bilder/kort/structures/akershus_festning_jomfrutarnet.webp': [900,520],
+            'bilder/kort/structures/akershus_festning_slottskirke.webp': [900,520],
+            'bilder/kort/structures/akershus_festning_kongelige_mausoleum.webp': [900,520]
           };
           (async () => {
             for (const [file,[w,h]] of Object.entries(expected)) {
@@ -336,7 +338,9 @@ jobs:
             bilder/kort/people/hannibal_sehested.webp
             bilder/kort/objects/akershus_festning_retterstedet.webp
             bilder/kort/brands/forsvarsbygg_akershus_wordmark.webp
-            bilder/kort/productions/akershus_festning_beleiring_1716.webp
+            bilder/kort/structures/akershus_festning_jomfrutarnet.webp
+            bilder/kort/structures/akershus_festning_slottskirke.webp
+            bilder/kort/structures/akershus_festning_kongelige_mausoleum.webp
           if-no-files-found: error
           retention-days: 7
 

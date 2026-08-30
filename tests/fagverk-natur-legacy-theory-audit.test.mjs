@@ -1,8 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { spawnSync } from 'node:child_process';
 
-const LEGACY = 'data/fag/natur/merke_natur (1).html';
+const ARCHIVE = 'data/fag/natur/archive/merke_natur_full_teori_legacy_20260829.html';
+const COMPATIBILITY = 'data/fag/natur/merke_natur (1).html';
+const TARGET = 'fagverk.html?subject=natur#fagverkIaProgresjon';
 const IDS = ['merke-og-fag', 'status', 'fagomrader', 'arbeidsmate', 'kilder', 'progresjon'];
 const MANIFEST_SEEDS = [
   'data/fag/natur/emner_natur_canonical_v4_5.json',
@@ -18,15 +21,17 @@ function run() {
   return JSON.parse(result.stdout);
 }
 
-test('Natur legacy-side har målt 5/5 canonical kunnskapsdekning uten gap', () => {
+test('Natur legacy-audit leser byte-bevart arkiv og beholder 5/5 canonical dekning', () => {
   const report = run();
   assert.equal(report.schema, 'history_go_fagverk_natur_legacy_theory_audit_v1');
   assert.equal(report.subject, 'natur');
-  assert.equal(report.legacy.badgePage, LEGACY);
+  assert.equal(report.legacy.badgePage, ARCHIVE);
+  assert.equal(report.legacy.compatibilityPage, COMPATIBILITY);
   assert.equal(report.legacy.sectionCount, 6);
   assert.equal(report.legacy.knowledgeSectionCount, 5);
   assert.equal(report.legacy.productSummarySectionCount, 1);
   assert.deepEqual(report.rows.map(row => row.id), IDS);
+  assert.equal(fs.existsSync(ARCHIVE), true);
 
   assert.deepEqual(report.canonical.manifestSeedFiles, MANIFEST_SEEDS);
   assert.equal(report.canonical.manifestGraphFileCount, 7);
@@ -43,7 +48,7 @@ test('Natur legacy-side har målt 5/5 canonical kunnskapsdekning uten gap', () =
   assert.equal(report.summary.manualReviewCount, 0);
   assert.deepEqual(report.summary.manualReview, []);
   assert.equal(report.summary.redirectReady, false);
-  assert.match(report.summary.redirectBlockReason, /explicit editorial adjudication/i);
+  assert.match(report.summary.redirectBlockReason, /explicit Natur legacy adjudication gate/i);
 
   for (const row of report.rows.filter(row => row.role !== 'legacy_product_summary')) {
     assert.ok(row.anchorCount > 0, `${row.id} mangler kunnskapsankere`);
@@ -51,11 +56,20 @@ test('Natur legacy-side har målt 5/5 canonical kunnskapsdekning uten gap', () =
     assert.equal(row.anchorCoverage, 1, `${row.id} skal ha full canonical dekning`);
     assert.deepEqual(row.missingAnchors, [], `${row.id} skal ikke ha kunnskapsgap`);
   }
+});
 
-  assert.equal(report.navigation.badgePage, LEGACY);
+test('Natur legacy-URL og canonical portalrute er pensjonert til integrert Progresjon', () => {
+  const report = run();
+  const compatibility = fs.readFileSync(COMPATIBILITY, 'utf8');
+  assert.equal(report.navigation.badgePage, TARGET);
   assert.equal(report.navigation.subjectPage, 'fagverk.html?subject=natur');
-  assert.equal(report.navigation.target, 'fagverk.html?subject=natur#fagverkIaProgresjon');
-  assert.equal(report.navigation.preRedirectLocked, true);
+  assert.equal(report.navigation.target, TARGET);
+  assert.equal(report.navigation.portalRedirected, true);
+  assert.equal(report.navigation.compatibilityRedirectPresent, true);
+  assert.equal(report.navigation.routeRetired, true);
+  assert.match(compatibility, /location\.replace/);
+  assert.match(compatibility, /subject=natur#fagverkIaProgresjon/);
+  assert.doesNotMatch(compatibility, /merke-blokk|Alle tolv Natur-områder|Natur blir ikke tildelt/i);
 });
 
 test('Natur-auditen holder produktmekanikk og produktgrenser utenfor kunnskapsdekningen', () => {
