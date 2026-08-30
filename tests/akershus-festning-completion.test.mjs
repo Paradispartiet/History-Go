@@ -23,7 +23,7 @@ const collectionImageFiles = [
   hannibal.image,
   place.objects[0].image,
   brands.find(item => item.id === "forsvarsbygg").logo,
-  place.structures[0].image
+  place.productions[0].image
 ];
 
 test("Akershus festning preserves verified geometry and uses the History major four-collection contract", () => {
@@ -35,11 +35,12 @@ test("Akershus festning preserves verified geometry and uses the History major f
   assert.equal(place.coordStatus, "verified_geometry");
   assert.equal(place.coordSourceId, "forsvarsbygg:akershus-festning");
   assert.equal(place.production_profile, "major");
-  assert.deepEqual(place.place_card_profile.collection_ids, ["people", "objects", "brands", "structures"]);
+  assert.deepEqual(place.place_card_profile.collection_ids, ["people", "objects", "brands", "productions"]);
   assert.deepEqual(place.objects.map(item => item.id), ["akershus_retterstedet_minnesmerke"]);
+  assert.deepEqual(place.productions.map(item => item.id), ["akershus_beleiringen_1716"]);
+  assert.equal(place.productions[0].type, "historical_event");
   assert.deepEqual(place.structures.map(item => item.id), ["akershus_jomfrutarnet", "akershus_slottskirke", "akershus_kongelige_mausoleum"]);
-  assert.equal(Object.hasOwn(place, "productions"), false);
-  assert.deepEqual(audit.collections.required, ["people", "objects", "brands", "structures"]);
+  assert.deepEqual(audit.collections.required, ["people", "objects", "brands", "productions"]);
   assert.deepEqual(brandsByPlace.akershus_festning, ["forsvarsbygg"]);
 });
 
@@ -52,6 +53,8 @@ test("place, before-now and four collection previews are local and rights-labell
   assert.equal(place.imageMeta.license, "CC BY-SA 4.0");
   assert.match(place.for_na.comparisonNote, /ikke tatt fra identisk kamerastandpunkt/i);
   assert.match(place.objects[0].imageMeta.license, /CC BY-SA 2\.5/);
+  assert.equal(place.productions[0].imageMeta.license, "Public domain");
+  assert.match(place.productions[0].imageMeta.note, /kontekstbilde, ikke en samtidig avbildning/i);
   assert.deepEqual(place.structures.map(item => item.imageMeta.license), ["Public domain", "CC BY-SA 3.0", "Public domain"]);
   const brand = brands.find(item => item.id === "forsvarsbygg");
   assert.ok(brand);
@@ -94,7 +97,9 @@ test("four episode Stories, runtime collections and six-dimension gate close wit
   assert.equal(stories.length, 4);
   assert.ok(stories.every(story => story.quality_profile === "episode_v1" && story.place_id === "akershus_festning"));
   assert.ok(runtime.people.some(item => item.id === "hannibal_sehested"));
-  assert.ok(runtime.collections || runtime.objects || runtime.place, "place-open runtime must be materialized");
+  assert.deepEqual(runtime.place.place_card_profile.collection_ids, ["people", "objects", "brands", "productions"]);
+  assert.deepEqual(runtime.place.productions.map(item => item.id), ["akershus_beleiringen_1716"]);
+  assert.equal(runtime.place.productions[0].type, "historical_event");
   const dimensions = Object.values(audit.quality_score).filter(value => value && typeof value === "object" && "score" in value);
   assert.equal(dimensions.length, 6);
   assert.ok(dimensions.every(item => item.score >= 4));
