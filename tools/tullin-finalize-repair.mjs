@@ -163,7 +163,6 @@ function repairQuizTaxonomy() {
       'tullin_quiz_26'
     ],
     concept_theory: [
-      'tullin_quiz_29',
       'tullin_quiz_31'
     ]
   };
