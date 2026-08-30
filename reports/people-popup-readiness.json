@@ -3,7 +3,7 @@
   "contract": "docs/PEOPLE_POPUP_SYSTEM.md",
   "productionContract": "docs/PEOPLE_PROFILE_CANONICAL.md",
   "generatedBy": "tools/audit-people-popup-readiness.mts",
-  "sourceFingerprint": "78d09a197c01d68b373d70accde6a3d2fb41ec2731168e55a4742852c924ef80",
+  "sourceFingerprint": "6f5d0950190a78bfa5f42a3f96d354a495a5636127c655496bb485b947141e05",
   "thresholds": {
     "complete": 85,
     "strong": 65,
@@ -19,15 +19,15 @@
   "summary": {
     "totalPeople": 1421,
     "complete": 67,
-    "strong": 404,
-    "partial": 935,
+    "strong": 406,
+    "partial": 933,
     "sparse": 15,
     "readyPeopleV1": 75,
     "legacyUnreviewed": 1346,
-    "brokenImages": 283,
+    "brokenImages": 280,
     "explicitFallbacks": 995,
     "implicitFallbacks": 26,
-    "averageScore": 65.4
+    "averageScore": 65.5
   },
   "fieldCoverage": {
     "identity": {
@@ -59,12 +59,12 @@
       "percent": 100
     },
     "sources": {
-      "count": 460,
-      "percent": 32.4
+      "count": 462,
+      "percent": 32.5
     },
     "imageContract": {
-      "count": 1138,
-      "percent": 80.1
+      "count": 1141,
+      "percent": 80.3
     },
     "profileStandard": {
       "count": 75,
@@ -87,12 +87,12 @@
       "category": "historie",
       "total": 235,
       "complete": 3,
-      "strong": 111,
-      "partial": 121,
+      "strong": 113,
+      "partial": 119,
       "sparse": 0,
       "readyPeopleV1": 3,
       "legacyUnreviewed": 232,
-      "averageScore": 65.1
+      "averageScore": 65.2
     },
     {
       "category": "litteratur",
@@ -818,9 +818,9 @@
       "placeId": "akershus_festning",
       "totalIncomplete": 38,
       "sparse": 0,
-      "partial": 36,
-      "strong": 2,
-      "averageScore": 60.8,
+      "partial": 35,
+      "strong": 3,
+      "averageScore": 61.2,
       "people": [
         {
           "id": "alv_erlingsson",
@@ -865,13 +865,6 @@
           "productionStatus": "legacy_unreviewed"
         },
         {
-          "id": "haakon_v_magnusson",
-          "name": "Håkon V Magnusson",
-          "score": 57,
-          "status": "partial",
-          "productionStatus": "legacy_unreviewed"
-        },
-        {
           "id": "haakon_vi_magnusson",
           "name": "Håkon VI Magnusson",
           "score": 57,
@@ -902,6 +895,13 @@
         {
           "id": "margrete_valdemarsdatter",
           "name": "Margrete Valdemarsdatter",
+          "score": 57,
+          "status": "partial",
+          "productionStatus": "legacy_unreviewed"
+        },
+        {
+          "id": "vidkun_quisling",
+          "name": "Vidkun Quisling",
           "score": 57,
           "status": "partial",
           "productionStatus": "legacy_unreviewed"
@@ -2292,15 +2292,15 @@
           "productionStatus": "legacy_unreviewed"
         },
         {
-          "id": "arnstein_arneberg",
-          "name": "Arnstein Arneberg",
+          "id": "alf_rolfsen",
+          "name": "Alf Rolfsen",
           "score": 100,
           "status": "complete",
           "productionStatus": "legacy_unreviewed"
         },
         {
-          "id": "alf_rolfsen",
-          "name": "Alf Rolfsen",
+          "id": "arnstein_arneberg",
+          "name": "Arnstein Arneberg",
           "score": 100,
           "status": "complete",
           "productionStatus": "legacy_unreviewed"
@@ -6380,30 +6380,6 @@
       ]
     },
     {
-      "placeId": "christiania_torv",
-      "totalIncomplete": 2,
-      "sparse": 0,
-      "partial": 1,
-      "strong": 1,
-      "averageScore": 64.5,
-      "people": [
-        {
-          "id": "christian_iv",
-          "name": "Christian IV",
-          "score": 57,
-          "status": "partial",
-          "productionStatus": "legacy_unreviewed"
-        },
-        {
-          "id": "wenche_gulbransen",
-          "name": "Wenche Gulbransen",
-          "score": 72,
-          "status": "strong",
-          "productionStatus": "legacy_unreviewed"
-        }
-      ]
-    },
-    {
       "placeId": "grini_fangeleir",
       "totalIncomplete": 2,
       "sparse": 0,
@@ -6470,6 +6446,30 @@
           "id": "arne_korsmo",
           "name": "Arne Korsmo",
           "score": 67,
+          "status": "strong",
+          "productionStatus": "legacy_unreviewed"
+        }
+      ]
+    },
+    {
+      "placeId": "christiania_torv",
+      "totalIncomplete": 2,
+      "sparse": 0,
+      "partial": 0,
+      "strong": 2,
+      "averageScore": 72,
+      "people": [
+        {
+          "id": "christian_iv",
+          "name": "Christian IV",
+          "score": 72,
+          "status": "strong",
+          "productionStatus": "legacy_unreviewed"
+        },
+        {
+          "id": "wenche_gulbransen",
+          "name": "Wenche Gulbransen",
+          "score": 72,
           "status": "strong",
           "productionStatus": "legacy_unreviewed"
         }
@@ -13372,52 +13372,6 @@
       ]
     },
     {
-      "id": "christian_iv",
-      "name": "Christian IV",
-      "category": "historie",
-      "kindLabel": "",
-      "sourceFile": "data/people/historie/oslo/people_historie_oslo.json",
-      "primaryPlace": "christiania_torv",
-      "places": [
-        "akershus_festning",
-        "christiania_torv"
-      ],
-      "score": 57,
-      "priority": 92,
-      "status": "partial",
-      "productionStatus": "legacy_unreviewed",
-      "profileStandard": "",
-      "claimsFile": "",
-      "paragraphCount": 1,
-      "popupLength": 370,
-      "contributionCount": 0,
-      "educationCount": 0,
-      "practiceCount": 2,
-      "sourceCount": 0,
-      "imageState": "broken_image",
-      "imagePath": "bilder/kort/people/christian_iv.PNG",
-      "coverage": {
-        "identity": false,
-        "popupDesc": true,
-        "lifeData": false,
-        "contributionsDeclared": false,
-        "educationDeclared": false,
-        "practiceDeclared": true,
-        "placeGrounding": true,
-        "sources": false,
-        "imageContract": false,
-        "profileStandard": false
-      },
-      "issues": [
-        "missing_role_label",
-        "missing_birth_data",
-        "missing_contributions_field",
-        "missing_sources",
-        "broken_image_reference",
-        "legacy_unreviewed"
-      ]
-    },
-    {
       "id": "christian_magnus_falsen",
       "name": "Christian Magnus Falsen",
       "category": "historie",
@@ -16274,52 +16228,6 @@
       "sourceCount": 0,
       "imageState": "broken_image",
       "imagePath": "bilder/kort/people/haakon_nyhuus.PNG",
-      "coverage": {
-        "identity": false,
-        "popupDesc": true,
-        "lifeData": false,
-        "contributionsDeclared": false,
-        "educationDeclared": false,
-        "practiceDeclared": true,
-        "placeGrounding": true,
-        "sources": false,
-        "imageContract": false,
-        "profileStandard": false
-      },
-      "issues": [
-        "missing_role_label",
-        "missing_birth_data",
-        "missing_contributions_field",
-        "missing_sources",
-        "broken_image_reference",
-        "legacy_unreviewed"
-      ]
-    },
-    {
-      "id": "haakon_v_magnusson",
-      "name": "Håkon V Magnusson",
-      "category": "historie",
-      "kindLabel": "",
-      "sourceFile": "data/people/historie/oslo/people_historie_oslo.json",
-      "primaryPlace": "akershus_festning",
-      "places": [
-        "akershus_festning",
-        "middelalder_oslo"
-      ],
-      "score": 57,
-      "priority": 92,
-      "status": "partial",
-      "productionStatus": "legacy_unreviewed",
-      "profileStandard": "",
-      "claimsFile": "",
-      "paragraphCount": 1,
-      "popupLength": 353,
-      "contributionCount": 0,
-      "educationCount": 0,
-      "practiceCount": 1,
-      "sourceCount": 0,
-      "imageState": "broken_image",
-      "imagePath": "bilder/kort/people/haakon_v_magnusson.PNG",
       "coverage": {
         "identity": false,
         "popupDesc": true,
@@ -55520,6 +55428,7 @@
         "bjorgan_prestegard_kvikne",
         "nasjonalbiblioteket",
         "nationaltheatret",
+        "tullin",
         "var_frelsers_gravlund"
       ],
       "score": 72,
@@ -55533,7 +55442,7 @@
       "contributionCount": 0,
       "educationCount": 0,
       "practiceCount": 20,
-      "sourceCount": 6,
+      "sourceCount": 7,
       "imageState": "valid_image",
       "imagePath": "bilder/kort/people/bjornstjerne_bjornson.jpg",
       "coverage": {
@@ -56252,6 +56161,51 @@
       ]
     },
     {
+      "id": "christian_iv",
+      "name": "Christian IV",
+      "category": "historie",
+      "kindLabel": "",
+      "sourceFile": "data/people/historie/oslo/people_historie_oslo.json",
+      "primaryPlace": "christiania_torv",
+      "places": [
+        "akershus_festning",
+        "akershus_slott",
+        "christiania_torv"
+      ],
+      "score": 72,
+      "priority": 43,
+      "status": "strong",
+      "productionStatus": "legacy_unreviewed",
+      "profileStandard": "",
+      "claimsFile": "",
+      "paragraphCount": 1,
+      "popupLength": 370,
+      "contributionCount": 0,
+      "educationCount": 0,
+      "practiceCount": 3,
+      "sourceCount": 1,
+      "imageState": "valid_image",
+      "imagePath": "bilder/kort/people/christian_iv.webp",
+      "coverage": {
+        "identity": false,
+        "popupDesc": true,
+        "lifeData": false,
+        "contributionsDeclared": false,
+        "educationDeclared": false,
+        "practiceDeclared": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true,
+        "profileStandard": false
+      },
+      "issues": [
+        "missing_role_label",
+        "missing_birth_data",
+        "missing_contributions_field",
+        "legacy_unreviewed"
+      ]
+    },
+    {
       "id": "christian_krohg",
       "name": "Christian Krohg",
       "category": "historie",
@@ -56572,11 +56526,11 @@
       "profileStandard": "",
       "claimsFile": "",
       "paragraphCount": 1,
-      "popupLength": 318,
+      "popupLength": 355,
       "contributionCount": 0,
       "educationCount": 0,
       "practiceCount": 6,
-      "sourceCount": 1,
+      "sourceCount": 2,
       "imageState": "explicit_fallback",
       "imagePath": "",
       "coverage": {
@@ -60181,6 +60135,51 @@
       "sourceCount": 1,
       "imageState": "explicit_fallback",
       "imagePath": "",
+      "coverage": {
+        "identity": false,
+        "popupDesc": true,
+        "lifeData": false,
+        "contributionsDeclared": false,
+        "educationDeclared": false,
+        "practiceDeclared": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true,
+        "profileStandard": false
+      },
+      "issues": [
+        "missing_role_label",
+        "missing_birth_data",
+        "missing_contributions_field",
+        "legacy_unreviewed"
+      ]
+    },
+    {
+      "id": "haakon_v_magnusson",
+      "name": "Håkon V Magnusson",
+      "category": "historie",
+      "kindLabel": "",
+      "sourceFile": "data/people/historie/oslo/people_historie_oslo.json",
+      "primaryPlace": "akershus_festning",
+      "places": [
+        "akershus_festning",
+        "akershus_slott",
+        "middelalder_oslo"
+      ],
+      "score": 72,
+      "priority": 43,
+      "status": "strong",
+      "productionStatus": "legacy_unreviewed",
+      "profileStandard": "",
+      "claimsFile": "",
+      "paragraphCount": 1,
+      "popupLength": 353,
+      "contributionCount": 0,
+      "educationCount": 0,
+      "practiceCount": 2,
+      "sourceCount": 1,
+      "imageState": "valid_image",
+      "imagePath": "bilder/kort/people/haakon_v_magnusson.webp",
       "coverage": {
         "identity": false,
         "popupDesc": true,
@@ -70448,48 +70447,6 @@
       ]
     },
     {
-      "id": "arnstein_arneberg",
-      "name": "Arnstein Arneberg",
-      "category": "by",
-      "kindLabel": "Arkitekt / monumental offentlig arkitektur",
-      "sourceFile": "data/people/by/oslo/people_by_oslo.json",
-      "primaryPlace": "oslo_radhus",
-      "places": [
-        "eidsvolls_plass",
-        "oslo_radhus"
-      ],
-      "score": 100,
-      "priority": 25,
-      "status": "complete",
-      "productionStatus": "legacy_unreviewed",
-      "profileStandard": "",
-      "claimsFile": "",
-      "paragraphCount": 3,
-      "popupLength": 1021,
-      "contributionCount": 7,
-      "educationCount": 3,
-      "practiceCount": 24,
-      "sourceCount": 7,
-      "imageState": "broken_image",
-      "imagePath": "bilder/kort/people/arnstein_arneberg.PNG",
-      "coverage": {
-        "identity": true,
-        "popupDesc": true,
-        "lifeData": true,
-        "contributionsDeclared": true,
-        "educationDeclared": true,
-        "practiceDeclared": true,
-        "placeGrounding": true,
-        "sources": true,
-        "imageContract": false,
-        "profileStandard": false
-      },
-      "issues": [
-        "broken_image_reference",
-        "legacy_unreviewed"
-      ]
-    },
-    {
       "id": "haakon_vii",
       "name": "Haakon VII",
       "category": "politikk",
@@ -71296,6 +71253,48 @@
       "sourceCount": 16,
       "imageState": "explicit_fallback",
       "imagePath": "",
+      "coverage": {
+        "identity": true,
+        "popupDesc": true,
+        "lifeData": true,
+        "contributionsDeclared": true,
+        "educationDeclared": true,
+        "practiceDeclared": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true,
+        "profileStandard": false
+      },
+      "issues": [
+        "legacy_unreviewed"
+      ]
+    },
+    {
+      "id": "arnstein_arneberg",
+      "name": "Arnstein Arneberg",
+      "category": "by",
+      "kindLabel": "Arkitekt / monumental offentlig arkitektur",
+      "sourceFile": "data/people/by/oslo/people_by_oslo.json",
+      "primaryPlace": "oslo_radhus",
+      "places": [
+        "akershus_slott",
+        "eidsvolls_plass",
+        "oslo_radhus"
+      ],
+      "score": 100,
+      "priority": 5,
+      "status": "complete",
+      "productionStatus": "legacy_unreviewed",
+      "profileStandard": "",
+      "claimsFile": "",
+      "paragraphCount": 3,
+      "popupLength": 1021,
+      "contributionCount": 7,
+      "educationCount": 3,
+      "practiceCount": 24,
+      "sourceCount": 9,
+      "imageState": "valid_image",
+      "imagePath": "bilder/kort/people/arnstein_arneberg.webp",
       "coverage": {
         "identity": true,
         "popupDesc": true,

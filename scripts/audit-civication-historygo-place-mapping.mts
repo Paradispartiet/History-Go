@@ -22,6 +22,9 @@ import { fileURLToPath } from "node:url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT = process.cwd();
+const PLACES_INDEX_FILE = path.join(ROOT, "data", "places", "places_index.json");
+let canonicalIndexPromise;
+const canonicalPlacePromises = new Map();
 
 // Per-place mappingfiler som skal auditeres. Nye kategorier legges til her
 // etter hvert som kartet bygges ut (jf. needsPerPlaceMapping i
@@ -31,7 +34,7 @@ const TARGETS = [
     label: "by (Oslo)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.by.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.by.json",
-    placesFile: path.join(ROOT, "data", "places", "by", "oslo", "places_by.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/by/oslo/places_by.json",
     expectedCategory: "by",
   },
@@ -39,7 +42,7 @@ const TARGETS = [
     label: "historie (Oslo)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.historie.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.historie.json",
-    placesFile: path.join(ROOT, "data", "places", "historie", "oslo", "places_historie.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/historie/oslo/places_historie.json",
     expectedCategory: "historie",
   },
@@ -47,7 +50,7 @@ const TARGETS = [
     label: "historie added batch 01 (Oslo)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.historie_added_batch_01.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.historie_added_batch_01.json",
-    placesFile: path.join(ROOT, "data", "places", "historie", "oslo", "places_historie_added_batch_01.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/historie/oslo/places_historie_added_batch_01.json",
     expectedCategory: "historie",
   },
@@ -55,7 +58,7 @@ const TARGETS = [
     label: "kunst (Oslo)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.kunst.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.kunst.json",
-    placesFile: path.join(ROOT, "data", "places", "kunst", "oslo", "places_kunst.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/kunst/oslo/places_kunst.json",
     expectedCategory: "kunst",
   },
@@ -63,7 +66,7 @@ const TARGETS = [
     label: "musikk (Oslo)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.musikk.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.musikk.json",
-    placesFile: path.join(ROOT, "data", "places", "musikk", "oslo", "places_musikk.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/musikk/oslo/places_musikk.json",
     expectedCategory: "musikk",
   },
@@ -71,7 +74,7 @@ const TARGETS = [
     label: "litteratur (Oslo)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.litteratur.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.litteratur.json",
-    placesFile: path.join(ROOT, "data", "places", "litteratur", "oslo", "places_litteratur.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/litteratur/oslo/places_litteratur.json",
     expectedCategory: "litteratur",
   },
@@ -79,7 +82,7 @@ const TARGETS = [
     label: "politikk (Oslo)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.politikk.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.politikk.json",
-    placesFile: path.join(ROOT, "data", "places", "politikk", "oslo", "places_politikk.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/politikk/oslo/places_politikk.json",
     expectedCategory: "politikk",
   },
@@ -87,7 +90,7 @@ const TARGETS = [
     label: "vitenskap (Oslo)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.vitenskap.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.vitenskap.json",
-    placesFile: path.join(ROOT, "data", "places", "vitenskap", "oslo", "places_vitenskap.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/vitenskap/oslo/places_vitenskap.json",
     expectedCategory: "vitenskap",
   },
@@ -95,7 +98,7 @@ const TARGETS = [
     label: "vitenskap historiske institusjoner (Oslo)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.vitenskap_historiske_institusjoner.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.vitenskap_historiske_institusjoner.json",
-    placesFile: path.join(ROOT, "data", "places", "vitenskap", "oslo", "places_vitenskap_historiske_institusjoner.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json",
     expectedCategory: "vitenskap",
   },
@@ -103,7 +106,7 @@ const TARGETS = [
     label: "naeringsliv (Oslo)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.naeringsliv.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.naeringsliv.json",
-    placesFile: path.join(ROOT, "data", "places", "naeringsliv", "oslo", "places_naeringsliv.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/naeringsliv/oslo/places_naeringsliv.json",
     expectedCategory: "naeringsliv",
   },
@@ -111,7 +114,7 @@ const TARGETS = [
     label: "subkultur (Oslo)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.subkultur.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.subkultur.json",
-    placesFile: path.join(ROOT, "data", "places", "subkultur", "oslo", "places_subkultur.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/subkultur/oslo/places_subkultur.json",
     expectedCategory: "subkultur",
   },
@@ -119,7 +122,7 @@ const TARGETS = [
     label: "popkultur (Oslo)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.popkultur.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.popkultur.json",
-    placesFile: path.join(ROOT, "data", "places", "popkultur", "oslo", "places_oslo_populaerkultur.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/popkultur/oslo/places_oslo_populaerkultur.json",
     expectedCategory: ["populaerkultur", "film_tv"],
   },
@@ -127,7 +130,7 @@ const TARGETS = [
     label: "media (Oslo)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.media.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.media.json",
-    placesFile: path.join(ROOT, "data", "places", "media", "oslo", "places_oslo_media.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/media/oslo/places_oslo_media.json",
     expectedCategory: "media",
   },
@@ -135,7 +138,7 @@ const TARGETS = [
     label: "film (Oslo)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.film.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.film.json",
-    placesFile: path.join(ROOT, "data", "places", "film", "oslo", "places_oslo_film.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/film/oslo/places_oslo_film.json",
     expectedCategory: "populaerkultur",
   },
@@ -143,7 +146,7 @@ const TARGETS = [
     label: "psykologi (Oslo)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.psykologi.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.psykologi.json",
-    placesFile: path.join(ROOT, "data", "places", "psykologi", "oslo", "places_psykologi.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/psykologi/oslo/places_psykologi.json",
     expectedCategory: "psykologi",
   },
@@ -151,7 +154,7 @@ const TARGETS = [
     label: "natur Alna (Oslo)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.natur_alna.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.natur_alna.json",
-    placesFile: path.join(ROOT, "data", "places", "natur", "oslo", "places_oslo_alna.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/natur/oslo/places_oslo_alna.json",
     expectedCategory: ["natur", "historie", "by"],
   },
@@ -159,7 +162,7 @@ const TARGETS = [
     label: "natur Akerselva-ruta (Oslo)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.natur_akerselvarute.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.natur_akerselvarute.json",
-    placesFile: path.join(ROOT, "data", "places", "natur", "oslo", "places_oslo_natur_akerselvarute.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/natur/oslo/places_oslo_natur_akerselvarute.json",
     expectedCategory: ["natur", "historie", "by"],
   },
@@ -167,7 +170,7 @@ const TARGETS = [
     label: "natur Alnaelva-ruta (Oslo)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.natur_alnaelva_rute.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.natur_alnaelva_rute.json",
-    placesFile: path.join(ROOT, "data", "places", "natur", "oslo", "places_oslo_natur_alnaelva_rute.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/natur/oslo/places_oslo_natur_alnaelva_rute.json",
     expectedCategory: "natur",
   },
@@ -175,7 +178,7 @@ const TARGETS = [
     label: "natur Bygdøy (Oslo)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.natur_bygdoy.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.natur_bygdoy.json",
-    placesFile: path.join(ROOT, "data", "places", "natur", "oslo", "places_oslo_natur_bygdoy.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/natur/oslo/places_oslo_natur_bygdoy.json",
     expectedCategory: "natur",
   },
@@ -183,7 +186,7 @@ const TARGETS = [
     label: "natur hovedsteder (Oslo)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.natur_hovedsteder.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.natur_hovedsteder.json",
-    placesFile: path.join(ROOT, "data", "places", "natur", "oslo", "places_oslo_natur_hovedsteder.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/natur/oslo/places_oslo_natur_hovedsteder.json",
     expectedCategory: "natur",
   },
@@ -191,7 +194,7 @@ const TARGETS = [
     label: "natur Ljanselva-ruta (Oslo)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.natur_ljanselva_rute.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.natur_ljanselva_rute.json",
-    placesFile: path.join(ROOT, "data", "places", "natur", "oslo", "places_oslo_natur_ljanselva_rute.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/natur/oslo/places_oslo_natur_ljanselva_rute.json",
     expectedCategory: "natur",
   },
@@ -199,7 +202,7 @@ const TARGETS = [
     label: "natur Østensjøvannet (Oslo)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.natur_ostensjovannet.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.natur_ostensjovannet.json",
-    placesFile: path.join(ROOT, "data", "places", "natur", "oslo", "places_oslo_natur_ostensjovannet.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/natur/oslo/places_oslo_natur_ostensjovannet.json",
     expectedCategory: "natur",
   },
@@ -207,7 +210,7 @@ const TARGETS = [
     label: "natur salamanderdammer (Oslo)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.natur_salamanderdammer.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.natur_salamanderdammer.json",
-    placesFile: path.join(ROOT, "data", "places", "natur", "oslo", "places_oslo_natur_salamanderdammer.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/natur/oslo/places_oslo_natur_salamanderdammer.json",
     expectedCategory: "natur",
   },
@@ -215,7 +218,7 @@ const TARGETS = [
     label: "sport (Oslo)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.sport_oslo.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.sport_oslo.json",
-    placesFile: path.join(ROOT, "data", "places", "sport", "europa", "norway", "oslo_sport.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/sport/europa/norway/oslo_sport.json",
     expectedCategory: "sport",
   },
@@ -223,7 +226,7 @@ const TARGETS = [
     label: "sport lekeplasser og trening (Oslo)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.sport_lekeplasser_trening.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.sport_lekeplasser_trening.json",
-    placesFile: path.join(ROOT, "data", "places", "sport", "europa", "norway", "places_oslo_lekeplasser_trening.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/sport/europa/norway/places_oslo_lekeplasser_trening.json",
     expectedCategory: "sport",
   },
@@ -231,7 +234,7 @@ const TARGETS = [
     label: "motorsport (Østlandet)",
     mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.motorsport_ostlandet.json"),
     mappingFileRel: "data/Civication/map/historyGoPlaceMapping.motorsport_ostlandet.json",
-    placesFile: path.join(ROOT, "data", "places", "sport", "europa", "norway", "places_motorsport_ostlandet.json"),
+    placesFile: PLACES_INDEX_FILE,
     expectedSourceFile: "places/sport/europa/norway/places_motorsport_ostlandet.json",
     expectedCategory: "sport",
   },
@@ -258,6 +261,18 @@ const REQUIRED_FIELDS = [
 
 // Liten toleranse for flyttallssammenligning av koordinater.
 const COORD_EPSILON = 1e-9;
+const RETIRED_SOURCE_SNAPSHOT = "retired_source_snapshot";
+const APPROVED_RETIRED_PLACE_IDS = new Set([
+  "vulkan_murvegger",
+  "hausmannsgate_aksen",
+  "kolstadgata_toyen_vegger",
+  "gronland_underganger",
+  "nybrua_pilarrom",
+  "schweigaards_gate_lodalen",
+  "kuba_akselpassasjer",
+  "grunerlokka_bakgardsvegger",
+  "brenneriveien_ingens_gate",
+]);
 
 async function readJSON(file) {
   let raw;
@@ -291,7 +306,34 @@ function emneIdsEqual(a, b) {
 function placesFromData(data) {
   if (Array.isArray(data)) return data;
   if (Array.isArray(data?.places)) return data.places;
+  if (data && typeof data === "object" && data.id != null) return [data];
   return [];
+}
+
+async function loadCanonicalPlacesForMappings(mappingData) {
+  canonicalIndexPromise ??= readJSON(PLACES_INDEX_FILE);
+  const index = await canonicalIndexPromise;
+  const indexById = new Map<string, any>(placesFromData(index).map((place) => [String(place.id), place]));
+  const mappings = mappingData?.mappings as Record<string, any> | undefined;
+  const ids = Object.values(mappings ?? {})
+    .map((mapping) => mapping?.historyGoPlaceId)
+    .filter((id) => id != null)
+    .map(String);
+  const places = [];
+
+  for (const id of ids) {
+    const row = indexById.get(id);
+    if (!row?.sourceFile) continue;
+    const file = path.join(ROOT, "data", row.sourceFile);
+    if (!canonicalPlacePromises.has(file)) {
+      canonicalPlacePromises.set(file, readJSON(file));
+    }
+    const data = await canonicalPlacePromises.get(file);
+    const place = placesFromData(data).find((candidate) => String(candidate?.id) === id);
+    if (place) places.push({ ...place, __canonicalSourceFile: row.sourceFile });
+  }
+
+  return places;
 }
 
 async function auditTarget(target) {
@@ -299,10 +341,10 @@ async function auditTarget(target) {
   let mappingData;
   let placesData;
   try {
-    [mappingData, placesData] = await Promise.all([
-      readJSON(target.mappingFile),
-      readJSON(target.placesFile),
-    ]);
+    mappingData = await readJSON(target.mappingFile);
+    placesData = target.placesFile === PLACES_INDEX_FILE
+      ? await loadCanonicalPlacesForMappings(mappingData)
+      : await readJSON(target.placesFile);
   } catch (err) {
     console.error(`FEIL: ${err.message}`);
     return 1;
@@ -358,9 +400,11 @@ async function auditTarget(target) {
 
   const mappings = mappingData.mappings;
   const mappingKeys = Object.keys(mappings);
+  const usesCanonicalIndex = target.placesFile === PLACES_INDEX_FILE;
 
   // Rapportbøtter.
   const unknownPlaceIds = []; // mapping -> ukjent historyGoPlaceId (fatal)
+  const retiredPlaceIds = []; // eksplisitte Civication-snapshots uten aktiv Place
   const wrongName = [];
   const wrongCoords = [];
   const wrongEmneIds = [];
@@ -383,7 +427,7 @@ async function auditTarget(target) {
     if (placeId != null) mappedPlaceIds.add(String(placeId));
 
     // historyGoSourceFile må peke på kilden.
-    if (m?.historyGoSourceFile !== target.expectedSourceFile) {
+    if (!usesCanonicalIndex && m?.historyGoSourceFile !== target.expectedSourceFile) {
       fatal.push(
         `${key}: historyGoSourceFile er "${m?.historyGoSourceFile}", forventet "${target.expectedSourceFile}"`
       );
@@ -401,9 +445,23 @@ async function auditTarget(target) {
     // historyGoPlaceId må finnes i kilden.
     const place = placeId != null ? placesById.get(String(placeId)) : undefined;
     if (!place) {
-      unknownPlaceIds.push({ mappingId: key, historyGoPlaceId: placeId ?? null });
+      const item = { mappingId: key, historyGoPlaceId: placeId ?? null };
+      if (
+        m?.historyGoPlaceStatus === RETIRED_SOURCE_SNAPSHOT &&
+        APPROVED_RETIRED_PLACE_IDS.has(String(placeId))
+      ) retiredPlaceIds.push(item);
+      else unknownPlaceIds.push(item);
       // Uten kilde kan vi ikke sammenligne navn/koordinater/emne_ids.
       continue;
+    }
+
+    if (usesCanonicalIndex) {
+      const allowedSources = [target.expectedSourceFile, place.__canonicalSourceFile];
+      if (!allowedSources.includes(m?.historyGoSourceFile)) {
+        fatal.push(
+          `${key}: historyGoSourceFile er "${m?.historyGoSourceFile}", forventet historisk gruppe "${target.expectedSourceFile}" eller canonical kilde "${place.__canonicalSourceFile}"`
+        );
+      }
     }
 
     // Navn må matche kilden.
@@ -447,10 +505,12 @@ async function auditTarget(target) {
 
   // Steder i kilden som ikke er dekket av mappingen (forventet, ikke fatal).
   const unmappedPlaces = [];
-  for (const place of places) {
-    const id = place?.id;
-    if (id != null && !mappedPlaceIds.has(String(id))) {
-      unmappedPlaces.push(String(id));
+  if (!usesCanonicalIndex) {
+    for (const place of places) {
+      const id = place?.id;
+      if (id != null && !mappedPlaceIds.has(String(id))) {
+        unmappedPlaces.push(String(id));
+      }
     }
   }
 
@@ -488,11 +548,13 @@ async function auditTarget(target) {
     mappingCount: mappingKeys.length,
     needsEnrichmentCount,
     unknownPlaceIds,
+    retiredPlaceIds,
     unmappedPlaces,
     wrongName,
     wrongCoords,
     wrongEmneIds,
     missingFields,
+    usesCanonicalIndex,
     fatal,
   });
 
@@ -515,6 +577,7 @@ function printReport(target, r) {
   line(`=== Civication History Go place-mapping audit [${target.label}] ===`);
   line(`Kilde:   ${target.expectedSourceFile}`);
   line(`Mapping: ${target.mappingFileRel}`);
+  if (r.usesCanonicalIndex) line("Oppslag: data/places/places_index.json (canonical split-manifest)");
   line("");
   line("Sammendrag:");
   line(`  Steder i kildefilen:                     ${r.placesCount}`);
@@ -531,6 +594,11 @@ function printReport(target, r) {
   section(
     "Mappinger med ukjent historyGoPlaceId",
     r.unknownPlaceIds,
+    (i) => `${i.mappingId} -> "${i.historyGoPlaceId}"`
+  );
+  section(
+    "Pensjonerte Civication-kartpunkter med eksplisitt snapshot-status",
+    r.retiredPlaceIds ?? [],
     (i) => `${i.mappingId} -> "${i.historyGoPlaceId}"`
   );
   section(
@@ -560,6 +628,8 @@ function printReport(target, r) {
     r.unmappedPlaces,
     (id) => id
   );
+  line("");
+  section("Alvorlige feil", r.fatal, (message) => message);
   line("");
 
   if (r.fatal.length > 0) {

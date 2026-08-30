@@ -1,0 +1,52 @@
+{
+  "placeId": "akershus_slott",
+  "placeFile": "data/places/historie/oslo/places_historie/akershus_slott.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "candidate_ready_for_production",
+  "currentCoordinate": {
+    "lat": 59.906655,
+    "lon": 10.7363502,
+    "r": 70,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation for Akershus slott",
+    "coordType": "building_center",
+    "coordNote": "Geometrisk senter for OSM-relasjonen som avgrenser slottsbygningen; skiller slottet fra festningsområdets områdeanker."
+  },
+  "identity": {
+    "currentName": "Akershus slott",
+    "resolvedIdentity": "selve Akershus slott som avgrenset bygning",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": "Ny korrekt stavet canonical ID skiller bygningen fra festningen; legacy-feilstavingen beholdes som alias til festningen."
+  },
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap relation 13931023",
+      "sourceUrl": "https://www.openstreetmap.org/relation/13931023",
+      "sourceObjectId": "osm-relation:13931023",
+      "sourceQuality": "building_geometry",
+      "finding": "Relasjonen avgrenser Akershus slott og gir et geometrisk senter inne i bygningen.",
+      "canVerifyCoordinate": true,
+      "reason": "Geometrisk senter for OSM-relasjonen som avgrenser slottsbygningen; skiller slottet fra festningsområdets områdeanker."
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.906655,
+      "lon": 10.7363502,
+      "coordRole": "building_center",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildegeometri og eget slottsanker er anvendt."
+  },
+  "notes": [
+    "Festningsområdets eget områdeanker endres ikke."
+  ]
+}

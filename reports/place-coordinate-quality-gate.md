@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-08-11T17:20:55.670Z
+Generert: 2026-08-30T18:37:20.228Z
 
 ## Oppsummering
-- Aktive filer validert: **1449**
-- Antall steder validert: **1449**
+- Aktive filer validert: **1545**
+- Antall steder validert: **1545**
 - Harde feil: **0**
-- Varsler: **600**
-- Coordinate review candidates: **737** signaler fordelt på **639** steder
+- Varsler: **663**
+- Coordinate review candidates: **808** signaler fordelt på **703** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -1467,6 +1467,102 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/vitenskap/oslo/places_vitenskap/sintef_minalab.json
 - data/places/vitenskap/oslo/places_vitenskap/stk_pex_kabeltarnet.json
 - data/places/vitenskap/oslo/places_vitenskap/tandbergs_radiofabrikk_kjelsas.json
+- data/places/by/oslo/places/frogner.json
+- data/places/by/oslo/places/holmlia.json
+- data/places/by/vestland/bergen/bergen.json
+- data/places/by/agder/valle_setesdal/valle_setesdal.json
+- data/places/by/nordland/narvik/narvik.json
+- data/places/by/buskerud/aal/aal.json
+- data/places/by/agder/kristiansand/kristiansand.json
+- data/places/by/rogaland/stavanger/stavanger.json
+- data/places/by/vestland/voss/voss.json
+- data/places/by/nordland/bodo/bodo.json
+- data/places/by/troms/tromso/tromso.json
+- data/places/by/finnmark/hammerfest/hammerfest.json
+- data/places/by/finnmark/tana/tana.json
+- data/places/by/nordland/hattfjelldal/hattfjelldal.json
+- data/places/by/nordland/soemna/soemna.json
+- data/places/psykologi/oslo/places_psykologi/nkvts_nydalen.json
+- data/places/psykologi/oslo/places_psykologi/nic_waals_institutt.json
+- data/places/natur/oslo/miljo_gjenbruk/grefsen_gjenvinningsstasjon.json
+- data/places/natur/oslo/miljo_gjenbruk/haraldrud_gjenvinningsstasjon.json
+- data/places/natur/oslo/miljo_gjenbruk/ryen_gjenvinningsstasjon.json
+- data/places/natur/oslo/miljo_gjenbruk/smestad_gjenvinningsstasjon.json
+- data/places/natur/oslo/miljo_gjenbruk/lindeberg_gjenvinningsstasjon.json
+- data/places/natur/oslo/miljo_gjenbruk/kampen_gjenvinningsstasjon.json
+- data/places/natur/oslo/miljo_gjenbruk/romsas_gjenvinningsstasjon.json
+- data/places/natur/oslo/miljo_gjenbruk/sofienbergparken_gjenvinningsstasjon.json
+- data/places/natur/oslo/miljo_gjenbruk/trosterud_gjenvinningsstasjon.json
+- data/places/natur/oslo/miljo_gjenbruk/haraldrud_ombrukstelt.json
+- data/places/natur/oslo/miljo_gjenbruk/gronmo_ombrukstelt.json
+- data/places/litteratur/oslo/lesekiosk/lesekiosk_11_kjelsasveien_141.json
+- data/places/litteratur/oslo/lesekiosk/lesekiosk_22_vigelandsparken.json
+- data/places/litteratur/oslo/lesekiosk/lesekiosk_79_inkognitogata.json
+- data/places/litteratur/oslo/lesekiosk/lesekiosk_42_munkedamsveien.json
+- data/places/litteratur/oslo/lesekiosk/lesekiosk_10_refstadsvingen.json
+- data/places/litteratur/oslo/lesekiosk/lesekiosk_76_hjemmets_kolonihager.json
+- data/places/litteratur/oslo/lesekiosk/lesekiosk_13_jacob_aalls_gate_58.json
+- data/places/litteratur/oslo/lesekiosk/lesekiosk_74_huk_aveny_35.json
+- data/places/litteratur/oslo/lesekiosk/lesekiosk_56_vestgrensa_2.json
+- data/places/litteratur/oslo/lesekiosk/lesekiosk_51_skedsmogata_20.json
+- data/places/litteratur/oslo/lesekiosk/lesekiosk_9_akershusstranda_3.json
+- data/places/litteratur/oslo/lesekiosk/lesekiosk_70_sagene_kirke.json
+- data/places/litteratur/oslo/lesekiosk/lesekiosk_71_sagene_kirke.json
+- data/places/litteratur/oslo/lesekiosk/lesekiosk_0_sentralen.json
+- data/places/litteratur/oslo/lesekiosk/lesekiosk_23_skoyen_stasjon.json
+- data/places/litteratur/oslo/lesekiosk/lesekiosk_1_solli_plass.json
+- data/places/litteratur/oslo/lesekiosk/lesekiosk_50_bislett_stadion.json
+- data/places/litteratur/oslo/lesekiosk/lesekiosk_78_olav_kyrres_plass.json
+- data/places/litteratur/oslo/lesekiosk/lesekiosk_80_majorstukrysset.json
+- data/places/litteratur/oslo/lesekiosk/lesekiosk_8_radhusgata_28.json
+- data/places/litteratur/oslo/lesekiosk/lesekiosk_48_valerenga_kirke.json
+- data/places/natur/oslo/miljo_gjenbruk/gronmo_gjenvinningsstasjon.json
+- data/places/natur/oslo/miljo_gjenbruk/sorenga_gjenvinningsstasjon.json
+- data/places/natur/oslo/miljo_gjenbruk/bygdoy_miljostasjon.json
+- data/places/natur/oslo/miljo_gjenbruk/frysja_miljostasjon.json
+- data/places/natur/oslo/miljo_gjenbruk/kringsja_miljostasjon.json
+- data/places/natur/oslo/miljo_gjenbruk/lambertseter_miljostasjon.json
+- data/places/natur/oslo/miljo_gjenbruk/lindebergasen_miljostasjon.json
+- data/places/natur/oslo/miljo_gjenbruk/lindoya_miljostasjon.json
+- data/places/natur/oslo/miljo_gjenbruk/mosseveien_miljostasjon.json
+- data/places/natur/oslo/miljo_gjenbruk/munkerud_miljostasjon.json
+- data/places/natur/oslo/miljo_gjenbruk/oppsal_miljostasjon.json
+- data/places/natur/oslo/miljo_gjenbruk/skjonhaug_miljostasjon.json
+- data/places/natur/oslo/miljo_gjenbruk/sogn_miljostasjon.json
+- data/places/natur/oslo/miljo_gjenbruk/tveita_miljostasjon.json
+- data/places/natur/oslo/miljo_gjenbruk/ulven_miljostasjon.json
+- data/places/by/oslo/bla_skilt/bla_skilt_gartnerlokka_urtegata_50.json
+- data/places/helse/oslo/bla_skilt/bla_skilt_cathinka_guldberg_lovisenberggata_15a.json
+- data/places/helse/oslo/bla_skilt/bla_skilt_sulpen_keysers_gate_5.json
+- data/places/vitenskap/oslo/bla_skilt/bla_skilt_vebjorn_tandberg_kongens_gate_15.json
+- data/places/historie/oslo/snublestein/snublestein_rebekka_blatt_nordre_gate_13.json
+- data/places/historie/oslo/snublestein/snublestein_fanny_steinsapir_bjerregaards_gate_68.json
+- data/places/historie/oslo/snublestein/snublestein_benno_damelin_schonings_gate_14.json
+- data/places/historie/oslo/snublestein/snublestein_salomon_bogomolno_d_y_jens_bjelkes_gate_64.json
+- data/places/historie/oslo/snublestein/snublestein_harry_isidor_mendel_ullevalsveien_97.json
+- data/places/historie/oslo/snublestein/snublestein_isak_kaplan_kirkegardsgata_2.json
+- data/places/natur/oslo/miljo_gjenbruk/hoybraten_miljostasjon.json
+- data/places/sport/oslo/bla_skilt/bla_skilt_kjeglebanen_briskebyveien_21.json
+- data/places/politikk/oslo/bla_skilt/bla_skilt_fredrikke_qvam_pilestredet_81.json
+- data/places/politikk/oslo/bla_skilt/bla_skilt_sophie_borchgrevink_cort_adelers_gate_33.json
+- data/places/naeringsliv/oslo/bla_skilt/bla_skilt_universal_presentkort_lille_grensen_7.json
+- data/places/kunst/oslo/bla_skilt/bla_skilt_inger_sitter_president_harbitz_gate_19b.json
+- data/places/kunst/oslo/bla_skilt/bla_skilt_per_ung_jarlsborgveien_12a.json
+- data/places/musikk/oslo/bla_skilt/bla_skilt_robert_levin_gabels_gate_46b.json
+- data/places/utdanning/oslo/bla_skilt/bla_skilt_helga_eng_waldemar_thranes_gate_42.json
+- data/places/vitenskap/oslo/bla_skilt/bla_skilt_thekla_resvoll_bestum_tverrvei_1.json
+- data/places/litteratur/oslo/bla_skilt/bla_skilt_anne_cath_vestly_wergelandsveien_7.json
+- data/places/politikk/oslo/bla_skilt/bla_skilt_krisesenteret_camilla_waldemar_thranes_gate_70.json
+- data/places/vitenskap/oslo/bla_skilt/bla_skilt_eyde_birkeland_bolteloekka_alle_10.json
+- data/places/by/oslo/bla_skilt/bla_skilt_holmenkollen_sanatorium_kongeveien_26.json
+- data/places/politikk/oslo/bla_skilt/bla_skilt_kim_friele_haakon_tveters_vei_12.json
+- data/places/helse/oslo/bla_skilt/bla_skilt_elisabet_helsing_thor_olsens_gate_10.json
+- data/places/politikk/oslo/bla_skilt/bla_skilt_marcus_thrane_fredriksborgveien_18.json
+- data/places/politikk/oslo/bla_skilt/bla_skilt_anna_rogstad_henrichsens_gate_3.json
+- data/places/naeringsliv/oslo/bla_skilt/bla_skilt_astri_stockfleth_sofies_gate_74.json
+- data/places/naeringsliv/oslo/places_naeringsliv/freia_fabrikken.json
+- data/places/naeringsliv/oslo/places_naeringsliv/alunverket.json
+- data/places/historie/oslo/places_historie/akershus_slott.json
 
 ## Harde feil
 - Ingen
@@ -2072,25 +2168,88 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/vitenskap/oslo/places_vitenskap/sintef_minalab.json#sintef_minalab: coordStatus=verified uten coordPrecisionM
 - data/places/vitenskap/oslo/places_vitenskap/stk_pex_kabeltarnet.json#stk_pex_kabeltarnet: coordStatus=verified uten coordPrecisionM
 - data/places/vitenskap/oslo/places_vitenskap/tandbergs_radiofabrikk_kjelsas.json#tandbergs_radiofabrikk_kjelsas: coordStatus=verified uten coordPrecisionM
+- data/places/by/agder/kristiansand/kristiansand.json#kristiansand: lineært sted uten anchors
+- data/places/psykologi/oslo/places_psykologi/nkvts_nydalen.json#nkvts_nydalen: coordStatus=verified uten coordPrecisionM
+- data/places/psykologi/oslo/places_psykologi/nic_waals_institutt.json#nic_waals_institutt: lineært sted uten anchors
+- data/places/psykologi/oslo/places_psykologi/nic_waals_institutt.json#nic_waals_institutt: coordStatus=verified uten coordPrecisionM
+- data/places/natur/oslo/miljo_gjenbruk/grefsen_gjenvinningsstasjon.json#grefsen_gjenvinningsstasjon: coordStatus=verified uten coordPrecisionM
+- data/places/natur/oslo/miljo_gjenbruk/haraldrud_gjenvinningsstasjon.json#haraldrud_gjenvinningsstasjon: coordStatus=verified uten coordPrecisionM
+- data/places/natur/oslo/miljo_gjenbruk/ryen_gjenvinningsstasjon.json#ryen_gjenvinningsstasjon: coordStatus=verified uten coordPrecisionM
+- data/places/natur/oslo/miljo_gjenbruk/smestad_gjenvinningsstasjon.json#smestad_gjenvinningsstasjon: coordStatus=verified uten coordPrecisionM
+- data/places/natur/oslo/miljo_gjenbruk/lindeberg_gjenvinningsstasjon.json#lindeberg_gjenvinningsstasjon: coordStatus=verified uten coordPrecisionM
+- data/places/natur/oslo/miljo_gjenbruk/kampen_gjenvinningsstasjon.json#kampen_gjenvinningsstasjon: coordStatus=verified uten coordPrecisionM
+- data/places/natur/oslo/miljo_gjenbruk/romsas_gjenvinningsstasjon.json#romsas_gjenvinningsstasjon: lav koordinatpresisjon (<4 desimaler)
+- data/places/natur/oslo/miljo_gjenbruk/sofienbergparken_gjenvinningsstasjon.json#sofienbergparken_gjenvinningsstasjon: coordStatus=verified uten coordPrecisionM
+- data/places/natur/oslo/miljo_gjenbruk/trosterud_gjenvinningsstasjon.json#trosterud_gjenvinningsstasjon: coordStatus=verified uten coordPrecisionM
+- data/places/natur/oslo/miljo_gjenbruk/haraldrud_ombrukstelt.json#haraldrud_ombrukstelt: coordStatus=verified uten coordPrecisionM
+- data/places/natur/oslo/miljo_gjenbruk/gronmo_ombrukstelt.json#gronmo_ombrukstelt: coordStatus=verified uten coordPrecisionM
+- data/places/litteratur/oslo/lesekiosk/lesekiosk_42_munkedamsveien.json#lesekiosk_42_munkedamsveien: lineært sted uten anchors
+- data/places/natur/oslo/miljo_gjenbruk/gronmo_gjenvinningsstasjon.json#gronmo_gjenvinningsstasjon: coordStatus=verified uten coordPrecisionM
+- data/places/natur/oslo/miljo_gjenbruk/sorenga_gjenvinningsstasjon.json#sorenga_gjenvinningsstasjon: coordStatus=verified uten coordPrecisionM
+- data/places/natur/oslo/miljo_gjenbruk/bygdoy_miljostasjon.json#bygdoy_miljostasjon: coordStatus=verified uten coordPrecisionM
+- data/places/natur/oslo/miljo_gjenbruk/frysja_miljostasjon.json#frysja_miljostasjon: coordStatus=verified uten coordPrecisionM
+- data/places/natur/oslo/miljo_gjenbruk/kringsja_miljostasjon.json#kringsja_miljostasjon: coordStatus=verified uten coordPrecisionM
+- data/places/natur/oslo/miljo_gjenbruk/lambertseter_miljostasjon.json#lambertseter_miljostasjon: coordStatus=verified uten coordPrecisionM
+- data/places/natur/oslo/miljo_gjenbruk/lindebergasen_miljostasjon.json#lindebergasen_miljostasjon: coordStatus=verified uten coordPrecisionM
+- data/places/natur/oslo/miljo_gjenbruk/lindoya_miljostasjon.json#lindoya_miljostasjon: coordStatus=verified uten coordPrecisionM
+- data/places/natur/oslo/miljo_gjenbruk/mosseveien_miljostasjon.json#mosseveien_miljostasjon: lineært sted uten anchors
+- data/places/natur/oslo/miljo_gjenbruk/mosseveien_miljostasjon.json#mosseveien_miljostasjon: coordStatus=verified uten coordPrecisionM
+- data/places/natur/oslo/miljo_gjenbruk/munkerud_miljostasjon.json#munkerud_miljostasjon: coordStatus=verified uten coordPrecisionM
+- data/places/natur/oslo/miljo_gjenbruk/oppsal_miljostasjon.json#oppsal_miljostasjon: coordStatus=verified uten coordPrecisionM
+- data/places/natur/oslo/miljo_gjenbruk/skjonhaug_miljostasjon.json#skjonhaug_miljostasjon: coordStatus=verified uten coordPrecisionM
+- data/places/natur/oslo/miljo_gjenbruk/sogn_miljostasjon.json#sogn_miljostasjon: coordStatus=verified uten coordPrecisionM
+- data/places/natur/oslo/miljo_gjenbruk/tveita_miljostasjon.json#tveita_miljostasjon: lineært sted uten anchors
+- data/places/natur/oslo/miljo_gjenbruk/tveita_miljostasjon.json#tveita_miljostasjon: coordStatus=verified uten coordPrecisionM
+- data/places/natur/oslo/miljo_gjenbruk/ulven_miljostasjon.json#ulven_miljostasjon: coordStatus=verified uten coordPrecisionM
+- data/places/by/oslo/bla_skilt/bla_skilt_gartnerlokka_urtegata_50.json#bla_skilt_gartnerlokka_urtegata_50: coordStatus=verified uten coordPrecisionM
+- data/places/helse/oslo/bla_skilt/bla_skilt_cathinka_guldberg_lovisenberggata_15a.json#bla_skilt_cathinka_guldberg_lovisenberggata_15a: coordStatus=verified uten coordPrecisionM
+- data/places/helse/oslo/bla_skilt/bla_skilt_sulpen_keysers_gate_5.json#bla_skilt_sulpen_keysers_gate_5: coordStatus=verified uten coordPrecisionM
+- data/places/vitenskap/oslo/bla_skilt/bla_skilt_vebjorn_tandberg_kongens_gate_15.json#bla_skilt_vebjorn_tandberg_kongens_gate_15: coordStatus=verified uten coordPrecisionM
+- data/places/historie/oslo/snublestein/snublestein_rebekka_blatt_nordre_gate_13.json#snublestein_rebekka_blatt_nordre_gate_13: coordStatus=verified uten coordPrecisionM
+- data/places/historie/oslo/snublestein/snublestein_fanny_steinsapir_bjerregaards_gate_68.json#snublestein_fanny_steinsapir_bjerregaards_gate_68: coordStatus=verified uten coordPrecisionM
+- data/places/historie/oslo/snublestein/snublestein_benno_damelin_schonings_gate_14.json#snublestein_benno_damelin_schonings_gate_14: coordStatus=verified uten coordPrecisionM
+- data/places/historie/oslo/snublestein/snublestein_salomon_bogomolno_d_y_jens_bjelkes_gate_64.json#snublestein_salomon_bogomolno_d_y_jens_bjelkes_gate_64: coordStatus=verified uten coordPrecisionM
+- data/places/historie/oslo/snublestein/snublestein_harry_isidor_mendel_ullevalsveien_97.json#snublestein_harry_isidor_mendel_ullevalsveien_97: coordStatus=verified uten coordPrecisionM
+- data/places/historie/oslo/snublestein/snublestein_isak_kaplan_kirkegardsgata_2.json#snublestein_isak_kaplan_kirkegardsgata_2: coordStatus=verified uten coordPrecisionM
+- data/places/natur/oslo/miljo_gjenbruk/hoybraten_miljostasjon.json#hoybraten_miljostasjon: coordStatus=verified uten coordPrecisionM
+- data/places/sport/oslo/bla_skilt/bla_skilt_kjeglebanen_briskebyveien_21.json#bla_skilt_kjeglebanen_briskebyveien_21: coordStatus=verified uten coordPrecisionM
+- data/places/politikk/oslo/bla_skilt/bla_skilt_fredrikke_qvam_pilestredet_81.json#bla_skilt_fredrikke_qvam_pilestredet_81: coordStatus=verified uten coordPrecisionM
+- data/places/politikk/oslo/bla_skilt/bla_skilt_sophie_borchgrevink_cort_adelers_gate_33.json#bla_skilt_sophie_borchgrevink_cort_adelers_gate_33: coordStatus=verified uten coordPrecisionM
+- data/places/naeringsliv/oslo/bla_skilt/bla_skilt_universal_presentkort_lille_grensen_7.json#bla_skilt_universal_presentkort_lille_grensen_7: coordStatus=verified uten coordPrecisionM
+- data/places/kunst/oslo/bla_skilt/bla_skilt_inger_sitter_president_harbitz_gate_19b.json#bla_skilt_inger_sitter_president_harbitz_gate_19b: coordStatus=verified uten coordPrecisionM
+- data/places/kunst/oslo/bla_skilt/bla_skilt_per_ung_jarlsborgveien_12a.json#bla_skilt_per_ung_jarlsborgveien_12a: coordStatus=verified uten coordPrecisionM
+- data/places/musikk/oslo/bla_skilt/bla_skilt_robert_levin_gabels_gate_46b.json#bla_skilt_robert_levin_gabels_gate_46b: coordStatus=verified uten coordPrecisionM
+- data/places/utdanning/oslo/bla_skilt/bla_skilt_helga_eng_waldemar_thranes_gate_42.json#bla_skilt_helga_eng_waldemar_thranes_gate_42: coordStatus=verified uten coordPrecisionM
+- data/places/vitenskap/oslo/bla_skilt/bla_skilt_thekla_resvoll_bestum_tverrvei_1.json#bla_skilt_thekla_resvoll_bestum_tverrvei_1: coordStatus=verified uten coordPrecisionM
+- data/places/litteratur/oslo/bla_skilt/bla_skilt_anne_cath_vestly_wergelandsveien_7.json#bla_skilt_anne_cath_vestly_wergelandsveien_7: coordStatus=verified uten coordPrecisionM
+- data/places/politikk/oslo/bla_skilt/bla_skilt_krisesenteret_camilla_waldemar_thranes_gate_70.json#bla_skilt_krisesenteret_camilla_waldemar_thranes_gate_70: coordStatus=verified uten coordPrecisionM
+- data/places/vitenskap/oslo/bla_skilt/bla_skilt_eyde_birkeland_bolteloekka_alle_10.json#bla_skilt_eyde_birkeland_bolteloekka_alle_10: coordStatus=verified uten coordPrecisionM
+- data/places/by/oslo/bla_skilt/bla_skilt_holmenkollen_sanatorium_kongeveien_26.json#bla_skilt_holmenkollen_sanatorium_kongeveien_26: coordStatus=verified uten coordPrecisionM
+- data/places/politikk/oslo/bla_skilt/bla_skilt_kim_friele_haakon_tveters_vei_12.json#bla_skilt_kim_friele_haakon_tveters_vei_12: coordStatus=verified uten coordPrecisionM
+- data/places/helse/oslo/bla_skilt/bla_skilt_elisabet_helsing_thor_olsens_gate_10.json#bla_skilt_elisabet_helsing_thor_olsens_gate_10: coordStatus=verified uten coordPrecisionM
+- data/places/politikk/oslo/bla_skilt/bla_skilt_marcus_thrane_fredriksborgveien_18.json#bla_skilt_marcus_thrane_fredriksborgveien_18: coordStatus=verified uten coordPrecisionM
+- data/places/politikk/oslo/bla_skilt/bla_skilt_anna_rogstad_henrichsens_gate_3.json#bla_skilt_anna_rogstad_henrichsens_gate_3: coordStatus=verified uten coordPrecisionM
+- data/places/naeringsliv/oslo/bla_skilt/bla_skilt_astri_stockfleth_sofies_gate_74.json#bla_skilt_astri_stockfleth_sofies_gate_74: coordStatus=verified uten coordPrecisionM
+- data/places/naeringsliv/oslo/places_naeringsliv/freia_fabrikken.json#freia_fabrikken: coordStatus=verified uten coordPrecisionM
 
 ## Coordinate review candidates
 
-Totalt 737 signaler fordelt på 639 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 808 signaler fordelt på 703 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 335 |
-| lineært sted uten anchors | 79 |
-| lav koordinatpresisjon (<4 desimaler) | 71 |
+| coordStatus=verified uten coordPrecisionM | 392 |
+| lineært sted uten anchors | 84 |
+| lav koordinatpresisjon (<4 desimaler) | 72 |
 | svært stor r (>=500 m) uten coordNote | 66 |
 | park/stort område uten anchors eller coordNote | 115 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 58 |
-| svært liten r (<60 m) for sted som ser utstrakt ut | 3 |
+| svært liten r (<60 m) for sted som ser utstrakt ut | 11 |
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 10 |
 
-### coordStatus=verified uten coordPrecisionM (335)
+### coordStatus=verified uten coordPrecisionM (392)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -2111,7 +2270,7 @@ Totalt 737 signaler fordelt på 639 steder. Et sted kan ha flere signaler. Kandi
 | mollergata_19 | Møllergata 19 | historie | data/places/historie/oslo/places_historie/mollergata_19.json | 59.91528413168428 | 10.747869191554551 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | sagene_skole | Sagene skole | historie | data/places/historie/oslo/places_historie/sagene_skole.json | 59.93078969319966 | 10.75928429201007 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | oslo_domkirke | Oslo domkirke | by | data/places/by/oslo/oslo_domkirke/oslo_domkirke.json | 59.91266533589023 | 10.746431229351575 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| gamle_trikkestallen | Gamle trikkestallen på Sagene | by | data/places/by/oslo/gamle_trikkestallen/gamle_trikkestallen.json | 59.93283549643305 | 10.768161829321377 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| gamle_trikkestallen | Gamle trikkestallen på Torshov | by | data/places/by/oslo/gamle_trikkestallen/gamle_trikkestallen.json | 59.93283549643305 | 10.768161829321377 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | slottet | Det kongelige slott | politikk | data/places/politikk/oslo/slottet/slottet.json | 59.917063045432855 | 10.727724636631736 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | sofienberg_kirke | Sofienberg kirke | by | data/places/by/oslo/sofienberg_kirke/sofienberg_kirke.json | 59.922239531059745 | 10.765987821107696 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | trefoldighetskirken | Trefoldighetskirken | by | data/places/by/oslo/trefoldighetskirken/trefoldighetskirken.json | 59.91672903151453 | 10.744766562559661 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
@@ -2429,8 +2588,65 @@ Totalt 737 signaler fordelt på 639 steder. Et sted kan ha flere signaler. Kandi
 | sintef_minalab | SINTEF MiNaLab | vitenskap | data/places/vitenskap/oslo/places_vitenskap/sintef_minalab.json | 59.943728 | 10.718136 | 75 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | stk_pex_kabeltarnet | STK PEX-kabeltårnet | vitenskap | data/places/vitenskap/oslo/places_vitenskap/stk_pex_kabeltarnet.json | 59.927639 | 10.816681 | 75 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | tandbergs_radiofabrikk_kjelsas | Tandbergs Radiofabrikk på Kjelsås | vitenskap | data/places/vitenskap/oslo/places_vitenskap/tandbergs_radiofabrikk_kjelsas.json | 59.96851908911736 | 10.772328336306844 | 110 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| nkvts_nydalen | NKVTS – Nasjonalt kunnskapssenter om vold og traumatisk stress | psykologi | data/places/psykologi/oslo/places_psykologi/nkvts_nydalen.json | 59.9496583 | 10.7684583 | 85 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| nic_waals_institutt | Nic Waals Institutt | psykologi | data/places/psykologi/oslo/places_psykologi/nic_waals_institutt.json | 59.941911 | 10.748727 | 90 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| grefsen_gjenvinningsstasjon | Grefsen gjenvinningsstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/grefsen_gjenvinningsstasjon.json | 59.957835 | 10.772307 | 55 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| haraldrud_gjenvinningsstasjon | Haraldrud gjenvinningsstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/haraldrud_gjenvinningsstasjon.json | 59.930024 | 10.82906 | 55 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| ryen_gjenvinningsstasjon | Ryen gjenvinningsstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/ryen_gjenvinningsstasjon.json | 59.895310611878 | 10.800607123316 | 55 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| smestad_gjenvinningsstasjon | Smestad gjenvinningsstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/smestad_gjenvinningsstasjon.json | 59.933906423134 | 10.672643532134 | 55 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| lindeberg_gjenvinningsstasjon | Lindeberg gjenvinningsstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/lindeberg_gjenvinningsstasjon.json | 59.932634024289 | 10.881382097351 | 55 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| kampen_gjenvinningsstasjon | Kampen gjenvinningsstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/kampen_gjenvinningsstasjon.json | 59.915751178736 | 10.781616279146 | 55 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| sofienbergparken_gjenvinningsstasjon | Sofienbergparken gjenvinningsstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/sofienbergparken_gjenvinningsstasjon.json | 59.923564 | 10.7656953 | 55 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| trosterud_gjenvinningsstasjon | Trosterud gjenvinningsstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/trosterud_gjenvinningsstasjon.json | 59.9251633 | 10.8652417 | 55 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| haraldrud_ombrukstelt | Haraldrud ombrukstelt | natur | data/places/natur/oslo/miljo_gjenbruk/haraldrud_ombrukstelt.json | 59.928011789331 | 10.827938318253 | 55 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| gronmo_ombrukstelt | Grønmo ombrukstelt | natur | data/places/natur/oslo/miljo_gjenbruk/gronmo_ombrukstelt.json | 59.840939537522 | 10.857571363449 | 55 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| gronmo_gjenvinningsstasjon | Grønmo gjenvinningsstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/gronmo_gjenvinningsstasjon.json | 59.838517 | 10.852954 | 45 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| sorenga_gjenvinningsstasjon | Sørenga gjenvinningsstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/sorenga_gjenvinningsstasjon.json | 59.903287 | 10.755634 | 45 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| bygdoy_miljostasjon | Bygdøy miljøstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/bygdoy_miljostasjon.json | 59.907555268557 | 10.6957504355 | 45 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| frysja_miljostasjon | Frysja miljøstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/frysja_miljostasjon.json | 59.96615453292697 | 10.776552271050505 | 45 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| kringsja_miljostasjon | Kringsjå miljøstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/kringsja_miljostasjon.json | 59.965351788047 | 10.732831121272 | 45 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| lambertseter_miljostasjon | Lambertseter miljøstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/lambertseter_miljostasjon.json | 59.87627230526514 | 10.819358410891335 | 45 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| lindebergasen_miljostasjon | Lindebergåsen miljøstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/lindebergasen_miljostasjon.json | 59.9311490257 | 10.885339558894 | 45 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| lindoya_miljostasjon | Lindøya miljøstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/lindoya_miljostasjon.json | 59.892632493197 | 10.719451008405 | 45 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| mosseveien_miljostasjon | Mosseveien miljøstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/mosseveien_miljostasjon.json | 59.880436134678 | 10.773377511603 | 45 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| munkerud_miljostasjon | Munkerud miljøstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/munkerud_miljostasjon.json | 59.853326672748594 | 10.813825168645419 | 45 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| oppsal_miljostasjon | Oppsal miljøstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/oppsal_miljostasjon.json | 59.901824340791 | 10.847136369269 | 45 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| skjonhaug_miljostasjon | Skjønhaug miljøstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/skjonhaug_miljostasjon.json | 59.929208350285 | 10.868345109604 | 45 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| sogn_miljostasjon | Sogn miljøstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/sogn_miljostasjon.json | 59.952239652135 | 10.728373723253 | 45 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| tveita_miljostasjon | Tveita miljøstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/tveita_miljostasjon.json | 59.916287307096 | 10.847120089516 | 45 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| ulven_miljostasjon | Ulven miljøstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/ulven_miljostasjon.json | 59.925183520438 | 10.808930424285 | 45 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| bla_skilt_gartnerlokka_urtegata_50 | Blått skilt: Gartnerløkka | by | data/places/by/oslo/bla_skilt/bla_skilt_gartnerlokka_urtegata_50.json | 59.9132197759349 | 10.766832155693255 | 45 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| bla_skilt_cathinka_guldberg_lovisenberggata_15a | Blått skilt: Cathinka Guldberg | helse | data/places/helse/oslo/bla_skilt/bla_skilt_cathinka_guldberg_lovisenberggata_15a.json | 59.932391051542 | 10.746584210661682 | 45 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| bla_skilt_sulpen_keysers_gate_5 | Blått skilt: Sulpen | helse | data/places/helse/oslo/bla_skilt/bla_skilt_sulpen_keysers_gate_5.json | 59.91693099940071 | 10.743077840701527 | 45 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| bla_skilt_vebjorn_tandberg_kongens_gate_15 | Blått skilt: Vebjørn Tandberg | vitenskap | data/places/vitenskap/oslo/bla_skilt/bla_skilt_vebjorn_tandberg_kongens_gate_15.json | 59.91045277823502 | 10.741915500125605 | 45 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| snublestein_rebekka_blatt_nordre_gate_13 | Snublestein: Rebekka Blatt | historie | data/places/historie/oslo/snublestein/snublestein_rebekka_blatt_nordre_gate_13.json | 59.92095 | 10.75657 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| snublestein_fanny_steinsapir_bjerregaards_gate_68 | Snublestein: Fanny Steinsapir | historie | data/places/historie/oslo/snublestein/snublestein_fanny_steinsapir_bjerregaards_gate_68.json | 59.92714 | 10.749515 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| snublestein_benno_damelin_schonings_gate_14 | Snublestein: Benno Damelin | historie | data/places/historie/oslo/snublestein/snublestein_benno_damelin_schonings_gate_14.json | 59.928698 | 10.723649 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| snublestein_salomon_bogomolno_d_y_jens_bjelkes_gate_64 | Snublestein: Salomon Bogomolno d.y. | historie | data/places/historie/oslo/snublestein/snublestein_salomon_bogomolno_d_y_jens_bjelkes_gate_64.json | 59.913332 | 10.772639 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| snublestein_harry_isidor_mendel_ullevalsveien_97 | Snublestein: Harry Isidor Mendel | historie | data/places/historie/oslo/snublestein/snublestein_harry_isidor_mendel_ullevalsveien_97.json | 59.933444 | 10.732789 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| snublestein_isak_kaplan_kirkegardsgata_2 | Snublestein: Isak Kaplan | historie | data/places/historie/oslo/snublestein/snublestein_isak_kaplan_kirkegardsgata_2.json | 59.921905 | 10.763554 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| hoybraten_miljostasjon | Høybråten miljøstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/hoybraten_miljostasjon.json | 59.9469097 | 10.9242032 | 45 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| bla_skilt_kjeglebanen_briskebyveien_21 | Blått skilt: Kjeglebanen | sport | data/places/sport/oslo/bla_skilt/bla_skilt_kjeglebanen_briskebyveien_21.json | 59.92335742553447 | 10.7148429989095 | 45 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| bla_skilt_fredrikke_qvam_pilestredet_81 | Blått skilt: Fredrikke Qvam | politikk | data/places/politikk/oslo/bla_skilt/bla_skilt_fredrikke_qvam_pilestredet_81.json | 59.928697 | 10.7288462 | 45 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| bla_skilt_sophie_borchgrevink_cort_adelers_gate_33 | Blått skilt: Sophie Borchgrevink | politikk | data/places/politikk/oslo/bla_skilt/bla_skilt_sophie_borchgrevink_cort_adelers_gate_33.json | 59.9124527 | 10.7242853 | 45 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| bla_skilt_universal_presentkort_lille_grensen_7 | Blått skilt: Universal Presentkort | naeringsliv | data/places/naeringsliv/oslo/bla_skilt/bla_skilt_universal_presentkort_lille_grensen_7.json | 59.91374432154164 | 10.740907514505436 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| bla_skilt_inger_sitter_president_harbitz_gate_19b | Blått skilt: Inger Sitter | kunst | data/places/kunst/oslo/bla_skilt/bla_skilt_inger_sitter_president_harbitz_gate_19b.json | 59.9200266813167 | 10.71660315502361 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| bla_skilt_per_ung_jarlsborgveien_12a | Blått skilt: Per Ung | kunst | data/places/kunst/oslo/bla_skilt/bla_skilt_per_ung_jarlsborgveien_12a.json | 59.92938153766419 | 10.67074082310637 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| bla_skilt_robert_levin_gabels_gate_46b | Blått skilt: Robert Levin | musikk | data/places/musikk/oslo/bla_skilt/bla_skilt_robert_levin_gabels_gate_46b.json | 59.91732417165451 | 10.711007825988437 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| bla_skilt_helga_eng_waldemar_thranes_gate_42 | Blått skilt: Helga Eng | utdanning | data/places/utdanning/oslo/bla_skilt/bla_skilt_helga_eng_waldemar_thranes_gate_42.json | 59.925981063926706 | 10.744679846958872 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| bla_skilt_thekla_resvoll_bestum_tverrvei_1 | Blått skilt: Thekla Resvoll | vitenskap | data/places/vitenskap/oslo/bla_skilt/bla_skilt_thekla_resvoll_bestum_tverrvei_1.json | 59.91922009059839 | 10.65536463614413 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| bla_skilt_anne_cath_vestly_wergelandsveien_7 | Blått skilt: Anne-Cath Vestly | litteratur | data/places/litteratur/oslo/bla_skilt/bla_skilt_anne_cath_vestly_wergelandsveien_7.json | 59.91891459573794 | 10.731590024759551 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| bla_skilt_krisesenteret_camilla_waldemar_thranes_gate_70 | Blått skilt: Krisesenteret Camilla | politikk | data/places/politikk/oslo/bla_skilt/bla_skilt_krisesenteret_camilla_waldemar_thranes_gate_70.json | 59.92811297225721 | 10.749175752911317 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| bla_skilt_eyde_birkeland_bolteloekka_alle_10 | Blått skilt: Eyde og Birkeland | vitenskap | data/places/vitenskap/oslo/bla_skilt/bla_skilt_eyde_birkeland_bolteloekka_alle_10.json | 59.92927468944692 | 10.73739091653086 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| bla_skilt_holmenkollen_sanatorium_kongeveien_26 | Blått skilt: Holmenkollen Sanatorium | by | data/places/by/oslo/bla_skilt/bla_skilt_holmenkollen_sanatorium_kongeveien_26.json | 59.96247986706183 | 10.663009019261017 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| bla_skilt_kim_friele_haakon_tveters_vei_12 | Blått skilt: Kim Friele | politikk | data/places/politikk/oslo/bla_skilt/bla_skilt_kim_friele_haakon_tveters_vei_12.json | 59.90100375777466 | 10.835912518390394 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| bla_skilt_elisabet_helsing_thor_olsens_gate_10 | Blått skilt: Elisabet Helsing | helse | data/places/helse/oslo/bla_skilt/bla_skilt_elisabet_helsing_thor_olsens_gate_10.json | 59.91846260753924 | 10.746789525733794 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| bla_skilt_marcus_thrane_fredriksborgveien_18 | Blått skilt: Marcus Thrane | politikk | data/places/politikk/oslo/bla_skilt/bla_skilt_marcus_thrane_fredriksborgveien_18.json | 59.90306827345027 | 10.687513117137039 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| bla_skilt_anna_rogstad_henrichsens_gate_3 | Blått skilt: Anna Rogstad | politikk | data/places/politikk/oslo/bla_skilt/bla_skilt_anna_rogstad_henrichsens_gate_3.json | 59.92525946253369 | 10.737431441020538 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| bla_skilt_astri_stockfleth_sofies_gate_74 | Blått skilt: Astri Stockfleth | naeringsliv | data/places/naeringsliv/oslo/bla_skilt/bla_skilt_astri_stockfleth_sofies_gate_74.json | 59.929416529092734 | 10.73480365969341 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| freia_fabrikken | Freia-fabrikken | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv/freia_fabrikken.json | 59.925721706960225 | 10.76524607727546 | 90 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 
-### lineært sted uten anchors (79)
+### lineært sted uten anchors (84)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -2513,8 +2729,13 @@ Totalt 737 signaler fordelt på 639 steder. Et sted kan ha flere signaler. Kandi
 | vaulaelva_vassdraget | Vaulaelva og Vaulovassdraget | natur | data/places/natur/vestland/etne/vaulaelva_vassdraget/vaulaelva_vassdraget.json | 59.81337 | 6.35371 | 1400 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | galleri_schaeffers_gate_5 | Galleri Schaeffers Gate 5 | kunst | data/places/kunst/oslo/places_kunst/galleri_schaeffers_gate_5.json | 59.92127390279403 | 10.762304822006952 | 50 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | lisbon_santo_antonio_festival | Santo António-festivalen i Lisboa | religion | data/places/religion/europe/portugal/lisbon/lisbon_santo_antonio_festival.json | 38.7117 | -9.1297 | 700 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| kristiansand | Kristiansand | by | data/places/by/agder/kristiansand/kristiansand.json | 58.14615 | 7.9957333 | 900 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| nic_waals_institutt | Nic Waals Institutt | psykologi | data/places/psykologi/oslo/places_psykologi/nic_waals_institutt.json | 59.941911 | 10.748727 | 90 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| lesekiosk_42_munkedamsveien | Lesekiosk 42 – Munkedamsveien | litteratur | data/places/litteratur/oslo/lesekiosk/lesekiosk_42_munkedamsveien.json | 59.9122394 | 10.7272333 | 45 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| mosseveien_miljostasjon | Mosseveien miljøstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/mosseveien_miljostasjon.json | 59.880436134678 | 10.773377511603 | 45 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| tveita_miljostasjon | Tveita miljøstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/tveita_miljostasjon.json | 59.916287307096 | 10.847120089516 | 45 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 
-### lav koordinatpresisjon (<4 desimaler) (71)
+### lav koordinatpresisjon (<4 desimaler) (72)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -2589,6 +2810,7 @@ Totalt 737 signaler fordelt på 639 steder. Et sted kan ha flere signaler. Kandi
 | vikedalselva | Vikedalselva | natur | data/places/natur/rogaland/vikedalselva/vikedalselva.json | 59.4977 | 5.903 | 650 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | suldalslagen | Suldalslågen | natur | data/places/natur/rogaland/suldalslagen/suldalslagen.json | 59.48333 | 6.25 | 900 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | lisbon_feira_do_livro | Feira do Livro de Lisboa | litteratur | data/places/litteratur/europe/portugal/lisbon/lisbon_feira_do_livro.json | 38.727 | -9.1542 | 350 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
+| romsas_gjenvinningsstasjon | Romsås gjenvinningsstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/romsas_gjenvinningsstasjon.json | 59.964 | 10.8939 | 55 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 
 ### svært stor r (>=500 m) uten coordNote (66)
 
@@ -2844,13 +3066,21 @@ Totalt 737 signaler fordelt på 639 steder. Et sted kan ha flere signaler. Kandi
 | etne_bmx_og_skatepark | Etne BMX- og skatepark | sport | data/places/sport/vestland/etne/etne_bmx_og_skatepark/etne_bmx_og_skatepark.json | 59.66795396985244 | 5.942168981207253 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | skanevik_skatepark | Skånevik skatepark | sport | data/places/sport/vestland/etne/skanevik_skatepark/skanevik_skatepark.json | 59.73 | 5.92 | 220 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 
-### svært liten r (<60 m) for sted som ser utstrakt ut (3)
+### svært liten r (<60 m) for sted som ser utstrakt ut (11)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | norges_bank_bankplassen_4 | Norges Bank – Bankplassen 4 | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/norges_bank_bankplassen_4.json | 59.90866481462448 | 10.741285328997623 | 55 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
 | bla_skilt_helverschous_lokke_munkedamsveien_35 | Blått skilt: Helverschous løkke | historie | data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01/bla_skilt_helverschous_lokke_munkedamsveien_35.json | 59.911785794838465 | 10.7259247905869 | 35 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
 | galleri_schaeffers_gate_5 | Galleri Schaeffers Gate 5 | kunst | data/places/kunst/oslo/places_kunst/galleri_schaeffers_gate_5.json | 59.92127390279403 | 10.762304822006952 | 50 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
+| sofienbergparken_gjenvinningsstasjon | Sofienbergparken gjenvinningsstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/sofienbergparken_gjenvinningsstasjon.json | 59.923564 | 10.7656953 | 55 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
+| lesekiosk_22_vigelandsparken | Lesekiosk 22 – Vigelandsparken | litteratur | data/places/litteratur/oslo/lesekiosk/lesekiosk_22_vigelandsparken.json | 59.9262575 | 10.7031905 | 45 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
+| lesekiosk_42_munkedamsveien | Lesekiosk 42 – Munkedamsveien | litteratur | data/places/litteratur/oslo/lesekiosk/lesekiosk_42_munkedamsveien.json | 59.9122394 | 10.7272333 | 45 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
+| lesekiosk_56_vestgrensa_2 | Lesekiosk 56 – John Colletts plass | litteratur | data/places/litteratur/oslo/lesekiosk/lesekiosk_56_vestgrensa_2.json | 59.9411528 | 10.7296172 | 45 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
+| lesekiosk_1_solli_plass | Lesekiosk 1 – Solli plass | litteratur | data/places/litteratur/oslo/lesekiosk/lesekiosk_1_solli_plass.json | 59.9150102 | 10.7179623 | 45 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
+| lesekiosk_78_olav_kyrres_plass | Lesekiosk 78 – Olav Kyrres plass | litteratur | data/places/litteratur/oslo/lesekiosk/lesekiosk_78_olav_kyrres_plass.json | 59.9192766 | 10.6945543 | 45 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
+| mosseveien_miljostasjon | Mosseveien miljøstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/mosseveien_miljostasjon.json | 59.880436134678 | 10.773377511603 | 45 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
+| tveita_miljostasjon | Tveita miljøstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/tveita_miljostasjon.json | 59.916287307096 | 10.847120089516 | 45 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
 
 ### identisk/nesten identisk lat/lon som annet sted uten forklaring (10)
 

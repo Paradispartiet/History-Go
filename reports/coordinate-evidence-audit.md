@@ -1,8 +1,8 @@
 # Coordinate evidence audit
 
-Generert: 2026-08-11T17:20:45.462Z
+Generert: 2026-08-30T18:58:14.075Z
 
-Aktive steder: 1499
+Aktive steder: 1595
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -116,6 +116,7 @@ Aktive steder: 1499
 | tollbukaia | data/coordinate-evidence/oslo/havnefront/tollbukaia.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | aamot_bru | data/coordinate-evidence/oslo/historie/aamot_bru.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | akershus_festning | data/coordinate-evidence/oslo/historie/akershus_festning.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| akershus_slott | data/coordinate-evidence/oslo/historie/akershus_slott.json | applied_to_place | candidate_ready_for_production | OK |
 | arbeidermuseet | data/coordinate-evidence/oslo/historie/arbeidermuseet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bankall_gard | data/coordinate-evidence/oslo/historie/bankall_gard.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | botsfengselet | data/coordinate-evidence/oslo/historie/botsfengselet.json | applied_to_place | do_not_change_coordinates_yet | OK |

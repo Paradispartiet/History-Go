@@ -1,0 +1,684 @@
+{
+  "schema_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "akershus_slott",
+  "scope": "place",
+  "status": "reviewed",
+  "reviewed_at": "2026-08-30",
+  "profile_hint": "rich_7x7",
+  "review_note": "SNL, Riksantikvaren, offisielle slotts- og festningssider og stedsspesifikk bildedokumentasjon er krysskontrollert; slottet holdes fra hele festningen, museene, kirken og mausoleet.",
+  "sources": {
+    "snl": {
+      "url": "https://snl.no/Akershus_slott_og_festning",
+      "source_type": "reputable_secondary",
+      "review_status": "reviewed",
+      "review_note": "Chronology, castle functions, Renaissance conversion, restoration and postwar use."
+    },
+    "halls": {
+      "url": "https://riksantikvaren.no/eksempelsamling/salene-i-akershus-slott-i-nytt-lys/",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Five halls, restoration history, rose window and current use."
+    },
+    "official": {
+      "url": "https://www.forsvarshistoriskmuseum.no/akershus-slott",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Separate castle identity and visitor context."
+    },
+    "forsvarsbygg": {
+      "url": "https://www.forsvarsbygg.no/eiendomsforvaltning/festningene/akershus-festning",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Castle is a distinct Renaissance castle within the fortress complex."
+    },
+    "friends": {
+      "url": "https://www.slottsvenn.no/",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Association identity and mission."
+    }
+  },
+  "selected_curriculum": {
+    "emne_ids": [
+      "em_his_middelalder_oslo",
+      "em_his_kongemakt_kirke_konflikt",
+      "em_his_stat_institusjoner",
+      "em_his_spor_materialitet",
+      "em_his_restaurering_autentisitet",
+      "em_his_minnesteder_historiebruk"
+    ],
+    "topic_hook_ids": [
+      "his_bevaring_restaurering_autentisitet"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "alois_riegl"
+    ],
+    "works": [
+      "The Modern Cult of Monuments"
+    ]
+  },
+  "profile_decision": {
+    "profile": "rich",
+    "set_count": 7,
+    "questions_per_set": 7,
+    "justification": "Sju selvstendige sett dekker identitet, middelalder, renessanse, restaurering, saler, kilder og syntese."
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/historie/akershus_slott_sets.json",
+      "data/quiz/historie/akerhus_slott_sets.json"
+    ],
+    "active_before": {
+      "categoryId": null,
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "Feilstavet akerhus_slott-quiz gjelder legacy-festningen og beholdes urørt; ny korrekt ID får egen kildeledet quiz."
+    ],
+    "knowledge_migration": {
+      "status": "not_applicable",
+      "retained_rule": "Ingen eldre spørsmål flyttes mellom identiteter."
+    }
+  },
+  "held_back_candidates": [
+    "Generisk festningsquiz",
+    "Slottskirken og mausoleet som proxy-innhold",
+    "Udaterte eller kildefrie restaureringspåstander"
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_akershus_slott_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Slottet er avgrenset fra hele festningen.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "SNL angir et sannsynlig intervall.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_middelalder_oslo"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Håkon V satte i gang middelalderborgen.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kongemakt_kirke_konflikt"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Borgen motsto angrepet.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_middelalder_oslo"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Funksjoner lå rundt to gårdsrom.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Håkon VI hadde residens her.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kongemakt_kirke_konflikt"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Brannen ble et bygningshistorisk brudd.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Christian IV ledet renessanseomformingen.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Omforming gir flere samtidige lag.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Eneveldet endret residensfunksjonen.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Riksantikvaren beskriver fem saler.",
+      "source_ids": [
+        "halls"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Salene har representasjonsbruk.",
+      "source_ids": [
+        "halls"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Systematiske arbeider startet i 1905.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_restaurering_autentisitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Arneberg formet senere planer og rom.",
+      "source_ids": [
+        "halls"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_restaurering_autentisitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Bevaring var et valg mellom tidslag.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_restaurering_autentisitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Materialet viser flere historiske inngrep.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Slottet ble tatt i bruk igjen i 1947.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Det langvarige arbeidet ble fullført i 1962.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_restaurering_autentisitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Restaurering og navngivning skjedde i 1976.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Krigsskaden er dokumentert.",
+      "source_ids": [
+        "halls"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Tegningene ga grunnlag for senere arbeid.",
+      "source_ids": [
+        "halls"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_restaurering_autentisitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_22",
+      "order": 22,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Restaureringen ble fullført i 2023.",
+      "source_ids": [
+        "halls"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_restaurering_autentisitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_23",
+      "order": 23,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Objektet bærer flere dokumenterte lag.",
+      "source_ids": [
+        "halls"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_24",
+      "order": 24,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Fotografiet dokumenterer plassering, ikke full proveniens.",
+      "source_ids": [
+        "halls"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_25",
+      "order": 25,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Foreningen støtter slottet og området.",
+      "source_ids": [
+        "friends"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_26",
+      "order": 26,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "SNL oppgir stiftelsesåret 1951.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_27",
+      "order": 27,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Teknisk år må leses med kildeusikkerhet.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_middelalder_oslo"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_28",
+      "order": 28,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Institusjonskilden beskriver nåværende bruk.",
+      "source_ids": [
+        "halls"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_29",
+      "order": 29,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "SNL sammenfatter flere perioder.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_30",
+      "order": 30,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Fotoet har en avgrenset kildeverdi.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_31",
+      "order": 31,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Sammenligningen krever synlig caveat.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_restaurering_autentisitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_32",
+      "order": 32,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Place-grensen følger fysisk og institusjonell identitet.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_33",
+      "order": 33,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Ny korrekt ID skal ikke omskrive gamle data.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_34",
+      "order": 34,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Middelalderborgen hadde flere funksjoner.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_middelalder_oslo"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_35",
+      "order": 35,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Begrepet belyser borgens husholdning.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_middelalder_oslo"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_36",
+      "order": 36,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Begrepet viser residensfunksjonen.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kongemakt_kirke_konflikt"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_37",
+      "order": 37,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Bruk gir kontinuitet og endring.",
+      "source_ids": [
+        "halls"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_38",
+      "order": 38,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Navn er del av ettertidens historiebruk.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_39",
+      "order": 39,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Restaurering må analyseres som historisk handling.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_restaurering_autentisitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_40",
+      "order": 40,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Kildene utfyller hverandre.",
+      "source_ids": [
+        "halls"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_41",
+      "order": 41,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Kildekritikk undersøker også fravær.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_42",
+      "order": 42,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Brannen endret anleggets videre historie.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_43",
+      "order": 43,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Funksjonen endres uten å forsvinne helt.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_44",
+      "order": 44,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Flere faglige aktører formet valgene.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_restaurering_autentisitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_45",
+      "order": 45,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Konflikten gjelder bevaringssyn.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_restaurering_autentisitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_46",
+      "order": 46,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Taksonomien følger hva objektene faktisk er.",
+      "source_ids": [
+        "halls"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_47",
+      "order": 47,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Productions-samlingen brukes til historiske hendelser.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_48",
+      "order": 48,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Tidsrommet gjør både kontinuitet, brudd og ny bruk synlig.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_restaurering_autentisitet"
+    },
+    {
+      "claim_id": "claim_akershus_slott_quiz_49",
+      "order": 49,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Syntesen holder identitet, tid og kildevalg sammen.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_restaurering_autentisitet"
+    }
+  ]
+}
