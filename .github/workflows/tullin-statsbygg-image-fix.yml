@@ -1,0 +1,90 @@
+name: Repair Tullin Statsbygg image contract
+
+on:
+  push:
+    branches:
+      - work/tullin-completion-20260830
+    paths:
+      - '.github/workflows/tullin-statsbygg-image-fix.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tullin-statsbygg-image-fix
+  cancel-in-progress: true
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/tullin-completion-20260830
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Restore canonical Statsbygg project preview contract
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'data/brands/brands_master.json';
+          const brands = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const statsbygg = brands.find((brand) => brand.id === 'statsbygg');
+          if (!statsbygg) throw new Error('Missing canonical Statsbygg brand');
+          for (const placeId of ['regjeringskvartalet', 'tullin']) {
+            if (!statsbygg.place_ids?.includes(placeId)) {
+              throw new Error(`Statsbygg missing preserved place binding: ${placeId}`);
+            }
+          }
+          if (!statsbygg.source_urls?.some((url) => /nytt-regjeringskvartal/i.test(url))) {
+            throw new Error('Statsbygg Regjeringskvartalet source missing before repair');
+          }
+          if (!statsbygg.source_urls?.some((url) => /stedsanalyseNationaltheatret\.pdf/i.test(url))) {
+            throw new Error('Statsbygg Tullin source missing before repair');
+          }
+
+          delete statsbygg.logo;
+          statsbygg.image = 'bilder/kort/brands/statsbygg_regjeringskvartalet.jpg';
+          statsbygg.imageMeta = {
+            source: 'wikimedia_commons',
+            sourcePage: 'https://commons.wikimedia.org/wiki/File:Official_opening_Regjeringskvartalet_April_13th_2026.jpg',
+            creator: 'Helge Høifødt',
+            credit: 'Helge Høifødt / Wikimedia Commons',
+            license: 'CC BY-SA 4.0',
+            licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+            retrievedAt: '2026-08-03',
+            reviewStatus: 'manually_approved',
+            representationScope: 'Prosjektpreview fra den offisielle åpningen av Regjeringskvartalet; bildet er ikke Statsbyggs logo.'
+          };
+
+          fs.writeFileSync(file, `${JSON.stringify(brands, null, 2)}\n`);
+          console.log('Restored Statsbygg project preview while preserving Tullin and Regjeringskvartalet bindings');
+          NODE
+
+      - name: Validate Regjeringskvartalet image contract
+        run: node --test tests/regjeringskvartalet-image-gates.test.mjs
+
+      - name: Validate Tullin completion contract
+        run: node --test tests/tullin-completion.test.mjs
+
+      - name: Validate repository diff
+        run: git diff --check
+
+      - name: Commit permanent repair and remove temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/tullin-statsbygg-image-fix.yml
+          git add data/brands/brands_master.json
+          git diff --cached --check
+          git commit -m "Restore Statsbygg project preview contract"
+          git push origin HEAD:work/tullin-completion-20260830
