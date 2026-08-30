@@ -1,11 +1,10 @@
-file:///home/runner/work/History-Go/History-Go/tools/finalize-tullin-completion.mjs:29
-  if (!response.ok) throw new Error(`Fetch ${response.status}: ${url}`);
-                          ^
+file:///home/runner/work/History-Go/History-Go/tools/finalize-tullin-completion.mjs:109
+  if (!selected) throw new Error("Statsbygg official logo URL not found on press page");
+                       ^
 
-Error: Fetch 429: https://upload.wikimedia.org/wikipedia/commons/0/00/Tullinl%C3%B8kka%2C_Kristian_Augusts_gate.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
-    at fetchOk (file:///home/runner/work/History-Go/History-Go/tools/finalize-tullin-completion.mjs:29:27)
+Error: Statsbygg official logo URL not found on press page
+    at statsbyggLogo (file:///home/runner/work/History-Go/History-Go/tools/finalize-tullin-completion.mjs:109:24)
     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
-    at async commonsAsset (file:///home/runner/work/History-Go/History-Go/tools/finalize-tullin-completion.mjs:82:37)
-    at async file:///home/runner/work/History-Go/History-Go/tools/finalize-tullin-completion.mjs:126:20
+    at async file:///home/runner/work/History-Go/History-Go/tools/finalize-tullin-completion.mjs:133:27
 
 Node.js v22.23.2
