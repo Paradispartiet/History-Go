@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "klima-vaer-klimasoner-og-endring",
+  "id": "03-datarepresentasjon-og-ekstremer",
+  "title": "Datarepresentasjon og ekstremer",
+  "sections": [
+    {
+      "id": "stasjoner-grid-reanalyse-og-romlig-representasjon",
+      "title": "Stasjoner, grid, reanalyse og romlig representasjon",
+      "method_ids": ["met_geo_klimadata_representativitet", "met_geo_reanalyse_grid_sammenligning"],
+      "boundary": "Et gridpunkt er ikke en værstasjon; interpolasjon og reanalyse representerer areal og modelltilstand med egen oppløsning, bias og usikkerhet.",
+      "paragraphs": [
+        "Værstasjoner måler lokale forhold ved et punkt, mens griddede klimadatasett representerer arealer gjennom interpolasjon, analyse eller modellassimilasjon. En stasjon kan beskrive temperatur og nedbør svært godt akkurat der sensoren står, men representerer ikke automatisk en hel gridcelle, dal eller bydel. Griddede produkter forsøker på sin side å gi romlig kontinuitet, men verdiene er avledet og påvirkes av metode, datatetthet og oppløsning. Derfor må en geografisk analyse gjøre det eksplisitt om en verdi er punktobservasjon, arealrepresentasjon eller modellert analyse før lokale og regionale mønstre sammenlignes.",
+        "Reanalyse kombinerer observasjoner med en konsistent værmodell og dataassimilasjon for å rekonstruere atmosfærens tilstand, og er derfor verken ren observasjon eller fri modellprognose. Fordelen er et sammenhengende romlig og tidsmessig felt der mange atmosfæriske variabler kan analyseres samtidig, også i områder med sparsom stasjonsdekning. Samtidig bærer produktet med seg modellstruktur, assimilasjonssystem og varierende observasjonsgrunnlag gjennom perioden. Reanalyse bør derfor valideres mot relevante observasjoner for den aktuelle variabelen og regionen, særlig når småskala terreng, nedbør eller lokale ekstremer er sentrale.",
+        "Griddet temperatur kan være godt egnet til regional trendanalyse samtidig som lokale mikroklima eller høydekontraster er underrepresentert ved grov romlig oppløsning. En gridcelle kan inneholde dalbunn, skog, bebyggelse og høydedrag som i virkeligheten har ulike temperaturregimer, mens datasettet gir én representativ verdi. Det gjør produktet nyttig for regionale mønstre, men begrenser hvor presist det kan brukes lokalt. Geografisk analyse bør derfor matche spørsmål og oppløsning: regionale trender kan studeres i grove felt, mens nabolagsvarme, inversjoner eller bratte høydegradienter krever finere data eller feltmålinger.",
+        "Sammenligning mellom stasjon, reanalyse og regional modell bør bruke samme variabeldefinisjon, tidsaggregering, referanseperiode og geografiske representasjon. Døgnmiddel og dagsmaksimum kan vise ulike endringer, og en stasjonshøyde kan avvike betydelig fra modellcellens gjennomsnittshøyde. Dersom disse forskjellene ikke harmoniseres, kan metodeavvik se ut som klimafeil eller modellbias. En robust sammenligning dokumenterer derfor variable, enheter, tidssone, sesong, referanseperiode, høyde og arealrepresentasjon og vurderer deretter både nivåforskjeller, variasjon og trend på sammenlignbart grunnlag."
+      ],
+      "paragraphClaimIds": [["geo4-17"],["geo4-18"],["geo4-19"],["geo4-20"]]
+    },
+    {
+      "id": "ekstremer-indekser-returperioder-og-sammensatte-hendelser",
+      "title": "Ekstremer, indekser, returperioder og sammensatte hendelser",
+      "method_ids": ["met_geo_ekstremindeksanalyse", "met_geo_returperiode_og_compound_event"],
+      "boundary": "En rekord eller enkelthendelse er ikke alene bevis for endret ekstremklima; definisjon, observasjonslengde, trend og fysisk konsistens må vurderes.",
+      "paragraphs": [
+        "Klimaekstremer analyseres med eksplisitte indekser for intensitet, frekvens, varighet eller terskeloverskridelse, og resultatet avhenger av hvordan indeksen er definert. Antall varme dager over en fast terskel svarer på et annet spørsmål enn årets høyeste maksimumstemperatur eller lengden på lengste varmeperiode. Derfor må trendkart og regionale sammenligninger bruke samme indeksdefinisjon og datakvalitet. En rekord kan være viktig, men én rekord alene etablerer ikke endring i ekstremklima; analysen styrkes når frekvens, intensitet eller varighet viser konsistente mønstre over en tilstrekkelig lang og homogen serie.",
+        "En returperiode er en statistisk sannsynlighetsbeskrivelse under antatte fordelinger og stasjonaritetsforhold, ikke en kalenderregel om når neste hendelse skal komme. En hendelse med beregnet hundreårs returperiode kan derfor i prinsippet forekomme to år på rad, fordi sannsynligheten gjelder hvert relevant tidsintervall under modellen. Begrepet må knyttes til variabel, terskel, dataperiode og statistisk metode. Når returperioder kommuniseres geografisk, bør både sannsynlighet og modellforutsetninger forklares, slik at kartet ikke leses som en tidsplan og slik at forskjeller mellom områder ikke overtolkes uten hensyn til datagrunnlaget.",
+        "Når klimaet endres kan tidligere estimerte returperioder bli ikke-stasjonære, slik at designverdier må vurderes med oppdaterte data og relevante framtidsforløp. En terskel som var sjelden under et historisk klima kan bli vanligere dersom fordelingen av temperatur, nedbør eller vannføring forskyves. Da er det utilstrekkelig å anta at historiske sannsynligheter gjelder uendret gjennom et anleggs levetid. Geografisk risikoinformasjon bør derfor kombinere observerte trender, oppdaterte ekstremanalyser og scenarioinformasjon, og tydelig skille mellom historisk returperiode og framtidig sannsynlighet under et endret klimasystem.",
+        "Sammensatte hendelser kan oppstå når flere drivere eller farer virker samtidig eller sekvensielt, og kan gi konsekvenser som ikke fanges ved å analysere hver variabel isolert. Høy temperatur og tørke kan for eksempel forsterke hverandre, mens stormflo og kraftig nedbør kan belaste kystnære dreneringssystemer samtidig. Geografisk analyse må derfor undersøke romlig og tidsmessig samvariasjon, ikke bare marginale ekstremverdier. Et compound-event-design bør spesifisere hvilke variable som kombineres, hvilket tidsvindu som teller som samtidig eller sekvensielt, og hvordan felles sannsynlighet og eksponering vurderes."
+      ],
+      "paragraphClaimIds": [["geo4-21"],["geo4-22"],["geo4-23"],["geo4-24"]]
+    }
+  ]
+}
