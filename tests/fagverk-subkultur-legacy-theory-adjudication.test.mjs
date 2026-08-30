@@ -15,14 +15,18 @@ test('Subkultur adjudication covers all legacy sections without invented migrati
   assert.ok(report.rows.every((row) => row.migrationRefs.length === 0));
 });
 
-test('Subkultur adjudication proves route readiness but does not retire the route early', () => {
+test('Subkultur adjudication proves the completed archive and progression-route retirement', () => {
   const report = auditSubkulturLegacyAdjudication();
   assert.equal(report.summary.rawAuditRedirectReady, false);
   assert.equal(report.summary.redirectReady, true);
   assert.equal(report.summary.redirectTarget, 'fagverk.html?subject=subkultur#fagverkIaProgresjon');
-  assert.equal(report.summary.portalRedirected, false);
-  assert.equal(report.summary.portalRoute, 'data/fag/subkultur/merke_subkultur.html');
+  assert.equal(report.summary.portalRedirected, true);
+  assert.equal(report.summary.routeRetired, true);
+  assert.equal(report.summary.portalRoute, 'fagverk.html?subject=subkultur#fagverkIaProgresjon');
   assert.equal(report.summary.legacyBadgeSourcePreserved, true);
+  assert.equal(report.summary.archiveBlobSha, '562ac143c3f26fd7fb6bc817dc320f3b088246bb');
+  assert.equal(report.inputs.archivePage, 'data/fag/subkultur/archive/merke_subkultur_full_teori_legacy_20260830.html');
+  assert.equal(report.inputs.compatibilityPage, 'data/fag/subkultur/merke_subkultur.html');
 });
 
 test('Subkultur adjudication has real canonical owners for every knowledge section', () => {
