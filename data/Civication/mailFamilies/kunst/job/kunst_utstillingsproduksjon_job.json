@@ -1,0 +1,285 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "kunst",
+  "role_scope": "kunst_utstillingsproduksjon",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "utstillingsproduksjon_produksjonsmappe",
+      "purpose": "Trene job gjennom den vedvarende utstillingsproduksjonsmappen.",
+      "learning_focus": [
+        "avhengigheter",
+        "sikkerhet",
+        "mandat",
+        "overlevering"
+      ],
+      "mails": [
+        {
+          "id": "utstillingsproduksjon_job_brief_001",
+          "mail_type": "job",
+          "mail_family": "utstillingsproduksjon_produksjonsmappe",
+          "role_scope": "kunst_utstillingsproduksjon",
+          "phase": "forenoon",
+          "priority": 130,
+          "from": "Nora",
+          "people_ref": "nora_utstillingsprodusent",
+          "place_id": "produksjons_og_avhengighetsbord",
+          "subject": "Briefen mangler eier for tre kritiske avhengigheter",
+          "summary": "Utstillingsproduksjonsmappen står i et konkret job-punkt: briefen mangler eier for tre kritiske avhengigheter. Brief, verk, låne- og forsikringskrav, transport, tilstand, installasjonsmetode, budsjett, sikkerhet og åpningsstatus peker ikke samme vei. Du må oppdatere riktig versjon uten å gjøre koordinering til godkjenning eller la fristen slette et avvik som neste fag eller skift trenger.",
+          "situation": [
+            "Produksjonsmappen viser gjeldende versjon, åpne avhengigheter og hvem som eier neste kontroll.",
+            "En rask lokal løsning vil gi fremdrift, men kan flytte risiko til verk, publikum, økonomi eller neste fag.",
+            "Du må velge et grep som gjør venting, handoff og mulig rework synlig uten å låne myndighet."
+          ],
+          "task_domain": "utstillingsproduksjon",
+          "competency": "avhengighetsstyring_og_sporbarhet",
+          "pressure": "apning_vs_forsvarlighet",
+          "choice_axis": "sporbar_avklaring_vs_uformell_snarløsning",
+          "consequence_axis": "trygg_overlevering_vs_skjult_risiko",
+          "narrative_arc": "brief",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avklar brief i produksjonsmappen",
+              "reply": "Jeg beholder krav, avvik og gjeldende status, markerer det konkrete ventepunktet og sender den avgrensede beslutningen til riktig fag- eller mandateier.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "sikkerhet",
+                "handoff"
+              ],
+              "feedback": "Neste aktør ser hva som er kontrollert, hva som fortsatt venter og hvem som faktisk kan godkjenne. Fremdriften kan bli tregere akkurat nå, men verk, publikum og budsjett beskyttes fordi produksjonsmappen forblir sann gjennom endringen og kan brukes til trygg replanlegging.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukk brief gjennom uformell enighet",
+              "reply": "Jeg behandler muntlig støtte som tilstrekkelig godkjenning og rydder bort ventepunktet slik at installasjon og åpningskommunikasjon kan fortsette nå.",
+              "effect": -1,
+              "tags": [
+                "tempo",
+                "uformell_myndighet",
+                "risiko"
+              ],
+              "feedback": "Den lokale køen beveger seg, men neste fag mottar en plan som ser sannere ut enn grunnlaget. Lånekrav, sikkerhet, kostnad eller faktisk beslutningsstatus blir vanskeligere å rekonstruere, og et senere avvik kan skade både verk, publikum og institusjonell tillit.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "utstillingsproduksjon_job_transport_002",
+          "mail_type": "job",
+          "mail_family": "utstillingsproduksjon_produksjonsmappe",
+          "role_scope": "kunst_utstillingsproduksjon",
+          "phase": "workday",
+          "priority": 129,
+          "from": "Amina",
+          "people_ref": "amina_registrar_kunstlogistikk",
+          "place_id": "mottak_transport_og_tilstand",
+          "subject": "Transporten er bestilt før lånekravene er lukket",
+          "summary": "Utstillingsproduksjonsmappen står i et konkret job-punkt: transporten er bestilt før lånekravene er lukket. Brief, verk, låne- og forsikringskrav, transport, tilstand, installasjonsmetode, budsjett, sikkerhet og åpningsstatus peker ikke samme vei. Du må oppdatere riktig versjon uten å gjøre koordinering til godkjenning eller la fristen slette et avvik som neste fag eller skift trenger.",
+          "situation": [
+            "Produksjonsmappen viser gjeldende versjon, åpne avhengigheter og hvem som eier neste kontroll.",
+            "En rask lokal løsning vil gi fremdrift, men kan flytte risiko til verk, publikum, økonomi eller neste fag.",
+            "Du må velge et grep som gjør venting, handoff og mulig rework synlig uten å låne myndighet."
+          ],
+          "task_domain": "utstillingsproduksjon",
+          "competency": "avhengighetsstyring_og_sporbarhet",
+          "pressure": "apning_vs_forsvarlighet",
+          "choice_axis": "sporbar_avklaring_vs_uformell_snarløsning",
+          "consequence_axis": "trygg_overlevering_vs_skjult_risiko",
+          "narrative_arc": "transport",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avklar transport i produksjonsmappen",
+              "reply": "Jeg beholder krav, avvik og gjeldende status, markerer det konkrete ventepunktet og sender den avgrensede beslutningen til riktig fag- eller mandateier.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "sikkerhet",
+                "handoff"
+              ],
+              "feedback": "Neste aktør ser hva som er kontrollert, hva som fortsatt venter og hvem som faktisk kan godkjenne. Fremdriften kan bli tregere akkurat nå, men verk, publikum og budsjett beskyttes fordi produksjonsmappen forblir sann gjennom endringen og kan brukes til trygg replanlegging.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukk transport gjennom uformell enighet",
+              "reply": "Jeg behandler muntlig støtte som tilstrekkelig godkjenning og rydder bort ventepunktet slik at installasjon og åpningskommunikasjon kan fortsette nå.",
+              "effect": -1,
+              "tags": [
+                "tempo",
+                "uformell_myndighet",
+                "risiko"
+              ],
+              "feedback": "Den lokale køen beveger seg, men neste fag mottar en plan som ser sannere ut enn grunnlaget. Lånekrav, sikkerhet, kostnad eller faktisk beslutningsstatus blir vanskeligere å rekonstruere, og et senere avvik kan skade både verk, publikum og institusjonell tillit.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "utstillingsproduksjon_job_installasjon_003",
+          "mail_type": "job",
+          "mail_family": "utstillingsproduksjon_produksjonsmappe",
+          "role_scope": "kunst_utstillingsproduksjon",
+          "phase": "workday",
+          "priority": 128,
+          "from": "Eirik",
+          "people_ref": "eirik_installasjon_og_sikkerhet",
+          "place_id": "installasjon_og_sikkerhetsflate",
+          "subject": "Installasjonstegningen kolliderer med rømningsveien",
+          "summary": "Utstillingsproduksjonsmappen står i et konkret job-punkt: installasjonstegningen kolliderer med rømningsveien. Brief, verk, låne- og forsikringskrav, transport, tilstand, installasjonsmetode, budsjett, sikkerhet og åpningsstatus peker ikke samme vei. Du må oppdatere riktig versjon uten å gjøre koordinering til godkjenning eller la fristen slette et avvik som neste fag eller skift trenger.",
+          "situation": [
+            "Produksjonsmappen viser gjeldende versjon, åpne avhengigheter og hvem som eier neste kontroll.",
+            "En rask lokal løsning vil gi fremdrift, men kan flytte risiko til verk, publikum, økonomi eller neste fag.",
+            "Du må velge et grep som gjør venting, handoff og mulig rework synlig uten å låne myndighet."
+          ],
+          "task_domain": "utstillingsproduksjon",
+          "competency": "avhengighetsstyring_og_sporbarhet",
+          "pressure": "apning_vs_forsvarlighet",
+          "choice_axis": "sporbar_avklaring_vs_uformell_snarløsning",
+          "consequence_axis": "trygg_overlevering_vs_skjult_risiko",
+          "narrative_arc": "installasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avklar installasjon i produksjonsmappen",
+              "reply": "Jeg beholder krav, avvik og gjeldende status, markerer det konkrete ventepunktet og sender den avgrensede beslutningen til riktig fag- eller mandateier.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "sikkerhet",
+                "handoff"
+              ],
+              "feedback": "Neste aktør ser hva som er kontrollert, hva som fortsatt venter og hvem som faktisk kan godkjenne. Fremdriften kan bli tregere akkurat nå, men verk, publikum og budsjett beskyttes fordi produksjonsmappen forblir sann gjennom endringen og kan brukes til trygg replanlegging.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukk installasjon gjennom uformell enighet",
+              "reply": "Jeg behandler muntlig støtte som tilstrekkelig godkjenning og rydder bort ventepunktet slik at installasjon og åpningskommunikasjon kan fortsette nå.",
+              "effect": -1,
+              "tags": [
+                "tempo",
+                "uformell_myndighet",
+                "risiko"
+              ],
+              "feedback": "Den lokale køen beveger seg, men neste fag mottar en plan som ser sannere ut enn grunnlaget. Lånekrav, sikkerhet, kostnad eller faktisk beslutningsstatus blir vanskeligere å rekonstruere, og et senere avvik kan skade både verk, publikum og institusjonell tillit.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "utstillingsproduksjon_job_apningskontroll_004",
+          "mail_type": "job",
+          "mail_family": "utstillingsproduksjon_produksjonsmappe",
+          "role_scope": "kunst_utstillingsproduksjon",
+          "phase": "workday",
+          "priority": 127,
+          "from": "Sara",
+          "people_ref": "sara_kunstner_og_apningskontakt",
+          "place_id": "apningsberedskap_og_overlevering",
+          "subject": "Åpningslisten skjuler to ulukkede restpunkter",
+          "summary": "Utstillingsproduksjonsmappen står i et konkret job-punkt: åpningslisten skjuler to ulukkede restpunkter. Brief, verk, låne- og forsikringskrav, transport, tilstand, installasjonsmetode, budsjett, sikkerhet og åpningsstatus peker ikke samme vei. Du må oppdatere riktig versjon uten å gjøre koordinering til godkjenning eller la fristen slette et avvik som neste fag eller skift trenger.",
+          "situation": [
+            "Produksjonsmappen viser gjeldende versjon, åpne avhengigheter og hvem som eier neste kontroll.",
+            "En rask lokal løsning vil gi fremdrift, men kan flytte risiko til verk, publikum, økonomi eller neste fag.",
+            "Du må velge et grep som gjør venting, handoff og mulig rework synlig uten å låne myndighet."
+          ],
+          "task_domain": "utstillingsproduksjon",
+          "competency": "avhengighetsstyring_og_sporbarhet",
+          "pressure": "apning_vs_forsvarlighet",
+          "choice_axis": "sporbar_avklaring_vs_uformell_snarløsning",
+          "consequence_axis": "trygg_overlevering_vs_skjult_risiko",
+          "narrative_arc": "apningskontroll",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avklar apningskontroll i produksjonsmappen",
+              "reply": "Jeg beholder krav, avvik og gjeldende status, markerer det konkrete ventepunktet og sender den avgrensede beslutningen til riktig fag- eller mandateier.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "sikkerhet",
+                "handoff"
+              ],
+              "feedback": "Neste aktør ser hva som er kontrollert, hva som fortsatt venter og hvem som faktisk kan godkjenne. Fremdriften kan bli tregere akkurat nå, men verk, publikum og budsjett beskyttes fordi produksjonsmappen forblir sann gjennom endringen og kan brukes til trygg replanlegging.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukk apningskontroll gjennom uformell enighet",
+              "reply": "Jeg behandler muntlig støtte som tilstrekkelig godkjenning og rydder bort ventepunktet slik at installasjon og åpningskommunikasjon kan fortsette nå.",
+              "effect": -1,
+              "tags": [
+                "tempo",
+                "uformell_myndighet",
+                "risiko"
+              ],
+              "feedback": "Den lokale køen beveger seg, men neste fag mottar en plan som ser sannere ut enn grunnlaget. Lånekrav, sikkerhet, kostnad eller faktisk beslutningsstatus blir vanskeligere å rekonstruere, og et senere avvik kan skade både verk, publikum og institusjonell tillit.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

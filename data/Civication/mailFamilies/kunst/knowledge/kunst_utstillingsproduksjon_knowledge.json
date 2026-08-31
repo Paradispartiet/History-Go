@@ -1,0 +1,87 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "kunst",
+  "role_scope": "kunst_utstillingsproduksjon",
+  "mail_type": "knowledge",
+  "families": [
+    {
+      "id": "utstillingsproduksjon_historie_materialitet",
+      "purpose": "Trene knowledge gjennom den vedvarende utstillingsproduksjonsmappen.",
+      "learning_focus": [
+        "avhengigheter",
+        "sikkerhet",
+        "mandat",
+        "overlevering"
+      ],
+      "mails": [
+        {
+          "id": "utstillingsproduksjon_knowledge_materialitet_proveniens_001",
+          "mail_type": "knowledge",
+          "mail_family": "utstillingsproduksjon_historie_materialitet",
+          "role_scope": "kunst_utstillingsproduksjon",
+          "phase": "forenoon",
+          "priority": 130,
+          "from": "Amina",
+          "people_ref": "amina_registrar_kunstlogistikk",
+          "place_id": "mottak_transport_og_tilstand",
+          "subject": "Historien endrer håndteringsspørsmålet, ikke godkjenningen",
+          "summary": "Utstillingsproduksjonsmappen står i et konkret knowledge-punkt: historien endrer håndteringsspørsmålet, ikke godkjenningen. Brief, verk, låne- og forsikringskrav, transport, tilstand, installasjonsmetode, budsjett, sikkerhet og åpningsstatus peker ikke samme vei. Du må oppdatere riktig versjon uten å gjøre koordinering til godkjenning eller la fristen slette et avvik som neste fag eller skift trenger.",
+          "situation": [
+            "Produksjonsmappen viser gjeldende versjon, åpne avhengigheter og hvem som eier neste kontroll.",
+            "En rask lokal løsning vil gi fremdrift, men kan flytte risiko til verk, publikum, økonomi eller neste fag.",
+            "Du må velge et grep som gjør venting, handoff og mulig rework synlig uten å låne myndighet."
+          ],
+          "task_domain": "utstillingsproduksjon",
+          "competency": "avhengighetsstyring_og_sporbarhet",
+          "pressure": "apning_vs_forsvarlighet",
+          "choice_axis": "sporbar_avklaring_vs_uformell_snarløsning",
+          "consequence_axis": "trygg_overlevering_vs_skjult_risiko",
+          "narrative_arc": "materialitet_proveniens",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avklar materialitet_proveniens i produksjonsmappen",
+              "reply": "Jeg beholder krav, avvik og gjeldende status, markerer det konkrete ventepunktet og sender den avgrensede beslutningen til riktig fag- eller mandateier.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "sikkerhet",
+                "handoff"
+              ],
+              "feedback": "Neste aktør ser hva som er kontrollert, hva som fortsatt venter og hvem som faktisk kan godkjenne. Fremdriften kan bli tregere akkurat nå, men verk, publikum og budsjett beskyttes fordi produksjonsmappen forblir sann gjennom endringen og kan brukes til trygg replanlegging.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukk materialitet_proveniens gjennom uformell enighet",
+              "reply": "Jeg behandler muntlig støtte som tilstrekkelig godkjenning og rydder bort ventepunktet slik at installasjon og åpningskommunikasjon kan fortsette nå.",
+              "effect": -1,
+              "tags": [
+                "tempo",
+                "uformell_myndighet",
+                "risiko"
+              ],
+              "feedback": "Den lokale køen beveger seg, men neste fag mottar en plan som ser sannere ut enn grunnlaget. Lånekrav, sikkerhet, kostnad eller faktisk beslutningsstatus blir vanskeligere å rekonstruere, og et senere avvik kan skade både verk, publikum og institusjonell tillit.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

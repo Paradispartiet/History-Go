@@ -1,18 +1,193 @@
 {
-  "schema":"civication_work_grammar_v2","version":2,
-  "category":"kunst","role_scope":"kunst_utstillingsproduksjon","role_id":"kunst_utstillingsproduksjon",
-  "badge_binding":{"badge_id":"kunst","badge_titles":["Produksjonsassistent","Utstillingskoordinator","Utstillingsprodusent"]},
-  "work_world":"Utstillingsproduksjon der kunstnerisk intensjon må realiseres innen konkrete rammer for tid, rom, sikkerhet, økonomi og logistikk.",
-  "task_families":["produksjonsplan","transport_og_logistikk","installasjon","leverandoroppfolging","budsjett_og_innkjop","apningsberedskap"],
-  "work_loops":["brief -> avhengigheter -> plan -> gjennomfor -> kontroll -> avvik -> lukking","endring -> konsekvensvurdering -> godkjenning -> replanlegg -> informer -> dokumenter"],
-  "pressure_axes":["kunstnerisk_intensjon_vs_gjennomforbarhet","frist_vs_sikkerhet","budsjett_vs_kvalitet"],
-  "practice_stories":[
-    {"id":"transportforsinkelse","setup":"Et sentralt verk blir forsinket i transporten.","decision":"Replanlegg installasjonen rundt dokumenterte avhengigheter og informer alle berørte.","learning":"god produksjon tåler endring uten å skjule konsekvenser"},
-    {"id":"sen_endring","setup":"Kunstneren ønsker en stor endring to dager før åpning.","decision":"Vurder sikkerhet, tid, budsjett og mandat før endringen godkjennes eller avslås.","learning":"kunstnerisk frihet må kobles til gjennomførbarhet"},
-    {"id":"budsjettavvik","setup":"En kritisk leveranse blir dyrere enn planlagt.","decision":"Synliggjør avviket og be om beslutning før ny forpliktelse tas.","learning":"produksjonsansvar inkluderer økonomisk sporbarhet"},
-    {"id":"usikker_installasjon","setup":"En installasjon kan skade både verk og publikum.","decision":"Stans arbeidet og hent riktig teknisk eller konserveringsfaglig godkjenning.","learning":"åpningstidspunkt trumfer ikke sikkerhet"},
-    {"id":"leverandorbrudd","setup":"En leverandør dokumenterer ikke nødvendige sikkerhetskrav.","decision":"Ikke godkjenn leveransen før kravene er oppfylt eller alternativ løsning er valgt.","learning":"eksterne leverandører reduserer ikke institusjonens ansvar"}
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "kunst",
+  "role_scope": "kunst_utstillingsproduksjon",
+  "role_id": "kunst_utstillingsproduksjon",
+  "badge_binding": {
+    "badge_id": "kunst",
+    "badge_titles": [
+      "Produksjonsassistent",
+      "Utstillingskoordinator",
+      "Utstillingsprodusent"
+    ]
+  },
+  "work_world": "Utstillingsproduksjon der kunstnerisk intensjon må realiseres innen konkrete rammer for tid, rom, sikkerhet, økonomi og logistikk.",
+  "task_families": [
+    "produksjonsplan",
+    "transport_og_logistikk",
+    "installasjon",
+    "leverandoroppfolging",
+    "budsjett_og_innkjop",
+    "apningsberedskap"
   ],
-  "quality_axes":["planpresisjon","sikkerhet","budsjettkontroll","logistikk","kommunikasjon","avvikssporbarhet"],
-  "authority_boundary":{"may":["koordinere produksjon","stanse arbeid ved risiko","bestille innen delegert ramme"],"may_not":["endre kunstnerisk innhold uten mandat","overskride budsjettfullmakt","omgå forsikrings- eller lånekrav","godkjenne uforsvarlig installasjon"]}
+  "work_loops": [
+    "brief -> avhengigheter -> plan -> gjennomfor -> kontroll -> avvik -> lukking",
+    "endring -> konsekvensvurdering -> godkjenning -> replanlegg -> informer -> dokumenter"
+  ],
+  "pressure_axes": [
+    "kunstnerisk_intensjon_vs_gjennomforbarhet",
+    "frist_vs_sikkerhet",
+    "budsjett_vs_kvalitet"
+  ],
+  "practice_stories": [
+    {
+      "id": "transportforsinkelse",
+      "setup": "Et sentralt verk blir forsinket i transporten.",
+      "decision": "Replanlegg installasjonen rundt dokumenterte avhengigheter og informer alle berørte.",
+      "learning": "god produksjon tåler endring uten å skjule konsekvenser"
+    },
+    {
+      "id": "sen_endring",
+      "setup": "Kunstneren ønsker en stor endring to dager før åpning.",
+      "decision": "Vurder sikkerhet, tid, budsjett og mandat før endringen godkjennes eller avslås.",
+      "learning": "kunstnerisk frihet må kobles til gjennomførbarhet"
+    },
+    {
+      "id": "budsjettavvik",
+      "setup": "En kritisk leveranse blir dyrere enn planlagt.",
+      "decision": "Synliggjør avviket og be om beslutning før ny forpliktelse tas.",
+      "learning": "produksjonsansvar inkluderer økonomisk sporbarhet"
+    },
+    {
+      "id": "usikker_installasjon",
+      "setup": "En installasjon kan skade både verk og publikum.",
+      "decision": "Stans arbeidet og hent riktig teknisk eller konserveringsfaglig godkjenning.",
+      "learning": "åpningstidspunkt trumfer ikke sikkerhet"
+    },
+    {
+      "id": "leverandorbrudd",
+      "setup": "En leverandør dokumenterer ikke nødvendige sikkerhetskrav.",
+      "decision": "Ikke godkjenn leveransen før kravene er oppfylt eller alternativ løsning er valgt.",
+      "learning": "eksterne leverandører reduserer ikke institusjonens ansvar"
+    }
+  ],
+  "quality_axes": [
+    "planpresisjon",
+    "sikkerhet",
+    "budsjettkontroll",
+    "logistikk",
+    "kommunikasjon",
+    "avvikssporbarhet"
+  ],
+  "authority_boundary": {
+    "may": [
+      "koordinere produksjon",
+      "stanse arbeid ved risiko",
+      "bestille innen delegert ramme"
+    ],
+    "may_not": [
+      "endre kunstnerisk innhold uten mandat",
+      "overskride budsjettfullmakt",
+      "omgå forsikrings- eller lånekrav",
+      "godkjenne uforsvarlig installasjon"
+    ]
+  },
+  "actor_grammar": [
+    {
+      "id": "nora_utstillingsprodusent",
+      "name": "Nora",
+      "role": "utstillingsprodusent",
+      "workplace_ids": [
+        "produksjons_og_avhengighetsbord"
+      ]
+    },
+    {
+      "id": "amina_registrar_kunstlogistikk",
+      "name": "Amina",
+      "role": "registrar og kunstlogistikkansvarlig",
+      "workplace_ids": [
+        "mottak_transport_og_tilstand"
+      ]
+    },
+    {
+      "id": "eirik_installasjon_og_sikkerhet",
+      "name": "Eirik",
+      "role": "installasjons- og sikkerhetsleder",
+      "workplace_ids": [
+        "installasjon_og_sikkerhetsflate"
+      ]
+    },
+    {
+      "id": "sara_kunstner_og_apningskontakt",
+      "name": "Sara",
+      "role": "kunstner- og åpningskontakt",
+      "workplace_ids": [
+        "apningsberedskap_og_overlevering"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "produksjons_og_avhengighetsbord",
+      "name": "Produksjons- og avhengighetsbordet",
+      "function": "Her bindes brief, tidsplan, budsjett, eier, avhengighet og beslutningsstatus sammen før arbeid bestilles."
+    },
+    {
+      "id": "mottak_transport_og_tilstand",
+      "name": "Mottak, transport og tilstand",
+      "function": "Her kontrolleres lånevilkår, forsikring, transport, emballasje, courier og tilstand før verket overtas eller flyttes."
+    },
+    {
+      "id": "installasjon_og_sikkerhetsflate",
+      "name": "Installasjons- og sikkerhetsflaten",
+      "function": "Her møter kunstnerisk intensjon bygg, teknikk, løft, strøm, rømningsvei og publikumsrisiko i en godkjennbar arbeidssekvens."
+    },
+    {
+      "id": "apningsberedskap_og_overlevering",
+      "name": "Åpningsberedskap og overlevering",
+      "function": "Her kontrolleres restpunkter, merking, renhold, formidling, gjesteflyt, ansvar og dokumentert lukking før utstillingen åpner og driften overtar."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "utstillingsproduksjonsmappe",
+    "description": "En versjonert produksjonsmappe som beholder brief, avtaler, låne- og forsikringskrav, transport, tilstand, tegninger, budsjett, avvik, beslutninger og closeout.",
+    "states": [
+      "brief_mottatt",
+      "avhengigheter_kartlagt",
+      "venter_pa_godkjenning",
+      "under_gjennomforing",
+      "under_kontroll",
+      "apningsklar",
+      "overlevert"
+    ],
+    "handoff_rule": "Neste aktør overtar gjeldende versjon, åpne krav, eier, frist og risiko; handoff sletter aldri tidligere avvik eller godkjenningsgrunnlag."
+  },
+  "rhythm_contract": {
+    "loop": "brief -> avhengigheter -> waiting/venting på lån, transport eller godkjenning -> handoff -> installasjon -> kontroll -> rework -> åpning -> closeout",
+    "waiting_states": [
+      "lånevilkår",
+      "transportstatus",
+      "teknisk_godkjenning",
+      "budsjettbeslutning"
+    ],
+    "rework_rule": "Endret verk, vilkår eller installasjonsmetode gjenåpner bare berørte avhengigheter, men krever ny konsekvensvurdering og versjon."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_kunst_materialitet_utstilling_og_institusjon",
+      "badge_id": "kunst",
+      "use": "Gir historisk kontekst for utstillingsformat, materialitet, proveniens og institusjonell praksis, men gir ingen låne-, forsikrings-, konserverings- eller budsjettmyndighet."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "direct_career_offer",
+    "first_object": "utstillingsproduksjonsmappe",
+    "first_task": "Registrer brief, verk, krav, avhengigheter og beslutningseiere før første bestilling."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "kunst_utstillingsproduksjon",
+    "no_generic_fallback": true
+  }
 }

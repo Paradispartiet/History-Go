@@ -15,14 +15,14 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 
 ## Sammendrag
 
-- complete_reference_v2: 34
+- complete_reference_v2: 35
 - complete_reference: 0
 - playable_v1: 1
 - partial_pack: 23
 - role_model_only: 194
 - generated_stub: 0
 - broken_mapping: 0
-- missing: 44
+- missing: 43
 
 ## Rolleindeks
 
@@ -95,7 +95,6 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | kunst | kunst_kuratering_og_program | kunst_kuratering_og_program | kunst_kuratering_og_program | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | kunst | kunst_museumsledelse | kunst_museumsledelse | kunst_museumsledelse | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | kunst | kunst_publikum_og_formidling | kunst_publikum_og_formidling | kunst_publikum_og_formidling | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
-| kunst | kunst_utstillingsproduksjon | kunst_utstillingsproduksjon | kunst_utstillingsproduksjon | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | kunst | kunst_kunstnerisk_ledelse | kunst_kunstnerisk_ledelse | Kunstnerisk ledelse | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | kunst | kunstnerisk_leder | kunst_kunstnerisk_leder | Kunstnerisk leder | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | kunst | kurator | kunst_kurator | Kurator | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
@@ -105,6 +104,7 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | kunst | senior_konservator | kunst_senior_konservator | Senior konservator | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | kunst | senior_kurator | kunst_senior_kurator | Senior kurator | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | kunst | utstillingskoordinator | kunst_utstillingskoordinator | Utstillingskoordinator | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
+| kunst | kunst_utstillingsproduksjon | kunst_utstillingsproduksjon | Utstillingsproduksjon og koordinering | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | kunst | utstillingsprodusent | kunst_utstillingsprodusent | Utstillingsprodusent | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | kunst | vertskap_museum_galleri | kunst_vertskap_museum_galleri | Vertskap (museum/galleri) | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | litteratur | aktiv_leser | litteratur_aktiv_leser | Aktiv leser | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
