@@ -33,6 +33,38 @@ jobs:
           git merge --no-edit origin/main
       - name: Curate four completed Place Fagverk packages
         run: node tools/finalize-fagverk-legacy-infrastructure-industry.mjs
+      - name: Strengthen three guiding questions
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const edits = [
+            {
+              file: 'data/places/natur/oslo/places_oslo_natur_akerselvarute/ankerbrua.json',
+              from: 'Hvordan bør motstridende motivnavn håndteres kildekritisk?',
+              to: 'Hvordan bør motstridende motivnavn håndteres kildekritisk når flere fagkilder peker samme vei?'
+            },
+            {
+              file: 'data/places/historie/oslo/places_historie_added_batch_01/botsfengselet.json',
+              from: 'Hvordan regulerte rommene bevegelse og kontakt?',
+              to: 'Hvordan regulerte rommene bevegelse og kontakt mellom innsatte i hverdagen?'
+            },
+            {
+              file: 'data/places/naeringsliv/oslo/places_naeringsliv/schous_bryggeri.json',
+              from: 'Hva forteller bygningsnavnene om historisk arbeidsdeling?',
+              to: 'Hva forteller bygningsnavnene om historisk arbeidsdeling mellom bryggeriets ulike produksjonstrinn?'
+            }
+          ];
+          for (const edit of edits) {
+            const doc = JSON.parse(fs.readFileSync(edit.file, 'utf8'));
+            const questions = doc.fagverk?.guiding_questions;
+            if (!Array.isArray(questions)) throw new Error(`${edit.file}: mangler guiding_questions`);
+            const index = questions.indexOf(edit.from);
+            if (index === -1) throw new Error(`${edit.file}: fant ikke forventet kort spørsmål`);
+            questions[index] = edit.to;
+            fs.writeFileSync(edit.file, `${JSON.stringify(doc, null, 2)}\n`);
+            console.log(`Strengthened guiding question: ${doc.id}`);
+          }
+          NODE
       - name: Rebuild deterministic quiz contexts
         run: |
           node scripts/build-quiz-production-context.mjs --category by --target ankerbrua --output data/quiz/production_context/by/ankerbrua.json
