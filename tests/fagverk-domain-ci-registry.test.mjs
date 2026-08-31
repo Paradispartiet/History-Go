@@ -10,8 +10,8 @@ import {
 
 const registries = loadRegistries();
 
-test("Helse, Utdanning, Sosiologi/antropologi and Geografi use one domain CI registry contract", () => {
-  assert.deepEqual(Object.keys(registries), ["helse", "utdanning", "sosiologi_antropologi", "geografi"]);
+test("Helse, Utdanning, Sosiologi/antropologi, Geografi and Språk/lingvistikk use one domain CI registry contract", () => {
+  assert.deepEqual(Object.keys(registries), ["helse", "utdanning", "sosiologi_antropologi", "geografi", "sprak_lingvistikk"]);
   for (const [subject, registry] of Object.entries(registries)) {
     const validated = validateRegistry(registry);
     assert.equal(registry.subject, subject);
@@ -40,8 +40,12 @@ test("domain routing selects affected subjects and fans shared changes into one 
   }), ["geografi"]);
   assert.deepEqual(selectSubjects({
     registries,
+    changedFiles: ["data/fag/litteratur/sprak_lingvistikk/production_registry_v1.json"],
+  }), ["sprak_lingvistikk"]);
+  assert.deepEqual(selectSubjects({
+    registries,
     changedFiles: ["data/fagverk/subject_inventory.json"],
-  }), ["helse", "utdanning", "sosiologi_antropologi", "geografi"]);
+  }), ["helse", "utdanning", "sosiologi_antropologi", "geografi", "sprak_lingvistikk"]);
 });
 
 test("shared domain workflow triggers on every Geografi surface routed by the registry", () => {
@@ -55,5 +59,19 @@ test("shared domain workflow triggers on every Geografi surface routed by the re
     ".github/ci/fagverk-geografi-domain-registry-v1.json",
   ]) {
     assert.match(workflow, new RegExp(pathPattern.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")), `workflow mangler Geografi-trigger ${pathPattern}`);
+  }
+});
+
+test("shared domain workflow triggers on every Språk & lingvistikk surface routed by the registry", () => {
+  const workflow = readFileSync(".github/workflows/fagverk-domain-registry.yml", "utf8");
+  for (const pathPattern of [
+    "data/fag/litteratur/sprak_lingvistikk/**",
+    "data/fagverk/litteratur/sprak_lingvistikk/**",
+    "reports/fagverk/sprak-lingvistikk-*.json",
+    "scripts/*sprak-lingvistikk*",
+    "tests/sprak-lingvistikk-*.test.mjs",
+    ".github/ci/fagverk-sprak-lingvistikk-domain-registry-v1.json",
+  ]) {
+    assert.match(workflow, new RegExp(pathPattern.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")), `workflow mangler Språk & lingvistikk-trigger ${pathPattern}`);
   }
 });
