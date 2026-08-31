@@ -6,19 +6,19 @@ Rapporten måler om runtime kan presentere tilgjengelige canonical People-felt. 
 
 People-produksjon, claims og ferdigstatus eies av `docs/PEOPLE_PROFILE_CANONICAL.md`. Profiler uten v1-claims er `legacy_unreviewed`, selv når presentasjonsstatusen er `complete`.
 
-Source fingerprint: `ee01ba39b991b7d4203935b439c629b6b7fb303816f8c10334b20e07f4832106`
+Source fingerprint: `ea348571c40388a747d7b9ebc0869be0d9a615005c34d26273b94067587717d7`
 
 ## Sammendrag
 
 | Måling | Antall |
 |---|---:|
-| Personer | 1421 |
+| Personer | 1424 |
 | Presentasjon complete | 68 |
-| Presentasjon strong | 405 |
+| Presentasjon strong | 408 |
 | Presentasjon partial | 933 |
 | Presentasjon sparse | 15 |
 | People Profile v1 ready | 76 |
-| Legacy uten v1-claims | 1345 |
+| Legacy uten v1-claims | 1348 |
 | Ødelagte bildereferanser | 280 |
 | Eksplisitt initialfallback | 994 |
 | Implisitt initialfallback | 26 |
@@ -29,14 +29,14 @@ Source fingerprint: `ee01ba39b991b7d4203935b439c629b6b7fb303816f8c10334b20e07f48
 | Presentasjonsdel | Dekket | Andel |
 |---|---:|---:|
 | identity | 128 | 9 % |
-| popupDesc | 1400 | 98.5 % |
+| popupDesc | 1403 | 98.5 % |
 | lifeData | 62 | 4.4 % |
 | contributionsDeclared | 61 | 4.3 % |
 | educationDeclared | 61 | 4.3 % |
-| practiceDeclared | 1403 | 98.7 % |
-| placeGrounding | 1421 | 100 % |
-| sources | 462 | 32.5 % |
-| imageContract | 1141 | 80.3 % |
+| practiceDeclared | 1406 | 98.7 % |
+| placeGrounding | 1424 | 100 % |
+| sources | 465 | 32.7 % |
+| imageContract | 1144 | 80.3 % |
 | profileStandard | 76 | 5.3 % |
 
 ## Kategorier
@@ -44,7 +44,7 @@ Source fingerprint: `ee01ba39b991b7d4203935b439c629b6b7fb303816f8c10334b20e07f48
 | Kategori | Totalt | Complete | Strong | Partial | Sparse | v1 ready | Legacy | Snitt |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
 | sport | 324 | 0 | 24 | 300 | 0 | 0 | 324 | 62.4 |
-| historie | 235 | 3 | 113 | 119 | 0 | 3 | 232 | 65.2 |
+| historie | 238 | 3 | 116 | 119 | 0 | 3 | 235 | 65.3 |
 | litteratur | 172 | 36 | 20 | 116 | 0 | 16 | 156 | 70.5 |
 | musikk | 124 | 0 | 15 | 109 | 0 | 0 | 124 | 62.2 |
 | politikk | 114 | 5 | 50 | 59 | 0 | 17 | 97 | 68.1 |
