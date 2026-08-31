@@ -1,0 +1,647 @@
+{
+  "schema": "history_go_sprak_lingvistikk_corpus_field_documentation_language_resources_reproducibility_source_claim_brief_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-31",
+  "status": "source_first_ready_not_materialized",
+  "subject_id": "litteratur",
+  "canonical_subcategory_id": "sprak_lingvistikk",
+  "domain": {
+    "ordinal": 12,
+    "id": "korpuslingvistikk_feltdokumentasjon_sprakressurser_reproduserbarhet",
+    "title": "Korpuslingvistikk, feltdokumentasjon, språkressurser og reproduserbarhet",
+    "production_mode": "new_production_required"
+  },
+  "source_strategy": {
+    "source_first": true,
+    "inspectable_urls_required": true,
+    "claim_level_trace_required": true,
+    "minimum_sources_per_claim": 2,
+    "fulltext_materialization_required_before_counting": true,
+    "strict_completion_field": true,
+    "metadata_and_provenance_required": true,
+    "ethical_access_and_data_governance_required": true
+  },
+  "sources": [
+    {
+      "id": "corp01-biber-representativeness",
+      "title": "Representativeness in corpus design",
+      "publisher": "Literary and Linguistic Computing / Oxford University Press",
+      "url": "https://doi.org/10.1093/llc/8.4.243",
+      "retrieval_status": "verified_2026-08-31"
+    },
+    {
+      "id": "corp02-olac",
+      "title": "OLAC: Open Language Archives Community",
+      "publisher": "Open Language Archives Community",
+      "url": "https://www.language-archives.org/",
+      "retrieval_status": "verified_2026-08-31"
+    },
+    {
+      "id": "corp03-clarin-cmdi",
+      "title": "Component Metadata Infrastructure (CMDI)",
+      "publisher": "CLARIN ERIC",
+      "url": "https://www.clarin.eu/content/component-metadata",
+      "retrieval_status": "verified_2026-08-31"
+    },
+    {
+      "id": "corp04-elar-lameta",
+      "title": "Introducing lameta",
+      "publisher": "Endangered Languages Archive",
+      "url": "https://blogs.soas.ac.uk/elar/2020/04/30/introducing-lameta/",
+      "retrieval_status": "verified_2026-08-31"
+    },
+    {
+      "id": "corp05-paradisec",
+      "title": "Pacific and Regional Archive for Digital Sources in Endangered Cultures",
+      "publisher": "PARADISEC",
+      "url": "https://www.paradisec.org.au/",
+      "retrieval_status": "verified_2026-08-31"
+    },
+    {
+      "id": "corp06-elan",
+      "title": "ELAN annotation tool",
+      "publisher": "The Language Archive / Max Planck Institute for Psycholinguistics",
+      "url": "https://archive.mpi.nl/tla/elan",
+      "retrieval_status": "verified_2026-08-31"
+    },
+    {
+      "id": "corp07-glottolog",
+      "title": "Glottolog 5.3",
+      "publisher": "Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://glottolog.org/",
+      "retrieval_status": "verified_2026-08-31"
+    },
+    {
+      "id": "corp08-ud",
+      "title": "Universal Dependencies",
+      "publisher": "Universal Dependencies community",
+      "url": "https://universaldependencies.org/",
+      "retrieval_status": "verified_2026-08-31"
+    },
+    {
+      "id": "corp09-talkbank",
+      "title": "Understanding Spoken Language through TalkBank",
+      "publisher": "Behavior Research Methods / PMC",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6546550/",
+      "retrieval_status": "verified_2026-08-31"
+    },
+    {
+      "id": "corp10-fair",
+      "title": "The FAIR Guiding Principles for scientific data management and stewardship",
+      "publisher": "Scientific Data",
+      "url": "https://doi.org/10.1038/sdata.2016.18",
+      "retrieval_status": "verified_2026-08-31"
+    },
+    {
+      "id": "corp11-care",
+      "title": "CARE Principles for Indigenous Data Governance",
+      "publisher": "Global Indigenous Data Alliance",
+      "url": "https://www.gida-global.org/careprinciples",
+      "retrieval_status": "verified_2026-08-31"
+    },
+    {
+      "id": "corp12-coretrustseal",
+      "title": "CoreTrustSeal trustworthy digital repository requirements and FAQ",
+      "publisher": "CoreTrustSeal",
+      "url": "https://www.coretrustseal.org/why-certification/frequently-asked-questions/",
+      "retrieval_status": "verified_2026-08-31"
+    },
+    {
+      "id": "corp13-dataverse",
+      "title": "Dataset and File Management",
+      "publisher": "Dataverse.org",
+      "url": "https://guides.dataverse.org/en/latest/user/dataset-management.html",
+      "retrieval_status": "verified_2026-08-31"
+    }
+  ],
+  "topic_briefs": [
+    {
+      "id": "korpusdesign-sampling-og-representativitet",
+      "title": "Korpusdesign, sampling og representativitet",
+      "method_ids": [
+        "met_corpus_01_a",
+        "met_corpus_01_b"
+      ],
+      "boundary": "Corpus design må definere target population, sampling frame, sampling unit, register/genre strata, inclusion criteria og coverage før representativeness vurderes; størrelse alene gjør ikke et korpus representativt.",
+      "source_ids": [
+        "corp01-biber-representativeness",
+        "corp09-talkbank",
+        "corp13-dataverse"
+      ],
+      "planned_claims": [
+        {
+          "id": "corp-01",
+          "text": "Et forskningskorpus er et utvalg fra en definert målpopulasjon, og generalisering krever at target population og sampling frame er eksplisitt formulert før tekstene eller opptakene velges.",
+          "source_ids": [
+            "corp01-biber-representativeness",
+            "corp13-dataverse"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "corp-02",
+          "text": "Representativitet avhenger av variasjonen som er relevant for forskningsspørsmålet, ikke bare av antall tokens; register, genre, speaker profile, tid og modalitet kan derfor være nødvendige strata.",
+          "source_ids": [
+            "corp01-biber-representativeness",
+            "corp09-talkbank"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "corp-03",
+          "text": "Sampling unit må skilles fra analyseenhet: et dokument, en speaker eller en session kan trekkes inn i korpuset, mens analysen senere kan operere på tokens, utterances eller annotations.",
+          "source_ids": [
+            "corp01-biber-representativeness",
+            "corp13-dataverse"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "corp-04",
+          "text": "Corpus coverage og sampling bias må rapporteres som begrensninger slik at frekvenser og modeller ikke presenteres som egenskaper ved et språk når de bare dekker en smal datakilde.",
+          "source_ids": [
+            "corp01-biber-representativeness",
+            "corp09-talkbank"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "transkripsjon-annotasjon-og-kvalitetsproveniens",
+      "title": "Transkripsjon, annotasjon og kvalitetsproveniens",
+      "method_ids": [
+        "met_corpus_02_a",
+        "met_corpus_02_b"
+      ],
+      "boundary": "Transcription og annotation må ha eksplisitt tier/schema, guidelines, annotator/version provenance og quality-control; ELAN tiers, UD labels eller andre annotation schemes er representasjoner som må kunne spores til media/text og beslutningsregler.",
+      "source_ids": [
+        "corp06-elan",
+        "corp08-ud",
+        "corp13-dataverse"
+      ],
+      "planned_claims": [
+        {
+          "id": "corp-05",
+          "text": "Time-aligned annotation kobler tekstlige beskrivelser til bestemte deler av audio eller video, og tier-struktur må dokumenteres slik at annotasjoner kan tolkes i forhold til mediet.",
+          "source_ids": [
+            "corp06-elan",
+            "corp13-dataverse"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "corp-06",
+          "text": "Et annotation label som POS, feature eller dependency relation er meningsfullt bare sammen med den versjonen av guidelines og formatkonvensjoner som ble brukt.",
+          "source_ids": [
+            "corp08-ud",
+            "corp13-dataverse"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "corp-07",
+          "text": "Transkripsjon og annotasjon bør bevare koblingen mellom råmateriale, bearbeidet tekst, annotatorbeslutninger og senere transformasjoner i stedet for å overskrive provenance.",
+          "source_ids": [
+            "corp06-elan",
+            "corp13-dataverse"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "corp-08",
+          "text": "Quality-control kan omfatte double annotation, adjudication, spot checks eller andre prosedyrer, men metoden og coverage må rapporteres før annotation quality sammenlignes mellom ressurser.",
+          "source_ids": [
+            "corp08-ud",
+            "corp13-dataverse"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "feltdokumentasjon-sessions-samtykke-og-tilgang",
+      "title": "Feltdokumentasjon, sessions, samtykke og tilgang",
+      "method_ids": [
+        "met_corpus_03_a",
+        "met_corpus_03_b"
+      ],
+      "boundary": "Field documentation må knytte session/bundle, participants, contributor roles, language use, recording conditions, consent og access protocol til konkrete filer; open access er ikke en standardantakelse når speakers eller communities har satt begrensninger.",
+      "source_ids": [
+        "corp04-elar-lameta",
+        "corp05-paradisec",
+        "corp11-care"
+      ],
+      "planned_claims": [
+        {
+          "id": "corp-09",
+          "text": "En dokumentasjonssession er en strukturert proveniensenhet som kan koble recording, parallel audio/video, annotations, notes og contributor metadata uten å gjøre filnavnet til eneste dokumentasjon.",
+          "source_ids": [
+            "corp04-elar-lameta",
+            "corp05-paradisec"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "corp-10",
+          "text": "Participant- og contributorroller bør registreres sammen med språkbruk og bidrag slik at framtidige brukere kan forstå hvem som ble dokumentert, hvem som transkriberte og hvem som oversatte.",
+          "source_ids": [
+            "corp04-elar-lameta",
+            "corp11-care"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "corp-11",
+          "text": "Consent og access conditions må følge materialet gjennom arkivering og viderebruk; et teknisk mulig download er ikke det samme som etisk eller juridisk tillatt bruk.",
+          "source_ids": [
+            "corp04-elar-lameta",
+            "corp11-care"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "corp-12",
+          "text": "Language documentation bør planlegge arkivering og community access fra innsamlingen av, ikke først etter analyse, fordi metadata, rettigheter og filorganisering ellers blir vanskelige å rekonstruere.",
+          "source_ids": [
+            "corp05-paradisec",
+            "corp04-elar-lameta"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "metadata-identifikatorer-finnbarhet-og-interoperabilitet",
+      "title": "Metadata, identifikatorer, finnbarhet og interoperabilitet",
+      "method_ids": [
+        "met_corpus_04_a",
+        "met_corpus_04_b"
+      ],
+      "boundary": "Resource metadata må skille descriptive metadata fra annotations og bruke stable identifiers/PIDs der mulig; OLAC/CMDI, Glottocodes og andre identifiers forbedrer discovery/interoperability bare når mapping, version og referent er dokumentert.",
+      "source_ids": [
+        "corp02-olac",
+        "corp03-clarin-cmdi",
+        "corp07-glottolog",
+        "corp10-fair"
+      ],
+      "planned_claims": [
+        {
+          "id": "corp-13",
+          "text": "Rike metadata gjør språkressurser søkbare på tvers av arkiver når felter og vocabularies kan høstes eller mappes mellom infrastrukturer.",
+          "source_ids": [
+            "corp02-olac",
+            "corp03-clarin-cmdi"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "corp-14",
+          "text": "Metadata om en hel resource må skilles fra annotations av hendelser eller segmenter inne i selve dataobjektet, selv om begge er nødvendige for gjenbruk.",
+          "source_ids": [
+            "corp03-clarin-cmdi",
+            "corp06-elan"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "corp-15",
+          "text": "Stabile språkidentifikatorer som Glottocodes reduserer navneambiguitet, men identifieren må ikke brukes som erstatning for lokal variety-beskrivelse eller sociolinguistic context.",
+          "source_ids": [
+            "corp07-glottolog",
+            "corp02-olac"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "corp-16",
+          "text": "Persistent identifiers og maskinlesbare metadata støtter findability og citation, men de må peke til versjonerte ressurser med tydelige access conditions.",
+          "source_ids": [
+            "corp10-fair",
+            "corp03-clarin-cmdi"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "formater-versjonering-transformasjoner-og-proveniens",
+      "title": "Formater, versjonering, transformasjoner og proveniens",
+      "method_ids": [
+        "met_corpus_05_a",
+        "met_corpus_05_b"
+      ],
+      "boundary": "Formats og conversions må være versjonerte og reversible eller dokumentert lossy; EAF, CoNLL-U og andre exchange formats krever schema/version, encoding, transformation steps og provenance, og en ny dataset version må ikke skjule den tidligere.",
+      "source_ids": [
+        "corp06-elan",
+        "corp08-ud",
+        "corp13-dataverse",
+        "corp10-fair"
+      ],
+      "planned_claims": [
+        {
+          "id": "corp-17",
+          "text": "Standardiserte utvekslingsformater kan gjøre annotations og corpora mer interoperable når encoding, schema og versjon dokumenteres sammen med filene.",
+          "source_ids": [
+            "corp06-elan",
+            "corp08-ud"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "corp-18",
+          "text": "En formatkonvertering er en analytisk transformasjon som må logges med input, output, tool/version og eventuelle tap av struktur slik at provenance kan rekonstrueres.",
+          "source_ids": [
+            "corp13-dataverse",
+            "corp10-fair"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "corp-19",
+          "text": "Dataset versioning gjør det mulig å skille korrigeringer og nye data fra tidligere publiserte tilstander og er derfor nødvendig når analyser skal kunne rerunnes mot riktig snapshot.",
+          "source_ids": [
+            "corp13-dataverse",
+            "corp09-talkbank"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "corp-20",
+          "text": "Unicode eller et åpent format løser ikke alene interoperabilitet; mapping mellom tiers, labels, identifiers og segmenteringsregler må også dokumenteres.",
+          "source_ids": [
+            "corp06-elan",
+            "corp08-ud"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "reproduserbare-workflows-kode-miljo-og-sitering",
+      "title": "Reproduserbare workflows, kode, miljø og sitering",
+      "method_ids": [
+        "met_corpus_06_a",
+        "met_corpus_06_b"
+      ],
+      "boundary": "Reproducibility krever dataset snapshot/version, query or extraction, code, software/environment, parameters, exclusions og output linkage; shared data alene er ikke et reproduksjonsbevis uten executable analysis provenance.",
+      "source_ids": [
+        "corp09-talkbank",
+        "corp10-fair",
+        "corp13-dataverse"
+      ],
+      "planned_claims": [
+        {
+          "id": "corp-21",
+          "text": "Et delt korpus muliggjør uavhengig kontroll først når analysen oppgir hvilken corpus version eller snapshot som ble brukt og hvordan delmengden ble valgt.",
+          "source_ids": [
+            "corp09-talkbank",
+            "corp13-dataverse"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "corp-22",
+          "text": "Query, preprocessing, code, software version og parameter choices er del av evidenslinjen fordi ulike pipelines kan produsere ulike counts eller modeller fra samme rådata.",
+          "source_ids": [
+            "corp13-dataverse",
+            "corp10-fair"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "corp-23",
+          "text": "Data citation bør identifisere en persistent dataset record og samtidig bevare informasjon om versjon og filer når analysen avhenger av en bestemt tilstand.",
+          "source_ids": [
+            "corp13-dataverse",
+            "corp10-fair"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "corp-24",
+          "text": "Git- eller annen versjonshistorikk kan støtte replisering av tidligere analyser, men bare dersom data- og kodeversjoner faktisk kan kobles til rapporterte resultater.",
+          "source_ids": [
+            "corp09-talkbank",
+            "corp13-dataverse"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "langtidsbevaring-trust-fixity-og-migrasjon",
+      "title": "Langtidsbevaring, trust, fixity og migrasjon",
+      "method_ids": [
+        "met_corpus_07_a",
+        "met_corpus_07_b"
+      ],
+      "boundary": "Long-term preservation krever repository responsibility, storage procedures, integrity/fixity checks, documented migration and designated-community access; backup er ikke det samme som et trustworthy digital repository.",
+      "source_ids": [
+        "corp12-coretrustseal",
+        "corp05-paradisec",
+        "corp10-fair"
+      ],
+      "planned_claims": [
+        {
+          "id": "corp-25",
+          "text": "Et trustworthy repository har dokumentert ansvar for langsiktig bevaring av både data og metadata for en definert brukergruppe, ikke bare midlertidig filhosting.",
+          "source_ids": [
+            "corp12-coretrustseal",
+            "corp05-paradisec"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "corp-26",
+          "text": "Digital preservation krever planlagt håndtering av formatobsolesens og migrasjon slik at objekter forblir forståelige og gjenbrukbare over tid.",
+          "source_ids": [
+            "corp12-coretrustseal",
+            "corp05-paradisec"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "corp-27",
+          "text": "Fixity og integrity checks beskytter mot uoppdaget bit-level endring, men semantisk bevaring krever i tillegg metadata, formatkunnskap og dokumenterte relasjoner mellom filer.",
+          "source_ids": [
+            "corp12-coretrustseal",
+            "corp10-fair"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "corp-28",
+          "text": "Arkivets organisatoriske og tekniske bærekraft er del av dataenes reproduserbarhet fordi framtidig kontroll forutsetter at den siterte ressursen fortsatt kan identifiseres og forstås.",
+          "source_ids": [
+            "corp12-coretrustseal",
+            "corp10-fair"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "etikk-data-governance-fair-care-og-ansvarlig-gjenbruk",
+      "title": "Etikk, data governance, FAIR/CARE og ansvarlig gjenbruk",
+      "method_ids": [
+        "met_corpus_08_a",
+        "met_corpus_08_b"
+      ],
+      "boundary": "FAIR betyr ikke automatically open; access, consent, licensing, community authority og CARE collective-benefit/authority-to-control må vurderes sammen med findability og reuse, særlig for Indigenous, minoritized eller sensitive language data.",
+      "source_ids": [
+        "corp10-fair",
+        "corp11-care",
+        "corp04-elar-lameta",
+        "corp02-olac"
+      ],
+      "planned_claims": [
+        {
+          "id": "corp-29",
+          "text": "FAIR-prinsippene retter seg mot findability, accessibility, interoperability og reuse, men accessibility kan innebære autentisering eller restriksjoner og er ikke synonymt med unrestricted open access.",
+          "source_ids": [
+            "corp10-fair",
+            "corp02-olac"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "corp-30",
+          "text": "CARE-prinsippene supplerer teknisk dataforvaltning med collective benefit, authority to control, responsibility og ethics for Indigenous data governance.",
+          "source_ids": [
+            "corp11-care",
+            "corp10-fair"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "corp-31",
+          "text": "Consent og community authority kan begrense sekundærbruk selv når metadata er offentlig synlige, og slike vilkår må være maskin- og menneskelesbare der infrastrukturen tillater det.",
+          "source_ids": [
+            "corp11-care",
+            "corp04-elar-lameta"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "corp-32",
+          "text": "Ansvarlig language-resource reuse krever samtidig vurdering av provenance, citation, license/access, participant/community rights og risiko for skade; teknisk reproduserbarhet overstyrer ikke disse grensene.",
+          "source_ids": [
+            "corp11-care",
+            "corp02-olac",
+            "corp10-fair"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    }
+  ],
+  "planned_assessments": [
+    {
+      "id": "corp-q01",
+      "topic_id": "korpusdesign-sampling-og-representativitet",
+      "status": "planned_for_fulltext"
+    },
+    {
+      "id": "corp-q02",
+      "topic_id": "transkripsjon-annotasjon-og-kvalitetsproveniens",
+      "status": "planned_for_fulltext"
+    },
+    {
+      "id": "corp-q03",
+      "topic_id": "feltdokumentasjon-sessions-samtykke-og-tilgang",
+      "status": "planned_for_fulltext"
+    },
+    {
+      "id": "corp-q04",
+      "topic_id": "metadata-identifikatorer-finnbarhet-og-interoperabilitet",
+      "status": "planned_for_fulltext"
+    },
+    {
+      "id": "corp-q05",
+      "topic_id": "formater-versjonering-transformasjoner-og-proveniens",
+      "status": "planned_for_fulltext"
+    },
+    {
+      "id": "corp-q06",
+      "topic_id": "reproduserbare-workflows-kode-miljo-og-sitering",
+      "status": "planned_for_fulltext"
+    },
+    {
+      "id": "corp-q07",
+      "topic_id": "langtidsbevaring-trust-fixity-og-migrasjon",
+      "status": "planned_for_fulltext"
+    },
+    {
+      "id": "corp-q08",
+      "topic_id": "etikk-data-governance-fair-care-og-ansvarlig-gjenbruk",
+      "status": "planned_for_fulltext"
+    }
+  ],
+  "decision_scenarios": [
+    {
+      "id": "corp-case-01",
+      "prompt": "Et stort webkorpus kalles representativt fordi det har milliarder av tokens. Definer target population, sampling frame, strata og coverage før representativitet godtas.",
+      "source_ids": [
+        "corp01-biber-representativeness",
+        "corp13-dataverse"
+      ]
+    },
+    {
+      "id": "corp-case-02",
+      "prompt": "To annoterte corpora bruker samme dependency labels, men ulike guideline-versjoner og segmentering. Rekonstruer schema/version, transformation og annotation provenance før counts sammenlignes.",
+      "source_ids": [
+        "corp08-ud",
+        "corp13-dataverse",
+        "corp06-elan"
+      ]
+    },
+    {
+      "id": "corp-case-03",
+      "prompt": "En field-documentation collection skal deponeres. Kartlegg session bundles, contributors, consent, access levels, language identifiers og file relations før upload.",
+      "source_ids": [
+        "corp04-elar-lameta",
+        "corp05-paradisec",
+        "corp07-glottolog"
+      ]
+    },
+    {
+      "id": "corp-case-04",
+      "prompt": "En publisert analyse kan ikke rerunnes etter at korpuset er oppdatert. Finn dataset snapshot, query, code, environment og transformation history som må versjoneres.",
+      "source_ids": [
+        "corp09-talkbank",
+        "corp13-dataverse",
+        "corp10-fair"
+      ]
+    },
+    {
+      "id": "corp-case-05",
+      "prompt": "Et arkiv har backup men ingen dokumentert preservation plan. Vurder fixity, migration, metadata, organizational responsibility og designated community før det kalles trustworthy.",
+      "source_ids": [
+        "corp12-coretrustseal",
+        "corp05-paradisec"
+      ]
+    },
+    {
+      "id": "corp-case-06",
+      "prompt": "Et språkdatasett er FAIR og teknisk nedlastbart, men community-avtalen begrenser sekundærbruk. Avgjør access og reuse ved å kombinere consent, CARE authority-to-control og repository terms.",
+      "source_ids": [
+        "corp10-fair",
+        "corp11-care",
+        "corp04-elar-lameta"
+      ]
+    }
+  ],
+  "fail_closed_contract": {
+    "source_brief_does_not_count_as_materialized": true,
+    "fulltext_requires_exact_32_claim_trace": true,
+    "strict_completion_requires_domain_12_fulltext_and_proof": true,
+    "representativeness_requires_sampling_frame": true,
+    "annotation_requires_versioned_provenance": true,
+    "field_data_requires_consent_and_access_protocol": true,
+    "reproducibility_requires_dataset_code_environment_trace": true,
+    "preservation_requires_trustworthy_repository_controls": true,
+    "fair_does_not_mean_unrestricted_open": true,
+    "care_governance_must_be_explicit": true
+  }
+}
