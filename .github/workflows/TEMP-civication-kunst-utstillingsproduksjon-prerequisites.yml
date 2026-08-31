@@ -4,7 +4,7 @@ on:
     branches: [agent/civication-kunst-utstillingsproduksjon-prerequisites]
     paths: [scripts/TEMP_materialize_kunst_utstillingsproduksjon_prerequisites.mjs,tests/civication-kunst-utstillingsproduksjon-prerequisites.test.js,reports/CIVICATION_KUNST_UTSTILLINGSPRODUKSJON_PREREQUISITES_SOURCE_FIRST.md,.github/workflows/TEMP-civication-kunst-utstillingsproduksjon-prerequisites.yml]
   workflow_dispatch:
-concurrency: {group: civication-kunst-utstillingsproduksjon-prerequisites-${{ github.ref }},cancel-in-progress: true}
+concurrency: {group: "civication-kunst-utstillingsproduksjon-prerequisites-${{ github.ref }}",cancel-in-progress: true}
 permissions: {contents: write}
 jobs:
   materialize-and-verify:
