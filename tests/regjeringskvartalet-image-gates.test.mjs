@@ -59,7 +59,7 @@ test('editorial portraits are transparently disclosed and contain real alpha pix
   }
 });
 
-test('Statsbygg supplies a licensed project preview without claiming it is a logo', () => {
+test('Statsbygg supplies its officially sourced identity asset with referential-use metadata', () => {
   const brands = readJson('data/brands/brands_master.json');
   const mapping = readJson('data/brands/brands_by_place.json').regjeringskvartalet;
   const statsbygg = brands.find(brand => brand.id === 'statsbygg');
@@ -67,9 +67,10 @@ test('Statsbygg supplies a licensed project preview without claiming it is a log
   assert.ok(statsbygg);
   assert.equal(statsbygg.logo, undefined);
   assert.ok(fs.existsSync(statsbygg.image));
-  assert.equal(statsbygg.imageMeta.source, 'wikimedia_commons');
-  assert.equal(statsbygg.imageMeta.license, 'CC BY-SA 4.0');
-  assert.match(statsbygg.imageMeta.representationScope, /ikke Statsbyggs logo/);
+  assert.equal(statsbygg.imageMeta.source, 'statsbygg_official_identity');
+  assert.equal(statsbygg.imageMeta.assetKind, 'logo');
+  assert.equal(statsbygg.imageMeta.rightsBasis, 'referential_identification');
+  assert.equal(statsbygg.imageMeta.noEndorsement, true);
 
   const loader = fs.readFileSync('js/brands/brands_loader.js', 'utf8');
   const placeCard = fs.readFileSync('js/ui/place-card.js', 'utf8');
