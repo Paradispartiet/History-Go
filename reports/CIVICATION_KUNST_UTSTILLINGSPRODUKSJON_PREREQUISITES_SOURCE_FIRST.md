@@ -11,3 +11,5 @@ Canonical readiness classifies the authored audience and standing signals as `fo
 The fail-closed workflow protects existing evidence by hash, regenerates canonical audits and registries, runs focused and full Civication gates, removes temporary surfaces and commits only verified permanent output.
 
 Workflow retrigger checkpoint: source contract reverified after the initial PR routing run on 2026-08-31.
+
+Permanent materialization checkpoint: workflow commit `eca4baf8cca92c5679b20910d9e8524fc4e6445e` passed focused generation checks and full Civication before temporary surfaces were removed.
