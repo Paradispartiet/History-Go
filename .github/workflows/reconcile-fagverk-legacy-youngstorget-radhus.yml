@@ -1,0 +1,105 @@
+name: Reconcile Youngstorget and rådhus Fagverk with main
+
+on:
+  pull_request:
+    types: [synchronize, reopened]
+    paths:
+      - .github/workflows/reconcile-fagverk-legacy-youngstorget-radhus.yml
+
+permissions:
+  contents: write
+
+jobs:
+  reconcile:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      - name: Merge current main and resolve only derived Fagverk conflicts from main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          set +e
+          git merge --no-edit origin/main
+          rc=$?
+          set -e
+          if [ "$rc" -ne 0 ]; then
+            conflicts="$(git diff --name-only --diff-filter=U)"
+            echo "$conflicts"
+            bad="$(printf '%s\n' "$conflicts" | grep -Ev '^(data/fagverk/fagverk_registry.json|data/fagverk/fagverk_release.json|reports/fagverk/fagverk-place-page-coverage-v2.json)$' || true)"
+            if [ -n "$bad" ]; then
+              echo "Unexpected merge conflicts:" >&2
+              echo "$bad" >&2
+              exit 1
+            fi
+            for file in data/fagverk/fagverk_registry.json data/fagverk/fagverk_release.json reports/fagverk/fagverk-place-page-coverage-v2.json; do
+              if printf '%s\n' "$conflicts" | grep -Fxq "$file"; then
+                git checkout --theirs -- "$file"
+                git add "$file"
+              fi
+            done
+            git commit --no-edit
+          fi
+      - name: Restore only the two Place registry indexes on top of current main
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'data/fagverk/fagverk_registry.json';
+          const registry = JSON.parse(fs.readFileSync(file, 'utf8'));
+          registry.placeLinks ||= {};
+          const entries = {
+            youngstorget: 'places/politikk/oslo/places_politikk/youngstorget.json',
+            oslo_radhus: 'places/politikk/oslo/places_politikk/oslo_radhus.json'
+          };
+          for (const [id, sourceFile] of Object.entries(entries)) {
+            registry.placeLinks[id] = {
+              sourceFile,
+              field: 'fagverk',
+              schema: 'history_go_place_fagverk_v2',
+              level: 'standard',
+              status: 'curated'
+            };
+          }
+          fs.writeFileSync(file, JSON.stringify(registry, null, 2) + '\n');
+          NODE
+      - name: Regenerate deterministic shared artifacts
+        run: |
+          node scripts/build-quiz-production-context.mjs --category politikk --target youngstorget --output data/quiz/production_context/politikk/youngstorget.json
+          node scripts/build-quiz-production-context.mjs --category politikk --target oslo_radhus --output data/quiz/production_context/politikk/oslo_radhus.json
+          node scripts/build-place-open-payloads.mjs
+          node scripts/audit-fagverk-place-pages.mjs --write
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Validate reconciled result
+        run: |
+          node scripts/audit-fagverk-place-pages.mjs
+          node scripts/build-place-open-payloads.mjs --check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node --test tests/fagverk-place-pages.test.mjs
+          node --test tests/fagverk-place-substance-audit.test.mjs
+          node --test tests/fagverk-link-audit.test.mjs
+          node scripts/audit-place-images.mjs --mode=changed
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          git diff --check
+      - name: Commit reconciled production tree and remove this workflow
+        run: |
+          git add \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/fagverk_release.json \
+            reports/fagverk/fagverk-place-page-coverage-v2.json \
+            data/quiz/production_context/politikk/youngstorget.json \
+            data/quiz/production_context/politikk/oslo_radhus.json \
+            data/runtime
+          git rm .github/workflows/reconcile-fagverk-legacy-youngstorget-radhus.yml
+          git commit -m "Reconcile Youngstorget and rådhus Fagverk with current main"
+          git push origin HEAD:${GITHUB_HEAD_REF}
