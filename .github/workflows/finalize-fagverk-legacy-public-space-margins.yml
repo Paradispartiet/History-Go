@@ -42,19 +42,27 @@ jobs:
           node scripts/build-place-open-payloads.mjs
           node scripts/audit-fagverk-place-pages.mjs --write
           node scripts/build-fagverk-release-manifest.mjs
-      - name: Validate Fagverk, images and quiz context
+      - name: Validate Fagverk page contract
+        run: node scripts/audit-fagverk-place-pages.mjs
+      - name: Validate Place-open and release artifacts
         run: |
-          node scripts/audit-fagverk-place-pages.mjs
           node scripts/build-place-open-payloads.mjs --check
           node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Test Fagverk page and substance contracts
+        run: |
           node --test tests/fagverk-place-pages.test.mjs
           node --test tests/fagverk-place-substance-audit.test.mjs
-          node --test tests/fagverk-link-audit.test.mjs
-          node scripts/audit-place-images.mjs --mode=changed
+      - name: Test Fagverk links
+        run: node --test tests/fagverk-link-audit.test.mjs
+      - name: Validate changed Place images
+        run: node scripts/audit-place-images.mjs --mode=changed
+      - name: Validate quiz production
+        run: |
           npm run audit:quiz-production-context
           npm run audit:quiz-progression
           npm run audit:quiz-theory-binding
-          git diff --check
+      - name: Validate diff whitespace
+        run: git diff --check
       - name: Commit final production result and remove temporary tooling
         run: |
           git add \
