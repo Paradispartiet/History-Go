@@ -69,7 +69,9 @@ jobs:
           fi
           tail -n 50 /tmp/civication.log
       - name: Remove temporary prerequisite surfaces
-        run: rm scripts/TEMP_materialize_kunst_kunstnerisk_ledelse_prerequisites.mjs .github/workflows/TEMP-civication-kunst-kunstnerisk-ledelse-prerequisites.yml
+        run: |
+          sed -i '${/^$/d;}' docs/CIVICATION_ROLE_PACK_INDEX.md
+          rm scripts/TEMP_materialize_kunst_kunstnerisk_ledelse_prerequisites.mjs .github/workflows/TEMP-civication-kunst-kunstnerisk-ledelse-prerequisites.yml
       - name: Commit exact verified foundation
         run: |
           git diff --check
