@@ -1,0 +1,77 @@
+name: Finalize statsaksen Fagverk legacy batch
+
+on:
+  push:
+    branches:
+      - agent/fagverk-legacy-statsaksen-20260831
+    paths:
+      - .github/workflows/finalize-fagverk-legacy-statsaksen.yml
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Sync branch to current main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+      - name: Curate four completed Place Fagverk packages
+        run: node tools/finalize-fagverk-legacy-statsaksen.mjs
+      - name: Rebuild four deterministic quiz contexts
+        run: |
+          node scripts/build-quiz-production-context.mjs --category politikk --target stortinget --output data/quiz/production_context/politikk/stortinget.json
+          node scripts/build-quiz-production-context.mjs --category politikk --target eidsvolls_plass --output data/quiz/production_context/politikk/eidsvolls_plass.json
+          node scripts/build-quiz-production-context.mjs --category politikk --target slottet --output data/quiz/production_context/politikk/slottet.json
+          node scripts/build-quiz-production-context.mjs --category politikk --target slottsplassen --output data/quiz/production_context/politikk/slottsplassen.json
+      - name: Regenerate Fagverk and runtime artifacts
+        run: |
+          node scripts/build-place-open-payloads.mjs
+          node scripts/audit-fagverk-place-pages.mjs --write
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Validate Fagverk, images and quiz context
+        run: |
+          node scripts/audit-fagverk-place-pages.mjs
+          node scripts/build-place-open-payloads.mjs --check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node --test tests/fagverk-place-pages.test.mjs
+          node --test tests/fagverk-place-substance-audit.test.mjs
+          node --test tests/fagverk-link-audit.test.mjs
+          node scripts/audit-place-images.mjs --mode=changed
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          git diff --check
+      - name: Commit final production result and remove temporary tooling
+        run: |
+          git add \
+            data/places/politikk/oslo/places_politikk/stortinget.json \
+            data/places/politikk/oslo/places_politikk/eidsvolls_plass.json \
+            data/places/politikk/oslo/slottet/slottet.json \
+            data/places/politikk/oslo/slottsplassen.json \
+            data/quiz/production_context/politikk/stortinget.json \
+            data/quiz/production_context/politikk/eidsvolls_plass.json \
+            data/quiz/production_context/politikk/slottet.json \
+            data/quiz/production_context/politikk/slottsplassen.json \
+            data/runtime \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/fagverk_release.json \
+            reports/fagverk/fagverk-place-page-coverage-v2.json
+          git rm tools/finalize-fagverk-legacy-statsaksen.mjs .github/workflows/finalize-fagverk-legacy-statsaksen.yml
+          git diff --cached --quiet && { echo "No production changes to commit"; exit 1; }
+          git commit -m "Curate statsaksen Fagverk legacy batch"
+          git push origin HEAD:${GITHUB_REF_NAME}
