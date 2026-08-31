@@ -1,0 +1,64 @@
+{
+  "schema": "history_go_place_completion_audit_v1",
+  "place_id": "akershus_slottskirke",
+  "category": "religion",
+  "status": "PASS",
+  "verified_at": "2026-08-30",
+  "collections": {
+    "required": [
+      "people",
+      "objects",
+      "brands",
+      "productions"
+    ],
+    "labels": {
+      "productions": "Ritualer og tradisjoner"
+    },
+    "status": "PASS"
+  },
+  "identity": {
+    "status": "PASS",
+    "excludes": [
+      "Akershus festning som hele festningskomplekset",
+      "Akershus slott som borg- og slottsbygning",
+      "Det kongelige mausoleum som separat gravrom"
+    ]
+  },
+  "sources": {
+    "status": "PASS",
+    "count": 6
+  },
+  "quiz": {
+    "status": "PASS",
+    "profile": "rich_5x7",
+    "questions": 35
+  },
+  "manual_image_review": {
+    "status": "PASS",
+    "front_portrait": true,
+    "collection_previews": true
+  },
+  "quality_score": {
+    "identity_scope": {
+      "score": 5
+    },
+    "sources_provenance": {
+      "score": 5
+    },
+    "content_depth": {
+      "score": 5
+    },
+    "collections_media": {
+      "score": 5
+    },
+    "quiz_learning": {
+      "score": 5
+    },
+    "integration_governance": {
+      "score": 5
+    },
+    "total": 30,
+    "critical_findings": 0,
+    "unresolved_blockers": 0
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "placeId": "akershus_slottskirke",
+  "placeFile": "data/places/religion/oslo/akershus_slottskirke/akershus_slottskirke.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "candidate_ready_for_production",
+  "currentCoordinate": {
+    "lat": 59.90642,
+    "lon": 10.73643,
+    "r": 42,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap node 8402143318 for Akershus slottskirke",
+    "coordType": "place_of_worship_anchor",
+    "coordNote": "Bygningsnært place-of-worship-anker for slottskirken, separat fra Akershus slott og festningsområdets senter."
+  },
+  "identity": {
+    "currentName": "Akershus slottskirke",
+    "resolvedIdentity": "Akershus slottskirke som eget aktivt kirkerom i sørfløyen",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": "Slottskirken er eget hellig rom; slottet, festningen og mausoleet beholder egne identiteter."
+  },
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 8402143318",
+      "sourceUrl": "https://www.openstreetmap.org/node/8402143318",
+      "sourceObjectId": "osm-node:8402143318",
+      "sourceQuality": "place_of_worship_node",
+      "finding": "OSM-noden identifiserer Akershus slottskirke som place of worship ved sørfløyen.",
+      "canVerifyCoordinate": true,
+      "reason": "Bygningsnært place-of-worship-anker for slottskirken, separat fra Akershus slott og festningsområdets senter."
+    },
+    {
+      "sourceProvider": "snl",
+      "sourceName": "Store norske leksikon – Akershus slottskirke",
+      "sourceUrl": "https://snl.no/Akershus_slottskirke",
+      "sourceObjectId": "snl:akershus-slottskirke",
+      "sourceQuality": "reputable_secondary",
+      "finding": "SNL avgrenser kirken til sørfløyen med inngang fra borggården.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitetskilde for bygningsdelen."
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.90642,
+      "lon": 10.73643,
+      "coordRole": "building_center",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "OSM-node og identitetskilde er anvendt."
+  },
+  "notes": [
+    "Akershus slott og festning beholder sine eksisterende koordinater."
+  ]
+}
