@@ -33,12 +33,10 @@ jobs:
           git merge --no-edit origin/main
       - name: Curate four completed Place Fagverk packages
         run: node tools/finalize-fagverk-legacy-public-space-margins.mjs
-      - name: Rebuild deterministic quiz contexts
+      - name: Rebuild active deterministic quiz contexts
         run: |
           node scripts/build-quiz-production-context.mjs --category by --target storgata --output data/quiz/production_context/by/storgata.json
-          node scripts/build-quiz-production-context.mjs --category by --target st_hanshaugen_park --output data/quiz/production_context/by/st_hanshaugen_park.json
           node scripts/build-quiz-production-context.mjs --category by --target christiania_torv --output data/quiz/production_context/by/christiania_torv.json
-          node scripts/build-quiz-production-context.mjs --category subkultur --target brugata_storgata_rusmiljo --output data/quiz/production_context/subkultur/brugata_storgata_rusmiljo.json
       - name: Regenerate Fagverk and runtime artifacts
         run: |
           node scripts/build-place-open-payloads.mjs
@@ -65,9 +63,7 @@ jobs:
             data/places/by/oslo/places/christiania_torv.json \
             data/places/subkultur/oslo/places_subkultur/brugata_storgata_rusmiljo.json \
             data/quiz/production_context/by/storgata.json \
-            data/quiz/production_context/by/st_hanshaugen_park.json \
             data/quiz/production_context/by/christiania_torv.json \
-            data/quiz/production_context/subkultur/brugata_storgata_rusmiljo.json \
             data/runtime \
             data/fagverk/fagverk_registry.json \
             data/fagverk/fagverk_release.json \
