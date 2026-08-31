@@ -13,3 +13,5 @@ The four named workplace actors remain explicitly fictional scenario actors and 
 ## Anti-boilerplate and verification
 
 Editorial uniqueness is tested across all 56 summaries and consequences, not sampled. Shared boilerplate may express the invariant authority rule, but each beat must contain a role-specific portfolio situation, audience and delayed consequence. The fail-closed workflow regenerates Career Gameplay and rollout readiness, verifies Scene Registry and Scenario People parity, runs the focused one-gap contract and full Civication, removes temporary surfaces and commits only permanent verified output.
+
+Verified materialization checkpoint: the fail-closed workflow completed focused contracts, registry parity, Scenario People invariants and full Civication before producing permanent head `77c5608a52c4af5a4b0d769c6652a351a5ac3852`.
