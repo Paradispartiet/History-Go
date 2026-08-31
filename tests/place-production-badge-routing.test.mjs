@@ -31,6 +31,7 @@ test("every canonical badge family has badge-driven place-production routing", (
 test("all 19 badge families follow the canonical four-collection model", () => {
   const ordinary = ["people", "objects", "brands", "productions"];
   const expected = Object.fromEntries(badgeIds.map(id => [id, ordinary]));
+  expected.historie = ["people", "objects", "brands", "historical_events"];
   expected.by = ["people", "objects", "brands", "structures"];
   expected.natur = ["map", "flora", "fauna", "destinations"];
   expected.sport = ["people", "objects", "brands", "competitions"];
@@ -51,7 +52,7 @@ test("all 19 badge families follow the canonical four-collection model", () => {
 test("the canonical documentation defines all 19 category expressions", () => {
   const rows = {
     by: ["People · Objects · Brands · Structures", "Byrom og anlegg"],
-    historie: ["People · Objects · Brands · Productions", "Historiske hendelser"],
+    historie: ["People · Objects · Brands · Historical Events", "Historiske hendelser"],
     kunst: ["People · Objects · Brands · Productions", "Kunstverk"],
     litteratur: ["People · Objects · Brands · Productions", "Bøker og tekster"],
     media: ["People · Objects · Brands · Productions", "Utgivelser og sendinger"],

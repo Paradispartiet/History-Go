@@ -14,12 +14,24 @@
       "people",
       "objects",
       "brands",
-      "structures"
+      "historical_events"
     ],
     "loaded_preview_images": 4,
     "missing": 0,
     "coverage_percent": 100
   },
+  "source_conflicts": [
+    {
+      "claim": "1299 is the exact construction year.",
+      "status": "rejected",
+      "reason": "SNL supports a likely start in 1299–1304, not one exact year."
+    },
+    {
+      "claim": "Structures is the History category expression at Akershus festning.",
+      "status": "rejected",
+      "reason": "The canonical History profile uses the dedicated source-backed Historical Events collection; Structure data remains outside the four PlaceCard collections."
+    }
+  ],
   "manual_image_review": {
     "status": "PASS",
     "reviewed_assets": [
@@ -29,28 +41,26 @@
       "bilder/kort/people/hannibal_sehested.webp",
       "bilder/kort/objects/akershus_festning_retterstedet.webp",
       "bilder/kort/brands/forsvarsbygg_akershus_wordmark.webp",
-      "bilder/kort/structures/akershus_festning_jomfrutarnet.webp",
-      "bilder/kort/structures/akershus_festning_slottskirke.webp",
-      "bilder/kort/structures/akershus_festning_kongelige_mausoleum.webp"
+      "bilder/kort/historical_events/akershus_festning_beleiring_1716.webp"
     ],
-    "note": "Source identities and crop roles are explicit; workflow checks dimensions and non-empty files before commit."
+    "note": "Every selected collection has a real member preview. The 1699 Coning painting is explicitly labelled as contextual evidence for the fortress immediately before 1716, not as a depiction of the fighting."
   },
   "quality_score": {
     "correctness_and_evidence": {
       "score": 5,
-      "note": "Official and scholarly/reference sources cross-checked; construction-date uncertainty, collection taxonomy and image/brand rights are explicit."
+      "note": "Official and scholarly/reference sources cross-checked; construction-date uncertainty, canonical History taxonomy and image/brand rights are explicit."
     },
     "coverage_and_completion": {
       "score": 5,
-      "note": "Major profile includes four image-ready collections, including three named Structures, plus 12 chronology anchors, four episode Stories, six language entries, four reading tracks and 56 quiz questions."
+      "note": "Major profile includes four image-ready canonical History collections, plus 12 chronology anchors, four episode Stories, six language entries, four reading tracks and 56 quiz questions."
     },
     "editorial_quality": {
       "score": 5,
-      "note": "The fortress is kept distinct from castle, museums and microplaces; the 1716 siege remains a historical event; prison and execution history is source-bounded."
+      "note": "The fortress is kept distinct from castle, museums and microplaces; the 1716 siege is modelled as an historical event without treating the contextual artwork as battle documentation."
     },
     "technical_integrity": {
       "score": 5,
-      "note": "Deterministic materializer, canonical manifests and permanent targeted regression are included."
+      "note": "Deterministic materializer and permanent regression lock People, Objects, Brands and Historical Events for this History place."
     },
     "safety_and_responsibility": {
       "score": 5,
@@ -58,7 +68,7 @@
     },
     "maintainability_and_auditability": {
       "score": 5,
-      "note": "Source registry, claims, chronology, image provenance, quiz brief and permanent test are inspectable."
+      "note": "Source registry, claims, collection ownership, image provenance, quiz brief and permanent test are inspectable."
     },
     "total": 30,
     "critical_findings": 0,

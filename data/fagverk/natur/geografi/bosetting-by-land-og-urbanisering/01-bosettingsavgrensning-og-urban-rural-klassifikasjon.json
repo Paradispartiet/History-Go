@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "bosetting-by-land-og-urbanisering",
+  "id": "01-bosettingsavgrensning-og-urban-rural-klassifikasjon",
+  "title": "Bosettingsavgrensning og urban–rural klassifikasjon",
+  "sections": [
+    {
+      "id": "bosetting-lokalitet-og-geografisk-enhet",
+      "title": "Bosetting, lokalitet og geografisk enhet",
+      "method_ids": ["met_geo_bosettingsavgrensning", "met_geo_geografisk_enhetskontroll"],
+      "boundary": "Bosetting kan avgrenses administrativt, statistisk eller morfologisk; enhetsdefinisjon og referanseår skal følge alle sammenligninger.",
+      "paragraphs": [
+        "Når et sted omtales som én bosetting, skjuler ordet ofte flere mulige geografier. En kommunegrense kan romme tett bykjerne, forsteder, jordbruksareal og ubebodde områder, mens en statistisk lokalitet kan følge sammenhengende bebyggelse og en gridbasert klassifikasjon kan følge tetthet og kontiguitet. Derfor kan samme stedsnavn få ulike folketall, arealer og tettheter avhengig av hvilken avgrensning som brukes. En etterprøvbar analyse må oppgi definisjon, referanseår og geometri før størrelser sammenlignes, og den må forklare hvorfor den valgte enheten passer til spørsmålet som undersøkes.",
+        "Administrative grenser er nødvendige for styring, skatteinnkreving, tjenesteansvar og offisiell statistikk, men de er ikke automatisk et kart over den fysiske eller funksjonelle byen. Daglige arbeidsreiser kan krysse flere kommuner, sammenhengende bebyggelse kan vokse over jurisdiksjonsgrenser, og deler av en kommune kan være rurale selv om kommunen inneholder en stor by. Derfor bør administrative enheter behandles som institusjonelle geografier med bestemte formål. Når analysen gjelder boligmarked, pendling eller sammenhengende urban form, må kommunegrensen enten suppleres eller erstattes av en geografi som representerer den aktuelle prosessen bedre.",
+        "Gridbaserte bosettingsklassifikasjoner forsøker å gjøre sammenligning mindre avhengig av svært ulike administrative enhetsstørrelser. Ved å klassifisere celler etter befolkningstetthet, samlet befolkning og romlig sammenheng kan metoden identifisere klynger som senere kobles til lokale enheter. Fordelen er større metodisk likhet på tvers av land, men resultatet er fortsatt regelstyrt. Celleoppløsning, tetthetsterskel, minimumsbefolkning og regler for kontiguitet påvirker hvilken klynge som dannes. Et harmonisert grid fjerner derfor ikke definisjonsvalg; det gjør dem eksplisitte og mer sammenlignbare, og disse valgene må følge enhver tolkning.",
+        "Bosettingstidsserier blir misvisende dersom geografien endres uten at analysen registrerer det. En kommune kan slås sammen, en statistisk lokalitet kan få ny avgrensningsregel, eller et tidligere separat tettsted kan innlemmes i en større agglomerasjon. Da kan folketallet eller arealet hoppe selv om endringen på bakken har vært gradvis. Tidsserieanalyse bør derfor bruke harmoniserte grenser når det er mulig, eller merke brudd eksplisitt og dekomponere dem fra faktisk demografisk eller fysisk vekst. Uten slik kontroll kan administrativ omklassifisering feilaktig framstå som migrasjonsbølge, urban ekspansjon eller sterk produktivitetsvekst."
+      ],
+      "paragraphClaimIds": [["geo8-01"], ["geo8-02"], ["geo8-03"], ["geo8-04"]]
+    },
+    {
+      "id": "urban-rural-kontinuum-og-klassifikasjon",
+      "title": "Urban–rural-kontinuum og klassifikasjon",
+      "method_ids": ["met_geo_degurba_klassifikasjon", "met_geo_urban_rural_typologi"],
+      "boundary": "Urban og rural er metodeavhengige kategorier; grid-, LAU- og regionsklassifikasjoner skal ikke behandles som samme geografiske nivå.",
+      "paragraphs": [
+        "Degree of Urbanisation bygger klassifikasjonen nedenfra ved først å identifisere befolkningsceller med bestemte tetthets-, sammenhengs- og størrelsesegenskaper. Deretter vurderes hvor stor andel av befolkningen i en lokal administrativ enhet som bor i urbane sentra, urbane klynger eller rurale celler. Metoden skiller dermed mellom selve gridmønsteret og klassifiseringen av en administrativ enhet. Det er viktig fordi en kommune kan inneholde flere typer celler samtidig. Analysen må derfor angi om den beskriver cellen, klyngen eller den lokale enheten; ellers blandes nivåer som er konstruert for ulike formål.",
+        "Begrepene by, tettsted, forstad og ruralt område har ofte juridiske eller historiske betydninger i nasjonale systemer, mens DEGURBA er laget som en harmonisert statistisk klassifikasjon. En lokal enhet kan derfor ha en juridisk bystatus uten å tilsvare en harmonisert city-klasse, og et tett befolket område kan oppfylle gridkriterier uten å ha samme administrative betegnelse. Dette er ikke en feil, men et tegn på at klassifikasjonene måler forskjellige egenskaper. Faglig sammenligning må derfor bevare skillet mellom juridisk status, nasjonal statistisk definisjon og harmonisert romlig klasse i stedet for å oversette dem mekanisk til samme etikett.",
+        "Eurostats regionale urban–rural typologi arbeider på et større geografisk nivå enn DEGURBA for lokale enheter. Når en NUTS 3-region klassifiseres etter andelen befolkning i rurale gridceller, oppsummeres et heterogent internt mønster til en regional kategori. Regionen kan derfor inneholde byer, tettsteder, forsteder og rurale områder samtidig. Denne skalaegenskapen gjør regionaltypologien nyttig for regional politikk og sammenligning, men lite egnet til å beskrive nøyaktig hvor en urban klynge ligger. Analysen må derfor unngå å lese en regional rural-etikett som om alle steder, husholdninger og funksjoner innenfor regionen var rurale.",
+        "Urban og rural bør forstås som skala- og metodeavhengige posisjoner i et bosettingssystem, ikke som to naturgitte beholdere. Et lokalsamfunn kan ligge i en overveiende rural region, samtidig være del av en urban klynge og ha sterke funksjonelle forbindelser til en større by. Motsatt kan en administrativ by inneholde store arealer med lav tetthet og rurale landskap. Derfor bør analyser oppgi klassifikasjonsnivå, terskler og formål og gjerne vise flere lag når spørsmålet krysser nivåer. Dette hindrer at én binær etikett brukes til å forklare variasjon i tilgjengelighet, økonomi, arealbruk og mobilitet som egentlig følger andre geografier."
+      ],
+      "paragraphClaimIds": [["geo8-05"], ["geo8-06"], ["geo8-07"], ["geo8-08"]]
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "schema": "history_go_geografi_economic_geography_resources_transport_value_chains_source_claim_brief_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-30",
+  "status": "source_first_ready_not_materialized",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "domain": {"ordinal":9,"id":"okonomisk_geografi_ressurser_transport_verdikjeder","title":"Økonomisk geografi, ressurser, transport og verdikjeder","production_mode":"new_production"},
+  "source_strategy": {
+    "source_first": true,
+    "inspectable_urls_required": true,
+    "claim_level_trace_required": true,
+    "minimum_sources_per_claim": 2,
+    "fulltext_materialization_required_before_counting": true,
+    "gross_trade_is_not_domestic_value_added": true,
+    "monetary_trade_value_is_not_physical_mass": true,
+    "distance_is_not_generalized_transport_cost_or_accessibility": true,
+    "resource_endowment_is_not_local_economic_benefit": true,
+    "lpi_is_survey_based_performance_evidence_not_infrastructure_inventory": true,
+    "liner_connectivity_index_is_not_trade_volume": true,
+    "icio_tiva_are_harmonized_model_based_accounts_not_firm_level_observation": true,
+    "fdi_flow_and_stock_must_be_distinguished": true,
+    "network_resilience_requires_route_capacity_and_substitution_evidence": true,
+    "price_currency_classification_year_and_geography_must_be_harmonized": true
+  },
+  "sources": [
+    {"id":"geo9-01-oecd-icio","publisher":"OECD","title":"Inter-Country Input-Output tables — 2025 edition","url":"https://www.oecd.org/en/data/datasets/inter-country-input-output-tables.html","type":"official-harmonized-input-output-database","evidence_role":"production-consumption-investment-trade-flows-by-country-and-industry-global-consistency","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo9-02-oecd-tiva","publisher":"OECD","title":"Trade in Value Added (TiVA) 2025 edition — Principal Indicators","url":"https://data-explorer.oecd.org/vis?bp=true&df%5Bag%5D=OECD.STI.PIE&df%5Bds%5D=dsDisseminateFinalDMZ&df%5Bid%5D=DSD_TIVA_MAINLV%40DF_MAINLV&df%5Bvs%5D=1.1&pg=0&snb=12&tm=TiVA","type":"official-value-added-trade-indicators","evidence_role":"domestic-foreign-value-added-gvc-participation-derived-from-icio","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo9-03-wto-gvc2025","publisher":"World Trade Organization","title":"Global Value Chain Development Report 2025: Rewiring GVCs in a Changing Global Economy","url":"https://www.wto.org/english/res_e/publications_e/gvcreport2025_e.htm","type":"international-gvc-assessment","evidence_role":"gvc-reconfiguration-resilience-regional-hubs-production-investment","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo9-04-un-comtrade","publisher":"United Nations Statistics Division","title":"UN Comtrade Database","url":"https://comtrade.un.org/","type":"official-merchandise-trade-database","evidence_role":"reported-trade-value-quantity-product-partner-flow-time","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo9-05-worldbank-lpi","publisher":"World Bank","title":"Logistics Performance Index 2023","url":"https://www.worldbank.org/en/news/press-release/2023/04/21/world-bank-releases-logistics-performance-index-2023","type":"official-logistics-performance-index","evidence_role":"cross-border-speed-reliability-logistics-services-infrastructure-border-controls","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo9-06-worldbank-lpi-method","publisher":"World Bank","title":"The Logistics Performance Index methodology","url":"https://lpi.worldbank.org/sites/default/files/2023-04/Methodology_LPI_survey.pdf","type":"official-index-methodology","evidence_role":"survey-design-six-components-country-assessments-perception-boundaries","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo9-07-unctad-lsci","publisher":"UN Trade and Development (UNCTAD)","title":"Liner shipping connectivity index metadata and data insights","url":"https://unctadstat.unctad.org/insights/theme/246","type":"official-shipping-connectivity-index","evidence_role":"liner-network-position-ship-calls-capacity-services-companies-direct-connections","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo9-08-unctad-rmt2025","publisher":"UN Trade and Development (UNCTAD)","title":"Review of Maritime Transport 2025: Staying the course in turbulent waters","url":"https://unctad.org/publication/review-maritime-transport-2025","type":"international-maritime-transport-assessment","evidence_role":"seaborne-trade-rerouting-ton-miles-freight-costs-ports-chokepoints-resilience","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo9-09-iea-critical-minerals","publisher":"International Energy Agency","title":"Critical Minerals Data Explorer","url":"https://www.iea.org/data-and-statistics/data-tools/critical-minerals-data-explorer","type":"official-critical-minerals-scenario-data","evidence_role":"mineral-demand-supply-projections-scenarios-technologies-concentration","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo9-10-worldbank-resource-rents","publisher":"World Bank","title":"Total natural resources rents (% of GDP) — WDI metadata","url":"https://databank.worldbank.org/metadataglossary/world-development-indicators/series/NY.GDP.TOTL.RT.ZS","type":"official-resource-rent-indicator-metadata","evidence_role":"oil-gas-coal-mineral-forest-rents-relative-to-gdp-definition","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo9-11-eiti-standard","publisher":"Extractive Industries Transparency Initiative","title":"EITI Standard 2023","url":"https://eiti.org/eiti-standard","type":"international-extractive-governance-standard","evidence_role":"licenses-ownership-production-exports-revenues-state-participation-transparency","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo9-12-unctad-wir2026","publisher":"UN Trade and Development (UNCTAD)","title":"World Investment Report 2026: International investment in a turbulent era","url":"https://investmentpolicy.unctad.org/publications/1324/world-investment-report-2026-international-investment-in-a-turbulent-era","type":"international-fdi-assessment","evidence_role":"fdi-flows-stocks-projects-multinational-enterprises-geographic-concentration","retrieval_status":"verified_2026-08-30"},
+    {"id":"geo9-13-itf-transport","publisher":"International Transport Forum at the OECD","title":"Transport Data and Statistics","url":"https://www.itf-oecd.org/data-statistics","type":"official-multimodal-transport-statistics","evidence_role":"freight-transport-activity-modes-comparable-national-statistics","retrieval_status":"verified_2026-08-30"}
+  ],
+  "topic_briefs": [
+    {
+      "id":"lokalisering-agglomerasjon-og-tilgjengelighet","title":"Lokalisering, agglomerasjon og tilgjengelighet","method_ids":["met_geo_lokaliseringsfaktoranalyse","met_geo_tilgjengelighet_generaliserte_kostnader"],"boundary":"Lokalisering skal forklares med prosessrelevante markeder, leverandører, kompetanse, institusjoner, nettverk og transportkostnader; fysisk avstand alene er ikke tilgjengelighet.","source_ids":["geo9-03-wto-gvc2025","geo9-05-worldbank-lpi","geo9-13-itf-transport","geo9-12-unctad-wir2026"],
+      "planned_claims":[
+        {"id":"geo9-01","text":"Økonomisk lokalisering formes av kombinasjoner av markedsadgang, leverandørnettverk, arbeidskraft, kompetanse, institusjoner og transportforbindelser, og ingen enkelt lokaliseringsfaktor bør behandles som universell forklaring på tvers av næringer.","source_ids":["geo9-03-wto-gvc2025","geo9-12-unctad-wir2026"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo9-02","text":"Geografisk avstand er ikke det samme som økonomisk tilgjengelighet fordi reisetid, fraktpris, grenseprosesser, frekvens, pålitelighet og nettverksstruktur kan gjøre like lange avstander svært forskjellige i faktisk logistikkostnad.","source_ids":["geo9-05-worldbank-lpi","geo9-13-itf-transport"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo9-03","text":"Agglomerasjonsmønstre kan være forbundet med deling av arbeidsmarkeder, leverandører, kunnskap og infrastruktur, men geografisk samlokalisering alene beviser ikke hvilken mekanisme som skaper produktivitetsforskjellen.","source_ids":["geo9-03-wto-gvc2025","geo9-12-unctad-wir2026"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo9-04","text":"Sammenligning av økonomiske steder må dokumentere næring, geografisk enhet, referanseår og datadefinisjon fordi nasjonale, regionale, havne- og bedriftsnære geografier representerer ulike økonomiske prosesser.","source_ids":["geo9-01-oecd-icio","geo9-12-unctad-wir2026"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"ressurser-utvinning-renter-og-kritiske-mineraler","title":"Ressurser, utvinning, renter og kritiske mineraler","method_ids":["met_geo_ressursavhengighet","met_geo_kritisk_mineral_scenarioanalyse"],"boundary":"Geologisk forekomst, produksjon, eksport, ressursrente, statlig inntekt og lokal verdiskaping er forskjellige ledd; scenarioframskrivning skal ikke behandles som observert framtid.","source_ids":["geo9-09-iea-critical-minerals","geo9-10-worldbank-resource-rents","geo9-11-eiti-standard","geo9-04-un-comtrade"],
+      "planned_claims":[
+        {"id":"geo9-05","text":"Stor naturressursforekomst eller høy utvinningsverdi innebærer ikke automatisk høy lokal velferd eller bred verdiskaping; eierskap, kostnader, skatt, leverandørkoblinger, institusjoner og fordeling påvirker hvordan ressursverdien omsettes økonomisk.","source_ids":["geo9-10-worldbank-resource-rents","geo9-11-eiti-standard"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo9-06","text":"IEAs kritiske mineraldata kombinerer observerte markedsdata med scenarioavhengige etterspørsels- og tilbudsframskrivninger, slik at framtidige mengder skal rapporteres med scenario og forutsetninger og ikke som sikre observasjoner.","source_ids":["geo9-09-iea-critical-minerals","geo9-03-wto-gvc2025"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo9-07","text":"Ressursrente som andel av BNP måler en definert økonomisk rentestørrelse for bestemte ressurskategorier og er ikke det samme som eksportinntekt, skatteinntekt, fysisk utvinning eller lokal sysselsetting.","source_ids":["geo9-10-worldbank-resource-rents","geo9-04-un-comtrade"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo9-08","text":"Analyse av utvinningsgeografi bør følge verdikjeden fra lisenser og eierskap via produksjon og eksport til inntekter og statlig deltakelse, fordi samme produksjonsvolum kan gi svært ulike territorielle økonomiske virkninger.","source_ids":["geo9-11-eiti-standard","geo9-10-worldbank-resource-rents"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"transportnett-korridorer-og-logistikk","title":"Transportnett, korridorer og logistikk","method_ids":["met_geo_transportnett_tilgjengelighet","met_geo_logistikk_korridoranalyse"],"boundary":"Transportytelse skal skille fysisk infrastruktur, faktisk transportaktivitet, kostnad, tid, regularitet og surveybasert logistikkprestasjon; én indeks erstatter ikke nettverksanalyse.","source_ids":["geo9-05-worldbank-lpi","geo9-06-worldbank-lpi-method","geo9-13-itf-transport","geo9-08-unctad-rmt2025"],
+      "planned_claims":[
+        {"id":"geo9-09","text":"En transportkorridor må analyseres som et nettverk av lenker, terminaler, grensepunkter og tjenester fordi flaskehalsen kan ligge i omlasting, toll, kapasitet eller regularitet snarere enn i den lengste fysiske strekningen.","source_ids":["geo9-05-worldbank-lpi","geo9-13-itf-transport"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo9-10","text":"Logistics Performance Index bygger i vesentlig grad på vurderinger fra logistikkprofesjonelle av seks dimensjoner og skal ikke tolkes som en direkte fysisk opptelling av veger, jernbane, havner eller lagerkapasitet.","source_ids":["geo9-05-worldbank-lpi","geo9-06-worldbank-lpi-method"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo9-11","text":"God transporttilgjengelighet avhenger både av kapasitet og pålitelighet; en rask korridor med hyppige avbrudd kan ha høyere generalisert logistikkostnad enn en lengre men mer forutsigbar rute.","source_ids":["geo9-05-worldbank-lpi","geo9-08-unctad-rmt2025"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo9-12","text":"Tonnkilometer, tonn, kjøretøy- eller fartøybevegelser og monetær vareverdi må holdes adskilt fordi de beskriver ulike dimensjoner av transportarbeid og handel og kan utvikle seg i forskjellige retninger.","source_ids":["geo9-13-itf-transport","geo9-04-un-comtrade"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"havner-shipping-konnektivitet-og-flaskehalser","title":"Havner, shipping, konnektivitet og flaskehalser","method_ids":["met_geo_shipping_konnektivitet","met_geo_havne_flaskehalsanalyse"],"boundary":"Liner shipping connectivity måles fra nettverksegenskaper og er ikke handelsvolum; reruting skal skille distanse, ton-miles, kapasitet, kostnad og faktisk varevolum.","source_ids":["geo9-07-unctad-lsci","geo9-08-unctad-rmt2025","geo9-04-un-comtrade"],
+      "planned_claims":[
+        {"id":"geo9-13","text":"Liner Shipping Connectivity Index beskriver en økonomis plass i containerlinjenettverket gjennom blant annet anløp, kapasitet, tjenester, selskaper, skipsstørrelse og direkte forbindelser og er derfor ikke et mål på samlet handelsverdi eller tonnasje.","source_ids":["geo9-07-unctad-lsci","geo9-08-unctad-rmt2025"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo9-14","text":"En havns rolle bør analyseres med både nettverksforbindelser og faktisk trafikk fordi en høyt forbundet omlastingshavn kan ha annen økonomisk funksjon enn en havn med stort lokalt import- og eksportgrunnlag.","source_ids":["geo9-07-unctad-lsci","geo9-04-un-comtrade"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo9-15","text":"Maritim reruting kan øke ton-miles og transportkostnader selv når fysisk varevolum endres lite, fordi samme tonn må fraktes over lengre distanse og binder fartøyskapasitet i flere dager.","source_ids":["geo9-08-unctad-rmt2025","geo9-13-itf-transport"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo9-16","text":"Chokepunkt- og havnerisiko må kobles til alternative ruter, kapasitet, tidsbruk og vareavhengighet; stor normal trafikk gjennom ett punkt beviser ikke alene hvor stor økonomisk skade et avbrudd vil skape.","source_ids":["geo9-08-unctad-rmt2025","geo9-04-un-comtrade"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"handelsstrommer-produkter-og-opprinnelse-destinasjon","title":"Handelsstrømmer, produkter og opprinnelse–destinasjon","method_ids":["met_geo_handelsstrom_od","met_geo_handelsklassifikasjon_harmonisering"],"boundary":"Rapportert handelsverdi, mengde, partner, opprinnelse, avsender og destinasjon skal følge datadefinisjonen; monetær strøm skal ikke brukes som fysisk masseproxy.","source_ids":["geo9-04-un-comtrade","geo9-01-oecd-icio","geo9-13-itf-transport"],
+      "planned_claims":[
+        {"id":"geo9-17","text":"UN Comtrade organiserer rapportert varehandel etter reporter, partner, produkt, strøm og tid, og analysen må dokumentere hvilken handelsretning og klassifikasjon som brukes før kartlagte forbindelser sammenlignes.","source_ids":["geo9-04-un-comtrade","geo9-01-oecd-icio"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo9-18","text":"Monetær handelsverdi kan endres på grunn av pris, valuta og produktmiks uten tilsvarende endring i fysisk mengde, slik at vareverdi ikke skal behandles som direkte mål på tonn eller transportarbeid.","source_ids":["geo9-04-un-comtrade","geo9-13-itf-transport"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo9-19","text":"Bilaterale handelsstrømmer registrerer rapporterte transaksjoner mellom økonomier, men identifiserer ikke nødvendigvis hvor alle innsatsfaktorene eller den underliggende verdiskapingen oppsto i en flerlands produksjonskjede.","source_ids":["geo9-04-un-comtrade","geo9-02-oecd-tiva"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo9-20","text":"Tidsserieanalyse av handel krever kontroll av produktklassifikasjon, rapporteringspraksis, valuta eller prisgrunnlag og geografiske enheter fordi metodiske brudd kan skape tilsynelatende romlig omlegging uten tilsvarende realøkonomisk endring.","source_ids":["geo9-04-un-comtrade","geo9-01-oecd-icio"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"globale-verdikjeder-icio-og-verdiskaping","title":"Globale verdikjeder, ICIO og verdiskaping","method_ids":["met_geo_icio_verdiskapingsspor","met_geo_gvc_deltakelse"],"boundary":"Bruttoeksport og innenlandsk eller utenlandsk verdiskaping skal skilles; ICIO/TiVA er harmoniserte input-output-baserte estimater og ikke firma-for-firma sporingsdata.","source_ids":["geo9-01-oecd-icio","geo9-02-oecd-tiva","geo9-03-wto-gvc2025"],
+      "planned_claims":[
+        {"id":"geo9-21","text":"Bruttoeksport kan inneholde utenlandsk verdiskaping og innenlandsk verdiskaping som krysser grenser flere ganger, slik at eksportverdi ikke kan likestilles med verdiskaping skapt i eksportlandet.","source_ids":["geo9-02-oecd-tiva","geo9-01-oecd-icio"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo9-22","text":"OECD ICIO harmoniserer nasjonale input-output- og handelsdata til et globalt sammenhengende regnskap og muliggjør sporing av produksjons- og verdiskapingskoblinger mellom næringer og økonomier på et aggregert nivå.","source_ids":["geo9-01-oecd-icio","geo9-02-oecd-tiva"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo9-23","text":"TiVA-indikatorer er avledet fra ICIO og skal tolkes som modell- og regnskapsbaserte nærings- og landestimater, ikke som direkte observasjon av hver enkelt bedrifts leverandørkjede.","source_ids":["geo9-02-oecd-tiva","geo9-01-oecd-icio"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo9-24","text":"Endring i global verdikjededeltakelse kan skyldes regionalisering, teknologisk endring, tjenesteinnhold, handelspolitikk og investeringsmønstre og bør analyseres med flere indikatorer fremfor én bilateral varestrøm.","source_ids":["geo9-03-wto-gvc2025","geo9-02-oecd-tiva"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"fdi-flernasjonale-foretak-og-territoriell-forankring","title":"FDI, flernasjonale foretak og territoriell forankring","method_ids":["met_geo_fdi_flow_stock","met_geo_investering_territoriell_forankring"],"boundary":"FDI-flow, FDI-stock, prosjektverdi og realisert lokal aktivitet er forskjellige mål; nasjonal investeringsstrøm skal ikke automatisk lokaliseres til prosjektsted eller lokal verdiskaping.","source_ids":["geo9-12-unctad-wir2026","geo9-03-wto-gvc2025","geo9-02-oecd-tiva"],
+      "planned_claims":[
+        {"id":"geo9-25","text":"FDI-flow måler investering over en periode, mens FDI-stock beskriver akkumulert investeringsposisjon på et tidspunkt, og de to størrelsene kan bevege seg ulikt når nye investeringer, salg, reinvestert overskudd og verdsettingsendringer varierer.","source_ids":["geo9-12-unctad-wir2026","geo9-03-wto-gvc2025"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo9-26","text":"Nasjonal FDI-statistikk viser ikke automatisk hvor innen landet produksjon, datasentre, kontorer eller leverandørkoblinger er lokalisert, slik at territoriell analyse krever mer detaljert prosjekt- eller virksomhetsgeografi.","source_ids":["geo9-12-unctad-wir2026","geo9-03-wto-gvc2025"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo9-27","text":"En utenlandsk investering kan gi svært ulike lokale virkninger avhengig av sysselsetting, kompetanse, lokale innkjøp, teknologi, skatteordninger og koblinger til eksisterende næringsmiljø, og prosjektverdi alene måler ikke disse ringvirkningene.","source_ids":["geo9-12-unctad-wir2026","geo9-03-wto-gvc2025"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo9-28","text":"Flernasjonale foretaks lokalisering og globale verdikjedeposisjon bør analyseres sammen fordi investering kan flytte produksjonskapasitet, tjenester eller kontrollfunksjoner uten at brutto handelsstrømmer endres proporsjonalt.","source_ids":["geo9-12-unctad-wir2026","geo9-02-oecd-tiva"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id":"sjokk-resiliens-avhengighet-og-reproduserbarhet","title":"Sjokk, resiliens, avhengighet og reproduserbarhet","method_ids":["met_geo_nettverksresiliens_scenario","met_geo_okonomisk_geodata_reproduserbarhet"],"boundary":"Normalperiodens strømmer skal ikke alene brukes som resiliensmål; alternative ruter, kapasitet, lager, substitusjon og tidsdimensjon må vurderes og dataserier harmoniseres.","source_ids":["geo9-03-wto-gvc2025","geo9-08-unctad-rmt2025","geo9-09-iea-critical-minerals","geo9-01-oecd-icio"],
+      "planned_claims":[
+        {"id":"geo9-29","text":"Stor normal handelsstrøm gjennom én leverandør eller rute kan indikere eksponering, men resiliens avhenger også av alternative leverandører, ruter, ledig kapasitet, lager, substitusjonsmuligheter og hvor raskt systemet kan tilpasse seg.","source_ids":["geo9-03-wto-gvc2025","geo9-08-unctad-rmt2025"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo9-30","text":"Konsentrasjon i kritiske mineralers gruvedrift eller raffinering kan skape geografisk avhengighet, men sårbarhet må vurderes sammen med etterspørselsscenario, teknologi, reserver, handel, lagre og mulige substitutter.","source_ids":["geo9-09-iea-critical-minerals","geo9-03-wto-gvc2025"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo9-31","text":"Reruting under et transportsjokk kan bevare vareflyt samtidig som distanse, ton-miles, tid, kostnad og utslipp øker, slik at stabilt volum ikke betyr at logistikkens økonomiske belastning er uendret.","source_ids":["geo9-08-unctad-rmt2025","geo9-13-itf-transport"],"status":"planned_requires_fulltext_verification"},
+        {"id":"geo9-32","text":"En etterprøvbar økonomisk-geografisk analyse dokumenterer datakilde og versjon, vare- eller næringsklassifikasjon, pris- og valutagrunnlag, tidsperiode, geografisk enhet, nettverksrepresentasjon og modellforutsetninger før strømmer, verdiskaping eller avhengighet generaliseres.","source_ids":["geo9-01-oecd-icio","geo9-04-un-comtrade","geo9-03-wto-gvc2025"],"status":"planned_requires_fulltext_verification"}
+      ]
+    }
+  ],
+  "decision_scenarios": [
+    {"id":"geo9-scenario-01","prompt":"Sammenlign to produksjonssteder med lik fysisk avstand til et marked, men ulik grensebehandling, frekvens og pålitelighet, og bygg et tilgjengelighetsmål som ikke reduseres til kilometer.","source_ids":["geo9-05-worldbank-lpi","geo9-06-worldbank-lpi-method","geo9-13-itf-transport"]},
+    {"id":"geo9-scenario-02","prompt":"Analyser et mineralrikt område ved å skille geologisk ressurs, produksjon, eksportverdi, ressursrente, statlig inntekt og lokale leverandør- og sysselsettingskoblinger.","source_ids":["geo9-09-iea-critical-minerals","geo9-10-worldbank-resource-rents","geo9-11-eiti-standard"]},
+    {"id":"geo9-scenario-03","prompt":"Forklar hvorfor høy liner shipping connectivity ikke automatisk betyr høyt handelsvolum, og sammenhold nettverksindeksen med rapportert varehandel og havnens funksjon.","source_ids":["geo9-07-unctad-lsci","geo9-08-unctad-rmt2025","geo9-04-un-comtrade"]},
+    {"id":"geo9-scenario-04","prompt":"Spor en eksportnærings bruttoeksport mot innenlandsk og utenlandsk verdiskaping og vis hvorfor bilateral handelsverdi ikke er det samme som nasjonal verdiskaping.","source_ids":["geo9-01-oecd-icio","geo9-02-oecd-tiva","geo9-04-un-comtrade"]},
+    {"id":"geo9-scenario-05","prompt":"Vurder territorielle virkninger av en stor utenlandsk investering ved å skille FDI-flow, stock, prosjektverdi, lokalisering, sysselsetting, lokale innkjøp og teknologi- eller kompetansekoblinger.","source_ids":["geo9-12-unctad-wir2026","geo9-03-wto-gvc2025"]},
+    {"id":"geo9-scenario-06","prompt":"Stress-test en verdikjede etter stengt maritimt chokepunkt ved å kartlegge alternative ruter, kapasitet, lager, substitutter, ton-miles, kostnad og tidsforsinkelse fremfor å bruke normalperiodens handelsstrøm alene.","source_ids":["geo9-08-unctad-rmt2025","geo9-03-wto-gvc2025","geo9-09-iea-critical-minerals"]}
+  ],
+  "planned_assessments": 8,
+  "fulltext_requirements": {"modules":4,"sections":8,"paragraphs":32,"verified_claims":32,"assessments":8,"decision_cases":6}
+}

@@ -1,29 +1,19 @@
 {
-  "schema": "history_go_geografi_repository_reconciliation_v1",
-  "version": "1.0.0",
-  "updated_at": "2026-08-30",
-  "audited_main_sha": "2975a031dd72253363c9e0adad994f04d047fe36",
-  "owner_subject_id": "natur",
-  "canonical_subcategory_id": "geografi",
-  "status": "domains_1_2_3_4_5_6_materialized_domain_7_source_first_ready",
-  "authority_files": [
-    "data/categories/category_contract.json",
-    "data/fagverk/subject_inventory.json",
-    "data/fagverk/subject_status.json",
-    "data/fag/fag_manifest.json",
-    "data/fagverk/fagverk_portal.json",
-    "data/fag/natur/naturpensum_canonical_v4_5.json",
-    "data/fag/natur/methods_natur_canonical_v4_5.json",
-    "data/fag/natur/natur_universal_coverage_contract_v1.json",
-    "docs/FAGVERK.md"
-  ],
-  "disciplinary_boundary": {
-    "owner_rule": "Geografi forblir canonical underkategori under Natur og opprettes ikke som nytt toppfag.",
-    "reuse_rule": "Eksisterende Natur-materiale om klima, hydrologi, landskap/geologi og biogeografi kan gjenbrukes med eksplisitt geografifaglig utvidelse, men teller ikke som materialisert Geografi uten eget fulltekst-, claim-, vurderings- og auditspor.",
-    "secondary_rule": "By, Næringsliv, Politikk og Sosiologi/antropologi beholder eierskap til sine kapitler. Geografi kan sekundærbinde dem som case og nabodisipliner uten flytting eller dobbelttelling.",
-    "method_rule": "Kartografi, GIS, geodata, koordinatreferanser, romlig analyse og fjernmåling må produseres som geografifaglig metodegrunnlag; generell kartbruk eller stedstilknytning er ikke tilstrekkelig."
+  "schema":"history_go_geografi_repository_reconciliation_v1",
+  "version":"1.0.0",
+  "updated_at":"2026-08-31",
+  "audited_main_sha":"6185ae572303b0969c62a3c287bdb4c3acf7793a",
+  "owner_subject_id":"natur",
+  "canonical_subcategory_id":"geografi",
+  "status":"authority_audit_complete_strict_subcategory_completion_proven",
+  "authority_files":["data/categories/category_contract.json","data/fagverk/subject_inventory.json","data/fagverk/subject_status.json","data/fag/fag_manifest.json","data/fagverk/fagverk_portal.json","data/fag/natur/naturpensum_canonical_v4_5.json","data/fag/natur/methods_natur_canonical_v4_5.json","data/fag/natur/natur_universal_coverage_contract_v1.json","docs/FAGVERK.md"],
+  "disciplinary_boundary":{
+    "owner_rule":"Geografi forblir canonical underkategori under Natur og opprettes ikke som nytt toppfag.",
+    "reuse_rule":"Eksisterende Natur-materiale om klima, hydrologi, landskap/geologi og biogeografi kan gjenbrukes med eksplisitt geografifaglig utvidelse, men teller ikke som materialisert Geografi uten eget fulltekst-, claim-, vurderings- og auditspor.",
+    "secondary_rule":"By, Næringsliv, Politikk og Sosiologi/antropologi beholder eierskap til sine kapitler. Geografi kan sekundærbinde dem som case og nabodisipliner uten flytting eller dobbelttelling.",
+    "method_rule":"Kartografi, GIS, geodata, koordinatreferanser, romlig analyse og fjernmåling må produseres som geografifaglig metodegrunnlag; generell kartbruk eller stedstilknytning er ikke tilstrekkelig."
   },
-  "findings": [
+  "findings":[
     {"path":"data/fag/natur/naturpensum_canonical_v4_5.json","classification":"reuse_with_expansion","reason":"Natur har sterke kunnskapsfelt for vann, klima, geologi/landskap og biogeografi som beholdes hos Natur og bare teller i Geografi etter eget strengt geografioverlegg."},
     {"path":"data/fag/natur/methods_natur_canonical_v4_5.json","classification":"reuse_with_expansion","reason":"Natur-metoder kan gjenbrukes, mens eksplisitt kartografi, GIS, koordinatreferanser og romlig analyse må produseres som geografifaglig metodegrunnlag."},
     {"path":"data/fag/natur/natur_universal_coverage_contract_v1.json","classification":"reuse_with_expansion","reason":"Universell Natur-dekning er ikke det samme som materialisert Geografi; skillet beholdes fail-closed."},
@@ -35,19 +25,9 @@
     {"path":"data/fagverk/naeringsliv/internasjonal-okonomi-operations-prosjekt.json","classification":"secondary_link","reason":"Globale verdikjeder er relevante for økonomisk geografi, men økonomisk teori- og kapitteleierskap ligger hos Næringsliv."},
     {"path":"data/fagverk/politikk/konflikt-makt-sivilsamfunn.json","classification":"secondary_link","reason":"Politisk geografi sekundærbinder makt og konflikt, men må produsere territorium, grenser og romlig maktanalyse selv."}
   ],
-  "move_decision": {
-    "move_existing_files": [],
-    "justification": "Repository-wide reconciliation fant ingen eksisterende fil som bør flyttes for å etablere Geografi. Canonicale eiere bevares; gjenbruk skjer gjennom eksplisitte overlegg eller sekundærbindinger."
-  },
-  "prohibited_actions": [
-    "slette eller flytte eksisterende Natur-, By-, Næringsliv-, Politikk- eller Sosiologi/antropologi-kapitler for å fylle Geografi",
-    "telle sekundærlenker som materialisert geografiproduksjon",
-    "telle generell stedstilknytning eller kartbruk som bevis på geografifaglig metodekompetanse",
-    "gjøre geografi til nytt toppfag eller egen konkurrerende runtime-kategori",
-    "oppgradere natur/geografi fra expansion_planned før 12/12 domener og strict completion-proof",
-    "bruke administrative områder som naturlige analysegrenser uten å begrunne skala, enhet og datagrunnlag"
-  ],
-  "domains": [
+  "move_decision":{"move_existing_files":[],"justification":"Repository-wide reconciliation fant ingen eksisterende fil som bør flyttes for å etablere Geografi. Canonicale eiere bevares; gjenbruk skjer gjennom eksplisitte overlegg eller sekundærbindinger."},
+  "prohibited_actions":["slette eller flytte eksisterende Natur-, By-, Næringsliv-, Politikk- eller Sosiologi/antropologi-kapitler for å fylle Geografi","telle sekundærlenker som materialisert geografiproduksjon","telle generell stedstilknytning eller kartbruk som bevis på geografifaglig metodekompetanse","gjøre geografi til nytt toppfag eller egen konkurrerende runtime-kategori","oppgradere natur/geografi fra expansion_planned før 12/12 domener og strict completion-proof","bruke administrative områder som naturlige analysegrenser uten å begrunne skala, enhet og datagrunnlag"],
+  "domains":[
     {"ordinal":1,"domain_id":"geografisk_tenkning_sted_rom_skala_region","title":"Geografisk tenkning: sted, rom, skala og region","classification":"new_production_required"},
     {"ordinal":2,"domain_id":"kartografi_gis_geodata_fjernmaling","title":"Kartografi, GIS, geodata og fjernmåling","classification":"new_production_required"},
     {"ordinal":3,"domain_id":"geomorfologi_landskap_jordsystemer","title":"Geomorfologi, landskap og jordsystemer","classification":"reuse_with_expansion"},
@@ -61,14 +41,5 @@
     {"ordinal":11,"domain_id":"utviklingsgeografi_ulikhet_baerekraft","title":"Utviklingsgeografi, ulikhet og bærekraft","classification":"new_production_required"},
     {"ordinal":12,"domain_id":"naturfare_risiko_saarbarhet_planlegging_tilpasning","title":"Naturfare, risiko, sårbarhet, planlegging og tilpasning","classification":"new_production_required"}
   ],
-  "production_plan": {
-    "total_domains": 12,
-    "reuse_with_expansion": 4,
-    "move_existing": 0,
-    "new_production_required": 8,
-    "source_first_ready": 7,
-    "materialized": 6,
-    "next_domain": "befolkning_demografi_migrasjon_mobilitet",
-    "strict_completion_proven": false
-  }
+  "production_plan":{"total_domains":12,"reuse_with_expansion":4,"move_existing":0,"new_production_required":8,"source_first_ready":12,"materialized":12,"next_domain":null,"strict_completion_proven":true}
 }

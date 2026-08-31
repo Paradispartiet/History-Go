@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "bosetting-by-land-og-urbanisering",
+  "id": "02-urbanisering-morfologi-og-bebygd-overflate",
+  "title": "Urbanisering, morfologi og bebygd overflate",
+  "sections": [
+    {
+      "id": "urbanisering-agglomerasjon-og-grenseendring",
+      "title": "Urbanisering, agglomerasjon og grenseendring",
+      "method_ids": ["met_geo_urban_vekst_dekomponering", "met_geo_agglomerasjons_harmonisering"],
+      "boundary": "Urban vekst skal dekomponere demografi, migrasjon, fysisk utvidelse og administrative/statistiske grenseendringer.",
+      "paragraphs": [
+        "Når folketallet i en urban agglomerasjon øker, kan flere mekanismer virke samtidig. Fødselsoverskudd kan øke befolkningen innenfor en stabil grense, migrasjon kan flytte mennesker inn, fysisk ekspansjon kan gjøre tidligere separate bosettinger sammenhengende, og reviderte grenser kan innlemme forsteder eller nabobyer. Disse mekanismene har ulike politiske og geografiske konsekvenser og må derfor skilles i analysen. Å omtale hele økningen som «urbanisering» uten dekomponering kan skjule om presset gjelder boliger, transport, tjenester, areal, demografisk struktur eller bare en ny statistisk avgrensning av samme sammenhengende stedssystem.",
+        "En administrativ grenseendring kan lage et stort hopp i en urban tidsserie uten at byen fysisk har vokst tilsvarende det året. Dersom to kommuner slås sammen eller en bygrense utvides, kan både folketall og areal endres umiddelbart i datasettet, mens bebyggelsen og befolkningsfordelingen på bakken har utviklet seg gradvis. Derfor bør tidsserier enten harmoniseres til en stabil geografi eller vise brudd og beregne før- og etterserier separat. Uten slik kontroll kan modeller feilaktig tilskrive grenseendringen til migrasjon, økonomisk boom eller ny utbygging, og sammenligning mellom byer med ulik reformhistorikk blir skjev.",
+        "Fjernmåling kan måle endringer i bebygd overflate og dermed gi et konsistent bilde av fysisk urban ekspansjon på tvers av administrative grenser. Men built-up er et mål på konstruert overflate, ikke på hvor mange mennesker som bor der, hvilken funksjon arealet har eller hvor sterkt stedet er integrert i et arbeidsmarked. Et nytt logistikkområde kan øke built-up kraftig med få innbyggere, mens fortetting kan øke befolkningen uten tilsvarende horisontal ekspansjon. Derfor må fysisk ekspansjon kobles til befolknings- og funksjonsdata før den brukes som evidens for urban demografisk vekst eller funksjonell integrasjon.",
+        "En robust analyse av urbaniseringsmønstre bruker flere indikatorer sammen. Befolkningsendring viser demografisk utvikling, built-up viser fysisk fotavtrykk, og bosettingsklasse viser hvordan tetthet og sammenheng plasserer området i en harmonisert typologi. Kombinasjonen gjør det mulig å skille fortetting fra spredt utbygging og fra ren grensereklassifisering. Dersom befolkningen øker raskt mens built-up endres lite, kan fortetting være viktig; dersom arealet vokser raskere enn befolkningen, kan lavtetthetsutbygging dominere. Slike slutninger krever likevel kontroll for produktversjon, grense og referanseår før forskjellene attribueres."
+      ],
+      "paragraphClaimIds": [["geo8-09"], ["geo8-10"], ["geo8-11"], ["geo8-12"]]
+    },
+    {
+      "id": "morfologi-bebygd-overflate-og-tetthet",
+      "title": "Morfologi, bebygd overflate og tetthet",
+      "method_ids": ["met_geo_bebygd_overflate_analyse", "met_geo_morfologisk_tetthet"],
+      "boundary": "Bebygd overflate beskriver fysisk konstruksjon; befolkningstetthet, arealbruk og funksjon krever egne data.",
+      "paragraphs": [
+        "Satellittavledet built-up beskriver hvor bakken er dekket av bygde strukturer, og er derfor en fysisk arealvariabel. Den sier ikke i seg selv hvor mange mennesker som oppholder seg i bygningene, om de brukes til bolig, næring eller lager, eller hvor intens aktiviteten er. Samme mengde konstruert areal kan romme høyblokker, eneboliger, industri eller transportanlegg med svært forskjellig befolkning og funksjon. Derfor bør built-up brukes som morfologisk evidens og kobles til separate befolknings-, arealbruks- eller aktivitetsdata når analysen handler om tetthet, sosial struktur eller økonomisk funksjon.",
+        "To bosettinger med samme totale built-up areal kan ha svært ulik befolkningstetthet fordi den vertikale og funksjonelle strukturen er forskjellig. Høye boligbygg kan samle mange innbyggere på liten grunnflate, mens en lav, spredt bosetting bruker større tomteareal per person. Næringsbygg, parkeringsflater og store institusjoner kan også øke det fysiske fotavtrykket uten tilsvarende boligbefolkning. Derfor bør sammenligning skille bebygd grunnflate fra innbyggertall og helst inkludere boligtype, bygningsvolum eller arealbruk når slike data finnes. Ellers kan morfologiske forskjeller feilaktig tolkes som demografiske forskjeller.",
+        "Fortetting og spredt utbygging er to ulike kombinasjoner av demografisk og fysisk endring. Fortetting kan øke befolkning, gulvareal eller bygningshøyde innenfor omtrent samme horisontale fotavtrykk, mens spredt utbygging kan utvide built-up raskt med relativt svak befolkningsvekst. For å skille dem må tidsserier for befolkning og fysisk overflate sammenholdes på kompatibel geografi og periode. Det er også nødvendig å kontrollere om et produkt registrerer små bygninger likt over tid. Uten slik kontroll kan sensorforbedring eller klassifikasjonsendring se ut som ny spredning, mens reell fortetting kan være nesten usynlig i et rent flateprodukt.",
+        "Morfologisk sammenheng er ikke en naturgitt egenskap; den avhenger av hvilke celler eller objekter som regnes som bygde og hvordan naboskap defineres. En grov rasteroppløsning kan fylle små mellomrom og gjøre to bosettinger til én klynge, mens fin oppløsning kan vise grønne korridorer eller åpne arealer mellom dem. Regler for diagonal kontakt og minimumsstørrelse påvirker også resultatet. Derfor bør urban form analyseres med eksplisitt oppløsning, klassifikasjonsregel og eventuelt sensitivitetsanalyse. Uten metodisk åpenhet kan forskjeller i kartproduksjon feiltolkes som forskjeller i selve landskapets sammenheng eller fragmentering."
+      ],
+      "paragraphClaimIds": [["geo8-13"], ["geo8-14"], ["geo8-15"], ["geo8-16"]]
+    }
+  ]
+}

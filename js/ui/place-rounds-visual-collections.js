@@ -16,6 +16,7 @@
   ]);
 
   const CATEGORY_DEFS = Object.freeze({
+    historical_events: { id:"historical_events", label:"Historiske hendelser", fallbackIcon:"⌛", iconId:"pcCategoryCollectionIcon", listId:"pcCategoryCollectionList", kind:"historical_events", shape:"rectangle" },
     productions: { id:"productions", label:"Produksjoner", fallbackIcon:"🎭", iconId:"pcCategoryCollectionIcon", listId:"pcCategoryCollectionList", kind:"productions", shape:"rectangle" },
     structures: { id:"structures", label:"Bygg og anlegg", fallbackIcon:"🏛️", iconId:"pcCategoryCollectionIcon", listId:"pcCategoryCollectionList", kind:"structures", shape:"rectangle" },
     competitions: { id:"competitions", label:"Kamper og konkurranser", fallbackIcon:"🏆", iconId:"pcCategoryCollectionIcon", listId:"pcCategoryCollectionList", kind:"competitions", shape:"rectangle" },
@@ -34,8 +35,8 @@
 
   const CATEGORY_FOURTH = Object.freeze({
     by:"structures",
-    historie:"related",
-    historisk:"related",
+    historie:"historical_events",
+    historisk:"historical_events",
     kunst:"productions",
     litteratur:"productions",
     media:"productions",
@@ -58,8 +59,6 @@
   });
 
   const PRODUCTION_LABELS = Object.freeze({
-    historie:"Historiske hendelser",
-    historisk:"Historiske hendelser",
     kunst:"Kunstverk",
     litteratur:"Bøker og tekster",
     musikk:"Sanger og album",
@@ -199,6 +198,10 @@
     return flattenSources(sources);
   }
 
+  function historicalEventItems(place) {
+    return flattenSources([[place?.historical_events, "historical_events"]]);
+  }
+
   const STRUCTURE_PATTERN = /\b(bygg|bygning|anlegg|hall|arena|stadion|tribune|tårn|tower|kirke|kapell|rom|scene|bro|bru|tunnel|port|gårdsrom|fabrikk|verksted|bane|terminal|stasjon|campus|paviljong|fort|bunker|batteri|ruin|konstruksjon)\b/i;
 
   function structureCompatible(item) {
@@ -269,6 +272,7 @@
     if (id === "people") return peopleItems(place);
     if (id === "brands") return brandItems(place);
     if (id === "objects") return objectItems(place);
+    if (id === "historical_events") return historicalEventItems(place);
     if (id === "productions") return productionItems(place);
     if (id === "structures") return structureItems(place);
     if (id === "competitions") return competitionItems(place);

@@ -15,6 +15,7 @@
     map: "pcNatureMapIcon",
     flora: "pcFloraIcon",
     fauna: "pcFaunaIcon",
+    historical_events: "pcCategoryCollectionIcon",
     productions: "pcCategoryCollectionIcon",
     structures: "pcCategoryCollectionIcon",
     competitions: "pcCategoryCollectionIcon",
@@ -22,7 +23,7 @@
     destinations: "pcCategoryCollectionIcon"
   });
   const SUBCATEGORY_IDS = new Set(["reuse", "materials", "environment", "systems"]);
-  const CATEGORY_IDS = new Set(["productions", "structures", "competitions", "related", "destinations"]);
+  const CATEGORY_IDS = new Set(["historical_events", "productions", "structures", "competitions", "related", "destinations"]);
   const s = value => String(value == null ? "" : value).trim();
   const arr = value => Array.isArray(value) ? value : [];
 

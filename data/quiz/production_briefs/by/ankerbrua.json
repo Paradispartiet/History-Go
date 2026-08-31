@@ -1,0 +1,535 @@
+{
+  "schema_version": "1.0",
+  "categoryId": "by",
+  "targetId": "ankerbrua",
+  "scope": "Ankerbruas forgjenger, 1926-konstruksjon, Dyre Vaas fire bronsegrupper, navnehistorie, blåskilt og kildekritisk stedslesning.",
+  "status": "reviewed",
+  "reviewed_at": "2026-08-30",
+  "profile_hint": "rich_5x7",
+  "review_note": "Oslo byleksikon, Norsk kunstnerleksikon, direkte museumsregistreringer, Oslo Byes Vel og stedsspesifikk bildedokumentasjon er sammenholdt. Tyrihans-avviket er holdt utenfor canonical motivliste.",
+  "sources": {
+    "oslo_bridge": {
+      "url": "https://oslobyleksikon.no/side/Ankerbrua",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for brohistorie, 1926-konstruksjon, Oscar Hoff, materialer, motiver og tilnavn."
+    },
+    "oslo_ankerlokka": {
+      "url": "https://oslobyleksikon.no/side/Ankerl%C3%B8kken",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for navneopprinnelse og løkkehistorie."
+    },
+    "nkl_vaa": {
+      "url": "https://nkl.snl.no/Dyre_Vaa",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for Dyre Vaa, konkurransen i 1931 og utføring/oppsetting i 1937."
+    },
+    "akerselva_friends": {
+      "url": "https://www.akerselvasvenner.no/2016/01/01/ankerbrua/",
+      "source_type": "local_history",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for broprosjektering og stedlig kontekst; brukt supplerende."
+    },
+    "oslo_byes_vel": {
+      "url": "https://www.oslobyesvel.no/kalender/avduking-av-bl-skilt-og-guidet-tur-over-broer-langs-nedre-akerselva/10",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for skiltmarkeringen i 2019."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "kur_by_01_byrom_akser_knutepunkt",
+      "kur_by_04_historiske_lag_og_transformasjon",
+      "kur_by_06_makt_symboler_og_representasjon"
+    ],
+    "emne_ids": [
+      "em_by_infrastruktur_mobilitet",
+      "em_by_materialitet_og_sanseerfaring",
+      "em_by_historiske_lag_i_hverdagsrom",
+      "em_by_symbolsk_makt_og_representasjon"
+    ],
+    "topic_hook_ids": [
+      "his_spor_gatebilde",
+      "ark_materialbruk",
+      "ark_makt",
+      "byliv_opphold_vs_gjennomgang"
+    ],
+    "method_ids": [
+      "met_feltobservasjon",
+      "met_gaanalyse"
+    ],
+    "thinker_ids": [
+      "pierre_nora"
+    ],
+    "works": [
+      "Les Lieux de Mémoire"
+    ]
+  },
+  "profile_decision": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "justification": "Fem selvstendige læringsjobber dekker broidentitet, eventyrskulpturer, navn/tidslag, forholdet mellom kunst og struktur samt kilde- og feltmetode. Et sjette sett ville gjenta de samme påstandene."
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/historie/ankerbrua_sets.json",
+      "data/quiz/by/ankerbrua_sets.json",
+      "data/quiz/manifest.json"
+    ],
+    "active_before": {
+      "file": "data/quiz/historie/ankerbrua_sets.json",
+      "set_count": 6,
+      "question_count": 42,
+      "finding": "Legacy-filen var ikke manifestaktiv, lå under feil fagkategori og hadde systematisk svarposisjon."
+    },
+    "decisions": {
+      "keep_as_claim_basis": [
+        "1874–76",
+        "1926",
+        "Oscar Hoff",
+        "1937",
+        "Dyre Vaa",
+        "de fire motivene",
+        "Ankerløkken"
+      ],
+      "rewrite": "35 spørsmål er omskrevet til en kildeledet By-progresjon med fordelt fasitposisjon.",
+      "move": "Canonical pakke flyttes til data/quiz/by/ankerbrua_sets.json.",
+      "remove": [
+        "Nature-rundingsspørsmål",
+        "interne canonical-/batchspørsmål",
+        "gjentakelser"
+      ]
+    },
+    "knowledge_migration": "Nye unike Knowledge-ID-er eies av By-pakken; legacy-filen fjernes etter migreringen."
+  },
+  "held_back_candidates": [
+    "Tyrihans som motiv fordi direkte museumsregistreringer og fagkilder støtter Veslefrikk.",
+    "Et sjette sett som ville gjenta de fem dokumenterte læringsjobbene."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_ankerbrua_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Broen som står over Akerselva ble oppført i 1926.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Forgjengeren var en trebro oppført i 1874–76.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Arkitekt Oscar Hoff tegnet den eksisterende broen.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kilden beskriver broen som utført i betong og huggen stein.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Ankerbrua fører ferdselen over Akerselva.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Den første Ankerbrua ble oppført i tre i perioden 1874–76.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Canonical år følger den fysiske broen som står her.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "De fire gruppene ble plassert på Ankerbrua i 1937.",
+      "source_ids": [
+        "nkl_vaa"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Dyre Vaa utførte de fire gruppene.",
+      "source_ids": [
+        "nkl_vaa"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Utsmykningen består av fire grupper.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kari Trestakk er ett av de fire dokumenterte motivene.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kvitebjørn kong Valemon står som bronsegruppe på broen.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Museums- og oppslagskildene bruker skrivemåtene Per eller Peer Gynt.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Direkte museumsregistreringer identifiserer gruppen som Veslefrikk med fela.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "De fire eventyr- og sagnmotivene ga tilnavnet Eventyrbrua.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "De fire verkene er skulpturgrupper støpt i bronse.",
+      "source_ids": [
+        "nkl_vaa"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Norsk kunstnerleksikon oppgir konkurranseseieren i 1931.",
+      "source_ids": [
+        "nkl_vaa"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Dyre Vaa var billedhugger og maler.",
+      "source_ids": [
+        "nkl_vaa"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Broen fikk navn etter Ankerløkken på vestsiden av elva.",
+      "source_ids": [
+        "oslo_ankerlokka"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Løkken fikk navn etter Karen og Christian Ancher.",
+      "source_ids": [
+        "oslo_ankerlokka"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Trebroen etablerte krysningsstedet før 1926-broen og skulpturene.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Skulpturgruppene kom i 1937, elleve år etter den eksisterende broen.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Skiltet er et senere historieformidlingslag.",
+      "source_ids": [
+        "oslo_byes_vel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Oslo Byes Vel dokumenterer skiltmarkeringen.",
+      "source_ids": [
+        "oslo_byes_vel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Konstruksjon og kunst tilhører to ulike, dokumenterte tidslag.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Personkoblingen bygger på fire fysiske verk på stedet.",
+      "source_ids": [
+        "nkl_vaa"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Tilnavnet oppstod gjennom den stedsspesifikke utsmykningen.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Årene beskriver to ulike konstruksjoner på samme krysningssted.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Bildeparet har ulike kamerastandpunkter og egner seg ikke som geometrisk overlay.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Materialer og plassering gjør tidslagene synlige fra offentlig areal.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "En gåanalyse kan følge forbindelsen mellom de to elvebreddene.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Materialene kan sammenlignes visuelt uten berøring eller risikofylt ferdsel.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Direkte objektregistreringer og flere fagkilder støtter Veslefrikk.",
+      "source_ids": [
+        "nkl_vaa"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "År, materialer og kildeproveniens skiller bro, kunst og skilt.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ankerbrua_quiz_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Historiske påstander krever andre kilder enn ett senere fotografi.",
+      "source_ids": [
+        "oslo_bridge"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    }
+  ]
+}

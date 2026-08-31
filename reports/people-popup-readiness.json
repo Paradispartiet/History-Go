@@ -3,7 +3,7 @@
   "contract": "docs/PEOPLE_POPUP_SYSTEM.md",
   "productionContract": "docs/PEOPLE_PROFILE_CANONICAL.md",
   "generatedBy": "tools/audit-people-popup-readiness.mts",
-  "sourceFingerprint": "6f5d0950190a78bfa5f42a3f96d354a495a5636127c655496bb485b947141e05",
+  "sourceFingerprint": "7b1135b5dd43da33169d9e0a25e8f8973053db2529a0875e489633db0a759de0",
   "thresholds": {
     "complete": 85,
     "strong": 65,
@@ -18,29 +18,29 @@
   },
   "summary": {
     "totalPeople": 1421,
-    "complete": 67,
-    "strong": 406,
+    "complete": 68,
+    "strong": 405,
     "partial": 933,
     "sparse": 15,
-    "readyPeopleV1": 75,
-    "legacyUnreviewed": 1346,
+    "readyPeopleV1": 76,
+    "legacyUnreviewed": 1345,
     "brokenImages": 280,
-    "explicitFallbacks": 995,
+    "explicitFallbacks": 994,
     "implicitFallbacks": 26,
     "averageScore": 65.5
   },
   "fieldCoverage": {
     "identity": {
-      "count": 127,
-      "percent": 8.9
+      "count": 128,
+      "percent": 9
     },
     "popupDesc": {
       "count": 1400,
       "percent": 98.5
     },
     "lifeData": {
-      "count": 61,
-      "percent": 4.3
+      "count": 62,
+      "percent": 4.4
     },
     "contributionsDeclared": {
       "count": 61,
@@ -67,7 +67,7 @@
       "percent": 80.3
     },
     "profileStandard": {
-      "count": 75,
+      "count": 76,
       "percent": 5.3
     }
   },
@@ -130,13 +130,13 @@
     {
       "category": "kunst",
       "total": 84,
-      "complete": 8,
-      "strong": 63,
+      "complete": 9,
+      "strong": 62,
       "partial": 13,
       "sparse": 0,
-      "readyPeopleV1": 9,
-      "legacyUnreviewed": 75,
-      "averageScore": 73.3
+      "readyPeopleV1": 10,
+      "legacyUnreviewed": 74,
+      "averageScore": 73.5
     },
     {
       "category": "naeringsliv",
@@ -8674,23 +8674,6 @@
         {
           "id": "alexander_lange_kielland",
           "name": "Alexander Lange Kielland",
-          "score": 72,
-          "status": "strong",
-          "productionStatus": "legacy_unreviewed"
-        }
-      ]
-    },
-    {
-      "placeId": "ankerbrua",
-      "totalIncomplete": 1,
-      "sparse": 0,
-      "partial": 0,
-      "strong": 1,
-      "averageScore": 72,
-      "people": [
-        {
-          "id": "dyre_vaa",
-          "name": "Dyre Vaa",
           "score": 72,
           "status": "strong",
           "productionStatus": "legacy_unreviewed"
@@ -56899,49 +56882,6 @@
       ]
     },
     {
-      "id": "dyre_vaa",
-      "name": "Dyre Vaa",
-      "category": "kunst",
-      "kindLabel": "",
-      "sourceFile": "data/people/kunst/oslo/dyre_vaa.json",
-      "primaryPlace": "ankerbrua",
-      "places": [
-        "ankerbrua"
-      ],
-      "score": 72,
-      "priority": 43,
-      "status": "strong",
-      "productionStatus": "legacy_unreviewed",
-      "profileStandard": "",
-      "claimsFile": "",
-      "paragraphCount": 1,
-      "popupLength": 231,
-      "contributionCount": 0,
-      "educationCount": 0,
-      "practiceCount": 5,
-      "sourceCount": 3,
-      "imageState": "explicit_fallback",
-      "imagePath": "",
-      "coverage": {
-        "identity": false,
-        "popupDesc": true,
-        "lifeData": false,
-        "contributionsDeclared": false,
-        "educationDeclared": false,
-        "practiceDeclared": true,
-        "placeGrounding": true,
-        "sources": true,
-        "imageContract": true,
-        "profileStandard": false
-      },
-      "issues": [
-        "missing_role_label",
-        "missing_birth_data",
-        "missing_contributions_field",
-        "legacy_unreviewed"
-      ]
-    },
-    {
       "id": "dzintrs_vitols",
       "name": "Dzintrs Vitols",
       "category": "sport",
@@ -70531,6 +70471,46 @@
       "issues": [
         "broken_image_reference",
         "legacy_unreviewed"
+      ]
+    },
+    {
+      "id": "dyre_vaa",
+      "name": "Dyre Vaa",
+      "category": "kunst",
+      "kindLabel": "Billedhugger og maler",
+      "sourceFile": "data/people/kunst/oslo/dyre_vaa.json",
+      "primaryPlace": "ankerbrua",
+      "places": [
+        "ankerbrua"
+      ],
+      "score": 90,
+      "priority": 20,
+      "status": "complete",
+      "productionStatus": "ready_people_v1",
+      "profileStandard": "people_profile_v1.0",
+      "claimsFile": "data/people/claims/kunst/oslo/ankerbrua/dyre_vaa.claims.json",
+      "paragraphCount": 1,
+      "popupLength": 395,
+      "contributionCount": 0,
+      "educationCount": 0,
+      "practiceCount": 5,
+      "sourceCount": 3,
+      "imageState": "valid_image",
+      "imagePath": "bilder/kort/people/dyre_vaa.webp",
+      "coverage": {
+        "identity": true,
+        "popupDesc": true,
+        "lifeData": true,
+        "contributionsDeclared": false,
+        "educationDeclared": false,
+        "practiceDeclared": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true,
+        "profileStandard": true
+      },
+      "issues": [
+        "missing_contributions_field"
       ]
     },
     {

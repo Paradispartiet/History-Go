@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "utviklingsgeografi-ulikhet-og-baerekraft",
+  "id": "02-ulikhet-og-romlig-fordeling",
+  "title": "Ulikhet, fordeling og romlige forskjeller",
+  "sections": [
+    {
+      "id": "ulikhet-fordeling-og-delt-velstand",
+      "title": "Ulikhet, fordeling og delt velstand",
+      "method_ids": ["met_geo_fordelingsanalyse", "met_geo_ulikhetsjustert_utvikling"],
+      "boundary": "Gjennomsnitt, fattigdomsrate, ulikhetsmål og fordelingssensitiv menneskelig utvikling beskriver ulike deler av fordelingen og skal ikke brukes om hverandre.",
+      "paragraphs": [
+        "Gjennomsnittlig inntektsvekst sier lite om hvem som mottar gevinsten dersom fordelingen ikke undersøkes samtidig. En region kan få høy vekst fordi bestemte næringer, steder eller inntektsgrupper ekspanderer, mens lavinntektsgrupper får svak forbedring. Derfor bør utviklingsgeografi kombinere nivå, vekst, fattigdom og fordelingsmål og undersøke om resultatene varierer mellom grupper og områder. Delt velstand er ikke et synonym for høy samlet vekst; poenget er å undersøke hvordan framgangen er fordelt. Kartlegging bør derfor unngå å presentere en region som entydig framgangsrik uten å vise om gevinsten faktisk når dem som starter med færrest ressurser.",
+        "IHDI justerer de tre HDI-dimensjonene for ulikhet og gjør dermed noe et rent gjennomsnitt ikke kan: den viser hvor mye potensiell menneskelig utvikling som går tapt når helse, utdanning eller inntekt er skjevt fordelt. Et sted kan derfor ha høy HDI og samtidig et tydelig IHDI-gap. Geografisk analyse bør vise både nivået og tapet og undersøke hvilken dimensjon som står for forskjellen. Det gjør det mulig å skille et område som har middels resultater jevnt fordelt fra et område med høyt gjennomsnitt og store interne forskjeller, og det hindrer at et godt nasjonalt gjennomsnitt brukes som dokumentasjon på at alle regioner eller grupper har tilsvarende levekår.",
+        "En fallende fattigdomsrate kan oppstå samtidig som ulikheten øker. Dersom mange husholdninger beveger seg rett over fattigdomsterskelen mens høyinntektsgrupper får langt sterkere vekst, blir færre klassifisert som fattige selv om avstanden gjennom resten av fordelingen øker. Derfor bør fattigdomsmål og ulikhetsmål analyseres sammen, men uten å gjøre dem utskiftbare. Fattigdom spør hvor mange som ligger under en definert terskel og hvor langt under de ligger, mens ulikhet beskriver spredningen i en bredere fordeling. Stedssammenligning må eksplisitt oppgi hvilket spørsmål hvert mål svarer på før utviklingen tolkes politisk eller geografisk.",
+        "Fordelingsmål avhenger av hva som fordeles, hvem som inngår og hvilken geografisk enhet som brukes. Inntekt og forbruk kan gi ulike fordelingsbilder, husholdnings- og personvekting kan påvirke resultatet, og regional aggregering kan skjule interne forskjeller. En robust analyse dokumenterer derfor velferdsvariabel, ekvivaleringsregel, populasjon, utvalgsdesign, geografisk enhet og referanseår. Dersom to kart bruker ulike definisjoner, kan forskjellen mellom regioner være metodisk snarere enn sosial. Dette er særlig viktig ved internasjonal sammenligning, der surveypraksis og datagrunnlag kan variere selv når indikatornavnet ser likt ut i en tabell eller et dashboard."
+      ],
+      "paragraphClaimIds": [["geo11-09"], ["geo11-10"], ["geo11-11"], ["geo11-12"]]
+    },
+    {
+      "id": "romlig-ulikhet-subnasjonale-data-og-small-area-estimation",
+      "title": "Romlig ulikhet, subnasjonale data og small area estimation",
+      "method_ids": ["met_geo_subnasjonal_ulikhetsanalyse", "met_geo_small_area_estimation_kontroll"],
+      "boundary": "Nasjonale gjennomsnitt, direkte surveyestimater og modelbaserte småområdeestimater skal skilles; presisjon, sample, modell og geografisk harmonisering må følge kartet.",
+      "paragraphs": [
+        "Nasjonale gjennomsnitt kan skjule store forskjeller mellom regioner, byer, distrikter og grenseområder. Inntekt, arbeid, bolig, helse, tjenester og miljø kan ha helt ulike geografiske mønstre, og den politiske mekanismen kan virke på et nivå som nasjonale tall ikke viser. Derfor bør stedsspesifikk utviklingsanalyse bruke subnasjonale indikatorer når datagrunnlaget tillater det og samtidig dokumentere hvilken geografisk enhet som brukes. Et land kan forbedre sitt nasjonale gjennomsnitt selv om bestemte regioner står stille eller går tilbake, og et aggregert nasjonalt resultat må derfor ikke brukes som bevis på jevn territorial framgang.",
+        "Direkte surveyestimater blir ofte mindre presise når et nasjonalt utvalg brytes ned til stadig mindre geografiske områder. Færre observasjoner gir større standardfeil og kan gjøre lokale rater ustabile fra én survey til den neste. Et kart med små polygoner ser detaljert ut, men detaljgraden i geometrien sier ikke hvor presist selve estimatet er. Derfor bør subnasjonale surveykart vise usikkerhetsmål, minste utvalgsstørrelse og eventuelle sammenslåinger eller suppressions. Geografisk oppløsning er en visuell egenskap; statistisk presisjon avhenger av datamengde, utvalgsdesign og variasjon i populasjonen som faktisk er observert.",
+        "Small Area Estimation kombinerer surveydata med modeller og hjelpevariabler for å lage estimater i områder der det direkte surveyutvalget er for lite. Metoden kan gi et langt mer komplett romlig bilde, men resultatet er modellbasert og må merkes som det. Antakelser om sammenhenger mellom surveyutfall og register-, census- eller geodata påvirker resultatet, og usikkerheten må følge kartet. En sterk analyse sammenligner modellestimatet med direkte estimater der begge finnes, dokumenterer validering og viser confidence intervals eller tilsvarende mål. Detaljerte småområdekart skal derfor ikke presenteres som om hvert polygon inneholdt en direkte lokal telling av fattigdom eller levekår.",
+        "Romlige tidsserier kan bli misvisende når administrative grenser endres. Oppdeling, sammenslåing eller ny klassifikasjon kan flytte befolkning mellom polygoner uten at husholdningenes levekår har endret seg. Derfor bør sammenligning over tid bruke harmoniserte geografier, arealvektet eller befolkningsvektet kryssgang der det er forsvarlig, eller eksplisitt merke bruddet. Small-area estimater og regionale well-being-data må knyttes til en bestemt geoversjon og årgang. Uten denne kontrollen kan en administrativ reform se ut som et lokalt fattigdomssjokk eller en rask forbedring, selv om det eneste som faktisk endret seg var grensen rundt observasjonene."
+      ],
+      "paragraphClaimIds": [["geo11-13"], ["geo11-14"], ["geo11-15"], ["geo11-16"]]
+    }
+  ]
+}
