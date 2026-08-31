@@ -12,6 +12,7 @@ const REGISTRY_PATHS = Object.freeze({
   utdanning: ".github/ci/fagverk-utdanning-domain-registry-v1.json",
   sosiologi_antropologi: ".github/ci/fagverk-sosiologi-antropologi-domain-registry-v1.json",
   geografi: ".github/ci/fagverk-geografi-domain-registry-v1.json",
+  sprak_lingvistikk: ".github/ci/fagverk-sprak-lingvistikk-domain-registry-v1.json",
 });
 const SHARED_CHANGE_PATHS = new Set([
   "data/fagverk/subject_inventory.json",
