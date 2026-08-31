@@ -1,10 +1,10 @@
 # Place coordinate quality gate
 
-Generert: 2026-08-31T07:56:16.324Z
+Generert: 2026-08-31T10:12:14.413Z
 
 ## Oppsummering
-- Aktive filer validert: **1546**
-- Antall steder validert: **1546**
+- Aktive filer validert: **1547**
+- Antall steder validert: **1547**
 - Harde feil: **0**
 - Varsler: **663**
 - Coordinate review candidates: **808** signaler fordelt på **703** steder
@@ -1564,6 +1564,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/naeringsliv/oslo/places_naeringsliv/alunverket.json
 - data/places/historie/oslo/places_historie/akershus_slott.json
 - data/places/religion/oslo/akershus_slottskirke/akershus_slottskirke.json
+- data/places/religion/oslo/det_kongelige_mausoleum/det_kongelige_mausoleum.json
 
 ## Harde feil
 - Ingen

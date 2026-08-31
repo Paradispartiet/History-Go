@@ -1,0 +1,62 @@
+{
+  "placeId": "det_kongelige_mausoleum",
+  "placeFile": "data/places/religion/oslo/det_kongelige_mausoleum/det_kongelige_mausoleum.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "candidate_ready_for_production",
+  "currentCoordinate": {
+    "lat": 59.9063074,
+    "lon": 10.7364436,
+    "r": 30,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 904553015 for Det kongelige mausoleum",
+    "coordType": "building_center",
+    "coordNote": "Geometrisk senter for den eksakt navngitte bygningsdelen Det kongelige mausoleum, separat fra slottskirken, slottet og festningsområdet."
+  },
+  "identity": {
+    "currentName": "Det kongelige mausoleum",
+    "resolvedIdentity": "Det kongelige mausoleum som eget gravkapell og bygningsdel ved Akershus slottskirke",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": "Mausoleet er allerede identifisert som eget gravrom; slottskirken, slottet og festningen beholder separate canonicale identiteter."
+  },
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 904553015",
+      "sourceUrl": "https://www.openstreetmap.org/way/904553015",
+      "sourceObjectId": "osm-way:904553015",
+      "sourceQuality": "named_building_geometry",
+      "finding": "Den eksakt navngitte bygningsdelen har geometrisk senter 59.9063074, 10.7364436.",
+      "canVerifyCoordinate": true,
+      "reason": "Geometrisk senter for den eksakt navngitte bygningsdelen Det kongelige mausoleum, separat fra slottskirken, slottet og festningsområdet."
+    },
+    {
+      "sourceProvider": "snl",
+      "sourceName": "Store norske leksikon – Det kongelige mausoleum",
+      "sourceUrl": "https://snl.no/Det_kongelige_mausoleum",
+      "sourceObjectId": "snl:det-kongelige-mausoleum",
+      "sourceQuality": "reputable_secondary",
+      "finding": "Kilden avgrenser mausoleet som gravkapell og tilbygg ved slottskirken.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitetskilde for den fysiske bygningsdelen."
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9063074,
+      "lon": 10.7364436,
+      "coordRole": "building_center",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Navngitt OSM-geometri og identitetskilde er anvendt."
+  },
+  "notes": [
+    "Kameraposisjonen i eksteriørbildet er ikke brukt som bygningskoordinat."
+  ]
+}

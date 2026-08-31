@@ -1,8 +1,8 @@
 # Coordinate evidence audit
 
-Generert: 2026-08-31T07:56:13.161Z
+Generert: 2026-08-31T10:12:01.612Z
 
-Aktive steder: 1596
+Aktive steder: 1597
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -317,6 +317,7 @@ Aktive steder: 1596
 | stortinget | data/coordinate-evidence/oslo/politikk/stortinget.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | youngstorget | data/coordinate-evidence/oslo/politikk/youngstorget.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | akershus_slottskirke | data/coordinate-evidence/oslo/religion/akershus_slottskirke.json | applied_to_place | candidate_ready_for_production | OK |
+| det_kongelige_mausoleum | data/coordinate-evidence/oslo/religion/det_kongelige_mausoleum.json | applied_to_place | candidate_ready_for_production | OK |
 | chat_noir | data/coordinate-evidence/oslo/scenekunst/chat_noir.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | edderkoppen_scene | data/coordinate-evidence/oslo/scenekunst/edderkoppen_scene.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | latter | data/coordinate-evidence/oslo/scenekunst/latter.json | applied_to_place | do_not_change_coordinates_yet | OK |
