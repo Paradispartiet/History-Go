@@ -399,7 +399,9 @@ try {
   assert.equal(await fagverk.locator('#fagverkPlaceLenses a').count(), 4);
   assert.equal(await fagverk.locator('#fagverkPlaceQuestions li').count(), 5);
   assert.equal(await fagverk.locator('#fagverkPlaceTraces article').count(), 3);
-  assert.equal(await fagverk.locator('#fagverkPlaceChapters a').count(), 3);
+  assert.equal(await fagverk.locator('#fagverkPlaceChapters > a').count(), 6);
+  assert.equal(await fagverk.locator('#fagverkPlaceChapters > a[href*="chapter="]').count(), 3);
+  assert.equal(await fagverk.locator('#fagverkPlaceChapters > a[href*="domain="]').count(), 3);
   assert.equal(await fagverk.locator('#fagverkPlaceEmner a').count(), 4);
   assert.equal(await fagverk.locator('#fagverkPlaceSources a').count(), 4);
   const ordinaryEmneHref = await fagverk.locator('#fagverkPlaceLenses a').first().getAttribute('href');
