@@ -42,7 +42,21 @@ jobs:
       - name: Regenerate Place-open runtime
         run: node scripts/build-place-open-payloads.mjs
       - name: Regenerate Fagverk place coverage
-        run: node scripts/audit-fagverk-place-pages.mjs --write
+        id: fagverk_coverage
+        run: |
+          set +e
+          node scripts/audit-fagverk-place-pages.mjs --write > /tmp/fagverk-place-audit.log 2>&1
+          status=$?
+          cat /tmp/fagverk-place-audit.log
+          exit "$status"
+      - name: Upload Fagverk coverage diagnostic
+        if: failure() && steps.fagverk_coverage.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: fagverk-place-audit-diagnostic
+          path: /tmp/fagverk-place-audit.log
+          if-no-files-found: error
+          retention-days: 1
       - name: Regenerate Fagverk release
         run: node scripts/build-fagverk-release-manifest.mjs
       - name: Validate Fagverk page contract
