@@ -547,7 +547,31 @@
     "supersetQuizMal": "religion/supersetQUIZMAL_religion.json",
     "status": "active_foundation",
     "quizStandard": "../quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
-    "quizQuestionSchema": "../quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    "quizQuestionSchema": "../quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+    "quizPackageSchema": "../quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
+    "quizProduction": {
+      "status": "pilot",
+      "required_inputs": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods",
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
+      "context_builder": "scripts/build-quiz-production-context.mjs",
+      "profile_system": "adaptive_relative_superset",
+      "package_schema": "quizPackageSchema",
+      "context_artifact_root": "data/quiz/production_context",
+      "targets": {
+        "akershus_slottskirke": {
+          "source_brief": "../quiz/production_briefs/religion/akershus_slottskirke.json",
+          "context_artifact": "../quiz/production_context/religion/akershus_slottskirke.json",
+          "quiz_file": "../quiz/religion/akershus_slottskirke_sets.json"
+        }
+      }
+    }
   },
   "scenekunst": {
     "pensum": "scenekunst/scenekunstpensum_canonical_v1.json",

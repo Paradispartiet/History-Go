@@ -3,8 +3,8 @@
   "subject_title": "Religion",
   "scope": "global_med_lokale_stedsankre",
   "type": "fagkart",
-  "version": "1.0",
-  "updated_at": "2026-07-21",
+  "version": "1.1",
+  "updated_at": "2026-08-30",
   "principles": {
     "source_first": true,
     "respectful_representation": true,
@@ -16,29 +16,101 @@
       "id": "hellige_rom",
       "title": "Hellige rom og arkitektur",
       "definition": "Hvordan steder, bygg, rom, gjenstander og symboler organiserer religiøs praksis.",
-      "emne_ids": ["em_religion_hellige_rom"],
-      "best_place_types": ["kirke", "moske", "synagoge", "tempel", "kloster", "hellig_sted"]
+      "emne_ids": [
+        "em_religion_hellige_rom"
+      ],
+      "best_place_types": [
+        "kirke",
+        "moske",
+        "synagoge",
+        "tempel",
+        "kloster",
+        "hellig_sted"
+      ]
     },
     {
       "id": "praksis_ritual",
       "title": "Ritualer og praksis",
       "definition": "Hvordan religion utføres gjennom handlinger, høytider, bønn, overgangsriter og reiser.",
-      "emne_ids": ["em_religion_ritualer_praksis", "em_religion_pilegrim_hellige_reiser"],
-      "best_place_types": ["trossted", "pilegrimsrute", "ritualsted"]
+      "emne_ids": [
+        "em_religion_ritualer_praksis",
+        "em_religion_pilegrim_hellige_reiser"
+      ],
+      "best_place_types": [
+        "trossted",
+        "pilegrimsrute",
+        "ritualsted"
+      ],
+      "topic_hooks": [
+        {
+          "id": "religion_ritual_fellesskap",
+          "title": "Ritual og kollektivt fellesskap",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "emile_durkheim",
+                "name": "Émile Durkheim",
+                "why": "Ritualer som kollektive handlinger som kan styrke sosial tilhørighet og markere det hellige.",
+                "tier": "core",
+                "works": [
+                  "The Elementary Forms of Religious Life"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_religion_ritualer_praksis",
+            "em_religion_religion_og_samfunn"
+          ],
+          "best_place_types": [
+            "trossted",
+            "ritualsted",
+            "kirke"
+          ],
+          "set_phase_fit": [
+            "late_theory"
+          ],
+          "question_surface_mode": "place-first",
+          "fact_anchor_required": true,
+          "recommended_method_ids": [
+            "met_religion_ritualanalyse",
+            "met_religion_samfunnsanalyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "religion_v1_1"
+        }
+      ]
     },
     {
       "id": "tradisjoner_historie",
       "title": "Tradisjoner og religionshistorie",
       "definition": "Konkrete religiøse tradisjoner, institusjoner, minoritetshistorie og endring over tid.",
-      "emne_ids": ["em_religion_religionshistorie_lokalt", "em_religion_kristendom", "em_religion_islam", "em_religion_jodedom"],
-      "best_place_types": ["trossted", "arkiv", "museum", "minnested"]
+      "emne_ids": [
+        "em_religion_religionshistorie_lokalt",
+        "em_religion_kristendom",
+        "em_religion_islam",
+        "em_religion_jodedom"
+      ],
+      "best_place_types": [
+        "trossted",
+        "arkiv",
+        "museum",
+        "minnested"
+      ]
     },
     {
       "id": "religion_samfunn",
       "title": "Religion og samfunn",
       "definition": "Forholdet mellom religion, offentlighet, politikk, rettigheter, identitet og sekularisering.",
-      "emne_ids": ["em_religion_religion_og_samfunn"],
-      "best_place_types": ["institusjon", "trossted", "offentlig_rom", "museum"]
+      "emne_ids": [
+        "em_religion_religion_og_samfunn"
+      ],
+      "best_place_types": [
+        "institusjon",
+        "trossted",
+        "offentlig_rom",
+        "museum"
+      ]
     }
   ]
 }
