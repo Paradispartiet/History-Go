@@ -1,8 +1,8 @@
-# History GO — Place Production Checklist v2.3
+# History GO — Place Production Checklist v2.4
 
 Status: **canonical produksjonsarbeidsflyt**  
 Eier: `place_by_place_production_workflow`  
-Sist kontrollert: **2026-08-27**
+Sist kontrollert: **2026-08-31**
 
 Denne sjekklisten eier arbeidsrekkefølge, Badge-gate, produksjonsprofil, review-checkpoints og mergekadens for ordinær sted-for-sted-produksjon.
 
@@ -121,7 +121,7 @@ For ordinære fullprofiler er medlemsproduksjon til disse fire samlingene obliga
 - People;
 - Objects;
 - Brands;
-- kategoriuttrykk (`productions`, `structures`, `competitions` eller `destinations` etter samlingskontrakten);
+- kategoriuttrykk (`historical_events`, `productions`, `structures`, `competitions` eller `destinations` etter samlingskontrakten);
 
 Badge og kilder avgjør hvilke medlemmer som kvalifiserer. De fire samlingsflatene kan ikke settes N/A eller utelates.
 
@@ -159,6 +159,8 @@ For nye og fullproduserte ordinære Places gjelder:
 - Nature bruker Kart, Flora, Fauna og Turmål; canonicale spesialprofiler følger sitt eget faste firersett;
 - `related` er et relasjons-/navigasjonssystem og kan aldri brukes som PlaceCard-samling eller reserve;
 - kategoriuttrykket følger matrisen i `data/places/README_place_rounds.md`; Structures utenfor By krever et sentralt, substansielt bygnings-/anleggsmiljø og uttrykkelig begrunnelse;
+- Historie bruker `historical_events` for avgrensede, stedsspesifikke historiske hendelser; `productions` er ikke Historie-samling, og kalender-/nåtidssystemet `events` er en annen eier;
+- Structures velges for et Historie-sted bare som en begrunnet stedsspesifikk variant når flere navngitte bygg/anlegg er et sterkere uttrykk enn hendelser — aldri som automatisk reserve;
 - samlingsvalget skal følge Badge-/underbadge-baserte kandidater og faktisk materialisert innhold;
 - hver valgt samling har minst ett ekte canonical medlem;
 - hver valgt samling har et validert, lastbart previewbilde av et medlem;

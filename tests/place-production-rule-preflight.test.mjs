@@ -19,8 +19,8 @@ test("recorded historie preflight snapshots the canonical four-collection route"
   const preflight = buildRulePreflight("akershus_festning", "historie");
   assert.equal(preflight.schema, "history_go_place_rule_preflight_v1");
   assert.equal(preflight.status, "PASS");
-  assert.deepEqual(preflight.contract_snapshot.candidate_collections, ["people", "objects", "brands", "productions"]);
-  assert.equal(preflight.contract_snapshot.category_expression, "productions");
+  assert.deepEqual(preflight.contract_snapshot.candidate_collections, ["people", "objects", "brands", "historical_events"]);
+  assert.equal(preflight.contract_snapshot.category_expression, "historical_events");
   assert.equal(preflight.contract_snapshot.full_place_collection_count, 4);
   assert.equal(preflight.contract_snapshot.related_is_placecard_collection, false);
   assert.equal(preflight.contract_snapshot.no_filler, true);

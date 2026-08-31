@@ -110,6 +110,7 @@ export type PlaceCardCollectionId =
   | "map"
   | "flora"
   | "fauna"
+  | "historical_events"
   | "productions"
   | "structures"
   | "competitions"
@@ -219,7 +220,10 @@ export interface Place {
   /** Legacy fysisk objektfelt som kan brukes som Objects-kilde under migrering. */
   artifacts?: PlaceVisualRoundItem[];
 
-  /** Kategoriens reelle produksjoner. Runtime gir samlingen et konkret kategorinavn. */
+  /** Avgrensede historiske hendelser; holdes separat fra kalender-events og øvrige produksjoner. */
+  historical_events?: PlaceVisualRoundItem[];
+
+  /** Øvrige kategoriers reelle produksjoner. Runtime gir samlingen et konkret kategorinavn. */
   works?: PlaceVisualRoundItem[];
   productions?: PlaceVisualRoundItem[];
   publications?: PlaceVisualRoundItem[];
