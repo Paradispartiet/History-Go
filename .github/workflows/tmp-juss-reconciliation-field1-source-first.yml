@@ -28,16 +28,23 @@ jobs:
         with:
           node-version: '24'
 
-      - name: Patch generator syntax bug only
+      - name: Patch generator mechanics only
         run: |
           python - <<'PY'
           from pathlib import Path
           p = Path('scripts/tmp-materialize-juss-reconciliation-field1-source-first.mjs')
           lines = p.read_text().splitlines()
-          matches = [i for i, line in enumerate(lines) if line.startswith("writeText('tests/fagverk-domain-ci-registry.test.mjs'")]
-          if len(matches) != 1:
-              raise SystemExit(f'Expected exactly one generated registry-test line, got {matches}')
-          lines[matches[0]] = '''writeText('tests/fagverk-domain-ci-registry.test.mjs', readText('tests/fagverk-domain-ci-registry.test.mjs') + '\\ntest("shared domain workflow triggers on every Juss & rettsvitenskap surface routed by the registry", () => {\\n  const workflow = readFileSync(".github/workflows/fagverk-domain-registry.yml", "utf8");\\n  for (const pathPattern of [\\n    "data/fag/politikk/juss_rettsvitenskap/**",\\n    "data/fagverk/politikk/juss_rettsvitenskap/**",\\n    "reports/fagverk/juss-rettsvitenskap-*.json",\\n    "scripts/*juss-rettsvitenskap*",\\n    "tests/juss-rettsvitenskap-*.test.mjs",\\n    ".github/ci/fagverk-juss-rettsvitenskap-domain-registry-v1.json",\\n  ]) {\\n    assert.equal(workflow.includes(pathPattern), true, "workflow mangler Juss-trigger " + pathPattern);\\n  }\\n});\\n');'''
+
+          test_matches = [i for i, line in enumerate(lines) if line.startswith("writeText('tests/fagverk-domain-ci-registry.test.mjs'")]
+          if len(test_matches) != 1:
+              raise SystemExit(f'Expected exactly one generated registry-test line, got {test_matches}')
+          lines[test_matches[0]] = '''writeText('tests/fagverk-domain-ci-registry.test.mjs', readText('tests/fagverk-domain-ci-registry.test.mjs') + '\\ntest("shared domain workflow triggers on every Juss & rettsvitenskap surface routed by the registry", () => {\\n  const workflow = readFileSync(".github/workflows/fagverk-domain-registry.yml", "utf8");\\n  for (const pathPattern of [\\n    "data/fag/politikk/juss_rettsvitenskap/**",\\n    "data/fagverk/politikk/juss_rettsvitenskap/**",\\n    "reports/fagverk/juss-rettsvitenskap-*.json",\\n    "scripts/*juss-rettsvitenskap*",\\n    "tests/juss-rettsvitenskap-*.test.mjs",\\n    ".github/ci/fagverk-juss-rettsvitenskap-domain-registry-v1.json",\\n  ]) {\\n    assert.equal(workflow.includes(pathPattern), true, "workflow mangler Juss-trigger " + pathPattern);\\n  }\\n});\\n');'''
+
+          workflow_matches = [i for i, line in enumerate(lines) if line.startswith("writeText('.github/workflows/fagverk-domain-registry.yml'")]
+          if len(workflow_matches) != 1:
+              raise SystemExit(f'Expected exactly one generated workflow write line, got {workflow_matches}')
+          lines[workflow_matches[0]] = "writeText('.github/workflows/fagverk-domain-registry.yml', workflowText);"
+
           p.write_text('\n'.join(lines) + '\n')
           PY
           node --check scripts/tmp-materialize-juss-reconciliation-field1-source-first.mjs
@@ -74,12 +81,11 @@ jobs:
           NODE
           git diff --check
 
-      - name: Remove TEMP surfaces
+      - name: Remove TEMP generator only
         run: |
           rm scripts/tmp-materialize-juss-reconciliation-field1-source-first.mjs
-          rm .github/workflows/tmp-juss-reconciliation-field1-source-first.yml
           test ! -e scripts/tmp-materialize-juss-reconciliation-field1-source-first.mjs
-          test ! -e .github/workflows/tmp-juss-reconciliation-field1-source-first.yml
+          test -e .github/workflows/tmp-juss-reconciliation-field1-source-first.yml
 
       - name: Commit permanent source-first state only
         run: |
@@ -88,6 +94,11 @@ jobs:
           git add -A
           if git diff --cached --quiet; then
             echo 'No permanent Juss changes generated' >&2
+            exit 1
+          fi
+          if git diff --cached --name-only | grep -q '^.github/workflows/'; then
+            echo 'Refusing workflow-file mutation from Actions token' >&2
+            git diff --cached --name-only >&2
             exit 1
           fi
           git commit -m 'Establish Juss reconciliation and field 1 source-first'
