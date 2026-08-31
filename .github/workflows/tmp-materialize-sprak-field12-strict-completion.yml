@@ -1,0 +1,60 @@
+name: TEMP materialize Språk field 12 strict completion
+
+on:
+  push:
+    branches:
+      - agent/fagverk-sprak-lingvistikk-field-12-fulltext-strict-completion-20260831
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Verify field 12 source-first baseline
+        run: |
+          node scripts/brief-sprak-lingvistikk-corpus-field-documentation-language-resources-reproducibility-sources-v1.mjs
+          node --test tests/sprak-lingvistikk-corpus-field-documentation-language-resources-reproducibility-source-brief-v1.test.mjs
+      - name: Materialize field 12 strict candidate
+        run: node scripts/tmp-materialize-sprak-field12-strict-completion.mjs
+      - name: Syntax-check strict completion surfaces
+        run: |
+          node --check scripts/audit-sprak-lingvistikk-corpus-field-documentation-language-resources-reproducibility-fulltext-v1.mjs
+          node --check scripts/materialize-sprak-lingvistikk-corpus-field-documentation-language-resources-reproducibility-fulltext-v1.mjs
+      - name: Re-run all twelve domain fulltext audits
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import { spawnSync } from 'node:child_process';
+          const ci = JSON.parse(fs.readFileSync('.github/ci/fagverk-sprak-lingvistikk-domain-registry-v1.json','utf8'));
+          if (ci.domains.length !== 12) throw new Error('CI registry must contain 12 domains');
+          for (const domain of ci.domains) {
+            const result = spawnSync(process.execPath, [domain.fulltextAudit], { stdio: 'inherit' });
+            if (result.status !== 0) throw new Error(`Fulltext audit failed for domain ${domain.ordinal}: ${domain.domainId}`);
+          }
+          NODE
+      - name: Prove strict 12 of 12 completion
+        run: |
+          node scripts/audit-sprak-lingvistikk-corpus-field-documentation-language-resources-reproducibility-fulltext-v1.mjs
+          node --test tests/sprak-lingvistikk-corpus-field-documentation-language-resources-reproducibility-fulltext-v1.test.mjs
+          node scripts/audit-sprak-lingvistikk-reconciliation-v1.mjs
+          node --test tests/sprak-lingvistikk-reconciliation-v1.test.mjs
+          node scripts/materialize-sprak-lingvistikk-corpus-field-documentation-language-resources-reproducibility-fulltext-v1.mjs
+          git diff --check
+      - name: Commit permanent canonical state only after green gates
+        run: |
+          rm -f scripts/tmp-materialize-sprak-field12-strict-completion.mjs
+          rm -f .github/workflows/tmp-materialize-sprak-field12-strict-completion.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Complete Språk og lingvistikk strict 12 of 12 [strict-completion]"
+          git push origin HEAD:agent/fagverk-sprak-lingvistikk-field-12-fulltext-strict-completion-20260831
