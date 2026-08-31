@@ -1,4 +1,4 @@
-name: Finalize Akershus slottskirke v9
+name: Finalize Akershus slottskirke v10
 
 on:
   push:
@@ -41,6 +41,20 @@ jobs:
 
       - name: Materialize canonical Akershus slottskirke package
         run: node tools/finalize-akershus-slottskirke-completion.mjs
+
+      - name: Register Akershus slottskirke Lesespor source
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'data/lesespor/manifest.json';
+          const source = 'oslo/lesespor_oslo_religion.json';
+          const manifest = JSON.parse(fs.readFileSync(file, 'utf8'));
+          if (!manifest.files.includes(source)) {
+            const firstEtne = manifest.files.findIndex(entry => entry.startsWith('etne/'));
+            manifest.files.splice(firstEtne < 0 ? manifest.files.length : firstEtne, 0, source);
+          }
+          fs.writeFileSync(file, `${JSON.stringify(manifest, null, 2)}\n`);
+          NODE
 
       - name: Apply source-backed target repairs
         run: node tools/repair-akershus-slottskirke-finalizer.mjs
