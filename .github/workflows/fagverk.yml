@@ -111,6 +111,7 @@ jobs:
             docs/KNOWLEDGE_ARCHITECTURE.md
             docs/PROGRESSION_MODEL.md
             docs/FAGVERK_PLACE_DESIGN.md
+            docs/FAGVERK_PLACE_V2_WORKCARD.md
             docs/PLACE_PRODUCTION_CHECKLIST.md
             docs/PLACE_STANDARD.md
             docs/COMPLETION_DEFINITIONS.md
@@ -147,6 +148,8 @@ jobs:
         run: node --test --test-name-pattern="documentation registry gives" tests/fagverk-documentation-contract.test.mjs
       - name: Validate narrow navigation ownership
         run: node --test --test-name-pattern="navigation remains narrow" tests/fagverk-documentation-contract.test.mjs
+      - name: Validate integrated Place Fagverk production
+        run: node --test --test-name-pattern="place checklist makes" tests/fagverk-documentation-contract.test.mjs
       - name: Validate documentation entry pointers
         run: node --test --test-name-pattern="repository and subject documentation" tests/fagverk-documentation-contract.test.mjs
       - name: Validate honest portal status
