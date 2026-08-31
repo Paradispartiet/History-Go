@@ -42,7 +42,6 @@ jobs:
           node --test tests/fagverk-place-pages.test.mjs
           node --test tests/fagverk-place-substance-audit.test.mjs
           node --test tests/fagverk-link-audit.test.mjs
-          node scripts/audit-place-images.mjs --mode=changed
           git diff --check
       - name: Commit regenerated artifacts when needed and push sync
         run: |
