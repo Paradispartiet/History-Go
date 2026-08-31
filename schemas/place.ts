@@ -110,6 +110,7 @@ export type PlaceCardCollectionId =
   | "map"
   | "flora"
   | "fauna"
+  | "historical_events"
   | "productions"
   | "structures"
   | "competitions"
@@ -137,6 +138,42 @@ export interface LegacyPlaceRoundProfileV1 {
 }
 
 export type PlaceTier = "standard" | "micro";
+export type PlaceFagverkLevel = "full" | "standard" | "micro";
+export type PlaceFagverkStatus = "curated" | "in_production";
+
+export interface PlaceFagverkLensV2 {
+  id: string;
+  title: string;
+  prompt: string;
+  subject_id: string;
+  emne_id: string;
+  evidence: string;
+}
+
+export interface PlaceFagverkTraceV2 {
+  title: string;
+  observation: string;
+  interpretation_boundary: string;
+  source_urls: string[];
+}
+
+/** Place-owned learning content. The Fagverk registry only indexes and validates it. */
+export interface PlaceFagverkV2 {
+  schema: "history_go_place_fagverk_v2";
+  level: PlaceFagverkLevel;
+  status: PlaceFagverkStatus;
+  intro: string;
+  article: string[];
+  subject_ids: string[];
+  emne_ids: string[];
+  chapter_ids: string[];
+  lenses: PlaceFagverkLensV2[];
+  guiding_questions: string[];
+  concepts: string[];
+  observable_traces: PlaceFagverkTraceV2[];
+  source_urls: string[];
+  verified_at: string;
+}
 export type MicroPlaceCurrentStatus = "active" | "temporary_unavailable" | "historic";
 export type MicroPlaceQuizMode = "none" | "place";
 
@@ -197,6 +234,7 @@ export interface Place {
   /** Alternative public names used for search without changing canonical identity. */
   aliases?: string[];
   emne_ids?: string[];
+  fagverk?: PlaceFagverkV2;
   hidden?: boolean;
   stub?: boolean;
   sport_profile?: PlaceSportProfile;
@@ -219,7 +257,10 @@ export interface Place {
   /** Legacy fysisk objektfelt som kan brukes som Objects-kilde under migrering. */
   artifacts?: PlaceVisualRoundItem[];
 
-  /** Kategoriens reelle produksjoner. Runtime gir samlingen et konkret kategorinavn. */
+  /** Avgrensede historiske hendelser; holdes separat fra kalender-events og øvrige produksjoner. */
+  historical_events?: PlaceVisualRoundItem[];
+
+  /** Øvrige kategoriers reelle produksjoner. Runtime gir samlingen et konkret kategorinavn. */
   works?: PlaceVisualRoundItem[];
   productions?: PlaceVisualRoundItem[];
   publications?: PlaceVisualRoundItem[];

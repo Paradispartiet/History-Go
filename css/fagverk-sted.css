@@ -131,6 +131,50 @@
   line-height: 1.55;
 }
 
+.fagverk-place-trace {
+  display: grid;
+  gap: .55rem;
+}
+
+.fagverk-place-trace small {
+  color: var(--muted, #aeb4c0);
+  line-height: 1.5;
+}
+
+.fagverk-place-unfinished {
+  max-width: 82ch;
+  padding: clamp(1rem, 3vw, 1.5rem);
+  border: 1px dashed color-mix(in srgb, var(--fagverk-place-accent, #9b8cff) 55%, transparent);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--fagverk-place-accent, #9b8cff) 8%, transparent);
+}
+
+.fagverk-place-unfinished p:last-child {
+  margin-bottom: 0;
+  line-height: 1.65;
+}
+
+.fagverk-place-trace-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+}
+
+.fagverk-place-trace-sources a {
+  padding: .4rem .6rem;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 999px;
+  color: inherit;
+  font-size: .78rem;
+  text-decoration: none;
+}
+
+.fagverk-place-trace-sources a:hover,
+.fagverk-place-trace-sources a:focus-visible {
+  border-color: var(--fagverk-place-accent, #b9abff);
+  background: color-mix(in srgb, var(--fagverk-place-accent, #9b8cff) 14%, transparent);
+}
+
 .fagverk-place-concept-list,
 .fagverk-place-emne-list {
   display: flex;

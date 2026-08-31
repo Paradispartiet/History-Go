@@ -4,6 +4,7 @@
   'use strict';
 
   const REGISTRY_URL = 'data/fagverk/fagverk_registry.json';
+  const CONTENT_SCHEMA = 'history_go_place_fagverk_v2';
   const text = (value) => String(value == null ? '' : value).trim();
   const list = (value) => Array.isArray(value) ? value : [];
 
@@ -48,20 +49,12 @@
     return response.json();
   }
 
-  function placeTitle(place, placeId, curated) {
-    return text(place?.name || place?.title || curated?.title) || placeId.replaceAll('_', ' ');
+  function placeTitle(place, placeId) {
+    return text(place?.name || place?.title) || placeId.replaceAll('_', ' ');
   }
 
   function placeCategory(place) {
     return text(place?.category || place?.domain || place?.subject);
-  }
-
-  function subjectIdFor(registry, place, curated) {
-    return text(
-      curated?.subject ||
-      list(curated?.subjects)[0] ||
-      registry?.placePage?.fallbackSubjectByCategory?.[placeCategory(place)]
-    );
   }
 
   function subjectUrl(subjectId, extras = {}) {
@@ -94,49 +87,59 @@
   }
 
   async function modelFor(registry, place, placeId) {
-    const curated = registry?.placeLinks?.[placeId] || {};
-    const subject = subjectIdFor(registry, place, curated);
-    const subjectModel = subject && global.HGFagverkSubjectModel
-      ? await global.HGFagverkSubjectModel.load(subject, { allowPlanned: true })
-      : null;
-    const requestedEmneIds = unique([
-      ...list(curated.emneIds),
-      ...list(curated.emne_ids),
-      ...list(place?.emne_ids || place?.emneIds)
-    ]);
-    const emners = subjectModel
-      ? requestedEmneIds.map((id) => subjectModel.emnersById.get(id)).filter(Boolean)
-      : requestedEmneIds.map((id) => ({ id, title: humanizeId(id), domainId: '' }));
-    const missingEmneIds = subjectModel
-      ? requestedEmneIds.filter((id) => !subjectModel.emnersById.has(id))
-      : [];
-    const domainIds = unique(emners.map((emne) => emne.domainId));
-    const domains = subjectModel
-      ? domainIds.map((id) => subjectModel.domainsById.get(id)).filter(Boolean)
-      : [];
-    const curatedChapterIds = unique([...list(curated.chapters), ...list(curated.chapterIds)]);
-    const chapters = subjectModel
-      ? subjectModel.chapters.filter((chapter) => (
-          curatedChapterIds.includes(chapter.id) ||
-          chapter.emneIds.some((id) => requestedEmneIds.includes(id))
-        ))
-      : [];
-    const concepts = unique([
-      ...list(curated.concepts),
-      ...emners.flatMap((emne) => list(emne.concepts)),
-      ...list(place?.knowledge?.tags),
-      ...list(place?.tags)
-    ]).slice(0, 36);
+    const fagverk = place?.fagverk?.schema === CONTENT_SCHEMA ? place.fagverk : null;
+    const fallbackSubject = text(registry?.placePage?.fallbackSubjectByCategory?.[placeCategory(place)]);
+    const subjectIds = unique(fagverk ? fagverk.subject_ids : [fallbackSubject]);
+    const loadedSubjects = await Promise.all(subjectIds.map(async (id) => ({
+      id,
+      model: global.HGFagverkSubjectModel
+        ? await global.HGFagverkSubjectModel.load(id, { allowPlanned: true })
+        : null
+    })));
+    const subjectModelsById = new Map(loadedSubjects.map((entry) => [entry.id, entry.model]));
+    const requestedEmneIds = unique(fagverk ? fagverk.emne_ids : (place?.emne_ids || place?.emneIds));
+    const emners = [];
+    const missingEmneIds = [];
+
+    for (const id of requestedEmneIds) {
+      const owner = loadedSubjects.find((entry) => entry.model?.emnersById?.has(id));
+      if (!owner) {
+        missingEmneIds.push(id);
+        continue;
+      }
+      emners.push({ ...owner.model.emnersById.get(id), subjectId: owner.id });
+    }
+
+    const domainKeys = new Set();
+    const domains = [];
+    for (const emne of emners) {
+      const key = `${emne.subjectId}:${emne.domainId}`;
+      const domain = subjectModelsById.get(emne.subjectId)?.domainsById?.get(emne.domainId);
+      if (domain && !domainKeys.has(key)) {
+        domainKeys.add(key);
+        domains.push({ ...domain, subjectId: emne.subjectId });
+      }
+    }
+
+    const chapterIds = new Set(unique(fagverk?.chapter_ids));
+    const chapters = loadedSubjects.flatMap(({ id, model }) => list(model?.chapters)
+      .filter((chapter) => chapterIds.has(chapter.id))
+      .map((chapter) => ({ ...chapter, subjectId: id })));
+
     return {
-      curated,
-      subject,
-      subjectModel,
+      fagverk,
+      curated: fagverk?.status === 'curated',
+      subject: subjectIds[0] || '',
+      subjectIds,
+      subjects: loadedSubjects,
+      subjectModel: loadedSubjects[0]?.model || null,
+      subjectModelsById,
       requestedEmneIds,
       missingEmneIds,
       emners,
       domains,
       chapters,
-      concepts,
+      concepts: unique(fagverk?.concepts).slice(0, 36),
       placeId
     };
   }
@@ -145,153 +148,71 @@
     const host = document.getElementById('fagverkPlaceBadgePath');
     if (!host) return;
     const badgeIds = unique(place?.underbadge_ids || place?.underbadgeIds || []);
-    const subjectTitle = text(model.subjectModel?.subject?.title) || humanizeId(model.subject || placeCategory(place));
-    if (!model.subject && !badgeIds.length) {
+    if (!model.subjectIds.length && !badgeIds.length) {
       host.hidden = true;
       return;
     }
     const progressUrl = model.subject
       ? `${subjectUrl(model.subject)}#fagverkIaProgresjon`
       : 'fagverk-forside.html';
+    const subjectCards = model.subjects.filter((entry) => entry.model).map(({ id, model: subjectModel }) => `
+      <a class="fagverk-case" href="${escapeHtml(subjectUrl(id, { place: model.placeId }))}">
+        <strong>${escapeHtml(text(subjectModel.subject?.title) || humanizeId(id))}</strong>
+        <span>Dokumentert fagkobling</span>
+        <small>Åpne faget →</small>
+      </a>
+    `).join('');
     host.innerHTML = `
       <p class="fagverk-kicker">Fra merke til fag</p>
       <h2>Merke og fag</h2>
-      <p>Undermerkene viser stedets merkeidentitet. Fagkortet åpner den canonicale fagsiden.</p>
+      <p>Undermerkene viser stedets merkeidentitet. Fagkortene åpner canonicale fagsider.</p>
       ${badgeIds.length ? `<div class="fagverk-canonical-underbadges">${badgeIds.map((id) => `<a href="${escapeHtml(progressUrl)}">${escapeHtml(humanizeId(id))}<span class="fagverk-link-cue">Åpne progresjon →</span></a>`).join('')}</div>` : ''}
-      ${model.subject ? `<div class="fagverk-canonical-domain-grid"><a class="fagverk-case" href="${escapeHtml(subjectUrl(model.subject, { place: model.placeId }))}"><strong>${escapeHtml(subjectTitle)}</strong><span>Stedets primærfag</span><small>Åpne faget →</small></a></div>` : ''}
+      ${subjectCards ? `<div class="fagverk-canonical-domain-grid">${subjectCards}</div>` : ''}
     `;
     host.hidden = false;
   }
 
   function lensRows(model) {
-    const curated = list(model.curated.lenses);
-    if (curated.length) {
-      return curated.map((lens) => {
-        const requestedId = text(lens.emneId || lens.emne_id);
-        const emne = model.subjectModel?.emnersById?.get(requestedId) || null;
-        return {
-          title: text(lens.title),
-          prompt: text(lens.prompt),
-          href: emne
-            ? emneUrl(model.subject, emne.domainId, emne.id, { place: model.placeId })
-            : subjectUrl(model.subject, { place: model.placeId })
-        };
-      }).filter((row) => row.title && row.href);
-    }
-    if (model.emners.length) {
-      return model.emners.slice(0, 8).map((emne) => ({
-        title: emne.title,
-        prompt: text(emne.definition || emne.whyItMatters),
-        href: emneUrl(model.subject, emne.domainId, emne.id, { place: model.placeId })
-      }));
-    }
-    if (model.domains.length) {
-      return model.domains.slice(0, 8).map((domain) => ({
-        title: domain.label,
-        prompt: text(domain.definition),
-        href: domainUrl(model.subject, domain.id, { place: model.placeId })
-      }));
-    }
-    if (model.subjectModel) {
-      return [{
-        title: model.subjectModel.subject.title,
-        prompt: text(model.subjectModel.subject.description),
-        href: subjectUrl(model.subject, { place: model.placeId })
-      }];
-    }
-    return [];
+    if (!model.curated) return [];
+    return list(model.fagverk?.lenses).map((lens) => {
+      const subjectId = text(lens.subject_id);
+      const emne = model.subjectModelsById.get(subjectId)?.emnersById?.get(text(lens.emne_id));
+      if (!emne) return null;
+      return {
+        title: text(lens.title),
+        prompt: text(lens.prompt),
+        evidence: text(lens.evidence),
+        href: emneUrl(subjectId, emne.domainId, emne.id, { place: model.placeId })
+      };
+    }).filter((row) => row?.title && row.href);
   }
 
-  function renderArticle(place) {
+  function renderArticle(model) {
     const host = document.getElementById('fagverkPlaceArticle');
     if (!host) return;
-    const content = text(place?.popupDesc) || text(place?.desc);
-    if (!content) {
-      host.innerHTML = '<p class="fagverk-empty">Stedet mangler fortsatt en redigert stedsartikkel. Faglige koblinger nedenfor vises bare når de kan løses mot canonicale fagdata.</p>';
-      return;
-    }
-    const paragraphs = content.split(/\n\s*\n/u).map(text).filter(Boolean);
+    const paragraphs = model.curated ? list(model.fagverk?.article).map(text).filter(Boolean) : [];
     host.innerHTML = paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join('');
   }
 
   function renderLenses(model) {
     const host = document.getElementById('fagverkPlaceLenses');
     if (!host) return;
-    const rows = lensRows(model);
-    host.innerHTML = rows.length
-      ? rows.map((row) => `
-        <a class="fagverk-learning-card fagverk-place-lens-link" href="${escapeHtml(row.href)}">
-          <p class="fagverk-kicker">Faglig linse</p>
-          <h3>${escapeHtml(row.title)}</h3>
-          ${row.prompt ? `<p>${escapeHtml(row.prompt)}</p>` : ''}
-          <span class="fagverk-card-action">Utforsk i faget →</span>
-        </a>
-      `).join('')
-      : '<p class="fagverk-empty">Det finnes foreløpig ingen source-eide faglige linser for dette stedet.</p>';
+    host.innerHTML = lensRows(model).map((row) => `
+      <a class="fagverk-learning-card fagverk-place-lens-link" href="${escapeHtml(row.href)}">
+        <p class="fagverk-kicker">Faglig linse</p>
+        <h3>${escapeHtml(row.title)}</h3>
+        <p>${escapeHtml(row.prompt)}</p>
+        <small>${escapeHtml(row.evidence)}</small>
+        <span class="fagverk-card-action">Utforsk i faget →</span>
+      </a>
+    `).join('');
   }
 
   function renderQuestions(model) {
     const host = document.getElementById('fagverkPlaceQuestions');
     if (!host) return;
-    const questions = list(model.curated.guidingQuestions).length
-      ? list(model.curated.guidingQuestions).map(text).filter(Boolean)
-      : unique(model.emners.flatMap((emne) => list(emne.keyQuestions))).slice(0, 10);
-    host.innerHTML = questions.length
-      ? questions.map((question) => `<li>${escapeHtml(question)}</li>`).join('')
-      : '<li class="fagverk-empty">Ingen source-eide undersøkelsesspørsmål er registrert for stedets emner ennå.</li>';
-  }
-
-  function renderChapters(model) {
-    const host = document.getElementById('fagverkPlaceChapters');
-    if (!host) return;
-    if (!model.subjectModel) {
-      host.innerHTML = '<p class="fagverk-empty">Stedets kategori kan ikke kobles til en canonical fagside ennå.</p>';
-      return;
-    }
-    const domainCards = model.domains.map((domain) => `
-      <a class="fagverk-case" href="${escapeHtml(domainUrl(model.subject, domain.id, { place: model.placeId }))}">
-        <strong>${escapeHtml(domain.label)}</strong>
-        ${text(domain.definition) ? `<span>${escapeHtml(domain.definition)}</span>` : ''}
-        <small>Åpne fagområdet →</small>
-      </a>
-    `);
-    const chapterCards = model.chapters.map((chapter) => `
-      <a class="fagverk-case" href="${escapeHtml(chapterUrl(model.subject, chapter.id, { place: model.placeId }))}">
-        <strong>${escapeHtml(chapter.title)}</strong>
-        ${text(chapter.subtitle) ? `<span>${escapeHtml(chapter.subtitle)}</span>` : ''}
-        <small>Les lærekapitlet →</small>
-      </a>
-    `);
-    const cards = [...domainCards, ...chapterCards];
-    host.innerHTML = cards.length
-      ? cards.join('')
-      : `<a class="fagverk-case" href="${escapeHtml(subjectUrl(model.subject, { place: model.placeId }))}"><strong>${escapeHtml(model.subjectModel.subject.title)}</strong><span>Ingen mer presis chapter- eller fagområdebinding er registrert for stedet.</span><small>Åpne faget →</small></a>`;
-  }
-
-  function ownerForConcept(model, concept) {
-    const normalized = text(concept).toLocaleLowerCase('nb-NO');
-    return model.emners.find((emne) => list(emne.concepts).some((candidate) => text(candidate).toLocaleLowerCase('nb-NO') === normalized)) || model.emners[0] || null;
-  }
-
-  function renderConcepts(model) {
-    const conceptHost = document.getElementById('fagverkPlaceConcepts');
-    const emneHost = document.getElementById('fagverkPlaceEmner');
-    if (conceptHost) {
-      conceptHost.innerHTML = model.concepts.length && model.subject
-        ? model.concepts.map((concept) => {
-            const owner = ownerForConcept(model, concept);
-            const href = owner
-              ? emneUrl(model.subject, owner.domainId, owner.id, { place: model.placeId, concept })
-              : subjectUrl(model.subject, { place: model.placeId, concept });
-            return `<a href="${escapeHtml(href)}">${escapeHtml(concept)}</a>`;
-          }).join('')
-        : '<p class="fagverk-empty">Ingen source-eide begrepskoblinger er registrert ennå.</p>';
-    }
-    if (emneHost) {
-      emneHost.innerHTML = model.emners.length && model.subject
-        ? model.emners.map((emne) => `<a href="${escapeHtml(emneUrl(model.subject, emne.domainId, emne.id, { place: model.placeId }))}">${escapeHtml(emne.title)}</a>`).join('')
-        : '<p class="fagverk-empty">Ingen canonicale emnekoblinger er registrert ennå.</p>';
-    }
+    const questions = model.curated ? list(model.fagverk?.guiding_questions).map(text).filter(Boolean) : [];
+    host.innerHTML = questions.map((question) => `<li>${escapeHtml(question)}</li>`).join('');
   }
 
   function sourceRows(place) {
@@ -307,17 +228,80 @@
     return rows.filter((row) => !seen.has(row.url) && seen.add(row.url));
   }
 
-  function renderSources(place) {
+  function renderTraces(model, place) {
+    const host = document.getElementById('fagverkPlaceTraces');
+    if (!host) return;
+    const sourceByUrl = new Map(sourceRows(place).map((row) => [row.url, row]));
+    const rows = model.curated ? list(model.fagverk?.observable_traces) : [];
+    host.innerHTML = rows.map((row) => {
+      const sourceLinks = list(row.source_urls).map((url) => sourceByUrl.get(url)).filter(Boolean).map((source) => (
+        `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.label)} ↗</a>`
+      )).join('');
+      return `
+        <article class="fagverk-case fagverk-place-trace">
+          <strong>${escapeHtml(row.title)}</strong>
+          <span>${escapeHtml(row.observation)}</span>
+          <small><b>Tolkningsgrense:</b> ${escapeHtml(row.interpretation_boundary)}</small>
+          <div class="fagverk-place-trace-sources">${sourceLinks}</div>
+        </article>
+      `;
+    }).join('');
+  }
+
+  function renderChapters(model) {
+    const section = document.getElementById('fagverkPlaceChaptersSection');
+    const host = document.getElementById('fagverkPlaceChapters');
+    if (!section || !host) return;
+    const domainCards = model.domains.map((domain) => `
+      <a class="fagverk-case" href="${escapeHtml(domainUrl(domain.subjectId, domain.id, { place: model.placeId }))}">
+        <strong>${escapeHtml(domain.label)}</strong>
+        ${text(domain.definition) ? `<span>${escapeHtml(domain.definition)}</span>` : ''}
+        <small>Åpne fagområdet →</small>
+      </a>
+    `);
+    const chapterCards = model.chapters.map((chapter) => `
+      <a class="fagverk-case" href="${escapeHtml(chapterUrl(chapter.subjectId, chapter.id, { place: model.placeId }))}">
+        <strong>${escapeHtml(chapter.title)}</strong>
+        ${text(chapter.subtitle) ? `<span>${escapeHtml(chapter.subtitle)}</span>` : ''}
+        <small>Les lærekapitlet →</small>
+      </a>
+    `);
+    const cards = [...domainCards, ...chapterCards];
+    host.innerHTML = cards.join('');
+    section.hidden = cards.length === 0;
+  }
+
+  function ownerForConcept(model, concept) {
+    const normalized = text(concept).toLocaleLowerCase('nb-NO');
+    return model.emners.find((emne) => list(emne.concepts).some((candidate) => text(candidate).toLocaleLowerCase('nb-NO') === normalized)) || model.emners[0] || null;
+  }
+
+  function renderConcepts(model) {
+    const section = document.getElementById('fagverkPlaceConceptsSection');
+    const conceptHost = document.getElementById('fagverkPlaceConcepts');
+    const emneHost = document.getElementById('fagverkPlaceEmner');
+    if (!section || !conceptHost || !emneHost) return;
+    conceptHost.innerHTML = model.curated ? model.concepts.map((concept) => {
+      const owner = ownerForConcept(model, concept);
+      const href = owner
+        ? emneUrl(owner.subjectId, owner.domainId, owner.id, { place: model.placeId, concept })
+        : subjectUrl(model.subject, { place: model.placeId, concept });
+      return `<a href="${escapeHtml(href)}">${escapeHtml(concept)}</a>`;
+    }).join('') : '';
+    emneHost.innerHTML = model.emners.map((emne) => (
+      `<a href="${escapeHtml(emneUrl(emne.subjectId, emne.domainId, emne.id, { place: model.placeId }))}">${escapeHtml(emne.title)}</a>`
+    )).join('');
+    section.hidden = model.concepts.length === 0 && model.emners.length === 0;
+  }
+
+  function renderSources(model, place) {
     const section = document.getElementById('fagverkPlaceSourcesSection');
     const host = document.getElementById('fagverkPlaceSources');
     if (!section || !host) return;
-    const rows = sourceRows(place);
-    if (!rows.length) {
-      section.hidden = true;
-      return;
-    }
+    const allowed = new Set(model.curated ? list(model.fagverk?.source_urls).map(text) : []);
+    const rows = sourceRows(place).filter((row) => allowed.has(row.url));
     host.innerHTML = rows.map((row) => `<li><a href="${escapeHtml(row.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(row.label)} ↗</a></li>`).join('');
-    section.hidden = false;
+    section.hidden = rows.length === 0;
   }
 
   async function loadPlace(placeId) {
@@ -331,13 +315,22 @@
   function renderCoverageStatus(model) {
     const status = document.getElementById('fagverkPlaceCoverageStatus');
     if (!status) return;
-    const curated = list(model.curated.lenses).length && list(model.curated.guidingQuestions).length;
-    status.textContent = curated
-      ? 'Kuratert stedslæreverk'
-      : model.emners.length
-        ? `${model.emners.length} canonicale emnekoblinger`
-        : 'Canonical faginngang';
-    status.dataset.level = curated ? 'curated' : model.emners.length ? 'linked' : 'entry';
+    status.textContent = model.curated ? 'Kuratert stedsfagverk' : 'Fagverk under produksjon';
+    status.dataset.level = model.curated ? model.fagverk.level : 'unfinished';
+  }
+
+  function renderCompletionState(model) {
+    const unfinished = document.getElementById('fagverkPlaceUnfinished');
+    for (const id of [
+      'fagverkPlaceArticleSection',
+      'fagverkPlaceLensesSection',
+      'fagverkPlaceQuestionsSection',
+      'fagverkPlaceTracesSection'
+    ]) {
+      const section = document.getElementById(id);
+      if (section) section.hidden = !model.curated;
+    }
+    if (unfinished) unfinished.hidden = model.curated;
   }
 
   async function init() {
@@ -353,12 +346,16 @@
       if (!place) throw new Error(`Fant ikke canonical sted: ${placeId}`);
 
       const model = await modelFor(registry, place, placeId);
-      if (model.subject && !model.subjectModel) throw new Error(`Faget ${model.subject} kunne ikke lastes.`);
-      const title = placeTitle(place, placeId, model.curated);
+      if (model.subjectIds.length && model.subjects.some((entry) => !entry.model)) {
+        throw new Error('En dokumentert fagkobling kunne ikke lastes.');
+      }
+      const title = placeTitle(place, placeId);
       document.title = `${title} – History Go Fagverk`;
       document.getElementById('fagverkPlaceTitle').textContent = title;
       document.getElementById('fagverkPlaceMeta').textContent = [placeCategory(place), text(place?.period || place?.year), formatAddress(place?.address)].filter(Boolean).join(' · ');
-      document.getElementById('fagverkPlaceLead').textContent = text(model.curated.intro || place?.desc) || 'Stedets canonicale inngang til Fagverket.';
+      document.getElementById('fagverkPlaceLead').textContent = model.curated
+        ? text(model.fagverk.intro)
+        : 'Dette stedet har en operativ fagverksrute, men mangler fortsatt stedsspesifikke linser, spørsmål, spor og kildebelagt læringstekst.';
       document.getElementById('fagverkPlaceMapLink').href = `index.html#/place/${encodeURIComponent(placeId)}`;
 
       const imageUrl = text(place?.popupImage || place?.cardImage || place?.image);
@@ -370,18 +367,20 @@
       }
 
       renderCoverageStatus(model);
-      renderArticle(place);
+      renderCompletionState(model);
+      renderArticle(model);
       renderBadgePath(model, place);
       renderLenses(model);
       renderQuestions(model);
+      renderTraces(model, place);
       renderChapters(model);
       renderConcepts(model);
-      renderSources(place);
+      renderSources(model, place);
 
       loading.hidden = true;
       content.hidden = false;
       errorBox.hidden = true;
-      global.dispatchEvent(new CustomEvent('hg:fagverk-place-ready', { detail: { placeId, subject: model.subject } }));
+      global.dispatchEvent(new CustomEvent('hg:fagverk-place-ready', { detail: { placeId, subjects: model.subjectIds, curated: model.curated } }));
     } catch (error) {
       loading.hidden = true;
       content.hidden = true;

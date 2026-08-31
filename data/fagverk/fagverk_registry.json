@@ -5,6 +5,9 @@
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
     "genericForAllCanonicalPlaces": true,
+    "contentOwner": "data/places/**#fagverk",
+    "contentSchema": "history_go_place_fagverk_v2",
+    "unfinishedFallback": "honest_compact_status",
     "title": "Stedets fagverkside",
     "description": "Hvert canonical sted får en egen fagverkside som samler stedstekst, relevante fagområder, lærekapitler, begreper, emner, undermerker og videre utforskning.",
     "fallbackSubjectByCategory": {
@@ -4612,54 +4615,11 @@
   },
   "placeLinks": {
     "regjeringskvartalet": {
-      "title": "Regjeringskvartalet",
-      "intro": "Regjeringskvartalet har sin egen fagverkside. Der undersøkes stedet gjennom arkitektur, statsforvaltning, parlamentarisk ansvar, sikkerhet, offentlighet og minne – uten at stedet gjøres til et kapittel i selve faget.",
-      "emneIds": [
-        "em_pol_byrakrati_forvaltning",
-        "em_pol_institusjoner_styring",
-        "em_pol_administrativ_makt",
-        "em_pol_parlamentarisme_maktbalanse",
-        "em_pol_politi_sikkerhet_makt",
-        "em_pol_mediert_offentlighet"
-      ],
-      "lenses": [
-        {
-          "id": "historie",
-          "title": "Historie",
-          "prompt": "Hvordan har forsøkene på å samle statsforvaltningen endret området over tid?",
-          "emneId": "em_pol_institusjoner_styring"
-        },
-        {
-          "id": "arkitektur",
-          "title": "Arkitektur og by",
-          "prompt": "Hvordan uttrykker bygninger, kunst og byrom skiftende forestillinger om staten?",
-          "emneId": "em_pol_administrativ_makt"
-        },
-        {
-          "id": "forvaltning",
-          "title": "Forvaltning",
-          "prompt": "Hvilke nivåer av politisk ledelse og embetsverk arbeider her, og hva ligger andre steder?",
-          "emneId": "em_pol_byrakrati_forvaltning"
-        },
-        {
-          "id": "parlamentarisme",
-          "title": "Parlamentarisme",
-          "prompt": "Hvordan henger arbeidet i Regjeringskvartalet sammen med vedtak og kontroll i Stortinget?",
-          "emneId": "em_pol_parlamentarisme_maktbalanse"
-        },
-        {
-          "id": "sikkerhet-minne",
-          "title": "Sikkerhet og minne",
-          "prompt": "Hvordan balanseres åpenhet, daglig arbeid, sikkerhet og minnet etter 22. juli?",
-          "emneId": "em_pol_politi_sikkerhet_makt"
-        }
-      ],
-      "guidingQuestions": [
-        "Hvorfor ble statsforvaltningen forsøkt samlet akkurat her?",
-        "Hva er forskjellen mellom regjeringen, departementene og resten av statsforvaltningen?",
-        "Hvordan kan arkitektur uttrykke både åpenhet, autoritet og sikkerhet?",
-        "Hvordan beveger en politisk sak seg mellom Regjeringskvartalet og Stortinget?"
-      ]
+      "sourceFile": "places/politikk/oslo/places_politikk/regjeringskvartalet.json",
+      "field": "fagverk",
+      "schema": "history_go_place_fagverk_v2",
+      "level": "full",
+      "status": "curated"
     }
   }
 }

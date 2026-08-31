@@ -68,10 +68,13 @@ assert.ok(brandsInitIndex < appReadyIndex, 'Brands må være klare før appReady
 assert.ok(brandsInitIndex < routerStartIndex, 'Brands må være klare før routeren kan åpne første PlaceCard');
 assert.match(appRuntime, /initBrandsBeforeAppReady[\s\S]*optional Brands data failed/);
 
-const curated = registry.placeLinks.regjeringskvartalet;
+const curated = place.fagverk;
+assert.equal(curated.schema, 'history_go_place_fagverk_v2');
 assert.ok(curated.lenses.length >= 4);
-assert.ok(curated.guidingQuestions.length >= 4);
-assert.ok(curated.emneIds.length >= 6);
+assert.ok(curated.guiding_questions.length >= 4);
+assert.ok(curated.emne_ids.length >= 6);
+assert.ok(curated.observable_traces.length >= 2);
+assert.equal(registry.placeLinks.regjeringskvartalet.field, 'fagverk');
 assert.equal(registry.placePage.route, 'fagverk-sted.html?place={placeId}');
 
 for (const [id, label] of [
@@ -122,6 +125,7 @@ for (const id of [
   'fagverkPlaceBadgePath',
   'fagverkPlaceLenses',
   'fagverkPlaceQuestions',
+  'fagverkPlaceTraces',
   'fagverkPlaceChapters',
   'fagverkPlaceConcepts',
   'fagverkPlaceEmner',
@@ -365,7 +369,16 @@ try {
   assert.ok(await fagverk.locator('#fagverkPlaceChapters a').count() >= 1);
   assert.ok(await fagverk.locator('#fagverkPlaceConcepts a').count() >= 1);
   assert.ok(await fagverk.locator('#fagverkPlaceEmner a').count() >= 3);
-  assert.ok(await fagverk.locator('#fagverkPlaceSources a').count() >= 10);
+  assert.ok(await fagverk.locator('#fagverkPlaceSources a').count() >= 7);
+  assert.equal(await fagverk.locator('#fagverkPlaceUnfinished').isHidden(), true);
+  const unsafeLinks = await fagverk.locator('#fagverkPlaceSources a, #fagverkPlaceTraces a').evaluateAll(links => (
+    links.filter(link => (
+      link.target !== '_blank' ||
+      !String(link.rel).includes('noopener') ||
+      !String(link.rel).includes('noreferrer')
+    )).length
+  ));
+  assert.equal(unsafeLinks, 0);
   assert.equal(await fagverk.locator('#fagverkPlaceImage').isVisible(), true);
   assert.ok(await fagverk.locator('#fagverkPlaceImage').evaluate(image => image.naturalWidth) > 0);
 
@@ -381,25 +394,19 @@ try {
 
   await fagverk.goto(`${base}/fagverk-sted.html?place=torggata`, { waitUntil: 'networkidle' });
   await fagverk.waitForSelector('#fagverkPlaceContent:not([hidden])');
-  assert.match((await fagverk.textContent('#fagverkPlaceCoverageStatus')).trim(), /canonicale emnekoblinger/);
-  const ordinaryLensHref = await fagverk.locator('#fagverkPlaceLenses a').first().getAttribute('href');
-  assert.match(ordinaryLensHref, /^fagverk\.html\?subject=by&domain=[^&]+&emne=em_by_[^&]+&place=torggata$/);
+  assert.match((await fagverk.textContent('#fagverkPlaceCoverageStatus')).trim(), /under produksjon/);
+  assert.equal(await fagverk.locator('#fagverkPlaceUnfinished').isVisible(), true);
+  assert.equal(await fagverk.locator('#fagverkPlaceLenses a').count(), 0);
+  assert.equal(await fagverk.locator('#fagverkPlaceQuestions li').count(), 0);
+  const ordinaryEmneHref = await fagverk.locator('#fagverkPlaceEmner a').first().getAttribute('href');
+  assert.match(ordinaryEmneHref, /^fagverk\.html\?subject=by&domain=[^&]+&emne=em_by_[^&]+&place=torggata$/);
   await Promise.all([
     fagverk.waitForURL(/fagverk\.html\?subject=by/),
-    fagverk.locator('#fagverkPlaceLenses a').first().click()
+    fagverk.locator('#fagverkPlaceEmner a').first().click()
   ]);
   assert.equal(new URL(fagverk.url()).searchParams.get('place'), 'torggata');
   await fagverk.goBack({ waitUntil: 'networkidle' });
   await fagverk.waitForSelector('#fagverkPlaceContent:not([hidden])');
-
-  const unsafeLinks = await fagverk.locator('#fagverkPlaceSources a').evaluateAll(links => (
-    links.filter(link => (
-      link.target !== '_blank' ||
-      !String(link.rel).includes('noopener') ||
-      !String(link.rel).includes('noreferrer')
-    )).length
-  ));
-  assert.equal(unsafeLinks, 0);
 
   const visibleText = await fagverk.locator('body').innerText();
   for (const forbidden of ['reports/', 'tests/', 'data/quiz/production_context', 'data/coordinate-evidence']) {

@@ -1,8 +1,8 @@
-# History GO — Place Production Checklist v2.3
+# History GO — Place Production Checklist v2.4
 
 Status: **canonical produksjonsarbeidsflyt**  
 Eier: `place_by_place_production_workflow`  
-Sist kontrollert: **2026-08-27**
+Sist kontrollert: **2026-08-31**
 
 Denne sjekklisten eier arbeidsrekkefølge, Badge-gate, produksjonsprofil, review-checkpoints og mergekadens for ordinær sted-for-sted-produksjon.
 
@@ -121,7 +121,7 @@ For ordinære fullprofiler er medlemsproduksjon til disse fire samlingene obliga
 - People;
 - Objects;
 - Brands;
-- kategoriuttrykk (`productions`, `structures`, `competitions` eller `destinations` etter samlingskontrakten);
+- kategoriuttrykk (`historical_events`, `productions`, `structures`, `competitions` eller `destinations` etter samlingskontrakten);
 
 Badge og kilder avgjør hvilke medlemmer som kvalifiserer. De fire samlingsflatene kan ikke settes N/A eller utelates.
 
@@ -159,6 +159,8 @@ For nye og fullproduserte ordinære Places gjelder:
 - Nature bruker Kart, Flora, Fauna og Turmål; canonicale spesialprofiler følger sitt eget faste firersett;
 - `related` er et relasjons-/navigasjonssystem og kan aldri brukes som PlaceCard-samling eller reserve;
 - kategoriuttrykket følger matrisen i `data/places/README_place_rounds.md`; Structures utenfor By krever et sentralt, substansielt bygnings-/anleggsmiljø og uttrykkelig begrunnelse;
+- Historie bruker `historical_events` for avgrensede, stedsspesifikke historiske hendelser; `productions` er ikke Historie-samling, og kalender-/nåtidssystemet `events` er en annen eier;
+- Structures velges for et Historie-sted bare som en begrunnet stedsspesifikk variant når flere navngitte bygg/anlegg er et sterkere uttrykk enn hendelser — aldri som automatisk reserve;
 - samlingsvalget skal følge Badge-/underbadge-baserte kandidater og faktisk materialisert innhold;
 - hver valgt samling har minst ett ekte canonical medlem;
 - hver valgt samling har et validert, lastbart previewbilde av et medlem;
@@ -183,12 +185,21 @@ Alle canonicale steder skal ha sin egen fungerende fagverkside.
 
 **fagverk-sted — obligatorisk, fungerende og aldri N/A.** Kravet gjelder hvert sted, kan ikke settes til N/A og er en egen ferdigport.
 
-Alle ordinære canonical Places skal ha fungerende stedsspesifikk Fagverk-side. Fagverkets faglige vekt skal samsvare med Hovedbadge, underbadges, emner og dokumentert stedskunnskap.
+Alle ordinære canonical Places skal ha Place-eid `fagverk`-blokk med schema `history_go_place_fagverk_v2`. Registryet indekserer og validerer; det eier ikke stedstekst, linser eller spørsmål. Fagverkets faglige vekt skal samsvare med Hovedbadge, underbadges, emner og dokumentert stedskunnskap.
+
+Godkjent status krever riktig nivå etter `docs/FAGVERK_PLACE_V2_WORKCARD.md`: egen læringsinngang og fagartikkel, canonicale fag-/emnebindinger, stedsspesifikke linser og spørsmål, begreper, observerbare spor med tolkningsgrenser, relevante kapitler og kontrollerte kilder. `popupDesc`, en fungerende URL eller automatisk avledede emnespørsmål er aldri ferdigbevis.
+
+Alle synlige Fagverk-handlinger skal være operative `<a href>`-mål som løser til canonicalt fag, fagområde, emne, kapittel, kart eller kontrollert ekstern kilde. En chip eller et kort som ser klikkbart ut uten operativ destinasjon er BLOCKED.
+
+Når innholdet mangler, skal rendereren vise en ærlig kompakt uferdigstatus. Generiske kategori-linser og standardspørsmål er forbudt.
 
 Arbeidskortet skal føre:
 
 ```text
 FAGVERK-STED-STATUS:
+FAGVERK-NIVÅ: full | standard | micro
+FAGVERK-SUBSTANSAUDIT:
+FAGVERK-KILDER/SPOR:
 ```
 
 `fagverk-sted` er aldri N/A for et ordinært Place.

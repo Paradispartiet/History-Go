@@ -9,12 +9,12 @@ Baseline: `reports/fagverk/fagverk-place-page-coverage-v2.json`
 
 Alle canonicale steder skal ha en stedsspesifikk fagverkside. En fungerende rute eller en kategoribasert standardtekst er ikke tilstrekkelig ferdigbevis.
 
-Stedssiden skal alltid bruke samme manifest-resolverte fagmodell som `fagverk.html`. Den skal aldri opprette egne emner, kapitler, begrepsdefinisjoner, progresjonsdata eller kategori-fallbacktekster.
+Stedssiden skal alltid bruke samme manifest-resolverte fagmodell som `fagverk.html`. Stedlig læringsinnhold eies av Place-kildens `fagverk`-blokk; registryet inneholder bare sourcefil, felt, schema, nivå og status. Siden skal aldri opprette egne emner, kapitler, begrepsdefinisjoner, progresjonsdata eller kategori-fallbacktekster.
 
 ## Produksjonsnivåer
 
 - **Fullt sted:** redigert stedsartikkel, eksplisitte canonicale emnebindinger, stedsspesifikke linser med presise klikkmål, stedsspesifikke undersøkelsesspørsmål, relevante fagområder/kapitler, begreper og inspectable kilder.
-- **Fokusert sted:** redigert stedsartikkel, minst én presis canonical emnebinding og source-eide spørsmål/linser fra den bindingen. Siden skal være unik, men kan være kortere enn et fullt sted.
+- **Standardsted:** kort redigert fagartikkel, relevante canonicale emne- og kapittelbindinger, minst tre stedsspesifikke linser, fire undersøkelsesspørsmål, begreper, observerbart spor og kontrollerte kilder.
 - **Mikrosted:** kort source-eid stedstekst og den smaleste dokumenterte fag- eller emnebindingen. Mikrostedet bruker samme datatype og renderer; det får ikke en parallell mikrosidemotor.
 
 Renderer-genererte standardspørsmål og generiske kategori-linser er forbudt. Når source mangler, skal siden vise ærlig status og produksjonskø – ikke plausibelt fyllstoff.
@@ -36,13 +36,12 @@ Ikke-klikkbare chips, kort som ser interaktive ut uten `href`, og lenker til `fa
 
 ## Baseline 31. august 2026
 
-Auditen måler 1 532 steder:
+Auditen måler 1 532 steder mot `data/places/regler/place_fagverk_v2.schema.json`:
 
 - 1 ferdig kuratert referanseside: Regjeringskvartalet;
-- 776 source-linkede sider som kan materialiseres unikt fra redigert stedstekst og eksisterende emnebindinger;
-- 748 sider med redigert artikkel, men uten eksplisitt emnekuratering;
-- 7 steder med emnebinding, men uten redigert artikkel;
-- 0 steder uten både artikkel og binding.
+- 595 uferdige sider med minst én løst, dokumentert emnekobling;
+- 936 uferdige sider med bare kategoriens operative canonicale faginngang;
+- 0 øvrige sider som kan regnes som ferdige bare fordi de har stedsbeskrivelse, URL eller emnebinding.
 
 Tallene er baseline og produksjonskø, ikke ferdigpåstand. Rapporten skal regenereres ved hver batch.
 
@@ -54,4 +53,4 @@ Tallene er baseline og produksjonskø, ikke ferdigpåstand. Rapporten skal regen
 4. Kjør coverage-audit, lenketest og reell browserklikk-QA.
 5. Merge først etter grønn full CI og låst head-SHA.
 
-Programmet er ferdig når `article_only`, `binding_only` og `missing` er null, alle fulle steder har stedsspesifikke linser og spørsmål, og hoved- og browserportene er grønne på `main`.
+Programmet er ferdig når `in_production` og `missing` er null, alle nivåer består sin substansport, og hoved- og browserportene er grønne på `main`.
