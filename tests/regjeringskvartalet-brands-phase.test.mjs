@@ -29,7 +29,7 @@ test('Regjeringskvartalet har fjorten canonicale Brand-koblinger', () => {
     assert.ok(brand, id);
     assert.deepEqual(
       brand.place_ids,
-      id === 'statsbygg' ? ['regjeringskvartalet', 'tullin'] : ['regjeringskvartalet']
+      id === 'statsbygg' ? ['regjeringskvartalet', 'tullin', '22_juli_senteret'] : ['regjeringskvartalet']
     );
     assert.equal(brand.state, 'catalog');
     assert.equal(brand.verification, 'verified');
