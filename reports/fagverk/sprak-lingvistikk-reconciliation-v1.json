@@ -4,18 +4,14 @@
   "updated_at": "2026-08-31",
   "owner_subject_id": "litteratur",
   "canonical_subcategory_id": "sprak_lingvistikk",
-  "status": "domain_1_materialized_domain_2_source_first_ready",
+  "status": "domains_1_2_materialized_domain_3_source_first_ready",
   "production_plan": {
-    "materialized": 1,
-    "source_first_ready": 2,
-    "next_domain": "fonetikk_taleproduksjon_akustikk_persepsjon",
+    "materialized": 2,
+    "source_first_ready": 3,
+    "next_domain": "fonologi_lydsystem_prosodi",
     "strict_completion_proven": false
   },
-  "classification_summary": {
-    "reuse_with_expansion": 1,
-    "new_production_required": 11,
-    "move": 0
-  },
+  "classification_summary": {"reuse_with_expansion":1,"new_production_required":11,"move":0},
   "domains": [
     {"ordinal":1,"domain_id":"lingvistisk_tenkning_sprak_data_analyse_evidens","label":"Lingvistisk tenkning: språk, data, analyse og evidens","classification":"new_production_required"},
     {"ordinal":2,"domain_id":"fonetikk_taleproduksjon_akustikk_persepsjon","label":"Fonetikk: taleproduksjon, akustikk og persepsjon","classification":"new_production_required"},
@@ -42,8 +38,8 @@
     {"path":"data/categories/category_contract.json#canonicalSubcategories.litteratur","classification":"reuse","decision":"Eksisterende canonical underkategori-ID og owner subject beholdes uendret gjennom hele produksjonen."},
     {"path":"data/fag/litteratur/litteraturpensum_canonical_v4_5.json","classification":"reuse","decision":"Etablert Litteratur-pensum beholdes som owner-subject-kontrakt og skal ikke reduseres eller flyttes når lingvistikk bygges ut."}
   ],
-  "move_decision": {"move_existing_files": []},
-  "prohibited_actions": [
+  "move_decision":{"move_existing_files":[]},
+  "prohibited_actions":[
     "Ikke slette eller flytte eksisterende Litteratur-, Sosiologi/antropologi- eller Psykologi-eierfiler for å bygge Språk & lingvistikk.",
     "Ikke telle sekundærlenker, litteraturfaglige språkspor eller source briefs som materialiserte lingvistikkdomener.",
     "Ikke bruke preskriptive normpåstander som erstatning for deskriptiv språkdata og eksplisitt analyse.",
