@@ -56,11 +56,12 @@ jobs:
         run: node --test tests/fagverk-link-audit.test.mjs
       - name: Validate changed Place images
         run: node scripts/audit-place-images.mjs --mode=changed
-      - name: Validate quiz production
-        run: |
-          npm run audit:quiz-production-context
-          npm run audit:quiz-progression
-          npm run audit:quiz-theory-binding
+      - name: Validate quiz production context
+        run: npm run audit:quiz-production-context
+      - name: Validate quiz progression
+        run: npm run audit:quiz-progression
+      - name: Validate quiz theory binding
+        run: npm run audit:quiz-theory-binding
       - name: Validate diff whitespace
         run: git diff --check
       - name: Commit final production result and remove temporary tooling
