@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "naturfare-risiko-saarbarhet-planlegging-og-tilpasning",
+  "id": "02-sannsynlighet-screening-og-tapsmodellering",
+  "title": "Sannsynlighet, screening og tapsmodellering",
+  "sections": [
+    {
+      "id": "sannsynlighet-returperiode-og-farescreening",
+      "title": "Sannsynlighet, returperiode og farescreening",
+      "method_ids": ["met_geo_frekvens_alvorlighetsanalyse", "met_geo_hazard_screening_kvalitetskontroll"],
+      "boundary": "Returperiode er et sannsynlighetsmål og ikke en kalender; globale eller administrative farescreeninger skal ikke behandles som lokalt prosjektdesign eller full risikoanalyse.",
+      "paragraphs": [
+        "En returperiode er et statistisk uttrykk for langsiktig frekvens eller årlig overskridelsessannsynlighet under bestemte modellforutsetninger, ikke en kalender som sier når neste hendelse kommer. En såkalt 100-årshendelse kan derfor opptre to år på rad, eller utebli i langt mer enn hundre år, fordi sannsynligheten gjelder hvert år og ikke en fast syklus. Geografiske risikokart bør derfor vise returperiode eller årlig sannsynlighet sammen med modellversjon og referanseperiode og unngå formuleringer som antyder at hendelsen er «forfalt». Når klima eller arealforhold endrer seg, må det i tillegg vurderes om sannsynlighetsfordelingen fortsatt kan behandles som stasjonær eller om scenario- og tidsavhengige estimater er nødvendig.",
+        "Globale screeningverktøy som ThinkHazard er nyttige for å identifisere hvilke farer som bør undersøkes nærmere i et land eller administrativt område, men de er ikke et erstatningsgrunnlag for lokalt prosjektdesign. En standardisert fareklasse kan bygge på grove datasett, representative returperioder og en metodikk som prioriterer sammenlignbarhet på tvers av steder. Den sier ikke hvor høyt et bestemt bygg bør plasseres, hvilke lokale jordlag som finnes eller hvilken sårbarhet en konkret befolkning har. Derfor skal screeningresultatet merkes som screening og brukes til å utløse mer detaljert analyse. Lokale beslutninger krever stedsspesifikke data, eksponering, sårbarhet, kapasitet og relevante tekniske standarder i tillegg til den overordnede fareindikasjonen.",
+        "Et farekart for én returperiode representerer bare ett punkt på forholdet mellom hendelsesfrekvens og alvorlighet. To steder kan ha samme beregnede 100-års flomdybde, men svært ulike dybder ved hyppigere eller sjeldnere hendelser, og dermed forskjellig samlet risikoprofil. For tapsanalyse er det ofte nødvendig å vurdere flere sannsynlighetsnivåer eller en hel kurve og kombinere disse med eksponering og konsekvens. Derfor må en kartpresentasjon si hvilken sannsynlighet den representerer og ikke omtale én scenarioflate som «all flomrisiko». Når risiko brukes til investering eller forsikring, bør beslutningstakeren kunne se hvordan konsekvensene varierer over et sett av hendelser, ikke bare ved én tilfeldig valgt frekvens.",
+        "Klimaendring kan endre intensitet, frekvens, varighet eller romlig mønster for flere vær- og klimarelaterte farer og utfordrer derfor antakelsen om at historiske sannsynligheter alltid beskriver framtiden. Et kart basert på fortidens observasjoner kan fortsatt være relevant som referanse, men framtidsrettet planlegging bør angi utslipps- eller klimascenario, tidshorisont og modellusikkerhet når endringen er materiell. IPCC viser at risiko utvikles gjennom både fare, eksponering og sårbarhet, slik at også samfunnsendringer må kombineres med klimascenarioet. En framtidig «returperiode» bør dermed ikke presenteres uten kontekst som om den var en tidløs naturkonstant; den er et betinget estimat knyttet til de valgte klimatiske og statistiske forutsetningene."
+      ],
+      "paragraphClaimIds": [["geo12-09"], ["geo12-10"], ["geo12-11"], ["geo12-12"]]
+    },
+    {
+      "id": "eksponering-saarbarhetsfunksjoner-og-tapsmodellering",
+      "title": "Eksponering, sårbarhetsfunksjoner og tapsmodellering",
+      "method_ids": ["met_geo_tapsmodell_dekomponering", "met_geo_saarbarhetsfunksjon_validering"],
+      "boundary": "Modellert tap skal spores til fareintensitet, eksponeringsinventar og sårbarhets- eller skadefunksjon og skal ikke omtales som observert skade fra en faktisk hendelse.",
+      "paragraphs": [
+        "Kvantitativ tapsmodellering krever at minst tre informasjonslag kobles eksplisitt: hvor sterk faren er, hvilke mennesker eller verdier som er eksponert, og hvordan de forventes å reagere på den aktuelle intensiteten. For bygninger kan dette innebære flomdybde, bygningsinventar og dybde–skadefunksjoner; for befolkning kan andre sårbarhets- og responsmodeller være nødvendige. Risikoanalysen skal derfor kunne spores tilbake til hvert delgrunnlag og dets referanseår. Et tapskart som bare viser sluttbeløpet skjuler om resultatet drives av høy fare, mange verdier eller en sterk skadefunksjon. Dekomponering er nødvendig både for validering og for å identifisere hvilket risikoreduserende tiltak som faktisk kan påvirke resultatet.",
+        "FEMA Hazus er et GIS-basert verktøy for å estimere potensielle fysiske, økonomiske og samfunnsmessige tap under definerte farer og scenarier. Resultatene er derfor modellutfall som støtter planlegging og beredskap, ikke direkte observasjoner av hva en framtidig hendelse sikkert vil ødelegge. Modellen kombinerer fare, eksponeringsinventar og sårbarhets- eller skadefunksjoner, og usikkerhet i hvert lag påvirker sluttresultatet. En ansvarlig framstilling bør kalle tallene estimater eller scenarioresultater, oppgi modell- og dataversjon og skille dem fra senere skadeobservasjoner. At et kart beregner et tap ned på objektnivå betyr ikke at den faktiske hendelsesbanen, responsen og skaden vil følge den samme verdien nøyaktig.",
+        "Sårbarhets- og skadefunksjoner må være kompatible med både eksponeringstypen og fareintensitetsmålet. En funksjon utviklet for en bestemt bygningstype, konstruksjonspraksis eller flomdybde kan gi systematiske feil dersom den brukes på andre materialer, regioner eller hendelsesprosesser uten kontroll. Derfor bør funksjonene dokumentere opprinnelsesdata, gyldighetsområde og eventuell lokal kalibrering, og modellen bør sammenlignes med observerte skader der relevante data finnes. Overføring mellom steder kan være nødvendig når lokale data mangler, men da skal antakelsen og usikkerheten være synlig. Et detaljert GIS-resultat kan ikke kompensere for en sårbarhetsfunksjon som ikke representerer de faktiske objektene som ligger i den kartlagte eksponeringen.",
+        "Forventet tap og observert skade svarer på ulike spørsmål. Et forventet eller scenariobasert tap kombinerer modellerte hendelser, sannsynligheter og sårbarhet for å støtte beslutninger før hendelsen, mens observert skade dokumenterer konsekvensene av en konkret hendelsesbane, faktisk eksponering og den responsen som fant sted. De to kan og bør sammenlignes for validering, men må lagres separat. Hvis en faktisk flom rammer andre områder eller med annen intensitet enn scenarioet, er forskjellen ikke automatisk en modellfeil; først må farefelt og geografi harmoniseres. Reell modellvalidering krever at sammenligningen bruker kompatible skadebegreper, objekter og intensitetsdata slik at avviket kan tolkes faglig."
+      ],
+      "paragraphClaimIds": [["geo12-13"], ["geo12-14"], ["geo12-15"], ["geo12-16"]]
+    }
+  ]
+}

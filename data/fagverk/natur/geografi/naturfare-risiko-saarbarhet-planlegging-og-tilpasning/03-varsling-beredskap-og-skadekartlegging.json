@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "natur",
+  "canonical_subcategory_id": "geografi",
+  "chapter_id": "naturfare-risiko-saarbarhet-planlegging-og-tilpasning",
+  "id": "03-varsling-beredskap-og-skadekartlegging",
+  "title": "Varsling, beredskap og skadekartlegging",
+  "sections": [
+    {
+      "id": "varsling-prognose-kommunikasjon-og-beredskap",
+      "title": "Varsling, prognose, kommunikasjon og beredskap",
+      "method_ids": ["met_geo_ende_til_ende_varsling", "met_geo_impact_based_warning"],
+      "boundary": "Observasjon, prognose, varsling, kommunikasjon og beredskap er separate ledd; god modellskill etablerer ikke et effektivt varslingssystem dersom meldingen ikke når fram og utløser handling.",
+      "paragraphs": [
+        "Et effektivt multi-hazard early warning system er en sammenhengende kjede og ikke bare en prognosemodell. WMO organiserer Early Warnings for All rundt fire pilarer: risikokunnskap, observasjon og prognose, varseldistribusjon og kommunikasjon samt beredskap og responskapasitet. Dersom ett ledd svikter, kan et teknisk presist varsel fortsatt gi liten risikoreduksjon. Geografisk analyse bør derfor kartlegge hvor risikokunnskapen finnes, hvilke sensorer og modeller som dekker området, hvilke kommunikasjonskanaler som faktisk når befolkningen, og hvilke beslutninger som kan utløses innen tilgjengelig lead time. Systemets kvalitet må vurderes ende-til-ende fremfor å reduseres til meteorologisk modellskill alene.",
+        "En prognose kan ha høy teknisk kvalitet uten å redusere skade dersom budskapet kommer for sent, er vanskelig å forstå, ikke når utsatte grupper eller mangler en avtalt handling. Det er derfor nødvendig å skille forecast skill fra warning effectiveness. Varslingssystemet må oversette sannsynlighet og forventet intensitet til et budskap som er relevant for beslutningstakere og befolkning, samtidig som beredskapsplaner definerer hvem som gjør hva. Språk, tilgjengelighet, tillit, digital dekning og mulighet til å evakuere kan variere geografisk og sosialt. En analyse av varslingsdekning bør derfor inkludere kommunikasjon og responskapasitet og ikke bare kart over radar, målestasjoner eller modellens prognoseområde.",
+        "Impact-based varsling kobler informasjon om den forventede faren til kunnskap om hvem og hva som er eksponert og sårbart. I stedet for bare å melde nedbørsmengde eller vindstyrke kan budskapet beskrive sannsynlige konsekvenser for transport, bygninger, helse eller kritiske tjenester og anbefale konkrete handlinger. Denne oversettelsen krever oppdaterte eksponeringsdata og forståelse av sårbarhet; samme meteorologiske intensitet kan gi ulike konsekvenser i to områder. Derfor må risikokunnskap være en aktiv del av varslingskjeden. Samtidig skal konsekvensestimatet fortsatt presenteres som betinget og usikkert, ikke som garantert skade, fordi faktisk hendelsesbane, lokal respons og eksponering på tidspunktet påvirker utfallet.",
+        "Varsler bør oppgi relevant sannsynlighet, tidshorisont og usikkerhet fordi prognoser oppdateres når nye observasjoner kommer inn og fordi framtidige hendelser ikke er deterministiske. Et varsel om høy sannsynlighet betyr ikke at hendelsen er sikker, og et lavere sannsynlighetsvarsel kan fortsatt kreve handling dersom konsekvensene er store og tiltaket er billig eller reversibelt. Derfor bør beslutningsregler knytte sannsynlighet og konsekvens til forhåndsdefinerte terskler og samtidig kommunisere at prognosen kan endres. Geografiske produkter bør tidsstemples og versjoneres, slik at brukere vet hvilken modellkjøring og hvilke observasjoner som lå til grunn. Dette gjør det mulig å evaluere både prognosen, kommunikasjonen og responsen etter hendelsen uten å blande ulike varselsutgaver."
+      ],
+      "paragraphClaimIds": [["geo12-17"], ["geo12-18"], ["geo12-19"], ["geo12-20"]]
+    },
+    {
+      "id": "beredskap-rapid-mapping-skade-og-recovery",
+      "title": "Beredskap, rapid mapping, skade og recovery",
+      "method_ids": ["met_geo_beredskap_hendelseskart", "met_geo_skadevalidering_recovery"],
+      "boundary": "Pre-event risikovurdering, sanntids hendelsesutbredelse, post-event skade og recovery-status skal ligge i separate tids- og evidenslag.",
+      "paragraphs": [
+        "Copernicus Emergency Management Service Rapid Mapping støtter respons etter at en hendelse har oppstått eller er i ferd med å utfolde seg ved å levere kart over utbredelse og skade fra satellitt- og andre geodata. Dette er et annet beslutningsprodukt enn en pre-event risikoanalyse som vurderer sannsynlige framtidige hendelser over tid. Rapid Mapping kan vise hvilke områder som faktisk er oversvømt eller påvirket i en bestemt observasjon, men sier ikke alene hvor ofte en tilsvarende hendelse vil skje eller hva den langsiktige forventede risikoen er. Derfor må hendelseskart ha observasjonstid og sensorinformasjon og lagres separat fra fare- og risikoscenarier som ble produsert før hendelsen.",
+        "CEMS skiller mellom preparedness mapping, rapid mapping og recovery mapping fordi spørsmålene og datagrunnlaget endres gjennom katastrofens tidslinje. Før hendelsen kan beslutningstakere trenge eksponerings- og risikoinformasjon for planlegging; under og umiddelbart etter hendelsen trengs rask avgrensning av utbredelse og skade; senere kan recovery-produkter følge gjenoppbygging og vedvarende konsekvenser. En geografisk beredskapsdatabase bør derfor bevare disse fasene som separate produktklasser med egne timestamps og kvalitetsgrenser. Hvis de blandes, kan et post-event satellittkart feilaktig brukes som framtidig sannsynlighetskart, eller et gammelt beredskapsscenario presenteres som observasjon av den faktiske hendelsen.",
+        "Satellittbasert skadekartlegging har deknings- og observasjonsgrenser. Skydekke, revisit-tid, sensoroppløsning, geometrisk nøyaktighet og hvilken skade som faktisk er synlig fra rommet påvirker hva som kan klassifiseres. En bygning kan være funksjonelt ubrukelig uten tydelig ytre signal, og områder uten klassifisert skade kan være uobserverte eller usikre. Derfor bør CEMS-lignende skadeprodukter tolkes sammen med metadata om sensor, bildeopptak, klassemetode og validitet og suppleres med felt- eller administrative data der det er mulig. Fravær av kartlagt skade er ikke automatisk bevis på fravær av skade, og en klassifisert polygon må forstås innenfor produktets definisjon og observasjonsmuligheter.",
+        "Observerte skade- og recovery-data er verdifulle for å teste tapsmodeller, men sammenligningen krever harmonisering. Dersom modellen estimerer strukturelt bygningstap mens observasjonsdatasettet registrerer evakuerte personer eller oversvømt areal, er tallene ikke direkte sammenlignbare. Før validering må skadebegrep, objekttype, geografi, hendelsesintensitet og tidspunkt avstemmes. Deretter kan avvik brukes til å forbedre eksponeringsinventar, sårbarhetsfunksjoner eller faremodell. Observasjonen skal likevel bevares som eget datasett, slik at modelloppdateringen ikke visker ut hva som faktisk ble målt. Reproduserbar læring etter katastrofer krever nettopp et tydelig skille mellom prediksjonen før hendelsen, observasjonen etterpå og den reviderte modellen som følger."
+      ],
+      "paragraphClaimIds": [["geo12-21"], ["geo12-22"], ["geo12-23"], ["geo12-24"]]
+    }
+  ]
+}
