@@ -1,0 +1,72 @@
+name: Repair PR5578 images and diagnose quiz
+
+on:
+  push:
+    branches:
+      - agent/fagverk-legacy-grunerlokka-20260831
+    paths:
+      - .github/workflows/repair-pr5578-images-diagnose-quiz.yml
+
+permissions:
+  contents: write
+
+jobs:
+  repair-diagnose:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - name: Repair stale image pointers
+        run: node tools/repair-pr5578-images.mjs
+      - name: Regenerate Fagverk and runtime artifacts
+        run: |
+          node scripts/build-place-open-payloads.mjs
+          node scripts/audit-fagverk-place-pages.mjs --write
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Validate Fagverk result
+        run: |
+          node scripts/audit-fagverk-place-pages.mjs
+          node scripts/build-place-open-payloads.mjs --check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node --test tests/fagverk-place-pages.test.mjs
+          node --test tests/fagverk-place-substance-audit.test.mjs
+          node --test tests/fagverk-link-audit.test.mjs
+          git diff --check
+      - name: Diagnose global quiz audits separately
+        shell: bash
+        run: |
+          set +e
+          mkdir -p reports/fagverk
+          : > reports/fagverk/pr5578-quiz-diagnostic.txt
+          for cmd in \
+            "python scripts/check_quiz_production_contract.py" \
+            "python scripts/check_quiz_production_content.py" \
+            "python scripts/check_quiz_production_audit.py reports/quiz/audit-article-grounding-production-v1.json 0.95"
+          do
+            echo "===== $cmd =====" >> reports/fagverk/pr5578-quiz-diagnostic.txt
+            bash -lc "$cmd" >> reports/fagverk/pr5578-quiz-diagnostic.txt 2>&1
+            echo "EXIT=$?" >> reports/fagverk/pr5578-quiz-diagnostic.txt
+          done
+      - name: Commit repaired production data and diagnostic
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            data/places/by/oslo/sofienbergparken.json \
+            data/places/by/oslo/places/markveien.json \
+            data/runtime \
+            data/fagverk/fagverk_release.json \
+            reports/fagverk/fagverk-place-page-coverage-v2.json \
+            reports/fagverk/pr5578-quiz-diagnostic.txt
+          git commit -m "Repair Grünerløkka place images and capture quiz diagnostic"
+          git push origin HEAD:${GITHUB_REF_NAME}
