@@ -1,0 +1,2 @@
+import test from 'node:test'; import assert from 'node:assert/strict'; import { audit } from '../scripts/brief-sprak-lingvistikk-psycholinguistics-language-acquisition-processing-sources-v1.mjs';
+test('Språk & lingvistikk felt 11 Psykolingvistikk er source-first uten materialisering',()=>{const r=audit();assert.equal(r.status,'pass_source_first_ready_not_materialized');assert.deepEqual(r.counts,{sources:13,topicBriefs:8,plannedClaims:32,plannedAssessments:8,decisionScenarios:6});assert.equal(r.six_part_quality_review.total,30);});
