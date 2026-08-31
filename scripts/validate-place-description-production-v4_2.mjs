@@ -216,6 +216,9 @@ export function descriptionFieldsChanged(baseRaw, headRaw) {
   for (const id of ids) {
     const before = basePlaces.get(id);
     const after = headPlaces.get(id);
+    // A retired Place no longer has a user-facing description to validate.
+    // Additions and edits still pass through the normal 4.2 packet gate.
+    if (!after) continue;
     if (!sameValue(before?.desc, after?.desc) || !sameValue(before?.popupDesc, after?.popupDesc)) return true;
   }
   return false;
