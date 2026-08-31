@@ -21,7 +21,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: agent/fagverk-juss-rettsvitenskap-field-1-fulltext-field-2-source-first-20260831
-          fetch-depth: 0
+          fetch-depth: 1
+          show-progress: false
 
       - name: Use Node.js 24
         uses: actions/setup-node@v4
@@ -31,8 +32,25 @@ jobs:
       - name: Syntax-check TEMP generator
         run: node --check scripts/tmp-materialize-juss-field1-fulltext-field2-source-first.mjs
 
-      - name: Generate candidate state
-        run: node scripts/tmp-materialize-juss-field1-fulltext-field2-source-first.mjs
+      - name: Generate candidate state or capture exact failure
+        run: |
+          set +e
+          node scripts/tmp-materialize-juss-field1-fulltext-field2-source-first.mjs > /tmp/juss-generator.log 2>&1
+          status=$?
+          set -e
+          cat /tmp/juss-generator.log
+          if [ "$status" -ne 0 ]; then
+            git reset --hard HEAD
+            git clean -fd
+            mkdir -p reports/fagverk
+            tail -n 100 /tmp/juss-generator.log > reports/fagverk/tmp-juss-field1-field2-generator-error.txt
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add reports/fagverk/tmp-juss-field1-field2-generator-error.txt
+            git commit -m 'Capture Juss field 1 field 2 generator error'
+            git push origin HEAD:agent/fagverk-juss-rettsvitenskap-field-1-fulltext-field-2-source-first-20260831
+            exit "$status"
+          fi
 
       - name: Syntax-check generated Juss gates
         run: |
