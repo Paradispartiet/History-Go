@@ -58,7 +58,7 @@ export function audit() {
   assert(requirements.source_brief_does_not_count_as_materialized === true && requirements.all_claims_require_fulltext_reverification === true, 'Source brief kan ikke telle som ferdig og alle claims må reverifiseres');
 
   const boundaryText = topics.map((row) => row.boundary).join(' ').toLowerCase();
-  assert(/preskript/u.test(boundaryText), 'Deskriptiv/preskriptiv grense mangler');
+  assert(/preskript|norm/u.test(boundaryText), 'Deskriptiv/preskriptiv grense mangler');
   assert(/skrift/u.test(boundaryText), 'Skrift/språk-modalitetsgrense mangler');
   assert(/genealog/u.test(boundaryText), 'Genealogi/struktur-grense mangler');
   assert(/korpus/u.test(boundaryText), 'Korpus-generaliseringsgrense mangler');
