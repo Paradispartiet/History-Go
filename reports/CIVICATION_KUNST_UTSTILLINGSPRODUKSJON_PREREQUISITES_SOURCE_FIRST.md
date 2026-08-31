@@ -9,3 +9,5 @@ The 16-step plan uses all nine mail types without fallback families. History Go 
 Canonical readiness classifies the authored audience and standing signals as `foundation_ready`, while `role_world_status` remains `role_world_not_started`. This prerequisite therefore clears the authored foundation without claiming the dedicated Role World rollout.
 
 The fail-closed workflow protects existing evidence by hash, regenerates canonical audits and registries, runs focused and full Civication gates, removes temporary surfaces and commits only verified permanent output.
+
+Workflow retrigger checkpoint: source contract reverified after the initial PR routing run on 2026-08-31.
