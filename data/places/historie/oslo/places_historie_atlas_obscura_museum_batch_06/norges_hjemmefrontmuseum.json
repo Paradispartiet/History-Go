@@ -87,6 +87,30 @@
       "url": "https://www.forsvarshistoriskmuseum.no/norges-hjemmefrontmuseum",
       "lang": "nb",
       "verifiedAt": "2026-07-20"
+    },
+    {
+      "type": "source",
+      "label": "Forsvarshistorisk museum – samlingen",
+      "url": "https://www.forsvarshistoriskmuseum.no/samlingen",
+      "verifiedAt": "2026-08-31"
+    },
+    {
+      "type": "source",
+      "label": "Norges Hjemmefrontmuseum – biblioteket",
+      "url": "https://www.forsvarshistoriskmuseum.no/norges-hjemmefrontmuseum/biblioteket-ved-norges-hjemmefrontmuseum",
+      "verifiedAt": "2026-08-31"
+    },
+    {
+      "type": "source",
+      "label": "Store norske leksikon – Norges Hjemmefrontmuseum",
+      "url": "https://snl.no/Norges_Hjemmefrontmuseum",
+      "verifiedAt": "2026-08-31"
+    },
+    {
+      "type": "source",
+      "label": "Sikt – Norges Hjemmefrontmuseums endringshistorie",
+      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie",
+      "verifiedAt": "2026-08-31"
     }
   ],
   "imageCard": "bilder/kort/places/norges_hjemmefrontmuseum.webp",
@@ -370,5 +394,113 @@
     }
   },
   "production_status": "complete",
-  "production_verified_at": "2026-08-30"
+  "production_verified_at": "2026-08-30",
+  "fagverk": {
+    "schema": "history_go_place_fagverk_v2",
+    "level": "standard",
+    "status": "curated",
+    "intro": "Norges Hjemmefrontmuseum er både en samling om okkupasjon og motstand og et etterkrigshistorisk prosjekt skapt av mennesker fra hjemmefronten. Derfor må utstilte objekter, krigsarkivene, museets egen etableringshistorie og senere historiebruk analyseres som forskjellige kildelag.",
+    "article": [
+      "Planene om museet ble konkretisert i 1962, stiftelsen ble etablert i 1966, og publikum fikk adgang i 1970 etter restaurering av Det dobbelte batteri og Bindingsverkshuset. Museet er dermed ikke et sted der alle de formidlede krigshendelsene skjedde. Bygning 21 er institusjons-, samlings- og formidlingsankeret for materiale som har mange andre opprinnelsessteder.",
+      "Kamuflerte radiomottakere, armbind, fotografier, dokumenter og mer enn 600 hyllemeter arkiver gir ulike typer evidens. En fysisk gjenstand kan vise materiale og bruksspor, mens et arkiv kan dokumentere beslutninger, korrespondanse og organisasjon. Ingen enkelt kilde gir automatisk hele erfaringen av okkupasjon, samarbeid, forfølgelse eller motstand, og fravær i samlingen må ikke fylles med antakelser.",
+      "At museet ble skapt av hjemmefrontens egne miljøer gjør ettertidens fortelling til en del av studieobjektet. Utvalget kan dokumentere hva grunnleggerne ønsket å bevare og framheve, samtidig som andre perspektiver må søkes i flere kilder. Da stiftelsen ble oppløst og museet underlagt Forsvarsmuseet i 1995, endret forvaltningsformen seg igjen. Historiebruk, institusjon og krigshistorie ligger derfor side om side i samme museum."
+    ],
+    "subject_ids": [
+      "historie"
+    ],
+    "emne_ids": [
+      "em_his_okkupasjon_motstand",
+      "em_his_minnesteder_historiebruk",
+      "em_his_spor_materialitet",
+      "em_his_samtid_ettertid_fortelling",
+      "em_his_museum_samling_kanon"
+    ],
+    "chapter_ids": [
+      "krig_okkupasjon_motstand",
+      "kilder_arkiv_spor",
+      "historisk_tid_periodisering",
+      "minne_kulturarv_historiebruk"
+    ],
+    "lenses": [
+      {
+        "id": "hjemmefrontmuseum-motstand",
+        "title": "Motstand gjennom ulike kilder",
+        "prompt": "Hvordan kan gjenstander, fotografier og arkiver utfylle hverandre når okkupasjon og motstand skal undersøkes historisk?",
+        "subject_id": "historie",
+        "emne_id": "em_his_okkupasjon_motstand",
+        "evidence": "Sammenhold flere materialtyper og marker hvilket spørsmål hver kilde faktisk kan belyse uten å generalisere utover belegget."
+      },
+      {
+        "id": "hjemmefrontmuseum-materialitet",
+        "title": "Objekt og proveniens",
+        "prompt": "Hva kan en kamuflert radiomottaker dokumentere om illegal lytting, og hvilke brukerhistorier krever separat proveniens?",
+        "subject_id": "historie",
+        "emne_id": "em_his_spor_materialitet",
+        "evidence": "Skill gjenstandens form og registrerte funksjon fra antakelser om bestemte eiere, situasjoner eller erfaringer."
+      },
+      {
+        "id": "hjemmefrontmuseum-minne",
+        "title": "Hjemmefronten kuraterer ettertiden",
+        "prompt": "Hvordan påvirker museets grunnleggermiljø hvilke erfaringer fra krigen som tidlig ble samlet, ordnet og framhevet?",
+        "subject_id": "historie",
+        "emne_id": "em_his_minnesteder_historiebruk",
+        "evidence": "Les etableringshistorien fra 1960-årene sammen med utstillings- og arkivmaterialet som et eget etterkrigshistorisk kildelag."
+      },
+      {
+        "id": "hjemmefrontmuseum-kanon",
+        "title": "Museum skaper historisk kanon",
+        "prompt": "Hvordan kan en permanent utstilling både bevare viktige kilder og samtidig gjøre noen fortellinger mer synlige enn andre?",
+        "subject_id": "historie",
+        "emne_id": "em_his_museum_samling_kanon",
+        "evidence": "Sammenlign utstillingens prioriteringer med bibliotek, arkiv og eksterne historiske kilder for å lete etter fravær og skjevheter."
+      }
+    ],
+    "guiding_questions": [
+      "Hvorfor er museumsbygningen et formidlingsanker og ikke opprinnelsessted for alle krigshendelsene?",
+      "Hvordan skiller en fysisk motstandsgjenstand seg som kilde fra et arkivdokument?",
+      "Hva betyr det kildekritisk at hjemmefrontens egne miljøer etablerte museet etter krigen?",
+      "Hvordan kan arkivmengden brukes til å kontrollere og utdype påstander i utstillingen?",
+      "Hva endret seg institusjonelt da stiftelsen ble oppløst og museet underlagt Forsvarsmuseet?"
+    ],
+    "concepts": [
+      "okkupasjon",
+      "motstand",
+      "proveniens",
+      "krigsarkiv",
+      "museumssamling",
+      "minnekultur",
+      "historiebruk",
+      "kanon",
+      "ettertidsfortelling",
+      "kildekritikk"
+    ],
+    "observable_traces": [
+      {
+        "title": "Det dobbelte batteri",
+        "observation": "Museet er fysisk plassert i Det dobbelte batteri og Bindingsverkshuset, som ble restaurert for museumsbruk før åpningen i 1970.",
+        "interpretation_boundary": "Bygningen dokumenterer museets institusjons- og formidlingshistorie, men gjør ikke stedet til hendelsessted for alt materialet som formidles innenfor.",
+        "source_urls": [
+          "https://www.forsvarshistoriskmuseum.no/norges-hjemmefrontmuseum",
+          "https://snl.no/Norges_Hjemmefrontmuseum"
+        ]
+      },
+      {
+        "title": "Arkiv og utstillingsmateriale",
+        "observation": "Dokumenter, fotografier og fysiske gjenstander presenteres side om side som ulike spor etter okkupasjon og motstand.",
+        "interpretation_boundary": "Samlingsbredden gir flere evidenstyper, men verken monter eller arkivmengde garanterer at alle grupper og erfaringer er likt representert.",
+        "source_urls": [
+          "https://www.forsvarshistoriskmuseum.no/samlingen",
+          "https://www.forsvarshistoriskmuseum.no/norges-hjemmefrontmuseum/biblioteket-ved-norges-hjemmefrontmuseum"
+        ]
+      }
+    ],
+    "source_urls": [
+      "https://www.forsvarshistoriskmuseum.no/norges-hjemmefrontmuseum",
+      "https://www.forsvarshistoriskmuseum.no/samlingen",
+      "https://www.forsvarshistoriskmuseum.no/norges-hjemmefrontmuseum/biblioteket-ved-norges-hjemmefrontmuseum",
+      "https://snl.no/Norges_Hjemmefrontmuseum",
+      "https://forvaltningsdatabasen.sikt.no/data/enhet/53012/endringshistorie"
+    ],
+    "verified_at": "2026-08-31"
+  }
 }
