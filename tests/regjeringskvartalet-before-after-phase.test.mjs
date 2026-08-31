@@ -92,8 +92,8 @@ test('Den deterministiske quiz-konteksten er synkronisert med canonical place-fi
   assert.equal(target.path, placePath);
   assert.equal(target.bytes, placeBuffer.byteLength);
   assert.equal(target.sha256, createHash('sha256').update(placeBuffer).digest('hex'));
-  assert.equal(target.bytes, 18718);
-  assert.equal(target.sha256, 'fb7bb0f0a1adf7d099450b6d317f0428053412f9ecfe34f63f5a5e663edaceec');
+  assert.equal(target.bytes, 28118);
+  assert.equal(target.sha256, '9e763ff92cf5d1bb9f1aff6e314389796c016078a4b189397336d219137c3514');
 });
 
 test('Fasekortet bevarer den godkjente Før/etter-fasen gjennom senere popupfaser', () => {
