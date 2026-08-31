@@ -37,6 +37,7 @@ jobs:
         run: |
           node scripts/build-quiz-production-context.mjs --category by --target storgata --output data/quiz/production_context/by/storgata.json
           node scripts/build-quiz-production-context.mjs --category by --target christiania_torv --output data/quiz/production_context/by/christiania_torv.json
+          node scripts/build-quiz-production-context.mjs --category subkultur --target brugata_storgata_rusmiljo --output data/quiz/production_context/subkultur/brugata_storgata_rusmiljo.json
       - name: Regenerate Fagverk and runtime artifacts
         run: |
           node scripts/build-place-open-payloads.mjs
@@ -73,6 +74,7 @@ jobs:
             data/places/subkultur/oslo/places_subkultur/brugata_storgata_rusmiljo.json \
             data/quiz/production_context/by/storgata.json \
             data/quiz/production_context/by/christiania_torv.json \
+            data/quiz/production_context/subkultur/brugata_storgata_rusmiljo.json \
             data/runtime \
             data/fagverk/fagverk_registry.json \
             data/fagverk/fagverk_release.json \
