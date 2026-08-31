@@ -1,0 +1,74 @@
+name: Finalize Youngstorget and rådhus Fagverk legacy batch
+
+on:
+  push:
+    branches:
+      - agent/fagverk-legacy-youngstorget-radhus-20260831
+    paths:
+      - .github/workflows/finalize-fagverk-legacy-youngstorget-radhus.yml
+      - tools/finalize-fagverk-legacy-youngstorget-radhus.mjs
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Sync branch to current main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+      - name: Curate two completed Place Fagverk packages
+        run: node tools/finalize-fagverk-legacy-youngstorget-radhus.mjs
+      - name: Rebuild deterministic quiz contexts
+        run: |
+          node scripts/build-quiz-production-context.mjs --category politikk --target youngstorget --output data/quiz/production_context/politikk/youngstorget.json
+          node scripts/build-quiz-production-context.mjs --category politikk --target oslo_radhus --output data/quiz/production_context/politikk/oslo_radhus.json
+      - name: Regenerate Fagverk and runtime artifacts
+        run: |
+          node scripts/build-place-open-payloads.mjs
+          node scripts/audit-fagverk-place-pages.mjs --write
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Validate Fagverk, images and quiz context
+        run: |
+          node scripts/audit-fagverk-place-pages.mjs
+          node scripts/build-place-open-payloads.mjs --check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node --test tests/fagverk-place-pages.test.mjs
+          node --test tests/fagverk-place-substance-audit.test.mjs
+          node --test tests/fagverk-link-audit.test.mjs
+          node scripts/audit-place-images.mjs --mode=changed
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          git diff --check
+      - name: Commit final production result and remove temporary tooling
+        run: |
+          git add \
+            data/places/politikk/oslo/places_politikk/youngstorget.json \
+            data/places/politikk/oslo/places_politikk/oslo_radhus.json \
+            data/quiz/production_context/politikk/youngstorget.json \
+            data/quiz/production_context/politikk/oslo_radhus.json \
+            data/runtime \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/fagverk_release.json \
+            reports/fagverk/fagverk-place-page-coverage-v2.json
+          git rm \
+            tools/finalize-fagverk-legacy-youngstorget-radhus.mjs \
+            .github/workflows/finalize-fagverk-legacy-youngstorget-radhus.yml
+          git diff --cached --quiet && { echo "No production changes to commit"; exit 1; }
+          git commit -m "Curate Youngstorget and Oslo rådhus Fagverk legacy batch"
+          git push origin HEAD:${GITHUB_REF_NAME}
