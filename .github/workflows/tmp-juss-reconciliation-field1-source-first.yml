@@ -40,10 +40,11 @@ jobs:
               raise SystemExit(f'Expected exactly one generated registry-test line, got {test_matches}')
           lines[test_matches[0]] = '''writeText('tests/fagverk-domain-ci-registry.test.mjs', readText('tests/fagverk-domain-ci-registry.test.mjs') + '\\ntest("shared domain workflow triggers on every Juss & rettsvitenskap surface routed by the registry", () => {\\n  const workflow = readFileSync(".github/workflows/fagverk-domain-registry.yml", "utf8");\\n  for (const pathPattern of [\\n    "data/fag/politikk/juss_rettsvitenskap/**",\\n    "data/fagverk/politikk/juss_rettsvitenskap/**",\\n    "reports/fagverk/juss-rettsvitenskap-*.json",\\n    "scripts/*juss-rettsvitenskap*",\\n    "tests/juss-rettsvitenskap-*.test.mjs",\\n    ".github/ci/fagverk-juss-rettsvitenskap-domain-registry-v1.json",\\n  ]) {\\n    assert.equal(workflow.includes(pathPattern), true, "workflow mangler Juss-trigger " + pathPattern);\\n  }\\n});\\n');'''
 
-          workflow_matches = [i for i, line in enumerate(lines) if line.startswith("writeText('.github/workflows/fagverk-domain-registry.yml'")]
-          if len(workflow_matches) != 1:
-              raise SystemExit(f'Expected exactly one generated workflow write line, got {workflow_matches}')
-          lines[workflow_matches[0]] = "writeText('.github/workflows/fagverk-domain-registry.yml', workflowText);"
+          workflow_matches = [i for i, line in enumerate(lines) if line.startswith("replaceOnce('.github/workflows/fagverk-domain-registry.yml'")]
+          if len(workflow_matches) != 6:
+              raise SystemExit(f'Expected exactly six workflow replace lines, got {workflow_matches}')
+          for i in workflow_matches:
+              lines[i] = "void readText('.github/workflows/fagverk-domain-registry.yml');"
 
           p.write_text('\n'.join(lines) + '\n')
           PY
