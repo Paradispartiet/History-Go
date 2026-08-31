@@ -76,8 +76,8 @@ test('Canonical place og deterministisk Quiz-kontekst er synkronisert', () => {
   assert.equal(target.path, placePath);
   assert.equal(target.bytes, placeBuffer.byteLength);
   assert.equal(target.sha256, createHash('sha256').update(placeBuffer).digest('hex'));
-  assert.equal(target.bytes, 18718);
-  assert.equal(target.sha256, 'fb7bb0f0a1adf7d099450b6d317f0428053412f9ecfe34f63f5a5e663edaceec');
+  assert.equal(target.bytes, 28118);
+  assert.equal(target.sha256, '9e763ff92cf5d1bb9f1aff6e314389796c016078a4b189397336d219137c3514');
 });
 
 test('Fasekortet lukker Lesespor, åpner Kilder og peker bare videre til Mer', () => {

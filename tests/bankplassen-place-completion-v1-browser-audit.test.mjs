@@ -72,9 +72,11 @@ try {
   await page.goto(`http://127.0.0.1:${port}/fagverk-sted.html?place=bankplassen`, { waitUntil: "networkidle" });
   await page.waitForFunction(() => document.getElementById("fagverkPlaceContent")?.hidden === false);
   assert.equal(await page.locator("#fagverkPlaceTitle").textContent(), "Bankplassen");
-  assert.ok((await page.locator("#fagverkPlaceArticle").innerText()).includes("festningsvollene"));
-  assert.ok(await page.locator("#fagverkPlaceLenses > *").count() >= 2);
-  assert.ok(await page.locator("#fagverkPlaceQuestions li").count() >= 3);
+  assert.match(await page.locator("#fagverkPlaceCoverageStatus").innerText(), /under produksjon/i);
+  assert.equal(await page.locator("#fagverkPlaceUnfinished").isVisible(), true);
+  assert.equal(await page.locator("#fagverkPlaceArticleSection").isHidden(), true);
+  assert.equal(await page.locator("#fagverkPlaceLenses a").count(), 0);
+  assert.equal(await page.locator("#fagverkPlaceQuestions li").count(), 0);
   assert.equal(await page.locator("#fagverkPlaceError").isHidden(), true);
   await context.close();
   console.log("Bankplassen PlaceCard completion browser audit OK");

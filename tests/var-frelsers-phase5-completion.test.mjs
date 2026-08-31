@@ -244,14 +244,13 @@ test('Chromium renders every popup tab, all four rounds and the fagverk page on 
     assert.match((await fagverk.textContent('#fagverkPlaceMeta')).trim(), /historie · 1808/);
     assert.doesNotMatch((await fagverk.textContent('#fagverkPlaceMeta')).trim(), /\[object Object\]/);
     assert.equal(await fagverk.locator('#fagverkPlaceBadgePath .fagverk-canonical-underbadges a').count(), 1);
-    assert.ok(await fagverk.locator('#fagverkPlaceLenses article').count() >= 4);
-    assert.ok(await fagverk.locator('#fagverkPlaceQuestions li').count() >= 4);
+    assert.match((await fagverk.textContent('#fagverkPlaceCoverageStatus')).trim(), /under produksjon/);
+    assert.equal(await fagverk.locator('#fagverkPlaceUnfinished').isVisible(), true);
+    assert.equal(await fagverk.locator('#fagverkPlaceLenses a').count(), 0);
+    assert.equal(await fagverk.locator('#fagverkPlaceQuestions li').count(), 0);
     assert.ok(await fagverk.locator('#fagverkPlaceChapters a').count() >= 1);
-    assert.ok(await fagverk.locator('#fagverkPlaceEmner a, #fagverkPlaceEmner span').count() >= 3);
-    assert.ok(await fagverk.locator('#fagverkPlaceSources a').count() >= 7);
-    assert.equal(await fagverk.locator('#fagverkPlaceSources a').evaluateAll(links => links.filter(link => (
-      link.target !== '_blank' || !String(link.rel).includes('noopener') || !String(link.rel).includes('noreferrer')
-    )).length), 0);
+    assert.ok(await fagverk.locator('#fagverkPlaceEmner a').count() >= 3);
+    assert.equal(await fagverk.locator('#fagverkPlaceSources a').count(), 0);
     assert.equal(await fagverk.locator('#fagverkPlaceImage').isVisible(), true);
     assert.ok(await fagverk.locator('#fagverkPlaceImage').evaluate(image => image.naturalWidth) > 0);
     if (process.env.VFG_CAPTURE_SCREENSHOTS === '1') {

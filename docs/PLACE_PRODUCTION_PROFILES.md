@@ -45,7 +45,7 @@ For alle ordinære Places (`major`, `standard`, `focused`) er følgende obligato
 2. verifisert koordinat/geometri med ærlig `coordRole`;
 3. inspiserte, sporbare kilder og source → claim-disiplin;
 4. canonical `desc` og `popupDesc` i korrekt kvalitet;
-5. riktig hovedbadge/category, riktige underbadges, relevante emner og fungerende stedsspesifikk Fagverk-side;
+5. riktig hovedbadge/category, riktige underbadges, relevante emner og Place-eid, substansauditert stedsspesifikk Fagverk-side;
 6. publiserte bilder med proveniens og et faktisk stående `frontImage` der ordinær PlaceCard bruker det;
 7. chronology/epoke-research med korrekt dateringspresisjon og materialisering av kvalifiserte eksakte år;
 8. canonical Språkleksikon med minst ett reelt stedsspesifikt navn-/begrepsspor;
@@ -134,19 +134,19 @@ Følgende øvrige moduler er betingede og produseres når de er reelt relevante 
 
 Sted med stor betydning og bredt kildebåret stoff som bærer flere selvstendige lærings-, material- eller narrative spor.
 
-Forventning: dypest research og fire sterke PlaceCard-samlinger etter den faste kategoriprofilen.
+Forventning: dypest research, `fagverk.level: full` med utfyllende fagartikkel og flere selvstendige læringsspor, og fire sterke PlaceCard-samlinger etter den faste kategoriprofilen.
 
 ### `standard`
 
 Default for et betydelig canonical Place med komplett stedsopplevelse, flere reelle innholdsvinkler og nok materiale til solid Fagverk/quiz uten Major-bredde.
 
-Forventning: full universal core og fire sterke PlaceCard-samlinger valgt etter den faste kategoriprofilen og produsert gjennom Badge-drevet innholdsplan.
+Forventning: full universal core, minst `fagverk.level: standard` med egen læringsinngang, minst tre linser, fire spørsmål, observerbart spor og kilder, og fire sterke PlaceCard-samlinger valgt etter den faste kategoriprofilen.
 
 ### `focused`
 
 Canonical Place med historisk/kulturell verdi konsentrert i én hovedfunksjon, hendelse, struktur, spor eller snevert tema.
 
-Forventning: full universal core og fire ferdige PlaceCard-samlinger, men mindre dybde og færre medlemmer per samling enn et bredere sted. `focused` reduserer aldri antallet samlingsflater.
+Forventning: full universal core og fire ferdige PlaceCard-samlinger, men mindre dybde og færre medlemmer per samling enn et bredere sted. `focused` bruker fortsatt minst Fagverk-nivå `standard`; nivå `micro` er bare for canonicale Micro Places. `focused` reduserer aldri antallet samlingsflater.
 
 `focused` kan aldri velges bare fordi oppgaven ønskes billigere eller raskere.
 

@@ -185,12 +185,21 @@ Alle canonicale steder skal ha sin egen fungerende fagverkside.
 
 **fagverk-sted — obligatorisk, fungerende og aldri N/A.** Kravet gjelder hvert sted, kan ikke settes til N/A og er en egen ferdigport.
 
-Alle ordinære canonical Places skal ha fungerende stedsspesifikk Fagverk-side. Fagverkets faglige vekt skal samsvare med Hovedbadge, underbadges, emner og dokumentert stedskunnskap.
+Alle ordinære canonical Places skal ha Place-eid `fagverk`-blokk med schema `history_go_place_fagverk_v2`. Registryet indekserer og validerer; det eier ikke stedstekst, linser eller spørsmål. Fagverkets faglige vekt skal samsvare med Hovedbadge, underbadges, emner og dokumentert stedskunnskap.
+
+Godkjent status krever riktig nivå etter `docs/FAGVERK_PLACE_V2_WORKCARD.md`: egen læringsinngang og fagartikkel, canonicale fag-/emnebindinger, stedsspesifikke linser og spørsmål, begreper, observerbare spor med tolkningsgrenser, relevante kapitler og kontrollerte kilder. `popupDesc`, en fungerende URL eller automatisk avledede emnespørsmål er aldri ferdigbevis.
+
+Alle synlige Fagverk-handlinger skal være operative `<a href>`-mål som løser til canonicalt fag, fagområde, emne, kapittel, kart eller kontrollert ekstern kilde. En chip eller et kort som ser klikkbart ut uten operativ destinasjon er BLOCKED.
+
+Når innholdet mangler, skal rendereren vise en ærlig kompakt uferdigstatus. Generiske kategori-linser og standardspørsmål er forbudt.
 
 Arbeidskortet skal føre:
 
 ```text
 FAGVERK-STED-STATUS:
+FAGVERK-NIVÅ: full | standard | micro
+FAGVERK-SUBSTANSAUDIT:
+FAGVERK-KILDER/SPOR:
 ```
 
 `fagverk-sted` er aldri N/A for et ordinært Place.
