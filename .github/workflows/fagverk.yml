@@ -60,13 +60,16 @@ on:
       - 'docs/FAGVERK.md'
       - 'docs/FAGVERK_NAVIGATION.md'
       - 'docs/FAGVERK_PLACE_DESIGN.md'
+      - 'docs/FAGVERK_PLACE_V2_WORKCARD.md'
       - 'scripts/audit-place-images.mjs'
+      - 'scripts/audit-fagverk-place-pages.mjs'
       - 'scripts/audit-fagverk-politikk-runtime-equivalence.mjs'
       - 'scripts/lib/place-image-change-classifier.mjs'
       - 'tests/fagverk-documentation-contract.test.mjs'
       - 'tests/fagverk-content.test.mjs'
       - 'tests/fagverk-portal.test.mjs'
       - 'tests/fagverk-place-pages.test.mjs'
+      - 'tests/fagverk-place-rendering.test.mjs'
       - 'tests/fagverk-place-category-design.test.mjs'
       - 'tests/fagverk-link-audit.test.mjs'
       - 'tests/place-learning-surface.test.js'
@@ -178,6 +181,7 @@ jobs:
           node --check js/ui/place-learning-canonical.js
           node --check js/ui/place-card-status-surface.js
           node --check scripts/audit-place-images.mjs
+          node --check scripts/audit-fagverk-place-pages.mjs
           node --check scripts/lib/place-image-change-classifier.mjs
           node --check tests/place-image-audit-changed.test.mjs
           node --check scripts/audit-fagverk-subject-inventory.mjs
@@ -188,6 +192,7 @@ jobs:
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-politikk-runtime-equivalence.mjs
+          node scripts/audit-fagverk-place-pages.mjs
           node --test tests/fagverk-subject-inventory.test.mjs
           node --test tests/fagverk-general-engine.test.mjs
           node --test tests/politikk-fag-integration.test.mjs
@@ -195,6 +200,7 @@ jobs:
           node --test tests/fagverk-content.test.mjs
           node --test tests/fagverk-portal.test.mjs
           node --test tests/fagverk-place-pages.test.mjs
+          node --test tests/fagverk-place-rendering.test.mjs
           node --test tests/fagverk-place-category-design.test.mjs
           node --test tests/fagverk-link-audit.test.mjs
           node --test tests/place-learning-surface.test.js

@@ -39,6 +39,20 @@
   line-height: 1.65;
 }
 
+.fagverk-place-coverage-status {
+  display: inline-flex;
+  margin: .5rem 0 .25rem;
+  padding: .4rem .7rem;
+  border: 1px solid color-mix(in srgb, var(--fagverk-place-accent, #9b8cff) 55%, transparent);
+  border-radius: 999px;
+  color: var(--fagverk-place-accent, #c8c0ff);
+  background: color-mix(in srgb, var(--fagverk-place-accent, #9b8cff) 12%, transparent);
+  font-size: .78rem;
+  font-weight: 750;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
 .fagverk-place-image {
   width: 100%;
   min-height: 320px;
@@ -52,6 +66,40 @@
   border-radius: 999px;
   border: 1px solid rgba(255,255,255,.18);
   text-decoration: none;
+}
+
+.fagverk-place-actions a:hover,
+.fagverk-place-actions a:focus-visible,
+.fagverk-place-lens-link:hover,
+.fagverk-place-lens-link:focus-visible,
+.fagverk-place-concept-list a:hover,
+.fagverk-place-concept-list a:focus-visible,
+.fagverk-place-emne-list a:hover,
+.fagverk-place-emne-list a:focus-visible {
+  border-color: var(--fagverk-place-accent, #b9abff);
+  background: color-mix(in srgb, var(--fagverk-place-accent, #9b8cff) 14%, transparent);
+  outline: 2px solid transparent;
+}
+
+.fagverk-place-lens-link {
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.fagverk-card-action {
+  margin-top: auto;
+  padding-top: .8rem;
+  color: var(--fagverk-place-accent, #c8c0ff);
+  font-weight: 750;
+}
+
+.fagverk-link-cue {
+  margin-left: .45rem;
+  font-size: .72rem;
+  opacity: .78;
 }
 
 .fagverk-place-shell section {

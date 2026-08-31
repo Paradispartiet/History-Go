@@ -29,7 +29,7 @@ const roundsRuntime = read('js/ui/place-rounds-visual-collections.js');
 const popupCss = read('css/place-popup-tabs.css');
 const fagverkHtml = read('fagverk-sted.html');
 const fagverkRuntime = read('js/fagverk-sted.js');
-const canonicalFagverk = read('js/fagverk-place-canonical-integration.js');
+const subjectModel = read('js/fagverk-subject-model.js');
 
 assert.deepEqual(place.underbadge_ids, [
   'storting_og_regjering',
@@ -130,9 +130,10 @@ for (const id of [
   assert.match(fagverkHtml, new RegExp(`id="${id}"`));
 }
 assert.match(fagverkRuntime, /target="_blank" rel="noopener noreferrer"/);
-assert.match(canonicalFagverk, /model\.underbadges/);
-assert.match(canonicalFagverk, /model\.domains/);
-assert.match(canonicalFagverk, /coverageById/);
+assert.match(fagverkHtml, /fagverk-subject-core\.js/);
+assert.match(fagverkHtml, /fagverk-subject-model\.js/);
+assert.match(fagverkRuntime, /HGFagverkSubjectModel\.load/);
+assert.match(subjectModel, /emneUrl/);
 
 const userVisible = JSON.stringify({
   popupImage: place.popupImage,
@@ -359,14 +360,37 @@ try {
   assert.equal((await fagverk.textContent('#fagverkPlaceTitle')).trim(), 'Regjeringskvartalet');
   await fagverk.waitForSelector('#fagverkPlaceBadgePath .fagverk-canonical-underbadges a');
   assert.equal(await fagverk.locator('#fagverkPlaceBadgePath .fagverk-canonical-underbadges a').count(), 3);
-  assert.ok(await fagverk.locator('#fagverkPlaceLenses article').count() >= 4);
+  assert.ok(await fagverk.locator('#fagverkPlaceLenses a').count() >= 4);
   assert.ok(await fagverk.locator('#fagverkPlaceQuestions li').count() >= 4);
   assert.ok(await fagverk.locator('#fagverkPlaceChapters a').count() >= 1);
-  assert.ok(await fagverk.locator('#fagverkPlaceConcepts a, #fagverkPlaceConcepts span').count() >= 1);
-  assert.ok(await fagverk.locator('#fagverkPlaceEmner a, #fagverkPlaceEmner span').count() >= 3);
+  assert.ok(await fagverk.locator('#fagverkPlaceConcepts a').count() >= 1);
+  assert.ok(await fagverk.locator('#fagverkPlaceEmner a').count() >= 3);
   assert.ok(await fagverk.locator('#fagverkPlaceSources a').count() >= 10);
   assert.equal(await fagverk.locator('#fagverkPlaceImage').isVisible(), true);
   assert.ok(await fagverk.locator('#fagverkPlaceImage').evaluate(image => image.naturalWidth) > 0);
+
+  const curatedLensHref = await fagverk.locator('#fagverkPlaceLenses a').first().getAttribute('href');
+  assert.match(curatedLensHref, /^fagverk\.html\?subject=politikk&domain=[^&]+&emne=em_pol_[^&]+&place=regjeringskvartalet$/);
+  await Promise.all([
+    fagverk.waitForURL(/fagverk\.html\?subject=politikk/),
+    fagverk.locator('#fagverkPlaceLenses a').first().click()
+  ]);
+  assert.equal(new URL(fagverk.url()).searchParams.get('place'), 'regjeringskvartalet');
+  await fagverk.goBack({ waitUntil: 'networkidle' });
+  await fagverk.waitForSelector('#fagverkPlaceContent:not([hidden])');
+
+  await fagverk.goto(`${base}/fagverk-sted.html?place=torggata`, { waitUntil: 'networkidle' });
+  await fagverk.waitForSelector('#fagverkPlaceContent:not([hidden])');
+  assert.match((await fagverk.textContent('#fagverkPlaceCoverageStatus')).trim(), /canonicale emnekoblinger/);
+  const ordinaryLensHref = await fagverk.locator('#fagverkPlaceLenses a').first().getAttribute('href');
+  assert.match(ordinaryLensHref, /^fagverk\.html\?subject=by&domain=[^&]+&emne=em_by_[^&]+&place=torggata$/);
+  await Promise.all([
+    fagverk.waitForURL(/fagverk\.html\?subject=by/),
+    fagverk.locator('#fagverkPlaceLenses a').first().click()
+  ]);
+  assert.equal(new URL(fagverk.url()).searchParams.get('place'), 'torggata');
+  await fagverk.goBack({ waitUntil: 'networkidle' });
+  await fagverk.waitForSelector('#fagverkPlaceContent:not([hidden])');
 
   const unsafeLinks = await fagverk.locator('#fagverkPlaceSources a').evaluateAll(links => (
     links.filter(link => (
