@@ -1,0 +1,104 @@
+{
+  "schema": "history_go_place_workcard_v1",
+  "place_id": "22_juli_senteret",
+  "name": "22. juli-senteret",
+  "status": "locally_verified",
+  "branch": "work/22-juli-senteret-completion-20260831",
+  "profile": "major",
+  "category": "politikk",
+  "collections": [
+    "People",
+    "Objects",
+    "Brands",
+    "Hendelser og vedtak"
+  ],
+  "quiz": "8x7",
+  "fagverk": "full_curated",
+  "canonical_next": null,
+  "verified_at": "2026-08-31",
+  "validation": {
+    "status": "PASS",
+    "completion_tests": "6/6",
+    "quality_score": "30/30",
+    "place_contract": "PASS",
+    "description_v4_2": "PASS",
+    "politikk_contract": "PASS",
+    "quiz_context": "PASS",
+    "quiz_progression": "PASS",
+    "quiz_theory_binding": "PASS",
+    "fagverk": "PASS",
+    "stories": "PASS",
+    "language_layer": "PASS",
+    "runtime_sync": "PASS"
+  },
+  "rule_preflight": {
+    "schema": "history_go_place_rule_preflight_v1",
+    "status": "PASS",
+    "place_id": "22_juli_senteret",
+    "category": "politikk",
+    "recorded_at": "2026-08-31T11:04:11.734Z",
+    "rule": "Files must be read in full before this evidence is recorded; hashes prove freshness, not comprehension.",
+    "files": [
+      {
+        "path": "docs/PLACE_PRODUCTION_CHECKLIST.md",
+        "sha256": "daa975d35a11117214a8821e9e4399bda400f0a69e2570f13a9197ea419ed27b"
+      },
+      {
+        "path": "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md",
+        "sha256": "526abb31a897f9a1d93ed2daf12d9ebf1183c82c0e544e5bb9ceb6a54764eb8e"
+      },
+      {
+        "path": "docs/PLACE_PRODUCTION_PROFILES.md",
+        "sha256": "0cfdc52b458645d8c22396c6d4adacb1a0661d9eab1f0d2baaab27b9cfa21490"
+      },
+      {
+        "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+        "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd"
+      },
+      {
+        "path": "data/places/README_place_rounds.md",
+        "sha256": "0d61d07992306ca5a694a5cd7b010bd1466430c937787d0e2fcb61ff168f765b"
+      },
+      {
+        "path": "data/badges/index.json",
+        "sha256": "7a796a0902c6ec0f651241d062363f2dfd8a196e9eebfc78baf960e4f507fdbf"
+      },
+      {
+        "path": "data/badges/place_production_routing_v1.json",
+        "sha256": "97e1b78c1797a5194492ef16a66f3c9d3d5b543c093a35962fd60bbb7be3d721"
+      },
+      {
+        "path": "docs/PLACE_OBJECTS_CANONICAL.md",
+        "sha256": "ccc3f438c8c235d9b60c9d0280a215c1862220b1988a4f6a7bca7060b53c1799"
+      },
+      {
+        "path": "data/brands/brand_rules_v1_1.json",
+        "sha256": "c8009c5f872560c46a164d3399e193cd7fd33d80ecb70f37496f8ad1b89b786a"
+      },
+      {
+        "path": "data/badges/politikk.json",
+        "sha256": "5e8ccd6cc663a2eb8e9cdc2be4dcd3da3bfa6b3118f7afbbc074e1b124057c43"
+      }
+    ],
+    "contract_snapshot": {
+      "full_place_collection_count": 4,
+      "candidate_collections": [
+        "people",
+        "objects",
+        "brands",
+        "productions"
+      ],
+      "category_expression": "productions",
+      "related_is_placecard_collection": false,
+      "no_filler": true,
+      "routing_order": [
+        "universal_canonical_core",
+        "primary_badge_family",
+        "active_underbadge_ids",
+        "place_specific_source_review",
+        "confirmed_production_profile",
+        "final_content_plan"
+      ]
+    }
+  }
+}
