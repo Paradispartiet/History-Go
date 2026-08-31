@@ -394,15 +394,19 @@ try {
 
   await fagverk.goto(`${base}/fagverk-sted.html?place=torggata`, { waitUntil: 'networkidle' });
   await fagverk.waitForSelector('#fagverkPlaceContent:not([hidden])');
-  assert.match((await fagverk.textContent('#fagverkPlaceCoverageStatus')).trim(), /under produksjon/);
-  assert.equal(await fagverk.locator('#fagverkPlaceUnfinished').isVisible(), true);
-  assert.equal(await fagverk.locator('#fagverkPlaceLenses a').count(), 0);
-  assert.equal(await fagverk.locator('#fagverkPlaceQuestions li').count(), 0);
-  const ordinaryEmneHref = await fagverk.locator('#fagverkPlaceEmner a').first().getAttribute('href');
+  assert.match((await fagverk.textContent('#fagverkPlaceCoverageStatus')).trim(), /kuratert stedsfagverk/i);
+  assert.equal(await fagverk.locator('#fagverkPlaceUnfinished').isHidden(), true);
+  assert.equal(await fagverk.locator('#fagverkPlaceLenses a').count(), 4);
+  assert.equal(await fagverk.locator('#fagverkPlaceQuestions li').count(), 5);
+  assert.equal(await fagverk.locator('#fagverkPlaceTraces article').count(), 3);
+  assert.equal(await fagverk.locator('#fagverkPlaceChapters a').count(), 3);
+  assert.equal(await fagverk.locator('#fagverkPlaceEmner a').count(), 4);
+  assert.equal(await fagverk.locator('#fagverkPlaceSources a').count(), 4);
+  const ordinaryEmneHref = await fagverk.locator('#fagverkPlaceLenses a').first().getAttribute('href');
   assert.match(ordinaryEmneHref, /^fagverk\.html\?subject=by&domain=[^&]+&emne=em_by_[^&]+&place=torggata$/);
   await Promise.all([
     fagverk.waitForURL(/fagverk\.html\?subject=by/),
-    fagverk.locator('#fagverkPlaceEmner a').first().click()
+    fagverk.locator('#fagverkPlaceLenses a').first().click()
   ]);
   assert.equal(new URL(fagverk.url()).searchParams.get('place'), 'torggata');
   await fagverk.goBack({ waitUntil: 'networkidle' });
