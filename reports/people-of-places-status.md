@@ -1,21 +1,21 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-08-31T12:45:08.290Z
+Generert: 2026-08-31T20:56:14.048Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-08-31T12:45:08.290Z |
-| peopleFilesRead | 763 |
-| totalPeople | 1421 |
-| uniquePeopleIds | 1421 |
+| generatedAt | 2026-08-31T20:56:14.048Z |
+| peopleFilesRead | 764 |
+| totalPeople | 1424 |
+| uniquePeopleIds | 1424 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 0 |
 | peopleWithEmptyPlacesArray | 0 |
 | flatPeopleFiles | 0 |
-| geographicPeopleFiles | 763 |
+| geographicPeopleFiles | 764 |
 | categoriesRepresented | 17 |
 
 ## People-filer
@@ -134,6 +134,7 @@ Generert: 2026-08-31T12:45:08.290Z
 | data/people/historie/oslo/people_historie_oslo.json | historie | ja | 69 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/st_hallvard_kirke_kloster/johan_castricum.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/stattholdergarden/peter_gruner.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/historie/oslo/waisenhuset/people_waisenhuset.json | historie | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/vestland/etne/people_historie_etne_rounds_batch1.json | historie | ja | 4 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/vestland/etne/people_historie_etne_rounds_batch2.json | historie | ja | 4 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/vestland/etne/people_historie_etne_rounds_batch3.json | historie | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -793,7 +794,7 @@ Generert: 2026-08-31T12:45:08.290Z
 | by | 78 | 0 | 48 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | filantroper | 16 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | film_tv | 24 | 0 | 3 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| historie | 235 | 0 | 74 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| historie | 238 | 0 | 75 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | kunst | 79 | 0 | 28 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | litteratur | 171 | 0 | 128 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | media | 31 | 0 | 6 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
@@ -810,7 +811,7 @@ Generert: 2026-08-31T12:45:08.290Z
 
 ## Geografisk strukturstatus
 
-- Allerede geografisk strukturert: 763
+- Allerede geografisk strukturert: 764
 - Fortsatt flate filer: 0
 - Blandede kategorier: ingen
 - Trygge flate filer for neste geografiske split: ingen
@@ -947,6 +948,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/historie/oslo/people_historie_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=69/69; source_place_id=0/69; placesArray=69/69; categories=historie
 - data/people/historie/oslo/st_hallvard_kirke_kloster/johan_castricum.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
 - data/people/historie/oslo/stattholdergarden/peter_gruner.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
+- data/people/historie/oslo/waisenhuset/people_waisenhuset.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=historie
 - data/people/historie/vestland/etne/people_historie_etne_rounds_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=4/4; source_place_id=0/4; placesArray=4/4; categories=historie
 - data/people/historie/vestland/etne/people_historie_etne_rounds_batch2.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=4/4; source_place_id=0/4; placesArray=4/4; categories=historie
 - data/people/historie/vestland/etne/people_historie_etne_rounds_batch3.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=historie

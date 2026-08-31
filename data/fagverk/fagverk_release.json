@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.14.0",
     "updated_at": "2026-08-21",
-    "content_sha256": "604adde21fe5491e30a30b250a568cc7404583e7fcb75138e7341d513c6f16f1"
+    "content_sha256": "dab1a6ebf214ed7f593afe45163632481d11253ff54ffe10e842a27ab251c034"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "7275392a9bde56a91c9ff97dd9ba40406060586d9aacff6cbe2806426f653787"
+    "content_sha256": "07626e462486f1de1b91d287039484acfc18609cc33631ca00802af700dad4bb"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 17,
     "chapter_count": 189,
     "module_file_count": 497,
-    "package_file_count": 369,
+    "package_file_count": 372,
     "chapter_referenced_file_count": 933,
-    "referenced_file_count": 1231,
+    "referenced_file_count": 1234,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -570,7 +570,7 @@
             "quizProduction.targets.markveien.context_artifact"
           ],
           "exists": true,
-          "content_sha256": "4d401b32f2e82da1735b15c63ddabf8506b3f7349187efa06cf114f8a7679bbc"
+          "content_sha256": "a85fbd438691c98a047f5dc30c74fa88274bfe66b455269d012e88fb30895522"
         },
         {
           "path": "data/quiz/production_context/by/olaf_ryes_plass.json",
@@ -693,7 +693,7 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "f13d89a068a5271cc1b5c3c49e1e91d9563956d13eb1d529a3d2988689b76377",
+      "package_content_sha256": "80e6a27bb7ffde589d1b69ebbc2f229e0a4e78e931bad33d736df238aafe8041",
       "chapter_count": 17,
       "module_file_count": 51,
       "brief_file_count": 17,
@@ -706,7 +706,7 @@
       "missing_chapter_files": [],
       "missing_files": [],
       "structure_sha256": "b7c76585e0ef46d4ae03735912603c7a01f400be7702b89493ff51179da36618",
-      "content_sha256": "2ef537f643f65a01669cd327b85c92db3106adbe20e85e28b5a61d79f3b23b06",
+      "content_sha256": "4374ff0f13bdc16769d17322b64813997a74ec9cde05597c70d290d969d62f70",
       "chapters": [
         {
           "chapter_id": "byliv-offentlige-rom",
@@ -2020,9 +2020,9 @@
         "version"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 68,
+      "package_file_count": 71,
       "required_package_file_count": 4,
-      "optional_package_file_count": 64,
+      "optional_package_file_count": 67,
       "package_files": [
         {
           "path": "data/fag/historie/case_requirements_historie_canonical_v1.json",
@@ -2385,6 +2385,18 @@
           "content_sha256": "786ad31de8d175c5805640428c00ed5371f1935fbd077ab15bea7ae6f2be5217"
         },
         {
+          "path": "data/quiz/historie/waisenhuset_kongens_gate_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.waisenhuset_kongens_gate.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "98c7ebf6b014c42e9398a15522c1e2a47eb991ff8c5bb30340086f3b7f896202"
+        },
+        {
           "path": "data/quiz/production_briefs/historie/akershus_festning.json",
           "required": false,
           "fields": [
@@ -2587,6 +2599,18 @@
           ],
           "exists": true,
           "content_sha256": "62489fc800124b1a577dd709b0e554158aa5c31eb718441d67e8bd49024df7e1"
+        },
+        {
+          "path": "data/quiz/production_briefs/historie/waisenhuset_kongens_gate.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.waisenhuset_kongens_gate.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "f6470398ea43dac4d332d344ceed5c6a6e0885133d805d51bac5feabd089f283"
         },
         {
           "path": "data/quiz/production_context/historie/akershus_festning.json",
@@ -2793,6 +2817,18 @@
           "content_sha256": "b721e27ca39fcebdfb1e511d9f0501f1295938cf41a4db40b5e9ab0486dd73de"
         },
         {
+          "path": "data/quiz/production_context/historie/waisenhuset_kongens_gate.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.waisenhuset_kongens_gate.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "73f61707e7107be812b94324cf8df87abf193f0a48720ccf6f6ba0f9a437bdcb"
+        },
+        {
           "path": "data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
           "required": false,
           "fields": [
@@ -2841,20 +2877,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "135922dce99dfa9763799fc9b80d21abf47e714d4bef9bd9635263d74b732682",
+      "package_content_sha256": "c5424c60f75cca8a51d8716e4dbf4b01d327fb012e5b74dd045aea5aa24674a1",
       "chapter_count": 23,
       "module_file_count": 69,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 92,
       "chapter_content_sha256": "bedfd019dc2fa60ba92a540bf6b9f2504e0f6b1680350762a5fe074e82153148",
-      "referenced_file_count": 160,
+      "referenced_file_count": 163,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "d131d9c74858aa573a51efb0639d0753f15624cdf7c1fa6fd01d5da86b74bc76",
-      "content_sha256": "8df2b0f224960daa61e79d4cd6dd4d631c9fef4e36ff3a6ff2b68be00496af88",
+      "structure_sha256": "3be94030060f1f6bb75ee63f04b6f68abe81ba12cdcabb59f3fad1b791f76860",
+      "content_sha256": "9fea854bca43d97ebd40a2aa395c80edc1d88a1af33a831e6413778acb6c38d7",
       "chapters": [
         {
           "chapter_id": "historisk_tid_periodisering",
@@ -7132,5 +7168,5 @@
       ]
     }
   },
-  "release_sha256": "670948cab06d1df0ec37285981ba21062a82a2c938c6db384f22e033cd6c6021"
+  "release_sha256": "9c9b1a481c144eee9ca341afdad21e11b960e457824f50479aeb0436bdbc2dab"
 }
