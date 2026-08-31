@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_fagverk_module_v1",
+  "version": "1.0.0",
+  "subject_id": "litteratur",
+  "canonical_subcategory_id": "sprak_lingvistikk",
+  "chapter_id": "fonetikk-taleproduksjon-akustikk-og-persepsjon",
+  "id": "02-vokaler-kilde-filter-og-formanter",
+  "title": "Vokaler, kilde–filter og formanter",
+  "sections": [
+    {
+      "id": "vokaler-artikulasjon-formanter-og-variasjon",
+      "title": "Vokaler: artikulasjon, formanter og variasjon",
+      "method_ids": ["met_phon_vokal_formantanalyse", "met_phon_taler_variasjonsanalyse"],
+      "boundary": "Formantfrekvenser er akustiske mål som påvirkes av vokaltrakt og taler; de må ikke tolkes som faste universelle koordinater for en vokalkategori uten populasjon og kontekst.",
+      "paragraphs": [
+        "Vokaler kan beskrives artikulatorisk gjennom dimensjoner som tungehøyde, fremre eller bakre tungeposisjon og leppeforming, men de kan også undersøkes akustisk gjennom resonansmønstre i talesignalet. IPA-systemet gir et artikulatorisk referanserom, mens Stevens forklarer hvordan vokaltraktens form påvirker akustiske resonanser. Disse to beskrivelsesnivåene er nært forbundet uten å være identiske. En analyse bør derfor presisere om claimet gjelder artikulatorisk organisering, akustiske mål eller forholdet mellom dem, og ikke bruke et vokalsymbol som direkte erstatning for observerte formantverdier eller tungebevegelse.",
+        "Første og andre formant brukes ofte som sentrale akustiske mål i vokalforskning, men verdiene varierer både mellom vokalkategorier og mellom talere. Hillenbrand og kolleger viser systematiske forskjeller knyttet til blant annet kjønn og alder i materialet, samtidig som Stevens forklarer de akustiske mekanismene bak resonansene. Det betyr at en F1- eller F2-verdi ikke er en universell koordinat som alene identifiserer en vokal. Når grupper sammenlignes, må populasjonen beskrives, og forskeren må skille kategoriinformasjon fra anatomisk, sosial og metodisk variasjon som også påvirker målene.",
+        "Hillenbrands vokaldata viser at lyttere kan identifisere vokaler med høy presisjon selv når statiske formantverdier overlapper mellom kategorier. Studien undersøker også varighet og spektral endring, noe som viser at vokalidentitet ikke nødvendigvis kan reduseres til ett enkelt punkt i et F1–F2-diagram. Fonetisk analyse bør derfor vurdere hvilke cues forskningsspørsmålet faktisk krever. Et statisk midtpunkt kan være informativt for enkelte sammenligninger, men kan miste dynamikk eller tidsinformasjon som bidrar til både produksjon og persepsjon. Claimet må begrenses til det målet som faktisk er analysert.",
+        "Når vokalrom sammenlignes mellom talergrupper, kan rå formantverdier blande språkvariasjon med forskjeller i vokaltrakt, opptak og måleprosedyre. Hillenbrand-materialet illustrerer betydelig talervariasjon, mens Praat gjør det mulig å dokumentere og eventuelt normalisere målingene. En ansvarlig analyse bør oppgi om rå eller normaliserte verdier brukes, hvordan målepunkter velges, og hvilke talere og opptaksforhold som inngår. Normalisering er heller ikke et nøytralt ritual; metoden kan fremheve eller dempe bestemte forskjeller, så både rådata, transformasjon og tolkningsgrense bør dokumenteres."
+      ],
+      "paragraphClaimIds": [["phon-09"], ["phon-10"], ["phon-11"], ["phon-12"]]
+    },
+    {
+      "id": "kilde-filter-spektrum-resonans-og-formanter",
+      "title": "Kilde–filter, spektrum, resonans og formanter",
+      "method_ids": ["met_phon_kilde_filter_analyse", "met_phon_spektral_formantanalyse"],
+      "boundary": "Spektrale topper, harmoniske og formanter er relaterte men ikke identiske størrelser; målealgoritme og signalforhold må dokumenteres før en topp tolkes som en bestemt resonans.",
+      "paragraphs": [
+        "Kilde–filter-modellen skiller energikilden fra vokaltraktens resonansfilter og gir et grunnleggende rammeverk for å forstå hvordan tale får sin akustiske struktur. Fant og Stevens viser hvordan en periodisk eller støypreget kilde formes av resonansene i vokaltrakten, slik at den samme overordnede kildetypen kan resultere i ulike spektrale mønstre når filteret endres. Modellen er en analytisk idealisering, ikke en påstand om at kilde og filter alltid er fysisk uavhengige. En analyse bør derfor bruke modellen til å formulere målbare forventninger og samtidig rapportere tilfeller der fonasjon eller artikulasjon gjør den enkle separasjonen utilstrekkelig.",
+        "Et talesignal kan undersøkes både som bølgeform over tid og som fordeling av energi over frekvens. Spektrogrammet kombinerer disse perspektivene ved å vise hvordan spektral energi endrer seg gjennom ytringen, og er derfor sentralt i akustisk fonetikk. Praat og Stevens viser samtidig at et spektrogram er en beregnet representasjon med valgte parametere, ikke et fotografi av vokaltrakten. Vindustype, tidsoppløsning og frekvensoppløsning påvirker hva som fremstår tydelig. Tolkningen må derfor knytte synlige mønstre til en eksplisitt akustisk hypotese og ikke lese anatomiske strukturer direkte ut av bildet.",
+        "Formantestimering forsøker å identifisere resonansrelaterte mønstre i signalet, men resultatet kan påvirkes av både signalets egenskaper og algoritmens innstillinger. Praat dokumenterer parameterstyrt analyse, mens Stevens viser hvorfor grunnfrekvens, støy, uregelmessig fonasjon og tettliggende resonanser kan gjøre estimeringen vanskelig. Et automatisk tall må derfor kvalitetskontrolleres mot spektrogram, spektrum og den forventede fonetiske konteksten. Dersom sporingen hopper eller åpenbart følger harmoniske i stedet for resonanser, må analytikeren dokumentere korrigering, alternative innstillinger eller ekskludering i stedet for å behandle outputen som ufeilbarlig måling.",
+        "Akustiske analyseverktøy produserer tall med høy presisjon, men numerisk presisjon er ikke det samme som målevaliditet. Praat kan for eksempel returnere en formant, pitch eller varighet selv når segmentgrensen er feil eller signalet ikke støtter den valgte algoritmen. JIPA-praksis understreker behovet for støttende evidens og transparent metode. Derfor må hvert mål vurderes opp mot forskningsspørsmål, signal og definert måleprotokoll. Et resultat bør forkastes, korrigeres eller begrenses når evidensen er svak, og analysen må beskrive hvordan slike beslutninger ble tatt slik at andre kan etterprøve dem."
+      ],
+      "paragraphClaimIds": [["phon-13"], ["phon-14"], ["phon-15"], ["phon-16"]]
+    }
+  ]
+}

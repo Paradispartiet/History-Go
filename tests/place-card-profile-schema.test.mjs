@@ -18,6 +18,7 @@ test("PlaceCard profile schema allows one-to-four curated collections", () => {
   assert.equal(collections.uniqueItems, true);
   assert.ok(!collections.items.enum.includes("images"));
   assert.ok(!collections.items.enum.includes("badges"));
+  assert.ok(collections.items.enum.includes("historical_events"));
   assert.equal(collections.maxContains, 1, "bare én kategori-eid samling kan bruke den delte runtime-plassen");
   assert.equal(schema.oneOf, undefined, "schemaet skal ikke tvinge People/Objects/Brands eller Natur-fullness");
 });
@@ -37,6 +38,7 @@ test("schema, TypeScript and runtime use the same v2 identity", () => {
   for (const source of [runtime, adaptive, types]) assert.match(source, /history_go_place_card_profile_v2/);
   assert.match(types, /place_card_profile\?: PlaceCardProfileV2/);
   assert.match(types, /round_profile\?: LegacyPlaceRoundProfileV1/);
+  assert.match(types, /historical_events\?: PlaceVisualRoundItem\[\]/);
 });
 
 test("runtime exposes the compatibility adapter without restoring Images", () => {

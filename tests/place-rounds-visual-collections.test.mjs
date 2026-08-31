@@ -30,7 +30,7 @@ test("canonical pool contains collections, never the removed Images reserve", ()
   const w = make({ id: "x", category: "historie", image: "x.jpg" });
   assert.deepEqual(Array.from(w.HGVisualPlaceCardCollections.ids), [
     "badges", "people", "objects", "brands", "map", "flora", "fauna",
-    "productions", "structures", "competitions", "related", "destinations"
+    "historical_events", "productions", "structures", "competitions", "related", "destinations"
   ]);
   for (const removed of ["images", "works", "details", "spots", "civication", "før_nå", "fortellinger", "leksikon", "play", "training", "tasks"]) {
     assert.ok(!w.HGVisualPlaceCardCollections.ids.includes(removed), removed);
@@ -46,6 +46,20 @@ test("every ordinary category default keeps one circle and three rectangles", ()
   assert.equal(w.HGPlaceCardCollections.getFourthLabel(art), "Kunstverk");
   assert.deepEqual(ids(w, politics), ["people", "objects", "brands", "related"]);
   assert.equal(w.HGPlaceCardCollections.getCategoryCollection(politics), "related");
+});
+
+test("History uses dedicated historical events without reading productions or calendar events", () => {
+  const place = {
+    id: "history", category: "historie",
+    historical_events: [{ id: "siege", title: "Beleiringen", image: "siege.webp" }],
+    productions: [{ id: "legacy", title: "Legacy production", image: "legacy.webp" }],
+    events: [{ id: "calendar", title: "Omvisning", image: "calendar.webp" }]
+  };
+  const w = make(place);
+  assert.deepEqual(ids(w, place), ["people", "objects", "brands", "historical_events"]);
+  assert.equal(w.HGPlaceCardCollections.getCategoryCollection(place), "historical_events");
+  assert.equal(w.HGPlaceCardCollections.getFourthLabel(place), "Historiske hendelser");
+  assert.deepEqual(Array.from(w.HGPlaceCardCollections.getItems(place, "historical_events"), item => item.id), ["siege"]);
 });
 
 test("all registered ordinary categories render a full 1 + 3 composition", async () => {
@@ -106,7 +120,7 @@ test("canonical profiles accept curated one-to-four collections and reject struc
   assert.equal(w.HGPlaceCardCollections.getProfileSource(complete), "place_card_profile_v2");
   assert.deepEqual(ids(w, curated), ["people", "objects", "related"]);
   assert.equal(w.HGPlaceCardCollections.getProfileSource(curated), "place_card_profile_v2");
-  assert.deepEqual(ids(w, invalid), ["people", "objects", "brands", "related"]);
+  assert.deepEqual(ids(w, invalid), ["people", "objects", "brands", "historical_events"]);
   assert.equal(w.HGPlaceCardCollections.getProfileSource(invalid), "category_default");
 });
 
@@ -219,7 +233,7 @@ test("Quiz remains a mandatory prominent PlaceCard action", async () => {
 test("generic Details and Spots never become collections and nature map has no generic fallback", () => {
   const place = { id: "p", category: "historie", details: [{ id: "d" }], spots: [{ id: "s" }] };
   const w = make(place);
-  assert.deepEqual(ids(w, place), ["people", "objects", "brands", "related"]);
+  assert.deepEqual(ids(w, place), ["people", "objects", "brands", "historical_events"]);
   assert.ok(!/flyToPlace|HGMapView|\.flyTo\s*\(/.test(source));
   assert.ok(source.includes("HGNatureDetailedMap"));
   assert.ok(!source.includes("people_ids"));

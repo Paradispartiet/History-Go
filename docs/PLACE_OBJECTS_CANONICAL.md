@@ -2,7 +2,7 @@
 
 Status: **canonical object-production contract**  
 Eier: `history_go_place_objects`  
-Sist kontrollert: **2026-08-27**
+Sist kontrollert: **2026-08-31**
 
 Denne kontrakten eier hvilke fysiske gjenstander som kan bli canonical Objects hos et Place, hvordan de velges, og når Objects-samlingen skal holdes tilbake.
 
@@ -58,6 +58,7 @@ Natur bruker den faste Map/Flora/Fauna/Destinations-profilen og har ikke ordinæ
 | --- | --- |
 | Person | People |
 | Navngitt bygg eller fast anlegg | Structures |
+| Historisk hendelse | Histories `historical_events`; chronology beholder den fulle tidsindeksen |
 | Kunstverk, bok, sang, film, forestilling eller utgivelse som verk | Kategoriuttrykk/Productions, eller stedets kulturfortelling når verket er sekundært |
 | Logo, ordmerke eller kvalifisert virksomhetsidentitet | Brands |
 | Et annet canonical sted | Relasjonssystemet; aldri PlaceCard-samling |
@@ -83,7 +84,7 @@ Arbeidskortet og dataene skal dokumentere:
 - hvor gjenstanden finnes eller hva som er dokumentert om statusen;
 - kilde-URL-er som dekker identitet, funksjon og stedstilknytning;
 - lokalt medlemsbilde med proveniens, lisens og utsnitt;
-- kontroll mot People, Structures, kategoriuttrykk/Productions, Brands og relasjonssystemet.
+- kontroll mot People, Structures, `historical_events`, øvrige kategoriuttrykk/Productions, Brands og relasjonssystemet.
 
 Previewet skal vise den faktiske gjenstanden. Stedets `frontImage`, et kunstnerportrett eller et generisk miljøbilde er ikke et ferdig Object-preview.
 

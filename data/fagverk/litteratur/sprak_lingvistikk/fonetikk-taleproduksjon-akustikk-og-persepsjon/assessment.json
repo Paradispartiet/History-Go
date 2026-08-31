@@ -1,0 +1,25 @@
+{
+  "schema":"history_go_fagverk_assessment_v1",
+  "version":"1.0.0",
+  "subject_id":"litteratur",
+  "canonical_subcategory_id":"sprak_lingvistikk",
+  "chapter_id":"fonetikk-taleproduksjon-akustikk-og-persepsjon",
+  "questions":[
+    {"id":"phon-q01","prompt":"Hva er den sikreste konklusjonen når to språk bruker samme brede IPA-symbol?","choices":["Realisasjonen er fysisk identisk","De deler en bred analysekategori, men realisasjonen må undersøkes","De har samme fonologiske system","Ortografien må være lik"],"correctIndex":1,"claim_ids":["phon-05","phon-07"],"source_ids":["phon01-ipa-chart","phon13-ipa-audio"]},
+    {"id":"phon-q02","prompt":"Et automatisk formantspor gir ekstreme verdier. Hva bør gjøres først?","choices":["Beholde tallene fordi programvaren er standard","Erstatte dem med gjennomsnitt","Kontrollere signal, spektrogram og parameterinnstillinger","Bytte vokaletikett"],"correctIndex":2,"claim_ids":["phon-15","phon-16"],"source_ids":["phon05-praat","phon06-stevens"]},
+    {"id":"phon-q03","prompt":"Hva viser tverrspråklig VOT-evidens best?","choices":["Én universell terskel skiller alle stopp","Timing kan være systematisk uten én universell terskel","VOT er identisk med fonologisk stemthet","VOT gjelder bare engelsk"],"correctIndex":1,"claim_ids":["phon-17","phon-18"],"source_ids":["phon08-lisker-abramson","phon04-ucla-archive"]},
+    {"id":"phon-q04","prompt":"Hvorfor må talerpopulasjonen beskrives i vokalanalyse?","choices":["Fordi IPA krever navn på alle talere","Fordi formanter varierer med både kategori og taleregenskaper","Fordi formanter ikke kan måles individuelt","Fordi bare barn produserer stabile vokaler"],"correctIndex":1,"claim_ids":["phon-10","phon-12"],"source_ids":["phon09-hillenbrand","phon05-praat"]},
+    {"id":"phon-q05","prompt":"Hva er et spektrogram?","choices":["Et anatomisk bilde av vokaltrakten","En beregnet tids-frekvensrepresentasjon av signalenergi","En fonologisk regel","En ren lytterdom"],"correctIndex":1,"claim_ids":["phon-14"],"source_ids":["phon05-praat","phon06-stevens"]},
+    {"id":"phon-q06","prompt":"Hva kreves før en akustisk forskjell kalles en perceptuell kontrast?","choices":["Bare statistisk signifikans i signalet","Lytter- eller annen direkte persepsjonsevidens","Samme IPA-symbol","Lik mikrofon"],"correctIndex":1,"claim_ids":["phon-25","phon-28"],"source_ids":["phon03-ucl-shaps","phon11-jipa-illustrations"]},
+    {"id":"phon-q07","prompt":"Hva er riktig om pitch-estimat og F0?","choices":["Automatisk pitchspor er alltid korrekt","F0 kan måles, men sporingen må kvalitetskontrolleres","Pitch er identisk med ortografi","F0 kan bare måles klinisk"],"correctIndex":1,"claim_ids":["phon-21","phon-24"],"source_ids":["phon05-praat","phon06-stevens"]},
+    {"id":"phon-q08","prompt":"Hva gjør en fonetisk analyse reproduserbar?","choices":["Bare å oppgi korpusnavnet","Å dokumentere lydkilde, program/versjon, parametere, grenser og korrigeringer","Å bruke flest mulig mål","Å unngå manuell kontroll"],"correctIndex":1,"claim_ids":["phon-29","phon-30"],"source_ids":["phon05-praat","phon11-jipa-illustrations"]}
+  ],
+  "caseTasks":[
+    {"id":"phon-case-01","prompt":"Et kart over IPA-symboler brukes til å hevde at to språk uttaler en konsonant identisk. Vurder hva som må måles eller dokumenteres før akustisk eller artikulatorisk identitet kan hevdes.","responseMode":"guided_discussion_no_required_typing","claim_ids":["phon-05","phon-07"],"source_ids":["phon01-ipa-chart","phon04-ucla-archive"]},
+    {"id":"phon-case-02","prompt":"Praat returnerer en svært høy F1-verdi for flere vokaler hos én taler. Vurder signal, algoritmeinnstillinger og forventet vokalområde før tallene brukes.","responseMode":"guided_discussion_no_required_typing","claim_ids":["phon-15","phon-16"],"source_ids":["phon05-praat","phon06-stevens"]},
+    {"id":"phon-case-03","prompt":"En studie bruker 20 ms som universell grense mellom stemte og ustemte stopp i alle språk. Vurder regelen mot tverrspråklig VOT-evidens.","responseMode":"guided_discussion_no_required_typing","claim_ids":["phon-17","phon-18"],"source_ids":["phon08-lisker-abramson","phon06-stevens"]},
+    {"id":"phon-case-04","prompt":"To grupper har ulike gjennomsnittlige F2-verdier og rapporten kaller dette en ren dialektforskjell. Vurder hvilke taler-, vokal- og målevariabler som må kontrolleres.","responseMode":"guided_discussion_no_required_typing","claim_ids":["phon-10","phon-12"],"source_ids":["phon09-hillenbrand","phon05-praat"]},
+    {"id":"phon-case-05","prompt":"Et automatisk pitchspor viser brå hopp i et knirkete stemmeparti. Vurder om tallene kan tolkes direkte som lingvistiske F0-bevegelser.","responseMode":"guided_discussion_no_required_typing","claim_ids":["phon-21","phon-24"],"source_ids":["phon05-praat","phon06-stevens"]},
+    {"id":"phon-case-06","prompt":"Et undervisningsopptak fra ett språk sammenlignes med et feltopptak fra et annet og alle spektrale forskjeller forklares som språkforskjeller. Vurder designet.","responseMode":"guided_discussion_no_required_typing","claim_ids":["phon-29","phon-31"],"source_ids":["phon04-ucla-archive","phon13-ipa-audio"]}
+  ]
+}
