@@ -1,0 +1,786 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "religion",
+  "targetId": "akershus_slottskirke",
+  "profile": "rich_5x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1108,
+    "selection_sha256": "368893fdd07a1304f29fb5584e3a95bcccc6ce0b2833ad5fff378c491cce6f4b",
+    "category_id": "religion",
+    "target_id": "akershus_slottskirke"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/religion/religionpensum_canonical_v1.json",
+      "bytes": 2087,
+      "sha256": "e796e7aa173447e187926526d884636d906fd03b3395cc3aa6e4fea9de53141c",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/religion/emner_religion_canonical_v1.json",
+      "bytes": 5745,
+      "sha256": "f0949c34f68d84797fe0995c8ac868d7e64b583edeaf583e68b50f4e8020ec0f",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/religion/fagkart_religion_canonical_v1.json",
+      "bytes": 3306,
+      "sha256": "4847e4249c18db7e478d737b3b1245fc985865cad2eafeba94c46847ffe7984a",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/religion/methods_religion_canonical_v1.json",
+      "bytes": 12487,
+      "sha256": "972c31b1f018c2df7090c8ea712b2597799ee23d404981f9fdbec04e8f3e15d1",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/religion/supersetQUIZMAL_religion.json",
+      "bytes": 5551,
+      "sha256": "9fa4e54657ecde48dc2fa55e9e7883c80b85f1fd9f265ad11062df7e5ef01132",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/religion/akershus_slottskirke.json",
+      "bytes": 16642,
+      "sha256": "1195ecddd184d33152571b307ddd8119d44a8e165f39031bafdce5b9155bd40e"
+    },
+    "target": {
+      "path": "data/places/religion/oslo/akershus_slottskirke/akershus_slottskirke.json",
+      "bytes": 16876,
+      "sha256": "6c29f54d940070bd5bbb5ebdd4c6c170be0c4320dcbebd5d6c755fa0a9c37c50"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1279,
+      "selection_sha256": "11375085d0182aea2de668bdee649a9e4e20c23d1445abfed2d59b388eb364a9"
+    },
+    "relations": [
+      {
+        "path": "data/relations.json",
+        "matches": 3,
+        "selection_bytes": 755,
+        "selection_sha256": "1f198fead52a0bbbbc369137755808454060ce1b7482dfaa2cd0abad573f3bde"
+      }
+    ],
+    "stories": [
+      {
+        "path": "data/stories/stories_akershus_slottskirke.json",
+        "matches": 1,
+        "selection_bytes": 2117,
+        "selection_sha256": "70bfbda5ba6e505365610ef027850fcfe6e927b04a8cefa74582dc094da38518"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/religion/akershus_slottskirke_sets.json",
+  "source_registry": {
+    "snl": {
+      "url": "https://snl.no/Akershus_slottskirke",
+      "source_type": "reputable_secondary",
+      "review_status": "reviewed",
+      "review_note": "Historie, inventar, garnisonsmenighet, ritualbruk, klokker og restaurering."
+    },
+    "ftlk": {
+      "url": "https://www.forsvaret.no/om-forsvaret/organisasjon/forsvarets-fellestjenester/forsvarets-tros-og-livssynskorps",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Forsvarets hovedkirke, kongelig gravkirke, vielser og tros- og livssynsorganisering."
+    },
+    "organ": {
+      "url": "https://www.forsvarsbygg.no/contentassets/c2566b5e6ff243088d6473664b43a5c6/brosjyre-akershus-slottskirke-nytt-orgel.pdf",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Forsvarsbyggs dokumentasjon av Weimbs-orgelet og innvielsen i 2024."
+    },
+    "kongehuset": {
+      "url": "https://www.kongehuset.no/historie/alt-for-norge/det-kongelige-mausoleum-og-sarkofagene",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Kongelig gravkirke og mausoleum som separat gravrom."
+    },
+    "tronskifte": {
+      "url": "https://www.kongehuset.no/nyheter/tronskiftet-1991",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Olav Vs gravferd, jordpåkastelse i slottskirken og videreføring til mausoleet."
+    },
+    "kirkeparade": {
+      "url": "https://www.forsvaret.no/aktuelt-og-presse/aktuelt/vil-sette-julestemningen",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Forsvarets kirkeparade som dokumentert tradisjon."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/religion/akershus_slottskirke_sets.json"
+    ],
+    "active_before": {
+      "categoryId": null,
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "Ingen eldre Religion-quiz finnes for dette Place-et."
+    ],
+    "knowledge_migration": {
+      "status": "not_applicable",
+      "retained_rule": "Ingen spørsmål flyttes fra Akershus slott eller festning."
+    }
+  },
+  "profile_decision": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "justification": "Fem selvstendige sett dekker identitet og bruk, historiske lag, hellig rom og inventar, ritual/institusjon og metode/teori/syntese."
+  },
+  "held_back_candidates": [
+    "Mausoleet som eget Place-innhold",
+    "Generiske kristendomsspørsmål uten stedlig anker",
+    "Forsvarets logo som Brand-preview"
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 3,
+      "emner": 8,
+      "topic_hooks": 1,
+      "methods": 26
+    },
+    "candidate_emner": [
+      {
+        "id": "em_religion_hellige_rom",
+        "title": "Hellige rom",
+        "score": 100
+      },
+      {
+        "id": "em_religion_kristendom",
+        "title": "Kristendom",
+        "score": 100
+      },
+      {
+        "id": "em_religion_religion_og_samfunn",
+        "title": "Religion og samfunn",
+        "score": 100
+      },
+      {
+        "id": "em_religion_religionshistorie_lokalt",
+        "title": "Lokal religionshistorie",
+        "score": 100
+      },
+      {
+        "id": "em_religion_ritualer_praksis",
+        "title": "Ritualer og religiøs praksis",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "religion_ritual_fellesskap",
+        "title": "Ritual og kollektivt fellesskap",
+        "category_id": "praksis_ritual",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "kur_religion_01_rom_ritual",
+      "kur_religion_02_tradisjoner_historie",
+      "kur_religion_03_samfunn_reise"
+    ],
+    "emne_ids": [
+      "em_religion_hellige_rom",
+      "em_religion_ritualer_praksis",
+      "em_religion_religionshistorie_lokalt",
+      "em_religion_kristendom",
+      "em_religion_religion_og_samfunn"
+    ],
+    "topic_hook_ids": [
+      "religion_ritual_fellesskap"
+    ],
+    "method_ids": [
+      "met_religion_stedsobservasjon",
+      "met_religion_ritualanalyse",
+      "met_religion_historisk_kildeanalyse",
+      "met_religion_samfunnsanalyse"
+    ],
+    "thinker_ids": [
+      "emile_durkheim"
+    ],
+    "works": [
+      "The Elementary Forms of Religious Life"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Forsvarets tros- og livssynskorps bruker kirken som Forsvarets hovedkirke.",
+      "source_ids": [
+        "ftlk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_hellige_rom"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "SNL plasserer kirken i slottets sørfløy med inngang fra borggården.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_hellige_rom"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Garnisonsmenigheten ble opprettet i 1860 og kirken ble kalt Akershus Garnisonskirke.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "SNL oppgir om lag 150 sitteplasser.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_hellige_rom"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kirken har formell funksjon som kongelig gravkirke.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_kristendom"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "FTLK beskriver slottskirken som mye brukt til vielser.",
+      "source_ids": [
+        "ftlk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_ritualer_praksis"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Mausoleet ligger i tilknytning til slottskirken, men er et eget gravrom.",
+      "source_ids": [
+        "kongehuset"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_hellige_rom"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kirken ble innviet i 1742 etter arbeidene 1738–1741.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Etter brannen ble en del av første etasje i sørfløyen brukt som kirke.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Ombyggingen flyttet koret og alteret til østgavlen.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_hellige_rom"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Altertavlen ble utført etter tegninger av Elias David Häusser.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_kristendom"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Garnisonsmenigheten ble oppløst i 1938.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Arnstein Arneberg ledet restaureringen 1953–1957.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "To klokker fra O. Olsen & Søn ble innviet i 1905 ved en gudstjeneste der kongeparet deltok.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_ritualer_praksis"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "SNL beskriver et Pietà-motiv i altertavlen.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_kristendom"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Døpefontens funksjon er knyttet til dåp som ritualpraksis.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_ritualer_praksis"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Hans Kemmers klokke fra 1623 er bevart som den eldre klokken.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "SNL opplyser at klokken fra 1623 ikke lenger er i bruk.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_hellige_rom"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Forsvarsbygg dokumenterer innvielsen av det nye Weimbs-orgelet 15. september 2024.",
+      "source_ids": [
+        "organ"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_ritualer_praksis"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "SNL opplyser at Håkon VII ga stolene av eik og kalveskinn.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Monogrammer på altertavle, benker og orgel gjør forbindelsen mellom kongehus og kirkerom synlig.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religion_og_samfunn"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Altertavlen kombinerer Pietà, personifikasjoner, monogrammer og hebraisk gudsnavn.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_hellige_rom"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "To restaureringsperioder viser at dagens kirkerom ikke representerer bare én tidsfase.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Religion-kontrakten skiller utført ritualpraksis fra fysiske ritualobjekter.",
+      "source_ids": [
+        "ftlk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_ritualer_praksis"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Slottskirken kombinerer kirkelig praksis med militære og kongelige institusjoner.",
+      "source_ids": [
+        "ftlk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religion_og_samfunn"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Forsvaret omtaler kirkeparade som en lang tradisjon.",
+      "source_ids": [
+        "kirkeparade"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_ritualer_praksis"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kongehuset dokumenterer jordpåkastelsen i slottskirken før mausoleet.",
+      "source_ids": [
+        "tronskifte"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_ritualer_praksis"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Fotografiet dokumenterer dronning Mauds båre i Akershus slottskirke i 1938.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kongehusets kilder beskriver et forløp gjennom separate steder og ritualledd.",
+      "source_ids": [
+        "tronskifte"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religion_og_samfunn"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Stedsobservasjon bruker synlige romlige og materielle spor som utgangspunkt.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_hellige_rom"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Ritualanalyse retter oppmerksomheten mot handlingenes struktur og betydning.",
+      "source_ids": [
+        "kirkeparade"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_ritualer_praksis"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Historisk kildeanalyse skiller dokumenterte hendelser fra senere antakelser.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Samfunnsanalyse undersøker forholdet mellom religiøs praksis og offentlige institusjoner.",
+      "source_ids": [
+        "ftlk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religion_og_samfunn"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Durkheims perspektiv gjør det mulig å undersøke hvordan dokumenterte fellesritualer kan produsere og markere kollektiv tilhørighet.",
+      "source_ids": [
+        "kirkeparade"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_ritualer_praksis"
+    },
+    {
+      "claim_id": "claim_akershus_slottskirke_quiz_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kildene dokumenterer samtidig hellig rom, aktiv praksis, militær organisering og kongelig seremoniell bruk.",
+      "source_ids": [
+        "ftlk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religion_og_samfunn"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "relation",
+      "id": "rel_akershus_slottskirke_olav_v",
+      "source_file": "data/relations.json",
+      "summary": null
+    },
+    {
+      "type": "relation",
+      "id": "rel_akershus_slottskirke_arnstein_arneberg",
+      "source_file": "data/relations.json",
+      "summary": null
+    },
+    {
+      "type": "relation",
+      "id": "rel_akershus_slottskirke_christian_iv",
+      "source_file": "data/relations.json",
+      "summary": null
+    },
+    {
+      "type": "story",
+      "id": "st_akershus_slottskirke_olav_v_1991",
+      "source_file": "data/stories/stories_akershus_slottskirke.json",
+      "summary": "Etter Olav Vs gravferd i Oslo domkirke fortsatte det kongelige gravritualet i Akershus slottskirke før kisten ble ført til mausoleet."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "religion_akershus_slottskirke_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_akershus_slottskirke_quiz_01",
+        "claim_akershus_slottskirke_quiz_02",
+        "claim_akershus_slottskirke_quiz_03",
+        "claim_akershus_slottskirke_quiz_04",
+        "claim_akershus_slottskirke_quiz_05",
+        "claim_akershus_slottskirke_quiz_06",
+        "claim_akershus_slottskirke_quiz_07"
+      ]
+    },
+    {
+      "set_id": "religion_akershus_slottskirke_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_akershus_slottskirke_quiz_08",
+        "claim_akershus_slottskirke_quiz_09",
+        "claim_akershus_slottskirke_quiz_10",
+        "claim_akershus_slottskirke_quiz_11",
+        "claim_akershus_slottskirke_quiz_12",
+        "claim_akershus_slottskirke_quiz_13",
+        "claim_akershus_slottskirke_quiz_14"
+      ]
+    },
+    {
+      "set_id": "religion_akershus_slottskirke_set_3",
+      "order": 3,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_akershus_slottskirke_quiz_15",
+        "claim_akershus_slottskirke_quiz_16",
+        "claim_akershus_slottskirke_quiz_17",
+        "claim_akershus_slottskirke_quiz_18",
+        "claim_akershus_slottskirke_quiz_19",
+        "claim_akershus_slottskirke_quiz_20",
+        "claim_akershus_slottskirke_quiz_21"
+      ]
+    },
+    {
+      "set_id": "religion_akershus_slottskirke_set_4",
+      "order": 4,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_akershus_slottskirke_quiz_22",
+        "claim_akershus_slottskirke_quiz_23",
+        "claim_akershus_slottskirke_quiz_24",
+        "claim_akershus_slottskirke_quiz_25",
+        "claim_akershus_slottskirke_quiz_26",
+        "claim_akershus_slottskirke_quiz_27",
+        "claim_akershus_slottskirke_quiz_28"
+      ]
+    },
+    {
+      "set_id": "religion_akershus_slottskirke_set_5",
+      "order": 5,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_akershus_slottskirke_quiz_29",
+        "claim_akershus_slottskirke_quiz_30",
+        "claim_akershus_slottskirke_quiz_31",
+        "claim_akershus_slottskirke_quiz_32",
+        "claim_akershus_slottskirke_quiz_33",
+        "claim_akershus_slottskirke_quiz_34",
+        "claim_akershus_slottskirke_quiz_35"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 35,
+    "counts": {
+      "fact": 18,
+      "context": 9,
+      "concept_theory": 8
+    },
+    "ratios": {
+      "fact": 0.514,
+      "context": 0.257,
+      "concept_theory": 0.229
+    }
+  }
+}
