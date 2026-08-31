@@ -1,0 +1,87 @@
+name: Finalize infrastructure-industry Fagverk legacy batch
+
+on:
+  push:
+    branches:
+      - agent/fagverk-legacy-infrastructure-industry-20260831
+    paths:
+      - .github/workflows/finalize-fagverk-legacy-infrastructure-industry.yml
+      - tools/finalize-fagverk-legacy-infrastructure-industry.mjs
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Sync branch to current main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+      - name: Curate four completed Place Fagverk packages
+        run: node tools/finalize-fagverk-legacy-infrastructure-industry.mjs
+      - name: Rebuild deterministic quiz contexts
+        run: |
+          node scripts/build-quiz-production-context.mjs --category by --target ankerbrua --output data/quiz/production_context/by/ankerbrua.json
+          node scripts/build-quiz-production-context.mjs --category historie --target botsfengselet --output data/quiz/production_context/historie/botsfengselet.json
+          node scripts/build-quiz-production-context.mjs --category naeringsliv --target schous_bryggeri --output data/quiz/production_context/naeringsliv/schous_bryggeri.json
+          node scripts/build-quiz-production-context.mjs --category naeringsliv --target ringnes_bryggeri --output data/quiz/production_context/naeringsliv/ringnes_bryggeri.json
+      - name: Regenerate Fagverk and runtime artifacts
+        run: |
+          node scripts/build-place-open-payloads.mjs
+          node scripts/audit-fagverk-place-pages.mjs --write
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Validate Fagverk page contract
+        run: node scripts/audit-fagverk-place-pages.mjs
+      - name: Validate Place-open and release artifacts
+        run: |
+          node scripts/build-place-open-payloads.mjs --check
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Test Fagverk page and substance contracts
+        run: |
+          node --test tests/fagverk-place-pages.test.mjs
+          node --test tests/fagverk-place-substance-audit.test.mjs
+      - name: Test Fagverk links
+        run: node --test tests/fagverk-link-audit.test.mjs
+      - name: Validate changed Place images
+        run: node scripts/audit-place-images.mjs --mode=changed
+      - name: Validate quiz production context
+        run: npm run audit:quiz-production-context
+      - name: Validate quiz progression
+        run: npm run audit:quiz-progression
+      - name: Validate quiz theory binding
+        run: npm run audit:quiz-theory-binding
+      - name: Validate diff whitespace
+        run: git diff --check
+      - name: Commit final production result and remove temporary tooling
+        run: |
+          git add \
+            data/places/natur/oslo/places_oslo_natur_akerselvarute/ankerbrua.json \
+            data/places/historie/oslo/places_historie_added_batch_01/botsfengselet.json \
+            data/places/naeringsliv/oslo/places_naeringsliv/schous_bryggeri.json \
+            data/places/naeringsliv/oslo/places_naeringsliv/ringnes_bryggeri.json \
+            data/quiz/production_context/by/ankerbrua.json \
+            data/quiz/production_context/historie/botsfengselet.json \
+            data/quiz/production_context/naeringsliv/schous_bryggeri.json \
+            data/quiz/production_context/naeringsliv/ringnes_bryggeri.json \
+            data/runtime \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/fagverk_release.json \
+            reports/fagverk/fagverk-place-page-coverage-v2.json
+          git rm tools/finalize-fagverk-legacy-infrastructure-industry.mjs .github/workflows/finalize-fagverk-legacy-infrastructure-industry.yml
+          git diff --cached --quiet && { echo "No production changes to commit"; exit 1; }
+          git commit -m "Curate infrastructure-industry Fagverk legacy batch"
+          git push origin HEAD:${GITHUB_REF_NAME}
