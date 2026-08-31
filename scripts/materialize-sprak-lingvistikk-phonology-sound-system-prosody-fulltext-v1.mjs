@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { audit } from './audit-sprak-lingvistikk-phonology-sound-system-prosody-fulltext-v1.mjs';
+const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'); const read=f=>JSON.parse(fs.readFileSync(path.join(ROOT,f),'utf8')); const assert=(c,m)=>{if(!c)throw new Error(m);};
+try{const r=audit();const reg=read('data/fag/litteratur/sprak_lingvistikk/production_registry_v1.json');const e=reg.materialized?.[2];assert(reg.progress.materializedDomains===3,'Registry må stå på 3/12');assert(e?.ordinal===3&&e.domain_id==='fonologi_lydsystem_prosodi','Fonologi må være felt 3');assert(e.chapter==='data/fagverk/litteratur/sprak_lingvistikk/fonologi-lydsystem-og-prosodi.json','Feil chapter-binding');assert(e.claims==='data/fagverk/litteratur/sprak_lingvistikk/fonologi-lydsystem-og-prosodi/claims.json','Feil claim-binding');assert(e.assessment==='data/fagverk/litteratur/sprak_lingvistikk/fonologi-lydsystem-og-prosodi/assessment.json','Feil assessment-binding');assert(e.audit==='reports/fagverk/sprak-lingvistikk-phonology-sound-system-prosody-fulltext-v1-audit.json','Feil audit-binding');assert(r.status==='pass_fulltext_materialized_domain_ready_for_registry','Fonologi-audit må være grønn');console.log('Språk & lingvistikk felt 3 Fonologi materializer OK: 3/12 registrert etter strict fulltext-audit.');}catch(e){console.error(`Språk & lingvistikk felt 3 materializer FEIL: ${e.message}`);process.exitCode=1;}
