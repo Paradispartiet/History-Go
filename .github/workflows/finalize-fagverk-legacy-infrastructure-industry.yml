@@ -39,11 +39,12 @@ jobs:
           node scripts/build-quiz-production-context.mjs --category historie --target botsfengselet --output data/quiz/production_context/historie/botsfengselet.json
           node scripts/build-quiz-production-context.mjs --category naeringsliv --target schous_bryggeri --output data/quiz/production_context/naeringsliv/schous_bryggeri.json
           node scripts/build-quiz-production-context.mjs --category naeringsliv --target ringnes_bryggeri --output data/quiz/production_context/naeringsliv/ringnes_bryggeri.json
-      - name: Regenerate Fagverk and runtime artifacts
-        run: |
-          node scripts/build-place-open-payloads.mjs
-          node scripts/audit-fagverk-place-pages.mjs --write
-          node scripts/build-fagverk-release-manifest.mjs
+      - name: Regenerate Place-open runtime
+        run: node scripts/build-place-open-payloads.mjs
+      - name: Regenerate Fagverk place coverage
+        run: node scripts/audit-fagverk-place-pages.mjs --write
+      - name: Regenerate Fagverk release
+        run: node scripts/build-fagverk-release-manifest.mjs
       - name: Validate Fagverk page contract
         run: node scripts/audit-fagverk-place-pages.mjs
       - name: Validate Place-open and release artifacts
