@@ -394,5 +394,107 @@
     }
   ],
   "production_status": "complete",
-  "production_verified_at": "2026-08-28"
+  "production_verified_at": "2026-08-28",
+  "fagverk": {
+    "schema": "history_go_place_fagverk_v2",
+    "level": "standard",
+    "status": "curated",
+    "intro": "Oslo rådhus samler lokaldemokrati, administrasjon og offentlig representasjon i ett bygg. Faglig analyse krever at bystyrets vedtak, byrådets politiske ledelse og administrasjonens gjennomføring holdes fra hverandre, samtidig som åpne møter, dokumenter og seremonier undersøkes som ulike former for offentlighet.",
+    "article": [
+      "Rådhuset er sete for både bystyret og byrådet, men organene har forskjellige roller. Bystyret er det øverste folkevalgte organet i kommunen, mens byrådet leder den politiske gjennomføringen og den kommunale administrasjonen. Derfor er det viktig å følge en sak gjennom riktig beslutningskjede: et forslag, en innstilling, et vedtak og den senere gjennomføringen er forskjellige stadier og bør ikke omtales som én handling.",
+      "Lokaldemokratisk offentlighet skapes gjennom mer enn arkitektur. Bystyremøter, sakspapirer, protokoller og digitale sendinger gjør deler av beslutningsprosessen tilgjengelig for publikum. Samtidig er ikke alle arbeidsprosesser åpne på samme måte. Rådhuset er derfor et godt sted for å undersøke hvordan formell åpenhet, praktisk saksbehandling og mediert innsyn overlapper uten å være identiske.",
+      "Bygningen fungerer også som seremoni- og representasjonsrom. Nobels fredspris deles ut i Rådhushallen, men prisvinneren velges av Den norske Nobelkomité, ikke av Oslo kommune eller rådhuset som institusjon. Dette skillet viser hvorfor arena, symbol og beslutningsmyndighet må analyseres separat: et sted kan gi en handling sterk offentlig synlighet uten å eie beslutningen bak den."
+    ],
+    "subject_ids": [
+      "politikk"
+    ],
+    "emne_ids": [
+      "em_pol_lokaldemokrati",
+      "em_pol_byrakrati_forvaltning",
+      "em_pol_mediert_offentlighet"
+    ],
+    "chapter_ids": [
+      "forvaltning",
+      "parlamentarisme"
+    ],
+    "lenses": [
+      {
+        "id": "oslo-radhus-lokaldemokrati",
+        "title": "Lokaldemokratiets beslutningskjede",
+        "prompt": "Hvordan kan du følge en kommunal sak fra politisk forslag til vedtak uten å blande bystyrets og byrådets roller?",
+        "subject_id": "politikk",
+        "emne_id": "em_pol_lokaldemokrati",
+        "evidence": "Bruk kommunens beskrivelser av styringsmodellen sammen med sakspapirer og protokoller fra de relevante organene."
+      },
+      {
+        "id": "oslo-radhus-forvaltning",
+        "title": "Vedtak og gjennomføring",
+        "prompt": "Hvorfor er et kommunalt vedtak ikke i seg selv dokumentasjon på at ønsket virkning faktisk er oppnådd?",
+        "subject_id": "politikk",
+        "emne_id": "em_pol_byrakrati_forvaltning",
+        "evidence": "Skill politisk beslutning fra administrativ gjennomføring og fra senere evaluering av konkrete resultater."
+      },
+      {
+        "id": "oslo-radhus-offentlighet",
+        "title": "Åpne møter og innsyn",
+        "prompt": "Hva gjør åpne bystyremøter, publiserte dokumenter og digitale sendinger synlig om kommunal politikk?",
+        "subject_id": "politikk",
+        "emne_id": "em_pol_mediert_offentlighet",
+        "evidence": "Sammenlign møtet, dokumentene og medieflaten og noter hvilke deler av saksarbeidet hver kilde faktisk viser."
+      },
+      {
+        "id": "oslo-radhus-seremoni",
+        "title": "Arena uten beslutningsmakt",
+        "prompt": "Hvordan viser fredsprisseremonien forskjellen mellom et representativt offentlig rom og institusjonen som fatter selve beslutningen?",
+        "subject_id": "politikk",
+        "emne_id": "em_pol_mediert_offentlighet",
+        "evidence": "Koble Rådhushallen som seremoniarena til Nobelkomiteens separate ansvar for valg av prisvinner."
+      }
+    ],
+    "guiding_questions": [
+      "Hvilke oppgaver ligger hos bystyret, og hvilke ligger hos byrådet og administrasjonen?",
+      "Hvordan kan sakspapirer og protokoller brukes til å skille forslag fra endelige kommunale vedtak?",
+      "Hva blir synlig gjennom åpne møter og strømming, og hvilke deler av kommunalt arbeid må undersøkes på andre måter?",
+      "Hvorfor må Rådhushallen som seremonirom skilles fra institusjonen som velger Nobels fredsprisvinner?",
+      "Hvordan kan rådhusets arkitektur gjøre kommunal makt synlig uten å fortelle hele beslutningsprosessen?"
+    ],
+    "concepts": [
+      "lokaldemokrati",
+      "bystyre",
+      "byråd",
+      "forvaltning",
+      "implementering",
+      "saksbehandling",
+      "protokoll",
+      "offentlighet",
+      "representasjon"
+    ],
+    "observable_traces": [
+      {
+        "title": "Rådhuset som maktbygg",
+        "observation": "De to tårnene og den monumentale bygningskroppen gjør kommunens politiske hovedsete svært synlig ved fjorden.",
+        "interpretation_boundary": "Arkitektonisk synlighet viser representasjon og institusjonell tilstedeværelse, men sier ikke alene hvordan makt fordeles eller saker avgjøres.",
+        "source_urls": [
+          "https://www.oslo.kommune.no/radhuset/"
+        ]
+      },
+      {
+        "title": "Rådhushallen som arena",
+        "observation": "Rådhushallen brukes til offentlige seremonier og er blant annet arena for utdelingen av Nobels fredspris.",
+        "interpretation_boundary": "At en seremoni foregår i rådhuset betyr ikke at Oslo kommune eller bygningen eier beslutningen om hvem som får prisen.",
+        "source_urls": [
+          "https://www.oslo.kommune.no/radhuset/",
+          "https://www.nobelpeaceprize.org/nobel-peace-prize/about-the-nobel-peace-prize/nobel-peace-prize-celebrations/award-ceremony"
+        ]
+      }
+    ],
+    "source_urls": [
+      "https://www.oslo.kommune.no/radhuset/",
+      "https://www.oslo.kommune.no/politikk/slik-styres-oslo/",
+      "https://www.oslo.kommune.no/politikk/bystyret/moter-i-bystyret/",
+      "https://www.oslo.kommune.no/politikk/byradet/moter-i-byradet/",
+      "https://www.nobelpeaceprize.org/nobel-peace-prize/about-the-nobel-peace-prize/nobel-peace-prize-celebrations/award-ceremony"
+    ],
+    "verified_at": "2026-08-31"
+  }
 }
