@@ -1,0 +1,738 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "waisenhuset_kongens_gate",
+  "profile": "normal_4x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1821,
+    "selection_sha256": "5b502ca711096de81d385a3fc6ad4e9fcbaf0975b7915b89b78ad9a5f4aa46cd",
+    "category_id": "historie",
+    "target_id": "waisenhuset_kongens_gate"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "bytes": 93945,
+      "sha256": "37abfe99b9f3f1db23bb0cb307b2076407076a405c15868b0524ef5b9e31c72d",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "bytes": 2142053,
+      "sha256": "bcb20665e0a013c4f57e17719b610224874552b942b9bcd7421a7239463931ec",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "bytes": 1127330,
+      "sha256": "6db315c9b911fc04b99dd7609e493e744f919448668cf35fe3c72d3dabff59b1",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "bytes": 252328,
+      "sha256": "9462f9fc4a07c9c08593abaa75e4ee1bddd6af9e45a87304b52df66bcdb654be",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "bytes": 6935,
+      "sha256": "162f166d3c5be89d77b7529ba9186a552b791e9dbd04a590a01fdaad28944098",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/historie/waisenhuset_kongens_gate.json",
+      "bytes": 13594,
+      "sha256": "497b2576f12ecb841fb23b33cc4ec4e55c4a3ef900bda24cca98ca1d705b6239"
+    },
+    "target": {
+      "path": "data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_02/waisenhuset_kongens_gate.json",
+      "bytes": 23337,
+      "sha256": "8a5e150121deae0438f02fe31250f99f9fcd431dea3aa1f5845a1a7e9292f2e8"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1294,
+      "selection_sha256": "771d934f44c7e0793aa515b404058fcbe2dd9d13e8e6e1e5559e5d991e11dca7"
+    },
+    "relations": [
+      {
+        "path": "data/relations.json",
+        "matches": 3,
+        "selection_bytes": 1112,
+        "selection_sha256": "8d37a91a56b35fd4934935cc153cf7ff0a9b298c287e492ca9d49f0b43745cbf"
+      }
+    ],
+    "stories": [
+      {
+        "path": "data/stories/stories_waisenhuset_kongens_gate.json",
+        "matches": 1,
+        "selection_bytes": 2280,
+        "selection_sha256": "967deb1f7adc9b730fc5d799a8148277c387f151634c1e3f50636f07bb880268"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/historie/waisenhuset_kongens_gate_sets.json",
+  "source_registry": {
+    "oppdag": {
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/kongens-gate-1-waisenhuset",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Oslo kommune/Byantikvaren om bygård, beleiring, institusjon og ombygging."
+    },
+    "children": {
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/waisenhuset",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Kommunal formidling om uniformer, arbeid, kirkesang og flytting."
+    },
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Christiania_Opfostringshus",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "review_note": "Grunnleggelse, adresseperiode, trykkeri og avisutgivelse."
+    },
+    "riksantikvaren": {
+      "url": "https://riksantikvaren.no/siste-nytt/pressemeldinger/kongens-gate-1-i-oslo-er-automatisk-fredet/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Alternativ bygningsdatering og fredningsstatus."
+    },
+    "objects": {
+      "url": "https://digitaltmuseum.no/0210211732969/bok",
+      "source_type": "museum",
+      "review_status": "reviewed",
+      "review_note": "Fysisk salmebok fra 1818 med identifikator og bildelisens."
+    },
+    "newspaper": {
+      "url": "https://www.nb.no/items/79ab6fe54ffd18abf8555c40e123c355?page=0",
+      "source_type": "library",
+      "review_status": "reviewed",
+      "review_note": "Public-domain-merking og digitalisert avisutgave fra 1833."
+    },
+    "schibsted": {
+      "url": "https://www.riksmalsforbundet.no/pressehistorisk-byvandring-med-riksmalsforbundet/",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Schibsteds opphold og boktrykkerlære."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/historie/waisenhuset_kongens_gate_sets.json"
+    ],
+    "active_before": {
+      "categoryId": null,
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "Ingen eksisterende target-quiz; ny source-led 4x7 produseres."
+    ],
+    "knowledge_migration": {
+      "status": "not_applicable",
+      "retained_rule": "Ingen eldre spørsmål finnes."
+    }
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Fire ulike sett dekker institusjon, trykkeri, materialspor og kildekritisk syntese uten gjentakelse."
+  },
+  "held_back_candidates": [
+    "Barnas individuelle opplevelser uten førstepersonskilder",
+    "Ett sikkert byggeår på tvers av motstridende kulturminnekilder",
+    "Påstand om at læretiden alene forklarte Schibsteds senere karriere"
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 23,
+      "emner": 230,
+      "topic_hooks": 230,
+      "methods": 105
+    },
+    "candidate_emner": [
+      {
+        "id": "em_his_barndom_familie_livslop",
+        "title": "Barndom, familie og livsløp",
+        "score": 100
+      },
+      {
+        "id": "em_his_historiske_lag_i_byrom",
+        "title": "Historiske lag i byrom",
+        "score": 100
+      },
+      {
+        "id": "em_his_kulturminner_bevaring",
+        "title": "Kulturminner, utvelgelse og bevaring",
+        "score": 100
+      },
+      {
+        "id": "em_his_samtid_ettertid_fortelling",
+        "title": "Samtid, ettertid og historisk fortelling",
+        "score": 100
+      },
+      {
+        "id": "em_his_spor_materialitet",
+        "title": "Spor og materialitet",
+        "score": 100
+      },
+      {
+        "id": "em_his_velferd_hverdagsliv",
+        "title": "Velferdsrett, vilkår og tilgang",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "his_barndom_familie_livslop",
+        "title": "Barndom, familie og livsløp",
+        "category_id": "his_velferd_rett_hverdagsliv",
+        "score": 10
+      },
+      {
+        "id": "his_kulturminneutvelgelse_verdi",
+        "title": "Kulturminneutvelgelse og verdi",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 10
+      },
+      {
+        "id": "his_rettighet_vilkar_tilgang",
+        "title": "Velferdsrett, vilkår og tilgang",
+        "category_id": "his_velferd_rett_hverdagsliv",
+        "score": 10
+      },
+      {
+        "id": "his_samtid_ettertid_fortelling",
+        "title": "Samtid, ettertid og historisk fortelling",
+        "category_id": "his_tid_periodisering",
+        "score": 10
+      },
+      {
+        "id": "his_skole_folkedannelse_medborgerskap",
+        "title": "Skole, folkedannelse og medborgerskap",
+        "category_id": "his_velferd_rett_hverdagsliv",
+        "score": 10
+      },
+      {
+        "id": "his_sosialforsikring_pensjon_universalisme",
+        "title": "Sosialforsikring, pensjon og universalisme",
+        "category_id": "his_velferd_rett_hverdagsliv",
+        "score": 10
+      },
+      {
+        "id": "his_spor_materialitet",
+        "title": "Materielle spor og sted som kilde",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      },
+      {
+        "id": "his_tidslag_samtidighet",
+        "title": "Tidslag og samtidighet i sted",
+        "category_id": "his_tid_periodisering",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_tid_periodisering",
+      "his_kilder_arkiv_spor",
+      "his_velferd_rett_hverdagsliv",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_spor_materialitet",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_kulturminner_bevaring",
+      "em_his_samtid_ettertid_fortelling",
+      "em_his_barndom_familie_livslop",
+      "em_his_velferd_hverdagsliv"
+    ],
+    "topic_hook_ids": [
+      "his_tidslag_samtidighet"
+    ],
+    "method_ids": [
+      "met_sporlesning"
+    ],
+    "thinker_ids": [
+      "fernand_braudel"
+    ],
+    "works": [
+      "The Mediterranean and the Mediterranean World"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Bygården ble brukt som waisenhus.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Christian VII opprettet institusjonen i 1778.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "1779 holdes adskilt fra grunnleggelsen i 1778.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Beleiringen rammet den sivile bygården.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kongemakten sto bak opprettelsen.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_barndom_familie_livslop"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Startgruppen var kjønnsdelt og avgrenset.",
+      "source_ids": [
+        "children"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_velferd_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Flyttingen avsluttet barnehjemsperioden i gården.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kirkesang og trykkeriarbeid inngikk i hverdagen.",
+      "source_ids": [
+        "children"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Tittelbladet navngir institusjonen.",
+      "source_ids": [
+        "objects"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Museumsidentifikatoren gjør gjenstanden etterprøvbar.",
+      "source_ids": [
+        "objects"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Avisen knytter trykkeriet til offentligheten.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_barndom_familie_livslop"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Utgaven er en fysisk, datert trykksak.",
+      "source_ids": [
+        "newspaper"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_velferd_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Schibsted var beboer og læregutt.",
+      "source_ids": [
+        "schibsted"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Klærne inngikk i institusjonens regulerte hverdag.",
+      "source_ids": [
+        "children"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Ulik datering må synliggjøres som kildekonflikt.",
+      "source_ids": [
+        "riksantikvaren"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "En gjenstand dokumenterer produktet, ikke alle erfaringer.",
+      "source_ids": [
+        "objects"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Eierskapet holdes semantisk adskilt.",
+      "source_ids": [
+        "newspaper"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_barndom_familie_livslop"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Et kontekstbilde må ikke framstilles som hendelsesfoto.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_velferd_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Ombyggingen er et senere arkitekturlag.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Arkitektur må suppleres med institusjonskilder.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Waisenhuset var ikke et universelt velferdstilbud.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Bygård, institusjon og kontorbruk må skilles.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Metoden begynner med observerbare trekk.",
+      "source_ids": [
+        "newspaper"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kilden dokumenterer virksomheten, ikke hver arbeider.",
+      "source_ids": [
+        "newspaper"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_velferd_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Begrepene belyser to sider av samme ordning.",
+      "source_ids": [
+        "children"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kildenes perspektiv avgrenser hva vi kan vite.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Et forløp er ikke det samme som en full årsaksforklaring.",
+      "source_ids": [
+        "schibsted"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_waisenhuset_kongens_gate_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Presisjon krever at uenighet beholdes synlig.",
+      "source_ids": [
+        "riksantikvaren"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "relation",
+      "id": "rel_waisenhuset_kongens_gate_oslo_domkirke",
+      "source_file": "data/relations.json",
+      "summary": null
+    },
+    {
+      "type": "relation",
+      "id": "rel_waisenhuset_kongens_gate_bankplassen",
+      "source_file": "data/relations.json",
+      "summary": null
+    },
+    {
+      "type": "relation",
+      "id": "rel_waisenhuset_kongens_gate_stattholdergarden",
+      "source_file": "data/relations.json",
+      "summary": null
+    },
+    {
+      "type": "story",
+      "id": "st_waisenhuset_kongens_gate_schibsted_1829",
+      "source_file": "data/stories/stories_waisenhuset_kongens_gate.json",
+      "summary": "Christian Schibsted kom til Waisenhuset som barn og begynte i boktrykkerlære før han senere bygde sin egen pressevirksomhet."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "historie_waisenhuset_kongens_gate_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_waisenhuset_kongens_gate_quiz_01",
+        "claim_waisenhuset_kongens_gate_quiz_02",
+        "claim_waisenhuset_kongens_gate_quiz_03",
+        "claim_waisenhuset_kongens_gate_quiz_04",
+        "claim_waisenhuset_kongens_gate_quiz_05",
+        "claim_waisenhuset_kongens_gate_quiz_06",
+        "claim_waisenhuset_kongens_gate_quiz_07"
+      ]
+    },
+    {
+      "set_id": "historie_waisenhuset_kongens_gate_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_waisenhuset_kongens_gate_quiz_08",
+        "claim_waisenhuset_kongens_gate_quiz_09",
+        "claim_waisenhuset_kongens_gate_quiz_10",
+        "claim_waisenhuset_kongens_gate_quiz_11",
+        "claim_waisenhuset_kongens_gate_quiz_12",
+        "claim_waisenhuset_kongens_gate_quiz_13",
+        "claim_waisenhuset_kongens_gate_quiz_14"
+      ]
+    },
+    {
+      "set_id": "historie_waisenhuset_kongens_gate_set_3",
+      "order": 3,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_waisenhuset_kongens_gate_quiz_15",
+        "claim_waisenhuset_kongens_gate_quiz_16",
+        "claim_waisenhuset_kongens_gate_quiz_17",
+        "claim_waisenhuset_kongens_gate_quiz_18",
+        "claim_waisenhuset_kongens_gate_quiz_19",
+        "claim_waisenhuset_kongens_gate_quiz_20",
+        "claim_waisenhuset_kongens_gate_quiz_21"
+      ]
+    },
+    {
+      "set_id": "historie_waisenhuset_kongens_gate_set_4",
+      "order": 4,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_waisenhuset_kongens_gate_quiz_22",
+        "claim_waisenhuset_kongens_gate_quiz_23",
+        "claim_waisenhuset_kongens_gate_quiz_24",
+        "claim_waisenhuset_kongens_gate_quiz_25",
+        "claim_waisenhuset_kongens_gate_quiz_26",
+        "claim_waisenhuset_kongens_gate_quiz_27",
+        "claim_waisenhuset_kongens_gate_quiz_28"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 28,
+    "counts": {
+      "fact": 14,
+      "context": 7,
+      "concept_theory": 7
+    },
+    "ratios": {
+      "fact": 0.5,
+      "context": 0.25,
+      "concept_theory": 0.25
+    }
+  }
+}

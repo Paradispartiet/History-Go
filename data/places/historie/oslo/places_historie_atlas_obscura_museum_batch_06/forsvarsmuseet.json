@@ -87,6 +87,24 @@
       "url": "https://www.forsvarshistoriskmuseum.no/forsvarsmuseet",
       "lang": "nb",
       "verifiedAt": "2026-07-20"
+    },
+    {
+      "type": "source",
+      "label": "Forsvarshistorisk museum – samlingen",
+      "url": "https://www.forsvarshistoriskmuseum.no/samlingen",
+      "verifiedAt": "2026-08-31"
+    },
+    {
+      "type": "source",
+      "label": "Store norske leksikon – Forsvarshistorisk museum",
+      "url": "https://snl.no/Forsvarshistorisk_museum",
+      "verifiedAt": "2026-08-31"
+    },
+    {
+      "type": "source",
+      "label": "Sikt – Forsvarsmuseets endringshistorie",
+      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/57606/endringshistorie",
+      "verifiedAt": "2026-08-31"
     }
   ],
   "imageCard": "bilder/kort/places/forsvarsmuseet.webp",
@@ -374,5 +392,110 @@
     }
   },
   "production_status": "complete",
-  "production_verified_at": "2026-08-30"
+  "production_verified_at": "2026-08-30",
+  "fagverk": {
+    "schema": "history_go_place_fagverk_v2",
+    "level": "standard",
+    "status": "curated",
+    "intro": "Forsvarsmuseet viser hvordan en samling kan utvikle seg fra militært modellkammer til offentlig museum, samtidig som selve Hovedarsenalet skifter fra lagerbygg til formidlingssted. Gjenstander kan brukes som historiske kilder, men katalogopplysninger, utstillingsvalg og institusjonshistorie må holdes fra hverandre.",
+    "article": [
+      "Museumshistorien føres tilbake til Artillerimuseets modellkammer fra 1860 og Intendanturmuseet fra 1928. Da Hærmuseet formelt ble opprettet i 1940, ble ulike militære samlinger samlet institusjonelt. Okkupasjonen avbrøt arbeidet, samlinger ble flyttet og deler gikk tapt, før materialet kom tilbake til Akershus etter krigen. Denne tidslinjen viser at en museumsinstitusjon består av både objekter, organisasjon, lokaler og forvaltningshistorie.",
+      "Forsvarsmuseet åpnet i det renoverte Hovedarsenalet 22. august 1978. Bygningen gjør den militære institusjonshistorien stedlig, men den er ikke opprinnelsessted for alle våpen, uniformer eller tekniske gjenstander som vises der. En prøvekarabin eller en historisk budstikke kan gi informasjon om materiale, konstruksjon, produsent og registrert bruk, mens beslutninger, erfaringer og større militære systemer krever andre kildetyper.",
+      "Utstillingen er også et historisk argument. Når objekter ordnes etter perioder, teknologi eller konflikt, produserer museet forbindelser og prioriteringer som besøkeren må kunne undersøke. Samlingen dokumenterer fortiden, mens kurateringen dokumenterer hvordan institusjonen velger å fortelle den. Derfor bør katalog, utstillingstekst, bygningshistorie og eksterne kilder sammenholdes i stedet for å behandles som én samlet fasit."
+    ],
+    "subject_ids": [
+      "historie"
+    ],
+    "emne_ids": [
+      "em_his_stat_institusjoner",
+      "em_his_spor_materialitet",
+      "em_his_minnesteder_historiebruk",
+      "em_his_samtid_ettertid_fortelling",
+      "em_his_museum_samling_kanon"
+    ],
+    "chapter_ids": [
+      "makt_stat_institusjoner",
+      "kilder_arkiv_spor",
+      "historisk_tid_periodisering",
+      "minne_kulturarv_historiebruk"
+    ],
+    "lenses": [
+      {
+        "id": "forsvarsmuseet-institusjon",
+        "title": "Samling blir institusjon",
+        "prompt": "Hvordan endret modellkammer, spesialsamlinger og Hærmuseum organisatorisk form før Forsvarsmuseet åpnet i Hovedarsenalet?",
+        "subject_id": "historie",
+        "emne_id": "em_his_stat_institusjoner",
+        "evidence": "Sett 1860, 1928, 1940, etterkrigsårene og åpningen i 1978 i én dokumentert institusjonell tidslinje."
+      },
+      {
+        "id": "forsvarsmuseet-gjenstand",
+        "title": "Gjenstanden som kilde",
+        "prompt": "Hva kan en museumsgjenstand dokumentere sikkert om teknologi, og hvilke spørsmål krever andre arkiv- eller beslutningskilder?",
+        "subject_id": "historie",
+        "emne_id": "em_his_spor_materialitet",
+        "evidence": "Skill registrert materiale, produsent, datering og formål fra tolkninger om anskaffelse, erfaring og samlet militær effekt."
+      },
+      {
+        "id": "forsvarsmuseet-kanon",
+        "title": "Utvalg skaper kanon",
+        "prompt": "Hvordan påvirker utvalg og utstillingsrekkefølge hvilke deler av forsvarshistorien som framstår som mest sentrale for besøkeren?",
+        "subject_id": "historie",
+        "emne_id": "em_his_museum_samling_kanon",
+        "evidence": "Les monter, periodisering og kategorisering som kuraterte valg og sammenhold dem med katalogens bredere samlingsdata."
+      },
+      {
+        "id": "forsvarsmuseet-fortelling",
+        "title": "Ettertid organiserer fortiden",
+        "prompt": "Hvordan kan dagens museumsfortelling undersøkes som en senere historisk konstruksjon uten å avvise gjenstandene som primærkilder?",
+        "subject_id": "historie",
+        "emne_id": "em_his_samtid_ettertid_fortelling",
+        "evidence": "Hold objektenes egen proveniens fra museets senere tekstlige og romlige organisering av dem i utstillingen."
+      }
+    ],
+    "guiding_questions": [
+      "Hvordan utviklet modellkammeret fra 1860 seg til en samlet museumsinstitusjon på Akershus?",
+      "Hvorfor må Hovedarsenalet skilles fra opprinnelsesstedene til gjenstandene som vises der?",
+      "Hva kan en prøvekarabin dokumentere direkte, og hvilke militære beslutninger ligger utenfor objektet?",
+      "Hvordan kan utstillingsrekkefølge påvirke hvilke aktører og teknologier som får størst historisk betydning?",
+      "Hva forteller okkupasjonens flyttinger og tap om sårbarheten i en historisk samling?"
+    ],
+    "concepts": [
+      "modellkammer",
+      "museumssamling",
+      "institusjon",
+      "proveniens",
+      "materialitet",
+      "kuratering",
+      "kanon",
+      "ettertidsfortelling",
+      "kildekritikk"
+    ],
+    "observable_traces": [
+      {
+        "title": "Hovedarsenalet som museum",
+        "observation": "Forsvarsmuseet bruker det tidligere arsenalbygget som fysisk ramme for en samling som er skapt og flyttet over lang tid.",
+        "interpretation_boundary": "Bygningen dokumenterer dagens og senere museumsbruk, men er ikke bevis for at alle utstilte objekter historisk hørte hjemme akkurat her.",
+        "source_urls": [
+          "https://www.forsvarshistoriskmuseum.no/forsvarsmuseet",
+          "https://snl.no/Forsvarshistorisk_museum"
+        ]
+      },
+      {
+        "title": "Gjenstander i utstillingssystem",
+        "observation": "Våpen, uniformer og andre objekter vises med etiketter og periodisering som knytter individuelle gjenstander til større historiske fortellinger.",
+        "interpretation_boundary": "Monter og etiketter dokumenterer museets kuratering, mens hvert objekts opprinnelse og bruk må kontrolleres mot katalog og andre kilder.",
+        "source_urls": [
+          "https://www.forsvarshistoriskmuseum.no/samlingen"
+        ]
+      }
+    ],
+    "source_urls": [
+      "https://www.forsvarshistoriskmuseum.no/forsvarsmuseet",
+      "https://www.forsvarshistoriskmuseum.no/samlingen",
+      "https://snl.no/Forsvarshistorisk_museum",
+      "https://forvaltningsdatabasen.sikt.no/data/enhet/57606/endringshistorie"
+    ],
+    "verified_at": "2026-08-31"
+  }
 }
