@@ -1,0 +1,156 @@
+{
+  "schema": "history_go_juss_rettsvitenskap_reconciliation_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-31",
+  "owner_subject_id": "politikk",
+  "canonical_subcategory_id": "juss_rettsvitenskap",
+  "status": "reconciliation_complete_domain_1_source_first_ready",
+  "production_plan": {
+    "materialized": 0,
+    "source_first_ready": 1,
+    "next_domain": "juridisk_metode_rettskilder_tolkning_argumentasjon",
+    "strict_completion_proven": false
+  },
+  "classification_summary": {
+    "reuse_with_expansion": 1,
+    "new_production_required": 11,
+    "move": 0
+  },
+  "domains": [
+    {
+      "ordinal": 1,
+      "domain_id": "juridisk_metode_rettskilder_tolkning_argumentasjon",
+      "label": "Juridisk metode, rettskilder, tolkning og rettslig argumentasjon",
+      "classification": "new_production_required"
+    },
+    {
+      "ordinal": 2,
+      "domain_id": "statsrett_grunnlov_maktfordeling_konstitusjonell_kontroll",
+      "label": "Statsrett, Grunnloven, maktfordeling og konstitusjonell kontroll",
+      "classification": "reuse_with_expansion"
+    },
+    {
+      "ordinal": 3,
+      "domain_id": "forvaltningsrett_myndighetsutovelse_saksbehandling_klage",
+      "label": "Forvaltningsrett, myndighetsutøvelse, saksbehandling og klage",
+      "classification": "new_production_required"
+    },
+    {
+      "ordinal": 4,
+      "domain_id": "menneskerettigheter_emk_rettighetsvern",
+      "label": "Menneskerettigheter, EMK og rettighetsvern",
+      "classification": "new_production_required"
+    },
+    {
+      "ordinal": 5,
+      "domain_id": "eu_eos_folkerett_internasjonale_rettskilder",
+      "label": "EU/EØS-rett, folkerett og internasjonale rettskilder",
+      "classification": "new_production_required"
+    },
+    {
+      "ordinal": 6,
+      "domain_id": "strafferett_ansvar_skyld_straffebud_reaksjoner",
+      "label": "Strafferett: ansvar, skyld, straffebud og reaksjoner",
+      "classification": "new_production_required"
+    },
+    {
+      "ordinal": 7,
+      "domain_id": "rettergang_bevis_sivilprosess_straffeprosess",
+      "label": "Rettergang, bevis, sivilprosess og straffeprosess",
+      "classification": "new_production_required"
+    },
+    {
+      "ordinal": 8,
+      "domain_id": "avtaler_obligasjoner_kontraktsrett",
+      "label": "Avtaler, obligasjoner og kontraktsrett",
+      "classification": "new_production_required"
+    },
+    {
+      "ordinal": 9,
+      "domain_id": "erstatning_tingsrett_formuesrett_rettsvern",
+      "label": "Erstatning, tingsrett, formuesrett og rettsvern",
+      "classification": "new_production_required"
+    },
+    {
+      "ordinal": 10,
+      "domain_id": "familie_barn_arv_personrett",
+      "label": "Familie-, barne-, arve- og personrett",
+      "classification": "new_production_required"
+    },
+    {
+      "ordinal": 11,
+      "domain_id": "arbeids_selskaps_naerings_skatt_markedsrett",
+      "label": "Arbeids-, selskaps-, nærings-, skatte- og markedsrett",
+      "classification": "new_production_required"
+    },
+    {
+      "ordinal": 12,
+      "domain_id": "rettssystem_rettstilgang_profesjonsetikk_digital_rett",
+      "label": "Rettssystem, rettstilgang, profesjonsetikk og digital rett",
+      "classification": "new_production_required"
+    }
+  ],
+  "findings": [
+    {
+      "path": "data/fag/politikk/fagkart_politikk_canonical_v4_5.json#rett_lov_rettssikkerhet",
+      "classification": "reuse_with_expansion",
+      "decision": "Det eksisterende Politikk-domenet for rett, lov og rettssikkerhet bevares og kan støtte statsrett/rettsstat, men teller ikke som Juss-fulltekst før juridisk metode, primærkilder og claim-spor er strengt oppgradert."
+    },
+    {
+      "path": "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+      "classification": "secondary_link",
+      "decision": "Eksisterende emner om rettsstat, domstoler, rettigheter, politi, forvaltningsvedtak og lovendringer forblir Politikk-eide støtteemner."
+    },
+    {
+      "path": "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+      "classification": "secondary_link",
+      "decision": "Eksisterende rettslig analyse, rettighetsanalyse og forvaltningsanalyse kan sekundærbindes, men erstatter ikke en selvstendig juridisk metode- og rettskildelære."
+    },
+    {
+      "path": "data/fag/politikk/politikkpensum_canonical_v4_5.json#rett_lov_rettssikkerhet",
+      "classification": "secondary_link",
+      "decision": "Politikkpensumets complete_revised-status dokumenterer politisk-institusjonell kvalitet, ikke ferdigstilt rettsvitenskap."
+    },
+    {
+      "path": "reports/politikk-canonical-migration/rett-lov-vertical-chain.md",
+      "classification": "reuse",
+      "decision": "Den eksisterende kvalitetsrekkefølgen ekstern rettskilde → claim_basis → hjemmel/prosess → kritisk distinksjon bevares som støtteprinsipp."
+    },
+    {
+      "path": "tools/validate-politikk-rett-vertical.mjs",
+      "classification": "reuse",
+      "decision": "Eksisterende vertikal validator bevares uendret som Politikk-gate og flyttes ikke inn i Juss."
+    },
+    {
+      "path": "data/categories/category_contract.json#canonicalSubcategories.politikk.juss_rettsvitenskap",
+      "classification": "reuse",
+      "decision": "Canonical underkategori-ID og owner subject Politikk beholdes; status forblir expansion_planned til alle Juss-felt og strict proof er materialisert."
+    },
+    {
+      "path": "data/fag/politikk/concepts_politikk_canonical_v1.json",
+      "classification": "secondary_link",
+      "decision": "Rettstatlige og institusjonelle begreper kan støtte juridisk kontekst, men juridiske rettsregler må spores til eksterne rettskilder."
+    },
+    {
+      "path": "data/fag/politikk/curriculum_architecture_politikk_v1.json",
+      "classification": "secondary_link",
+      "decision": "Politikkens curriculum-arkitektur kan støtte progresjon, men oppretter ikke Juss-eierskap eller materialiserte rettsområder."
+    },
+    {
+      "path": "data/fag/politikk/emnemapping_politikk_canonical_v4_5.json",
+      "classification": "secondary_link",
+      "decision": "Eksisterende mappings beholdes og kan brukes som secondary bindings uten å telle som Juss-domener."
+    }
+  ],
+  "move_decision": {
+    "move_existing_files": []
+  },
+  "prohibited_actions": [
+    "Ikke slette eller flytte eksisterende Politikk-filer for å bygge Juss & rettsvitenskap.",
+    "Ikke telle Politikk-hooks, secondary links, source briefs eller juridiske nøkkelord som materialisert rettsvitenskap.",
+    "Ikke bruke politiske mål, moralske vurderinger eller teoretikernavn som erstatning for rettskilder og juridisk argumentasjon.",
+    "Ikke presentere lovforslag, høringsnotat eller forarbeid som om det var vedtatt og ikraftsatt lov.",
+    "Ikke blande tolkning, bevisvurdering og subsumsjon uten å vise hvilket analytisk steg som gjøres.",
+    "Ikke gi individuell juridisk rådgivning eller late som et undervisningscase avgjør en konkret brukers rettsstilling."
+  ]
+}

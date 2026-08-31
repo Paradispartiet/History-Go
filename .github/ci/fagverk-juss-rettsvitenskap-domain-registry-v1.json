@@ -1,0 +1,176 @@
+{
+  "version": 1,
+  "subject": "juss_rettsvitenskap",
+  "ownerSubject": "politikk",
+  "canonicalSubcategoryId": "juss_rettsvitenskap",
+  "totalDomains": 12,
+  "ci": {
+    "changeTokens": [
+      "/juss_rettsvitenskap/",
+      "juss-rettsvitenskap-",
+      "juss_rettsvitenskap"
+    ],
+    "progress": {
+      "kind": "registered_chapter_count",
+      "source": "data/fag/politikk/juss_rettsvitenskap/production_registry_v1.json",
+      "pointer": [
+        "progress",
+        "materializedDomains"
+      ]
+    },
+    "cumulativeAudits": [
+      "scripts/audit-juss-rettsvitenskap-reconciliation-v1.mjs"
+    ],
+    "cumulativeTests": [
+      "tests/juss-rettsvitenskap-reconciliation-v1.test.mjs"
+    ],
+    "deterministicPaths": [
+      "data/fag/politikk/juss_rettsvitenskap",
+      "reports/fagverk/juss-rettsvitenskap-reconciliation-v1.json",
+      "reports/fagverk/juss-rettsvitenskap-legal-method-sources-interpretation-argumentation-source-brief-v1-audit.json"
+    ]
+  },
+  "strictCompletion": {
+    "bindings": "data/fag/politikk/juss_rettsvitenskap/legal_system_access_justice_professional_ethics_digital_law_source_claim_brief_v1.json",
+    "audit": "scripts/audit-juss-rettsvitenskap-legal-system-access-justice-professional-ethics-digital-law-fulltext-v1.mjs",
+    "auditTest": "tests/juss-rettsvitenskap-legal-system-access-justice-professional-ethics-digital-law-fulltext-v1.test.mjs",
+    "materializer": "scripts/materialize-juss-rettsvitenskap-legal-system-access-justice-professional-ethics-digital-law-fulltext-v1.mjs",
+    "completionTest": "tests/juss-rettsvitenskap-legal-system-access-justice-professional-ethics-digital-law-fulltext-v1.test.mjs",
+    "auditReport": "reports/fagverk/juss-rettsvitenskap-legal-system-access-justice-professional-ethics-digital-law-fulltext-v1-audit.json",
+    "completionReport": "reports/fagverk/juss-rettsvitenskap-legal-system-access-justice-professional-ethics-digital-law-fulltext-v1-audit.json"
+  },
+  "domains": [
+    {
+      "ordinal": 1,
+      "domainId": "juridisk_metode_rettskilder_tolkning_argumentasjon",
+      "slug": "legal-method-sources-interpretation-argumentation",
+      "sourceBrief": "data/fag/politikk/juss_rettsvitenskap/legal_method_sources_interpretation_argumentation_source_claim_brief_v1.json",
+      "sourceBriefScript": "scripts/brief-juss-rettsvitenskap-legal-method-sources-interpretation-argumentation-sources-v1.mjs",
+      "sourceBriefTest": "tests/juss-rettsvitenskap-legal-method-sources-interpretation-argumentation-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-juss-rettsvitenskap-legal-method-sources-interpretation-argumentation-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-juss-rettsvitenskap-legal-method-sources-interpretation-argumentation-fulltext-v1.mjs",
+      "fulltextTest": "tests/juss-rettsvitenskap-legal-method-sources-interpretation-argumentation-fulltext-v1.test.mjs"
+    },
+    {
+      "ordinal": 2,
+      "domainId": "statsrett_grunnlov_maktfordeling_konstitusjonell_kontroll",
+      "slug": "constitutional-law-separation-powers-constitutional-review",
+      "sourceBrief": "data/fag/politikk/juss_rettsvitenskap/constitutional_law_separation_powers_constitutional_review_source_claim_brief_v1.json",
+      "sourceBriefScript": "scripts/brief-juss-rettsvitenskap-constitutional-law-separation-powers-constitutional-review-sources-v1.mjs",
+      "sourceBriefTest": "tests/juss-rettsvitenskap-constitutional-law-separation-powers-constitutional-review-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-juss-rettsvitenskap-constitutional-law-separation-powers-constitutional-review-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-juss-rettsvitenskap-constitutional-law-separation-powers-constitutional-review-fulltext-v1.mjs",
+      "fulltextTest": "tests/juss-rettsvitenskap-constitutional-law-separation-powers-constitutional-review-fulltext-v1.test.mjs"
+    },
+    {
+      "ordinal": 3,
+      "domainId": "forvaltningsrett_myndighetsutovelse_saksbehandling_klage",
+      "slug": "administrative-law-public-authority-procedure-appeal",
+      "sourceBrief": "data/fag/politikk/juss_rettsvitenskap/administrative_law_public_authority_procedure_appeal_source_claim_brief_v1.json",
+      "sourceBriefScript": "scripts/brief-juss-rettsvitenskap-administrative-law-public-authority-procedure-appeal-sources-v1.mjs",
+      "sourceBriefTest": "tests/juss-rettsvitenskap-administrative-law-public-authority-procedure-appeal-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-juss-rettsvitenskap-administrative-law-public-authority-procedure-appeal-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-juss-rettsvitenskap-administrative-law-public-authority-procedure-appeal-fulltext-v1.mjs",
+      "fulltextTest": "tests/juss-rettsvitenskap-administrative-law-public-authority-procedure-appeal-fulltext-v1.test.mjs"
+    },
+    {
+      "ordinal": 4,
+      "domainId": "menneskerettigheter_emk_rettighetsvern",
+      "slug": "human-rights-echr-rights-protection",
+      "sourceBrief": "data/fag/politikk/juss_rettsvitenskap/human_rights_echr_rights_protection_source_claim_brief_v1.json",
+      "sourceBriefScript": "scripts/brief-juss-rettsvitenskap-human-rights-echr-rights-protection-sources-v1.mjs",
+      "sourceBriefTest": "tests/juss-rettsvitenskap-human-rights-echr-rights-protection-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-juss-rettsvitenskap-human-rights-echr-rights-protection-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-juss-rettsvitenskap-human-rights-echr-rights-protection-fulltext-v1.mjs",
+      "fulltextTest": "tests/juss-rettsvitenskap-human-rights-echr-rights-protection-fulltext-v1.test.mjs"
+    },
+    {
+      "ordinal": 5,
+      "domainId": "eu_eos_folkerett_internasjonale_rettskilder",
+      "slug": "eu-eea-public-international-law-international-sources",
+      "sourceBrief": "data/fag/politikk/juss_rettsvitenskap/eu_eea_public_international_law_international_sources_source_claim_brief_v1.json",
+      "sourceBriefScript": "scripts/brief-juss-rettsvitenskap-eu-eea-public-international-law-international-sources-sources-v1.mjs",
+      "sourceBriefTest": "tests/juss-rettsvitenskap-eu-eea-public-international-law-international-sources-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-juss-rettsvitenskap-eu-eea-public-international-law-international-sources-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-juss-rettsvitenskap-eu-eea-public-international-law-international-sources-fulltext-v1.mjs",
+      "fulltextTest": "tests/juss-rettsvitenskap-eu-eea-public-international-law-international-sources-fulltext-v1.test.mjs"
+    },
+    {
+      "ordinal": 6,
+      "domainId": "strafferett_ansvar_skyld_straffebud_reaksjoner",
+      "slug": "criminal-law-liability-culpability-offences-sanctions",
+      "sourceBrief": "data/fag/politikk/juss_rettsvitenskap/criminal_law_liability_culpability_offences_sanctions_source_claim_brief_v1.json",
+      "sourceBriefScript": "scripts/brief-juss-rettsvitenskap-criminal-law-liability-culpability-offences-sanctions-sources-v1.mjs",
+      "sourceBriefTest": "tests/juss-rettsvitenskap-criminal-law-liability-culpability-offences-sanctions-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-juss-rettsvitenskap-criminal-law-liability-culpability-offences-sanctions-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-juss-rettsvitenskap-criminal-law-liability-culpability-offences-sanctions-fulltext-v1.mjs",
+      "fulltextTest": "tests/juss-rettsvitenskap-criminal-law-liability-culpability-offences-sanctions-fulltext-v1.test.mjs"
+    },
+    {
+      "ordinal": 7,
+      "domainId": "rettergang_bevis_sivilprosess_straffeprosess",
+      "slug": "procedure-evidence-civil-criminal-process",
+      "sourceBrief": "data/fag/politikk/juss_rettsvitenskap/procedure_evidence_civil_criminal_process_source_claim_brief_v1.json",
+      "sourceBriefScript": "scripts/brief-juss-rettsvitenskap-procedure-evidence-civil-criminal-process-sources-v1.mjs",
+      "sourceBriefTest": "tests/juss-rettsvitenskap-procedure-evidence-civil-criminal-process-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-juss-rettsvitenskap-procedure-evidence-civil-criminal-process-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-juss-rettsvitenskap-procedure-evidence-civil-criminal-process-fulltext-v1.mjs",
+      "fulltextTest": "tests/juss-rettsvitenskap-procedure-evidence-civil-criminal-process-fulltext-v1.test.mjs"
+    },
+    {
+      "ordinal": 8,
+      "domainId": "avtaler_obligasjoner_kontraktsrett",
+      "slug": "contracts-obligations-contract-law",
+      "sourceBrief": "data/fag/politikk/juss_rettsvitenskap/contracts_obligations_contract_law_source_claim_brief_v1.json",
+      "sourceBriefScript": "scripts/brief-juss-rettsvitenskap-contracts-obligations-contract-law-sources-v1.mjs",
+      "sourceBriefTest": "tests/juss-rettsvitenskap-contracts-obligations-contract-law-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-juss-rettsvitenskap-contracts-obligations-contract-law-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-juss-rettsvitenskap-contracts-obligations-contract-law-fulltext-v1.mjs",
+      "fulltextTest": "tests/juss-rettsvitenskap-contracts-obligations-contract-law-fulltext-v1.test.mjs"
+    },
+    {
+      "ordinal": 9,
+      "domainId": "erstatning_tingsrett_formuesrett_rettsvern",
+      "slug": "tort-property-private-law-priority-protection",
+      "sourceBrief": "data/fag/politikk/juss_rettsvitenskap/tort_property_private_law_priority_protection_source_claim_brief_v1.json",
+      "sourceBriefScript": "scripts/brief-juss-rettsvitenskap-tort-property-private-law-priority-protection-sources-v1.mjs",
+      "sourceBriefTest": "tests/juss-rettsvitenskap-tort-property-private-law-priority-protection-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-juss-rettsvitenskap-tort-property-private-law-priority-protection-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-juss-rettsvitenskap-tort-property-private-law-priority-protection-fulltext-v1.mjs",
+      "fulltextTest": "tests/juss-rettsvitenskap-tort-property-private-law-priority-protection-fulltext-v1.test.mjs"
+    },
+    {
+      "ordinal": 10,
+      "domainId": "familie_barn_arv_personrett",
+      "slug": "family-child-inheritance-person-law",
+      "sourceBrief": "data/fag/politikk/juss_rettsvitenskap/family_child_inheritance_person_law_source_claim_brief_v1.json",
+      "sourceBriefScript": "scripts/brief-juss-rettsvitenskap-family-child-inheritance-person-law-sources-v1.mjs",
+      "sourceBriefTest": "tests/juss-rettsvitenskap-family-child-inheritance-person-law-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-juss-rettsvitenskap-family-child-inheritance-person-law-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-juss-rettsvitenskap-family-child-inheritance-person-law-fulltext-v1.mjs",
+      "fulltextTest": "tests/juss-rettsvitenskap-family-child-inheritance-person-law-fulltext-v1.test.mjs"
+    },
+    {
+      "ordinal": 11,
+      "domainId": "arbeids_selskaps_naerings_skatt_markedsrett",
+      "slug": "labour-company-business-tax-market-law",
+      "sourceBrief": "data/fag/politikk/juss_rettsvitenskap/labour_company_business_tax_market_law_source_claim_brief_v1.json",
+      "sourceBriefScript": "scripts/brief-juss-rettsvitenskap-labour-company-business-tax-market-law-sources-v1.mjs",
+      "sourceBriefTest": "tests/juss-rettsvitenskap-labour-company-business-tax-market-law-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-juss-rettsvitenskap-labour-company-business-tax-market-law-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-juss-rettsvitenskap-labour-company-business-tax-market-law-fulltext-v1.mjs",
+      "fulltextTest": "tests/juss-rettsvitenskap-labour-company-business-tax-market-law-fulltext-v1.test.mjs"
+    },
+    {
+      "ordinal": 12,
+      "domainId": "rettssystem_rettstilgang_profesjonsetikk_digital_rett",
+      "slug": "legal-system-access-justice-professional-ethics-digital-law",
+      "sourceBrief": "data/fag/politikk/juss_rettsvitenskap/legal_system_access_justice_professional_ethics_digital_law_source_claim_brief_v1.json",
+      "sourceBriefScript": "scripts/brief-juss-rettsvitenskap-legal-system-access-justice-professional-ethics-digital-law-sources-v1.mjs",
+      "sourceBriefTest": "tests/juss-rettsvitenskap-legal-system-access-justice-professional-ethics-digital-law-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-juss-rettsvitenskap-legal-system-access-justice-professional-ethics-digital-law-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-juss-rettsvitenskap-legal-system-access-justice-professional-ethics-digital-law-fulltext-v1.mjs",
+      "fulltextTest": "tests/juss-rettsvitenskap-legal-system-access-justice-professional-ethics-digital-law-fulltext-v1.test.mjs"
+    }
+  ]
+}
