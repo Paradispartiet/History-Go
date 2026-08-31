@@ -9,6 +9,7 @@ const ROLE = 'kunst_kunstnerisk_ledelse';
 const MODEL_PATH = 'data/Civication/roleModels/kunst/kunst_kunstnerisk_ledelse.json';
 const GRAMMAR_PATH = 'data/Civication/workGrammars/kunst/kunst_kunstnerisk_ledelse.json';
 const PLAN_PATH = 'data/Civication/mailPlans/kunst/kunst_kunstnerisk_ledelse_plan.json';
+const WORLD_PATH = 'data/Civication/roleWorlds/kunst/kunst_kunstnerisk_ledelse.json';
 const REMAINING = ['situated', 'reputation'].join('_');
 const TYPES = ['job', 'people', 'conflict', 'story', 'event', 'micro', 'followup', 'knowledge', 'consequence'];
 const ACTORS = ['liv_institusjonsdirektor_kunstledelse', 'amina_seniorkurator_kunstledelse', 'eirik_produksjonsleder_kunstledelse', 'sara_kunstnerkontakt_kunstledelse'];
@@ -112,10 +113,11 @@ assert.equal(ready.dimensions.people_places_integrity.status, 'foundation_ready'
 assert.equal(ready.dimensions.persistent_work_object.status, 'foundation_ready');
 assert.equal(ready.dimensions.rhythm_waiting_handoff_rework.status, 'foundation_ready');
 assert.equal(ready.dimensions.history_go_affordance.status, 'foundation_ready');
-assert.equal(ready.dimensions[REMAINING].status, 'needs_role_authored_work');
-assert.deepEqual(ready.authored_work_required, [REMAINING]);
+const roleWorldComplete = fs.existsSync(path.join(ROOT, WORLD_PATH));
+assert.equal(ready.dimensions[REMAINING].status, roleWorldComplete ? 'foundation_ready' : 'needs_role_authored_work');
+assert.deepEqual(ready.authored_work_required, roleWorldComplete ? [] : [REMAINING]);
 assert.equal(ready.cross_role.need, 'candidate_when_shared_work_is_real');
-assert.ok(readiness.rollout_queue.some((row) => row.key === KEY && row.classification === 'rollout_ready'));
+assert.equal(readiness.rollout_queue.some((row) => row.key === KEY && row.classification === 'rollout_ready'), !roleWorldComplete);
 assert.equal(readiness.gate.gate_pass, true);
 
 const scenarioPeople = read('data/Civication/scenarioPeople/generated/kunst.json');
