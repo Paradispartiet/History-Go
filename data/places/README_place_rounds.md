@@ -6,7 +6,7 @@ Runtime: `js/ui/place-rounds-visual-collections.js`
 Layout: `js/ui/place-rounds-fill-layout.js` og `css/place-rounds-fill-layout.css`
 Schema: `data/places/regler/place_card_profile_v2.schema.json`  
 Sted-for-sted arbeidsflyt: `docs/PLACE_PRODUCTION_CHECKLIST.md`
-Sist kontrollert: **2026-08-27**
+Sist kontrollert: **2026-08-31**
 
 Filnavnet beholdes slik at gamle lenker og arbeidsløp ikke brytes. Kontrakten handler om **samlinger**, ikke om dekorative rundinger eller en meny over alt et sted inneholder.
 
@@ -53,7 +53,7 @@ Kategoriuttrykket viser hva kategorien faktisk frembringer, gjør eller organise
 | Kategori | Fire samlinger | Brukerrettet kategoriuttrykk |
 | --- | --- | --- |
 | `by` | People · Objects · Brands · Structures | **Byrom og anlegg** |
-| `historie` | People · Objects · Brands · Productions | **Historiske hendelser** |
+| `historie` | People · Objects · Brands · Historical Events | **Historiske hendelser** |
 | `kunst` | People · Objects · Brands · Productions | **Kunstverk** |
 | `litteratur` | People · Objects · Brands · Productions | **Bøker og tekster** |
 | `media` | People · Objects · Brands · Productions | **Utgivelser og sendinger** |
@@ -130,6 +130,7 @@ brands
 map
 flora
 fauna
+historical_events
 productions
 structures
 competitions
@@ -203,13 +204,26 @@ Navnet må ha selvstendig gjenkjennelse, dokumentert stedstilknytning og verifis
 
 Den fysiske Freia-emballasjen er Object; Freia-identiteten og en kvalifisert produktidentitet er Brands. Samme record skal ikke dupliseres, men de to forskjellige entity-rollene kan eksistere samtidig.
 
-## 10. Kategoriuttrykk / Productions
+## 10. Historiske hendelser
 
-`productions` er den tekniske samlingsfamilien for kategoriens identifiserbare verk, hendelser, metoder, praksiser, behandlinger, programmer, forskning eller andre dokumenterte output. Brukeren skal alltid møte kategoriens konkrete navn, aldri det generiske ordet «Productions».
+`historical_events` er Histories dedikerte kategoriuttrykk. Samlingen eier avgrensede historiske hendelser med selvstendig identitet, direkte stedsevidens, kildebåret beskrivelse og et ærlig medlemsbilde.
+
+- `historical_events` er ikke en alias for `productions`;
+- `historical_events` er ikke kalender-/nåtidssystemet `events` under «På stedet»;
+- chronology er den fulle tidsindeksen og kan inneholde langt flere tidsankere enn samlingen;
+- en chronology-rad blir ikke automatisk et samlingsmedlem;
+- Stories eier narrativ behandling, ikke selve hendelsesidentiteten;
+- Objects eier fysiske spor og eksemplarer, mens `historical_events` eier den avgrensede hendelsen;
+- Structures kan erstatte Histories normaluttrykk bare gjennom den begrunnede stedsspesifikke varianten i punkt 3.
+
+Eldre Historie-profiler som fortsatt bruker `productions` kan leses fram til stedet revideres, men de er legacy og kan ikke kopieres inn i ny eller vesentlig revidert Historie-produksjon.
+
+## 10A. Øvrige kategoriuttrykk / Productions
+
+`productions` er den tekniske samlingsfamilien for de øvrige kategorienes identifiserbare verk, metoder, praksiser, behandlinger, programmer, forskning eller andre dokumenterte output. Brukeren skal alltid møte kategoriens konkrete navn, aldri det generiske ordet «Productions».
 
 | Kategori | Hva samlingen eier |
 | --- | --- |
-| Historie | avgrensede historiske hendelser med direkte stedsevidens |
 | Kunst | kunstverk; ikke kunstnerens verktøy eller materialgjenstander |
 | Litteratur | bøker og tekster som verk; et bestemt fysisk eksemplar kan være Object |
 | Media | utgivelser og sendinger |

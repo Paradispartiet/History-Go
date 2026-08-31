@@ -2,7 +2,7 @@
 
 Status: **canonical produksjonsarbeidsflyt**  
 Eier: `place_by_place_production_workflow`  
-Sist kontrollert: **2026-08-27**
+Sist kontrollert: **2026-08-31**
 
 Dette dokumentet er arbeidsoppskriften for å ferdigstille **ett History GO-sted om gangen**.
 
@@ -1061,6 +1061,7 @@ Denne oppskriften gjentar ikke samlingspool, profiler eller naturkartkrav. **Pla
 - [ ] nye/fullproduserte steder bruker `place_card_profile.collection_ids` med nøyaktig fire sterke IDs, begrunnelse og verifiseringsdato;
 - [ ] ordinær fullprofil bruker People, Objects, Brands og kategoriuttrykk; Nature og canonicale spesialprofiler følger sine faste firersett;
 - [ ] `related` er aldri PlaceCard-samling eller reserve;
+- [ ] Historie bruker den dedikerte `historical_events`-samlingen for avgrensede hendelser med direkte stedsevidens; historiske hendelser legges ikke i `productions` eller kalender-`events`;
 - [ ] Structures utenfor By brukes bare når flere navngitte bygg/anlegg utgjør et sentralt, substansielt og bildeklart stedsspor;
 - [ ] eksisterende `round_profile.content_round_ids` leses bare gjennom kompatibilitetslaget, og `images` filtreres bort;
 - [ ] alle valgte samlinger vurderes samlet i faktisk UI; korrekt JSON hver for seg er ikke tilstrekkelig;
@@ -1537,6 +1538,7 @@ Et sted er **sted-produksjon ferdig** først når hvert punkt nedenfor er sant e
 - [ ] samlingsform og fast 2×2-layout er kontrollert på mobil og desktop;
 - [ ] Bilder brukes ikke som samling eller reserve;
 - [ ] Objects og kategoriuttrykket har tydelig entity-grense; Objects og Structures er ikke kunstig splittet;
+- [ ] Historie-eventen er avgrenset fra chronology: chronology er den fulle tidsindeksen, mens `historical_events` bare viser selvstendige, bildeklare hendelsesenheter med direkte stedsevidens;
 - [ ] Related brukes bare i relasjonssystemet og aldri som PlaceCard-samling;
 - [ ] preview og innhold følger PlaceCard-kontrakten.
 
@@ -1656,7 +1658,7 @@ Mål: [ ] nøyaktig fire sterke flater + separat Badge + obligatorisk Quiz
 - [ ] People/Flora/Fauna sirkler; øvrige samlinger avrundede rektangler
 - [ ] Bilder bare i medie-/bildeflater, aldri som samling/reserve
 For hver samling: [ ] relevant  [ ] stedsspesifikk  [ ] substansiell  [ ] faktisk medlemsbilde laster  [ ] riktig flow
-Samlet: [ ] fire tydelig forskjellige samlinger  [ ] dokumentert Objects/kategoriuttrykk-grense  [ ] ingen kunstig Objects/Structures-splitt  [ ] ingen enkel gjenstand som fyll  [ ] Related er ikke samling
+Samlet: [ ] fire tydelig forskjellige samlinger  [ ] dokumentert Objects/kategoriuttrykk-grense  [ ] Historie bruker `historical_events`, ikke `productions`/kalender-`events`  [ ] ingen kunstig Objects/Structures-splitt  [ ] ingen enkel gjenstand som fyll  [ ] Related er ikke samling
 
 ### G. People / Stories / Quiz
 - [ ] People of Places lest og vurdert

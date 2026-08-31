@@ -19,7 +19,7 @@ for (const id of ['civication', 'works', 'details', 'spots', 'før_nå', 'fortel
   assert(!new RegExp(`id:\\s*["']${id}["']`).test(rounds), id);
 }
 
-for (const id of ['productions', 'structures', 'competitions', 'related', 'destinations']) {
+for (const id of ['historical_events', 'productions', 'structures', 'competitions', 'related', 'destinations']) {
   assert(new RegExp(`${id}:\\s*\\{\\s*id:["']${id}["']`).test(rounds), id);
 }
 assert(!/images:\s*\{\s*id:["']images["']/.test(rounds));

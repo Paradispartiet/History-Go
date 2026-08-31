@@ -2,7 +2,7 @@
 
 Status: **canonical scope-kontrakt for stedsproduksjon**  
 Eier: `place_by_place_production_workflow`  
-Sist kontrollert: **2026-08-27**
+Sist kontrollert: **2026-08-31**
 
 Denne kontrakten bestemmer **hvor omfattende et sted skal produseres**. Hva slags innhold stedet skal få bestemmes primært av Badge-systemet og stedets kilder, ikke av en universell sjekkliste.
 
@@ -108,9 +108,11 @@ For en ordinær fullprofil er følgende obligatoriske produksjonsspor:
 - People-medlemmer;
 - Objects-medlemmer;
 - Brands-medlemmer;
-- kategoriuttrykkets medlemmer (`productions`, `structures`, `competitions` eller `destinations` etter samlingskontrakten);
+- kategoriuttrykkets medlemmer (`historical_events`, `productions`, `structures`, `competitions` eller `destinations` etter samlingskontrakten);
 
 Badge-router, underbadges og kilder bestemmer hvilke medlemmer som kvalifiserer, ikke om en av de fire flatene kan utelates.
+
+For Historie er standarduttrykket `historical_events`. Det er en egen historisk entity-familie, ikke en alias for `productions` og ikke kalender-/nåtidssystemet `events`. `Structures` kan fortsatt velges som en eksplisitt stedsspesifikk variant når et reelt bygnings- eller anleggsmiljø er sterkere enn hendelsessporet.
 
 Følgende øvrige moduler er betingede og produseres når de er reelt relevante og source-backed:
 
