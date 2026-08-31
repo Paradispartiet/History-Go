@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-08-31T10:12:14.413Z
+Generert: 2026-08-31T15:12:47.479Z
 
 ## Oppsummering
-- Aktive filer validert: **1547**
-- Antall steder validert: **1547**
+- Aktive filer validert: **1546**
+- Antall steder validert: **1546**
 - Harde feil: **0**
-- Varsler: **663**
-- Coordinate review candidates: **808** signaler fordelt på **703** steder
+- Varsler: **662**
+- Coordinate review candidates: **807** signaler fordelt på **702** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -1304,7 +1304,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/oslo/places_historie/ekeberg_helleristninger.json
 - data/places/sport/europa/norway/oslo_sport/frigo_friluftssenteret.json
 - data/places/kunst/oslo/places_kunst/galleri_map.json
-- data/places/kunst/oslo/places_kunst/vi_vii_gallery.json
 - data/places/kunst/oslo/places_kunst/the_oslo_gallery.json
 - data/places/historie/oslo/places_historie/valerenga_kirke.json
 - data/places/kunst/oslo/places_kunst/kunsthall_oslo.json
@@ -2068,7 +2067,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/oslo/places_historie/museumsleiligheten_grabein.json#museumsleiligheten_grabein: coordStatus=verified uten coordPrecisionM
 - data/places/sport/europa/norway/oslo_sport/frigo_friluftssenteret.json#frigo_friluftssenteret: coordStatus=verified uten coordPrecisionM
 - data/places/kunst/oslo/places_kunst/galleri_map.json#galleri_map: coordStatus=verified uten coordPrecisionM
-- data/places/kunst/oslo/places_kunst/vi_vii_gallery.json#vi_vii_gallery: coordStatus=verified uten coordPrecisionM
 - data/places/kunst/oslo/places_kunst/the_oslo_gallery.json#the_oslo_gallery: coordStatus=verified uten coordPrecisionM
 - data/places/historie/oslo/places_historie/valerenga_kirke.json#valerenga_kirke: coordStatus=verified uten coordPrecisionM
 - data/places/kunst/oslo/places_kunst/kunsthall_oslo.json#kunsthall_oslo: coordStatus=verified uten coordPrecisionM
@@ -2236,13 +2234,13 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 808 signaler fordelt på 703 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 807 signaler fordelt på 702 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 392 |
+| coordStatus=verified uten coordPrecisionM | 391 |
 | lineært sted uten anchors | 84 |
 | lav koordinatpresisjon (<4 desimaler) | 72 |
 | svært stor r (>=500 m) uten coordNote | 66 |
@@ -2251,7 +2249,7 @@ Totalt 808 signaler fordelt på 703 steder. Et sted kan ha flere signaler. Kandi
 | svært liten r (<60 m) for sted som ser utstrakt ut | 11 |
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 10 |
 
-### coordStatus=verified uten coordPrecisionM (392)
+### coordStatus=verified uten coordPrecisionM (391)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -2494,7 +2492,6 @@ Totalt 808 signaler fordelt på 703 steder. Et sted kan ha flere signaler. Kandi
 | museumsleiligheten_grabein | Museumsleiligheten Gråbein | historie | data/places/historie/oslo/places_historie/museumsleiligheten_grabein.json | 59.9149775365696 | 10.769036218785557 | 55 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | frigo_friluftssenteret | FRIGO – Friluftssenteret i Gamle Oslo | sport | data/places/sport/europa/norway/oslo_sport/frigo_friluftssenteret.json | 59.913567553035776 | 10.78965526234183 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | galleri_map | Galleri MAP | kunst | data/places/kunst/oslo/places_kunst/galleri_map.json | 59.914355410309014 | 10.767876268395765 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| vi_vii_gallery | VI, VII | kunst | data/places/kunst/oslo/places_kunst/vi_vii_gallery.json | 59.91215712574447 | 10.742755978420295 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | the_oslo_gallery | The Oslo Gallery | kunst | data/places/kunst/oslo/places_kunst/the_oslo_gallery.json | 59.924682238617315 | 10.730101423555459 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | valerenga_kirke | Vålerenga kirke | historie | data/places/historie/oslo/places_historie/valerenga_kirke.json | 59.906858612988856 | 10.788310607669317 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | kunsthall_oslo | Kunsthall Oslo | kunst | data/places/kunst/oslo/places_kunst/kunsthall_oslo.json | 59.91113787529822 | 10.778385870870046 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
