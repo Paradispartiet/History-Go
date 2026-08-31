@@ -1,4 +1,4 @@
-name: Finalize Akershus slottskirke v8
+name: Finalize Akershus slottskirke v9
 
 on:
   push:
@@ -132,6 +132,13 @@ jobs:
           fs.writeFileSync(testFile,text);
           console.log(JSON.stringify({baseline,expected,generated,slottskirkeProductionMilestones:slottskirkeProductionMilestones.map(({id,year,title})=>({id,year,title}))},null,2));
           NODE
+
+      - name: Rebuild Akershus slottskirke quiz production context
+        run: |
+          npm run quiz:context -- \
+            --category religion \
+            --target akershus_slottskirke \
+            --output data/quiz/production_context/religion/akershus_slottskirke.json
 
       - name: Rebuild People projections
         run: |
