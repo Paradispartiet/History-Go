@@ -1,4 +1,4 @@
-name: Repair PR5578 images and diagnose quiz
+name: Finalize PR5578 Fagverk legacy batch
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 jobs:
-  repair-diagnose:
+  finalize:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
@@ -22,18 +22,28 @@ jobs:
         with:
           node-version: '20'
           cache: npm
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - run: npm ci
-      - name: Repair stale image pointers
+      - name: Install dependencies
+        run: npm ci
+      - name: Sync branch to current main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+      - name: Produce canonical Markveien image assets
         run: node tools/repair-pr5578-images.mjs
+      - name: Rebuild four deterministic quiz contexts
+        run: |
+          node scripts/build-quiz-production-context.mjs --category by --target birkelunden --output data/quiz/production_context/by/birkelunden.json
+          node scripts/build-quiz-production-context.mjs --category by --target olaf_ryes_plass --output data/quiz/production_context/by/olaf_ryes_plass.json
+          node scripts/build-quiz-production-context.mjs --category by --target sofienbergparken --output data/quiz/production_context/by/sofienbergparken.json
+          node scripts/build-quiz-production-context.mjs --category by --target markveien --output data/quiz/production_context/by/markveien.json
       - name: Regenerate Fagverk and runtime artifacts
         run: |
           node scripts/build-place-open-payloads.mjs
           node scripts/audit-fagverk-place-pages.mjs --write
           node scripts/build-fagverk-release-manifest.mjs
-      - name: Validate Fagverk result
+      - name: Validate Fagverk, images and quiz context
         run: |
           node scripts/audit-fagverk-place-pages.mjs
           node scripts/build-place-open-payloads.mjs --check
@@ -41,32 +51,26 @@ jobs:
           node --test tests/fagverk-place-pages.test.mjs
           node --test tests/fagverk-place-substance-audit.test.mjs
           node --test tests/fagverk-link-audit.test.mjs
+          node scripts/audit-place-images.mjs --mode=changed
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
           git diff --check
-      - name: Diagnose global quiz audits separately
-        shell: bash
+      - name: Commit final production result and remove temporary tooling
         run: |
-          set +e
-          mkdir -p reports/fagverk
-          : > reports/fagverk/pr5578-quiz-diagnostic.txt
-          for cmd in \
-            "python scripts/check_quiz_production_contract.py" \
-            "python scripts/check_quiz_production_content.py" \
-            "python scripts/check_quiz_production_audit.py reports/quiz/audit-article-grounding-production-v1.json 0.95"
-          do
-            echo "===== $cmd =====" >> reports/fagverk/pr5578-quiz-diagnostic.txt
-            bash -lc "$cmd" >> reports/fagverk/pr5578-quiz-diagnostic.txt 2>&1
-            echo "EXIT=$?" >> reports/fagverk/pr5578-quiz-diagnostic.txt
-          done
-      - name: Commit repaired production data and diagnostic
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add \
-            data/places/by/oslo/sofienbergparken.json \
             data/places/by/oslo/places/markveien.json \
+            bilder/places/markveien.JPG \
+            bilder/kort/places/markveien.PNG \
+            bilder/places/markveien_front_portrait.webp \
+            data/quiz/production_context/by/birkelunden.json \
+            data/quiz/production_context/by/olaf_ryes_plass.json \
+            data/quiz/production_context/by/sofienbergparken.json \
+            data/quiz/production_context/by/markveien.json \
             data/runtime \
             data/fagverk/fagverk_release.json \
-            reports/fagverk/fagverk-place-page-coverage-v2.json \
-            reports/fagverk/pr5578-quiz-diagnostic.txt
-          git commit -m "Repair Grünerløkka place images and capture quiz diagnostic"
+            reports/fagverk/fagverk-place-page-coverage-v2.json
+          git rm tools/repair-pr5578-images.mjs .github/workflows/repair-pr5578-images-diagnose-quiz.yml
+          git diff --cached --quiet && { echo "No production changes to commit"; exit 1; }
+          git commit -m "Finalize Grünerløkka Fagverk legacy batch"
           git push origin HEAD:${GITHUB_REF_NAME}
