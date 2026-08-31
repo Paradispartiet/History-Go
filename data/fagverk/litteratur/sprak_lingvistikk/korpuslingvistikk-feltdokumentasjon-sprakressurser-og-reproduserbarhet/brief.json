@@ -1,0 +1,105 @@
+{
+  "schema": "history_go_fagverk_chapter_brief_v1",
+  "version": "1.0.0",
+  "subject_id": "litteratur",
+  "canonical_subcategory_id": "sprak_lingvistikk",
+  "domain_id": "korpuslingvistikk_feltdokumentasjon_sprakressurser_reproduserbarhet",
+  "chapter_id": "korpuslingvistikk-feltdokumentasjon-sprakressurser-og-reproduserbarhet",
+  "sourceBriefFile": "data/fag/litteratur/sprak_lingvistikk/corpus_field_documentation_language_resources_reproducibility_source_claim_brief_v1.json",
+  "purpose": "Materialisere siste canonicale lingvistikkfelt med eksplisitt data-, metadata-, proveniens-, arkiv-, reproduserbarhets- og governance-kontrakt og samtidig bære strict completion proof for alle 12 felt.",
+  "sections": [
+    {
+      "ordinal": 1,
+      "id": "korpusdesign-sampling-og-representativitet",
+      "claim_ids": [
+        "corp-01",
+        "corp-02",
+        "corp-03",
+        "corp-04"
+      ]
+    },
+    {
+      "ordinal": 2,
+      "id": "transkripsjon-annotasjon-og-kvalitetsproveniens",
+      "claim_ids": [
+        "corp-05",
+        "corp-06",
+        "corp-07",
+        "corp-08"
+      ]
+    },
+    {
+      "ordinal": 3,
+      "id": "feltdokumentasjon-sessions-samtykke-og-tilgang",
+      "claim_ids": [
+        "corp-09",
+        "corp-10",
+        "corp-11",
+        "corp-12"
+      ]
+    },
+    {
+      "ordinal": 4,
+      "id": "metadata-identifikatorer-finnbarhet-og-interoperabilitet",
+      "claim_ids": [
+        "corp-13",
+        "corp-14",
+        "corp-15",
+        "corp-16"
+      ]
+    },
+    {
+      "ordinal": 5,
+      "id": "formater-versjonering-transformasjoner-og-proveniens",
+      "claim_ids": [
+        "corp-17",
+        "corp-18",
+        "corp-19",
+        "corp-20"
+      ]
+    },
+    {
+      "ordinal": 6,
+      "id": "reproduserbare-workflows-kode-miljo-og-sitering",
+      "claim_ids": [
+        "corp-21",
+        "corp-22",
+        "corp-23",
+        "corp-24"
+      ]
+    },
+    {
+      "ordinal": 7,
+      "id": "langtidsbevaring-trust-fixity-og-migrasjon",
+      "claim_ids": [
+        "corp-25",
+        "corp-26",
+        "corp-27",
+        "corp-28"
+      ]
+    },
+    {
+      "ordinal": 8,
+      "id": "etikk-data-governance-fair-care-og-ansvarlig-gjenbruk",
+      "claim_ids": [
+        "corp-29",
+        "corp-30",
+        "corp-31",
+        "corp-32"
+      ]
+    }
+  ],
+  "strict_boundaries": [
+    "Corpus design må definere target population, sampling frame, sampling unit, register/genre strata, inclusion criteria og coverage før representativeness vurderes; størrelse alene gjør ikke et korpus representativt.",
+    "Transcription og annotation må ha eksplisitt tier/schema, guidelines, annotator/version provenance og quality-control; ELAN tiers, UD labels eller andre annotation schemes er representasjoner som må kunne spores til media/text og beslutningsregler.",
+    "Field documentation må knytte session/bundle, participants, contributor roles, language use, recording conditions, consent og access protocol til konkrete filer; open access er ikke en standardantakelse når speakers eller communities har satt begrensninger.",
+    "Resource metadata må skille descriptive metadata fra annotations og bruke stable identifiers/PIDs der mulig; OLAC/CMDI, Glottocodes og andre identifiers forbedrer discovery/interoperability bare når mapping, version og referent er dokumentert.",
+    "Formats og conversions må være versjonerte og reversible eller dokumentert lossy; EAF, CoNLL-U og andre exchange formats krever schema/version, encoding, transformation steps og provenance, og en ny dataset version må ikke skjule den tidligere.",
+    "Reproducibility krever dataset snapshot/version, query or extraction, code, software/environment, parameters, exclusions og output linkage; shared data alene er ikke et reproduksjonsbevis uten executable analysis provenance.",
+    "Long-term preservation krever repository responsibility, storage procedures, integrity/fixity checks, documented migration and designated-community access; backup er ikke det samme som et trustworthy digital repository.",
+    "FAIR betyr ikke automatically open; access, consent, licensing, community authority og CARE collective-benefit/authority-to-control må vurderes sammen med findability og reuse, særlig for Indigenous, minoritized eller sensitive language data."
+  ],
+  "fulltext_status": "materialized_strict_completion_candidate",
+  "source_first": true,
+  "claim_trace_required": true
+}

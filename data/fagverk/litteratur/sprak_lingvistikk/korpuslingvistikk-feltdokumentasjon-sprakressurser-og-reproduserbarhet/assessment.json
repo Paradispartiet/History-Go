@@ -1,0 +1,265 @@
+{
+  "schema": "history_go_fagverk_assessment_v1",
+  "version": "1.0.0",
+  "subject_id": "litteratur",
+  "canonical_subcategory_id": "sprak_lingvistikk",
+  "chapter_id": "korpuslingvistikk-feltdokumentasjon-sprakressurser-og-reproduserbarhet",
+  "questions": [
+    {
+      "id": "corp-q01",
+      "prompt": "Hva er den viktigste strict-kontrollen i korpusdesign, sampling og representativitet?",
+      "choices": [
+        "Å anta at stor datamengde, åpent format eller teknisk tilgang alene gir validitet og fri gjenbruk",
+        "Corpus design må definere target population, sampling frame, sampling unit, register/genre strata, inclusion criteria og coverage før representativeness vurderes; størrelse alene gjør ikke et korpus representativt.",
+        "Å fjerne versjons- og provenanceinformasjon etter at analysen er kjørt",
+        "Å generalisere fra resource-frekvenser uten target population, access- og sampling-grenser"
+      ],
+      "correctIndex": 1,
+      "claim_ids": [
+        "corp-01",
+        "corp-02",
+        "corp-03"
+      ],
+      "source_ids": [
+        "corp01-biber-representativeness",
+        "corp09-talkbank"
+      ]
+    },
+    {
+      "id": "corp-q02",
+      "prompt": "Hva er den viktigste strict-kontrollen i transkripsjon, annotasjon og kvalitetsproveniens?",
+      "choices": [
+        "Å anta at stor datamengde, åpent format eller teknisk tilgang alene gir validitet og fri gjenbruk",
+        "Transcription og annotation må ha eksplisitt tier/schema, guidelines, annotator/version provenance og quality-control; ELAN tiers, UD labels eller andre annotation schemes er representasjoner som må kunne spores til media/text og beslutningsregler.",
+        "Å fjerne versjons- og provenanceinformasjon etter at analysen er kjørt",
+        "Å generalisere fra resource-frekvenser uten target population, access- og sampling-grenser"
+      ],
+      "correctIndex": 1,
+      "claim_ids": [
+        "corp-05",
+        "corp-06",
+        "corp-07"
+      ],
+      "source_ids": [
+        "corp06-elan",
+        "corp08-ud"
+      ]
+    },
+    {
+      "id": "corp-q03",
+      "prompt": "Hva er den viktigste strict-kontrollen i feltdokumentasjon, sessions, samtykke og tilgang?",
+      "choices": [
+        "Å anta at stor datamengde, åpent format eller teknisk tilgang alene gir validitet og fri gjenbruk",
+        "Field documentation må knytte session/bundle, participants, contributor roles, language use, recording conditions, consent og access protocol til konkrete filer; open access er ikke en standardantakelse når speakers eller communities har satt begrensninger.",
+        "Å fjerne versjons- og provenanceinformasjon etter at analysen er kjørt",
+        "Å generalisere fra resource-frekvenser uten target population, access- og sampling-grenser"
+      ],
+      "correctIndex": 1,
+      "claim_ids": [
+        "corp-09",
+        "corp-10",
+        "corp-11"
+      ],
+      "source_ids": [
+        "corp04-elar-lameta",
+        "corp05-paradisec"
+      ]
+    },
+    {
+      "id": "corp-q04",
+      "prompt": "Hva er den viktigste strict-kontrollen i metadata, identifikatorer, finnbarhet og interoperabilitet?",
+      "choices": [
+        "Å anta at stor datamengde, åpent format eller teknisk tilgang alene gir validitet og fri gjenbruk",
+        "Resource metadata må skille descriptive metadata fra annotations og bruke stable identifiers/PIDs der mulig; OLAC/CMDI, Glottocodes og andre identifiers forbedrer discovery/interoperability bare når mapping, version og referent er dokumentert.",
+        "Å fjerne versjons- og provenanceinformasjon etter at analysen er kjørt",
+        "Å generalisere fra resource-frekvenser uten target population, access- og sampling-grenser"
+      ],
+      "correctIndex": 1,
+      "claim_ids": [
+        "corp-13",
+        "corp-14",
+        "corp-15"
+      ],
+      "source_ids": [
+        "corp02-olac",
+        "corp03-clarin-cmdi"
+      ]
+    },
+    {
+      "id": "corp-q05",
+      "prompt": "Hva er den viktigste strict-kontrollen i formater, versjonering, transformasjoner og proveniens?",
+      "choices": [
+        "Å anta at stor datamengde, åpent format eller teknisk tilgang alene gir validitet og fri gjenbruk",
+        "Formats og conversions må være versjonerte og reversible eller dokumentert lossy; EAF, CoNLL-U og andre exchange formats krever schema/version, encoding, transformation steps og provenance, og en ny dataset version må ikke skjule den tidligere.",
+        "Å fjerne versjons- og provenanceinformasjon etter at analysen er kjørt",
+        "Å generalisere fra resource-frekvenser uten target population, access- og sampling-grenser"
+      ],
+      "correctIndex": 1,
+      "claim_ids": [
+        "corp-17",
+        "corp-18",
+        "corp-19"
+      ],
+      "source_ids": [
+        "corp06-elan",
+        "corp08-ud"
+      ]
+    },
+    {
+      "id": "corp-q06",
+      "prompt": "Hva er den viktigste strict-kontrollen i reproduserbare workflows, kode, miljø og sitering?",
+      "choices": [
+        "Å anta at stor datamengde, åpent format eller teknisk tilgang alene gir validitet og fri gjenbruk",
+        "Reproducibility krever dataset snapshot/version, query or extraction, code, software/environment, parameters, exclusions og output linkage; shared data alene er ikke et reproduksjonsbevis uten executable analysis provenance.",
+        "Å fjerne versjons- og provenanceinformasjon etter at analysen er kjørt",
+        "Å generalisere fra resource-frekvenser uten target population, access- og sampling-grenser"
+      ],
+      "correctIndex": 1,
+      "claim_ids": [
+        "corp-21",
+        "corp-22",
+        "corp-23"
+      ],
+      "source_ids": [
+        "corp09-talkbank",
+        "corp10-fair"
+      ]
+    },
+    {
+      "id": "corp-q07",
+      "prompt": "Hva er den viktigste strict-kontrollen i langtidsbevaring, trust, fixity og migrasjon?",
+      "choices": [
+        "Å anta at stor datamengde, åpent format eller teknisk tilgang alene gir validitet og fri gjenbruk",
+        "Long-term preservation krever repository responsibility, storage procedures, integrity/fixity checks, documented migration and designated-community access; backup er ikke det samme som et trustworthy digital repository.",
+        "Å fjerne versjons- og provenanceinformasjon etter at analysen er kjørt",
+        "Å generalisere fra resource-frekvenser uten target population, access- og sampling-grenser"
+      ],
+      "correctIndex": 1,
+      "claim_ids": [
+        "corp-25",
+        "corp-26",
+        "corp-27"
+      ],
+      "source_ids": [
+        "corp12-coretrustseal",
+        "corp05-paradisec"
+      ]
+    },
+    {
+      "id": "corp-q08",
+      "prompt": "Hva er den viktigste strict-kontrollen i etikk, data governance, fair/care og ansvarlig gjenbruk?",
+      "choices": [
+        "Å anta at stor datamengde, åpent format eller teknisk tilgang alene gir validitet og fri gjenbruk",
+        "FAIR betyr ikke automatically open; access, consent, licensing, community authority og CARE collective-benefit/authority-to-control må vurderes sammen med findability og reuse, særlig for Indigenous, minoritized eller sensitive language data.",
+        "Å fjerne versjons- og provenanceinformasjon etter at analysen er kjørt",
+        "Å generalisere fra resource-frekvenser uten target population, access- og sampling-grenser"
+      ],
+      "correctIndex": 1,
+      "claim_ids": [
+        "corp-29",
+        "corp-30",
+        "corp-31"
+      ],
+      "source_ids": [
+        "corp10-fair",
+        "corp11-care"
+      ]
+    }
+  ],
+  "caseTasks": [
+    {
+      "id": "corp-case-01",
+      "prompt": "Et stort webkorpus kalles representativt fordi det har milliarder av tokens. Definer target population, sampling frame, strata og coverage før representativitet godtas.",
+      "responseMode": "guided_discussion_no_required_typing",
+      "claim_ids": [
+        "corp-01",
+        "corp-02",
+        "corp-03",
+        "corp-04"
+      ],
+      "source_ids": [
+        "corp01-biber-representativeness",
+        "corp13-dataverse"
+      ]
+    },
+    {
+      "id": "corp-case-02",
+      "prompt": "To annoterte corpora bruker samme dependency labels, men ulike guideline-versjoner og segmentering. Rekonstruer schema/version, transformation og annotation provenance før counts sammenlignes.",
+      "responseMode": "guided_discussion_no_required_typing",
+      "claim_ids": [
+        "corp-05",
+        "corp-06",
+        "corp-07",
+        "corp-08"
+      ],
+      "source_ids": [
+        "corp08-ud",
+        "corp13-dataverse",
+        "corp06-elan"
+      ]
+    },
+    {
+      "id": "corp-case-03",
+      "prompt": "En field-documentation collection skal deponeres. Kartlegg session bundles, contributors, consent, access levels, language identifiers og file relations før upload.",
+      "responseMode": "guided_discussion_no_required_typing",
+      "claim_ids": [
+        "corp-09",
+        "corp-10",
+        "corp-11",
+        "corp-12"
+      ],
+      "source_ids": [
+        "corp04-elar-lameta",
+        "corp05-paradisec",
+        "corp07-glottolog"
+      ]
+    },
+    {
+      "id": "corp-case-04",
+      "prompt": "En publisert analyse kan ikke rerunnes etter at korpuset er oppdatert. Finn dataset snapshot, query, code, environment og transformation history som må versjoneres.",
+      "responseMode": "guided_discussion_no_required_typing",
+      "claim_ids": [
+        "corp-21",
+        "corp-22",
+        "corp-23",
+        "corp-24"
+      ],
+      "source_ids": [
+        "corp09-talkbank",
+        "corp13-dataverse",
+        "corp10-fair"
+      ]
+    },
+    {
+      "id": "corp-case-05",
+      "prompt": "Et arkiv har backup men ingen dokumentert preservation plan. Vurder fixity, migration, metadata, organizational responsibility og designated community før det kalles trustworthy.",
+      "responseMode": "guided_discussion_no_required_typing",
+      "claim_ids": [
+        "corp-25",
+        "corp-26",
+        "corp-27",
+        "corp-28"
+      ],
+      "source_ids": [
+        "corp12-coretrustseal",
+        "corp05-paradisec"
+      ]
+    },
+    {
+      "id": "corp-case-06",
+      "prompt": "Et språkdatasett er FAIR og teknisk nedlastbart, men community-avtalen begrenser sekundærbruk. Avgjør access og reuse ved å kombinere consent, CARE authority-to-control og repository terms.",
+      "responseMode": "guided_discussion_no_required_typing",
+      "claim_ids": [
+        "corp-29",
+        "corp-30",
+        "corp-31",
+        "corp-32"
+      ],
+      "source_ids": [
+        "corp10-fair",
+        "corp11-care",
+        "corp04-elar-lameta"
+      ]
+    }
+  ]
+}
