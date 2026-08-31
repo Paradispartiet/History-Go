@@ -1,4 +1,4 @@
-name: Finalize Akershus slottskirke v4
+name: Finalize Akershus slottskirke v5
 
 on:
   push:
@@ -44,6 +44,24 @@ jobs:
 
       - name: Apply source-backed target repairs
         run: node tools/repair-akershus-slottskirke-finalizer.mjs
+
+      - name: Normalize coordinate source contract
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const placeFile='data/places/religion/oslo/akershus_slottskirke/akershus_slottskirke.json';
+          const evidenceFile='data/coordinate-evidence/oslo/religion/akershus_slottskirke.json';
+          const place=JSON.parse(fs.readFileSync(placeFile,'utf8'));
+          place.geocodeAccuracy='building';
+          place.coordRole='building_center';
+          fs.writeFileSync(placeFile, `${JSON.stringify(place,null,2)}\n`);
+          const evidence=JSON.parse(fs.readFileSync(evidenceFile,'utf8'));
+          for (const candidate of evidence.coordinateCandidates || []) {
+            if (candidate.coordRole === 'place_of_worship_anchor') candidate.coordRole='building_center';
+          }
+          fs.writeFileSync(evidenceFile, `${JSON.stringify(evidence,null,2)}\n`);
+          console.log('Normalized Akershus slottskirke coordinate v1 contract');
+          NODE
 
       - name: Rebuild place and epoch projections
         run: |
