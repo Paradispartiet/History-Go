@@ -16,8 +16,8 @@ test("generated epoch-place index is deterministic and current", () => {
   assert.equal(index.stats.canonical_source_count, 256);
   assert.equal(index.stats.place_evidence_link_count, 325);
   assert.equal(index.stats.period_case_count, 9);
-  assert.equal(index.stats.canonical_story_milestone_count, 211);
-  assert.equal(index.stats.verified_place_production_milestone_count, 318);
+  assert.equal(index.stats.canonical_story_milestone_count, 212);
+  assert.equal(index.stats.verified_place_production_milestone_count, 324);
 });
 
 test("canonical place geography separates Oslo, Lisboa and other countries deterministically", () => {
@@ -120,9 +120,9 @@ test("Oslo coverage classifies every canonical place exactly once without overst
   assert.equal(coverage.contract, "oslo-history-coverage-v1");
   // Reviewed Oslo places, including the phase-2 blue signs, carry dated, source-backed History evidence.
   assert.equal(coverage.canonical_place_count, 587);
-  assert.equal(coverage.dated_evidence_place_count, 223);
+  assert.equal(coverage.dated_evidence_place_count, 224);
   assert.equal(coverage.documented_case_place_count, 2);
-  assert.equal(coverage.awaiting_source_backed_history_count, 362);
+  assert.equal(coverage.awaiting_source_backed_history_count, 361);
   for (const placeId of ["akershus_slott", "gamle_radhus", "gamle_trikkestallen", "markveien", "paulus_kirke", "freia_fabrikken", "lilleborg_fabrikker", "ovre_foss", "arbeidermuseet", "clemenskirken_ruin_oslo", "minneparken_gamlebyen", "saxegarden", "gamlebyen_gravlund", "gamlebyen_kirke", "galgeberg", "kampen_kirke", "kampen_park", "klosterenga_skulpturpark", "sagene", "torshov", "torshovparken", "grorud", "grorudparken"]) {
     assert.equal(
       coverage.places.find((place) => place.place_id === placeId)?.status,
