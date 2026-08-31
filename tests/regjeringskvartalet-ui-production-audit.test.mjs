@@ -394,17 +394,65 @@ try {
 
   await fagverk.goto(`${base}/fagverk-sted.html?place=torggata`, { waitUntil: 'networkidle' });
   await fagverk.waitForSelector('#fagverkPlaceContent:not([hidden])');
-  assert.match((await fagverk.textContent('#fagverkPlaceCoverageStatus')).trim(), /under produksjon/);
-  assert.equal(await fagverk.locator('#fagverkPlaceUnfinished').isVisible(), true);
-  assert.equal(await fagverk.locator('#fagverkPlaceLenses a').count(), 0);
-  assert.equal(await fagverk.locator('#fagverkPlaceQuestions li').count(), 0);
-  const ordinaryEmneHref = await fagverk.locator('#fagverkPlaceEmner a').first().getAttribute('href');
+  assert.match((await fagverk.textContent('#fagverkPlaceCoverageStatus')).trim(), /kuratert stedsfagverk/i);
+  assert.equal(await fagverk.locator('#fagverkPlaceUnfinished').isHidden(), true);
+  assert.equal(await fagverk.locator('#fagverkPlaceLenses a').count(), 4);
+  assert.equal(await fagverk.locator('#fagverkPlaceQuestions li').count(), 5);
+  assert.equal(await fagverk.locator('#fagverkPlaceTraces article').count(), 3);
+  assert.equal(await fagverk.locator('#fagverkPlaceChapters > a').count(), 6);
+  assert.equal(await fagverk.locator('#fagverkPlaceChapters > a[href*="chapter="]').count(), 3);
+  assert.equal(await fagverk.locator('#fagverkPlaceChapters > a[href*="domain="]').count(), 3);
+  assert.equal(await fagverk.locator('#fagverkPlaceEmner a').count(), 4);
+  assert.equal(await fagverk.locator('#fagverkPlaceSources a').count(), 4);
+  const ordinaryEmneHref = await fagverk.locator('#fagverkPlaceLenses a').first().getAttribute('href');
   assert.match(ordinaryEmneHref, /^fagverk\.html\?subject=by&domain=[^&]+&emne=em_by_[^&]+&place=torggata$/);
   await Promise.all([
     fagverk.waitForURL(/fagverk\.html\?subject=by/),
-    fagverk.locator('#fagverkPlaceEmner a').first().click()
+    fagverk.locator('#fagverkPlaceLenses a').first().click()
   ]);
   assert.equal(new URL(fagverk.url()).searchParams.get('place'), 'torggata');
+  await fagverk.goBack({ waitUntil: 'networkidle' });
+  await fagverk.waitForSelector('#fagverkPlaceContent:not([hidden])');
+
+  await fagverk.goto(`${base}/fagverk-sted.html?place=bispelokket`, { waitUntil: 'networkidle' });
+  await fagverk.waitForSelector('#fagverkPlaceContent:not([hidden])');
+  assert.match((await fagverk.textContent('#fagverkPlaceCoverageStatus')).trim(), /kuratert stedsfagverk/i);
+  assert.equal(await fagverk.locator('#fagverkPlaceUnfinished').isHidden(), true);
+  assert.equal(await fagverk.locator('#fagverkPlaceLenses a').count(), 4);
+  assert.equal(await fagverk.locator('#fagverkPlaceQuestions li').count(), 5);
+  assert.equal(await fagverk.locator('#fagverkPlaceTraces article').count(), 3);
+  assert.equal(await fagverk.locator('#fagverkPlaceChapters > a[href*="chapter="]').count(), 3);
+  assert.equal(await fagverk.locator('#fagverkPlaceChapters > a[href*="domain="]').count(), 2);
+  assert.equal(await fagverk.locator('#fagverkPlaceEmner a').count(), 4);
+  assert.equal(await fagverk.locator('#fagverkPlaceSources a').count(), 4);
+  const bispelokketLensHref = await fagverk.locator('#fagverkPlaceLenses a').first().getAttribute('href');
+  assert.match(bispelokketLensHref, /^fagverk\.html\?subject=by&domain=[^&]+&emne=em_by_[^&]+&place=bispelokket$/);
+  await Promise.all([
+    fagverk.waitForURL(/fagverk\.html\?subject=by/),
+    fagverk.locator('#fagverkPlaceLenses a').first().click()
+  ]);
+  assert.equal(new URL(fagverk.url()).searchParams.get('place'), 'bispelokket');
+  await fagverk.goBack({ waitUntil: 'networkidle' });
+  await fagverk.waitForSelector('#fagverkPlaceContent:not([hidden])');
+
+  await fagverk.goto(`${base}/fagverk-sted.html?place=gronland_basarene`, { waitUntil: 'networkidle' });
+  await fagverk.waitForSelector('#fagverkPlaceContent:not([hidden])');
+  assert.match((await fagverk.textContent('#fagverkPlaceCoverageStatus')).trim(), /kuratert stedsfagverk/i);
+  assert.equal(await fagverk.locator('#fagverkPlaceUnfinished').isHidden(), true);
+  assert.equal(await fagverk.locator('#fagverkPlaceLenses a').count(), 4);
+  assert.equal(await fagverk.locator('#fagverkPlaceQuestions li').count(), 5);
+  assert.equal(await fagverk.locator('#fagverkPlaceTraces article').count(), 3);
+  assert.equal(await fagverk.locator('#fagverkPlaceChapters > a[href*="chapter="]').count(), 3);
+  assert.equal(await fagverk.locator('#fagverkPlaceChapters > a[href*="domain="]').count(), 3);
+  assert.equal(await fagverk.locator('#fagverkPlaceEmner a').count(), 4);
+  assert.equal(await fagverk.locator('#fagverkPlaceSources a').count(), 4);
+  const gronlandBasareneLensHref = await fagverk.locator('#fagverkPlaceLenses a').first().getAttribute('href');
+  assert.match(gronlandBasareneLensHref, /^fagverk\.html\?subject=by&domain=[^&]+&emne=em_by_[^&]+&place=gronland_basarene$/);
+  await Promise.all([
+    fagverk.waitForURL(/fagverk\.html\?subject=by/),
+    fagverk.locator('#fagverkPlaceLenses a').first().click()
+  ]);
+  assert.equal(new URL(fagverk.url()).searchParams.get('place'), 'gronland_basarene');
   await fagverk.goBack({ waitUntil: 'networkidle' });
   await fagverk.waitForSelector('#fagverkPlaceContent:not([hidden])');
 

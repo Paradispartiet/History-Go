@@ -80,6 +80,99 @@ test('kuratert Place-eid fagverk gjør linser, fagområder, begreper og emner ti
   dom.window.close();
 });
 
+test('Torggata renderer fire stedsegne linser og bare operative, navngitte kilder', async () => {
+  const place = JSON.parse(fs.readFileSync('data/places/by/oslo/places/torggata.json', 'utf8'));
+  const emners = place.fagverk.emne_ids.map((id, index) => ({
+    id,
+    domainId: `by_dom_${index}`,
+    title: `By-emne ${index + 1}`,
+    definition: `Canonical By-definisjon ${index + 1}.`,
+    concepts: [place.fagverk.concepts[index]],
+    keyQuestions: []
+  }));
+  const dom = await render(place, modelFixture('by', emners));
+  const { document } = dom.window;
+  assert.match(document.querySelector('#fagverkPlaceCoverageStatus').textContent, /kuratert stedsfagverk/i);
+  assert.equal(document.querySelector('#fagverkPlaceUnfinished').hidden, true);
+  assert.equal(document.querySelectorAll('#fagverkPlaceLenses a').length, 4);
+  assert.equal(document.querySelectorAll('#fagverkPlaceQuestions li').length, 5);
+  assert.equal(document.querySelectorAll('#fagverkPlaceTraces article').length, 3);
+  assert.equal(document.querySelectorAll('#fagverkPlaceSources a').length, 4);
+  assert.ok([...document.querySelectorAll('#fagverkPlaceLenses a')].every((link) => (
+    link.href.includes('subject=by') && link.href.includes('place=torggata') && link.href.includes('emne=em_by_')
+  )));
+  assert.deepEqual(
+    [...document.querySelectorAll('#fagverkPlaceSources a')].map((link) => link.href),
+    place.fagverk.source_urls
+  );
+  assert.ok([...document.querySelectorAll('#fagverkPlaceSources a, #fagverkPlaceTraces a')].every((link) => (
+    link.target === '_blank' && link.rel.includes('noopener') && link.rel.includes('noreferrer')
+  )));
+  dom.window.close();
+});
+
+test('Bispelokket renderer stedsegne undersøkelser med operative fag- og kildelenker', async () => {
+  const place = JSON.parse(fs.readFileSync('data/places/by/oslo/places/bispelokket.json', 'utf8'));
+  const emners = place.fagverk.emne_ids.map((id, index) => ({
+    id,
+    domainId: `bispelokket_dom_${index}`,
+    title: `By-emne ${index + 1}`,
+    definition: `Canonical By-definisjon ${index + 1}.`,
+    concepts: [place.fagverk.concepts[index]],
+    keyQuestions: []
+  }));
+  const dom = await render(place, modelFixture('by', emners));
+  const { document } = dom.window;
+  assert.match(document.querySelector('#fagverkPlaceCoverageStatus').textContent, /kuratert stedsfagverk/i);
+  assert.equal(document.querySelector('#fagverkPlaceUnfinished').hidden, true);
+  assert.equal(document.querySelectorAll('#fagverkPlaceLenses a').length, 4);
+  assert.equal(document.querySelectorAll('#fagverkPlaceQuestions li').length, 5);
+  assert.equal(document.querySelectorAll('#fagverkPlaceTraces article').length, 3);
+  assert.equal(document.querySelectorAll('#fagverkPlaceSources a').length, 4);
+  assert.ok([...document.querySelectorAll('#fagverkPlaceLenses a')].every((link) => (
+    link.href.includes('subject=by') && link.href.includes('place=bispelokket') && link.href.includes('emne=em_by_')
+  )));
+  assert.deepEqual(
+    [...document.querySelectorAll('#fagverkPlaceSources a')].map((link) => link.href),
+    place.fagverk.source_urls
+  );
+  assert.ok([...document.querySelectorAll('#fagverkPlaceSources a, #fagverkPlaceTraces a')].every((link) => (
+    link.target === '_blank' && link.rel.includes('noopener') && link.rel.includes('noreferrer')
+  )));
+  dom.window.close();
+});
+
+test('Grønland Basarene renderer terskelundersøkelser med operative fag- og kildelenker', async () => {
+  const place = JSON.parse(fs.readFileSync('data/places/by/oslo/places/gronland_basarene.json', 'utf8'));
+  const emners = place.fagverk.emne_ids.map((id, index) => ({
+    id,
+    domainId: `gronland_basarene_dom_${index}`,
+    title: `By-emne ${index + 1}`,
+    definition: `Canonical By-definisjon ${index + 1}.`,
+    concepts: [place.fagverk.concepts[index]],
+    keyQuestions: []
+  }));
+  const dom = await render(place, modelFixture('by', emners));
+  const { document } = dom.window;
+  assert.match(document.querySelector('#fagverkPlaceCoverageStatus').textContent, /kuratert stedsfagverk/i);
+  assert.equal(document.querySelector('#fagverkPlaceUnfinished').hidden, true);
+  assert.equal(document.querySelectorAll('#fagverkPlaceLenses a').length, 4);
+  assert.equal(document.querySelectorAll('#fagverkPlaceQuestions li').length, 5);
+  assert.equal(document.querySelectorAll('#fagverkPlaceTraces article').length, 3);
+  assert.equal(document.querySelectorAll('#fagverkPlaceSources a').length, 4);
+  assert.ok([...document.querySelectorAll('#fagverkPlaceLenses a')].every((link) => (
+    link.href.includes('subject=by') && link.href.includes('place=gronland_basarene') && link.href.includes('emne=em_by_')
+  )));
+  assert.deepEqual(
+    [...document.querySelectorAll('#fagverkPlaceSources a')].map((link) => link.href),
+    place.fagverk.source_urls
+  );
+  assert.ok([...document.querySelectorAll('#fagverkPlaceSources a, #fagverkPlaceTraces a')].every((link) => (
+    link.target === '_blank' && link.rel.includes('noopener') && link.rel.includes('noreferrer')
+  )));
+  dom.window.close();
+});
+
 test('ufullført sted får ærlig status og ingen avledede linser eller spørsmål', async () => {
   const emners = [{
     id: 'em_by_gentrifisering_eiendom',
@@ -90,11 +183,11 @@ test('ufullført sted får ærlig status og ingen avledede linser eller spørsm�
     keyQuestions: ['Hvordan endrer eierskap og investering stedet?']
   }];
   const dom = await render({
-    id: 'torggata',
-    name: 'Torggata',
+    id: 'ufullfort_sted',
+    name: 'Ufullført sted',
     category: 'by',
-    desc: 'Redigert ingress for Torggata.',
-    popupDesc: 'Redigert stedsartikkel for Torggata.',
+    desc: 'Redigert ingress for et ufullført sted.',
+    popupDesc: 'Redigert stedsartikkel for et ufullført sted.',
     emne_ids: emners.map((emne) => emne.id)
   }, modelFixture('by', emners));
   const { document } = dom.window;

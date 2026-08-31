@@ -89,6 +89,6 @@ test("contracts preserve legacy evidence while keeping the visual grid full", ()
   assert.match(contract, /Objects og kategoriuttrykket har tydelig entity-grense/);
   assert.match(contract, /separat canonical Place forblir eget Place og vises gjennom relasjonssystemet/);
   assert.match(contract, /Legacy Places kan fortsatt leses gjennom eksisterende kompatibilitetsadapter/);
-  assert.match(checklist, /nye\/fullproduserte steder bruker `place_card_profile\.collection_ids`/);
+  assert.match(checklist, /For nye og fullproduserte ordinære Places gjelder:[\s\S]*`place_card_profile\.collection_ids`/);
   assert.match(workcard, /Torggata = SLUTTFØRT, MERGET OG DEPLOYET/);
 });
