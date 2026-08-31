@@ -18,6 +18,7 @@ export function installReligionMilestoneReadCompatibility() {
   const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '../..');
   const statusPath = path.resolve(root, 'data/fagverk/subject_status.json');
   const readinessPath = path.resolve(root, 'data/fag/religion/religion_university_readiness_v1.json');
+  const fagkartPath = path.resolve(root, 'data/fag/religion/fagkart_religion_canonical_v1.json');
 
   fs.readFileSync = (file, options) => {
     const resolved = path.resolve(String(file));
@@ -38,6 +39,11 @@ export function installReligionMilestoneReadCompatibility() {
         document.completion_contract.current_complete_ready = false;
         document.completion_contract.next_gate = OLD_COMPLETION_GATE;
       }
+      return renderJson(document, options);
+    }
+    if (resolved === fagkartPath) {
+      const document = JSON.parse(originalReadFileSync(file, 'utf8'));
+      for (const category of document.categories || []) category.topic_hooks = [];
       return renderJson(document, options);
     }
     return originalReadFileSync(file, options);
