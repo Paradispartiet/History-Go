@@ -611,6 +611,21 @@
   "cross_category_existing_references": [],
   "missing_people_candidates": [
     {
+      "id": "amina_registrar_kunstlogistikk",
+      "name": "amina_registrar_kunstlogistikk",
+      "category": "kunst",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/kunst/kunst_utstillingsproduksjon.json"
+      ],
+      "scenario_roles": [
+        "kunst_utstillingsproduksjon"
+      ],
+      "verification_required": true
+    },
+    {
       "id": "amina_seniorkurator_kunstledelse",
       "name": "amina_seniorkurator_kunstledelse",
       "category": "kunst",
@@ -622,6 +637,21 @@
       ],
       "scenario_roles": [
         "kunst_kunstnerisk_ledelse"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "eirik_installasjon_og_sikkerhet",
+      "name": "eirik_installasjon_og_sikkerhet",
+      "category": "kunst",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/kunst/kunst_utstillingsproduksjon.json"
+      ],
+      "scenario_roles": [
+        "kunst_utstillingsproduksjon"
       ],
       "verification_required": true
     },
@@ -652,6 +682,36 @@
       ],
       "scenario_roles": [
         "kunst_kunstnerisk_ledelse"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "nora_utstillingsprodusent",
+      "name": "nora_utstillingsprodusent",
+      "category": "kunst",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/kunst/kunst_utstillingsproduksjon.json"
+      ],
+      "scenario_roles": [
+        "kunst_utstillingsproduksjon"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "sara_kunstner_og_apningskontakt",
+      "name": "sara_kunstner_og_apningskontakt",
+      "category": "kunst",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/kunst/kunst_utstillingsproduksjon.json"
+      ],
+      "scenario_roles": [
+        "kunst_utstillingsproduksjon"
       ],
       "verification_required": true
     },
@@ -1037,6 +1097,35 @@
       },
       "automatic_match_tokens": [
         "utstillingskoordinator"
+      ],
+      "resolved_counts": {
+        "total": 84,
+        "existing_place_people": 84,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 84,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "kunst_utstillingsproduksjon",
+      "role_scope": "kunst_utstillingsproduksjon",
+      "title": "Utstillingsproduksjon og koordinering",
+      "source": "data/Civication/roleModels/kunst/kunst_utstillingsproduksjon.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "koordinering",
+        "utstillingsproduksjon"
       ],
       "resolved_counts": {
         "total": 84,
