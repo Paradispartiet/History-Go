@@ -1,0 +1,1035 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "kunst",
+  "role_scope": "kunst_utstillingsproduksjon",
+  "title": "Utstillingsproduksjon — avhengigheter, materialitet og situert tillit",
+  "status": "role_world_complete",
+  "materialization": {
+    "authored_dimensions": [
+      "situated_reputation"
+    ],
+    "no_new_runtime": true,
+    "existing_plan_preserved": true,
+    "existing_role_model_preserved": true,
+    "existing_people_foundation_preserved": true,
+    "existing_work_grammar_preserved": true,
+    "existing_persistent_work_preserved": true,
+    "existing_rhythm_preserved": true,
+    "cross_role_link_materialized": false,
+    "source_refs": [
+      "data/Civication/mailFamilies/kunst/job/kunst_utstillingsproduksjon_job.json#utstillingsproduksjon_job_brief_001",
+      "data/Civication/mailFamilies/kunst/job/kunst_utstillingsproduksjon_job.json#utstillingsproduksjon_job_transport_002",
+      "data/Civication/mailFamilies/kunst/job/kunst_utstillingsproduksjon_job.json#utstillingsproduksjon_job_installasjon_003",
+      "data/Civication/mailFamilies/kunst/job/kunst_utstillingsproduksjon_job.json#utstillingsproduksjon_job_apningskontroll_004",
+      "data/Civication/mailFamilies/kunst/people/kunst_utstillingsproduksjon_people.json#utstillingsproduksjon_people_nora_plan_001",
+      "data/Civication/mailFamilies/kunst/people/kunst_utstillingsproduksjon_people.json#utstillingsproduksjon_people_amina_tilstand_002",
+      "data/Civication/mailFamilies/kunst/people/kunst_utstillingsproduksjon_people.json#utstillingsproduksjon_people_eirik_metode_003",
+      "data/Civication/mailFamilies/kunst/people/kunst_utstillingsproduksjon_people.json#utstillingsproduksjon_people_sara_endring_004",
+      "data/Civication/mailFamilies/kunst/conflict/kunst_utstillingsproduksjon_conflict.json#utstillingsproduksjon_conflict_frist_sikkerhet_001",
+      "data/Civication/mailFamilies/kunst/story/kunst_utstillingsproduksjon_story.json#utstillingsproduksjon_story_koordinatoridentitet_001",
+      "data/Civication/mailFamilies/kunst/event/kunst_utstillingsproduksjon_event.json#utstillingsproduksjon_event_transportforsinkelse_001",
+      "data/Civication/mailFamilies/kunst/micro/kunst_utstillingsproduksjon_micro.json#utstillingsproduksjon_micro_kall_det_klart_001",
+      "data/Civication/mailFamilies/kunst/followup/kunst_utstillingsproduksjon_followup.json#utstillingsproduksjon_followup_rework_installasjon_001",
+      "data/Civication/mailFamilies/kunst/knowledge/kunst_utstillingsproduksjon_knowledge.json#utstillingsproduksjon_knowledge_materialitet_proveniens_001",
+      "data/Civication/mailFamilies/kunst/consequence/kunst_utstillingsproduksjon_consequence.json#utstillingsproduksjon_consequence_etter_apning_001"
+    ]
+  },
+  "existing_work_continuity": {
+    "runtime_binding": "existing_mail_plan_and_work_grammar",
+    "new_runtime_state": false,
+    "work_loops": [
+      "brief -> avhengigheter -> plan -> gjennomfor -> kontroll -> avvik -> lukking",
+      "endring -> konsekvensvurdering -> godkjenning -> replanlegg -> informer -> dokumenter"
+    ],
+    "persistent_work_object": "utstillingsproduksjonsmappe",
+    "canonical_surfaces": [
+      "data/Civication/roleModels/kunst/kunst_utstillingsproduksjon.json",
+      "data/Civication/workGrammars/kunst/kunst_utstillingsproduksjon.json",
+      "data/Civication/mailPlans/kunst/kunst_utstillingsproduksjon_plan.json",
+      "data/Civication/mailFamilies/kunst/job/kunst_utstillingsproduksjon_job.json",
+      "data/Civication/mailFamilies/kunst/people/kunst_utstillingsproduksjon_people.json",
+      "data/Civication/mailFamilies/kunst/conflict/kunst_utstillingsproduksjon_conflict.json",
+      "data/Civication/mailFamilies/kunst/story/kunst_utstillingsproduksjon_story.json",
+      "data/Civication/mailFamilies/kunst/event/kunst_utstillingsproduksjon_event.json",
+      "data/Civication/mailFamilies/kunst/micro/kunst_utstillingsproduksjon_micro.json",
+      "data/Civication/mailFamilies/kunst/followup/kunst_utstillingsproduksjon_followup.json",
+      "data/Civication/mailFamilies/kunst/knowledge/kunst_utstillingsproduksjon_knowledge.json",
+      "data/Civication/mailFamilies/kunst/consequence/kunst_utstillingsproduksjon_consequence.json"
+    ],
+    "rule": "Den eksisterende planen, mailfamiliene, fiktive aktørene, arbeidsflatene, produksjonsmappen og waiting/handoff/rework-rytmen forblir authoritative; Role World legger bare situert standing rundt kildene."
+  },
+  "sociological_core": [
+    "usynlig koordinering blir synlig når en avhengighet svikter",
+    "fristpress fordeler risiko og skyld ulikt mellom faggrupper",
+    "materiell omsorg konkurrerer med åpningens symbolske prestisje"
+  ],
+  "employment_conditions": [
+    "delegert bestilling og budsjettgrense",
+    "prosjektfrister, skift og leverandøravhengighet",
+    "ansvar uten rett til å overta andre fagmyndigheter"
+  ],
+  "professional_culture": [
+    "restpunkt er informasjon, ikke personlig nederlag",
+    "tilstand, metode og handoff må tåle etterprøving",
+    "stopp er profesjonelt når premisset ikke er avklart"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "nora_utstillingsprodusent_world",
+      "social_function": "Nora eier den samlede produksjonsplanen og gjør brief, utlån, transport, installasjon, budsjett og åpning til ett beslutningsbart avhengighetsbilde. Hun krever at usikkerhet får eier og frist før tidsplanen presenteres som løfte.",
+      "class_position": "utstillingsprodusent",
+      "status": "Situert profesjonell standing knyttet til produksjons_og_avhengighetsbord.",
+      "power_over_player": "Nora kan prioritere og godkjenne innen delegert produksjons- og budsjettramme, men kan ikke sette låne-, forsikrings-, sikkerhets- eller konserveringskrav til side eller overføre sin fullmakt til spilleren.",
+      "wants": "At produksjonsmappens status, avhengigheter, stoppunkter og neste eier er presise nok til at egen fagrolle kan utøves uten myndighetsglidning.",
+      "conceals": "Eget fristpress og egne interesser kan påvirke hva personen ønsker synlig, selv når innspillet er faglig legitimt.",
+      "speech_style": "Presis, arbeidsnær og tydelig på forskjellen mellom observasjon, anbefaling, bestilling og godkjenning.",
+      "teaches_player": "At profesjonell tillit følger etterprøvbar koordinering i en avgrenset relasjon og aldri blir generell popularitet eller fullmakt."
+    },
+    {
+      "id": "amina_registrar_kunstlogistikk_world",
+      "social_function": "Amina holder låneavtale, forsikring, transportbestilling, courier-krav, mottak og tilstandsrapport sammen. Hun gjør dokumentasjonsbrudd synlige før et verk flyttes eller pakkes ut og skiller transporttempo fra tillatt håndtering.",
+      "class_position": "registrar og kunstlogistikkansvarlig",
+      "status": "Situert profesjonell standing knyttet til mottak_transport_og_tilstand.",
+      "power_over_player": "Amina kan stoppe mottak og håndtering når krav eller tilstand er uklare og sende saken til riktig långiver- eller fagfunksjon. Hun kan ikke endre kunstnerisk innhold, godkjenne konserveringsinngrep eller gi spilleren rett til å omgå lånevilkår.",
+      "wants": "At produksjonsmappens status, avhengigheter, stoppunkter og neste eier er presise nok til at egen fagrolle kan utøves uten myndighetsglidning.",
+      "conceals": "Eget fristpress og egne interesser kan påvirke hva personen ønsker synlig, selv når innspillet er faglig legitimt.",
+      "speech_style": "Presis, arbeidsnær og tydelig på forskjellen mellom observasjon, anbefaling, bestilling og godkjenning.",
+      "teaches_player": "At profesjonell tillit følger etterprøvbar koordinering i en avgrenset relasjon og aldri blir generell popularitet eller fullmakt."
+    },
+    {
+      "id": "eirik_installasjon_og_sikkerhet_world",
+      "social_function": "Eirik oversetter installasjonstegning, bygg, løft, strøm, rømningsvei og publikumsbruk til en sekvens som kan gjennomføres sikkert. Han viser hvor en sen endring skaper ny risiko, venting eller rework for flere fag.",
+      "class_position": "installasjons- og sikkerhetsleder",
+      "status": "Situert profesjonell standing knyttet til installasjon_og_sikkerhetsflate.",
+      "power_over_player": "Eirik kan stanse risikofylt arbeid, kreve teknisk avklaring og koordinere installasjon innen godkjent metode. Han kan ikke godkjenne uforsvarlig løsning, overskride budsjett eller gjøre teknisk kontroll til kunstnerisk veto.",
+      "wants": "At produksjonsmappens status, avhengigheter, stoppunkter og neste eier er presise nok til at egen fagrolle kan utøves uten myndighetsglidning.",
+      "conceals": "Eget fristpress og egne interesser kan påvirke hva personen ønsker synlig, selv når innspillet er faglig legitimt.",
+      "speech_style": "Presis, arbeidsnær og tydelig på forskjellen mellom observasjon, anbefaling, bestilling og godkjenning.",
+      "teaches_player": "At profesjonell tillit følger etterprøvbar koordinering i en avgrenset relasjon og aldri blir generell popularitet eller fullmakt."
+    },
+    {
+      "id": "sara_kunstner_og_apningskontakt_world",
+      "social_function": "Sara holder kunstnerdialog, endringsønsker, merking, formidling, gjesteflyt og åpningsstatus konsistente. Hun skiller et ønske fra en godkjent endring og sørger for at åpne punkter ikke forsvinner når kommunikasjonen blir offentlig.",
+      "class_position": "kunstner- og åpningskontakt",
+      "status": "Situert profesjonell standing knyttet til apningsberedskap_og_overlevering.",
+      "power_over_player": "Sara kan hente avklaringer og kommunisere dokumentert status, men kan ikke love endring, programinnhold eller åpning på vegne av riktig beslutningseier. Spilleren kan ikke bruke relasjonen til å omgå plan, sikkerhet eller budsjett.",
+      "wants": "At produksjonsmappens status, avhengigheter, stoppunkter og neste eier er presise nok til at egen fagrolle kan utøves uten myndighetsglidning.",
+      "conceals": "Eget fristpress og egne interesser kan påvirke hva personen ønsker synlig, selv når innspillet er faglig legitimt.",
+      "speech_style": "Presis, arbeidsnær og tydelig på forskjellen mellom observasjon, anbefaling, bestilling og godkjenning.",
+      "teaches_player": "At profesjonell tillit følger etterprøvbar koordinering i en avgrenset relasjon og aldri blir generell popularitet eller fullmakt."
+    }
+  ],
+  "social_environments": [
+    "produksjons_og_avhengighetsbord",
+    "mottak_transport_og_tilstand",
+    "installasjon_og_sikkerhetsflate",
+    "apningsberedskap_og_overlevering"
+  ],
+  "slow_axes": [
+    "dependency_visibility",
+    "custody_confidence",
+    "method_safety",
+    "artist_process",
+    "opening_pressure",
+    "private_containment"
+  ],
+  "situated_reputation_model": {
+    "global_score_allowed": false,
+    "audiences": [
+      {
+        "id": "production_leadership",
+        "standing_axis": "plan_dependency_standing",
+        "cares_about": [
+          "synlige avhengigheter og beslutningsklare avvik",
+          "realistisk tid, kostnad og ansvar"
+        ],
+        "cannot_grant": "Produksjonsstanding kan ikke gi budsjettfullmakt, kunstnerisk beslutningsrett eller adgang til å skjule et avvik."
+      },
+      {
+        "id": "registrar_lenders",
+        "standing_axis": "custody_condition_standing",
+        "cares_about": [
+          "sporbar mottakskjede, tilstandsrapport og lånevilkår",
+          "at forsikring og utlåners krav følges ved endring"
+        ],
+        "cannot_grant": "Tillit hos registrar eller långiver kan ikke oppheve låne-, forsikrings- eller konserveringskrav."
+      },
+      {
+        "id": "installation_safety",
+        "standing_axis": "method_safety_standing",
+        "cares_about": [
+          "avklart metode, belastning, sperring og stoppunkt",
+          "at rework skjer før risiko normaliseres"
+        ],
+        "cannot_grant": "Sikkerhetsstanding kan ikke gjøre en uforsvarlig installasjon forsvarlig eller flytte godkjenningsmyndighet til spilleren."
+      },
+      {
+        "id": "artists_curators",
+        "standing_axis": "intent_change_standing",
+        "cares_about": [
+          "presis oversettelse av kunstnerisk intensjon til gjennomførbar metode",
+          "ærlig status når endringer krever ny avklaring"
+        ],
+        "cannot_grant": "Relasjonell tillit kan ikke gi spilleren rett til å endre kunstnerisk innhold eller love en løsning uten mandat."
+      },
+      {
+        "id": "venue_front_of_house",
+        "standing_axis": "opening_operations_standing",
+        "cares_about": [
+          "åpningsklar flyt, tilgjengelighet og tydelig overlevering",
+          "at uløste forhold ikke dumpes på publikumsleddet"
+        ],
+        "cannot_grant": "Driftsstanding kan ikke omgå sikkerhet, personvern, bemanningsansvar eller dokumentert overlevering."
+      },
+      {
+        "id": "public_press",
+        "standing_axis": "public_delivery_standing",
+        "cares_about": [
+          "en trygg og sammenhengende publikumsopplevelse",
+          "etterprøvbar forklaring av feil, endring og reparasjon"
+        ],
+        "cannot_grant": "Offentlig standing kan ikke bli kunstnerisk mandat eller gjøre oppmerksomhet til tillatelse for risikofylt arbeid."
+      },
+      {
+        "id": "private_relations",
+        "standing_axis": "private_containment_standing",
+        "cares_about": [
+          "nærvær uten døgnkontinuerlig åpningsberedskap",
+          "at dokumentert ansvar blir på arbeidsplassen"
+        ],
+        "cannot_grant": "Profesjonell standing kan ikke brukes som privat rang eller gjøre nære relasjoner ansvarlige for institusjonens restarbeid."
+      }
+    ],
+    "authority_separation": "Standing uttrykker situert tillit og kan aldri gi kunstnerisk innholdsmyndighet, budsjettfullmakt, låne- eller forsikringsunntak, konserveringsmyndighet eller rett til å godkjenne uforsvarlig installasjon.",
+    "rule": "Standing kan divergere mellom produksjonsledelse, registrar/långivere, installasjon/sikkerhet, kunstnere/kuratorer, publikumsdrift, offentlighet og privatliv uten global sum."
+  },
+  "history_go_affordance": {
+    "source_ref": "data/Civication/mailFamilies/kunst/knowledge/kunst_utstillingsproduksjon_knowledge.json#utstillingsproduksjon_knowledge_materialitet_proveniens_001",
+    "knowledge_use": "Kunsthistorisk kunnskap om materialitet, proveniens, utstillingsformat og institusjon brukes til å stille bedre spørsmål om håndtering og formidling før metode eller status endres.",
+    "better_question": "Hvilke historiske material-, proveniens- og utstillingspremisser er relevante for akkurat dette verket, hvilken kilde kan dokumentere dem, og hvilken registrar-, konservator-, kunstner- eller låneinstans har myndighet til å avklare praktisk konsekvens?",
+    "authority_boundary": "History Go-kunnskap kan skjerpe spørsmål og kildekritikk, men kan ikke gi låne-, forsikrings-, konserverings-, budsjett- eller kunstnerisk myndighet eller godkjenne en risikofylt installasjon."
+  },
+  "cross_role_link": {
+    "status": "candidate_when_shared_work_is_real",
+    "materialized": false,
+    "new_runtime": false,
+    "companion_keys": [
+      "kunst/kunst_kunstnerisk_ledelse",
+      "kunst/kunst_kuratering_og_program"
+    ],
+    "rule": "Nærliggende Kunst-roller er kandidater, men ingen delt runtime eller nytt objekt opprettes før faktisk eierskap, handoff og authority er styrt."
+  },
+  "theme_ids": [
+    "invisible_work",
+    "professional_culture",
+    "class_power",
+    "bureaucratic_power",
+    "loyalty_up_down",
+    "care_vs_efficiency",
+    "shame_reputation",
+    "status_anxiety",
+    "public_private_leakage",
+    "local_knowledge_vs_system",
+    "public_attention",
+    "emotional_labor"
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Briefen kommer med en foreløpig verkoversikt, men lånevilkår, mål og ansvar er fortsatt uavklart; produksjonsmappen må skille ønsket åpningsdato fra det som faktisk er bestilt. Om morgenen må spilleren etablere dagens faktiske produksjonsstatus før bestillinger og løfter begynner å løpe. I D1-morning bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "production_leadership",
+        "standing_consequence": "For production_leadership avgjør håndteringen i D1-morning om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/job/kunst_utstillingsproduksjon_job.json#utstillingsproduksjon_job_brief_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Briefen kommer med en foreløpig verkoversikt, men lånevilkår, mål og ansvar er fortsatt uavklart; produksjonsmappen må skille ønsket åpningsdato fra det som faktisk er bestilt. Ved lunsj kommer en motstemme fra arbeidsflaten som tester om handoff, venting og myndighetsgrense er forstått likt. I D1-lunch bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "registrar_lenders",
+        "standing_consequence": "For registrar_lenders avgjør håndteringen i D1-lunch om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/job/kunst_utstillingsproduksjon_job.json#utstillingsproduksjon_job_transport_002"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Briefen kommer med en foreløpig verkoversikt, men lånevilkår, mål og ansvar er fortsatt uavklart; produksjonsmappen må skille ønsket åpningsdato fra det som faktisk er bestilt. Om ettermiddagen må et konkret valg versjoneres i produksjonsmappen med eier, konsekvens, stoppunkt og neste kontroll. I D1-afternoon bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "installation_safety",
+        "standing_consequence": "For installation_safety avgjør håndteringen i D1-afternoon om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/job/kunst_utstillingsproduksjon_job.json#utstillingsproduksjon_job_installasjon_003"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Briefen kommer med en foreløpig verkoversikt, men lånevilkår, mål og ansvar er fortsatt uavklart; produksjonsmappen må skille ønsket åpningsdato fra det som faktisk er bestilt. Om kvelden følger arbeidet spilleren hjem som statuspress; ansvaret må avgrenses uten at dokumentasjon eller omsorg forsvinner. I D1-evening bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "artists_curators",
+        "standing_consequence": "For artists_curators avgjør håndteringen i D1-evening om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/job/kunst_utstillingsproduksjon_job.json#utstillingsproduksjon_job_apningskontroll_004"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Amina mottar første transportkasse og finner et merke som ikke finnes i avsenders fotografier; mottakskjeden må fryses mens tilstand og forsikringskontakt avklares. Om morgenen må spilleren etablere dagens faktiske produksjonsstatus før bestillinger og løfter begynner å løpe. I D2-morning bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "registrar_lenders",
+        "standing_consequence": "For registrar_lenders avgjør håndteringen i D2-morning om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/people/kunst_utstillingsproduksjon_people.json#utstillingsproduksjon_people_nora_plan_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Amina mottar første transportkasse og finner et merke som ikke finnes i avsenders fotografier; mottakskjeden må fryses mens tilstand og forsikringskontakt avklares. Ved lunsj kommer en motstemme fra arbeidsflaten som tester om handoff, venting og myndighetsgrense er forstått likt. I D2-lunch bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "installation_safety",
+        "standing_consequence": "For installation_safety avgjør håndteringen i D2-lunch om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/people/kunst_utstillingsproduksjon_people.json#utstillingsproduksjon_people_amina_tilstand_002"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Amina mottar første transportkasse og finner et merke som ikke finnes i avsenders fotografier; mottakskjeden må fryses mens tilstand og forsikringskontakt avklares. Om ettermiddagen må et konkret valg versjoneres i produksjonsmappen med eier, konsekvens, stoppunkt og neste kontroll. I D2-afternoon bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "artists_curators",
+        "standing_consequence": "For artists_curators avgjør håndteringen i D2-afternoon om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/people/kunst_utstillingsproduksjon_people.json#utstillingsproduksjon_people_eirik_metode_003"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Amina mottar første transportkasse og finner et merke som ikke finnes i avsenders fotografier; mottakskjeden må fryses mens tilstand og forsikringskontakt avklares. Om kvelden følger arbeidet spilleren hjem som statuspress; ansvaret må avgrenses uten at dokumentasjon eller omsorg forsvinner. I D2-evening bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "venue_front_of_house",
+        "standing_consequence": "For venue_front_of_house avgjør håndteringen i D2-evening om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/people/kunst_utstillingsproduksjon_people.json#utstillingsproduksjon_people_sara_endring_004"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Nora samler transportvinduer, løfteutstyr og bemanning, og oppdager at én sen leveranse blokkerer både monteringsrekkefølge og sikker adgang til salen. Om morgenen må spilleren etablere dagens faktiske produksjonsstatus før bestillinger og løfter begynner å løpe. I D3-morning bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "installation_safety",
+        "standing_consequence": "For installation_safety avgjør håndteringen i D3-morning om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/conflict/kunst_utstillingsproduksjon_conflict.json#utstillingsproduksjon_conflict_frist_sikkerhet_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Nora samler transportvinduer, løfteutstyr og bemanning, og oppdager at én sen leveranse blokkerer både monteringsrekkefølge og sikker adgang til salen. Ved lunsj kommer en motstemme fra arbeidsflaten som tester om handoff, venting og myndighetsgrense er forstått likt. I D3-lunch bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "artists_curators",
+        "standing_consequence": "For artists_curators avgjør håndteringen i D3-lunch om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/story/kunst_utstillingsproduksjon_story.json#utstillingsproduksjon_story_koordinatoridentitet_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Nora samler transportvinduer, løfteutstyr og bemanning, og oppdager at én sen leveranse blokkerer både monteringsrekkefølge og sikker adgang til salen. Om ettermiddagen må et konkret valg versjoneres i produksjonsmappen med eier, konsekvens, stoppunkt og neste kontroll. I D3-afternoon bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "venue_front_of_house",
+        "standing_consequence": "For venue_front_of_house avgjør håndteringen i D3-afternoon om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/event/kunst_utstillingsproduksjon_event.json#utstillingsproduksjon_event_transportforsinkelse_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Nora samler transportvinduer, løfteutstyr og bemanning, og oppdager at én sen leveranse blokkerer både monteringsrekkefølge og sikker adgang til salen. Om kvelden følger arbeidet spilleren hjem som statuspress; ansvaret må avgrenses uten at dokumentasjon eller omsorg forsvinner. I D3-evening bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "public_press",
+        "standing_consequence": "For public_press avgjør håndteringen i D3-evening om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/micro/kunst_utstillingsproduksjon_micro.json#utstillingsproduksjon_micro_kall_det_klart_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Eirik prøver monteringsmetoden mot vegg, last og rømningslinje; den raske løsningen fra skissen mangler dokumentert innfesting og må tilbake til metodevalg. Om morgenen må spilleren etablere dagens faktiske produksjonsstatus før bestillinger og løfter begynner å løpe. I D4-morning bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "artists_curators",
+        "standing_consequence": "For artists_curators avgjør håndteringen i D4-morning om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/followup/kunst_utstillingsproduksjon_followup.json#utstillingsproduksjon_followup_rework_installasjon_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Eirik prøver monteringsmetoden mot vegg, last og rømningslinje; den raske løsningen fra skissen mangler dokumentert innfesting og må tilbake til metodevalg. Ved lunsj kommer en motstemme fra arbeidsflaten som tester om handoff, venting og myndighetsgrense er forstått likt. I D4-lunch bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "venue_front_of_house",
+        "standing_consequence": "For venue_front_of_house avgjør håndteringen i D4-lunch om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/knowledge/kunst_utstillingsproduksjon_knowledge.json#utstillingsproduksjon_knowledge_materialitet_proveniens_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Eirik prøver monteringsmetoden mot vegg, last og rømningslinje; den raske løsningen fra skissen mangler dokumentert innfesting og må tilbake til metodevalg. Om ettermiddagen må et konkret valg versjoneres i produksjonsmappen med eier, konsekvens, stoppunkt og neste kontroll. I D4-afternoon bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "public_press",
+        "standing_consequence": "For public_press avgjør håndteringen i D4-afternoon om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/consequence/kunst_utstillingsproduksjon_consequence.json#utstillingsproduksjon_consequence_etter_apning_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Eirik prøver monteringsmetoden mot vegg, last og rømningslinje; den raske løsningen fra skissen mangler dokumentert innfesting og må tilbake til metodevalg. Om kvelden følger arbeidet spilleren hjem som statuspress; ansvaret må avgrenses uten at dokumentasjon eller omsorg forsvinner. I D4-evening bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "For private_relations avgjør håndteringen i D4-evening om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/job/kunst_utstillingsproduksjon_job.json#utstillingsproduksjon_job_brief_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Sara formidler en kunstnerisk endring etter at materialet allerede er bestilt; forskjellen mellom intensjon, teknisk konsekvens og godkjent bestilling må bli synlig. Om morgenen må spilleren etablere dagens faktiske produksjonsstatus før bestillinger og løfter begynner å løpe. I D5-morning bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "venue_front_of_house",
+        "standing_consequence": "For venue_front_of_house avgjør håndteringen i D5-morning om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/job/kunst_utstillingsproduksjon_job.json#utstillingsproduksjon_job_transport_002"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Sara formidler en kunstnerisk endring etter at materialet allerede er bestilt; forskjellen mellom intensjon, teknisk konsekvens og godkjent bestilling må bli synlig. Ved lunsj kommer en motstemme fra arbeidsflaten som tester om handoff, venting og myndighetsgrense er forstått likt. I D5-lunch bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "public_press",
+        "standing_consequence": "For public_press avgjør håndteringen i D5-lunch om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/job/kunst_utstillingsproduksjon_job.json#utstillingsproduksjon_job_installasjon_003"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Sara formidler en kunstnerisk endring etter at materialet allerede er bestilt; forskjellen mellom intensjon, teknisk konsekvens og godkjent bestilling må bli synlig. Om ettermiddagen må et konkret valg versjoneres i produksjonsmappen med eier, konsekvens, stoppunkt og neste kontroll. I D5-afternoon bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "For private_relations avgjør håndteringen i D5-afternoon om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/job/kunst_utstillingsproduksjon_job.json#utstillingsproduksjon_job_apningskontroll_004"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Sara formidler en kunstnerisk endring etter at materialet allerede er bestilt; forskjellen mellom intensjon, teknisk konsekvens og godkjent bestilling må bli synlig. Om kvelden følger arbeidet spilleren hjem som statuspress; ansvaret må avgrenses uten at dokumentasjon eller omsorg forsvinner. I D5-evening bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "production_leadership",
+        "standing_consequence": "For production_leadership avgjør håndteringen i D5-evening om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/people/kunst_utstillingsproduksjon_people.json#utstillingsproduksjon_people_nora_plan_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "En transportforsinkelse skaper venting ved mottaket og press for å hoppe over kontroll; produksjonsmappen må bevare hvem som venter på hvilken bekreftelse. Om morgenen må spilleren etablere dagens faktiske produksjonsstatus før bestillinger og løfter begynner å løpe. I D6-morning bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "public_press",
+        "standing_consequence": "For public_press avgjør håndteringen i D6-morning om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/people/kunst_utstillingsproduksjon_people.json#utstillingsproduksjon_people_amina_tilstand_002"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "En transportforsinkelse skaper venting ved mottaket og press for å hoppe over kontroll; produksjonsmappen må bevare hvem som venter på hvilken bekreftelse. Ved lunsj kommer en motstemme fra arbeidsflaten som tester om handoff, venting og myndighetsgrense er forstått likt. I D6-lunch bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "For private_relations avgjør håndteringen i D6-lunch om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/people/kunst_utstillingsproduksjon_people.json#utstillingsproduksjon_people_eirik_metode_003"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "En transportforsinkelse skaper venting ved mottaket og press for å hoppe over kontroll; produksjonsmappen må bevare hvem som venter på hvilken bekreftelse. Om ettermiddagen må et konkret valg versjoneres i produksjonsmappen med eier, konsekvens, stoppunkt og neste kontroll. I D6-afternoon bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "production_leadership",
+        "standing_consequence": "For production_leadership avgjør håndteringen i D6-afternoon om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/people/kunst_utstillingsproduksjon_people.json#utstillingsproduksjon_people_sara_endring_004"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "En transportforsinkelse skaper venting ved mottaket og press for å hoppe over kontroll; produksjonsmappen må bevare hvem som venter på hvilken bekreftelse. Om kvelden følger arbeidet spilleren hjem som statuspress; ansvaret må avgrenses uten at dokumentasjon eller omsorg forsvinner. I D6-evening bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "registrar_lenders",
+        "standing_consequence": "For registrar_lenders avgjør håndteringen i D6-evening om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/conflict/kunst_utstillingsproduksjon_conflict.json#utstillingsproduksjon_conflict_frist_sikkerhet_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Halvveis i installasjonen kolliderer lys, skjerming og publikumslinje; avviket krever rework uten at produksjonen selv omskriver kunstnerisk innhold. Om morgenen må spilleren etablere dagens faktiske produksjonsstatus før bestillinger og løfter begynner å løpe. I D7-morning bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "For private_relations avgjør håndteringen i D7-morning om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/story/kunst_utstillingsproduksjon_story.json#utstillingsproduksjon_story_koordinatoridentitet_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Halvveis i installasjonen kolliderer lys, skjerming og publikumslinje; avviket krever rework uten at produksjonen selv omskriver kunstnerisk innhold. Ved lunsj kommer en motstemme fra arbeidsflaten som tester om handoff, venting og myndighetsgrense er forstått likt. I D7-lunch bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "production_leadership",
+        "standing_consequence": "For production_leadership avgjør håndteringen i D7-lunch om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/event/kunst_utstillingsproduksjon_event.json#utstillingsproduksjon_event_transportforsinkelse_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Halvveis i installasjonen kolliderer lys, skjerming og publikumslinje; avviket krever rework uten at produksjonen selv omskriver kunstnerisk innhold. Om ettermiddagen må et konkret valg versjoneres i produksjonsmappen med eier, konsekvens, stoppunkt og neste kontroll. I D7-afternoon bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "registrar_lenders",
+        "standing_consequence": "For registrar_lenders avgjør håndteringen i D7-afternoon om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/micro/kunst_utstillingsproduksjon_micro.json#utstillingsproduksjon_micro_kall_det_klart_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Halvveis i installasjonen kolliderer lys, skjerming og publikumslinje; avviket krever rework uten at produksjonen selv omskriver kunstnerisk innhold. Om kvelden følger arbeidet spilleren hjem som statuspress; ansvaret må avgrenses uten at dokumentasjon eller omsorg forsvinner. I D7-evening bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "installation_safety",
+        "standing_consequence": "For installation_safety avgjør håndteringen i D7-evening om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/followup/kunst_utstillingsproduksjon_followup.json#utstillingsproduksjon_followup_rework_installasjon_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "En leder vil kalle salen nesten ferdig før sikkerhetsrunden; Nora må skille kommunikasjonsbehovet fra faktisk åpningstillatelse og restpunkter. Om morgenen må spilleren etablere dagens faktiske produksjonsstatus før bestillinger og løfter begynner å løpe. I D8-morning bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "production_leadership",
+        "standing_consequence": "For production_leadership avgjør håndteringen i D8-morning om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/knowledge/kunst_utstillingsproduksjon_knowledge.json#utstillingsproduksjon_knowledge_materialitet_proveniens_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "En leder vil kalle salen nesten ferdig før sikkerhetsrunden; Nora må skille kommunikasjonsbehovet fra faktisk åpningstillatelse og restpunkter. Ved lunsj kommer en motstemme fra arbeidsflaten som tester om handoff, venting og myndighetsgrense er forstått likt. I D8-lunch bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "registrar_lenders",
+        "standing_consequence": "For registrar_lenders avgjør håndteringen i D8-lunch om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/consequence/kunst_utstillingsproduksjon_consequence.json#utstillingsproduksjon_consequence_etter_apning_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "En leder vil kalle salen nesten ferdig før sikkerhetsrunden; Nora må skille kommunikasjonsbehovet fra faktisk åpningstillatelse og restpunkter. Om ettermiddagen må et konkret valg versjoneres i produksjonsmappen med eier, konsekvens, stoppunkt og neste kontroll. I D8-afternoon bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "installation_safety",
+        "standing_consequence": "For installation_safety avgjør håndteringen i D8-afternoon om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/job/kunst_utstillingsproduksjon_job.json#utstillingsproduksjon_job_brief_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "En leder vil kalle salen nesten ferdig før sikkerhetsrunden; Nora må skille kommunikasjonsbehovet fra faktisk åpningstillatelse og restpunkter. Om kvelden følger arbeidet spilleren hjem som statuspress; ansvaret må avgrenses uten at dokumentasjon eller omsorg forsvinner. I D8-evening bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "artists_curators",
+        "standing_consequence": "For artists_curators avgjør håndteringen i D8-evening om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/job/kunst_utstillingsproduksjon_job.json#utstillingsproduksjon_job_transport_002"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Långiver presiserer et klimakrav som endrer plasseringen; Amina må knytte kilden til ny plan, kostnad og et tydelig handoff til installasjon. Om morgenen må spilleren etablere dagens faktiske produksjonsstatus før bestillinger og løfter begynner å løpe. I D9-morning bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "registrar_lenders",
+        "standing_consequence": "For registrar_lenders avgjør håndteringen i D9-morning om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/job/kunst_utstillingsproduksjon_job.json#utstillingsproduksjon_job_installasjon_003"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Långiver presiserer et klimakrav som endrer plasseringen; Amina må knytte kilden til ny plan, kostnad og et tydelig handoff til installasjon. Ved lunsj kommer en motstemme fra arbeidsflaten som tester om handoff, venting og myndighetsgrense er forstått likt. I D9-lunch bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "installation_safety",
+        "standing_consequence": "For installation_safety avgjør håndteringen i D9-lunch om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/job/kunst_utstillingsproduksjon_job.json#utstillingsproduksjon_job_apningskontroll_004"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Långiver presiserer et klimakrav som endrer plasseringen; Amina må knytte kilden til ny plan, kostnad og et tydelig handoff til installasjon. Om ettermiddagen må et konkret valg versjoneres i produksjonsmappen med eier, konsekvens, stoppunkt og neste kontroll. I D9-afternoon bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "artists_curators",
+        "standing_consequence": "For artists_curators avgjør håndteringen i D9-afternoon om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/people/kunst_utstillingsproduksjon_people.json#utstillingsproduksjon_people_nora_plan_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Långiver presiserer et klimakrav som endrer plasseringen; Amina må knytte kilden til ny plan, kostnad og et tydelig handoff til installasjon. Om kvelden følger arbeidet spilleren hjem som statuspress; ansvaret må avgrenses uten at dokumentasjon eller omsorg forsvinner. I D9-evening bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "venue_front_of_house",
+        "standing_consequence": "For venue_front_of_house avgjør håndteringen i D9-evening om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/people/kunst_utstillingsproduksjon_people.json#utstillingsproduksjon_people_amina_tilstand_002"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Prøvepublikum viser at kø, tilgjengelighet og siktlinje ikke virker sammen; front-of-house trenger konkrete tiltak, ikke optimistisk status. Om morgenen må spilleren etablere dagens faktiske produksjonsstatus før bestillinger og løfter begynner å løpe. I D10-morning bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "installation_safety",
+        "standing_consequence": "For installation_safety avgjør håndteringen i D10-morning om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/people/kunst_utstillingsproduksjon_people.json#utstillingsproduksjon_people_eirik_metode_003"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Prøvepublikum viser at kø, tilgjengelighet og siktlinje ikke virker sammen; front-of-house trenger konkrete tiltak, ikke optimistisk status. Ved lunsj kommer en motstemme fra arbeidsflaten som tester om handoff, venting og myndighetsgrense er forstått likt. I D10-lunch bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "artists_curators",
+        "standing_consequence": "For artists_curators avgjør håndteringen i D10-lunch om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/people/kunst_utstillingsproduksjon_people.json#utstillingsproduksjon_people_sara_endring_004"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Prøvepublikum viser at kø, tilgjengelighet og siktlinje ikke virker sammen; front-of-house trenger konkrete tiltak, ikke optimistisk status. Om ettermiddagen må et konkret valg versjoneres i produksjonsmappen med eier, konsekvens, stoppunkt og neste kontroll. I D10-afternoon bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "venue_front_of_house",
+        "standing_consequence": "For venue_front_of_house avgjør håndteringen i D10-afternoon om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/conflict/kunst_utstillingsproduksjon_conflict.json#utstillingsproduksjon_conflict_frist_sikkerhet_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Prøvepublikum viser at kø, tilgjengelighet og siktlinje ikke virker sammen; front-of-house trenger konkrete tiltak, ikke optimistisk status. Om kvelden følger arbeidet spilleren hjem som statuspress; ansvaret må avgrenses uten at dokumentasjon eller omsorg forsvinner. I D10-evening bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "public_press",
+        "standing_consequence": "For public_press avgjør håndteringen i D10-evening om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/story/kunst_utstillingsproduksjon_story.json#utstillingsproduksjon_story_koordinatoridentitet_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Pressevisningen nærmer seg mens én sperring og én etikett er feil; teamet må prioritere sikkerhet og korrekt informasjon fremfor kosmetisk ferdigmelding. Om morgenen må spilleren etablere dagens faktiske produksjonsstatus før bestillinger og løfter begynner å løpe. I D11-morning bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "artists_curators",
+        "standing_consequence": "For artists_curators avgjør håndteringen i D11-morning om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/event/kunst_utstillingsproduksjon_event.json#utstillingsproduksjon_event_transportforsinkelse_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Pressevisningen nærmer seg mens én sperring og én etikett er feil; teamet må prioritere sikkerhet og korrekt informasjon fremfor kosmetisk ferdigmelding. Ved lunsj kommer en motstemme fra arbeidsflaten som tester om handoff, venting og myndighetsgrense er forstått likt. I D11-lunch bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "venue_front_of_house",
+        "standing_consequence": "For venue_front_of_house avgjør håndteringen i D11-lunch om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/micro/kunst_utstillingsproduksjon_micro.json#utstillingsproduksjon_micro_kall_det_klart_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Pressevisningen nærmer seg mens én sperring og én etikett er feil; teamet må prioritere sikkerhet og korrekt informasjon fremfor kosmetisk ferdigmelding. Om ettermiddagen må et konkret valg versjoneres i produksjonsmappen med eier, konsekvens, stoppunkt og neste kontroll. I D11-afternoon bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "public_press",
+        "standing_consequence": "For public_press avgjør håndteringen i D11-afternoon om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/followup/kunst_utstillingsproduksjon_followup.json#utstillingsproduksjon_followup_rework_installasjon_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Pressevisningen nærmer seg mens én sperring og én etikett er feil; teamet må prioritere sikkerhet og korrekt informasjon fremfor kosmetisk ferdigmelding. Om kvelden følger arbeidet spilleren hjem som statuspress; ansvaret må avgrenses uten at dokumentasjon eller omsorg forsvinner. I D11-evening bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "For private_relations avgjør håndteringen i D11-evening om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/knowledge/kunst_utstillingsproduksjon_knowledge.json#utstillingsproduksjon_knowledge_materialitet_proveniens_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Etter åpning melder vaktene om berøring og trengsel ved verket; observasjonen må bli et begrunnet tiltak uten panikk eller uautorisert endring. Om morgenen må spilleren etablere dagens faktiske produksjonsstatus før bestillinger og løfter begynner å løpe. I D12-morning bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "venue_front_of_house",
+        "standing_consequence": "For venue_front_of_house avgjør håndteringen i D12-morning om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/consequence/kunst_utstillingsproduksjon_consequence.json#utstillingsproduksjon_consequence_etter_apning_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Etter åpning melder vaktene om berøring og trengsel ved verket; observasjonen må bli et begrunnet tiltak uten panikk eller uautorisert endring. Ved lunsj kommer en motstemme fra arbeidsflaten som tester om handoff, venting og myndighetsgrense er forstått likt. I D12-lunch bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "public_press",
+        "standing_consequence": "For public_press avgjør håndteringen i D12-lunch om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/job/kunst_utstillingsproduksjon_job.json#utstillingsproduksjon_job_brief_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Etter åpning melder vaktene om berøring og trengsel ved verket; observasjonen må bli et begrunnet tiltak uten panikk eller uautorisert endring. Om ettermiddagen må et konkret valg versjoneres i produksjonsmappen med eier, konsekvens, stoppunkt og neste kontroll. I D12-afternoon bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "For private_relations avgjør håndteringen i D12-afternoon om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/job/kunst_utstillingsproduksjon_job.json#utstillingsproduksjon_job_transport_002"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Etter åpning melder vaktene om berøring og trengsel ved verket; observasjonen må bli et begrunnet tiltak uten panikk eller uautorisert endring. Om kvelden følger arbeidet spilleren hjem som statuspress; ansvaret må avgrenses uten at dokumentasjon eller omsorg forsvinner. I D12-evening bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "production_leadership",
+        "standing_consequence": "For production_leadership avgjør håndteringen i D12-evening om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/job/kunst_utstillingsproduksjon_job.json#utstillingsproduksjon_job_installasjon_003"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Deinstallasjonsplanen avdekker at emballasje, foto og signaturspor er fragmentert; returansvaret må rekonstrueres før tempoet øker. Om morgenen må spilleren etablere dagens faktiske produksjonsstatus før bestillinger og løfter begynner å løpe. I D13-morning bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "public_press",
+        "standing_consequence": "For public_press avgjør håndteringen i D13-morning om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/job/kunst_utstillingsproduksjon_job.json#utstillingsproduksjon_job_apningskontroll_004"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Deinstallasjonsplanen avdekker at emballasje, foto og signaturspor er fragmentert; returansvaret må rekonstrueres før tempoet øker. Ved lunsj kommer en motstemme fra arbeidsflaten som tester om handoff, venting og myndighetsgrense er forstått likt. I D13-lunch bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "For private_relations avgjør håndteringen i D13-lunch om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/people/kunst_utstillingsproduksjon_people.json#utstillingsproduksjon_people_nora_plan_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Deinstallasjonsplanen avdekker at emballasje, foto og signaturspor er fragmentert; returansvaret må rekonstrueres før tempoet øker. Om ettermiddagen må et konkret valg versjoneres i produksjonsmappen med eier, konsekvens, stoppunkt og neste kontroll. I D13-afternoon bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "production_leadership",
+        "standing_consequence": "For production_leadership avgjør håndteringen i D13-afternoon om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/people/kunst_utstillingsproduksjon_people.json#utstillingsproduksjon_people_amina_tilstand_002"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Deinstallasjonsplanen avdekker at emballasje, foto og signaturspor er fragmentert; returansvaret må rekonstrueres før tempoet øker. Om kvelden følger arbeidet spilleren hjem som statuspress; ansvaret må avgrenses uten at dokumentasjon eller omsorg forsvinner. I D13-evening bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "registrar_lenders",
+        "standing_consequence": "For registrar_lenders avgjør håndteringen i D13-evening om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/people/kunst_utstillingsproduksjon_people.json#utstillingsproduksjon_people_eirik_metode_003"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Sluttkontrollen samler kostnadsavvik, tilstand, hendelser og læring; produksjonsmappen skal lukkes slik at ansvar overlever prosjektet uten privat beredskap. Om morgenen må spilleren etablere dagens faktiske produksjonsstatus før bestillinger og løfter begynner å løpe. I D14-morning bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "For private_relations avgjør håndteringen i D14-morning om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/people/kunst_utstillingsproduksjon_people.json#utstillingsproduksjon_people_sara_endring_004"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Sluttkontrollen samler kostnadsavvik, tilstand, hendelser og læring; produksjonsmappen skal lukkes slik at ansvar overlever prosjektet uten privat beredskap. Ved lunsj kommer en motstemme fra arbeidsflaten som tester om handoff, venting og myndighetsgrense er forstått likt. I D14-lunch bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "production_leadership",
+        "standing_consequence": "For production_leadership avgjør håndteringen i D14-lunch om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/conflict/kunst_utstillingsproduksjon_conflict.json#utstillingsproduksjon_conflict_frist_sikkerhet_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Sluttkontrollen samler kostnadsavvik, tilstand, hendelser og læring; produksjonsmappen skal lukkes slik at ansvar overlever prosjektet uten privat beredskap. Om ettermiddagen må et konkret valg versjoneres i produksjonsmappen med eier, konsekvens, stoppunkt og neste kontroll. I D14-afternoon bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "registrar_lenders",
+        "standing_consequence": "For registrar_lenders avgjør håndteringen i D14-afternoon om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/story/kunst_utstillingsproduksjon_story.json#utstillingsproduksjon_story_koordinatoridentitet_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Sluttkontrollen samler kostnadsavvik, tilstand, hendelser og læring; produksjonsmappen skal lukkes slik at ansvar overlever prosjektet uten privat beredskap. Om kvelden følger arbeidet spilleren hjem som statuspress; ansvaret må avgrenses uten at dokumentasjon eller omsorg forsvinner. I D14-evening bindes valget til den kanoniske scenen, men scenen får ikke dikte ny runtime, ny myndighet eller en snarvei rundt venting, kontroll og dokumentert overlevering. Produksjonsstatus må kunne leses av neste fagperson uten muntlig bakkanal.",
+        "standing_audience": "installation_safety",
+        "standing_consequence": "For installation_safety avgjør håndteringen i D14-evening om spilleren fremstår som en pålitelig forvalter av avhengigheter eller som den som flytter risiko nedover. Tillit kan stige her og samtidig falle hos en annen gruppe dersom frist, kunstnerisk intensjon, lånevilkår eller sikkerhet skjules. Følgen lagres som situert standing, aldri som global score, og gir ingen ny budsjett-, kunstnerisk-, forsikrings-, konserverings- eller sikkerhetsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/kunst/event/kunst_utstillingsproduksjon_event.json#utstillingsproduksjon_event_transportforsinkelse_001"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "brief_to_dependency",
+      "beat_refs": [
+        "1/morning",
+        "2/lunch",
+        "3/afternoon",
+        "6/morning",
+        "9/lunch",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "custody_and_condition",
+      "beat_refs": [
+        "2/morning",
+        "2/afternoon",
+        "6/lunch",
+        "9/morning",
+        "13/afternoon",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "method_safety_rework",
+      "beat_refs": [
+        "4/morning",
+        "4/afternoon",
+        "7/morning",
+        "7/afternoon",
+        "8/lunch",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "artist_change_boundary",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "7/lunch",
+        "9/afternoon",
+        "12/lunch"
+      ]
+    },
+    {
+      "id": "opening_and_public_use",
+      "beat_refs": [
+        "8/morning",
+        "10/morning",
+        "10/afternoon",
+        "11/afternoon",
+        "12/morning",
+        "12/afternoon"
+      ]
+    },
+    {
+      "id": "history_materiality_question",
+      "beat_refs": [
+        "3/lunch",
+        "6/afternoon",
+        "9/lunch",
+        "11/lunch",
+        "13/lunch",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "private_containment",
+      "beat_refs": [
+        "1/evening",
+        "5/evening",
+        "8/evening",
+        "11/evening",
+        "13/evening",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "deadline_without_alarm",
+      "beat_refs": [
+        "1/evening",
+        "5/evening"
+      ],
+      "meaning": "deadline_without_alarm avgrenser prosjektansvar fra privat rang og beredskap."
+    },
+    {
+      "id": "risk_without_private_jury",
+      "beat_refs": [
+        "4/evening",
+        "8/evening"
+      ],
+      "meaning": "risk_without_private_jury avgrenser prosjektansvar fra privat rang og beredskap."
+    },
+    {
+      "id": "opening_without_rank",
+      "beat_refs": [
+        "10/evening",
+        "11/evening"
+      ],
+      "meaning": "opening_without_rank avgrenser prosjektansvar fra privat rang og beredskap."
+    },
+    {
+      "id": "incident_without_shame",
+      "beat_refs": [
+        "12/evening",
+        "13/evening"
+      ],
+      "meaning": "incident_without_shame avgrenser prosjektansvar fra privat rang og beredskap."
+    },
+    {
+      "id": "closeout_stays_at_work",
+      "beat_refs": [
+        "13/evening",
+        "14/evening"
+      ],
+      "meaning": "closeout_stays_at_work avgrenser prosjektansvar fra privat rang og beredskap."
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "condition_return",
+      "setup_ref": "2/morning",
+      "return_ref": "9/morning",
+      "meaning": "condition_return gjør at en tidlig dokumentert avgrensning får en senere, etterprøvbar produksjonsfølge."
+    },
+    {
+      "id": "transport_return",
+      "setup_ref": "3/morning",
+      "return_ref": "6/afternoon",
+      "meaning": "transport_return gjør at en tidlig dokumentert avgrensning får en senere, etterprøvbar produksjonsfølge."
+    },
+    {
+      "id": "method_return",
+      "setup_ref": "4/morning",
+      "return_ref": "7/afternoon",
+      "meaning": "method_return gjør at en tidlig dokumentert avgrensning får en senere, etterprøvbar produksjonsfølge."
+    },
+    {
+      "id": "artist_change_return",
+      "setup_ref": "5/morning",
+      "return_ref": "9/afternoon",
+      "meaning": "artist_change_return gjør at en tidlig dokumentert avgrensning får en senere, etterprøvbar produksjonsfølge."
+    },
+    {
+      "id": "opening_claim_return",
+      "setup_ref": "8/morning",
+      "return_ref": "11/afternoon",
+      "meaning": "opening_claim_return gjør at en tidlig dokumentert avgrensning får en senere, etterprøvbar produksjonsfølge."
+    },
+    {
+      "id": "public_use_return",
+      "setup_ref": "10/morning",
+      "return_ref": "12/afternoon",
+      "meaning": "public_use_return gjør at en tidlig dokumentert avgrensning får en senere, etterprøvbar produksjonsfølge."
+    },
+    {
+      "id": "custody_return",
+      "setup_ref": "2/afternoon",
+      "return_ref": "13/afternoon",
+      "meaning": "custody_return gjør at en tidlig dokumentert avgrensning får en senere, etterprøvbar produksjonsfølge."
+    },
+    {
+      "id": "private_return",
+      "setup_ref": "1/evening",
+      "return_ref": "14/evening",
+      "meaning": "private_return gjør at en tidlig dokumentert avgrensning får en senere, etterprøvbar produksjonsfølge."
+    }
+  ]
+}
