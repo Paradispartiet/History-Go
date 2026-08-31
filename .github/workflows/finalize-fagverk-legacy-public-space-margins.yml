@@ -1,0 +1,78 @@
+name: Finalize public-space Fagverk legacy batch
+
+on:
+  push:
+    branches:
+      - agent/fagverk-legacy-public-space-margins-20260831
+    paths:
+      - .github/workflows/finalize-fagverk-legacy-public-space-margins.yml
+      - tools/finalize-fagverk-legacy-public-space-margins.mjs
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Sync branch to current main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+      - name: Curate four completed Place Fagverk packages
+        run: node tools/finalize-fagverk-legacy-public-space-margins.mjs
+      - name: Rebuild deterministic quiz contexts
+        run: |
+          node scripts/build-quiz-production-context.mjs --category by --target storgata --output data/quiz/production_context/by/storgata.json
+          node scripts/build-quiz-production-context.mjs --category by --target st_hanshaugen_park --output data/quiz/production_context/by/st_hanshaugen_park.json
+          node scripts/build-quiz-production-context.mjs --category by --target christiania_torv --output data/quiz/production_context/by/christiania_torv.json
+          node scripts/build-quiz-production-context.mjs --category subkultur --target brugata_storgata_rusmiljo --output data/quiz/production_context/subkultur/brugata_storgata_rusmiljo.json
+      - name: Regenerate Fagverk and runtime artifacts
+        run: |
+          node scripts/build-place-open-payloads.mjs
+          node scripts/audit-fagverk-place-pages.mjs --write
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Validate Fagverk, images and quiz context
+        run: |
+          node scripts/audit-fagverk-place-pages.mjs
+          node scripts/build-place-open-payloads.mjs --check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node --test tests/fagverk-place-pages.test.mjs
+          node --test tests/fagverk-place-substance-audit.test.mjs
+          node --test tests/fagverk-link-audit.test.mjs
+          node scripts/audit-place-images.mjs --mode=changed
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          git diff --check
+      - name: Commit final production result and remove temporary tooling
+        run: |
+          git add \
+            data/places/by/oslo/places/storgata.json \
+            data/places/by/oslo/places/st_hanshaugen_park.json \
+            data/places/by/oslo/places/christiania_torv.json \
+            data/places/subkultur/oslo/places_subkultur/brugata_storgata_rusmiljo.json \
+            data/quiz/production_context/by/storgata.json \
+            data/quiz/production_context/by/st_hanshaugen_park.json \
+            data/quiz/production_context/by/christiania_torv.json \
+            data/quiz/production_context/subkultur/brugata_storgata_rusmiljo.json \
+            data/runtime \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/fagverk_release.json \
+            reports/fagverk/fagverk-place-page-coverage-v2.json
+          git rm tools/finalize-fagverk-legacy-public-space-margins.mjs .github/workflows/finalize-fagverk-legacy-public-space-margins.yml
+          git diff --cached --quiet && { echo "No production changes to commit"; exit 1; }
+          git commit -m "Curate public-space Fagverk legacy batch"
+          git push origin HEAD:${GITHUB_REF_NAME}
