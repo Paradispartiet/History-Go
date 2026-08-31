@@ -1,0 +1,68 @@
+name: TEMP Sync Språk field 12 with main
+
+on:
+  push:
+    branches:
+      - agent/fagverk-sprak-lingvistikk-field-12-fulltext-strict-completion-20260831
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tmp-sync-sprak-field12-main
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: startsWith(github.event.head_commit.message, 'Sync Språk strict completion with current main')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/fagverk-sprak-lingvistikk-field-12-fulltext-strict-completion-20260831
+          fetch-depth: 0
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Merge latest main into the same branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          git merge --no-edit origin/main
+
+      - name: Reprove all 12 Språk fulltext gates on merged tree
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import { spawnSync } from 'node:child_process';
+          const ci = JSON.parse(fs.readFileSync('.github/ci/fagverk-sprak-lingvistikk-domain-registry-v1.json', 'utf8'));
+          if (ci.domains.length !== 12) throw new Error('CI registry must contain 12 domains');
+          for (const domain of ci.domains) {
+            for (const file of [domain.fulltextAudit, domain.fulltextTest]) {
+              if (!file || !fs.existsSync(file)) throw new Error(`Missing strict file for ${domain.domainId}: ${file}`);
+              const args = file.startsWith('tests/') ? ['--test', file] : [file];
+              const result = spawnSync(process.execPath, args, { stdio: 'inherit' });
+              if (result.status !== 0) throw new Error(`Strict gate failed for ${domain.domainId}: ${file}`);
+            }
+          }
+          NODE
+          node scripts/audit-sprak-lingvistikk-reconciliation-v1.mjs
+          node --test tests/sprak-lingvistikk-reconciliation-v1.test.mjs
+          node scripts/materialize-sprak-lingvistikk-corpus-field-documentation-language-resources-reproducibility-fulltext-v1.mjs
+
+      - name: Require deterministic clean tree before cleanup
+        run: git diff --exit-code
+
+      - name: Remove TEMP sync workflow
+        run: rm .github/workflows/tmp-sync-sprak-field12-main.yml
+
+      - name: Commit cleanup and push synchronized branch
+        run: |
+          git add -A
+          git commit -m 'Remove TEMP Språk main-sync workflow'
+          git push origin HEAD:agent/fagverk-sprak-lingvistikk-field-12-fulltext-strict-completion-20260831
