@@ -179,12 +179,28 @@ test('navigation remains narrow and delegates production architecture to FAGVERK
 
 test('the place checklist makes a working fagverk page mandatory for every canonical place', () => {
   const checklist = read('docs/PLACE_PRODUCTION_CHECKLIST.md');
+  const migrationWorkcard = read('docs/FAGVERK_PLACE_V2_WORKCARD.md');
 
   assert.match(checklist, /Alle canonicale steder skal ha sin egen fungerende fagverkside/);
   assert.match(checklist, /Kravet gjelder hvert sted, kan ikke settes til N\/A og er en egen ferdigport/);
+  assert.match(checklist, /Fagverk-siden produseres \*\*samtidig med stedet\*\*/);
+  assert.match(checklist, /samme ordinære steds-PR-en/);
+  assert.match(checklist, /skal ikke skyves til en senere Fagverk-batch/);
+  assert.match(checklist, /manifest-loadede Place-kildefil eier en strukturert `fagverk`-blokk/);
+  assert.match(checklist, /registryet eier aldri stedstekst, linser, spørsmål, begreper eller observerbare spor/);
+  assert.match(checklist, /Nivå låses i steds-preflight/);
+  assert.match(checklist, /Integrert produksjonsrekkefølge/);
+  assert.match(checklist, /Stedsspesifikk substansport/);
+  assert.match(checklist, /Operative lenker — hard gate/);
+  assert.match(checklist, /Browser-QA er obligatorisk/);
+  assert.match(checklist, /kategori-only fallback/);
   assert.match(checklist, /FAGVERK-STED-STATUS:/);
+  assert.match(checklist, /FAGVERK-LENKEAUDIT:/);
+  assert.match(checklist, /FAGVERK-BROWSER-QA:/);
   assert.match(checklist, /`?fagverk-sted`? er aldri N\/A/);
   assert.match(checklist, /fagverk-sted — obligatorisk, fungerende og aldri N\/A/);
+  assert.match(migrationWorkcard, /ordinære stedsproduksjonen eies av `docs\/PLACE_PRODUCTION_CHECKLIST\.md`/);
+  assert.match(migrationWorkcard, /ikke en tillatelse til å utsette Fagverk til en senere batch/);
 });
 
 test('repository and subject documentation point to the canonical master contract', () => {

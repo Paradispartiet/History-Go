@@ -1,4 +1,4 @@
-# History GO — Place Production Checklist v2.4
+# History GO — Place Production Checklist v2.5
 
 Status: **canonical produksjonsarbeidsflyt**  
 Eier: `place_by_place_production_workflow`  
@@ -185,24 +185,98 @@ Alle canonicale steder skal ha sin egen fungerende fagverkside.
 
 **fagverk-sted — obligatorisk, fungerende og aldri N/A.** Kravet gjelder hvert sted, kan ikke settes til N/A og er en egen ferdigport.
 
-Alle ordinære canonical Places skal ha Place-eid `fagverk`-blokk med schema `history_go_place_fagverk_v2`. Registryet indekserer og validerer; det eier ikke stedstekst, linser eller spørsmål. Fagverkets faglige vekt skal samsvare med Hovedbadge, underbadges, emner og dokumentert stedskunnskap.
+Fagverk-siden produseres **samtidig med stedet**, fra det samme kildegrunnlaget og i den samme ordinære steds-PR-en. Den skal ikke skyves til en senere Fagverk-batch når et nytt sted opprettes eller et eksisterende sted fullproduseres eller vesentlig revideres. En separat Fagverk-batch brukes bare til å lukke dokumentert legacy-backlog for steder som ikke allerede er i ordinær stedsproduksjon.
 
-Godkjent status krever riktig nivå etter `docs/FAGVERK_PLACE_V2_WORKCARD.md`: egen læringsinngang og fagartikkel, canonicale fag-/emnebindinger, stedsspesifikke linser og spørsmål, begreper, observerbare spor med tolkningsgrenser, relevante kapitler og kontrollerte kilder. `popupDesc`, en fungerende URL eller automatisk avledede emnespørsmål er aldri ferdigbevis.
+### Canonical eier og avgrensning
 
-Alle synlige Fagverk-handlinger skal være operative `<a href>`-mål som løser til canonicalt fag, fagområde, emne, kapittel, kart eller kontrollert ekstern kilde. En chip eller et kort som ser klikkbart ut uten operativ destinasjon er BLOCKED.
+- stedets manifest-loadede Place-kildefil eier en strukturert `fagverk`-blokk med schema `history_go_place_fagverk_v2`;
+- `data/fagverk/fagverk_registry.json` indekserer bare Place-kildefil, felt, schema, nivå og status; registryet eier aldri stedstekst, linser, spørsmål, begreper eller observerbare spor;
+- fagets manifest-resolverte modell eier fagområder, emner, kapitler og begrepsdefinisjoner; Place-filen refererer canonicale ID-er og kopierer ikke fagmodellen;
+- samme source → claim-grunnlag som brukes til stedets øvrige tekst, kronologi, bilder og oppgaver brukes til Fagverk, med eksplisitte tolkningsgrenser der observasjon ikke alene kan bevise årsak, representativitet eller historisk datering;
+- `popupDesc`, en fungerende URL, kategori-fallback eller automatisk avledede emnespørsmål er aldri ferdigbevis.
 
-Når innholdet mangler, skal rendereren vise en ærlig kompakt uferdigstatus. Generiske kategori-linser og standardspørsmål er forbudt.
+### Nivå låses i steds-preflight
+
+Fagverk-nivå besluttes sammen med stedets confirmed produksjonsprofil, etter Badge-/underbadge- og source review:
+
+| Stedsprofil | Minste Fagverk-nivå | Innholdskrav |
+| --- | --- | --- |
+| `major` | `full` | utfyllende stedsartikkel, flere selvstendige faglige spor, minst tre relevante canonicale emner, 3–5 linser, 4–6 spørsmål, begreper, minst to observerbare spor og minst fire kontrollerte kilder |
+| `standard` | `standard` | egen læringsinngang og fagartikkel, relevante canonicale emner og kapitler, 3–5 stedsspesifikke linser, 4–6 spørsmål, begreper, observerbart spor og minst to kontrollerte kilder |
+| `focused` | `standard` | konsentrert, men komplett standardinnhold rundt stedets dokumenterte hovedfunksjon; færre kilder eller mindre bredde kan aldri erstattes med generisk fyll |
+| canonicalt `micro` | `micro` | kort Place-eid læringsinngang, den smaleste dokumenterte fag-/emnekoblingen, 1–2 spørsmål, begrep, observerbart spor og kilde |
+
+Schemaet `data/places/regler/place_fagverk_v2.schema.json` eier eksakte maskinelle minimumskrav. `docs/FAGVERK_PLACE_V2_WORKCARD.md` eier migreringsprogrammet og legacy-backloggen, men er ikke en alternativ senere produksjonsløype for et aktivt sted.
+
+### Integrert produksjonsrekkefølge
+
+Følgende skjer mens stedskildene er åpne og før canonical brukerinnhold ferdigmeldes:
+
+1. **Nullmål eksisterende side:** åpne `fagverk-sted.html?place=<place_id>`, kontroller eventuell Place-eid `fagverk`-blokk, registryoppføring, fallbackstatus, døde lenker og tidligere kuratering.
+2. **Lås læringsjobben:** skriv én presis setning om hvorfor akkurat dette stedet er faglig interessant. Velg bare fag og emner som stedskildene faktisk bærer.
+3. **Løs canonicale mål:** bruk `data/fag/fag_manifest.json`, manifest-resolverte emnefiler og `data/fagverk/fagverk_registry.json` til å validere `subject_ids`, `emne_ids` og `chapter_ids`. Ingen ID gjettes eller opprettes i Place-filen.
+4. **Skriv Place-eid substans:** materialiser læringsinngang, egen fagartikkel, stedsspesifikke linser, undersøkelsesspørsmål, sentrale begreper og observerbare spor med tolkningsgrenser etter valgt nivå.
+5. **Kildebind innholdet:** `source_urls` skal være kontrollerte HTTP(S)-kilder som faktisk dekker læringsinnholdet. Alle brukerrettede kilder materialiseres også med forståelige labels i Place-kildens eide kildeflate når datamodellen bruker `externalLinks`.
+6. **Indekser uten duplisering:** oppdater registryets smale place-indeks. Ikke kopier innhold fra `fagverk`-blokken inn i registryet.
+7. **Materialiser og auditér:** regenerer Fagverk-coverage/release-manifest og andre avledede filer fra source. Kjør schema-, substans-, unikhets-, lenke- og renderingstester.
+8. **Klikk den faktiske siden:** åpne den canonicale stedsadressen i nettleser på PR-head, klikk minst én lenke i hver materialisert lenketype og kontroller at stedsparameteren bevares der kontrakten krever det.
+
+### Stedsspesifikk substansport
+
+Godkjent `status: "curated"` krever at:
+
+- intro og artikkel forklarer akkurat dette stedet og ikke kan flyttes uendret til et annet sted i samme kategori;
+- hver linse har eget spørsmål, canonicalt `subject_id`/`emne_id` og konkret evidens som kan undersøkes ved stedet eller i navngitte kilder;
+- spørsmålene krever undersøkelse av stedet, kildene eller en dokumentert sammenligning og er ikke kategoriens generiske standardspørsmål;
+- observerbare spor skiller det man kan se fra det som krever historiske, statistiske eller institusjonelle kilder;
+- emner og kapitler er relevante for artikkelen, linsene og spørsmålene — de er ikke lenkekvoter;
+- kildene er operative, inspectable og tilstrekkelige for påstandene;
+- substansauditen finner ingen gjenbrukt intro, artikkel, linse- eller spørsmålsmal som får ulike steder til å se ferdige ut.
+
+Når innholdet mangler, skal rendereren vise en ærlig kompakt uferdigstatus. Generiske kategori-linser og standardspørsmål er forbudt. En slik fallback er riktig runtime for legacy-backloggen, men den er ikke godkjent stedsproduksjonsstatus.
+
+### Operative lenker — hard gate
+
+Alle synlige Fagverk-handlinger skal være faktiske `<a href>`-mål:
+
+- fag → `fagverk.html?subject=<subject>&place=<place>`;
+- fagområde → validert `subject + domain + place`;
+- emne/linse → validert `subject + domain + emne + place`;
+- kapittel → validert `subject + chapter + place`;
+- begrep → eieremnet når det finnes, ellers subject-roten med stedskontekst;
+- kart → canonical kart-/place-rute;
+- ekstern kilde → kontrollert HTTP(S)-adresse med `noopener noreferrer`.
+
+En chip, et kort, en linse, et kapittel eller en kilde som ser klikkbar ut uten operativ destinasjon er BLOCKED. Ugyldige ID-er skal gi tydelig feil og må aldri falle tilbake til politikk, første emne eller et annet fag.
+
+### Minimumsvalidering ved Fagverk-endring
+
+Kjør minst:
+
+```bash
+node scripts/audit-fagverk-place-pages.mjs --write
+node scripts/build-fagverk-release-manifest.mjs
+node --test tests/fagverk-place-pages.test.mjs tests/fagverk-place-rendering.test.mjs tests/fagverk-place-substance-audit.test.mjs
+node scripts/build-fagverk-release-manifest.mjs --check
+```
+
+Deretter kjøres relevante fag-/emne-, Place-, quiz-/Knowledge- og full-CI-gater for de faktiske filene som er endret. Browser-QA er obligatorisk i tillegg til JSDOM-/kontrakttester.
 
 Arbeidskortet skal føre:
 
 ```text
 FAGVERK-STED-STATUS:
 FAGVERK-NIVÅ: full | standard | micro
+FAGVERK-LÆRINGSJOBB:
+FAGVERK-SUBJECT/EMNE/CHAPTER-RESOLUSJON:
 FAGVERK-SUBSTANSAUDIT:
 FAGVERK-KILDER/SPOR:
+FAGVERK-LENKEAUDIT:
+FAGVERK-BROWSER-QA:
+FAGVERK-REGISTRY/MANIFEST-STATUS:
 ```
 
-`fagverk-sted` er aldri N/A for et ordinært Place.
+`fagverk-sted` er aldri N/A for et ordinært Place. Et nytt, fullprodusert eller vesentlig revidert sted kan ikke closeoutes med `status: "in_production"`, kategori-only fallback, utdatert registry/release-manifest, utestet klikkmål eller plan om å produsere Fagverk senere.
 
 ---
 
@@ -595,7 +669,7 @@ Grønn CI kan aldri overstyre et dokumentert stygt, kunstig eller ufullstendig P
 9. ordinære fullprofiler bruker People, Objects, Brands og kategoriuttrykk; Related er aldri en samling;
 10. stedsprofil og Quiz-profil er separate beslutninger.
 
-Ved konflikt med eldre formulering om fast firefelts-fullness, universell Brands/People/Objects-plikt eller obligatorisk materialisering av et irrelevant subsystem gjelder denne v2.3-sjekklisten.
+Ved konflikt med eldre formulering om fast firefelts-fullness, universell Brands/People/Objects-plikt, separat senere Fagverk-produksjon eller obligatorisk materialisering av et irrelevant subsystem gjelder denne v2.5-sjekklisten.
 
 ---
 
