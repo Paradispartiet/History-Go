@@ -4,7 +4,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
-import { isImageOptionalMicroPlace, isPlaceScopeOnlyJsonChange } from './lib/place-image-change-classifier.mjs';
+import { isImageOptionalMicroPlace, isPlaceImageNeutralJsonChange } from './lib/place-image-change-classifier.mjs';
 
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const args=new Set(process.argv.slice(2));
@@ -80,7 +80,7 @@ function changedFiles(){
   try{return new Set(execFileSync('git',['diff','--name-only',`origin/${baseRef()}...HEAD`],{cwd:ROOT,encoding:'utf8'}).split(/\r?\n/).map(text).filter(Boolean));}
   catch{return new Set();}
 }
-function placeScopeOnlyFiles(changed){
+function imageNeutralFiles(changed){
   const ignored=new Set();
   for(const sourceFile of changed){
     if(!sourceFile.startsWith('data/places/')||!sourceFile.endsWith('.json'))continue;
@@ -89,7 +89,7 @@ function placeScopeOnlyFiles(changed){
     try{
       const before=JSON.parse(execFileSync('git',['show',`origin/${baseRef()}:${sourceFile}`],{cwd:ROOT,encoding:'utf8',stdio:['ignore','pipe','ignore']}));
       const after=readJson(currentPath);
-      if(isPlaceScopeOnlyJsonChange(before,after))ignored.add(sourceFile);
+      if(isPlaceImageNeutralJsonChange(before,after))ignored.add(sourceFile);
     }catch{}
   }
   return ignored;
@@ -104,8 +104,8 @@ function verifySummary(report,file){
 const entries=loadEntries();
 const allRows=entries.map(inspect);
 const changed=mode==='changed'?changedFiles():null;
-const scopeOnly=changed?placeScopeOnlyFiles(changed):new Set();
-const inspected=allRows.filter((row)=>!changed||(changed.has(row.sourceFile)&&!scopeOnly.has(row.sourceFile)));
+const imageNeutral=changed?imageNeutralFiles(changed):new Set();
+const inspected=allRows.filter((row)=>!changed||(changed.has(row.sourceFile)&&!imageNeutral.has(row.sourceFile)));
 const failures=inspected.filter((row)=>row.status==='missing'||row.status==='invalid');
 const byCategory={};
 for(const row of allRows){const bucket=byCategory[row.category]||(byCategory[row.category]={total:0,local:0,remote:0,optional:0,missing:0,invalid:0});bucket.total+=1;bucket[row.status]+=1;}
@@ -113,6 +113,6 @@ const report={schema:'history_go_place_image_audit_v1',generatedAt:new Date().to
 if(reportPath){fs.mkdirSync(path.dirname(reportPath),{recursive:true});fs.writeFileSync(reportPath,JSON.stringify(report,null,2)+'\n');}
 if(summaryPath)verifySummary(report,summaryPath);
 console.log(`Place image audit: ${report.totalPlaces} steder · ${report.summary.local} lokale · ${report.summary.remote} eksterne · ${report.summary.optional} valgfrie Micro Place-bilder · ${report.summary.missing} mangler · ${report.summary.invalid} ugyldige`);
-if(scopeOnly.size)console.log(`Place image audit: ${scopeOnly.size} filer med kun placeScope-metadata er utenfor changed-bildeporten.`);
+if(imageNeutral.size)console.log(`Place image audit: ${imageNeutral.size} filer med kun bilde-nøytrale metadataendringer er utenfor changed-bildeporten.`);
 if(failures.length){for(const row of failures.slice(0,80))console.error(`- ${row.id} [${row.category}] ${row.sourceFile}: ${row.reason}${row.value?` (${row.value})`:''}`);if(failures.length>80)console.error(`… og ${failures.length-80} til`);}
 if((mode==='changed'||strict)&&failures.length)process.exitCode=1;

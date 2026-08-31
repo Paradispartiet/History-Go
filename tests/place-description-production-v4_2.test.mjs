@@ -136,6 +136,7 @@ test('nested object descriptions do not count as place description changes', () 
   assert.equal(descriptionFieldsChanged(before, after), false);
   assert.equal(descriptionFieldsChanged(before, { ...after, desc: 'Endret stedsbeskrivelse.' }), true);
   assert.equal(descriptionFieldsChanged(before, { ...after, popupDesc: 'Endret popupbeskrivelse.' }), true);
+  assert.equal(descriptionFieldsChanged(before, null), false);
 });
 
 test('a complete ready_v4_2 packet passes packet validation', () => {

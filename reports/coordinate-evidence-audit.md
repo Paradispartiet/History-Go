@@ -1,8 +1,8 @@
 # Coordinate evidence audit
 
-Generert: 2026-08-31T10:12:01.612Z
+Generert: 2026-08-31T15:12:38.355Z
 
-Aktive steder: 1597
+Aktive steder: 1596
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -195,7 +195,6 @@ Aktive steder: 1597
 | the_oslo_gallery | data/coordinate-evidence/oslo/kunst/the_oslo_gallery.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | unge_kunstneres_samfund | data/coordinate-evidence/oslo/kunst/unge_kunstneres_samfund.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | van_etten | data/coordinate-evidence/oslo/kunst/van_etten.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| vi_vii_gallery | data/coordinate-evidence/oslo/kunst/vi_vii_gallery.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vigelandmuseet | data/coordinate-evidence/oslo/kunst/vigelandmuseet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | alexander_kiellands_plass | data/coordinate-evidence/oslo/litteratur/alexander_kiellands_plass.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | biblo_toyen | data/coordinate-evidence/oslo/litteratur/biblo_toyen.json | applied_to_place | do_not_change_coordinates_yet | OK |
