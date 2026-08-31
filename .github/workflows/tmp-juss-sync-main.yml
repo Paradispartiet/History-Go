@@ -1,0 +1,54 @@
+name: TEMP Juss main sync
+
+on:
+  push:
+    branches:
+      - agent/fagverk-juss-rettsvitenskap-reconciliation-field-1-source-first-20260831
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tmp-juss-main-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: github.event.head_commit.message == 'Run fail-closed Juss main sync'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Juss branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/fagverk-juss-rettsvitenskap-reconciliation-field-1-source-first-20260831
+          fetch-depth: 0
+
+      - name: Use Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Merge exact current main
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          echo "MAIN_SHA=$(git rev-parse origin/main)"
+          git merge --no-ff --no-edit origin/main
+
+      - name: Reprove Juss source-first on merged tree
+        run: |
+          node scripts/brief-juss-rettsvitenskap-legal-method-sources-interpretation-argumentation-sources-v1.mjs
+          node --test tests/juss-rettsvitenskap-legal-method-sources-interpretation-argumentation-source-brief-v1.test.mjs
+          node scripts/audit-juss-rettsvitenskap-reconciliation-v1.mjs
+          node --test tests/juss-rettsvitenskap-reconciliation-v1.test.mjs
+          node scripts/run-fagverk-domain-ci-v1.mjs --subject juss_rettsvitenskap
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const registry=JSON.parse(fs.readFileSync('data/fag/politikk/juss_rettsvitenskap/production_registry_v1.json','utf8'));
+          if(registry.progress.materializedDomains!==0||registry.progress.totalDomains!==12||registry.progress.strictCompletionProven!==false||registry.materialized.length!==0) throw new Error('Juss source-first state changed during main sync');
+          NODE
+          git diff --check HEAD^1 HEAD
+
+      - name: Push only after green reproving
+        run: git push origin HEAD:agent/fagverk-juss-rettsvitenskap-reconciliation-field-1-source-first-20260831
