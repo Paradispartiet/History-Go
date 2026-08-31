@@ -1,4 +1,4 @@
-name: Finalize Akershus slottskirke v6
+name: Finalize Akershus slottskirke v7
 
 on:
   push:
@@ -73,25 +73,56 @@ jobs:
         run: |
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
-          const file='tests/epoke-place-index.test.mjs';
-          let text=fs.readFileSync(file,'utf8');
-          const replacements=[
-            ['assert.equal(index.stats.canonical_story_milestone_count, 209);','assert.equal(index.stats.canonical_story_milestone_count, 210);'],
-            ['assert.equal(index.stats.verified_place_production_milestone_count, 304);','assert.equal(index.stats.verified_place_production_milestone_count, 312);'],
-            ['assert.equal(coverage.canonical_place_count, 585);','assert.equal(coverage.canonical_place_count, 586);'],
-            ['assert.equal(coverage.dated_evidence_place_count, 221);','assert.equal(coverage.dated_evidence_place_count, 222);']
-          ];
-          for (const [from,to] of replacements) {
-            if (!text.includes(from)) throw new Error(`Expected epoch baseline not found: ${from}`);
-            text=text.replace(from,to);
-          }
-          fs.writeFileSync(file,text);
+          import { execFileSync } from 'node:child_process';
+
+          const testFile='tests/epoke-place-index.test.mjs';
+          const mainText=execFileSync('git',['show','origin/main:tests/epoke-place-index.test.mjs'],{encoding:'utf8'});
+          let text=fs.readFileSync(testFile,'utf8');
           const index=JSON.parse(fs.readFileSync('data/epoker/epoke-place-index.json','utf8'));
-          console.log(JSON.stringify({
-            canonical_story_milestone_count:index.stats.canonical_story_milestone_count,
-            verified_place_production_milestone_count:index.stats.verified_place_production_milestone_count,
-            oslo_coverage:index.domains.historie.oslo_coverage
-          },null,2));
+
+          const patterns={
+            story:/assert\.equal\(index\.stats\.canonical_story_milestone_count,\s*(\d+)\);/,
+            production:/assert\.equal\(index\.stats\.verified_place_production_milestone_count,\s*(\d+)\);/,
+            places:/assert\.equal\(coverage\.canonical_place_count,\s*(\d+)\);/,
+            dated:/assert\.equal\(coverage\.dated_evidence_place_count,\s*(\d+)\);/
+          };
+          const baseline={};
+          for (const [key,pattern] of Object.entries(patterns)) {
+            const match=mainText.match(pattern);
+            if (!match) throw new Error(`Current main epoch baseline missing for ${key}`);
+            baseline[key]=Number(match[1]);
+          }
+
+          const generated={
+            story:index.stats.canonical_story_milestone_count,
+            production:index.stats.verified_place_production_milestone_count,
+            places:index.domains.historie.oslo_coverage.canonical_place_count,
+            dated:index.domains.historie.oslo_coverage.dated_evidence_place_count
+          };
+          const expected={
+            story:baseline.story + 1,
+            production:baseline.production + 8,
+            places:baseline.places + 1,
+            dated:baseline.dated + 1
+          };
+          for (const key of Object.keys(expected)) {
+            if (generated[key] !== expected[key]) {
+              throw new Error(`Akershus slottskirke epoch delta mismatch for ${key}: generated ${generated[key]}, expected ${expected[key]} from main ${baseline[key]}`);
+            }
+          }
+
+          const replacements={
+            story:`assert.equal(index.stats.canonical_story_milestone_count, ${generated.story});`,
+            production:`assert.equal(index.stats.verified_place_production_milestone_count, ${generated.production});`,
+            places:`assert.equal(coverage.canonical_place_count, ${generated.places});`,
+            dated:`assert.equal(coverage.dated_evidence_place_count, ${generated.dated});`
+          };
+          for (const [key,pattern] of Object.entries(patterns)) {
+            if (!pattern.test(text)) throw new Error(`Working-tree epoch baseline missing for ${key}`);
+            text=text.replace(pattern,replacements[key]);
+          }
+          fs.writeFileSync(testFile,text);
+          console.log(JSON.stringify({baseline,expected,generated},null,2));
           NODE
 
       - name: Rebuild People projections
