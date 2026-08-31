@@ -1,11 +1,277 @@
 {
-  "schema":"civication_role_model_v2","version":2,
-  "source":{"badge_file":"data/badges/kunst.json","badge_id":"kunst","evidence":"data/Civication/kunstCareerLifeEvidence.json"},
-  "category":"kunst","role_scope":"kunst_utstillingsproduksjon","role_id":"kunst_utstillingsproduksjon","title":"Utstillingsproduksjon og koordinering",
-  "badge_titles":["Produksjonsassistent","Utstillingskoordinator","Utstillingsprodusent"],
-  "core_narrative":["Omsette kuratoriske og kunstneriske planer til gjennomførbare utstillinger gjennom logistikk, avtaler, tidsplan, installasjon og risikostyring."],
-  "work_life":{"daily_work":["produksjonsplanlegging","transport og logistikk","installasjonskoordinering","leverandøroppfølging","budsjettoppfølging","åpningsforberedelse"],"responsibilities":["sporbar plan","sikker håndtering","realistiske avhengigheter","tydelige avtaler","avviksvarsling"],"work_environment":["museum","galleri","kunsthall","lager","verksted","midlertidig visningssted"]},
-  "authority_boundaries":{"can":["koordinere produksjonsplan","bestille innen delegert ramme","stanse arbeid ved sikkerhetsrisiko","eskalere budsjett- og tidsavvik"],"cannot":["endre kunstnerisk innhold uten mandat","overskride budsjettfullmakt","omgå låne- eller forsikringskrav","godkjenne risikofylt installasjon uten ansvarlig fagperson"]},
-  "competence_axes":["produksjonsplanlegging","kunstlogistikk","installasjon","budsjettforståelse","avhengighetsstyring","risiko og sikkerhet"],
-  "ideal_type_problems":["forsinket verktransport","installasjon kolliderer med byggkrav","budsjettavvik før åpning","kunstner ønsker sen endring","leverandør kan ikke møte sikkerhetskrav"]
+  "schema": "civication_role_model_v2",
+  "version": 2,
+  "source": {
+    "badge_file": "data/badges/kunst.json",
+    "badge_id": "kunst",
+    "evidence": "data/Civication/kunstCareerLifeEvidence.json"
+  },
+  "category": "kunst",
+  "role_scope": "kunst_utstillingsproduksjon",
+  "role_id": "kunst_utstillingsproduksjon",
+  "title": "Utstillingsproduksjon og koordinering",
+  "badge_titles": [
+    "Produksjonsassistent",
+    "Utstillingskoordinator",
+    "Utstillingsprodusent"
+  ],
+  "core_narrative": [
+    "Omsette kuratoriske og kunstneriske planer til gjennomførbare utstillinger gjennom logistikk, avtaler, tidsplan, installasjon og risikostyring.",
+    "Rollen bygger en etterprøvbar produksjonsmappe der kunstnerisk intensjon kan realiseres uten at tidspress skjuler lånekrav, sikkerhet, budsjett, avvik eller hvem som faktisk godkjenner en endring."
+  ],
+  "work_life": {
+    "daily_work": [
+      "Bryter brief og verkoversikt ned i avhengigheter, eiere, frister og kontrollpunkter.",
+      "Koordinerer lån, forsikring, transport, mottak og tilstand uten å overta registrar- eller konservatormyndighet.",
+      "Fører installasjon og sen endring gjennom teknisk, sikkerhetsmessig og økonomisk konsekvensvurdering.",
+      "Kontrollerer åpning, dokumenterer avvik og overleverer utstillingen med synlige restpunkter."
+    ],
+    "responsibilities": [
+      "sporbar produksjonsplan",
+      "sikker verk- og publikumsbehandling",
+      "realistisk logistikk og ressursbruk",
+      "korrekt godkjenning og avvikslukking"
+    ],
+    "work_environment": [
+      "Arbeidet beveger seg mellom produksjonsbord, kunstlogistikk, installasjonsflate og åpningsberedskap."
+    ],
+    "status_position": [
+      "Tillit følger evnen til å få mange fag til å arbeide på samme sanne plan; koordinering gir ikke kunstnerisk, konserveringsfaglig eller ubegrenset budsjettmyndighet."
+    ],
+    "workplaces": [
+      "produksjons_og_avhengighetsbord",
+      "mottak_transport_og_tilstand",
+      "installasjon_og_sikkerhetsflate",
+      "apningsberedskap_og_overlevering"
+    ]
+  },
+  "authority_boundaries": {
+    "can": [
+      "koordinere produksjonsplan",
+      "bestille innen delegert ramme",
+      "stanse arbeid ved sikkerhetsrisiko",
+      "eskalere budsjett- og tidsavvik"
+    ],
+    "cannot": [
+      "endre kunstnerisk innhold uten mandat",
+      "overskride budsjettfullmakt",
+      "omgå låne- eller forsikringskrav",
+      "godkjenne risikofylt installasjon uten ansvarlig fagperson"
+    ]
+  },
+  "competence_axes": [
+    "produksjonsplanlegging",
+    "kunstlogistikk",
+    "installasjon",
+    "budsjettforståelse",
+    "avhengighetsstyring",
+    "risiko og sikkerhet"
+  ],
+  "ideal_type_problems": [
+    "forsinket verktransport",
+    "installasjon kolliderer med byggkrav",
+    "budsjettavvik før åpning",
+    "kunstner ønsker sen endring",
+    "leverandør kan ikke møte sikkerhetskrav"
+  ],
+  "career_path": {
+    "entry_from": [
+      "Produksjonsassistent med direkte jobbtilbud og avgrensede oppgaver i plan, logistikk og installasjon."
+    ],
+    "progression_to": [
+      "Utstillingskoordinator og senere utstillingsprodusent med større avhengighets- og budsjettansvar innen delegasjon."
+    ],
+    "possible_promotions": [
+      "Utstillingskoordinator med selvstendig produksjonsspor.",
+      "Utstillingsprodusent med ansvar for større portefølje og leveranser."
+    ],
+    "possible_exits": [
+      "Overgang til kunstlogistikk, registrararbeid eller arrangementsproduksjon.",
+      "Overgang til prosjektledelse, teknisk produksjon eller annen kulturproduksjon."
+    ],
+    "career_risks": [
+      "Skjulte snarveier kan skade verk, publikum, økonomi og institusjonell tillit.",
+      "Koordinering kan gli til uformelle godkjenninger rollen ikke har mandat til."
+    ]
+  },
+  "required_knowledge": {
+    "education_basis": [
+      "Praktisk forståelse for utstillingsproduksjon, kunsthåndtering, HMS, avtaler og prosjektøkonomi."
+    ],
+    "skills": [
+      "avhengighetsplanlegging",
+      "kunstlogistikk",
+      "installasjonskoordinering",
+      "budsjettoppfølging",
+      "risikovurdering",
+      "avviksdokumentasjon"
+    ],
+    "category_knowledge": [
+      "Hvordan utstillingshistorie, materialitet, proveniens og institusjonell praksis påvirker konkret produksjon."
+    ],
+    "history_go_badges": [
+      "kunst"
+    ],
+    "place_connections": [
+      "produksjons_og_avhengighetsbord",
+      "mottak_transport_og_tilstand",
+      "installasjon_og_sikkerhetsflate",
+      "apningsberedskap_og_overlevering"
+    ],
+    "people_connections": [
+      "nora_utstillingsprodusent",
+      "amina_registrar_kunstlogistikk",
+      "eirik_installasjon_og_sikkerhet",
+      "sara_kunstner_og_apningskontakt"
+    ]
+  },
+  "authority_boundary": {
+    "may": [
+      "koordinere produksjon",
+      "stanse arbeid ved risiko",
+      "bestille innen delegert ramme"
+    ],
+    "may_not": [
+      "endre kunstnerisk innhold uten mandat",
+      "overskride budsjettfullmakt",
+      "omgå forsikrings- eller lånekrav",
+      "godkjenne uforsvarlig installasjon"
+    ]
+  },
+  "challenges": [
+    {
+      "id": "apning_vs_forsvarlighet",
+      "title": "Åpning mot forsvarlighet",
+      "description": "En offentlig åpning nærmer seg mens transport, installasjon, kostnad og kontroll fortsatt har reelle avhengigheter.",
+      "pressure": "frist_vs_sikkerhet_og_sporbarhet",
+      "affects": [
+        "quality",
+        "trust",
+        "risk"
+      ]
+    }
+  ],
+  "dilemmas": [
+    {
+      "id": "sen_endring_i_avhengighetskjeden",
+      "title": "Sen endring i avhengighetskjeden",
+      "setup": "Et kunstnerisk ønske endrer teknikk, kostnad og sikkerhet to dager før åpning.",
+      "choice_axis": "uformell_snarløsning_vs_sporbar_konsekvensvurdering",
+      "consequence_axis": "lokal_fremdrift_vs_verk_og_publikumssikkerhet",
+      "mail_hooks": [
+        "job",
+        "people",
+        "conflict",
+        "story",
+        "event",
+        "micro",
+        "followup",
+        "knowledge",
+        "consequence"
+      ]
+    }
+  ],
+  "related_people": [
+    {
+      "id": "nora_utstillingsprodusent",
+      "name": "Nora",
+      "role": "utstillingsprodusent",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null,
+      "function": "Nora eier den samlede produksjonsplanen og gjør brief, utlån, transport, installasjon, budsjett og åpning til ett beslutningsbart avhengighetsbilde. Hun krever at usikkerhet får eier og frist før tidsplanen presenteres som løfte.",
+      "authority_relation": "Nora kan prioritere og godkjenne innen delegert produksjons- og budsjettramme, men kan ikke sette låne-, forsikrings-, sikkerhets- eller konserveringskrav til side eller overføre sin fullmakt til spilleren.",
+      "workplace_ids": [
+        "produksjons_og_avhengighetsbord"
+      ]
+    },
+    {
+      "id": "amina_registrar_kunstlogistikk",
+      "name": "Amina",
+      "role": "registrar og kunstlogistikkansvarlig",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null,
+      "function": "Amina holder låneavtale, forsikring, transportbestilling, courier-krav, mottak og tilstandsrapport sammen. Hun gjør dokumentasjonsbrudd synlige før et verk flyttes eller pakkes ut og skiller transporttempo fra tillatt håndtering.",
+      "authority_relation": "Amina kan stoppe mottak og håndtering når krav eller tilstand er uklare og sende saken til riktig långiver- eller fagfunksjon. Hun kan ikke endre kunstnerisk innhold, godkjenne konserveringsinngrep eller gi spilleren rett til å omgå lånevilkår.",
+      "workplace_ids": [
+        "mottak_transport_og_tilstand"
+      ]
+    },
+    {
+      "id": "eirik_installasjon_og_sikkerhet",
+      "name": "Eirik",
+      "role": "installasjons- og sikkerhetsleder",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null,
+      "function": "Eirik oversetter installasjonstegning, bygg, løft, strøm, rømningsvei og publikumsbruk til en sekvens som kan gjennomføres sikkert. Han viser hvor en sen endring skaper ny risiko, venting eller rework for flere fag.",
+      "authority_relation": "Eirik kan stanse risikofylt arbeid, kreve teknisk avklaring og koordinere installasjon innen godkjent metode. Han kan ikke godkjenne uforsvarlig løsning, overskride budsjett eller gjøre teknisk kontroll til kunstnerisk veto.",
+      "workplace_ids": [
+        "installasjon_og_sikkerhetsflate"
+      ]
+    },
+    {
+      "id": "sara_kunstner_og_apningskontakt",
+      "name": "Sara",
+      "role": "kunstner- og åpningskontakt",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null,
+      "function": "Sara holder kunstnerdialog, endringsønsker, merking, formidling, gjesteflyt og åpningsstatus konsistente. Hun skiller et ønske fra en godkjent endring og sørger for at åpne punkter ikke forsvinner når kommunikasjonen blir offentlig.",
+      "authority_relation": "Sara kan hente avklaringer og kommunisere dokumentert status, men kan ikke love endring, programinnhold eller åpning på vegne av riktig beslutningseier. Spilleren kan ikke bruke relasjonen til å omgå plan, sikkerhet eller budsjett.",
+      "workplace_ids": [
+        "apningsberedskap_og_overlevering"
+      ]
+    }
+  ],
+  "related_places": [
+    {
+      "id": "produksjons_og_avhengighetsbord",
+      "name": "Produksjons- og avhengighetsbordet",
+      "function": "Her bindes brief, tidsplan, budsjett, eier, avhengighet og beslutningsstatus sammen før arbeid bestilles."
+    },
+    {
+      "id": "mottak_transport_og_tilstand",
+      "name": "Mottak, transport og tilstand",
+      "function": "Her kontrolleres lånevilkår, forsikring, transport, emballasje, courier og tilstand før verket overtas eller flyttes."
+    },
+    {
+      "id": "installasjon_og_sikkerhetsflate",
+      "name": "Installasjons- og sikkerhetsflaten",
+      "function": "Her møter kunstnerisk intensjon bygg, teknikk, løft, strøm, rømningsvei og publikumsrisiko i en godkjennbar arbeidssekvens."
+    },
+    {
+      "id": "apningsberedskap_og_overlevering",
+      "name": "Åpningsberedskap og overlevering",
+      "function": "Her kontrolleres restpunkter, merking, renhold, formidling, gjesteflyt, ansvar og dokumentert lukking før utstillingen åpner og driften overtar."
+    }
+  ],
+  "mail_integration": {
+    "role_scope": "kunst_utstillingsproduksjon",
+    "mail_profile": "kunst_utstillingsproduksjon",
+    "can_feed_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "recommended_mail_families": [
+      "utstillingsproduksjon_job",
+      "utstillingsproduksjon_people",
+      "utstillingsproduksjon_conflict",
+      "utstillingsproduksjon_story",
+      "utstillingsproduksjon_event",
+      "utstillingsproduksjon_micro",
+      "utstillingsproduksjon_followup",
+      "utstillingsproduksjon_knowledge",
+      "utstillingsproduksjon_consequence"
+    ],
+    "role_model_refs_supported": true
+  }
 }
