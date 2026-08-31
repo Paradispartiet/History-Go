@@ -15,14 +15,14 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 
 ## Sammendrag
 
-- complete_reference_v2: 33
+- complete_reference_v2: 34
 - complete_reference: 0
 - playable_v1: 1
 - partial_pack: 23
 - role_model_only: 194
 - generated_stub: 0
 - broken_mapping: 0
-- missing: 45
+- missing: 44
 
 ## Rolleindeks
 
@@ -92,11 +92,11 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | kunst | gallerist | kunst_gallerist | Gallerist | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | kunst | konservator | kunst_konservator | Konservator | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | kunst | kunst_konservering_og_samling | kunst_konservering_og_samling | kunst_konservering_og_samling | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
-| kunst | kunst_kunstnerisk_ledelse | kunst_kunstnerisk_ledelse | kunst_kunstnerisk_ledelse | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | kunst | kunst_kuratering_og_program | kunst_kuratering_og_program | kunst_kuratering_og_program | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | kunst | kunst_museumsledelse | kunst_museumsledelse | kunst_museumsledelse | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | kunst | kunst_publikum_og_formidling | kunst_publikum_og_formidling | kunst_publikum_og_formidling | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | kunst | kunst_utstillingsproduksjon | kunst_utstillingsproduksjon | kunst_utstillingsproduksjon | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
+| kunst | kunst_kunstnerisk_ledelse | kunst_kunstnerisk_ledelse | Kunstnerisk ledelse | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | kunst | kunstnerisk_leder | kunst_kunstnerisk_leder | Kunstnerisk leder | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | kunst | kurator | kunst_kurator | Kurator | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | kunst | kuratorassistent | kunst_kuratorassistent | Kuratorassistent | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |

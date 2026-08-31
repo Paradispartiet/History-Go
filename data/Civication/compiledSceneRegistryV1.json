@@ -124,6 +124,15 @@
     "data/Civication/mailFamilies/historie/followup/historie_arkiv_og_dokumentasjon_followup.json",
     "data/Civication/mailFamilies/historie/knowledge/historie_arkiv_og_dokumentasjon_knowledge.json",
     "data/Civication/mailFamilies/historie/consequence/historie_arkiv_og_dokumentasjon_consequence.json",
+    "data/Civication/mailFamilies/kunst/job/kunst_kunstnerisk_ledelse_job.json",
+    "data/Civication/mailFamilies/kunst/people/kunst_kunstnerisk_ledelse_people.json",
+    "data/Civication/mailFamilies/kunst/story/kunst_kunstnerisk_ledelse_story.json",
+    "data/Civication/mailFamilies/kunst/conflict/kunst_kunstnerisk_ledelse_conflict.json",
+    "data/Civication/mailFamilies/kunst/event/kunst_kunstnerisk_ledelse_event.json",
+    "data/Civication/mailFamilies/kunst/micro/kunst_kunstnerisk_ledelse_micro.json",
+    "data/Civication/mailFamilies/kunst/followup/kunst_kunstnerisk_ledelse_followup.json",
+    "data/Civication/mailFamilies/kunst/knowledge/kunst_kunstnerisk_ledelse_knowledge.json",
+    "data/Civication/mailFamilies/kunst/consequence/kunst_kunstnerisk_ledelse_consequence.json",
     "data/Civication/mailFamilies/litteratur/job/redaksjonsmedarbeider_job.json",
     "data/Civication/mailFamilies/litteratur/people/redaksjonsmedarbeider_people.json",
     "data/Civication/mailFamilies/litteratur/story/redaksjonsmedarbeider_story.json",
@@ -48695,6 +48704,2016 @@
       },
       "source_hash": "5601ab2c44747ebe3a4196adc541fc92f9e6e28441911021d6e7e9415c90d8da",
       "source_path": "data/Civication/mailFamilies/historie/story/historie_arkiv_og_dokumentasjon_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar tryggere_program i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "portefolje"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk tryggere_program gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "etterprovbart_faglig_skonn",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Liv",
+        "id": "kunstnerisk_ledelse_conflict_tryggere_program_001",
+        "mail_family": "kunstnerisk_ledelse_styre_og_autonomi",
+        "mail_type": "conflict",
+        "narrative_arc": "tryggere_program",
+        "people_ref": "liv_institusjonsdirektor_kunstledelse",
+        "phase": "forenoon",
+        "place_id": "program_og_portefoljebord",
+        "pressure": "kunstnerisk_ambisjon_vs_mandat_og_ressurser",
+        "priority": 130,
+        "role_scope": "kunst_kunstnerisk_ledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/conflict/kunst_kunstnerisk_ledelse_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+          "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+          "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+        ],
+        "subject": "Styret ønsker et tryggere program etter kritikken",
+        "summary": "Den kunstneriske programporteføljen står i et konkret conflict-punkt: styret ønsker et tryggere program etter kritikken. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet.",
+        "task_domain": "kunstnerisk_programledelse"
+      },
+      "id": "kunstnerisk_ledelse_conflict_tryggere_program_001",
+      "mail_type": "conflict",
+      "role_scope": "kunst_kunstnerisk_ledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar tryggere_program i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk tryggere_program gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+            "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+            "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+          ],
+          "subject": "Styret ønsker et tryggere program etter kritikken",
+          "summary": "Den kunstneriske programporteføljen står i et konkret conflict-punkt: styret ønsker et tryggere program etter kritikken. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunstnerisk_ledelse_conflict_tryggere_program_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "program_og_portefoljebord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunstnerisk_ledelse_conflict_tryggere_program_001",
+          "source_path": "data/Civication/mailFamilies/kunst/conflict/kunst_kunstnerisk_ledelse_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kunstnerisk_ledelse.mail.kunstnerisk_ledelse_conflict_tryggere_program_001",
+        "version": 1
+      },
+      "source_hash": "27e19906d7ef9562ae7e3c93d09f128ae22fb7f50c3d09bdba83f38c2b6fc1b4",
+      "source_path": "data/Civication/mailFamilies/kunst/conflict/kunst_kunstnerisk_ledelse_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar offentlig_etterspill i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "portefolje"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk offentlig_etterspill gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "etterprovbart_faglig_skonn",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Sara",
+        "id": "kunstnerisk_ledelse_consequence_offentlig_etterspill_001",
+        "mail_family": "kunstnerisk_ledelse_beslutning_etterspill",
+        "mail_type": "consequence",
+        "narrative_arc": "offentlig_etterspill",
+        "people_ref": "sara_kunstnerkontakt_kunstledelse",
+        "phase": "forenoon",
+        "place_id": "offentlig_begrunnelse_og_evaluering",
+        "pressure": "kunstnerisk_ambisjon_vs_mandat_og_ressurser",
+        "priority": 130,
+        "role_scope": "kunst_kunstnerisk_ledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/consequence/kunst_kunstnerisk_ledelse_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+          "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+          "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+        ],
+        "subject": "Avslagene og kritikken trenger et synlig svar",
+        "summary": "Den kunstneriske programporteføljen står i et konkret consequence-punkt: avslagene og kritikken trenger et synlig svar. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet.",
+        "task_domain": "kunstnerisk_programledelse"
+      },
+      "id": "kunstnerisk_ledelse_consequence_offentlig_etterspill_001",
+      "mail_type": "consequence",
+      "role_scope": "kunst_kunstnerisk_ledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar offentlig_etterspill i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk offentlig_etterspill gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+            "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+            "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+          ],
+          "subject": "Avslagene og kritikken trenger et synlig svar",
+          "summary": "Den kunstneriske programporteføljen står i et konkret consequence-punkt: avslagene og kritikken trenger et synlig svar. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunstnerisk_ledelse_consequence_offentlig_etterspill_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "offentlig_begrunnelse_og_evaluering",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunstnerisk_ledelse_consequence_offentlig_etterspill_001",
+          "source_path": "data/Civication/mailFamilies/kunst/consequence/kunst_kunstnerisk_ledelse_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kunstnerisk_ledelse.mail.kunstnerisk_ledelse_consequence_offentlig_etterspill_001",
+        "version": 1
+      },
+      "source_hash": "5168ee8250159294ad1f8b4cd8fdecc68f9623f0f3bb718448f1d45d3efe791a",
+      "source_path": "data/Civication/mailFamilies/kunst/consequence/kunst_kunstnerisk_ledelse_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar endrede_rettigheter i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "portefolje"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk endrede_rettigheter gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "etterprovbart_faglig_skonn",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Eirik",
+        "id": "kunstnerisk_ledelse_event_endrede_rettigheter_001",
+        "mail_family": "kunstnerisk_ledelse_endret_forutsetning",
+        "mail_type": "event",
+        "narrative_arc": "endrede_rettigheter",
+        "people_ref": "eirik_produksjonsleder_kunstledelse",
+        "phase": "forenoon",
+        "place_id": "budsjett_og_mandatspunkt",
+        "pressure": "kunstnerisk_ambisjon_vs_mandat_og_ressurser",
+        "priority": 130,
+        "role_scope": "kunst_kunstnerisk_ledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/event/kunst_kunstnerisk_ledelse_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+          "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+          "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+        ],
+        "subject": "Rettighetene endrer et foreløpig programvalg",
+        "summary": "Den kunstneriske programporteføljen står i et konkret event-punkt: rettighetene endrer et foreløpig programvalg. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet.",
+        "task_domain": "kunstnerisk_programledelse"
+      },
+      "id": "kunstnerisk_ledelse_event_endrede_rettigheter_001",
+      "mail_type": "event",
+      "role_scope": "kunst_kunstnerisk_ledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar endrede_rettigheter i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk endrede_rettigheter gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+            "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+            "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+          ],
+          "subject": "Rettighetene endrer et foreløpig programvalg",
+          "summary": "Den kunstneriske programporteføljen står i et konkret event-punkt: rettighetene endrer et foreløpig programvalg. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunstnerisk_ledelse_event_endrede_rettigheter_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "budsjett_og_mandatspunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunstnerisk_ledelse_event_endrede_rettigheter_001",
+          "source_path": "data/Civication/mailFamilies/kunst/event/kunst_kunstnerisk_ledelse_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kunstnerisk_ledelse.mail.kunstnerisk_ledelse_event_endrede_rettigheter_001",
+        "version": 1
+      },
+      "source_hash": "775001fd96d0f0869b59e6aa3e75542dd560be99fbeb24ea3bed89a550720ac0",
+      "source_path": "data/Civication/mailFamilies/kunst/event/kunst_kunstnerisk_ledelse_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar rework_etter_estimat i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "portefolje"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk rework_etter_estimat gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "etterprovbart_faglig_skonn",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Eirik",
+        "id": "kunstnerisk_ledelse_followup_rework_etter_estimat_001",
+        "mail_family": "kunstnerisk_ledelse_portefolje_oppfolging",
+        "mail_type": "followup",
+        "narrative_arc": "rework_etter_estimat",
+        "people_ref": "eirik_produksjonsleder_kunstledelse",
+        "phase": "forenoon",
+        "place_id": "program_og_portefoljebord",
+        "pressure": "kunstnerisk_ambisjon_vs_mandat_og_ressurser",
+        "priority": 130,
+        "role_scope": "kunst_kunstnerisk_ledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/followup/kunst_kunstnerisk_ledelse_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+          "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+          "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+        ],
+        "subject": "Nytt estimat må tilbake til porteføljen",
+        "summary": "Den kunstneriske programporteføljen står i et konkret followup-punkt: nytt estimat må tilbake til porteføljen. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet.",
+        "task_domain": "kunstnerisk_programledelse"
+      },
+      "id": "kunstnerisk_ledelse_followup_rework_etter_estimat_001",
+      "mail_type": "followup",
+      "role_scope": "kunst_kunstnerisk_ledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar rework_etter_estimat i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk rework_etter_estimat gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+            "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+            "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+          ],
+          "subject": "Nytt estimat må tilbake til porteføljen",
+          "summary": "Den kunstneriske programporteføljen står i et konkret followup-punkt: nytt estimat må tilbake til porteføljen. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunstnerisk_ledelse_followup_rework_etter_estimat_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "program_og_portefoljebord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunstnerisk_ledelse_followup_rework_etter_estimat_001",
+          "source_path": "data/Civication/mailFamilies/kunst/followup/kunst_kunstnerisk_ledelse_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kunstnerisk_ledelse.mail.kunstnerisk_ledelse_followup_rework_etter_estimat_001",
+        "version": 1
+      },
+      "source_hash": "3008b1938449cabeeb7e3c5d34b2a9ac111248ab5ce43bda43743cb1108d9eb1",
+      "source_path": "data/Civication/mailFamilies/kunst/followup/kunst_kunstnerisk_ledelse_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar budsjett i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "portefolje"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk budsjett gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "etterprovbart_faglig_skonn",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Eirik",
+        "id": "kunstnerisk_ledelse_job_budsjett_003",
+        "mail_family": "kunstnerisk_ledelse_programportefolje_job",
+        "mail_type": "job",
+        "narrative_arc": "budsjett",
+        "people_ref": "eirik_produksjonsleder_kunstledelse",
+        "phase": "workday",
+        "place_id": "budsjett_og_mandatspunkt",
+        "pressure": "kunstnerisk_ambisjon_vs_mandat_og_ressurser",
+        "priority": 128,
+        "role_scope": "kunst_kunstnerisk_ledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/job/kunst_kunstnerisk_ledelse_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+          "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+          "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+        ],
+        "subject": "Hovedsatsingen fortrenger to avtalte prosjekter",
+        "summary": "Den kunstneriske programporteføljen står i et konkret job-punkt: hovedsatsingen fortrenger to avtalte prosjekter. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet.",
+        "task_domain": "kunstnerisk_programledelse"
+      },
+      "id": "kunstnerisk_ledelse_job_budsjett_003",
+      "mail_type": "job",
+      "role_scope": "kunst_kunstnerisk_ledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar budsjett i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk budsjett gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+            "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+            "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+          ],
+          "subject": "Hovedsatsingen fortrenger to avtalte prosjekter",
+          "summary": "Den kunstneriske programporteføljen står i et konkret job-punkt: hovedsatsingen fortrenger to avtalte prosjekter. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunstnerisk_ledelse_job_budsjett_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "budsjett_og_mandatspunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunstnerisk_ledelse_job_budsjett_003",
+          "source_path": "data/Civication/mailFamilies/kunst/job/kunst_kunstnerisk_ledelse_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kunstnerisk_ledelse.mail.kunstnerisk_ledelse_job_budsjett_003",
+        "version": 1
+      },
+      "source_hash": "796dd93b84e5b96aa9b56f5b8da9efd299e4d67d79a87c28de3a32cffddd2653",
+      "source_path": "data/Civication/mailFamilies/kunst/job/kunst_kunstnerisk_ledelse_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar evaluering i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "portefolje"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk evaluering gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "etterprovbart_faglig_skonn",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Sara",
+        "id": "kunstnerisk_ledelse_job_evaluering_004",
+        "mail_family": "kunstnerisk_ledelse_programportefolje_job",
+        "mail_type": "job",
+        "narrative_arc": "evaluering",
+        "people_ref": "sara_kunstnerkontakt_kunstledelse",
+        "phase": "workday",
+        "place_id": "offentlig_begrunnelse_og_evaluering",
+        "pressure": "kunstnerisk_ambisjon_vs_mandat_og_ressurser",
+        "priority": 127,
+        "role_scope": "kunst_kunstnerisk_ledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/job/kunst_kunstnerisk_ledelse_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+          "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+          "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+        ],
+        "subject": "Evalueringen må beholde opprinnelige kriterier",
+        "summary": "Den kunstneriske programporteføljen står i et konkret job-punkt: evalueringen må beholde opprinnelige kriterier. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet.",
+        "task_domain": "kunstnerisk_programledelse"
+      },
+      "id": "kunstnerisk_ledelse_job_evaluering_004",
+      "mail_type": "job",
+      "role_scope": "kunst_kunstnerisk_ledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar evaluering i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk evaluering gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+            "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+            "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+          ],
+          "subject": "Evalueringen må beholde opprinnelige kriterier",
+          "summary": "Den kunstneriske programporteføljen står i et konkret job-punkt: evalueringen må beholde opprinnelige kriterier. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunstnerisk_ledelse_job_evaluering_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "offentlig_begrunnelse_og_evaluering",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunstnerisk_ledelse_job_evaluering_004",
+          "source_path": "data/Civication/mailFamilies/kunst/job/kunst_kunstnerisk_ledelse_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kunstnerisk_ledelse.mail.kunstnerisk_ledelse_job_evaluering_004",
+        "version": 1
+      },
+      "source_hash": "7f772d38a725180398f782580ff9a5b5ded0cf906062c4ffdfcab3c7d6e04581",
+      "source_path": "data/Civication/mailFamilies/kunst/job/kunst_kunstnerisk_ledelse_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar habilitet i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "portefolje"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk habilitet gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "etterprovbart_faglig_skonn",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Amina",
+        "id": "kunstnerisk_ledelse_job_habilitet_002",
+        "mail_family": "kunstnerisk_ledelse_programportefolje_job",
+        "mail_type": "job",
+        "narrative_arc": "habilitet",
+        "people_ref": "amina_seniorkurator_kunstledelse",
+        "phase": "workday",
+        "place_id": "faglig_vurderingsrom",
+        "pressure": "kunstnerisk_ambisjon_vs_mandat_og_ressurser",
+        "priority": 129,
+        "role_scope": "kunst_kunstnerisk_ledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/job/kunst_kunstnerisk_ledelse_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+          "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+          "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+        ],
+        "subject": "Nær faglig relasjon i hovedprogrammet",
+        "summary": "Den kunstneriske programporteføljen står i et konkret job-punkt: nær faglig relasjon i hovedprogrammet. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet.",
+        "task_domain": "kunstnerisk_programledelse"
+      },
+      "id": "kunstnerisk_ledelse_job_habilitet_002",
+      "mail_type": "job",
+      "role_scope": "kunst_kunstnerisk_ledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar habilitet i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk habilitet gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+            "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+            "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+          ],
+          "subject": "Nær faglig relasjon i hovedprogrammet",
+          "summary": "Den kunstneriske programporteføljen står i et konkret job-punkt: nær faglig relasjon i hovedprogrammet. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunstnerisk_ledelse_job_habilitet_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "faglig_vurderingsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunstnerisk_ledelse_job_habilitet_002",
+          "source_path": "data/Civication/mailFamilies/kunst/job/kunst_kunstnerisk_ledelse_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kunstnerisk_ledelse.mail.kunstnerisk_ledelse_job_habilitet_002",
+        "version": 1
+      },
+      "source_hash": "424b1c6b4e6b470c69acaca93d3cbf9923457c6c003ac494e2a679a0425ac91d",
+      "source_path": "data/Civication/mailFamilies/kunst/job/kunst_kunstnerisk_ledelse_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar programforslag i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "portefolje"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk programforslag gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "etterprovbart_faglig_skonn",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Liv",
+        "id": "kunstnerisk_ledelse_job_programforslag_001",
+        "mail_family": "kunstnerisk_ledelse_programportefolje_job",
+        "mail_type": "job",
+        "narrative_arc": "programforslag",
+        "people_ref": "liv_institusjonsdirektor_kunstledelse",
+        "phase": "forenoon",
+        "place_id": "program_og_portefoljebord",
+        "pressure": "kunstnerisk_ambisjon_vs_mandat_og_ressurser",
+        "priority": 130,
+        "role_scope": "kunst_kunstnerisk_ledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/job/kunst_kunstnerisk_ledelse_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+          "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+          "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+        ],
+        "subject": "Nytt forslag mangler rettighets- og habilitetsspor",
+        "summary": "Den kunstneriske programporteføljen står i et konkret job-punkt: nytt forslag mangler rettighets- og habilitetsspor. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet.",
+        "task_domain": "kunstnerisk_programledelse"
+      },
+      "id": "kunstnerisk_ledelse_job_programforslag_001",
+      "mail_type": "job",
+      "role_scope": "kunst_kunstnerisk_ledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar programforslag i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk programforslag gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+            "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+            "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+          ],
+          "subject": "Nytt forslag mangler rettighets- og habilitetsspor",
+          "summary": "Den kunstneriske programporteføljen står i et konkret job-punkt: nytt forslag mangler rettighets- og habilitetsspor. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunstnerisk_ledelse_job_programforslag_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "program_og_portefoljebord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunstnerisk_ledelse_job_programforslag_001",
+          "source_path": "data/Civication/mailFamilies/kunst/job/kunst_kunstnerisk_ledelse_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kunstnerisk_ledelse.mail.kunstnerisk_ledelse_job_programforslag_001",
+        "version": 1
+      },
+      "source_hash": "de85eb6e0561be3c654333ae13bdfeba75d0ff89ce44c60340c1d9d821fd250d",
+      "source_path": "data/Civication/mailFamilies/kunst/job/kunst_kunstnerisk_ledelse_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar institusjon_og_kanon i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "portefolje"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk institusjon_og_kanon gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "etterprovbart_faglig_skonn",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Amina",
+        "id": "kunstnerisk_ledelse_knowledge_institusjon_og_kanon_001",
+        "mail_family": "kunstnerisk_ledelse_historie_go_kunstinstitusjon",
+        "mail_type": "knowledge",
+        "narrative_arc": "institusjon_og_kanon",
+        "people_ref": "amina_seniorkurator_kunstledelse",
+        "phase": "forenoon",
+        "place_id": "faglig_vurderingsrom",
+        "pressure": "kunstnerisk_ambisjon_vs_mandat_og_ressurser",
+        "priority": 130,
+        "role_scope": "kunst_kunstnerisk_ledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/knowledge/kunst_kunstnerisk_ledelse_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+          "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+          "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+        ],
+        "subject": "Historien utfordrer kriteriene, men bestemmer ikke valget",
+        "summary": "Den kunstneriske programporteføljen står i et konkret knowledge-punkt: historien utfordrer kriteriene, men bestemmer ikke valget. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet.",
+        "task_domain": "kunstnerisk_programledelse"
+      },
+      "id": "kunstnerisk_ledelse_knowledge_institusjon_og_kanon_001",
+      "mail_type": "knowledge",
+      "role_scope": "kunst_kunstnerisk_ledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar institusjon_og_kanon i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk institusjon_og_kanon gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+            "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+            "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+          ],
+          "subject": "Historien utfordrer kriteriene, men bestemmer ikke valget",
+          "summary": "Den kunstneriske programporteføljen står i et konkret knowledge-punkt: historien utfordrer kriteriene, men bestemmer ikke valget. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunstnerisk_ledelse_knowledge_institusjon_og_kanon_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "faglig_vurderingsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunstnerisk_ledelse_knowledge_institusjon_og_kanon_001",
+          "source_path": "data/Civication/mailFamilies/kunst/knowledge/kunst_kunstnerisk_ledelse_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kunstnerisk_ledelse.mail.kunstnerisk_ledelse_knowledge_institusjon_og_kanon_001",
+        "version": 1
+      },
+      "source_hash": "4588fcebbedf1de2c18b1708bec9044d895bb38caf4299d437112c39f4cc00b7",
+      "source_path": "data/Civication/mailFamilies/kunst/knowledge/kunst_kunstnerisk_ledelse_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar kan_vi_kalle_det_besluttet i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "portefolje"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk kan_vi_kalle_det_besluttet gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "etterprovbart_faglig_skonn",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Liv",
+        "id": "kunstnerisk_ledelse_micro_kan_vi_kalle_det_besluttet_001",
+        "mail_family": "kunstnerisk_ledelse_rask_mandatavklaring",
+        "mail_type": "micro",
+        "narrative_arc": "kan_vi_kalle_det_besluttet",
+        "people_ref": "liv_institusjonsdirektor_kunstledelse",
+        "phase": "forenoon",
+        "place_id": "budsjett_og_mandatspunkt",
+        "pressure": "kunstnerisk_ambisjon_vs_mandat_og_ressurser",
+        "priority": 130,
+        "role_scope": "kunst_kunstnerisk_ledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/micro/kunst_kunstnerisk_ledelse_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+          "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+          "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+        ],
+        "subject": "Kan vi kalle programmet besluttet nå?",
+        "summary": "Den kunstneriske programporteføljen står i et konkret micro-punkt: kan vi kalle programmet besluttet nå?. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet.",
+        "task_domain": "kunstnerisk_programledelse"
+      },
+      "id": "kunstnerisk_ledelse_micro_kan_vi_kalle_det_besluttet_001",
+      "mail_type": "micro",
+      "role_scope": "kunst_kunstnerisk_ledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar kan_vi_kalle_det_besluttet i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk kan_vi_kalle_det_besluttet gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+            "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+            "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+          ],
+          "subject": "Kan vi kalle programmet besluttet nå?",
+          "summary": "Den kunstneriske programporteføljen står i et konkret micro-punkt: kan vi kalle programmet besluttet nå?. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunstnerisk_ledelse_micro_kan_vi_kalle_det_besluttet_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "budsjett_og_mandatspunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunstnerisk_ledelse_micro_kan_vi_kalle_det_besluttet_001",
+          "source_path": "data/Civication/mailFamilies/kunst/micro/kunst_kunstnerisk_ledelse_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kunstnerisk_ledelse.mail.kunstnerisk_ledelse_micro_kan_vi_kalle_det_besluttet_001",
+        "version": 1
+      },
+      "source_hash": "fb33013ed356ffd475e40132cc8b41a2339211c42aeed081a2a68a3112fc0a70",
+      "source_path": "data/Civication/mailFamilies/kunst/micro/kunst_kunstnerisk_ledelse_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar amina_kriterier i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "portefolje"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk amina_kriterier gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "etterprovbart_faglig_skonn",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Amina",
+        "id": "kunstnerisk_ledelse_people_amina_kriterier_002",
+        "mail_family": "kunstnerisk_ledelse_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "amina_kriterier",
+        "people_ref": "amina_seniorkurator_kunstledelse",
+        "phase": "workday",
+        "place_id": "faglig_vurderingsrom",
+        "pressure": "kunstnerisk_ambisjon_vs_mandat_og_ressurser",
+        "priority": 129,
+        "role_scope": "kunst_kunstnerisk_ledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/people/kunst_kunstnerisk_ledelse_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+          "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+          "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+        ],
+        "subject": "Mindretallets vurdering mangler i grunnlaget",
+        "summary": "Den kunstneriske programporteføljen står i et konkret people-punkt: mindretallets vurdering mangler i grunnlaget. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet.",
+        "task_domain": "kunstnerisk_programledelse"
+      },
+      "id": "kunstnerisk_ledelse_people_amina_kriterier_002",
+      "mail_type": "people",
+      "role_scope": "kunst_kunstnerisk_ledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar amina_kriterier i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk amina_kriterier gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+            "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+            "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+          ],
+          "subject": "Mindretallets vurdering mangler i grunnlaget",
+          "summary": "Den kunstneriske programporteføljen står i et konkret people-punkt: mindretallets vurdering mangler i grunnlaget. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunstnerisk_ledelse_people_amina_kriterier_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "faglig_vurderingsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunstnerisk_ledelse_people_amina_kriterier_002",
+          "source_path": "data/Civication/mailFamilies/kunst/people/kunst_kunstnerisk_ledelse_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kunstnerisk_ledelse.mail.kunstnerisk_ledelse_people_amina_kriterier_002",
+        "version": 1
+      },
+      "source_hash": "815d5f802ec9741d7deab6f4b417972228460d27711ed7d152464534c84384e9",
+      "source_path": "data/Civication/mailFamilies/kunst/people/kunst_kunstnerisk_ledelse_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar eirik_realiserbarhet i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "portefolje"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk eirik_realiserbarhet gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "etterprovbart_faglig_skonn",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Eirik",
+        "id": "kunstnerisk_ledelse_people_eirik_realiserbarhet_003",
+        "mail_family": "kunstnerisk_ledelse_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "eirik_realiserbarhet",
+        "people_ref": "eirik_produksjonsleder_kunstledelse",
+        "phase": "workday",
+        "place_id": "budsjett_og_mandatspunkt",
+        "pressure": "kunstnerisk_ambisjon_vs_mandat_og_ressurser",
+        "priority": 128,
+        "role_scope": "kunst_kunstnerisk_ledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/people/kunst_kunstnerisk_ledelse_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+          "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+          "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+        ],
+        "subject": "Produksjonen trenger et reelt ventepunkt",
+        "summary": "Den kunstneriske programporteføljen står i et konkret people-punkt: produksjonen trenger et reelt ventepunkt. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet.",
+        "task_domain": "kunstnerisk_programledelse"
+      },
+      "id": "kunstnerisk_ledelse_people_eirik_realiserbarhet_003",
+      "mail_type": "people",
+      "role_scope": "kunst_kunstnerisk_ledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar eirik_realiserbarhet i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk eirik_realiserbarhet gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+            "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+            "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+          ],
+          "subject": "Produksjonen trenger et reelt ventepunkt",
+          "summary": "Den kunstneriske programporteføljen står i et konkret people-punkt: produksjonen trenger et reelt ventepunkt. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunstnerisk_ledelse_people_eirik_realiserbarhet_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "budsjett_og_mandatspunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunstnerisk_ledelse_people_eirik_realiserbarhet_003",
+          "source_path": "data/Civication/mailFamilies/kunst/people/kunst_kunstnerisk_ledelse_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kunstnerisk_ledelse.mail.kunstnerisk_ledelse_people_eirik_realiserbarhet_003",
+        "version": 1
+      },
+      "source_hash": "c0b076ab7c7081640b13293f31ddfdf1204ef1ed3ab20334e0f474fe986a47cb",
+      "source_path": "data/Civication/mailFamilies/kunst/people/kunst_kunstnerisk_ledelse_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar liv_mandat i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "portefolje"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk liv_mandat gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "etterprovbart_faglig_skonn",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Liv",
+        "id": "kunstnerisk_ledelse_people_liv_mandat_001",
+        "mail_family": "kunstnerisk_ledelse_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "liv_mandat",
+        "people_ref": "liv_institusjonsdirektor_kunstledelse",
+        "phase": "forenoon",
+        "place_id": "program_og_portefoljebord",
+        "pressure": "kunstnerisk_ambisjon_vs_mandat_og_ressurser",
+        "priority": 130,
+        "role_scope": "kunst_kunstnerisk_ledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/people/kunst_kunstnerisk_ledelse_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+          "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+          "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+        ],
+        "subject": "Hva er anbefaling, og hva er faktisk besluttet?",
+        "summary": "Den kunstneriske programporteføljen står i et konkret people-punkt: hva er anbefaling, og hva er faktisk besluttet?. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet.",
+        "task_domain": "kunstnerisk_programledelse"
+      },
+      "id": "kunstnerisk_ledelse_people_liv_mandat_001",
+      "mail_type": "people",
+      "role_scope": "kunst_kunstnerisk_ledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar liv_mandat i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk liv_mandat gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+            "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+            "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+          ],
+          "subject": "Hva er anbefaling, og hva er faktisk besluttet?",
+          "summary": "Den kunstneriske programporteføljen står i et konkret people-punkt: hva er anbefaling, og hva er faktisk besluttet?. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunstnerisk_ledelse_people_liv_mandat_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "program_og_portefoljebord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunstnerisk_ledelse_people_liv_mandat_001",
+          "source_path": "data/Civication/mailFamilies/kunst/people/kunst_kunstnerisk_ledelse_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kunstnerisk_ledelse.mail.kunstnerisk_ledelse_people_liv_mandat_001",
+        "version": 1
+      },
+      "source_hash": "a86863b4652d2093cc7915afeffa604d0a17b40f3f6a301a2f99a4da1ba7830c",
+      "source_path": "data/Civication/mailFamilies/kunst/people/kunst_kunstnerisk_ledelse_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar sara_kunstnerdialog i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "portefolje"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk sara_kunstnerdialog gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "etterprovbart_faglig_skonn",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Sara",
+        "id": "kunstnerisk_ledelse_people_sara_kunstnerdialog_004",
+        "mail_family": "kunstnerisk_ledelse_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "sara_kunstnerdialog",
+        "people_ref": "sara_kunstnerkontakt_kunstledelse",
+        "phase": "workday",
+        "place_id": "offentlig_begrunnelse_og_evaluering",
+        "pressure": "kunstnerisk_ambisjon_vs_mandat_og_ressurser",
+        "priority": 127,
+        "role_scope": "kunst_kunstnerisk_ledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/people/kunst_kunstnerisk_ledelse_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+          "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+          "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+        ],
+        "subject": "Revisjonsinvitasjonen blir lest som et løfte",
+        "summary": "Den kunstneriske programporteføljen står i et konkret people-punkt: revisjonsinvitasjonen blir lest som et løfte. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet.",
+        "task_domain": "kunstnerisk_programledelse"
+      },
+      "id": "kunstnerisk_ledelse_people_sara_kunstnerdialog_004",
+      "mail_type": "people",
+      "role_scope": "kunst_kunstnerisk_ledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar sara_kunstnerdialog i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk sara_kunstnerdialog gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+            "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+            "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+          ],
+          "subject": "Revisjonsinvitasjonen blir lest som et løfte",
+          "summary": "Den kunstneriske programporteføljen står i et konkret people-punkt: revisjonsinvitasjonen blir lest som et løfte. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunstnerisk_ledelse_people_sara_kunstnerdialog_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "offentlig_begrunnelse_og_evaluering",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunstnerisk_ledelse_people_sara_kunstnerdialog_004",
+          "source_path": "data/Civication/mailFamilies/kunst/people/kunst_kunstnerisk_ledelse_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kunstnerisk_ledelse.mail.kunstnerisk_ledelse_people_sara_kunstnerdialog_004",
+        "version": 1
+      },
+      "source_hash": "d56ac36aa899d7e8d1f88cae52b7c4ce4e20bc9ff2d36fc74905afd7ccee91db",
+      "source_path": "data/Civication/mailFamilies/kunst/people/kunst_kunstnerisk_ledelse_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar lederidentitet i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "portefolje"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk lederidentitet gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "etterprovbart_faglig_skonn",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Amina",
+        "id": "kunstnerisk_ledelse_story_lederidentitet_001",
+        "mail_family": "kunstnerisk_ledelse_identitet_og_legitimitet",
+        "mail_type": "story",
+        "narrative_arc": "lederidentitet",
+        "people_ref": "amina_seniorkurator_kunstledelse",
+        "phase": "forenoon",
+        "place_id": "faglig_vurderingsrom",
+        "pressure": "kunstnerisk_ambisjon_vs_mandat_og_ressurser",
+        "priority": 130,
+        "role_scope": "kunst_kunstnerisk_ledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/story/kunst_kunstnerisk_ledelse_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+          "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+          "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+        ],
+        "subject": "Er retning det samme som din smak?",
+        "summary": "Den kunstneriske programporteføljen står i et konkret story-punkt: er retning det samme som din smak?. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet.",
+        "task_domain": "kunstnerisk_programledelse"
+      },
+      "id": "kunstnerisk_ledelse_story_lederidentitet_001",
+      "mail_type": "story",
+      "role_scope": "kunst_kunstnerisk_ledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+            "id": "A",
+            "label": "Avklar lederidentitet i porteføljen",
+            "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+            "id": "B",
+            "label": "Lukk lederidentitet gjennom uformell enighet",
+            "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+            "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+            "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+          ],
+          "subject": "Er retning det samme som din smak?",
+          "summary": "Den kunstneriske programporteføljen står i et konkret story-punkt: er retning det samme som din smak?. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunstnerisk_ledelse_story_lederidentitet_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "faglig_vurderingsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunstnerisk_ledelse_story_lederidentitet_001",
+          "source_path": "data/Civication/mailFamilies/kunst/story/kunst_kunstnerisk_ledelse_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kunstnerisk_ledelse.mail.kunstnerisk_ledelse_story_lederidentitet_001",
+        "version": 1
+      },
+      "source_hash": "6d41c5c8eef4158c2992dc44194483d97760cb3d1178586a1511474df3a06a6a",
+      "source_path": "data/Civication/mailFamilies/kunst/story/kunst_kunstnerisk_ledelse_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -196441,7 +198460,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "d3aa97b4343b37a748b9675453eb46d25c4cd3402f4d09e5aa37fe104ad7ad14",
+  "registry_hash": "b8da79f75720af0876ad3f84c8dcbc0bf419c9b1dbcb84848091eb507ea76aae",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -196753,6 +198772,23 @@
       "historie_arkiv_knowledge_akershus_001",
       "historie_arkiv_knowledge_knut_alvsson_001",
       "historie_arkiv_consequence_migrering_001"
+    ],
+    "kunst/kunst_kunstnerisk_ledelse": [
+      "kunstnerisk_ledelse_job_programforslag_001",
+      "kunstnerisk_ledelse_job_habilitet_002",
+      "kunstnerisk_ledelse_job_budsjett_003",
+      "kunstnerisk_ledelse_job_evaluering_004",
+      "kunstnerisk_ledelse_people_liv_mandat_001",
+      "kunstnerisk_ledelse_people_amina_kriterier_002",
+      "kunstnerisk_ledelse_people_eirik_realiserbarhet_003",
+      "kunstnerisk_ledelse_people_sara_kunstnerdialog_004",
+      "kunstnerisk_ledelse_story_lederidentitet_001",
+      "kunstnerisk_ledelse_conflict_tryggere_program_001",
+      "kunstnerisk_ledelse_event_endrede_rettigheter_001",
+      "kunstnerisk_ledelse_micro_kan_vi_kalle_det_besluttet_001",
+      "kunstnerisk_ledelse_followup_rework_etter_estimat_001",
+      "kunstnerisk_ledelse_knowledge_institusjon_og_kanon_001",
+      "kunstnerisk_ledelse_consequence_offentlig_etterspill_001"
     ],
     "litteratur/redaksjonsmedarbeider": [
       "litteratur_redaksjonsmedarbeider_job_versjon_001",
@@ -197769,11 +199805,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 350,
+    "compiled_source_file_count": 359,
     "ignored_source_file_count": 1,
-    "input_file_count": 351,
-    "role_count": 44,
-    "scene_count": 1210,
+    "input_file_count": 360,
+    "role_count": 45,
+    "scene_count": 1225,
     "shadowed_duplicate_count": 0
   },
   "version": 1
