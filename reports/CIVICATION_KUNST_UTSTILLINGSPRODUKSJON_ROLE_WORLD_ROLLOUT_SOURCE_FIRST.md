@@ -13,3 +13,5 @@ The fictional actors remain scenario actors and never become factual History Go 
 ## Anti-boilerplate and verification
 
 Editorial uniqueness is checked across every summary and consequence. Shared boilerplate may state an invariant authority boundary, but every beat must name a distinct production state, audience and delayed implication. The fail-closed workflow protects prerequisite hashes, regenerates readiness/index surfaces, verifies registry and Scenario People parity, runs focused gates and full Civication, removes temporary surfaces and commits only permanent output.
+
+Verified materialization checkpoint: focused contracts, registry parity, Scenario People invariants and full Civication passed before permanent head `61ffbc6871a729218f61835f44ad024265d9510c` was produced.
