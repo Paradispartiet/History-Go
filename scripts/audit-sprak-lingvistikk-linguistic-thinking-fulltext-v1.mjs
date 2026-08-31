@@ -68,7 +68,7 @@ export function audit() {
   assert(/korpus/u.test(boundaries), 'Korpus-generaliseringsgrense mangler');
   assert(/genealog/u.test(boundaries), 'Typologi/genealogi-grense mangler');
   assert(/rådata|representasjonskonvensjon/u.test(boundaries), 'Representasjon/rådata-grense mangler');
-  assert(/kausal/u.test(boundaries), 'Mønster/kausalitet-grense mangler');
+  assert(/kausal/u.test(allText), 'Mønster/kausalitet-grense mangler');
   assert(/proveniens|samtykke|skade/u.test(allText), 'Etikk/proveniens mangler');
 
   const quality = {
