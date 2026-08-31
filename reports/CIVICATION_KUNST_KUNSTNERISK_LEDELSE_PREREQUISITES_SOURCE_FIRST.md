@@ -50,3 +50,5 @@ After verified materialization:
 ## Verification
 
 The fail-closed workflow regenerates Role Pack, Career Gameplay, compiled Scene Registry and rollout readiness; verifies the focused role contract, global audits, generated Scenario People boundaries and full Civication; removes both TEMP surfaces; and publishes only the permanent verified state.
+
+Verified materialization checkpoint: the temporary workflow completed its focused gates, Scenario People invariants and full Civication suite before producing permanent head `6bb7c5daba42a1bf4cfef60534b3b64be40af490`.
