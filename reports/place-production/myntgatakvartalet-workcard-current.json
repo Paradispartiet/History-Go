@@ -1,0 +1,123 @@
+{
+  "schema": "history_go_place_workcard_v1",
+  "place_id": "myntgatakvartalet",
+  "category": "historie",
+  "status": "complete",
+  "production_profile": "standard",
+  "profile_status": "confirmed",
+  "profile_reason": "Kvartalet har flere dokumenterte tidslag, men ett samlet steds- og funksjonsforløp som passer standardprofilen.",
+  "underbadge_ids": [
+    "tidlig_modernetid",
+    "attenhundretallet",
+    "nittenhundre_1900_1945",
+    "etterkrigstid",
+    "byhistorie",
+    "kulturminner_og_bevaring"
+  ],
+  "content_plan": {
+    "people": "Christian IV er akseptert; Peter Grüner holdes tilbake fra synlig samling fordi et identitetskontrollert bilde mangler.",
+    "objects": "1628-speciedaleren og bevarte binderinger på stallfasadene.",
+    "brands": "Forsvarsbygg som dokumentert tidligere eier og selger med eksisterende godkjent ordmerke.",
+    "category_expression": "historical_events / Historiske hendelser",
+    "stories": "Én episode om bybrannen i 1686 og funksjonsskiftet.",
+    "for_na": "Source-bounded holdback inntil sammenlignbart historisk og aktuelt bildepar er dokumentert.",
+    "news": "Aktuell skole- og transformasjonsplan fra Oslo kommune.",
+    "lesespor": "Oppdag Kvadraturen, Norges Bank, Oslo kommune og Riksantikvarens fredningskilde."
+  },
+  "collection_ids": [
+    "people",
+    "objects",
+    "brands",
+    "historical_events"
+  ],
+  "object_category_boundary": "Objects er fysiske mynter og bevarte stallbeslag; historical_events er avgrensede funksjonsskifter og beslutninger.",
+  "canonical_next": null,
+  "active_phase": "source_review_and_materialization",
+  "active_file_scope": "Myntgatakvartalet og direkte nødvendige People, Brand, Story, quiz, Knowledge, språk, Lesespor, epoke, bilde- og produksjonsregistre.",
+  "notes": [
+    "Canonicalt tynt frø beholdes og fullproduseres på samme ID.",
+    "Koordinaten ved Myntgata 2 beholdes; den påstår ikke eksakt plassering av det forsvunne myntverkstedet.",
+    "Akershus festning og eksisterende nabosteder forblir egne Places.",
+    "Related brukes bare til navigasjon og aldri som samling."
+  ],
+  "rule_preflight": {
+    "schema": "history_go_place_rule_preflight_v1",
+    "status": "PASS",
+    "place_id": "myntgatakvartalet",
+    "category": "historie",
+    "recorded_at": "2026-08-31T10:57:45.595Z",
+    "rule": "Files must be read in full before this evidence is recorded; hashes prove freshness, not comprehension.",
+    "files": [
+      {
+        "path": "docs/PLACE_PRODUCTION_CHECKLIST.md",
+        "sha256": "daa975d35a11117214a8821e9e4399bda400f0a69e2570f13a9197ea419ed27b"
+      },
+      {
+        "path": "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md",
+        "sha256": "526abb31a897f9a1d93ed2daf12d9ebf1183c82c0e544e5bb9ceb6a54764eb8e"
+      },
+      {
+        "path": "docs/PLACE_PRODUCTION_PROFILES.md",
+        "sha256": "0cfdc52b458645d8c22396c6d4adacb1a0661d9eab1f0d2baaab27b9cfa21490"
+      },
+      {
+        "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+        "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd"
+      },
+      {
+        "path": "data/places/README_place_rounds.md",
+        "sha256": "0d61d07992306ca5a694a5cd7b010bd1466430c937787d0e2fcb61ff168f765b"
+      },
+      {
+        "path": "data/badges/index.json",
+        "sha256": "7a796a0902c6ec0f651241d062363f2dfd8a196e9eebfc78baf960e4f507fdbf"
+      },
+      {
+        "path": "data/badges/place_production_routing_v1.json",
+        "sha256": "97e1b78c1797a5194492ef16a66f3c9d3d5b543c093a35962fd60bbb7be3d721"
+      },
+      {
+        "path": "docs/PLACE_OBJECTS_CANONICAL.md",
+        "sha256": "ccc3f438c8c235d9b60c9d0280a215c1862220b1988a4f6a7bca7060b53c1799"
+      },
+      {
+        "path": "data/brands/brand_rules_v1_1.json",
+        "sha256": "c8009c5f872560c46a164d3399e193cd7fd33d80ecb70f37496f8ad1b89b786a"
+      },
+      {
+        "path": "data/badges/historie.json",
+        "sha256": "f33595ccbd1bf21e2cb5048a855d1077e29be8b2cde95decd2ff6ccbed010b9c"
+      }
+    ],
+    "contract_snapshot": {
+      "full_place_collection_count": 4,
+      "candidate_collections": [
+        "people",
+        "objects",
+        "brands",
+        "historical_events"
+      ],
+      "category_expression": "historical_events",
+      "related_is_placecard_collection": false,
+      "no_filler": true,
+      "routing_order": [
+        "universal_canonical_core",
+        "primary_badge_family",
+        "active_underbadge_ids",
+        "place_specific_source_review",
+        "confirmed_production_profile",
+        "final_content_plan"
+      ]
+    }
+  },
+  "source_review": "complete",
+  "production_verified_at": "2026-08-31",
+  "quiz_profile": "normal_4x7",
+  "fagverk_status": "curated_standard",
+  "chronology_status": "PASS",
+  "story_status": "PASS",
+  "objects_status": "PASS",
+  "brands_status": "PASS",
+  "people_status": "PASS",
+  "quality_gate": "reports/place-production/myntgatakvartalet-phase1-24-gate-audit-v1.json"
+}

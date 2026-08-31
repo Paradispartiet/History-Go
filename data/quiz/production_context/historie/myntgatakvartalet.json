@@ -1,0 +1,689 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "myntgatakvartalet",
+  "profile": "normal_4x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1793,
+    "selection_sha256": "7f4810145ce5b3585fdeb86158a67a08b01720c2ff3e17a117876cf024d3b77d",
+    "category_id": "historie",
+    "target_id": "myntgatakvartalet"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "bytes": 93945,
+      "sha256": "37abfe99b9f3f1db23bb0cb307b2076407076a405c15868b0524ef5b9e31c72d",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "bytes": 2142053,
+      "sha256": "bcb20665e0a013c4f57e17719b610224874552b942b9bcd7421a7239463931ec",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "bytes": 1127330,
+      "sha256": "6db315c9b911fc04b99dd7609e493e744f919448668cf35fe3c72d3dabff59b1",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "bytes": 252328,
+      "sha256": "9462f9fc4a07c9c08593abaa75e4ee1bddd6af9e45a87304b52df66bcdb654be",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "bytes": 6935,
+      "sha256": "162f166d3c5be89d77b7529ba9186a552b791e9dbd04a590a01fdaad28944098",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/historie/myntgatakvartalet.json",
+      "bytes": 12662,
+      "sha256": "1ee9f0459ec223a272b04c0dfaf5fa9713b1cfa03397d0c15484373ef9be5f3a"
+    },
+    "target": {
+      "path": "data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_02/myntgatakvartalet.json",
+      "bytes": 21870,
+      "sha256": "4fb59eca6163cfdf22215039d0f70bfbfeeafe943cb7edaf94977a5d4fe102cb"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1373,
+      "selection_sha256": "919464f1c6dab7944fa763806f2a63974f7cfa2b0a8c68dd217399b72bd648f2"
+    },
+    "relations": [
+      {
+        "path": "data/relations.json",
+        "matches": 3,
+        "selection_bytes": 910,
+        "selection_sha256": "34d5f04d4bd5c194d2ec7f6699c1b3a600f312d8a1146a89824146ade7e70dcc"
+      }
+    ],
+    "stories": [
+      {
+        "path": "data/stories/stories_myntgatakvartalet.json",
+        "matches": 1,
+        "selection_bytes": 2126,
+        "selection_sha256": "af4946ada6b5573eb9fac8e784c87f34f015f3acbbc7c2a16e512cb47f503a73"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/historie/myntgatakvartalet_sets.json",
+  "source_registry": {
+    "oppdag": {
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/myntgata-2-myntgatakvartalet",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Oslo kommune/Byantikvaren om mynt, festningsverk og hesteanlegg."
+    },
+    "oslo": {
+      "url": "https://magasin.oslo.kommune.no/byplan/alle-vil-til-myntgata",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Oslo kommune om bygninger, binderinger, bruk og offentlig åpning."
+    },
+    "current": {
+      "url": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/myntgata-2/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Fersk forvaltning, eierskap, vern og dagens bruk."
+    },
+    "bank": {
+      "url": "https://www.norges-bank.no/tema/Om-Norges-Bank/historie/norges-banks-historie/Epoke1-teaser/1625-/1625-utdyping-om-christiania-myntverk/",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Myntmestere, bestallingsbrev og sølvinnhold."
+    },
+    "fredning": {
+      "url": "https://riksantikvaren.no/content/uploads/2019/10/akershusforskriftomfredning2014.pdf",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Fredningsgrunnlag og kulturmiljø."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/historie/myntgatakvartalet_sets.json"
+    ],
+    "active_before": {
+      "categoryId": null,
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "Ingen eksisterende target-quiz; ny source-led 4x7 produseres."
+    ],
+    "knowledge_migration": {
+      "status": "not_applicable",
+      "retained_rule": "Ingen eldre spørsmål finnes."
+    }
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Fire ulike sett dekker myntverk, funksjonsbrudd, militær logistikk og vern/ombruk uten gjentakelse."
+  },
+  "held_back_candidates": [
+    "Detaljert mynttypologi uten stedlig læringsverdi",
+    "Peter Grüner som synlig People-medlem uten kontrollert bilde",
+    "Udatert påstand om skolens åpning"
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 23,
+      "emner": 230,
+      "topic_hooks": 230,
+      "methods": 105
+    },
+    "candidate_emner": [
+      {
+        "id": "em_his_historiske_lag_i_byrom",
+        "title": "Historiske lag i byrom",
+        "score": 100
+      },
+      {
+        "id": "em_his_kulturminner_bevaring",
+        "title": "Kulturminner, utvelgelse og bevaring",
+        "score": 100
+      },
+      {
+        "id": "em_his_samtid_ettertid_fortelling",
+        "title": "Samtid, ettertid og historisk fortelling",
+        "score": 100
+      },
+      {
+        "id": "em_his_spor_materialitet",
+        "title": "Spor og materialitet",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "his_kulturminneutvelgelse_verdi",
+        "title": "Kulturminneutvelgelse og verdi",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 10
+      },
+      {
+        "id": "his_samtid_ettertid_fortelling",
+        "title": "Samtid, ettertid og historisk fortelling",
+        "category_id": "his_tid_periodisering",
+        "score": 10
+      },
+      {
+        "id": "his_spor_materialitet",
+        "title": "Materielle spor og sted som kilde",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      },
+      {
+        "id": "his_tidslag_samtidighet",
+        "title": "Tidslag og samtidighet i sted",
+        "category_id": "his_tid_periodisering",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_tid_periodisering",
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_spor_materialitet",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_kulturminner_bevaring",
+      "em_his_samtid_ettertid_fortelling"
+    ],
+    "topic_hook_ids": [
+      "his_tidslag_samtidighet"
+    ],
+    "method_ids": [
+      "met_sporlesning"
+    ],
+    "thinker_ids": [
+      "fernand_braudel"
+    ],
+    "works": [
+      "The Mediterranean and the Mediterranean World"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Myntverket ble anlagt av Christian IV.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kongsbergsølv ble utmyntet i Christiania.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Brannen ble et funksjonsbrudd.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Voller og glacis gjorde tomten militær.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Artilleristallen er eldste stående hovedbygning i anlegget.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kavalleristallen kom seks år etter Artilleristallen.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Hestene flyttet artilleri og utstyr.",
+      "source_ids": [
+        "oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Ringene er små fysiske arbeidsspor.",
+      "source_ids": [
+        "oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Interiørene ble ombygd til kontorbruk.",
+      "source_ids": [
+        "oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Departementet er et senere sivilt brukslag.",
+      "source_ids": [
+        "oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kommunen kjøpte fra Forsvarsbygg.",
+      "source_ids": [
+        "current"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Stallgården ble offentlig byrom.",
+      "source_ids": [
+        "oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslobygg overtok kommunal forvaltning.",
+      "source_ids": [
+        "current"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Planen kombinerer vern og ny bruk.",
+      "source_ids": [
+        "current"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Tomtehistorie og bygningshistorie må skilles.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Glacis var del av det ytre forsvarslandskapet.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kasernen støttet ridende avdelinger.",
+      "source_ids": [
+        "oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Mynten er et produktspor, ikke et kart.",
+      "source_ids": [
+        "bank"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Ringene knytter fasaden til arbeidspraksis.",
+      "source_ids": [
+        "oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Fredningen gjelder kulturmiljøets sentrale bygg.",
+      "source_ids": [
+        "fredning"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kommunen oppgir den som eneste ikke-fredede bygning.",
+      "source_ids": [
+        "current"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kvartalet gikk gjennom flere hovedbruker.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Synlige spor trenger skriftlige kilder for større slutninger.",
+      "source_ids": [
+        "oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Brannen endret institusjon og arealbruk.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Bruken endret seg, men plasseringen forble viktig.",
+      "source_ids": [
+        "current"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Ombruk er en aktiv kulturminnestrategi.",
+      "source_ids": [
+        "current"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Gjenstanden dokumenterer produksjon, men er ikke et kart over det forsvunne anlegget.",
+      "source_ids": [
+        "bank"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_myntgatakvartalet_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Stedets lag krever presis eier- og tidsavgrensning.",
+      "source_ids": [
+        "oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "relation",
+      "id": "rel_myntgatakvartalet_akershus_festning",
+      "source_file": "data/relations.json",
+      "summary": null
+    },
+    {
+      "type": "relation",
+      "id": "rel_myntgatakvartalet_kontraskjaeret",
+      "source_file": "data/relations.json",
+      "summary": null
+    },
+    {
+      "type": "relation",
+      "id": "rel_myntgatakvartalet_stattholdergarden",
+      "source_file": "data/relations.json",
+      "summary": null
+    },
+    {
+      "type": "story",
+      "id": "st_myntgatakvartalet_brannen_1686",
+      "source_file": "data/stories/stories_myntgatakvartalet.json",
+      "summary": "Etter bybrannen i 1686 ble myntproduksjonen flyttet og tomten tatt inn i Akershus festnings ytre forsvarsverk."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "historie_myntgatakvartalet_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_myntgatakvartalet_quiz_01",
+        "claim_myntgatakvartalet_quiz_02",
+        "claim_myntgatakvartalet_quiz_03",
+        "claim_myntgatakvartalet_quiz_04",
+        "claim_myntgatakvartalet_quiz_05",
+        "claim_myntgatakvartalet_quiz_06",
+        "claim_myntgatakvartalet_quiz_07"
+      ]
+    },
+    {
+      "set_id": "historie_myntgatakvartalet_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_myntgatakvartalet_quiz_08",
+        "claim_myntgatakvartalet_quiz_09",
+        "claim_myntgatakvartalet_quiz_10",
+        "claim_myntgatakvartalet_quiz_11",
+        "claim_myntgatakvartalet_quiz_12",
+        "claim_myntgatakvartalet_quiz_13",
+        "claim_myntgatakvartalet_quiz_14"
+      ]
+    },
+    {
+      "set_id": "historie_myntgatakvartalet_set_3",
+      "order": 3,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_myntgatakvartalet_quiz_15",
+        "claim_myntgatakvartalet_quiz_16",
+        "claim_myntgatakvartalet_quiz_17",
+        "claim_myntgatakvartalet_quiz_18",
+        "claim_myntgatakvartalet_quiz_19",
+        "claim_myntgatakvartalet_quiz_20",
+        "claim_myntgatakvartalet_quiz_21"
+      ]
+    },
+    {
+      "set_id": "historie_myntgatakvartalet_set_4",
+      "order": 4,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_myntgatakvartalet_quiz_22",
+        "claim_myntgatakvartalet_quiz_23",
+        "claim_myntgatakvartalet_quiz_24",
+        "claim_myntgatakvartalet_quiz_25",
+        "claim_myntgatakvartalet_quiz_26",
+        "claim_myntgatakvartalet_quiz_27",
+        "claim_myntgatakvartalet_quiz_28"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 28,
+    "counts": {
+      "fact": 14,
+      "context": 7,
+      "concept_theory": 7
+    },
+    "ratios": {
+      "fact": 0.5,
+      "context": 0.25,
+      "concept_theory": 0.25
+    }
+  }
+}
