@@ -22,6 +22,18 @@ jobs:
         run: |
           node scripts/brief-sprak-lingvistikk-language-typology-universals-diversity-sources-v1.mjs
           node --test tests/sprak-lingvistikk-language-typology-universals-diversity-source-brief-v1.test.mjs
+      - name: Fix language-dependent verifier token
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('scripts/tmp-materialize-sprak-field10-field11-phase.mjs')
+          s = p.read_text()
+          old = "assert(/individual/u.test(bd)&&/longitudinal/u.test(bd)&&/corpus/u.test(bd),'Developmental-variation-grense mangler');"
+          new = "assert(/individual|individ/u.test(bd)&&/longitudinal/u.test(bd)&&/corpus/u.test(bd),'Developmental-variation-grense mangler');"
+          if old not in s:
+              raise SystemExit('Expected verifier assertion not found')
+          p.write_text(s.replace(old, new, 1))
+          PY
       - name: Materialize field 10 and prepare field 11
         run: node scripts/tmp-materialize-sprak-field10-field11-phase.mjs
       - name: Run strict field gates
