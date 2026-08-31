@@ -1,18 +1,191 @@
 {
-  "schema":"civication_work_grammar_v2","version":2,
-  "category":"kunst","role_scope":"kunst_kunstnerisk_ledelse","role_id":"kunst_kunstnerisk_ledelse",
-  "badge_binding":{"badge_id":"kunst","badge_titles":["Kunstnerisk leder"]},
-  "work_world":"Kunstnerisk ledelse der programprofil og faglig risiko må forankres i mandat, habilitet, budsjett og institusjonell legitimitet.",
-  "task_families":["programstrategi","kunstnerisk_prioritering","fagledelse","ressursfordeling","kunstnerdialog","offentlig_begrunnelse"],
-  "work_loops":["mandat -> mål -> programvalg -> ressursprioritering -> gjennomforing -> evaluering","forslag -> habilitet -> faglig vurdering -> budsjett -> beslutning -> offentlig begrunnelse"],
-  "pressure_axes":["kunstnerisk_risiko_vs_institusjonell_forutsigbarhet","egen_smak_vs_faglig_begrunnelse","ambisjon_vs_ressurser"],
-  "practice_stories":[
-    {"id":"dyr_satsing","setup":"En kunstnerisk satsing er sterk, men vil fortrenge flere planlagte prosjekter.","decision":"Vurder programhelhet, budsjett og konsekvenser før prioriteringen besluttes.","learning":"kunstnerisk kvalitet fritar ikke ledelsen fra ressursansvar"},
-    {"id":"naer_relasjon","setup":"En nær faglig relasjon søker en sentral programplass.","decision":"Erklær habilitetsrisiko og bruk en uavhengig vurderingsprosess.","learning":"legitimitet krever synlig håndtering av interessekonflikt"},
-    {"id":"tryggere_program","setup":"Styret ønsker mindre kontroversielle prosjekter etter mediekritikk.","decision":"Skill økonomisk og institusjonell risiko fra ren uenighet med kunstnerisk innhold.","learning":"styring skal ikke bli skjult sensur"},
-    {"id":"faglig_splittelse","setup":"Kuratorgruppen er dypt uenig om årets hovedretning.","decision":"Gjør kriteriene eksplisitte og beslutningen etterprøvbar, også for mindretallet.","learning":"ledelse er mer enn å vinne en smakskamp"},
-    {"id":"offentlig_kritikk","setup":"Programmet kritiseres for ensidighet og lukkede nettverk.","decision":"Svar med dokumenterbare kriterier og vurder om strukturene bak utvalget må endres.","learning":"kunstnerisk autonomi tåler institusjonell selvkritikk"}
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "kunst",
+  "role_scope": "kunst_kunstnerisk_ledelse",
+  "role_id": "kunst_kunstnerisk_ledelse",
+  "badge_binding": {
+    "badge_id": "kunst",
+    "badge_titles": [
+      "Kunstnerisk leder"
+    ]
+  },
+  "work_world": "Kunstnerisk ledelse der programprofil og faglig risiko må forankres i mandat, habilitet, budsjett og institusjonell legitimitet.",
+  "task_families": [
+    "programstrategi",
+    "kunstnerisk_prioritering",
+    "fagledelse",
+    "ressursfordeling",
+    "kunstnerdialog",
+    "offentlig_begrunnelse"
   ],
-  "quality_axes":["kunstnerisk_kvalitet","strategisk_sammenheng","habilitet","ressursansvar","faglig_ledelse","offentlig_legitimitet"],
-  "authority_boundary":{"may":["sette kunstnerisk retning innen mandat","prioritere programressurser","lede faglige prosesser"],"may_not":["overstyre styre- eller direktørmyndighet","omgå habilitetskrav","bruke institusjonen til private interesser","diktere konserveringsinngrep uten faglig grunnlag"]}
+  "work_loops": [
+    "mandat -> mål -> programvalg -> ressursprioritering -> gjennomforing -> evaluering",
+    "forslag -> habilitet -> faglig vurdering -> budsjett -> beslutning -> offentlig begrunnelse"
+  ],
+  "pressure_axes": [
+    "kunstnerisk_risiko_vs_institusjonell_forutsigbarhet",
+    "egen_smak_vs_faglig_begrunnelse",
+    "ambisjon_vs_ressurser"
+  ],
+  "practice_stories": [
+    {
+      "id": "dyr_satsing",
+      "setup": "En kunstnerisk satsing er sterk, men vil fortrenge flere planlagte prosjekter.",
+      "decision": "Vurder programhelhet, budsjett og konsekvenser før prioriteringen besluttes.",
+      "learning": "kunstnerisk kvalitet fritar ikke ledelsen fra ressursansvar"
+    },
+    {
+      "id": "naer_relasjon",
+      "setup": "En nær faglig relasjon søker en sentral programplass.",
+      "decision": "Erklær habilitetsrisiko og bruk en uavhengig vurderingsprosess.",
+      "learning": "legitimitet krever synlig håndtering av interessekonflikt"
+    },
+    {
+      "id": "tryggere_program",
+      "setup": "Styret ønsker mindre kontroversielle prosjekter etter mediekritikk.",
+      "decision": "Skill økonomisk og institusjonell risiko fra ren uenighet med kunstnerisk innhold.",
+      "learning": "styring skal ikke bli skjult sensur"
+    },
+    {
+      "id": "faglig_splittelse",
+      "setup": "Kuratorgruppen er dypt uenig om årets hovedretning.",
+      "decision": "Gjør kriteriene eksplisitte og beslutningen etterprøvbar, også for mindretallet.",
+      "learning": "ledelse er mer enn å vinne en smakskamp"
+    },
+    {
+      "id": "offentlig_kritikk",
+      "setup": "Programmet kritiseres for ensidighet og lukkede nettverk.",
+      "decision": "Svar med dokumenterbare kriterier og vurder om strukturene bak utvalget må endres.",
+      "learning": "kunstnerisk autonomi tåler institusjonell selvkritikk"
+    }
+  ],
+  "quality_axes": [
+    "kunstnerisk_kvalitet",
+    "strategisk_sammenheng",
+    "habilitet",
+    "ressursansvar",
+    "faglig_ledelse",
+    "offentlig_legitimitet"
+  ],
+  "authority_boundary": {
+    "may": [
+      "sette kunstnerisk retning innen mandat",
+      "prioritere programressurser",
+      "lede faglige prosesser"
+    ],
+    "may_not": [
+      "overstyre styre- eller direktørmyndighet",
+      "omgå habilitetskrav",
+      "bruke institusjonen til private interesser",
+      "diktere konserveringsinngrep uten faglig grunnlag"
+    ]
+  },
+  "actor_grammar": [
+    {
+      "id": "liv_institusjonsdirektor_kunstledelse",
+      "name": "Liv",
+      "role": "institusjonsdirektør",
+      "workplace_ids": [
+        "program_og_portefoljebord"
+      ]
+    },
+    {
+      "id": "amina_seniorkurator_kunstledelse",
+      "name": "Amina",
+      "role": "seniorkurator",
+      "workplace_ids": [
+        "faglig_vurderingsrom"
+      ]
+    },
+    {
+      "id": "eirik_produksjonsleder_kunstledelse",
+      "name": "Eirik",
+      "role": "produksjonsleder",
+      "workplace_ids": [
+        "budsjett_og_mandatspunkt"
+      ]
+    },
+    {
+      "id": "sara_kunstnerkontakt_kunstledelse",
+      "name": "Sara",
+      "role": "kunstnerkontakt",
+      "workplace_ids": [
+        "offentlig_begrunnelse_og_evaluering"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "program_og_portefoljebord",
+      "name": "Program- og porteføljebordet",
+      "function": "Her registreres forslag, mandat, kriterier, relasjoner og porteføljevirkning før kunstnerisk prioritering får status som anbefaling eller beslutning."
+    },
+    {
+      "id": "faglig_vurderingsrom",
+      "name": "Det faglige vurderingsrommet",
+      "function": "Her prøves verk, kontekst, representasjon og motstemmer mot eksplisitte kriterier, med spor for habilitet og reell faglig uenighet."
+    },
+    {
+      "id": "budsjett_og_mandatspunkt",
+      "name": "Budsjett- og mandatspunktet",
+      "function": "Her kobles rettigheter, produksjon, bemanning, tid og kostnad til riktig beslutningsnivå før ressurser bindes."
+    },
+    {
+      "id": "offentlig_begrunnelse_og_evaluering",
+      "name": "Offentlig begrunnelse og evaluering",
+      "function": "Her forklares valget, berørte parter får korrekt status, og faktisk gjennomføring og respons føres tilbake til porteføljen uten å omskrive opprinnelige kriterier."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "kunstnerisk_programportefolje",
+    "description": "Et vedvarende, versjonert programgrunnlag som beholder forslag, kriterier, habilitet, faglige motstemmer, budsjett, beslutningsstatus, begrunnelse og evaluering gjennom hele arbeidsløkken.",
+    "states": [
+      "registrert",
+      "under_faglig_vurdering",
+      "venter_pa_avklaring",
+      "beslutningsklart",
+      "besluttet",
+      "under_gjennomforing",
+      "evaluert"
+    ],
+    "handoff_rule": "Neste aktør overtar synlig status, eier, ventepunkt og uløst risiko; ingen overlevering sletter tidligere kriterier eller motstemmer."
+  },
+  "rhythm_contract": {
+    "loop": "registrering -> vurdering -> waiting/venting på habilitet, rettigheter eller budsjett -> handoff -> beslutning -> gjennomføring -> evaluering -> rework",
+    "waiting_states": [
+      "habilitetsavklaring",
+      "rettigheter",
+      "produksjonsestimat",
+      "direktor_eller_styrebeslutning"
+    ],
+    "rework_rule": "Endrede premisser gjenåpner den berørte delen av porteføljen med nytt versjonsspor."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_kunst_institusjon_og_kanon",
+      "badge_id": "kunst",
+      "use": "Gir historisk og institusjonell kontekst for kriterier, kanon, representasjon og offentlig begrunnelse, men gir verken ansettelse, programmyndighet eller fasit."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "appointment_required",
+    "first_object": "kunstnerisk_programportefolje",
+    "first_task": "Registrer ett programforslag med mandat, kriterier, habilitet og avhengigheter før vurdering."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "kunst_kunstnerisk_ledelse",
+    "no_generic_fallback": true
+  }
 }

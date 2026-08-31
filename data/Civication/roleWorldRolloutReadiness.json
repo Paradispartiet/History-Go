@@ -29,13 +29,13 @@
   "summary": {
     "canonical_career_roles": 85,
     "classifications": {
-      "rollout_ready": 40,
-      "needs_role_authored_work": 43,
+      "rollout_ready": 41,
+      "needs_role_authored_work": 42,
       "blocked": 2
     },
     "role_world_complete_or_pilot": 40,
     "rollout_queue_roles": 45,
-    "first_wave_candidate_count": 0,
+    "first_wave_candidate_count": 1,
     "role_level_blocked_count": 2,
     "structural_families_in_queue": 6
   },
@@ -51,29 +51,32 @@
     "gate_pass": true,
     "broad_rollout_allowed_now": true,
     "policy_recommendation": "controlled_rollout_open_with_role_level_gates",
-    "next_required_pr": "Select next rollout_ready role",
+    "next_required_pr": "Role World rollout: kunst/kunst_kunstnerisk_ledelse",
     "rule": "A green readiness gate proves the program can safely begin controlled rollout. It does not make every role rollout_ready and it does not itself flip broad_rollout_allowed."
   },
-  "first_wave_candidates": [],
+  "first_wave_candidates": [
+    {
+      "rank": 1,
+      "key": "kunst/kunst_kunstnerisk_ledelse",
+      "classification": "rollout_ready",
+      "structural_family": "creative_production",
+      "priority_score": 1285,
+      "blockers": [],
+      "authored_work_required": [
+        "situated_reputation"
+      ],
+      "cross_role_need": "candidate_when_shared_work_is_real"
+    }
+  ],
   "rollout_queue": [
     {
       "rank": 1,
       "key": "kunst/kunst_kunstnerisk_ledelse",
-      "classification": "needs_role_authored_work",
+      "classification": "rollout_ready",
       "structural_family": "creative_production",
-      "priority_score": 545,
+      "priority_score": 1285,
       "blockers": [],
       "authored_work_required": [
-        "career:day_one",
-        "career:knowledge",
-        "career:mail",
-        "career:people",
-        "career:places",
-        "career:workday_loop",
-        "history_go_affordance",
-        "people_places_integrity",
-        "persistent_work_object",
-        "rhythm_waiting_handoff_rework",
         "situated_reputation"
       ],
       "cross_role_need": "candidate_when_shared_work_is_real"
@@ -3146,53 +3149,71 @@
       "badge_titles": [
         "Kunstnerisk leder"
       ],
-      "career_status": "architecture_only",
-      "runtime_gate": false,
+      "career_status": "playable",
+      "runtime_gate": true,
       "role_world_status": "role_world_not_started",
       "structural_family": "creative_production",
-      "classification": "needs_role_authored_work",
-      "priority_score": 545,
+      "classification": "rollout_ready",
+      "priority_score": 1285,
       "dimensions": {
         "persistent_work_object": {
-          "status": "needs_role_authored_work",
+          "status": "foundation_ready",
           "evidence": [
+            "data/Civication/mailFamilies/kunst/job/kunst_kunstnerisk_ledelse_job.json",
             "data/Civication/workGrammars/kunst/kunst_kunstnerisk_ledelse.json"
           ],
-          "rationale": "The current career foundation does not yet prove a stable persistent work object across later scenes."
+          "rationale": "Existing work content carries stable object/case/project signals and a complete workday loop; the rollout PR must bind them explicitly to the locked persistent-work contract."
         },
         "institution_authority": {
           "status": "foundation_ready",
           "evidence": [
+            "data/Civication/roleModels/kunst/kunst_kunstnerisk_ledelse.json",
             "data/Civication/workGrammars/kunst/kunst_kunstnerisk_ledelse.json"
           ],
           "rationale": "Existing authored sources already expose institutional/authority language; rollout must preserve direct, approval, escalation and forbidden-action boundaries."
         },
         "rhythm_waiting_handoff_rework": {
-          "status": "needs_role_authored_work",
+          "status": "foundation_ready",
           "evidence": [
+            "data/Civication/mailFamilies/kunst/job/kunst_kunstnerisk_ledelse_job.json",
+            "data/Civication/mailPlans/kunst/kunst_kunstnerisk_ledelse_plan.json",
             "data/Civication/workGrammars/kunst/kunst_kunstnerisk_ledelse.json"
           ],
-          "rationale": "Waiting, handoff, interruption or rework is not yet explicit enough to prove a distinct role rhythm."
+          "rationale": "The current runtime-authored role already exposes deadline/rework/handoff signals; rollout must make the rhythm role-specific and persistent."
         },
         "history_go_affordance": {
-          "status": "needs_role_authored_work",
-          "evidence": [],
-          "rationale": "Knowledge bridge is missing; a concrete History Go affordance must be authored before this role is considered realism-ready."
+          "status": "foundation_ready",
+          "evidence": [
+            "data/Civication/mailFamilies/kunst/knowledge/kunst_kunstnerisk_ledelse_knowledge.json",
+            "data/Civication/roleModels/kunst/kunst_kunstnerisk_ledelse.json",
+            "data/Civication/workGrammars/kunst/kunst_kunstnerisk_ledelse.json"
+          ],
+          "rationale": "Career knowledge integration is complete; the rollout PR must author a concrete better-choice affordance while keeping authority independent from knowledge."
         },
         "situated_reputation": {
           "status": "needs_role_authored_work",
-          "evidence": [],
+          "evidence": [
+            "data/Civication/mailFamilies/kunst/job/kunst_kunstnerisk_ledelse_job.json",
+            "data/Civication/mailPlans/kunst/kunst_kunstnerisk_ledelse_plan.json"
+          ],
           "rationale": "Situated reputation audiences are not yet explicit for this role; do not substitute the legacy/global reputation summary."
         },
         "people_places_integrity": {
-          "status": "needs_role_authored_work",
-          "evidence": [],
-          "rationale": "People=missing, Places=missing; role-authored integration is incomplete."
+          "status": "foundation_ready",
+          "evidence": [
+            "data/Civication/mailFamilies/kunst/people/kunst_kunstnerisk_ledelse_people.json",
+            "data/Civication/roleModels/kunst/kunst_kunstnerisk_ledelse.json",
+            "data/Civication/workGrammars/kunst/kunst_kunstnerisk_ledelse.json"
+          ],
+          "rationale": "Career People and Places coverage is complete; rollout still must verify factual canonical references and keep invented workplace drama explicitly fictional."
         },
         "provenance": {
           "status": "foundation_ready",
           "evidence": [
+            "data/Civication/mailFamilies/kunst/job/kunst_kunstnerisk_ledelse_job.json",
+            "data/Civication/mailPlans/kunst/kunst_kunstnerisk_ledelse_plan.json",
             "data/Civication/workGrammars/kunst/kunst_kunstnerisk_ledelse.json",
+            "tests/civication-kunst-kunstnerisk-ledelse-prerequisites.test.js",
             "tests/civication-kunst-life-career-split.test.js"
           ],
           "rationale": "Role-specific tests and authored source paths exist; rollout must add strict scene-registry parity and source provenance for new realism scenes."
@@ -3208,20 +3229,13 @@
       },
       "blockers": [],
       "authored_work_required": [
-        "career:day_one",
-        "career:knowledge",
-        "career:mail",
-        "career:people",
-        "career:places",
-        "career:workday_loop",
-        "history_go_affordance",
-        "people_places_integrity",
-        "persistent_work_object",
-        "rhythm_waiting_handoff_rework",
         "situated_reputation"
       ],
       "source_refs": [
+        "data/Civication/mailFamilies/kunst/job/kunst_kunstnerisk_ledelse_job.json",
+        "data/Civication/mailPlans/kunst/kunst_kunstnerisk_ledelse_plan.json",
         "data/Civication/workGrammars/kunst/kunst_kunstnerisk_ledelse.json",
+        "tests/civication-kunst-kunstnerisk-ledelse-prerequisites.test.js",
         "tests/civication-kunst-life-career-split.test.js"
       ],
       "already_reference_or_pilot": false

@@ -609,7 +609,68 @@
     "existing_other_people": []
   },
   "cross_category_existing_references": [],
-  "missing_people_candidates": [],
+  "missing_people_candidates": [
+    {
+      "id": "amina_seniorkurator_kunstledelse",
+      "name": "amina_seniorkurator_kunstledelse",
+      "category": "kunst",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/kunst/kunst_kunstnerisk_ledelse.json"
+      ],
+      "scenario_roles": [
+        "kunst_kunstnerisk_ledelse"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "eirik_produksjonsleder_kunstledelse",
+      "name": "eirik_produksjonsleder_kunstledelse",
+      "category": "kunst",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/kunst/kunst_kunstnerisk_ledelse.json"
+      ],
+      "scenario_roles": [
+        "kunst_kunstnerisk_ledelse"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "liv_institusjonsdirektor_kunstledelse",
+      "name": "liv_institusjonsdirektor_kunstledelse",
+      "category": "kunst",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/kunst/kunst_kunstnerisk_ledelse.json"
+      ],
+      "scenario_roles": [
+        "kunst_kunstnerisk_ledelse"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "sara_kunstnerkontakt_kunstledelse",
+      "name": "sara_kunstnerkontakt_kunstledelse",
+      "category": "kunst",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/kunst/kunst_kunstnerisk_ledelse.json"
+      ],
+      "scenario_roles": [
+        "kunst_kunstnerisk_ledelse"
+      ],
+      "verification_required": true
+    }
+  ],
   "roles": [
     {
       "role_id": "kunst_formidler",
@@ -720,6 +781,40 @@
         "direct": 0,
         "strong": 0,
         "contextual": 84,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "kunst_kunstnerisk_ledelse",
+      "role_scope": "kunst_kunstnerisk_ledelse",
+      "title": "Kunstnerisk ledelse",
+      "source": "data/Civication/roleModels/kunst/kunst_kunstnerisk_ledelse.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [
+          "christian_skredsvig",
+          "harriet_backer",
+          "jan_terje_rafdal",
+          "willy_johansson"
+        ],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "kunstnerisk",
+        "ledelse"
+      ],
+      "resolved_counts": {
+        "total": 84,
+        "existing_place_people": 84,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 4,
+        "contextual": 80,
         "excluded": 0
       }
     },

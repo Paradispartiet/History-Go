@@ -1,0 +1,87 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "kunst",
+  "role_scope": "kunst_kunstnerisk_ledelse",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "kunstnerisk_ledelse_beslutning_etterspill",
+      "purpose": "Trene consequence gjennom den vedvarende kunstneriske programporteføljen.",
+      "learning_focus": [
+        "mandat",
+        "faglig begrunnelse",
+        "ressurser",
+        "sporbarhet"
+      ],
+      "mails": [
+        {
+          "id": "kunstnerisk_ledelse_consequence_offentlig_etterspill_001",
+          "mail_type": "consequence",
+          "mail_family": "kunstnerisk_ledelse_beslutning_etterspill",
+          "role_scope": "kunst_kunstnerisk_ledelse",
+          "phase": "forenoon",
+          "priority": 130,
+          "from": "Sara",
+          "people_ref": "sara_kunstnerkontakt_kunstledelse",
+          "place_id": "offentlig_begrunnelse_og_evaluering",
+          "subject": "Avslagene og kritikken trenger et synlig svar",
+          "summary": "Den kunstneriske programporteføljen står i et konkret consequence-punkt: avslagene og kritikken trenger et synlig svar. Forslag, mandat, kriterier, habilitet, faglige motstemmer, produksjonsavhengigheter, budsjett og beslutningsstatus peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet uten å omskrive tidligere vurderinger, love mer enn riktig organ har besluttet eller gjøre personlig tillit til formell myndighet.",
+          "situation": [
+            "Porteføljen viser både det opprinnelige forslaget, kriteriene og hvem som eier neste avklaring.",
+            "En rask løsning vil gi fremdrift, men kan skjule habilitet, kostnad, motstemme eller faktisk beslutningsstatus.",
+            "Du må velge et grep som gjør venting, overlevering og mulig omarbeiding synlig for neste aktør."
+          ],
+          "task_domain": "kunstnerisk_programledelse",
+          "competency": "etterprovbart_faglig_skonn",
+          "pressure": "kunstnerisk_ambisjon_vs_mandat_og_ressurser",
+          "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+          "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+          "narrative_arc": "offentlig_etterspill",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avklar offentlig_etterspill i porteføljen",
+              "reply": "Jeg beholder kriterier, motstemmer og nåværende status i porteføljen, markerer det konkrete ventepunktet og sender bare den avgrensede beslutningen til riktig eier.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "portefolje"
+              ],
+              "feedback": "Arbeidet går ikke nødvendigvis raskere, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvem som faktisk kan beslutte og hvilke følger en endring får for programhelheten. Kunstnerisk skjønn blir tydeligere fordi begrunnelsen tåler både ressursgrenser og faglig uenighet.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukk offentlig_etterspill gjennom uformell enighet",
+              "reply": "Jeg behandler den sterke faglige støtten som tilstrekkelig beslutning og rydder bort ventepunktet slik at produksjon og kommunikasjon kan gå videre nå.",
+              "effect": -1,
+              "tags": [
+                "uformell_myndighet",
+                "tempo",
+                "risiko"
+              ],
+              "feedback": "Den lokale flyten ser bedre ut, men porteføljen mister skillet mellom anbefaling og vedtak. Motstemmer, habilitet eller kostnad blir vanskeligere å finne igjen, og kunstnere, produksjon og ledelse kan handle på ulike versjoner av det samme løftet. Det svekker både faglig legitimitet og institusjonell tillit.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
