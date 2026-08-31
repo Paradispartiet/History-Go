@@ -1,0 +1,49 @@
+name: TEMP materialize Språk field 10 and field 11 source-first
+
+on:
+  push:
+    branches:
+      - agent/fagverk-sprak-lingvistikk-field-10-fulltext-field-11-source-first-20260831
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Verify field 10 source-first baseline
+        run: |
+          node scripts/brief-sprak-lingvistikk-language-typology-universals-diversity-sources-v1.mjs
+          node --test tests/sprak-lingvistikk-language-typology-universals-diversity-source-brief-v1.test.mjs
+      - name: Materialize field 10 and prepare field 11
+        run: node scripts/tmp-materialize-sprak-field10-field11-phase.mjs
+      - name: Run strict field gates
+        run: |
+          node --check scripts/audit-sprak-lingvistikk-language-typology-universals-diversity-fulltext-v1.mjs
+          node --check scripts/brief-sprak-lingvistikk-psycholinguistics-language-acquisition-processing-sources-v1.mjs
+          node --check scripts/materialize-sprak-lingvistikk-language-typology-universals-diversity-fulltext-v1.mjs
+          node scripts/audit-sprak-lingvistikk-language-typology-universals-diversity-fulltext-v1.mjs
+          node scripts/brief-sprak-lingvistikk-psycholinguistics-language-acquisition-processing-sources-v1.mjs
+          node --test tests/sprak-lingvistikk-language-typology-universals-diversity-fulltext-v1.test.mjs
+          node --test tests/sprak-lingvistikk-psycholinguistics-language-acquisition-processing-source-brief-v1.test.mjs
+          node scripts/audit-sprak-lingvistikk-reconciliation-v1.mjs
+          node --test tests/sprak-lingvistikk-reconciliation-v1.test.mjs
+          node scripts/materialize-sprak-lingvistikk-language-typology-universals-diversity-fulltext-v1.mjs
+          git diff --check
+      - name: Commit permanent canonical state only after green gates
+        run: |
+          rm -f scripts/tmp-materialize-sprak-field10-field11-phase.mjs
+          rm -f .github/workflows/tmp-materialize-sprak-field10-field11.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Materialize Språk og lingvistikk field 10 [materialized-field10-11]"
+          git push origin HEAD:agent/fagverk-sprak-lingvistikk-field-10-fulltext-field-11-source-first-20260831
