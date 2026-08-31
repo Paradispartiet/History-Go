@@ -26,7 +26,7 @@ export function audit(){
   assert(/variable/u.test(boundary)&&/essensi/u.test(boundary)&&/probabilist/u.test(boundary),'Variation/non-essentialism-grense mangler');
   assert(/audience/u.test(boundary)&&/topic/u.test(boundary)&&/style/u.test(boundary),'Style/context-grense mangler');
   assert(/demographic/u.test(boundary)&&/enkeltperson|individ/u.test(boundary),'Social-category-grense mangler');
-  assert(/code-switching/u.test(boundary)&&/operational|operasjon/u.test(boundary)&&/competence/u.test(boundary),'Multilingual operationalization-grense mangler');
+  assert(/code-switching/u.test(boundary)&&/switching unit/u.test(boundary)&&/competence/u.test(boundary)&&/structural type/u.test(boundary)&&/social context/u.test(boundary),'Multilingual operationalization-grense mangler');
   assert(/prestige/u.test(boundary)&&/iboende/u.test(boundary)&&/linguistic/u.test(boundary),'Attitude/prestige-grense mangler');
   assert(/standardization/u.test(boundary)&&/språklig bedre/u.test(boundary)&&/institution/u.test(boundary),'Language-power/standardization-grense mangler');
   assert(/rural\/urban/u.test(boundary)&&/contact/u.test(boundary)&&/sampling/u.test(boundary),'Contact/community-grense mangler');
