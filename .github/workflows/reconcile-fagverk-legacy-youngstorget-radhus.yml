@@ -1,8 +1,9 @@
 name: Reconcile Youngstorget and rådhus Fagverk with main
 
 on:
-  pull_request:
-    types: [synchronize, reopened]
+  push:
+    branches:
+      - agent/fagverk-legacy-youngstorget-radhus-20260831
     paths:
       - .github/workflows/reconcile-fagverk-legacy-youngstorget-radhus.yml
 
@@ -16,7 +17,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref }}
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
@@ -102,4 +102,4 @@ jobs:
             data/runtime
           git rm .github/workflows/reconcile-fagverk-legacy-youngstorget-radhus.yml
           git commit -m "Reconcile Youngstorget and rådhus Fagverk with current main"
-          git push origin HEAD:${GITHUB_HEAD_REF}
+          git push origin HEAD:${GITHUB_REF_NAME}
