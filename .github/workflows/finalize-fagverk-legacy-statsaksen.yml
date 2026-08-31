@@ -6,6 +6,8 @@ on:
       - agent/fagverk-legacy-statsaksen-20260831
     paths:
       - .github/workflows/finalize-fagverk-legacy-statsaksen.yml
+      - tools/finalize-fagverk-legacy-statsaksen.mjs
+      - tools/patch-fagverk-legacy-statsaksen.mjs
 
 permissions:
   contents: write
@@ -32,6 +34,8 @@ jobs:
           git merge --no-edit origin/main
       - name: Curate four completed Place Fagverk packages
         run: node tools/finalize-fagverk-legacy-statsaksen.mjs
+      - name: Patch registry and source contracts
+        run: node tools/patch-fagverk-legacy-statsaksen.mjs
       - name: Rebuild four deterministic quiz contexts
         run: |
           node scripts/build-quiz-production-context.mjs --category politikk --target stortinget --output data/quiz/production_context/politikk/stortinget.json
@@ -71,7 +75,10 @@ jobs:
             data/fagverk/fagverk_registry.json \
             data/fagverk/fagverk_release.json \
             reports/fagverk/fagverk-place-page-coverage-v2.json
-          git rm tools/finalize-fagverk-legacy-statsaksen.mjs .github/workflows/finalize-fagverk-legacy-statsaksen.yml
+          git rm \
+            tools/finalize-fagverk-legacy-statsaksen.mjs \
+            tools/patch-fagverk-legacy-statsaksen.mjs \
+            .github/workflows/finalize-fagverk-legacy-statsaksen.yml
           git diff --cached --quiet && { echo "No production changes to commit"; exit 1; }
           git commit -m "Curate statsaksen Fagverk legacy batch"
           git push origin HEAD:${GITHUB_REF_NAME}
