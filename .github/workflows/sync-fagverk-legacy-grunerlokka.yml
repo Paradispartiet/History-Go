@@ -1,0 +1,53 @@
+name: Sync Fagverk legacy Grunerlokka to main
+
+on:
+  push:
+    branches:
+      - agent/fagverk-legacy-grunerlokka-20260831
+    paths:
+      - .github/workflows/sync-fagverk-legacy-grunerlokka.yml
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      - name: Merge current main without discarding Fagverk work
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+      - name: Regenerate derived artifacts on current main
+        run: |
+          node scripts/build-place-open-payloads.mjs
+          node scripts/audit-fagverk-place-pages.mjs --write
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Validate synced result
+        run: |
+          node scripts/audit-fagverk-place-pages.mjs
+          node scripts/build-place-open-payloads.mjs --check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node --test tests/fagverk-place-pages.test.mjs
+          node --test tests/fagverk-place-substance-audit.test.mjs
+          node --test tests/fagverk-link-audit.test.mjs
+          node scripts/audit-place-images.mjs --mode=changed
+          git diff --check
+      - name: Commit regenerated artifacts when needed and push sync
+        run: |
+          git add data/runtime data/fagverk/fagverk_release.json reports/fagverk/fagverk-place-page-coverage-v2.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Regenerate Fagverk artifacts on current main"
+          fi
+          git push origin HEAD:${GITHUB_REF_NAME}
