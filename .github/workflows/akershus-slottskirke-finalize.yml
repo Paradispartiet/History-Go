@@ -1,4 +1,4 @@
-name: Finalize Akershus slottskirke v7
+name: Finalize Akershus slottskirke v8
 
 on:
   push:
@@ -99,9 +99,17 @@ jobs:
             places:index.domains.historie.oslo_coverage.canonical_place_count,
             dated:index.domains.historie.oslo_coverage.dated_evidence_place_count
           };
+          const slottskirkeProductionMilestones=Object.values(index.domains.historie.epochs)
+            .flatMap(group => group.places || [])
+            .filter(place => place.place_id === 'akershus_slottskirke')
+            .flatMap(place => place.milestones || [])
+            .filter(milestone => milestone.evidence_type === 'verified_place_production_claim');
+          if (slottskirkeProductionMilestones.length !== 7) {
+            throw new Error(`Expected 7 qualifying Akershus slottskirke production milestones, got ${slottskirkeProductionMilestones.length}`);
+          }
           const expected={
             story:baseline.story + 1,
-            production:baseline.production + 8,
+            production:baseline.production + slottskirkeProductionMilestones.length,
             places:baseline.places + 1,
             dated:baseline.dated + 1
           };
@@ -122,7 +130,7 @@ jobs:
             text=text.replace(pattern,replacements[key]);
           }
           fs.writeFileSync(testFile,text);
-          console.log(JSON.stringify({baseline,expected,generated},null,2));
+          console.log(JSON.stringify({baseline,expected,generated,slottskirkeProductionMilestones:slottskirkeProductionMilestones.map(({id,year,title})=>({id,year,title}))},null,2));
           NODE
 
       - name: Rebuild People projections
