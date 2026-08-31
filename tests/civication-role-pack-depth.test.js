@@ -64,10 +64,10 @@ assert.strictEqual(partial.level, 'partial', `${partialRow.title} skal være par
 
 // 5) Klassifiseringen speiler OPPLEVD dybde: runtime-resolveren avgjør hvilken
 // pakke rollen faktisk spiller. «Byarkitekt» er selv role_model_only, men
-// resolves til by_arkitekt-pakken (partial) — tilbudskortet skal si partial.
+// resolves til den nå komplette by_arkitekt-pakken — tilbudskortet skal si full.
 const byarkitekt = depth.getPackDepthSync({ career_id: 'by', title: 'Byarkitekt' });
 assert(byarkitekt, 'Byarkitekt skal klassifiseres');
-assert.strictEqual(byarkitekt.level, 'partial', 'Byarkitekt spiller by_arkitekt-pakken og skal vise partial');
+assert.strictEqual(byarkitekt.level, 'full', 'Byarkitekt spiller den komplette by_arkitekt-pakken og skal vise full');
 assert.strictEqual(byarkitekt.role_scope, 'by_arkitekt');
 
 // 6) role_model_only-roller som IKKE resolves til en dypere pakke → generic.
