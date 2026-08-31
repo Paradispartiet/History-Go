@@ -1,4 +1,4 @@
-name: Finalize Akershus slottskirke v5
+name: Finalize Akershus slottskirke v6
 
 on:
   push:
@@ -68,6 +68,31 @@ jobs:
           npm run places:index:build
           npm run place-open:build
           npm run epoker:places:build
+
+      - name: Update explicit epoch baselines for new canonical place
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file='tests/epoke-place-index.test.mjs';
+          let text=fs.readFileSync(file,'utf8');
+          const replacements=[
+            ['assert.equal(index.stats.canonical_story_milestone_count, 209);','assert.equal(index.stats.canonical_story_milestone_count, 210);'],
+            ['assert.equal(index.stats.verified_place_production_milestone_count, 304);','assert.equal(index.stats.verified_place_production_milestone_count, 312);'],
+            ['assert.equal(coverage.canonical_place_count, 585);','assert.equal(coverage.canonical_place_count, 586);'],
+            ['assert.equal(coverage.dated_evidence_place_count, 221);','assert.equal(coverage.dated_evidence_place_count, 222);']
+          ];
+          for (const [from,to] of replacements) {
+            if (!text.includes(from)) throw new Error(`Expected epoch baseline not found: ${from}`);
+            text=text.replace(from,to);
+          }
+          fs.writeFileSync(file,text);
+          const index=JSON.parse(fs.readFileSync('data/epoker/epoke-place-index.json','utf8'));
+          console.log(JSON.stringify({
+            canonical_story_milestone_count:index.stats.canonical_story_milestone_count,
+            verified_place_production_milestone_count:index.stats.verified_place_production_milestone_count,
+            oslo_coverage:index.domains.historie.oslo_coverage
+          },null,2));
+          NODE
 
       - name: Rebuild People projections
         run: |
