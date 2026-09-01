@@ -89,6 +89,12 @@
       "url": "https://www.visitnorway.com/listings//ekebergparken-museum/173210/",
       "lang": "en",
       "verifiedAt": "2026-07-20"
+    },
+    {
+      "type": "source",
+      "label": "Ekebergparken – kulturminner",
+      "url": "https://ekebergparken.com/kulturminner",
+      "verifiedAt": "2026-09-01"
     }
   ],
   "underbadge_ids": [
@@ -170,5 +176,102 @@
     "category_collection_label": "Historiske hendelser"
   },
   "production_status": "complete",
-  "production_verified_at": "2026-08-28"
+  "production_verified_at": "2026-08-28",
+  "fagverk": {
+    "schema": "history_go_place_fagverk_v2",
+    "level": "standard",
+    "status": "curated",
+    "intro": "Ekebergparken Museum viser hvordan et historisk hus kan være både kilde og formidlingsmaskin. Lunds villa har hatt flere bruksfaser, mens museet i dag velger, ordner og tolker gjenstander og fortellinger fra et langt større Ekeberg-område. Derfor må bygningens egen historie skilles fra historiene utstillingen presenterer.",
+    "article": [
+      "Lunds hus ble oppført som privat villa i 1891 og har senere vært kommunal eiendom, brukt under okkupasjonen og ombygd til leiligheter før rehabiliteringen som museum. Disse bruksskiftene gjør selve bygningen til et materielt historisk spor. Fasade og rom kan observeres, men detaljene i hvem som brukte huset når må hentes fra daterte kilder.",
+      "Da huset åpnet som museum i 2013 fikk det en ny rolle som formidler av Ekebergs kulturhistorie og natur. Arkeologiske funn, fotografier og andre objekter ordnes i en valgt utstilling. En museumssamling er derfor ikke et nøytralt utsnitt av fortiden: innsamling, bevaring, katalogisering og kuratering bestemmer hva publikum møter og hvilke sammenhenger som framstår som viktige.",
+      "Museet må også avgrenses fra skulpturparken og helleristningsfeltet. Lunds hus kan forklare og vise materiale fra området, men overtar ikke identiteten eller kildegrunnlaget til de andre stedene. En presis faglig lesning sammenligner derfor bygningen, utstillingen og de separate kulturminnene uten å gjøre dem til én og samme historiske arena."
+    ],
+    "subject_ids": [
+      "historie"
+    ],
+    "emne_ids": [
+      "em_his_museum_samling_kanon",
+      "em_his_spor_materialitet"
+    ],
+    "chapter_ids": [
+      "minne_kulturarv_historiebruk",
+      "kilder_arkiv_spor"
+    ],
+    "lenses": [
+      {
+        "id": "ekeberg-museum-hus-som-kilde",
+        "title": "Villaen som historisk kilde",
+        "prompt": "Hvordan kan Lunds hus undersøkes som materialspor etter skiftende bruk uten å lese dagens museumsfunksjon bakover i tid?",
+        "subject_id": "historie",
+        "emne_id": "em_his_spor_materialitet",
+        "evidence": "Skill observerbar arkitektur fra daterte kilder om privatbolig, okkupasjonsbruk, kommunale leiligheter og museum."
+      },
+      {
+        "id": "ekeberg-museum-kanon",
+        "title": "Museet velger og ordner",
+        "prompt": "Hvordan påvirker innsamling, utvalg og utstillingsdesign hvilke deler av Ekebergs historie som blir mest synlige?",
+        "subject_id": "historie",
+        "emne_id": "em_his_museum_samling_kanon",
+        "evidence": "Studer hva som er stilt ut, hvordan objektene grupperes og hvilke kildeopplysninger som følger dem."
+      },
+      {
+        "id": "ekeberg-museum-stedsgrense",
+        "title": "Museum er ikke hele parken",
+        "prompt": "Hvorfor må museumsbygningen skilles fra Ekebergparken og helleristningsfeltet selv når utstillingen formidler dem?",
+        "subject_id": "historie",
+        "emne_id": "em_his_museum_samling_kanon",
+        "evidence": "Sammenlign de canonicale stedsgrensene og bruk museet som formidlingssted, ikke som erstatning for de andre stedene."
+      },
+      {
+        "id": "ekeberg-museum-gjenstand",
+        "title": "Gjenstand og kontekst",
+        "prompt": "Hva mister en arkeologisk gjenstand dersom funnsted, datering og dokumentasjon ikke følger med i museumsmonteren?",
+        "subject_id": "historie",
+        "emne_id": "em_his_spor_materialitet",
+        "evidence": "Koble objektets synlige materiale til museets opplysninger om proveniens, datering og Ekeberg-kontekst."
+      }
+    ],
+    "guiding_questions": [
+      "Hva ved Lunds hus kan observeres direkte som historisk materialspor i dag?",
+      "Hvordan skiller bygningens egne bruksfaser seg fra historiene museet formidler?",
+      "Hvorfor er en museumssamling et kuratert utvalg og ikke hele fortiden?",
+      "Hva må dokumenteres før en gjenstand kan brukes som kilde til Ekebergs historie?",
+      "Hvorfor må museet, skulpturparken og helleristningsfeltet holdes som separate steder?"
+    ],
+    "concepts": [
+      "museumskanon",
+      "kuratering",
+      "proveniens",
+      "materialspor",
+      "bruksskifte",
+      "utstilling",
+      "kildekontekst",
+      "stedseierskap"
+    ],
+    "observable_traces": [
+      {
+        "title": "Lunds villa som museumsbygg",
+        "observation": "Den historiske villaformen er fortsatt lesbar i bygningen som i dag rommer museum og butikk.",
+        "interpretation_boundary": "Arkitekturen dokumenterer et eldre bygg, men ikke alene de daterte bruksfasene eller hvem som bodde og arbeidet der.",
+        "source_urls": [
+          "https://ekebergparken.com/en/visit-us/museum-and-shop"
+        ]
+      },
+      {
+        "title": "Utstillingsmonter med Ekeberg-funn",
+        "observation": "Museet presenterer arkeologiske og kulturhistoriske objekter fra det større Ekebergområdet i kuraterte sammenstillinger.",
+        "interpretation_boundary": "Monteren viser et utvalg og må leses sammen med opplysninger om funnsted, datering og dokumentasjon.",
+        "source_urls": [
+          "https://ekebergparken.com/kulturminner"
+        ]
+      }
+    ],
+    "source_urls": [
+      "https://ekebergparken.com/en/visit-us/museum-and-shop",
+      "https://www.visitnorway.com/listings//ekebergparken-museum/173210/",
+      "https://ekebergparken.com/kulturminner"
+    ],
+    "verified_at": "2026-09-01"
+  }
 }
