@@ -15,11 +15,11 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 
 ## Sammendrag
 
-- complete_reference_v2: 39
+- complete_reference_v2: 40
 - complete_reference: 0
 - playable_v1: 1
 - partial_pack: 23
-- role_model_only: 190
+- role_model_only: 189
 - generated_stub: 0
 - broken_mapping: 0
 - missing: 43
@@ -253,7 +253,7 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | psykologi | psykologi_arbeids_og_karriereveiledning | psykologi_radgiver | Rådgiver | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | psykologi | psykologi_arbeids_og_karriereveiledning | psykologi_seniorradgiver | Seniorrådgiver | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | psykologi | psykologi_miljoarbeid | psykologi_sosialassistent | Sosialassistent | ja | ja | ja | ja | ja | ja | nei | ja | nei | ja | ja | ja | ja | partial_pack |
-| psykologi | spesialistpsykolog | psykologi_spesialistpsykolog | Spesialistpsykolog | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
+| psykologi | spesialistpsykolog | psykologi_spesialistpsykolog | Spesialistpsykolog | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | psykologi | psykologi_arbeids_og_karriereveiledning | psykologi_veileder | Veileder | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | religion | religion_forskning | religion_forskning | Religion – forskning | ja | ja | ja | ja | ja | ja | nei | ja | nei | ja | ja | ja | ja | partial_pack |
 | religion | religion_fagledelse | religion_fagledelse | religion_fagledelse | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |

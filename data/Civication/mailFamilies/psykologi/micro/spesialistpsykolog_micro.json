@@ -1,0 +1,90 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "spesialistpsykolog",
+  "mail_type": "micro",
+  "families": [
+    {
+      "id": "spesialistpsykolog_micro_forlopslogg",
+      "purpose": "Trene micro gjennom den vedvarende spesialistforløpsloggen.",
+      "learning_focus": [
+        "epistemisk_ydmykhet",
+        "pasientmedvirkning",
+        "spesialitetsgrense",
+        "veiledning_uten_overtakelse",
+        "handoff_og_rework"
+      ],
+      "mails": [
+        {
+          "id": "spesialistpsykolog_micro_beslutningskritisk_minutt_001",
+          "mail_type": "micro",
+          "mail_family": "spesialistpsykolog_micro_forlopslogg",
+          "role_scope": "spesialistpsykolog",
+          "phase": "forenoon",
+          "day_phase": "morning",
+          "priority": 145,
+          "from": "Ravi",
+          "people_ref": "ravi_spesialist_annen_fordypning",
+          "person_id": "ravi_spesialist_annen_fordypning",
+          "place_id": "tverrspesialistisk_hypotesemote",
+          "subject": "Et kort tidsvindu kan brukes til å verifisere hva Ravi faktisk trenger for sin avgrensede vurdering",
+          "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret micro-punkt: et kort tidsvindu kan brukes til å verifisere hva ravi faktisk trenger for sin avgrensede vurdering. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse.",
+          "situation": [
+            "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+            "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+            "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+          ],
+          "task_domain": "spesialisert_klinisk_psykologarbeid",
+          "competency": "presis_usikkerhet_veiledning_og_spesialitetsgrense",
+          "pressure": "ekspertise_vs_usikkerhet",
+          "choice_axis": "proevbar_begrunnelse_vs_status_som_fasit",
+          "consequence_axis": "laering_og_sikkerhet_vs_skjult_ansvar",
+          "narrative_arc": "beslutningskritisk_minutt",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avgrens beslutningskritisk_minutt i forløpsloggen",
+              "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework.",
+              "effect": 1,
+              "tags": [
+                "epistemisk_ydmykhet",
+                "pasientmedvirkning",
+                "handoff"
+              ],
+              "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukk beslutningskritisk_minutt med spesialiststatus",
+              "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold.",
+              "effect": -1,
+              "tags": [
+                "status_som_fasit",
+                "ansvarsglidning",
+                "risiko"
+              ],
+              "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
