@@ -6,18 +6,18 @@ Rapporten måler om runtime kan presentere tilgjengelige canonical People-felt. 
 
 People-produksjon, claims og ferdigstatus eies av `docs/PEOPLE_PROFILE_CANONICAL.md`. Profiler uten v1-claims er `legacy_unreviewed`, selv når presentasjonsstatusen er `complete`.
 
-Source fingerprint: `d3ef548e83731a4aed7fd7290c97bbc791302bfee551d40c77abe18d8dc1b927`
+Source fingerprint: `cd8fb514f3f736d90ee17ed6a028e97e86cb4fddca5c3715bcbc6a9c857a6270`
 
 ## Sammendrag
 
 | Måling | Antall |
 |---|---:|
-| Personer | 1425 |
-| Presentasjon complete | 69 |
+| Personer | 1426 |
+| Presentasjon complete | 70 |
 | Presentasjon strong | 408 |
 | Presentasjon partial | 933 |
 | Presentasjon sparse | 15 |
-| People Profile v1 ready | 77 |
+| People Profile v1 ready | 78 |
 | Legacy uten v1-claims | 1348 |
 | Ødelagte bildereferanser | 280 |
 | Eksplisitt initialfallback | 994 |
@@ -28,16 +28,16 @@ Source fingerprint: `d3ef548e83731a4aed7fd7290c97bbc791302bfee551d40c77abe18d8dc
 
 | Presentasjonsdel | Dekket | Andel |
 |---|---:|---:|
-| identity | 129 | 9.1 % |
-| popupDesc | 1404 | 98.5 % |
-| lifeData | 62 | 4.4 % |
-| contributionsDeclared | 62 | 4.4 % |
-| educationDeclared | 62 | 4.4 % |
-| practiceDeclared | 1407 | 98.7 % |
-| placeGrounding | 1425 | 100 % |
-| sources | 466 | 32.7 % |
-| imageContract | 1145 | 80.4 % |
-| profileStandard | 77 | 5.4 % |
+| identity | 130 | 9.1 % |
+| popupDesc | 1405 | 98.5 % |
+| lifeData | 62 | 4.3 % |
+| contributionsDeclared | 63 | 4.4 % |
+| educationDeclared | 63 | 4.4 % |
+| practiceDeclared | 1408 | 98.7 % |
+| placeGrounding | 1426 | 100 % |
+| sources | 467 | 32.7 % |
+| imageContract | 1146 | 80.4 % |
+| profileStandard | 78 | 5.5 % |
 
 ## Kategorier
 
@@ -48,7 +48,7 @@ Source fingerprint: `d3ef548e83731a4aed7fd7290c97bbc791302bfee551d40c77abe18d8dc
 | litteratur | 172 | 36 | 20 | 116 | 0 | 16 | 156 | 70.5 |
 | musikk | 124 | 0 | 15 | 109 | 0 | 0 | 124 | 62.2 |
 | politikk | 114 | 5 | 50 | 59 | 0 | 17 | 97 | 68.1 |
-| kunst | 85 | 10 | 62 | 13 | 0 | 11 | 74 | 73.8 |
+| kunst | 86 | 11 | 62 | 13 | 0 | 12 | 74 | 74 |
 | naeringsliv | 81 | 5 | 30 | 32 | 14 | 8 | 73 | 62.9 |
 | by | 79 | 9 | 55 | 15 | 0 | 21 | 58 | 74.3 |
 | scenekunst | 48 | 1 | 16 | 31 | 0 | 1 | 47 | 64.6 |
