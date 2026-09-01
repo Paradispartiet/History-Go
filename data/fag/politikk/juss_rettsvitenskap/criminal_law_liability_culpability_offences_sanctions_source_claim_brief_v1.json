@@ -1,0 +1,711 @@
+{
+  "schema": "history_go_juss_rettsvitenskap_criminal_law_source_claim_brief_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-09-01",
+  "status": "source_first_ready_not_materialized",
+  "subject_id": "politikk",
+  "canonical_subcategory_id": "juss_rettsvitenskap",
+  "domain": {
+    "ordinal": 6,
+    "id": "strafferett_ansvar_skyld_straffebud_reaksjoner",
+    "title": "Strafferett: ansvar, skyld, straffebud og reaksjoner",
+    "production_mode": "new_production_required"
+  },
+  "source_strategy": {
+    "source_first": true,
+    "inspectable_urls_required": true,
+    "claim_level_trace_required": true,
+    "minimum_sources_per_claim": 2,
+    "fulltext_materialization_required_before_counting": true,
+    "primary_or_institutional_sources_preferred": true,
+    "jurisdiction_and_time_scope_required": true,
+    "legality_covers_offence_and_culpability": true,
+    "objective_and_subjective_elements_distinguished": true,
+    "justifications_distinguished_from_sentencing": true,
+    "capacity_assessed_at_time_of_act": true,
+    "legal_education_is_not_personal_legal_advice": true
+  },
+  "sources": [
+    {
+      "id": "str01-straffeloven",
+      "title": "Lov om straff (straffeloven) – LOV-2005-05-20-28",
+      "publisher": "Lovdata",
+      "type": "current-statute",
+      "url": "https://lovdata.no/nav/lov/2005-05-20-28",
+      "evidence_role": "gjeldende-straffelov-og-alminnelige-bestemmelser-per-2026-09-01",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "str02-grunnloven",
+      "title": "Kongeriket Norges Grunnlov §§ 96–97",
+      "publisher": "Lovdata",
+      "type": "constitution",
+      "url": "https://lovdata.no/nav/lov/1814-05-17/kapE",
+      "evidence_role": "lovkrav-uskyldspresumsjon-og-tilbakevirkningsforbud",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "str03-emk-art7",
+      "title": "Guide on Article 7 – No punishment without law",
+      "publisher": "European Court of Human Rights",
+      "type": "institutional-case-law-guide",
+      "url": "https://ks.echr.coe.int/documents/d/echr-ks/guide_art_7_eng",
+      "evidence_role": "emk-artikkel-7-lovkrav-forutberegnelighet-og-tilbakevirkning",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "str04-otprp90",
+      "title": "Ot.prp. nr. 90 (2003–2004) Om lov om straff",
+      "publisher": "Justis- og politidepartementet / Regjeringen.no",
+      "type": "preparatory-work",
+      "url": "https://www.regjeringen.no/no/dokumenter/otprp-nr-90-2003-2004-/id179300/",
+      "evidence_role": "forarbeider-til-straffelovens-alminnelige-del",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "str05-hr2026-968",
+      "title": "HR-2026-968-A – knivforbud og grov uaktsomhet",
+      "publisher": "Norges Høyesterett",
+      "type": "supreme-court-judgment",
+      "url": "https://www.domstol.no/no/hoyesterett/avgjorelser/avgjorelser-2026/hoyesterett---straff/HR-2026-968-A/",
+      "evidence_role": "lovkravet-omfatter-skyldkrav-og-tolkning-av-uaktsomhetsansvar",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "str06-hr2022-1323",
+      "title": "HR-2022-1323-A – forsett ved livstruende knivstikk",
+      "publisher": "Norges Høyesterett",
+      "type": "supreme-court-judgment",
+      "url": "https://www.domstol.no/no/hoyesterett/avgjorelser/2022/hoyesterett---straff/HR-2022-1323-A/",
+      "evidence_role": "forsett-kunnskap-om-folge-og-passivt-tilstedevaerende-kunnskap",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "str07-hr2025-539",
+      "title": "HR-2025-539-A – medvirkning til seksuell omgang mellom barn",
+      "publisher": "Norges Høyesterett",
+      "type": "supreme-court-judgment",
+      "url": "https://www.domstol.no/no/hoyesterett/avgjorelser/avgjorelser-2025/hoyesterett---straff/HR-2025-539-A/",
+      "evidence_role": "medvirkning-straffeloven-paragraf-15-og-lovkrav",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "str08-hr2022-1299",
+      "title": "HR-2022-1299-A – forsøk på medvirkning til terrorhandling",
+      "publisher": "Norges Høyesterett",
+      "type": "supreme-court-judgment",
+      "url": "https://www.domstol.no/no/hoyesterett/avgjorelser/2022/hoyesterett---straff/HR-2022-1299-A/",
+      "evidence_role": "forsok-medvirkning-og-konkretisering-av-fullbyrdelsesforsett",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "str09-hr2025-1603",
+      "title": "HR-2025-1603-A – nødrett ved promillekjøring",
+      "publisher": "Norges Høyesterett",
+      "type": "supreme-court-judgment",
+      "url": "https://www.domstol.no/no/hoyesterett/avgjorelser/avgjorelser-2025/hoyesterett---straff/HR-2025-1603-A/",
+      "evidence_role": "nodrett-rimelig-alternativ-og-farevurdering",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "str10-hr2025-2301",
+      "title": "HR-2025-2301-U – nødverge ved forsøk på kroppsskade",
+      "publisher": "Norges Høyesterett",
+      "type": "supreme-court-decision",
+      "url": "https://www.domstol.no/no/hoyesterett/avgjorelser/avgjorelser-2025/hoyesteretts-ankeutvalg---straff/HR-2025-2301-U/",
+      "evidence_role": "nodverge-og-grensekontroll",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "str11-hr2025-662",
+      "title": "HR-2025-662-A – utilregnelighet og psykisk utviklingshemming",
+      "publisher": "Norges Høyesterett",
+      "type": "supreme-court-judgment",
+      "url": "https://www.domstol.no/no/hoyesterett/avgjorelser/avgjorelser-2025/hoyesterett---straff/HR-2025-662-A/",
+      "evidence_role": "skyldevne-totalvurdering-og-hoygradig-psykisk-utviklingshemming",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "str12-hr2023-1242",
+      "title": "HR-2023-1242-A – utilregnelighet ved sterkt avvikende sinnstilstand",
+      "publisher": "Norges Høyesterett",
+      "type": "supreme-court-judgment",
+      "url": "https://www.domstol.no/no/hoyesterett/avgjorelser/2023/hoyesterett-straff/HR-2023-1242-A/",
+      "evidence_role": "skyldevne-virkelighetsforstaelse-og-funksjonsevne",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "str13-hr2026-712",
+      "title": "HR-2026-712-S – straffutmåling etter endrede seksuallovbruddsregler",
+      "publisher": "Norges Høyesterett",
+      "type": "supreme-court-grand-chamber-judgment",
+      "url": "https://www.domstol.no/no/hoyesterett/avgjorelser/avgjorelser-2026/hoyesterett---straff/HR-2026-712-S/",
+      "evidence_role": "straffutmaling-lovendring-og-individuell-reaksjonsfastsettelse",
+      "retrieval_status": "verified_2026-09-01"
+    }
+  ],
+  "topic_briefs": [
+    {
+      "id": "lovkrav-tilbakevirkning-og-tidsvirkning",
+      "title": "Lovkrav, tilbakevirkning og straffelovens tidsvirkning",
+      "method_ids": [
+        "met_str_legalitet",
+        "met_str_tid"
+      ],
+      "boundary": "Grunnloven § 96, straffeloven § 14 og EMK artikkel 7 krever lovgrunnlag og tilstrekkelig forutberegnelighet for straff. Grunnloven § 97 og straffeloven § 3 verner mot skjerpende tilbakevirkning, mens en gunstigere regel på avgjørelsestidspunktet kan få anvendelse når lovens vilkår er oppfylt. Lovkravet omfatter også det aktuelle skyldkravet.",
+      "source_ids": [
+        "str01-straffeloven",
+        "str02-grunnloven",
+        "str03-emk-art7",
+        "str05-hr2026-968"
+      ],
+      "planned_claims": [
+        {
+          "id": "str-01",
+          "text": "Strafferettslige reaksjoner kan bare ilegges med hjemmel i lov, og straffebudet må tolkes innenfor kravene til klarhet og forutberegnelighet som følger av Grunnloven § 96 og EMK artikkel 7.",
+          "source_ids": [
+            "str01-straffeloven",
+            "str02-grunnloven",
+            "str03-emk-art7"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "str-02",
+          "text": "Lovkravet gjelder ikke bare hvilken handling som rammes, men også hvilket skyldkrav som må være oppfylt for straffansvar.",
+          "source_ids": [
+            "str05-hr2026-968",
+            "str01-straffeloven"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "str-03",
+          "text": "Straffeloven § 3 tar utgangspunkt i lovgivningen på handlingstidspunktet og åpner for senere gunstigere lovgivning når lovendringen bygger på et endret syn på hva som bør straffes eller reaksjonsbruken.",
+          "source_ids": [
+            "str01-straffeloven",
+            "str02-grunnloven"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "str-04",
+          "text": "En strafferettslig analyse må versjonere både straffebud, skyldkrav og reaksjonsregler mot handlingstidspunktet og kan ikke bruke en senere skjerpelse retroaktivt til skade for tiltalte.",
+          "source_ids": [
+            "str01-straffeloven",
+            "str03-emk-art7"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "straffebud-gjerningsbeskrivelse-og-skyldkrav",
+      "title": "Straffebud, gjerningsbeskrivelse og skyldkrav",
+      "method_ids": [
+        "met_str_offence_elements",
+        "met_str_culpability"
+      ],
+      "boundary": "Straffansvar krever at den konkrete handlingen dekker gjerningsbeskrivelsen i et straffebud og at øvrige ansvarsvilkår er oppfylt. Etter straffeloven § 21 er forsett hovedregelen med mindre uaktsomhet eller et annet skyldkrav er særskilt bestemt. Objektive gjerningsmomenter og subjektivt skyldkrav må vurderes hver for seg.",
+      "source_ids": [
+        "str01-straffeloven",
+        "str04-otprp90",
+        "str05-hr2026-968"
+      ],
+      "planned_claims": [
+        {
+          "id": "str-05",
+          "text": "Analysen av et lovbrudd må starte med de objektive gjerningsmomentene i det aktuelle straffebudet før det vurderes om tiltalte hadde det nødvendige subjektive skyldkravet.",
+          "source_ids": [
+            "str01-straffeloven",
+            "str04-otprp90"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "str-06",
+          "text": "Straffeloven § 21 fastsetter forsett som alminnelig skyldkrav når ikke loven bestemmer noe annet.",
+          "source_ids": [
+            "str01-straffeloven",
+            "str04-otprp90"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "str-07",
+          "text": "Om uaktsomhet eller grov uaktsomhet er tilstrekkelig, må forankres i det aktuelle straffebudet eller annen relevant lovtolkning og kan ikke antas bare fordi handlingen fremstår klanderverdig.",
+          "source_ids": [
+            "str01-straffeloven",
+            "str05-hr2026-968"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "str-08",
+          "text": "Lovtolkning av gjerningsbeskrivelse og skyldkrav må holdes innenfor legalitetsprinsippets rammer, selv om ordlyden suppleres av forarbeider og rettspraksis.",
+          "source_ids": [
+            "str02-grunnloven",
+            "str05-hr2026-968",
+            "str04-otprp90"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "forsett-uaktsomhet-og-uvitenhet",
+      "title": "Forsett, uaktsomhet og faktisk eller rettslig uvitenhet",
+      "method_ids": [
+        "met_str_intent",
+        "met_str_negligence"
+      ],
+      "boundary": "Straffeloven § 22 skiller hensiktsforsett, sannsynlighetsforsett og eventuelt forsett. § 23 definerer uaktsomhet og grov uaktsomhet. Faktisk uvitenhet etter § 25 gjelder gjerningspersonens oppfatning av faktum, mens rettsuvitenhet etter § 26 gjelder uvitenhet om rettsregler; kategoriene må ikke blandes.",
+      "source_ids": [
+        "str01-straffeloven",
+        "str06-hr2022-1323",
+        "str05-hr2026-968"
+      ],
+      "planned_claims": [
+        {
+          "id": "str-09",
+          "text": "Forsett etter § 22 kan foreligge ved hensikt, ved bevissthet om sikker eller mest sannsynlig dekning av gjerningsbeskrivelsen eller ved eventuelt forsett når lovens vilkår er oppfylt.",
+          "source_ids": [
+            "str01-straffeloven",
+            "str06-hr2022-1323"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "str-10",
+          "text": "Høyesterett har klargjort at kunnskap om en følge kan være relevant for forsett selv om kunnskapen bare er passivt til stede i gjerningsøyeblikket.",
+          "source_ids": [
+            "str06-hr2022-1323",
+            "str01-straffeloven"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "str-11",
+          "text": "Uaktsomhet etter § 23 forutsetter avvik fra forsvarlig opptreden og personlig bebreidelse, mens grov uaktsomhet krever en svært klanderverdig handling og grunnlag for sterk bebreidelse.",
+          "source_ids": [
+            "str01-straffeloven",
+            "str05-hr2026-968"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "str-12",
+          "text": "Faktisk uvitenhet etter § 25 og rettsuvitenhet etter § 26 har ulike rettslige vilkår og følger og må vurderes mot hva gjerningspersonen trodde om faktum henholdsvis retten på handlingstidspunktet.",
+          "source_ids": [
+            "str01-straffeloven",
+            "str04-otprp90"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "medvirkning-forsok-og-frivillig-tilbaketreden",
+      "title": "Medvirkning, forsøk og frivillig tilbaketreden",
+      "method_ids": [
+        "met_str_complicity",
+        "met_str_attempt"
+      ],
+      "boundary": "Straffeloven § 15 gjør medvirkning straffbar når ikke annet er bestemt. § 16 krever ved forsøk forsett om fullbyrdelse og en handling som leder direkte mot utføringen for lovbrudd med tilstrekkelig strafferamme. Psykisk medvirkning krever reell påvirkning av hovedlovbryteren, mens forsøk på medvirkning må vurderes særskilt. Frivillig tilbaketreden kan utelukke forsøksstraff etter § 16.",
+      "source_ids": [
+        "str01-straffeloven",
+        "str07-hr2025-539",
+        "str08-hr2022-1299",
+        "str04-otprp90"
+      ],
+      "planned_claims": [
+        {
+          "id": "str-13",
+          "text": "Et straffebud rammer som hovedregel også den som medvirker til overtredelsen, men medvirkningshandlingen og medvirkerens eget forsett må identifiseres konkret.",
+          "source_ids": [
+            "str01-straffeloven",
+            "str07-hr2025-539"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "str-14",
+          "text": "Psykisk medvirkning kan bestå i å styrke hovedgjerningspersonens forsett, men ren tilstedeværelse er ikke automatisk tilstrekkelig uten den nødvendige tilknytningen til hovedhandlingen.",
+          "source_ids": [
+            "str07-hr2025-539",
+            "str04-otprp90"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "str-15",
+          "text": "Forsøk etter § 16 krever et tilstrekkelig konkret fullbyrdelsesforsett og at gjerningspersonen har foretatt noe som leder direkte mot utføringen.",
+          "source_ids": [
+            "str01-straffeloven",
+            "str08-hr2022-1299"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "str-16",
+          "text": "Frivillig avståelse fra fullbyrdelse eller effektiv avverging kan etter § 16 medføre at gjerningspersonen ikke straffes for forsøk, selv om forsøksgrensen ellers var passert.",
+          "source_ids": [
+            "str01-straffeloven",
+            "str04-otprp90"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "nodrett-nodverge-og-rettsstrid",
+      "title": "Nødrett, nødverge og straffrihetsgrunner",
+      "method_ids": [
+        "met_str_necessity",
+        "met_str_self_defence"
+      ],
+      "boundary": "Nødrett etter § 17 krever en fare som ikke kan avverges på annen rimelig måte og en klart gunstig risikosammenligning. Nødverge etter § 18 krever et ulovlig angrep, at handlingen ikke går lenger enn nødvendig og at den ikke åpenbart går ut over det forsvarlige. Nødrett og nødverge er ulike straffrihetsgrunner og må vurderes før skyld og reaksjon.",
+      "source_ids": [
+        "str01-straffeloven",
+        "str09-hr2025-1603",
+        "str10-hr2025-2301",
+        "str04-otprp90"
+      ],
+      "planned_claims": [
+        {
+          "id": "str-17",
+          "text": "Nødrett kan gjøre en ellers straffbar handling lovlig når handlingen redder en beskyttet interesse fra en fare som ikke kan avverges på annen rimelig måte og skaderisikoen ved passivitet er langt større.",
+          "source_ids": [
+            "str01-straffeloven",
+            "str09-hr2025-1603"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "str-18",
+          "text": "Om det finnes et rimelig handlingsalternativ er et selvstendig og konkret kontrollpunkt ved nødrett og kan endre seg under et hendelsesforløp.",
+          "source_ids": [
+            "str09-hr2025-1603",
+            "str01-straffeloven"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "str-19",
+          "text": "Nødverge krever et ulovlig angrep og setter både nødvendighets- og forsvarlighetsgrenser for mot-handlingen.",
+          "source_ids": [
+            "str01-straffeloven",
+            "str10-hr2025-2301"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "str-20",
+          "text": "Nødrett og nødverge utelukker straff fordi handlingen innenfor vilkårene er lovlig, og må derfor skilles fra formildende omstendigheter som bare påvirker reaksjonen.",
+          "source_ids": [
+            "str01-straffeloven",
+            "str04-otprp90"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "skyldevne-utilregnelighet-og-selvforskyldt-rus",
+      "title": "Skyldevne, utilregnelighet og selvforskyldt rus",
+      "method_ids": [
+        "met_str_capacity",
+        "met_str_insanity"
+      ],
+      "boundary": "Straffeloven § 20 regulerer skyldevne og utilregnelighet. Sterkt avvikende sinnstilstand, sterk bevissthetsforstyrrelse eller høygradig psykisk utviklingshemming må vurderes sammen med graden av svikt i virkelighetsforståelse og funksjonsevne. Diagnose eller IQ-tall alene avgjør ikke skyldevnen. Selvforskyldt rus og selvforskyldt utilregnelighet har særregler og må vurderes separat.",
+      "source_ids": [
+        "str01-straffeloven",
+        "str11-hr2025-662",
+        "str12-hr2023-1242"
+      ],
+      "planned_claims": [
+        {
+          "id": "str-21",
+          "text": "Den som mangler skyldevne etter straffeloven § 20 kan ikke straffes, og utilregnelighetsvurderingen skal knyttes til tilstanden og funksjonen på handlingstidspunktet.",
+          "source_ids": [
+            "str01-straffeloven",
+            "str12-hr2023-1242"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "str-22",
+          "text": "Ved sterkt avvikende sinnstilstand skal graden av svikt i virkelighetsforståelse og funksjonsevne inngå i den konkrete vurderingen av utilregnelighet.",
+          "source_ids": [
+            "str12-hr2023-1242",
+            "str01-straffeloven"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "str-23",
+          "text": "Høygradig psykisk utviklingshemming avgjøres ved en totalvurdering hvor kognitive, sosiale og praktiske ferdigheter inngår; en bestemt IQ-verdi er ikke en absolutt lovgrense.",
+          "source_ids": [
+            "str11-hr2025-662",
+            "str01-straffeloven"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "str-24",
+          "text": "Selvforskyldt rus fritar som utgangspunkt ikke på samme måte som en ordinær utilregnelighetstilstand, og de særskilte reglene må anvendes eksplisitt fremfor å anta generell straffrihet.",
+          "source_ids": [
+            "str01-straffeloven",
+            "str04-otprp90"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "foretaksstraff-og-organisasjonsansvar",
+      "title": "Foretaksstraff og organisasjonsansvar",
+      "method_ids": [
+        "met_str_corporate",
+        "met_str_prevention"
+      ],
+      "boundary": "Straffeloven § 27 åpner for straff av foretak når et straffebud er overtrådt av noen som handler på vegne av foretaket, også uten at en bestemt enkeltperson har utvist skyld eller skyldevne. § 28 krever en særskilt vurdering av blant annet preventiv virkning, grovhet, forebyggende tiltak, fordel og andre reaksjoner. Foretaksstraff må holdes atskilt fra personlig straffansvar.",
+      "source_ids": [
+        "str01-straffeloven",
+        "str04-otprp90"
+      ],
+      "planned_claims": [
+        {
+          "id": "str-25",
+          "text": "Foretak kan etter § 27 straffes når et straffebud er overtrådt av noen som har handlet på vegne av foretaket, og loven krever ikke at én identifisert enkeltperson selv oppfyller alle skyldvilkår.",
+          "source_ids": [
+            "str01-straffeloven",
+            "str04-otprp90"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "str-26",
+          "text": "Foretaksstraff er et selvstendig ansvarsspor og innebærer ikke automatisk at ledere eller ansatte også er personlig strafferettslig ansvarlige.",
+          "source_ids": [
+            "str01-straffeloven",
+            "str04-otprp90"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "str-27",
+          "text": "Ved avgjørelsen om foretaksstraff og ved utmålingen skal det etter § 28 blant annet ses på forebygging, lovbruddets grovhet, mulig fordel, foretakets økonomi og andre reaksjoner.",
+          "source_ids": [
+            "str01-straffeloven",
+            "str04-otprp90"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "str-28",
+          "text": "En forsvarlig analyse av foretaksstraff må identifisere hvem som handlet på foretakets vegne, hvilket straffebud som ble overtrådt og hvilke organisatoriske forhold som er relevante etter § 28.",
+          "source_ids": [
+            "str01-straffeloven",
+            "str04-otprp90"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "reaksjoner-straffutmaling-og-individualisering",
+      "title": "Straffereaksjoner, straffutmåling og individualisering",
+      "method_ids": [
+        "met_str_sanctions",
+        "met_str_sentencing"
+      ],
+      "boundary": "Straffeloven §§ 29 og 30 skiller straffene fra andre strafferettslige reaksjoner. Reaksjonsvalg og straffutmåling må forankres i strafferamme, lovbruddets grovhet og relevante skjerpende og formildende omstendigheter etter blant annet §§ 77–78. Straffen skal individualiseres og kan påvirkes av lovendringer, tilståelse, saksbehandlingstid, alder og andre lovbestemte momenter; tidligere normalnivåer må ikke brukes mekanisk etter en materiell lovendring.",
+      "source_ids": [
+        "str01-straffeloven",
+        "str13-hr2026-712",
+        "str04-otprp90"
+      ],
+      "planned_claims": [
+        {
+          "id": "str-29",
+          "text": "Straffeloven § 29 oppregner blant annet fengsel, forvaring, samfunnsstraff, ungdomsstraff, bot og rettighetstap som straffer, mens § 30 angir andre strafferettslige reaksjoner.",
+          "source_ids": [
+            "str01-straffeloven",
+            "str04-otprp90"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "str-30",
+          "text": "Straffutmålingen må skje innenfor gjeldende strafferamme og bygge på en konkret vurdering av lovbrudd, skyld og relevante skjerpende og formildende omstendigheter.",
+          "source_ids": [
+            "str01-straffeloven",
+            "str13-hr2026-712"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "str-31",
+          "text": "Når lovgiver endrer straffebud eller fjerner tidligere minstestraff eller normalnivå, må domstolen vurdere den nye lovsituasjonen fremfor mekanisk å videreføre gamle nivåer.",
+          "source_ids": [
+            "str13-hr2026-712",
+            "str01-straffeloven"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "str-32",
+          "text": "Tilståelse, lang saksbehandlingstid, ung alder, rehabiliteringsutsikter og andre lovbestemte forhold kan få betydning for straffutmålingen uten å endre selve spørsmålet om straffansvar.",
+          "source_ids": [
+            "str01-straffeloven",
+            "str13-hr2026-712"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    }
+  ],
+  "planned_assessments": [
+    {
+      "id": "assess-str-01",
+      "title": "Analyser lovkrav, tilbakevirkning og straffelovens tidsvirkning",
+      "claim_ids": [
+        "str-01",
+        "str-02",
+        "str-03",
+        "str-04"
+      ]
+    },
+    {
+      "id": "assess-str-02",
+      "title": "Analyser straffebud, gjerningsbeskrivelse og skyldkrav",
+      "claim_ids": [
+        "str-05",
+        "str-06",
+        "str-07",
+        "str-08"
+      ]
+    },
+    {
+      "id": "assess-str-03",
+      "title": "Analyser forsett, uaktsomhet og faktisk eller rettslig uvitenhet",
+      "claim_ids": [
+        "str-09",
+        "str-10",
+        "str-11",
+        "str-12"
+      ]
+    },
+    {
+      "id": "assess-str-04",
+      "title": "Analyser medvirkning, forsøk og frivillig tilbaketreden",
+      "claim_ids": [
+        "str-13",
+        "str-14",
+        "str-15",
+        "str-16"
+      ]
+    },
+    {
+      "id": "assess-str-05",
+      "title": "Analyser nødrett, nødverge og straffrihetsgrunner",
+      "claim_ids": [
+        "str-17",
+        "str-18",
+        "str-19",
+        "str-20"
+      ]
+    },
+    {
+      "id": "assess-str-06",
+      "title": "Analyser skyldevne, utilregnelighet og selvforskyldt rus",
+      "claim_ids": [
+        "str-21",
+        "str-22",
+        "str-23",
+        "str-24"
+      ]
+    },
+    {
+      "id": "assess-str-07",
+      "title": "Analyser foretaksstraff og organisasjonsansvar",
+      "claim_ids": [
+        "str-25",
+        "str-26",
+        "str-27",
+        "str-28"
+      ]
+    },
+    {
+      "id": "assess-str-08",
+      "title": "Analyser straffereaksjoner, straffutmåling og individualisering",
+      "claim_ids": [
+        "str-29",
+        "str-30",
+        "str-31",
+        "str-32"
+      ]
+    }
+  ],
+  "decision_scenarios": [
+    {
+      "id": "case-str-01",
+      "title": "Nytt skyldkrav etter domstolstolkning",
+      "source_ids": [
+        "str01-straffeloven",
+        "str02-grunnloven",
+        "str05-hr2026-968"
+      ],
+      "prompt": "Et straffebud sier lite eksplisitt om skyldkravet, og påtalemyndigheten mener grov uaktsomhet er nok. Kartlegg lovkrav, § 21 og de konkrete tolkningskildene før du avgjør hvilket skyldkrav som gjelder."
+    },
+    {
+      "id": "case-str-02",
+      "title": "Knivstikk og forsett",
+      "source_ids": [
+        "str01-straffeloven",
+        "str06-hr2022-1323"
+      ],
+      "prompt": "En person stikker en annen med kniv, men sier at han aldri tenkte aktivt på dødsrisikoen. Skill gjerningsbeskrivelse, kunnskap om mulige følger og de ulike forsettsformene før konklusjon."
+    },
+    {
+      "id": "case-str-03",
+      "title": "Oppmuntring eller medvirkning?",
+      "source_ids": [
+        "str01-straffeloven",
+        "str07-hr2025-539",
+        "str08-hr2022-1299"
+      ],
+      "prompt": "En person oppfordrer andre til et lovbrudd og er til stede når handlingen gjennomføres. Vurder psykisk medvirkning, eget forsett og eventuelt forsøk på medvirkning uten å anta at tilstedeværelse alene avgjør saken."
+    },
+    {
+      "id": "case-str-04",
+      "title": "Fare, nødrett og nødverge",
+      "source_ids": [
+        "str01-straffeloven",
+        "str09-hr2025-1603",
+        "str10-hr2025-2301"
+      ],
+      "prompt": "En ellers straffbar handling skjer under en akutt konflikt. Avklar først om situasjonen er en fare eller et ulovlig angrep, og prøv deretter de separate vilkårene for nødrett eller nødverge."
+    },
+    {
+      "id": "case-str-05",
+      "title": "Utilregnelighet uten diagnoseautomatikk",
+      "source_ids": [
+        "str01-straffeloven",
+        "str11-hr2025-662",
+        "str12-hr2023-1242"
+      ],
+      "prompt": "En tiltalt har alvorlige psykiske eller kognitive vansker. Beskriv hvordan skyldevne må vurderes etter § 20 med virkelighetsforståelse, funksjonsevne og handlingstidspunkt, uten å gjøre diagnose eller IQ til automatisk fasit."
+    },
+    {
+      "id": "case-str-06",
+      "title": "Reaksjon etter lovendring",
+      "source_ids": [
+        "str01-straffeloven",
+        "str13-hr2026-712"
+      ],
+      "prompt": "Straffen skal fastsettes etter at lovgiver har endret straffebudet og tidligere føringer om normalstraff. Kartlegg gjeldende strafferamme, tidsvirkning, skjerpende/formildende momenter og hvilken betydning lovendringen får."
+    }
+  ]
+}
