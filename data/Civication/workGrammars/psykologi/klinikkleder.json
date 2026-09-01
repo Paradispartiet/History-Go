@@ -1,15 +1,295 @@
 {
-  "schema":"civication_work_grammar_v1",
-  "version":1,
-  "category":"psykologi",
-  "role_scope":"klinikkleder",
-  "role_id":"psykologi_klinikkleder",
-  "title":"Klinikkleder",
-  "badge_binding":{"badge_category":"psykologi","badge_id":"psykologi","badge_name":"Psykologi","tier_label":"Klinikkleder","tier_threshold":240,"badge_titles":["Klinikkleder"],"progression_from":["Fagansvarlig"],"progression_to":[]},
-  "evidence":{"registry":"data/Civication/psychologyClinicalCareerEvidence.json","source_refs":["helse_bergen_klinikkleiar_2026"]},
-  "fag_bindings":{"primary_subjects":["psykologi"],"category_files":["data/Civication/roleModels/psykologi/klinikkleder.json"],"required_concepts":["organisasjonspsykologi","ledelse","pasientsikkerhet","kvalitet","bemanning","kompetanse","risiko","endring","resultatstyring"],"methods":["risikovurdering_pa_systemniva","bemanningsplanlegging","resultatoppfolging","kvalitetsgjennomgang","kompetanseplan","endringsledelse","rolleavklaring"]},
-  "work_identity":{"one_sentence":"Klinikklederen skaper rammer for trygge tjenester gjennom mennesker, kapasitet, økonomi, kvalitet og retning uten a gjore ledermyndighet til klinisk myndighet.","hidden_responsibility":"A oppdage nar gode tall skjuler sviktende kontinuitet, kompetanse eller arbeidsmiljo for sent til enkel korrigering.","status_tension":"Du kan fordele ressurser og sette retning, men du kan ikke vedta deg fram til klinisk kompetanse eller pasientsikkerhet.","core_pressure":"kapasitet_vs_forsvarlighet","work_rhythm":["folde opp bemanning og kapasitet","vurdere kvalitet og risiko","prioritere økonomi og ressurser","lede ledere og fagmiljo","drive endring og forankring","avklare organisatorisk og klinisk myndighet"]},
-  "authority_boundary":{"may":["lede klinikkens strategi, organisasjon, bemanning, økonomi og kvalitetsarbeid","sette mål og fordele ressurser innen arbeidsgiverens mandat","folde opp risiko, resultater og kompetansebehov","sorge for at kliniske og juridiske beslutninger ligger hos riktig kvalifisert person"],"may_not":["diagnostisere eller behandle bare i kraft av lederstillingen","bruke lederrollen som erstatning for psykologautorisasjon eller annen profesjonskompetanse","fatte lovregulerte vedtak som faglig ansvarlig uten særskilt kvalifikasjon og utpeking","delegere klinisk eller juridisk myndighet til noen som mangler nødvendige kvalifikasjoner","bruke produksjonstall alene som bevis pa faglig kvalitet"],"escalate_when":["bemanning eller kompetansegap truer forsvarlig drift","kvalitetsdata og kliniske signaler peker ulikt","en omstilling oker pasientsikkerhetsrisiko","en beslutning krever profesjons- eller lovmyndighet utenfor lederrollen"]},
-  "story_world":{"simulation_promise":"Du opplever klinikkledelse som en serie kompromisser der kapasitet, kvalitet, mennesker og økonomi far konsekvenser for hverandre over tid.","everyday_world":"Arbeidsdagen bestar av ledermoter, bemanning, budsjett, kvalitetsdata, avvik, endringsprosjekter og korte beslutninger som former klinikkens handlingsrom.","hidden_complexity":"Det som ser effektivt ut i en manedsrapport kan flytte kostnaden til sykefravaer, turnover, ventetid eller klinisk risiko senere.","recurring_situations":["et team mangler folk men budsjettet er stramt","produksjonen stiger mens kontinuiteten faller","en omorganisering er faglig lovende men darlig forankret","en leder vil skjule et avvik til fakta er penere","klinisk personell ber om beslutning som krever annen myndighet"],"small_story_seeds":["to ubesatte stillinger ser ut som innsparing helt til sykefravaeret stiger","en bedre resultatkurve skyldes at vanskelige pasienter flyttes videre","en rask omorganisering mister den mest erfarne medarbeideren"],"relationship_web":[{"who":"avdelingsleder","relation":"leder under deg","wants":"nok kapasitet og tydelige prioriteringer","creates":"press pa ressursvalg","tension":"lokalt_behov_vs_klinikkhelhet"},{"who":"tillitsvalgt","relation":"representant for ansatte","wants":"forutsigbarhet og reell medvirkning","creates":"krav om forankring","tension":"tempo_vs_medvirkning"},{"who":"fagansvarlig","relation":"fag- og kvalitetsstotte","wants":"at faglige faresignaler far konsekvenser","creates":"motvekt til rene resultatkrav","tension":"tall_vs_faglige_signaler"},{"who":"divisjonsledelse","relation":"lederlinjen over deg","wants":"budsjettkontroll og leveranse","creates":"resultatpress","tension":"kort_sikt_vs_baerekraft"}],"knowledge_in_practice":[{"concept":"pasientsikkerhet","practical_scene":"bemanningen er lav men avvikstallene er fortsatt normale","what_player_must_notice":"fravaer av avvik er ikke bevis pa fravaer av risiko","bad_misread":"vent til tallene viser problemet","good_use":"kombiner bemanning, kompetanse, kliniske signaler og avvik"},{"concept":"endringsledelse","practical_scene":"ny modell kan rulles ut raskt","what_player_must_notice":"forankring og kapasitet er del av implementeringsrisikoen","bad_misread":"motstand er bare treghet","good_use":"identifiser reell risiko, involver nodkkelroller og fas inn endringen"}]},
-  "practice_stories":[{"id":"to_stillinger_eller_budsjett","title":"To stillinger eller budsjettet","setup":"Et team har to ubesatte stillinger og du ma levere innsparing.","decision":"Beskytt minimumsbemanning eller ta innsparingen na.","learning":"Kortvarig budsjettgevinst kan skape senere risiko og kostnad."},{"id":"gronne_tall_rod_hverdag","title":"Gronne tall, rod hverdag","setup":"Produksjonstallene er gode mens fagmiljoet melder om brudd i kontinuitet.","decision":"Undersok signalet eller feir resultatet og fortsett.","learning":"Resultatdata ma tolkes sammen med faglige kvalitetsindikatorer."},{"id":"omstilling_pa_tre_uker","title":"Omstilling pa tre uker","setup":"En ny organisering kan gjennomfores raskt, men teamene er utmattet.","decision":"Fase inn med forankring eller presse fram full overgang.","learning":"Endringstempo er selv en risikovariabel."},{"id":"leder_eller_kliniker","title":"Leder eller kliniker","setup":"Noen vil at du skal avgjore et klinisk sporsmal fordi du er oyeste leder i rommet.","decision":"Plasser beslutningen hos riktig kvalifisert rolle eller bruk hierarkiet.","learning":"Organisatorisk rang er ikke klinisk kompetanse."}]
+  "schema": "civication_work_grammar_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "klinikkleder",
+  "role_id": "psykologi_klinikkleder",
+  "title": "Klinikkleder",
+  "badge_binding": {
+    "badge_category": "psykologi",
+    "badge_id": "psykologi",
+    "badge_name": "Psykologi",
+    "tier_label": "Klinikkleder",
+    "tier_threshold": 240,
+    "badge_titles": [
+      "Klinikkleder"
+    ],
+    "progression_from": [
+      "Fagansvarlig"
+    ],
+    "progression_to": []
+  },
+  "evidence": {
+    "registry": "data/Civication/psychologyClinicalCareerEvidence.json",
+    "source_refs": [
+      "helse_bergen_klinikkleiar_2026"
+    ]
+  },
+  "fag_bindings": {
+    "primary_subjects": [
+      "psykologi"
+    ],
+    "category_files": [
+      "data/Civication/roleModels/psykologi/klinikkleder.json"
+    ],
+    "required_concepts": [
+      "organisasjonspsykologi",
+      "ledelse",
+      "pasientsikkerhet",
+      "kvalitet",
+      "bemanning",
+      "kompetanse",
+      "risiko",
+      "endring",
+      "resultatstyring"
+    ],
+    "methods": [
+      "risikovurdering_pa_systemniva",
+      "bemanningsplanlegging",
+      "resultatoppfolging",
+      "kvalitetsgjennomgang",
+      "kompetanseplan",
+      "endringsledelse",
+      "rolleavklaring"
+    ]
+  },
+  "work_identity": {
+    "one_sentence": "Klinikklederen skaper rammer for trygge tjenester gjennom mennesker, kapasitet, økonomi, kvalitet og retning uten a gjore ledermyndighet til klinisk myndighet.",
+    "hidden_responsibility": "A oppdage nar gode tall skjuler sviktende kontinuitet, kompetanse eller arbeidsmiljo for sent til enkel korrigering.",
+    "status_tension": "Du kan fordele ressurser og sette retning, men du kan ikke vedta deg fram til klinisk kompetanse eller pasientsikkerhet.",
+    "core_pressure": "kapasitet_vs_forsvarlighet",
+    "work_rhythm": [
+      "folde opp bemanning og kapasitet",
+      "vurdere kvalitet og risiko",
+      "prioritere økonomi og ressurser",
+      "lede ledere og fagmiljo",
+      "drive endring og forankring",
+      "avklare organisatorisk og klinisk myndighet"
+    ]
+  },
+  "authority_boundary": {
+    "may": [
+      "lede klinikkens strategi, organisasjon, bemanning, økonomi og kvalitetsarbeid",
+      "sette mål og fordele ressurser innen arbeidsgiverens mandat",
+      "folde opp risiko, resultater og kompetansebehov",
+      "sorge for at kliniske og juridiske beslutninger ligger hos riktig kvalifisert person"
+    ],
+    "may_not": [
+      "diagnostisere eller behandle bare i kraft av lederstillingen",
+      "bruke lederrollen som erstatning for psykologautorisasjon eller annen profesjonskompetanse",
+      "fatte lovregulerte vedtak som faglig ansvarlig uten særskilt kvalifikasjon og utpeking",
+      "delegere klinisk eller juridisk myndighet til noen som mangler nødvendige kvalifikasjoner",
+      "bruke produksjonstall alene som bevis pa faglig kvalitet"
+    ],
+    "escalate_when": [
+      "bemanning eller kompetansegap truer forsvarlig drift",
+      "kvalitetsdata og kliniske signaler peker ulikt",
+      "en omstilling oker pasientsikkerhetsrisiko",
+      "en beslutning krever profesjons- eller lovmyndighet utenfor lederrollen"
+    ]
+  },
+  "story_world": {
+    "simulation_promise": "Du opplever klinikkledelse som en serie kompromisser der kapasitet, kvalitet, mennesker og økonomi far konsekvenser for hverandre over tid.",
+    "everyday_world": "Arbeidsdagen bestar av ledermoter, bemanning, budsjett, kvalitetsdata, avvik, endringsprosjekter og korte beslutninger som former klinikkens handlingsrom.",
+    "hidden_complexity": "Det som ser effektivt ut i en manedsrapport kan flytte kostnaden til sykefravaer, turnover, ventetid eller klinisk risiko senere.",
+    "recurring_situations": [
+      "et team mangler folk men budsjettet er stramt",
+      "produksjonen stiger mens kontinuiteten faller",
+      "en omorganisering er faglig lovende men darlig forankret",
+      "en leder vil skjule et avvik til fakta er penere",
+      "klinisk personell ber om beslutning som krever annen myndighet"
+    ],
+    "small_story_seeds": [
+      "to ubesatte stillinger ser ut som innsparing helt til sykefravaeret stiger",
+      "en bedre resultatkurve skyldes at vanskelige pasienter flyttes videre",
+      "en rask omorganisering mister den mest erfarne medarbeideren"
+    ],
+    "relationship_web": [
+      {
+        "who": "avdelingsleder",
+        "relation": "leder under deg",
+        "wants": "nok kapasitet og tydelige prioriteringer",
+        "creates": "press pa ressursvalg",
+        "tension": "lokalt_behov_vs_klinikkhelhet"
+      },
+      {
+        "who": "tillitsvalgt",
+        "relation": "representant for ansatte",
+        "wants": "forutsigbarhet og reell medvirkning",
+        "creates": "krav om forankring",
+        "tension": "tempo_vs_medvirkning"
+      },
+      {
+        "who": "fagansvarlig",
+        "relation": "fag- og kvalitetsstotte",
+        "wants": "at faglige faresignaler far konsekvenser",
+        "creates": "motvekt til rene resultatkrav",
+        "tension": "tall_vs_faglige_signaler"
+      },
+      {
+        "who": "divisjonsledelse",
+        "relation": "lederlinjen over deg",
+        "wants": "budsjettkontroll og leveranse",
+        "creates": "resultatpress",
+        "tension": "kort_sikt_vs_baerekraft"
+      }
+    ],
+    "knowledge_in_practice": [
+      {
+        "concept": "pasientsikkerhet",
+        "practical_scene": "bemanningen er lav men avvikstallene er fortsatt normale",
+        "what_player_must_notice": "fravaer av avvik er ikke bevis pa fravaer av risiko",
+        "bad_misread": "vent til tallene viser problemet",
+        "good_use": "kombiner bemanning, kompetanse, kliniske signaler og avvik"
+      },
+      {
+        "concept": "endringsledelse",
+        "practical_scene": "ny modell kan rulles ut raskt",
+        "what_player_must_notice": "forankring og kapasitet er del av implementeringsrisikoen",
+        "bad_misread": "motstand er bare treghet",
+        "good_use": "identifiser reell risiko, involver nodkkelroller og fas inn endringen"
+      }
+    ]
+  },
+  "practice_stories": [
+    {
+      "id": "to_stillinger_eller_budsjett",
+      "title": "To stillinger eller budsjettet",
+      "setup": "Et team har to ubesatte stillinger og du ma levere innsparing.",
+      "decision": "Beskytt minimumsbemanning eller ta innsparingen na.",
+      "learning": "Kortvarig budsjettgevinst kan skape senere risiko og kostnad."
+    },
+    {
+      "id": "gronne_tall_rod_hverdag",
+      "title": "Gronne tall, rod hverdag",
+      "setup": "Produksjonstallene er gode mens fagmiljoet melder om brudd i kontinuitet.",
+      "decision": "Undersok signalet eller feir resultatet og fortsett.",
+      "learning": "Resultatdata ma tolkes sammen med faglige kvalitetsindikatorer."
+    },
+    {
+      "id": "omstilling_pa_tre_uker",
+      "title": "Omstilling pa tre uker",
+      "setup": "En ny organisering kan gjennomfores raskt, men teamene er utmattet.",
+      "decision": "Fase inn med forankring eller presse fram full overgang.",
+      "learning": "Endringstempo er selv en risikovariabel."
+    },
+    {
+      "id": "leder_eller_kliniker",
+      "title": "Leder eller kliniker",
+      "setup": "Noen vil at du skal avgjore et klinisk sporsmal fordi du er oyeste leder i rommet.",
+      "decision": "Plasser beslutningen hos riktig kvalifisert rolle eller bruk hierarkiet.",
+      "learning": "Organisatorisk rang er ikke klinisk kompetanse."
+    }
+  ],
+  "work_loops": [
+    "signal -> risikovurdering -> prioritering -> beslutning -> handoff -> oppfolging -> rework -> lukking",
+    "bemanningsbehov -> venting pa avklaring -> medvirkning -> implementering -> kvalitetskontroll -> eskalering"
+  ],
+  "actor_grammar": [
+    {
+      "id": "liv_divisjonsdirektor_klinikk",
+      "name": "Liv",
+      "role": "divisjonsdirektør",
+      "workplace_ids": [
+        "klinikkens_kapasitets_og_prioriteringsbord"
+      ]
+    },
+    {
+      "id": "amina_fagansvarlig_pasientsikkerhet",
+      "name": "Amina",
+      "role": "fagansvarlig og pasientsikkerhetsrådgiver",
+      "workplace_ids": [
+        "kvalitets_og_risikogjennomgang"
+      ]
+    },
+    {
+      "id": "eirik_avdelingsleder_klinikk",
+      "name": "Eirik",
+      "role": "avdelingsleder",
+      "workplace_ids": [
+        "bemannings_og_endringsforum"
+      ]
+    },
+    {
+      "id": "sara_tillitsvalgt_endring",
+      "name": "Sara",
+      "role": "tillitsvalgt og endringskontakt",
+      "workplace_ids": [
+        "myndighets_og_eskaleringspunkt"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "klinikkens_kapasitets_og_prioriteringsbord",
+      "name": "Kapasitets- og prioriteringsbordet",
+      "function": "Kobler venteliste, bemanning, budsjett, kompetanse og forsvarlighetsrisiko før ressurser flyttes."
+    },
+    {
+      "id": "kvalitets_og_risikogjennomgang",
+      "name": "Kvalitets- og risikogjennomgangen",
+      "function": "Prøver avvik, kontinuitet og faglige signaler mot resultatdata uten å gjøre tall til klinisk fasit."
+    },
+    {
+      "id": "bemannings_og_endringsforum",
+      "name": "Bemannings- og endringsforumet",
+      "function": "Behandler rekruttering, arbeidsmiljø, medvirkning og omstillingstakt som implementeringsavhengigheter."
+    },
+    {
+      "id": "myndighets_og_eskaleringspunkt",
+      "name": "Myndighets- og eskaleringspunktet",
+      "function": "Skiller organisatorisk beslutning fra diagnostikk, behandling og lovregulert vedtak."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "klinikkens_risiko_og_kapasitetsportefolje",
+    "description": "Versjonert lederportefølje for venteliste, kapasitet, kompetanse, arbeidsmiljø, økonomi, kvalitet, avvik, eier og oppfølging uten pasientidentifiserende data.",
+    "states": [
+      "signal_registrert",
+      "risiko_vurderes",
+      "venter_pa_avklaring",
+      "beslutning_tatt",
+      "under_implementering",
+      "under_kvalitetskontroll",
+      "lukket_eller_eskalert"
+    ],
+    "handoff_rule": "Handoff navngir versjon, risiko, tiltak, eier, frist og nødvendig fag- eller lovmyndighet; rang erstatter aldri kvalifikasjon."
+  },
+  "rhythm_contract": {
+    "loop": "signal -> waiting/venting på data, bemanning eller myndighet -> beslutning -> handoff -> implementering -> kontroll -> rework eller eskalering",
+    "waiting_states": [
+      "kvalitetsgrunnlag",
+      "bemanning",
+      "medvirkning",
+      "klinisk_eller_juridisk_myndighet"
+    ],
+    "rework_rule": "Nye signaler eller mislykket implementering gjenåpner berørte vurderinger og bevarer tidligere begrunnelse."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_psykologi_institusjon_makt_og_maling",
+      "badge_id": "psykologi",
+      "use": "Historie om institusjoner, normalitetsmål, profesjonsmakt og resultatstyring skjerper systemspørsmål, men gir ingen diagnostisk, behandlingsmessig eller lovregulert myndighet."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "appointment_required",
+    "first_object": "klinikkens_risiko_og_kapasitetsportefolje",
+    "first_task": "Registrer ett kapasitets- og kvalitetssignal med kilde, risiko, beslutningseier og riktig myndighetsgrense."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "klinikkleder",
+    "no_generic_fallback": true
+  }
 }
