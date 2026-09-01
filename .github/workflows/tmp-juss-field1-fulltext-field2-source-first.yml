@@ -1,5 +1,5 @@
 name: TEMP Juss field 1 fulltext field 2 source-first
-# rerun-token: 2026-09-01-official-source-track
+# rerun-token: 2026-09-01-complete-official-source-track
 
 on:
   push:
@@ -49,10 +49,11 @@ jobs:
           }
           const hierarchyTopic=data.topic_briefs?.find(row=>row.id==='hierarki_kollisjon_og_flerniva_rett');
           if(!hierarchyTopic) throw new Error('Missing Field 1 hierarchy/multilevel topic');
-          if(!hierarchyTopic.boundary.includes('HUDOC')||!hierarchyTopic.boundary.includes('EUR-Lex')) {
-            hierarchyTopic.boundary += ' Ved menneskerettslig og europeisk kildekontroll skal originalsporet i HUDOC og EUR-Lex brukes der det er relevant, med jurisdiksjon og rettslig status uttrykkelig angitt.';
+          const requiredOfficialNames=['Lovdata','Stortinget','Høyesterett','HUDOC','EUR-Lex'];
+          if(!requiredOfficialNames.every(name=>hierarchyTopic.boundary.includes(name))) {
+            hierarchyTopic.boundary += ' Ved offisiell rettskildekontroll skal originalsporet i Lovdata, Stortinget, Norges Høyesterett, HUDOC og EUR-Lex brukes der det er relevant, med jurisdiksjon, dokumentstatus og rettslig status uttrykkelig angitt.';
             changed=true;
-            console.log('Added explicit HUDOC/EUR-Lex source track to Field 1 hierarchy boundary.');
+            console.log('Added complete explicit official source track to Field 1 hierarchy boundary.');
           }
           if(changed) fs.writeFileSync(file,JSON.stringify(data,null,2)+'\n');
           NODE
