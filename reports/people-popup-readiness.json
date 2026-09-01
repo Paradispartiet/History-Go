@@ -3,7 +3,7 @@
   "contract": "docs/PEOPLE_POPUP_SYSTEM.md",
   "productionContract": "docs/PEOPLE_PROFILE_CANONICAL.md",
   "generatedBy": "tools/audit-people-popup-readiness.mts",
-  "sourceFingerprint": "d3ef548e83731a4aed7fd7290c97bbc791302bfee551d40c77abe18d8dc1b927",
+  "sourceFingerprint": "ba38dd3a3ff3e4225949982324f5001ea8ce873a7e79c05bd36027412083a699",
   "thresholds": {
     "complete": 85,
     "strong": 65,
@@ -17,12 +17,12 @@
     "legacyWithoutClaimsStatus": "legacy_unreviewed"
   },
   "summary": {
-    "totalPeople": 1425,
-    "complete": 69,
+    "totalPeople": 1426,
+    "complete": 70,
     "strong": 408,
     "partial": 933,
     "sparse": 15,
-    "readyPeopleV1": 77,
+    "readyPeopleV1": 78,
     "legacyUnreviewed": 1348,
     "brokenImages": 280,
     "explicitFallbacks": 994,
@@ -31,44 +31,44 @@
   },
   "fieldCoverage": {
     "identity": {
-      "count": 129,
+      "count": 130,
       "percent": 9.1
     },
     "popupDesc": {
-      "count": 1404,
+      "count": 1405,
       "percent": 98.5
     },
     "lifeData": {
       "count": 62,
-      "percent": 4.4
+      "percent": 4.3
     },
     "contributionsDeclared": {
-      "count": 62,
+      "count": 63,
       "percent": 4.4
     },
     "educationDeclared": {
-      "count": 62,
+      "count": 63,
       "percent": 4.4
     },
     "practiceDeclared": {
-      "count": 1407,
+      "count": 1408,
       "percent": 98.7
     },
     "placeGrounding": {
-      "count": 1425,
+      "count": 1426,
       "percent": 100
     },
     "sources": {
-      "count": 466,
+      "count": 467,
       "percent": 32.7
     },
     "imageContract": {
-      "count": 1145,
+      "count": 1146,
       "percent": 80.4
     },
     "profileStandard": {
-      "count": 77,
-      "percent": 5.4
+      "count": 78,
+      "percent": 5.5
     }
   },
   "categories": [
@@ -129,14 +129,14 @@
     },
     {
       "category": "kunst",
-      "total": 85,
-      "complete": 10,
+      "total": 86,
+      "complete": 11,
       "strong": 62,
       "partial": 13,
       "sparse": 0,
-      "readyPeopleV1": 11,
+      "readyPeopleV1": 12,
       "legacyUnreviewed": 74,
-      "averageScore": 73.8
+      "averageScore": 74
     },
     {
       "category": "naeringsliv",
@@ -70939,6 +70939,46 @@
       "sourceCount": 3,
       "imageState": "valid_image",
       "imagePath": "bilder/kort/people/lars_backer.webp",
+      "coverage": {
+        "identity": true,
+        "popupDesc": true,
+        "lifeData": false,
+        "contributionsDeclared": true,
+        "educationDeclared": true,
+        "practiceDeclared": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true,
+        "profileStandard": true
+      },
+      "issues": [
+        "missing_birth_data"
+      ]
+    },
+    {
+      "id": "vibeke_tandberg",
+      "name": "Vibeke Tandberg",
+      "category": "kunst",
+      "kindLabel": "Billedkunstner, fotograf og forfatter",
+      "sourceFile": "data/people/kunst/oslo/skulptursonen_ovre_slottsgate/vibeke_tandberg.json",
+      "primaryPlace": "skulptursonen_ovre_slottsgate",
+      "places": [
+        "skulptursonen_ovre_slottsgate"
+      ],
+      "score": 95,
+      "priority": 5,
+      "status": "complete",
+      "productionStatus": "ready_people_v1",
+      "profileStandard": "people_profile_v1.0",
+      "claimsFile": "data/people/claims/kunst/oslo/skulptursonen_ovre_slottsgate/vibeke_tandberg.claims.json",
+      "paragraphCount": 3,
+      "popupLength": 555,
+      "contributionCount": 1,
+      "educationCount": 0,
+      "practiceCount": 5,
+      "sourceCount": 3,
+      "imageState": "valid_image",
+      "imagePath": "bilder/kort/people/vibeke_tandberg.webp",
       "coverage": {
         "identity": true,
         "popupDesc": true,
