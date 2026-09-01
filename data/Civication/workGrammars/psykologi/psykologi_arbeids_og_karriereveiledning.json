@@ -11,16 +11,27 @@
     "badge_name": "Psykologi",
     "tier_label": "Seniorrådgiver",
     "tier_threshold": 85,
-    "badge_titles": ["Veileder", "Rådgiver", "Seniorrådgiver"],
-    "progression_from": ["Miljøarbeider"],
+    "badge_titles": [
+      "Veileder",
+      "Rådgiver",
+      "Seniorrådgiver"
+    ],
+    "progression_from": [
+      "Miljøarbeider"
+    ],
     "progression_to": []
   },
   "evidence": {
     "registry": "data/Civication/psychologyGuidanceEvidence.json",
-    "source_refs": ["utdanning_jobbveileder", "utdanning_karriereveileder"]
+    "source_refs": [
+      "utdanning_jobbveileder",
+      "utdanning_karriereveileder"
+    ]
   },
   "fag_bindings": {
-    "primary_subjects": ["psykologi"],
+    "primary_subjects": [
+      "psykologi"
+    ],
     "category_files": [
       "data/Civication/roleModels/psykologi/veileder.json",
       "data/Civication/roleModels/psykologi/radgiver.json",
@@ -194,13 +205,34 @@
       "title": "Målet som ikke er ditt",
       "story_type": "identity",
       "premise": "Systemet trenger et tydelig mål, men veisøkeren er ikke sikker på at målet du foreslår faktisk er deres.",
-      "people": ["veisoker", "teamleder"],
-      "work_knowledge": ["autonomi", "motivasjon", "maalsetting"],
-      "conflict_axes": ["autonomi_vs_styring"],
-      "mail_types": ["job", "people", "followup"],
+      "people": [
+        "veisoker",
+        "teamleder"
+      ],
+      "work_knowledge": [
+        "autonomi",
+        "motivasjon",
+        "maalsetting"
+      ],
+      "conflict_axes": [
+        "autonomi_vs_styring"
+      ],
+      "mail_types": [
+        "job",
+        "people",
+        "followup"
+      ],
       "thread_potential": true,
-      "possible_choices": ["utforske målet", "selge inn løsningen", "utsette alt"],
-      "possible_followups": ["veisøkeren formulerer et eget mål", "planen blir liggende ubrukt", "teamleder spør etter framdrift"],
+      "possible_choices": [
+        "utforske målet",
+        "selge inn løsningen",
+        "utsette alt"
+      ],
+      "possible_followups": [
+        "veisøkeren formulerer et eget mål",
+        "planen blir liggende ubrukt",
+        "teamleder spør etter framdrift"
+      ],
       "learning_point": "Et mål er først veiledningsmessig nyttig når personen selv kan forklare hvorfor det er deres."
     },
     {
@@ -208,13 +240,34 @@
       "title": "Kartleggingen som blir dom",
       "story_type": "knowledge",
       "premise": "Et kartleggingsverktøy gir et tydelig mønster, men samtalen peker på flere muligheter enn skjemaet.",
-      "people": ["veisoker", "kollega"],
-      "work_knowledge": ["interesser", "kompetanse", "beslutninger"],
-      "conflict_axes": ["utforsking_vs_fasit"],
-      "mail_types": ["knowledge", "job", "followup"],
+      "people": [
+        "veisoker",
+        "kollega"
+      ],
+      "work_knowledge": [
+        "interesser",
+        "kompetanse",
+        "beslutninger"
+      ],
+      "conflict_axes": [
+        "utforsking_vs_fasit"
+      ],
+      "mail_types": [
+        "knowledge",
+        "job",
+        "followup"
+      ],
       "thread_potential": true,
-      "possible_choices": ["bruke resultatet som spørsmål", "gjøre resultatet til retning", "ignorere kartleggingen"],
-      "possible_followups": ["nye erfaringer nyanserer bildet", "veisøkeren føler seg plassert i en kategori", "kollega ber om begrunnelse"],
+      "possible_choices": [
+        "bruke resultatet som spørsmål",
+        "gjøre resultatet til retning",
+        "ignorere kartleggingen"
+      ],
+      "possible_followups": [
+        "nye erfaringer nyanserer bildet",
+        "veisøkeren føler seg plassert i en kategori",
+        "kollega ber om begrunnelse"
+      ],
       "learning_point": "Kartlegging skal åpne samtalen, ikke etterligne diagnose eller gjøre usikkerhet til fasit."
     },
     {
@@ -222,13 +275,33 @@
       "title": "Arbeidsgiveren vil vite mer",
       "story_type": "conflict",
       "premise": "En arbeidsgiver vurderer veisøkeren, men spør etter private opplysninger som går lenger enn jobben krever.",
-      "people": ["veisoker", "arbeidsgiver"],
-      "work_knowledge": ["personvern", "arbeidsinkludering"],
-      "conflict_axes": ["jobbmatch_vs_personvern"],
-      "mail_types": ["job", "conflict", "consequence"],
+      "people": [
+        "veisoker",
+        "arbeidsgiver"
+      ],
+      "work_knowledge": [
+        "personvern",
+        "arbeidsinkludering"
+      ],
+      "conflict_axes": [
+        "jobbmatch_vs_personvern"
+      ],
+      "mail_types": [
+        "job",
+        "conflict",
+        "consequence"
+      ],
       "thread_potential": true,
-      "possible_choices": ["avklare samtykke og relevans", "dele mer for å sikre jobben", "avslutte kontakten"],
-      "possible_followups": ["arbeidsgiver får relevant informasjon", "tilliten til veilederen svekkes", "jobbmuligheten må bygges på nytt"],
+      "possible_choices": [
+        "avklare samtykke og relevans",
+        "dele mer for å sikre jobben",
+        "avslutte kontakten"
+      ],
+      "possible_followups": [
+        "arbeidsgiver får relevant informasjon",
+        "tilliten til veilederen svekkes",
+        "jobbmuligheten må bygges på nytt"
+      ],
       "learning_point": "God jobbmatch krever presis informasjon, ikke grenseløs informasjonsdeling."
     },
     {
@@ -236,14 +309,146 @@
       "title": "Rask jobb eller bærekraftig valg",
       "story_type": "conflict",
       "premise": "En jobb kan tas nå, men passer dårlig med retningen veisøkeren har jobbet fram.",
-      "people": ["veisoker", "teamleder"],
-      "work_knowledge": ["motivasjon", "mestring", "arbeidsinkludering"],
-      "conflict_axes": ["resultatkrav_vs_baerekraftig_valg"],
-      "mail_types": ["job", "story", "consequence"],
+      "people": [
+        "veisoker",
+        "teamleder"
+      ],
+      "work_knowledge": [
+        "motivasjon",
+        "mestring",
+        "arbeidsinkludering"
+      ],
+      "conflict_axes": [
+        "resultatkrav_vs_baerekraftig_valg"
+      ],
+      "mail_types": [
+        "job",
+        "story",
+        "consequence"
+      ],
       "thread_potential": true,
-      "possible_choices": ["vurdere jobbens reelle konsekvenser sammen", "presse fram rask plassering", "avvise jobben på vegne av personen"],
-      "possible_followups": ["veisøkeren tar et begrunnet valg", "rask plassering kollapser", "teamleder utfordrer begrunnelsen"],
+      "possible_choices": [
+        "vurdere jobbens reelle konsekvenser sammen",
+        "presse fram rask plassering",
+        "avvise jobben på vegne av personen"
+      ],
+      "possible_followups": [
+        "veisøkeren tar et begrunnet valg",
+        "rask plassering kollapser",
+        "teamleder utfordrer begrunnelsen"
+      ],
       "learning_point": "Veiledning skal synliggjøre avveiningen; veilederen skal ikke ta valget."
     }
-  ]
+  ],
+  "work_loops": [
+    "eget mål -> evidens og alternativer -> venting på avklaring -> samtykkebundet handoff -> handling -> oppfølging -> rework eller lukking",
+    "arbeidsgiver- eller systemkrav -> relevansavklaring -> veisøkerens valg -> avgrenset deling -> respons -> planrevisjon"
+  ],
+  "actor_grammar": [
+    {
+      "id": "nora_veisoker_karriereskifte",
+      "name": "Nora",
+      "role": "veisøker i karriereskifte",
+      "workplace_ids": [
+        "veiledningsrommet_for_maal_og_samtykke"
+      ]
+    },
+    {
+      "id": "samir_fagkollega_karriereveiledning",
+      "name": "Samir",
+      "role": "fagkollega og metodeansvarlig",
+      "workplace_ids": [
+        "kartleggings_og_mulighetsverkstedet"
+      ]
+    },
+    {
+      "id": "elin_arbeidsgiverkontakt_inkludering",
+      "name": "Elin",
+      "role": "arbeidsgiverkontakt",
+      "workplace_ids": [
+        "arbeidsgiverdialogens_matchbord"
+      ]
+    },
+    {
+      "id": "marius_nav_oppfolgingskontakt",
+      "name": "Marius",
+      "role": "NAV-kontakt og oppfølgingspartner",
+      "workplace_ids": [
+        "oppfolgingsplanens_handoffpunkt"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "veiledningsrommet_for_maal_og_samtykke",
+      "name": "Veiledningsrommet for mål og samtykke",
+      "function": "Her formulerer veisøkeren hva hjelpen skal gjelde, hvilke alternativer som er åpne og hva som eventuelt kan deles videre."
+    },
+    {
+      "id": "kartleggings_og_mulighetsverkstedet",
+      "name": "Kartleggings- og mulighetsverkstedet",
+      "function": "Her prøves interesser, kompetanse, erfaring, verdier og arbeidsmarkedsinformasjon mot hverandre uten at verktøy blir diagnose eller fasit."
+    },
+    {
+      "id": "arbeidsgiverdialogens_matchbord",
+      "name": "Arbeidsgiverdialogens matchbord",
+      "function": "Her avgrenses jobbrelevante krav, muligheter og informasjon før en kandidat presenteres eller et intervju forberedes."
+    },
+    {
+      "id": "oppfolgingsplanens_handoffpunkt",
+      "name": "Oppfølgingsplanens handoffpunkt",
+      "function": "Her versjoneres neste steg, ventepunkt, samtykke, eier og ny vurderingsdato mellom veisøker, veileder og samarbeidspartner."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "samtykkebundet_valg_og_overgangsplan",
+    "description": "Versjonert plan med veisøkerens eget mål, kilder, alternativer, begrunnelse, samtykkeomfang, ventepunkt, neste handling, eier og vurderingsdato uten unødvendige sensitive opplysninger.",
+    "states": [
+      "maal_avklares",
+      "alternativer_undersokes",
+      "venter_pa_svar",
+      "samtykke_avgrenses",
+      "handling_avtalt",
+      "under_oppfolging",
+      "rework_eller_lukket"
+    ],
+    "handoff_rule": "Handoff navngir planversjon, hva veisøkeren selv har valgt, hva som kan deles, hvem som eier neste handling og når planen skal prøves på nytt; mottakeren får aldri mer personinformasjon enn formålet og samtykket bærer."
+  },
+  "rhythm_contract": {
+    "loop": "målavklaring -> waiting/venting på veisøker, arbeidsgiver eller partner -> samtykkebundet handoff -> handling -> respons -> oppfølging -> rework",
+    "waiting_states": [
+      "veisokerens_beslutning",
+      "arbeidsgivers_respons",
+      "utdannings_eller_tiltaksinformasjon",
+      "samtykke_til_avgrenset_deling"
+    ],
+    "rework_rule": "Når planen ikke brukes, jobbkravet endres eller samtykket avgrenses, gjenåpnes berørte alternativer uten at tidligere begrunnelse eller veisøkerens eierskap slettes."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_karriereveiledning_institusjon_testing_og_arbeidsmarked",
+      "badge_id": "psykologi",
+      "use": "Historie om yrkesveiledning, testing, arbeidsinkludering og institusjonell sortering brukes til å spørre hvordan kategorier former mulighetsbildet; den avgjør aldri individuell egnethet og gir ingen klinisk myndighet."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "direct_offer",
+    "first_object": "samtykkebundet_valg_og_overgangsplan",
+    "first_task": "Registrer veisøkerens eget spørsmål, ett åpent alternativ, samtykkeomfang, neste handling og et eksplisitt ventepunkt før planen deles."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "psykologi_arbeids_og_karriereveiledning",
+    "no_generic_fallback": true
+  }
 }

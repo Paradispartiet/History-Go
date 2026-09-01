@@ -1,0 +1,285 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "psykologi_arbeids_og_karriereveiledning",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "psykologi_arbeids_og_karriereveiledning_job_overgangsplan",
+      "purpose": "Trene job gjennom den samme samtykkebundne valg- og overgangsplanen.",
+      "learning_focus": [
+        "autonomi",
+        "samtykke",
+        "venting_handoff_rework",
+        "rollegrense"
+      ],
+      "mails": [
+        {
+          "id": "psykologi_arbeids_og_karriereveiledning_job_eget_maal_001",
+          "mail_type": "job",
+          "mail_family": "psykologi_arbeids_og_karriereveiledning_job_overgangsplan",
+          "role_scope": "psykologi_arbeids_og_karriereveiledning",
+          "phase": "forenoon",
+          "priority": 160,
+          "from": "Nora",
+          "people_ref": "nora_veisoker_karriereskifte",
+          "place_id": "veiledningsrommet_for_maal_og_samtykke",
+          "subject": "«Hva som helst» er ikke et mål Nora kan eie",
+          "summary": "«Hva som helst» er ikke et mål Nora kan eie. I den samtykkebundne valg- og overgangsplanen er den konkrete evidensen at Nora sier ja til å søke alt fordi fristen nærmer seg. Risikoen er at et lånt mål blir registrert som hennes motivasjon. Spilleren må skille veisøkerens eget valg fra veilederens råd, versjonere samtykke, ventepunkt, neste eier og vurderingsdato, og holde diagnostikk, psykoterapi, klinisk arbeidsevnevurdering og beslutningen om arbeid eller utdanning utenfor rollen.",
+          "situation": [
+            "Planen viser hva veisøkeren selv har sagt, hva som er observert, og hva som fortsatt bare er en hypotese om autonomi_vs_styring.",
+            "Valget avgjør om venting og handoff blir synlig eller om et lånt mål blir registrert som hennes motivasjon.",
+            "Ingen mottaker får sensitive opplysninger utover uttrykkelig formål, rettslig grunnlag og avklart samtykke; kartlegging er aldri diagnose eller klinisk fasit."
+          ],
+          "task_domain": "arbeids_og_karriereveiledning",
+          "competency": "autonomi_samtykke_og_overgangsplan",
+          "pressure": "autonomi_vs_styring",
+          "choice_axis": "autonomi_vs_styring",
+          "consequence_axis": "eierskap_tillit_og_gjennomforbarhet",
+          "narrative_arc": "eget_maal",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bevar eierskap: avklare hva hun vil ha mer av i en arbeidshverdag før ett foreløpig mål føres",
+              "reply": "Jeg vil avklare hva hun vil ha mer av i en arbeidshverdag før ett foreløpig mål føres. Jeg oppdaterer planversjonen med evidens, samtykkeomfang, ventepunkt, neste eier og ny vurderingsdato, og lar Nora selv eie begrunnelsen og beslutningen.",
+              "effect": 1,
+              "tags": [
+                "autonomi",
+                "samtykke",
+                "handoff"
+              ],
+              "feedback": "Nora formulerer selv en retning og kan forklare hvorfor neste steg hører til den. Dermed kan neste aktør se forskjellen mellom observasjon, hypotese og veisøkerens valg, og rework kan skje uten skjult persondeling. Veilederen styrker handlingsrommet uten å diagnostisere, behandle, gjøre klinisk arbeidsevnevurdering eller overta beslutningen.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "autonomy": 2,
+                  "risk": -2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Prioriter framdrift: sette lagerarbeid som mål fordi markedet har flest åpninger",
+              "reply": "Jeg vil sette lagerarbeid som mål fordi markedet har flest åpninger. Jeg registrerer løsningen som framdrift nå og lar mottakeren eller Nora rydde samtykke, usikkerhet og restarbeid når konsekvensene blir tydeligere.",
+              "effect": -1,
+              "tags": [
+                "styring",
+                "personvernrisiko",
+                "skjult_rework"
+              ],
+              "feedback": "planen ser effektiv ut, men blir liggende fordi den beskriver veilederens løsning. Planen ser mer komplett ut, men skiller ikke lenger tydelig mellom veisøkerens mål og systemets eller veilederens løsning. Venting, samtykke og ansvar blir vanskeligere å rekonstruere, og rollen glir mot styring eller kliniske slutninger den ikke har mandat til.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "psykologi_arbeids_og_karriereveiledning_job_kartlegging_002",
+          "mail_type": "job",
+          "mail_family": "psykologi_arbeids_og_karriereveiledning_job_overgangsplan",
+          "role_scope": "psykologi_arbeids_og_karriereveiledning",
+          "phase": "workday",
+          "priority": 159,
+          "from": "Samir",
+          "people_ref": "samir_fagkollega_karriereveiledning",
+          "place_id": "kartleggings_og_mulighetsverkstedet",
+          "subject": "Interesseprofilen peker mot kontor — erfaringen peker bort",
+          "summary": "Interesseprofilen peker mot kontor — erfaringen peker bort. I den samtykkebundne valg- og overgangsplanen er den konkrete evidensen at skjemaet fremhever struktur mens Nora beskriver isolasjon som hovedproblemet. Risikoen er at et aggregert mønster blir brukt som personmerkelapp. Spilleren må skille veisøkerens eget valg fra veilederens råd, versjonere samtykke, ventepunkt, neste eier og vurderingsdato, og holde diagnostikk, psykoterapi, klinisk arbeidsevnevurdering og beslutningen om arbeid eller utdanning utenfor rollen.",
+          "situation": [
+            "Planen viser hva veisøkeren selv har sagt, hva som er observert, og hva som fortsatt bare er en hypotese om utforsking_vs_fasit.",
+            "Valget avgjør om venting og handoff blir synlig eller om et aggregert mønster blir brukt som personmerkelapp.",
+            "Ingen mottaker får sensitive opplysninger utover uttrykkelig formål, rettslig grunnlag og avklart samtykke; kartlegging er aldri diagnose eller klinisk fasit."
+          ],
+          "task_domain": "arbeids_og_karriereveiledning",
+          "competency": "autonomi_samtykke_og_overgangsplan",
+          "pressure": "utforsking_vs_fasit",
+          "choice_axis": "utforsking_vs_fasit",
+          "consequence_axis": "eierskap_tillit_og_gjennomforbarhet",
+          "narrative_arc": "kartlegging",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bevar eierskap: splitte resultatet i oppgaver hun liker og arbeidsvilkår hun vil unngå",
+              "reply": "Jeg vil splitte resultatet i oppgaver hun liker og arbeidsvilkår hun vil unngå. Jeg oppdaterer planversjonen med evidens, samtykkeomfang, ventepunkt, neste eier og ny vurderingsdato, og lar Nora selv eie begrunnelsen og beslutningen.",
+              "effect": 1,
+              "tags": [
+                "autonomi",
+                "samtykke",
+                "handoff"
+              ],
+              "feedback": "kartleggingen åpner et mer presist alternativ: koordinerende arbeid med kontakt og bevegelse. Dermed kan neste aktør se forskjellen mellom observasjon, hypotese og veisøkerens valg, og rework kan skje uten skjult persondeling. Veilederen styrker handlingsrommet uten å diagnostisere, behandle, gjøre klinisk arbeidsevnevurdering eller overta beslutningen.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "autonomy": 2,
+                  "risk": -2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Prioriter framdrift: bygge hele planen rundt den høyeste skåren",
+              "reply": "Jeg vil bygge hele planen rundt den høyeste skåren. Jeg registrerer løsningen som framdrift nå og lar mottakeren eller Nora rydde samtykke, usikkerhet og restarbeid når konsekvensene blir tydeligere.",
+              "effect": -1,
+              "tags": [
+                "styring",
+                "personvernrisiko",
+                "skjult_rework"
+              ],
+              "feedback": "resultatet lukker samtalen og gjør senere moteksempler til avvik. Planen ser mer komplett ut, men skiller ikke lenger tydelig mellom veisøkerens mål og systemets eller veilederens løsning. Venting, samtykke og ansvar blir vanskeligere å rekonstruere, og rollen glir mot styring eller kliniske slutninger den ikke har mandat til.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "psykologi_arbeids_og_karriereveiledning_job_jobbmatch_003",
+          "mail_type": "job",
+          "mail_family": "psykologi_arbeids_og_karriereveiledning_job_overgangsplan",
+          "role_scope": "psykologi_arbeids_og_karriereveiledning",
+          "phase": "workday",
+          "priority": 158,
+          "from": "Elin",
+          "people_ref": "elin_arbeidsgiverkontakt_inkludering",
+          "place_id": "arbeidsgiverdialogens_matchbord",
+          "subject": "Jobbkravet må oversettes uten å overselge kandidaten",
+          "summary": "Jobbkravet må oversettes uten å overselge kandidaten. I den samtykkebundne valg- og overgangsplanen er den konkrete evidensen at Elin trenger noen som kan koordinere skift, men annonsen blander krav og ønsker. Risikoen er at Nora presses inn i en match som ikke tåler første arbeidsuke. Spilleren må skille veisøkerens eget valg fra veilederens råd, versjonere samtykke, ventepunkt, neste eier og vurderingsdato, og holde diagnostikk, psykoterapi, klinisk arbeidsevnevurdering og beslutningen om arbeid eller utdanning utenfor rollen.",
+          "situation": [
+            "Planen viser hva veisøkeren selv har sagt, hva som er observert, og hva som fortsatt bare er en hypotese om realistisk_match_vs_rask_plassering.",
+            "Valget avgjør om venting og handoff blir synlig eller om Nora presses inn i en match som ikke tåler første arbeidsuke.",
+            "Ingen mottaker får sensitive opplysninger utover uttrykkelig formål, rettslig grunnlag og avklart samtykke; kartlegging er aldri diagnose eller klinisk fasit."
+          ],
+          "task_domain": "arbeids_og_karriereveiledning",
+          "competency": "autonomi_samtykke_og_overgangsplan",
+          "pressure": "realistisk_match_vs_rask_plassering",
+          "choice_axis": "realistisk_match_vs_rask_plassering",
+          "consequence_axis": "eierskap_tillit_og_gjennomforbarhet",
+          "narrative_arc": "jobbmatch",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bevar eierskap: skille absolutte krav fra lærbare oppgaver og la Nora vurdere matchen",
+              "reply": "Jeg vil skille absolutte krav fra lærbare oppgaver og la Nora vurdere matchen. Jeg oppdaterer planversjonen med evidens, samtykkeomfang, ventepunkt, neste eier og ny vurderingsdato, og lar Nora selv eie begrunnelsen og beslutningen.",
+              "effect": 1,
+              "tags": [
+                "autonomi",
+                "samtykke",
+                "handoff"
+              ],
+              "feedback": "Nora møter et ærlig kravbilde og kan selv velge om gapet er håndterbart. Dermed kan neste aktør se forskjellen mellom observasjon, hypotese og veisøkerens valg, og rework kan skje uten skjult persondeling. Veilederen styrker handlingsrommet uten å diagnostisere, behandle, gjøre klinisk arbeidsevnevurdering eller overta beslutningen.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "autonomy": 2,
+                  "risk": -2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Prioriter framdrift: tone ned manglende erfaring og love at veilederen følger opp alt",
+              "reply": "Jeg vil tone ned manglende erfaring og love at veilederen følger opp alt. Jeg registrerer løsningen som framdrift nå og lar mottakeren eller Nora rydde samtykke, usikkerhet og restarbeid når konsekvensene blir tydeligere.",
+              "effect": -1,
+              "tags": [
+                "styring",
+                "personvernrisiko",
+                "skjult_rework"
+              ],
+              "feedback": "arbeidsgiver og kandidat starter med ulike forventninger og tilliten må repareres. Planen ser mer komplett ut, men skiller ikke lenger tydelig mellom veisøkerens mål og systemets eller veilederens løsning. Venting, samtykke og ansvar blir vanskeligere å rekonstruere, og rollen glir mot styring eller kliniske slutninger den ikke har mandat til.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "psykologi_arbeids_og_karriereveiledning_job_systemfrist_004",
+          "mail_type": "job",
+          "mail_family": "psykologi_arbeids_og_karriereveiledning_job_overgangsplan",
+          "role_scope": "psykologi_arbeids_og_karriereveiledning",
+          "phase": "workday",
+          "priority": 157,
+          "from": "Marius",
+          "people_ref": "marius_nav_oppfolgingskontakt",
+          "place_id": "oppfolgingsplanens_handoffpunkt",
+          "subject": "Fristen trenger et neste steg, ikke et oppdiktet sluttvalg",
+          "summary": "Fristen trenger et neste steg, ikke et oppdiktet sluttvalg. I den samtykkebundne valg- og overgangsplanen er den konkrete evidensen at Marius må ha en konkret aktivitet før dagen er over mens to spor fortsatt undersøkes. Risikoen er at systemets datofelt gjør foreløpig utforsking til endelig retning. Spilleren må skille veisøkerens eget valg fra veilederens råd, versjonere samtykke, ventepunkt, neste eier og vurderingsdato, og holde diagnostikk, psykoterapi, klinisk arbeidsevnevurdering og beslutningen om arbeid eller utdanning utenfor rollen.",
+          "situation": [
+            "Planen viser hva veisøkeren selv har sagt, hva som er observert, og hva som fortsatt bare er en hypotese om systemkrav_vs_individuell_prosess.",
+            "Valget avgjør om venting og handoff blir synlig eller om systemets datofelt gjør foreløpig utforsking til endelig retning.",
+            "Ingen mottaker får sensitive opplysninger utover uttrykkelig formål, rettslig grunnlag og avklart samtykke; kartlegging er aldri diagnose eller klinisk fasit."
+          ],
+          "task_domain": "arbeids_og_karriereveiledning",
+          "competency": "autonomi_samtykke_og_overgangsplan",
+          "pressure": "systemkrav_vs_individuell_prosess",
+          "choice_axis": "systemkrav_vs_individuell_prosess",
+          "consequence_axis": "eierskap_tillit_og_gjennomforbarhet",
+          "narrative_arc": "systemfrist",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bevar eierskap: registrere en tidsavgrenset undersøkelse av begge spor med ny beslutningsdato",
+              "reply": "Jeg vil registrere en tidsavgrenset undersøkelse av begge spor med ny beslutningsdato. Jeg oppdaterer planversjonen med evidens, samtykkeomfang, ventepunkt, neste eier og ny vurderingsdato, og lar Nora selv eie begrunnelsen og beslutningen.",
+              "effect": 1,
+              "tags": [
+                "autonomi",
+                "samtykke",
+                "handoff"
+              ],
+              "feedback": "fristen blir en ramme for læring, og Nora beholder retten til hovedvalget. Dermed kan neste aktør se forskjellen mellom observasjon, hypotese og veisøkerens valg, og rework kan skje uten skjult persondeling. Veilederen styrker handlingsrommet uten å diagnostisere, behandle, gjøre klinisk arbeidsevnevurdering eller overta beslutningen.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "autonomy": 2,
+                  "risk": -2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Prioriter framdrift: føre jobbsøking som hovedmål for å få planen komplett",
+              "reply": "Jeg vil føre jobbsøking som hovedmål for å få planen komplett. Jeg registrerer løsningen som framdrift nå og lar mottakeren eller Nora rydde samtykke, usikkerhet og restarbeid når konsekvensene blir tydeligere.",
+              "effect": -1,
+              "tags": [
+                "styring",
+                "personvernrisiko",
+                "skjult_rework"
+              ],
+              "feedback": "systemet rapporterer framdrift mens Nora opplever at valget allerede er tatt. Planen ser mer komplett ut, men skiller ikke lenger tydelig mellom veisøkerens mål og systemets eller veilederens løsning. Venting, samtykke og ansvar blir vanskeligere å rekonstruere, og rollen glir mot styring eller kliniske slutninger den ikke har mandat til.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
