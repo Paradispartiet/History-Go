@@ -33,9 +33,9 @@ jobs:
       - name: Reuse approved Bjørvika source materialization
         run: |
           sed -n "/node <<'NODE'/,/^          NODE$/p" .github/workflows/finalize-bjorvika-fagverk-v2.yml \
-            | sed '1d;$d;s/^          //' > /tmp/materialize-bjorvika.mjs
-          test -s /tmp/materialize-bjorvika.mjs
-          node /tmp/materialize-bjorvika.mjs
+            | sed '1d;$d;s/^          //' > /tmp/materialize-bjorvika.cjs
+          test -s /tmp/materialize-bjorvika.cjs
+          node /tmp/materialize-bjorvika.cjs
       - name: Complete controlled sources and registry ownership
         run: |
           node <<'NODE'
