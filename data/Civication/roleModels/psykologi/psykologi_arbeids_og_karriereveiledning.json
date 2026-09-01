@@ -5,8 +5,16 @@
     "badge_file": "data/badges/psykologi.json",
     "badge_id": "psykologi",
     "badge_name": "Psykologi",
-    "tier_labels": ["Veileder", "Rådgiver", "Seniorrådgiver"],
-    "tier_thresholds": [40, 60, 85],
+    "tier_labels": [
+      "Veileder",
+      "Rådgiver",
+      "Seniorrådgiver"
+    ],
+    "tier_thresholds": [
+      40,
+      60,
+      85
+    ],
     "evidence_file": "data/Civication/psychologyGuidanceEvidence.json"
   },
   "category": "psykologi",
@@ -41,6 +49,12 @@
     "status_position": [
       "Veilederen har ofte mer system- og arbeidsmarkedskunnskap enn veisøkeren, men har ikke rett til å gjøre den kunnskapen om til myndighet over personens livsvalg.",
       "Senioritet gir større ansvar for komplekse saker og faglig kvalitet, ikke klinisk autorisasjon."
+    ],
+    "workplaces": [
+      "veiledningsrommet_for_maal_og_samtykke",
+      "kartleggings_og_mulighetsverkstedet",
+      "arbeidsgiverdialogens_matchbord",
+      "oppfolgingsplanens_handoffpunkt"
     ]
   },
   "career_path": {
@@ -84,9 +98,21 @@
       "gruppe- og relasjonsprosesser",
       "arbeidsinkludering og overgangssituasjoner"
     ],
-    "history_go_badges": ["psykologi"],
-    "place_connections": [],
-    "people_connections": []
+    "history_go_badges": [
+      "psykologi"
+    ],
+    "place_connections": [
+      "veiledningsrommet_for_maal_og_samtykke",
+      "kartleggings_og_mulighetsverkstedet",
+      "arbeidsgiverdialogens_matchbord",
+      "oppfolgingsplanens_handoffpunkt"
+    ],
+    "people_connections": [
+      "nora_veisoker_karriereskifte",
+      "samir_fagkollega_karriereveiledning",
+      "elin_arbeidsgiverkontakt_inkludering",
+      "marius_nav_oppfolgingskontakt"
+    ]
   },
   "scope_boundary": {
     "can": [
@@ -112,21 +138,32 @@
       "title": "Målet som ikke er ditt",
       "description": "Systemet trenger et mål før veisøkeren selv er sikker på retningen.",
       "pressure": "autonomi_vs_styring",
-      "affects": ["trust", "status", "risk"]
+      "affects": [
+        "trust",
+        "status",
+        "risk"
+      ]
     },
     {
       "id": "kartlegging_som_fasit",
       "title": "Kartlegging som fasit",
       "description": "Et tydelig resultat frister til å lukke en samtale som fortsatt burde være åpen.",
       "pressure": "utforsking_vs_fasit",
-      "affects": ["trust", "risk"]
+      "affects": [
+        "trust",
+        "risk"
+      ]
     },
     {
       "id": "jobbmatch_og_personvern",
       "title": "Jobbmatch og personvern",
       "description": "Arbeidsgiver trenger relevant informasjon, men ikke hele personens historie.",
       "pressure": "jobbmatch_vs_personvern",
-      "affects": ["trust", "risk", "status"]
+      "affects": [
+        "trust",
+        "risk",
+        "status"
+      ]
     }
   ],
   "dilemmas": [
@@ -136,7 +173,11 @@
       "setup": "En jobb kan starte nå, men passer dårlig med retningen veisøkeren har jobbet fram.",
       "choice_axis": "rask_plassering_vs_baerekraftig_valg",
       "consequence_axis": "resultat_vs_eierskap",
-      "mail_hooks": ["job", "conflict", "story"]
+      "mail_hooks": [
+        "job",
+        "conflict",
+        "story"
+      ]
     },
     {
       "id": "systemfrist_eller_aapen_prosess",
@@ -144,15 +185,103 @@
       "setup": "Planen må konkretiseres før hovedvalget egentlig er ferdig tenkt.",
       "choice_axis": "systemkrav_vs_individuell_prosess",
       "consequence_axis": "framdrift_vs_tillit",
-      "mail_hooks": ["job", "followup", "consequence"]
+      "mail_hooks": [
+        "job",
+        "followup",
+        "consequence"
+      ]
     }
   ],
-  "related_people": [],
-  "related_places": [],
+  "related_people": [
+    {
+      "id": "nora_veisoker_karriereskifte",
+      "name": "Nora",
+      "role": "veisøker i karriereskifte",
+      "workplace_ids": [
+        "veiledningsrommet_for_maal_og_samtykke"
+      ],
+      "function": "Nora eier målet, begrunnelsen og beslutningen i overgangsplanen. Hun prøver å bygge videre på erfaring uten å reduseres til et fravær i CV-en, et tiltaksmål eller resultatet fra ett kartleggingsverktøy.",
+      "authority_relation": "Nora kan gi, avgrense og trekke samtykke og kan velge bort veilederens forslag. Veilederen kan strukturere alternativer, men kan ikke diagnostisere henne, dele helseopplysninger eller bestemme arbeid eller utdanning på hennes vegne.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "samir_fagkollega_karriereveiledning",
+      "name": "Samir",
+      "role": "fagkollega og metodeansvarlig",
+      "workplace_ids": [
+        "kartleggings_og_mulighetsverkstedet"
+      ],
+      "function": "Samir kvalitetssikrer at interessekartlegging, kompetansebeskrivelse og arbeidsmarkedsinformasjon brukes som spørsmål som kan motsies av erfaring, verdier og hverdagsrammer, ikke som en sorteringsfasit.",
+      "authority_relation": "Samir kan utfordre metodebruk og be om ny begrunnelse. Han kan ikke gjøre et kartleggingsresultat til klinisk vurdering eller overstyre veisøkerens mål, og faglig uenighet må bevares i neste handoff.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "elin_arbeidsgiverkontakt_inkludering",
+      "name": "Elin",
+      "role": "arbeidsgiverkontakt",
+      "workplace_ids": [
+        "arbeidsgiverdialogens_matchbord"
+      ],
+      "function": "Elin konkretiserer arbeidsoppgaver, krav, tilretteleggingsmuligheter og rekrutteringsfrister. Hun gjør jobbmatch mulig, men hennes behov for trygghet skaper press for mer personinformasjon enn stillingen nødvendigvis krever.",
+      "authority_relation": "Elin kan avgjøre hvem arbeidsgiveren går videre med innen lovlige rammer. Hun kan ikke kreve at veilederen deler sensitive opplysninger uten grunnlag og avklart samtykke, eller bruke veilederens antakelser som helse- eller arbeidsevnevurdering.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "marius_nav_oppfolgingskontakt",
+      "name": "Marius",
+      "role": "NAV-kontakt og oppfølgingspartner",
+      "workplace_ids": [
+        "oppfolgingsplanens_handoffpunkt"
+      ],
+      "function": "Marius forvalter reelle frister og rammer i oppfølgingen og trenger en plan som kan etterprøves. Han synliggjør når systemets tempo ikke samsvarer med tiden veisøkeren trenger for å undersøke alternativer.",
+      "authority_relation": "Marius kan be om avtalte oppfølgingspunkter innen eget mandat. Han kan ikke gjøre en foreløpig plan til veisøkerens endelige valg, kreve overskuddsinformasjon eller låne klinisk myndighet til oppfølgingssystemet.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    }
+  ],
+  "related_places": [
+    {
+      "id": "veiledningsrommet_for_maal_og_samtykke",
+      "name": "Veiledningsrommet for mål og samtykke",
+      "function": "Her formulerer veisøkeren hva hjelpen skal gjelde, hvilke alternativer som er åpne og hva som eventuelt kan deles videre."
+    },
+    {
+      "id": "kartleggings_og_mulighetsverkstedet",
+      "name": "Kartleggings- og mulighetsverkstedet",
+      "function": "Her prøves interesser, kompetanse, erfaring, verdier og arbeidsmarkedsinformasjon mot hverandre uten at verktøy blir diagnose eller fasit."
+    },
+    {
+      "id": "arbeidsgiverdialogens_matchbord",
+      "name": "Arbeidsgiverdialogens matchbord",
+      "function": "Her avgrenses jobbrelevante krav, muligheter og informasjon før en kandidat presenteres eller et intervju forberedes."
+    },
+    {
+      "id": "oppfolgingsplanens_handoffpunkt",
+      "name": "Oppfølgingsplanens handoffpunkt",
+      "function": "Her versjoneres neste steg, ventepunkt, samtykke, eier og ny vurderingsdato mellom veisøker, veileder og samarbeidspartner."
+    }
+  ],
   "mail_integration": {
     "role_scope": "psykologi_arbeids_og_karriereveiledning",
     "mail_profile": "psykologi_karriereveileder",
-    "can_feed_mail_types": ["job", "story", "conflict", "event", "people", "followup"],
+    "can_feed_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
     "mail_variables": {
       "role_title": "Arbeids- og karriereveiledning",
       "category": "psykologi",
@@ -161,10 +290,15 @@
       "status_axis": "tillit_vs_resultat"
     },
     "recommended_mail_families": [
-      "maal_og_handlingsplan",
-      "kartlegging_og_muligheter",
-      "arbeidsgiverdialog_og_personvern",
-      "arbeidsinkludering_og_overganger"
+      "psykologi_arbeids_og_karriereveiledning_job_overgangsplan",
+      "psykologi_arbeids_og_karriereveiledning_people_overgangsplan",
+      "psykologi_arbeids_og_karriereveiledning_conflict_overgangsplan",
+      "psykologi_arbeids_og_karriereveiledning_story_overgangsplan",
+      "psykologi_arbeids_og_karriereveiledning_event_overgangsplan",
+      "psykologi_arbeids_og_karriereveiledning_micro_overgangsplan",
+      "psykologi_arbeids_og_karriereveiledning_followup_overgangsplan",
+      "psykologi_arbeids_og_karriereveiledning_knowledge_overgangsplan",
+      "psykologi_arbeids_og_karriereveiledning_consequence_overgangsplan"
     ],
     "role_model_refs_supported": true
   },

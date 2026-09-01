@@ -1,0 +1,87 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "psykologi_arbeids_og_karriereveiledning",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "psykologi_arbeids_og_karriereveiledning_followup_overgangsplan",
+      "purpose": "Trene followup gjennom den samme samtykkebundne valg- og overgangsplanen.",
+      "learning_focus": [
+        "autonomi",
+        "samtykke",
+        "venting_handoff_rework",
+        "rollegrense"
+      ],
+      "mails": [
+        {
+          "id": "psykologi_arbeids_og_karriereveiledning_followup_ubrukt_plan_013",
+          "mail_type": "followup",
+          "mail_family": "psykologi_arbeids_og_karriereveiledning_followup_overgangsplan",
+          "role_scope": "psykologi_arbeids_og_karriereveiledning",
+          "phase": "workday",
+          "priority": 148,
+          "from": "Nora",
+          "people_ref": "nora_veisoker_karriereskifte",
+          "place_id": "oppfolgingsplanens_handoffpunkt",
+          "subject": "Ingen av søknadene ble sendt — planen må gjenåpnes",
+          "summary": "Ingen av søknadene ble sendt — planen må gjenåpnes. I den samtykkebundne valg- og overgangsplanen er den konkrete evidensen at oppfølgingen viser at Nora forsto oppgavene, men aldri brukte målet som ble registrert. Risikoen er at manglende handling tolkes som lav motivasjon i stedet for svak måleierskap. Spilleren må skille veisøkerens eget valg fra veilederens råd, versjonere samtykke, ventepunkt, neste eier og vurderingsdato, og holde diagnostikk, psykoterapi, klinisk arbeidsevnevurdering og beslutningen om arbeid eller utdanning utenfor rollen.",
+          "situation": [
+            "Planen viser hva veisøkeren selv har sagt, hva som er observert, og hva som fortsatt bare er en hypotese om oppfolging_vs_sanksjon.",
+            "Valget avgjør om venting og handoff blir synlig eller om manglende handling tolkes som lav motivasjon i stedet for svak måleierskap.",
+            "Ingen mottaker får sensitive opplysninger utover uttrykkelig formål, rettslig grunnlag og avklart samtykke; kartlegging er aldri diagnose eller klinisk fasit."
+          ],
+          "task_domain": "arbeids_og_karriereveiledning",
+          "competency": "autonomi_samtykke_og_overgangsplan",
+          "pressure": "oppfolging_vs_sanksjon",
+          "choice_axis": "oppfolging_vs_sanksjon",
+          "consequence_axis": "eierskap_tillit_og_gjennomforbarhet",
+          "narrative_arc": "ubrukt_plan",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bevar eierskap: gå tilbake til begrunnelsen, redusere neste steg og versjonere målet i Noras språk",
+              "reply": "Jeg vil gå tilbake til begrunnelsen, redusere neste steg og versjonere målet i Noras språk. Jeg oppdaterer planversjonen med evidens, samtykkeomfang, ventepunkt, neste eier og ny vurderingsdato, og lar Nora selv eie begrunnelsen og beslutningen.",
+              "effect": 1,
+              "tags": [
+                "autonomi",
+                "samtykke",
+                "handoff"
+              ],
+              "feedback": "rework avdekker at retningen var lånt og gir ett steg Nora faktisk starter. Dermed kan neste aktør se forskjellen mellom observasjon, hypotese og veisøkerens valg, og rework kan skje uten skjult persondeling. Veilederen styrker handlingsrommet uten å diagnostisere, behandle, gjøre klinisk arbeidsevnevurdering eller overta beslutningen.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "autonomy": 2,
+                  "risk": -2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Prioriter framdrift: øke antall søknader og legge inn tettere kontroll",
+              "reply": "Jeg vil øke antall søknader og legge inn tettere kontroll. Jeg registrerer løsningen som framdrift nå og lar mottakeren eller Nora rydde samtykke, usikkerhet og restarbeid når konsekvensene blir tydeligere.",
+              "effect": -1,
+              "tags": [
+                "styring",
+                "personvernrisiko",
+                "skjult_rework"
+              ],
+              "feedback": "mer kontroll produserer aktivitet i systemet, men mindre selvstendig handling. Planen ser mer komplett ut, men skiller ikke lenger tydelig mellom veisøkerens mål og systemets eller veilederens løsning. Venting, samtykke og ansvar blir vanskeligere å rekonstruere, og rollen glir mot styring eller kliniske slutninger den ikke har mandat til.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

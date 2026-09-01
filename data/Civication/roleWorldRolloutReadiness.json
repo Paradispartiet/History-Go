@@ -29,13 +29,13 @@
   "summary": {
     "canonical_career_roles": 85,
     "classifications": {
-      "rollout_ready": 43,
-      "needs_role_authored_work": 40,
+      "rollout_ready": 44,
+      "needs_role_authored_work": 39,
       "blocked": 2
     },
     "role_world_complete_or_pilot": 43,
     "rollout_queue_roles": 42,
-    "first_wave_candidate_count": 0,
+    "first_wave_candidate_count": 1,
     "role_level_blocked_count": 2,
     "structural_families_in_queue": 6
   },
@@ -51,29 +51,32 @@
     "gate_pass": true,
     "broad_rollout_allowed_now": true,
     "policy_recommendation": "controlled_rollout_open_with_role_level_gates",
-    "next_required_pr": "Select next rollout_ready role",
+    "next_required_pr": "Role World rollout: psykologi/psykologi_arbeids_og_karriereveiledning",
     "rule": "A green readiness gate proves the program can safely begin controlled rollout. It does not make every role rollout_ready and it does not itself flip broad_rollout_allowed."
   },
-  "first_wave_candidates": [],
+  "first_wave_candidates": [
+    {
+      "rank": 1,
+      "key": "psykologi/psykologi_arbeids_og_karriereveiledning",
+      "classification": "rollout_ready",
+      "structural_family": "care_professional",
+      "priority_score": 1285,
+      "blockers": [],
+      "authored_work_required": [
+        "situated_reputation"
+      ],
+      "cross_role_need": "candidate_when_shared_work_is_real"
+    }
+  ],
   "rollout_queue": [
     {
       "rank": 1,
       "key": "psykologi/psykologi_arbeids_og_karriereveiledning",
-      "classification": "needs_role_authored_work",
+      "classification": "rollout_ready",
       "structural_family": "care_professional",
-      "priority_score": 545,
+      "priority_score": 1285,
       "blockers": [],
       "authored_work_required": [
-        "career:day_one",
-        "career:knowledge",
-        "career:mail",
-        "career:people",
-        "career:places",
-        "career:workday_loop",
-        "history_go_affordance",
-        "people_places_integrity",
-        "persistent_work_object",
-        "rhythm_waiting_handoff_rework",
         "situated_reputation"
       ],
       "cross_role_need": "candidate_when_shared_work_is_real"
@@ -7049,6 +7052,7 @@
         "tests/civication-psychology-entry-career-ladder.test.js",
         "tests/civication-psychology-guidance-career-ladder.test.js",
         "tests/civication-psykolog-rollout-playability.test.js",
+        "tests/civication-psykologi-arbeids-og-karriereveiledning-prerequisites.test.js",
         "tests/civication-psykologi-fagansvarlig-role-world-rollout.test.js",
         "tests/civication-psykologi-fagansvarlig-rollout-playability.test.js",
         "tests/civication-psykologi-forsker_psykologi-rollout-playability.test.js",
@@ -7073,19 +7077,20 @@
         "Seniorrådgiver",
         "Veileder"
       ],
-      "career_status": "architecture_only",
-      "runtime_gate": false,
+      "career_status": "playable",
+      "runtime_gate": true,
       "role_world_status": "role_world_not_started",
       "structural_family": "care_professional",
-      "classification": "needs_role_authored_work",
-      "priority_score": 545,
+      "classification": "rollout_ready",
+      "priority_score": 1285,
       "dimensions": {
         "persistent_work_object": {
-          "status": "needs_role_authored_work",
+          "status": "foundation_ready",
           "evidence": [
+            "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json",
             "data/Civication/workGrammars/psykologi/psykologi_arbeids_og_karriereveiledning.json"
           ],
-          "rationale": "The current career foundation does not yet prove a stable persistent work object across later scenes."
+          "rationale": "Existing work content carries stable object/case/project signals and a complete workday loop; the rollout PR must bind them explicitly to the locked persistent-work contract."
         },
         "institution_authority": {
           "status": "foundation_ready",
@@ -7098,45 +7103,55 @@
           "rationale": "Existing authored sources already expose institutional/authority language; rollout must preserve direct, approval, escalation and forbidden-action boundaries."
         },
         "rhythm_waiting_handoff_rework": {
-          "status": "needs_role_authored_work",
+          "status": "foundation_ready",
           "evidence": [
+            "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json",
+            "data/Civication/mailPlans/psykologi/psykologi_arbeids_og_karriereveiledning_plan.json",
             "data/Civication/workGrammars/psykologi/psykologi_arbeids_og_karriereveiledning.json"
           ],
-          "rationale": "Waiting, handoff, interruption or rework is not yet explicit enough to prove a distinct role rhythm."
+          "rationale": "The current runtime-authored role already exposes deadline/rework/handoff signals; rollout must make the rhythm role-specific and persistent."
         },
         "history_go_affordance": {
-          "status": "needs_role_authored_work",
+          "status": "foundation_ready",
           "evidence": [
+            "data/Civication/mailFamilies/psykologi/knowledge/psykologi_arbeids_og_karriereveiledning_knowledge.json",
             "data/Civication/roleModels/psykologi/radgiver.json",
             "data/Civication/roleModels/psykologi/seniorradgiver.json",
             "data/Civication/roleModels/psykologi/veileder.json",
             "data/Civication/workGrammars/psykologi/psykologi_arbeids_og_karriereveiledning.json"
           ],
-          "rationale": "Knowledge bridge is partial; a concrete History Go affordance must be authored before this role is considered realism-ready."
+          "rationale": "Career knowledge integration is complete; the rollout PR must author a concrete better-choice affordance while keeping authority independent from knowledge."
         },
         "situated_reputation": {
           "status": "needs_role_authored_work",
-          "evidence": [],
+          "evidence": [
+            "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json",
+            "data/Civication/mailPlans/psykologi/psykologi_arbeids_og_karriereveiledning_plan.json"
+          ],
           "rationale": "Situated reputation audiences are not yet explicit for this role; do not substitute the legacy/global reputation summary."
         },
         "people_places_integrity": {
-          "status": "needs_role_authored_work",
+          "status": "foundation_ready",
           "evidence": [
             "data/Civication/lifestory/roles/psykologi_arbeids_og_karriereveiledning/role.json",
             "data/Civication/lifestory/roles/psykologi_arbeids_og_karriereveiledning/scenes.json",
             "data/Civication/lifestory/roles/psykologi_arbeids_og_karriereveiledning/threads.json",
+            "data/Civication/mailFamilies/psykologi/people/psykologi_arbeids_og_karriereveiledning_people.json",
             "data/Civication/roleModels/psykologi/radgiver.json",
             "data/Civication/roleModels/psykologi/seniorradgiver.json",
             "data/Civication/roleModels/psykologi/veileder.json"
           ],
-          "rationale": "People=partial, Places=missing; role-authored integration is incomplete."
+          "rationale": "Career People and Places coverage is complete; rollout still must verify factual canonical references and keep invented workplace drama explicitly fictional."
         },
         "provenance": {
           "status": "foundation_ready",
           "evidence": [
+            "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json",
+            "data/Civication/mailPlans/psykologi/psykologi_arbeids_og_karriereveiledning_plan.json",
             "data/Civication/workGrammars/psykologi/psykologi_arbeids_og_karriereveiledning.json",
             "tests/civication-psychology-career-contract.test.js",
-            "tests/civication-psychology-guidance-career-ladder.test.js"
+            "tests/civication-psychology-guidance-career-ladder.test.js",
+            "tests/civication-psykologi-arbeids-og-karriereveiledning-prerequisites.test.js"
           ],
           "rationale": "Role-specific tests and authored source paths exist; rollout must add strict scene-registry parity and source provenance for new realism scenes."
         }
@@ -7151,22 +7166,15 @@
       },
       "blockers": [],
       "authored_work_required": [
-        "career:day_one",
-        "career:knowledge",
-        "career:mail",
-        "career:people",
-        "career:places",
-        "career:workday_loop",
-        "history_go_affordance",
-        "people_places_integrity",
-        "persistent_work_object",
-        "rhythm_waiting_handoff_rework",
         "situated_reputation"
       ],
       "source_refs": [
+        "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json",
+        "data/Civication/mailPlans/psykologi/psykologi_arbeids_og_karriereveiledning_plan.json",
         "data/Civication/workGrammars/psykologi/psykologi_arbeids_og_karriereveiledning.json",
         "tests/civication-psychology-career-contract.test.js",
-        "tests/civication-psychology-guidance-career-ladder.test.js"
+        "tests/civication-psychology-guidance-career-ladder.test.js",
+        "tests/civication-psykologi-arbeids-og-karriereveiledning-prerequisites.test.js"
       ],
       "already_reference_or_pilot": false
     },
