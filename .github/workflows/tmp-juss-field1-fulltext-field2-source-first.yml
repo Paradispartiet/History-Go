@@ -29,6 +29,24 @@ jobs:
         with:
           node-version: '24'
 
+      - name: Correct Field 1 version and advice boundary
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file='data/fag/politikk/juss_rettsvitenskap/legal_method_sources_interpretation_argumentation_source_claim_brief_v1.json';
+          const data=JSON.parse(fs.readFileSync(file,'utf8'));
+          const topic=data.topic_briefs?.find(row=>row.id==='versjonering_sporbarhet_og_ansvarlig_formidling');
+          if(!topic) throw new Error('Missing Field 1 versioning/formidling topic');
+          if(topic.boundary.includes('individuell juridisk rådgivning')) {
+            console.log('Field 1 version/advice boundary already corrected.');
+          } else {
+            if(!topic.boundary.includes('personlig rettsrådgivning')) throw new Error('Unexpected Field 1 version/advice boundary text');
+            topic.boundary=topic.boundary.replace('personlig rettsrådgivning','individuell juridisk rådgivning');
+            fs.writeFileSync(file,JSON.stringify(data,null,2)+'\n');
+            console.log('Corrected Field 1 boundary to explicit individuell juridisk rådgivning.');
+          }
+          NODE
+
       - name: Syntax-check TEMP generator
         run: node --check scripts/tmp-materialize-juss-field1-fulltext-field2-source-first.mjs
 
