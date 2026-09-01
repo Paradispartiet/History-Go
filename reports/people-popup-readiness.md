@@ -6,18 +6,18 @@ Rapporten måler om runtime kan presentere tilgjengelige canonical People-felt. 
 
 People-produksjon, claims og ferdigstatus eies av `docs/PEOPLE_PROFILE_CANONICAL.md`. Profiler uten v1-claims er `legacy_unreviewed`, selv når presentasjonsstatusen er `complete`.
 
-Source fingerprint: `e456dc77fa8fab99b9eab43ccb82d0173d4774b59474102db01c5d7394005943`
+Source fingerprint: `15b258d240877d1197cdc24b0898532de8fb644182d86de502e044db836911cd`
 
 ## Sammendrag
 
 | Måling | Antall |
 |---|---:|
-| Personer | 1429 |
+| Personer | 1430 |
 | Presentasjon complete | 70 |
-| Presentasjon strong | 412 |
+| Presentasjon strong | 413 |
 | Presentasjon partial | 932 |
 | Presentasjon sparse | 15 |
-| People Profile v1 ready | 82 |
+| People Profile v1 ready | 83 |
 | Legacy uten v1-claims | 1347 |
 | Ødelagte bildereferanser | 279 |
 | Eksplisitt initialfallback | 993 |
@@ -28,16 +28,16 @@ Source fingerprint: `e456dc77fa8fab99b9eab43ccb82d0173d4774b59474102db01c5d73940
 
 | Presentasjonsdel | Dekket | Andel |
 |---|---:|---:|
-| identity | 133 | 9.3 % |
-| popupDesc | 1408 | 98.5 % |
+| identity | 134 | 9.4 % |
+| popupDesc | 1409 | 98.5 % |
 | lifeData | 62 | 4.3 % |
 | contributionsDeclared | 63 | 4.4 % |
 | educationDeclared | 63 | 4.4 % |
-| practiceDeclared | 1411 | 98.7 % |
-| placeGrounding | 1429 | 100 % |
-| sources | 471 | 33 % |
-| imageContract | 1150 | 80.5 % |
-| profileStandard | 82 | 5.7 % |
+| practiceDeclared | 1412 | 98.7 % |
+| placeGrounding | 1430 | 100 % |
+| sources | 472 | 33 % |
+| imageContract | 1151 | 80.5 % |
+| profileStandard | 83 | 5.8 % |
 
 ## Kategorier
 
@@ -48,7 +48,7 @@ Source fingerprint: `e456dc77fa8fab99b9eab43ccb82d0173d4774b59474102db01c5d73940
 | litteratur | 172 | 36 | 20 | 116 | 0 | 16 | 156 | 70.5 |
 | musikk | 124 | 0 | 15 | 109 | 0 | 0 | 124 | 62.2 |
 | politikk | 114 | 5 | 50 | 59 | 0 | 17 | 97 | 68.1 |
-| kunst | 86 | 11 | 63 | 12 | 0 | 13 | 73 | 74.1 |
+| kunst | 87 | 11 | 64 | 12 | 0 | 14 | 73 | 74.2 |
 | by | 82 | 9 | 58 | 15 | 0 | 24 | 58 | 74.5 |
 | naeringsliv | 81 | 5 | 30 | 32 | 14 | 8 | 73 | 62.9 |
 | scenekunst | 48 | 1 | 16 | 31 | 0 | 1 | 47 | 64.6 |
@@ -234,7 +234,7 @@ Source fingerprint: `e456dc77fa8fab99b9eab43ccb82d0173d4774b59474102db01c5d73940
 | 92 | Helene Uri | litteratur | eldorado_bokhandel | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/litteratur/oslo/people_litteratur_oslo.json` |
 | 92 | Helga Eng | vitenskap | universitetets_gamle_hovedbygning | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/vitenskap/oslo/people_vitenskap_oslo.json` |
 | 92 | Helge Ingstad | natur | bygdoy_natur | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/natur/oslo/people_natur_oslo.json` |
-| 92 | Henrik Bjelke | historie | toyen_torg | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/historie/oslo/people_historie_oslo.json` |
+| 92 | Henrik Bjelke | historie | toyen_hovedgard | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/historie/oslo/people_historie_oslo.json` |
 | 92 | Hjalmar Andersen | sport | frogner_stadion | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/sport/oslo/people_sport_oslo.json` |
 | 92 | Haaken Hasberg Gran | natur | naturhistorisk_museum | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/natur/oslo/people_natur_oslo.json` |
 | 92 | Håkon den gode | historie | avaldsnes_kongsgard | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json` |

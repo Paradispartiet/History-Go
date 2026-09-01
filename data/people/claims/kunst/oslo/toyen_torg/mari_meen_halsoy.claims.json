@@ -1,0 +1,168 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "mari_meen_halsoy",
+  "profile_file": "data/people/kunst/oslo/toyen_torg/mari_meen_halsoy.json",
+  "identity": {
+    "canonical_identity": "Billedkunstneren Mari Meen Halsøy.",
+    "name_variants": [
+      "Mari Meen Halsøy"
+    ],
+    "not": [
+      "andre personer med etternavnet Halsøy"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity",
+      "claim": "Mari Meen Halsøy er billedkunstner med utdanning fra Statens kunstakademi og Høgskolen i Oslo.",
+      "status": "verified",
+      "source_url": "https://kunstnerforbundet.no/arrangementer/artist-talk-jad-el-khoury-and-mari-meen-halsoy-drew-snyder",
+      "source_location": "Biografien under Mari Meen Halsøy",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-01",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "practice",
+      "claim": "Kunstnerforbundet beskriver en praksis som blant annet omfatter foto, performance, video, lyd og stedsspesifikke installasjoner.",
+      "status": "verified",
+      "source_url": "https://kunstnerforbundet.no/arrangementer/artist-talk-jad-el-khoury-and-mari-meen-halsoy-drew-snyder",
+      "source_location": "Biografien under Mari Meen Halsøy",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-01",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "place_work",
+      "claim": "Mari Meen Halsøy arbeidet med Tøyenteppene som en integrert del av teglgulvet på Tøyen torg.",
+      "status": "verified",
+      "source_url": "https://grindaker.no/projects/toyen-torg/",
+      "source_location": "Prosjektbeskrivelsen og prosjektfakta",
+      "source_type": "primary",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-01",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "collaboration",
+      "claim": "Mønstrene «Blomst» og «Biblo» ble utviklet av Mari Meen Halsøy sammen med ungdommer fra T-Town.",
+      "status": "verified",
+      "source_url": "https://grindaker.no/projects/toyen-torg/",
+      "source_location": "Avsnittet om Tøyenteppene",
+      "source_type": "primary",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-01",
+      "evidence_level": "explicit"
+    },
+    {
+      "id": "independent_confirmation",
+      "claim": "Norske landskapsarkitekters forening bekrefter kunstnerrollen, T-Town-samarbeidet og teglverkene på Tøyen torg.",
+      "status": "verified",
+      "source_url": "https://landskapsarkitektur.no/prosjekter/toyen-torg",
+      "source_location": "Prosjektomtalen og prosjektfakta",
+      "source_type": "professional_association",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-01",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "image_identity",
+      "claim": "Kunstnerforbundets arrangementsside navngir Mari Meen Halsøy og gir identitetsreferansen som er brukt til den redaksjonelle illustrasjonen.",
+      "status": "verified",
+      "source_url": "https://kunstnerforbundet.no/arrangementer/artist-talk-jad-el-khoury-and-mari-meen-halsoy-drew-snyder",
+      "source_location": "Tittel, bilde og biografiseksjon",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-01",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity"
+    ],
+    "kindLabel": [
+      "identity"
+    ],
+    "year": [
+      "place_work"
+    ],
+    "placeId": [
+      "place_work",
+      "collaboration"
+    ],
+    "places[toyen_torg]": [
+      "place_work",
+      "collaboration"
+    ],
+    "image": [
+      "image_identity"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity",
+          "collaboration",
+          "independent_confirmation"
+        ],
+        "evidence_mode": "explicit"
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "practice"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "place_work"
+        ]
+      },
+      {
+        "sentence": 4,
+        "claim_ids": [
+          "collaboration",
+          "independent_confirmation"
+        ]
+      },
+      {
+        "sentence": 5,
+        "claim_ids": [
+          "place_work",
+          "collaboration"
+        ]
+      },
+      {
+        "sentence": 6,
+        "claim_ids": [
+          "image_identity"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "6/6",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-09-01",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}
