@@ -1,0 +1,87 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "psykologi_arbeids_og_karriereveiledning",
+  "mail_type": "knowledge",
+  "families": [
+    {
+      "id": "psykologi_arbeids_og_karriereveiledning_knowledge_overgangsplan",
+      "purpose": "Trene knowledge gjennom den samme samtykkebundne valg- og overgangsplanen.",
+      "learning_focus": [
+        "autonomi",
+        "samtykke",
+        "venting_handoff_rework",
+        "rollegrense"
+      ],
+      "mails": [
+        {
+          "id": "psykologi_arbeids_og_karriereveiledning_knowledge_historisk_sortering_014",
+          "mail_type": "knowledge",
+          "mail_family": "psykologi_arbeids_og_karriereveiledning_knowledge_overgangsplan",
+          "role_scope": "psykologi_arbeids_og_karriereveiledning",
+          "phase": "workday",
+          "priority": 147,
+          "from": "Samir",
+          "people_ref": "samir_fagkollega_karriereveiledning",
+          "place_id": "kartleggings_og_mulighetsverkstedet",
+          "subject": "Historien om testing endrer spørsmålet, ikke Noras egnethet",
+          "summary": "Historien om testing endrer spørsmålet, ikke Noras egnethet. I den samtykkebundne valg- og overgangsplanen er den konkrete evidensen at et historisk spor viser hvordan veiledning og tester har sortert mennesker etter skiftende arbeidsmarkedsbehov. Risikoen er at fortidens kategorier brukes som tidløs forklaring på individet. Spilleren må skille veisøkerens eget valg fra veilederens råd, versjonere samtykke, ventepunkt, neste eier og vurderingsdato, og holde diagnostikk, psykoterapi, klinisk arbeidsevnevurdering og beslutningen om arbeid eller utdanning utenfor rollen.",
+          "situation": [
+            "Planen viser hva veisøkeren selv har sagt, hva som er observert, og hva som fortsatt bare er en hypotese om historisk_kontekst_vs_individuell_fasit.",
+            "Valget avgjør om venting og handoff blir synlig eller om fortidens kategorier brukes som tidløs forklaring på individet.",
+            "Ingen mottaker får sensitive opplysninger utover uttrykkelig formål, rettslig grunnlag og avklart samtykke; kartlegging er aldri diagnose eller klinisk fasit."
+          ],
+          "task_domain": "arbeids_og_karriereveiledning",
+          "competency": "autonomi_samtykke_og_overgangsplan",
+          "pressure": "historisk_kontekst_vs_individuell_fasit",
+          "choice_axis": "historisk_kontekst_vs_individuell_fasit",
+          "consequence_axis": "eierskap_tillit_og_gjennomforbarhet",
+          "narrative_arc": "historisk_sortering",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bevar eierskap: spørre hvilke institusjonelle behov verktøyet synliggjør og prøve resultatet mot dagens evidens og Noras erfaring",
+              "reply": "Jeg vil spørre hvilke institusjonelle behov verktøyet synliggjør og prøve resultatet mot dagens evidens og Noras erfaring. Jeg oppdaterer planversjonen med evidens, samtykkeomfang, ventepunkt, neste eier og ny vurderingsdato, og lar Nora selv eie begrunnelsen og beslutningen.",
+              "effect": 1,
+              "tags": [
+                "autonomi",
+                "samtykke",
+                "handoff"
+              ],
+              "feedback": "History Go gjør metodekritikken skarpere uten å levere et individuelt svar eller klinisk mandat. Dermed kan neste aktør se forskjellen mellom observasjon, hypotese og veisøkerens valg, og rework kan skje uten skjult persondeling. Veilederen styrker handlingsrommet uten å diagnostisere, behandle, gjøre klinisk arbeidsevnevurdering eller overta beslutningen.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "autonomy": 2,
+                  "risk": -2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Prioriter framdrift: bruke historisk utbredelse som bevis på at kategorien er faglig sikker",
+              "reply": "Jeg vil bruke historisk utbredelse som bevis på at kategorien er faglig sikker. Jeg registrerer løsningen som framdrift nå og lar mottakeren eller Nora rydde samtykke, usikkerhet og restarbeid når konsekvensene blir tydeligere.",
+              "effect": -1,
+              "tags": [
+                "styring",
+                "personvernrisiko",
+                "skjult_rework"
+              ],
+              "feedback": "historisk autoritet maskerer at dagens plan bygger på en utestet slutning. Planen ser mer komplett ut, men skiller ikke lenger tydelig mellom veisøkerens mål og systemets eller veilederens løsning. Venting, samtykke og ansvar blir vanskeligere å rekonstruere, og rollen glir mot styring eller kliniske slutninger den ikke har mandat til.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

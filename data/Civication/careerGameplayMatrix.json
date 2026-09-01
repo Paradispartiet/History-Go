@@ -11,11 +11,11 @@
     "support_worlds": 1,
     "statuses": {
       "reference_complete": 5,
-      "playable": 38,
+      "playable": 39,
       "partial": 0,
-      "architecture_only": 42
+      "architecture_only": 41
     },
-    "runtime_gate_pass": 43,
+    "runtime_gate_pass": 44,
     "life_story_complete": 13,
     "component_debt": {
       "entry": {
@@ -24,14 +24,14 @@
         "missing": 0
       },
       "day_one": {
-        "complete": 43,
+        "complete": 44,
         "partial": 0,
-        "missing": 42
+        "missing": 41
       },
       "workday_loop": {
-        "complete": 43,
+        "complete": 44,
         "partial": 40,
-        "missing": 2
+        "missing": 1
       },
       "practice_stories": {
         "complete": 11,
@@ -39,23 +39,23 @@
         "missing": 0
       },
       "people": {
-        "complete": 43,
-        "partial": 2,
+        "complete": 44,
+        "partial": 1,
         "missing": 40
       },
       "places": {
-        "complete": 43,
+        "complete": 44,
         "partial": 0,
-        "missing": 42
+        "missing": 41
       },
       "mail": {
-        "complete": 43,
+        "complete": 44,
         "partial": 0,
-        "missing": 42
+        "missing": 41
       },
       "knowledge": {
-        "complete": 43,
-        "partial": 12,
+        "complete": 44,
+        "partial": 11,
         "missing": 30
       },
       "quality_axes": {
@@ -69,14 +69,14 @@
         "missing": 0
       },
       "consequences": {
-        "complete": 43,
+        "complete": 44,
         "partial": 0,
-        "missing": 42
+        "missing": 41
       },
       "performance": {
-        "complete": 40,
+        "complete": 41,
         "partial": 3,
-        "missing": 42
+        "missing": 41
       },
       "economy": {
         "complete": 85,
@@ -84,13 +84,13 @@
         "missing": 0
       },
       "progression": {
-        "complete": 40,
-        "partial": 5,
+        "complete": 41,
+        "partial": 4,
         "missing": 40
       },
       "exit": {
-        "complete": 40,
-        "partial": 5,
+        "complete": 41,
+        "partial": 4,
         "missing": 40
       }
     }
@@ -15661,6 +15661,7 @@
           "tests/civication-psychology-entry-career-ladder.test.js",
           "tests/civication-psychology-guidance-career-ladder.test.js",
           "tests/civication-psykolog-rollout-playability.test.js",
+          "tests/civication-psykologi-arbeids-og-karriereveiledning-prerequisites.test.js",
           "tests/civication-psykologi-fagansvarlig-role-world-rollout.test.js",
           "tests/civication-psykologi-fagansvarlig-rollout-playability.test.js",
           "tests/civication-psykologi-forsker_psykologi-rollout-playability.test.js",
@@ -15707,6 +15708,7 @@
               "tests/civication-psychology-entry-career-ladder.test.js",
               "tests/civication-psychology-guidance-career-ladder.test.js",
               "tests/civication-psykolog-rollout-playability.test.js",
+              "tests/civication-psykologi-arbeids-og-karriereveiledning-prerequisites.test.js",
               "tests/civication-psykologi-fagansvarlig-role-world-rollout.test.js",
               "tests/civication-psykologi-fagansvarlig-rollout-playability.test.js",
               "tests/civication-psykologi-forsker_psykologi-rollout-playability.test.js",
@@ -15736,6 +15738,7 @@
               "tests/civication-psychology-entry-career-ladder.test.js",
               "tests/civication-psychology-guidance-career-ladder.test.js",
               "tests/civication-psykolog-rollout-playability.test.js",
+              "tests/civication-psykologi-arbeids-og-karriereveiledning-prerequisites.test.js",
               "tests/civication-psykologi-fagansvarlig-role-world-rollout.test.js",
               "tests/civication-psykologi-fagansvarlig-rollout-playability.test.js",
               "tests/civication-psykologi-forsker_psykologi-rollout-playability.test.js",
@@ -15836,6 +15839,7 @@
               "tests/civication-psychology-entry-career-ladder.test.js",
               "tests/civication-psychology-guidance-career-ladder.test.js",
               "tests/civication-psykolog-rollout-playability.test.js",
+              "tests/civication-psykologi-arbeids-og-karriereveiledning-prerequisites.test.js",
               "tests/civication-psykologi-fagansvarlig-role-world-rollout.test.js",
               "tests/civication-psykologi-fagansvarlig-rollout-playability.test.js",
               "tests/civication-psykologi-forsker_psykologi-rollout-playability.test.js",
@@ -15864,6 +15868,7 @@
               "tests/civication-psychology-entry-career-ladder.test.js",
               "tests/civication-psychology-guidance-career-ladder.test.js",
               "tests/civication-psykolog-rollout-playability.test.js",
+              "tests/civication-psykologi-arbeids-og-karriereveiledning-prerequisites.test.js",
               "tests/civication-psykologi-fagansvarlig-role-world-rollout.test.js",
               "tests/civication-psykologi-fagansvarlig-rollout-playability.test.js",
               "tests/civication-psykologi-forsker_psykologi-rollout-playability.test.js",
@@ -15954,6 +15959,7 @@
       "declared_by": [
         "badgeRoleMappings",
         "lifeStory",
+        "mailPlan",
         "workGrammar"
       ],
       "badge_titles": [
@@ -15968,7 +15974,7 @@
         "psykologi_seniorradgiver",
         "psykologi_veileder"
       ],
-      "status": "architecture_only",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/psykologi/radgiver.json",
@@ -15977,48 +15983,49 @@
         ],
         "work_grammar": "data/Civication/workGrammars/psykologi/psykologi_arbeids_og_karriereveiledning.json",
         "shared_work_grammars": [],
-        "mail_plan": null,
+        "mail_plan": "data/Civication/mailPlans/psykologi/psykologi_arbeids_og_karriereveiledning_plan.json",
         "mail_families": {
           "job": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json",
+            "count": 4
           },
           "people": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/psykologi/people/psykologi_arbeids_og_karriereveiledning_people.json",
+            "count": 4
           },
           "conflict": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/psykologi/conflict/psykologi_arbeids_og_karriereveiledning_conflict.json",
+            "count": 1
           },
           "story": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/psykologi/story/psykologi_arbeids_og_karriereveiledning_story.json",
+            "count": 1
           },
           "event": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/psykologi/event/psykologi_arbeids_og_karriereveiledning_event.json",
+            "count": 1
           },
           "micro": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/psykologi/micro/psykologi_arbeids_og_karriereveiledning_micro.json",
+            "count": 1
           },
           "followup": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/psykologi/followup/psykologi_arbeids_og_karriereveiledning_followup.json",
+            "count": 1
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/psykologi/knowledge/psykologi_arbeids_og_karriereveiledning_knowledge.json",
+            "count": 1
           },
           "consequence": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/psykologi/consequence/psykologi_arbeids_og_karriereveiledning_consequence.json",
+            "count": 1
           }
         },
         "role_tests": [
           "tests/civication-psychology-career-contract.test.js",
-          "tests/civication-psychology-guidance-career-ladder.test.js"
+          "tests/civication-psychology-guidance-career-ladder.test.js",
+          "tests/civication-psykologi-arbeids-og-karriereveiledning-prerequisites.test.js"
         ],
         "life_story": {
           "id": "psykologi_arbeids_og_karriereveiledning",
@@ -16042,14 +16049,26 @@
             "note": "3 linked career title(s) have an offer policy and gate."
           },
           "day_one": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No day-one structure."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/psykologi/psykologi_arbeids_og_karriereveiledning_plan.json",
+              "tests/civication-psychology-career-contract.test.js",
+              "tests/civication-psychology-guidance-career-ladder.test.js",
+              "tests/civication-psykologi-arbeids-og-karriereveiledning-prerequisites.test.js"
+            ],
+            "note": "Role plan and role-specific test prove a first playable day."
           },
           "workday_loop": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No repeatable work loop."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json",
+              "data/Civication/mailPlans/psykologi/psykologi_arbeids_og_karriereveiledning_plan.json",
+              "data/Civication/workGrammars/psykologi/psykologi_arbeids_og_karriereveiledning.json",
+              "tests/civication-psychology-career-contract.test.js",
+              "tests/civication-psychology-guidance-career-ladder.test.js",
+              "tests/civication-psykologi-arbeids-og-karriereveiledning-prerequisites.test.js"
+            ],
+            "note": "Repeatable work content is connected to a tested plan."
           },
           "practice_stories": {
             "level": "partial",
@@ -16060,7 +16079,21 @@
             "note": "4 FWG stories and 0 registered practice week(s)."
           },
           "people": {
-            "level": "partial",
+            "level": "complete",
+            "evidence": [
+              "data/Civication/lifestory/roles/psykologi_arbeids_og_karriereveiledning/role.json",
+              "data/Civication/lifestory/roles/psykologi_arbeids_og_karriereveiledning/scenes.json",
+              "data/Civication/lifestory/roles/psykologi_arbeids_og_karriereveiledning/threads.json",
+              "data/Civication/mailFamilies/psykologi/people/psykologi_arbeids_og_karriereveiledning_people.json",
+              "data/Civication/roleModels/psykologi/radgiver.json",
+              "data/Civication/roleModels/psykologi/seniorradgiver.json",
+              "data/Civication/roleModels/psykologi/veileder.json",
+              "data/Civication/workGrammars/psykologi/psykologi_arbeids_og_karriereveiledning.json"
+            ],
+            "note": "Named/typed work relationships are used by people mails."
+          },
+          "places": {
+            "level": "complete",
             "evidence": [
               "data/Civication/lifestory/roles/psykologi_arbeids_og_karriereveiledning/role.json",
               "data/Civication/lifestory/roles/psykologi_arbeids_og_karriereveiledning/scenes.json",
@@ -16070,27 +16103,34 @@
               "data/Civication/roleModels/psykologi/veileder.json",
               "data/Civication/workGrammars/psykologi/psykologi_arbeids_og_karriereveiledning.json"
             ],
-            "note": "People content exists on only one side of the content/runtime boundary."
-          },
-          "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "note": "4 place/working-surface declarations."
           },
           "mail": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No role mail/event generation."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/psykologi/conflict/psykologi_arbeids_og_karriereveiledning_conflict.json",
+              "data/Civication/mailFamilies/psykologi/consequence/psykologi_arbeids_og_karriereveiledning_consequence.json",
+              "data/Civication/mailFamilies/psykologi/event/psykologi_arbeids_og_karriereveiledning_event.json",
+              "data/Civication/mailFamilies/psykologi/followup/psykologi_arbeids_og_karriereveiledning_followup.json",
+              "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json",
+              "data/Civication/mailFamilies/psykologi/knowledge/psykologi_arbeids_og_karriereveiledning_knowledge.json",
+              "data/Civication/mailFamilies/psykologi/micro/psykologi_arbeids_og_karriereveiledning_micro.json",
+              "data/Civication/mailFamilies/psykologi/people/psykologi_arbeids_og_karriereveiledning_people.json",
+              "data/Civication/mailFamilies/psykologi/story/psykologi_arbeids_og_karriereveiledning_story.json",
+              "data/Civication/mailPlans/psykologi/psykologi_arbeids_og_karriereveiledning_plan.json"
+            ],
+            "note": "9/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
+              "data/Civication/mailFamilies/psykologi/knowledge/psykologi_arbeids_og_karriereveiledning_knowledge.json",
               "data/Civication/roleModels/psykologi/radgiver.json",
               "data/Civication/roleModels/psykologi/seniorradgiver.json",
               "data/Civication/roleModels/psykologi/veileder.json",
               "data/Civication/workGrammars/psykologi/psykologi_arbeids_og_karriereveiledning.json"
             ],
-            "note": "Knowledge exists, but its gameplay application is incomplete."
+            "note": "Knowledge content is connected to a mail or job-gate surface."
           },
           "quality_axes": {
             "level": "complete",
@@ -16113,14 +16153,26 @@
             "note": "Explicit authority boundary exists."
           },
           "consequences": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No consequence model."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/psykologi/consequence/psykologi_arbeids_og_karriereveiledning_consequence.json",
+              "data/Civication/mailFamilies/psykologi/followup/psykologi_arbeids_og_karriereveiledning_followup.json",
+              "tests/civication-psychology-career-contract.test.js",
+              "tests/civication-psychology-guidance-career-ladder.test.js",
+              "tests/civication-psykologi-arbeids-og-karriereveiledning-prerequisites.test.js"
+            ],
+            "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No performance evaluation."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/psykologi/psykologi_arbeids_og_karriereveiledning_plan.json",
+              "tests/civication-career-outcomes.test.js",
+              "tests/civication-psychology-career-contract.test.js",
+              "tests/civication-psychology-guidance-career-ladder.test.js",
+              "tests/civication-psykologi-arbeids-og-karriereveiledning-prerequisites.test.js"
+            ],
+            "note": "Positive and negative outcomes are defined and role-tested."
           },
           "economy": {
             "level": "complete",
@@ -16132,39 +16184,46 @@
             "note": "Exact salary exists for all 3 linked career title(s)."
           },
           "progression": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
+              "data/Civication/mailPlans/psykologi/psykologi_arbeids_og_karriereveiledning_plan.json",
               "data/Civication/roleModels/psykologi/radgiver.json",
               "data/Civication/roleModels/psykologi/seniorradgiver.json",
               "data/Civication/roleModels/psykologi/veileder.json",
-              "data/Civication/workGrammars/psykologi/psykologi_arbeids_og_karriereveiledning.json"
+              "data/Civication/workGrammars/psykologi/psykologi_arbeids_og_karriereveiledning.json",
+              "tests/civication-career-outcomes.test.js"
             ],
-            "note": "Progression exists as content or outcome, not a complete transition path."
+            "note": "Career path and positive runtime outcome are both present."
           },
           "exit": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
+              "data/Civication/mailPlans/psykologi/psykologi_arbeids_og_karriereveiledning_plan.json",
               "data/Civication/roleModels/psykologi/radgiver.json",
               "data/Civication/roleModels/psykologi/seniorradgiver.json",
-              "data/Civication/roleModels/psykologi/veileder.json"
+              "data/Civication/roleModels/psykologi/veileder.json",
+              "tests/civication-career-outcomes.test.js"
             ],
-            "note": "Exit exists as content or outcome, not a complete transition path."
+            "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
-          "day_one",
-          "workday_loop",
-          "places",
-          "mail",
-          "consequences",
-          "performance"
-        ],
+        "runtime_gate": true,
+        "missing_components": [],
         "complete_components": [
           "entry",
+          "day_one",
+          "workday_loop",
+          "people",
+          "places",
+          "mail",
+          "knowledge",
           "quality_axes",
           "authority",
-          "economy"
+          "consequences",
+          "performance",
+          "economy",
+          "progression",
+          "exit"
         ],
         "practice_story_count": 4,
         "practice_weeks": [],

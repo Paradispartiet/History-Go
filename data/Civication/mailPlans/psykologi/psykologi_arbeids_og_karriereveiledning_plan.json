@@ -1,0 +1,202 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "version": 1,
+  "id": "psykologi_arbeids_og_karriereveiledning_foundation_v1",
+  "category": "psykologi",
+  "role_scope": "psykologi_arbeids_og_karriereveiledning",
+  "title": "Arbeids- og karriereveiledning",
+  "description": "Seksten steg gjennom samme samtykkebundne valg- og overgangsplan.",
+  "arc": {
+    "from": "Veileder med fragmenterte mål, kartleggingsfunn og systemfrister.",
+    "to": "Veileder som holder veisøkerens eierskap, realistiske alternativer, samtykke og handoff sammen.",
+    "core_questions": [
+      "Er dette veisøkerens eget mål?",
+      "Hva kan deles og med hvem?",
+      "Hva venter, hvem eier neste steg, og når gjenåpnes planen?"
+    ]
+  },
+  "outcome_rules": {
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 2,
+      "strikes_lte": 0
+    },
+    "fired": {
+      "stability_values": [
+        "FIRED"
+      ],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "stagnated": {
+      "autonomy_delta": -10,
+      "stability": "STAGNATED",
+      "add_branch_flags": [
+        "career_stagnated",
+        "karriereveiledning_lant_maal_eller_samtykkebrudd"
+      ]
+    }
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Før overgangsplanen gjennom job med veisøkerens mål, evidens, samtykke, ventepunkt, neste eier og vurderingsdato synlig.",
+      "allowed_families": [
+        "psykologi_arbeids_og_karriereveiledning_job_overgangsplan"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 2,
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Før overgangsplanen gjennom people med veisøkerens mål, evidens, samtykke, ventepunkt, neste eier og vurderingsdato synlig.",
+      "allowed_families": [
+        "psykologi_arbeids_og_karriereveiledning_people_overgangsplan"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 3,
+      "type": "knowledge",
+      "phase": "intro",
+      "step_goal": "Før overgangsplanen gjennom knowledge med veisøkerens mål, evidens, samtykke, ventepunkt, neste eier og vurderingsdato synlig.",
+      "allowed_families": [
+        "psykologi_arbeids_og_karriereveiledning_knowledge_overgangsplan"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 4,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Før overgangsplanen gjennom job med veisøkerens mål, evidens, samtykke, ventepunkt, neste eier og vurderingsdato synlig.",
+      "allowed_families": [
+        "psykologi_arbeids_og_karriereveiledning_job_overgangsplan"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 5,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Før overgangsplanen gjennom people med veisøkerens mål, evidens, samtykke, ventepunkt, neste eier og vurderingsdato synlig.",
+      "allowed_families": [
+        "psykologi_arbeids_og_karriereveiledning_people_overgangsplan"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 6,
+      "type": "conflict",
+      "phase": "advanced",
+      "step_goal": "Før overgangsplanen gjennom conflict med veisøkerens mål, evidens, samtykke, ventepunkt, neste eier og vurderingsdato synlig.",
+      "allowed_families": [
+        "psykologi_arbeids_og_karriereveiledning_conflict_overgangsplan"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 7,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Før overgangsplanen gjennom job med veisøkerens mål, evidens, samtykke, ventepunkt, neste eier og vurderingsdato synlig.",
+      "allowed_families": [
+        "psykologi_arbeids_og_karriereveiledning_job_overgangsplan"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 8,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Før overgangsplanen gjennom people med veisøkerens mål, evidens, samtykke, ventepunkt, neste eier og vurderingsdato synlig.",
+      "allowed_families": [
+        "psykologi_arbeids_og_karriereveiledning_people_overgangsplan"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 9,
+      "type": "event",
+      "phase": "advanced",
+      "step_goal": "Før overgangsplanen gjennom event med veisøkerens mål, evidens, samtykke, ventepunkt, neste eier og vurderingsdato synlig.",
+      "allowed_families": [
+        "psykologi_arbeids_og_karriereveiledning_event_overgangsplan"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 10,
+      "type": "micro",
+      "phase": "advanced",
+      "step_goal": "Før overgangsplanen gjennom micro med veisøkerens mål, evidens, samtykke, ventepunkt, neste eier og vurderingsdato synlig.",
+      "allowed_families": [
+        "psykologi_arbeids_og_karriereveiledning_micro_overgangsplan"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 11,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Før overgangsplanen gjennom job med veisøkerens mål, evidens, samtykke, ventepunkt, neste eier og vurderingsdato synlig.",
+      "allowed_families": [
+        "psykologi_arbeids_og_karriereveiledning_job_overgangsplan"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 12,
+      "type": "people",
+      "phase": "mastery",
+      "step_goal": "Før overgangsplanen gjennom people med veisøkerens mål, evidens, samtykke, ventepunkt, neste eier og vurderingsdato synlig.",
+      "allowed_families": [
+        "psykologi_arbeids_og_karriereveiledning_people_overgangsplan"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 13,
+      "type": "followup",
+      "phase": "mastery",
+      "step_goal": "Før overgangsplanen gjennom followup med veisøkerens mål, evidens, samtykke, ventepunkt, neste eier og vurderingsdato synlig.",
+      "allowed_families": [
+        "psykologi_arbeids_og_karriereveiledning_followup_overgangsplan"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 14,
+      "type": "story",
+      "phase": "mastery",
+      "step_goal": "Før overgangsplanen gjennom story med veisøkerens mål, evidens, samtykke, ventepunkt, neste eier og vurderingsdato synlig.",
+      "allowed_families": [
+        "psykologi_arbeids_og_karriereveiledning_story_overgangsplan"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 15,
+      "type": "consequence",
+      "phase": "mastery",
+      "step_goal": "Før overgangsplanen gjennom consequence med veisøkerens mål, evidens, samtykke, ventepunkt, neste eier og vurderingsdato synlig.",
+      "allowed_families": [
+        "psykologi_arbeids_og_karriereveiledning_consequence_overgangsplan"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 16,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Før overgangsplanen gjennom job med veisøkerens mål, evidens, samtykke, ventepunkt, neste eier og vurderingsdato synlig.",
+      "allowed_families": [
+        "psykologi_arbeids_og_karriereveiledning_job_overgangsplan"
+      ],
+      "fallback_types": []
+    }
+  ]
+}
