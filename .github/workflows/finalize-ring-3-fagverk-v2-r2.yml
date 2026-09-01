@@ -1,0 +1,106 @@
+name: Finalize Ring 3 Fagverk v2 r2
+
+on:
+  push:
+    branches:
+      - work/ring-3-fagverk-v2-20260901
+    paths:
+      - .github/workflows/finalize-ring-3-fagverk-v2-r2.yml
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Sync branch to current main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+      - name: Reproduce approved Ring 3 materialization
+        run: |
+          sed -n "/node <<'NODE'/,/^          NODE$/p" .github/workflows/finalize-ring-3-fagverk-v2.yml \
+            | sed '1d;$d;s/^          //' > /tmp/materialize-ring3.cjs
+          test -s /tmp/materialize-ring3.cjs
+          node /tmp/materialize-ring3.cjs
+      - name: Add named operational source links
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const placePath = 'data/places/by/oslo/places/ring_3.json';
+          const place = JSON.parse(fs.readFileSync(placePath, 'utf8'));
+          const sourceLinks = [
+            ['Oslo Byleksikon – Ring 3', 'https://oslobyleksikon.no/side/Ring_3'],
+            ['Oslo Byleksikon – Sinsenkrysset', 'https://oslobyleksikon.no/side/Sinsenkrysset'],
+            ['Oslo Byleksikon – Teisen', 'https://oslobyleksikon.no/side/Teisen_%28str%C3%B8k%29'],
+            ['Statens vegvesen – rv. 150 Sinsen–Storo', 'https://www.vegvesen.no/nn/vegprosjekt/riksveg/rv150sinsenstoro/'],
+            ['Statens vegvesen – rv. 150 Holmenveien–Dalsveien', 'https://www.vegvesen.no/vegprosjekter/riksveg/rv150smestad/'],
+            ['Statens vegvesen – Granfosstunnelen', 'https://www.vegvesen.no/om-oss/presse/aktuelt/2025/032/fullskalaovelse-i-rv.-150-granfosstunnelen']
+          ];
+          const existing = Array.isArray(place.externalLinks) ? place.externalLinks : [];
+          const byUrl = new Map(existing.filter((row) => row?.url).map((row) => [row.url, row]));
+          for (const [label, url] of sourceLinks) {
+            byUrl.set(url, { type: 'source', label, url, verifiedAt: '2026-09-01' });
+          }
+          place.externalLinks = [...byUrl.values()];
+          fs.writeFileSync(placePath, JSON.stringify(place, null, 2) + '\n');
+          NODE
+      - name: Regenerate canonical and Fagverk state
+        run: |
+          npm run places:index:build
+          node scripts/build-place-open-payloads.mjs
+          node scripts/audit-fagverk-place-pages.mjs --write
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Validate generated canonical state
+        run: |
+          npm run places:index:check
+          node scripts/build-place-open-payloads.mjs --check
+          node scripts/audit-fagverk-place-pages.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Validate Fagverk contracts
+        run: |
+          node --test tests/fagverk-place-pages.test.mjs
+          node --test tests/fagverk-place-rendering.test.mjs
+          node --test tests/fagverk-place-substance-audit.test.mjs
+          node --test tests/fagverk-link-audit.test.mjs
+      - name: Validate Ring 3 remote image
+        env:
+          PLACE_IMAGE_REMOTE_FETCH_TIMEOUT_MS: '45000'
+        run: node scripts/audit-place-images.mjs --mode=changed --require-any-place-image --require-remote-image
+      - name: Build and verify full place image backlog
+        run: node scripts/audit-place-images.mjs --mode=all --report=/tmp/place-image-audit.json --verify-summary=data/places/place_image_backlog_summary.json
+      - name: Validate generated web runtime
+        run: npm run build:web:check
+      - name: Validate diff whitespace
+        run: git diff --check
+      - name: Commit clean production result
+        run: |
+          git add \
+            data/places/by/oslo/places/ring_3.json \
+            data/places/places_index.json \
+            data/places/place_image_backlog_summary.json \
+            data/runtime/place-open/ring_3.json \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/fagverk_release.json \
+            reports/fagverk/fagverk-place-page-coverage-v2.json
+          git rm -f \
+            .github/workflows/finalize-ring-3-fagverk-v2.yml \
+            .github/workflows/finalize-ring-3-fagverk-v2-r2.yml \
+            .github/workflows/diagnose-ring-3-regeneration.yml \
+            reports/ring3-fagverk-audit-diagnostic.txt
+          git diff --cached --quiet && { echo "No production changes to commit"; exit 1; }
+          git commit -m "Curate Ring 3 Fagverk v2"
+          git push origin HEAD:${GITHUB_REF_NAME}
