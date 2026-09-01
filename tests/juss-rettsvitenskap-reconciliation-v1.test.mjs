@@ -1,4 +1,1 @@
-import assert from 'node:assert/strict';
-import test from 'node:test';
-import { audit } from '../scripts/audit-juss-rettsvitenskap-reconciliation-v1.mjs';
-test('Juss reconciliation 1/12 og Felt 2 source-first uten å flytte Politikk-eierinnhold',()=>{assert.deepEqual(audit(),{status:'pass',domains:12,materialized:1,sourceFirstReady:2,strictCompletionProven:false,reuseWithExpansion:1,newProductionRequired:11,moveExisting:0,nextDomain:'statsrett_grunnlov_maktfordeling_konstitusjonell_kontroll'});});
+import test from 'node:test';import assert from 'node:assert/strict';import {audit} from '../scripts/audit-juss-rettsvitenskap-reconciliation-v1.mjs';test('Juss har felt 1-2 materialisert og felt 3 Forvaltningsrett source-first',()=>{const r=audit();assert.equal(r.status,'pass');assert.equal(r.domains,12);assert.equal(r.materialized,2);assert.equal(r.sourceFirstReady,3);assert.equal(r.strictCompletionProven,false);assert.equal(r.reuseWithExpansion,1);assert.equal(r.newProductionRequired,11);assert.equal(r.moveExisting,0);assert.equal(r.nextDomain,'forvaltningsrett_myndighetsutovelse_saksbehandling_klage')});
