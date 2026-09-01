@@ -1,0 +1,33 @@
+name: TEMP Repair Rådhusplassen place index sync
+on:
+  push:
+    branches: [agent/radhusplassen-place-index-sync-repair]
+    paths: [.github/workflows/TEMP-radhusplassen-place-index-sync-repair.yml,reports/RADHUSPLASSEN_PLACE_INDEX_SYNC_REPAIR.md]
+  workflow_dispatch:
+concurrency: {group: "radhusplassen-place-index-sync-repair-${{ github.ref }}",cancel-in-progress: true}
+permissions: {contents: write}
+jobs:
+  regenerate-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: agent/radhusplassen-place-index-sync-repair,fetch-depth: 0}
+      - uses: actions/setup-node@v5
+        with: {node-version: 24,cache: npm}
+      - run: npm ci --no-audit --no-fund
+      - run: npm run places:index:build
+      - run: |
+          npm run places:index:check
+          npm run build:web:check
+          npm run knowledge:canonical:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - run: rm .github/workflows/TEMP-radhusplassen-place-index-sync-repair.yml
+      - run: |
+          git diff --check
+          git config user.name "Repository integrity repair"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && exit 1
+          git commit -m "Regenerate Rådhusplassen place index"
+          git push origin HEAD:agent/radhusplassen-place-index-sync-repair
