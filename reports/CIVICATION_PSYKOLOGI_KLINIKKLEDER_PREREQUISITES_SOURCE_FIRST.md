@@ -7,3 +7,5 @@ One persistent `klinikkens_risiko_og_kapasitetsportefolje` follows staffing, wai
 The 16-step plan uses all nine mail types without fallbacks. History Go knowledge about institutions, measurement and professional power improves the question but cannot diagnose, treat, authorize or replace current clinical evidence. Cross-role remains `candidate_when_shared_work_is_real`; no shared runtime is invented.
 
 The fail-closed workflow protects badge/evidence and authority sources by hash, regenerates canonical registries and audits, runs focused and full Civication gates, removes temporary surfaces, and commits only verified permanent output.
+
+Permanent materialization checkpoint: focused contracts, registry and Scenario People parity, and full Civication passed before workflow commit `4ab9fe413fed93f020332f5c84f73c73874a6911` removed all temporary surfaces.
