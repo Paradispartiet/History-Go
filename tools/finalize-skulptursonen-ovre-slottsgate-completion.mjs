@@ -434,6 +434,18 @@ const existingQuizAudit = { searched_paths: [quizFile, "data/quiz/manifest.json"
 const profileDecision = { profile: "normal", set_count: 4, questions_per_set: 7, justification: "Fire læringsjobber dekker sted og etablering, verk og materialer, offentlig byrom og institusjonell/kuratorisk analyse." };
 const heldBackCandidates = ["Verk fra 2023 som påstand om dagens installasjon.", "Norsk Billedhoggerforening som samme entitet som gatestrekket.", "Generiske billedhuggerverktøy uten dokumentert stedskobling.", "Publikumsreaksjoner utledet bare fra verkbeskrivelsene."];
 
+const placesIndexFile = "data/places/places_index.json";
+const placesIndex = read(placesIndexFile);
+const indexedPlace = placesIndex.find((item) => item.id === placeId);
+if (!indexedPlace) throw new Error(`${placeId} mangler i ${placesIndexFile}`);
+Object.assign(indexedPlace, {
+  year: place.year,
+  desc: place.desc,
+  image: place.image,
+  cardImage: place.cardImage,
+  frontImage: place.frontImage
+});
+write(placesIndexFile, placesIndex);
 write(briefFile, {
   schema_version: "1.0", status: "reviewed", categoryId: "kunst", targetId: placeId, profile_hint: "normal", reviewed_at: verifiedAt,
   review_note: "Offisielle prosjekt-, kommune- og verkssider bærer en 4×7-pakke med eksplisitt skille mellom gateinfrastruktur, daterte runder og dagens ukjente installasjon.",
