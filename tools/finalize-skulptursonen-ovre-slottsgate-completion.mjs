@@ -138,6 +138,9 @@ Object.assign(place, {
     { type: "official", label: "Oppdag Kvadraturen – Skulptursonen", url: urls.oppdag },
     { type: "official", label: "Norsk Billedhoggerforening – Øvre Slottsgate", url: urls.project },
     { type: "official", label: "Katalog over utstillingsrundene", url: urls.catalogue },
+    { type: "source", label: "Norsk Billedhoggerforening – Hestebarrikade", url: urls.hest },
+    { type: "source", label: "Norsk Billedhoggerforening – Du må ikke sove", url: urls.sleep },
+    { type: "source", label: "Norsk Billedhoggerforening – What Money Can Buy", url: urls.money },
     { type: "source", label: "Nasjonalmuseet – Vibeke Tandberg", url: urls.museumPerson },
     { type: "image_source", label: "Wikimedia Commons – Vibeke Tandberg", url: urls.portraitPage }
   ].map((row) => ({ ...row, verifiedAt })),
