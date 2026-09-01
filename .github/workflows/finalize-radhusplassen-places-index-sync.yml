@@ -1,0 +1,50 @@
+name: Finalize Rådhusplassen places index sync
+
+on:
+  push:
+    branches:
+      - fix/radhusplassen-places-index-sync-20260901
+    paths:
+      - .github/workflows/finalize-radhusplassen-places-index-sync.yml
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Sync branch to current main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+      - name: Regenerate places index from canonical sources
+        run: node tools/build_places_index.mjs
+      - name: Validate places index and composed canonical data
+        run: |
+          npm run places:index:check
+          npm run knowledge:canonical:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Validate generated web runtime
+        run: npm run build:web:check
+      - name: Validate diff whitespace
+        run: git diff --check
+      - name: Commit clean index repair
+        run: |
+          git add data/places/places_index.json
+          git rm .github/workflows/finalize-radhusplassen-places-index-sync.yml
+          git diff --cached --quiet && { echo "No index changes to commit"; exit 1; }
+          git commit -m "Sync Rådhusplassen images into places index"
+          git push origin HEAD:${GITHUB_REF_NAME}
