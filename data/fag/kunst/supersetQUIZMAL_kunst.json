@@ -1,5 +1,5 @@
 {
-  "version": "2.0",
+  "version": "3.0",
   "status": "canonical_category_profile",
   "type": "category_quiz_profile",
   "categoryId": "kunst",
@@ -8,8 +8,10 @@
     "production_standard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
     "question_schema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
     "template_registry": "data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json",
-    "authority": "category_content_only",
-    "may_override_global_rules": false
+    "authority": "category_content_and_orchestration",
+    "may_override_global_rules": false,
+    "package_schema": "data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
+    "subject_manifest": "data/fag/fag_manifest.json"
   },
   "required_emne_prefix": "em_kunst_",
   "content_priorities": [
@@ -43,12 +45,215 @@
   ],
   "example_question": {
     "question": "Hva kalles læren om symbolene og motivene i et kunstverk?",
-    "options": ["Ikonografi", "Prospektlære", "Restaurering"],
+    "options": [
+      "Ikonografi",
+      "Prospektlære",
+      "Restaurering"
+    ],
     "answer": "Ikonografi",
     "question_type": "concept",
     "knowledge": "Ikonografi brukes til å identifisere og tolke figurer, symboler og fortellinger i kunstverk.",
     "emne_id": "em_kunst_<velg_gyldig_emne>",
-    "source": ["<konkret_kilde>"],
+    "source": [
+      "<konkret_kilde>"
+    ],
     "note": "Eksempelet viser konkret bruk av et fagbegrep. Det er ikke en ferdig produksjonsquiz."
-  }
+  },
+  "input_roles": {
+    "pensum": "læringsmål, kunstfaglige domener og progresjon",
+    "emner": "kunstfaglige problem, begreper og teorimuligheter",
+    "fagkart": "hooks, tenkere, verk og sammenligninger",
+    "methods": "verk-, materiale-, institusjons- og resepsjonsanalyse",
+    "supersetQuizMal": "adaptiv profil, relativ progresjon og kontrollrekkefølge",
+    "quizStandard": "felles produksjons- og innholdsregler",
+    "quizQuestionSchema": "teknisk feltkontrakt"
+  },
+  "adaptive_profiles": {
+    "narrow": {
+      "sets": 3,
+      "questions_per_set": 7,
+      "use_when": "avgrenset verk eller sted med få sterke påstander"
+    },
+    "normal": {
+      "sets": 4,
+      "questions_per_set": 7,
+      "use_when": "sted med solid institusjons- eller verkshistorie og ett faglig bruledd"
+    },
+    "rich": {
+      "sets_min": 5,
+      "sets_max": 8,
+      "questions_per_set": 7,
+      "use_when": "sted med flere verk, kunstnere, medier eller institusjonelle lag"
+    },
+    "major": {
+      "sets_min": 8,
+      "sets_max": 10,
+      "questions_per_set": 7,
+      "use_when": "sentral kunstinstitusjon med bred uavhengig dokumentasjon"
+    }
+  },
+  "profile_selection": {
+    "default": "normal",
+    "evidence_order": [
+      "uavhengige kildebelagte påstander",
+      "relevante kildetyper",
+      "verk-, person- og institusjonsbredde",
+      "stedlig forankrede emner",
+      "metode- og teorimuligheter med konkret anker"
+    ],
+    "never_pad_to_reach_profile": true,
+    "reduce_profile_when_evidence_is_thin": true
+  },
+  "relative_progression": {
+    "phase_sequences": {
+      "3": [
+        "opening",
+        "bridge",
+        "final"
+      ],
+      "4": [
+        "opening",
+        "middle",
+        "bridge",
+        "final"
+      ],
+      "5": [
+        "opening",
+        "middle",
+        "middle",
+        "bridge",
+        "final"
+      ],
+      "6": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "final"
+      ],
+      "7": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "bridge",
+        "final"
+      ],
+      "8": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "bridge",
+        "final"
+      ],
+      "9": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "bridge",
+        "final"
+      ],
+      "10": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "bridge",
+        "final"
+      ]
+    },
+    "phase_requirements": {
+      "opening": {
+        "focus": [
+          "sted",
+          "verk",
+          "kunstner",
+          "institusjon",
+          "konkrete fakta"
+        ],
+        "minimum_fact_share": 0.5
+      },
+      "middle": {
+        "focus": [
+          "materiale",
+          "teknikk",
+          "form",
+          "historie",
+          "synlige spor"
+        ]
+      },
+      "bridge": {
+        "focus": [
+          "kontekst",
+          "institusjon",
+          "resepsjon",
+          "første fagbegrep"
+        ],
+        "requires_method_or_context": true
+      },
+      "final": {
+        "focus": [
+          "emne",
+          "metode",
+          "teori",
+          "tenker",
+          "verk",
+          "sammenligning",
+          "syntese"
+        ],
+        "requires_theory_binding": true
+      }
+    },
+    "short_quiz_rule": "Tre og fire sett skal nå metode-, emne- og teorilaget i siste del.",
+    "absolute_theory_set_numbers_forbidden": true
+  },
+  "question_families": {
+    "fact": {
+      "role": "dokumentert kunstner, verk, datering, medium, sted, institusjon eller synlig spor",
+      "normal_share_min": 0.5,
+      "normal_share_max": 0.6
+    },
+    "context": {
+      "role": "kunsthistorisk, materiell, institusjonell eller resepsjonsmessig sammenheng",
+      "normal_share_min": 0.2,
+      "normal_share_max": 0.3
+    },
+    "concept_theory": {
+      "role": "stedbundet emne, metode, teori, tenker, verk eller fagbegrep",
+      "normal_share_min": 0.15,
+      "normal_share_max": 0.25
+    }
+  },
+  "selection_rules": [
+    "Eksplisitte emne_ids er kandidater, men må passe dokumenterte verk eller institusjonspåstander.",
+    "Et teorihook må ha konkret verk-, sted- eller institusjonsanker.",
+    "En metode velges bare når spilleren faktisk kan analysere form, materiale, prosess, institusjon eller resepsjon.",
+    "Tenkere roteres når flere er like relevante.",
+    "Ingen fil regnes som synlig brukt bare fordi den ble lastet."
+  ],
+  "control_order": [
+    "resolver_og_full_innlasting",
+    "kilde_og_paastandsbank",
+    "pensum_og_emneval",
+    "hook_metode_tenker_verk",
+    "adaptiv_profil",
+    "relativ_settplan",
+    "sporsmaalskvalitet_og_balanse",
+    "produksjonskontekst",
+    "teoribinding",
+    "knowledge_sync"
+  ]
 }

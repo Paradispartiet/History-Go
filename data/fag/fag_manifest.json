@@ -240,7 +240,31 @@
     "emneMappings": "kunst/emnemapping_kunst_canonical_v4_5.json",
     "supersetQuizMal": "kunst/supersetQUIZMAL_kunst.json",
     "quizStandard": "../quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
-    "quizQuestionSchema": "../quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    "quizQuestionSchema": "../quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+    "quizProduction": {
+      "status": "pilot",
+      "required_inputs": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods",
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
+      "context_builder": "scripts/build-quiz-production-context.mjs",
+      "profile_system": "adaptive_relative_superset",
+      "package_schema": "quizPackageSchema",
+      "context_artifact_root": "data/quiz/production_context",
+      "targets": {
+        "norske_grafikere": {
+          "source_brief": "../quiz/production_briefs/kunst/norske_grafikere.json",
+          "context_artifact": "../quiz/production_context/kunst/norske_grafikere.json",
+          "quiz_file": "../quiz/kunst/norske_grafikere_sets.json"
+        }
+      }
+    },
+    "quizPackageSchema": "../quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json"
   },
   "litteratur": {
     "pensum": "litteratur/litteraturpensum_canonical_v4_5.json",
