@@ -1,0 +1,808 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "mollergata_19",
+  "profile": "normal_4x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1777,
+    "selection_sha256": "f7782e68a215fb9b761e1e4021d1ea1183e54eaff7ca883dc59b5bbc8b68c6c6",
+    "category_id": "historie",
+    "target_id": "mollergata_19"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "bytes": 93945,
+      "sha256": "37abfe99b9f3f1db23bb0cb307b2076407076a405c15868b0524ef5b9e31c72d",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "bytes": 2142053,
+      "sha256": "bcb20665e0a013c4f57e17719b610224874552b942b9bcd7421a7239463931ec",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "bytes": 1127330,
+      "sha256": "6db315c9b911fc04b99dd7609e493e744f919448668cf35fe3c72d3dabff59b1",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "bytes": 252328,
+      "sha256": "9462f9fc4a07c9c08593abaa75e4ee1bddd6af9e45a87304b52df66bcdb654be",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "bytes": 6935,
+      "sha256": "162f166d3c5be89d77b7529ba9186a552b791e9dbd04a590a01fdaad28944098",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/historie/mollergata_19.json",
+      "bytes": 13285,
+      "sha256": "353ef39a89a33561c815affa929b82d32466768fa28252b8f011ddb0e3456925"
+    },
+    "target": {
+      "path": "data/places/historie/oslo/places_historie/mollergata_19.json",
+      "bytes": 32883,
+      "sha256": "8474331dfe0a10017a0fd5158b4b7d17c40993919cc2d26f00bee42bf282a327"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1406,
+      "selection_sha256": "8a7f791dc3caea2931080ec3edc15bc8885b23b224b0d57507fbf6a221fecf15"
+    },
+    "relations": [
+      {
+        "path": "data/relations_philanthropy.json",
+        "matches": 5,
+        "selection_bytes": 1737,
+        "selection_sha256": "a6dce0e855fa1f9665375babc3357891c61466bbcda62905b0e61659df5f8843"
+      }
+    ],
+    "stories": [
+      {
+        "path": "data/stories/stories_mollergata_19.json",
+        "matches": 1,
+        "selection_bytes": 2218,
+        "selection_sha256": "5dbd32416d05447c0aa133a46671484753f4de98b5e405f4fff451f512c6d68b"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/historie/mollergata_19_sets.json",
+  "source_registry": {
+    "snl": {
+      "url": "https://snl.no/M%C3%B8llergata_19",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "review_note": "Hovedkilde til bygging, kronologi, kapasitet, okkupasjon, riving og senere bruk."
+    },
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/M%C3%B8llergata_19",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "review_note": "Byhistorisk kilde til rettsfunksjon, kvinnerest, 1945 og blåskilt."
+    },
+    "fanger": {
+      "url": "https://www.fanger.no/prisoncamps/664",
+      "source_type": "archive",
+      "review_status": "reviewed",
+      "review_note": "Institusjonell fangedatabase til struktur og registrert fangeomfang."
+    },
+    "regjeringen": {
+      "url": "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/bygninger/id712727/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Offisiell kilde til integreringen i regjeringskvartalet fra 1981."
+    },
+    "moen": {
+      "url": "https://snl.no/Petter_Moen",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "review_note": "Biografisk kilde til arrestasjon, skriveteknikk, skjulesteder og utgivelse."
+    },
+    "opening_photo": {
+      "url": "https://commons.wikimedia.org/wiki/File:Nytorget_(Youngstorget)_med_M%C3%B8llergata_19_(1866).jpg",
+      "source_type": "museum",
+      "review_status": "reviewed",
+      "review_note": "Oslo Museum-fotografi fra 1866 viser bygningen før påbyggingen i 1877."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/historie/mollergata_19_sets.json"
+    ],
+    "active_before": {
+      "categoryId": "historie",
+      "set_count": 1,
+      "question_count": 5
+    },
+    "decisions": [
+      "De fem eldre spørsmålene ble faktasjekket og omskrevet der hovedpoengene fortsatt var relevante.",
+      "Legacy-strukturen 1x5 erstattes av kanonisk 4x7; ingen spørsmål beholdes ordrett."
+    ],
+    "knowledge_migration": {
+      "status": "completed",
+      "retained_rule": "Bare kildebårne kunnskapsenheter er videreført."
+    }
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Fire sett dekker institusjon, okkupasjon, endring og kildekritisk syntese uten gjentakelse."
+  },
+  "held_back_candidates": [
+    "Sensasjonaliserte torturspørsmål",
+    "Påstand om at dagens hovedbygning er det komplette fengselsanlegget",
+    "Kapasitetstall uten kildebinding",
+    "Teori før kronologi og stedskilder"
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 23,
+      "emner": 230,
+      "topic_hooks": 230,
+      "methods": 105
+    },
+    "candidate_emner": [
+      {
+        "id": "em_his_fangenskap_kontroll",
+        "title": "Fangenskap, kontroll og overvåkning",
+        "score": 100
+      },
+      {
+        "id": "em_his_historiske_lag_i_byrom",
+        "title": "Historiske lag i byrom",
+        "score": 100
+      },
+      {
+        "id": "em_his_kildekritikk_arkiv_spor",
+        "title": "Kildekritikk, arkiv og spor",
+        "score": 100
+      },
+      {
+        "id": "em_his_okkupasjon_motstand",
+        "title": "Okkupasjon og motstand",
+        "score": 100
+      },
+      {
+        "id": "em_his_rett_politi_fengsel",
+        "title": "Rett, domstol og rettsstat",
+        "score": 100
+      },
+      {
+        "id": "em_his_rettsoppgjor_etterkrig",
+        "title": "Rettsoppgjør og etterkrig",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "his_krig_okkupasjon_okkupasjon_og_motstand",
+        "title": "Okkupasjon og motstand: forklarings- og kildebane",
+        "category_id": "his_krig_okkupasjon_motstand",
+        "score": 33
+      },
+      {
+        "id": "his_lov_domstol_rettsstat",
+        "title": "Lov, domstol og rettsstat",
+        "category_id": "his_makt_stat_institusjoner",
+        "score": 33
+      },
+      {
+        "id": "his_okkupasjon_byrom_kontroll",
+        "title": "Okkupasjon som byrom og kontroll",
+        "category_id": "his_krig_okkupasjon_motstand",
+        "score": 33
+      },
+      {
+        "id": "his_statlig_kapasitet_ressurser",
+        "title": "Statlig kapasitet, ressurser og gjennomføring",
+        "category_id": "his_makt_stat_institusjoner",
+        "score": 33
+      },
+      {
+        "id": "his_arkiv_makt_orden",
+        "title": "Arkiv, klassifikasjon og makt",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 23
+      },
+      {
+        "id": "his_beslutningskjede_kompetanse",
+        "title": "Beslutningskjede, kompetanse og ansvar",
+        "category_id": "his_makt_stat_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "his_bevaring_ombruk_kulturmiljo",
+        "title": "Bevaring, ombruk og kulturmiljø",
+        "category_id": "his_byhistorie_stedsendring",
+        "score": 23
+      },
+      {
+        "id": "his_brudd_kontinuitet",
+        "title": "Brudd, kontinuitet og omforming",
+        "category_id": "his_tid_periodisering",
+        "score": 23
+      },
+      {
+        "id": "his_kildekritikk",
+        "title": "Kildekritikk, opphav og formål",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 23
+      },
+      {
+        "id": "his_krig_okkupasjon_folkerett_rettsoppgjor_og_overgangsrettferdighet",
+        "title": "Folkerett, rettsoppgjør og overgangsrettferdighet: forklarings- og kildebane",
+        "category_id": "his_krig_okkupasjon_motstand",
+        "score": 23
+      },
+      {
+        "id": "his_krig_okkupasjon_kald_krig_beredskap_og_sikkerhetsstat",
+        "title": "Kald krig, beredskap og sikkerhetsstat: forklarings- og kildebane",
+        "category_id": "his_krig_okkupasjon_motstand",
+        "score": 23
+      },
+      {
+        "id": "his_krig_okkupasjon_krigsminne_veteraner_og_ettervirkninger",
+        "title": "Krigsminne, veteraner og ettervirkninger: forklarings- og kildebane",
+        "category_id": "his_krig_okkupasjon_motstand",
+        "score": 23
+      },
+      {
+        "id": "his_krig_okkupasjon_motstand_samarbeid_tilpasning_og_grasoner",
+        "title": "Motstand, samarbeid, tilpasning og gråsoner: forklarings- og kildebane",
+        "category_id": "his_krig_okkupasjon_motstand",
+        "score": 23
+      },
+      {
+        "id": "his_krise_unntak_kontinuitet",
+        "title": "Krise, unntak og institusjonell kontinuitet",
+        "category_id": "his_makt_stat_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "his_politi_fengsel_straff",
+        "title": "Politi, fengsel og strafferegime",
+        "category_id": "his_makt_stat_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "his_register_overvakning_disiplin",
+        "title": "Register, overvåkning og disiplin",
+        "category_id": "his_makt_stat_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "his_rettigheter_borgerskap_forvaltning",
+        "title": "Rettigheter, medborgerskap og forvaltning",
+        "category_id": "his_makt_stat_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "his_rettsoppgjor_legitimitet_minne",
+        "title": "Rettsoppgjør, legitimitet og minne",
+        "category_id": "his_makt_stat_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "his_krig_okkupasjon_rettsoppgjor_og_etterkrig",
+        "title": "Rettsoppgjør og etterkrig: forklarings- og kildebane",
+        "category_id": "his_krig_okkupasjon_motstand",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_makt_stat_institusjoner",
+      "his_krig_okkupasjon_motstand"
+    ],
+    "emne_ids": [
+      "em_his_rett_politi_fengsel",
+      "em_his_fangenskap_kontroll",
+      "em_his_okkupasjon_motstand",
+      "em_his_rettsoppgjor_etterkrig"
+    ],
+    "topic_hook_ids": [
+      "his_tidslag_samtidighet"
+    ],
+    "method_ids": [
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "fernand_braudel"
+    ],
+    "works": [
+      "The Mediterranean and the Mediterranean World"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_mollergata_19_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Anlegget var spesialbygd for politi, rett og fengsel.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rett_politi_fengsel"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Nordan tegnet politi-, retts- og fengselsanlegget.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Åpningsdatoen skiller byggeperioden fra aktiv bruk.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Fengselet var en egen bygning bak forbygningen.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rettsoppgjor_etterkrig"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Påbyggingen er et eget arkitektonisk tidslag.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rett_politi_fengsel"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "145 er SNLs kapasitetsopplysning for det opprinnelige fengselet.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Anlegget ble reist på området etter den tidligere kirkegården.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Datoen markerer overtakelsen av hele fengselet.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rettsoppgjor_etterkrig"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Overbelegget var langt større enn den opprinnelige kapasiteten.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rett_politi_fengsel"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Tallet gjelder registrerte personer, ikke samtidig kapasitet.",
+      "source_ids": [
+        "fanger"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Victoria Terrasse var et sentralt avhørssted for sikkerhetspolitiet.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Skriveteknikken gjorde notatene mulige å skjule.",
+      "source_ids": [
+        "moen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rettsoppgjor_etterkrig"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Skjulestedene bidro til at notatene overlevde.",
+      "source_ids": [
+        "moen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rett_politi_fengsel"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Flyttingen avsluttet rollen som hovedpolitistasjon.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Befolkningsvekst og administrativ utvikling lå bak nybygget.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kvinnearresten var et eget institusjonelt lag.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rettsoppgjor_etterkrig"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Ordet dokumenterer et historisk yrkes- og institusjonsspråk.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rett_politi_fengsel"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Overtakelsen må skilles fra politiets fortsatte bruk av forbygningen.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Hansteen og Wickstrøm knytter stedet til okkupasjonsmaktens represalier.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Overgivelsen er en hendelse ved stedet, ikke grunnlag for å dominere People-samlingen.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rettsoppgjor_etterkrig"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Rivingen forklarer hvorfor fangehistorien ikke er fullt synlig i dag.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rett_politi_fengsel"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Sammenligningen skiller stående og revne bygningsdeler.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Fotografiets datering avgrenser hva det kan dokumentere.",
+      "source_ids": [
+        "opening_photo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kildekritikk viser uenigheten uten falsk presisjon.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Produksjonstid og aktør gir nærhet til hendelsene.",
+      "source_ids": [
+        "moen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rett_politi_fengsel"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Materiell kontinuitet må skilles fra institusjonelt og rettslig brudd.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Integreringen ga den bevarte bygningen en ny statlig funksjon.",
+      "source_ids": [
+        "regjeringen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Teorien hjelper med å ordne hendelser og lang varighet etter at kronologien er etablert.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "relation",
+      "id": "rel_mollergata_19_petter_moen_fangedagbok",
+      "source_file": "data/relations_philanthropy.json",
+      "summary": "Petter Moen perforerte dagboknotater i toalettpapir mens han satt fengslet i Møllergata 19 i 1944."
+    },
+    {
+      "type": "relation",
+      "id": "rel_mollergata_19_vidkun_quisling_rettsoppgjor",
+      "source_file": "data/relations_philanthropy.json",
+      "summary": "Vidkun Quisling satt i Møllergata 19 fram til slutten av juli 1945 før han ble flyttet til Akershus."
+    },
+    {
+      "type": "relation",
+      "id": "rel_mollergata_19_jacob_wilhelm_nordan_arkitekt",
+      "source_file": "data/relations_philanthropy.json",
+      "summary": "Jacob Wilhelm Nordan tegnet anlegget som ble oppført 1862–1866."
+    },
+    {
+      "type": "relation",
+      "id": "rel_mollergata_19_viggo_hansteen_fangenskap",
+      "source_file": "data/relations_philanthropy.json",
+      "summary": "Tilknytningen inngår i stedets historie som sentralfengsel for politiske fanger."
+    },
+    {
+      "type": "relation",
+      "id": "rel_mollergata_19_rolf_wickstrom_fangenskap",
+      "source_file": "data/relations_philanthropy.json",
+      "summary": "Tilknytningen inngår i stedets historie som sentralfengsel for politiske fanger."
+    },
+    {
+      "type": "story",
+      "id": "st_mollergata_19_petter_moens_dagbok",
+      "source_file": "data/stories/stories_mollergata_19.json",
+      "summary": "Petter Moen perforerte en hemmelig dagbok på toalettpapir i Møllergata 19 og skjulte rullene slik at de kunne finnes etter krigen."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "historie_mollergata_19_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_mollergata_19_quiz_01",
+        "claim_mollergata_19_quiz_02",
+        "claim_mollergata_19_quiz_03",
+        "claim_mollergata_19_quiz_04",
+        "claim_mollergata_19_quiz_05",
+        "claim_mollergata_19_quiz_06",
+        "claim_mollergata_19_quiz_07"
+      ]
+    },
+    {
+      "set_id": "historie_mollergata_19_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_mollergata_19_quiz_08",
+        "claim_mollergata_19_quiz_09",
+        "claim_mollergata_19_quiz_10",
+        "claim_mollergata_19_quiz_11",
+        "claim_mollergata_19_quiz_12",
+        "claim_mollergata_19_quiz_13",
+        "claim_mollergata_19_quiz_14"
+      ]
+    },
+    {
+      "set_id": "historie_mollergata_19_set_3",
+      "order": 3,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_mollergata_19_quiz_15",
+        "claim_mollergata_19_quiz_16",
+        "claim_mollergata_19_quiz_17",
+        "claim_mollergata_19_quiz_18",
+        "claim_mollergata_19_quiz_19",
+        "claim_mollergata_19_quiz_20",
+        "claim_mollergata_19_quiz_21"
+      ]
+    },
+    {
+      "set_id": "historie_mollergata_19_set_4",
+      "order": 4,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_mollergata_19_quiz_22",
+        "claim_mollergata_19_quiz_23",
+        "claim_mollergata_19_quiz_24",
+        "claim_mollergata_19_quiz_25",
+        "claim_mollergata_19_quiz_26",
+        "claim_mollergata_19_quiz_27",
+        "claim_mollergata_19_quiz_28"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 28,
+    "counts": {
+      "fact": 14,
+      "context": 7,
+      "concept_theory": 7
+    },
+    "ratios": {
+      "fact": 0.5,
+      "context": 0.25,
+      "concept_theory": 0.25
+    }
+  }
+}

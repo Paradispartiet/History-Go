@@ -1,12 +1,12 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-09-01T07:51:19.631Z
+Generert: 2026-09-01T08:23:50.804Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-09-01T07:51:19.631Z |
+| generatedAt | 2026-09-01T08:23:50.804Z |
 | peopleFilesRead | 766 |
 | totalPeople | 1426 |
 | uniquePeopleIds | 1426 |
@@ -1655,7 +1655,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 
 ## Image/cardImage audit
 
-Mangler filer for image/cardImage/media: 576
+Mangler filer for image/cardImage/media: 574
 
 | Fil | Person | Felt | Bane |
 |---|---|---|---|
@@ -1861,8 +1861,6 @@ Mangler filer for image/cardImage/media: 576
 | data/people/historie/oslo/people_historie_oslo.json | wilhelm_von_hanno / Wilhelm von Hanno | cardImage | bilder/kort/people/wilhelm_von_hanno.PNG |
 | data/people/historie/oslo/people_historie_oslo.json | haakon_nyhuus / Haakon Nyhuus | image | bilder/kort/people/haakon_nyhuus.PNG |
 | data/people/historie/oslo/people_historie_oslo.json | haakon_nyhuus / Haakon Nyhuus | cardImage | bilder/kort/people/haakon_nyhuus.PNG |
-| data/people/historie/oslo/people_historie_oslo.json | petter_moen / Petter Moen | image | bilder/kort/people/petter_moen.PNG |
-| data/people/historie/oslo/people_historie_oslo.json | petter_moen / Petter Moen | cardImage | bilder/kort/people/petter_moen.PNG |
 | data/people/historie/oslo/people_historie_oslo.json | biskop_nikolas_arnason / Biskop Nikolas Arnesson | image | bilder/kort/people/biskop_nikolas_arnason.PNG |
 | data/people/historie/oslo/people_historie_oslo.json | biskop_nikolas_arnason / Biskop Nikolas Arnesson | cardImage | bilder/kort/people/biskop_nikolas_arnason.PNG |
 | data/people/historie/oslo/people_historie_oslo.json | eufemia_av_rugen / Eufemia av Rügen | image | bilder/kort/people/eufemia_av_rugen.PNG |

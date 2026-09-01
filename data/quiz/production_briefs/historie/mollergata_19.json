@@ -1,0 +1,436 @@
+{
+  "schema_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "mollergata_19",
+  "scope": "place",
+  "status": "reviewed",
+  "reviewed_at": "2026-09-01",
+  "profile_hint": "normal_4x7",
+  "review_note": "SNL, Byleksikon, Fanger.no, Regjeringen og samtidige bildespor er krysskontrollert. Kapasitetskonflikt og kildegrenser er eksplisitte.",
+  "sources": {
+    "snl": {
+      "url": "https://snl.no/M%C3%B8llergata_19",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "review_note": "Hovedkilde til bygging, kronologi, kapasitet, okkupasjon, riving og senere bruk."
+    },
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/M%C3%B8llergata_19",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "review_note": "Byhistorisk kilde til rettsfunksjon, kvinnerest, 1945 og blåskilt."
+    },
+    "fanger": {
+      "url": "https://www.fanger.no/prisoncamps/664",
+      "source_type": "archive",
+      "review_status": "reviewed",
+      "review_note": "Institusjonell fangedatabase til struktur og registrert fangeomfang."
+    },
+    "regjeringen": {
+      "url": "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/bygninger/id712727/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Offisiell kilde til integreringen i regjeringskvartalet fra 1981."
+    },
+    "moen": {
+      "url": "https://snl.no/Petter_Moen",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "review_note": "Biografisk kilde til arrestasjon, skriveteknikk, skjulesteder og utgivelse."
+    },
+    "opening_photo": {
+      "url": "https://commons.wikimedia.org/wiki/File:Nytorget_(Youngstorget)_med_M%C3%B8llergata_19_(1866).jpg",
+      "source_type": "museum",
+      "review_status": "reviewed",
+      "review_note": "Oslo Museum-fotografi fra 1866 viser bygningen før påbyggingen i 1877."
+    }
+  },
+  "selected_curriculum": {
+    "emne_ids": [
+      "em_his_rett_politi_fengsel",
+      "em_his_fangenskap_kontroll",
+      "em_his_okkupasjon_motstand",
+      "em_his_rettsoppgjor_etterkrig"
+    ],
+    "topic_hook_ids": [
+      "his_tidslag_samtidighet"
+    ],
+    "method_ids": [
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "fernand_braudel"
+    ],
+    "works": [
+      "The Mediterranean and the Mediterranean World"
+    ]
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Fire sett dekker institusjon, okkupasjon, endring og kildekritisk syntese uten gjentakelse."
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/historie/mollergata_19_sets.json"
+    ],
+    "active_before": {
+      "categoryId": "historie",
+      "set_count": 1,
+      "question_count": 5
+    },
+    "decisions": [
+      "De fem eldre spørsmålene ble faktasjekket og omskrevet der hovedpoengene fortsatt var relevante.",
+      "Legacy-strukturen 1x5 erstattes av kanonisk 4x7; ingen spørsmål beholdes ordrett."
+    ],
+    "knowledge_migration": {
+      "status": "completed",
+      "retained_rule": "Bare kildebårne kunnskapsenheter er videreført."
+    }
+  },
+  "held_back_candidates": [
+    "Sensasjonaliserte torturspørsmål",
+    "Påstand om at dagens hovedbygning er det komplette fengselsanlegget",
+    "Kapasitetstall uten kildebinding",
+    "Teori før kronologi og stedskilder"
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_mollergata_19_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Anlegget var spesialbygd for politi, rett og fengsel.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rett_politi_fengsel"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Nordan tegnet politi-, retts- og fengselsanlegget.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Åpningsdatoen skiller byggeperioden fra aktiv bruk.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Fengselet var en egen bygning bak forbygningen.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rettsoppgjor_etterkrig"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Påbyggingen er et eget arkitektonisk tidslag.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rett_politi_fengsel"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "145 er SNLs kapasitetsopplysning for det opprinnelige fengselet.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Anlegget ble reist på området etter den tidligere kirkegården.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Datoen markerer overtakelsen av hele fengselet.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rettsoppgjor_etterkrig"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Overbelegget var langt større enn den opprinnelige kapasiteten.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rett_politi_fengsel"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Tallet gjelder registrerte personer, ikke samtidig kapasitet.",
+      "source_ids": [
+        "fanger"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Victoria Terrasse var et sentralt avhørssted for sikkerhetspolitiet.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Skriveteknikken gjorde notatene mulige å skjule.",
+      "source_ids": [
+        "moen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rettsoppgjor_etterkrig"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Skjulestedene bidro til at notatene overlevde.",
+      "source_ids": [
+        "moen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rett_politi_fengsel"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Flyttingen avsluttet rollen som hovedpolitistasjon.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Befolkningsvekst og administrativ utvikling lå bak nybygget.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kvinnearresten var et eget institusjonelt lag.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rettsoppgjor_etterkrig"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Ordet dokumenterer et historisk yrkes- og institusjonsspråk.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rett_politi_fengsel"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Overtakelsen må skilles fra politiets fortsatte bruk av forbygningen.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Hansteen og Wickstrøm knytter stedet til okkupasjonsmaktens represalier.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Overgivelsen er en hendelse ved stedet, ikke grunnlag for å dominere People-samlingen.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rettsoppgjor_etterkrig"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Rivingen forklarer hvorfor fangehistorien ikke er fullt synlig i dag.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rett_politi_fengsel"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Sammenligningen skiller stående og revne bygningsdeler.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Fotografiets datering avgrenser hva det kan dokumentere.",
+      "source_ids": [
+        "opening_photo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kildekritikk viser uenigheten uten falsk presisjon.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Produksjonstid og aktør gir nærhet til hendelsene.",
+      "source_ids": [
+        "moen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_rett_politi_fengsel"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Materiell kontinuitet må skilles fra institusjonelt og rettslig brudd.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fangenskap_kontroll"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Integreringen ga den bevarte bygningen en ny statlig funksjon.",
+      "source_ids": [
+        "regjeringen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_okkupasjon_motstand"
+    },
+    {
+      "claim_id": "claim_mollergata_19_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Teorien hjelper med å ordne hendelser og lang varighet etter at kronologien er etablert.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    }
+  ]
+}

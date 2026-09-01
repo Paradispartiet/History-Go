@@ -1,479 +1,1890 @@
 {
   "targetId": "mollergata_19",
   "categoryId": "historie",
-  "generator_version": "historie_v5_1_manual_source_based",
-  "generated_from": [
-    "data/places/historie/oslo/places_historie/mollergata_19.json",
-    "data/stories/stories_mollergata_19.json",
-    "https://snl.no/M%C3%B8llergata_19",
-    "https://oslobyleksikon.no/side/M%C3%B8llergata_19",
-    "https://snl.no/Petter_Moen",
-    "https://www.fanger.no/prisoncamps/664"
-  ],
-  "manual_production_notes": {
-    "quality_direction": "synlig sted → historisk spor → kilde → institusjonell forståelse",
-    "hold_back": [
-      "Skill den bevarte politi- og rettsbygningen fra den revne fengselsfløyen.",
-      "Ikke gjør tortur og fangenskap til sensasjonsspørsmål.",
-      "Petter Moens dagbok skal behandles som et konkret fangedokument og historisk vitnesbyrd."
-    ]
+  "size_class": "normal_4x7",
+  "generated_from": "data/quiz/production_briefs/historie/mollergata_19.json",
+  "generator_version": "history_go_manual_reviewed_v1",
+  "sources": {
+    "snl": "https://snl.no/M%C3%B8llergata_19",
+    "byleksikon": "https://oslobyleksikon.no/side/M%C3%B8llergata_19",
+    "fanger": "https://www.fanger.no/prisoncamps/664",
+    "regjeringen": "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/bygninger/id712727/",
+    "moen": "https://snl.no/Petter_Moen",
+    "opening_photo": "https://commons.wikimedia.org/wiki/File:Nytorget_(Youngstorget)_med_M%C3%B8llergata_19_(1866).jpg"
   },
   "sets": [
     {
       "set_id": "historie_mollergata_19_set_1",
-      "title": "Politi, fengsel og historiske spor",
-      "order": 1,
       "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "title": "Politi, rett og bygging",
       "xp": 50,
-      "mode": "place_observation_understanding",
       "questions": [
         {
-          "id": "mollergata_19_s1_q1",
+          "id": "mollergata_19_quiz_1",
           "quiz_id": "historie_mollergata_19_set_1_q1",
           "categoryId": "historie",
           "placeId": "mollergata_19",
           "personId": "",
           "natureId": "",
-          "targetId": "mollergata_19",
           "question_scope": "place",
-          "question": "Hvilke funksjoner ble opprinnelig samlet i anlegget Møllergata 19?",
+          "question": "Hvilke funksjoner ble samlet i Møllergata 19 da anlegget åpnet?",
           "options": [
-            "Hovedpolitistasjon, rettslokaler og fengsel",
-            "Rådhus, børs og nasjonalforsamling",
-            "Jernbanestasjon, tollbod og postkontor"
+            "Politi, rettslokaler og fengsel",
+            "Børs, postkontor og rådhus",
+            "Sykehus, skole og bibliotek"
           ],
-          "answer": "Hovedpolitistasjon, rettslokaler og fengsel",
+          "answer": "Politi, rettslokaler og fengsel",
           "answerIndex": 0,
-          "dimension": "rettshistorie",
-          "topic": "politi, domstol og fengsel",
-          "knowledge": "Møllergata 19 ble reist som et samlet institusjonsanlegg. Politi og rettslokaler lå i hovedbygningen mot gaten, mens fengselet lå i en egen bygning bak.",
+          "dimension": "opening",
+          "topic": "hvilke_funksjoner_ble_samlet_i_møllergata_19_da_",
+          "knowledge": "Anlegget var spesialbygd for politi, rett og fengsel.",
           "trivia": [],
           "difficulty": 1,
-          "question_type": "institutional_function",
-          "question_layer": "place_intro",
-          "year": 1866,
-          "epoke_id": "1800_tall",
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
           "epoke_domain": "historie",
           "emne_id": "em_his_rett_politi_fengsel",
-          "related_emner": [
-            "em_his_fangenskap_kontroll",
-            "em_his_stat_institusjoner"
-          ],
-          "core_concepts": [
-            "politi",
-            "domstol",
-            "fengsel"
-          ],
-          "concept_focus": [
-            "institusjon"
-          ],
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
             "mollergata_19",
-            "politi",
-            "rett",
-            "fengsel"
+            "oslo",
+            "historie"
           ],
-          "required_tags": [
-            "history_anchor",
-            "em_his"
-          ],
+          "required_tags": [],
           "source": [
-            "https://snl.no/M%C3%B8llergata_19",
-            "https://oslobyleksikon.no/side/M%C3%B8llergata_19"
+            "snl"
           ],
-          "source_origin": "external",
-          "claim_basis": "Møllergata 19 ble oppført som politi-, retts- og fengselsanlegg.",
-          "guidance_basis": {
-            "emne_id": "em_his_rett_politi_fengsel",
-            "method_id": "met_kildekritikk"
-          },
-          "method_id": "met_kildekritikk",
-          "history_anchor_type": "institutional_place",
-          "source_note": "Kildebasert historisk quizspørsmål.",
-          "external_source_ratio_target": 0.85,
-          "internal_file_only_allowed": false,
-          "requires_history_anchor": true,
-          "requires_external_claim_basis": true,
-          "validation": {
-            "emne_id_exists_in_emner_historie": true,
-            "method_id_exists_in_methods_historie": true,
-            "category_matches_badge": true,
-            "schema_extends_generic_supersetQUIZMAL": true
-          },
-          "primary_knowledge_unit_id": "ku_historie_m_llergata_19_ble_reist__daf263df4f",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_01",
           "knowledge_unit_ids": [
-            "ku_historie_m_llergata_19_ble_reist__daf263df4f",
-            "ku_historie_politi_og_rettslokaler_l_28618c9ccb"
+            "ku_his_mollergata_19_01"
           ],
           "concept_ids": [
-            "co_historie_politi_e81ef2e345",
-            "co_historie_domstol_7d1f8b5c13",
-            "co_historie_fengsel_4a62352dc9",
-            "co_historie_institusjon_f70250b601"
+            "co_historie_institusjon_f70250b601",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Anlegget var spesialbygd for politi, rett og fengsel.",
+          "claim_id": "claim_mollergata_19_quiz_01",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
         },
         {
-          "id": "mollergata_19_s1_q2",
+          "id": "mollergata_19_quiz_2",
           "quiz_id": "historie_mollergata_19_set_1_q2",
           "categoryId": "historie",
           "placeId": "mollergata_19",
           "personId": "",
           "natureId": "",
-          "targetId": "mollergata_19",
           "question_scope": "place",
-          "question": "Hva er den viktigste forskjellen mellom anlegget i 1866 og det du ser i dag?",
+          "question": "Hvem tegnet Møllergata 19?",
           "options": [
-            "Hovedbygningen er bevart, mens fengselsfløyen og luftegårdene bak ble revet",
-            "Fengselet står urørt, mens hele gatefasaden er nybygd",
-            "Både politibygningen og fengselet ble flyttet til Akershus festning"
+            "Arnstein Arneberg",
+            "Jacob Wilhelm Nordan",
+            "Henrik Bull"
           ],
-          "answer": "Hovedbygningen er bevart, mens fengselsfløyen og luftegårdene bak ble revet",
-          "answerIndex": 0,
-          "dimension": "sporlesning",
-          "topic": "bevaring og fravær",
-          "knowledge": "Den opprinnelige hovedbygningen mot Møllergata er bevart. Fengselsbygningen bak ble revet i 1976, så stedets fangehistorie må også leses gjennom kilder og det som ikke lenger står.",
+          "answer": "Jacob Wilhelm Nordan",
+          "answerIndex": 1,
+          "dimension": "opening",
+          "topic": "hvem_tegnet_møllergata_19_",
+          "knowledge": "Nordan tegnet politi-, retts- og fengselsanlegget.",
           "trivia": [],
           "difficulty": 1,
-          "question_type": "observation",
-          "question_layer": "place_history",
-          "year": 1976,
-          "epoke_id": "etterkrigstid",
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
           "epoke_domain": "historie",
-          "emne_id": "em_his_spor_materialitet",
-          "related_emner": [
-            "em_his_rett_politi_fengsel",
-            "em_his_minnesteder_historiebruk"
-          ],
-          "core_concepts": [
-            "bevaring",
-            "riving",
-            "historisk fravær"
-          ],
-          "concept_focus": [
-            "sporlesning"
-          ],
+          "emne_id": "em_his_fangenskap_kontroll",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
             "mollergata_19",
-            "fasade",
-            "fengselsfløy",
-            "riving"
+            "oslo",
+            "historie"
           ],
-          "required_tags": [
-            "history_anchor",
-            "em_his"
-          ],
+          "required_tags": [],
           "source": [
-            "https://snl.no/M%C3%B8llergata_19",
-            "https://oslobyleksikon.no/side/M%C3%B8llergata_19"
+            "snl"
           ],
-          "source_origin": "external",
-          "claim_basis": "Fengselsbygningen ble revet i 1976, mens den gamle politistasjonen ble bevart.",
-          "guidance_basis": {
-            "emne_id": "em_his_spor_materialitet",
-            "method_id": "met_sporlesning"
-          },
-          "method_id": "met_sporlesning",
-          "history_anchor_type": "visible_trace",
-          "source_note": "Kildebasert spørsmål om synlige og forsvunne bygningsspor.",
-          "external_source_ratio_target": 0.85,
-          "internal_file_only_allowed": false,
-          "requires_history_anchor": true,
-          "requires_external_claim_basis": true,
-          "validation": {
-            "emne_id_exists_in_emner_historie": true,
-            "method_id_exists_in_methods_historie": true,
-            "category_matches_badge": true,
-            "schema_extends_generic_supersetQUIZMAL": true
-          },
-          "primary_knowledge_unit_id": "ku_historie_den_opprinnelige_hovedby_1463c88b0f",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_02",
           "knowledge_unit_ids": [
-            "ku_historie_den_opprinnelige_hovedby_1463c88b0f",
-            "ku_historie_fengselsbygningen_bak_bl_51cb559fbc"
+            "ku_his_mollergata_19_02"
           ],
           "concept_ids": [
-            "co_historie_bevaring_f6efbf2c29",
-            "co_historie_riving_78d4012dbf",
-            "co_historie_historisk_frav_r_b5f5a28bb3",
-            "co_historie_sporlesning_7193e6018d"
+            "co_historie_institusjon_f70250b601",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Nordan tegnet politi-, retts- og fengselsanlegget.",
+          "claim_id": "claim_mollergata_19_quiz_02",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
         },
         {
-          "id": "mollergata_19_s1_q3",
+          "id": "mollergata_19_quiz_3",
           "quiz_id": "historie_mollergata_19_set_1_q3",
           "categoryId": "historie",
           "placeId": "mollergata_19",
-          "personId": "petter_moen",
+          "personId": "",
           "natureId": "",
-          "targetId": "mollergata_19",
           "question_scope": "place",
-          "question": "Hvordan skrev Petter Moen dagboken sin i fengselet i 1944?",
+          "question": "Når tok politiet anlegget i bruk?",
           "options": [
-            "Han perforerte bokstaver i toalettpapir med en nål og skjulte arkene under gulvet",
-            "Han sendte åpne brev gjennom fengselets ordinære postkontor",
-            "Han risset teksten inn i fasaden mot Youngstorget"
+            "9. april 1940",
+            "1. januar 1981",
+            "1. juli 1866"
           ],
-          "answer": "Han perforerte bokstaver i toalettpapir med en nål og skjulte arkene under gulvet",
-          "answerIndex": 0,
-          "dimension": "kildehistorie",
-          "topic": "Petter Moens dagbok",
-          "knowledge": "Petter Moens dagbok ble laget i hemmelighet på toalettpapir. Notatene ble funnet under cellegulvet etter frigjøringen og senere dechiffrert og utgitt.",
+          "answer": "1. juli 1866",
+          "answerIndex": 2,
+          "dimension": "opening",
+          "topic": "når_tok_politiet_anlegget_i_bruk_",
+          "knowledge": "Åpningsdatoen skiller byggeperioden fra aktiv bruk.",
           "trivia": [],
           "difficulty": 1,
-          "question_type": "source_object",
-          "question_layer": "local_history",
-          "year": 1944,
-          "epoke_id": "andre_verdenskrig",
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
           "epoke_domain": "historie",
           "emne_id": "em_his_okkupasjon_motstand",
-          "related_emner": [
-            "em_his_fangenskap_kontroll",
-            "em_his_spor_materialitet"
-          ],
-          "core_concepts": [
-            "vitnesbyrd",
-            "dagbok",
-            "illegal skrift"
-          ],
-          "concept_focus": [
-            "historisk kilde"
-          ],
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
-            "petter_moen",
-            "dagbok",
-            "fangenskap",
-            "okkupasjon"
+            "mollergata_19",
+            "oslo",
+            "historie"
           ],
-          "required_tags": [
-            "history_anchor",
-            "em_his"
-          ],
+          "required_tags": [],
           "source": [
-            "https://snl.no/Petter_Moen",
-            "https://snl.no/dagbok_-_litteratur"
+            "snl"
           ],
-          "source_origin": "external",
-          "claim_basis": "Petter Moen perforerte dagboknotater i toalettpapir og skjulte dem under cellegulvet.",
-          "guidance_basis": {
-            "emne_id": "em_his_okkupasjon_motstand",
-            "method_id": "met_kildekritikk"
-          },
-          "method_id": "met_kildekritikk",
-          "history_anchor_type": "primary_source",
-          "source_note": "Spørsmålet bruker dagboken som konkret fangedokument.",
-          "external_source_ratio_target": 1,
-          "internal_file_only_allowed": false,
-          "requires_history_anchor": true,
-          "requires_external_claim_basis": true,
-          "validation": {
-            "emne_id_exists_in_emner_historie": true,
-            "method_id_exists_in_methods_historie": true,
-            "category_matches_badge": true,
-            "schema_extends_generic_supersetQUIZMAL": true
-          },
-          "primary_knowledge_unit_id": "ku_historie_petter_moens_dagbok_ble__62e9c7f7ab",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_03",
           "knowledge_unit_ids": [
-            "ku_historie_petter_moens_dagbok_ble__62e9c7f7ab",
-            "ku_historie_notatene_ble_funnet_unde_31ee019f5d"
+            "ku_his_mollergata_19_03"
           ],
           "concept_ids": [
-            "co_historie_vitnesbyrd_76329eb91c",
-            "co_historie_dagbok_09245a22e1",
-            "co_historie_illegal_skrift_bf2fd026f7",
-            "co_historie_historisk_kilde_eceb9d938d"
+            "co_historie_institusjon_f70250b601",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Åpningsdatoen skiller byggeperioden fra aktiv bruk.",
+          "claim_id": "claim_mollergata_19_quiz_03",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
         },
         {
-          "id": "mollergata_19_s1_q4",
+          "id": "mollergata_19_quiz_4",
           "quiz_id": "historie_mollergata_19_set_1_q4",
           "categoryId": "historie",
           "placeId": "mollergata_19",
           "personId": "",
           "natureId": "",
-          "targetId": "mollergata_19",
           "question_scope": "place",
-          "question": "Hvilken funksjon fikk Møllergata 19 under den tyske okkupasjonen?",
+          "question": "Hvor lå fengselsbygningen i det opprinnelige anlegget?",
           "options": [
-            "Det ble sikkerhetspolitiets sentralfengsel for politiske fanger fra hele landet",
-            "Det ble den norske regjeringens åpne møtested",
-            "Det ble omgjort til sykehus for allierte soldater"
+            "Bak hovedbygningen mot Grubbegata",
+            "I etasjene under Youngstorget",
+            "På Akershus festning"
           ],
-          "answer": "Det ble sikkerhetspolitiets sentralfengsel for politiske fanger fra hele landet",
+          "answer": "Bak hovedbygningen mot Grubbegata",
           "answerIndex": 0,
-          "dimension": "okkupasjon",
-          "topic": "sentralfengsel",
-          "knowledge": "Det tyske sikkerhetspolitiet tok over fengselet og brukte det som sentralfengsel. Ordinær kapasitet ble kraftig overskredet, og fangene ble holdt uten den rettssikkerheten stedet tidligere skulle representere.",
+          "dimension": "opening",
+          "topic": "hvor_lå_fengselsbygningen_i_det_opprinnelige_anl",
+          "knowledge": "Fengselet var en egen bygning bak forbygningen.",
           "trivia": [],
-          "difficulty": 2,
-          "question_type": "institutional_change",
-          "question_layer": "place_meaning",
-          "year": 1940,
-          "epoke_id": "andre_verdenskrig",
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
           "epoke_domain": "historie",
-          "emne_id": "em_his_okkupasjon_motstand",
-          "related_emner": [
-            "em_his_fangenskap_kontroll",
-            "em_his_rett_politi_fengsel"
-          ],
-          "core_concepts": [
-            "okkupasjonsmakt",
-            "sentralfengsel",
-            "politisk fangenskap"
-          ],
-          "concept_focus": [
-            "maktendring"
-          ],
+          "emne_id": "em_his_rettsoppgjor_etterkrig",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
             "mollergata_19",
-            "sipo",
-            "fengsel",
-            "okkupasjon"
+            "oslo",
+            "historie"
           ],
-          "required_tags": [
-            "history_anchor",
-            "em_his"
-          ],
+          "required_tags": [],
           "source": [
-            "https://www.regjeringen.no/no/dokumenter/nou-1998-12/id375416/?ch=26",
-            "https://www.fanger.no/prisoncamps/664",
-            "https://snl.no/M%C3%B8llergata_19"
+            "snl"
           ],
-          "source_origin": "external",
-          "claim_basis": "Møllergata 19 fungerte som det tyske sikkerhetspolitiets sentralfengsel i Norge.",
-          "guidance_basis": {
-            "emne_id": "em_his_okkupasjon_motstand",
-            "method_id": "met_kildekritikk"
-          },
-          "method_id": "met_kildekritikk",
-          "history_anchor_type": "occupation_site",
-          "source_note": "Spørsmålet bruker offentlige og institusjonelle kilder om fengselets funksjon.",
-          "external_source_ratio_target": 1,
-          "internal_file_only_allowed": false,
-          "requires_history_anchor": true,
-          "requires_external_claim_basis": true,
-          "validation": {
-            "emne_id_exists_in_emner_historie": true,
-            "method_id_exists_in_methods_historie": true,
-            "category_matches_badge": true,
-            "schema_extends_generic_supersetQUIZMAL": true
-          },
-          "primary_knowledge_unit_id": "ku_historie_det_tyske_sikkerhetspoli_64b45b7bbe",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_04",
           "knowledge_unit_ids": [
-            "ku_historie_det_tyske_sikkerhetspoli_64b45b7bbe",
-            "ku_historie_ordin_r_kapasitet_ble_kr_68666cbfa7"
+            "ku_his_mollergata_19_04"
           ],
           "concept_ids": [
-            "co_historie_okkupasjonsmakt_ca20a374d7",
-            "co_historie_sentralfengsel_ad57cdb555",
-            "co_historie_politisk_fangenskap_14d96e53d8",
-            "co_historie_maktendring_aee161238f"
+            "co_historie_institusjon_f70250b601",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Fengselet var en egen bygning bak forbygningen.",
+          "claim_id": "claim_mollergata_19_quiz_04",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
         },
         {
-          "id": "mollergata_19_s1_q5",
+          "id": "mollergata_19_quiz_5",
           "quiz_id": "historie_mollergata_19_set_1_q5",
           "categoryId": "historie",
           "placeId": "mollergata_19",
           "personId": "",
           "natureId": "",
-          "targetId": "mollergata_19",
           "question_scope": "place",
-          "question": "Hva viser overgangen fra okkupasjonsfengsel til etterkrigstidens rettsoppgjør?",
+          "question": "Hva skjedde med hovedbygningen i 1877?",
           "options": [
-            "At samme institusjonsrom kan brukes av ulike regimer, men med forskjellige rettslige prinsipper",
-            "At rettsoppgjøret fortsatte det tyske sikkerhetspolitiets styre uendret",
-            "At fengsler ikke har noen forbindelse til stats- og rettshistorie"
+            "Den ble revet",
+            "Den ble utvidet til tre etasjer",
+            "Den ble flyttet til Grønland"
           ],
-          "answer": "At samme institusjonsrom kan brukes av ulike regimer, men med forskjellige rettslige prinsipper",
-          "answerIndex": 0,
-          "dimension": "historisk_syntese",
-          "topic": "makt, rett og regimeskifte",
-          "knowledge": "Under okkupasjonen ble fanger holdt av sikkerhetspolitiet uten ordinær rettssikkerhet. Etter frigjøringen ble stedet brukt i et norsk rettsoppgjør som skulle gjenreise formelle rettsprosesser, selv om oppgjøret også må vurderes kritisk historisk.",
+          "answer": "Den ble utvidet til tre etasjer",
+          "answerIndex": 1,
+          "dimension": "opening",
+          "topic": "hva_skjedde_med_hovedbygningen_i_1877_",
+          "knowledge": "Påbyggingen er et eget arkitektonisk tidslag.",
           "trivia": [],
-          "difficulty": 2,
-          "question_type": "synthesis",
-          "question_layer": "foundation",
-          "year": 1945,
-          "epoke_id": "etterkrigstid",
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
           "epoke_domain": "historie",
-          "emne_id": "em_his_rettsoppgjor_etterkrig",
-          "related_emner": [
-            "em_his_okkupasjon_motstand",
-            "em_his_rett_politi_fengsel"
-          ],
-          "core_concepts": [
-            "rettsstat",
-            "regimeskifte",
-            "rettsoppgjør"
-          ],
-          "concept_focus": [
-            "kontinuitet og brudd"
-          ],
+          "emne_id": "em_his_rett_politi_fengsel",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
           "learning_paths": [],
           "tags": [
             "mollergata_19",
-            "frigjoring",
-            "rettsoppgjor",
-            "rettsstat"
+            "oslo",
+            "historie"
           ],
-          "required_tags": [
-            "history_anchor",
-            "em_his"
-          ],
+          "required_tags": [],
           "source": [
-            "https://snl.no/M%C3%B8llergata_19",
-            "https://oslobyleksikon.no/side/M%C3%B8llergata_19"
+            "snl"
           ],
-          "source_origin": "external",
-          "claim_basis": "Stedet gikk fra okkupasjonsmaktens fengsel til varetekt under det norske rettsoppgjøret.",
-          "guidance_basis": {
-            "emne_id": "em_his_rettsoppgjor_etterkrig",
-            "method_id": "met_periodisering"
-          },
-          "method_id": "met_periodisering",
-          "history_anchor_type": "institutional_transition",
-          "source_note": "Syntesespørsmål om samme sted under to ulike rettslige ordener.",
-          "external_source_ratio_target": 0.85,
-          "internal_file_only_allowed": false,
-          "requires_history_anchor": true,
-          "requires_external_claim_basis": true,
-          "validation": {
-            "emne_id_exists_in_emner_historie": true,
-            "method_id_exists_in_methods_historie": true,
-            "category_matches_badge": true,
-            "schema_extends_generic_supersetQUIZMAL": true
-          },
-          "primary_knowledge_unit_id": "ku_historie_under_okkupasjonen_ble_f_57288df5e2",
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_05",
           "knowledge_unit_ids": [
-            "ku_historie_under_okkupasjonen_ble_f_57288df5e2",
-            "ku_historie_etter_frigj_ringen_ble_s_7f7d16d7c7"
+            "ku_his_mollergata_19_05"
           ],
           "concept_ids": [
-            "co_historie_rettsstat_84da6acf00",
-            "co_historie_regimeskifte_9f89062ed4",
-            "co_historie_rettsoppgj_r_2e1a26478c",
-            "co_historie_kontinuitet_og_brudd_ebd083f270"
+            "co_historie_institusjon_f70250b601",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Påbyggingen er et eget arkitektonisk tidslag.",
+          "claim_id": "claim_mollergata_19_quiz_05",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "mollergata_19_quiz_6",
+          "quiz_id": "historie_mollergata_19_set_1_q6",
+          "categoryId": "historie",
+          "placeId": "mollergata_19",
+          "personId": "",
+          "natureId": "",
+          "question_scope": "place",
+          "question": "Hvor mange fanger oppgir SNL at fengselet opprinnelig hadde plass til?",
+          "options": [
+            "550",
+            "7000",
+            "145"
+          ],
+          "answer": "145",
+          "answerIndex": 2,
+          "dimension": "opening",
+          "topic": "hvor_mange_fanger_oppgir_snl_at_fengselet_opprin",
+          "knowledge": "145 er SNLs kapasitetsopplysning for det opprinnelige fengselet.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_fangenskap_kontroll",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "mollergata_19",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "snl"
+          ],
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_06",
+          "knowledge_unit_ids": [
+            "ku_his_mollergata_19_06"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "145 er SNLs kapasitetsopplysning for det opprinnelige fengselet.",
+          "claim_id": "claim_mollergata_19_quiz_06",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "mollergata_19_quiz_7",
+          "quiz_id": "historie_mollergata_19_set_1_q7",
+          "categoryId": "historie",
+          "placeId": "mollergata_19",
+          "personId": "",
+          "natureId": "",
+          "question_scope": "place",
+          "question": "Hva lå på området før anlegget ble bygd?",
+          "options": [
+            "Vaterlands kirkegård",
+            "Byens jernbanestasjon",
+            "Det kongelige slott"
+          ],
+          "answer": "Vaterlands kirkegård",
+          "answerIndex": 0,
+          "dimension": "opening",
+          "topic": "hva_lå_på_området_før_anlegget_ble_bygd_",
+          "knowledge": "Anlegget ble reist på området etter den tidligere kirkegården.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_okkupasjon_motstand",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "mollergata_19",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "snl"
+          ],
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_07",
+          "knowledge_unit_ids": [
+            "ku_his_mollergata_19_07"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Anlegget ble reist på området etter den tidligere kirkegården.",
+          "claim_id": "claim_mollergata_19_quiz_07",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "historie_mollergata_19_set_2",
+      "level": 2,
+      "order": 2,
+      "phase": "middle",
+      "title": "Fengsel og okkupasjon",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "mollergata_19_quiz_8",
+          "quiz_id": "historie_mollergata_19_set_2_q1",
+          "categoryId": "historie",
+          "placeId": "mollergata_19",
+          "personId": "",
+          "natureId": "",
+          "question_scope": "place",
+          "question": "Når tok det tyske sikkerhetspolitiet hele fengselet i bruk?",
+          "options": [
+            "8. mai 1945",
+            "13. september 1940",
+            "22. juli 2011"
+          ],
+          "answer": "13. september 1940",
+          "answerIndex": 1,
+          "dimension": "middle",
+          "topic": "når_tok_det_tyske_sikkerhetspolitiet_hele_fengse",
+          "knowledge": "Datoen markerer overtakelsen av hele fengselet.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_rettsoppgjor_etterkrig",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "mollergata_19",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "snl"
+          ],
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_08",
+          "knowledge_unit_ids": [
+            "ku_his_mollergata_19_08"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Datoen markerer overtakelsen av hele fengselet.",
+          "claim_id": "claim_mollergata_19_quiz_08",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "mollergata_19_quiz_9",
+          "quiz_id": "historie_mollergata_19_set_2_q2",
+          "categoryId": "historie",
+          "placeId": "mollergata_19",
+          "personId": "",
+          "natureId": "",
+          "question_scope": "place",
+          "question": "Hvor mange kunne sitte i fengselet samtidig under okkupasjonen?",
+          "options": [
+            "Nøyaktig 145",
+            "Over 7000 samtidig",
+            "Opptil 550"
+          ],
+          "answer": "Opptil 550",
+          "answerIndex": 2,
+          "dimension": "middle",
+          "topic": "hvor_mange_kunne_sitte_i_fengselet_samtidig_unde",
+          "knowledge": "Overbelegget var langt større enn den opprinnelige kapasiteten.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_rett_politi_fengsel",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "mollergata_19",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "snl"
+          ],
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_09",
+          "knowledge_unit_ids": [
+            "ku_his_mollergata_19_09"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Overbelegget var langt større enn den opprinnelige kapasiteten.",
+          "claim_id": "claim_mollergata_19_quiz_09",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "mollergata_19_quiz_10",
+          "quiz_id": "historie_mollergata_19_set_2_q3",
+          "categoryId": "historie",
+          "placeId": "mollergata_19",
+          "personId": "",
+          "natureId": "",
+          "question_scope": "place",
+          "question": "Omtrent hvor mange fanger er registrert med tilknytning til Møllergata 19 hos Fanger.no?",
+          "options": [
+            "Omkring 7000",
+            "Omkring 70",
+            "Omkring 70000"
+          ],
+          "answer": "Omkring 7000",
+          "answerIndex": 0,
+          "dimension": "middle",
+          "topic": "omtrent_hvor_mange_fanger_er_registrert_med_tilk",
+          "knowledge": "Tallet gjelder registrerte personer, ikke samtidig kapasitet.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_fangenskap_kontroll",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "mollergata_19",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "fanger"
+          ],
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_10",
+          "knowledge_unit_ids": [
+            "ku_his_mollergata_19_10"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Tallet gjelder registrerte personer, ikke samtidig kapasitet.",
+          "claim_id": "claim_mollergata_19_quiz_10",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "mollergata_19_quiz_11",
+          "quiz_id": "historie_mollergata_19_set_2_q4",
+          "categoryId": "historie",
+          "placeId": "mollergata_19",
+          "personId": "",
+          "natureId": "",
+          "question_scope": "place",
+          "question": "Hvor foregikk mange avhørene av fangene fra Møllergata 19?",
+          "options": [
+            "I Oslo rådhus",
+            "På Victoria Terrasse",
+            "På Slottet"
+          ],
+          "answer": "På Victoria Terrasse",
+          "answerIndex": 1,
+          "dimension": "middle",
+          "topic": "hvor_foregikk_mange_avhørene_av_fangene_fra_møll",
+          "knowledge": "Victoria Terrasse var et sentralt avhørssted for sikkerhetspolitiet.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_okkupasjon_motstand",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "mollergata_19",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "snl"
+          ],
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_11",
+          "knowledge_unit_ids": [
+            "ku_his_mollergata_19_11"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Victoria Terrasse var et sentralt avhørssted for sikkerhetspolitiet.",
+          "claim_id": "claim_mollergata_19_quiz_11",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "mollergata_19_quiz_12",
+          "quiz_id": "historie_mollergata_19_set_2_q5",
+          "categoryId": "historie",
+          "placeId": "mollergata_19",
+          "personId": "",
+          "natureId": "",
+          "question_scope": "place",
+          "question": "Hvordan skrev Petter Moen dagboken i fangenskap?",
+          "options": [
+            "Han sendte åpne brev til avisen",
+            "Han risset teksten i fasaden",
+            "Han perforerte toalettpapir med en stift"
+          ],
+          "answer": "Han perforerte toalettpapir med en stift",
+          "answerIndex": 2,
+          "dimension": "middle",
+          "topic": "hvordan_skrev_petter_moen_dagboken_i_fangenskap_",
+          "knowledge": "Skriveteknikken gjorde notatene mulige å skjule.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_rettsoppgjor_etterkrig",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "mollergata_19",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "moen"
+          ],
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_12",
+          "knowledge_unit_ids": [
+            "ku_his_mollergata_19_12"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Skriveteknikken gjorde notatene mulige å skjule.",
+          "claim_id": "claim_mollergata_19_quiz_12",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "mollergata_19_quiz_13",
+          "quiz_id": "historie_mollergata_19_set_2_q6",
+          "categoryId": "historie",
+          "placeId": "mollergata_19",
+          "personId": "",
+          "natureId": "",
+          "question_scope": "place",
+          "question": "Hvor skjulte Petter Moen dagbokrullene?",
+          "options": [
+            "Først i ventilasjonen, senere under gulvet",
+            "I fasadeklokken",
+            "Bak blåskiltet"
+          ],
+          "answer": "Først i ventilasjonen, senere under gulvet",
+          "answerIndex": 0,
+          "dimension": "middle",
+          "topic": "hvor_skjulte_petter_moen_dagbokrullene_",
+          "knowledge": "Skjulestedene bidro til at notatene overlevde.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_rett_politi_fengsel",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "mollergata_19",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "moen"
+          ],
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_13",
+          "knowledge_unit_ids": [
+            "ku_his_mollergata_19_13"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Skjulestedene bidro til at notatene overlevde.",
+          "claim_id": "claim_mollergata_19_quiz_13",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "mollergata_19_quiz_14",
+          "quiz_id": "historie_mollergata_19_set_2_q7",
+          "categoryId": "historie",
+          "placeId": "mollergata_19",
+          "personId": "",
+          "natureId": "",
+          "question_scope": "place",
+          "question": "Når flyttet politiet fra Møllergata 19 til Grønland?",
+          "options": [
+            "1940",
+            "1978",
+            "1866"
+          ],
+          "answer": "1978",
+          "answerIndex": 1,
+          "dimension": "middle",
+          "topic": "når_flyttet_politiet_fra_møllergata_19_til_grønl",
+          "knowledge": "Flyttingen avsluttet rollen som hovedpolitistasjon.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_fangenskap_kontroll",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "mollergata_19",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "snl"
+          ],
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_14",
+          "knowledge_unit_ids": [
+            "ku_his_mollergata_19_14"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Flyttingen avsluttet rollen som hovedpolitistasjon.",
+          "claim_id": "claim_mollergata_19_quiz_14",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "historie_mollergata_19_set_3",
+      "level": 3,
+      "order": 3,
+      "phase": "bridge",
+      "title": "Endring, aktører og riving",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "mollergata_19_quiz_15",
+          "quiz_id": "historie_mollergata_19_set_3_q1",
+          "categoryId": "historie",
+          "placeId": "mollergata_19",
+          "personId": "",
+          "natureId": "",
+          "question_scope": "place",
+          "question": "Hvorfor trengte Christiania et større politi- og fengselsanlegg på 1860-tallet?",
+          "options": [
+            "Byen hadde sluttet å bruke politi",
+            "Fengselet skulle bli et museum",
+            "Byvekst ga større institusjonelle behov"
+          ],
+          "answer": "Byvekst ga større institusjonelle behov",
+          "answerIndex": 2,
+          "dimension": "bridge",
+          "topic": "hvorfor_trengte_christiania_et_større_politi_og_",
+          "knowledge": "Befolkningsvekst og administrativ utvikling lå bak nybygget.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "context",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_okkupasjon_motstand",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "mollergata_19",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "snl"
+          ],
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_15",
+          "knowledge_unit_ids": [
+            "ku_his_mollergata_19_15"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Befolkningsvekst og administrativ utvikling lå bak nybygget.",
+          "claim_id": "claim_mollergata_19_quiz_15",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "mollergata_19_quiz_16",
+          "quiz_id": "historie_mollergata_19_set_3_q2",
+          "categoryId": "historie",
+          "placeId": "mollergata_19",
+          "personId": "",
+          "natureId": "",
+          "question_scope": "place",
+          "question": "Hva åpnet i Møllergata 19 i juli 1900?",
+          "options": [
+            "En egen kvinneavdeling",
+            "Et departementshotell",
+            "Et kunstmuseum"
+          ],
+          "answer": "En egen kvinneavdeling",
+          "answerIndex": 0,
+          "dimension": "bridge",
+          "topic": "hva_åpnet_i_møllergata_19_i_juli_1900_",
+          "knowledge": "Kvinnearresten var et eget institusjonelt lag.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "context",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_rettsoppgjor_etterkrig",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "mollergata_19",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "snl"
+          ],
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_16",
+          "knowledge_unit_ids": [
+            "ku_his_mollergata_19_16"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Kvinnearresten var et eget institusjonelt lag.",
+          "claim_id": "claim_mollergata_19_quiz_16",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "mollergata_19_quiz_17",
+          "quiz_id": "historie_mollergata_19_set_3_q3",
+          "categoryId": "historie",
+          "placeId": "mollergata_19",
+          "personId": "",
+          "natureId": "",
+          "question_scope": "place",
+          "question": "Hva ble en kvinnelig fangevokter kalt?",
+          "options": [
+            "Sorenskriver",
+            "Slutterske",
+            "Konstabelmester"
+          ],
+          "answer": "Slutterske",
+          "answerIndex": 1,
+          "dimension": "bridge",
+          "topic": "hva_ble_en_kvinnelig_fangevokter_kalt_",
+          "knowledge": "Ordet dokumenterer et historisk yrkes- og institusjonsspråk.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "context",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_rett_politi_fengsel",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "mollergata_19",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "snl"
+          ],
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_17",
+          "knowledge_unit_ids": [
+            "ku_his_mollergata_19_17"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Ordet dokumenterer et historisk yrkes- og institusjonsspråk.",
+          "claim_id": "claim_mollergata_19_quiz_17",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "mollergata_19_quiz_18",
+          "quiz_id": "historie_mollergata_19_set_3_q4",
+          "categoryId": "historie",
+          "placeId": "mollergata_19",
+          "personId": "",
+          "natureId": "",
+          "question_scope": "place",
+          "question": "Hva endret seg i fengselsforvaltningen i 1904?",
+          "options": [
+            "Tyskland overtok fengselet",
+            "Fengselet ble revet",
+            "Staten overtok fengselet"
+          ],
+          "answer": "Staten overtok fengselet",
+          "answerIndex": 2,
+          "dimension": "bridge",
+          "topic": "hva_endret_seg_i_fengselsforvaltningen_i_1904_",
+          "knowledge": "Overtakelsen må skilles fra politiets fortsatte bruk av forbygningen.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "context",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_fangenskap_kontroll",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "mollergata_19",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "snl"
+          ],
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_18",
+          "knowledge_unit_ids": [
+            "ku_his_mollergata_19_18"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Overtakelsen må skilles fra politiets fortsatte bruk av forbygningen.",
+          "claim_id": "claim_mollergata_19_quiz_18",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "mollergata_19_quiz_19",
+          "quiz_id": "historie_mollergata_19_set_3_q5",
+          "categoryId": "historie",
+          "placeId": "mollergata_19",
+          "personId": "",
+          "natureId": "",
+          "question_scope": "place",
+          "question": "Hvilke to fagforeningsmenn ble holdt her før henrettelsen i 1941?",
+          "options": [
+            "Viggo Hansteen og Rolf Wickstrøm",
+            "Petter Moen og Jacob Nordan",
+            "Hans Jæger og Henrik Ibsen"
+          ],
+          "answer": "Viggo Hansteen og Rolf Wickstrøm",
+          "answerIndex": 0,
+          "dimension": "bridge",
+          "topic": "hvilke_to_fagforeningsmenn_ble_holdt_her_før_hen",
+          "knowledge": "Hansteen og Wickstrøm knytter stedet til okkupasjonsmaktens represalier.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "context",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_okkupasjon_motstand",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "mollergata_19",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "snl"
+          ],
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_19",
+          "knowledge_unit_ids": [
+            "ku_his_mollergata_19_19"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Hansteen og Wickstrøm knytter stedet til okkupasjonsmaktens represalier.",
+          "claim_id": "claim_mollergata_19_quiz_19",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "mollergata_19_quiz_20",
+          "quiz_id": "historie_mollergata_19_set_3_q6",
+          "categoryId": "historie",
+          "placeId": "mollergata_19",
+          "personId": "",
+          "natureId": "",
+          "question_scope": "place",
+          "question": "Hva gjorde Vidkun Quisling ved Møllergata 19 i 1945?",
+          "options": [
+            "Han tegnet bygningen",
+            "Han meldte seg for politiet",
+            "Han ledet åpningen av fengselet"
+          ],
+          "answer": "Han meldte seg for politiet",
+          "answerIndex": 1,
+          "dimension": "bridge",
+          "topic": "hva_gjorde_vidkun_quisling_ved_møllergata_19_i_1",
+          "knowledge": "Overgivelsen er en hendelse ved stedet, ikke grunnlag for å dominere People-samlingen.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "context",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_rettsoppgjor_etterkrig",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "mollergata_19",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "byleksikon"
+          ],
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_20",
+          "knowledge_unit_ids": [
+            "ku_his_mollergata_19_20"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Overgivelsen er en hendelse ved stedet, ikke grunnlag for å dominere People-samlingen.",
+          "claim_id": "claim_mollergata_19_quiz_20",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "mollergata_19_quiz_21",
+          "quiz_id": "historie_mollergata_19_set_3_q7",
+          "categoryId": "historie",
+          "placeId": "mollergata_19",
+          "personId": "",
+          "natureId": "",
+          "question_scope": "place",
+          "question": "Hva skjedde med fengselsbygningen i 1976?",
+          "options": [
+            "Den ble fredet urørt",
+            "Den ble flyttet til Grønland",
+            "Den ble revet"
+          ],
+          "answer": "Den ble revet",
+          "answerIndex": 2,
+          "dimension": "bridge",
+          "topic": "hva_skjedde_med_fengselsbygningen_i_1976_",
+          "knowledge": "Rivingen forklarer hvorfor fangehistorien ikke er fullt synlig i dag.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "context",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_rett_politi_fengsel",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "mollergata_19",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "snl"
+          ],
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_21",
+          "knowledge_unit_ids": [
+            "ku_his_mollergata_19_21"
+          ],
+          "concept_ids": [
+            "co_historie_institusjon_f70250b601",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Rivingen forklarer hvorfor fangehistorien ikke er fullt synlig i dag.",
+          "claim_id": "claim_mollergata_19_quiz_21",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "historie_mollergata_19_set_4",
+      "level": 4,
+      "order": 4,
+      "phase": "final",
+      "title": "Kilder, spor og tidslag",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "mollergata_19_quiz_22",
+          "quiz_id": "historie_mollergata_19_set_4_q1",
+          "categoryId": "historie",
+          "placeId": "mollergata_19",
+          "personId": "",
+          "natureId": "",
+          "question_scope": "place",
+          "question": "Hva er den viktigste forskjellen mellom dagens anlegg og anlegget fra 1866?",
+          "options": [
+            "Forbygningen står, mens fengselet og luftegårdene er borte",
+            "Fengselet står, mens fasaden er borte",
+            "Hele anlegget er uendret"
+          ],
+          "answer": "Forbygningen står, mens fengselet og luftegårdene er borte",
+          "answerIndex": 0,
+          "dimension": "final",
+          "topic": "hva_er_den_viktigste_forskjellen_mellom_dagens_a",
+          "knowledge": "Sammenligningen skiller stående og revne bygningsdeler.",
+          "trivia": [],
+          "difficulty": 4,
+          "question_type": "concept",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_fangenskap_kontroll",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "mollergata_19",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "snl"
+          ],
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_22",
+          "knowledge_unit_ids": [
+            "ku_his_mollergata_19_22"
+          ],
+          "concept_ids": [
+            "co_historie_historisk_endring_84be686aa4",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Sammenligningen skiller stående og revne bygningsdeler.",
+          "claim_id": "claim_mollergata_19_quiz_22",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "mollergata_19_quiz_23",
+          "quiz_id": "historie_mollergata_19_set_4_q2",
+          "categoryId": "historie",
+          "placeId": "mollergata_19",
+          "personId": "",
+          "natureId": "",
+          "question_scope": "place",
+          "question": "Hva må tas med når fotografiet fra 1866 brukes som kilde?",
+          "options": [
+            "Det viser overtakelsen i 1940",
+            "Det viser bygningen før påbyggingen i 1877",
+            "Det viser dagens regjeringskvartal"
+          ],
+          "answer": "Det viser bygningen før påbyggingen i 1877",
+          "answerIndex": 1,
+          "dimension": "final",
+          "topic": "hva_må_tas_med_når_fotografiet_fra_1866_brukes_s",
+          "knowledge": "Fotografiets datering avgrenser hva det kan dokumentere.",
+          "trivia": [],
+          "difficulty": 4,
+          "question_type": "concept",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_okkupasjon_motstand",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "mollergata_19",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "opening_photo"
+          ],
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_23",
+          "knowledge_unit_ids": [
+            "ku_his_mollergata_19_23"
+          ],
+          "concept_ids": [
+            "co_historie_historisk_endring_84be686aa4",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Fotografiets datering avgrenser hva det kan dokumentere.",
+          "claim_id": "claim_mollergata_19_quiz_23",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "mollergata_19_quiz_24",
+          "quiz_id": "historie_mollergata_19_set_4_q3",
+          "categoryId": "historie",
+          "placeId": "mollergata_19",
+          "personId": "",
+          "natureId": "",
+          "question_scope": "place",
+          "question": "Hvorfor bør 145 og 155 bevares som ulike kapasitetsopplysninger?",
+          "options": [
+            "Tallene betyr alltid det samme",
+            "Det største tallet må alltid slettes",
+            "Kildene oppgir ulike tall som må bindes til hver kilde"
+          ],
+          "answer": "Kildene oppgir ulike tall som må bindes til hver kilde",
+          "answerIndex": 2,
+          "dimension": "final",
+          "topic": "hvorfor_bør_145_og_155_bevares_som_ulike_kapasit",
+          "knowledge": "Kildekritikk viser uenigheten uten falsk presisjon.",
+          "trivia": [],
+          "difficulty": 4,
+          "question_type": "concept",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "mollergata_19",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "byleksikon"
+          ],
+          "method_id": "met_kildekritikk",
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_24",
+          "knowledge_unit_ids": [
+            "ku_his_mollergata_19_24"
+          ],
+          "concept_ids": [
+            "co_historie_historisk_endring_84be686aa4",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Kildekritikk viser uenigheten uten falsk presisjon.",
+          "claim_id": "claim_mollergata_19_quiz_24",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ],
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "mollergata_19_quiz_25",
+          "quiz_id": "historie_mollergata_19_set_4_q4",
+          "categoryId": "historie",
+          "placeId": "mollergata_19",
+          "personId": "",
+          "natureId": "",
+          "question_scope": "place",
+          "question": "Hva gjør Petter Moens dagbok til en samtidig kilde?",
+          "options": [
+            "Den ble skapt av en fange under oppholdet",
+            "Den ble skrevet av en historiker i 2026",
+            "Den er et moderne blåskilt"
+          ],
+          "answer": "Den ble skapt av en fange under oppholdet",
+          "answerIndex": 0,
+          "dimension": "final",
+          "topic": "hva_gjør_petter_moens_dagbok_til_en_samtidig_kil",
+          "knowledge": "Produksjonstid og aktør gir nærhet til hendelsene.",
+          "trivia": [],
+          "difficulty": 4,
+          "question_type": "concept",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_rett_politi_fengsel",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "mollergata_19",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "moen"
+          ],
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_25",
+          "knowledge_unit_ids": [
+            "ku_his_mollergata_19_25"
+          ],
+          "concept_ids": [
+            "co_historie_historisk_endring_84be686aa4",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Produksjonstid og aktør gir nærhet til hendelsene.",
+          "claim_id": "claim_mollergata_19_quiz_25",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "mollergata_19_quiz_26",
+          "quiz_id": "historie_mollergata_19_set_4_q5",
+          "categoryId": "historie",
+          "placeId": "mollergata_19",
+          "personId": "",
+          "natureId": "",
+          "question_scope": "place",
+          "question": "Hva viser kontinuitet og brudd best ved samme adresse?",
+          "options": [
+            "Alt fungerte likt fra 1866 til i dag",
+            "Bygningen fortsatte, mens funksjon og rettsorden skiftet",
+            "Ingen institusjon brukte stedet etter 1945"
+          ],
+          "answer": "Bygningen fortsatte, mens funksjon og rettsorden skiftet",
+          "answerIndex": 1,
+          "dimension": "final",
+          "topic": "hva_viser_kontinuitet_og_brudd_best_ved_samme_ad",
+          "knowledge": "Materiell kontinuitet må skilles fra institusjonelt og rettslig brudd.",
+          "trivia": [],
+          "difficulty": 4,
+          "question_type": "concept",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_fangenskap_kontroll",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "mollergata_19",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "snl"
+          ],
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_26",
+          "knowledge_unit_ids": [
+            "ku_his_mollergata_19_26"
+          ],
+          "concept_ids": [
+            "co_historie_historisk_endring_84be686aa4",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Materiell kontinuitet må skilles fra institusjonelt og rettslig brudd.",
+          "claim_id": "claim_mollergata_19_quiz_26",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "mollergata_19_quiz_27",
+          "quiz_id": "historie_mollergata_19_set_4_q6",
+          "categoryId": "historie",
+          "placeId": "mollergata_19",
+          "personId": "",
+          "natureId": "",
+          "question_scope": "place",
+          "question": "Hva skjedde med hovedbygningen i 1981?",
+          "options": [
+            "Den ble et nytt fengsel",
+            "Den ble flyttet til Youngstorget",
+            "Den ble tatt i bruk av departementene"
+          ],
+          "answer": "Den ble tatt i bruk av departementene",
+          "answerIndex": 2,
+          "dimension": "final",
+          "topic": "hva_skjedde_med_hovedbygningen_i_1981_",
+          "knowledge": "Integreringen ga den bevarte bygningen en ny statlig funksjon.",
+          "trivia": [],
+          "difficulty": 4,
+          "question_type": "concept",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_okkupasjon_motstand",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "mollergata_19",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "regjeringen"
+          ],
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_27",
+          "knowledge_unit_ids": [
+            "ku_his_mollergata_19_27"
+          ],
+          "concept_ids": [
+            "co_historie_historisk_endring_84be686aa4",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Integreringen ga den bevarte bygningen en ny statlig funksjon.",
+          "claim_id": "claim_mollergata_19_quiz_27",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ]
+        },
+        {
+          "id": "mollergata_19_quiz_28",
+          "quiz_id": "historie_mollergata_19_set_4_q7",
+          "categoryId": "historie",
+          "placeId": "mollergata_19",
+          "personId": "",
+          "natureId": "",
+          "question_scope": "place",
+          "question": "Hvordan kan Braudels tidsskille brukes på Møllergata 19?",
+          "options": [
+            "Ved å skille enkelthendelser fra bygningens og institusjonenes lengre tidslag",
+            "Ved å erstatte stedskildene med teori",
+            "Ved å behandle alle perioder som samtidige"
+          ],
+          "answer": "Ved å skille enkelthendelser fra bygningens og institusjonenes lengre tidslag",
+          "answerIndex": 0,
+          "dimension": "final",
+          "topic": "hvordan_kan_braudels_tidsskille_brukes_på_møller",
+          "knowledge": "Teorien hjelper med å ordne hendelser og lang varighet etter at kronologien er etablert.",
+          "trivia": [],
+          "difficulty": 4,
+          "question_type": "concept",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "historie",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "mollergata_19",
+            "oslo",
+            "historie"
+          ],
+          "required_tags": [],
+          "source": [
+            "snl"
+          ],
+          "method_id": null,
+          "primary_knowledge_unit_id": "ku_his_mollergata_19_28",
+          "knowledge_unit_ids": [
+            "ku_his_mollergata_19_28"
+          ],
+          "concept_ids": [
+            "co_historie_historisk_endring_84be686aa4",
+            "co_historie_historiske_lag_818ea0eff4",
+            "co_historie_kildekritikk_7f0fe7940b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "targetId": "mollergata_19",
+          "source_origin": "external",
+          "claim_basis": "Teorien hjelper med å ordne hendelser og lang varighet etter at kronologien er etablert.",
+          "claim_id": "claim_mollergata_19_quiz_28",
+          "concepts": [
+            "institusjon",
+            "historiske lag",
+            "kildekritikk"
+          ],
+          "topic_hook_id": "his_tidslag_samtidighet",
+          "thinker_id": "fernand_braudel",
+          "work": "The Mediterranean and the Mediterranean World",
+          "theory_ref": {
+            "topic_hook_id": "his_tidslag_samtidighet",
+            "thinker_id": "fernand_braudel",
+            "work": "The Mediterranean and the Mediterranean World",
+            "why_it_helps": "Braudels skille mellom hendelser og lang varighet hjelper til å ordne åpningen, okkupasjonsovertakelsen, rivingen og bygningens lengre livsløp uten å erstatte stedskildene."
+          },
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "data/fag/historie/theory_objects_historie_canonical_v5_5.json"
+          ]
         }
       ]
     }
-  ]
+  ],
+  "production_context": {
+    "manifest_category": "historie",
+    "profile": "normal_4x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/historie/mollergata_19.json",
+    "context_artifact": "data/quiz/production_context/historie/mollergata_19.json",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "his_makt_stat_institusjoner",
+      "his_krig_okkupasjon_motstand"
+    ],
+    "emne_ids": [
+      "em_his_rett_politi_fengsel",
+      "em_his_fangenskap_kontroll",
+      "em_his_okkupasjon_motstand",
+      "em_his_rettsoppgjor_etterkrig"
+    ],
+    "topic_hook_ids": [
+      "his_tidslag_samtidighet"
+    ],
+    "method_ids": [
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "fernand_braudel"
+    ],
+    "works": [
+      "The Mediterranean and the Mediterranean World"
+    ],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/historie/mollergata_19_sets.json"
+      ],
+      "active_before": {
+        "categoryId": "historie",
+        "set_count": 1,
+        "question_count": 5
+      },
+      "decisions": [
+        "De fem eldre spørsmålene ble faktasjekket og omskrevet der hovedpoengene fortsatt var relevante.",
+        "Legacy-strukturen 1x5 erstattes av kanonisk 4x7; ingen spørsmål beholdes ordrett."
+      ],
+      "knowledge_migration": {
+        "status": "completed",
+        "retained_rule": "Bare kildebårne kunnskapsenheter er videreført."
+      }
+    },
+    "profile_decision": {
+      "profile": "normal",
+      "set_count": 4,
+      "questions_per_set": 7,
+      "justification": "Fire sett dekker institusjon, okkupasjon, endring og kildekritisk syntese uten gjentakelse."
+    },
+    "held_back_candidates": [
+      "Sensasjonaliserte torturspørsmål",
+      "Påstand om at dagens hovedbygning er det komplette fengselsanlegget",
+      "Kapasitetstall uten kildebinding",
+      "Teori før kronologi og stedskilder"
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  }
 }
