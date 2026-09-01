@@ -1,0 +1,740 @@
+{
+  "schema": "history_go_juss_rettsvitenskap_contracts_obligations_contract_law_source_claim_brief_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-09-01",
+  "status": "source_first_ready_not_materialized",
+  "subject_id": "politikk",
+  "canonical_subcategory_id": "juss_rettsvitenskap",
+  "domain": {
+    "ordinal": 8,
+    "id": "avtaler_obligasjoner_kontraktsrett",
+    "title": "Avtaler, obligasjoner og kontraktsrett",
+    "production_mode": "new_production_required"
+  },
+  "source_strategy": {
+    "source_first": true,
+    "inspectable_urls_required": true,
+    "claim_level_trace_required": true,
+    "minimum_sources_per_claim": 2,
+    "fulltext_materialization_required_before_counting": true,
+    "primary_or_institutional_sources_preferred": true,
+    "jurisdiction_and_time_scope_required": true,
+    "party_and_contract_type_classification_required": true,
+    "mandatory_and_default_rules_must_be_distinguished": true,
+    "formation_validity_performance_and_remedies_must_be_distinguished": true,
+    "consumer_and_commercial_rules_must_be_distinguished": true,
+    "legal_education_is_not_personal_legal_advice": true
+  },
+  "sources": [
+    {
+      "id": "con01-avtaleloven",
+      "title": "Lov om avslutning av avtaler, om fuldmagt og om ugyldige viljeserklæringer (avtaleloven) – LOV-1918-05-31-4",
+      "publisher": "Lovdata",
+      "type": "current-statute",
+      "url": "https://lovdata.no/dokument/NL/lov/1918-05-31-4",
+      "evidence_role": "avtaleinngåelse-fullmakt-ugyldighet-urimelighet",
+      "retrieval_status": "verified_2026_09_01"
+    },
+    {
+      "id": "con02-kjopsloven",
+      "title": "Lov om kjøp (kjøpsloven) – LOV-1988-05-13-27",
+      "publisher": "Lovdata",
+      "type": "current-statute",
+      "url": "https://lovdata.no/dokument/NL/lov/1988-05-13-27",
+      "evidence_role": "deklaratorisk-kjopsrett-oppfyllelse-risiko-kontraktsbrudd",
+      "retrieval_status": "verified_2026_09_01"
+    },
+    {
+      "id": "con03-forbrukerkjopsloven",
+      "title": "Lov om forbrukerkjøp (forbrukerkjøpsloven) – LOV-2002-06-21-34",
+      "publisher": "Lovdata",
+      "type": "current-statute",
+      "url": "https://lovdata.no/dokument/NL/lov/2002-06-21-34",
+      "evidence_role": "ufravikelig-forbrukerkjop-levering-mangel-befoyelser",
+      "retrieval_status": "verified_2026_09_01"
+    },
+    {
+      "id": "con04-handverkertjenesteloven",
+      "title": "Lov om håndverkertjenester m.m. for forbrukere (håndverkertjenesteloven) – LOV-1989-06-16-63",
+      "publisher": "Lovdata",
+      "type": "current-statute",
+      "url": "https://lovdata.no/dokument/NL/lov/1989-06-16-63",
+      "evidence_role": "forbrukertjenester-forsinkelse-mangel-befoyelser",
+      "retrieval_status": "verified_2026_09_01"
+    },
+    {
+      "id": "con05-avhendingslova",
+      "title": "Lov om avhending av fast eigedom (avhendingslova) – LOV-1992-07-03-93",
+      "publisher": "Lovdata",
+      "type": "current-statute",
+      "url": "https://lovdata.no/dokument/NL/lov/1992-07-03-93",
+      "evidence_role": "fast-eiendom-opplysninger-mangel-befoyelser",
+      "retrieval_status": "verified_2026_09_01"
+    },
+    {
+      "id": "con06-bustadoppforingslova",
+      "title": "Lov om avtalar med forbrukar om oppføring av ny bustad m.m. (bustadoppføringslova) – LOV-1997-06-13-43",
+      "publisher": "Lovdata",
+      "type": "current-statute",
+      "url": "https://lovdata.no/dokument/NL/lov/1997-06-13-43",
+      "evidence_role": "ny-bolig-forbruker-forsinkelse-mangel-garanti",
+      "retrieval_status": "verified_2026_09_01"
+    },
+    {
+      "id": "con07-digitalytelsesloven",
+      "title": "Lov om levering av digitale ytelser til forbrukere (digitalytelsesloven) – LOV-2022-06-17-56",
+      "publisher": "Lovdata",
+      "type": "current-statute",
+      "url": "https://lovdata.no/dokument/NL/lov/2022-06-17-56",
+      "evidence_role": "digitale-ytelser-levering-oppdatering-mangel-opphor",
+      "retrieval_status": "verified_2026_09_01"
+    },
+    {
+      "id": "con08-finansavtaleloven",
+      "title": "Lov om finansavtaler (finansavtaleloven) – LOV-2020-12-18-146",
+      "publisher": "Lovdata",
+      "type": "current-statute",
+      "url": "https://lovdata.no/dokument/NL/lov/2020-12-18-146",
+      "evidence_role": "finansavtaler-opplysningsplikt-form-ufravikelighet",
+      "retrieval_status": "verified_2026_09_01"
+    },
+    {
+      "id": "con09-angrerettloven",
+      "title": "Lov om opplysningsplikt og angrerett ved fjernsalg og salg utenom faste forretningslokaler (angrerettloven) – LOV-2014-06-20-27",
+      "publisher": "Lovdata",
+      "type": "current-statute",
+      "url": "https://lovdata.no/dokument/NL/lov/2014-06-20-27",
+      "evidence_role": "fjernsalg-opplysninger-angrefrist-virkninger",
+      "retrieval_status": "verified_2026_09_01"
+    },
+    {
+      "id": "con10-gjeldsbrevlova",
+      "title": "Lov om gjeldsbrev (gjeldsbrevlova) – LOV-1939-02-17-1",
+      "publisher": "Lovdata",
+      "type": "current-statute",
+      "url": "https://lovdata.no/dokument/NL/lov/1939-02-17-1",
+      "evidence_role": "fordringsoverdragelse-debitors-innsigelser-motregning",
+      "retrieval_status": "verified_2026_09_01"
+    },
+    {
+      "id": "con11-foreldelsesloven",
+      "title": "Lov om foreldelse av fordringer (foreldelsesloven) – LOV-1979-05-18-18",
+      "publisher": "Lovdata",
+      "type": "current-statute",
+      "url": "https://lovdata.no/dokument/NL/lov/1979-05-18-18",
+      "evidence_role": "foreldelsesfrist-tilleggsfrist-avbrudd",
+      "retrieval_status": "verified_2026_09_01"
+    },
+    {
+      "id": "con12-uctd",
+      "title": "Council Directive 93/13/EEC on unfair terms in consumer contracts – consolidated text 28 May 2022",
+      "publisher": "EUR-Lex",
+      "type": "eea-relevant-directive",
+      "url": "https://eur-lex.europa.eu/eli/dir/1993/13/2022-05-28/eng",
+      "evidence_role": "urimelige-standardvilkar-god-tro-gjennomsiktighet",
+      "retrieval_status": "verified_2026_09_01"
+    },
+    {
+      "id": "con13-cisg",
+      "title": "United Nations Convention on Contracts for the International Sale of Goods (Vienna, 1980) (CISG)",
+      "publisher": "UNCITRAL",
+      "type": "treaty-official-text-and-status",
+      "url": "https://uncitral.un.org/en/texts/salegoods/conventions/sale_of_goods/cisg",
+      "evidence_role": "internasjonale-kjop-avtaleinngaaelse-plikter-befoyelser",
+      "retrieval_status": "verified_2026_09_01"
+    }
+  ],
+  "topic_briefs": [
+    {
+      "id": "avtaleinngaaelse-tilbud-aksept-og-rettsvalg",
+      "title": "Avtaleinngåelse, tilbud, aksept og regelvalg",
+      "method_ids": [
+        "met_contract_formation",
+        "met_contract_scope"
+      ],
+      "boundary": "Analysen må først fastsette partsroller, avtaletype, jurisdiksjon og om norsk avtalelov, en kontraktstypelov eller CISG gjelder. Tilbud, aksept, tilbakekall og avvikende aksept må holdes atskilt; en regel for internasjonale løsørekjøp kan ikke uten videre gjøres til generell norsk avtalerett.",
+      "source_ids": [
+        "con01-avtaleloven",
+        "con02-kjopsloven",
+        "con03-forbrukerkjopsloven",
+        "con13-cisg"
+      ],
+      "planned_claims": [
+        {
+          "id": "contract-01",
+          "text": "Avtalelovens regler om tilbud og aksept gjelder som utgangspunkt når ikke annet følger av rettshandelen, handelsbruk eller annen sedvane, mens CISG har et eget system for avtaleinngåelse i de internasjonale kjøpene konvensjonen omfatter.",
+          "source_ids": [
+            "con01-avtaleloven",
+            "con13-cisg"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "contract-02",
+          "text": "En for sen eller avvikende aksept kan bli behandlet som et nytt tilbud, men rettsvirkningen må vurderes etter det regelsettet som faktisk gjelder for avtalen og den konkrete kommunikasjonen mellom partene.",
+          "source_ids": [
+            "con01-avtaleloven",
+            "con13-cisg"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "contract-03",
+          "text": "Et tilbakekall må vurderes etter reglene om når erklæringen kommer frem og får virkning; analysen må skille tilbakekall av tilbud fra avslag, fristutløp og senere oppsigelse av en allerede inngått avtale.",
+          "source_ids": [
+            "con01-avtaleloven",
+            "con13-cisg"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "contract-04",
+          "text": "Kjøpsloven er i utgangspunktet deklaratorisk, mens forbrukerkjøpsloven ikke kan fravikes til skade for forbrukeren; klassifiseringen av partene og ytelsen avgjør derfor hvor stor avtalefriheten er.",
+          "source_ids": [
+            "con02-kjopsloven",
+            "con03-forbrukerkjopsloven"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "fullmakt-representasjon-standardvilkaar-og-transparens",
+      "title": "Fullmakt, representasjon, standardvilkår og transparens",
+      "method_ids": [
+        "met_contract_authority",
+        "met_contract_terms"
+      ],
+      "boundary": "Fullmaktens ytre legitimasjon overfor tredjeperson må skilles fra interne instrukser og fra spørsmålet om fullmektigen overhodet hadde kompetanse. Standardvilkår må være vedtatt og tolkes i riktig avtaleramme; forbrukerregler om transparens og urimelige vilkår kan ikke ukritisk overføres til forhandlede næringsavtaler.",
+      "source_ids": [
+        "con01-avtaleloven",
+        "con08-finansavtaleloven",
+        "con12-uctd"
+      ],
+      "planned_claims": [
+        {
+          "id": "contract-05",
+          "text": "Når en finansavtale inngås ved representant, må fullmaktens ytre ramme og eventuelle interne instrukser vurderes etter avtaleloven, mens finansforetakets egne opplysnings- og dokumentasjonsplikter vurderes separat etter finansavtaleloven.",
+          "source_ids": [
+            "con01-avtaleloven",
+            "con08-finansavtaleloven"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "contract-06",
+          "text": "En representasjonsanalyse i et finansforhold må identifisere avtalepart og fullmaktsgrunnlag etter avtaleloven uten å la representasjonen oppheve de ufravikelige pliktene finansavtaleloven legger på tjenesteyteren.",
+          "source_ids": [
+            "con01-avtaleloven",
+            "con08-finansavtaleloven"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "contract-07",
+          "text": "Direktiv 93/13 krever at skriftlige forbrukervilkår formuleres klart og forståelig og at tvil om meningen som utgangspunkt tolkes til fordel for forbrukeren, innenfor direktivets virkeområde.",
+          "source_ids": [
+            "con12-uctd",
+            "con08-finansavtaleloven"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "contract-08",
+          "text": "Særlige opplysnings- og formkrav i finansavtaleloven styrer bestemte finansavtaler og illustrerer at vedtakelse og dokumentasjon av vilkår må kontrolleres mot kontraktstypen, ikke bare mot alminnelig avtalelov.",
+          "source_ids": [
+            "con08-finansavtaleloven",
+            "con01-avtaleloven"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "ugyldighet-urimelighet-og-forbrukervern",
+      "title": "Ugyldighet, urimelighet og forbrukervern",
+      "method_ids": [
+        "met_contract_invalidity",
+        "met_contract_unfairness"
+      ],
+      "boundary": "Tvang, svik, utnyttelse, feil og redelighet/god tro er forskjellige ugyldighetsgrunnlag med egne vilkår. Avtaleloven § 36 åpner for hel eller delvis tilsidesettelse eller endring etter en bred rimelighetsvurdering; dette må skilles fra at et forbrukervilkår ikke binder etter EØS-baserte regler.",
+      "source_ids": [
+        "con01-avtaleloven",
+        "con08-finansavtaleloven",
+        "con12-uctd"
+      ],
+      "planned_claims": [
+        {
+          "id": "contract-09",
+          "text": "Selv om finansavtaleloven kan gi kunden særskilte rettigheter ved brudd på tjenesteyterens plikter, må påstander om tvang, svik, utnyttelse eller erklæringsfeil fortsatt prøves mot det konkrete ugyldighetsgrunnlaget i avtaleloven.",
+          "source_ids": [
+            "con01-avtaleloven",
+            "con08-finansavtaleloven"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "contract-10",
+          "text": "Avtaleloven § 36 kan gi grunnlag for hel eller delvis tilsidesettelse eller endring etter en bred rimelighetsvurdering, mens direktiv 93/13 har en særskilt kontroll av ikke individuelt forhandlede forbrukervilkår; grunnlagene må vurderes hver for seg.",
+          "source_ids": [
+            "con01-avtaleloven",
+            "con12-uctd"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "contract-11",
+          "text": "Et ikke individuelt forhandlet forbrukervilkår kan være urimelig etter direktiv 93/13 når det i strid med god tro skaper en betydelig skjevhet til skade for forbrukeren, og et slikt vilkår skal ikke binde forbrukeren.",
+          "source_ids": [
+            "con12-uctd",
+            "con01-avtaleloven"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "contract-12",
+          "text": "At en avtale er økonomisk ugunstig er ikke alene en automatisk ugyldighetsgrunn; analysen må identifisere rettsgrunnlag, inngåelsesforhold, partsstilling, transparens og den konkrete ubalansen.",
+          "source_ids": [
+            "con01-avtaleloven",
+            "con12-uctd"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "oppfyllelse-levering-betaling-og-risiko",
+      "title": "Oppfyllelse, levering, betaling og risiko",
+      "method_ids": [
+        "met_obligation_performance",
+        "met_obligation_risk"
+      ],
+      "boundary": "Primærpliktene følger først av avtalen og deretter av anvendelig bakgrunnsrett. Leveringstid, leveringssted, betaling og risikoovergang er separate spørsmål; risikoovergang avgjør ikke automatisk om ytelsen var kontraktsmessig eller om et tidligere kontraktsbrudd foreligger.",
+      "source_ids": [
+        "con02-kjopsloven",
+        "con03-forbrukerkjopsloven",
+        "con05-avhendingslova",
+        "con07-digitalytelsesloven",
+        "con13-cisg"
+      ],
+      "planned_claims": [
+        {
+          "id": "contract-13",
+          "text": "Ved løsørekjøp må leveringstid og leveringssted fastsettes ut fra avtalen og deretter riktig kjøpsrettslig bakgrunnsregel; kjøpsloven, forbrukerkjøpsloven og CISG har beslektede, men ikke identiske systemer.",
+          "source_ids": [
+            "con02-kjopsloven",
+            "con03-forbrukerkjopsloven",
+            "con13-cisg"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "contract-14",
+          "text": "Risikoovergang gjelder hvem som bærer følgene av tilfeldig tap eller skade og må holdes atskilt fra mangelsvurdering, omsorgsplikt og ansvar for et allerede inntrådt kontraktsbrudd.",
+          "source_ids": [
+            "con02-kjopsloven",
+            "con03-forbrukerkjopsloven",
+            "con13-cisg"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "contract-15",
+          "text": "Fast eiendom, nye boliger og digitale ytelser har kontraktstypespesifikke leverings- og oppfyllelsesregler, slik at regler fra ordinære løsørekjøp ikke kan brukes uten en uttrykkelig virkeområdekontroll.",
+          "source_ids": [
+            "con05-avhendingslova",
+            "con06-bustadoppforingslova",
+            "con07-digitalytelsesloven"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "contract-16",
+          "text": "Kjøperens eller forbrukerens betalingsplikt må vurderes sammen med avtalt forfall, medvirkningsplikter og eventuell rett til å holde tilbake betaling ved den andre partens kontraktsbrudd.",
+          "source_ids": [
+            "con02-kjopsloven",
+            "con03-forbrukerkjopsloven",
+            "con04-handverkertjenesteloven"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "forsinkelse-oppfyllelse-tilbakehold-og-heving",
+      "title": "Forsinkelse, oppfyllelse, tilbakehold og heving",
+      "method_ids": [
+        "met_breach_delay",
+        "met_remedy_performance"
+      ],
+      "boundary": "Forsinkelse forutsetter at ytelsen ikke leveres rettidig og at dette ikke skyldes kreditorens forhold. Krav på oppfyllelse, tilbakehold, tilleggsfrist, heving og erstatning har forskjellige vilkår; heving avslutter ikke automatisk ethvert erstatnings- eller restitusjonsspørsmål.",
+      "source_ids": [
+        "con02-kjopsloven",
+        "con03-forbrukerkjopsloven",
+        "con04-handverkertjenesteloven",
+        "con06-bustadoppforingslova",
+        "con07-digitalytelsesloven",
+        "con13-cisg"
+      ],
+      "planned_claims": [
+        {
+          "id": "contract-17",
+          "text": "Ved forsinkelse kan kreditor etter det aktuelle regelsettet ha krav på blant annet oppfyllelse, tilbakehold, heving og erstatning, men hvert misligholdskrav må prøves mot sine egne vilkår.",
+          "source_ids": [
+            "con02-kjopsloven",
+            "con03-forbrukerkjopsloven",
+            "con13-cisg"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "contract-18",
+          "text": "Retten til å holde tilbake egen ytelse er et sikringsmiddel og må begrenses til det som er nødvendig eller forholdsmessig etter den kontraktstypeloven som gjelder.",
+          "source_ids": [
+            "con03-forbrukerkjopsloven",
+            "con04-handverkertjenesteloven",
+            "con06-bustadoppforingslova"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "contract-19",
+          "text": "En tilleggsfrist kan få betydning for oppfyllelse og heving, men krav til varsel, fristens rimelighet og virkningen av fristoversittelse varierer mellom kjøps-, forbruker- og internasjonale regler.",
+          "source_ids": [
+            "con02-kjopsloven",
+            "con03-forbrukerkjopsloven",
+            "con13-cisg"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "contract-20",
+          "text": "Ved forsinket digital ytelse må leveringsplikten og forbrukerens hevings- og erstatningskrav vurderes etter digitalytelsesloven, ikke automatisk etter reglene for fysiske varer eller håndverkertjenester.",
+          "source_ids": [
+            "con07-digitalytelsesloven",
+            "con03-forbrukerkjopsloven",
+            "con04-handverkertjenesteloven"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "mangel-konformitet-retting-og-omlevering",
+      "title": "Mangel, konformitet, retting og omlevering",
+      "method_ids": [
+        "met_breach_conformity",
+        "met_remedy_cure"
+      ],
+      "boundary": "Mangel må fastsettes mot avtalen, lovens objektive krav, opplysninger, bruk og relevant tidspunkt. Retting, omlevering og leverandørens avhjelpsrett varierer med ytelsen; fysisk vare, fast eiendom, håndverk, ny bolig og digital ytelse har ikke ett felles identisk mangelsregime.",
+      "source_ids": [
+        "con02-kjopsloven",
+        "con03-forbrukerkjopsloven",
+        "con04-handverkertjenesteloven",
+        "con05-avhendingslova",
+        "con06-bustadoppforingslova",
+        "con07-digitalytelsesloven"
+      ],
+      "planned_claims": [
+        {
+          "id": "contract-21",
+          "text": "Om en ytelse har en mangel beror på avtalte egenskaper, lovens utfyllende krav, relevante opplysninger og hvilket tidspunkt risikoen eller leveringsansvaret knyttes til.",
+          "source_ids": [
+            "con02-kjopsloven",
+            "con03-forbrukerkjopsloven",
+            "con05-avhendingslova"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "contract-22",
+          "text": "Forbrukerkjøp og digitale ytelser har ufravikelige konformitetskrav og særregler om bevis og oppdateringer som ikke kan erstattes av kjøpslovens deklaratoriske nærings- og privatkjøpsregler.",
+          "source_ids": [
+            "con03-forbrukerkjopsloven",
+            "con07-digitalytelsesloven",
+            "con02-kjopsloven"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "contract-23",
+          "text": "Retting og omlevering må vurderes etter ytelsens art, kostnader, ulempe og lovens prioritering mellom avhjelpsformene; omlevering passer ikke likt for arbeid på ting, fast eiendom og masseproduserte varer.",
+          "source_ids": [
+            "con03-forbrukerkjopsloven",
+            "con04-handverkertjenesteloven",
+            "con05-avhendingslova"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "contract-24",
+          "text": "Ved ny bolig må mangel, retting, tilbakehold og garanti vurderes etter bustadoppføringslova, mens avhendingslova regulerer andre overføringer av fast eiendom og bygger på et annet kontraktsforløp.",
+          "source_ids": [
+            "con06-bustadoppforingslova",
+            "con05-avhendingslova"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "prisavslag-heving-erstatning-og-tapsbegrensning",
+      "title": "Prisavslag, heving, erstatning og tapsbegrensning",
+      "method_ids": [
+        "met_remedy_termination",
+        "met_remedy_damages"
+      ],
+      "boundary": "Prisavslag, heving og erstatning beskytter ulike interesser og kan ha ulike beregningsregler. Vesentlighetskravet ved heving, kontrollansvar, skyldansvar, direkte og indirekte tap, årsakssammenheng, påregnelighet og tapsbegrensning må vurderes under riktig lov og kan ikke reduseres til én universell misligholdsformel.",
+      "source_ids": [
+        "con02-kjopsloven",
+        "con03-forbrukerkjopsloven",
+        "con04-handverkertjenesteloven",
+        "con05-avhendingslova",
+        "con06-bustadoppforingslova",
+        "con07-digitalytelsesloven",
+        "con13-cisg"
+      ],
+      "planned_claims": [
+        {
+          "id": "contract-25",
+          "text": "Prisavslag skal gjenopprette balansen mellom avtalt og mangelfull ytelse etter den aktuelle lovens beregningsregel og må holdes atskilt fra erstatning for et dokumentert økonomisk tap.",
+          "source_ids": [
+            "con03-forbrukerkjopsloven",
+            "con04-handverkertjenesteloven",
+            "con05-avhendingslova"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "contract-26",
+          "text": "Heving krever et kvalifisert kontraktsbrudd eller annet lovbestemt grunnlag, og terskel, varsel og restitusjonsvirkninger må fastsettes etter den kontraktstypen som gjelder.",
+          "source_ids": [
+            "con02-kjopsloven",
+            "con03-forbrukerkjopsloven",
+            "con13-cisg"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "contract-27",
+          "text": "Erstatningsansvar ved kontraktsbrudd kan bygge på kontrollansvar, skyld eller særregler, og analysen må skille ansvarsgrunnlag fra årsakssammenheng, tapsutmåling og eventuelle unntak for indirekte tap.",
+          "source_ids": [
+            "con02-kjopsloven",
+            "con03-forbrukerkjopsloven",
+            "con06-bustadoppforingslova"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "contract-28",
+          "text": "Den skadelidte må etter flere kontraktsrettslige regelsett treffe rimelige tiltak for å begrense tapet; tapsbegrensningsplikten reduserer erstatningen for unngåelig tap, men opphever ikke i seg selv kontraktsbruddet.",
+          "source_ids": [
+            "con02-kjopsloven",
+            "con05-avhendingslova",
+            "con13-cisg"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "fordringer-foreldelse-angrerett-og-internasjonale-kjop",
+      "title": "Fordringer, foreldelse, angrerett og internasjonale kjøp",
+      "method_ids": [
+        "met_obligation_transfer_limitations",
+        "met_contract_exit_scope"
+      ],
+      "boundary": "Overdragelse, motregning og foreldelse gjelder fordringens videre liv, mens angrerett er en lovbestemt uttredelsesrett i bestemte forbrukeravtaler. CISG gjelder bestemte internasjonale varekjøp og regulerer ikke generelt avtalens gyldighet eller tingsrettslig eiendomsvirkning; virkeområdene må aldri blandes.",
+      "source_ids": [
+        "con09-angrerettloven",
+        "con10-gjeldsbrevlova",
+        "con11-foreldelsesloven",
+        "con13-cisg"
+      ],
+      "planned_claims": [
+        {
+          "id": "contract-29",
+          "text": "Når en kjøpesumsfordring overdras, følger kravets materielle grunnlag av kjøpsavtalen og kjøpsloven, mens skyldnerens vern ved selve overdragelsen – blant annet innsigelser og betydningen av melding – må prøves etter gjeldsbrevlova.",
+          "source_ids": [
+            "con10-gjeldsbrevlova",
+            "con02-kjopsloven"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "contract-30",
+          "text": "At et krav er dokumentert i et gjeldsbrev avgjør ikke om det fortsatt kan håndheves; foreldelsesloven krever en egen tidslinje for friststart, eventuell tilleggsfrist og avbrudd, mens gjeldsbrevlova regulerer fordringsdokumentet og skyldnervernet.",
+          "source_ids": [
+            "con11-foreldelsesloven",
+            "con10-gjeldsbrevlova"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "contract-31",
+          "text": "Angrerettloven gir ved fjernsalg og salg utenom faste forretningslokaler en særskilt forbrukerrett med opplysningskrav, frister og virkninger som må skilles fra heving på grunn av kontraktsbrudd.",
+          "source_ids": [
+            "con09-angrerettloven",
+            "con03-forbrukerkjopsloven"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "contract-32",
+          "text": "CISG gjelder internasjonale kjøp av varer innenfor konvensjonens virkeområde, men unntar blant annet forbrukerkjøp og regulerer ikke generelt avtalens gyldighet eller eiendomsvirkning.",
+          "source_ids": [
+            "con13-cisg",
+            "con03-forbrukerkjopsloven"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    }
+  ],
+  "planned_assessments": [
+    {
+      "id": "assess-contract-01",
+      "title": "Analyser avtaleinngåelse, tilbud, aksept og regelvalg",
+      "claim_ids": [
+        "contract-01",
+        "contract-02",
+        "contract-03",
+        "contract-04"
+      ]
+    },
+    {
+      "id": "assess-contract-02",
+      "title": "Analyser fullmakt, representasjon, standardvilkår og transparens",
+      "claim_ids": [
+        "contract-05",
+        "contract-06",
+        "contract-07",
+        "contract-08"
+      ]
+    },
+    {
+      "id": "assess-contract-03",
+      "title": "Analyser ugyldighet, urimelighet og forbrukervern",
+      "claim_ids": [
+        "contract-09",
+        "contract-10",
+        "contract-11",
+        "contract-12"
+      ]
+    },
+    {
+      "id": "assess-contract-04",
+      "title": "Analyser oppfyllelse, levering, betaling og risiko",
+      "claim_ids": [
+        "contract-13",
+        "contract-14",
+        "contract-15",
+        "contract-16"
+      ]
+    },
+    {
+      "id": "assess-contract-05",
+      "title": "Analyser forsinkelse, oppfyllelse, tilbakehold og heving",
+      "claim_ids": [
+        "contract-17",
+        "contract-18",
+        "contract-19",
+        "contract-20"
+      ]
+    },
+    {
+      "id": "assess-contract-06",
+      "title": "Analyser mangel, konformitet, retting og omlevering",
+      "claim_ids": [
+        "contract-21",
+        "contract-22",
+        "contract-23",
+        "contract-24"
+      ]
+    },
+    {
+      "id": "assess-contract-07",
+      "title": "Analyser prisavslag, heving, erstatning og tapsbegrensning",
+      "claim_ids": [
+        "contract-25",
+        "contract-26",
+        "contract-27",
+        "contract-28"
+      ]
+    },
+    {
+      "id": "assess-contract-08",
+      "title": "Analyser fordringer, foreldelse, angrerett og internasjonale kjøp",
+      "claim_ids": [
+        "contract-29",
+        "contract-30",
+        "contract-31",
+        "contract-32"
+      ]
+    }
+  ],
+  "decision_scenarios": [
+    {
+      "id": "case-contract-01",
+      "title": "Avvikende aksept i internasjonalt varekjøp",
+      "source_ids": [
+        "con01-avtaleloven",
+        "con13-cisg"
+      ],
+      "prompt": "En norsk kjøper svarer på et utenlandsk tilbud med endret pris og leveringssted. Fastsett først om CISG gjelder, og skill aksept, avvikende aksept, nytt tilbud og eventuell senere konkludent avtaleinngåelse."
+    },
+    {
+      "id": "case-contract-02",
+      "title": "Fullmektig overskrider intern instruks",
+      "source_ids": [
+        "con01-avtaleloven",
+        "con08-finansavtaleloven"
+      ],
+      "prompt": "En ansatt inngår avtale innenfor en synlig stillingsfullmakt, men i strid med en intern beløpsgrense. Skill fullmaktens ytre ramme, instruksen, medkontrahentens gode tro og eventuelle særlige formkrav."
+    },
+    {
+      "id": "case-contract-03",
+      "title": "Uklart og ubalansert forbrukervilkår",
+      "source_ids": [
+        "con01-avtaleloven",
+        "con12-uctd"
+      ],
+      "prompt": "Et standardvilkår lar leverandøren endre pris ensidig uten klar grunn. Vurder vedtakelse, transparens, direktivets urimelighetstest og avtaleloven § 36 uten å anta at enhver prisendring er ugyldig."
+    },
+    {
+      "id": "case-contract-04",
+      "title": "Forsinket digital abonnementstjeneste",
+      "source_ids": [
+        "con07-digitalytelsesloven",
+        "con03-forbrukerkjopsloven"
+      ],
+      "prompt": "En digital tjeneste leveres ikke på avtalt dato. Identifiser riktig lov, leveringsplikt, eventuell tilleggsfrist, tilbakehold, heving og erstatning, og forklar hvorfor fysisk varekjøp ikke er hovedregelen."
+    },
+    {
+      "id": "case-contract-05",
+      "title": "Mangler ved ny bolig",
+      "source_ids": [
+        "con06-bustadoppforingslova",
+        "con05-avhendingslova"
+      ],
+      "prompt": "En forbruker oppdager avvik før overtakelse av en bolig under oppføring. Skill bustadoppføringslova fra avhendingslova og vurder dokumentasjon, retting, tilbakehold, garanti, prisavslag og heving i riktig rekkefølge."
+    },
+    {
+      "id": "case-contract-06",
+      "title": "Overdratt og mulig foreldet krav",
+      "source_ids": [
+        "con10-gjeldsbrevlova",
+        "con11-foreldelsesloven"
+      ],
+      "prompt": "Et eldre betalingskrav er overdratt til ny kreditor, og skyldneren anfører både innsigelser fra grunnforholdet og foreldelse. Bygg tidslinje for forfall, kunnskap, avbrudd, melding og innsigelser før du konkluderer."
+    }
+  ],
+  "fulltext_requirements": {
+    "modules": 4,
+    "sections": 8,
+    "paragraphs": 32,
+    "verified_claims": 32,
+    "assessments": 8,
+    "decision_scenarios": 6
+  }
+}

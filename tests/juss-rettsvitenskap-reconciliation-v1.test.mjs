@@ -1,1 +1,13 @@
-import test from 'node:test';import assert from 'node:assert/strict';import {audit} from '../scripts/audit-juss-rettsvitenskap-reconciliation-v1.mjs';test('Juss har felt 1-6 materialisert og felt 7 Rettergang/bevis source-first',()=>{const r=audit();assert.equal(r.status,'pass');assert.equal(r.domains,12);assert.equal(r.materialized,6);assert.equal(r.sourceFirstReady,7);assert.equal(r.strictCompletionProven,false);assert.equal(r.nextDomain,'rettergang_bevis_sivilprosess_straffeprosess')});
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { audit } from '../scripts/audit-juss-rettsvitenskap-reconciliation-v1.mjs';
+
+test('Juss har felt 1-7 materialisert og felt 8 Avtaler/obligasjoner source-first', () => {
+  const report = audit();
+  assert.equal(report.status, 'pass');
+  assert.equal(report.domains, 12);
+  assert.equal(report.materialized, 7);
+  assert.equal(report.sourceFirstReady, 8);
+  assert.equal(report.strictCompletionProven, false);
+  assert.equal(report.nextDomain, 'avtaler_obligasjoner_kontraktsrett');
+});
