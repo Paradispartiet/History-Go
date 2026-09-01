@@ -7,3 +7,5 @@ The two-week season follows one deteriorating capacity and quality picture throu
 Standing is situated separately among divisional leadership, clinical professionals, department managers, employees and unions, patients and next of kin, oversight and partners, and private relations. A global reputation score is forbidden, and no audience can grant diagnostic, treatment, authorization, regulated-decision or budget authority.
 
 Editorial uniqueness is tested across all beats. Shared boilerplate may state the invariant authority boundary, but each beat must contain a distinct system-risk state, audience and delayed implication. Cross-role remains `candidate_when_shared_work_is_real`; no shared object or runtime is invented.
+
+Checkpoint: permanent materialization head `e8e7ba5b27f313b569477b59e4a3b17e5e8dfcbc` reproduced 56/56 unique summaries, 56/56 unique situated consequences, all 15 canonical scene bindings, focused integrity gates and the 334/334 full Civication suite before the temporary workflow removed itself.
