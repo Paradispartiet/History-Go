@@ -1,0 +1,706 @@
+{
+  "schema": "history_go_juss_rettsvitenskap_human_rights_echr_source_claim_brief_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-09-01",
+  "status": "source_first_ready_not_materialized",
+  "subject_id": "politikk",
+  "canonical_subcategory_id": "juss_rettsvitenskap",
+  "domain": {
+    "ordinal": 4,
+    "id": "menneskerettigheter_emk_rettighetsvern",
+    "title": "Menneskerettigheter, EMK og rettighetsvern",
+    "production_mode": "new_production_required"
+  },
+  "source_strategy": {
+    "source_first": true,
+    "inspectable_urls_required": true,
+    "claim_level_trace_required": true,
+    "minimum_sources_per_claim": 2,
+    "fulltext_materialization_required_before_counting": true,
+    "primary_or_institutional_sources_preferred": true,
+    "jurisdiction_and_time_scope_required": true,
+    "current_norwegian_constitution_and_human_rights_act_control": true,
+    "echr_hudoc_document_status_must_be_checked": true,
+    "domestic_remedies_and_four_month_limit_must_be_distinguished": true,
+    "legal_education_is_not_personal_legal_advice": true
+  },
+  "sources": [
+    {
+      "id": "mr01-grunnloven-e",
+      "title": "Kongeriket Norges Grunnlov – E. Menneskerettigheter",
+      "publisher": "Lovdata",
+      "type": "constitution",
+      "url": "https://lovdata.no/nav/lov/1814-05-17/kapE",
+      "evidence_role": "norsk-grunnlovsvern-paragrafene-92-113",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "mr02-menneskerettsloven",
+      "title": "Lov om styrking av menneskerettighetenes stilling i norsk rett (menneskerettsloven)",
+      "publisher": "Lovdata",
+      "type": "statute",
+      "url": "https://lovdata.no/dokument/NL/lov/1999-05-21-30",
+      "evidence_role": "inkorporasjon-og-forrang-i-norsk-rett",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "mr03-emk-official",
+      "title": "European Convention on Human Rights – official texts",
+      "publisher": "European Court of Human Rights",
+      "type": "treaty",
+      "url": "https://www.echr.coe.int/en/web/echr/european-convention-on-human-rights",
+      "evidence_role": "autoritativ-konvensjonsstruktur-og-artikler",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "mr04-hudoc",
+      "title": "HUDOC database",
+      "publisher": "European Court of Human Rights",
+      "type": "official-case-law-database",
+      "url": "https://www.echr.coe.int/en/hudoc-database",
+      "evidence_role": "emd-dommer-avgjorelser-og-rettspraksis",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "mr05-admissibility",
+      "title": "Practical guide on admissibility criteria",
+      "publisher": "European Court of Human Rights",
+      "type": "institutional-case-law-guide",
+      "url": "https://www.echr.coe.int/documents/admissibility_guide_eng.pdf",
+      "evidence_role": "artikkel-34-35-nasjonale-rettsmidler-og-firemanedersfrist",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "mr06-art6-guide",
+      "title": "Guide on Article 6 – Right to a fair trial (criminal limb)",
+      "publisher": "European Court of Human Rights",
+      "type": "institutional-case-law-guide",
+      "url": "https://ks.echr.coe.int/documents/d/echr-ks/guide_art_6_criminal_eng",
+      "evidence_role": "rettferdig-rettergang-og-prosessgarantier",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "mr07-art8-guide",
+      "title": "Guide on Article 8 – Right to respect for private and family life",
+      "publisher": "European Court of Human Rights",
+      "type": "institutional-case-law-guide",
+      "url": "https://ks.echr.coe.int/web/echr-ks/d/guide_art_8_eng",
+      "evidence_role": "privatliv-familieliv-positive-plikter-og-proporsjonalitet",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "mr08-art10-guide",
+      "title": "Guide on Article 10 – Freedom of expression",
+      "publisher": "European Court of Human Rights",
+      "type": "institutional-case-law-guide",
+      "url": "https://ks.echr.coe.int/web/echr-ks/d/guide_art_10_eng",
+      "evidence_role": "ytringsfrihet-inngrep-og-avveining",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "mr09-art14-guide",
+      "title": "Guide on Article 14 and Article 1 of Protocol No. 12 – prohibition of discrimination",
+      "publisher": "European Court of Human Rights",
+      "type": "institutional-case-law-guide",
+      "url": "https://ks.echr.coe.int/documents/d/echr-ks/guide_art_14_art_1_protocol_12_eng-pdf",
+      "evidence_role": "diskrimineringsvern-sammenlignbar-situasjon-og-objektiv-begrunnelse",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "mr10-hr2015-206-a",
+      "title": "HR-2015-206-A – utvisning av mor til norsk barn",
+      "publisher": "Norges Høyesterett",
+      "type": "supreme-court-judgment",
+      "url": "https://www.domstol.no/en/supremecourt/rulings/2015/translated/expulsion-of-a-norwegian-citizen-and-a-single-mother-of-a-minor/",
+      "evidence_role": "emk-artikkel-8-og-barnets-rettigheter-i-norsk-praksis",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "mr11-hr2020-661-s",
+      "title": "HR-2020-661-S – barnevern, adopsjon og EMK artikkel 8",
+      "publisher": "Norges Høyesterett",
+      "type": "supreme-court-grand-chamber-ruling",
+      "url": "https://www.domstol.no/no/hoyesterett/avgjorelser/2020/hoyesterett-sivil/hr-2020-661-s/",
+      "evidence_role": "norsk-anvendelse-av-emd-praksis-familieliv-og-barnets-beste",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "mr12-hr2022-2106-a",
+      "title": "HR-2022-2106-A – ytringsfrihet og personvern ved lydopptak",
+      "publisher": "Norges Høyesterett",
+      "type": "supreme-court-ruling",
+      "url": "https://www.domstol.no/no/hoyesterett/avgjorelser/2022/hoyesterett---straff/HR-2022-2106-A/",
+      "evidence_role": "avveining-ytringsfrihet-personvern-grunnloven-og-emk",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "mr13-strand-lobben",
+      "title": "Strand Lobben and Others v. Norway [GC], application no. 37283/13",
+      "publisher": "European Court of Human Rights / HUDOC",
+      "type": "grand-chamber-judgment",
+      "url": "https://hudoc.echr.coe.int/eng?i=001-195909",
+      "evidence_role": "artikkel-8-prosessuelle-krav-familieliv-og-barnets-beste",
+      "retrieval_status": "verified_2026-09-01"
+    }
+  ],
+  "topic_briefs": [
+    {
+      "id": "norsk-forankring-inkorporasjon-og-forrang",
+      "title": "Norsk forankring, inkorporasjon og forrang",
+      "method_ids": [
+        "met_mr_norsk_forankring",
+        "met_mr_forrang"
+      ],
+      "boundary": "Grunnloven § 92, menneskerettsloven §§ 2–3 og den enkelte rettighetsbestemmelsen må holdes analytisk atskilt. Inkorporasjon gjør konvensjoner til norsk lov, mens forrang ved motstrid er et eget spørsmål; en påstått konflikt krever konkret tolkning av begge normene.",
+      "source_ids": [
+        "mr01-grunnloven-e",
+        "mr02-menneskerettsloven",
+        "mr03-emk-official"
+      ],
+      "planned_claims": [
+        {
+          "id": "mr-01",
+          "text": "Grunnloven § 92 pålegger statens myndigheter å respektere og sikre menneskerettighetene i Grunnloven og i for Norge bindende menneskerettighetstraktater.",
+          "source_ids": [
+            "mr01-grunnloven-e",
+            "mr02-menneskerettsloven"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "mr-02",
+          "text": "Menneskerettsloven § 2 gjør blant annet EMK gjeldende som norsk lov i den utstrekning konvensjonen er bindende for Norge.",
+          "source_ids": [
+            "mr02-menneskerettsloven",
+            "mr03-emk-official"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "mr-03",
+          "text": "Menneskerettsloven § 3 gir de inkorporerte konvensjonene og protokollene forrang ved motstrid med annen lovgivning, men motstridsspørsmålet krever tolkning før forrangsregelen anvendes.",
+          "source_ids": [
+            "mr02-menneskerettsloven",
+            "mr01-grunnloven-e"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "mr-04",
+          "text": "Grunnlovsvern og EMK-vern kan overlappe uten å være identiske; analysen må angi hvilken norm som anvendes, hvordan den er tolket og hvilken rettslig virkning den har i den konkrete saken.",
+          "source_ids": [
+            "mr01-grunnloven-e",
+            "mr03-emk-official"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "rettighetssubjekt-statens-plikter-og-rekkevidde",
+      "title": "Rettighetssubjekt, statens plikter og rettighetenes rekkevidde",
+      "method_ids": [
+        "met_mr_rettighetssubjekt",
+        "met_mr_positive_plikter"
+      ],
+      "boundary": "En menneskerettighetsanalyse må identifisere hvem som er rettighetshaver, hvilken offentlig myndighet eller statlig plikt som aktualiseres, og om saken gjelder et direkte inngrep, en positiv sikringsplikt eller en prosessuell plikt. EMK er ikke en generell hjemmel for ethvert ønskelig resultat.",
+      "source_ids": [
+        "mr01-grunnloven-e",
+        "mr03-emk-official",
+        "mr07-art8-guide"
+      ],
+      "planned_claims": [
+        {
+          "id": "mr-05",
+          "text": "Menneskerettigheter beskytter identifiserte rettighetshavere mot statlige inngrep og kan også pålegge staten positive plikter til å sikre effektivt vern innenfor den enkelte bestemmelsens rekkevidde.",
+          "source_ids": [
+            "mr03-emk-official",
+            "mr07-art8-guide"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "mr-06",
+          "text": "Om en positiv plikt foreligger må vurderes etter den aktuelle rettigheten, statens kunnskap og handlemuligheter og den rimelige balansen mellom individuelle og samfunnsmessige interesser.",
+          "source_ids": [
+            "mr07-art8-guide",
+            "mr03-emk-official"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "mr-07",
+          "text": "Prosessuelle menneskerettighetskrav kan stille krav til beslutningsgrunnlag, begrunnelse, kontradiksjon eller effektiv prøving selv når den materielle rettigheten ikke gir ett bestemt resultat.",
+          "source_ids": [
+            "mr06-art6-guide",
+            "mr07-art8-guide"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "mr-08",
+          "text": "En rettighet kan ikke analyseres løsrevet fra sitt anvendelsesområde, eventuelle begrensningsvilkår og relevant praksis; rettighetsnavnet alene avgjør ikke saken.",
+          "source_ids": [
+            "mr03-emk-official",
+            "mr04-hudoc"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "inngrep-lovhjemmel-legitimt-formal-og-proporsjonalitet",
+      "title": "Inngrep, lovhjemmel, legitimt formål og proporsjonalitet",
+      "method_ids": [
+        "met_mr_inngrepstest",
+        "met_mr_proporsjonalitet"
+      ],
+      "boundary": "For kvalifiserte rettigheter som EMK artikkel 8 og 10 må analysen skille om det foreligger et inngrep, om inngrepet er foreskrevet ved lov, om det forfølger et konvensjonslegitimt formål og om det er nødvendig i et demokratisk samfunn. Proporsjonalitet er en strukturert avveining, ikke en fri rimelighetsvurdering.",
+      "source_ids": [
+        "mr03-emk-official",
+        "mr07-art8-guide",
+        "mr08-art10-guide"
+      ],
+      "planned_claims": [
+        {
+          "id": "mr-09",
+          "text": "Ved inngrep i kvalifiserte EMK-rettigheter må det først fastslås om det foreligger et inngrep i den beskyttede interessen før begrunnelsesvilkårene vurderes.",
+          "source_ids": [
+            "mr03-emk-official",
+            "mr07-art8-guide"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "mr-10",
+          "text": "Kravet om at et inngrep skal være foreskrevet ved lov omfatter et rettslig grunnlag som tilfredsstiller konvensjonens krav til tilgjengelighet og forutberegnelighet.",
+          "source_ids": [
+            "mr07-art8-guide",
+            "mr08-art10-guide"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "mr-11",
+          "text": "Et inngrep etter artikkel 8 eller 10 må forfølge et av de legitime formålene som den aktuelle bestemmelsen oppregner; et generelt samfunnsformål er ikke nok uten kobling til konvensjonsteksten.",
+          "source_ids": [
+            "mr03-emk-official",
+            "mr08-art10-guide"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "mr-12",
+          "text": "Nødvendighets- og proporsjonalitetsvurderingen må forklare hvorfor inngrepet svarer på et tungtveiende samfunnsbehov og om begrunnelsen og avveiningen er relevante og tilstrekkelige.",
+          "source_ids": [
+            "mr07-art8-guide",
+            "mr08-art10-guide"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "rettferdig-rettergang-artikkel-6-og-grunnloven-95",
+      "title": "Rettferdig rettergang – EMK artikkel 6 og Grunnloven § 95",
+      "method_ids": [
+        "met_mr_art6",
+        "met_mr_grl95"
+      ],
+      "boundary": "Rettferdig rettergang etter EMK artikkel 6 og Grunnloven § 95 må analyseres etter om saken faller innenfor bestemmelsenes anvendelsesområde og hvilke konkrete garantier som gjelder. Uavhengighet, upartiskhet, rimelig tid, kontradiksjon og forsvarsrettigheter er forskjellige krav; EMK er ikke en fjerde ordinær ankeinstans for bevis- og lovanvendelse.",
+      "source_ids": [
+        "mr01-grunnloven-e",
+        "mr03-emk-official",
+        "mr06-art6-guide",
+        "mr05-admissibility"
+      ],
+      "planned_claims": [
+        {
+          "id": "mr-13",
+          "text": "Grunnloven § 95 og EMK artikkel 6 beskytter retten til en uavhengig og upartisk domstol og en rettferdig rettergang innenfor bestemmelsenes anvendelsesområde.",
+          "source_ids": [
+            "mr01-grunnloven-e",
+            "mr06-art6-guide"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "mr-14",
+          "text": "Artikkel 6 inneholder flere selvstendige prosessgarantier, og analysen må identifisere hvilken garanti som påstås krenket fremfor å bruke rettferdig rettergang som en uavgrenset standard.",
+          "source_ids": [
+            "mr03-emk-official",
+            "mr06-art6-guide"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "mr-15",
+          "text": "Kontradiksjon og muligheten til effektivt å imøtegå relevant materiale er sentrale komponenter i rettferdig rettergang, men vurderingen gjøres i lys av prosessen som helhet.",
+          "source_ids": [
+            "mr06-art6-guide",
+            "mr03-emk-official"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "mr-16",
+          "text": "EMD fungerer ikke som en ordinær fjerde instans som generelt retter nasjonale domstolers faktum- eller lovanvendelsesfeil; klagen må reise et konvensjonsspørsmål innenfor domstolens kompetanse.",
+          "source_ids": [
+            "mr05-admissibility",
+            "mr04-hudoc"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "privatliv-familieliv-og-barnets-beste",
+      "title": "Privatliv, familieliv og barnets beste",
+      "method_ids": [
+        "met_mr_art8",
+        "met_mr_barnets_beste"
+      ],
+      "boundary": "EMK artikkel 8 og Grunnloven § 102 verner privat- og familieliv, mens Grunnloven § 104 gir særskilte barnerettigheter. Barnets beste er et grunnleggende hensyn, men vurderingen må også identifisere foreldres og barns konkrete rettigheter, inngrepets formål, gjenforeningsmål og kvaliteten på beslutningsprosessen.",
+      "source_ids": [
+        "mr01-grunnloven-e",
+        "mr07-art8-guide",
+        "mr10-hr2015-206-a",
+        "mr11-hr2020-661-s",
+        "mr13-strand-lobben"
+      ],
+      "planned_claims": [
+        {
+          "id": "mr-17",
+          "text": "EMK artikkel 8 og Grunnloven § 102 verner privatliv, familieliv, hjem og kommunikasjon, men rekkevidden og inngrepstesten må vurderes konkret for den beskyttede interessen.",
+          "source_ids": [
+            "mr01-grunnloven-e",
+            "mr07-art8-guide"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "mr-18",
+          "text": "I saker som berører barn krever Grunnloven § 104 at barnets beste er et grunnleggende hensyn, samtidig som barnets rett til å bli hørt og øvrige rettigheter må vurderes etter sakens karakter.",
+          "source_ids": [
+            "mr01-grunnloven-e",
+            "mr10-hr2015-206-a"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "mr-19",
+          "text": "Høyesteretts storkammerpraksis om barnevern viser at norsk rett skal anvendes i lys av EMDs artikkel 8-praksis, med særlig oppmerksomhet på balansen mellom barnets beste og familiebåndene.",
+          "source_ids": [
+            "mr11-hr2020-661-s",
+            "mr13-strand-lobben"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "mr-20",
+          "text": "Strand Lobben-dommen illustrerer at kvaliteten og aktualiteten i beslutningsgrunnlaget og den konkrete interesseavveiningen kan være avgjørende i vurderingen av familieliv etter artikkel 8.",
+          "source_ids": [
+            "mr13-strand-lobben",
+            "mr07-art8-guide"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "ytringsfrihet-personvern-og-avveining",
+      "title": "Ytringsfrihet, personvern og avveining",
+      "method_ids": [
+        "met_mr_art10",
+        "met_mr_rettighetskollisjon"
+      ],
+      "boundary": "Ytringsfrihet etter Grunnloven § 100 og EMK artikkel 10 må analyseres sammen med eventuelle motstående rettigheter, blant annet personvern og privatliv etter Grunnloven § 102 og EMK artikkel 8. Avveining krever konkrete kriterier og proporsjonalitet; ingen av rettighetene vinner automatisk bare fordi den påberopes først.",
+      "source_ids": [
+        "mr01-grunnloven-e",
+        "mr07-art8-guide",
+        "mr08-art10-guide",
+        "mr12-hr2022-2106-a"
+      ],
+      "planned_claims": [
+        {
+          "id": "mr-21",
+          "text": "Grunnloven § 100 og EMK artikkel 10 beskytter ytringsfriheten, men tillater visse inngrep når de oppfyller de rettslige vilkårene og er forholdsmessige.",
+          "source_ids": [
+            "mr01-grunnloven-e",
+            "mr08-art10-guide"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "mr-22",
+          "text": "Ved konflikt mellom ytringsfrihet og privatliv må begge rettighetsposisjonene identifiseres og avveies etter relevante kriterier fremfor at én rettighet gis automatisk prioritet.",
+          "source_ids": [
+            "mr07-art8-guide",
+            "mr08-art10-guide"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "mr-23",
+          "text": "HR-2022-2106-A illustrerer at norske domstoler kan måtte avveie ytringsfrihet mot personvern ved offentliggjøring av materiale fra rettsprosesser.",
+          "source_ids": [
+            "mr12-hr2022-2106-a",
+            "mr08-art10-guide"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "mr-24",
+          "text": "Proporsjonalitetsvurderingen ved ytringsinngrep må knyttes til ytringens kontekst, formål, skadepotensial, rettslig grunnlag og kvaliteten på myndighetenes begrunnelse.",
+          "source_ids": [
+            "mr08-art10-guide",
+            "mr12-hr2022-2106-a"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "likhet-diskriminering-og-sammenlignbar-situasjon",
+      "title": "Likhet, diskriminering og sammenlignbar situasjon",
+      "method_ids": [
+        "met_mr_diskriminering",
+        "met_mr_grl98"
+      ],
+      "boundary": "Grunnloven § 98 og EMK artikkel 14 må ikke reduseres til et generelt krav om identisk behandling. Analysen må identifisere forskjellsbehandling eller manglende relevant differensiering, sammenlignbar situasjon, vernet grunnlag eller status, objektiv og rimelig begrunnelse og proporsjonalitet.",
+      "source_ids": [
+        "mr01-grunnloven-e",
+        "mr03-emk-official",
+        "mr09-art14-guide"
+      ],
+      "planned_claims": [
+        {
+          "id": "mr-25",
+          "text": "Grunnloven § 98 fastslår likhet for loven og forbyr usaklig eller uforholdsmessig forskjellsbehandling.",
+          "source_ids": [
+            "mr01-grunnloven-e",
+            "mr09-art14-guide"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "mr-26",
+          "text": "EMK artikkel 14 er knyttet til utøvelsen av rettighetene og frihetene i konvensjonen og må analyseres med en identifisert konvensjonsrettighet innenfor bestemmelsens anvendelsesområde.",
+          "source_ids": [
+            "mr03-emk-official",
+            "mr09-art14-guide"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "mr-27",
+          "text": "En diskrimineringsanalyse må identifisere relevante sammenligningsgrupper eller forklare hvorfor vesentlig ulike situasjoner burde vært behandlet forskjellig.",
+          "source_ids": [
+            "mr09-art14-guide",
+            "mr01-grunnloven-e"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "mr-28",
+          "text": "Forskjellsbehandling kan kreve en objektiv og rimelig begrunnelse med legitimt formål og rimelig forhold mellom middel og mål; vurderingen må være konkret og kildeforankret.",
+          "source_ids": [
+            "mr09-art14-guide",
+            "mr03-emk-official"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "emd-admissibility-subsidiaritet-og-rettsvirkning",
+      "title": "EMD, admissibility, subsidiaritet og rettsvirkning",
+      "method_ids": [
+        "met_mr_admissibility",
+        "met_mr_hudoc"
+      ],
+      "boundary": "En klage til EMD krever blant annet at klageren faller innenfor domstolens kompetanse, har uttømt effektive nasjonale rettsmidler og overholder firemånedersfristen etter artikkel 35. HUDOC er en rettspraksisdatabase, ikke en garanti for at ethvert søkeresultat er relevant prejudikat. EMD er subsidiær til nasjonale organer og er ikke en generell fjerde instans.",
+      "source_ids": [
+        "mr03-emk-official",
+        "mr04-hudoc",
+        "mr05-admissibility"
+      ],
+      "planned_claims": [
+        {
+          "id": "mr-29",
+          "text": "Individklager til EMD må oppfylle konvensjonens admissibility-vilkår, blant annet krav om relevant klagestatus, uttømming av nasjonale rettsmidler og fristreglene i artikkel 35.",
+          "source_ids": [
+            "mr03-emk-official",
+            "mr05-admissibility"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "mr-30",
+          "text": "Firemånedersfristen og kravet om uttømming må vurderes mot den konkrete nasjonale prosesshistorikken; de kan ikke avgjøres ut fra datoen for det opprinnelige inngrepet alene.",
+          "source_ids": [
+            "mr05-admissibility",
+            "mr03-emk-official"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "mr-31",
+          "text": "HUDOC gir tilgang til EMDs dommer, avgjørelser og annet case-law-materiale, men en juridisk analyse må kontrollere dokumenttype, kammer, finalitet, faktum og rettsspørsmål før en avgjørelse brukes.",
+          "source_ids": [
+            "mr04-hudoc",
+            "mr05-admissibility"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "mr-32",
+          "text": "Subsidiaritetsprinsippet innebærer at nasjonale myndigheter og domstoler har det primære ansvaret for å sikre konvensjonsrettighetene, mens EMD prøver klager innenfor konvensjonens kompetanse og prosessuelle rammer.",
+          "source_ids": [
+            "mr03-emk-official",
+            "mr05-admissibility"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    }
+  ],
+  "planned_assessments": [
+    {
+      "id": "assess-mr-01",
+      "title": "Analyser norsk forankring, inkorporasjon og forrang",
+      "claim_ids": [
+        "mr-01",
+        "mr-02",
+        "mr-03",
+        "mr-04"
+      ]
+    },
+    {
+      "id": "assess-mr-02",
+      "title": "Analyser rettighetssubjekt, statens plikter og rettighetenes rekkevidde",
+      "claim_ids": [
+        "mr-05",
+        "mr-06",
+        "mr-07",
+        "mr-08"
+      ]
+    },
+    {
+      "id": "assess-mr-03",
+      "title": "Analyser inngrep, lovhjemmel, legitimt formål og proporsjonalitet",
+      "claim_ids": [
+        "mr-09",
+        "mr-10",
+        "mr-11",
+        "mr-12"
+      ]
+    },
+    {
+      "id": "assess-mr-04",
+      "title": "Analyser rettferdig rettergang – emk artikkel 6 og grunnloven § 95",
+      "claim_ids": [
+        "mr-13",
+        "mr-14",
+        "mr-15",
+        "mr-16"
+      ]
+    },
+    {
+      "id": "assess-mr-05",
+      "title": "Analyser privatliv, familieliv og barnets beste",
+      "claim_ids": [
+        "mr-17",
+        "mr-18",
+        "mr-19",
+        "mr-20"
+      ]
+    },
+    {
+      "id": "assess-mr-06",
+      "title": "Analyser ytringsfrihet, personvern og avveining",
+      "claim_ids": [
+        "mr-21",
+        "mr-22",
+        "mr-23",
+        "mr-24"
+      ]
+    },
+    {
+      "id": "assess-mr-07",
+      "title": "Analyser likhet, diskriminering og sammenlignbar situasjon",
+      "claim_ids": [
+        "mr-25",
+        "mr-26",
+        "mr-27",
+        "mr-28"
+      ]
+    },
+    {
+      "id": "assess-mr-08",
+      "title": "Analyser emd, admissibility, subsidiaritet og rettsvirkning",
+      "claim_ids": [
+        "mr-29",
+        "mr-30",
+        "mr-31",
+        "mr-32"
+      ]
+    }
+  ],
+  "decision_scenarios": [
+    {
+      "id": "case-mr-01",
+      "title": "Grunnlov, menneskerettslov eller EMK?",
+      "source_ids": [
+        "mr01-grunnloven-e",
+        "mr02-menneskerettsloven"
+      ],
+      "prompt": "En part hevder at en norsk lov krenker menneskerettighetene. Skill spørsmålene om grunnlovsvern, inkorporert konvensjonsvern, tolkning og eventuell forrang før du vurderer rettsvirkningen."
+    },
+    {
+      "id": "case-mr-02",
+      "title": "Inngrep i privatlivet",
+      "source_ids": [
+        "mr03-emk-official",
+        "mr07-art8-guide"
+      ],
+      "prompt": "Et offentlig tiltak griper inn i privatlivet for å beskytte andre. Gjennomfør inngrepstesten trinnvis fra rettighetsomfang og lovgrunnlag til legitimt formål, nødvendighet og proporsjonalitet."
+    },
+    {
+      "id": "case-mr-03",
+      "title": "Familieliv og barnets beste",
+      "source_ids": [
+        "mr11-hr2020-661-s",
+        "mr13-strand-lobben"
+      ],
+      "prompt": "Et barneverntiltak begrunnes med barnets beste. Vis hvilke materielle og prosessuelle spørsmål som fortsatt må vurderes etter Grunnloven og EMK artikkel 8."
+    },
+    {
+      "id": "case-mr-04",
+      "title": "Ytringsfrihet mot personvern",
+      "source_ids": [
+        "mr08-art10-guide",
+        "mr12-hr2022-2106-a"
+      ],
+      "prompt": "Et mediehus vil offentliggjøre sensitivt materiale med samfunnsinteresse. Identifiser begge rettighetsposisjonene og bygg en konkret proporsjonalitetsavveining."
+    },
+    {
+      "id": "case-mr-05",
+      "title": "Usaklig forskjellsbehandling?",
+      "source_ids": [
+        "mr01-grunnloven-e",
+        "mr09-art14-guide"
+      ],
+      "prompt": "To grupper behandles ulikt av myndighetene. Kartlegg sammenlignbar situasjon, relevant grunnlag, formål og proporsjonalitet før du konkluderer om diskriminering."
+    },
+    {
+      "id": "case-mr-06",
+      "title": "Klage til Strasbourg",
+      "source_ids": [
+        "mr04-hudoc",
+        "mr05-admissibility"
+      ],
+      "prompt": "En person vil sende saken direkte til EMD etter et negativt forvaltningsvedtak. Kartlegg klagestatus, nasjonale rettsmidler, firemånedersfrist, konvensjonsspørsmål og hvilken dokumentasjon som må kontrolleres."
+    }
+  ]
+}
