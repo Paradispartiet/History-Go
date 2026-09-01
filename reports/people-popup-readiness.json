@@ -3,7 +3,7 @@
   "contract": "docs/PEOPLE_POPUP_SYSTEM.md",
   "productionContract": "docs/PEOPLE_PROFILE_CANONICAL.md",
   "generatedBy": "tools/audit-people-popup-readiness.mts",
-  "sourceFingerprint": "986ba9b112991e7a3a610e3758528d0a19ac9595b1d5804e3ee493b08aed9dc8",
+  "sourceFingerprint": "e456dc77fa8fab99b9eab43ccb82d0173d4774b59474102db01c5d7394005943",
   "thresholds": {
     "complete": 85,
     "strong": 65,
@@ -17,25 +17,25 @@
     "legacyWithoutClaimsStatus": "legacy_unreviewed"
   },
   "summary": {
-    "totalPeople": 1426,
+    "totalPeople": 1429,
     "complete": 70,
-    "strong": 409,
+    "strong": 412,
     "partial": 932,
     "sparse": 15,
-    "readyPeopleV1": 79,
+    "readyPeopleV1": 82,
     "legacyUnreviewed": 1347,
     "brokenImages": 279,
     "explicitFallbacks": 993,
     "implicitFallbacks": 26,
-    "averageScore": 65.5
+    "averageScore": 65.6
   },
   "fieldCoverage": {
     "identity": {
-      "count": 130,
-      "percent": 9.1
+      "count": 133,
+      "percent": 9.3
     },
     "popupDesc": {
-      "count": 1405,
+      "count": 1408,
       "percent": 98.5
     },
     "lifeData": {
@@ -51,24 +51,24 @@
       "percent": 4.4
     },
     "practiceDeclared": {
-      "count": 1408,
+      "count": 1411,
       "percent": 98.7
     },
     "placeGrounding": {
-      "count": 1426,
+      "count": 1429,
       "percent": 100
     },
     "sources": {
-      "count": 468,
-      "percent": 32.8
+      "count": 471,
+      "percent": 33
     },
     "imageContract": {
-      "count": 1147,
-      "percent": 80.4
+      "count": 1150,
+      "percent": 80.5
     },
     "profileStandard": {
-      "count": 79,
-      "percent": 5.5
+      "count": 82,
+      "percent": 5.7
     }
   },
   "categories": [
@@ -139,6 +139,17 @@
       "averageScore": 74.1
     },
     {
+      "category": "by",
+      "total": 82,
+      "complete": 9,
+      "strong": 58,
+      "partial": 15,
+      "sparse": 0,
+      "readyPeopleV1": 24,
+      "legacyUnreviewed": 58,
+      "averageScore": 74.5
+    },
+    {
       "category": "naeringsliv",
       "total": 81,
       "complete": 5,
@@ -148,17 +159,6 @@
       "readyPeopleV1": 8,
       "legacyUnreviewed": 73,
       "averageScore": 62.9
-    },
-    {
-      "category": "by",
-      "total": 79,
-      "complete": 9,
-      "strong": 55,
-      "partial": 15,
-      "sparse": 0,
-      "readyPeopleV1": 21,
-      "legacyUnreviewed": 58,
-      "averageScore": 74.3
     },
     {
       "category": "scenekunst",
@@ -5591,6 +5591,37 @@
           "score": 90,
           "status": "complete",
           "productionStatus": "legacy_unreviewed"
+        }
+      ]
+    },
+    {
+      "placeId": "hammersborg_torg",
+      "totalIncomplete": 3,
+      "sparse": 0,
+      "partial": 0,
+      "strong": 3,
+      "averageScore": 80,
+      "people": [
+        {
+          "id": "christian_fredrik_morgenstierne",
+          "name": "Christian Fredrik von Munthe af Morgenstierne",
+          "score": 80,
+          "status": "strong",
+          "productionStatus": "ready_people_v1"
+        },
+        {
+          "id": "frode_rinnan",
+          "name": "Frode Rinnan",
+          "score": 80,
+          "status": "strong",
+          "productionStatus": "ready_people_v1"
+        },
+        {
+          "id": "peter_hoier_holtermann",
+          "name": "Peter Høier Holtermann",
+          "score": 80,
+          "status": "strong",
+          "productionStatus": "ready_people_v1"
         }
       ]
     },
@@ -68935,6 +68966,47 @@
       ]
     },
     {
+      "id": "christian_fredrik_morgenstierne",
+      "name": "Christian Fredrik von Munthe af Morgenstierne",
+      "category": "by",
+      "kindLabel": "Politimester og boliginitiativtaker",
+      "sourceFile": "data/people/by/oslo/hammersborg_torg/people_hammersborg_torg.json",
+      "primaryPlace": "hammersborg_torg",
+      "places": [
+        "hammersborg_torg"
+      ],
+      "score": 80,
+      "priority": 30,
+      "status": "strong",
+      "productionStatus": "ready_people_v1",
+      "profileStandard": "people_profile_v1.0",
+      "claimsFile": "data/people/claims/by/oslo/hammersborg_torg/christian_fredrik_morgenstierne.claims.json",
+      "paragraphCount": 1,
+      "popupLength": 331,
+      "contributionCount": 0,
+      "educationCount": 0,
+      "practiceCount": 4,
+      "sourceCount": 4,
+      "imageState": "valid_image",
+      "imagePath": "bilder/kort/people/christian_fredrik_morgenstierne.webp",
+      "coverage": {
+        "identity": true,
+        "popupDesc": true,
+        "lifeData": false,
+        "contributionsDeclared": false,
+        "educationDeclared": false,
+        "practiceDeclared": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true,
+        "profileStandard": true
+      },
+      "issues": [
+        "missing_birth_data",
+        "missing_contributions_field"
+      ]
+    },
+    {
       "id": "do_ho_suh",
       "name": "Do Ho Suh",
       "category": "kunst",
@@ -69043,6 +69115,47 @@
       "sourceCount": 2,
       "imageState": "explicit_fallback",
       "imagePath": "",
+      "coverage": {
+        "identity": true,
+        "popupDesc": true,
+        "lifeData": false,
+        "contributionsDeclared": false,
+        "educationDeclared": false,
+        "practiceDeclared": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true,
+        "profileStandard": true
+      },
+      "issues": [
+        "missing_birth_data",
+        "missing_contributions_field"
+      ]
+    },
+    {
+      "id": "frode_rinnan",
+      "name": "Frode Rinnan",
+      "category": "by",
+      "kindLabel": "Arkitekt og byplanlegger",
+      "sourceFile": "data/people/by/oslo/hammersborg_torg/people_hammersborg_torg.json",
+      "primaryPlace": "hammersborg_torg",
+      "places": [
+        "hammersborg_torg"
+      ],
+      "score": 80,
+      "priority": 30,
+      "status": "strong",
+      "productionStatus": "ready_people_v1",
+      "profileStandard": "people_profile_v1.0",
+      "claimsFile": "data/people/claims/by/oslo/hammersborg_torg/frode_rinnan.claims.json",
+      "paragraphCount": 1,
+      "popupLength": 368,
+      "contributionCount": 0,
+      "educationCount": 0,
+      "practiceCount": 5,
+      "sourceCount": 4,
+      "imageState": "valid_image",
+      "imagePath": "bilder/kort/people/frode_rinnan.webp",
       "coverage": {
         "identity": true,
         "popupDesc": true,
@@ -69910,6 +70023,47 @@
       "sourceCount": 4,
       "imageState": "valid_image",
       "imagePath": "bilder/kort/people/per_horn_editorial_cutout.webp",
+      "coverage": {
+        "identity": true,
+        "popupDesc": true,
+        "lifeData": false,
+        "contributionsDeclared": false,
+        "educationDeclared": false,
+        "practiceDeclared": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true,
+        "profileStandard": true
+      },
+      "issues": [
+        "missing_birth_data",
+        "missing_contributions_field"
+      ]
+    },
+    {
+      "id": "peter_hoier_holtermann",
+      "name": "Peter Høier Holtermann",
+      "category": "by",
+      "kindLabel": "Arkitekt",
+      "sourceFile": "data/people/by/oslo/hammersborg_torg/people_hammersborg_torg.json",
+      "primaryPlace": "hammersborg_torg",
+      "places": [
+        "hammersborg_torg"
+      ],
+      "score": 80,
+      "priority": 30,
+      "status": "strong",
+      "productionStatus": "ready_people_v1",
+      "profileStandard": "people_profile_v1.0",
+      "claimsFile": "data/people/claims/by/oslo/hammersborg_torg/peter_hoier_holtermann.claims.json",
+      "paragraphCount": 1,
+      "popupLength": 340,
+      "contributionCount": 0,
+      "educationCount": 0,
+      "practiceCount": 4,
+      "sourceCount": 4,
+      "imageState": "valid_image",
+      "imagePath": "bilder/kort/people/peter_hoier_holtermann.webp",
       "coverage": {
         "identity": true,
         "popupDesc": true,

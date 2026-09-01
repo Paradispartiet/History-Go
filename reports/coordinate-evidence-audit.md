@@ -1,8 +1,8 @@
 # Coordinate evidence audit
 
-Generert: 2026-08-31T15:12:38.355Z
+Generert: 2026-09-01T12:17:46.714Z
 
-Aktive steder: 1596
+Aktive steder: 1597
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -48,6 +48,7 @@ Aktive steder: 1596
 | grorud | data/coordinate-evidence/oslo/by/grorud.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | grorudparken | data/coordinate-evidence/oslo/by/grorudparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | grunerlokka_helgesens_tm | data/coordinate-evidence/oslo/by/grunerlokka_helgesens_tm.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| hammersborg_torg | data/coordinate-evidence/oslo/by/hammersborg_torg.json | applied_to_place | candidate_ready_for_production | OK |
 | helsfyr | data/coordinate-evidence/oslo/by/helsfyr.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | holmenkollen_kapell | data/coordinate-evidence/oslo/by/holmenkollen_kapell.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | jernbanetorget | data/coordinate-evidence/oslo/by/jernbanetorget.json | applied_to_place | do_not_change_coordinates_yet | OK |

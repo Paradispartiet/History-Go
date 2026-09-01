@@ -1,21 +1,21 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-09-01T11:25:33.196Z
+Generert: 2026-09-01T12:18:16.637Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-09-01T11:25:33.196Z |
-| peopleFilesRead | 766 |
-| totalPeople | 1426 |
-| uniquePeopleIds | 1426 |
+| generatedAt | 2026-09-01T12:18:16.637Z |
+| peopleFilesRead | 767 |
+| totalPeople | 1429 |
+| uniquePeopleIds | 1429 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 0 |
 | peopleWithEmptyPlacesArray | 0 |
 | flatPeopleFiles | 0 |
-| geographicPeopleFiles | 766 |
+| geographicPeopleFiles | 767 |
 | categoriesRepresented | 17 |
 
 ## People-filer
@@ -40,6 +40,7 @@ Generert: 2026-09-01T11:25:33.196Z
 | data/people/by/oslo/gamle_radhus/carl_berner_arkitekt.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/gamle_radhus/lars_backer.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/gamle_trikkestallen/per_horn.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/by/oslo/hammersborg_torg/people_hammersborg_torg.json | by | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/helsfyr/fredrik_a_s_torp.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/helsfyr/guttorm_bruskeland.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/oslo_s/john_engh.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -793,7 +794,7 @@ Generert: 2026-09-01T11:25:33.196Z
 
 | Kategori | People | Flate filer | Geofiler | Foreslått neste steg | Begrunnelse |
 |---|---:|---:|---:|---|---|
-| by | 78 | 0 | 48 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| by | 81 | 0 | 49 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | filantroper | 16 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | film_tv | 24 | 0 | 3 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | historie | 238 | 0 | 75 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
@@ -813,7 +814,7 @@ Generert: 2026-09-01T11:25:33.196Z
 
 ## Geografisk strukturstatus
 
-- Allerede geografisk strukturert: 766
+- Allerede geografisk strukturert: 767
 - Fortsatt flate filer: 0
 - Blandede kategorier: ingen
 - Trygge flate filer for neste geografiske split: ingen
@@ -856,6 +857,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/by/oslo/gamle_radhus/carl_berner_arkitekt.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/gamle_radhus/lars_backer.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/gamle_trikkestallen/per_horn.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=1/1; placesArray=1/1; categories=by; schema_review: source_place_id brukes utenfor særskilt næringsliv-schema
+- data/people/by/oslo/hammersborg_torg/people_hammersborg_torg.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=3/3; placesArray=3/3; categories=by; schema_review: source_place_id brukes utenfor særskilt næringsliv-schema
 - data/people/by/oslo/helsfyr/fredrik_a_s_torp.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/helsfyr/guttorm_bruskeland.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/oslo_s/john_engh.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by

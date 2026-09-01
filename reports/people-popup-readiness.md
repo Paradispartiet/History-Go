@@ -6,38 +6,38 @@ Rapporten måler om runtime kan presentere tilgjengelige canonical People-felt. 
 
 People-produksjon, claims og ferdigstatus eies av `docs/PEOPLE_PROFILE_CANONICAL.md`. Profiler uten v1-claims er `legacy_unreviewed`, selv når presentasjonsstatusen er `complete`.
 
-Source fingerprint: `986ba9b112991e7a3a610e3758528d0a19ac9595b1d5804e3ee493b08aed9dc8`
+Source fingerprint: `e456dc77fa8fab99b9eab43ccb82d0173d4774b59474102db01c5d7394005943`
 
 ## Sammendrag
 
 | Måling | Antall |
 |---|---:|
-| Personer | 1426 |
+| Personer | 1429 |
 | Presentasjon complete | 70 |
-| Presentasjon strong | 409 |
+| Presentasjon strong | 412 |
 | Presentasjon partial | 932 |
 | Presentasjon sparse | 15 |
-| People Profile v1 ready | 79 |
+| People Profile v1 ready | 82 |
 | Legacy uten v1-claims | 1347 |
 | Ødelagte bildereferanser | 279 |
 | Eksplisitt initialfallback | 993 |
 | Implisitt initialfallback | 26 |
-| Gjennomsnittspoeng | 65.5 |
+| Gjennomsnittspoeng | 65.6 |
 
 ## Feltdekning
 
 | Presentasjonsdel | Dekket | Andel |
 |---|---:|---:|
-| identity | 130 | 9.1 % |
-| popupDesc | 1405 | 98.5 % |
+| identity | 133 | 9.3 % |
+| popupDesc | 1408 | 98.5 % |
 | lifeData | 62 | 4.3 % |
 | contributionsDeclared | 63 | 4.4 % |
 | educationDeclared | 63 | 4.4 % |
-| practiceDeclared | 1408 | 98.7 % |
-| placeGrounding | 1426 | 100 % |
-| sources | 468 | 32.8 % |
-| imageContract | 1147 | 80.4 % |
-| profileStandard | 79 | 5.5 % |
+| practiceDeclared | 1411 | 98.7 % |
+| placeGrounding | 1429 | 100 % |
+| sources | 471 | 33 % |
+| imageContract | 1150 | 80.5 % |
+| profileStandard | 82 | 5.7 % |
 
 ## Kategorier
 
@@ -49,8 +49,8 @@ Source fingerprint: `986ba9b112991e7a3a610e3758528d0a19ac9595b1d5804e3ee493b08ae
 | musikk | 124 | 0 | 15 | 109 | 0 | 0 | 124 | 62.2 |
 | politikk | 114 | 5 | 50 | 59 | 0 | 17 | 97 | 68.1 |
 | kunst | 86 | 11 | 63 | 12 | 0 | 13 | 73 | 74.1 |
+| by | 82 | 9 | 58 | 15 | 0 | 24 | 58 | 74.5 |
 | naeringsliv | 81 | 5 | 30 | 32 | 14 | 8 | 73 | 62.9 |
-| by | 79 | 9 | 55 | 15 | 0 | 21 | 58 | 74.3 |
 | scenekunst | 48 | 1 | 16 | 31 | 0 | 1 | 47 | 64.6 |
 | subkultur | 41 | 0 | 5 | 36 | 0 | 0 | 41 | 61.9 |
 | vitenskap | 34 | 0 | 3 | 30 | 1 | 0 | 34 | 57.9 |

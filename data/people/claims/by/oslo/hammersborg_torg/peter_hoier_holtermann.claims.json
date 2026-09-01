@@ -1,0 +1,140 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "peter_hoier_holtermann",
+  "profile_file": "data/people/by/oslo/hammersborg_torg/people_hammersborg_torg.json",
+  "identity": {
+    "canonical_identity": "Peter Høier Holtermann",
+    "name_variants": [
+      "Peter Høier Holtermann"
+    ],
+    "not": [
+      "andre personer med samme etternavn"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity",
+      "claim": "Peter Høier Holtermann levde fra 1820 til 1865 og var norsk arkitekt.",
+      "status": "verified",
+      "source_url": "https://nkl.snl.no/Peter_H%C3%B8ier_Holtermann",
+      "source_location": "Biografisk innledning",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-01",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "practice",
+      "claim": "Holtermann etablerte egen arkitektpraksis i Christiania i 1846.",
+      "status": "verified",
+      "source_url": "https://nkl.snl.no/Peter_H%C3%B8ier_Holtermann",
+      "source_location": "Yrkesliv",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-01",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "place",
+      "claim": "Holtermann tegnet arbeiderboligen i Nedre Hammersborggate 11, oppført i 1852.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/Arbeiderboliger",
+      "source_location": "Første bygg",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-01",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "crosscheck",
+      "claim": "Lokalhistoriewiki knytter også Holtermann til selskapets første bygg på Hammersborg.",
+      "status": "verified",
+      "source_url": "https://lokalhistoriewiki.no/wiki/Christiania_Arbeiderboliger",
+      "source_location": "Første byggeprosjekt",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-01",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "image_identity",
+      "claim": "Commons-posten identifiserer maleriutsnittet som Peter Høier Holtermann.",
+      "status": "verified",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Peter_H%C3%B8ier_Holtermann_by_Adolph_Tidemand_(cropped2).jpg",
+      "source_location": "Filtittel og metadata",
+      "source_type": "catalogue",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-01",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity"
+    ],
+    "kindLabel": [
+      "identity"
+    ],
+    "year": [
+      "place"
+    ],
+    "placeId": [
+      "place"
+    ],
+    "places[hammersborg_torg]": [
+      "place"
+    ],
+    "image": [
+      "image_identity"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "place",
+          "crosscheck"
+        ],
+        "evidence_mode": "explicit"
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "practice"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "place"
+        ]
+      },
+      {
+        "sentence": 4,
+        "claim_ids": [
+          "image_identity"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "5/5",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-09-01",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}
