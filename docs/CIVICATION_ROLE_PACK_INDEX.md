@@ -15,11 +15,11 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 
 ## Sammendrag
 
-- complete_reference_v2: 35
+- complete_reference_v2: 36
 - complete_reference: 0
 - playable_v1: 1
 - partial_pack: 23
-- role_model_only: 194
+- role_model_only: 193
 - generated_stub: 0
 - broken_mapping: 0
 - missing: 43
@@ -244,7 +244,7 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | psykologi | psykologi_miljoarbeid | psykologi_aktivitetsleder_omsorg | Aktivitetsleder (omsorgsarbeid) | ja | ja | ja | ja | ja | ja | nei | ja | nei | ja | ja | ja | ja | partial_pack |
 | psykologi | fagansvarlig | psykologi_fagansvarlig | Fagansvarlig | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | psykologi | forsker_psykologi | psykologi_forsker_psykologi | Forsker (psykologi) | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
-| psykologi | klinikkleder | psykologi_klinikkleder | Klinikkleder | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
+| psykologi | klinikkleder | psykologi_klinikkleder | Klinikkleder | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | psykologi | psykologi_miljoarbeid | psykologi_miljoarbeider | Miljøarbeider | ja | ja | ja | ja | ja | ja | nei | ja | nei | ja | ja | ja | ja | partial_pack |
 | psykologi | psykologi_miljoarbeid | psykologi_miljoarbeider | Miljøarbeider | ja | ja | ja | ja | ja | ja | nei | ja | nei | ja | ja | ja | ja | partial_pack |
 | psykologi | psykologi_miljoarbeid | psykologi_miljoassistent | Miljøassistent | ja | ja | ja | ja | ja | ja | nei | ja | nei | ja | ja | ja | ja | partial_pack |

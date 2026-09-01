@@ -1,0 +1,285 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "klinikkleder",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "klinikkleder_people_portefolje",
+      "purpose": "Trene people gjennom klinikkens vedvarende lederportefølje.",
+      "learning_focus": [
+        "systemrisiko",
+        "pasientsikkerhet",
+        "myndighetsgrense",
+        "handoff"
+      ],
+      "mails": [
+        {
+          "id": "klinikkleder_people_liv_001",
+          "mail_type": "people",
+          "mail_family": "klinikkleder_people_portefolje",
+          "role_scope": "klinikkleder",
+          "phase": "forenoon",
+          "priority": 140,
+          "from": "Liv",
+          "people_ref": "liv_divisjonsdirektor_klinikk",
+          "place_id": "klinikkens_kapasitets_og_prioriteringsbord",
+          "subject": "Liv trenger et ærlig risikobilde før virksomhetsmøtet",
+          "summary": "Klinikkens risiko- og kapasitetsportefølje står i et konkret people-punkt: liv trenger et ærlig risikobilde før virksomhetsmøtet. Venteliste, bemanning, kompetanse, arbeidsmiljø, økonomi, kvalitetssignal og myndighetsplassering peker ikke samme vei. Du må bevare faglig motstemme og neste eier uten pasientidentifiserende data og uten å gjøre organisatorisk rang til klinisk eller lovregulert myndighet.",
+          "situation": [
+            "Porteføljen viser versjon, kilde, risiko, tiltak, eier og hvilket beslutningsnivå som kreves.",
+            "En rask løsning kan pynte resultatet, men flytte venting, belastning eller risiko til neste team.",
+            "Valget må gjøre handoff og rework synlig uten å straffe budbringeren."
+          ],
+          "task_domain": "klinikkledelse",
+          "competency": "systemrisiko_og_myndighetsavklaring",
+          "pressure": "kapasitet_vs_forsvarlighet",
+          "choice_axis": "sporbar_risiko_vs_resultatpynting",
+          "consequence_axis": "baerekraft_vs_skjult_risiko",
+          "narrative_arc": "liv",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avklar liv i porteføljen",
+              "reply": "Jeg bevarer kilden og motstemmen, navngir risiko, ventepunkt, tiltak og eier, og sender kliniske eller lovregulerte spørsmål til riktig kvalifisert rolle.",
+              "effect": 1,
+              "tags": [
+                "pasientsikkerhet",
+                "sporbarhet",
+                "handoff"
+              ],
+              "feedback": "Neste leder og fagperson ser hva som er kjent, hva som venter og hvem som faktisk kan beslutte. Porteføljen forblir sann, budbringeren beskyttes og rework kan skje uten at organisatorisk myndighet glir over i klinisk eller juridisk myndighet.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukk liv gjennom lederlinjen",
+              "reply": "Jeg bruker posisjonen til å kalle signalet håndtert, fjerner ventepunktet og lar teamet finne den kliniske og praktiske løsningen underveis.",
+              "effect": -1,
+              "tags": [
+                "resultatpress",
+                "myndighetsglidning",
+                "risiko"
+              ],
+              "feedback": "Rapporten ser ryddigere ut, men neste team mottar skjult risiko og uklart ansvar. Kliniske signaler, arbeidsmiljø og kompetansegap blir vanskeligere å rekonstruere, og lederlinjen fremstår feilaktig som erstatning for kvalifikasjon og lovlig beslutning.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "klinikkleder_people_amina_002",
+          "mail_type": "people",
+          "mail_family": "klinikkleder_people_portefolje",
+          "role_scope": "klinikkleder",
+          "phase": "workday",
+          "priority": 139,
+          "from": "Amina",
+          "people_ref": "amina_fagansvarlig_pasientsikkerhet",
+          "place_id": "kvalitets_og_risikogjennomgang",
+          "subject": "Amina krever at et faglig varsel bevares",
+          "summary": "Klinikkens risiko- og kapasitetsportefølje står i et konkret people-punkt: amina krever at et faglig varsel bevares. Venteliste, bemanning, kompetanse, arbeidsmiljø, økonomi, kvalitetssignal og myndighetsplassering peker ikke samme vei. Du må bevare faglig motstemme og neste eier uten pasientidentifiserende data og uten å gjøre organisatorisk rang til klinisk eller lovregulert myndighet.",
+          "situation": [
+            "Porteføljen viser versjon, kilde, risiko, tiltak, eier og hvilket beslutningsnivå som kreves.",
+            "En rask løsning kan pynte resultatet, men flytte venting, belastning eller risiko til neste team.",
+            "Valget må gjøre handoff og rework synlig uten å straffe budbringeren."
+          ],
+          "task_domain": "klinikkledelse",
+          "competency": "systemrisiko_og_myndighetsavklaring",
+          "pressure": "kapasitet_vs_forsvarlighet",
+          "choice_axis": "sporbar_risiko_vs_resultatpynting",
+          "consequence_axis": "baerekraft_vs_skjult_risiko",
+          "narrative_arc": "amina",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avklar amina i porteføljen",
+              "reply": "Jeg bevarer kilden og motstemmen, navngir risiko, ventepunkt, tiltak og eier, og sender kliniske eller lovregulerte spørsmål til riktig kvalifisert rolle.",
+              "effect": 1,
+              "tags": [
+                "pasientsikkerhet",
+                "sporbarhet",
+                "handoff"
+              ],
+              "feedback": "Neste leder og fagperson ser hva som er kjent, hva som venter og hvem som faktisk kan beslutte. Porteføljen forblir sann, budbringeren beskyttes og rework kan skje uten at organisatorisk myndighet glir over i klinisk eller juridisk myndighet.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukk amina gjennom lederlinjen",
+              "reply": "Jeg bruker posisjonen til å kalle signalet håndtert, fjerner ventepunktet og lar teamet finne den kliniske og praktiske løsningen underveis.",
+              "effect": -1,
+              "tags": [
+                "resultatpress",
+                "myndighetsglidning",
+                "risiko"
+              ],
+              "feedback": "Rapporten ser ryddigere ut, men neste team mottar skjult risiko og uklart ansvar. Kliniske signaler, arbeidsmiljø og kompetansegap blir vanskeligere å rekonstruere, og lederlinjen fremstår feilaktig som erstatning for kvalifikasjon og lovlig beslutning.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "klinikkleder_people_eirik_003",
+          "mail_type": "people",
+          "mail_family": "klinikkleder_people_portefolje",
+          "role_scope": "klinikkleder",
+          "phase": "workday",
+          "priority": 138,
+          "from": "Eirik",
+          "people_ref": "eirik_avdelingsleder_klinikk",
+          "place_id": "bemannings_og_endringsforum",
+          "subject": "Eirik mottar en omstilling uten eier for restarbeidet",
+          "summary": "Klinikkens risiko- og kapasitetsportefølje står i et konkret people-punkt: eirik mottar en omstilling uten eier for restarbeidet. Venteliste, bemanning, kompetanse, arbeidsmiljø, økonomi, kvalitetssignal og myndighetsplassering peker ikke samme vei. Du må bevare faglig motstemme og neste eier uten pasientidentifiserende data og uten å gjøre organisatorisk rang til klinisk eller lovregulert myndighet.",
+          "situation": [
+            "Porteføljen viser versjon, kilde, risiko, tiltak, eier og hvilket beslutningsnivå som kreves.",
+            "En rask løsning kan pynte resultatet, men flytte venting, belastning eller risiko til neste team.",
+            "Valget må gjøre handoff og rework synlig uten å straffe budbringeren."
+          ],
+          "task_domain": "klinikkledelse",
+          "competency": "systemrisiko_og_myndighetsavklaring",
+          "pressure": "kapasitet_vs_forsvarlighet",
+          "choice_axis": "sporbar_risiko_vs_resultatpynting",
+          "consequence_axis": "baerekraft_vs_skjult_risiko",
+          "narrative_arc": "eirik",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avklar eirik i porteføljen",
+              "reply": "Jeg bevarer kilden og motstemmen, navngir risiko, ventepunkt, tiltak og eier, og sender kliniske eller lovregulerte spørsmål til riktig kvalifisert rolle.",
+              "effect": 1,
+              "tags": [
+                "pasientsikkerhet",
+                "sporbarhet",
+                "handoff"
+              ],
+              "feedback": "Neste leder og fagperson ser hva som er kjent, hva som venter og hvem som faktisk kan beslutte. Porteføljen forblir sann, budbringeren beskyttes og rework kan skje uten at organisatorisk myndighet glir over i klinisk eller juridisk myndighet.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukk eirik gjennom lederlinjen",
+              "reply": "Jeg bruker posisjonen til å kalle signalet håndtert, fjerner ventepunktet og lar teamet finne den kliniske og praktiske løsningen underveis.",
+              "effect": -1,
+              "tags": [
+                "resultatpress",
+                "myndighetsglidning",
+                "risiko"
+              ],
+              "feedback": "Rapporten ser ryddigere ut, men neste team mottar skjult risiko og uklart ansvar. Kliniske signaler, arbeidsmiljø og kompetansegap blir vanskeligere å rekonstruere, og lederlinjen fremstår feilaktig som erstatning for kvalifikasjon og lovlig beslutning.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "klinikkleder_people_sara_004",
+          "mail_type": "people",
+          "mail_family": "klinikkleder_people_portefolje",
+          "role_scope": "klinikkleder",
+          "phase": "workday",
+          "priority": 137,
+          "from": "Sara",
+          "people_ref": "sara_tillitsvalgt_endring",
+          "place_id": "bemannings_og_endringsforum",
+          "subject": "Sara viser at tidsplanen mangler medvirkning",
+          "summary": "Klinikkens risiko- og kapasitetsportefølje står i et konkret people-punkt: sara viser at tidsplanen mangler medvirkning. Venteliste, bemanning, kompetanse, arbeidsmiljø, økonomi, kvalitetssignal og myndighetsplassering peker ikke samme vei. Du må bevare faglig motstemme og neste eier uten pasientidentifiserende data og uten å gjøre organisatorisk rang til klinisk eller lovregulert myndighet.",
+          "situation": [
+            "Porteføljen viser versjon, kilde, risiko, tiltak, eier og hvilket beslutningsnivå som kreves.",
+            "En rask løsning kan pynte resultatet, men flytte venting, belastning eller risiko til neste team.",
+            "Valget må gjøre handoff og rework synlig uten å straffe budbringeren."
+          ],
+          "task_domain": "klinikkledelse",
+          "competency": "systemrisiko_og_myndighetsavklaring",
+          "pressure": "kapasitet_vs_forsvarlighet",
+          "choice_axis": "sporbar_risiko_vs_resultatpynting",
+          "consequence_axis": "baerekraft_vs_skjult_risiko",
+          "narrative_arc": "sara",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avklar sara i porteføljen",
+              "reply": "Jeg bevarer kilden og motstemmen, navngir risiko, ventepunkt, tiltak og eier, og sender kliniske eller lovregulerte spørsmål til riktig kvalifisert rolle.",
+              "effect": 1,
+              "tags": [
+                "pasientsikkerhet",
+                "sporbarhet",
+                "handoff"
+              ],
+              "feedback": "Neste leder og fagperson ser hva som er kjent, hva som venter og hvem som faktisk kan beslutte. Porteføljen forblir sann, budbringeren beskyttes og rework kan skje uten at organisatorisk myndighet glir over i klinisk eller juridisk myndighet.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukk sara gjennom lederlinjen",
+              "reply": "Jeg bruker posisjonen til å kalle signalet håndtert, fjerner ventepunktet og lar teamet finne den kliniske og praktiske løsningen underveis.",
+              "effect": -1,
+              "tags": [
+                "resultatpress",
+                "myndighetsglidning",
+                "risiko"
+              ],
+              "feedback": "Rapporten ser ryddigere ut, men neste team mottar skjult risiko og uklart ansvar. Kliniske signaler, arbeidsmiljø og kompetansegap blir vanskeligere å rekonstruere, og lederlinjen fremstår feilaktig som erstatning for kvalifikasjon og lovlig beslutning.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

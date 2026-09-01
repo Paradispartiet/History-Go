@@ -20,27 +20,28 @@
   ],
   "work_life": {
     "daily_work": [
-      "sette strategisk retning og følge opp mål for klinikken",
-      "sikre rammer for faglig kvalitet, pasientforløp og trygge tjenester",
-      "ha personalansvar, rekruttere og bygge riktig kompetanse over tid",
-      "følge økonomi, kapasitet, resultater og risikobildet",
-      "lede endringsarbeid og koordinere med andre deler av virksomheten",
-      "sørge for tydelige ansvarslinjer mellom ledelse, fagansvar og lovregulert klinisk myndighet"
+      "Samler kapasitet, venteliste, kompetanse, økonomi og kvalitetsdata i én versjonert lederportefølje.",
+      "Undersøker faglige motstemmer før gode produksjonstall behandles som kvalitet.",
+      "Planlegger bemanning og endring med synlig venting, medvirkning, handoff og rework.",
+      "Plasserer diagnostikk, behandling og lovregulerte beslutninger hos riktig kvalifisert rolle."
     ],
     "responsibilities": [
-      "balansere kapasitet og økonomi mot forsvarlige tjenester",
-      "bygge bemanning og kompetanse før sårbarhet blir pasientsikkerhetsrisiko",
-      "bruke kvalitets- og resultatdata som signaler, ikke som erstatning for faglig innsikt",
-      "gjøre det mulig å melde avvik og dårlige nyheter uten å straffe budbringeren",
-      "delegere til personer som faktisk har riktig profesjons- og lovkompetanse"
+      "forsvarlige organisatoriske rammer",
+      "synlig systemrisiko og faglig motstemme",
+      "bærekraftig bemanning og endring",
+      "korrekt klinisk og juridisk myndighetsplassering"
     ],
     "work_environment": [
-      "Rollen arbeider på virksomhetsnivå med ledergruppe, kliniske miljøer, stab, tillitsvalgte og samarbeidende enheter.",
-      "Arbeidsdagen veksler mellom beslutninger om kapasitet, mennesker, økonomi, kvalitet, risiko og langsiktig utvikling."
+      "Arbeidet veksler mellom prioriteringsbord, kvalitetsgjennomgang, endringsforum og myndighetsavklaring."
     ],
     "status_position": [
-      "Klinikklederen har stor organisatorisk myndighet, men skal ikke late som lederlinjen erstatter individuell profesjonskompetanse eller særskilt lovbestemt beslutningsmyndighet.",
-      "Rollen vurderes på om den skaper rammer som gjør god klinisk praksis mulig også når økonomi, frister og omstilling presser."
+      "Tillit følger evnen til å gjøre risiko beslutningsbar uten å straffe budbringeren; lederstatus gir ikke klinisk autorisasjon eller lovmyndighet."
+    ],
+    "workplaces": [
+      "klinikkens_kapasitets_og_prioriteringsbord",
+      "kvalitets_og_risikogjennomgang",
+      "bemannings_og_endringsforum",
+      "myndighets_og_eskaleringspunkt"
     ]
   },
   "career_path": {
@@ -83,9 +84,21 @@
       "kvalitetsforbedring, risiko og pasientsikkerhet",
       "økonomi, kapasitet og endringsarbeid"
     ],
-    "history_go_badges": ["psykologi"],
-    "place_connections": [],
-    "people_connections": []
+    "history_go_badges": [
+      "psykologi"
+    ],
+    "place_connections": [
+      "klinikkens_kapasitets_og_prioriteringsbord",
+      "kvalitets_og_risikogjennomgang",
+      "bemannings_og_endringsforum",
+      "myndighets_og_eskaleringspunkt"
+    ],
+    "people_connections": [
+      "liv_divisjonsdirektor_klinikk",
+      "amina_fagansvarlig_pasientsikkerhet",
+      "eirik_avdelingsleder_klinikk",
+      "sara_tillitsvalgt_endring"
+    ]
   },
   "scope_boundary": {
     "can": [
@@ -108,21 +121,31 @@
       "title": "Kapasitet og forsvarlighet",
       "description": "Ventelistene øker samtidig som bemanningen er sårbar og budsjettet ikke tåler en enkel løsning.",
       "pressure": "kapasitet_vs_forsvarlighet",
-      "affects": ["risk", "status", "trust"]
+      "affects": [
+        "risk",
+        "status",
+        "trust"
+      ]
     },
     {
       "id": "tall_og_kvalitet",
       "title": "Tall og kvalitet",
       "description": "Produksjonsdata ser bedre ut, men fagmiljøet melder om tegn på dårligere kontinuitet.",
       "pressure": "resultattall_vs_faglige_signaler",
-      "affects": ["risk", "trust"]
+      "affects": [
+        "risk",
+        "trust"
+      ]
     },
     {
       "id": "endring_og_baerekraft",
       "title": "Endring og bærekraft",
       "description": "En omorganisering kan gi gevinst, men teamene har lite kapasitet til enda en overgang.",
       "pressure": "endringstempo_vs_organisatorisk_baerekraft",
-      "affects": ["status", "trust"]
+      "affects": [
+        "status",
+        "trust"
+      ]
     }
   ],
   "dilemmas": [
@@ -132,7 +155,11 @@
       "setup": "Klinikken må redusere kostnader samtidig som et nøkkelteam allerede ligger under ønsket bemanning.",
       "choice_axis": "budsjettkontroll_vs_risikoreduksjon",
       "consequence_axis": "kort_sikt_vs_lang_sikt",
-      "mail_hooks": ["job", "conflict", "story"]
+      "mail_hooks": [
+        "job",
+        "conflict",
+        "story"
+      ]
     },
     {
       "id": "rask_omstilling_eller_forankring",
@@ -140,27 +167,113 @@
       "setup": "En ny modell kan innføres raskt, men klinikerne peker på risiko som ikke er løst i implementeringsplanen.",
       "choice_axis": "tempo_vs_forankring",
       "consequence_axis": "gevinst_vs_implementeringsrisiko",
-      "mail_hooks": ["job", "followup", "consequence"]
+      "mail_hooks": [
+        "job",
+        "followup",
+        "consequence"
+      ]
     }
   ],
-  "related_people": [],
-  "related_places": [],
+  "related_people": [
+    {
+      "id": "liv_divisjonsdirektor_klinikk",
+      "name": "Liv",
+      "role": "divisjonsdirektør",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null,
+      "function": "Liv holder arbeidsgivermandat, økonomiske rammer og virksomhetsmål, og krever at klinikkens risiko- og kapasitetsbilde forklares oppover uten at dårlige nyheter pyntes. Hun skiller resultatpress, legitim prioritering og risiko som må eskaleres.",
+      "authority_relation": "Liv kan fastsette organisatoriske mål og rammer. Hun kan ikke gi psykologautorisasjon, behandlingsmyndighet eller lovregulert vedtakskompetanse, og kan ikke instruere spilleren til å skjule pasientsikkerhetsrisiko.",
+      "workplace_ids": [
+        "klinikkens_kapasitets_og_prioriteringsbord"
+      ]
+    },
+    {
+      "id": "amina_fagansvarlig_pasientsikkerhet",
+      "name": "Amina",
+      "role": "fagansvarlig og pasientsikkerhetsrådgiver",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null,
+      "function": "Amina leser avvik, kontinuitetsbrudd, kompetansegap og kliniske motstemmer som samlet kvalitetssignal. Hun nekter at fravær av meldte hendelser brukes som bevis for trygg drift når bemanning og fagmiljø viser noe annet.",
+      "authority_relation": "Amina kan gi faglige råd, kreve undersøkelse og eskalere pasientsikkerhetsbekymring. Hun kan ikke vedta budsjett eller organisering alene, og spilleren kan ikke omskrive hennes signal til klinisk godkjenning.",
+      "workplace_ids": [
+        "kvalitets_og_risikogjennomgang"
+      ]
+    },
+    {
+      "id": "eirik_avdelingsleder_klinikk",
+      "name": "Eirik",
+      "role": "avdelingsleder",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null,
+      "function": "Eirik eier lokal drift der venteliste, sykefravær, kompetanse og pasientforløp møtes. Han synliggjør når en sentral beslutning flytter kø, belastning eller rework til teamet uten nok tid og støtte.",
+      "authority_relation": "Eirik kan prioritere sitt område innen delegasjon og stoppe uavklart lokal gjennomføring. Han kan ikke låne klinisk eller juridisk myndighet fra hierarkiet, og lojalitet kan ikke brukes som taushetskrav.",
+      "workplace_ids": [
+        "bemannings_og_endringsforum"
+      ]
+    },
+    {
+      "id": "sara_tillitsvalgt_endring",
+      "name": "Sara",
+      "role": "tillitsvalgt og endringskontakt",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null,
+      "function": "Sara samler arbeidsmiljø, medvirkning og implementeringserfaring når omstilling presses fram. Hun skiller saklig motstand, kapasitetsvarsel og profesjonsinteresse, og viser hvordan manglende forankring blir driftsrisiko.",
+      "authority_relation": "Sara kan kreve reell medvirkning og bringe dokumenterte arbeidsmiljøsignaler inn i riktig prosess. Hun kan ikke overta arbeidsgiver-, klinisk eller lovmyndighet eller gjøre uformell enighet til godkjenning.",
+      "workplace_ids": [
+        "myndighets_og_eskaleringspunkt"
+      ]
+    }
+  ],
+  "related_places": [
+    {
+      "id": "klinikkens_kapasitets_og_prioriteringsbord",
+      "name": "Kapasitets- og prioriteringsbordet",
+      "function": "Kobler venteliste, bemanning, budsjett, kompetanse og forsvarlighetsrisiko før ressurser flyttes."
+    },
+    {
+      "id": "kvalitets_og_risikogjennomgang",
+      "name": "Kvalitets- og risikogjennomgangen",
+      "function": "Prøver avvik, kontinuitet og faglige signaler mot resultatdata uten å gjøre tall til klinisk fasit."
+    },
+    {
+      "id": "bemannings_og_endringsforum",
+      "name": "Bemannings- og endringsforumet",
+      "function": "Behandler rekruttering, arbeidsmiljø, medvirkning og omstillingstakt som implementeringsavhengigheter."
+    },
+    {
+      "id": "myndighets_og_eskaleringspunkt",
+      "name": "Myndighets- og eskaleringspunktet",
+      "function": "Skiller organisatorisk beslutning fra diagnostikk, behandling og lovregulert vedtak."
+    }
+  ],
   "mail_integration": {
     "role_scope": "klinikkleder",
     "mail_profile": "psykologi_klinikkleder",
-    "can_feed_mail_types": ["job", "story", "conflict", "event", "people", "followup"],
-    "mail_variables": {
-      "role_title": "Klinikkleder",
-      "category": "psykologi",
-      "main_pressure": "kapasitet_vs_forsvarlighet",
-      "ethical_axis": "organisasjonsmakt_vs_faglig_myndighetsgrense",
-      "status_axis": "resultat_vs_baerekraft"
-    },
+    "can_feed_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
     "recommended_mail_families": [
-      "bemanning_og_pasientsikkerhet",
-      "okonomi_og_kapasitet",
-      "kvalitet_og_resultater",
-      "endring_og_organisasjon"
+      "klinikkleder_job",
+      "klinikkleder_people",
+      "klinikkleder_conflict",
+      "klinikkleder_story",
+      "klinikkleder_event",
+      "klinikkleder_micro",
+      "klinikkleder_followup",
+      "klinikkleder_knowledge",
+      "klinikkleder_consequence"
     ],
     "role_model_refs_supported": true
   },

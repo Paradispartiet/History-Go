@@ -1,0 +1,87 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "klinikkleder",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "klinikkleder_story_portefolje",
+      "purpose": "Trene story gjennom klinikkens vedvarende lederportefølje.",
+      "learning_focus": [
+        "systemrisiko",
+        "pasientsikkerhet",
+        "myndighetsgrense",
+        "handoff"
+      ],
+      "mails": [
+        {
+          "id": "klinikkleder_story_lederidentitet_001",
+          "mail_type": "story",
+          "mail_family": "klinikkleder_story_portefolje",
+          "role_scope": "klinikkleder",
+          "phase": "forenoon",
+          "priority": 140,
+          "from": "Liv",
+          "people_ref": "liv_divisjonsdirektor_klinikk",
+          "place_id": "klinikkens_kapasitets_og_prioriteringsbord",
+          "subject": "Kan øverste leder avgjøre alle faglige spørsmål?",
+          "summary": "Klinikkens risiko- og kapasitetsportefølje står i et konkret story-punkt: kan øverste leder avgjøre alle faglige spørsmål?. Venteliste, bemanning, kompetanse, arbeidsmiljø, økonomi, kvalitetssignal og myndighetsplassering peker ikke samme vei. Du må bevare faglig motstemme og neste eier uten pasientidentifiserende data og uten å gjøre organisatorisk rang til klinisk eller lovregulert myndighet.",
+          "situation": [
+            "Porteføljen viser versjon, kilde, risiko, tiltak, eier og hvilket beslutningsnivå som kreves.",
+            "En rask løsning kan pynte resultatet, men flytte venting, belastning eller risiko til neste team.",
+            "Valget må gjøre handoff og rework synlig uten å straffe budbringeren."
+          ],
+          "task_domain": "klinikkledelse",
+          "competency": "systemrisiko_og_myndighetsavklaring",
+          "pressure": "kapasitet_vs_forsvarlighet",
+          "choice_axis": "sporbar_risiko_vs_resultatpynting",
+          "consequence_axis": "baerekraft_vs_skjult_risiko",
+          "narrative_arc": "lederidentitet",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avklar lederidentitet i porteføljen",
+              "reply": "Jeg bevarer kilden og motstemmen, navngir risiko, ventepunkt, tiltak og eier, og sender kliniske eller lovregulerte spørsmål til riktig kvalifisert rolle.",
+              "effect": 1,
+              "tags": [
+                "pasientsikkerhet",
+                "sporbarhet",
+                "handoff"
+              ],
+              "feedback": "Neste leder og fagperson ser hva som er kjent, hva som venter og hvem som faktisk kan beslutte. Porteføljen forblir sann, budbringeren beskyttes og rework kan skje uten at organisatorisk myndighet glir over i klinisk eller juridisk myndighet.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukk lederidentitet gjennom lederlinjen",
+              "reply": "Jeg bruker posisjonen til å kalle signalet håndtert, fjerner ventepunktet og lar teamet finne den kliniske og praktiske løsningen underveis.",
+              "effect": -1,
+              "tags": [
+                "resultatpress",
+                "myndighetsglidning",
+                "risiko"
+              ],
+              "feedback": "Rapporten ser ryddigere ut, men neste team mottar skjult risiko og uklart ansvar. Kliniske signaler, arbeidsmiljø og kompetansegap blir vanskeligere å rekonstruere, og lederlinjen fremstår feilaktig som erstatning for kvalifikasjon og lovlig beslutning.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
