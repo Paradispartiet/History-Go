@@ -29,6 +29,19 @@ jobs:
         with:
           node-version: '24'
 
+      - name: Correct Field 3 habilitet boundary
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file='scripts/tmp-materialize-juss-field2-fulltext-field3-source-first.mjs';
+          let text=fs.readFileSync(file,'utf8');
+          const from="boundary:'Habilitet vurderes etter lovens konkrete tilknytningsregler og den generelle tillitsnormen. Ubehag, uenighet eller tidligere faglig kontakt er ikke automatisk inhabilitet; relevante relasjoner og mulige fordeler eller ulemper må vurderes konkret.'";
+          const to="boundary:'Habilitet og upartiskhet vurderes etter lovens konkrete tilknytningsregler og den generelle tillitsnormen. Ubehag, uenighet eller tidligere faglig kontakt er ikke automatisk inhabilitet; relevante relasjoner og mulige fordeler eller ulemper må vurderes konkret.'";
+          if(!text.includes(from)&&!text.includes(to)) throw new Error('Unexpected Field 3 habilitet boundary');
+          if(text.includes(from)) text=text.replace(from,to);
+          fs.writeFileSync(file,text);
+          NODE
+
       - name: Syntax-check TEMP generator
         run: node --check scripts/tmp-materialize-juss-field2-fulltext-field3-source-first.mjs
 
