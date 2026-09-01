@@ -23,6 +23,8 @@ Cross-role remains `candidate_when_shared_work_is_real`. No shared work object o
 - `git diff --check`: PASS
 - root typecheck retains the same six baseline diagnostics in the three untouched JS files; exact-head baseline CI must prove no new diagnostics
 
+Workflow reproduction checkpoint: permanent materialization head `4a4f09e9a4a446a95c64b1f61e4c7da96e5a6e6f` and temporary run `33501548622` completed successfully after reproducing the focused gates and full 336/336 Civication suite, then removed both temporary files. A subsequent user-authored report commit is required solely to trigger executable CI on the clean permanent PR head.
+
 ## Six-part quality gate
 
 1. **Correctness and evidence — 5/5.** The materializer SHA-locks the exact role model, work grammar, mail plan and manifest; every beat resolves to one of 15 existing canonical scenes.
