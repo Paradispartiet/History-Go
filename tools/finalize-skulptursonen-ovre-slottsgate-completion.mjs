@@ -43,7 +43,6 @@ const urls = {
   sleep: "https://www.norskbilledhoggerforening.no/vre-slottsgate-katalog/event-one-g5ngh-4d2bm-gwesb-wlbag-z653r-ksmpa-lwhwh-wk4ty-npydc-dcr6j-3hktn",
   money: "https://www.norskbilledhoggerforening.no/vre-slottsgate-katalog/event-one-g5ngh-4d2bm-gwesb-wlbag-z653r-ksmpa-lwhwh-wk4ty-npydc-dcr6j-3hktn-z8s87-dflsz-hjw74-4lmpm",
   museumPerson: "https://www.nasjonalmuseet.no/samlingen/produsent/53639/vibeke-tandberg",
-  galleryPerson: "https://oslcontemporary.com/artists/vibeke-tandberg",
   portraitPage: "https://commons.wikimedia.org/wiki/File:Vibeke_Tandberg_1054.jpg",
   portrait: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Vibeke_Tandberg_1054.jpg",
   facade: "https://www.oppdagkvadraturen.no/uploads/attractions/ovre-slottsgate.jpg",
@@ -76,9 +75,9 @@ await Promise.all([
 ]);
 
 const desc = "Skulptursonen i Øvre Slottsgate var et tidsavgrenset offentlig kunstprosjekt i gågaten mellom Tollbugata og Prinsens gate fra 2019 til 2024. Fem arkitekttegnede felt for frittstående skulpturer ble integrert med sittemøbler, planter og trær. Prosjektet var et samarbeid mellom Norsk Billedhoggerforening, Kulturetaten og Bymiljøetaten i Oslo kommune.";
-const popupDesc = "Skulptursonen ble lansert i august 2019, da Øvre Slottsgate var nyetablert som gågate. Prosjektområdet lå mellom Tollbugata og Prinsens gate. Strekningen fikk sittemøbler, planter, trær og fem spesialtilpassede soner for skulptur. Disse elementene gjorde visningsfeltene til en planlagt del av det samme byrommet som fotgjengere brukte til ferdsel og opphold.\n\nProsjektet var et samarbeid mellom Norsk Billedhoggerforening, Kulturetaten og Bymiljøetaten i Oslo kommune. Kommunen stilte produksjonsmidler til rådighet for kunstnerne. Bidragene skulle være frittstående skulpturer som samtidig forholdt seg til gaterommet. Det åpne gaterommet var dermed både plassering og den uttrykkelige rammen verkene skulle forholde seg til.\n\nNorsk Billedhoggerforening oppgir prosjektperioden som 2019–2024. Den offisielle oversikten har separate verkgrupper for 2020, 2022 og 2023. Hver av de tre gruppene inneholder fem kunstnere og fem verk. Verkene fra 2023 må derfor leses som en datert utstillingsrunde, ikke som dokumentasjon av hva som står i gaten i dag.\n\nRunden i 2023 omfattet Ingrid Solvik, Gisle Harr, Aleksander Stav, Vibeke Tandberg og Yamile Calderon. Vibeke Tandbergs Hestebarrikade besto av fem hestehoder i betong. Den offisielle verksteksten kobler hestehodene både til politihester og til fysiske sikkerhetsbarrierer som preger bybildet.\n\nIngrid Solviks Du må ikke sove brukte tre køyer med broderier. Broderiene ble laget av mennesker som hadde erfaring med å sove i det offentlige rom. Motivene var fordelt på temaene fortid, nåtid og fremtid. Verksteksten knytter køyene til stoler med armlener og andre former for møblering som gjør det vanskelig å legge seg.\n\nYamile Calderons What Money Can Buy var laget i epoxy og fiberglass, spraymalt for å ligne gull og marmor. Verket var inspirert av fotoprosjektet Narcos & Homes. Den offisielle teksten knytter også plasseringen blant luksusbutikker til verkets undersøkelse av luksus og status. Teksten beskriver et spisebord i gull med en replika av et skulpturmotiv av Giambologna.\n\nOppdag Kvadraturen publiserer en planskisse kreditert Asplan Viak og Norsk Billedhoggerforening. Skissen dokumenterer den romlige organiseringen av kunstfeltene, gatemøblene og vegetasjonen. Den kan ikke dokumentere hvordan alle forbipasserende opplevde verkene. Kildene som er brukt her dokumenterer prosjektperioden og de daterte rundene, men fastslår ikke hvilke verk som eventuelt står i sonene i dag.";
+const popupDesc = "Skulptursonen ble lansert i august 2019, da Øvre Slottsgate var nyetablert som gågate. Prosjektområdet lå mellom Tollbugata og Prinsens gate. Strekningen fikk sittemøbler, planter, trær og fem spesialtilpassede soner for skulptur. Disse elementene gjorde visningsfeltene til en planlagt del av det samme byrommet som fotgjengere brukte til ferdsel og opphold.\n\nProsjektet var et samarbeid mellom Norsk Billedhoggerforening, Kulturetaten og Bymiljøetaten i Oslo kommune. Kommunen stilte produksjonsmidler til rådighet for kunstnerne. Bidragene skulle være frittstående skulpturer som samtidig forholdt seg til gaterommet. Det åpne gaterommet var både plassering og den uttrykkelige rammen verkene skulle forholde seg til.\n\nNorsk Billedhoggerforening oppgir prosjektperioden som 2019–2024. Den offisielle oversikten har separate verkgrupper for 2020, 2022 og 2023. Hver av de tre gruppene inneholder fem kunstnere og fem verk. Verkene fra 2023 vises som historiske produksjoner, ikke som en påstand om dagens installasjon.\n\nRunden i 2023 omfattet Ingrid Solvik, Gisle Harr, Aleksander Stav, Vibeke Tandberg og Yamile Calderon. Vibeke Tandbergs Hestebarrikade besto av fem hestehoder i betong. Den offisielle verksteksten kobler hestehodene både til politihester og til fysiske sikkerhetsbarrierer som preger bybildet.\n\nIngrid Solviks Du må ikke sove brukte tre køyer med broderier. Broderiene ble laget av mennesker som hadde erfaring med å sove i det offentlige rom. Motivene var fordelt på temaene fortid, samtid og fremtid. Verksteksten knytter køyene til stoler med armlener og andre former for møblering som gjør det vanskelig å legge seg.\n\nYamile Calderons What Money Can Buy var laget i epoxy og fiberglass, spraymalt for å ligne gull og marmor. Verket var inspirert av fotoprosjektet Narcos & Homes. Den offisielle teksten knytter også plasseringen blant luksusbutikker til verkets undersøkelse av luksus og status. Teksten beskriver et spisebord i gull med en replika av et skulpturmotiv av Giambologna.\n\nOppdag Kvadraturen publiserer en planskisse kreditert Asplan Viak og Norsk Billedhoggerforening. Skissen dokumenterer den romlige organiseringen av kunstfeltene, gatemøblene og vegetasjonen. Den kan ikke dokumentere hvordan alle forbipasserende opplevde verkene. Kildene som er brukt her dokumenterer prosjektperioden og de daterte rundene, men fastslår ikke hvilke verk som eventuelt står i sonene i dag.";
 
-const sourceRef = (sourceUrl, sourceLocation, claimKind = "ordinary", evidenceMode = "direct") => ({ sourceUrl, sourceLocation, claimKind, evidenceMode });
+const sourceRef = (sourceUrl, sourceLocation, claimKind = "ordinary", evidenceMode = "direct", temporalStatus = "historical") => ({ sourceUrl, sourceLocation, claimKind, evidenceMode, temporalStatus });
 const descClaimSources = [
   sourceRef(urls.project, "prosjektoverskriften, innledningen og periodeangivelsen", "identity"),
   sourceRef(urls.oppdag, "avsnittet om gateutformingen og planskissen", "identity"),
@@ -111,7 +110,7 @@ const popupClaimSources = [
   sourceRef(urls.oppdag, "bildeteksten til planskissen"),
   sourceRef(urls.oppdag, "planskissen og avsnittet om gateutformingen"),
   sourceRef(urls.oppdag, "planskissens dokumentasjonsgrense"),
-  sourceRef(urls.project, "prosjektperioden og de daterte verkgruppene", "temporal")
+  sourceRef(urls.project, "prosjektperioden og de daterte verkgruppene", "temporal", "direct", "current")
 ];
 const place = read(placeFile);
 Object.assign(place, {
@@ -382,7 +381,7 @@ const questions = questionRows.map((row, index) => {
   const shift = index % 3;
   const options = [...raw.slice(shift), ...raw.slice(0, shift)];
   const number = index + 1;
-  const question_type = number <= 14 ? "fact" : number <= 21 ? "context" : method_id ? "method" : "concept";
+  const question_type = number <= 14 ? "fact" : number <= 21 ? "context" : method_id ? "analysis" : "concept";
   const item = {
     id: `skulptursonen_quiz_${String(number).padStart(2, "0")}`,
     quiz_id: `kunst_${placeId}_set_${Math.floor(index / 7) + 1}_q${index % 7 + 1}`,
@@ -484,25 +483,38 @@ quizPackage.production_context = {
 write(quizFile, quizPackage);
 await runBuildQuizProductionContext({ root, categoryId: "kunst", targetId: placeId, outputPath: contextFile });
 
-const claimDefinitions = [
-  ["period", "Norsk Billedhoggerforening oppgir prosjektperioden som 2019–2024.", urls.project, "prosjektoverskrift og år", "temporal"],
-  ["launch", "Skulptursonen ble lansert i august 2019 da Øvre Slottsgate var nyetablert som gågate.", urls.project, "innledningen", "temporal"],
-  ["design", "Strekningen mellom Tollbugata og Prinsens gate fikk fem kunstfelt, sittemøbler, planter og trær.", urls.project, "avsnittet om gateutforming", "identity"],
-  ["partners", "Norsk Billedhoggerforening samarbeidet med Kulturetaten og Bymiljøetaten, og kunstnere fikk produksjonsmidler.", urls.project, "innledningen", "ordinary"],
-  ["rounds", "Prosjektoversikten dokumenterer verkgrupper fra 2020, 2022 og 2023.", urls.project, "verkoversikten", "temporal"],
-  ["works2023", "Runden i 2023 omfattet verk av Solvik, Harr, Stav, Tandberg og Calderon.", urls.project, "2023-oversikten", "temporal"],
-  ["hest", "Hestebarrikade besto av fem hestehoder i betong og koblet politihester til sikkerhetsbarrierer.", urls.hest, "verkbeskrivelsen", "ordinary"],
-  ["sleep", "Du må ikke sove brukte tre broderte køyer og svarte på ekskluderende bymøblering.", urls.sleep, "verkbeskrivelsen", "ordinary"],
-  ["money", "What Money Can Buy brukte epoxy og fiberglass spraymalt som gull og marmor i en undersøkelse av luksus og status.", urls.money, "verkbeskrivelsen", "ordinary"],
-  ["plan", "Oppdag Kvadraturen publiserer en planskisse for Skulptursonen kreditert Asplan Viak og Norsk Billedhoggerforening.", urls.oppdag, "bildeteksten til planskissen", "ordinary"]
+const buildTextClaims = (text, prefix, sourceRows) => {
+  const textSentences = sentences(text);
+  if (textSentences.length !== sourceRows.length) {
+    throw new Error(`${prefix}: ${textSentences.length} setninger, men ${sourceRows.length} kildepekere`);
+  }
+  return textSentences.map((claim, index) => ({
+    id: `claim_skulptursonen_${prefix}_${String(index + 1).padStart(2, "0")}`,
+    claim,
+    sourceUrl: sourceRows[index].sourceUrl,
+    sourceLocation: sourceRows[index].sourceLocation,
+    sourceType: "official",
+    verifiedAt,
+    status: "verified",
+    claimKind: sourceRows[index].claimKind,
+    evidenceMode: sourceRows[index].evidenceMode,
+    temporalStatus: sourceRows[index].temporalStatus
+  }));
+};
+const descClaims = buildTextClaims(desc, "desc", descClaimSources);
+const popupClaims = buildTextClaims(popupDesc, "popup", popupClaimSources);
+const claims = [...descClaims, ...popupClaims];
+const claimCoverage = (textClaims) => textClaims.map((claim, index) => ({ sentence: index + 1, claimIds: [claim.id] }));
+const quizReadinessClaimIds = [
+  popupClaims[0].id,
+  popupClaims[1].id,
+  popupClaims[2].id,
+  popupClaims[0].id,
+  popupClaims[2].id,
+  popupClaims[4].id,
+  popupClaims[6].id,
+  popupClaims[8].id
 ];
-const claims = claimDefinitions.map(([id, claim, sourceUrl, sourceLocation, claimKind]) => ({ id: `claim_skulptursonen_${id}`, claim, sourceUrl, sourceLocation, sourceType: "official", verifiedAt, status: "verified", claimKind, evidenceMode: "direct", temporalStatus: ["partners", "hest", "sleep", "money", "rounds", "works2023"].includes(id) ? "historical" : "current" }));
-const coverage = (text) => sentences(text).map((sentence, index) => ({
-  sentence: index + 1,
-  claimIds: [
-    `claim_skulptursonen_${/2019.?2024|prosjektperiod/i.test(sentence) ? "period" : /lansert|gågate/i.test(sentence) ? "launch" : /fem|tollbugata|prinsens|sitte|planter|trær/i.test(sentence) ? "design" : /billedhoggerforening|kulturetaten|bymiljøetaten|produksjonsmid/i.test(sentence) ? "partners" : /2020|2022|rundene|skiftet/i.test(sentence) ? "rounds" : /solvik|harr|stav|tandberg|calderon|fem verk/i.test(sentence) ? "works2023" : /hestebarrikade|hestehoder|sikkerhetsbarrier/i.test(sentence) ? "hest" : /du må ikke sove|køyer|brodert/i.test(sentence) ? "sleep" : /what money|epoxy|fiberglass|gull|marmor|luksus/i.test(sentence) ? "money" : /planskisse|kunstfeltene/i.test(sentence) ? "plan" : "period"}`
-  ]
-}));
 write("data/places/production/skulptursonen_ovre_slottsgate.json", {
   schemaVersion: "4.2",
   validatorVersion: "4.2.1",
@@ -511,12 +523,12 @@ write("data/places/production/skulptursonen_ovre_slottsgate.json", {
   status: "ready_v4_2",
   identity: { status: "resolved", represents: "Skulptursonen som fem tilrettelagte visningsfelt i Øvre Slottsgate, brukt i prosjektperioden 2019–2024.", period: "2019–2024", excludes: ["ett permanent kunstverk", "verk fra 2023 som påstand om dagens installasjon", "hele Øvre Slottsgate utenfor Tollbugata–Prinsens gate"] },
   metadataSnapshot: { name: place.name, year: place.year, category: place.category, coordinates: { lat: place.lat, lon: place.lon } },
-  textHashes: { algorithm: "sha256", desc: sha256(desc), popupDesc: sha256(popupDescFinal) },
+  textHashes: { algorithm: "sha256", desc: sha256(desc), popupDesc: sha256(popupDesc) },
   claims,
-  sentenceCoverage: { desc: coverage(desc), popupDesc: coverage(popupDescFinal) },
+  sentenceCoverage: { desc: claimCoverage(descClaims), popupDesc: claimCoverage(popupClaims) },
   collections: { people: [personId], objects: ["skulptursonen_planskisse_2019"], brands: [brandId], productions: place.productions.map((row) => row.id) },
   roundsReadiness: { status: "ready", exactCollectionCount: 4 },
-  quizReadiness: { status: "canonical_normal_4x7", quizTargetId: placeId, sourceBrief: briefFile, productionContext: contextFile, normalOpeningQuestions: 14, totalQuestions: 28, reuseDecision: "Ingen aktiv canonical stedspakke fantes.", questions: questions.slice(0, 8).map((item, index) => ({ question: item.question, answer: item.answer, type: ["når", "hvor", "hva", "hva_skjedde", "hvilket_verk_eller_objekt", "hvem", "hva_ble_bygget_produsert_eller_endret", "hva"][index], normalKnowledgeQuestion: true, claimIds: [claims[index % claims.length].id] })) },
+  quizReadiness: { status: "canonical_normal_4x7", quizTargetId: placeId, sourceBrief: briefFile, productionContext: contextFile, normalOpeningQuestions: 14, totalQuestions: 28, reuseDecision: "Ingen aktiv canonical stedspakke fantes.", questions: questions.slice(0, 8).map((item, index) => ({ question: item.question, answer: item.answer, type: ["når", "hvor", "hva", "hva_skjedde", "hva", "hvem", "hva", "når"][index], normalKnowledgeQuestion: true, claimIds: [quizReadinessClaimIds[index]] })) },
   source_conflicts: [
     { claim: "De fem verkene fra 2023 står fortsatt permanent i gaten.", status: "rejected", reason: "Kildene beskriver skiftende utstillingsrunder og oppgir prosjektperioden som 2019–2024." },
     { claim: "Skulptursonen er ett enkelt skulpturverk.", status: "rejected", reason: "Kildene beskriver fem tilrettelagte visningsfelt med skiftende verk." }

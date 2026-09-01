@@ -55,6 +55,7 @@ test("quiz is normal 4x7 with fourteen direct opening facts", () => {
   assert.ok(quiz.sets.every((set) => set.questions.length === 7));
   const questions = quiz.sets.flatMap((set) => set.questions);
   assert.ok(questions.slice(0, 14).every((question) => question.question_type === "fact"));
+  assert.ok(questions.every((question) => new Set(["fact", "context", "analysis", "concept"]).has(question.question_type)));
   assert.ok(questions.every((question) => question.knowledge_link_status === "linked"));
 });
 
