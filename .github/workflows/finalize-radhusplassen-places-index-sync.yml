@@ -31,7 +31,7 @@ jobs:
           git fetch origin main
           git merge --no-edit origin/main
       - name: Regenerate places index from canonical sources
-        run: node tools/build_places_index.mjs
+        run: npm run places:index:build
       - name: Validate places index and composed canonical data
         run: |
           npm run places:index:check
