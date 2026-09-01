@@ -3,8 +3,8 @@ import fs from 'node:fs';
 const registryPath = 'data/fagverk/fagverk_registry.json';
 const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
 
-registry.places ??= {};
-registry.places.radhusplassen = {
+registry.placeLinks ??= {};
+registry.placeLinks.radhusplassen = {
   sourceFile: 'places/by/oslo/places/radhusplassen.json',
   field: 'fagverk',
   schema: 'history_go_place_fagverk_v2',
