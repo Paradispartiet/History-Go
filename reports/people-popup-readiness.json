@@ -3,7 +3,7 @@
   "contract": "docs/PEOPLE_POPUP_SYSTEM.md",
   "productionContract": "docs/PEOPLE_PROFILE_CANONICAL.md",
   "generatedBy": "tools/audit-people-popup-readiness.mts",
-  "sourceFingerprint": "36d3278a2f785dd9acbeed1e3c2a56cc96e766918498a7517a93d0ae4777d7c8",
+  "sourceFingerprint": "986ba9b112991e7a3a610e3758528d0a19ac9595b1d5804e3ee493b08aed9dc8",
   "thresholds": {
     "complete": 85,
     "strong": 65,
@@ -19,11 +19,11 @@
   "summary": {
     "totalPeople": 1426,
     "complete": 70,
-    "strong": 408,
-    "partial": 933,
+    "strong": 409,
+    "partial": 932,
     "sparse": 15,
-    "readyPeopleV1": 78,
-    "legacyUnreviewed": 1348,
+    "readyPeopleV1": 79,
+    "legacyUnreviewed": 1347,
     "brokenImages": 279,
     "explicitFallbacks": 993,
     "implicitFallbacks": 26,
@@ -59,15 +59,15 @@
       "percent": 100
     },
     "sources": {
-      "count": 467,
-      "percent": 32.7
+      "count": 468,
+      "percent": 32.8
     },
     "imageContract": {
       "count": 1147,
       "percent": 80.4
     },
     "profileStandard": {
-      "count": 78,
+      "count": 79,
       "percent": 5.5
     }
   },
@@ -131,12 +131,12 @@
       "category": "kunst",
       "total": 86,
       "complete": 11,
-      "strong": 62,
-      "partial": 13,
+      "strong": 63,
+      "partial": 12,
       "sparse": 0,
-      "readyPeopleV1": 12,
-      "legacyUnreviewed": 74,
-      "averageScore": 74
+      "readyPeopleV1": 13,
+      "legacyUnreviewed": 73,
+      "averageScore": 74.1
     },
     {
       "category": "naeringsliv",
@@ -6363,30 +6363,6 @@
       ]
     },
     {
-      "placeId": "ekebergparken",
-      "totalIncomplete": 2,
-      "sparse": 0,
-      "partial": 1,
-      "strong": 1,
-      "averageScore": 63.5,
-      "people": [
-        {
-          "id": "cecilie_malm_brundtland",
-          "name": "Cecilie Malm Brundtland",
-          "score": 65,
-          "status": "strong",
-          "productionStatus": "legacy_unreviewed"
-        },
-        {
-          "id": "christian_ringnes",
-          "name": "Christian Ringnes",
-          "score": 62,
-          "status": "partial",
-          "productionStatus": "legacy_unreviewed"
-        }
-      ]
-    },
-    {
       "placeId": "camilla_collett_statue",
       "totalIncomplete": 2,
       "sparse": 0,
@@ -6479,6 +6455,30 @@
           "score": 67,
           "status": "strong",
           "productionStatus": "legacy_unreviewed"
+        }
+      ]
+    },
+    {
+      "placeId": "ekebergparken",
+      "totalIncomplete": 2,
+      "sparse": 0,
+      "partial": 0,
+      "strong": 2,
+      "averageScore": 68.5,
+      "people": [
+        {
+          "id": "cecilie_malm_brundtland",
+          "name": "Cecilie Malm Brundtland",
+          "score": 65,
+          "status": "strong",
+          "productionStatus": "legacy_unreviewed"
+        },
+        {
+          "id": "christian_ringnes",
+          "name": "Christian Ringnes",
+          "score": 72,
+          "status": "strong",
+          "productionStatus": "ready_people_v1"
         }
       ]
     },
@@ -28106,51 +28106,6 @@
       "sourceCount": 0,
       "imageState": "explicit_fallback",
       "imagePath": "",
-      "coverage": {
-        "identity": false,
-        "popupDesc": true,
-        "lifeData": false,
-        "contributionsDeclared": false,
-        "educationDeclared": false,
-        "practiceDeclared": true,
-        "placeGrounding": true,
-        "sources": false,
-        "imageContract": true,
-        "profileStandard": false
-      },
-      "issues": [
-        "missing_role_label",
-        "missing_birth_data",
-        "missing_contributions_field",
-        "missing_sources",
-        "legacy_unreviewed"
-      ]
-    },
-    {
-      "id": "christian_ringnes",
-      "name": "Christian Ringnes",
-      "category": "kunst",
-      "kindLabel": "",
-      "sourceFile": "data/people/filantroper/oslo/people_filantroper_oslo.json",
-      "primaryPlace": "ekebergparken",
-      "places": [
-        "ekebergparken",
-        "ekebergparken_museum"
-      ],
-      "score": 62,
-      "priority": 67,
-      "status": "partial",
-      "productionStatus": "legacy_unreviewed",
-      "profileStandard": "",
-      "claimsFile": "",
-      "paragraphCount": 1,
-      "popupLength": 306,
-      "contributionCount": 0,
-      "educationCount": 0,
-      "practiceCount": 5,
-      "sourceCount": 0,
-      "imageState": "valid_image",
-      "imagePath": "bilder/kort/people/christian_ringnes.webp",
       "coverage": {
         "identity": false,
         "popupDesc": true,
@@ -68155,6 +68110,50 @@
       "sourceCount": 3,
       "imageState": "valid_image",
       "imagePath": "bilder/kort/people/christian_julius_schou.webp",
+      "coverage": {
+        "identity": false,
+        "popupDesc": true,
+        "lifeData": false,
+        "contributionsDeclared": false,
+        "educationDeclared": false,
+        "practiceDeclared": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true,
+        "profileStandard": true
+      },
+      "issues": [
+        "missing_role_label",
+        "missing_birth_data",
+        "missing_contributions_field"
+      ]
+    },
+    {
+      "id": "christian_ringnes",
+      "name": "Christian Ringnes",
+      "category": "kunst",
+      "kindLabel": "",
+      "sourceFile": "data/people/filantroper/oslo/people_filantroper_oslo.json",
+      "primaryPlace": "ekebergparken",
+      "places": [
+        "ekebergparken",
+        "ekebergparken_museum",
+        "the_mini_bottle_gallery"
+      ],
+      "score": 72,
+      "priority": 38,
+      "status": "strong",
+      "productionStatus": "ready_people_v1",
+      "profileStandard": "people_profile_v1.0",
+      "claimsFile": "data/people/claims/filantroper/oslo/the_mini_bottle_gallery/christian_ringnes.claims.json",
+      "paragraphCount": 1,
+      "popupLength": 558,
+      "contributionCount": 0,
+      "educationCount": 0,
+      "practiceCount": 9,
+      "sourceCount": 3,
+      "imageState": "valid_image",
+      "imagePath": "bilder/kort/people/christian_ringnes.webp",
       "coverage": {
         "identity": false,
         "popupDesc": true,
