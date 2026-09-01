@@ -1,0 +1,703 @@
+{
+  "schema": "history_go_juss_rettsvitenskap_administrative_law_source_claim_brief_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-09-01",
+  "status": "source_first_ready_not_materialized",
+  "subject_id": "politikk",
+  "canonical_subcategory_id": "juss_rettsvitenskap",
+  "domain": {
+    "ordinal": 3,
+    "id": "forvaltningsrett_myndighetsutovelse_saksbehandling_klage",
+    "title": "Forvaltningsrett, myndighetsutøvelse, saksbehandling og klage",
+    "production_mode": "new_production_required"
+  },
+  "source_strategy": {
+    "source_first": true,
+    "inspectable_urls_required": true,
+    "claim_level_trace_required": true,
+    "minimum_sources_per_claim": 2,
+    "fulltext_materialization_required_before_counting": true,
+    "primary_or_institutional_sources_preferred": true,
+    "jurisdiction_and_time_scope_required": true,
+    "current_forvaltningslov_1967_controls_until_new_law_in_force": true,
+    "new_2025_law_not_yet_in_force_as_of_2026_09_01": true,
+    "legal_education_is_not_personal_legal_advice": true
+  },
+  "sources": [
+    {
+      "id": "forv01-fvl1967",
+      "title": "Lov om behandlingsmåten i forvaltningssaker (forvaltningsloven)",
+      "publisher": "Lovdata",
+      "type": "current-statute",
+      "url": "https://lovdata.no/dokument/NL/lov/1967-02-10",
+      "evidence_role": "gjeldende-alminnelig-forvaltningslov-per-2026-09-01",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "forv02-grl113",
+      "title": "Kongeriket Norges Grunnlov § 113",
+      "publisher": "Lovdata",
+      "type": "constitution",
+      "url": "https://lovdata.no/nav/lov/1814-05-17/kapE/%C2%A7113",
+      "evidence_role": "legalitetsprinsipp-hjemmel-for-inngrep",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "forv03-kommuneloven",
+      "title": "Lov om kommuner og fylkeskommuner (kommuneloven)",
+      "publisher": "Lovdata",
+      "type": "statute",
+      "url": "https://lovdata.no/lov/2018-06-22-83",
+      "evidence_role": "kommunal-kompetanse-delegering-og-klageorganisering",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "forv04-offentleglova",
+      "title": "Lov om rett til innsyn i dokument i offentleg verksemd (offentleglova)",
+      "publisher": "Lovdata",
+      "type": "statute",
+      "url": "https://lovdata.no/nav/lov/2006-05-19-16",
+      "evidence_role": "allmenninnsyn-og-klage-som-skillet-fra-partsinnsyn",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "forv05-fvlforskriften",
+      "title": "Forskrift til forvaltningsloven (forvaltningslovforskriften)",
+      "publisher": "Lovdata",
+      "type": "regulation",
+      "url": "https://lovdata.no/forskrift/2006-12-15-1456",
+      "evidence_role": "utfyllende-regler-til-gjeldende-forvaltningslov",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "forv06-eforvaltning",
+      "title": "Forskrift om elektronisk kommunikasjon med og i forvaltningen",
+      "publisher": "Lovdata",
+      "type": "regulation",
+      "url": "https://lovdata.no/forskrift/2004-06-25-988",
+      "evidence_role": "digital-kommunikasjon-og-sikkerhet",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "forv07-nou2019-5",
+      "title": "NOU 2019: 5 Ny forvaltningslov",
+      "publisher": "Justis- og beredskapsdepartementet",
+      "type": "official-report",
+      "url": "https://www.regjeringen.no/no/dokumenter/nou-2019-5/id2632006/",
+      "evidence_role": "reformhistorikk-og-utredet-forvaltningsrett",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "forv08-prop79l",
+      "title": "Prop. 79 L (2024–2025) Lov om saksbehandlingen i offentlig forvaltning",
+      "publisher": "Justis- og beredskapsdepartementet",
+      "type": "bill-proposition",
+      "url": "https://www.regjeringen.no/no/dokumenter/prop.-79-l-20242025/id3094317/",
+      "evidence_role": "forarbeider-til-vedtatt-2025-lov",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "forv09-fvl2025",
+      "title": "Lov om saksbehandlingen i offentlig forvaltning (forvaltningsloven) LOV-2025-06-20-81",
+      "publisher": "Lovdata",
+      "type": "enacted-not-yet-in-force-statute",
+      "url": "https://lovdata.no/nav/lov/2025-06-20-81/",
+      "evidence_role": "vedtatt-reformlov-ikrafttredelse-kongen-bestemmer",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "forv10-sivil-veiledning",
+      "title": "Veiledningsplikt – muntlig, skriftlig eller digitalt",
+      "publisher": "Sivilombudet",
+      "type": "institutional-guidance",
+      "url": "https://www.sivilombudet.no/wp-content/uploads/2026/02/Veiledningsplikt_Muntlig-skriftlig-eller-digitalt_UU.pdf",
+      "evidence_role": "veiledningsplikt-og-tilpasning",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "forv11-sivil-begrunnelse",
+      "title": "Begrunnelser",
+      "publisher": "Sivilombudet",
+      "type": "institutional-guidance",
+      "url": "https://www.sivilombudet.no/veiledere/begrunnelser/",
+      "evidence_role": "begrunnelsesplikt-regler-faktum-og-skjonn",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "forv12-sivil-habilitet",
+      "title": "Habilitet og begrunnelse ved autorisasjonsprøve i tolking",
+      "publisher": "Sivilombudet",
+      "type": "ombud-case",
+      "url": "https://www.sivilombudet.no/uttalelser/habilitet-og-begrunnelse-ved-autorisasjonsprove-i-tolking/",
+      "evidence_role": "habilitet-konkret-vurdering-og-begrunnelse",
+      "retrieval_status": "verified_2026-09-01"
+    },
+    {
+      "id": "forv13-sivil-tid",
+      "title": "Saksbehandlingstiden i saker etter åpenhetsloven",
+      "publisher": "Sivilombudet",
+      "type": "ombud-case",
+      "url": "https://www.sivilombudet.no/uttalelser/saksbehandlingstiden-i-saker-etter-apenhetsloven/",
+      "evidence_role": "saksbehandlingstid-forelopig-svar-og-fremdrift",
+      "retrieval_status": "verified_2026-09-01"
+    }
+  ],
+  "topic_briefs": [
+    {
+      "id": "hjemmel-kompetanse-og-delegering",
+      "title": "Hjemmel, kompetanse og delegering",
+      "method_ids": [
+        "met_forv_hjemmel",
+        "met_forv_delegering"
+      ],
+      "boundary": "Legalitetsprinsippet i Grunnloven § 113 krever lovgrunnlag for myndighetenes inngrep overfor den enkelte. Kompetanse og delegering må spores til riktig organ og hjemmelskjede; politisk mål eller intern instruks er ikke i seg selv tilstrekkelig hjemmel.",
+      "source_ids": [
+        "forv01-fvl1967",
+        "forv02-grl113",
+        "forv03-kommuneloven"
+      ],
+      "planned_claims": [
+        {
+          "id": "forv-01",
+          "text": "Inngripende offentlig myndighetsutøvelse overfor den enkelte må ha grunnlag i lov, og analysen må identifisere hvilken hjemmel som bærer det konkrete inngrepet.",
+          "source_ids": [
+            "forv02-grl113",
+            "forv01-fvl1967"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "forv-02",
+          "text": "Et forvaltningsorgan kan bare treffe vedtak innenfor sin saklige og organisatoriske kompetanse, og delegasjon må vurderes mot lovgrunnlaget og reglene for det aktuelle organet.",
+          "source_ids": [
+            "forv03-kommuneloven",
+            "forv07-nou2019-5"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "forv-03",
+          "text": "At et tiltak følger et legitimt politisk formål eller etablert praksis erstatter ikke kravet om nødvendig rettslig kompetanse når myndigheten griper inn overfor private.",
+          "source_ids": [
+            "forv02-grl113",
+            "forv08-prop79l"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "forv-04",
+          "text": "Kompetansemangler må skilles fra andre saksbehandlingsfeil fordi spørsmålet er om organet hadde rettslig myndighet til å treffe avgjørelsen, ikke bare om prosessen var mangelfull.",
+          "source_ids": [
+            "forv07-nou2019-5",
+            "forv08-prop79l"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "virkeomrade-enkeltvedtak-part-og-forskrift",
+      "title": "Virkeområde, enkeltvedtak, part og forskrift",
+      "method_ids": [
+        "met_forv_klassifisering",
+        "met_forv_virkeomrade"
+      ],
+      "boundary": "Før prosessregler anvendes må avgjørelsen klassifiseres. Enkeltvedtak, forskrift, prosessledende beslutning og privatrettslig disposisjon utløser ikke identiske regler, og partsstatus må vurderes særskilt.",
+      "source_ids": [
+        "forv01-fvl1967",
+        "forv07-nou2019-5",
+        "forv09-fvl2025"
+      ],
+      "planned_claims": [
+        {
+          "id": "forv-05",
+          "text": "Forvaltningsrettslig analyse begynner med å avgjøre om organet og saken omfattes av forvaltningsloven og hvilken type avgjørelse som behandles.",
+          "source_ids": [
+            "forv01-fvl1967",
+            "forv07-nou2019-5"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "forv-06",
+          "text": "Et enkeltvedtak er etter gjeldende forvaltningslov en avgjørelse under offentlig myndighetsutøvelse som gjelder rettigheter eller plikter for bestemte personer, og klassifikasjonen har betydning for hvilke saksbehandlingsregler som gjelder.",
+          "source_ids": [
+            "forv01-fvl1967",
+            "forv08-prop79l"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "forv-07",
+          "text": "Partsstatus og allmennhetens innsynsrett er forskjellige rettslige posisjoner; partsinnsyn etter forvaltningsloven må skilles fra allmenninnsyn etter offentleglova.",
+          "source_ids": [
+            "forv01-fvl1967",
+            "forv04-offentleglova"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "forv-08",
+          "text": "Den vedtatte forvaltningsloven av 2025 moderniserer definisjoner og struktur, men må ikke brukes som gjeldende hjemmel før den faktisk er satt i kraft.",
+          "source_ids": [
+            "forv09-fvl2025",
+            "forv08-prop79l"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "habilitet-og-upartiskhet",
+      "title": "Habilitet og upartiskhet",
+      "method_ids": [
+        "met_forv_habilitet",
+        "met_forv_tillit"
+      ],
+      "boundary": "Habilitet og upartiskhet vurderes etter lovens konkrete tilknytningsregler og den generelle tillitsnormen. Ubehag, uenighet eller tidligere faglig kontakt er ikke automatisk inhabilitet; relevante relasjoner og mulige fordeler eller ulemper må vurderes konkret.",
+      "source_ids": [
+        "forv01-fvl1967",
+        "forv12-sivil-habilitet",
+        "forv09-fvl2025"
+      ],
+      "planned_claims": [
+        {
+          "id": "forv-09",
+          "text": "Habilitetsreglene skal beskytte både avgjørelsens upartiskhet og tilliten til forvaltningen, og gjelder personer som tilrettelegger grunnlaget for eller treffer avgjørelser.",
+          "source_ids": [
+            "forv01-fvl1967",
+            "forv12-sivil-habilitet"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "forv-10",
+          "text": "Nære partsrelasjoner kan utløse inhabilitet direkte, mens andre forhold må vurderes konkret ut fra om de er egnet til å svekke tilliten til upartiskheten.",
+          "source_ids": [
+            "forv01-fvl1967",
+            "forv12-sivil-habilitet"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "forv-11",
+          "text": "En habilitetsvurdering må bygge på de faktiske relasjonene og interessene i saken og ikke på en løs antakelse om at enhver profesjonell kontakt skaper inhabilitet.",
+          "source_ids": [
+            "forv12-sivil-habilitet",
+            "forv07-nou2019-5"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "forv-12",
+          "text": "Den nye 2025-loven viderefører og omstrukturerer habilitetsreglene, men gjeldende vurdering per 1. september 2026 må fortsatt forankres i loven som er i kraft.",
+          "source_ids": [
+            "forv09-fvl2025",
+            "forv01-fvl1967"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "utredning-forhandsvarsel-og-partsinnsyn",
+      "title": "Utredning, forhåndsvarsel og partsinnsyn",
+      "method_ids": [
+        "met_forv_utredning",
+        "met_forv_kontradiksjon"
+      ],
+      "boundary": "Utredningsplikt, forhåndsvarsel og partsinnsyn er ulike mekanismer for et forsvarlig beslutningsgrunnlag og kontradiksjon. Omfang og unntak må vurderes etter sakstype, partsstatus, taushetsplikt og særlovgivning.",
+      "source_ids": [
+        "forv01-fvl1967",
+        "forv04-offentleglova",
+        "forv07-nou2019-5"
+      ],
+      "planned_claims": [
+        {
+          "id": "forv-13",
+          "text": "Forvaltningen skal sørge for at saken er så godt opplyst som mulig før enkeltvedtak treffes, men hva som kreves av utredning avhenger av sakens karakter og betydning.",
+          "source_ids": [
+            "forv01-fvl1967",
+            "forv07-nou2019-5"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "forv-14",
+          "text": "Forhåndsvarsel skal gi parten mulighet til å ivareta sine interesser før vedtak treffes når lovens vilkår for varsling gjelder.",
+          "source_ids": [
+            "forv01-fvl1967",
+            "forv08-prop79l"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "forv-15",
+          "text": "Partsinnsyn er knyttet til partens behov for å kjenne sakens dokumenter og må analyseres etter forvaltningslovens regler og unntak, ikke som identisk med offentleglovas allmenninnsyn.",
+          "source_ids": [
+            "forv01-fvl1967",
+            "forv04-offentleglova"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "forv-16",
+          "text": "Kontradiksjon forutsetter at relevante opplysninger kan møtes på et meningsfullt tidspunkt; utredning og innsyn må derfor vurderes som deler av beslutningsgrunnlaget, ikke bare som etterfølgende formaliteter.",
+          "source_ids": [
+            "forv07-nou2019-5",
+            "forv08-prop79l"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "veiledning-saksbehandlingstid-og-digital-kommunikasjon",
+      "title": "Veiledning, saksbehandlingstid og digital kommunikasjon",
+      "method_ids": [
+        "met_forv_veiledning",
+        "met_forv_fremdrift"
+      ],
+      "boundary": "Veiledningsplikt er ikke det samme som å opptre som partens rådgiver. Saksbehandling skal skje uten ugrunnet opphold, og digital kommunikasjon må brukes innenfor krav til tilgjengelighet, sikkerhet og faktisk mulighet til å ivareta egne interesser.",
+      "source_ids": [
+        "forv01-fvl1967",
+        "forv10-sivil-veiledning",
+        "forv13-sivil-tid",
+        "forv06-eforvaltning"
+      ],
+      "planned_claims": [
+        {
+          "id": "forv-17",
+          "text": "Forvaltningen har en alminnelig veiledningsplikt som skal hjelpe den enkelte til å ivareta sine interesser i møte med organet, men plikten gjør ikke organet til partens individuelle juridiske rådgiver.",
+          "source_ids": [
+            "forv01-fvl1967",
+            "forv10-sivil-veiledning"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "forv-18",
+          "text": "Saker skal forberedes og avgjøres uten ugrunnet opphold, og i saker som trekker ut kan plikten til foreløpig svar og informasjon om fremdrift bli sentral.",
+          "source_ids": [
+            "forv01-fvl1967",
+            "forv13-sivil-tid"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "forv-19",
+          "text": "Omfanget av veiledningen må tilpasses saken, den enkeltes behov og forvaltningens rammer, og det må vurderes om informasjonen faktisk er tilgjengelig og forståelig for mottakeren.",
+          "source_ids": [
+            "forv10-sivil-veiledning",
+            "forv08-prop79l"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "forv-20",
+          "text": "Elektronisk kommunikasjon med forvaltningen er regulert av egne krav til blant annet sikkerhet og kanalbruk, og digitalisering fritar ikke organet fra grunnleggende saksbehandlingsplikter.",
+          "source_ids": [
+            "forv06-eforvaltning",
+            "forv01-fvl1967"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "vedtak-begrunnelse-og-underretning",
+      "title": "Vedtak, begrunnelse og underretning",
+      "method_ids": [
+        "met_forv_begrunnelse",
+        "met_forv_vedtak"
+      ],
+      "boundary": "Begrunnelse skal gjøre det mulig å forstå hvorfor vedtaket ble som det ble. Rettsregler, faktiske forhold og sentrale skjønnshensyn må skilles, og begrunnelse må ikke erstattes av standardtekst som ikke viser den konkrete vurderingen.",
+      "source_ids": [
+        "forv01-fvl1967",
+        "forv11-sivil-begrunnelse",
+        "forv08-prop79l"
+      ],
+      "planned_claims": [
+        {
+          "id": "forv-21",
+          "text": "Hovedregelen etter gjeldende forvaltningslov er at enkeltvedtak skal begrunnes, med lovbestemte unntak og regler om tidspunktet for begrunnelsen.",
+          "source_ids": [
+            "forv01-fvl1967",
+            "forv11-sivil-begrunnelse"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "forv-22",
+          "text": "En forsvarlig begrunnelse skal gjøre det mulig å se hvilke rettsregler og faktiske forhold avgjørelsen bygger på og, når relevant, hvilke hovedhensyn som bar skjønnsutøvelsen.",
+          "source_ids": [
+            "forv01-fvl1967",
+            "forv11-sivil-begrunnelse"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "forv-23",
+          "text": "Jo mer inngripende eller komplekst et vedtak er, desto større kan behovet være for en konkret og utfyllende begrunnelse som gjør reell overprøving mulig.",
+          "source_ids": [
+            "forv11-sivil-begrunnelse",
+            "forv07-nou2019-5"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "forv-24",
+          "text": "Underretning om vedtak og informasjon om klageadgang må ses i sammenheng med partens reelle mulighet til å forstå avgjørelsen og bruke rettsmidlene loven gir.",
+          "source_ids": [
+            "forv01-fvl1967",
+            "forv08-prop79l"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "klage-klageinstans-og-utsatt-iverksetting",
+      "title": "Klage, klageinstans og utsatt iverksetting",
+      "method_ids": [
+        "met_forv_klage",
+        "met_forv_overproving"
+      ],
+      "boundary": "Klagerett, klagefrist, underinstansens behandling, klageinstansens kompetanse og utsatt iverksetting er separate spørsmål. En klage stopper ikke automatisk gjennomføringen av vedtaket, og klageinstansen må identifiseres etter riktig lov- og organisasjonsspor.",
+      "source_ids": [
+        "forv01-fvl1967",
+        "forv03-kommuneloven",
+        "forv05-fvlforskriften"
+      ],
+      "planned_claims": [
+        {
+          "id": "forv-25",
+          "text": "Enkeltvedtak kan som hovedregel påklages etter forvaltningsloven av part eller annen med rettslig klageinteresse, med de begrensninger og særregler som følger av lovgivningen.",
+          "source_ids": [
+            "forv01-fvl1967",
+            "forv05-fvlforskriften"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "forv-26",
+          "text": "Klagen leveres til underinstansen, som skal foreta den første klagebehandlingen før saken eventuelt sendes videre til klageinstansen.",
+          "source_ids": [
+            "forv01-fvl1967",
+            "forv03-kommuneloven"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "forv-27",
+          "text": "Hvem som er klageinstans avhenger av hvilket organ som traff vedtaket og av eventuell særlovgivning eller organisatoriske regler, særlig i kommunale og delegerte beslutningsstrukturer.",
+          "source_ids": [
+            "forv01-fvl1967",
+            "forv03-kommuneloven"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "forv-28",
+          "text": "At et vedtak er påklaget innebærer ikke automatisk utsatt iverksetting; spørsmålet om å stanse gjennomføringen må vurderes etter de særskilte reglene om utsatt iverksetting.",
+          "source_ids": [
+            "forv01-fvl1967",
+            "forv07-nou2019-5"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "omgjoring-ugyldighet-skjonn-og-lovovergang",
+      "title": "Omgjøring, ugyldighet, skjønn og lovovergang",
+      "method_ids": [
+        "met_forv_ugyldighet",
+        "met_forv_lovovergang"
+      ],
+      "boundary": "Omgjøring, ugyldighet og domstolskontroll er ikke samme mekanisme. Feilens art og betydning må vurderes konkret. Per 1. september 2026 er forvaltningsloven av 1967 fortsatt gjeldende; lov 20. juni 2025 nr. 81 er vedtatt, men ikrafttredelsen er fortsatt «Kongen bestemmer» og må ikke presenteres som gjeldende rett før ikrafttredelse.",
+      "source_ids": [
+        "forv01-fvl1967",
+        "forv09-fvl2025",
+        "forv08-prop79l",
+        "forv07-nou2019-5"
+      ],
+      "planned_claims": [
+        {
+          "id": "forv-29",
+          "text": "Forvaltningens adgang til å omgjøre et vedtak må holdes atskilt fra spørsmålet om vedtaket er ugyldig; mekanismene har forskjellige vilkår og rettsvirkninger.",
+          "source_ids": [
+            "forv01-fvl1967",
+            "forv07-nou2019-5"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "forv-30",
+          "text": "En saksbehandlingsfeil fører ikke nødvendigvis til ugyldighet; vurderingen må blant annet knyttes til feilens karakter og mulige betydning for vedtakets innhold.",
+          "source_ids": [
+            "forv01-fvl1967",
+            "forv07-nou2019-5"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "forv-31",
+          "text": "Forvaltningens skjønn er ikke rettslig grenseløst, og analysen må skille lovbundne vilkår, skjønnsrom og rettslige grenser mot usaklige eller utenforliggende hensyn.",
+          "source_ids": [
+            "forv07-nou2019-5",
+            "forv08-prop79l"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "forv-32",
+          "text": "Lov 20. juni 2025 nr. 81 er vedtatt som ny forvaltningslov, men per 1. september 2026 er ikrafttredelsen fortsatt overlatt til Kongen; gjeldende saker må derfor versjoneres mot 1967-loven inntil ny lov faktisk trer i kraft.",
+          "source_ids": [
+            "forv09-fvl2025",
+            "forv01-fvl1967"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    }
+  ],
+  "planned_assessments": [
+    {
+      "id": "assess-forv-01",
+      "title": "Analyser hjemmel, kompetanse og delegering",
+      "claim_ids": [
+        "forv-01",
+        "forv-02",
+        "forv-03",
+        "forv-04"
+      ]
+    },
+    {
+      "id": "assess-forv-02",
+      "title": "Analyser virkeområde, enkeltvedtak, part og forskrift",
+      "claim_ids": [
+        "forv-05",
+        "forv-06",
+        "forv-07",
+        "forv-08"
+      ]
+    },
+    {
+      "id": "assess-forv-03",
+      "title": "Analyser habilitet og upartiskhet",
+      "claim_ids": [
+        "forv-09",
+        "forv-10",
+        "forv-11",
+        "forv-12"
+      ]
+    },
+    {
+      "id": "assess-forv-04",
+      "title": "Analyser utredning, forhåndsvarsel og partsinnsyn",
+      "claim_ids": [
+        "forv-13",
+        "forv-14",
+        "forv-15",
+        "forv-16"
+      ]
+    },
+    {
+      "id": "assess-forv-05",
+      "title": "Analyser veiledning, saksbehandlingstid og digital kommunikasjon",
+      "claim_ids": [
+        "forv-17",
+        "forv-18",
+        "forv-19",
+        "forv-20"
+      ]
+    },
+    {
+      "id": "assess-forv-06",
+      "title": "Analyser vedtak, begrunnelse og underretning",
+      "claim_ids": [
+        "forv-21",
+        "forv-22",
+        "forv-23",
+        "forv-24"
+      ]
+    },
+    {
+      "id": "assess-forv-07",
+      "title": "Analyser klage, klageinstans og utsatt iverksetting",
+      "claim_ids": [
+        "forv-25",
+        "forv-26",
+        "forv-27",
+        "forv-28"
+      ]
+    },
+    {
+      "id": "assess-forv-08",
+      "title": "Analyser omgjøring, ugyldighet, skjønn og lovovergang",
+      "claim_ids": [
+        "forv-29",
+        "forv-30",
+        "forv-31",
+        "forv-32"
+      ]
+    }
+  ],
+  "decision_scenarios": [
+    {
+      "id": "case-forv-01",
+      "title": "Hjemmel eller politisk mål?",
+      "source_ids": [
+        "forv02-grl113",
+        "forv01-fvl1967"
+      ],
+      "prompt": "Et organ vil pålegge en privatperson en ny plikt fordi tiltaket har et legitimt formål. Kartlegg hvilke spørsmål om hjemmel og kompetanse som må avklares før plikten kan pålegges."
+    },
+    {
+      "id": "case-forv-02",
+      "title": "Inhabil saksbehandler?",
+      "source_ids": [
+        "forv01-fvl1967",
+        "forv12-sivil-habilitet"
+      ],
+      "prompt": "En saksbehandler kjenner en part profesjonelt fra før. Skill forhold som automatisk utløser inhabilitet fra forhold som krever en konkret vurdering av tilliten til upartiskheten."
+    },
+    {
+      "id": "case-forv-03",
+      "title": "Mangelfullt beslutningsgrunnlag",
+      "source_ids": [
+        "forv01-fvl1967",
+        "forv07-nou2019-5"
+      ],
+      "prompt": "Et negativt enkeltvedtak bygger på nye opplysninger parten ikke har sett. Vurder utredning, forhåndsvarsel og partsinnsyn som separate rettslige spørsmål."
+    },
+    {
+      "id": "case-forv-04",
+      "title": "Lang saksbehandlingstid",
+      "source_ids": [
+        "forv01-fvl1967",
+        "forv13-sivil-tid"
+      ],
+      "prompt": "En sak har stått uten avgjørelse i mange måneder. Vurder plikten til fremdrift, foreløpig svar og informasjon om videre behandling uten å anta at en bestemt total behandlingstid alltid er ulovlig."
+    },
+    {
+      "id": "case-forv-05",
+      "title": "Klage og iverksetting",
+      "source_ids": [
+        "forv01-fvl1967",
+        "forv03-kommuneloven"
+      ],
+      "prompt": "Et kommunalt vedtak påklages samme dag som det skal gjennomføres. Skill spørsmålet om klagerett og klageinstans fra spørsmålet om vedtaket skal få utsatt iverksetting."
+    },
+    {
+      "id": "case-forv-06",
+      "title": "1967-lov eller 2025-lov?",
+      "source_ids": [
+        "forv01-fvl1967",
+        "forv09-fvl2025"
+      ],
+      "prompt": "En saksbehandler finner en klar regel i den vedtatte forvaltningsloven av 2025. Forklar hvordan ikrafttredelsesstatus må kontrolleres før regelen brukes som gjeldende hjemmel i september 2026."
+    }
+  ]
+}
