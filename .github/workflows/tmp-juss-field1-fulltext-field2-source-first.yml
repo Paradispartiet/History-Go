@@ -29,22 +29,31 @@ jobs:
         with:
           node-version: '24'
 
-      - name: Correct Field 1 version and advice boundary
+      - name: Correct Field 1 strict boundaries
         run: |
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
           const file='data/fag/politikk/juss_rettsvitenskap/legal_method_sources_interpretation_argumentation_source_claim_brief_v1.json';
           const data=JSON.parse(fs.readFileSync(file,'utf8'));
-          const topic=data.topic_briefs?.find(row=>row.id==='versjonering_sporbarhet_og_ansvarlig_formidling');
-          if(!topic) throw new Error('Missing Field 1 versioning/formidling topic');
-          if(topic.boundary.includes('individuell juridisk rådgivning')) {
+          let changed=false;
+          const versionTopic=data.topic_briefs?.find(row=>row.id==='versjonering_sporbarhet_og_ansvarlig_formidling');
+          if(!versionTopic) throw new Error('Missing Field 1 versioning/formidling topic');
+          if(versionTopic.boundary.includes('individuell juridisk rådgivning')) {
             console.log('Field 1 version/advice boundary already corrected.');
           } else {
-            if(!topic.boundary.includes('personlig rettsrådgivning')) throw new Error('Unexpected Field 1 version/advice boundary text');
-            topic.boundary=topic.boundary.replace('personlig rettsrådgivning','individuell juridisk rådgivning');
-            fs.writeFileSync(file,JSON.stringify(data,null,2)+'\n');
+            if(!versionTopic.boundary.includes('personlig rettsrådgivning')) throw new Error('Unexpected Field 1 version/advice boundary text');
+            versionTopic.boundary=versionTopic.boundary.replace('personlig rettsrådgivning','individuell juridisk rådgivning');
+            changed=true;
             console.log('Corrected Field 1 boundary to explicit individuell juridisk rådgivning.');
           }
+          const hierarchyTopic=data.topic_briefs?.find(row=>row.id==='hierarki_kollisjon_og_flerniva_rett');
+          if(!hierarchyTopic) throw new Error('Missing Field 1 hierarchy/multilevel topic');
+          if(!hierarchyTopic.boundary.includes('HUDOC')||!hierarchyTopic.boundary.includes('EUR-Lex')) {
+            hierarchyTopic.boundary += ' Ved menneskerettslig og europeisk kildekontroll skal originalsporet i HUDOC og EUR-Lex brukes der det er relevant, med jurisdiksjon og rettslig status uttrykkelig angitt.';
+            changed=true;
+            console.log('Added explicit HUDOC/EUR-Lex source track to Field 1 hierarchy boundary.');
+          }
+          if(changed) fs.writeFileSync(file,JSON.stringify(data,null,2)+'\n');
           NODE
 
       - name: Syntax-check TEMP generator
