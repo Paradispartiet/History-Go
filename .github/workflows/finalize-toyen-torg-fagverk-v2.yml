@@ -1,0 +1,248 @@
+name: Finalize Tøyen torg Fagverk v2
+
+on:
+  push:
+    branches:
+      - work/toyen-torg-fagverk-v2-20260901
+    paths:
+      - .github/workflows/finalize-toyen-torg-fagverk-v2.yml
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Sync branch to current main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+      - name: Materialize Tøyen torg Fagverk source and image repair
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const placePath = 'data/places/by/oslo/places/toyen_torg.json';
+          const registryPath = 'data/fagverk/fagverk_registry.json';
+          const backlogPath = 'data/places/place_image_backlog_summary.json';
+          const place = JSON.parse(fs.readFileSync(placePath, 'utf8'));
+
+          const imageUrl = 'https://commons.wikimedia.org/wiki/Special:Redirect/file/T%C3%B8yen.jpg?width=1280';
+          const imagePage = 'https://commons.wikimedia.org/wiki/File:T%C3%B8yen.jpg';
+          const staleImage = place.image === 'bilder/places/toyen_torg.JPG' && place.cardImage === 'bilder/kort/places/toyen_torg.PNG';
+          if (staleImage) {
+            place.image = imageUrl;
+            place.cardImage = imageUrl;
+          }
+
+          const sources = [
+            ['Oslo kommune – Gode idéer gir gode møteplasser', 'https://magasin.oslo.kommune.no/byplan/gode-ideer-gir-gode-moteplasser'],
+            ['Grindaker – Tøyen Torg', 'https://grindaker.no/projects/toyen-torg/'],
+            ['Norske landskapsarkitekters forening – Tøyen torg', 'https://landskapsarkitektur.no/prosjekter/toyen-torg'],
+            ['Oslo kommune – Tøyen Torg presentasjon', 'https://www.oslo.kommune.no/get-file/1123264/7b0ac6b391227b1a5b3259530e49d2cc12d66d4075fa744bd1973c0f7cfa948e']
+          ];
+          const existingLinks = Array.isArray(place.externalLinks) ? place.externalLinks : [];
+          const byUrl = new Map(existingLinks.filter((row) => row?.url).map((row) => [row.url, row]));
+          for (const [label, url] of sources) byUrl.set(url, { type: 'source', label, url, verifiedAt: '2026-09-01' });
+          byUrl.set(imagePage, {
+            type: 'source',
+            label: 'Wikimedia Commons – Tøyen, Torkjellt, CC BY-SA 4.0',
+            url: imagePage,
+            verifiedAt: '2026-09-01'
+          });
+          place.externalLinks = [...byUrl.values()];
+
+          place.fagverk = {
+            schema: 'history_go_place_fagverk_v2',
+            level: 'full',
+            status: 'curated',
+            intro: 'Tøyen torg kan undersøkes som et offentlig hverdagsrom der opphold ikke krever billett eller kjøp. Fire innganger, sitteplasser, butikkkanter, teglgulv og kunst organiserer samtidig gjennomgang, venting og møter. Fagverket bruker torget til å skille fysisk tilgjengelighet fra sosial miks, og til å undersøke hvordan medvirkning og ombygging kan endre et eksisterende plassrom uten å slette eldre lag.',
+            article: [
+              'Tøyen torg ble etablert som det åpne sentertorget i Tøyensenteret på 1970-tallet. Den rektangulære plassen er omsluttet av bebyggelse og nås gjennom fire hovedinnganger. Dette gir torget en tydelig romlig avgrensning samtidig som det er offentlig tilgjengelig. Førsteetasjene rundt plassen rommer ulike publikumsrettede funksjoner, slik at den åpne midtflaten ligger mellom handel og andre hverdagsærender uten selv å være et lokale man må betale for å gå inn i.',
+              'Kommunens torg- og møteplassprogram gir en institusjonell ramme for ombyggingen. Programmet ble opprettet for å utvikle offentlige rom i bydelene, og i 2013 gikk hele årets pott til Tøyen torg. Prosjektet ble senere gjennomført i perioden 2016–2018. Det er viktig å skille denne finansierings- og planhistorien fra det man kan se på stedet i dag: bevilgningen og beslutningene må dokumenteres i kilder, mens plassens bredde, innganger, møblering og materialbruk kan undersøkes direkte.',
+              'Grindakers ombygging brukte et sammenhengende teglgulv som både overflate og fortelling. Tre mønstrete gulvtepper og et sentralt diamantmotiv ble integrert i belegget. Deler av Tøyenteppene ble utviklet av kunstner Mari Meen Halsøy sammen med ungdommer fra T-Town. Kunstverket er dermed ikke et separat monument som står på torget, men en del av selve bakken brukerne går over. Det gjør medvirkning materiell og observerbar, samtidig som prosessen bak motivene krever dokumentasjon.',
+              'Ombyggingen beholdt også forbindelser til 1970-tallet. De karakteristiske lysmastene var teknisk utslitt, men Byantikvaren ønsket at formen skulle videreføres som en del av torgets identitet. Nye master fikk tilsvarende høyde og uttrykk. Dette viser forskjellen mellom å bevare et originalt objekt og å videreføre en form eller designidé. På feltbesøk kan man registrere mastenes plassering og utseende, men vurderingen av kulturhistorisk verdi ligger i plan- og prosjektkildene.',
+              'Som møteplass er Tøyen torg interessant fordi flere typer bruk skjer samtidig. Noen krysser plassen på vei til andre mål, noen venter, noen sitter uten å kjøpe noe, og andre bruker serverings- eller butikktilbudene langs kantene. Slike samtidige aktiviteter kan observeres som sambruk, men sosial miks må behandles forsiktig. En observatør kan registrere aktivitetstyper, gruppestørrelser, oppholdstid og hvordan soner deles; man kan ikke pålitelig slutte folks bakgrunn, identitet eller tilhørighet fra utseende.',
+              'Feltarbeid på torget kan derfor kombinere romkart og tidsobservasjon. Tegn de fire inngangene, marker frie sitteplasser og kommersielle kantsoner, registrer hvilke ganglinjer som krysser midtflaten, og noter hvordan bruksmønsteret endrer seg over et avgrenset tidsrom. Dette kan vise hvor lav terskelen for fysisk opphold faktisk er og hvordan ulike aktiviteter sameksisterer. Det kan derimot ikke alene avgjøre om alle grupper opplever torget som inkluderende, hvor representativ en observasjonsøkt er, eller hvilke økonomiske og sosiale prosesser som former området rundt.'
+            ],
+            subject_ids: ['by'],
+            emne_ids: [
+              'em_by_offentlige_rom_motesteder',
+              'em_by_sosial_miks_i_offentlige_rom',
+              'em_by_lavterskel_moteplasser_uten_kjopspress'
+            ],
+            chapter_ids: [
+              'byliv-offentlige-rom',
+              'byliv-rytmer-miks-konflikt',
+              'byliv-sosial-offentlighet'
+            ],
+            lenses: [
+              {
+                id: 'toyen-offentlig-rom-fire-innganger',
+                title: 'Fire innganger, ett torgrom',
+                prompt: 'Hvordan påvirker de fire inngangene hvilke ganglinjer og møtepunkt som oppstår inne på torget?',
+                subject_id: 'by',
+                emne_id: 'em_by_offentlige_rom_motesteder',
+                evidence: 'Kartlegg inngangene og trekk faktiske ganglinjer mellom dem før du sammenligner hvilke deler av midtflaten som får mest gjennomgang.'
+              },
+              {
+                id: 'toyen-lavterskel-opphold',
+                title: 'Opphold uten kjøpskrav',
+                prompt: 'Hvilke deler av Tøyen torg kan brukes til opphold uten at brukeren må kjøpe en vare eller tjeneste?',
+                subject_id: 'by',
+                emne_id: 'em_by_lavterskel_moteplasser_uten_kjopspress',
+                evidence: 'Skill mellom frie sitteplasser og kommersielle serveringssoner og noter hvordan de ligger i forhold til hovedstrømmene over plassen.'
+              },
+              {
+                id: 'toyen-sosial-miks-observasjon',
+                title: 'Sambruk uten identitetsgjetting',
+                prompt: 'Hvordan kan sosial miks undersøkes metodisk uten å gjette menneskers bakgrunn ut fra utseende?',
+                subject_id: 'by',
+                emne_id: 'em_by_sosial_miks_i_offentlige_rom',
+                evidence: 'Registrer bare observerbare aktivitetstyper, gruppestørrelser, oppholdstid og romdeling, og marker eksplisitt hvilke personopplysninger feltmetoden ikke kan fastslå.'
+              },
+              {
+                id: 'toyen-tepper-medvirkning',
+                title: 'Medvirkning under føttene',
+                prompt: 'Hva skjer med et offentlig rom når lokal medvirkning bygges inn i selve gulvet i stedet for i et separat monument?',
+                subject_id: 'by',
+                emne_id: 'em_by_offentlige_rom_motesteder',
+                evidence: 'Finn Tøyenteppene i teglbelegget og sammenhold de synlige mønstrene med prosjektkildenes dokumentasjon av samarbeidet med T-Town.'
+              },
+              {
+                id: 'toyen-lagdeling-lys-master',
+                title: 'Nytt torg med eldre form',
+                prompt: 'Hvordan kan en ombygging bevare historisk kontinuitet selv når teknisk utslitte elementer må erstattes?',
+                subject_id: 'by',
+                emne_id: 'em_by_offentlige_rom_motesteder',
+                evidence: 'Observer lysmastenes form og plassering og bruk prosjektkildene til å skille fysisk videreføring av designet fra bevaring av originalmateriale.'
+              }
+            ],
+            guiding_questions: [
+              'Hvordan gjør plassens fire innganger Tøyen torg til både gjennomgangsrom og møteplass?',
+              'Hvor kan en person oppholde seg på torget uten å kjøpe noe?',
+              'Hvordan kan samtidige aktiviteter dokumenteres uten å tillegge brukerne identiteter de ikke har oppgitt?',
+              'Hva forteller Tøyenteppene om forholdet mellom medvirkning, kunst og offentlig rom?',
+              'Hvilke virkninger av områdeløft og sosial endring krever andre data enn feltobservasjon på torget?'
+            ],
+            concepts: [
+              'offentlig rom',
+              'møteplass',
+              'lavterskelrom',
+              'sosial miks',
+              'sambruk',
+              'medvirkning',
+              'oppholdstid',
+              'ganglinje',
+              'kantsone',
+              'feltobservasjon'
+            ],
+            observable_traces: [
+              {
+                title: 'Fire innganger og midtflate',
+                observation: 'Kartlegg de fire adkomstene og registrer hvordan ganglinjer krysser eller unngår den åpne midtflaten.',
+                interpretation_boundary: 'Ganglinjer viser observerbar bevegelse i et tidsrom, men de forklarer ikke alene hvorfor folk velger rutene sine.',
+                source_urls: [sources[1][1], sources[2][1]]
+              },
+              {
+                title: 'Frie og kommersielle oppholdssoner',
+                observation: 'Marker sitteplasser som kan brukes uten kjøp og sammenlign dem med serverings- og butikkrelaterte kantsoner.',
+                interpretation_boundary: 'Fysisk adgang kan observeres, men opplevd inkludering og økonomisk terskel må undersøkes med brukerdata og andre metoder.',
+                source_urls: [sources[0][1], sources[3][1]]
+              },
+              {
+                title: 'Tøyenteppene i teglgulvet',
+                observation: 'Finn mønstrene i belegget og registrer hvordan de ligger i forhold til innganger, møbler og hovedtorget.',
+                interpretation_boundary: 'Mønstrene er synlige, men hvem som deltok og hvordan medvirkningsprosessen foregikk må dokumenteres i prosjektkildene.',
+                source_urls: [sources[1][1], sources[2][1], sources[3][1]]
+              },
+              {
+                title: 'Lysmaster som designkontinuitet',
+                observation: 'Registrer lysmastenes høyde, kupler og plassering som gjentatte elementer i torgrommet.',
+                interpretation_boundary: 'Utformingen kan observeres, men beslutningen om å videreføre 1970-tallsformen og kulturminnevurderingen krever kildebelegg.',
+                source_urls: [sources[1][1], sources[2][1]]
+              }
+            ],
+            source_urls: sources.map((row) => row[1]),
+            verified_at: '2026-09-01'
+          };
+
+          fs.writeFileSync(placePath, JSON.stringify(place, null, 2) + '\n');
+
+          const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
+          registry.placeLinks ||= {};
+          registry.placeLinks.toyen_torg = {
+            sourceFile: 'places/by/oslo/places/toyen_torg.json',
+            field: 'fagverk',
+            schema: 'history_go_place_fagverk_v2',
+            level: 'full',
+            status: 'curated'
+          };
+          fs.writeFileSync(registryPath, JSON.stringify(registry, null, 2) + '\n');
+
+          if (staleImage) {
+            const backlog = JSON.parse(fs.readFileSync(backlogPath, 'utf8'));
+            backlog.generatedAt = '2026-09-01';
+            backlog.generatedFromCommit = 'toyen_torg_fagverk_v2_20260901';
+            backlog.summary.validRemote += 1;
+            backlog.summary.invalidLocalPath -= 1;
+            backlog.summary.remaining -= 1;
+            backlog.byCategory.by.valid += 1;
+            backlog.byCategory.by.invalid -= 1;
+            fs.writeFileSync(backlogPath, JSON.stringify(backlog, null, 2) + '\n');
+          }
+          NODE
+      - name: Regenerate canonical and Fagverk state
+        run: |
+          npm run places:index:build
+          node scripts/build-place-open-payloads.mjs
+          node scripts/audit-fagverk-place-pages.mjs --write
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Validate generated canonical state
+        run: |
+          npm run places:index:check
+          node scripts/build-place-open-payloads.mjs --check
+          node scripts/audit-fagverk-place-pages.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Validate Fagverk contracts
+        run: |
+          node --test tests/fagverk-place-pages.test.mjs
+          node --test tests/fagverk-place-rendering.test.mjs
+          node --test tests/fagverk-place-substance-audit.test.mjs
+          node --test tests/fagverk-link-audit.test.mjs
+      - name: Validate Tøyen torg remote image
+        env:
+          PLACE_IMAGE_REMOTE_FETCH_TIMEOUT_MS: '45000'
+        run: node scripts/audit-place-images.mjs --mode=changed --require-any-place-image --require-remote-image
+      - name: Build and verify full place image backlog
+        run: node scripts/audit-place-images.mjs --mode=all --report=/tmp/place-image-audit.json --verify-summary=data/places/place_image_backlog_summary.json
+      - name: Validate generated web runtime
+        run: npm run build:web:check
+      - name: Validate diff whitespace
+        run: git diff --check
+      - name: Commit clean production result
+        run: |
+          git add \
+            data/places/by/oslo/places/toyen_torg.json \
+            data/places/places_index.json \
+            data/places/place_image_backlog_summary.json \
+            data/runtime/place-open/toyen_torg.json \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/fagverk_release.json \
+            reports/fagverk/fagverk-place-page-coverage-v2.json
+          git rm .github/workflows/finalize-toyen-torg-fagverk-v2.yml
+          git diff --cached --quiet && { echo "No production changes to commit"; exit 1; }
+          git commit -m "Curate Tøyen torg Fagverk v2"
+          git push origin HEAD:${GITHUB_REF_NAME}
