@@ -29,6 +29,19 @@ jobs:
         with:
           node-version: '24'
 
+      - name: Correct Field 4 fair-trial boundary
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file='scripts/tmp-materialize-juss-field3-fulltext-field4-source-first.mjs';
+          let text=fs.readFileSync(file,'utf8');
+          const from="boundary:'Rettferdig rettergang må analyseres etter om saken faller innenfor artikkel 6 og hvilke konkrete garantier som gjelder. Uavhengighet, upartiskhet, rimelig tid, kontradiksjon og forsvarsrettigheter er forskjellige krav; EMK er ikke en fjerde ordinær ankeinstans for bevis- og lovanvendelse.'";
+          const to="boundary:'Rettferdig rettergang etter EMK artikkel 6 og Grunnloven § 95 må analyseres etter om saken faller innenfor bestemmelsenes anvendelsesområde og hvilke konkrete garantier som gjelder. Uavhengighet, upartiskhet, rimelig tid, kontradiksjon og forsvarsrettigheter er forskjellige krav; EMK er ikke en fjerde ordinær ankeinstans for bevis- og lovanvendelse.'";
+          if(!text.includes(from)&&!text.includes(to)) throw new Error('Unexpected Field 4 fair-trial boundary');
+          if(text.includes(from)) text=text.replace(from,to);
+          fs.writeFileSync(file,text);
+          NODE
+
       - name: Syntax-check TEMP generator
         run: node --check scripts/tmp-materialize-juss-field3-fulltext-field4-source-first.mjs
 
