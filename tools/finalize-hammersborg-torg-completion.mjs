@@ -179,7 +179,7 @@ const place = {
   profile_reason: "Det avgrensede torget har et kildebåret skifte i plassering, bolig- og saneringshistorie, direkte arkitektkoblinger og fire reelle bildesamlinger.",
   underbadge_ids: ["byplanlegging", "bolig_og_bomiljo", "modernisme"],
   secondaryBadgeIds: ["byplanlegging", "bolig_og_bomiljo", "modernisme"],
-  emne_ids: ["em_by_offentlige_rom_motesteder", "em_by_torg_plasser_som_scene", "em_by_historiske_lag_i_hverdagsrom", "em_by_transformasjon_ombruk", "em_by_modernistisk_boligplanlegging", "em_by_styring_forvaltning_planmakt"],
+  emne_ids: ["em_by_offentlige_rom_motesteder", "em_by_torg_plasser_som_scene", "em_by_historiske_lag_i_hverdagsrom", "em_by_transformasjon_ombruk", "em_by_modernistisk_boligplanlegging", "em_by_styring_forvaltning_planmakt", "em_his_historiske_lag_i_byrom"],
   related_people_ids: peopleIds,
   related_place_ids: ["trefoldighetskirken", "mollergata_19"],
   place_card_profile: {
@@ -565,16 +565,16 @@ const theory = [
   ["ark_transformasjon", "christian_norberg_schulz", "Genius Loci", "met_for_etter"],
   ["ark_makt", "christian_norberg_schulz", "Genius Loci", "met_aktoranalyse"]
 ];
-const questions = quizRows.map(([question, options, answerIndex, knowledge, emne_id, sourceId], index) => {
+const questions = quizRows.map(([question, rawOptions, rawAnswerIndex, knowledge, emne_id, sourceId], index) => {
   const number = String(index + 1).padStart(2, "0");
   const concept = conceptMap[emne_id];
-  const answer = options[answerIndex];
-  const distributedAnswerIndex = index % options.length;
-  const distributedOptions = options.filter((_, optionIndex) => optionIndex !== answerIndex);
-  distributedOptions.splice(distributedAnswerIndex, 0, answer);
+  const answer = rawOptions[rawAnswerIndex];
+  const shift = index % rawOptions.length;
+  const options = [...rawOptions.slice(shift), ...rawOptions.slice(0, shift)];
+  const answerIndex = options.indexOf(answer);
   const item = {
     id: `${placeId}_quiz_${number}`, quiz_id: `by_${placeId}_q${number}`, categoryId: "by", placeId, targetId: placeId, question_scope: "place",
-    question, options: distributedOptions, answer, answerIndex: distributedAnswerIndex, knowledge, difficulty: Math.min(4, 1 + Math.floor(index / 7)),
+    question, options, answer, answerIndex, knowledge, difficulty: Math.min(4, 1 + Math.floor(index / 7)),
     question_type: index < 14 ? "fact" : index < 21 ? "context" : "concept", emne_id, source: [sourceId], source_origin: "external", claim_basis: knowledge,
     claim_id: `claim_${placeId}_quiz_${number}`, primary_knowledge_unit_id: `ku_by_${placeId}_${number}`, knowledge_unit_ids: [`ku_by_${placeId}_${number}`], concepts: [concept[0]], concept_ids: [concept[1]], term_ids: [], knowledge_contract_version: 1, knowledge_link_status: "linked"
   };
@@ -701,6 +701,33 @@ write(`data/places/production/${placeId}.json`, {
   completion: { completedUnder: "4.2", currentStatus: "current", sourceVerifiedAt: verifiedAt, claimsVerified: { verified: claims.length, total: claims.length }, factualReview: "passed", editorialReview: "passed", validatorVersion: "4.2.1" }
 });
 
+write(`data/places/historie-production/${placeId}.json`, {
+  schemaVersion: "historie_place_production_v1", validatorVersion: "1.0.0", placeId, placeFile, status: "ready",
+  historicalIdentity: { statement: "Et navngitt torg som flyttet tyngdepunkt fra et tett boligmiljø foran Margaretakyrken til et etterkrigsbyrom ved OBOS-anlegget.", placeRelationType: "historical_landscape", placeRelationStatement: "Place-ID-en representerer dagens avgrensede torg og det direkte dokumenterte eldre navne- og torglaget, ikke hele Hammersborg.", temporalScope: { start: "1851", end: "2026", precision: "period", rationale: "Perioden dekker arbeiderboligen, det eldre torgets dokumenterte infrastruktur, saneringen, det nye torget og den siste planlagte ombyggingsfasen." }, sourceIds: ["source_byleksikon", "source_lokalwiki", "source_dagsavisen", "source_arbeiderboliger"] },
+  historyTopics: [{ emneId: "em_his_historiske_lag_i_byrom", siteSpecificRationale: "Torgets flyttede plassering, rivninger og bevarte navn gjør brudd og kontinuitet synlig.", caseIds: ["case_hammersborg_flyttet_torg"] }],
+  sources: [
+    { id: "source_byleksikon", url: urls.byleksikon, sourceLocation: "Navn, gammel og ny plassering, bygningsanlegg og 1999", sourceType: "institutional", verifiedAt, temporalCoverage: "mixed", provenance: "Redigert Oslo-spesifikt oppslagsverk.", limitations: "Kortfattet om beboernes erfaringer." },
+    { id: "source_lokalwiki", url: urls.lokalwiki, sourceLocation: "Adresser, objekter, bygninger og befolkning", sourceType: "reputable_secondary", verifiedAt, temporalCoverage: "retrospective", provenance: "Lokalhistorisk oppslagsverk med kildereferanser.", limitations: "Oppgir 1961 for Bolig’n, i konflikt med andre kilder." },
+    { id: "source_dagsavisen", url: urls.dagsavisen, sourceLocation: "Forstaden og saneringen", sourceType: "reputable_secondary", verifiedAt, temporalCoverage: "retrospective", provenance: "Historiker Johanne Bergkvists framstilling basert på Oslo byarkiv.", limitations: "Avisformat, ikke komplett saneringsarkiv." },
+    { id: "source_arbeiderboliger", url: urls.arbeiderboliger, sourceLocation: "Selskapet og første bygg", sourceType: "institutional", verifiedAt, temporalCoverage: "retrospective", provenance: "Oslo byleksikons arbeiderboligoversikt.", limitations: "Oppgir tidlig i 1960-årene, ikke eksakt rivningsdato." },
+    { id: "source_obos", url: urls.obosCurrent, sourceLocation: "Utflytting og prosjektstatus", sourceType: "primary", verifiedAt, temporalCoverage: "current", provenance: "OBOS’ egen prosjektside.", limitations: "Markedsfører eget prosjekt og dokumenterer plan best, ikke uavhengig ferdigkontroll." }
+  ],
+  caseRealizations: [{
+    id: "case_hammersborg_flyttet_torg", claim: "Hammersborg torg viser hvordan et stedsnavn kan bestå gjennom rivning, flyttet geometri og nytt bygningsprogram.",
+    temporalSequence: { scope: { start: "1851", end: "1999", precision: "period", rationale: "Caset følger arbeiderboligen, saneringen, det nye torget og senere rehabilitering." }, startPoint: "Bolig’n ble oppført i 1852 ved det eldre torget.", endPoint: "Det nye torget ble rehabilitert i 1999.", breaks: ["Saneringen begynte i 1921.", "Hammersborgslottet ble revet i 1925.", "Bolig’n ble revet tidlig i 1960-årene.", "OBOS-anlegget og dagens torg ble etablert i 1963–64."], continuities: ["Navnet Hammersborg torg ble videreført.", "Stedet forble et offentlig orienteringspunkt mellom Grubbegata og Møllergata."], sourceIds: ["source_byleksikon", "source_lokalwiki", "source_dagsavisen", "source_arbeiderboliger"] },
+    actors: [{ name: "Beboerne på det eldre Hammersborg", roleOrInterest: "Bodde i det tette boligmiljøet rundt torget.", powerPosition: "Kildene dokumenterer befolkning og boliger bedre enn medvirkning i saneringsbeslutningene.", sourceIds: ["source_lokalwiki", "source_dagsavisen"] }, { name: "Oslo kommune og utbyggingsaktører", roleOrInterest: "Gjennomførte sanering og ny bystruktur.", powerPosition: "Kontrollerte plan- og gjennomføringsprosesser, mens åpne kilder ikke dekker alle beslutningsledd.", sourceIds: ["source_byleksikon", "source_dagsavisen"] }, { name: "OBOS, Frode Rinnan og Olav Tveten", roleOrInterest: "Byggherreidentitet og arkitekter for etterkrigsanlegget.", powerPosition: "Formet den dokumenterte bygningsløsningen, men representerer ikke alene alle saneringsbeslutninger.", sourceIds: ["source_byleksikon"] }],
+    conflictOrNegotiation: { statement: "Overgangen erstattet et tett boligmiljø med større bygningsvolumer og åpen plass; kildene dokumenterer utfallet bedre enn alle beboerposisjoner og forhandlingsledd.", sourceIds: ["source_dagsavisen", "source_lokalwiki"] },
+    sourceComparison: { sourceIds: ["source_byleksikon", "source_lokalwiki", "source_arbeiderboliger"], comparison: "Byleksikon bærer torg- og anleggshistorien, Lokalhistoriewiki detaljene om adresser og objekter, og arbeiderboligoppslaget selskapets første bygg.", contradictionsOrSilences: "Rivningen av Bolig’n dateres til 1961 eller 1962; åpne kilder dokumenterer ikke alle beboernes syn på saneringen.", conclusionLimits: "Canonical tekst bruker tidlig i 1960-årene og påstår ikke lokal enighet eller én uttømmende årsak." },
+    comparativeScale: { localFinding: "Et lokalt torgnavn overlevde et omfattende fysisk brudd.", widerContext: "Caset viser etterkrigstidens sanering og skalaskifte i sentrale nordiske byområder uten å gjøre Hammersborg representativt for alle slike prosesser.", scale: "national", sourceIds: ["source_byleksikon", "source_dagsavisen"] },
+    causationAndUncertainty: { causalAssessment: "Saneringen muliggjorde den dokumenterte nye torggeometrien og OBOS-anlegget, men åpne kilder isolerer ikke én fullstendig beslutningsårsak.", alternativeExplanations: ["Boligstandard, kommunal planlegging, tomtebehov og institusjonell utbygging kan ha virket sammen."], uncertainty: "Beboerperspektiver, kostnader og detaljert beslutningsgang er ufullstendig dekket i de åpne kildene.", sourceIds: ["source_dagsavisen", "source_byleksikon", "source_lokalwiki"] }
+  }],
+  presentTrace: { objectStatus: "altered", statement: "Dagens torgflate og OBOS-anlegget viser etterkrigsfasen; vannpost, pissoir, Bolig’n og Hammersborgslottet finnes bare i arkiv- og tekstspor.", originalSiteRelationship: "Geometriankeret gjelder dagens torgflate, mens det eldre torget lå forskjøvet foran Margaretakyrken.", sourceIds: ["source_byleksikon", "source_lokalwiki", "source_obos"] },
+  quizOpening: { status: "PASS", quizTargetId: placeId, firstTwoSetsQuestionCount: 14, sourceBrief: briefFile, productionContext: "data/quiz/production_context/by/hammersborg_torg.json", requiredInputs: ["data/fag/by/pensum_by.json", "data/fag/by/emner_by.json", "data/fag/by/fagkart_by.json", "data/fag/by/methods_by.json", "data/fag/by/supersetQUIZMAL_by.json", "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md", "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"] },
+  chronologyStories: { status: "PASS", chronologyReviewed: true, storiesReviewed: true, rationale: "Kronologien følger bolig, hverdagsinfrastruktur, sanering, nybygg, rehabilitering og planlagt ombygging; Story samler flyttingen uten å overdrive årsak." },
+  gates: Object.fromEntries("ABCDEFGH".split("").map((gate) => [gate, { status: "PASS", evidenceRefs: gate === "G" ? ["quizOpening"] : gate === "H" ? ["chronologyStories"] : ["historicalIdentity", "caseRealizations.case_hammersborg_flyttet_torg"] }])),
+  review: { reviewer: "Hammersborg torg phase 1–24 Historie review", reviewedAt: verifiedAt, notes: "Eldre og dagens torg er skilt, rivningsavviket publiseres, og september 2026 står som planlagt status." }
+});
+
 const auditFile = "reports/place-production/hammersborg-torg-phase1-24-gate-audit-v1.json";
 write(auditFile, {
   schema: "history_go_phase1_24_quality_gate_v1", place_id: placeId, verified_at: verifiedAt,
@@ -716,7 +743,7 @@ write(auditFile, {
 });
 const workcard = read("reports/place-production/hammersborg-torg-workcard-current.json");
 Object.assign(workcard, {
-  status: "complete", completed_at: verifiedAt, active_phase: "complete", source_review: "complete", production_verified_at: verifiedAt, quiz_profile: "normal_4x7", fagverk_status: "curated_standard", chronology_status: "PASS", story_status: "PASS_episode_v1", objects_status: "PASS_two_historical_physical_objects", brands_status: "PASS_one_authentic_wordmark", people_status: "PASS_three_direct_profiles", branch_status: "ready_for_pr", live_status: "pending_merge", quality_gate: "30/30", canonical_next: "youngstorget",
+  status: "complete", completed_at: verifiedAt, active_phase: "complete", source_review: "complete", production_verified_at: verifiedAt, quiz_profile: "normal_4x7", fagverk_status: "curated_standard", chronology_status: "PASS", story_status: "PASS_episode_v1", objects_status: "PASS_two_historical_physical_objects", brands_status: "PASS_one_authentic_wordmark", people_status: "PASS_three_direct_profiles", branch_status: "ready_for_pr", live_status: "pending_merge", quality_gate: "30/30", canonical_next: null,
   held_back_candidates: ["Flaskeposten fra 1964 – mangler gjenbrukbar lokal mediefil.", "En ny utfordring – flyttet fra torget.", "Eksakt rivningsår for Bolig’n – kildene spriker mellom 1961 og 1962."],
   content_plan: { people: "PRODUSERT: Rinnan, Morgenstierne og Holtermann med direkte person- og bildespor.", objects: "PRODUSERT: vannpost og pissoir som historiske fysiske, stedsspesifikke objekter.", brands: "PRODUSERT: OBOS med autentisk ordmerke og direkte stedsrolle.", category_expression: "PRODUSERT: structures / Bygninger og byrom.", stories: "PRODUSERT: Torget som flyttet, episode_v1.", for_na: "PRODUSERT med eksplisitt steds- og ståstedsforbehold.", news: "PRODUSERT som planlagt innflytting fra september 2026, ikke ferdigstillelse.", lesespor: "PRODUSERT: fire åpne, lenkebaserte lesespor." }
 });
