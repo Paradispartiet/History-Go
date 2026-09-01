@@ -29,16 +29,23 @@ jobs:
         with:
           node-version: '24'
 
-      - name: Correct Field 4 fair-trial boundary
+      - name: Correct Field 4 strict boundaries
         run: |
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
           const file='scripts/tmp-materialize-juss-field3-fulltext-field4-source-first.mjs';
           let text=fs.readFileSync(file,'utf8');
-          const from="boundary:'Rettferdig rettergang må analyseres etter om saken faller innenfor artikkel 6 og hvilke konkrete garantier som gjelder. Uavhengighet, upartiskhet, rimelig tid, kontradiksjon og forsvarsrettigheter er forskjellige krav; EMK er ikke en fjerde ordinær ankeinstans for bevis- og lovanvendelse.'";
-          const to="boundary:'Rettferdig rettergang etter EMK artikkel 6 og Grunnloven § 95 må analyseres etter om saken faller innenfor bestemmelsenes anvendelsesområde og hvilke konkrete garantier som gjelder. Uavhengighet, upartiskhet, rimelig tid, kontradiksjon og forsvarsrettigheter er forskjellige krav; EMK er ikke en fjerde ordinær ankeinstans for bevis- og lovanvendelse.'";
-          if(!text.includes(from)&&!text.includes(to)) throw new Error('Unexpected Field 4 fair-trial boundary');
-          if(text.includes(from)) text=text.replace(from,to);
+
+          const fairFrom="boundary:'Rettferdig rettergang må analyseres etter om saken faller innenfor artikkel 6 og hvilke konkrete garantier som gjelder. Uavhengighet, upartiskhet, rimelig tid, kontradiksjon og forsvarsrettigheter er forskjellige krav; EMK er ikke en fjerde ordinær ankeinstans for bevis- og lovanvendelse.'";
+          const fairTo="boundary:'Rettferdig rettergang etter EMK artikkel 6 og Grunnloven § 95 må analyseres etter om saken faller innenfor bestemmelsenes anvendelsesområde og hvilke konkrete garantier som gjelder. Uavhengighet, upartiskhet, rimelig tid, kontradiksjon og forsvarsrettigheter er forskjellige krav; EMK er ikke en fjerde ordinær ankeinstans for bevis- og lovanvendelse.'";
+          if(!text.includes(fairFrom)&&!text.includes(fairTo)) throw new Error('Unexpected Field 4 fair-trial boundary');
+          if(text.includes(fairFrom)) text=text.replace(fairFrom,fairTo);
+
+          const expressionFrom="boundary:'Ytringsfrihet etter Grunnloven § 100 og EMK artikkel 10 må analyseres sammen med eventuelle motstående rettigheter, blant annet privatliv etter § 102 og artikkel 8. Avveining krever konkrete kriterier og proporsjonalitet; ingen av rettighetene vinner automatisk bare fordi den påberopes først.'";
+          const expressionTo="boundary:'Ytringsfrihet etter Grunnloven § 100 og EMK artikkel 10 må analyseres sammen med eventuelle motstående rettigheter, blant annet personvern og privatliv etter Grunnloven § 102 og EMK artikkel 8. Avveining krever konkrete kriterier og proporsjonalitet; ingen av rettighetene vinner automatisk bare fordi den påberopes først.'";
+          if(!text.includes(expressionFrom)&&!text.includes(expressionTo)) throw new Error('Unexpected Field 4 expression/privacy boundary');
+          if(text.includes(expressionFrom)) text=text.replace(expressionFrom,expressionTo);
+
           fs.writeFileSync(file,text);
           NODE
 
