@@ -1,0 +1,69 @@
+name: Finalize Rådhusplassen image backlog
+
+on:
+  push:
+    branches:
+      - work/radhusplassen-fagverk-v2-20260901
+    paths:
+      - .github/workflows/finalize-radhusplassen-image-backlog.yml
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Sync branch to current main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+      - name: Regenerate derived Place and Fagverk state
+        run: |
+          node scripts/build-place-open-payloads.mjs
+          node scripts/audit-fagverk-place-pages.mjs --write
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/audit-place-image-backlog.mjs --write
+      - name: Validate generated state
+        run: |
+          node scripts/build-place-open-payloads.mjs --check
+          node scripts/audit-fagverk-place-pages.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node scripts/audit-place-image-backlog.mjs
+      - name: Validate Fagverk contracts
+        run: |
+          node --test tests/fagverk-place-pages.test.mjs
+          node --test tests/fagverk-place-rendering.test.mjs
+          node --test tests/fagverk-place-substance-audit.test.mjs
+          node --test tests/fagverk-link-audit.test.mjs
+      - name: Validate Rådhusplassen remote image
+        env:
+          PLACE_IMAGE_REMOTE_FETCH_TIMEOUT_MS: '45000'
+        run: node scripts/audit-place-images.mjs --mode=changed --require-any-place-image --require-remote-image
+      - name: Validate diff whitespace
+        run: git diff --check
+      - name: Commit clean production result
+        run: |
+          git add \
+            data/places/by/oslo/places/radhusplassen.json \
+            data/runtime/place-open/radhusplassen.json \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/fagverk_release.json \
+            reports/fagverk/fagverk-place-page-coverage-v2.json \
+            reports/places/place-image-backlog.json
+          git rm .github/workflows/finalize-radhusplassen-image-backlog.yml
+          git diff --cached --quiet && { echo "No production changes to commit"; exit 1; }
+          git commit -m "Finalize Rådhusplassen image backlog"
+          git push origin HEAD:${GITHUB_REF_NAME}
