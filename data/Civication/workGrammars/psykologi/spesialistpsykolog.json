@@ -1,15 +1,289 @@
 {
-  "schema":"civication_work_grammar_v1",
-  "version":1,
-  "category":"psykologi",
-  "role_scope":"spesialistpsykolog",
-  "role_id":"psykologi_spesialistpsykolog",
-  "title":"Spesialistpsykolog",
-  "badge_binding":{"badge_category":"psykologi","badge_id":"psykologi","badge_name":"Psykologi","tier_label":"Spesialistpsykolog","tier_threshold":150,"badge_titles":["Spesialistpsykolog"],"progression_from":["Psykolog"],"progression_to":["Fagansvarlig"]},
-  "evidence":{"registry":"data/Civication/psychologyClinicalCareerEvidence.json","source_refs":["psykologforeningen_specialist_rules","ous_psykologspesialist"]},
-  "fag_bindings":{"primary_subjects":["psykologi"],"category_files":["data/Civication/roleModels/psykologi/spesialistpsykolog.json"],"required_concepts":["klinisk_kompleksitet","spesialistkompetanse","veiledning","fagutvikling","metodekvalitet","epistemisk_ydmykhet","pasientsikkerhet"],"methods":["avansert_klinisk_vurdering","konsultasjon","veiledning","behandlingsevaluering","metodekritikk","fagutvikling"]},
-  "work_identity":{"one_sentence":"Spesialistpsykologen bruker fordypet klinisk kompetanse til komplekse saker, veiledning og fagutvikling uten a gjore ekspertstatus til generell myndighet.","hidden_responsibility":"A vise bade hva spesialistkompetansen kan avklare og hvor grensene for egen spesialitet faktisk gar.","status_tension":"Andre forventer klare svar fra eksperten nettopp nar saken kan kreve mest ydmykhet.","core_pressure":"ekspertise_vs_usikkerhet","work_rhythm":["vurdere komplekse forlop","behandle innen egen spesialitet","veilede kolleger","evaluere metode og effekt","bidra til fagutvikling","hente inn annen spesialistkompetanse ved behov"]},
-  "authority_boundary":{"may":["utrede og behandle innen egen spesialitet og stilling","veilede kolleger","bidra til fagutvikling og metodekvalitet","anbefale annen spesialistkompetanse"],"may_not":["bruke spesialisttittel uten separat godkjenning","framstille egen spesialitet som kompetanse pa alle kliniske omrader","fatte lovregulerte vedtak som faglig ansvarlig uten særskilt kvalifikasjon og utpeking","overta kollegers kliniske ansvar bare pa grunn av status"],"escalate_when":["problemstillingen ligger utenfor egen spesialitet","juridisk myndighet kreves","risiko eller kompleksitet krever bredere team","veiledning ikke er tilstrekkelig til a sikre forsvarlig praksis"]},
-  "story_world":{"simulation_promise":"Du opplever hvordan ekspertise kan apne et komplekst problem eller lukke det for tidlig.","everyday_world":"Pasientarbeid, konsultasjoner, veiledning og fagutvikling avbryter hverandre gjennom dagen.","hidden_complexity":"Spesialiststatus oker forventningen om sikkerhet samtidig som de vanskeligste sakene ofte har storst reell usikkerhet.","recurring_situations":["teamet vil ha ett klart svar","en standardmetode passer bare delvis","en kollega vil at du skal overta vurderingen","to spesialistperspektiver peker ulikt","fagutvikling konkurrerer med produksjon"],"small_story_seeds":["du ma si «jeg vet ikke enna» i et rom som forventer fasit","en kollegas begrunnelse er annerledes enn din men faglig forsvarlig","en metodejustering hjelper pasienten men bryter med vanen i teamet"],"relationship_web":[{"who":"pasient","relation":"komplekst klinisk forlop","wants":"hjelp som passer deres faktiske situasjon","creates":"krav om tilpasning","tension":"standard_vs_tilpasning"},{"who":"psykologkollega","relation":"den du veileder","wants":"retning uten a miste eget ansvar","creates":"veiledningsdilemma","tension":"stotte_vs_overtakelse"},{"who":"fagmiljo","relation":"kolleger og ledelse","wants":"lik og god praksis","creates":"standardiseringspress","tension":"konsistens_vs_klinisk_skjonn"}],"knowledge_in_practice":[{"concept":"epistemisk_ydmykhet","practical_scene":"flere hypoteser er fortsatt plausible","what_player_must_notice":"ekspertstatus endrer ikke datagrunnlaget","bad_misread":"velg den mest autoritative forklaringen","good_use":"si hva som er sikkert, usikkert og hva som kan avklare"},{"concept":"veiledning","practical_scene":"kollegaen ber om fasit","what_player_must_notice":"veiledning skal styrke den andres vurderingsevne","bad_misread":"ta over saken","good_use":"utforsk begrunnelse, risiko og neste vurderingspunkt"}]},
-  "practice_stories":[{"id":"eksperten_som_ma_si_usikker","title":"Eksperten som ma si usikker","setup":"Teamet vil ha et endelig svar for videre plan.","decision":"Synliggjor usikkerheten og testpunktene eller lever en for sikker konklusjon.","learning":"Ekspertise inkluderer presis usikkerhet."},{"id":"metoden_som_nesten_passer","title":"Metoden som nesten passer","setup":"Standardopplegget treffer hovedproblemet men ikke viktige rammer rundt pasienten.","decision":"Begrunnet tilpasning eller rigid standardisering.","learning":"Metodekvalitet og tilpasning ma vurderes sammen."},{"id":"veiledning_eller_overtakelse","title":"Veiledning eller overtakelse","setup":"Kollegaen vil at du skal bestemme neste kliniske steg.","decision":"Stott egen vurdering eller overta ansvaret.","learning":"Veiledning er ikke skjult kommandolinje."},{"id":"annen_spesialist","title":"Nar du trenger en annen spesialist","setup":"Saken beveger seg utenfor kjernekompetansen din.","decision":"Hent inn annen kompetanse eller stol pa egen status.","learning":"Riktig ekspertise inkluderer a kjenne sin grense."}]
+  "schema": "civication_work_grammar_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "spesialistpsykolog",
+  "role_id": "psykologi_spesialistpsykolog",
+  "title": "Spesialistpsykolog",
+  "badge_binding": {
+    "badge_category": "psykologi",
+    "badge_id": "psykologi",
+    "badge_name": "Psykologi",
+    "tier_label": "Spesialistpsykolog",
+    "tier_threshold": 150,
+    "badge_titles": [
+      "Spesialistpsykolog"
+    ],
+    "progression_from": [
+      "Psykolog"
+    ],
+    "progression_to": [
+      "Fagansvarlig"
+    ]
+  },
+  "evidence": {
+    "registry": "data/Civication/psychologyClinicalCareerEvidence.json",
+    "source_refs": [
+      "psykologforeningen_specialist_rules",
+      "ous_psykologspesialist"
+    ]
+  },
+  "fag_bindings": {
+    "primary_subjects": [
+      "psykologi"
+    ],
+    "category_files": [
+      "data/Civication/roleModels/psykologi/spesialistpsykolog.json"
+    ],
+    "required_concepts": [
+      "klinisk_kompleksitet",
+      "spesialistkompetanse",
+      "veiledning",
+      "fagutvikling",
+      "metodekvalitet",
+      "epistemisk_ydmykhet",
+      "pasientsikkerhet"
+    ],
+    "methods": [
+      "avansert_klinisk_vurdering",
+      "konsultasjon",
+      "veiledning",
+      "behandlingsevaluering",
+      "metodekritikk",
+      "fagutvikling"
+    ]
+  },
+  "work_identity": {
+    "one_sentence": "Spesialistpsykologen bruker fordypet klinisk kompetanse til komplekse saker, veiledning og fagutvikling uten a gjore ekspertstatus til generell myndighet.",
+    "hidden_responsibility": "A vise bade hva spesialistkompetansen kan avklare og hvor grensene for egen spesialitet faktisk gar.",
+    "status_tension": "Andre forventer klare svar fra eksperten nettopp nar saken kan kreve mest ydmykhet.",
+    "core_pressure": "ekspertise_vs_usikkerhet",
+    "work_rhythm": [
+      "vurdere komplekse forlop",
+      "behandle innen egen spesialitet",
+      "veilede kolleger",
+      "evaluere metode og effekt",
+      "bidra til fagutvikling",
+      "hente inn annen spesialistkompetanse ved behov"
+    ]
+  },
+  "authority_boundary": {
+    "may": [
+      "utrede og behandle innen egen spesialitet og stilling",
+      "veilede kolleger",
+      "bidra til fagutvikling og metodekvalitet",
+      "anbefale annen spesialistkompetanse"
+    ],
+    "may_not": [
+      "bruke spesialisttittel uten separat godkjenning",
+      "framstille egen spesialitet som kompetanse pa alle kliniske omrader",
+      "fatte lovregulerte vedtak som faglig ansvarlig uten særskilt kvalifikasjon og utpeking",
+      "overta kollegers kliniske ansvar bare pa grunn av status"
+    ],
+    "escalate_when": [
+      "problemstillingen ligger utenfor egen spesialitet",
+      "juridisk myndighet kreves",
+      "risiko eller kompleksitet krever bredere team",
+      "veiledning ikke er tilstrekkelig til a sikre forsvarlig praksis"
+    ]
+  },
+  "story_world": {
+    "simulation_promise": "Du opplever hvordan ekspertise kan apne et komplekst problem eller lukke det for tidlig.",
+    "everyday_world": "Pasientarbeid, konsultasjoner, veiledning og fagutvikling avbryter hverandre gjennom dagen.",
+    "hidden_complexity": "Spesialiststatus oker forventningen om sikkerhet samtidig som de vanskeligste sakene ofte har storst reell usikkerhet.",
+    "recurring_situations": [
+      "teamet vil ha ett klart svar",
+      "en standardmetode passer bare delvis",
+      "en kollega vil at du skal overta vurderingen",
+      "to spesialistperspektiver peker ulikt",
+      "fagutvikling konkurrerer med produksjon"
+    ],
+    "small_story_seeds": [
+      "du ma si «jeg vet ikke enna» i et rom som forventer fasit",
+      "en kollegas begrunnelse er annerledes enn din men faglig forsvarlig",
+      "en metodejustering hjelper pasienten men bryter med vanen i teamet"
+    ],
+    "relationship_web": [
+      {
+        "who": "pasient",
+        "relation": "komplekst klinisk forlop",
+        "wants": "hjelp som passer deres faktiske situasjon",
+        "creates": "krav om tilpasning",
+        "tension": "standard_vs_tilpasning"
+      },
+      {
+        "who": "psykologkollega",
+        "relation": "den du veileder",
+        "wants": "retning uten a miste eget ansvar",
+        "creates": "veiledningsdilemma",
+        "tension": "stotte_vs_overtakelse"
+      },
+      {
+        "who": "fagmiljo",
+        "relation": "kolleger og ledelse",
+        "wants": "lik og god praksis",
+        "creates": "standardiseringspress",
+        "tension": "konsistens_vs_klinisk_skjonn"
+      }
+    ],
+    "knowledge_in_practice": [
+      {
+        "concept": "epistemisk_ydmykhet",
+        "practical_scene": "flere hypoteser er fortsatt plausible",
+        "what_player_must_notice": "ekspertstatus endrer ikke datagrunnlaget",
+        "bad_misread": "velg den mest autoritative forklaringen",
+        "good_use": "si hva som er sikkert, usikkert og hva som kan avklare"
+      },
+      {
+        "concept": "veiledning",
+        "practical_scene": "kollegaen ber om fasit",
+        "what_player_must_notice": "veiledning skal styrke den andres vurderingsevne",
+        "bad_misread": "ta over saken",
+        "good_use": "utforsk begrunnelse, risiko og neste vurderingspunkt"
+      }
+    ]
+  },
+  "practice_stories": [
+    {
+      "id": "eksperten_som_ma_si_usikker",
+      "title": "Eksperten som ma si usikker",
+      "setup": "Teamet vil ha et endelig svar for videre plan.",
+      "decision": "Synliggjor usikkerheten og testpunktene eller lever en for sikker konklusjon.",
+      "learning": "Ekspertise inkluderer presis usikkerhet."
+    },
+    {
+      "id": "metoden_som_nesten_passer",
+      "title": "Metoden som nesten passer",
+      "setup": "Standardopplegget treffer hovedproblemet men ikke viktige rammer rundt pasienten.",
+      "decision": "Begrunnet tilpasning eller rigid standardisering.",
+      "learning": "Metodekvalitet og tilpasning ma vurderes sammen."
+    },
+    {
+      "id": "veiledning_eller_overtakelse",
+      "title": "Veiledning eller overtakelse",
+      "setup": "Kollegaen vil at du skal bestemme neste kliniske steg.",
+      "decision": "Stott egen vurdering eller overta ansvaret.",
+      "learning": "Veiledning er ikke skjult kommandolinje."
+    },
+    {
+      "id": "annen_spesialist",
+      "title": "Nar du trenger en annen spesialist",
+      "setup": "Saken beveger seg utenfor kjernekompetansen din.",
+      "decision": "Hent inn annen kompetanse eller stol pa egen status.",
+      "learning": "Riktig ekspertise inkluderer a kjenne sin grense."
+    }
+  ],
+  "work_loops": [
+    "pasientmal -> konkurrerende hypoteser -> avgrenset vurdering -> samtykke og tiltak -> waiting pa ny informasjon -> evaluering -> rework -> lukking eller eskalering",
+    "kollegasporsmal -> begrunnelse og risiko -> spesialistrad -> navngitt handoff -> kollegaens beslutning -> oppfolging -> ny veiledning eller annen spesialitet"
+  ],
+  "actor_grammar": [
+    {
+      "id": "sander_pasient_komplekst_forlop",
+      "name": "Sander",
+      "role": "pasient i et komplekst, fiktivt forløp",
+      "workplace_ids": [
+        "spesialistpoliklinikkens_forlopsrom"
+      ]
+    },
+    {
+      "id": "ida_psykolog_i_veiledning",
+      "name": "Ida",
+      "role": "psykolog i veiledning",
+      "workplace_ids": [
+        "veiledningsrommet_for_klinisk_begrunnelse"
+      ]
+    },
+    {
+      "id": "ravi_spesialist_annen_fordypning",
+      "name": "Ravi",
+      "role": "spesialistpsykolog med en annen fordypning",
+      "workplace_ids": [
+        "tverrspesialistisk_hypotesemote"
+      ]
+    },
+    {
+      "id": "nora_teamleder_spesialisttjeneste",
+      "name": "Nora",
+      "role": "teamleder for den fiktive spesialisttjenesten",
+      "workplace_ids": [
+        "metode_og_kvalitetsverkstedet"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "spesialistpoliklinikkens_forlopsrom",
+      "name": "Spesialistpoliklinikkens forløpsrom",
+      "function": "Samler pasientmål, konkurrerende hypoteser, samtykke, risiko, tiltak, evaluering og neste beslutningspunkt i ett versjonert forløp uten å gjøre spesialiststatus til fasit."
+    },
+    {
+      "id": "veiledningsrommet_for_klinisk_begrunnelse",
+      "name": "Veiledningsrommet for klinisk begrunnelse",
+      "function": "Gjør kollegaens egen vurdering, usikkerhet, risiko og ansvar synlig før spesialistråd gis, slik at veiledning ikke blir skjult overtakelse."
+    },
+    {
+      "id": "tverrspesialistisk_hypotesemote",
+      "name": "Det tverrspesialistiske hypotesemøtet",
+      "function": "Prøver ulike spesialiteters forklaringer mot samme evidens og navngir hvem som eier videre undersøkelse, handoff og klinisk beslutning."
+    },
+    {
+      "id": "metode_og_kvalitetsverkstedet",
+      "name": "Metode- og kvalitetsverkstedet",
+      "function": "Tester begrunnede tilpasninger og standardisering mot pasientutfall, implementeringsvilkår og dokumentert rework før praksis spres."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "spesialistforlopets_hypotese_tiltak_og_veiledningslogg",
+    "description": "Versjonert, dataminimert arbeidsobjekt for pasientmål, hypoteser, evidens, usikkerhet, samtykke, risiko, tiltak, spesialistråd, ansvar, handoff, evalueringsdato og rework i Sanders fiktive forløp.",
+    "states": [
+      "mal_og_samtykke_avklart",
+      "hypoteser_under_proving",
+      "venter_pa_nodvendig_informasjon",
+      "tiltak_avgrenset",
+      "handoff_til_navngitt_eier",
+      "effekt_under_evaluering",
+      "revidert_lukket_eller_eskalert"
+    ],
+    "handoff_rule": "Handoff navngir objektversjon, pasientmål, kjent og ukjent evidens, risiko, spesialitet, råd, beslutningseier, frist og hva som gjenåpner vurderingen; veiledning flytter aldri ansvar implisitt."
+  },
+  "rhythm_contract": {
+    "loop": "hypotese -> waiting/venting på samtykke, observasjon eller annen spesialitet -> avgrenset tiltak -> handoff -> evaluering -> rework eller eskalering",
+    "waiting_states": [
+      "pasientens_prioritet_eller_samtykke",
+      "beslutningskritisk_observasjon",
+      "annen_spesialistkompetanse",
+      "effekt_etter_avgrenset_tiltak"
+    ],
+    "rework_rule": "Ny risiko, pasientens erfaring, motstridende evidens eller uteblitt effekt gjenåpner den berørte hypotesen og tiltaket uten å slette tidligere begrunnelse eller ansvar."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_psykologi_ekspertise_institusjon_og_kildegrense",
+      "badge_id": "psykologi",
+      "place_id": "psykologisk_institutt_uio",
+      "person_id": "harald_schjelderup",
+      "use": "Kildeforankret profesjonshistorie om institusjon, ekspertrolle og faglig autoritet skjerper spørsmålet om hvordan spesialiststatus former hypoteser, men gir ingen klinisk anbefaling, spesialistgodkjenning eller lovregulert myndighet."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "authorization_and_specialist_approval_required",
+    "first_object": "spesialistforlopets_hypotese_tiltak_og_veiledningslogg",
+    "first_task": "Registrer Sanders mål, samtykke, konkurrerende hypoteser, evidens, usikkerhet, risiko, spesialitetsgrense og neste beslutningspunkt før et råd eller tiltak låses."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "spesialistpsykolog",
+    "no_generic_fallback": true
+  }
 }

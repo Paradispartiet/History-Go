@@ -335,6 +335,15 @@
     "data/Civication/mailFamilies/psykologi/followup/psykologi_miljoarbeid_followup.json",
     "data/Civication/mailFamilies/psykologi/knowledge/psykologi_miljoarbeid_knowledge.json",
     "data/Civication/mailFamilies/psykologi/consequence/psykologi_miljoarbeid_consequence.json",
+    "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json",
+    "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json",
+    "data/Civication/mailFamilies/psykologi/story/spesialistpsykolog_story.json",
+    "data/Civication/mailFamilies/psykologi/conflict/spesialistpsykolog_conflict.json",
+    "data/Civication/mailFamilies/psykologi/event/spesialistpsykolog_event.json",
+    "data/Civication/mailFamilies/psykologi/micro/spesialistpsykolog_micro.json",
+    "data/Civication/mailFamilies/psykologi/followup/spesialistpsykolog_followup.json",
+    "data/Civication/mailFamilies/psykologi/knowledge/spesialistpsykolog_knowledge.json",
+    "data/Civication/mailFamilies/psykologi/consequence/spesialistpsykolog_consequence.json",
     "data/Civication/mailFamilies/religion/job/religion_forskning_job.json",
     "data/Civication/mailFamilies/religion/people/religion_forskning_people.json",
     "data/Civication/mailFamilies/religion/conflict/religion_forskning_conflict.json",
@@ -176796,6 +176805,2076 @@
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "proevbar_begrunnelse_vs_status_som_fasit",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens spesialitetsgrense i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework.",
+            "tags": [
+              "epistemisk_ydmykhet",
+              "pasientmedvirkning",
+              "handoff"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk spesialitetsgrense med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold.",
+            "tags": [
+              "status_som_fasit",
+              "ansvarsglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "presis_usikkerhet_veiledning_og_spesialitetsgrense",
+        "consequence_axis": "laering_og_sikkerhet_vs_skjult_ansvar",
+        "day_phase": "morning",
+        "from": "Ravi",
+        "id": "spesialistpsykolog_conflict_spesialitetsgrense_001",
+        "mail_family": "spesialistpsykolog_conflict_forlopslogg",
+        "mail_type": "conflict",
+        "narrative_arc": "spesialitetsgrense",
+        "people_ref": "ravi_spesialist_annen_fordypning",
+        "person_id": "ravi_spesialist_annen_fordypning",
+        "phase": "forenoon",
+        "place_id": "tverrspesialistisk_hypotesemote",
+        "pressure": "ekspertise_vs_usikkerhet",
+        "priority": 145,
+        "role_scope": "spesialistpsykolog",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/conflict/spesialistpsykolog_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+          "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+          "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+        ],
+        "subject": "To spesialistperspektiver peker ulikt og ansvaret for neste undersøkelse er uklart",
+        "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret conflict-punkt: to spesialistperspektiver peker ulikt og ansvaret for neste undersøkelse er uklart. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse.",
+        "task_domain": "spesialisert_klinisk_psykologarbeid"
+      },
+      "id": "spesialistpsykolog_conflict_spesialitetsgrense_001",
+      "mail_type": "conflict",
+      "role_scope": "spesialistpsykolog",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens spesialitetsgrense i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk spesialitetsgrense med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+            "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+            "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+          ],
+          "subject": "To spesialistperspektiver peker ulikt og ansvaret for neste undersøkelse er uklart",
+          "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret conflict-punkt: to spesialistperspektiver peker ulikt og ansvaret for neste undersøkelse er uklart. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "spesialistpsykolog_conflict_spesialitetsgrense_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "tverrspesialistisk_hypotesemote",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "spesialistpsykolog_conflict_spesialitetsgrense_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/conflict/spesialistpsykolog_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "spesialistpsykolog.mail.spesialistpsykolog_conflict_spesialitetsgrense_001",
+        "version": 1
+      },
+      "source_hash": "301f919bd4f7b87321036d98298caa944d9aa0e621d3812c939740f3479832f2",
+      "source_path": "data/Civication/mailFamilies/psykologi/conflict/spesialistpsykolog_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "proevbar_begrunnelse_vs_status_som_fasit",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens taus_motstemme i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework.",
+            "tags": [
+              "epistemisk_ydmykhet",
+              "pasientmedvirkning",
+              "handoff"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk taus_motstemme med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold.",
+            "tags": [
+              "status_som_fasit",
+              "ansvarsglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "presis_usikkerhet_veiledning_og_spesialitetsgrense",
+        "consequence_axis": "laering_og_sikkerhet_vs_skjult_ansvar",
+        "day_phase": "morning",
+        "from": "Nora",
+        "id": "spesialistpsykolog_consequence_taus_motstemme_001",
+        "mail_family": "spesialistpsykolog_consequence_forlopslogg",
+        "mail_type": "consequence",
+        "narrative_arc": "taus_motstemme",
+        "people_ref": "nora_teamleder_spesialisttjeneste",
+        "person_id": "nora_teamleder_spesialisttjeneste",
+        "phase": "forenoon",
+        "place_id": "metode_og_kvalitetsverkstedet",
+        "pressure": "ekspertise_vs_usikkerhet",
+        "priority": 145,
+        "role_scope": "spesialistpsykolog",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/consequence/spesialistpsykolog_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+          "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+          "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+        ],
+        "subject": "Senere praksis viser om ekspertstatus gjorde det vanskeligere å melde uenighet",
+        "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret consequence-punkt: senere praksis viser om ekspertstatus gjorde det vanskeligere å melde uenighet. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse.",
+        "task_domain": "spesialisert_klinisk_psykologarbeid"
+      },
+      "id": "spesialistpsykolog_consequence_taus_motstemme_001",
+      "mail_type": "consequence",
+      "role_scope": "spesialistpsykolog",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens taus_motstemme i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk taus_motstemme med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+            "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+            "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+          ],
+          "subject": "Senere praksis viser om ekspertstatus gjorde det vanskeligere å melde uenighet",
+          "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret consequence-punkt: senere praksis viser om ekspertstatus gjorde det vanskeligere å melde uenighet. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "spesialistpsykolog_consequence_taus_motstemme_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "metode_og_kvalitetsverkstedet",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "spesialistpsykolog_consequence_taus_motstemme_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/consequence/spesialistpsykolog_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "spesialistpsykolog.mail.spesialistpsykolog_consequence_taus_motstemme_001",
+        "version": 1
+      },
+      "source_hash": "b78f7c0281a09a878dac3629938ea3679ac15b2a94fb156e9054053250b2311e",
+      "source_path": "data/Civication/mailFamilies/psykologi/consequence/spesialistpsykolog_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "proevbar_begrunnelse_vs_status_som_fasit",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens endret_risiko i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework.",
+            "tags": [
+              "epistemisk_ydmykhet",
+              "pasientmedvirkning",
+              "handoff"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk endret_risiko med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold.",
+            "tags": [
+              "status_som_fasit",
+              "ansvarsglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "presis_usikkerhet_veiledning_og_spesialitetsgrense",
+        "consequence_axis": "laering_og_sikkerhet_vs_skjult_ansvar",
+        "day_phase": "morning",
+        "from": "Sander",
+        "id": "spesialistpsykolog_event_endret_risiko_001",
+        "mail_family": "spesialistpsykolog_event_forlopslogg",
+        "mail_type": "event",
+        "narrative_arc": "endret_risiko",
+        "people_ref": "sander_pasient_komplekst_forlop",
+        "person_id": "sander_pasient_komplekst_forlop",
+        "phase": "forenoon",
+        "place_id": "spesialistpoliklinikkens_forlopsrom",
+        "pressure": "ekspertise_vs_usikkerhet",
+        "priority": 145,
+        "role_scope": "spesialistpsykolog",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/event/spesialistpsykolog_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+          "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+          "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+        ],
+        "subject": "Ny informasjon endrer risikobildet mens vurderingen venter på annen kompetanse",
+        "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret event-punkt: ny informasjon endrer risikobildet mens vurderingen venter på annen kompetanse. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse.",
+        "task_domain": "spesialisert_klinisk_psykologarbeid"
+      },
+      "id": "spesialistpsykolog_event_endret_risiko_001",
+      "mail_type": "event",
+      "role_scope": "spesialistpsykolog",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens endret_risiko i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk endret_risiko med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+            "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+            "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+          ],
+          "subject": "Ny informasjon endrer risikobildet mens vurderingen venter på annen kompetanse",
+          "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret event-punkt: ny informasjon endrer risikobildet mens vurderingen venter på annen kompetanse. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "spesialistpsykolog_event_endret_risiko_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "spesialistpoliklinikkens_forlopsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "spesialistpsykolog_event_endret_risiko_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/event/spesialistpsykolog_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "spesialistpsykolog.mail.spesialistpsykolog_event_endret_risiko_001",
+        "version": 1
+      },
+      "source_hash": "37d55879c72810b02dc2884657e1f8cd12cc7baf06461240f7d166a3339bd92c",
+      "source_path": "data/Civication/mailFamilies/psykologi/event/spesialistpsykolog_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "proevbar_begrunnelse_vs_status_som_fasit",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens tiltak_som_ma_revideres i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework.",
+            "tags": [
+              "epistemisk_ydmykhet",
+              "pasientmedvirkning",
+              "handoff"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk tiltak_som_ma_revideres med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold.",
+            "tags": [
+              "status_som_fasit",
+              "ansvarsglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "presis_usikkerhet_veiledning_og_spesialitetsgrense",
+        "consequence_axis": "laering_og_sikkerhet_vs_skjult_ansvar",
+        "day_phase": "morning",
+        "from": "Sander",
+        "id": "spesialistpsykolog_followup_tiltak_som_ma_revideres_001",
+        "mail_family": "spesialistpsykolog_followup_forlopslogg",
+        "mail_type": "followup",
+        "narrative_arc": "tiltak_som_ma_revideres",
+        "people_ref": "sander_pasient_komplekst_forlop",
+        "person_id": "sander_pasient_komplekst_forlop",
+        "phase": "forenoon",
+        "place_id": "metode_og_kvalitetsverkstedet",
+        "pressure": "ekspertise_vs_usikkerhet",
+        "priority": 145,
+        "role_scope": "spesialistpsykolog",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/followup/spesialistpsykolog_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+          "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+          "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+        ],
+        "subject": "Den begrunnede tilpasningen ga bare delvis effekt og må åpnes for rework",
+        "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret followup-punkt: den begrunnede tilpasningen ga bare delvis effekt og må åpnes for rework. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse.",
+        "task_domain": "spesialisert_klinisk_psykologarbeid"
+      },
+      "id": "spesialistpsykolog_followup_tiltak_som_ma_revideres_001",
+      "mail_type": "followup",
+      "role_scope": "spesialistpsykolog",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens tiltak_som_ma_revideres i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk tiltak_som_ma_revideres med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+            "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+            "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+          ],
+          "subject": "Den begrunnede tilpasningen ga bare delvis effekt og må åpnes for rework",
+          "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret followup-punkt: den begrunnede tilpasningen ga bare delvis effekt og må åpnes for rework. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "spesialistpsykolog_followup_tiltak_som_ma_revideres_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "metode_og_kvalitetsverkstedet",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "spesialistpsykolog_followup_tiltak_som_ma_revideres_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/followup/spesialistpsykolog_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "spesialistpsykolog.mail.spesialistpsykolog_followup_tiltak_som_ma_revideres_001",
+        "version": 1
+      },
+      "source_hash": "794883117b5bd317fcfd21cbc1353c493098dedadf0400b69e2a42561c935257",
+      "source_path": "data/Civication/mailFamilies/psykologi/followup/spesialistpsykolog_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "proevbar_begrunnelse_vs_status_som_fasit",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens begrunnet_tilpasning i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework.",
+            "tags": [
+              "epistemisk_ydmykhet",
+              "pasientmedvirkning",
+              "handoff"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk begrunnet_tilpasning med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold.",
+            "tags": [
+              "status_som_fasit",
+              "ansvarsglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "presis_usikkerhet_veiledning_og_spesialitetsgrense",
+        "consequence_axis": "laering_og_sikkerhet_vs_skjult_ansvar",
+        "day_phase": "afternoon",
+        "from": "Sander",
+        "id": "spesialistpsykolog_job_begrunnet_tilpasning_002",
+        "mail_family": "spesialistpsykolog_job_forlopslogg",
+        "mail_type": "job",
+        "narrative_arc": "begrunnet_tilpasning",
+        "people_ref": "sander_pasient_komplekst_forlop",
+        "person_id": "sander_pasient_komplekst_forlop",
+        "phase": "workday",
+        "place_id": "spesialistpoliklinikkens_forlopsrom",
+        "pressure": "ekspertise_vs_usikkerhet",
+        "priority": 144,
+        "role_scope": "spesialistpsykolog",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+          "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+          "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+        ],
+        "subject": "Standardmetoden treffer deler av problemet, men ikke Sanders prioritet og rammer",
+        "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret job-punkt: standardmetoden treffer deler av problemet, men ikke sanders prioritet og rammer. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse.",
+        "task_domain": "spesialisert_klinisk_psykologarbeid"
+      },
+      "id": "spesialistpsykolog_job_begrunnet_tilpasning_002",
+      "mail_type": "job",
+      "role_scope": "spesialistpsykolog",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens begrunnet_tilpasning i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk begrunnet_tilpasning med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+            "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+            "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+          ],
+          "subject": "Standardmetoden treffer deler av problemet, men ikke Sanders prioritet og rammer",
+          "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret job-punkt: standardmetoden treffer deler av problemet, men ikke sanders prioritet og rammer. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "spesialistpsykolog_job_begrunnet_tilpasning_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "spesialistpoliklinikkens_forlopsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "spesialistpsykolog_job_begrunnet_tilpasning_002",
+          "source_path": "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "spesialistpsykolog.mail.spesialistpsykolog_job_begrunnet_tilpasning_002",
+        "version": 1
+      },
+      "source_hash": "013096b4001e528287c875cbaf0e5cba34ade2141878005014d98d8ba69ed06e",
+      "source_path": "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "proevbar_begrunnelse_vs_status_som_fasit",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens hypotesestart i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework.",
+            "tags": [
+              "epistemisk_ydmykhet",
+              "pasientmedvirkning",
+              "handoff"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk hypotesestart med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold.",
+            "tags": [
+              "status_som_fasit",
+              "ansvarsglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "presis_usikkerhet_veiledning_og_spesialitetsgrense",
+        "consequence_axis": "laering_og_sikkerhet_vs_skjult_ansvar",
+        "day_phase": "morning",
+        "from": "Nora",
+        "id": "spesialistpsykolog_job_hypotesestart_001",
+        "mail_family": "spesialistpsykolog_job_forlopslogg",
+        "mail_type": "job",
+        "narrative_arc": "hypotesestart",
+        "people_ref": "nora_teamleder_spesialisttjeneste",
+        "person_id": "nora_teamleder_spesialisttjeneste",
+        "phase": "forenoon",
+        "place_id": "spesialistpoliklinikkens_forlopsrom",
+        "pressure": "ekspertise_vs_usikkerhet",
+        "priority": 145,
+        "role_scope": "spesialistpsykolog",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+          "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+          "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+        ],
+        "subject": "Teamet ber om ett endelig svar før konkurrerende hypoteser er prøvd",
+        "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret job-punkt: teamet ber om ett endelig svar før konkurrerende hypoteser er prøvd. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse.",
+        "task_domain": "spesialisert_klinisk_psykologarbeid"
+      },
+      "id": "spesialistpsykolog_job_hypotesestart_001",
+      "mail_type": "job",
+      "role_scope": "spesialistpsykolog",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens hypotesestart i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk hypotesestart med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+            "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+            "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+          ],
+          "subject": "Teamet ber om ett endelig svar før konkurrerende hypoteser er prøvd",
+          "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret job-punkt: teamet ber om ett endelig svar før konkurrerende hypoteser er prøvd. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "spesialistpsykolog_job_hypotesestart_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "spesialistpoliklinikkens_forlopsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "spesialistpsykolog_job_hypotesestart_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "spesialistpsykolog.mail.spesialistpsykolog_job_hypotesestart_001",
+        "version": 1
+      },
+      "source_hash": "c3964b03d8e02287454ad92b20b763a3c858a65d6d7fb7eaef67e2055282526d",
+      "source_path": "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "proevbar_begrunnelse_vs_status_som_fasit",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens metodepilot i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework.",
+            "tags": [
+              "epistemisk_ydmykhet",
+              "pasientmedvirkning",
+              "handoff"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk metodepilot med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold.",
+            "tags": [
+              "status_som_fasit",
+              "ansvarsglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "presis_usikkerhet_veiledning_og_spesialitetsgrense",
+        "consequence_axis": "laering_og_sikkerhet_vs_skjult_ansvar",
+        "day_phase": "afternoon",
+        "from": "Nora",
+        "id": "spesialistpsykolog_job_metodepilot_004",
+        "mail_family": "spesialistpsykolog_job_forlopslogg",
+        "mail_type": "job",
+        "narrative_arc": "metodepilot",
+        "people_ref": "nora_teamleder_spesialisttjeneste",
+        "person_id": "nora_teamleder_spesialisttjeneste",
+        "phase": "workday",
+        "place_id": "metode_og_kvalitetsverkstedet",
+        "pressure": "ekspertise_vs_usikkerhet",
+        "priority": 142,
+        "role_scope": "spesialistpsykolog",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+          "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+          "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+        ],
+        "subject": "En ny arbeidsmåte skal standardiseres før pilotens forskjeller er evaluert",
+        "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret job-punkt: en ny arbeidsmåte skal standardiseres før pilotens forskjeller er evaluert. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse.",
+        "task_domain": "spesialisert_klinisk_psykologarbeid"
+      },
+      "id": "spesialistpsykolog_job_metodepilot_004",
+      "mail_type": "job",
+      "role_scope": "spesialistpsykolog",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens metodepilot i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk metodepilot med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+            "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+            "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+          ],
+          "subject": "En ny arbeidsmåte skal standardiseres før pilotens forskjeller er evaluert",
+          "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret job-punkt: en ny arbeidsmåte skal standardiseres før pilotens forskjeller er evaluert. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "spesialistpsykolog_job_metodepilot_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "metode_og_kvalitetsverkstedet",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "spesialistpsykolog_job_metodepilot_004",
+          "source_path": "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "spesialistpsykolog.mail.spesialistpsykolog_job_metodepilot_004",
+        "version": 1
+      },
+      "source_hash": "15cda7607e1887d66b7ddd1a300d1cfe83e8b63cf49ff303b0bf13640cf2ce6f",
+      "source_path": "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "proevbar_begrunnelse_vs_status_som_fasit",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens veiledning_uten_overtakelse i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework.",
+            "tags": [
+              "epistemisk_ydmykhet",
+              "pasientmedvirkning",
+              "handoff"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk veiledning_uten_overtakelse med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold.",
+            "tags": [
+              "status_som_fasit",
+              "ansvarsglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "presis_usikkerhet_veiledning_og_spesialitetsgrense",
+        "consequence_axis": "laering_og_sikkerhet_vs_skjult_ansvar",
+        "day_phase": "afternoon",
+        "from": "Ida",
+        "id": "spesialistpsykolog_job_veiledning_uten_overtakelse_003",
+        "mail_family": "spesialistpsykolog_job_forlopslogg",
+        "mail_type": "job",
+        "narrative_arc": "veiledning_uten_overtakelse",
+        "people_ref": "ida_psykolog_i_veiledning",
+        "person_id": "ida_psykolog_i_veiledning",
+        "phase": "workday",
+        "place_id": "veiledningsrommet_for_klinisk_begrunnelse",
+        "pressure": "ekspertise_vs_usikkerhet",
+        "priority": 143,
+        "role_scope": "spesialistpsykolog",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+          "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+          "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+        ],
+        "subject": "Ida ber spesialisten velge neste kliniske steg for henne",
+        "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret job-punkt: ida ber spesialisten velge neste kliniske steg for henne. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse.",
+        "task_domain": "spesialisert_klinisk_psykologarbeid"
+      },
+      "id": "spesialistpsykolog_job_veiledning_uten_overtakelse_003",
+      "mail_type": "job",
+      "role_scope": "spesialistpsykolog",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens veiledning_uten_overtakelse i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk veiledning_uten_overtakelse med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+            "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+            "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+          ],
+          "subject": "Ida ber spesialisten velge neste kliniske steg for henne",
+          "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret job-punkt: ida ber spesialisten velge neste kliniske steg for henne. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "spesialistpsykolog_job_veiledning_uten_overtakelse_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "veiledningsrommet_for_klinisk_begrunnelse",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "spesialistpsykolog_job_veiledning_uten_overtakelse_003",
+          "source_path": "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "spesialistpsykolog.mail.spesialistpsykolog_job_veiledning_uten_overtakelse_003",
+        "version": 1
+      },
+      "source_hash": "296c80438b9a29d88a697624b9d692eff419b2169506be15185bfd94671e063a",
+      "source_path": "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "proevbar_begrunnelse_vs_status_som_fasit",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens profesjonshistorisk_kildegrense i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework.",
+            "tags": [
+              "epistemisk_ydmykhet",
+              "pasientmedvirkning",
+              "handoff"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk profesjonshistorisk_kildegrense med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold.",
+            "tags": [
+              "status_som_fasit",
+              "ansvarsglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "presis_usikkerhet_veiledning_og_spesialitetsgrense",
+        "consequence_axis": "laering_og_sikkerhet_vs_skjult_ansvar",
+        "day_phase": "morning",
+        "from": "Ravi",
+        "id": "spesialistpsykolog_knowledge_profesjonshistorisk_kildegrense_001",
+        "interaction_mode": "task",
+        "mail_family": "spesialistpsykolog_knowledge_forlopslogg",
+        "mail_type": "knowledge",
+        "narrative_arc": "profesjonshistorisk_kildegrense",
+        "people_ref": "ravi_spesialist_annen_fordypning",
+        "person_id": "ravi_spesialist_annen_fordypning",
+        "phase": "forenoon",
+        "place_id": "psykologisk_institutt_uio",
+        "pressure": "ekspertise_vs_usikkerhet",
+        "priority": 145,
+        "role_scope": "spesialistpsykolog",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/knowledge/spesialistpsykolog_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Harald Schjelderup er en canonical History Go-person knyttet til Psykologisk institutt, UiO.",
+          "Oppgaven gjelder lesing av en kildeforankret historisk profil og et refleksjonsspørsmål om institusjon og ekspertrolle.",
+          "Historisk kontekst holdes helt adskilt fra Sanders nåværende kliniske data, samtykke, vurdering og behandlingsgrunnlag."
+        ],
+        "subject": "Profesjonshistorie skjerper spørsmålet, ikke behandlingssvaret",
+        "summary": "Ravi ber deg bruke History Go-profilen til Harald Schjelderup ved Psykologisk institutt, UiO som kildeforankret profesjonshistorie om institusjon og ekspertrolle. Oppgaven kan skjerpe hvordan du undersøker spesialiststatusens virkning på hypoteser og faglig motstemme, men den kan ikke avgjøre Sanders behandling, bekrefte dagens metode, gi spesialistgodkjenning eller skape klinisk eller lovregulert myndighet.",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/people/psykologi/oslo/people_psykologi_oslo.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "spesialistpsykolog_history_go_schjelderup_ekspertrolle"
+        },
+        "task_domain": "spesialisert_klinisk_psykologarbeid",
+        "task_payload": {
+          "completion_mode": "read_profile",
+          "description": "Les den kildeforankrede profilen og noter hvordan historisk ekspertstatus kan forme spørsmål uten å bli dagens kliniske fasit.",
+          "person_id": "harald_schjelderup",
+          "return_context": {
+            "mail_id": "spesialistpsykolog_knowledge_profesjonshistorisk_kildegrense_001",
+            "role_scope": "spesialistpsykolog",
+            "source": "civication"
+          },
+          "target_type": "person",
+          "task_kind": "history_go_person",
+          "title": "Les Harald Schjelderup som profesjonshistorie"
+        }
+      },
+      "id": "spesialistpsykolog_knowledge_profesjonshistorisk_kildegrense_001",
+      "mail_type": "knowledge",
+      "role_scope": "spesialistpsykolog",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens profesjonshistorisk_kildegrense i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk profesjonshistorisk_kildegrense med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Harald Schjelderup er en canonical History Go-person knyttet til Psykologisk institutt, UiO.",
+            "Oppgaven gjelder lesing av en kildeforankret historisk profil og et refleksjonsspørsmål om institusjon og ekspertrolle.",
+            "Historisk kontekst holdes helt adskilt fra Sanders nåværende kliniske data, samtykke, vurdering og behandlingsgrunnlag."
+          ],
+          "subject": "Profesjonshistorie skjerper spørsmålet, ikke behandlingssvaret",
+          "summary": "Ravi ber deg bruke History Go-profilen til Harald Schjelderup ved Psykologisk institutt, UiO som kildeforankret profesjonshistorie om institusjon og ekspertrolle. Oppgaven kan skjerpe hvordan du undersøker spesialiststatusens virkning på hypoteser og faglig motstemme, men den kan ikke avgjøre Sanders behandling, bekrefte dagens metode, gi spesialistgodkjenning eller skape klinisk eller lovregulert myndighet."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "spesialistpsykolog_knowledge_profesjonshistorisk_kildegrense_001",
+        "interaction_mode": "task",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "psykologisk_institutt_uio",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "spesialistpsykolog_knowledge_profesjonshistorisk_kildegrense_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/knowledge/spesialistpsykolog_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/people/psykologi/oslo/people_psykologi_oslo.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "spesialistpsykolog_history_go_schjelderup_ekspertrolle"
+        },
+        "thread_id": "spesialistpsykolog.mail.spesialistpsykolog_knowledge_profesjonshistorisk_kildegrense_001",
+        "version": 1
+      },
+      "source_hash": "e35b118ab683aa57d4fe721df15a03d215322367ba2a6a4f49677a411ec18ee8",
+      "source_path": "data/Civication/mailFamilies/psykologi/knowledge/spesialistpsykolog_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "proevbar_begrunnelse_vs_status_som_fasit",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens beslutningskritisk_minutt i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework.",
+            "tags": [
+              "epistemisk_ydmykhet",
+              "pasientmedvirkning",
+              "handoff"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk beslutningskritisk_minutt med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold.",
+            "tags": [
+              "status_som_fasit",
+              "ansvarsglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "presis_usikkerhet_veiledning_og_spesialitetsgrense",
+        "consequence_axis": "laering_og_sikkerhet_vs_skjult_ansvar",
+        "day_phase": "morning",
+        "from": "Ravi",
+        "id": "spesialistpsykolog_micro_beslutningskritisk_minutt_001",
+        "mail_family": "spesialistpsykolog_micro_forlopslogg",
+        "mail_type": "micro",
+        "narrative_arc": "beslutningskritisk_minutt",
+        "people_ref": "ravi_spesialist_annen_fordypning",
+        "person_id": "ravi_spesialist_annen_fordypning",
+        "phase": "forenoon",
+        "place_id": "tverrspesialistisk_hypotesemote",
+        "pressure": "ekspertise_vs_usikkerhet",
+        "priority": 145,
+        "role_scope": "spesialistpsykolog",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/micro/spesialistpsykolog_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+          "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+          "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+        ],
+        "subject": "Et kort tidsvindu kan brukes til å verifisere hva Ravi faktisk trenger for sin avgrensede vurdering",
+        "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret micro-punkt: et kort tidsvindu kan brukes til å verifisere hva ravi faktisk trenger for sin avgrensede vurdering. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse.",
+        "task_domain": "spesialisert_klinisk_psykologarbeid"
+      },
+      "id": "spesialistpsykolog_micro_beslutningskritisk_minutt_001",
+      "mail_type": "micro",
+      "role_scope": "spesialistpsykolog",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens beslutningskritisk_minutt i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk beslutningskritisk_minutt med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+            "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+            "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+          ],
+          "subject": "Et kort tidsvindu kan brukes til å verifisere hva Ravi faktisk trenger for sin avgrensede vurdering",
+          "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret micro-punkt: et kort tidsvindu kan brukes til å verifisere hva ravi faktisk trenger for sin avgrensede vurdering. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "spesialistpsykolog_micro_beslutningskritisk_minutt_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "tverrspesialistisk_hypotesemote",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "spesialistpsykolog_micro_beslutningskritisk_minutt_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/micro/spesialistpsykolog_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "spesialistpsykolog.mail.spesialistpsykolog_micro_beslutningskritisk_minutt_001",
+        "version": 1
+      },
+      "source_hash": "8029abb58aee553177819d7783d872558d891d6620b7fe335b4f5137756247d6",
+      "source_path": "data/Civication/mailFamilies/psykologi/micro/spesialistpsykolog_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "proevbar_begrunnelse_vs_status_som_fasit",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens idas_begrunnelse i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework.",
+            "tags": [
+              "epistemisk_ydmykhet",
+              "pasientmedvirkning",
+              "handoff"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk idas_begrunnelse med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold.",
+            "tags": [
+              "status_som_fasit",
+              "ansvarsglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "presis_usikkerhet_veiledning_og_spesialitetsgrense",
+        "consequence_axis": "laering_og_sikkerhet_vs_skjult_ansvar",
+        "day_phase": "afternoon",
+        "from": "Ida",
+        "id": "spesialistpsykolog_people_idas_begrunnelse_002",
+        "mail_family": "spesialistpsykolog_people_forlopslogg",
+        "mail_type": "people",
+        "narrative_arc": "idas_begrunnelse",
+        "people_ref": "ida_psykolog_i_veiledning",
+        "person_id": "ida_psykolog_i_veiledning",
+        "phase": "workday",
+        "place_id": "veiledningsrommet_for_klinisk_begrunnelse",
+        "pressure": "ekspertise_vs_usikkerhet",
+        "priority": 144,
+        "role_scope": "spesialistpsykolog",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+          "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+          "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+        ],
+        "subject": "Ida trenger et vurderingspunkt hun selv kan begrunne og følge opp",
+        "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret people-punkt: ida trenger et vurderingspunkt hun selv kan begrunne og følge opp. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse.",
+        "task_domain": "spesialisert_klinisk_psykologarbeid"
+      },
+      "id": "spesialistpsykolog_people_idas_begrunnelse_002",
+      "mail_type": "people",
+      "role_scope": "spesialistpsykolog",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens idas_begrunnelse i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk idas_begrunnelse med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+            "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+            "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+          ],
+          "subject": "Ida trenger et vurderingspunkt hun selv kan begrunne og følge opp",
+          "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret people-punkt: ida trenger et vurderingspunkt hun selv kan begrunne og følge opp. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "spesialistpsykolog_people_idas_begrunnelse_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "veiledningsrommet_for_klinisk_begrunnelse",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "spesialistpsykolog_people_idas_begrunnelse_002",
+          "source_path": "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "spesialistpsykolog.mail.spesialistpsykolog_people_idas_begrunnelse_002",
+        "version": 1
+      },
+      "source_hash": "00b0b3906449e561f0416f02de14de953440cc60bec5ce16e597b08358cf71ae",
+      "source_path": "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "proevbar_begrunnelse_vs_status_som_fasit",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens noras_tidsfrist i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework.",
+            "tags": [
+              "epistemisk_ydmykhet",
+              "pasientmedvirkning",
+              "handoff"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk noras_tidsfrist med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold.",
+            "tags": [
+              "status_som_fasit",
+              "ansvarsglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "presis_usikkerhet_veiledning_og_spesialitetsgrense",
+        "consequence_axis": "laering_og_sikkerhet_vs_skjult_ansvar",
+        "day_phase": "afternoon",
+        "from": "Nora",
+        "id": "spesialistpsykolog_people_noras_tidsfrist_004",
+        "mail_family": "spesialistpsykolog_people_forlopslogg",
+        "mail_type": "people",
+        "narrative_arc": "noras_tidsfrist",
+        "people_ref": "nora_teamleder_spesialisttjeneste",
+        "person_id": "nora_teamleder_spesialisttjeneste",
+        "phase": "workday",
+        "place_id": "metode_og_kvalitetsverkstedet",
+        "pressure": "ekspertise_vs_usikkerhet",
+        "priority": 142,
+        "role_scope": "spesialistpsykolog",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+          "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+          "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+        ],
+        "subject": "Nora trenger framdrift uten å gjøre en foreløpig anbefaling til klinisk regel",
+        "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret people-punkt: nora trenger framdrift uten å gjøre en foreløpig anbefaling til klinisk regel. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse.",
+        "task_domain": "spesialisert_klinisk_psykologarbeid"
+      },
+      "id": "spesialistpsykolog_people_noras_tidsfrist_004",
+      "mail_type": "people",
+      "role_scope": "spesialistpsykolog",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens noras_tidsfrist i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk noras_tidsfrist med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+            "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+            "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+          ],
+          "subject": "Nora trenger framdrift uten å gjøre en foreløpig anbefaling til klinisk regel",
+          "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret people-punkt: nora trenger framdrift uten å gjøre en foreløpig anbefaling til klinisk regel. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "spesialistpsykolog_people_noras_tidsfrist_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "metode_og_kvalitetsverkstedet",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "spesialistpsykolog_people_noras_tidsfrist_004",
+          "source_path": "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "spesialistpsykolog.mail.spesialistpsykolog_people_noras_tidsfrist_004",
+        "version": 1
+      },
+      "source_hash": "ba5a0adc357075ad1b11f37f5bad292e48605fbaf02f7d216e9515d069845e5d",
+      "source_path": "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "proevbar_begrunnelse_vs_status_som_fasit",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens ravis_motforklaring i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework.",
+            "tags": [
+              "epistemisk_ydmykhet",
+              "pasientmedvirkning",
+              "handoff"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk ravis_motforklaring med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold.",
+            "tags": [
+              "status_som_fasit",
+              "ansvarsglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "presis_usikkerhet_veiledning_og_spesialitetsgrense",
+        "consequence_axis": "laering_og_sikkerhet_vs_skjult_ansvar",
+        "day_phase": "afternoon",
+        "from": "Ravi",
+        "id": "spesialistpsykolog_people_ravis_motforklaring_003",
+        "mail_family": "spesialistpsykolog_people_forlopslogg",
+        "mail_type": "people",
+        "narrative_arc": "ravis_motforklaring",
+        "people_ref": "ravi_spesialist_annen_fordypning",
+        "person_id": "ravi_spesialist_annen_fordypning",
+        "phase": "workday",
+        "place_id": "tverrspesialistisk_hypotesemote",
+        "pressure": "ekspertise_vs_usikkerhet",
+        "priority": 143,
+        "role_scope": "spesialistpsykolog",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+          "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+          "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+        ],
+        "subject": "Ravi viser evidens fra en annen fordypning som kan endre hypotesen",
+        "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret people-punkt: ravi viser evidens fra en annen fordypning som kan endre hypotesen. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse.",
+        "task_domain": "spesialisert_klinisk_psykologarbeid"
+      },
+      "id": "spesialistpsykolog_people_ravis_motforklaring_003",
+      "mail_type": "people",
+      "role_scope": "spesialistpsykolog",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens ravis_motforklaring i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk ravis_motforklaring med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+            "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+            "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+          ],
+          "subject": "Ravi viser evidens fra en annen fordypning som kan endre hypotesen",
+          "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret people-punkt: ravi viser evidens fra en annen fordypning som kan endre hypotesen. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "spesialistpsykolog_people_ravis_motforklaring_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "tverrspesialistisk_hypotesemote",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "spesialistpsykolog_people_ravis_motforklaring_003",
+          "source_path": "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "spesialistpsykolog.mail.spesialistpsykolog_people_ravis_motforklaring_003",
+        "version": 1
+      },
+      "source_hash": "11094536771efeeaccf43d1ca074a0ce988bf8753959806fd8d459ee5f635ed9",
+      "source_path": "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "proevbar_begrunnelse_vs_status_som_fasit",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens sanders_prioritet i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework.",
+            "tags": [
+              "epistemisk_ydmykhet",
+              "pasientmedvirkning",
+              "handoff"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk sanders_prioritet med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold.",
+            "tags": [
+              "status_som_fasit",
+              "ansvarsglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "presis_usikkerhet_veiledning_og_spesialitetsgrense",
+        "consequence_axis": "laering_og_sikkerhet_vs_skjult_ansvar",
+        "day_phase": "morning",
+        "from": "Sander",
+        "id": "spesialistpsykolog_people_sanders_prioritet_001",
+        "mail_family": "spesialistpsykolog_people_forlopslogg",
+        "mail_type": "people",
+        "narrative_arc": "sanders_prioritet",
+        "people_ref": "sander_pasient_komplekst_forlop",
+        "person_id": "sander_pasient_komplekst_forlop",
+        "phase": "forenoon",
+        "place_id": "spesialistpoliklinikkens_forlopsrom",
+        "pressure": "ekspertise_vs_usikkerhet",
+        "priority": 145,
+        "role_scope": "spesialistpsykolog",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+          "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+          "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+        ],
+        "subject": "Sander beskriver et mål som ikke er operativt i den foreløpige planen",
+        "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret people-punkt: sander beskriver et mål som ikke er operativt i den foreløpige planen. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse.",
+        "task_domain": "spesialisert_klinisk_psykologarbeid"
+      },
+      "id": "spesialistpsykolog_people_sanders_prioritet_001",
+      "mail_type": "people",
+      "role_scope": "spesialistpsykolog",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens sanders_prioritet i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk sanders_prioritet med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+            "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+            "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+          ],
+          "subject": "Sander beskriver et mål som ikke er operativt i den foreløpige planen",
+          "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret people-punkt: sander beskriver et mål som ikke er operativt i den foreløpige planen. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "spesialistpsykolog_people_sanders_prioritet_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "spesialistpoliklinikkens_forlopsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "spesialistpsykolog_people_sanders_prioritet_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "spesialistpsykolog.mail.spesialistpsykolog_people_sanders_prioritet_001",
+        "version": 1
+      },
+      "source_hash": "3f39e90b71c79c2671cb84ce15010bf0a999fb3a2a6b5eab5ece3db4f5948f68",
+      "source_path": "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "proevbar_begrunnelse_vs_status_som_fasit",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens ekspertstatus_som_fasit i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework.",
+            "tags": [
+              "epistemisk_ydmykhet",
+              "pasientmedvirkning",
+              "handoff"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk ekspertstatus_som_fasit med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold.",
+            "tags": [
+              "status_som_fasit",
+              "ansvarsglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "presis_usikkerhet_veiledning_og_spesialitetsgrense",
+        "consequence_axis": "laering_og_sikkerhet_vs_skjult_ansvar",
+        "day_phase": "morning",
+        "from": "Ida",
+        "id": "spesialistpsykolog_story_ekspertstatus_som_fasit_001",
+        "mail_family": "spesialistpsykolog_story_forlopslogg",
+        "mail_type": "story",
+        "narrative_arc": "ekspertstatus_som_fasit",
+        "people_ref": "ida_psykolog_i_veiledning",
+        "person_id": "ida_psykolog_i_veiledning",
+        "phase": "forenoon",
+        "place_id": "veiledningsrommet_for_klinisk_begrunnelse",
+        "pressure": "ekspertise_vs_usikkerhet",
+        "priority": 145,
+        "role_scope": "spesialistpsykolog",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/story/spesialistpsykolog_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+          "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+          "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+        ],
+        "subject": "En tidligere veiledning ble gjengitt som om spesialisten hadde overtatt beslutningen",
+        "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret story-punkt: en tidligere veiledning ble gjengitt som om spesialisten hadde overtatt beslutningen. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse.",
+        "task_domain": "spesialisert_klinisk_psykologarbeid"
+      },
+      "id": "spesialistpsykolog_story_ekspertstatus_som_fasit_001",
+      "mail_type": "story",
+      "role_scope": "spesialistpsykolog",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Neste kliniker og pasienten ser hva som faktisk er kjent, hva som fortsatt venter, hvilket råd spesialisten ga og hvem som eier beslutningen. Forløpet kan revideres uten at tidligere begrunnelse slettes, og ekspertise brukes som en prøvbar ressurs innen faktisk spesialitet.",
+            "id": "A",
+            "label": "Avgrens ekspertstatus_som_fasit i forløpsloggen",
+            "reply": "Jeg bevarer pasientmålet og motstemmen, skiller kjent fra antatt, navngir spesialitetsgrense, risiko, ventepunkt, beslutningseier og hva som skal utløse evaluering eller rework."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Arbeidsflaten blir ryddigere, men Sanders mål, alternativ evidens og faktisk beslutningseier blir vanskeligere å rekonstruere. Kollegene kan lese rådet som overtatt ansvar, og senere rework starter uten spor av hvorfor hypotesen ble lukket eller hvilken spesialitetsgrense som gjaldt.",
+            "id": "B",
+            "label": "Lukk ekspertstatus_som_fasit med spesialiststatus",
+            "reply": "Jeg presenterer den mest sannsynlige forklaringen som endelig, lar teamet gjennomføre rådet og fjerner ventepunktet fordi tydelig ekspertretning nå er viktigere enn flere forbehold."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forløpsloggen viser objektversjon, pasientmål, kjent og ukjent evidens, samtykke, risiko, tiltak, råd, eier og evalueringsdato.",
+            "En rask ekspertkonklusjon kan skape framdrift nå, men skjule faggrensen eller flytte ansvar og rework til neste person.",
+            "Valget må gjøre venting, handoff og kriteriet for gjenåpning synlig uten å dele mer klinisk informasjon enn rollen krever."
+          ],
+          "subject": "En tidligere veiledning ble gjengitt som om spesialisten hadde overtatt beslutningen",
+          "summary": "Spesialistforløpets hypotese-, tiltaks- og veiledningslogg står i et konkret story-punkt: en tidligere veiledning ble gjengitt som om spesialisten hadde overtatt beslutningen. Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko, spesialitetsgrense, råd og beslutningseier peker ikke automatisk samme vei. Du må bevare faglig motstemme, dataminimering og neste evalueringspunkt uten å gjøre spesialiststatus til fasit eller veiledning til skjult overtakelse."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "spesialistpsykolog_story_ekspertstatus_som_fasit_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "veiledningsrommet_for_klinisk_begrunnelse",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "spesialistpsykolog_story_ekspertstatus_som_fasit_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/story/spesialistpsykolog_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "spesialistpsykolog.mail.spesialistpsykolog_story_ekspertstatus_som_fasit_001",
+        "version": 1
+      },
+      "source_hash": "c6dbb3629abe6b406078a5754957e6fd5682aad50917830f8228ce5c558178b5",
+      "source_path": "data/Civication/mailFamilies/psykologi/story/spesialistpsykolog_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
       "category": "religion",
       "compatibility_projection": {
         "category": "religion",
@@ -204517,7 +206596,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "e4d6cc83814d818617bbbeded71337a28e6433623ac614a9fd00326f110a7c30",
+  "registry_hash": "7713b7dd0470e8c782f0027fe78b44b96d7b77d893b0e4d05a12fbcd0673241a",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -205678,6 +207757,23 @@
       "psykologi_miljoarbeid_knowledge_dokumentasjon",
       "psykologi_miljoarbeid_consequence_neste_vakt"
     ],
+    "psykologi/spesialistpsykolog": [
+      "spesialistpsykolog_job_hypotesestart_001",
+      "spesialistpsykolog_job_begrunnet_tilpasning_002",
+      "spesialistpsykolog_job_veiledning_uten_overtakelse_003",
+      "spesialistpsykolog_job_metodepilot_004",
+      "spesialistpsykolog_people_sanders_prioritet_001",
+      "spesialistpsykolog_people_idas_begrunnelse_002",
+      "spesialistpsykolog_people_ravis_motforklaring_003",
+      "spesialistpsykolog_people_noras_tidsfrist_004",
+      "spesialistpsykolog_story_ekspertstatus_som_fasit_001",
+      "spesialistpsykolog_conflict_spesialitetsgrense_001",
+      "spesialistpsykolog_event_endret_risiko_001",
+      "spesialistpsykolog_micro_beslutningskritisk_minutt_001",
+      "spesialistpsykolog_followup_tiltak_som_ma_revideres_001",
+      "spesialistpsykolog_knowledge_profesjonshistorisk_kildegrense_001",
+      "spesialistpsykolog_consequence_taus_motstemme_001"
+    ],
     "religion/religion_forskning": [
       "religion_forskning_job_problemstilling",
       "religion_forskning_people_motlesning",
@@ -205913,11 +208009,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 386,
+    "compiled_source_file_count": 395,
     "ignored_source_file_count": 1,
-    "input_file_count": 387,
-    "role_count": 48,
-    "scene_count": 1270,
+    "input_file_count": 396,
+    "role_count": 49,
+    "scene_count": 1285,
     "shadowed_duplicate_count": 0
   },
   "version": 1

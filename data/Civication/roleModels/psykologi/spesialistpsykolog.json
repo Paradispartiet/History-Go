@@ -20,27 +20,30 @@
   ],
   "work_life": {
     "daily_work": [
-      "utrede og behandle komplekse problemstillinger innen relevant spesialistkompetanse",
-      "drøfte behandlingsforløp og kliniske veivalg med kolleger",
-      "veilede psykologer og andre fagpersoner innen egen kompetanse",
-      "bidra til fagutvikling, metodekvalitet og forbedring av kliniske tilbud",
-      "dokumentere kliniske begrunnelser og evaluere om tiltak virker etter hensikten",
-      "identifisere når saken krever annen spesialistkompetanse eller tverrfaglig løsning"
+      "Holder Sanders mål, konkurrerende hypoteser, evidens, usikkerhet, samtykke, risiko og tiltak samlet i én versjonert forløpslogg.",
+      "Prøver spesialistmetode mot pasientens situasjon og dokumenterer både begrunnet tilpasning og kriteriet for ny vurdering.",
+      "Veileder Ida gjennom hennes begrunnelse og risiko uten å overta den kliniske beslutningen implisitt.",
+      "Henter Ravis andre spesialistperspektiv når spørsmålet går utenfor egen fordypning, med tydelig handoff og ansvar.",
+      "Følger venting, effekt og rework fram til hypotesen kan revideres, lukkes eller eskaleres."
     ],
     "responsibilities": [
-      "bruke spesialistkompetansen innen den faktiske spesialiteten og ikke som generell fasit",
-      "gjøre kompleksitet forståelig uten å overselge sikkerheten i en vurdering",
-      "skille veiledning fra overtakelse av kollegers kliniske ansvar",
-      "balansere metodekvalitet mot nødvendig individuell tilpasning",
-      "bidra til at fagutvikling bygger på dokumenterte behov og ikke bare ekspertpreferanser"
+      "presis usikkerhet innen faktisk spesialitet",
+      "pasientmål, samtykke og dataminimering",
+      "veiledning uten skjult ansvarsovertakelse",
+      "navngitt handoff til annen kompetanse",
+      "etterprøvbar evaluering og rework"
     ],
     "work_environment": [
-      "Spesialistpsykologer arbeider ofte i kliniske team der pasientarbeid kombineres med veiledning, fagutvikling og vurdering av komplekse forløp.",
-      "Rollen innebærer hyppige skifter mellom direkte pasientarbeid, konsultasjon med kolleger og tjenesteutvikling."
+      "Arbeidet veksler mellom forløpsrom, veiledningsrom, tverrspesialistisk hypotesemøte og metodeverksted; alle fire er fiktive arbeidsflater."
     ],
     "status_position": [
-      "Spesialiststatus gir faglig tyngde, men gjør ikke alle vurderinger sikrere enn datagrunnlaget og gir ikke automatisk juridisk vedtakskompetanse.",
-      "Rollen vurderes på om ekspertisen øker kvaliteten rundt deg, ikke bare på om andre følger rådene dine."
+      "Tillit følger evnen til å gjøre ekspertisen prøvbar, faggrensen synlig og pasientens mål operativt; spesialiststatus gir verken allmenn klinisk kompetanse eller automatisk lovmyndighet."
+    ],
+    "workplaces": [
+      "spesialistpoliklinikkens_forlopsrom",
+      "veiledningsrommet_for_klinisk_begrunnelse",
+      "tverrspesialistisk_hypotesemote",
+      "metode_og_kvalitetsverkstedet"
     ]
   },
   "career_path": {
@@ -87,9 +90,21 @@
       "veiledning og kompetanseutvikling",
       "etikk, pasientsikkerhet og tjenestekvalitet"
     ],
-    "history_go_badges": ["psykologi"],
-    "place_connections": [],
-    "people_connections": []
+    "history_go_badges": [
+      "psykologi"
+    ],
+    "place_connections": [
+      "spesialistpoliklinikkens_forlopsrom",
+      "veiledningsrommet_for_klinisk_begrunnelse",
+      "tverrspesialistisk_hypotesemote",
+      "metode_og_kvalitetsverkstedet"
+    ],
+    "people_connections": [
+      "sander_pasient_komplekst_forlop",
+      "ida_psykolog_i_veiledning",
+      "ravi_spesialist_annen_fordypning",
+      "nora_teamleder_spesialisttjeneste"
+    ]
   },
   "scope_boundary": {
     "can": [
@@ -112,21 +127,31 @@
       "title": "Ekspertstatus og usikkerhet",
       "description": "Teamet ber om et klart svar i en sak der flere forklaringer fortsatt er plausible.",
       "pressure": "ekspertforventning_vs_usikkerhet",
-      "affects": ["trust", "risk", "status"]
+      "affects": [
+        "trust",
+        "risk",
+        "status"
+      ]
     },
     {
       "id": "metode_og_tilpasning",
       "title": "Metode og tilpasning",
       "description": "En anbefalt metode passer bare delvis til pasientens situasjon og mål.",
       "pressure": "metodefidelitet_vs_individuell_tilpasning",
-      "affects": ["trust", "risk"]
+      "affects": [
+        "trust",
+        "risk"
+      ]
     },
     {
       "id": "veiledning_og_ansvar",
       "title": "Veiledning og ansvar",
       "description": "En kollega ønsker at du skal gi fasiten i stedet for å støtte deres egen kliniske vurdering.",
       "pressure": "stotte_vs_overtakelse",
-      "affects": ["status", "trust"]
+      "affects": [
+        "status",
+        "trust"
+      ]
     }
   ],
   "dilemmas": [
@@ -136,7 +161,11 @@
       "setup": "Et teammøte trenger retning, men caset inneholder data som trekker i forskjellige retninger.",
       "choice_axis": "klarhet_vs_epistemisk_ydmykhet",
       "consequence_axis": "framdrift_vs_feilspor",
-      "mail_hooks": ["job", "conflict", "story"]
+      "mail_hooks": [
+        "job",
+        "conflict",
+        "story"
+      ]
     },
     {
       "id": "standardisering_eller_tilpasning",
@@ -144,27 +173,113 @@
       "setup": "Tjenesten ønsker lik praksis, mens et konkret forløp krever en begrunnet tilpasning.",
       "choice_axis": "standard_vs_tilpasning",
       "consequence_axis": "konsistens_vs_pasienttilpasning",
-      "mail_hooks": ["job", "followup", "consequence"]
+      "mail_hooks": [
+        "job",
+        "followup",
+        "consequence"
+      ]
     }
   ],
-  "related_people": [],
-  "related_places": [],
+  "related_people": [
+    {
+      "id": "sander_pasient_komplekst_forlop",
+      "name": "Sander",
+      "role": "pasient i et komplekst, fiktivt forløp",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null,
+      "function": "Sander holder sitt eget mål, sin hverdagskontekst og erfaringen av hva tiltakene faktisk gjør. Han gjør det mulig å prøve om en spesialistformulering hjelper personen den gjelder, eller bare skaper en ryddig fortelling for fagmiljøet.",
+      "authority_relation": "Sander eier medvirkning, samtykke og retten til å få usikkerhet forklart. Han kan ikke pålegges en metode fordi den passer spesialistens fordypning, og informasjon om ham kan bare deles når behandlingsgrunnlag, nødvendighet og rolle er avklart.",
+      "workplace_ids": [
+        "spesialistpoliklinikkens_forlopsrom"
+      ]
+    },
+    {
+      "id": "ida_psykolog_i_veiledning",
+      "name": "Ida",
+      "role": "psykolog i veiledning",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null,
+      "function": "Ida har gjort den løpende kliniske vurderingen og trenger hjelp til å teste begrunnelse, risiko og endringskriterier. Hun viser om spesialistens råd bygger hennes dømmekraft eller gjør henne avhengig av en autoritativ fasit.",
+      "authority_relation": "Ida beholder klinisk ansvar innen egen rolle og må selv kunne dokumentere beslutningen. Spesialisten kan gi råd og kreve forsvarlig eskalering, men kan ikke stille seg som skjult beslutningstaker eller overføre ansvar uten eksplisitt handoff.",
+      "workplace_ids": [
+        "veiledningsrommet_for_klinisk_begrunnelse"
+      ]
+    },
+    {
+      "id": "ravi_spesialist_annen_fordypning",
+      "name": "Ravi",
+      "role": "spesialistpsykolog med en annen fordypning",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null,
+      "function": "Ravi ser et mønster fra en annen spesialitet og utfordrer hvilke data som mangler før planen låses. Han gjør faggrensen konkret og hindrer at én spesialistkompetanse framstilles som generell ekspertise på alle kliniske områder.",
+      "authority_relation": "Ravi kan bidra med en avgrenset vurdering og navngi behov for videre kompetanse. Han overtar ikke hele forløpet ved å være uenig, og spilleren kan verken avvise eller delegere til ham uten å klargjøre spørsmål, ansvar og informasjonsgrunnlag.",
+      "workplace_ids": [
+        "tverrspesialistisk_hypotesemote"
+      ]
+    },
+    {
+      "id": "nora_teamleder_spesialisttjeneste",
+      "name": "Nora",
+      "role": "teamleder for den fiktive spesialisttjenesten",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null,
+      "function": "Nora eier arbeidsflyt, frister og forbedringsrom og vil redusere ubegrunnet variasjon. Hun synliggjør når produksjonspress eller ønsket om lik praksis forsøker å gjøre en foreløpig spesialistvurdering til bindende standard.",
+      "authority_relation": "Nora kan prioritere tid, be om dokumentert kvalitetsarbeid og plassere organisatorisk ansvar. Hun kan ikke gi spesialistgodkjenning, overstyre samtykke eller gjøre ledelsesmandat til diagnostisk, behandlingsmessig eller lovregulert myndighet.",
+      "workplace_ids": [
+        "metode_og_kvalitetsverkstedet"
+      ]
+    }
+  ],
+  "related_places": [
+    {
+      "id": "spesialistpoliklinikkens_forlopsrom",
+      "name": "Spesialistpoliklinikkens forløpsrom",
+      "function": "Samler pasientmål, konkurrerende hypoteser, samtykke, risiko, tiltak, evaluering og neste beslutningspunkt i ett versjonert forløp uten å gjøre spesialiststatus til fasit."
+    },
+    {
+      "id": "veiledningsrommet_for_klinisk_begrunnelse",
+      "name": "Veiledningsrommet for klinisk begrunnelse",
+      "function": "Gjør kollegaens egen vurdering, usikkerhet, risiko og ansvar synlig før spesialistråd gis, slik at veiledning ikke blir skjult overtakelse."
+    },
+    {
+      "id": "tverrspesialistisk_hypotesemote",
+      "name": "Det tverrspesialistiske hypotesemøtet",
+      "function": "Prøver ulike spesialiteters forklaringer mot samme evidens og navngir hvem som eier videre undersøkelse, handoff og klinisk beslutning."
+    },
+    {
+      "id": "metode_og_kvalitetsverkstedet",
+      "name": "Metode- og kvalitetsverkstedet",
+      "function": "Tester begrunnede tilpasninger og standardisering mot pasientutfall, implementeringsvilkår og dokumentert rework før praksis spres."
+    }
+  ],
   "mail_integration": {
     "role_scope": "spesialistpsykolog",
     "mail_profile": "psykologi_spesialistpsykolog",
-    "can_feed_mail_types": ["job", "story", "conflict", "event", "people", "followup"],
-    "mail_variables": {
-      "role_title": "Spesialistpsykolog",
-      "category": "psykologi",
-      "main_pressure": "kompleksitet_vs_sikkerhet",
-      "ethical_axis": "ekspertise_vs_ydmykhet",
-      "status_axis": "faglig_tillit_vs_ekspertoverstyring"
-    },
+    "can_feed_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
     "recommended_mail_families": [
-      "komplekse_kliniske_forlop",
-      "veiledning_og_konsultasjon",
-      "metode_og_tilpasning",
-      "fagutvikling_og_kvalitet"
+      "spesialistpsykolog_job",
+      "spesialistpsykolog_people",
+      "spesialistpsykolog_conflict",
+      "spesialistpsykolog_story",
+      "spesialistpsykolog_event",
+      "spesialistpsykolog_micro",
+      "spesialistpsykolog_followup",
+      "spesialistpsykolog_knowledge",
+      "spesialistpsykolog_consequence"
     ],
     "role_model_refs_supported": true
   },
