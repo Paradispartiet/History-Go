@@ -1,0 +1,246 @@
+name: Finalize Oslo S Fagverk v2
+
+on:
+  push:
+    branches:
+      - work/oslo-s-fagverk-v2-20260901
+    paths:
+      - .github/workflows/finalize-oslo-s-fagverk-v2.yml
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Sync branch to current main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+      - name: Materialize Oslo S Fagverk source and image repair
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const placePath = 'data/places/by/oslo/places/oslo_s.json';
+          const registryPath = 'data/fagverk/fagverk_registry.json';
+          const backlogPath = 'data/places/place_image_backlog_summary.json';
+          const place = JSON.parse(fs.readFileSync(placePath, 'utf8'));
+
+          const imageUrl = 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Oslo_S_-_Oslo_Central_Station_-_Oslo%2C_Norway_2021-07-24_%2802%29.jpg?width=1280';
+          const imagePage = 'https://commons.wikimedia.org/wiki/File:Oslo_S_-_Oslo_Central_Station_-_Oslo%2C_Norway_2021-07-24_%2802%29.jpg';
+          const staleImage = place.image === 'bilder/places/oslo_s.JPG' && place.cardImage === 'bilder/kort/places/oslo_s.PNG';
+          if (staleImage) {
+            place.image = imageUrl;
+            place.cardImage = imageUrl;
+          }
+
+          const sources = [
+            ['Bane NOR – Oslo S', 'https://www.banenor.no/reise-og-trafikk/stasjoner/-o-/oslo-s/'],
+            ['Oslo Byleksikon – Oslo Sentralstasjon', 'https://oslobyleksikon.no/side/Oslo_Sentralstasjon'],
+            ['Oslo Byleksikon – Østbanestasjonen', 'https://oslobyleksikon.no/side/%C3%98stbanestasjonen'],
+            ['Oslo kommune – byutviklingsområdet rundt Oslo Sentralstasjon', 'https://www.oslo.kommune.no/slik-bygger-vi-oslo/byutviklingsomradet-rundt-oslo-sentralstasjon/']
+          ];
+          const existingLinks = Array.isArray(place.externalLinks) ? place.externalLinks : [];
+          const byUrl = new Map(existingLinks.filter((row) => row?.url).map((row) => [row.url, row]));
+          for (const [label, url] of sources) byUrl.set(url, { type: 'source', label, url, verifiedAt: '2026-09-01' });
+          byUrl.set(imagePage, {
+            type: 'source',
+            label: 'Wikimedia Commons – Oslo S, Ryan Hodnett, CC BY-SA 4.0',
+            url: imagePage,
+            verifiedAt: '2026-09-01'
+          });
+          place.externalLinks = [...byUrl.values()];
+
+          place.fagverk = {
+            schema: 'history_go_place_fagverk_v2',
+            level: 'full',
+            status: 'curated',
+            intro: 'Oslo S kan undersøkes som en byttemaskin og et sosialt hovedrom samtidig. Plattformnumre, avgangstavler, retningsskilt, venteområder, innganger og forbindelser til andre transportmidler må gjøre et komplekst nett forståelig for mennesker som beveger seg i ulike tempo. Fagverket skiller derfor transportfunksjon, informasjonsdesign, venting og sosial sambruk som egne observerbare lag.',
+            article: [
+              'Oslo S ligger på stedet der Norges første jernbane fikk sin hovedstasjon i Christiania i 1854. Østbanestasjonen ble senere utvidet da trafikken og banenettet vokste, men hovedstadens jernbane var lenge delt mellom øst- og vestsiden av sentrum. Den historiske stasjonsfronten mot Jernbanetorget er derfor ett lag i et anlegg som gradvis har fått nye spor, haller, tunneler og forbindelser. Dagens stasjon kan ikke forstås som én enkelt bygning fra ett år.',
+              'Den avgjørende systemendringen kom med Oslotunnelen og første byggetrinn av Oslo Sentralstasjon i 1980. Tunnelen bandt de vestlige banene sammen med jernbanenettet på østsiden og gjorde gjennomgående tog mulig på tvers av sentrum. Bane NOR beskriver Oslo S som landets største stasjon og opplyser at de fleste fjerntog har stasjonen som endepunkt. Navnet ble endret fra Oslo Ø til Oslo S i 1981, mens sentralhallen med publikumsfunksjoner kom senere.',
+              'Et stort knutepunkt fungerer bare dersom reisende kan omsette informasjon til handling. På Oslo S skjer dette gjennom avgangstavler, plattformnumre, farge- og sonemarkeringer, retningsskilt, klokker og meldinger. Informasjonen er ikke pynt på transportsystemet; den er en del av infrastrukturen. Et togspor kan være fysisk tilgjengelig, men et bytte fungerer dårlig dersom forbindelsen er vanskelig å forstå eller hvis informasjonen kommer for sent til at den reisende kan velge riktig rute.',
+              'Stasjonen er samtidig et sosialt knutepunkt. Noen beveger seg raskt mot tog eller T-bane, andre venter, møter noen, spiser eller bruker servicetilbud uten å reise umiddelbart. Bane NOR beskriver butikker og spisesteder som en integrert del av stasjonen. Feltobservasjon kan registrere aktivitetstyper, oppholdstid, gruppestørrelser og hvordan venting fordeler seg i rommet, men den kan ikke fastslå menneskers bakgrunn, reisemål eller motivasjon bare ut fra utseende.',
+              'Oslo S kobler også stasjonen til byen rundt. Innganger vender mot Jernbanetorget, Bjørvika og forbindelser videre mot bussterminalen og andre kollektivsystemer. Oslo kommune behandler området rundt stasjonen som et stort byutviklingsområde som omfatter blant annet Jernbanetorget, bussterminalen, Grønland, Nylandsveien og Bjørvika. Dermed er stasjonen både et internt transportanlegg og en overgang mellom flere offentlige rom og bydeler.',
+              'Et feltbesøk kan følge én tenkt bytterute uten å gå om bord: fra plattformområde til T-bane, buss, trikk eller en bestemt utgang. Underveis kan man registrere hvert informasjonspunkt, retningsskifte, venteområde og fysisk terskel. Man kan også sammenligne et område dominert av gjennomgang med et område dominert av venting. Slike observasjoner dokumenterer romlig organisering på et tidspunkt; de kan ikke alene fastslå passasjertall, forsinkelsesårsaker, kapasitet, sikkerhetsnivå eller langsiktige sosiale mønstre.'
+            ],
+            subject_ids: ['by'],
+            emne_ids: [
+              'em_by_infrastruktur_mobilitet',
+              'em_by_sosiale_knutepunkt'
+            ],
+            chapter_ids: [
+              'urbanisme-idealer-forbindelser-fortetting',
+              'byliv-sosial-offentlighet'
+            ],
+            lenses: [
+              {
+                id: 'oslo-s-bytterute',
+                title: 'Bytteruten som system',
+                prompt: 'Hvor mange informasjons- og retningsvalg må en reisende gjøre på en tenkt overgang mellom to transportmidler?',
+                subject_id: 'by',
+                emne_id: 'em_by_infrastruktur_mobilitet',
+                evidence: 'Følg én lovlig intern rute uten å gå om bord og registrer skilt, tavler, nivåskifter, innganger og retningsendringer i den rekkefølgen de møtes.'
+              },
+              {
+                id: 'oslo-s-informasjonsinfrastruktur',
+                title: 'Informasjon som infrastruktur',
+                prompt: 'Hvordan samarbeider avgangstavler, plattformnumre og retningsskilt for å gjøre et komplekst stasjonsanlegg forståelig?',
+                subject_id: 'by',
+                emne_id: 'em_by_infrastruktur_mobilitet',
+                evidence: 'Finn minst tre ulike informasjonssystemer og noter hvilken beslutning hvert av dem gjør mulig for den reisende.'
+              },
+              {
+                id: 'oslo-s-bevegelse-venting',
+                title: 'Bevegelse møter venting',
+                prompt: 'Hvordan skilles raske gjennomgangsstrømmer fra områder der mennesker kan vente eller møtes over lengre tid?',
+                subject_id: 'by',
+                emne_id: 'em_by_sosiale_knutepunkt',
+                evidence: 'Sammenlign ett tydelig gjennomgangsområde og ett venteområde og registrer sitteplasser, kantsoner, oppholdstid og kryssende bevegelser.'
+              },
+              {
+                id: 'oslo-s-sosialt-knutepunkt',
+                title: 'Sambruk uten identitetsgjetting',
+                prompt: 'Hvordan kan sosialt sambruk på Oslo S undersøkes uten å tillegge reisende bakgrunn eller motivasjon de ikke har oppgitt?',
+                subject_id: 'by',
+                emne_id: 'em_by_sosiale_knutepunkt',
+                evidence: 'Registrer bare observerbare aktivitetstyper, gruppestørrelser, bevegelse og opphold, og marker eksplisitt hvilke personopplysninger feltmetoden ikke kan fastslå.'
+              },
+              {
+                id: 'oslo-s-historiske-nettlag',
+                title: 'Historiske nettlag i samme sted',
+                prompt: 'Hva kan dagens Oslo S vise om overgangen fra endestasjon i 1854 til et gjennomgående nasjonalt knutepunkt etter 1980?',
+                subject_id: 'by',
+                emne_id: 'em_by_infrastruktur_mobilitet',
+                evidence: 'Sammenhold synlige historiske og moderne stasjonsdeler med kildenes dokumentasjon av Østbanestasjonen, Oslotunnelen og sentralstasjonens byggetrinn.'
+              }
+            ],
+            guiding_questions: [
+              'Hva må fungere mellom to tog eller transportmidler for at et bytte skal være mer enn bare kort fysisk avstand?',
+              'Hvilke informasjonssystemer på Oslo S styrer retningsvalg før den reisende når plattformen?',
+              'Hvor er skillet mellom gjennomgang, venting, møte og kommersiell aktivitet tydeligst i stasjonen?',
+              'Hvordan kan sosial sambruk registreres uten å gjette identitet eller reisemotiv?',
+              'Hvilke historiske og operative påstander om Oslo S krever kilder eller driftsdata framfor feltobservasjon?'
+            ],
+            concepts: [
+              'knutepunkt',
+              'bytte',
+              'informasjonsinfrastruktur',
+              'plattform',
+              'gangstrøm',
+              'venting',
+              'sosialt knutepunkt',
+              'gjennomgang',
+              'terskel',
+              'feltobservasjon'
+            ],
+            observable_traces: [
+              {
+                title: 'En komplett bytterute',
+                observation: 'Følg én tenkt overgang gjennom stasjonen og registrer hvert skilt, retningsskifte, nivåskifte og venteområde fra start til mål.',
+                interpretation_boundary: 'Ruten dokumenterer fysisk og informasjonsmessig organisering, men ikke faktisk byttetid for alle reisende eller konsekvenser av forsinkelser.',
+                source_urls: [sources[0][1], sources[3][1]]
+              },
+              {
+                title: 'Informasjonslag i hallen',
+                observation: 'Finn avgangstavle, plattformnummer, retningsskilt og minst ett annet informasjonssystem og noter hvilke handlinger de støtter.',
+                interpretation_boundary: 'Synlige systemer kan beskrives i felt, men deres feilrate, tilgjengelighet for alle brukergrupper og driftskvalitet krever egne undersøkelser.',
+                source_urls: [sources[0][1]]
+              },
+              {
+                title: 'Gjennomgang og venting',
+                observation: 'Sammenlign et område med rask bevegelse og et område med lengre opphold og registrer aktivitetstyper uten å klassifisere menneskers identitet.',
+                interpretation_boundary: 'Observasjonen viser et tidsavgrenset sambruksmønster, men ikke hvem brukerne er eller om mønsteret er representativt over tid.',
+                source_urls: [sources[0][1], sources[3][1]]
+              },
+              {
+                title: 'Historisk front og moderne system',
+                observation: 'Registrer hvor eldre stasjonsarkitektur møter nyere haller, innganger eller forbindelser i dagens stasjonskompleks.',
+                interpretation_boundary: 'Materiale og form kan observeres, men byggeår, arkitektkonkurranser og beslutninger om bevaring må dokumenteres i historiske kilder.',
+                source_urls: [sources[1][1], sources[2][1]]
+              }
+            ],
+            source_urls: sources.map((row) => row[1]),
+            verified_at: '2026-09-01'
+          };
+
+          fs.writeFileSync(placePath, JSON.stringify(place, null, 2) + '\n');
+
+          const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
+          registry.placeLinks ||= {};
+          registry.placeLinks.oslo_s = {
+            sourceFile: 'places/by/oslo/places/oslo_s.json',
+            field: 'fagverk',
+            schema: 'history_go_place_fagverk_v2',
+            level: 'full',
+            status: 'curated'
+          };
+          fs.writeFileSync(registryPath, JSON.stringify(registry, null, 2) + '\n');
+
+          if (staleImage) {
+            const backlog = JSON.parse(fs.readFileSync(backlogPath, 'utf8'));
+            backlog.generatedAt = '2026-09-01';
+            backlog.generatedFromCommit = 'oslo_s_fagverk_v2_20260901';
+            backlog.summary.validRemote += 1;
+            backlog.summary.invalidLocalPath -= 1;
+            backlog.summary.remaining -= 1;
+            backlog.byCategory.by.valid += 1;
+            backlog.byCategory.by.invalid -= 1;
+            fs.writeFileSync(backlogPath, JSON.stringify(backlog, null, 2) + '\n');
+          }
+          NODE
+      - name: Regenerate canonical and Fagverk state
+        run: |
+          npm run places:index:build
+          node scripts/build-place-open-payloads.mjs
+          node scripts/audit-fagverk-place-pages.mjs --write
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Validate generated canonical state
+        run: |
+          npm run places:index:check
+          node scripts/build-place-open-payloads.mjs --check
+          node scripts/audit-fagverk-place-pages.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Validate Fagverk contracts
+        run: |
+          node --test tests/fagverk-place-pages.test.mjs
+          node --test tests/fagverk-place-rendering.test.mjs
+          node --test tests/fagverk-place-substance-audit.test.mjs
+          node --test tests/fagverk-link-audit.test.mjs
+      - name: Validate Oslo S remote image
+        env:
+          PLACE_IMAGE_REMOTE_FETCH_TIMEOUT_MS: '45000'
+        run: node scripts/audit-place-images.mjs --mode=changed --require-any-place-image --require-remote-image
+      - name: Build and verify full place image backlog
+        run: node scripts/audit-place-images.mjs --mode=all --report=/tmp/place-image-audit.json --verify-summary=data/places/place_image_backlog_summary.json
+      - name: Validate generated web runtime
+        run: npm run build:web:check
+      - name: Validate diff whitespace
+        run: git diff --check
+      - name: Commit clean production result
+        run: |
+          git add \
+            data/places/by/oslo/places/oslo_s.json \
+            data/places/places_index.json \
+            data/places/place_image_backlog_summary.json \
+            data/runtime/place-open/oslo_s.json \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/fagverk_release.json \
+            reports/fagverk/fagverk-place-page-coverage-v2.json
+          git rm .github/workflows/finalize-oslo-s-fagverk-v2.yml
+          git diff --cached --quiet && { echo "No production changes to commit"; exit 1; }
+          git commit -m "Curate Oslo S Fagverk v2"
+          git push origin HEAD:${GITHUB_REF_NAME}
