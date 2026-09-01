@@ -35,13 +35,44 @@ jobs:
           node scripts/build-place-open-payloads.mjs
           node scripts/audit-fagverk-place-pages.mjs --write
           node scripts/build-fagverk-release-manifest.mjs
-          node scripts/audit-place-image-backlog.mjs --write
-      - name: Validate generated state
+          node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const report = JSON.parse(fs.readFileSync('reports/place-image-audit.json', 'utf8'));
+          const file = 'data/places/place_image_backlog_summary.json';
+          const saved = JSON.parse(fs.readFileSync(file, 'utf8'));
+          saved.generatedAt = '2026-09-01';
+          saved.generatedFromCommit = 'radhusplassen_fagverk_v2_20260901';
+          saved.totalPlaces = report.totalPlaces;
+          saved.summary = {
+            validLocal: report.summary.local,
+            validRemote: report.summary.remote,
+            optionalMissing: report.summary.optional,
+            missing: report.summary.missing,
+            invalidLocalPath: report.summary.invalid,
+            remaining: report.summary.missing + report.summary.invalid
+          };
+          const byCategory = {};
+          for (const [category, row] of Object.entries(report.byCategory)) {
+            const previous = saved.byCategory?.[category] ?? {};
+            byCategory[category] = {
+              total: row.total,
+              valid: row.local + row.remote,
+              optional: row.optional,
+              missing: row.missing,
+              invalid: row.invalid
+            };
+            if (previous.designAlias) byCategory[category].designAlias = previous.designAlias;
+          }
+          saved.byCategory = byCategory;
+          fs.writeFileSync(file, `${JSON.stringify(saved, null, 2)}\n`);
+          NODE
+      - name: Validate generated state with current CI contract
         run: |
           node scripts/build-place-open-payloads.mjs --check
           node scripts/audit-fagverk-place-pages.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
-          node scripts/audit-place-image-backlog.mjs
+          node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json --verify-summary=data/places/place_image_backlog_summary.json
       - name: Validate Fagverk contracts
         run: |
           node --test tests/fagverk-place-pages.test.mjs
@@ -62,7 +93,7 @@ jobs:
             data/fagverk/fagverk_registry.json \
             data/fagverk/fagverk_release.json \
             reports/fagverk/fagverk-place-page-coverage-v2.json \
-            reports/places/place-image-backlog.json
+            data/places/place_image_backlog_summary.json
           git rm .github/workflows/finalize-radhusplassen-image-backlog.yml
           git diff --cached --quiet && { echo "No production changes to commit"; exit 1; }
           git commit -m "Finalize Rådhusplassen image backlog"
