@@ -1,0 +1,1035 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "klinikkleder",
+  "title": "Klinikkleder — systemrisiko, myndighet og situert tillit",
+  "status": "role_world_complete",
+  "materialization": {
+    "authored_dimensions": [
+      "situated_reputation"
+    ],
+    "no_new_runtime": true,
+    "existing_plan_preserved": true,
+    "existing_role_model_preserved": true,
+    "existing_people_foundation_preserved": true,
+    "existing_work_grammar_preserved": true,
+    "existing_persistent_work_preserved": true,
+    "existing_rhythm_preserved": true,
+    "cross_role_link_materialized": false,
+    "source_refs": [
+      "data/Civication/mailFamilies/psykologi/job/klinikkleder_job.json#klinikkleder_job_kapasitet_001",
+      "data/Civication/mailFamilies/psykologi/job/klinikkleder_job.json#klinikkleder_job_kvalitet_002",
+      "data/Civication/mailFamilies/psykologi/job/klinikkleder_job.json#klinikkleder_job_bemanning_003",
+      "data/Civication/mailFamilies/psykologi/job/klinikkleder_job.json#klinikkleder_job_myndighet_004",
+      "data/Civication/mailFamilies/psykologi/people/klinikkleder_people.json#klinikkleder_people_liv_001",
+      "data/Civication/mailFamilies/psykologi/people/klinikkleder_people.json#klinikkleder_people_amina_002",
+      "data/Civication/mailFamilies/psykologi/people/klinikkleder_people.json#klinikkleder_people_eirik_003",
+      "data/Civication/mailFamilies/psykologi/people/klinikkleder_people.json#klinikkleder_people_sara_004",
+      "data/Civication/mailFamilies/psykologi/conflict/klinikkleder_conflict.json#klinikkleder_conflict_kutt_001",
+      "data/Civication/mailFamilies/psykologi/story/klinikkleder_story.json#klinikkleder_story_lederidentitet_001",
+      "data/Civication/mailFamilies/psykologi/event/klinikkleder_event.json#klinikkleder_event_sykefravaer_001",
+      "data/Civication/mailFamilies/psykologi/micro/klinikkleder_micro.json#klinikkleder_micro_kall_det_trygt_001",
+      "data/Civication/mailFamilies/psykologi/followup/klinikkleder_followup.json#klinikkleder_followup_pilot_rework_001",
+      "data/Civication/mailFamilies/psykologi/knowledge/klinikkleder_knowledge.json#klinikkleder_knowledge_institusjon_maling_001",
+      "data/Civication/mailFamilies/psykologi/consequence/klinikkleder_consequence.json#klinikkleder_consequence_varsel_returnerer_001"
+    ]
+  },
+  "existing_work_continuity": {
+    "runtime_binding": "existing_mail_plan_and_work_grammar",
+    "new_runtime_state": false,
+    "work_loops": [
+      "signal -> risikovurdering -> prioritering -> beslutning -> handoff -> oppfolging -> rework -> lukking",
+      "bemanningsbehov -> venting pa avklaring -> medvirkning -> implementering -> kvalitetskontroll -> eskalering"
+    ],
+    "persistent_work_object": "klinikkens_risiko_og_kapasitetsportefolje",
+    "canonical_surfaces": [
+      "data/Civication/roleModels/psykologi/klinikkleder.json",
+      "data/Civication/workGrammars/psykologi/klinikkleder.json",
+      "data/Civication/mailPlans/psykologi/klinikkleder_plan.json",
+      "data/Civication/mailFamilies/psykologi/job/klinikkleder_job.json",
+      "data/Civication/mailFamilies/psykologi/people/klinikkleder_people.json",
+      "data/Civication/mailFamilies/psykologi/conflict/klinikkleder_conflict.json",
+      "data/Civication/mailFamilies/psykologi/story/klinikkleder_story.json",
+      "data/Civication/mailFamilies/psykologi/event/klinikkleder_event.json",
+      "data/Civication/mailFamilies/psykologi/micro/klinikkleder_micro.json",
+      "data/Civication/mailFamilies/psykologi/followup/klinikkleder_followup.json",
+      "data/Civication/mailFamilies/psykologi/knowledge/klinikkleder_knowledge.json",
+      "data/Civication/mailFamilies/psykologi/consequence/klinikkleder_consequence.json"
+    ],
+    "rule": "Eksisterende plan, aktører, flater, portefølje, appointment-gate og myndighetsgrenser forblir authoritative."
+  },
+  "sociological_core": [
+    "resultattall fordeler synlighet og skyld",
+    "organisatorisk rang møter profesjonsmakt",
+    "usynlig omsorgs- og koordineringsarbeid bærer endring"
+  ],
+  "employment_conditions": [
+    "arbeidsgiverutnevnt ledermandat",
+    "budsjett- og resultatansvar",
+    "ansvar uten automatisk klinisk myndighet"
+  ],
+  "professional_culture": [
+    "dårlige nyheter skal kunne bevege seg oppover",
+    "fravær av avvik er ikke fravær av risiko",
+    "motstemme er en kvalitetsressurs"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "liv_divisjonsdirektor_klinikk_world",
+      "social_function": "Liv holder arbeidsgivermandat, økonomiske rammer og virksomhetsmål, og krever at klinikkens risiko- og kapasitetsbilde forklares oppover uten at dårlige nyheter pyntes. Hun skiller resultatpress, legitim prioritering og risiko som må eskaleres.",
+      "class_position": "divisjonsdirektør",
+      "status": "Situert profesjonell standing knyttet til klinikkens_kapasitets_og_prioriteringsbord.",
+      "power_over_player": "Liv kan fastsette organisatoriske mål og rammer. Hun kan ikke gi psykologautorisasjon, behandlingsmyndighet eller lovregulert vedtakskompetanse, og kan ikke instruere spilleren til å skjule pasientsikkerhetsrisiko.",
+      "wants": "At risiko, kapasitet, faglig motstemme og neste eier er presise nok til at egen rolle kan handle uten myndighetsglidning.",
+      "conceals": "Eget resultatpress og egne interesser påvirker hva personen helst vil ha synlig, også når innspillet er legitimt.",
+      "speech_style": "Presis og arbeidsnær, med tydelig skille mellom signal, råd, organisatorisk beslutning og klinisk myndighet.",
+      "teaches_player": "At tillit følger etterprøvbar systemledelse i en avgrenset relasjon og aldri blir generell popularitet eller fullmakt."
+    },
+    {
+      "id": "amina_fagansvarlig_pasientsikkerhet_world",
+      "social_function": "Amina leser avvik, kontinuitetsbrudd, kompetansegap og kliniske motstemmer som samlet kvalitetssignal. Hun nekter at fravær av meldte hendelser brukes som bevis for trygg drift når bemanning og fagmiljø viser noe annet.",
+      "class_position": "fagansvarlig og pasientsikkerhetsrådgiver",
+      "status": "Situert profesjonell standing knyttet til kvalitets_og_risikogjennomgang.",
+      "power_over_player": "Amina kan gi faglige råd, kreve undersøkelse og eskalere pasientsikkerhetsbekymring. Hun kan ikke vedta budsjett eller organisering alene, og spilleren kan ikke omskrive hennes signal til klinisk godkjenning.",
+      "wants": "At risiko, kapasitet, faglig motstemme og neste eier er presise nok til at egen rolle kan handle uten myndighetsglidning.",
+      "conceals": "Eget resultatpress og egne interesser påvirker hva personen helst vil ha synlig, også når innspillet er legitimt.",
+      "speech_style": "Presis og arbeidsnær, med tydelig skille mellom signal, råd, organisatorisk beslutning og klinisk myndighet.",
+      "teaches_player": "At tillit følger etterprøvbar systemledelse i en avgrenset relasjon og aldri blir generell popularitet eller fullmakt."
+    },
+    {
+      "id": "eirik_avdelingsleder_klinikk_world",
+      "social_function": "Eirik eier lokal drift der venteliste, sykefravær, kompetanse og pasientforløp møtes. Han synliggjør når en sentral beslutning flytter kø, belastning eller rework til teamet uten nok tid og støtte.",
+      "class_position": "avdelingsleder",
+      "status": "Situert profesjonell standing knyttet til bemannings_og_endringsforum.",
+      "power_over_player": "Eirik kan prioritere sitt område innen delegasjon og stoppe uavklart lokal gjennomføring. Han kan ikke låne klinisk eller juridisk myndighet fra hierarkiet, og lojalitet kan ikke brukes som taushetskrav.",
+      "wants": "At risiko, kapasitet, faglig motstemme og neste eier er presise nok til at egen rolle kan handle uten myndighetsglidning.",
+      "conceals": "Eget resultatpress og egne interesser påvirker hva personen helst vil ha synlig, også når innspillet er legitimt.",
+      "speech_style": "Presis og arbeidsnær, med tydelig skille mellom signal, råd, organisatorisk beslutning og klinisk myndighet.",
+      "teaches_player": "At tillit følger etterprøvbar systemledelse i en avgrenset relasjon og aldri blir generell popularitet eller fullmakt."
+    },
+    {
+      "id": "sara_tillitsvalgt_endring_world",
+      "social_function": "Sara samler arbeidsmiljø, medvirkning og implementeringserfaring når omstilling presses fram. Hun skiller saklig motstand, kapasitetsvarsel og profesjonsinteresse, og viser hvordan manglende forankring blir driftsrisiko.",
+      "class_position": "tillitsvalgt og endringskontakt",
+      "status": "Situert profesjonell standing knyttet til myndighets_og_eskaleringspunkt.",
+      "power_over_player": "Sara kan kreve reell medvirkning og bringe dokumenterte arbeidsmiljøsignaler inn i riktig prosess. Hun kan ikke overta arbeidsgiver-, klinisk eller lovmyndighet eller gjøre uformell enighet til godkjenning.",
+      "wants": "At risiko, kapasitet, faglig motstemme og neste eier er presise nok til at egen rolle kan handle uten myndighetsglidning.",
+      "conceals": "Eget resultatpress og egne interesser påvirker hva personen helst vil ha synlig, også når innspillet er legitimt.",
+      "speech_style": "Presis og arbeidsnær, med tydelig skille mellom signal, råd, organisatorisk beslutning og klinisk myndighet.",
+      "teaches_player": "At tillit følger etterprøvbar systemledelse i en avgrenset relasjon og aldri blir generell popularitet eller fullmakt."
+    }
+  ],
+  "social_environments": [
+    "klinikkens_kapasitets_og_prioriteringsbord",
+    "kvalitets_og_risikogjennomgang",
+    "bemannings_og_endringsforum",
+    "myndighets_og_eskaleringspunkt"
+  ],
+  "slow_axes": [
+    "capacity_truth",
+    "clinical_dissent",
+    "work_environment",
+    "authority_separation",
+    "service_continuity",
+    "private_containment"
+  ],
+  "situated_reputation_model": {
+    "global_score_allowed": false,
+    "audiences": [
+      {
+        "id": "divisional_leadership",
+        "standing_axis": "governance_and_risk_standing",
+        "cares_about": [
+          "ærlige risiko- og kapasitetsbilder",
+          "etterprøvbar myndighetsplassering"
+        ],
+        "cannot_grant": "Standing oppover kan ikke gi budsjett, klinisk eller lovregulert myndighet."
+      },
+      {
+        "id": "clinical_professionals",
+        "standing_axis": "professional_safety_standing",
+        "cares_about": [
+          "faglig motstemme og kompetansegrenser",
+          "etterprøvbar myndighetsplassering"
+        ],
+        "cannot_grant": "Faglig standing kan ikke gjøre lederen til diagnostiker, behandler eller faglig ansvarlig uten kvalifikasjon."
+      },
+      {
+        "id": "department_managers",
+        "standing_axis": "handoff_and_delivery_standing",
+        "cares_about": [
+          "realistiske prioriteringer og tydelig restarbeid",
+          "etterprøvbar myndighetsplassering"
+        ],
+        "cannot_grant": "Lederstanding kan ikke flytte risiko nedover eller gjøre delegasjon til lånt klinisk myndighet."
+      },
+      {
+        "id": "employees_and_unions",
+        "standing_axis": "work_environment_standing",
+        "cares_about": [
+          "medvirkning, arbeidsmiljø og bærekraftig endring",
+          "etterprøvbar myndighetsplassering"
+        ],
+        "cannot_grant": "Tillitsstanding kan ikke oppheve arbeidsgiveransvar, kvalifikasjonskrav eller lovlig beslutningsprosess."
+      },
+      {
+        "id": "patients_and_next_of_kin",
+        "standing_axis": "service_continuity_standing",
+        "cares_about": [
+          "trygge forløp, kontinuitet og ærlig informasjon",
+          "etterprøvbar myndighetsplassering"
+        ],
+        "cannot_grant": "Relasjonell tillit kan ikke gi tilgang til persondata eller gjøre erfaring til behandlingsvedtak."
+      },
+      {
+        "id": "oversight_and_partners",
+        "standing_axis": "accountability_standing",
+        "cares_about": [
+          "sporbar risiko, tiltak og rett myndighetsnivå",
+          "etterprøvbar myndighetsplassering"
+        ],
+        "cannot_grant": "Tilsynsstanding kan ikke brukes til å skjule avvik eller erstatte dagens evidens og lovkrav."
+      },
+      {
+        "id": "private_relations",
+        "standing_axis": "private_containment_standing",
+        "cares_about": [
+          "nærvær uten døgnkontinuerlig lederberedskap",
+          "etterprøvbar myndighetsplassering"
+        ],
+        "cannot_grant": "Profesjonell standing kan ikke brukes som privat rang eller gjøre nære relasjoner til klinikkens reservekapasitet."
+      }
+    ],
+    "authority_separation": "Standing kan aldri gi psykologautorisasjon, diagnostisk eller behandlingsmessig myndighet, lovregulert vedtakskompetanse, persondatatilgang eller ubegrenset budsjettfullmakt.",
+    "rule": "Standing divergerer mellom publikum og summeres aldri globalt."
+  },
+  "history_go_affordance": {
+    "source_ref": "data/Civication/mailFamilies/psykologi/knowledge/klinikkleder_knowledge.json#klinikkleder_knowledge_institusjon_maling_001",
+    "knowledge_use": "Institusjons-, normalitets- og profesjonshistorie brukes til å undersøke hva målene synliggjør og skjuler.",
+    "better_question": "Hvilke historiske institusjons-, målings- og profesjonsforhold gjør dette kvalitetssignalet synlig eller usynlig, hvilken nåværende evidens mangler, og hvilken kvalifisert eller lovutpekt rolle har myndighet til å avgjøre den kliniske konsekvensen?",
+    "authority_boundary": "History Go kan skjerpe systemspørsmål, men kan ikke diagnostisere, behandle, gi autorisasjon, avgjøre lovregulerte saker eller erstatte dagens kliniske evidens."
+  },
+  "cross_role_link": {
+    "status": "candidate_when_shared_work_is_real",
+    "materialized": false,
+    "new_runtime": false,
+    "companion_keys": [
+      "psykologi/psykologi_arbeids_og_karriereveiledning",
+      "psykologi/psykologi_miljoarbeid"
+    ],
+    "rule": "Ingen delt runtime opprettes før faktisk eierskap og handoff er styrt."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "class_power",
+    "bureaucratic_power",
+    "loyalty_up_down",
+    "care_vs_efficiency",
+    "shame_reputation",
+    "status_anxiety",
+    "public_private_leakage",
+    "local_knowledge_vs_system",
+    "public_attention",
+    "invisible_work",
+    "emotional_labor"
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Første ledermøte viser en stigende venteliste og to vakante nøkkelroller, mens månedsrapporten fortsatt er grønn. Morgenskiftet krever at spilleren sammenholder produksjonstall, bemanning og åpne kvalitetsvarsler, markerer hva som fortsatt er antatt, og navngir hvem som må levere neste verifiserbare opplysning. I D1-morning oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "divisional_leadership",
+        "standing_consequence": "Dagens systemrisiko er at første ledermøte viser en stigende venteliste og to vakante nøkkelroller, mens månedsrapporten fortsatt er grønn. For divisional_leadership vurderes Klinikkleder særlig etter ærlige risiko- og kapasitetsbilder. Hvis kildegrunnlaget blir synlig tidlig, kan senere beslutninger etterprøves; skjules usikkerheten, arver resten av dagen en falsk trygghet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/klinikkleder_job.json#klinikkleder_job_kapasitet_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Første ledermøte viser en stigende venteliste og to vakante nøkkelroller, mens månedsrapporten fortsatt er grønn. I lunsjsamtalen må spilleren invitere den mest utsatte motstemmen inn, skille faglig råd fra organisatorisk beslutning og føre uenighet og ubesvarte spørsmål uten å glatte dem bort. I D1-lunch oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "clinical_professionals",
+        "standing_consequence": "Dagens systemrisiko er at første ledermøte viser en stigende venteliste og to vakante nøkkelroller, mens månedsrapporten fortsatt er grønn. For clinical_professionals vurderes Klinikkleder særlig etter faglig motstemme og kompetansegrenser. Hvis motstemmen får en sporbar plass, kan uenighet forbedre handoff; redigeres den bort, blir stillhet feilaktig lest som samtykke. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/klinikkleder_job.json#klinikkleder_job_kvalitet_002"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Første ledermøte viser en stigende venteliste og to vakante nøkkelroller, mens månedsrapporten fortsatt er grønn. Ettermiddagsvalget krever et avgrenset tiltak med eier, frist, ventepunkt, tilbakeføringskriterium og eksplisitt eskalering til rett klinisk, juridisk eller budsjettmessig myndighetsnivå. I D1-afternoon oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "department_managers",
+        "standing_consequence": "Dagens systemrisiko er at første ledermøte viser en stigende venteliste og to vakante nøkkelroller, mens månedsrapporten fortsatt er grønn. For department_managers vurderes Klinikkleder særlig etter realistiske prioriteringer og tydelig restarbeid. Hvis tiltaket bindes til rett eier og stoppregel, kan rework begrenses; ellers flyttes både risiko og skyld til rollen med minst makt. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/klinikkleder_job.json#klinikkleder_job_bemanning_003"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Første ledermøte viser en stigende venteliste og to vakante nøkkelroller, mens månedsrapporten fortsatt er grønn. Kveldsfasen må dokumentere hva som ikke ble løst, hvordan presset lekker inn i privatlivet, og hvilken beredskapsgrense som hindrer at nærstående eller medarbeidere blir klinikkens uformelle reservekapasitet. I D1-evening oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "employees_and_unions",
+        "standing_consequence": "Dagens systemrisiko er at første ledermøte viser en stigende venteliste og to vakante nøkkelroller, mens månedsrapporten fortsatt er grønn. For employees_and_unions vurderes Klinikkleder særlig etter medvirkning, arbeidsmiljø og bærekraftig endring. Hvis restarbeid og privat grense føres åpent, kan neste dag starte sant; hvis lederen absorberer alt selv, forsvinner systemrisikoen bak personlig utholdenhet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/klinikkleder_job.json#klinikkleder_job_myndighet_004"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Amina legger fram kontinuitetsbrudd som ikke synes i produksjonstallet, og krever at motstemmen bevares. Morgenskiftet krever at spilleren sammenholder produksjonstall, bemanning og åpne kvalitetsvarsler, markerer hva som fortsatt er antatt, og navngir hvem som må levere neste verifiserbare opplysning. I D2-morning oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "clinical_professionals",
+        "standing_consequence": "Dagens systemrisiko er at amina legger fram kontinuitetsbrudd som ikke synes i produksjonstallet, og krever at motstemmen bevares. For clinical_professionals vurderes Klinikkleder særlig etter faglig motstemme og kompetansegrenser. Hvis kildegrunnlaget blir synlig tidlig, kan senere beslutninger etterprøves; skjules usikkerheten, arver resten av dagen en falsk trygghet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/klinikkleder_people.json#klinikkleder_people_liv_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Amina legger fram kontinuitetsbrudd som ikke synes i produksjonstallet, og krever at motstemmen bevares. I lunsjsamtalen må spilleren invitere den mest utsatte motstemmen inn, skille faglig råd fra organisatorisk beslutning og føre uenighet og ubesvarte spørsmål uten å glatte dem bort. I D2-lunch oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "department_managers",
+        "standing_consequence": "Dagens systemrisiko er at amina legger fram kontinuitetsbrudd som ikke synes i produksjonstallet, og krever at motstemmen bevares. For department_managers vurderes Klinikkleder særlig etter realistiske prioriteringer og tydelig restarbeid. Hvis motstemmen får en sporbar plass, kan uenighet forbedre handoff; redigeres den bort, blir stillhet feilaktig lest som samtykke. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/klinikkleder_people.json#klinikkleder_people_amina_002"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Amina legger fram kontinuitetsbrudd som ikke synes i produksjonstallet, og krever at motstemmen bevares. Ettermiddagsvalget krever et avgrenset tiltak med eier, frist, ventepunkt, tilbakeføringskriterium og eksplisitt eskalering til rett klinisk, juridisk eller budsjettmessig myndighetsnivå. I D2-afternoon oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "employees_and_unions",
+        "standing_consequence": "Dagens systemrisiko er at amina legger fram kontinuitetsbrudd som ikke synes i produksjonstallet, og krever at motstemmen bevares. For employees_and_unions vurderes Klinikkleder særlig etter medvirkning, arbeidsmiljø og bærekraftig endring. Hvis tiltaket bindes til rett eier og stoppregel, kan rework begrenses; ellers flyttes både risiko og skyld til rollen med minst makt. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/klinikkleder_people.json#klinikkleder_people_eirik_003"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Amina legger fram kontinuitetsbrudd som ikke synes i produksjonstallet, og krever at motstemmen bevares. Kveldsfasen må dokumentere hva som ikke ble løst, hvordan presset lekker inn i privatlivet, og hvilken beredskapsgrense som hindrer at nærstående eller medarbeidere blir klinikkens uformelle reservekapasitet. I D2-evening oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "patients_and_next_of_kin",
+        "standing_consequence": "Dagens systemrisiko er at amina legger fram kontinuitetsbrudd som ikke synes i produksjonstallet, og krever at motstemmen bevares. For patients_and_next_of_kin vurderes Klinikkleder særlig etter trygge forløp, kontinuitet og ærlig informasjon. Hvis restarbeid og privat grense føres åpent, kan neste dag starte sant; hvis lederen absorberer alt selv, forsvinner systemrisikoen bak personlig utholdenhet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/klinikkleder_people.json#klinikkleder_people_sara_004"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Eirik viser at et sentralt kapasitetskrav flytter kø og emosjonelt arbeid til ett team. Morgenskiftet krever at spilleren sammenholder produksjonstall, bemanning og åpne kvalitetsvarsler, markerer hva som fortsatt er antatt, og navngir hvem som må levere neste verifiserbare opplysning. I D3-morning oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "department_managers",
+        "standing_consequence": "Dagens systemrisiko er at eirik viser at et sentralt kapasitetskrav flytter kø og emosjonelt arbeid til ett team. For department_managers vurderes Klinikkleder særlig etter realistiske prioriteringer og tydelig restarbeid. Hvis kildegrunnlaget blir synlig tidlig, kan senere beslutninger etterprøves; skjules usikkerheten, arver resten av dagen en falsk trygghet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/conflict/klinikkleder_conflict.json#klinikkleder_conflict_kutt_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Eirik viser at et sentralt kapasitetskrav flytter kø og emosjonelt arbeid til ett team. I lunsjsamtalen må spilleren invitere den mest utsatte motstemmen inn, skille faglig råd fra organisatorisk beslutning og føre uenighet og ubesvarte spørsmål uten å glatte dem bort. I D3-lunch oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "employees_and_unions",
+        "standing_consequence": "Dagens systemrisiko er at eirik viser at et sentralt kapasitetskrav flytter kø og emosjonelt arbeid til ett team. For employees_and_unions vurderes Klinikkleder særlig etter medvirkning, arbeidsmiljø og bærekraftig endring. Hvis motstemmen får en sporbar plass, kan uenighet forbedre handoff; redigeres den bort, blir stillhet feilaktig lest som samtykke. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/story/klinikkleder_story.json#klinikkleder_story_lederidentitet_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Eirik viser at et sentralt kapasitetskrav flytter kø og emosjonelt arbeid til ett team. Ettermiddagsvalget krever et avgrenset tiltak med eier, frist, ventepunkt, tilbakeføringskriterium og eksplisitt eskalering til rett klinisk, juridisk eller budsjettmessig myndighetsnivå. I D3-afternoon oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "patients_and_next_of_kin",
+        "standing_consequence": "Dagens systemrisiko er at eirik viser at et sentralt kapasitetskrav flytter kø og emosjonelt arbeid til ett team. For patients_and_next_of_kin vurderes Klinikkleder særlig etter trygge forløp, kontinuitet og ærlig informasjon. Hvis tiltaket bindes til rett eier og stoppregel, kan rework begrenses; ellers flyttes både risiko og skyld til rollen med minst makt. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/event/klinikkleder_event.json#klinikkleder_event_sykefravaer_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Eirik viser at et sentralt kapasitetskrav flytter kø og emosjonelt arbeid til ett team. Kveldsfasen må dokumentere hva som ikke ble løst, hvordan presset lekker inn i privatlivet, og hvilken beredskapsgrense som hindrer at nærstående eller medarbeidere blir klinikkens uformelle reservekapasitet. I D3-evening oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "oversight_and_partners",
+        "standing_consequence": "Dagens systemrisiko er at eirik viser at et sentralt kapasitetskrav flytter kø og emosjonelt arbeid til ett team. For oversight_and_partners vurderes Klinikkleder særlig etter sporbar risiko, tiltak og rett myndighetsnivå. Hvis restarbeid og privat grense føres åpent, kan neste dag starte sant; hvis lederen absorberer alt selv, forsvinner systemrisikoen bak personlig utholdenhet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/micro/klinikkleder_micro.json#klinikkleder_micro_kall_det_trygt_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Liv krever et budsjettgrep før neste rapport, men ingen har vurdert samlet kompetanserisiko. Morgenskiftet krever at spilleren sammenholder produksjonstall, bemanning og åpne kvalitetsvarsler, markerer hva som fortsatt er antatt, og navngir hvem som må levere neste verifiserbare opplysning. I D4-morning oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "employees_and_unions",
+        "standing_consequence": "Dagens systemrisiko er at liv krever et budsjettgrep før neste rapport, men ingen har vurdert samlet kompetanserisiko. For employees_and_unions vurderes Klinikkleder særlig etter medvirkning, arbeidsmiljø og bærekraftig endring. Hvis kildegrunnlaget blir synlig tidlig, kan senere beslutninger etterprøves; skjules usikkerheten, arver resten av dagen en falsk trygghet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/followup/klinikkleder_followup.json#klinikkleder_followup_pilot_rework_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Liv krever et budsjettgrep før neste rapport, men ingen har vurdert samlet kompetanserisiko. I lunsjsamtalen må spilleren invitere den mest utsatte motstemmen inn, skille faglig råd fra organisatorisk beslutning og føre uenighet og ubesvarte spørsmål uten å glatte dem bort. I D4-lunch oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "patients_and_next_of_kin",
+        "standing_consequence": "Dagens systemrisiko er at liv krever et budsjettgrep før neste rapport, men ingen har vurdert samlet kompetanserisiko. For patients_and_next_of_kin vurderes Klinikkleder særlig etter trygge forløp, kontinuitet og ærlig informasjon. Hvis motstemmen får en sporbar plass, kan uenighet forbedre handoff; redigeres den bort, blir stillhet feilaktig lest som samtykke. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/knowledge/klinikkleder_knowledge.json#klinikkleder_knowledge_institusjon_maling_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Liv krever et budsjettgrep før neste rapport, men ingen har vurdert samlet kompetanserisiko. Ettermiddagsvalget krever et avgrenset tiltak med eier, frist, ventepunkt, tilbakeføringskriterium og eksplisitt eskalering til rett klinisk, juridisk eller budsjettmessig myndighetsnivå. I D4-afternoon oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "oversight_and_partners",
+        "standing_consequence": "Dagens systemrisiko er at liv krever et budsjettgrep før neste rapport, men ingen har vurdert samlet kompetanserisiko. For oversight_and_partners vurderes Klinikkleder særlig etter sporbar risiko, tiltak og rett myndighetsnivå. Hvis tiltaket bindes til rett eier og stoppregel, kan rework begrenses; ellers flyttes både risiko og skyld til rollen med minst makt. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/consequence/klinikkleder_consequence.json#klinikkleder_consequence_varsel_returnerer_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Liv krever et budsjettgrep før neste rapport, men ingen har vurdert samlet kompetanserisiko. Kveldsfasen må dokumentere hva som ikke ble løst, hvordan presset lekker inn i privatlivet, og hvilken beredskapsgrense som hindrer at nærstående eller medarbeidere blir klinikkens uformelle reservekapasitet. I D4-evening oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "Dagens systemrisiko er at liv krever et budsjettgrep før neste rapport, men ingen har vurdert samlet kompetanserisiko. For private_relations vurderes Klinikkleder særlig etter nærvær uten døgnkontinuerlig lederberedskap. Hvis restarbeid og privat grense føres åpent, kan neste dag starte sant; hvis lederen absorberer alt selv, forsvinner systemrisikoen bak personlig utholdenhet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/klinikkleder_job.json#klinikkleder_job_kapasitet_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Sara dokumenterer at omstillingsplanen mangler reell medvirkning og tid til implementering. Morgenskiftet krever at spilleren sammenholder produksjonstall, bemanning og åpne kvalitetsvarsler, markerer hva som fortsatt er antatt, og navngir hvem som må levere neste verifiserbare opplysning. I D5-morning oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "patients_and_next_of_kin",
+        "standing_consequence": "Dagens systemrisiko er at sara dokumenterer at omstillingsplanen mangler reell medvirkning og tid til implementering. For patients_and_next_of_kin vurderes Klinikkleder særlig etter trygge forløp, kontinuitet og ærlig informasjon. Hvis kildegrunnlaget blir synlig tidlig, kan senere beslutninger etterprøves; skjules usikkerheten, arver resten av dagen en falsk trygghet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/klinikkleder_job.json#klinikkleder_job_kvalitet_002"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Sara dokumenterer at omstillingsplanen mangler reell medvirkning og tid til implementering. I lunsjsamtalen må spilleren invitere den mest utsatte motstemmen inn, skille faglig råd fra organisatorisk beslutning og føre uenighet og ubesvarte spørsmål uten å glatte dem bort. I D5-lunch oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "oversight_and_partners",
+        "standing_consequence": "Dagens systemrisiko er at sara dokumenterer at omstillingsplanen mangler reell medvirkning og tid til implementering. For oversight_and_partners vurderes Klinikkleder særlig etter sporbar risiko, tiltak og rett myndighetsnivå. Hvis motstemmen får en sporbar plass, kan uenighet forbedre handoff; redigeres den bort, blir stillhet feilaktig lest som samtykke. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/klinikkleder_job.json#klinikkleder_job_bemanning_003"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Sara dokumenterer at omstillingsplanen mangler reell medvirkning og tid til implementering. Ettermiddagsvalget krever et avgrenset tiltak med eier, frist, ventepunkt, tilbakeføringskriterium og eksplisitt eskalering til rett klinisk, juridisk eller budsjettmessig myndighetsnivå. I D5-afternoon oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "Dagens systemrisiko er at sara dokumenterer at omstillingsplanen mangler reell medvirkning og tid til implementering. For private_relations vurderes Klinikkleder særlig etter nærvær uten døgnkontinuerlig lederberedskap. Hvis tiltaket bindes til rett eier og stoppregel, kan rework begrenses; ellers flyttes både risiko og skyld til rollen med minst makt. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/klinikkleder_job.json#klinikkleder_job_myndighet_004"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Sara dokumenterer at omstillingsplanen mangler reell medvirkning og tid til implementering. Kveldsfasen må dokumentere hva som ikke ble løst, hvordan presset lekker inn i privatlivet, og hvilken beredskapsgrense som hindrer at nærstående eller medarbeidere blir klinikkens uformelle reservekapasitet. I D5-evening oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "divisional_leadership",
+        "standing_consequence": "Dagens systemrisiko er at sara dokumenterer at omstillingsplanen mangler reell medvirkning og tid til implementering. For divisional_leadership vurderes Klinikkleder særlig etter ærlige risiko- og kapasitetsbilder. Hvis restarbeid og privat grense føres åpent, kan neste dag starte sant; hvis lederen absorberer alt selv, forsvinner systemrisikoen bak personlig utholdenhet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/klinikkleder_people.json#klinikkleder_people_liv_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Sykefraværet stiger mens ledelsen venter på rekrutteringsavklaring og teamet lager midlertidige løsninger. Morgenskiftet krever at spilleren sammenholder produksjonstall, bemanning og åpne kvalitetsvarsler, markerer hva som fortsatt er antatt, og navngir hvem som må levere neste verifiserbare opplysning. I D6-morning oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "oversight_and_partners",
+        "standing_consequence": "Dagens systemrisiko er at sykefraværet stiger mens ledelsen venter på rekrutteringsavklaring og teamet lager midlertidige løsninger. For oversight_and_partners vurderes Klinikkleder særlig etter sporbar risiko, tiltak og rett myndighetsnivå. Hvis kildegrunnlaget blir synlig tidlig, kan senere beslutninger etterprøves; skjules usikkerheten, arver resten av dagen en falsk trygghet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/klinikkleder_people.json#klinikkleder_people_amina_002"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Sykefraværet stiger mens ledelsen venter på rekrutteringsavklaring og teamet lager midlertidige løsninger. I lunsjsamtalen må spilleren invitere den mest utsatte motstemmen inn, skille faglig råd fra organisatorisk beslutning og føre uenighet og ubesvarte spørsmål uten å glatte dem bort. I D6-lunch oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "Dagens systemrisiko er at sykefraværet stiger mens ledelsen venter på rekrutteringsavklaring og teamet lager midlertidige løsninger. For private_relations vurderes Klinikkleder særlig etter nærvær uten døgnkontinuerlig lederberedskap. Hvis motstemmen får en sporbar plass, kan uenighet forbedre handoff; redigeres den bort, blir stillhet feilaktig lest som samtykke. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/klinikkleder_people.json#klinikkleder_people_eirik_003"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Sykefraværet stiger mens ledelsen venter på rekrutteringsavklaring og teamet lager midlertidige løsninger. Ettermiddagsvalget krever et avgrenset tiltak med eier, frist, ventepunkt, tilbakeføringskriterium og eksplisitt eskalering til rett klinisk, juridisk eller budsjettmessig myndighetsnivå. I D6-afternoon oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "divisional_leadership",
+        "standing_consequence": "Dagens systemrisiko er at sykefraværet stiger mens ledelsen venter på rekrutteringsavklaring og teamet lager midlertidige løsninger. For divisional_leadership vurderes Klinikkleder særlig etter ærlige risiko- og kapasitetsbilder. Hvis tiltaket bindes til rett eier og stoppregel, kan rework begrenses; ellers flyttes både risiko og skyld til rollen med minst makt. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/klinikkleder_people.json#klinikkleder_people_sara_004"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Sykefraværet stiger mens ledelsen venter på rekrutteringsavklaring og teamet lager midlertidige løsninger. Kveldsfasen må dokumentere hva som ikke ble løst, hvordan presset lekker inn i privatlivet, og hvilken beredskapsgrense som hindrer at nærstående eller medarbeidere blir klinikkens uformelle reservekapasitet. I D6-evening oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "clinical_professionals",
+        "standing_consequence": "Dagens systemrisiko er at sykefraværet stiger mens ledelsen venter på rekrutteringsavklaring og teamet lager midlertidige løsninger. For clinical_professionals vurderes Klinikkleder særlig etter faglig motstemme og kompetansegrenser. Hvis restarbeid og privat grense føres åpent, kan neste dag starte sant; hvis lederen absorberer alt selv, forsvinner systemrisikoen bak personlig utholdenhet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/conflict/klinikkleder_conflict.json#klinikkleder_conflict_kutt_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "En pilot gir raskere gjennomstrømning, men flere pasientforløp mister kontinuitet og må reworkes. Morgenskiftet krever at spilleren sammenholder produksjonstall, bemanning og åpne kvalitetsvarsler, markerer hva som fortsatt er antatt, og navngir hvem som må levere neste verifiserbare opplysning. I D7-morning oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "Dagens systemrisiko er at en pilot gir raskere gjennomstrømning, men flere pasientforløp mister kontinuitet og må reworkes. For private_relations vurderes Klinikkleder særlig etter nærvær uten døgnkontinuerlig lederberedskap. Hvis kildegrunnlaget blir synlig tidlig, kan senere beslutninger etterprøves; skjules usikkerheten, arver resten av dagen en falsk trygghet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/story/klinikkleder_story.json#klinikkleder_story_lederidentitet_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "En pilot gir raskere gjennomstrømning, men flere pasientforløp mister kontinuitet og må reworkes. I lunsjsamtalen må spilleren invitere den mest utsatte motstemmen inn, skille faglig råd fra organisatorisk beslutning og føre uenighet og ubesvarte spørsmål uten å glatte dem bort. I D7-lunch oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "divisional_leadership",
+        "standing_consequence": "Dagens systemrisiko er at en pilot gir raskere gjennomstrømning, men flere pasientforløp mister kontinuitet og må reworkes. For divisional_leadership vurderes Klinikkleder særlig etter ærlige risiko- og kapasitetsbilder. Hvis motstemmen får en sporbar plass, kan uenighet forbedre handoff; redigeres den bort, blir stillhet feilaktig lest som samtykke. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/event/klinikkleder_event.json#klinikkleder_event_sykefravaer_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "En pilot gir raskere gjennomstrømning, men flere pasientforløp mister kontinuitet og må reworkes. Ettermiddagsvalget krever et avgrenset tiltak med eier, frist, ventepunkt, tilbakeføringskriterium og eksplisitt eskalering til rett klinisk, juridisk eller budsjettmessig myndighetsnivå. I D7-afternoon oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "clinical_professionals",
+        "standing_consequence": "Dagens systemrisiko er at en pilot gir raskere gjennomstrømning, men flere pasientforløp mister kontinuitet og må reworkes. For clinical_professionals vurderes Klinikkleder særlig etter faglig motstemme og kompetansegrenser. Hvis tiltaket bindes til rett eier og stoppregel, kan rework begrenses; ellers flyttes både risiko og skyld til rollen med minst makt. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/micro/klinikkleder_micro.json#klinikkleder_micro_kall_det_trygt_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "En pilot gir raskere gjennomstrømning, men flere pasientforløp mister kontinuitet og må reworkes. Kveldsfasen må dokumentere hva som ikke ble løst, hvordan presset lekker inn i privatlivet, og hvilken beredskapsgrense som hindrer at nærstående eller medarbeidere blir klinikkens uformelle reservekapasitet. I D7-evening oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "department_managers",
+        "standing_consequence": "Dagens systemrisiko er at en pilot gir raskere gjennomstrømning, men flere pasientforløp mister kontinuitet og må reworkes. For department_managers vurderes Klinikkleder særlig etter realistiske prioriteringer og tydelig restarbeid. Hvis restarbeid og privat grense føres åpent, kan neste dag starte sant; hvis lederen absorberer alt selv, forsvinner systemrisikoen bak personlig utholdenhet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/followup/klinikkleder_followup.json#klinikkleder_followup_pilot_rework_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Et alvorlig faglig signal blir omtalt som foreløpig fordi ledergruppen frykter konsekvensene oppover. Morgenskiftet krever at spilleren sammenholder produksjonstall, bemanning og åpne kvalitetsvarsler, markerer hva som fortsatt er antatt, og navngir hvem som må levere neste verifiserbare opplysning. I D8-morning oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "divisional_leadership",
+        "standing_consequence": "Dagens systemrisiko er at et alvorlig faglig signal blir omtalt som foreløpig fordi ledergruppen frykter konsekvensene oppover. For divisional_leadership vurderes Klinikkleder særlig etter ærlige risiko- og kapasitetsbilder. Hvis kildegrunnlaget blir synlig tidlig, kan senere beslutninger etterprøves; skjules usikkerheten, arver resten av dagen en falsk trygghet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/knowledge/klinikkleder_knowledge.json#klinikkleder_knowledge_institusjon_maling_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Et alvorlig faglig signal blir omtalt som foreløpig fordi ledergruppen frykter konsekvensene oppover. I lunsjsamtalen må spilleren invitere den mest utsatte motstemmen inn, skille faglig råd fra organisatorisk beslutning og føre uenighet og ubesvarte spørsmål uten å glatte dem bort. I D8-lunch oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "clinical_professionals",
+        "standing_consequence": "Dagens systemrisiko er at et alvorlig faglig signal blir omtalt som foreløpig fordi ledergruppen frykter konsekvensene oppover. For clinical_professionals vurderes Klinikkleder særlig etter faglig motstemme og kompetansegrenser. Hvis motstemmen får en sporbar plass, kan uenighet forbedre handoff; redigeres den bort, blir stillhet feilaktig lest som samtykke. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/consequence/klinikkleder_consequence.json#klinikkleder_consequence_varsel_returnerer_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Et alvorlig faglig signal blir omtalt som foreløpig fordi ledergruppen frykter konsekvensene oppover. Ettermiddagsvalget krever et avgrenset tiltak med eier, frist, ventepunkt, tilbakeføringskriterium og eksplisitt eskalering til rett klinisk, juridisk eller budsjettmessig myndighetsnivå. I D8-afternoon oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "department_managers",
+        "standing_consequence": "Dagens systemrisiko er at et alvorlig faglig signal blir omtalt som foreløpig fordi ledergruppen frykter konsekvensene oppover. For department_managers vurderes Klinikkleder særlig etter realistiske prioriteringer og tydelig restarbeid. Hvis tiltaket bindes til rett eier og stoppregel, kan rework begrenses; ellers flyttes både risiko og skyld til rollen med minst makt. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/klinikkleder_job.json#klinikkleder_job_kapasitet_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Et alvorlig faglig signal blir omtalt som foreløpig fordi ledergruppen frykter konsekvensene oppover. Kveldsfasen må dokumentere hva som ikke ble løst, hvordan presset lekker inn i privatlivet, og hvilken beredskapsgrense som hindrer at nærstående eller medarbeidere blir klinikkens uformelle reservekapasitet. I D8-evening oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "employees_and_unions",
+        "standing_consequence": "Dagens systemrisiko er at et alvorlig faglig signal blir omtalt som foreløpig fordi ledergruppen frykter konsekvensene oppover. For employees_and_unions vurderes Klinikkleder særlig etter medvirkning, arbeidsmiljø og bærekraftig endring. Hvis restarbeid og privat grense føres åpent, kan neste dag starte sant; hvis lederen absorberer alt selv, forsvinner systemrisikoen bak personlig utholdenhet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/klinikkleder_job.json#klinikkleder_job_kvalitet_002"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Divisjonen godkjenner ressurser med vilkår som krever nytt handoff og tydeligere effektmål. Morgenskiftet krever at spilleren sammenholder produksjonstall, bemanning og åpne kvalitetsvarsler, markerer hva som fortsatt er antatt, og navngir hvem som må levere neste verifiserbare opplysning. I D9-morning oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "clinical_professionals",
+        "standing_consequence": "Dagens systemrisiko er at divisjonen godkjenner ressurser med vilkår som krever nytt handoff og tydeligere effektmål. For clinical_professionals vurderes Klinikkleder særlig etter faglig motstemme og kompetansegrenser. Hvis kildegrunnlaget blir synlig tidlig, kan senere beslutninger etterprøves; skjules usikkerheten, arver resten av dagen en falsk trygghet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/klinikkleder_job.json#klinikkleder_job_bemanning_003"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Divisjonen godkjenner ressurser med vilkår som krever nytt handoff og tydeligere effektmål. I lunsjsamtalen må spilleren invitere den mest utsatte motstemmen inn, skille faglig råd fra organisatorisk beslutning og føre uenighet og ubesvarte spørsmål uten å glatte dem bort. I D9-lunch oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "department_managers",
+        "standing_consequence": "Dagens systemrisiko er at divisjonen godkjenner ressurser med vilkår som krever nytt handoff og tydeligere effektmål. For department_managers vurderes Klinikkleder særlig etter realistiske prioriteringer og tydelig restarbeid. Hvis motstemmen får en sporbar plass, kan uenighet forbedre handoff; redigeres den bort, blir stillhet feilaktig lest som samtykke. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/klinikkleder_job.json#klinikkleder_job_myndighet_004"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Divisjonen godkjenner ressurser med vilkår som krever nytt handoff og tydeligere effektmål. Ettermiddagsvalget krever et avgrenset tiltak med eier, frist, ventepunkt, tilbakeføringskriterium og eksplisitt eskalering til rett klinisk, juridisk eller budsjettmessig myndighetsnivå. I D9-afternoon oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "employees_and_unions",
+        "standing_consequence": "Dagens systemrisiko er at divisjonen godkjenner ressurser med vilkår som krever nytt handoff og tydeligere effektmål. For employees_and_unions vurderes Klinikkleder særlig etter medvirkning, arbeidsmiljø og bærekraftig endring. Hvis tiltaket bindes til rett eier og stoppregel, kan rework begrenses; ellers flyttes både risiko og skyld til rollen med minst makt. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/klinikkleder_people.json#klinikkleder_people_liv_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Divisjonen godkjenner ressurser med vilkår som krever nytt handoff og tydeligere effektmål. Kveldsfasen må dokumentere hva som ikke ble løst, hvordan presset lekker inn i privatlivet, og hvilken beredskapsgrense som hindrer at nærstående eller medarbeidere blir klinikkens uformelle reservekapasitet. I D9-evening oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "patients_and_next_of_kin",
+        "standing_consequence": "Dagens systemrisiko er at divisjonen godkjenner ressurser med vilkår som krever nytt handoff og tydeligere effektmål. For patients_and_next_of_kin vurderes Klinikkleder særlig etter trygge forløp, kontinuitet og ærlig informasjon. Hvis restarbeid og privat grense føres åpent, kan neste dag starte sant; hvis lederen absorberer alt selv, forsvinner systemrisikoen bak personlig utholdenhet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/klinikkleder_people.json#klinikkleder_people_amina_002"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Pasient- og pårørendestemmer viser at den forbedrede køstatistikken skjuler flere brudd i forløpet. Morgenskiftet krever at spilleren sammenholder produksjonstall, bemanning og åpne kvalitetsvarsler, markerer hva som fortsatt er antatt, og navngir hvem som må levere neste verifiserbare opplysning. I D10-morning oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "department_managers",
+        "standing_consequence": "Dagens systemrisiko er at pasient- og pårørendestemmer viser at den forbedrede køstatistikken skjuler flere brudd i forløpet. For department_managers vurderes Klinikkleder særlig etter realistiske prioriteringer og tydelig restarbeid. Hvis kildegrunnlaget blir synlig tidlig, kan senere beslutninger etterprøves; skjules usikkerheten, arver resten av dagen en falsk trygghet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/klinikkleder_people.json#klinikkleder_people_eirik_003"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Pasient- og pårørendestemmer viser at den forbedrede køstatistikken skjuler flere brudd i forløpet. I lunsjsamtalen må spilleren invitere den mest utsatte motstemmen inn, skille faglig råd fra organisatorisk beslutning og føre uenighet og ubesvarte spørsmål uten å glatte dem bort. I D10-lunch oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "employees_and_unions",
+        "standing_consequence": "Dagens systemrisiko er at pasient- og pårørendestemmer viser at den forbedrede køstatistikken skjuler flere brudd i forløpet. For employees_and_unions vurderes Klinikkleder særlig etter medvirkning, arbeidsmiljø og bærekraftig endring. Hvis motstemmen får en sporbar plass, kan uenighet forbedre handoff; redigeres den bort, blir stillhet feilaktig lest som samtykke. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/klinikkleder_people.json#klinikkleder_people_sara_004"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Pasient- og pårørendestemmer viser at den forbedrede køstatistikken skjuler flere brudd i forløpet. Ettermiddagsvalget krever et avgrenset tiltak med eier, frist, ventepunkt, tilbakeføringskriterium og eksplisitt eskalering til rett klinisk, juridisk eller budsjettmessig myndighetsnivå. I D10-afternoon oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "patients_and_next_of_kin",
+        "standing_consequence": "Dagens systemrisiko er at pasient- og pårørendestemmer viser at den forbedrede køstatistikken skjuler flere brudd i forløpet. For patients_and_next_of_kin vurderes Klinikkleder særlig etter trygge forløp, kontinuitet og ærlig informasjon. Hvis tiltaket bindes til rett eier og stoppregel, kan rework begrenses; ellers flyttes både risiko og skyld til rollen med minst makt. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/conflict/klinikkleder_conflict.json#klinikkleder_conflict_kutt_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Pasient- og pårørendestemmer viser at den forbedrede køstatistikken skjuler flere brudd i forløpet. Kveldsfasen må dokumentere hva som ikke ble løst, hvordan presset lekker inn i privatlivet, og hvilken beredskapsgrense som hindrer at nærstående eller medarbeidere blir klinikkens uformelle reservekapasitet. I D10-evening oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "oversight_and_partners",
+        "standing_consequence": "Dagens systemrisiko er at pasient- og pårørendestemmer viser at den forbedrede køstatistikken skjuler flere brudd i forløpet. For oversight_and_partners vurderes Klinikkleder særlig etter sporbar risiko, tiltak og rett myndighetsnivå. Hvis restarbeid og privat grense føres åpent, kan neste dag starte sant; hvis lederen absorberer alt selv, forsvinner systemrisikoen bak personlig utholdenhet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/story/klinikkleder_story.json#klinikkleder_story_lederidentitet_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "En avdelingsleder ber Klinikkleder avgjøre et behandlingsspørsmål fordi riktig fagmyndighet er utilgjengelig. Morgenskiftet krever at spilleren sammenholder produksjonstall, bemanning og åpne kvalitetsvarsler, markerer hva som fortsatt er antatt, og navngir hvem som må levere neste verifiserbare opplysning. I D11-morning oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "employees_and_unions",
+        "standing_consequence": "Dagens systemrisiko er at en avdelingsleder ber Klinikkleder avgjøre et behandlingsspørsmål fordi riktig fagmyndighet er utilgjengelig. For employees_and_unions vurderes Klinikkleder særlig etter medvirkning, arbeidsmiljø og bærekraftig endring. Hvis kildegrunnlaget blir synlig tidlig, kan senere beslutninger etterprøves; skjules usikkerheten, arver resten av dagen en falsk trygghet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/event/klinikkleder_event.json#klinikkleder_event_sykefravaer_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "En avdelingsleder ber Klinikkleder avgjøre et behandlingsspørsmål fordi riktig fagmyndighet er utilgjengelig. I lunsjsamtalen må spilleren invitere den mest utsatte motstemmen inn, skille faglig råd fra organisatorisk beslutning og føre uenighet og ubesvarte spørsmål uten å glatte dem bort. I D11-lunch oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "patients_and_next_of_kin",
+        "standing_consequence": "Dagens systemrisiko er at en avdelingsleder ber Klinikkleder avgjøre et behandlingsspørsmål fordi riktig fagmyndighet er utilgjengelig. For patients_and_next_of_kin vurderes Klinikkleder særlig etter trygge forløp, kontinuitet og ærlig informasjon. Hvis motstemmen får en sporbar plass, kan uenighet forbedre handoff; redigeres den bort, blir stillhet feilaktig lest som samtykke. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/micro/klinikkleder_micro.json#klinikkleder_micro_kall_det_trygt_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "En avdelingsleder ber Klinikkleder avgjøre et behandlingsspørsmål fordi riktig fagmyndighet er utilgjengelig. Ettermiddagsvalget krever et avgrenset tiltak med eier, frist, ventepunkt, tilbakeføringskriterium og eksplisitt eskalering til rett klinisk, juridisk eller budsjettmessig myndighetsnivå. I D11-afternoon oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "oversight_and_partners",
+        "standing_consequence": "Dagens systemrisiko er at en avdelingsleder ber Klinikkleder avgjøre et behandlingsspørsmål fordi riktig fagmyndighet er utilgjengelig. For oversight_and_partners vurderes Klinikkleder særlig etter sporbar risiko, tiltak og rett myndighetsnivå. Hvis tiltaket bindes til rett eier og stoppregel, kan rework begrenses; ellers flyttes både risiko og skyld til rollen med minst makt. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/followup/klinikkleder_followup.json#klinikkleder_followup_pilot_rework_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "En avdelingsleder ber Klinikkleder avgjøre et behandlingsspørsmål fordi riktig fagmyndighet er utilgjengelig. Kveldsfasen må dokumentere hva som ikke ble løst, hvordan presset lekker inn i privatlivet, og hvilken beredskapsgrense som hindrer at nærstående eller medarbeidere blir klinikkens uformelle reservekapasitet. I D11-evening oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "Dagens systemrisiko er at en avdelingsleder ber Klinikkleder avgjøre et behandlingsspørsmål fordi riktig fagmyndighet er utilgjengelig. For private_relations vurderes Klinikkleder særlig etter nærvær uten døgnkontinuerlig lederberedskap. Hvis restarbeid og privat grense føres åpent, kan neste dag starte sant; hvis lederen absorberer alt selv, forsvinner systemrisikoen bak personlig utholdenhet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/knowledge/klinikkleder_knowledge.json#klinikkleder_knowledge_institusjon_maling_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Tilsynsspørsmål tvinger fram rekonstruksjon av hva som var kjent, besluttet, delegert og fulgt opp. Morgenskiftet krever at spilleren sammenholder produksjonstall, bemanning og åpne kvalitetsvarsler, markerer hva som fortsatt er antatt, og navngir hvem som må levere neste verifiserbare opplysning. I D12-morning oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "patients_and_next_of_kin",
+        "standing_consequence": "Dagens systemrisiko er at tilsynsspørsmål tvinger fram rekonstruksjon av hva som var kjent, besluttet, delegert og fulgt opp. For patients_and_next_of_kin vurderes Klinikkleder særlig etter trygge forløp, kontinuitet og ærlig informasjon. Hvis kildegrunnlaget blir synlig tidlig, kan senere beslutninger etterprøves; skjules usikkerheten, arver resten av dagen en falsk trygghet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/consequence/klinikkleder_consequence.json#klinikkleder_consequence_varsel_returnerer_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Tilsynsspørsmål tvinger fram rekonstruksjon av hva som var kjent, besluttet, delegert og fulgt opp. I lunsjsamtalen må spilleren invitere den mest utsatte motstemmen inn, skille faglig råd fra organisatorisk beslutning og føre uenighet og ubesvarte spørsmål uten å glatte dem bort. I D12-lunch oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "oversight_and_partners",
+        "standing_consequence": "Dagens systemrisiko er at tilsynsspørsmål tvinger fram rekonstruksjon av hva som var kjent, besluttet, delegert og fulgt opp. For oversight_and_partners vurderes Klinikkleder særlig etter sporbar risiko, tiltak og rett myndighetsnivå. Hvis motstemmen får en sporbar plass, kan uenighet forbedre handoff; redigeres den bort, blir stillhet feilaktig lest som samtykke. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/klinikkleder_job.json#klinikkleder_job_kapasitet_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Tilsynsspørsmål tvinger fram rekonstruksjon av hva som var kjent, besluttet, delegert og fulgt opp. Ettermiddagsvalget krever et avgrenset tiltak med eier, frist, ventepunkt, tilbakeføringskriterium og eksplisitt eskalering til rett klinisk, juridisk eller budsjettmessig myndighetsnivå. I D12-afternoon oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "Dagens systemrisiko er at tilsynsspørsmål tvinger fram rekonstruksjon av hva som var kjent, besluttet, delegert og fulgt opp. For private_relations vurderes Klinikkleder særlig etter nærvær uten døgnkontinuerlig lederberedskap. Hvis tiltaket bindes til rett eier og stoppregel, kan rework begrenses; ellers flyttes både risiko og skyld til rollen med minst makt. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/klinikkleder_job.json#klinikkleder_job_kvalitet_002"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Tilsynsspørsmål tvinger fram rekonstruksjon av hva som var kjent, besluttet, delegert og fulgt opp. Kveldsfasen må dokumentere hva som ikke ble løst, hvordan presset lekker inn i privatlivet, og hvilken beredskapsgrense som hindrer at nærstående eller medarbeidere blir klinikkens uformelle reservekapasitet. I D12-evening oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "divisional_leadership",
+        "standing_consequence": "Dagens systemrisiko er at tilsynsspørsmål tvinger fram rekonstruksjon av hva som var kjent, besluttet, delegert og fulgt opp. For divisional_leadership vurderes Klinikkleder særlig etter ærlige risiko- og kapasitetsbilder. Hvis restarbeid og privat grense føres åpent, kan neste dag starte sant; hvis lederen absorberer alt selv, forsvinner systemrisikoen bak personlig utholdenhet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/klinikkleder_job.json#klinikkleder_job_bemanning_003"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Korrigerende tiltak virker ulikt mellom avdelingene og krever lokal rework uten å miste klinikkhelheten. Morgenskiftet krever at spilleren sammenholder produksjonstall, bemanning og åpne kvalitetsvarsler, markerer hva som fortsatt er antatt, og navngir hvem som må levere neste verifiserbare opplysning. I D13-morning oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "oversight_and_partners",
+        "standing_consequence": "Dagens systemrisiko er at korrigerende tiltak virker ulikt mellom avdelingene og krever lokal rework uten å miste klinikkhelheten. For oversight_and_partners vurderes Klinikkleder særlig etter sporbar risiko, tiltak og rett myndighetsnivå. Hvis kildegrunnlaget blir synlig tidlig, kan senere beslutninger etterprøves; skjules usikkerheten, arver resten av dagen en falsk trygghet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/klinikkleder_job.json#klinikkleder_job_myndighet_004"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Korrigerende tiltak virker ulikt mellom avdelingene og krever lokal rework uten å miste klinikkhelheten. I lunsjsamtalen må spilleren invitere den mest utsatte motstemmen inn, skille faglig råd fra organisatorisk beslutning og føre uenighet og ubesvarte spørsmål uten å glatte dem bort. I D13-lunch oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "Dagens systemrisiko er at korrigerende tiltak virker ulikt mellom avdelingene og krever lokal rework uten å miste klinikkhelheten. For private_relations vurderes Klinikkleder særlig etter nærvær uten døgnkontinuerlig lederberedskap. Hvis motstemmen får en sporbar plass, kan uenighet forbedre handoff; redigeres den bort, blir stillhet feilaktig lest som samtykke. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/klinikkleder_people.json#klinikkleder_people_liv_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Korrigerende tiltak virker ulikt mellom avdelingene og krever lokal rework uten å miste klinikkhelheten. Ettermiddagsvalget krever et avgrenset tiltak med eier, frist, ventepunkt, tilbakeføringskriterium og eksplisitt eskalering til rett klinisk, juridisk eller budsjettmessig myndighetsnivå. I D13-afternoon oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "divisional_leadership",
+        "standing_consequence": "Dagens systemrisiko er at korrigerende tiltak virker ulikt mellom avdelingene og krever lokal rework uten å miste klinikkhelheten. For divisional_leadership vurderes Klinikkleder særlig etter ærlige risiko- og kapasitetsbilder. Hvis tiltaket bindes til rett eier og stoppregel, kan rework begrenses; ellers flyttes både risiko og skyld til rollen med minst makt. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/klinikkleder_people.json#klinikkleder_people_amina_002"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Korrigerende tiltak virker ulikt mellom avdelingene og krever lokal rework uten å miste klinikkhelheten. Kveldsfasen må dokumentere hva som ikke ble løst, hvordan presset lekker inn i privatlivet, og hvilken beredskapsgrense som hindrer at nærstående eller medarbeidere blir klinikkens uformelle reservekapasitet. I D13-evening oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "clinical_professionals",
+        "standing_consequence": "Dagens systemrisiko er at korrigerende tiltak virker ulikt mellom avdelingene og krever lokal rework uten å miste klinikkhelheten. For clinical_professionals vurderes Klinikkleder særlig etter faglig motstemme og kompetansegrenser. Hvis restarbeid og privat grense føres åpent, kan neste dag starte sant; hvis lederen absorberer alt selv, forsvinner systemrisikoen bak personlig utholdenhet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/klinikkleder_people.json#klinikkleder_people_eirik_003"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Sluttgjennomgangen må skille reell læring fra omdømmereparasjon og plassere gjenværende ansvar før porteføljen lukkes. Morgenskiftet krever at spilleren sammenholder produksjonstall, bemanning og åpne kvalitetsvarsler, markerer hva som fortsatt er antatt, og navngir hvem som må levere neste verifiserbare opplysning. I D14-morning oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "Dagens systemrisiko er at sluttgjennomgangen må skille reell læring fra omdømmereparasjon og plassere gjenværende ansvar før porteføljen lukkes. For private_relations vurderes Klinikkleder særlig etter nærvær uten døgnkontinuerlig lederberedskap. Hvis kildegrunnlaget blir synlig tidlig, kan senere beslutninger etterprøves; skjules usikkerheten, arver resten av dagen en falsk trygghet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/klinikkleder_people.json#klinikkleder_people_sara_004"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Sluttgjennomgangen må skille reell læring fra omdømmereparasjon og plassere gjenværende ansvar før porteføljen lukkes. I lunsjsamtalen må spilleren invitere den mest utsatte motstemmen inn, skille faglig råd fra organisatorisk beslutning og føre uenighet og ubesvarte spørsmål uten å glatte dem bort. I D14-lunch oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "divisional_leadership",
+        "standing_consequence": "Dagens systemrisiko er at sluttgjennomgangen må skille reell læring fra omdømmereparasjon og plassere gjenværende ansvar før porteføljen lukkes. For divisional_leadership vurderes Klinikkleder særlig etter ærlige risiko- og kapasitetsbilder. Hvis motstemmen får en sporbar plass, kan uenighet forbedre handoff; redigeres den bort, blir stillhet feilaktig lest som samtykke. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/conflict/klinikkleder_conflict.json#klinikkleder_conflict_kutt_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Sluttgjennomgangen må skille reell læring fra omdømmereparasjon og plassere gjenværende ansvar før porteføljen lukkes. Ettermiddagsvalget krever et avgrenset tiltak med eier, frist, ventepunkt, tilbakeføringskriterium og eksplisitt eskalering til rett klinisk, juridisk eller budsjettmessig myndighetsnivå. I D14-afternoon oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "clinical_professionals",
+        "standing_consequence": "Dagens systemrisiko er at sluttgjennomgangen må skille reell læring fra omdømmereparasjon og plassere gjenværende ansvar før porteføljen lukkes. For clinical_professionals vurderes Klinikkleder særlig etter faglig motstemme og kompetansegrenser. Hvis tiltaket bindes til rett eier og stoppregel, kan rework begrenses; ellers flyttes både risiko og skyld til rollen med minst makt. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/story/klinikkleder_story.json#klinikkleder_story_lederidentitet_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Sluttgjennomgangen må skille reell læring fra omdømmereparasjon og plassere gjenværende ansvar før porteføljen lukkes. Kveldsfasen må dokumentere hva som ikke ble løst, hvordan presset lekker inn i privatlivet, og hvilken beredskapsgrense som hindrer at nærstående eller medarbeidere blir klinikkens uformelle reservekapasitet. I D14-evening oppdateres den vedvarende risiko- og kapasitetsporteføljen, og den kanoniske scenen brukes uten ny runtime. Organisatorisk rang blir aldri diagnostisk, behandlingsmessig eller lovregulert myndighet, og handoff må kunne leses uten muntlig bakkanal.",
+        "standing_audience": "department_managers",
+        "standing_consequence": "Dagens systemrisiko er at sluttgjennomgangen må skille reell læring fra omdømmereparasjon og plassere gjenværende ansvar før porteføljen lukkes. For department_managers vurderes Klinikkleder særlig etter realistiske prioriteringer og tydelig restarbeid. Hvis restarbeid og privat grense føres åpent, kan neste dag starte sant; hvis lederen absorberer alt selv, forsvinner systemrisikoen bak personlig utholdenhet. Håndteringen kan derfor styrke standing her og svekke den hos et annet publikum som bærer en annen kostnad. Følgen er situert, aldri global, og gir ingen ny klinisk, juridisk, autorisasjons- eller budsjettmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/event/klinikkleder_event.json#klinikkleder_event_sykefravaer_001"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "capacity_staffing",
+      "beat_refs": [
+        "1/morning",
+        "3/afternoon",
+        "4/morning",
+        "6/lunch",
+        "9/morning",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "quality_dissent",
+      "beat_refs": [
+        "2/morning",
+        "2/afternoon",
+        "7/lunch",
+        "8/morning",
+        "12/lunch",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "change_work_environment",
+      "beat_refs": [
+        "5/morning",
+        "5/afternoon",
+        "6/morning",
+        "7/afternoon",
+        "13/morning",
+        "13/afternoon"
+      ]
+    },
+    {
+      "id": "authority_boundary",
+      "beat_refs": [
+        "1/lunch",
+        "4/afternoon",
+        "8/lunch",
+        "11/morning",
+        "11/afternoon",
+        "12/afternoon"
+      ]
+    },
+    {
+      "id": "patients_continuity",
+      "beat_refs": [
+        "3/lunch",
+        "7/morning",
+        "9/lunch",
+        "10/morning",
+        "10/afternoon",
+        "13/lunch"
+      ]
+    },
+    {
+      "id": "oversight_learning",
+      "beat_refs": [
+        "8/afternoon",
+        "9/afternoon",
+        "12/morning",
+        "12/afternoon",
+        "14/morning",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "private_containment",
+      "beat_refs": [
+        "1/evening",
+        "5/evening",
+        "8/evening",
+        "11/evening",
+        "13/evening",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "private_1",
+      "beat_refs": [
+        "1/evening",
+        "2/evening"
+      ],
+      "meaning": "Lederansvar avgrenses fra privat rang og døgnkontinuerlig beredskap."
+    },
+    {
+      "id": "private_2",
+      "beat_refs": [
+        "5/evening",
+        "6/evening"
+      ],
+      "meaning": "Lederansvar avgrenses fra privat rang og døgnkontinuerlig beredskap."
+    },
+    {
+      "id": "private_3",
+      "beat_refs": [
+        "8/evening",
+        "9/evening"
+      ],
+      "meaning": "Lederansvar avgrenses fra privat rang og døgnkontinuerlig beredskap."
+    },
+    {
+      "id": "private_4",
+      "beat_refs": [
+        "11/evening",
+        "12/evening"
+      ],
+      "meaning": "Lederansvar avgrenses fra privat rang og døgnkontinuerlig beredskap."
+    },
+    {
+      "id": "private_5",
+      "beat_refs": [
+        "13/evening",
+        "14/evening"
+      ],
+      "meaning": "Lederansvar avgrenses fra privat rang og døgnkontinuerlig beredskap."
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "capacity",
+      "setup_ref": "1/morning",
+      "return_ref": "9/morning",
+      "meaning": "capacity lar et tidlig dokumentert valg få en senere etterprøvbar systemfølge."
+    },
+    {
+      "id": "dissent",
+      "setup_ref": "2/morning",
+      "return_ref": "12/lunch",
+      "meaning": "dissent lar et tidlig dokumentert valg få en senere etterprøvbar systemfølge."
+    },
+    {
+      "id": "handoff",
+      "setup_ref": "3/morning",
+      "return_ref": "7/afternoon",
+      "meaning": "handoff lar et tidlig dokumentert valg få en senere etterprøvbar systemfølge."
+    },
+    {
+      "id": "budget",
+      "setup_ref": "4/morning",
+      "return_ref": "10/afternoon",
+      "meaning": "budget lar et tidlig dokumentert valg få en senere etterprøvbar systemfølge."
+    },
+    {
+      "id": "change",
+      "setup_ref": "5/morning",
+      "return_ref": "13/afternoon",
+      "meaning": "change lar et tidlig dokumentert valg få en senere etterprøvbar systemfølge."
+    },
+    {
+      "id": "authority",
+      "setup_ref": "8/lunch",
+      "return_ref": "11/afternoon",
+      "meaning": "authority lar et tidlig dokumentert valg få en senere etterprøvbar systemfølge."
+    },
+    {
+      "id": "oversight",
+      "setup_ref": "8/afternoon",
+      "return_ref": "14/afternoon",
+      "meaning": "oversight lar et tidlig dokumentert valg få en senere etterprøvbar systemfølge."
+    },
+    {
+      "id": "private",
+      "setup_ref": "1/evening",
+      "return_ref": "14/evening",
+      "meaning": "private lar et tidlig dokumentert valg få en senere etterprøvbar systemfølge."
+    }
+  ]
+}
