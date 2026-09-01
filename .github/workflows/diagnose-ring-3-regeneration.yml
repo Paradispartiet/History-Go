@@ -8,7 +8,7 @@ on:
       - .github/workflows/diagnose-ring-3-regeneration.yml
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   diagnose:
@@ -39,7 +39,19 @@ jobs:
         run: npm run places:index:build
       - name: Regenerate Place-open
         run: node scripts/build-place-open-payloads.mjs
-      - name: Regenerate Fagverk coverage
-        run: node scripts/audit-fagverk-place-pages.mjs --write
+      - name: Capture Fagverk coverage audit failure
+        run: |
+          set +e
+          node scripts/audit-fagverk-place-pages.mjs --write > /tmp/ring3-fagverk-audit.log 2>&1
+          code=$?
+          set -e
+          cat /tmp/ring3-fagverk-audit.log
+          if [ "$code" -ne 0 ]; then
+            cp /tmp/ring3-fagverk-audit.log reports/ring3-fagverk-audit-diagnostic.txt
+            git add reports/ring3-fagverk-audit-diagnostic.txt
+            git commit -m "Capture Ring 3 Fagverk audit diagnostic"
+            git push origin HEAD:${GITHUB_REF_NAME}
+            exit "$code"
+          fi
       - name: Regenerate Fagverk release
         run: node scripts/build-fagverk-release-manifest.mjs
