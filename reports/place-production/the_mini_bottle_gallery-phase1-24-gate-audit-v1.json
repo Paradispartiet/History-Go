@@ -1,0 +1,143 @@
+{
+  "schema": "history_go_phase1_24_quality_gate_v1",
+  "place_id": "the_mini_bottle_gallery",
+  "verified_at": "2026-09-01",
+  "null_measurement": {
+    "existing_place": true,
+    "coordinate_changed": false,
+    "existing_quiz": "none",
+    "existing_story": "none",
+    "existing_collections": 0,
+    "existing_images": 0,
+    "existing_language_entries": 0,
+    "existing_reading_tracks": 0,
+    "existing_fagverk": "unfinished fallback only"
+  },
+  "collections": {
+    "required": [
+      "people",
+      "objects",
+      "brands",
+      "historical_events"
+    ],
+    "loaded_preview_images": 6,
+    "missing": 0,
+    "coverage_percent": 100
+  },
+  "people": {
+    "candidates_reviewed": [
+      "Christian Ringnes"
+    ],
+    "selected": [
+      "christian_ringnes"
+    ],
+    "held_back": [],
+    "image_coverage_percent": 100
+  },
+  "objects": {
+    "candidates_reviewed": [
+      "Første Gordon’s-flaske",
+      "flaskeboken",
+      "monterrekken i Likørværelset",
+      "flaskekartet i The World"
+    ],
+    "selected": [
+      "the_mini_bottle_gallery_likorvaerelset_monterrekke",
+      "the_mini_bottle_gallery_the_world_flaskekart"
+    ],
+    "held_back": [
+      "Første Gordon’s-flaske – direkte historisk kilde, men ingen rettighetsklar medlemsfil ble tilgjengelig.",
+      "Flaskeboken – direkte historisk kilde, men ingen rettighetsklar medlemsfil ble tilgjengelig."
+    ],
+    "exception": null
+  },
+  "brands": {
+    "candidates_reviewed": [
+      "Ringnes",
+      "Gordon’s",
+      "The Mini Bottle Gallery"
+    ],
+    "selected": [
+      "ringnes"
+    ],
+    "held_back": [
+      "Gordon’s – direkte førsteflaske-kobling, men logo- og rettighetssporet ble ikke lukket.",
+      "The Mini Bottle Gallery – canonical Place må ikke brand-mappes til seg selv."
+    ],
+    "logo_coverage": {
+      "required": 1,
+      "reviewed": 1,
+      "missing": 0,
+      "percent": 100
+    }
+  },
+  "source_conflicts": [
+    {
+      "claim": "Ett stabilt total- og utstillingstall.",
+      "status": "qualified_and_omitted",
+      "reason": "Nåværende og eldre nettversjoner avviker."
+    },
+    {
+      "claim": "Verdens største som varig uavhengig rangering.",
+      "status": "held_back",
+      "reason": "Institusjonens egen rekordpåstand mangler uavhengig og stabilt sammenligningsgrunnlag."
+    },
+    {
+      "claim": "Bryggeriet forårsaket samlerinteressen.",
+      "status": "rejected_as_causal_fact",
+      "reason": "Kilden sier bare «kanskje»."
+    }
+  ],
+  "conditional_modules": {
+    "stories": "one_episode_v1_produced",
+    "lesespor": "four_produced",
+    "language": "six_terms_produced",
+    "for_na": "source_bounded_holdback",
+    "news": "not_applicable",
+    "dialect": "not_applicable"
+  },
+  "manual_image_review": {
+    "status": "PASS",
+    "reviewed_assets": [
+      "bilder/places/the_mini_bottle_gallery.webp",
+      "bilder/kort/places/the_mini_bottle_gallery.webp",
+      "bilder/places/the_mini_bottle_gallery_front_portrait.webp",
+      "bilder/kort/people/christian_ringnes.webp",
+      "bilder/kort/brands/ringnes.webp",
+      "bilder/kort/objects/the_mini_bottle_gallery_likorvaerelset_monterrekke.webp",
+      "bilder/kort/objects/the_mini_bottle_gallery_the_world_flaskekart.webp",
+      "bilder/kort/historical_events/the_mini_bottle_gallery_kirkegata_1996.webp",
+      "bilder/kort/historical_events/the_mini_bottle_gallery_apning_2003.webp"
+    ],
+    "note": "Alle avgrensninger ble visuelt kontrollert: frontbildet er fysisk stående; Objects viser faktiske navngitte installasjoner; Brand bruker eksisterende godkjent historisk merke; hendelsesbilder er eksplisitt senere kontekst. Ingen VisitOSLO- eller generert medlemsfil brukes."
+  },
+  "quality_score": {
+    "correctness_and_evidence": {
+      "score": 5,
+      "note": "Offisiell historikk og romside, institusjonsprofil og lisensierte Commons-bilder er krysskontrollert; volatile tall og tentativ årsak er eksplisitt begrenset."
+    },
+    "coverage_and_completion": {
+      "score": 5,
+      "note": "Fire bildeklare samlinger, fire milepæler, seks språkoppføringer, fire lesespor, Story, Fagverk og normal 4x7-quiz er materialisert."
+    },
+    "editorial_quality": {
+      "score": 5,
+      "note": "Museet skilles fra bar, kunstgalleri, reklame, bryggeri og bygningens eldre historie; samling, registrering og kuratering bindes sammen."
+    },
+    "technical_integrity": {
+      "score": 5,
+      "note": "Deterministisk finalizer, canonical manifests, Knowledge-binding, lokale assets og permanent målrettet test inngår."
+    },
+    "safety_and_responsibility": {
+      "score": 4,
+      "note": "Alkoholobjekter behandles som material- og samlingshistorie uten konsumoppfordring; institusjonens rombilder brukes som eksplisitte redaksjonelle referanser."
+    },
+    "maintainability_and_auditability": {
+      "score": 5,
+      "note": "Claims, personprofil, bildeproveniens, kildekonflikter, holdbacks, produksjonskontekst og A–H-rapport gir revisjonsspor."
+    },
+    "total": 29,
+    "critical_findings": 0,
+    "unresolved_blockers": 0
+  }
+}

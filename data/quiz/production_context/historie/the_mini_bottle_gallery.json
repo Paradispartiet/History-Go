@@ -1,0 +1,691 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "the_mini_bottle_gallery",
+  "profile": "normal_4x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1817,
+    "selection_sha256": "209ec577861519635afc4aa043608e5259d361f26257cdafc3bcdec9b4870f4c",
+    "category_id": "historie",
+    "target_id": "the_mini_bottle_gallery"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "bytes": 93945,
+      "sha256": "37abfe99b9f3f1db23bb0cb307b2076407076a405c15868b0524ef5b9e31c72d",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "bytes": 2142053,
+      "sha256": "bcb20665e0a013c4f57e17719b610224874552b942b9bcd7421a7239463931ec",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "bytes": 1127330,
+      "sha256": "6db315c9b911fc04b99dd7609e493e744f919448668cf35fe3c72d3dabff59b1",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "bytes": 252328,
+      "sha256": "9462f9fc4a07c9c08593abaa75e4ee1bddd6af9e45a87304b52df66bcdb654be",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "bytes": 6935,
+      "sha256": "162f166d3c5be89d77b7529ba9186a552b791e9dbd04a590a01fdaad28944098",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/historie/the_mini_bottle_gallery.json",
+      "bytes": 14203,
+      "sha256": "46b193d224c2b417db537e72a1653e005c359dfb6df83d8d7aa8959ef427ac49"
+    },
+    "target": {
+      "path": "data/places/historie/oslo/places_historie/the_mini_bottle_gallery.json",
+      "bytes": 25300,
+      "sha256": "ad4dea2644ab709c2937810a68bf4277e6b4560b0ab0b093857be9e4d17edad3"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1456,
+      "selection_sha256": "330c5d0366f11208be73fab4762f45ed4ea72b2849e2e20131e455d8d0e88292"
+    },
+    "relations": [
+      {
+        "path": "data/relations.json",
+        "matches": 1,
+        "selection_bytes": 332,
+        "selection_sha256": "a339e26f07ab9f26744e519fa9e2016286b1aac6682deac60955b173b850fcec"
+      }
+    ],
+    "stories": [
+      {
+        "path": "data/stories/stories_the_mini_bottle_gallery.json",
+        "matches": 1,
+        "selection_bytes": 2194,
+        "selection_sha256": "68869d0b7aa8407fa15713325ce29e85ccbc0f45952347059c3da9528e33e187"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/historie/the_mini_bottle_gallery_sets.json",
+  "source_registry": {
+    "official": {
+      "url": "https://www.minibottlegallery.com/?kategori=museum",
+      "source_type": "official_institution_history",
+      "review_status": "reviewed",
+      "review_note": "Første flaske, flaskeboken, kjøpet i 1996, prosjekteringen og åpningen i 2003; dagens installasjons- og etasjeopplysninger."
+    },
+    "rooms": {
+      "url": "https://www.minibottlegallery.com/?kategori=rom&language=english",
+      "source_type": "official_room_catalog",
+      "review_status": "reviewed",
+      "review_note": "Navngitte rom, Ringnes Beer Hall og førstegangseide fotografier av installasjonene."
+    },
+    "ringnes": {
+      "url": "https://ekebergparken.com/en/christian-ringnes",
+      "source_type": "institutional_profile",
+      "review_status": "reviewed",
+      "review_note": "Christian Ringnes’ identitet og institusjonelle roller."
+    },
+    "facade2011": {
+      "url": "https://commons.wikimedia.org/wiki/File:Sm%C3%A5flaskemuseet.JPG",
+      "source_type": "licensed_visual_source",
+      "review_status": "reviewed",
+      "review_note": "CC BY-SA-dokumentasjon av museumsfasaden i 2011."
+    },
+    "facade2009": {
+      "url": "https://commons.wikimedia.org/wiki/File:Flaskemuseet_i_Oslo.jpg",
+      "source_type": "licensed_visual_source",
+      "review_status": "reviewed",
+      "review_note": "CC BY-SA-dokumentasjon av museumsvindu og fasade i 2009."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/historie/the_mini_bottle_gallery_sets.json",
+      "data/quiz/by/the_mini_bottle_gallery_sets.json",
+      "data/quiz/historie/arkiv/the_mini_bottle_gallery_sets.json"
+    ],
+    "active_before": {
+      "categoryId": null,
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "Ingen aktiv, arkivert eller alternativ målquiz ble funnet.",
+      "Produser én canonical normal 4x7-pakke med fjorten rene faktaspørsmål først."
+    ],
+    "knowledge_migration": {
+      "status": "not_applicable",
+      "retained_rule": "Ingen eldre spørsmål å migrere."
+    }
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Fire selvstendige læringsjobber dekker start og registrering, institusjonsforløp, installasjoner/proveniens og kildekritisk museumsanalyse."
+  },
+  "held_back_candidates": [
+    "Skiftende total- og utstillingstall som varige fakta.",
+    "Verdensrangeringen som uavhengig kontrollert rekord.",
+    "Ringnes Bryggeri som bevist årsak til samlerinteressen.",
+    "Gordon’s som Brand uten ferdig verifisert logo- og rettighetsløp.",
+    "Enkeltflasker som Objects uten identifiserbare medlemsbilder."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 23,
+      "emner": 230,
+      "topic_hooks": 230,
+      "methods": 105
+    },
+    "candidate_emner": [
+      {
+        "id": "em_his_kulturminner_bevaring",
+        "title": "Kulturminner, utvelgelse og bevaring",
+        "score": 100
+      },
+      {
+        "id": "em_his_museum_samling_kanon",
+        "title": "Museum, samling og historisk kanon",
+        "score": 100
+      },
+      {
+        "id": "em_his_samtid_ettertid_fortelling",
+        "title": "Samtid, ettertid og historisk fortelling",
+        "score": 100
+      },
+      {
+        "id": "em_his_spor_materialitet",
+        "title": "Spor og materialitet",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "his_kulturminneutvelgelse_verdi",
+        "title": "Kulturminneutvelgelse og verdi",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 10
+      },
+      {
+        "id": "his_museum_samling_kanon",
+        "title": "Museum, samling og kanon",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 10
+      },
+      {
+        "id": "his_samtid_ettertid_fortelling",
+        "title": "Samtid, ettertid og historisk fortelling",
+        "category_id": "his_tid_periodisering",
+        "score": 10
+      },
+      {
+        "id": "his_spor_materialitet",
+        "title": "Materielle spor og sted som kilde",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_tid_periodisering",
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_samtid_ettertid_fortelling",
+      "em_his_spor_materialitet",
+      "em_his_kulturminner_bevaring",
+      "em_his_museum_samling_kanon"
+    ],
+    "topic_hook_ids": [
+      "his_museum_samling_kanon"
+    ],
+    "method_ids": [
+      "met_kildekritikk",
+      "met_sporlesning"
+    ],
+    "thinker_ids": [
+      "tony_bennett"
+    ],
+    "works": [
+      "The Birth of the Museum"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Museets historikk daterer den første flasken til 1961.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Christian Ringnes var sju år i startfortellingen.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Den første flasken var tom og merket Gordon’s Dry Gin.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Museets historikk sier at den reisende faren ga flasken.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Notatboken var et ordnings- og registreringsredskap.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Museets historikk daterer kjøpet til 1996.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Den offisielle historikken sier at prosjekteringen startet fire år etter 1996.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Museet åpnet museumsdørene i mai 2003.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Museumsinstitusjonen er forankret i Kirkegata 10.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Den nåværende offisielle siden oppgir tre etasjer.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_museum_samling_kanon"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Den nåværende offisielle siden oppgir mer enn 50 installasjoner.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_museum_samling_kanon"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Det offisielle romfotografiet viser faktiske glasskap med miniatyrflasker.",
+      "source_ids": [
+        "rooms"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Fotografiet dokumenterer en geografisk flaskeinstallasjon.",
+      "source_ids": [
+        "rooms"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_museum_samling_kanon"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Museets offisielle romside navngir Ringnes Beer Hall.",
+      "source_ids": [
+        "rooms"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Åpningen ga samlingen rom, montering og publikum.",
+      "source_ids": [
+        "official",
+        "rooms"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Notatboken er et spor etter hvordan enkelteksemplarer ble gjort til en ordnet samling.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Fotografiet viser fysisk form og plassering, men har klare kildegrenser.",
+      "source_ids": [
+        "rooms"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kortene følger det faktiske avgrensede motivet i kilden.",
+      "source_ids": [
+        "rooms"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kartet viser et senere ordningsgrep som skaper forbindelser mellom objekter.",
+      "source_ids": [
+        "rooms"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_museum_samling_kanon"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Den varige beskrivelsen unngår en rekordpåstand når kildetall og versjoner skifter.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "En mulig forbindelse skal ikke oppgraderes til sikker årsak.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kildekritikk undersøker avsender, publiseringstid, begreper og hva som faktisk telles.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Sporlesning skiller objektets materiale fra senere registrering og presentasjon.",
+      "source_ids": [
+        "official",
+        "rooms"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Proveniens følger objektets dokumenterte vei uten å fylle hull med antakelser.",
+      "source_ids": [
+        "official",
+        "rooms"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Et senere foto kan vise stedskontinuitet, men ikke selve åpningsøyeblikket.",
+      "source_ids": [
+        "facade2011",
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Perspektivet retter oppmerksomheten mot museet som ordnings- og framvisningsinstitusjon.",
+      "source_ids": [
+        "official",
+        "rooms"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_museum_samling_kanon"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "En institusjonsside er sterk på egen kronologi, men må suppleres for fravær og uavhengig kontroll.",
+      "source_ids": [
+        "official",
+        "rooms"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_samtid_ettertid_fortelling"
+    },
+    {
+      "claim_id": "claim_the_mini_bottle_gallery_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Stedet forstås gjennom samlerhistorie, institusjonsforløp, fysiske installasjoner og kildegrenser.",
+      "source_ids": [
+        "official",
+        "rooms",
+        "ringnes"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_museum_samling_kanon"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "relation",
+      "id": "rel_the_mini_bottle_gallery_christian_ringnes",
+      "source_file": "data/relations.json",
+      "summary": "Samlingen startet i 1961; Ringnes kjøpte Kirkegata 10 i 1996 og åpnet museet i 2003."
+    },
+    {
+      "type": "story",
+      "id": "st_the_mini_bottle_gallery_fra_forste_flaske_til_museum",
+      "source_file": "data/stories/stories_the_mini_bottle_gallery.json",
+      "summary": "En barndomsgave i 1961 ble registrert, utvidet og til slutt gitt et eget museum i Kirkegata 10."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "historie_the_mini_bottle_gallery_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_the_mini_bottle_gallery_quiz_01",
+        "claim_the_mini_bottle_gallery_quiz_02",
+        "claim_the_mini_bottle_gallery_quiz_03",
+        "claim_the_mini_bottle_gallery_quiz_04",
+        "claim_the_mini_bottle_gallery_quiz_05",
+        "claim_the_mini_bottle_gallery_quiz_06",
+        "claim_the_mini_bottle_gallery_quiz_07"
+      ]
+    },
+    {
+      "set_id": "historie_the_mini_bottle_gallery_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_the_mini_bottle_gallery_quiz_08",
+        "claim_the_mini_bottle_gallery_quiz_09",
+        "claim_the_mini_bottle_gallery_quiz_10",
+        "claim_the_mini_bottle_gallery_quiz_11",
+        "claim_the_mini_bottle_gallery_quiz_12",
+        "claim_the_mini_bottle_gallery_quiz_13",
+        "claim_the_mini_bottle_gallery_quiz_14"
+      ]
+    },
+    {
+      "set_id": "historie_the_mini_bottle_gallery_set_3",
+      "order": 3,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_the_mini_bottle_gallery_quiz_15",
+        "claim_the_mini_bottle_gallery_quiz_16",
+        "claim_the_mini_bottle_gallery_quiz_17",
+        "claim_the_mini_bottle_gallery_quiz_18",
+        "claim_the_mini_bottle_gallery_quiz_19",
+        "claim_the_mini_bottle_gallery_quiz_20",
+        "claim_the_mini_bottle_gallery_quiz_21"
+      ]
+    },
+    {
+      "set_id": "historie_the_mini_bottle_gallery_set_4",
+      "order": 4,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_the_mini_bottle_gallery_quiz_22",
+        "claim_the_mini_bottle_gallery_quiz_23",
+        "claim_the_mini_bottle_gallery_quiz_24",
+        "claim_the_mini_bottle_gallery_quiz_25",
+        "claim_the_mini_bottle_gallery_quiz_26",
+        "claim_the_mini_bottle_gallery_quiz_27",
+        "claim_the_mini_bottle_gallery_quiz_28"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 28,
+    "counts": {
+      "fact": 14,
+      "context": 7,
+      "concept_theory": 7
+    },
+    "ratios": {
+      "fact": 0.5,
+      "context": 0.25,
+      "concept_theory": 0.25
+    }
+  }
+}

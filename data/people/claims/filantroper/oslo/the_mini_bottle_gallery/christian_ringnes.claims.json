@@ -1,0 +1,156 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "christian_ringnes",
+  "profile_file": "data/people/filantroper/oslo/people_filantroper_oslo.json",
+  "identity": {
+    "canonical_identity": "Christian Ringnes, norsk eiendomsinvestor, filantrop og samler.",
+    "name_variants": [
+      "Christian Ringnes"
+    ],
+    "not": [
+      "bryggerigrunnleggeren Ellef Ringnes",
+      "bryggerigrunnleggeren Amund Ringnes"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity_role",
+      "claim": "Christian Ringnes er eiendomsinvestor og filantrop med en dokumentert samlerrolle.",
+      "source_url": "https://ekebergparken.com/en/christian-ringnes",
+      "source_location": "institusjonsprofilen",
+      "source_type": "institutional_profile",
+      "status": "verified",
+      "temporal_status": "mixed",
+      "verified_at": "2026-09-01",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "ekeberg_role",
+      "claim": "Ringnes tok initiativ til Ekebergparken og stiftelsen som rehabiliterte Lunds hus.",
+      "source_url": "https://ekebergparken.com/en/christian-ringnes",
+      "source_location": "institusjonsprofilen og parkhistorikken",
+      "source_type": "institutional_profile",
+      "status": "verified",
+      "temporal_status": "mixed",
+      "verified_at": "2026-09-01",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "first_bottle",
+      "claim": "Ringnes fikk den første miniatyrflasken i 1961 og registrerte senere samlingen i en notatbok.",
+      "source_url": "https://www.minibottlegallery.com/?kategori=museum",
+      "source_location": "En småflaskehistorie utenom det vanlige",
+      "source_type": "official_institution",
+      "status": "verified",
+      "temporal_status": "mixed",
+      "verified_at": "2026-09-01",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "museum_role",
+      "claim": "Ringnes kjøpte Kirkegata 10 i 1996 og åpnet The Mini Bottle Gallery i mai 2003 etter museumsprosjektering fra 2000.",
+      "source_url": "https://www.minibottlegallery.com/?kategori=museum",
+      "source_location": "historikkens avsluttende avsnitt",
+      "source_type": "official_institution",
+      "status": "verified",
+      "temporal_status": "mixed",
+      "verified_at": "2026-09-01",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "image",
+      "claim": "Commons-filen identifiserer motivet som Christian Ringnes.",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Christian_Ringnes_-_2014-02-13_at_18-43-45.jpg",
+      "source_location": "Summary og Licensing",
+      "source_type": "archive",
+      "status": "verified",
+      "temporal_status": "mixed",
+      "verified_at": "2026-09-01",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity_role"
+    ],
+    "year": [
+      "ekeberg_role"
+    ],
+    "placeId": [
+      "ekeberg_role"
+    ],
+    "places[ekebergparken]": [
+      "ekeberg_role"
+    ],
+    "places[ekebergparken_museum]": [
+      "ekeberg_role"
+    ],
+    "places[the_mini_bottle_gallery]": [
+      "first_bottle",
+      "museum_role"
+    ],
+    "image": [
+      "image"
+    ],
+    "cardImage": [
+      "image"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity_role",
+          "ekeberg_role",
+          "first_bottle",
+          "museum_role"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity_role"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "ekeberg_role"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "first_bottle"
+        ]
+      },
+      {
+        "sentence": 4,
+        "claim_ids": [
+          "museum_role"
+        ]
+      },
+      {
+        "sentence": 5,
+        "claim_ids": [
+          "ekeberg_role",
+          "museum_role"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "5/5",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-09-01",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}
