@@ -6,7 +6,7 @@ Rapporten måler om runtime kan presentere tilgjengelige canonical People-felt. 
 
 People-produksjon, claims og ferdigstatus eies av `docs/PEOPLE_PROFILE_CANONICAL.md`. Profiler uten v1-claims er `legacy_unreviewed`, selv når presentasjonsstatusen er `complete`.
 
-Source fingerprint: `ba38dd3a3ff3e4225949982324f5001ea8ce873a7e79c05bd36027412083a699`
+Source fingerprint: `36d3278a2f785dd9acbeed1e3c2a56cc96e766918498a7517a93d0ae4777d7c8`
 
 ## Sammendrag
 
@@ -19,8 +19,8 @@ Source fingerprint: `ba38dd3a3ff3e4225949982324f5001ea8ce873a7e79c05bd3602741208
 | Presentasjon sparse | 15 |
 | People Profile v1 ready | 78 |
 | Legacy uten v1-claims | 1348 |
-| Ødelagte bildereferanser | 280 |
-| Eksplisitt initialfallback | 994 |
+| Ødelagte bildereferanser | 279 |
+| Eksplisitt initialfallback | 993 |
 | Implisitt initialfallback | 26 |
 | Gjennomsnittspoeng | 65.5 |
 
@@ -36,7 +36,7 @@ Source fingerprint: `ba38dd3a3ff3e4225949982324f5001ea8ce873a7e79c05bd3602741208
 | practiceDeclared | 1408 | 98.7 % |
 | placeGrounding | 1426 | 100 % |
 | sources | 467 | 32.7 % |
-| imageContract | 1146 | 80.4 % |
+| imageContract | 1147 | 80.4 % |
 | profileStandard | 78 | 5.5 % |
 
 ## Kategorier
