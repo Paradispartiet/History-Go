@@ -18,3 +18,5 @@ Cross-role remains `candidate_when_shared_work_is_real`. No shared runtime objec
 6. Maintainability and auditability — 5/5: the materializer is input-hash-locked, uses one canonical object contract and regenerates all derived indexes.
 
 Total: 29/30. The prerequisite is high quality and merge-ready once exact-head CI reproduces the gates; Role World completion is explicitly out of scope.
+
+Checkpoint: permanent materialization head `c8d5d3a7408b9ab4a594db2c771dfd65fb8ddd64` reproduced 15/15 unique scenes, all nine mail types, 1,270 registry scenes with zero shadowed duplicates, the playable Career Matrix gate, Scenario People integrity and the 335/335 full Civication suite before the temporary files removed themselves.
