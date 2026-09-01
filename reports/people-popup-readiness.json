@@ -3,7 +3,7 @@
   "contract": "docs/PEOPLE_POPUP_SYSTEM.md",
   "productionContract": "docs/PEOPLE_PROFILE_CANONICAL.md",
   "generatedBy": "tools/audit-people-popup-readiness.mts",
-  "sourceFingerprint": "ea348571c40388a747d7b9ebc0869be0d9a615005c34d26273b94067587717d7",
+  "sourceFingerprint": "d3ef548e83731a4aed7fd7290c97bbc791302bfee551d40c77abe18d8dc1b927",
   "thresholds": {
     "complete": 85,
     "strong": 65,
@@ -17,12 +17,12 @@
     "legacyWithoutClaimsStatus": "legacy_unreviewed"
   },
   "summary": {
-    "totalPeople": 1424,
-    "complete": 68,
+    "totalPeople": 1425,
+    "complete": 69,
     "strong": 408,
     "partial": 933,
     "sparse": 15,
-    "readyPeopleV1": 76,
+    "readyPeopleV1": 77,
     "legacyUnreviewed": 1348,
     "brokenImages": 280,
     "explicitFallbacks": 994,
@@ -31,11 +31,11 @@
   },
   "fieldCoverage": {
     "identity": {
-      "count": 128,
-      "percent": 9
+      "count": 129,
+      "percent": 9.1
     },
     "popupDesc": {
-      "count": 1403,
+      "count": 1404,
       "percent": 98.5
     },
     "lifeData": {
@@ -43,32 +43,32 @@
       "percent": 4.4
     },
     "contributionsDeclared": {
-      "count": 61,
-      "percent": 4.3
+      "count": 62,
+      "percent": 4.4
     },
     "educationDeclared": {
-      "count": 61,
-      "percent": 4.3
+      "count": 62,
+      "percent": 4.4
     },
     "practiceDeclared": {
-      "count": 1406,
+      "count": 1407,
       "percent": 98.7
     },
     "placeGrounding": {
-      "count": 1424,
+      "count": 1425,
       "percent": 100
     },
     "sources": {
-      "count": 465,
+      "count": 466,
       "percent": 32.7
     },
     "imageContract": {
-      "count": 1144,
-      "percent": 80.3
+      "count": 1145,
+      "percent": 80.4
     },
     "profileStandard": {
-      "count": 76,
-      "percent": 5.3
+      "count": 77,
+      "percent": 5.4
     }
   },
   "categories": [
@@ -129,14 +129,14 @@
     },
     {
       "category": "kunst",
-      "total": 84,
-      "complete": 9,
+      "total": 85,
+      "complete": 10,
       "strong": 62,
       "partial": 13,
       "sparse": 0,
-      "readyPeopleV1": 10,
+      "readyPeopleV1": 11,
       "legacyUnreviewed": 74,
-      "averageScore": 73.5
+      "averageScore": 73.8
     },
     {
       "category": "naeringsliv",
@@ -70859,6 +70859,46 @@
       "sourceCount": 4,
       "imageState": "valid_image",
       "imagePath": "bilder/kort/people/herman_wedel_major.webp",
+      "coverage": {
+        "identity": true,
+        "popupDesc": true,
+        "lifeData": false,
+        "contributionsDeclared": true,
+        "educationDeclared": true,
+        "practiceDeclared": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true,
+        "profileStandard": true
+      },
+      "issues": [
+        "missing_birth_data"
+      ]
+    },
+    {
+      "id": "johan_nordhagen",
+      "name": "Johan Nordhagen",
+      "category": "kunst",
+      "kindLabel": "Grafiker og lærer",
+      "sourceFile": "data/people/kunst/oslo/norske_grafikere/johan_nordhagen.json",
+      "primaryPlace": "norske_grafikere",
+      "places": [
+        "norske_grafikere"
+      ],
+      "score": 95,
+      "priority": 5,
+      "status": "complete",
+      "productionStatus": "ready_people_v1",
+      "profileStandard": "people_profile_v1.0",
+      "claimsFile": "data/people/claims/kunst/oslo/norske_grafikere/johan_nordhagen.claims.json",
+      "paragraphCount": 3,
+      "popupLength": 538,
+      "contributionCount": 1,
+      "educationCount": 0,
+      "practiceCount": 5,
+      "sourceCount": 3,
+      "imageState": "valid_image",
+      "imagePath": "bilder/kort/people/johan_nordhagen.webp",
       "coverage": {
         "identity": true,
         "popupDesc": true,

@@ -1,0 +1,160 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "johan_nordhagen",
+  "profile_file": "data/people/kunst/oslo/norske_grafikere/johan_nordhagen.json",
+  "identity": {
+    "canonical_identity": "Den norske grafikeren og læreren Johan Nordhagen (1856–1956).",
+    "name_variants": [
+      "Johan Nordhagen"
+    ],
+    "not": [
+      "Olaf Nordhagen"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity",
+      "claim": "Johan Nordhagen levde fra 1856 til 1956 og var maler, grafiker og lærer.",
+      "status": "verified",
+      "source_url": "https://snl.no/Johan_Nordhagen",
+      "source_location": "innledningen",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-01",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "class",
+      "claim": "Nordhagen tok imot Radérklassens første elever i 1899 og underviste i litografi og radering.",
+      "status": "verified",
+      "source_url": "https://norske-grafikere.no/norske-grafikere/om-oss/",
+      "source_location": "historikkdelen om Radérklassen",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-01",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "founding",
+      "claim": "Tidligere Nordhagen-elever tok initiativ til Norske Grafikere i 1919, og Nordhagen var blant frontfigurene.",
+      "status": "verified",
+      "source_url": "https://norske-grafikere.no/norske-grafikere/om-oss/",
+      "source_location": "historikkdelen om stiftelsen",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-01",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "image",
+      "claim": "Commons-filen identifiserer Johan Nordhagen i et portrett fra omkring 1935.",
+      "status": "verified",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Johan_Nordhagen_ca_1935.jpg",
+      "source_location": "Summary og Licensing",
+      "source_type": "archive",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-01",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity"
+    ],
+    "kindLabel": [
+      "identity"
+    ],
+    "year": [
+      "class"
+    ],
+    "placeId": [
+      "founding"
+    ],
+    "places[norske_grafikere]": [
+      "founding"
+    ],
+    "works[id=nordhagen_raderklassen].title": [
+      "class"
+    ],
+    "works[id=nordhagen_raderklassen].year": [
+      "class"
+    ],
+    "works[id=nordhagen_raderklassen].role": [
+      "class"
+    ],
+    "works[id=nordhagen_raderklassen].place": [
+      "class"
+    ],
+    "works[id=nordhagen_raderklassen].summary": [
+      "class",
+      "founding"
+    ],
+    "image": [
+      "image"
+    ],
+    "cardImage": [
+      "image"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "class",
+          "founding"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "class"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "founding"
+        ]
+      },
+      {
+        "sentence": 4,
+        "claim_ids": [
+          "founding"
+        ]
+      },
+      {
+        "sentence": 5,
+        "claim_ids": [
+          "image"
+        ]
+      },
+      {
+        "sentence": 6,
+        "claim_ids": [
+          "founding",
+          "image"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "4/4",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-09-01",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}

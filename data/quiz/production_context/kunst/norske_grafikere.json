@@ -1,0 +1,868 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "kunst",
+  "targetId": "norske_grafikere",
+  "profile": "normal_4x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1093,
+    "selection_sha256": "80378d42a74ab508e8c5f4d7231756572f687e25a7a7bd01ede3fb55567ba7b0",
+    "category_id": "kunst",
+    "target_id": "norske_grafikere"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/kunst/kunstpensum_canonical_v4_5.json",
+      "bytes": 25563,
+      "sha256": "3cf20b4e5db1d66e89288e2ec9f87a32e498a1c2a9c70c7e110317d771293c02",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/kunst/emner_kunst_canonical_v4_5.json",
+      "bytes": 220362,
+      "sha256": "042945bb66c1eb3523f7fe93cbfc30eb7488ac611cfbc4d3f9e33377ed3bc0dd",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/kunst/fagkart_kunst_canonical_v4_5.json",
+      "bytes": 287506,
+      "sha256": "08fdccf16746c6ac70f9f7997ce123dd844a1af3dc77aa23394795f05eb2f292",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/kunst/methods_kunst_canonical_v4_5.json",
+      "bytes": 56666,
+      "sha256": "c320cd42f58aeb08cb29ceb8cce458e557ad24bac1c607551d3db1096b3c8156",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/kunst/supersetQUIZMAL_kunst.json",
+      "bytes": 7134,
+      "sha256": "58590863ed5a39bc346142e6dd9ba9d42368ed0eef6701a199d5856cea13708c",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/kunst/norske_grafikere.json",
+      "bytes": 13320,
+      "sha256": "178670382d80b726591dfe39cba20c2dc5f0e079218e09adea4853fd5920a065"
+    },
+    "target": {
+      "path": "data/places/kunst/oslo/places_kunst/norske_grafikere.json",
+      "bytes": 19501,
+      "sha256": "3cd1fbc8fdda4a27129d69c8b0abe290b8cf43de8b5722d05692682985781af6"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1422,
+      "selection_sha256": "b53ca517915934bf6da7ce3ce7afa73c17112fc08aa51458f65f78287c7a6d6a"
+    },
+    "relations": [
+      {
+        "path": "data/relations.json",
+        "matches": 1,
+        "selection_bytes": 327,
+        "selection_sha256": "69d6b293bd2acef28b194208bd20f88e064734aaa2254c862efce6c405bbe7b9"
+      }
+    ],
+    "stories": [
+      {
+        "path": "data/stories/stories_norske_grafikere.json",
+        "matches": 1,
+        "selection_bytes": 2083,
+        "selection_sha256": "58542b20fc289cc19532e9c9f2646eb28c4fb850f308a8d5d3eed7d8dc0a52ae"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/kunst/norske_grafikere_sets.json",
+  "source_registry": {
+    "official": {
+      "url": "https://norske-grafikere.no/norske-grafikere/om-oss/",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Historie, medlemsutvikling, Radérklasse, galleri og adresser."
+    },
+    "program": {
+      "url": "https://norske-grafikere.no/programlansering-norske-grafikeres-utstillingsprogram-2026/",
+      "source_type": "official_program",
+      "review_status": "reviewed",
+      "review_note": "Kunstnere, verk, materialer og 2026-datoer."
+    },
+    "fund": {
+      "url": "https://norske-grafikere.no/norske-grafikeres-fond/",
+      "source_type": "official_rules",
+      "review_status": "reviewed",
+      "review_note": "Rettgrunnlag, styring og utdelinger."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/kunst/norske_grafikere_sets.json",
+      "data/quiz/manifest.json",
+      "data/quiz"
+    ],
+    "active_before": {
+      "file": null,
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen aktiv canonical stedspakke."
+    },
+    "decisions": [
+      "Produser normal 4×7 med fjorten direkte åpningsfakta.",
+      "Hold teori og metode til finaldelen."
+    ],
+    "knowledge_migration": "Alle 28 spørsmål får stabile Kunst Knowledge-ID-er."
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Fire læringsjobber dekker stiftelse og sted, teknikker og program, organisering og økonomi samt institusjonell analyse."
+  },
+  "held_back_candidates": [
+    "Norske Grafikeres Verksted på Kalbakken som samme institusjon.",
+    "Programverkene som permanent samling.",
+    "Et udokumentert trykkpresse- eller matriseobjekt.",
+    "Kunstnerisk kvalitet utledet bare fra institusjonsplassering."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 6,
+      "emner": 21,
+      "topic_hooks": 60,
+      "methods": 21
+    },
+    "candidate_emner": [
+      {
+        "id": "em_kunst_institusjoner_kanon",
+        "title": "Kunstinstitusjoner og kanondannelse",
+        "score": 100
+      },
+      {
+        "id": "em_kunst_institusjonskritikk_og_representasjon",
+        "title": "Institusjonskritikk og representasjon",
+        "score": 100
+      },
+      {
+        "id": "em_kunst_kunstnerokonomi_og_prekaritet",
+        "title": "Kunstnerøkonomi, prosjektlogikk og prekær praksis",
+        "score": 100
+      },
+      {
+        "id": "em_kunst_kvalitet_kritikk_og_symbolsk_kapital",
+        "title": "Kvalitet, kritikk og symbolsk kapital",
+        "score": 100
+      },
+      {
+        "id": "em_kunst_materialitet_teknikk_handverk",
+        "title": "Materialitet, teknikk og håndverk i kunst",
+        "score": 100
+      },
+      {
+        "id": "em_kunst_okonomi_og_finansiering",
+        "title": "Kunstens økonomi, finansiering og autonomi",
+        "score": 100
+      },
+      {
+        "id": "em_kunst_teknologi_og_materialitet",
+        "title": "Teknologi og materialitet i kunst",
+        "score": 100
+      },
+      {
+        "id": "em_kunst_utdanning_og_rekruttering",
+        "title": "Kunstutdanning, rekruttering og portvoktere",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "arbeidsvilkar_og_prekaritet",
+        "title": "Arbeidsvilkår og prekariat",
+        "category_id": "produksjon_praksis",
+        "score": 10
+      },
+      {
+        "id": "arkiv_og_minne",
+        "title": "Arkiv og minne",
+        "category_id": "tid_transformasjon",
+        "score": 10
+      },
+      {
+        "id": "atelierlogikk_og_arbeidsformer",
+        "title": "Atelierlogikk og arbeidsformer",
+        "category_id": "produksjon_praksis",
+        "score": 10
+      },
+      {
+        "id": "autonomi_vs_avhengighet",
+        "title": "Autonomi vs avhengighet",
+        "category_id": "felt_institusjon",
+        "score": 10
+      },
+      {
+        "id": "distribusjonsinfrastruktur",
+        "title": "Distribusjonsinfrastruktur",
+        "category_id": "felt_institusjon",
+        "score": 10
+      },
+      {
+        "id": "diy_og_selvorganisering",
+        "title": "DIY og selvorganisering",
+        "category_id": "produksjon_praksis",
+        "score": 10
+      },
+      {
+        "id": "dokumentasjon_og_prosess",
+        "title": "Dokumentasjon og prosess",
+        "category_id": "produksjon_praksis",
+        "score": 10
+      },
+      {
+        "id": "epokefortellinger",
+        "title": "Epokefortellinger",
+        "category_id": "tid_transformasjon",
+        "score": 10
+      },
+      {
+        "id": "estetisk_hegemoni",
+        "title": "Estetisk hegemoni",
+        "category_id": "makt_legitimitet",
+        "score": 10
+      },
+      {
+        "id": "finansieringslogikk",
+        "title": "Finansieringslogikk",
+        "category_id": "felt_institusjon",
+        "score": 10
+      },
+      {
+        "id": "identitet_og_representasjon",
+        "title": "Identitet og representasjon",
+        "category_id": "makt_legitimitet",
+        "score": 10
+      },
+      {
+        "id": "inkludering_og_ekskludering",
+        "title": "Inkludering og ekskludering",
+        "category_id": "makt_legitimitet",
+        "score": 10
+      },
+      {
+        "id": "institusjonell_legitimering",
+        "title": "Institusjonell legitimering",
+        "category_id": "felt_institusjon",
+        "score": 10
+      },
+      {
+        "id": "institusjonskritikk",
+        "title": "Institusjonskritikk",
+        "category_id": "makt_legitimitet",
+        "score": 10
+      },
+      {
+        "id": "kanonisering",
+        "title": "Kanonisering",
+        "category_id": "makt_legitimitet",
+        "score": 10
+      },
+      {
+        "id": "kollektiv_vs_individuell_praksis",
+        "title": "Kollektiv vs individuell praksis",
+        "category_id": "produksjon_praksis",
+        "score": 10
+      },
+      {
+        "id": "kritikkens_rolle",
+        "title": "Kritikkens rolle",
+        "category_id": "makt_legitimitet",
+        "score": 10
+      },
+      {
+        "id": "kunst_og_politikk",
+        "title": "Kunst og politikk",
+        "category_id": "makt_legitimitet",
+        "score": 10
+      },
+      {
+        "id": "kunstnerisk_risiko",
+        "title": "Kunstnerisk risiko",
+        "category_id": "produksjon_praksis",
+        "score": 10
+      },
+      {
+        "id": "kunstutdanning_og_rekruttering",
+        "title": "Kunstutdanning og rekruttering",
+        "category_id": "felt_institusjon",
+        "score": 10
+      },
+      {
+        "id": "kuratorisk_makt",
+        "title": "Kuratorisk makt",
+        "category_id": "felt_institusjon",
+        "score": 10
+      },
+      {
+        "id": "kvalitetsregimer",
+        "title": "Kvalitetsregimer",
+        "category_id": "makt_legitimitet",
+        "score": 10
+      },
+      {
+        "id": "markedets_estetiske_pavirkningskraft",
+        "title": "Markedets estetiske påvirkningskraft",
+        "category_id": "makt_legitimitet",
+        "score": 10
+      },
+      {
+        "id": "materialvalg_som_metode",
+        "title": "Materialvalg som metode",
+        "category_id": "produksjon_praksis",
+        "score": 10
+      },
+      {
+        "id": "mediumspesifisitet",
+        "title": "Mediumspesifisitet",
+        "category_id": "estetisk_sprak_form",
+        "score": 10
+      },
+      {
+        "id": "nettverk_og_portvoktere",
+        "title": "Nettverk og portvoktere",
+        "category_id": "felt_institusjon",
+        "score": 10
+      },
+      {
+        "id": "offentlig_vs_privat_kunststruktur",
+        "title": "Offentlig vs privat kunststruktur",
+        "category_id": "felt_institusjon",
+        "score": 10
+      },
+      {
+        "id": "plattformisering_og_digitale_institusjoner",
+        "title": "Plattformisering og digitale institusjoner",
+        "category_id": "felt_institusjon",
+        "score": 10
+      },
+      {
+        "id": "produksjonstempo_og_prosjektlogikk",
+        "title": "Produksjonstempo og prosjektlogikk",
+        "category_id": "produksjon_praksis",
+        "score": 10
+      },
+      {
+        "id": "regional_vs_sentralisert_kunstfelt",
+        "title": "Regionalt vs sentralisert kunstfelt",
+        "category_id": "felt_institusjon",
+        "score": 10
+      },
+      {
+        "id": "symbolsk_kapital",
+        "title": "Symbolsk kapital",
+        "category_id": "makt_legitimitet",
+        "score": 10
+      },
+      {
+        "id": "teknologisk_produksjon",
+        "title": "Teknologisk produksjon",
+        "category_id": "produksjon_praksis",
+        "score": 10
+      },
+      {
+        "id": "tverrfaglighet_og_hybridformer",
+        "title": "Tverrfaglighet og hybridformer",
+        "category_id": "produksjon_praksis",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "felt_institusjon",
+      "produksjon_praksis",
+      "makt_legitimitet"
+    ],
+    "emne_ids": [
+      "em_kunst_institusjoner_kanon",
+      "em_kunst_utdanning_og_rekruttering",
+      "em_kunst_materialitet_teknikk_handverk",
+      "em_kunst_teknologi_og_materialitet",
+      "em_kunst_kunstnerokonomi_og_prekaritet",
+      "em_kunst_okonomi_og_finansiering",
+      "em_kunst_institusjonskritikk_og_representasjon"
+    ],
+    "topic_hook_ids": [
+      "institusjonell_legitimering"
+    ],
+    "method_ids": [
+      "met_kunst_materialitetsanalyse",
+      "met_kunst_feltanalyse",
+      "met_kunst_kanon_og_arkivanalyse",
+      "met_kunst_kuratorisk_analyse",
+      "met_kunst_institusjonsanalyse"
+    ],
+    "thinker_ids": [
+      "boris_groys"
+    ],
+    "works": [
+      "Art Power"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_norske_grafikere_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Foreningen ble stiftet 15. november 1919.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Den offisielle historikken oppgir 30 medlemmer i 1919.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Nordhagen tok imot Radérklassens første elever i 1899.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_utdanning_og_rekruttering"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Litografi og radering var sentrale i Nordhagens undervisning.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_materialitet_teknikk_handverk"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Protokollen er et fysisk spor etter stiftelsen 15. november 1919.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Anne Breivik var styreleder da eget kontor kom i 1971.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Galleriet åpnet i 1972 med statlig støtte.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Galleriet åpnet først i Hegdehaugsveien.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Dagens adresse ble tatt i bruk i 2002.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Stedet kombinerer fagorganisasjon, galleri og kunnskapssenter.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Norske Grafikeres Verksted er en annen, uavhengig institusjon.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Programmet identifiserer Bror Mikkelborgs verk som litografi.",
+      "source_ids": [
+        "program"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_materialitet_teknikk_handverk"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Mascot er et karbontrykk på papir.",
+      "source_ids": [
+        "program"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_materialitet_teknikk_handverk"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Verket er oppgitt som pigmenttrykk på bomull.",
+      "source_ids": [
+        "program"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_materialitet_teknikk_handverk"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Litografi, karbontrykk og pigmenttrykk viser et bredt medium.",
+      "source_ids": [
+        "program"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_teknologi_og_materialitet"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Programmet dokumenterer tidsbundne visninger.",
+      "source_ids": [
+        "program"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Stifterne ville bedre grafikkens praktiske og offentlige vilkår.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_kunstnerokonomi_og_prekaritet"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Foreningen organiserer selv en viktig visningsarena.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kunstnerstyring utelukker ikke avhengighet av finansiering.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_okonomi_og_finansiering"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Fondet støtter grafikkfeltet gjennom flere ordninger.",
+      "source_ids": [
+        "fund"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_okonomi_og_finansiering"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Fondet er knyttet til foreningen, men har en egen forvaltningsrolle.",
+      "source_ids": [
+        "fund"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Materialitetsanalyse undersøker hvordan teknikk og underlag påvirker verket.",
+      "source_ids": [
+        "program"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_materialitet_teknikk_handverk"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Feltanalyse kartlegger aktører, ressurser og posisjoner.",
+      "source_ids": [
+        "fund"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_okonomi_og_finansiering"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Protokollen er et organisatorisk kildespor, ikke et mål på all resepsjon.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Programmet er også et institusjonelt utvalg og argument.",
+      "source_ids": [
+        "program"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjonskritikk_og_representasjon"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Historiske påstander krever dokumenter i tillegg til observasjon.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Stedet samler flere institusjonelle ledd i grafikkfeltet.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_norske_grafikere_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Groys kan brukes til å undersøke utstillingsrommets makt uten å erstatte stedskildene.",
+      "source_ids": [
+        "program"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "relation",
+      "id": "rel_norske_grafikere_johan_nordhagen",
+      "source_file": "data/relations.json",
+      "summary": "Nordhagens undervisningsmiljø preget initiativtakerne, og han var frontfigur ved stiftelsen."
+    },
+    {
+      "type": "story",
+      "id": "st_norske_grafikere_53_ar_til_galleri",
+      "source_file": "data/stories/stories_norske_grafikere.json",
+      "summary": "Fra stiftelsesprotokollen i 1919 tok det 53 år før Norske Grafikere åpnet sitt eget kunstnerstyrte galleri."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "kunst_norske_grafikere_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_norske_grafikere_quiz_01",
+        "claim_norske_grafikere_quiz_02",
+        "claim_norske_grafikere_quiz_03",
+        "claim_norske_grafikere_quiz_04",
+        "claim_norske_grafikere_quiz_05",
+        "claim_norske_grafikere_quiz_06",
+        "claim_norske_grafikere_quiz_07"
+      ]
+    },
+    {
+      "set_id": "kunst_norske_grafikere_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_norske_grafikere_quiz_08",
+        "claim_norske_grafikere_quiz_09",
+        "claim_norske_grafikere_quiz_10",
+        "claim_norske_grafikere_quiz_11",
+        "claim_norske_grafikere_quiz_12",
+        "claim_norske_grafikere_quiz_13",
+        "claim_norske_grafikere_quiz_14"
+      ]
+    },
+    {
+      "set_id": "kunst_norske_grafikere_set_3",
+      "order": 3,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_norske_grafikere_quiz_15",
+        "claim_norske_grafikere_quiz_16",
+        "claim_norske_grafikere_quiz_17",
+        "claim_norske_grafikere_quiz_18",
+        "claim_norske_grafikere_quiz_19",
+        "claim_norske_grafikere_quiz_20",
+        "claim_norske_grafikere_quiz_21"
+      ]
+    },
+    {
+      "set_id": "kunst_norske_grafikere_set_4",
+      "order": 4,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_norske_grafikere_quiz_22",
+        "claim_norske_grafikere_quiz_23",
+        "claim_norske_grafikere_quiz_24",
+        "claim_norske_grafikere_quiz_25",
+        "claim_norske_grafikere_quiz_26",
+        "claim_norske_grafikere_quiz_27",
+        "claim_norske_grafikere_quiz_28"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 28,
+    "counts": {
+      "fact": 14,
+      "context": 7,
+      "concept_theory": 7
+    },
+    "ratios": {
+      "fact": 0.5,
+      "context": 0.25,
+      "concept_theory": 0.25
+    }
+  }
+}

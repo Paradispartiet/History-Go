@@ -1,21 +1,21 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-08-31T20:56:14.048Z
+Generert: 2026-09-01T05:42:28.997Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-08-31T20:56:14.048Z |
-| peopleFilesRead | 764 |
-| totalPeople | 1424 |
-| uniquePeopleIds | 1424 |
+| generatedAt | 2026-09-01T05:42:28.997Z |
+| peopleFilesRead | 765 |
+| totalPeople | 1425 |
+| uniquePeopleIds | 1425 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 0 |
 | peopleWithEmptyPlacesArray | 0 |
 | flatPeopleFiles | 0 |
-| geographicPeopleFiles | 764 |
+| geographicPeopleFiles | 765 |
 | categoriesRepresented | 17 |
 
 ## People-filer
@@ -157,6 +157,7 @@ Generert: 2026-08-31T20:56:14.048Z
 | data/people/kunst/oslo/ibsen_quotes/gustavo_aguerre.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/oslo/ibsen_quotes/ingrid_falk.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/oslo/mustadgarden_kongens_gate_3/otto_kunzli.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/kunst/oslo/norske_grafikere/johan_nordhagen.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_02.json | kunst | ja | 7 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_03.json | kunst | ja | 4 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_04.json | kunst | ja | 2 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -795,7 +796,7 @@ Generert: 2026-08-31T20:56:14.048Z
 | filantroper | 16 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | film_tv | 24 | 0 | 3 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | historie | 238 | 0 | 75 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| kunst | 79 | 0 | 28 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| kunst | 80 | 0 | 29 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | litteratur | 171 | 0 | 128 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | media | 31 | 0 | 6 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | musikk | 124 | 0 | 88 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
@@ -811,7 +812,7 @@ Generert: 2026-08-31T20:56:14.048Z
 
 ## Geografisk strukturstatus
 
-- Allerede geografisk strukturert: 764
+- Allerede geografisk strukturert: 765
 - Fortsatt flate filer: 0
 - Blandede kategorier: ingen
 - Trygge flate filer for neste geografiske split: ingen
@@ -971,6 +972,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/kunst/oslo/ibsen_quotes/gustavo_aguerre.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=kunst
 - data/people/kunst/oslo/ibsen_quotes/ingrid_falk.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=kunst
 - data/people/kunst/oslo/mustadgarden_kongens_gate_3/otto_kunzli.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=kunst
+- data/people/kunst/oslo/norske_grafikere/johan_nordhagen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=kunst
 - data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_02.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=7/7; source_place_id=0/7; placesArray=7/7; categories=kunst
 - data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_03.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=4/4; source_place_id=0/4; placesArray=4/4; categories=kunst
 - data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_04.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=2/2; source_place_id=0/2; placesArray=2/2; categories=kunst
