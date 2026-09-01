@@ -23,3 +23,5 @@ Verification performed locally:
 6. **Maintainability and auditability — 5/5.** The canonical generator produces the repair deterministically; the temporary workflow removes itself.
 
 **Total: 29/30 — high-quality gate passes**, subject to workflow reproduction, exact-head CI and SHA-locked merge.
+
+Workflow reproduction checkpoint: permanent generated head `f9150c6f8e71cd853a1644cce788273a20e9fc3c` and temporary run `33502309468` completed successfully, including the composed integrity commands, before the workflow removed itself. The following user-authored report commit exists only to trigger executable CI on the clean permanent head.
