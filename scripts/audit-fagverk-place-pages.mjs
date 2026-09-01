@@ -9,6 +9,7 @@ const portal = readJson('data/fagverk/fagverk_portal.json');
 const categories = readJson('data/categories/category_contract.json');
 const indexDocument = readJson('data/places/places_index.json');
 const schema = readJson('data/places/regler/place_fagverk_v2.schema.json');
+const fagManifest = readJson('data/fag/fag_manifest.json');
 const indexRows = Array.isArray(indexDocument) ? indexDocument : indexDocument.places || [];
 const portalById = new Map((portal.categories || []).map((row) => [row.id, row]));
 const mapping = registry.placePage?.fallbackSubjectByCategory || {};
@@ -75,6 +76,15 @@ function loadPlace(row) {
   };
 }
 
+function foundationEmneIds(subjectId, subject) {
+  if (text(subject?.canonicalModel?.schemaFamily) !== 'foundation_v1') return [];
+  const pointer = text(fagManifest?.[subjectId]?.emner);
+  if (!pointer) return [];
+  const document = readJson(`data/fag/${pointer}`);
+  const rows = Array.isArray(document) ? document : list(document.emners || document.emner || document.items);
+  return rows.map((row) => text(row?.emne_id || row?.id)).filter(Boolean);
+}
+
 function buildSubjectTargets() {
   const targets = new Map();
   for (const [subjectId, subject] of Object.entries(registry.subjects || {})) {
@@ -84,7 +94,9 @@ function buildSubjectTargets() {
       if (text(chapter.id)) chapterIds.add(chapter.id);
       for (const emneId of list(chapter.emne_ids)) emneIds.add(emneId);
     }
-    targets.set(subjectId, { emneIds, chapterIds });
+    for (const emneId of foundationEmneIds(subjectId, subject)) emneIds.add(emneId);
+    const chapterlessFoundation = text(subject?.canonicalModel?.schemaFamily) === 'foundation_v1' && chapterIds.size === 0;
+    targets.set(subjectId, { emneIds, chapterIds, chapterlessFoundation });
   }
   return targets;
 }
@@ -182,7 +194,10 @@ function validateFagverk(place, sourceFile, indexEntry) {
   if (list(fagverk.concepts).length < requirements.concepts) errors.push(`${prefix} for få sentrale begreper`);
   if (list(fagverk.observable_traces).length < requirements.traces) errors.push(`${prefix} for få observerbare spor`);
   if (list(fagverk.source_urls).length < requirements.sources) errors.push(`${prefix} for få kontrollerte kilder`);
-  if (list(fagverk.chapter_ids).length < requirements.chapters) errors.push(`${prefix} mangler relevante canonicale kapitler`);
+  const selectedTargets = list(fagverk.subject_ids).map((subjectId) => subjectTargets.get(subjectId)).filter(Boolean);
+  const chapterlessFoundation = selectedTargets.length > 0 && selectedTargets.every((target) => target.chapterlessFoundation);
+  const requiredChapters = fagverk.level === 'standard' && chapterlessFoundation ? 0 : requirements.chapters;
+  if (list(fagverk.chapter_ids).length < requiredChapters) errors.push(`${prefix} mangler relevante canonicale kapitler`);
 
   const lensIds = new Set();
   for (const lens of list(fagverk.lenses)) {
