@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-08-31T15:12:47.479Z
+Generert: 2026-09-01T12:17:53.680Z
 
 ## Oppsummering
-- Aktive filer validert: **1546**
-- Antall steder validert: **1546**
+- Aktive filer validert: **1547**
+- Antall steder validert: **1547**
 - Harde feil: **0**
 - Varsler: **662**
-- Coordinate review candidates: **807** signaler fordelt på **702** steder
+- Coordinate review candidates: **808** signaler fordelt på **703** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -1564,6 +1564,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/oslo/places_historie/akershus_slott.json
 - data/places/religion/oslo/akershus_slottskirke/akershus_slottskirke.json
 - data/places/religion/oslo/det_kongelige_mausoleum/det_kongelige_mausoleum.json
+- data/places/by/oslo/places/hammersborg_torg.json
 
 ## Harde feil
 - Ingen
@@ -2234,7 +2235,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 807 signaler fordelt på 702 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 808 signaler fordelt på 703 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
@@ -2246,7 +2247,7 @@ Totalt 807 signaler fordelt på 702 steder. Et sted kan ha flere signaler. Kandi
 | svært stor r (>=500 m) uten coordNote | 66 |
 | park/stort område uten anchors eller coordNote | 115 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 58 |
-| svært liten r (<60 m) for sted som ser utstrakt ut | 11 |
+| svært liten r (<60 m) for sted som ser utstrakt ut | 12 |
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 10 |
 
 ### coordStatus=verified uten coordPrecisionM (391)
@@ -3065,7 +3066,7 @@ Totalt 807 signaler fordelt på 702 steder. Et sted kan ha flere signaler. Kandi
 | etne_bmx_og_skatepark | Etne BMX- og skatepark | sport | data/places/sport/vestland/etne/etne_bmx_og_skatepark/etne_bmx_og_skatepark.json | 59.66795396985244 | 5.942168981207253 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | skanevik_skatepark | Skånevik skatepark | sport | data/places/sport/vestland/etne/skanevik_skatepark/skanevik_skatepark.json | 59.73 | 5.92 | 220 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 
-### svært liten r (<60 m) for sted som ser utstrakt ut (11)
+### svært liten r (<60 m) for sted som ser utstrakt ut (12)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -3080,6 +3081,7 @@ Totalt 807 signaler fordelt på 702 steder. Et sted kan ha flere signaler. Kandi
 | lesekiosk_78_olav_kyrres_plass | Lesekiosk 78 – Olav Kyrres plass | litteratur | data/places/litteratur/oslo/lesekiosk/lesekiosk_78_olav_kyrres_plass.json | 59.9192766 | 10.6945543 | 45 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
 | mosseveien_miljostasjon | Mosseveien miljøstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/mosseveien_miljostasjon.json | 59.880436134678 | 10.773377511603 | 45 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
 | tveita_miljostasjon | Tveita miljøstasjon | natur | data/places/natur/oslo/miljo_gjenbruk/tveita_miljostasjon.json | 59.916287307096 | 10.847120089516 | 45 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
+| hammersborg_torg | Hammersborg torg | by | data/places/by/oslo/places/hammersborg_torg.json | 59.9167293 | 10.7484971 | 45 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
 
 ### identisk/nesten identisk lat/lon som annet sted uten forklaring (10)
 
