@@ -7,6 +7,7 @@ on:
     paths:
       - .github/workflows/finalize-fagverk-legacy-central-city.yml
       - tools/finalize-fagverk-legacy-central-city.mjs
+      - tools/patch-fagverk-legacy-central-city-full.mjs
 
 permissions:
   contents: write
@@ -33,6 +34,8 @@ jobs:
           git merge --no-edit origin/main
       - name: Curate four completed Place Fagverk packages
         run: node tools/finalize-fagverk-legacy-central-city.mjs
+      - name: Strengthen full Fagverk packages
+        run: node tools/patch-fagverk-legacy-central-city-full.mjs
       - name: Rebuild deterministic quiz contexts
         run: |
           node scripts/build-quiz-production-context.mjs --category by --target bankplassen --output data/quiz/production_context/by/bankplassen.json
@@ -82,7 +85,10 @@ jobs:
             data/fagverk/fagverk_registry.json \
             data/fagverk/fagverk_release.json \
             reports/fagverk/fagverk-place-page-coverage-v2.json
-          git rm tools/finalize-fagverk-legacy-central-city.mjs .github/workflows/finalize-fagverk-legacy-central-city.yml
+          git rm \
+            tools/finalize-fagverk-legacy-central-city.mjs \
+            tools/patch-fagverk-legacy-central-city-full.mjs \
+            .github/workflows/finalize-fagverk-legacy-central-city.yml
           git diff --cached --quiet && { echo "No production changes to commit"; exit 1; }
           git commit -m "Curate central-city Fagverk legacy batch"
           git push origin HEAD:${GITHUB_REF_NAME}
