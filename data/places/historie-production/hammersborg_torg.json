@@ -1,0 +1,276 @@
+{
+  "schemaVersion": "historie_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "hammersborg_torg",
+  "placeFile": "data/places/by/oslo/places/hammersborg_torg.json",
+  "status": "ready",
+  "historicalIdentity": {
+    "statement": "Et navngitt torg som flyttet tyngdepunkt fra et tett boligmiljø foran Margaretakyrken til et etterkrigsbyrom ved OBOS-anlegget.",
+    "placeRelationType": "historical_landscape",
+    "placeRelationStatement": "Place-ID-en representerer dagens avgrensede torg og det direkte dokumenterte eldre navne- og torglaget, ikke hele Hammersborg.",
+    "temporalScope": {
+      "start": "1851",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Perioden dekker arbeiderboligen, det eldre torgets dokumenterte infrastruktur, saneringen, det nye torget og den siste planlagte ombyggingsfasen."
+    },
+    "sourceIds": [
+      "source_byleksikon",
+      "source_lokalwiki",
+      "source_dagsavisen",
+      "source_arbeiderboliger"
+    ]
+  },
+  "historyTopics": [
+    {
+      "emneId": "em_his_historiske_lag_i_byrom",
+      "siteSpecificRationale": "Torgets flyttede plassering, rivninger og bevarte navn gjør brudd og kontinuitet synlig.",
+      "caseIds": [
+        "case_hammersborg_flyttet_torg"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_byleksikon",
+      "url": "https://oslobyleksikon.no/side/Hammersborg_Torg",
+      "sourceLocation": "Navn, gammel og ny plassering, bygningsanlegg og 1999",
+      "sourceType": "institutional",
+      "verifiedAt": "2026-09-01",
+      "temporalCoverage": "mixed",
+      "provenance": "Redigert Oslo-spesifikt oppslagsverk.",
+      "limitations": "Kortfattet om beboernes erfaringer."
+    },
+    {
+      "id": "source_lokalwiki",
+      "url": "https://lokalhistoriewiki.no/Hammersborg_torg",
+      "sourceLocation": "Adresser, objekter, bygninger og befolkning",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-09-01",
+      "temporalCoverage": "retrospective",
+      "provenance": "Lokalhistorisk oppslagsverk med kildereferanser.",
+      "limitations": "Oppgir 1961 for Bolig’n, i konflikt med andre kilder."
+    },
+    {
+      "id": "source_dagsavisen",
+      "url": "https://www.dagsavisen.no/nyheter/forstaden-som-forsvant/9970229",
+      "sourceLocation": "Forstaden og saneringen",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-09-01",
+      "temporalCoverage": "retrospective",
+      "provenance": "Historiker Johanne Bergkvists framstilling basert på Oslo byarkiv.",
+      "limitations": "Avisformat, ikke komplett saneringsarkiv."
+    },
+    {
+      "id": "source_arbeiderboliger",
+      "url": "https://oslobyleksikon.no/side/Arbeiderboliger",
+      "sourceLocation": "Selskapet og første bygg",
+      "sourceType": "institutional",
+      "verifiedAt": "2026-09-01",
+      "temporalCoverage": "retrospective",
+      "provenance": "Oslo byleksikons arbeiderboligoversikt.",
+      "limitations": "Oppgir tidlig i 1960-årene, ikke eksakt rivningsdato."
+    },
+    {
+      "id": "source_obos",
+      "url": "https://www.obos.no/naringseiendom/eiendommer/hammersborg-torg",
+      "sourceLocation": "Utflytting og prosjektstatus",
+      "sourceType": "primary",
+      "verifiedAt": "2026-09-01",
+      "temporalCoverage": "current",
+      "provenance": "OBOS’ egen prosjektside.",
+      "limitations": "Markedsfører eget prosjekt og dokumenterer plan best, ikke uavhengig ferdigkontroll."
+    }
+  ],
+  "caseRealizations": [
+    {
+      "id": "case_hammersborg_flyttet_torg",
+      "claim": "Hammersborg torg viser hvordan et stedsnavn kan bestå gjennom rivning, flyttet geometri og nytt bygningsprogram.",
+      "temporalSequence": {
+        "scope": {
+          "start": "1851",
+          "end": "1999",
+          "precision": "period",
+          "rationale": "Caset følger arbeiderboligen, saneringen, det nye torget og senere rehabilitering."
+        },
+        "startPoint": "Bolig’n ble oppført i 1852 ved det eldre torget.",
+        "endPoint": "Det nye torget ble rehabilitert i 1999.",
+        "breaks": [
+          "Saneringen begynte i 1921.",
+          "Hammersborgslottet ble revet i 1925.",
+          "Bolig’n ble revet tidlig i 1960-årene.",
+          "OBOS-anlegget og dagens torg ble etablert i 1963–64."
+        ],
+        "continuities": [
+          "Navnet Hammersborg torg ble videreført.",
+          "Stedet forble et offentlig orienteringspunkt mellom Grubbegata og Møllergata."
+        ],
+        "sourceIds": [
+          "source_byleksikon",
+          "source_lokalwiki",
+          "source_dagsavisen",
+          "source_arbeiderboliger"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Beboerne på det eldre Hammersborg",
+          "roleOrInterest": "Bodde i det tette boligmiljøet rundt torget.",
+          "powerPosition": "Kildene dokumenterer befolkning og boliger bedre enn medvirkning i saneringsbeslutningene.",
+          "sourceIds": [
+            "source_lokalwiki",
+            "source_dagsavisen"
+          ]
+        },
+        {
+          "name": "Oslo kommune og utbyggingsaktører",
+          "roleOrInterest": "Gjennomførte sanering og ny bystruktur.",
+          "powerPosition": "Kontrollerte plan- og gjennomføringsprosesser, mens åpne kilder ikke dekker alle beslutningsledd.",
+          "sourceIds": [
+            "source_byleksikon",
+            "source_dagsavisen"
+          ]
+        },
+        {
+          "name": "OBOS, Frode Rinnan og Olav Tveten",
+          "roleOrInterest": "Byggherreidentitet og arkitekter for etterkrigsanlegget.",
+          "powerPosition": "Formet den dokumenterte bygningsløsningen, men representerer ikke alene alle saneringsbeslutninger.",
+          "sourceIds": [
+            "source_byleksikon"
+          ]
+        }
+      ],
+      "conflictOrNegotiation": {
+        "statement": "Overgangen erstattet et tett boligmiljø med større bygningsvolumer og åpen plass; kildene dokumenterer utfallet bedre enn alle beboerposisjoner og forhandlingsledd.",
+        "sourceIds": [
+          "source_dagsavisen",
+          "source_lokalwiki"
+        ]
+      },
+      "sourceComparison": {
+        "sourceIds": [
+          "source_byleksikon",
+          "source_lokalwiki",
+          "source_arbeiderboliger"
+        ],
+        "comparison": "Byleksikon bærer torg- og anleggshistorien, Lokalhistoriewiki detaljene om adresser og objekter, og arbeiderboligoppslaget selskapets første bygg.",
+        "contradictionsOrSilences": "Rivningen av Bolig’n dateres til 1961 eller 1962; åpne kilder dokumenterer ikke alle beboernes syn på saneringen.",
+        "conclusionLimits": "Canonical tekst bruker tidlig i 1960-årene og påstår ikke lokal enighet eller én uttømmende årsak."
+      },
+      "comparativeScale": {
+        "localFinding": "Et lokalt torgnavn overlevde et omfattende fysisk brudd.",
+        "widerContext": "Caset viser etterkrigstidens sanering og skalaskifte i sentrale nordiske byområder uten å gjøre Hammersborg representativt for alle slike prosesser.",
+        "scale": "national",
+        "sourceIds": [
+          "source_byleksikon",
+          "source_dagsavisen"
+        ]
+      },
+      "causationAndUncertainty": {
+        "causalAssessment": "Saneringen muliggjorde den dokumenterte nye torggeometrien og OBOS-anlegget, men åpne kilder isolerer ikke én fullstendig beslutningsårsak.",
+        "alternativeExplanations": [
+          "Boligstandard, kommunal planlegging, tomtebehov og institusjonell utbygging kan ha virket sammen."
+        ],
+        "uncertainty": "Beboerperspektiver, kostnader og detaljert beslutningsgang er ufullstendig dekket i de åpne kildene.",
+        "sourceIds": [
+          "source_dagsavisen",
+          "source_byleksikon",
+          "source_lokalwiki"
+        ]
+      }
+    }
+  ],
+  "presentTrace": {
+    "objectStatus": "altered",
+    "statement": "Dagens torgflate og OBOS-anlegget viser etterkrigsfasen; vannpost, pissoir, Bolig’n og Hammersborgslottet finnes bare i arkiv- og tekstspor.",
+    "originalSiteRelationship": "Geometriankeret gjelder dagens torgflate, mens det eldre torget lå forskjøvet foran Margaretakyrken.",
+    "sourceIds": [
+      "source_byleksikon",
+      "source_lokalwiki",
+      "source_obos"
+    ]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "hammersborg_torg",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/by/hammersborg_torg.json",
+    "productionContext": "data/quiz/production_context/by/hammersborg_torg.json",
+    "requiredInputs": [
+      "data/fag/by/pensum_by.json",
+      "data/fag/by/emner_by.json",
+      "data/fag/by/fagkart_by.json",
+      "data/fag/by/methods_by.json",
+      "data/fag/by/supersetQUIZMAL_by.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "PASS",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Kronologien følger bolig, hverdagsinfrastruktur, sanering, nybygg, rehabilitering og planlagt ombygging; Story samler flyttingen uten å overdrive årsak."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "historicalIdentity",
+        "caseRealizations.case_hammersborg_flyttet_torg"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "historicalIdentity",
+        "caseRealizations.case_hammersborg_flyttet_torg"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "historicalIdentity",
+        "caseRealizations.case_hammersborg_flyttet_torg"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "historicalIdentity",
+        "caseRealizations.case_hammersborg_flyttet_torg"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "historicalIdentity",
+        "caseRealizations.case_hammersborg_flyttet_torg"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "historicalIdentity",
+        "caseRealizations.case_hammersborg_flyttet_torg"
+      ]
+    },
+    "G": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "quizOpening"
+      ]
+    },
+    "H": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "chronologyStories"
+      ]
+    }
+  },
+  "review": {
+    "reviewer": "Hammersborg torg phase 1–24 Historie review",
+    "reviewedAt": "2026-09-01",
+    "notes": "Eldre og dagens torg er skilt, rivningsavviket publiseres, og september 2026 står som planlagt status."
+  }
+}
