@@ -1,0 +1,1041 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "psykologi_arbeids_og_karriereveiledning",
+  "title": "Arbeids- og karriereveiledning — valgautonomi, sortering og situert tillit",
+  "status": "role_world_complete",
+  "materialization": {
+    "authored_dimensions": [
+      "situated_reputation"
+    ],
+    "no_new_runtime": true,
+    "existing_plan_preserved": true,
+    "existing_role_model_preserved": true,
+    "existing_people_foundation_preserved": true,
+    "existing_work_grammar_preserved": true,
+    "existing_persistent_work_preserved": true,
+    "existing_rhythm_preserved": true,
+    "cross_role_link_materialized": false,
+    "source_refs": [
+      "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json#psykologi_arbeids_og_karriereveiledning_job_eget_maal_001",
+      "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json#psykologi_arbeids_og_karriereveiledning_job_kartlegging_002",
+      "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json#psykologi_arbeids_og_karriereveiledning_job_jobbmatch_003",
+      "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json#psykologi_arbeids_og_karriereveiledning_job_systemfrist_004",
+      "data/Civication/mailFamilies/psykologi/people/psykologi_arbeids_og_karriereveiledning_people.json#psykologi_arbeids_og_karriereveiledning_people_nora_samtykke_005",
+      "data/Civication/mailFamilies/psykologi/people/psykologi_arbeids_og_karriereveiledning_people.json#psykologi_arbeids_og_karriereveiledning_people_samir_metode_006",
+      "data/Civication/mailFamilies/psykologi/people/psykologi_arbeids_og_karriereveiledning_people.json#psykologi_arbeids_og_karriereveiledning_people_elin_informasjon_007",
+      "data/Civication/mailFamilies/psykologi/people/psykologi_arbeids_og_karriereveiledning_people.json#psykologi_arbeids_og_karriereveiledning_people_marius_handoff_008",
+      "data/Civication/mailFamilies/psykologi/conflict/psykologi_arbeids_og_karriereveiledning_conflict.json#psykologi_arbeids_og_karriereveiledning_conflict_helsepress_009",
+      "data/Civication/mailFamilies/psykologi/story/psykologi_arbeids_og_karriereveiledning_story.json#psykologi_arbeids_og_karriereveiledning_story_vikariat_010",
+      "data/Civication/mailFamilies/psykologi/event/psykologi_arbeids_og_karriereveiledning_event.json#psykologi_arbeids_og_karriereveiledning_event_intervjuendring_011",
+      "data/Civication/mailFamilies/psykologi/micro/psykologi_arbeids_og_karriereveiledning_micro.json#psykologi_arbeids_og_karriereveiledning_micro_cv_hull_012",
+      "data/Civication/mailFamilies/psykologi/followup/psykologi_arbeids_og_karriereveiledning_followup.json#psykologi_arbeids_og_karriereveiledning_followup_ubrukt_plan_013",
+      "data/Civication/mailFamilies/psykologi/knowledge/psykologi_arbeids_og_karriereveiledning_knowledge.json#psykologi_arbeids_og_karriereveiledning_knowledge_historisk_sortering_014",
+      "data/Civication/mailFamilies/psykologi/consequence/psykologi_arbeids_og_karriereveiledning_consequence.json#psykologi_arbeids_og_karriereveiledning_consequence_tillit_og_tilbud_015"
+    ]
+  },
+  "existing_work_continuity": {
+    "runtime_binding": "existing_mail_plan_and_work_grammar",
+    "new_runtime_state": false,
+    "work_loops": [
+      "eget mål -> evidens og alternativer -> venting på avklaring -> samtykkebundet handoff -> handling -> oppfølging -> rework eller lukking",
+      "arbeidsgiver- eller systemkrav -> relevansavklaring -> veisøkerens valg -> avgrenset deling -> respons -> planrevisjon"
+    ],
+    "persistent_work_object": "samtykkebundet_valg_og_overgangsplan",
+    "canonical_surfaces": [
+      "data/Civication/roleModels/psykologi/psykologi_arbeids_og_karriereveiledning.json",
+      "data/Civication/workGrammars/psykologi/psykologi_arbeids_og_karriereveiledning.json",
+      "data/Civication/mailPlans/psykologi/psykologi_arbeids_og_karriereveiledning_plan.json",
+      "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json",
+      "data/Civication/mailFamilies/psykologi/people/psykologi_arbeids_og_karriereveiledning_people.json",
+      "data/Civication/mailFamilies/psykologi/conflict/psykologi_arbeids_og_karriereveiledning_conflict.json",
+      "data/Civication/mailFamilies/psykologi/story/psykologi_arbeids_og_karriereveiledning_story.json",
+      "data/Civication/mailFamilies/psykologi/event/psykologi_arbeids_og_karriereveiledning_event.json",
+      "data/Civication/mailFamilies/psykologi/micro/psykologi_arbeids_og_karriereveiledning_micro.json",
+      "data/Civication/mailFamilies/psykologi/followup/psykologi_arbeids_og_karriereveiledning_followup.json",
+      "data/Civication/mailFamilies/psykologi/knowledge/psykologi_arbeids_og_karriereveiledning_knowledge.json",
+      "data/Civication/mailFamilies/psykologi/consequence/psykologi_arbeids_og_karriereveiledning_consequence.json"
+    ],
+    "rule": "Eksisterende plan, fire fiktive aktører, fire arbeidsflater, venting, handoff, rework, samtykke og veisøkerens beslutningsrett forblir authoritative."
+  },
+  "sociological_core": [
+    "resultatpress kan gjøre systemaktivitet til et lånt livsmål",
+    "kartlegging og arbeidsmarkedsfiltre fordeler muligheter og definisjonsmakt",
+    "samtykke og privatliv prøves i porten mellom veisøker, arbeidsgiver og offentlig oppfølging"
+  ],
+  "employment_conditions": [
+    "rådgiver- eller veilederansvar uten klinisk autorisasjon",
+    "resultat- og fristpress i et fleraktørsystem",
+    "kunnskapsasymmetri uten beslutningsrett over veisøkerens liv"
+  ],
+  "professional_culture": [
+    "veisøkerens begrunnelse kan motsi både skjema og systemfrist",
+    "faglig kvalitet krever sporbar tvil og rework",
+    "relevant deling er mindre enn alt et system eller en arbeidsgiver ønsker å vite"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "nora_veisoker_karriereskifte_world",
+      "social_function": "Nora eier målet, begrunnelsen og beslutningen i overgangsplanen. Hun prøver å bygge videre på erfaring uten å reduseres til et fravær i CV-en, et tiltaksmål eller resultatet fra ett kartleggingsverktøy.",
+      "class_position": "veisøker i karriereskifte",
+      "status": "Situert profesjonell standing knyttet til veiledningsrommet_for_maal_og_samtykke.",
+      "power_over_player": "Nora kan gi, avgrense og trekke samtykke og kan velge bort veilederens forslag. Veilederen kan strukturere alternativer, men kan ikke diagnostisere henne, dele helseopplysninger eller bestemme arbeid eller utdanning på hennes vegne.",
+      "wants": "Å eie retningen og kunne endre planen når erfaring, verdier eller hverdagsrammer motsier det første utkastet.",
+      "conceals": "Hun toner ned tvil når hun merker at systemet belønner raske og ryddige svar.",
+      "speech_style": "Konkret om erfaring og belastning, men kort og ettergivende når tidsfristen presenteres som uunngåelig.",
+      "teaches_player": "At fravær av protest ikke er måleierskap, og at et gyldig samtykke må kunne avgrenses uten at muligheter straffes."
+    },
+    {
+      "id": "samir_fagkollega_karriereveiledning_world",
+      "social_function": "Samir kvalitetssikrer at interessekartlegging, kompetansebeskrivelse og arbeidsmarkedsinformasjon brukes som spørsmål som kan motsies av erfaring, verdier og hverdagsrammer, ikke som en sorteringsfasit.",
+      "class_position": "fagkollega og metodeansvarlig",
+      "status": "Situert profesjonell standing knyttet til kartleggings_og_mulighetsverkstedet.",
+      "power_over_player": "Samir kan utfordre metodebruk og be om ny begrunnelse. Han kan ikke gjøre et kartleggingsresultat til klinisk vurdering eller overstyre veisøkerens mål, og faglig uenighet må bevares i neste handoff.",
+      "wants": "At kollegiet bruker kartlegging transparent nok til at veisøkerens erfaring kan motsi både verktøy og veileder.",
+      "conceals": "Han liker metodisk orden og kan derfor undervurdere hvor mye autoritet et ryddig skjema får i et presset system.",
+      "speech_style": "Analytisk og spørrende, med krav om å skille observasjon, hypotese, veisøkerens ord og faglig konklusjon.",
+      "teaches_player": "At god faglig kvalitet innebærer sporbar tvil, rework og bevart uenighet, ikke bare en konsistent plan."
+    },
+    {
+      "id": "elin_arbeidsgiverkontakt_inkludering_world",
+      "social_function": "Elin konkretiserer arbeidsoppgaver, krav, tilretteleggingsmuligheter og rekrutteringsfrister. Hun gjør jobbmatch mulig, men hennes behov for trygghet skaper press for mer personinformasjon enn stillingen nødvendigvis krever.",
+      "class_position": "arbeidsgiverkontakt",
+      "status": "Situert profesjonell standing knyttet til arbeidsgiverdialogens_matchbord.",
+      "power_over_player": "Elin kan avgjøre hvem arbeidsgiveren går videre med innen lovlige rammer. Hun kan ikke kreve at veilederen deler sensitive opplysninger uten grunnlag og avklart samtykke, eller bruke veilederens antakelser som helse- eller arbeidsevnevurdering.",
+      "wants": "Å finne en kandidat som kan løse de reelle oppgavene og samtidig redusere arbeidsgiverens usikkerhet før intervjuet.",
+      "conceals": "Hun vet at enkelte personspørsmål er unødvendige, men opplever dem som en raskere vei til intern godkjenning.",
+      "speech_style": "Resultatorientert og vennlig, men presser på med korte frister og formuleringer om hva som vil gjøre prosessen enklere.",
+      "teaches_player": "At en jobbmulighet skaper maktasymmetri, og at relevans må forsvares før personopplysninger deles."
+    },
+    {
+      "id": "marius_nav_oppfolgingskontakt_world",
+      "social_function": "Marius forvalter reelle frister og rammer i oppfølgingen og trenger en plan som kan etterprøves. Han synliggjør når systemets tempo ikke samsvarer med tiden veisøkeren trenger for å undersøke alternativer.",
+      "class_position": "NAV-kontakt og oppfølgingspartner",
+      "status": "Situert profesjonell standing knyttet til oppfolgingsplanens_handoffpunkt.",
+      "power_over_player": "Marius kan be om avtalte oppfølgingspunkter innen eget mandat. Han kan ikke gjøre en foreløpig plan til veisøkerens endelige valg, kreve overskuddsinformasjon eller låne klinisk myndighet til oppfølgingssystemet.",
+      "wants": "Å få en etterprøvbar oppfølgingsplan som oppfyller reelle frister uten at usikkerhet og venting forsvinner fra saken.",
+      "conceals": "Han er redd for at åpne alternativer skal se ut som manglende framdrift i systemets rapportering.",
+      "speech_style": "Friststyrt og saklig, med vekt på aktivitet, eier og dato, men mottakelig for presise begrunnelser for venting.",
+      "teaches_player": "At systemkrav kan oppfylles med et sant neste steg uten å gjøre utforsking til et endelig livsvalg."
+    }
+  ],
+  "social_environments": [
+    "veiledningsrommet_for_maal_og_samtykke",
+    "kartleggings_og_mulighetsverkstedet",
+    "arbeidsgiverdialogens_matchbord",
+    "oppfolgingsplanens_handoffpunkt"
+  ],
+  "slow_axes": [
+    "goal_ownership",
+    "consent_integrity",
+    "method_humility",
+    "system_time",
+    "match_truth",
+    "private_containment"
+  ],
+  "situated_reputation_model": {
+    "global_score_allowed": false,
+    "audiences": [
+      {
+        "id": "seekers",
+        "standing_axis": "autonomy_and_consent_standing",
+        "cares_about": [
+          "at egne mål, erfaringer og samtykke faktisk styrer planen",
+          "at foreløpige tolkninger kan motsies og revideres"
+        ],
+        "cannot_grant": "Veisøkerens tillit kan ikke gi veilederen rett til å diagnostisere, behandle eller bestemme arbeid og utdanning på personens vegne."
+      },
+      {
+        "id": "guidance_colleagues",
+        "standing_axis": "method_and_reflection_standing",
+        "cares_about": [
+          "etterprøvbar metodebruk og bevart faglig uenighet",
+          "at kartlegging brukes som spørsmål og ikke personmerkelapp"
+        ],
+        "cannot_grant": "Faglig standing kan ikke gjøre kartleggingsresultater til diagnose, klinisk arbeidsevnevurdering eller sannhet om veisøkeren."
+      },
+      {
+        "id": "team_leadership",
+        "standing_axis": "delivery_and_boundary_standing",
+        "cares_about": [
+          "realistiske frister, synlig restarbeid og ansvarlig lukking",
+          "at resultatpress ikke forfalsker måleierskap eller samtykke"
+        ],
+        "cannot_grant": "Lederstanding kan ikke gi klinisk autorisasjon, utvide samtykke eller overføre beslutningen om livsvalg fra veisøkeren."
+      },
+      {
+        "id": "employers",
+        "standing_axis": "relevance_and_match_standing",
+        "cares_about": [
+          "presise arbeidskrav, sannferdig kompetanse og avgrenset deling",
+          "at en match tåler den faktiske arbeidshverdagen"
+        ],
+        "cannot_grant": "Arbeidsgiverstanding kan ikke gi tilgang til sensitive opplysninger, omgjøre veiledning til helseattest eller presse fram ugyldig samtykke."
+      },
+      {
+        "id": "public_service_partners",
+        "standing_axis": "handoff_and_accountability_standing",
+        "cares_about": [
+          "tydelig neste eier, ventepunkt, frist og vurderingsdato",
+          "at systemaktivitet ikke forveksles med veisøkerens endelige valg"
+        ],
+        "cannot_grant": "Systemstanding kan ikke gjøre en foreløpig plan bindende, legitimere overskuddsinformasjon eller låne klinisk myndighet."
+      },
+      {
+        "id": "education_and_training_partners",
+        "standing_axis": "pathway_and_feasibility_standing",
+        "cares_about": [
+          "realistiske kvalifiseringsløp og synlige overgangskostnader",
+          "at kortsiktig aktivitet ikke skjuler et langsiktig læringsmål"
+        ],
+        "cannot_grant": "Utdanningsstanding kan ikke gjøre veilederens råd til opptaksvedtak, egnethetsdom eller beslutning over veisøkerens framtid."
+      },
+      {
+        "id": "private_relations",
+        "standing_axis": "presence_and_confidentiality_standing",
+        "cares_about": [
+          "nærvær uten at arbeidsdagen tar over privatlivet",
+          "at taushetsplikt og usikkerhet bæres uten uformell saksdrøfting"
+        ],
+        "cannot_grant": "Privat tillit kan ikke brukes som faglig fullmakt eller gjøre nære relasjoner til reserveveiledere og mottakere av personopplysninger."
+      }
+    ],
+    "authority_separation": "Standing kan aldri gi diagnostisk eller behandlingsmessig myndighet, klinisk arbeidsevnevurdering, tilgang til sensitive opplysninger, opptaks- eller ansettelsesmyndighet eller beslutningsrett over veisøkerens arbeid og utdanning.",
+    "rule": "Standing divergerer mellom publikum, kan gå i ulike retninger etter samme valg og summeres aldri globalt."
+  },
+  "history_go_affordance": {
+    "source_ref": "data/Civication/mailFamilies/psykologi/knowledge/psykologi_arbeids_og_karriereveiledning_knowledge.json#psykologi_arbeids_og_karriereveiledning_knowledge_historisk_sortering_014",
+    "knowledge_use": "Institusjons-, testings- og arbeidsmarkedshistorie brukes til å undersøke hvordan kategorier og veiledningsverktøy fordeler synlighet og muligheter.",
+    "better_question": "Hvilke historiske institusjons-, testings- og arbeidsmarkedsforhold gjorde denne kategorien nyttig, hvem ble sortert eller usynliggjort av den, hvilken nåværende evidens motsier den, og hvordan kan Nora selv prøve alternativet uten at historien blir en egnethetsdom?",
+    "authority_boundary": "History Go kan skjerpe spørsmål om system, kategori og makt, men kan ikke diagnostisere, behandle, vurdere klinisk arbeidsevne, gi tilgang til persondata eller bestemme Noras jobb og utdanning."
+  },
+  "cross_role_link": {
+    "status": "candidate_when_shared_work_is_real",
+    "materialized": false,
+    "new_runtime": false,
+    "companion_keys": [
+      "psykologi/klinikkleder",
+      "psykologi/psykologi_miljoarbeid"
+    ],
+    "rule": "Ingen delt runtime eller shared_work_object opprettes før faktisk felles arbeid, eierskap, samtykke og handoff er styrt."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "class_power",
+    "bureaucratic_power",
+    "care_vs_efficiency",
+    "shame_reputation",
+    "precarity",
+    "status_anxiety",
+    "public_private_leakage",
+    "local_knowledge_vs_system",
+    "invisible_work",
+    "emotional_labor"
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Nora sier at hun kan søke «hva som helst» fordi systemfristen nærmer seg, men formuleringen bærer veilederens hastverk mer enn hennes egen retning. Morgenen krever at spilleren skiller Noras ord, dokumentert evidens, egen tolkning og institusjonell frist; alt som fortsatt er uavklart merkes før planen oppdateres. Sesongen åpner med forskjellen mellom registrert aktivitet og et mål personen faktisk kan eie. I D1-morning oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "seekers",
+        "standing_consequence": "D1-morning gjør den situerte kostnaden synlig for seekers, som vurderer veilederen etter at egne mål, erfaringer og samtykke faktisk styrer planen. Når kildene skilles før første handling, kan senere aktører se hva de faktisk vet; hvis tolkningen skjules som fakta, starter resten av dagen med en lånt sikkerhet. Sesongen åpner med forskjellen mellom registrert aktivitet og et mål personen faktisk kan eie. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json#psykologi_arbeids_og_karriereveiledning_job_eget_maal_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Nora sier at hun kan søke «hva som helst» fordi systemfristen nærmer seg, men formuleringen bærer veilederens hastverk mer enn hennes egen retning. I lunsjsamtalen må den berørte personen få korrigere premisset, og faglig uenighet, samtykkeendring og ubesvarte spørsmål må følge handoffen uten å glattes bort. Sesongen åpner med forskjellen mellom registrert aktivitet og et mål personen faktisk kan eie. I D1-lunch oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "guidance_colleagues",
+        "standing_consequence": "D1-lunch gjør den situerte kostnaden synlig for guidance_colleagues, som vurderer veilederen etter etterprøvbar metodebruk og bevart faglig uenighet. Når korrigeringen blir stående i planen, kan uenighet forbedre neste møte; hvis den redigeres bort, blir høflighet feilaktig lest som samtykke. Sesongen åpner med forskjellen mellom registrert aktivitet og et mål personen faktisk kan eie. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json#psykologi_arbeids_og_karriereveiledning_job_kartlegging_002"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Nora sier at hun kan søke «hva som helst» fordi systemfristen nærmer seg, men formuleringen bærer veilederens hastverk mer enn hennes egen retning. Ettermiddagsvalget må angi avgrenset handling, neste eier, ventepunkt og kontrolltid, samtidig som arbeidsgiver- eller systembehov holdes adskilt fra Noras beslutningsrett. Sesongen åpner med forskjellen mellom registrert aktivitet og et mål personen faktisk kan eie. I D1-afternoon oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "team_leadership",
+        "standing_consequence": "D1-afternoon gjør den situerte kostnaden synlig for team_leadership, som vurderer veilederen etter realistiske frister, synlig restarbeid og ansvarlig lukking. Når eier, frist og stoppregel er eksplisitte, kan venting håndteres uten skyldforskyvning; ellers arver personen med minst makt både risiko og forklaringsbyrde. Sesongen åpner med forskjellen mellom registrert aktivitet og et mål personen faktisk kan eie. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json#psykologi_arbeids_og_karriereveiledning_job_jobbmatch_003"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Nora sier at hun kan søke «hva som helst» fordi systemfristen nærmer seg, men formuleringen bærer veilederens hastverk mer enn hennes egen retning. Kvelden viser hva tempoet gjorde med språk, nærvær og privat grense; saken må ligge igjen som sporbar rest, ikke flyttes over på utholdenhet eller uformell deling. Sesongen åpner med forskjellen mellom registrert aktivitet og et mål personen faktisk kan eie. I D1-evening oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "employers",
+        "standing_consequence": "D1-evening gjør den situerte kostnaden synlig for employers, som vurderer veilederen etter presise arbeidskrav, sannferdig kompetanse og avgrenset deling. Når restarbeid og privat grense registreres ærlig, kan neste dag begynne sant; hvis veilederen absorberer presset alene, forsvinner systemfeilen bak profesjonell maske. Sesongen åpner med forskjellen mellom registrert aktivitet og et mål personen faktisk kan eie. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json#psykologi_arbeids_og_karriereveiledning_job_systemfrist_004"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Interesseprofilen peker mot strukturert kontorarbeid, mens Noras erfaring sier at isolasjon og ensformighet var grunnen til at forrige forsøk brøt sammen. Morgenen krever at spilleren skiller Noras ord, dokumentert evidens, egen tolkning og institusjonell frist; alt som fortsatt er uavklart merkes før planen oppdateres. Kartleggingen må åpnes for motbevis før den får forme neste alternativ. I D2-morning oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "guidance_colleagues",
+        "standing_consequence": "D2-morning gjør den situerte kostnaden synlig for guidance_colleagues, som vurderer veilederen etter etterprøvbar metodebruk og bevart faglig uenighet. Når kildene skilles før første handling, kan senere aktører se hva de faktisk vet; hvis tolkningen skjules som fakta, starter resten av dagen med en lånt sikkerhet. Kartleggingen må åpnes for motbevis før den får forme neste alternativ. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/psykologi_arbeids_og_karriereveiledning_people.json#psykologi_arbeids_og_karriereveiledning_people_nora_samtykke_005"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Interesseprofilen peker mot strukturert kontorarbeid, mens Noras erfaring sier at isolasjon og ensformighet var grunnen til at forrige forsøk brøt sammen. I lunsjsamtalen må den berørte personen få korrigere premisset, og faglig uenighet, samtykkeendring og ubesvarte spørsmål må følge handoffen uten å glattes bort. Kartleggingen må åpnes for motbevis før den får forme neste alternativ. I D2-lunch oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "team_leadership",
+        "standing_consequence": "D2-lunch gjør den situerte kostnaden synlig for team_leadership, som vurderer veilederen etter realistiske frister, synlig restarbeid og ansvarlig lukking. Når korrigeringen blir stående i planen, kan uenighet forbedre neste møte; hvis den redigeres bort, blir høflighet feilaktig lest som samtykke. Kartleggingen må åpnes for motbevis før den får forme neste alternativ. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/psykologi_arbeids_og_karriereveiledning_people.json#psykologi_arbeids_og_karriereveiledning_people_samir_metode_006"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Interesseprofilen peker mot strukturert kontorarbeid, mens Noras erfaring sier at isolasjon og ensformighet var grunnen til at forrige forsøk brøt sammen. Ettermiddagsvalget må angi avgrenset handling, neste eier, ventepunkt og kontrolltid, samtidig som arbeidsgiver- eller systembehov holdes adskilt fra Noras beslutningsrett. Kartleggingen må åpnes for motbevis før den får forme neste alternativ. I D2-afternoon oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "employers",
+        "standing_consequence": "D2-afternoon gjør den situerte kostnaden synlig for employers, som vurderer veilederen etter presise arbeidskrav, sannferdig kompetanse og avgrenset deling. Når eier, frist og stoppregel er eksplisitte, kan venting håndteres uten skyldforskyvning; ellers arver personen med minst makt både risiko og forklaringsbyrde. Kartleggingen må åpnes for motbevis før den får forme neste alternativ. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/psykologi_arbeids_og_karriereveiledning_people.json#psykologi_arbeids_og_karriereveiledning_people_elin_informasjon_007"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Interesseprofilen peker mot strukturert kontorarbeid, mens Noras erfaring sier at isolasjon og ensformighet var grunnen til at forrige forsøk brøt sammen. Kvelden viser hva tempoet gjorde med språk, nærvær og privat grense; saken må ligge igjen som sporbar rest, ikke flyttes over på utholdenhet eller uformell deling. Kartleggingen må åpnes for motbevis før den får forme neste alternativ. I D2-evening oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "public_service_partners",
+        "standing_consequence": "D2-evening gjør den situerte kostnaden synlig for public_service_partners, som vurderer veilederen etter tydelig neste eier, ventepunkt, frist og vurderingsdato. Når restarbeid og privat grense registreres ærlig, kan neste dag begynne sant; hvis veilederen absorberer presset alene, forsvinner systemfeilen bak profesjonell maske. Kartleggingen må åpnes for motbevis før den får forme neste alternativ. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/psykologi_arbeids_og_karriereveiledning_people.json#psykologi_arbeids_og_karriereveiledning_people_marius_handoff_008"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Utkastet til CV forklarer et fravær med mer helsehistorie enn Nora ønsker å dele, selv om én nøktern og sann linje er nok for kronologien. Morgenen krever at spilleren skiller Noras ord, dokumentert evidens, egen tolkning og institusjonell frist; alt som fortsatt er uavklart merkes før planen oppdateres. En pen tekst kan være et personvernbrudd dersom forfatterkontrollen forsvinner. I D3-morning oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "team_leadership",
+        "standing_consequence": "D3-morning gjør den situerte kostnaden synlig for team_leadership, som vurderer veilederen etter realistiske frister, synlig restarbeid og ansvarlig lukking. Når kildene skilles før første handling, kan senere aktører se hva de faktisk vet; hvis tolkningen skjules som fakta, starter resten av dagen med en lånt sikkerhet. En pen tekst kan være et personvernbrudd dersom forfatterkontrollen forsvinner. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/conflict/psykologi_arbeids_og_karriereveiledning_conflict.json#psykologi_arbeids_og_karriereveiledning_conflict_helsepress_009"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Utkastet til CV forklarer et fravær med mer helsehistorie enn Nora ønsker å dele, selv om én nøktern og sann linje er nok for kronologien. I lunsjsamtalen må den berørte personen få korrigere premisset, og faglig uenighet, samtykkeendring og ubesvarte spørsmål må følge handoffen uten å glattes bort. En pen tekst kan være et personvernbrudd dersom forfatterkontrollen forsvinner. I D3-lunch oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "employers",
+        "standing_consequence": "D3-lunch gjør den situerte kostnaden synlig for employers, som vurderer veilederen etter presise arbeidskrav, sannferdig kompetanse og avgrenset deling. Når korrigeringen blir stående i planen, kan uenighet forbedre neste møte; hvis den redigeres bort, blir høflighet feilaktig lest som samtykke. En pen tekst kan være et personvernbrudd dersom forfatterkontrollen forsvinner. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/story/psykologi_arbeids_og_karriereveiledning_story.json#psykologi_arbeids_og_karriereveiledning_story_vikariat_010"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Utkastet til CV forklarer et fravær med mer helsehistorie enn Nora ønsker å dele, selv om én nøktern og sann linje er nok for kronologien. Ettermiddagsvalget må angi avgrenset handling, neste eier, ventepunkt og kontrolltid, samtidig som arbeidsgiver- eller systembehov holdes adskilt fra Noras beslutningsrett. En pen tekst kan være et personvernbrudd dersom forfatterkontrollen forsvinner. I D3-afternoon oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "public_service_partners",
+        "standing_consequence": "D3-afternoon gjør den situerte kostnaden synlig for public_service_partners, som vurderer veilederen etter tydelig neste eier, ventepunkt, frist og vurderingsdato. Når eier, frist og stoppregel er eksplisitte, kan venting håndteres uten skyldforskyvning; ellers arver personen med minst makt både risiko og forklaringsbyrde. En pen tekst kan være et personvernbrudd dersom forfatterkontrollen forsvinner. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/event/psykologi_arbeids_og_karriereveiledning_event.json#psykologi_arbeids_og_karriereveiledning_event_intervjuendring_011"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Utkastet til CV forklarer et fravær med mer helsehistorie enn Nora ønsker å dele, selv om én nøktern og sann linje er nok for kronologien. Kvelden viser hva tempoet gjorde med språk, nærvær og privat grense; saken må ligge igjen som sporbar rest, ikke flyttes over på utholdenhet eller uformell deling. En pen tekst kan være et personvernbrudd dersom forfatterkontrollen forsvinner. I D3-evening oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "education_and_training_partners",
+        "standing_consequence": "D3-evening gjør den situerte kostnaden synlig for education_and_training_partners, som vurderer veilederen etter realistiske kvalifiseringsløp og synlige overgangskostnader. Når restarbeid og privat grense registreres ærlig, kan neste dag begynne sant; hvis veilederen absorberer presset alene, forsvinner systemfeilen bak profesjonell maske. En pen tekst kan være et personvernbrudd dersom forfatterkontrollen forsvinner. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/micro/psykologi_arbeids_og_karriereveiledning_micro.json#psykologi_arbeids_og_karriereveiledning_micro_cv_hull_012"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Elins stillingsbeskrivelse blander ufravikelige skiftkrav med ønsker om personlighet og tempo, og Nora risikerer å bli oversolgt inn i en jobb som ikke varer. Morgenen krever at spilleren skiller Noras ord, dokumentert evidens, egen tolkning og institusjonell frist; alt som fortsatt er uavklart merkes før planen oppdateres. Matcharbeidet må skille faktisk oppgavekrav, tilretteleggingsrom og reklamespråk. I D4-morning oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "employers",
+        "standing_consequence": "D4-morning gjør den situerte kostnaden synlig for employers, som vurderer veilederen etter presise arbeidskrav, sannferdig kompetanse og avgrenset deling. Når kildene skilles før første handling, kan senere aktører se hva de faktisk vet; hvis tolkningen skjules som fakta, starter resten av dagen med en lånt sikkerhet. Matcharbeidet må skille faktisk oppgavekrav, tilretteleggingsrom og reklamespråk. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/followup/psykologi_arbeids_og_karriereveiledning_followup.json#psykologi_arbeids_og_karriereveiledning_followup_ubrukt_plan_013"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Elins stillingsbeskrivelse blander ufravikelige skiftkrav med ønsker om personlighet og tempo, og Nora risikerer å bli oversolgt inn i en jobb som ikke varer. I lunsjsamtalen må den berørte personen få korrigere premisset, og faglig uenighet, samtykkeendring og ubesvarte spørsmål må følge handoffen uten å glattes bort. Matcharbeidet må skille faktisk oppgavekrav, tilretteleggingsrom og reklamespråk. I D4-lunch oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "public_service_partners",
+        "standing_consequence": "D4-lunch gjør den situerte kostnaden synlig for public_service_partners, som vurderer veilederen etter tydelig neste eier, ventepunkt, frist og vurderingsdato. Når korrigeringen blir stående i planen, kan uenighet forbedre neste møte; hvis den redigeres bort, blir høflighet feilaktig lest som samtykke. Matcharbeidet må skille faktisk oppgavekrav, tilretteleggingsrom og reklamespråk. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/knowledge/psykologi_arbeids_og_karriereveiledning_knowledge.json#psykologi_arbeids_og_karriereveiledning_knowledge_historisk_sortering_014"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Elins stillingsbeskrivelse blander ufravikelige skiftkrav med ønsker om personlighet og tempo, og Nora risikerer å bli oversolgt inn i en jobb som ikke varer. Ettermiddagsvalget må angi avgrenset handling, neste eier, ventepunkt og kontrolltid, samtidig som arbeidsgiver- eller systembehov holdes adskilt fra Noras beslutningsrett. Matcharbeidet må skille faktisk oppgavekrav, tilretteleggingsrom og reklamespråk. I D4-afternoon oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "education_and_training_partners",
+        "standing_consequence": "D4-afternoon gjør den situerte kostnaden synlig for education_and_training_partners, som vurderer veilederen etter realistiske kvalifiseringsløp og synlige overgangskostnader. Når eier, frist og stoppregel er eksplisitte, kan venting håndteres uten skyldforskyvning; ellers arver personen med minst makt både risiko og forklaringsbyrde. Matcharbeidet må skille faktisk oppgavekrav, tilretteleggingsrom og reklamespråk. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/consequence/psykologi_arbeids_og_karriereveiledning_consequence.json#psykologi_arbeids_og_karriereveiledning_consequence_tillit_og_tilbud_015"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Elins stillingsbeskrivelse blander ufravikelige skiftkrav med ønsker om personlighet og tempo, og Nora risikerer å bli oversolgt inn i en jobb som ikke varer. Kvelden viser hva tempoet gjorde med språk, nærvær og privat grense; saken må ligge igjen som sporbar rest, ikke flyttes over på utholdenhet eller uformell deling. Matcharbeidet må skille faktisk oppgavekrav, tilretteleggingsrom og reklamespråk. I D4-evening oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "D4-evening gjør den situerte kostnaden synlig for private_relations, som vurderer veilederen etter nærvær uten at arbeidsdagen tar over privatlivet. Når restarbeid og privat grense registreres ærlig, kan neste dag begynne sant; hvis veilederen absorberer presset alene, forsvinner systemfeilen bak profesjonell maske. Matcharbeidet må skille faktisk oppgavekrav, tilretteleggingsrom og reklamespråk. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json#psykologi_arbeids_og_karriereveiledning_job_eget_maal_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Marius trenger en aktivitet før dagen er over, mens både et kvalifiseringsløp og et jobbspor fortsatt mangler avgjørende svar. Morgenen krever at spilleren skiller Noras ord, dokumentert evidens, egen tolkning og institusjonell frist; alt som fortsatt er uavklart merkes før planen oppdateres. Venting må få eier og vurderingsdato uten at datofeltet oppfinner et sluttvalg. I D5-morning oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "public_service_partners",
+        "standing_consequence": "D5-morning gjør den situerte kostnaden synlig for public_service_partners, som vurderer veilederen etter tydelig neste eier, ventepunkt, frist og vurderingsdato. Når kildene skilles før første handling, kan senere aktører se hva de faktisk vet; hvis tolkningen skjules som fakta, starter resten av dagen med en lånt sikkerhet. Venting må få eier og vurderingsdato uten at datofeltet oppfinner et sluttvalg. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json#psykologi_arbeids_og_karriereveiledning_job_kartlegging_002"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Marius trenger en aktivitet før dagen er over, mens både et kvalifiseringsløp og et jobbspor fortsatt mangler avgjørende svar. I lunsjsamtalen må den berørte personen få korrigere premisset, og faglig uenighet, samtykkeendring og ubesvarte spørsmål må følge handoffen uten å glattes bort. Venting må få eier og vurderingsdato uten at datofeltet oppfinner et sluttvalg. I D5-lunch oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "education_and_training_partners",
+        "standing_consequence": "D5-lunch gjør den situerte kostnaden synlig for education_and_training_partners, som vurderer veilederen etter realistiske kvalifiseringsløp og synlige overgangskostnader. Når korrigeringen blir stående i planen, kan uenighet forbedre neste møte; hvis den redigeres bort, blir høflighet feilaktig lest som samtykke. Venting må få eier og vurderingsdato uten at datofeltet oppfinner et sluttvalg. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json#psykologi_arbeids_og_karriereveiledning_job_jobbmatch_003"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Marius trenger en aktivitet før dagen er over, mens både et kvalifiseringsløp og et jobbspor fortsatt mangler avgjørende svar. Ettermiddagsvalget må angi avgrenset handling, neste eier, ventepunkt og kontrolltid, samtidig som arbeidsgiver- eller systembehov holdes adskilt fra Noras beslutningsrett. Venting må få eier og vurderingsdato uten at datofeltet oppfinner et sluttvalg. I D5-afternoon oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "D5-afternoon gjør den situerte kostnaden synlig for private_relations, som vurderer veilederen etter nærvær uten at arbeidsdagen tar over privatlivet. Når eier, frist og stoppregel er eksplisitte, kan venting håndteres uten skyldforskyvning; ellers arver personen med minst makt både risiko og forklaringsbyrde. Venting må få eier og vurderingsdato uten at datofeltet oppfinner et sluttvalg. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json#psykologi_arbeids_og_karriereveiledning_job_systemfrist_004"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Marius trenger en aktivitet før dagen er over, mens både et kvalifiseringsløp og et jobbspor fortsatt mangler avgjørende svar. Kvelden viser hva tempoet gjorde med språk, nærvær og privat grense; saken må ligge igjen som sporbar rest, ikke flyttes over på utholdenhet eller uformell deling. Venting må få eier og vurderingsdato uten at datofeltet oppfinner et sluttvalg. I D5-evening oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "seekers",
+        "standing_consequence": "D5-evening gjør den situerte kostnaden synlig for seekers, som vurderer veilederen etter at egne mål, erfaringer og samtykke faktisk styrer planen. Når restarbeid og privat grense registreres ærlig, kan neste dag begynne sant; hvis veilederen absorberer presset alene, forsvinner systemfeilen bak profesjonell maske. Venting må få eier og vurderingsdato uten at datofeltet oppfinner et sluttvalg. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/psykologi_arbeids_og_karriereveiledning_people.json#psykologi_arbeids_og_karriereveiledning_people_nora_samtykke_005"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Samir finner at planen kaller Nora umotivert, selv om samtalen viser ambivalens, tidligere nederlag og et mål som aldri ble hennes. Morgenen krever at spilleren skiller Noras ord, dokumentert evidens, egen tolkning og institusjonell frist; alt som fortsatt er uavklart merkes før planen oppdateres. Faglig kollegialitet prøves når en sikker formulering må åpnes igjen. I D6-morning oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "education_and_training_partners",
+        "standing_consequence": "D6-morning gjør den situerte kostnaden synlig for education_and_training_partners, som vurderer veilederen etter realistiske kvalifiseringsløp og synlige overgangskostnader. Når kildene skilles før første handling, kan senere aktører se hva de faktisk vet; hvis tolkningen skjules som fakta, starter resten av dagen med en lånt sikkerhet. Faglig kollegialitet prøves når en sikker formulering må åpnes igjen. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/psykologi_arbeids_og_karriereveiledning_people.json#psykologi_arbeids_og_karriereveiledning_people_samir_metode_006"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Samir finner at planen kaller Nora umotivert, selv om samtalen viser ambivalens, tidligere nederlag og et mål som aldri ble hennes. I lunsjsamtalen må den berørte personen få korrigere premisset, og faglig uenighet, samtykkeendring og ubesvarte spørsmål må følge handoffen uten å glattes bort. Faglig kollegialitet prøves når en sikker formulering må åpnes igjen. I D6-lunch oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "D6-lunch gjør den situerte kostnaden synlig for private_relations, som vurderer veilederen etter nærvær uten at arbeidsdagen tar over privatlivet. Når korrigeringen blir stående i planen, kan uenighet forbedre neste møte; hvis den redigeres bort, blir høflighet feilaktig lest som samtykke. Faglig kollegialitet prøves når en sikker formulering må åpnes igjen. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/psykologi_arbeids_og_karriereveiledning_people.json#psykologi_arbeids_og_karriereveiledning_people_elin_informasjon_007"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Samir finner at planen kaller Nora umotivert, selv om samtalen viser ambivalens, tidligere nederlag og et mål som aldri ble hennes. Ettermiddagsvalget må angi avgrenset handling, neste eier, ventepunkt og kontrolltid, samtidig som arbeidsgiver- eller systembehov holdes adskilt fra Noras beslutningsrett. Faglig kollegialitet prøves når en sikker formulering må åpnes igjen. I D6-afternoon oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "seekers",
+        "standing_consequence": "D6-afternoon gjør den situerte kostnaden synlig for seekers, som vurderer veilederen etter at egne mål, erfaringer og samtykke faktisk styrer planen. Når eier, frist og stoppregel er eksplisitte, kan venting håndteres uten skyldforskyvning; ellers arver personen med minst makt både risiko og forklaringsbyrde. Faglig kollegialitet prøves når en sikker formulering må åpnes igjen. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/psykologi_arbeids_og_karriereveiledning_people.json#psykologi_arbeids_og_karriereveiledning_people_marius_handoff_008"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Samir finner at planen kaller Nora umotivert, selv om samtalen viser ambivalens, tidligere nederlag og et mål som aldri ble hennes. Kvelden viser hva tempoet gjorde med språk, nærvær og privat grense; saken må ligge igjen som sporbar rest, ikke flyttes over på utholdenhet eller uformell deling. Faglig kollegialitet prøves når en sikker formulering må åpnes igjen. I D6-evening oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "guidance_colleagues",
+        "standing_consequence": "D6-evening gjør den situerte kostnaden synlig for guidance_colleagues, som vurderer veilederen etter etterprøvbar metodebruk og bevart faglig uenighet. Når restarbeid og privat grense registreres ærlig, kan neste dag begynne sant; hvis veilederen absorberer presset alene, forsvinner systemfeilen bak profesjonell maske. Faglig kollegialitet prøves når en sikker formulering må åpnes igjen. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/conflict/psykologi_arbeids_og_karriereveiledning_conflict.json#psykologi_arbeids_og_karriereveiledning_conflict_helsepress_009"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Elin ber om årsaken til CV-hullet samtidig som et intervju plutselig kan gjennomføres samme ettermiddag. Morgenen krever at spilleren skiller Noras ord, dokumentert evidens, egen tolkning og institusjonell frist; alt som fortsatt er uavklart merkes før planen oppdateres. Kalenderpress og arbeidsgivermakt gjør frivillig deling vanskeligere å vurdere. I D7-morning oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "D7-morning gjør den situerte kostnaden synlig for private_relations, som vurderer veilederen etter nærvær uten at arbeidsdagen tar over privatlivet. Når kildene skilles før første handling, kan senere aktører se hva de faktisk vet; hvis tolkningen skjules som fakta, starter resten av dagen med en lånt sikkerhet. Kalenderpress og arbeidsgivermakt gjør frivillig deling vanskeligere å vurdere. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/story/psykologi_arbeids_og_karriereveiledning_story.json#psykologi_arbeids_og_karriereveiledning_story_vikariat_010"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Elin ber om årsaken til CV-hullet samtidig som et intervju plutselig kan gjennomføres samme ettermiddag. I lunsjsamtalen må den berørte personen få korrigere premisset, og faglig uenighet, samtykkeendring og ubesvarte spørsmål må følge handoffen uten å glattes bort. Kalenderpress og arbeidsgivermakt gjør frivillig deling vanskeligere å vurdere. I D7-lunch oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "seekers",
+        "standing_consequence": "D7-lunch gjør den situerte kostnaden synlig for seekers, som vurderer veilederen etter at egne mål, erfaringer og samtykke faktisk styrer planen. Når korrigeringen blir stående i planen, kan uenighet forbedre neste møte; hvis den redigeres bort, blir høflighet feilaktig lest som samtykke. Kalenderpress og arbeidsgivermakt gjør frivillig deling vanskeligere å vurdere. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/event/psykologi_arbeids_og_karriereveiledning_event.json#psykologi_arbeids_og_karriereveiledning_event_intervjuendring_011"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Elin ber om årsaken til CV-hullet samtidig som et intervju plutselig kan gjennomføres samme ettermiddag. Ettermiddagsvalget må angi avgrenset handling, neste eier, ventepunkt og kontrolltid, samtidig som arbeidsgiver- eller systembehov holdes adskilt fra Noras beslutningsrett. Kalenderpress og arbeidsgivermakt gjør frivillig deling vanskeligere å vurdere. I D7-afternoon oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "guidance_colleagues",
+        "standing_consequence": "D7-afternoon gjør den situerte kostnaden synlig for guidance_colleagues, som vurderer veilederen etter etterprøvbar metodebruk og bevart faglig uenighet. Når eier, frist og stoppregel er eksplisitte, kan venting håndteres uten skyldforskyvning; ellers arver personen med minst makt både risiko og forklaringsbyrde. Kalenderpress og arbeidsgivermakt gjør frivillig deling vanskeligere å vurdere. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/micro/psykologi_arbeids_og_karriereveiledning_micro.json#psykologi_arbeids_og_karriereveiledning_micro_cv_hull_012"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Elin ber om årsaken til CV-hullet samtidig som et intervju plutselig kan gjennomføres samme ettermiddag. Kvelden viser hva tempoet gjorde med språk, nærvær og privat grense; saken må ligge igjen som sporbar rest, ikke flyttes over på utholdenhet eller uformell deling. Kalenderpress og arbeidsgivermakt gjør frivillig deling vanskeligere å vurdere. I D7-evening oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "team_leadership",
+        "standing_consequence": "D7-evening gjør den situerte kostnaden synlig for team_leadership, som vurderer veilederen etter realistiske frister, synlig restarbeid og ansvarlig lukking. Når restarbeid og privat grense registreres ærlig, kan neste dag begynne sant; hvis veilederen absorberer presset alene, forsvinner systemfeilen bak profesjonell maske. Kalenderpress og arbeidsgivermakt gjør frivillig deling vanskeligere å vurdere. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/followup/psykologi_arbeids_og_karriereveiledning_followup.json#psykologi_arbeids_og_karriereveiledning_followup_ubrukt_plan_013"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Nora trekker den brede helsedelen av samtykket, men en eldre planversjon ligger allerede klar i handoffen til arbeidsgiverkontakten. Morgenen krever at spilleren skiller Noras ord, dokumentert evidens, egen tolkning og institusjonell frist; alt som fortsatt er uavklart merkes før planen oppdateres. Versjonskontroll blir et spørsmål om autonomi, ikke bare dokumentorden. I D8-morning oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "seekers",
+        "standing_consequence": "D8-morning gjør den situerte kostnaden synlig for seekers, som vurderer veilederen etter at egne mål, erfaringer og samtykke faktisk styrer planen. Når kildene skilles før første handling, kan senere aktører se hva de faktisk vet; hvis tolkningen skjules som fakta, starter resten av dagen med en lånt sikkerhet. Versjonskontroll blir et spørsmål om autonomi, ikke bare dokumentorden. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/knowledge/psykologi_arbeids_og_karriereveiledning_knowledge.json#psykologi_arbeids_og_karriereveiledning_knowledge_historisk_sortering_014"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Nora trekker den brede helsedelen av samtykket, men en eldre planversjon ligger allerede klar i handoffen til arbeidsgiverkontakten. I lunsjsamtalen må den berørte personen få korrigere premisset, og faglig uenighet, samtykkeendring og ubesvarte spørsmål må følge handoffen uten å glattes bort. Versjonskontroll blir et spørsmål om autonomi, ikke bare dokumentorden. I D8-lunch oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "guidance_colleagues",
+        "standing_consequence": "D8-lunch gjør den situerte kostnaden synlig for guidance_colleagues, som vurderer veilederen etter etterprøvbar metodebruk og bevart faglig uenighet. Når korrigeringen blir stående i planen, kan uenighet forbedre neste møte; hvis den redigeres bort, blir høflighet feilaktig lest som samtykke. Versjonskontroll blir et spørsmål om autonomi, ikke bare dokumentorden. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/consequence/psykologi_arbeids_og_karriereveiledning_consequence.json#psykologi_arbeids_og_karriereveiledning_consequence_tillit_og_tilbud_015"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Nora trekker den brede helsedelen av samtykket, men en eldre planversjon ligger allerede klar i handoffen til arbeidsgiverkontakten. Ettermiddagsvalget må angi avgrenset handling, neste eier, ventepunkt og kontrolltid, samtidig som arbeidsgiver- eller systembehov holdes adskilt fra Noras beslutningsrett. Versjonskontroll blir et spørsmål om autonomi, ikke bare dokumentorden. I D8-afternoon oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "team_leadership",
+        "standing_consequence": "D8-afternoon gjør den situerte kostnaden synlig for team_leadership, som vurderer veilederen etter realistiske frister, synlig restarbeid og ansvarlig lukking. Når eier, frist og stoppregel er eksplisitte, kan venting håndteres uten skyldforskyvning; ellers arver personen med minst makt både risiko og forklaringsbyrde. Versjonskontroll blir et spørsmål om autonomi, ikke bare dokumentorden. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json#psykologi_arbeids_og_karriereveiledning_job_eget_maal_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Nora trekker den brede helsedelen av samtykket, men en eldre planversjon ligger allerede klar i handoffen til arbeidsgiverkontakten. Kvelden viser hva tempoet gjorde med språk, nærvær og privat grense; saken må ligge igjen som sporbar rest, ikke flyttes over på utholdenhet eller uformell deling. Versjonskontroll blir et spørsmål om autonomi, ikke bare dokumentorden. I D8-evening oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "employers",
+        "standing_consequence": "D8-evening gjør den situerte kostnaden synlig for employers, som vurderer veilederen etter presise arbeidskrav, sannferdig kompetanse og avgrenset deling. Når restarbeid og privat grense registreres ærlig, kan neste dag begynne sant; hvis veilederen absorberer presset alene, forsvinner systemfeilen bak profesjonell maske. Versjonskontroll blir et spørsmål om autonomi, ikke bare dokumentorden. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json#psykologi_arbeids_og_karriereveiledning_job_kartlegging_002"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Jobbmuligheten kobles til en antydning om at en helseforklaring vil gjøre intervjuet enklere å godkjenne. Morgenen krever at spilleren skiller Noras ord, dokumentert evidens, egen tolkning og institusjonell frist; alt som fortsatt er uavklart merkes før planen oppdateres. Et positivt utfall kan ikke brukes til å vaske bort en urettmessig informasjonskostnad. I D9-morning oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "guidance_colleagues",
+        "standing_consequence": "D9-morning gjør den situerte kostnaden synlig for guidance_colleagues, som vurderer veilederen etter etterprøvbar metodebruk og bevart faglig uenighet. Når kildene skilles før første handling, kan senere aktører se hva de faktisk vet; hvis tolkningen skjules som fakta, starter resten av dagen med en lånt sikkerhet. Et positivt utfall kan ikke brukes til å vaske bort en urettmessig informasjonskostnad. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json#psykologi_arbeids_og_karriereveiledning_job_jobbmatch_003"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Jobbmuligheten kobles til en antydning om at en helseforklaring vil gjøre intervjuet enklere å godkjenne. I lunsjsamtalen må den berørte personen få korrigere premisset, og faglig uenighet, samtykkeendring og ubesvarte spørsmål må følge handoffen uten å glattes bort. Et positivt utfall kan ikke brukes til å vaske bort en urettmessig informasjonskostnad. I D9-lunch oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "team_leadership",
+        "standing_consequence": "D9-lunch gjør den situerte kostnaden synlig for team_leadership, som vurderer veilederen etter realistiske frister, synlig restarbeid og ansvarlig lukking. Når korrigeringen blir stående i planen, kan uenighet forbedre neste møte; hvis den redigeres bort, blir høflighet feilaktig lest som samtykke. Et positivt utfall kan ikke brukes til å vaske bort en urettmessig informasjonskostnad. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json#psykologi_arbeids_og_karriereveiledning_job_systemfrist_004"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Jobbmuligheten kobles til en antydning om at en helseforklaring vil gjøre intervjuet enklere å godkjenne. Ettermiddagsvalget må angi avgrenset handling, neste eier, ventepunkt og kontrolltid, samtidig som arbeidsgiver- eller systembehov holdes adskilt fra Noras beslutningsrett. Et positivt utfall kan ikke brukes til å vaske bort en urettmessig informasjonskostnad. I D9-afternoon oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "employers",
+        "standing_consequence": "D9-afternoon gjør den situerte kostnaden synlig for employers, som vurderer veilederen etter presise arbeidskrav, sannferdig kompetanse og avgrenset deling. Når eier, frist og stoppregel er eksplisitte, kan venting håndteres uten skyldforskyvning; ellers arver personen med minst makt både risiko og forklaringsbyrde. Et positivt utfall kan ikke brukes til å vaske bort en urettmessig informasjonskostnad. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/psykologi_arbeids_og_karriereveiledning_people.json#psykologi_arbeids_og_karriereveiledning_people_nora_samtykke_005"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Jobbmuligheten kobles til en antydning om at en helseforklaring vil gjøre intervjuet enklere å godkjenne. Kvelden viser hva tempoet gjorde med språk, nærvær og privat grense; saken må ligge igjen som sporbar rest, ikke flyttes over på utholdenhet eller uformell deling. Et positivt utfall kan ikke brukes til å vaske bort en urettmessig informasjonskostnad. I D9-evening oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "public_service_partners",
+        "standing_consequence": "D9-evening gjør den situerte kostnaden synlig for public_service_partners, som vurderer veilederen etter tydelig neste eier, ventepunkt, frist og vurderingsdato. Når restarbeid og privat grense registreres ærlig, kan neste dag begynne sant; hvis veilederen absorberer presset alene, forsvinner systemfeilen bak profesjonell maske. Et positivt utfall kan ikke brukes til å vaske bort en urettmessig informasjonskostnad. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/psykologi_arbeids_og_karriereveiledning_people.json#psykologi_arbeids_og_karriereveiledning_people_samir_metode_006"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Et vikariat kan starte mandag og gir inntekt og referanse, men skyver kvalifiseringsløpet Nora selv har begynt å velge. Morgenen krever at spilleren skiller Noras ord, dokumentert evidens, egen tolkning og institusjonell frist; alt som fortsatt er uavklart merkes før planen oppdateres. Kortsiktig trygghet og langsiktig retning må vises som et reelt valg uten moralsk fasit. I D10-morning oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "team_leadership",
+        "standing_consequence": "D10-morning gjør den situerte kostnaden synlig for team_leadership, som vurderer veilederen etter realistiske frister, synlig restarbeid og ansvarlig lukking. Når kildene skilles før første handling, kan senere aktører se hva de faktisk vet; hvis tolkningen skjules som fakta, starter resten av dagen med en lånt sikkerhet. Kortsiktig trygghet og langsiktig retning må vises som et reelt valg uten moralsk fasit. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/psykologi_arbeids_og_karriereveiledning_people.json#psykologi_arbeids_og_karriereveiledning_people_elin_informasjon_007"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Et vikariat kan starte mandag og gir inntekt og referanse, men skyver kvalifiseringsløpet Nora selv har begynt å velge. I lunsjsamtalen må den berørte personen få korrigere premisset, og faglig uenighet, samtykkeendring og ubesvarte spørsmål må følge handoffen uten å glattes bort. Kortsiktig trygghet og langsiktig retning må vises som et reelt valg uten moralsk fasit. I D10-lunch oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "employers",
+        "standing_consequence": "D10-lunch gjør den situerte kostnaden synlig for employers, som vurderer veilederen etter presise arbeidskrav, sannferdig kompetanse og avgrenset deling. Når korrigeringen blir stående i planen, kan uenighet forbedre neste møte; hvis den redigeres bort, blir høflighet feilaktig lest som samtykke. Kortsiktig trygghet og langsiktig retning må vises som et reelt valg uten moralsk fasit. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/psykologi_arbeids_og_karriereveiledning_people.json#psykologi_arbeids_og_karriereveiledning_people_marius_handoff_008"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Et vikariat kan starte mandag og gir inntekt og referanse, men skyver kvalifiseringsløpet Nora selv har begynt å velge. Ettermiddagsvalget må angi avgrenset handling, neste eier, ventepunkt og kontrolltid, samtidig som arbeidsgiver- eller systembehov holdes adskilt fra Noras beslutningsrett. Kortsiktig trygghet og langsiktig retning må vises som et reelt valg uten moralsk fasit. I D10-afternoon oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "public_service_partners",
+        "standing_consequence": "D10-afternoon gjør den situerte kostnaden synlig for public_service_partners, som vurderer veilederen etter tydelig neste eier, ventepunkt, frist og vurderingsdato. Når eier, frist og stoppregel er eksplisitte, kan venting håndteres uten skyldforskyvning; ellers arver personen med minst makt både risiko og forklaringsbyrde. Kortsiktig trygghet og langsiktig retning må vises som et reelt valg uten moralsk fasit. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/conflict/psykologi_arbeids_og_karriereveiledning_conflict.json#psykologi_arbeids_og_karriereveiledning_conflict_helsepress_009"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Et vikariat kan starte mandag og gir inntekt og referanse, men skyver kvalifiseringsløpet Nora selv har begynt å velge. Kvelden viser hva tempoet gjorde med språk, nærvær og privat grense; saken må ligge igjen som sporbar rest, ikke flyttes over på utholdenhet eller uformell deling. Kortsiktig trygghet og langsiktig retning må vises som et reelt valg uten moralsk fasit. I D10-evening oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "education_and_training_partners",
+        "standing_consequence": "D10-evening gjør den situerte kostnaden synlig for education_and_training_partners, som vurderer veilederen etter realistiske kvalifiseringsløp og synlige overgangskostnader. Når restarbeid og privat grense registreres ærlig, kan neste dag begynne sant; hvis veilederen absorberer presset alene, forsvinner systemfeilen bak profesjonell maske. Kortsiktig trygghet og langsiktig retning må vises som et reelt valg uten moralsk fasit. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/story/psykologi_arbeids_og_karriereveiledning_story.json#psykologi_arbeids_og_karriereveiledning_story_vikariat_010"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Oppfølgingen viser at ingen søknader ble sendt, og systemet leser stillheten som svak motivasjon selv om målet aldri bar Noras begrunnelse. Morgenen krever at spilleren skiller Noras ord, dokumentert evidens, egen tolkning og institusjonell frist; alt som fortsatt er uavklart merkes før planen oppdateres. Planen må gjenåpnes uten å gjøre manglende handling til en stabil egenskap. I D11-morning oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "employers",
+        "standing_consequence": "D11-morning gjør den situerte kostnaden synlig for employers, som vurderer veilederen etter presise arbeidskrav, sannferdig kompetanse og avgrenset deling. Når kildene skilles før første handling, kan senere aktører se hva de faktisk vet; hvis tolkningen skjules som fakta, starter resten av dagen med en lånt sikkerhet. Planen må gjenåpnes uten å gjøre manglende handling til en stabil egenskap. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/event/psykologi_arbeids_og_karriereveiledning_event.json#psykologi_arbeids_og_karriereveiledning_event_intervjuendring_011"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Oppfølgingen viser at ingen søknader ble sendt, og systemet leser stillheten som svak motivasjon selv om målet aldri bar Noras begrunnelse. I lunsjsamtalen må den berørte personen få korrigere premisset, og faglig uenighet, samtykkeendring og ubesvarte spørsmål må følge handoffen uten å glattes bort. Planen må gjenåpnes uten å gjøre manglende handling til en stabil egenskap. I D11-lunch oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "public_service_partners",
+        "standing_consequence": "D11-lunch gjør den situerte kostnaden synlig for public_service_partners, som vurderer veilederen etter tydelig neste eier, ventepunkt, frist og vurderingsdato. Når korrigeringen blir stående i planen, kan uenighet forbedre neste møte; hvis den redigeres bort, blir høflighet feilaktig lest som samtykke. Planen må gjenåpnes uten å gjøre manglende handling til en stabil egenskap. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/micro/psykologi_arbeids_og_karriereveiledning_micro.json#psykologi_arbeids_og_karriereveiledning_micro_cv_hull_012"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Oppfølgingen viser at ingen søknader ble sendt, og systemet leser stillheten som svak motivasjon selv om målet aldri bar Noras begrunnelse. Ettermiddagsvalget må angi avgrenset handling, neste eier, ventepunkt og kontrolltid, samtidig som arbeidsgiver- eller systembehov holdes adskilt fra Noras beslutningsrett. Planen må gjenåpnes uten å gjøre manglende handling til en stabil egenskap. I D11-afternoon oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "education_and_training_partners",
+        "standing_consequence": "D11-afternoon gjør den situerte kostnaden synlig for education_and_training_partners, som vurderer veilederen etter realistiske kvalifiseringsløp og synlige overgangskostnader. Når eier, frist og stoppregel er eksplisitte, kan venting håndteres uten skyldforskyvning; ellers arver personen med minst makt både risiko og forklaringsbyrde. Planen må gjenåpnes uten å gjøre manglende handling til en stabil egenskap. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/followup/psykologi_arbeids_og_karriereveiledning_followup.json#psykologi_arbeids_og_karriereveiledning_followup_ubrukt_plan_013"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Oppfølgingen viser at ingen søknader ble sendt, og systemet leser stillheten som svak motivasjon selv om målet aldri bar Noras begrunnelse. Kvelden viser hva tempoet gjorde med språk, nærvær og privat grense; saken må ligge igjen som sporbar rest, ikke flyttes over på utholdenhet eller uformell deling. Planen må gjenåpnes uten å gjøre manglende handling til en stabil egenskap. I D11-evening oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "D11-evening gjør den situerte kostnaden synlig for private_relations, som vurderer veilederen etter nærvær uten at arbeidsdagen tar over privatlivet. Når restarbeid og privat grense registreres ærlig, kan neste dag begynne sant; hvis veilederen absorberer presset alene, forsvinner systemfeilen bak profesjonell maske. Planen må gjenåpnes uten å gjøre manglende handling til en stabil egenskap. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/knowledge/psykologi_arbeids_og_karriereveiledning_knowledge.json#psykologi_arbeids_og_karriereveiledning_knowledge_historisk_sortering_014"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "History Go-sporet viser hvordan tester og veiledning historisk har sortert mennesker etter skiftende institusjons- og arbeidsmarkedsbehov. Morgenen krever at spilleren skiller Noras ord, dokumentert evidens, egen tolkning og institusjonell frist; alt som fortsatt er uavklart merkes før planen oppdateres. Historien skal forbedre spørsmålet til dagens evidens, ikke dømme Noras egnethet. I D12-morning oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "public_service_partners",
+        "standing_consequence": "D12-morning gjør den situerte kostnaden synlig for public_service_partners, som vurderer veilederen etter tydelig neste eier, ventepunkt, frist og vurderingsdato. Når kildene skilles før første handling, kan senere aktører se hva de faktisk vet; hvis tolkningen skjules som fakta, starter resten av dagen med en lånt sikkerhet. Historien skal forbedre spørsmålet til dagens evidens, ikke dømme Noras egnethet. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/consequence/psykologi_arbeids_og_karriereveiledning_consequence.json#psykologi_arbeids_og_karriereveiledning_consequence_tillit_og_tilbud_015"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "History Go-sporet viser hvordan tester og veiledning historisk har sortert mennesker etter skiftende institusjons- og arbeidsmarkedsbehov. I lunsjsamtalen må den berørte personen få korrigere premisset, og faglig uenighet, samtykkeendring og ubesvarte spørsmål må følge handoffen uten å glattes bort. Historien skal forbedre spørsmålet til dagens evidens, ikke dømme Noras egnethet. I D12-lunch oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "education_and_training_partners",
+        "standing_consequence": "D12-lunch gjør den situerte kostnaden synlig for education_and_training_partners, som vurderer veilederen etter realistiske kvalifiseringsløp og synlige overgangskostnader. Når korrigeringen blir stående i planen, kan uenighet forbedre neste møte; hvis den redigeres bort, blir høflighet feilaktig lest som samtykke. Historien skal forbedre spørsmålet til dagens evidens, ikke dømme Noras egnethet. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json#psykologi_arbeids_og_karriereveiledning_job_eget_maal_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "History Go-sporet viser hvordan tester og veiledning historisk har sortert mennesker etter skiftende institusjons- og arbeidsmarkedsbehov. Ettermiddagsvalget må angi avgrenset handling, neste eier, ventepunkt og kontrolltid, samtidig som arbeidsgiver- eller systembehov holdes adskilt fra Noras beslutningsrett. Historien skal forbedre spørsmålet til dagens evidens, ikke dømme Noras egnethet. I D12-afternoon oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "D12-afternoon gjør den situerte kostnaden synlig for private_relations, som vurderer veilederen etter nærvær uten at arbeidsdagen tar over privatlivet. Når eier, frist og stoppregel er eksplisitte, kan venting håndteres uten skyldforskyvning; ellers arver personen med minst makt både risiko og forklaringsbyrde. Historien skal forbedre spørsmålet til dagens evidens, ikke dømme Noras egnethet. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json#psykologi_arbeids_og_karriereveiledning_job_kartlegging_002"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "History Go-sporet viser hvordan tester og veiledning historisk har sortert mennesker etter skiftende institusjons- og arbeidsmarkedsbehov. Kvelden viser hva tempoet gjorde med språk, nærvær og privat grense; saken må ligge igjen som sporbar rest, ikke flyttes over på utholdenhet eller uformell deling. Historien skal forbedre spørsmålet til dagens evidens, ikke dømme Noras egnethet. I D12-evening oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "seekers",
+        "standing_consequence": "D12-evening gjør den situerte kostnaden synlig for seekers, som vurderer veilederen etter at egne mål, erfaringer og samtykke faktisk styrer planen. Når restarbeid og privat grense registreres ærlig, kan neste dag begynne sant; hvis veilederen absorberer presset alene, forsvinner systemfeilen bak profesjonell maske. Historien skal forbedre spørsmålet til dagens evidens, ikke dømme Noras egnethet. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json#psykologi_arbeids_og_karriereveiledning_job_jobbmatch_003"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Elin tilbyr intervju, men begrunner tilbudet med en privat opplysning Nora ikke visste at noen hadde sendt. Morgenen krever at spilleren skiller Noras ord, dokumentert evidens, egen tolkning og institusjonell frist; alt som fortsatt er uavklart merkes før planen oppdateres. Resultatet vender tilbake som bevis på at prosessen kostet mer samtykke enn den fikk. I D13-morning oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "education_and_training_partners",
+        "standing_consequence": "D13-morning gjør den situerte kostnaden synlig for education_and_training_partners, som vurderer veilederen etter realistiske kvalifiseringsløp og synlige overgangskostnader. Når kildene skilles før første handling, kan senere aktører se hva de faktisk vet; hvis tolkningen skjules som fakta, starter resten av dagen med en lånt sikkerhet. Resultatet vender tilbake som bevis på at prosessen kostet mer samtykke enn den fikk. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/psykologi_arbeids_og_karriereveiledning_job.json#psykologi_arbeids_og_karriereveiledning_job_systemfrist_004"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Elin tilbyr intervju, men begrunner tilbudet med en privat opplysning Nora ikke visste at noen hadde sendt. I lunsjsamtalen må den berørte personen få korrigere premisset, og faglig uenighet, samtykkeendring og ubesvarte spørsmål må følge handoffen uten å glattes bort. Resultatet vender tilbake som bevis på at prosessen kostet mer samtykke enn den fikk. I D13-lunch oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "D13-lunch gjør den situerte kostnaden synlig for private_relations, som vurderer veilederen etter nærvær uten at arbeidsdagen tar over privatlivet. Når korrigeringen blir stående i planen, kan uenighet forbedre neste møte; hvis den redigeres bort, blir høflighet feilaktig lest som samtykke. Resultatet vender tilbake som bevis på at prosessen kostet mer samtykke enn den fikk. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/psykologi_arbeids_og_karriereveiledning_people.json#psykologi_arbeids_og_karriereveiledning_people_nora_samtykke_005"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Elin tilbyr intervju, men begrunner tilbudet med en privat opplysning Nora ikke visste at noen hadde sendt. Ettermiddagsvalget må angi avgrenset handling, neste eier, ventepunkt og kontrolltid, samtidig som arbeidsgiver- eller systembehov holdes adskilt fra Noras beslutningsrett. Resultatet vender tilbake som bevis på at prosessen kostet mer samtykke enn den fikk. I D13-afternoon oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "seekers",
+        "standing_consequence": "D13-afternoon gjør den situerte kostnaden synlig for seekers, som vurderer veilederen etter at egne mål, erfaringer og samtykke faktisk styrer planen. Når eier, frist og stoppregel er eksplisitte, kan venting håndteres uten skyldforskyvning; ellers arver personen med minst makt både risiko og forklaringsbyrde. Resultatet vender tilbake som bevis på at prosessen kostet mer samtykke enn den fikk. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/psykologi_arbeids_og_karriereveiledning_people.json#psykologi_arbeids_og_karriereveiledning_people_samir_metode_006"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Elin tilbyr intervju, men begrunner tilbudet med en privat opplysning Nora ikke visste at noen hadde sendt. Kvelden viser hva tempoet gjorde med språk, nærvær og privat grense; saken må ligge igjen som sporbar rest, ikke flyttes over på utholdenhet eller uformell deling. Resultatet vender tilbake som bevis på at prosessen kostet mer samtykke enn den fikk. I D13-evening oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "guidance_colleagues",
+        "standing_consequence": "D13-evening gjør den situerte kostnaden synlig for guidance_colleagues, som vurderer veilederen etter etterprøvbar metodebruk og bevart faglig uenighet. Når restarbeid og privat grense registreres ærlig, kan neste dag begynne sant; hvis veilederen absorberer presset alene, forsvinner systemfeilen bak profesjonell maske. Resultatet vender tilbake som bevis på at prosessen kostet mer samtykke enn den fikk. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/psykologi_arbeids_og_karriereveiledning_people.json#psykologi_arbeids_og_karriereveiledning_people_elin_informasjon_007"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Sluttgjennomgangen må skille Noras valgte retning fra systemets aktivitetstall og plassere åpne svar, samtykkegrenser og neste eier før planen lukkes. Morgenen krever at spilleren skiller Noras ord, dokumentert evidens, egen tolkning og institusjonell frist; alt som fortsatt er uavklart merkes før planen oppdateres. Læring må bli synlig uten at veilederen overtar valget eller skjuler restarbeidet. I D14-morning oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "D14-morning gjør den situerte kostnaden synlig for private_relations, som vurderer veilederen etter nærvær uten at arbeidsdagen tar over privatlivet. Når kildene skilles før første handling, kan senere aktører se hva de faktisk vet; hvis tolkningen skjules som fakta, starter resten av dagen med en lånt sikkerhet. Læring må bli synlig uten at veilederen overtar valget eller skjuler restarbeidet. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/psykologi_arbeids_og_karriereveiledning_people.json#psykologi_arbeids_og_karriereveiledning_people_marius_handoff_008"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Sluttgjennomgangen må skille Noras valgte retning fra systemets aktivitetstall og plassere åpne svar, samtykkegrenser og neste eier før planen lukkes. I lunsjsamtalen må den berørte personen få korrigere premisset, og faglig uenighet, samtykkeendring og ubesvarte spørsmål må følge handoffen uten å glattes bort. Læring må bli synlig uten at veilederen overtar valget eller skjuler restarbeidet. I D14-lunch oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "seekers",
+        "standing_consequence": "D14-lunch gjør den situerte kostnaden synlig for seekers, som vurderer veilederen etter at egne mål, erfaringer og samtykke faktisk styrer planen. Når korrigeringen blir stående i planen, kan uenighet forbedre neste møte; hvis den redigeres bort, blir høflighet feilaktig lest som samtykke. Læring må bli synlig uten at veilederen overtar valget eller skjuler restarbeidet. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/conflict/psykologi_arbeids_og_karriereveiledning_conflict.json#psykologi_arbeids_og_karriereveiledning_conflict_helsepress_009"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Sluttgjennomgangen må skille Noras valgte retning fra systemets aktivitetstall og plassere åpne svar, samtykkegrenser og neste eier før planen lukkes. Ettermiddagsvalget må angi avgrenset handling, neste eier, ventepunkt og kontrolltid, samtidig som arbeidsgiver- eller systembehov holdes adskilt fra Noras beslutningsrett. Læring må bli synlig uten at veilederen overtar valget eller skjuler restarbeidet. I D14-afternoon oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "guidance_colleagues",
+        "standing_consequence": "D14-afternoon gjør den situerte kostnaden synlig for guidance_colleagues, som vurderer veilederen etter etterprøvbar metodebruk og bevart faglig uenighet. Når eier, frist og stoppregel er eksplisitte, kan venting håndteres uten skyldforskyvning; ellers arver personen med minst makt både risiko og forklaringsbyrde. Læring må bli synlig uten at veilederen overtar valget eller skjuler restarbeidet. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/story/psykologi_arbeids_og_karriereveiledning_story.json#psykologi_arbeids_og_karriereveiledning_story_vikariat_010"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Sluttgjennomgangen må skille Noras valgte retning fra systemets aktivitetstall og plassere åpne svar, samtykkegrenser og neste eier før planen lukkes. Kvelden viser hva tempoet gjorde med språk, nærvær og privat grense; saken må ligge igjen som sporbar rest, ikke flyttes over på utholdenhet eller uformell deling. Læring må bli synlig uten at veilederen overtar valget eller skjuler restarbeidet. I D14-evening oppdateres den samtykkebundne valg- og overgangsplanen gjennom den kanoniske scenen, uten ny runtime. Veiledning forblir støtte til valg og blir aldri diagnose, psykoterapi, klinisk arbeidsevnevurdering eller beslutningsmyndighet over arbeid og utdanning.",
+        "standing_audience": "team_leadership",
+        "standing_consequence": "D14-evening gjør den situerte kostnaden synlig for team_leadership, som vurderer veilederen etter realistiske frister, synlig restarbeid og ansvarlig lukking. Når restarbeid og privat grense registreres ærlig, kan neste dag begynne sant; hvis veilederen absorberer presset alene, forsvinner systemfeilen bak profesjonell maske. Læring må bli synlig uten at veilederen overtar valget eller skjuler restarbeidet. Håndteringen kan styrke tillit her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/event/psykologi_arbeids_og_karriereveiledning_event.json#psykologi_arbeids_og_karriereveiledning_event_intervjuendring_011"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "nora_goal_ownership",
+      "relationship": "Nora og veilederen forhandler om hvem målet tilhører når frister, manglende søknader og nye alternativer presser planen.",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "5/afternoon",
+        "10/morning",
+        "11/lunch",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "samir_method_dissent",
+      "relationship": "Samir gjør kartleggingens usikkerhet og kollegial rework til en prøve på om profesjonskulturen tåler at veisøkerens erfaring motsier et ryddig verktøy.",
+      "beat_refs": [
+        "2/morning",
+        "2/afternoon",
+        "6/morning",
+        "6/afternoon",
+        "12/lunch",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "elin_relevance_and_privacy",
+      "relationship": "Elins legitime behov for jobbmatch kolliderer med presset for helseforklaring, Noras kontroll over opplysningene og senere ansvar for hva som faktisk ble delt.",
+      "beat_refs": [
+        "4/morning",
+        "4/afternoon",
+        "7/morning",
+        "9/afternoon",
+        "13/morning",
+        "13/afternoon"
+      ]
+    },
+    {
+      "id": "marius_system_time",
+      "relationship": "Marius og veilederen må gjøre frister, venting og neste eier synlige uten å gjøre rapporterbar aktivitet til sluttvalg eller plassere skylden for systemtid hos Nora.",
+      "beat_refs": [
+        "1/afternoon",
+        "5/morning",
+        "5/afternoon",
+        "8/lunch",
+        "11/morning",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "consent_versioning",
+      "relationship": "Noras samtykke endres mens CV, presentasjon og arbeidsgiverhandoff beveger seg raskere enn godkjenningen, slik at gammel og ny planversjon får ulik sosial kostnad.",
+      "beat_refs": [
+        "3/morning",
+        "3/afternoon",
+        "7/lunch",
+        "8/morning",
+        "8/afternoon",
+        "13/lunch"
+      ]
+    },
+    {
+      "id": "history_and_classification",
+      "relationship": "Historien om testing vender tilbake i dagens metodevalg og hindrer at institusjonelle kategorier gjøres til personens natur.",
+      "beat_refs": [
+        "2/lunch",
+        "6/lunch",
+        "9/lunch",
+        "12/morning",
+        "12/afternoon",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "private_boundary",
+      "relationship": "Arbeidsdagens tidspress og sensitive stoff må få privat etterklang uten at nære relasjoner blir reservekolleger, uformelle saksdrøftere eller mottakere av personopplysninger.",
+      "beat_refs": [
+        "1/evening",
+        "3/evening",
+        "7/evening",
+        "9/evening",
+        "11/evening",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "private_aftermath_1",
+      "beat_refs": [
+        "1/evening",
+        "3/evening"
+      ],
+      "meaning": "Arbeidsdagens usikkerhet, tidspress og personvern bæres uten at privatlivet blir uformell saksbehandling eller profesjonell reservekapasitet."
+    },
+    {
+      "id": "private_aftermath_2",
+      "beat_refs": [
+        "4/evening",
+        "7/evening"
+      ],
+      "meaning": "Arbeidsdagens usikkerhet, tidspress og personvern bæres uten at privatlivet blir uformell saksbehandling eller profesjonell reservekapasitet."
+    },
+    {
+      "id": "private_aftermath_3",
+      "beat_refs": [
+        "8/evening",
+        "9/evening"
+      ],
+      "meaning": "Arbeidsdagens usikkerhet, tidspress og personvern bæres uten at privatlivet blir uformell saksbehandling eller profesjonell reservekapasitet."
+    },
+    {
+      "id": "private_aftermath_4",
+      "beat_refs": [
+        "10/evening",
+        "11/evening"
+      ],
+      "meaning": "Arbeidsdagens usikkerhet, tidspress og personvern bæres uten at privatlivet blir uformell saksbehandling eller profesjonell reservekapasitet."
+    },
+    {
+      "id": "private_aftermath_5",
+      "beat_refs": [
+        "13/evening",
+        "14/evening"
+      ],
+      "meaning": "Arbeidsdagens usikkerhet, tidspress og personvern bæres uten at privatlivet blir uformell saksbehandling eller profesjonell reservekapasitet."
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "borrowed_goal",
+      "setup_ref": "1/morning",
+      "return_ref": "11/lunch",
+      "meaning": "borrowed_goal lar et tidlig dokumentert valg eller premiss vende tilbake som en senere, etterprøvbar følge for plan, relasjon og situert standing."
+    },
+    {
+      "id": "profile_label",
+      "setup_ref": "2/morning",
+      "return_ref": "6/afternoon",
+      "meaning": "profile_label lar et tidlig dokumentert valg eller premiss vende tilbake som en senere, etterprøvbar følge for plan, relasjon og situert standing."
+    },
+    {
+      "id": "cv_disclosure",
+      "setup_ref": "3/morning",
+      "return_ref": "13/morning",
+      "meaning": "cv_disclosure lar et tidlig dokumentert valg eller premiss vende tilbake som en senere, etterprøvbar følge for plan, relasjon og situert standing."
+    },
+    {
+      "id": "match_truth",
+      "setup_ref": "4/morning",
+      "return_ref": "10/afternoon",
+      "meaning": "match_truth lar et tidlig dokumentert valg eller premiss vende tilbake som en senere, etterprøvbar følge for plan, relasjon og situert standing."
+    },
+    {
+      "id": "system_waiting",
+      "setup_ref": "5/morning",
+      "return_ref": "14/morning",
+      "meaning": "system_waiting lar et tidlig dokumentert valg eller premiss vende tilbake som en senere, etterprøvbar følge for plan, relasjon og situert standing."
+    },
+    {
+      "id": "consent_version",
+      "setup_ref": "7/lunch",
+      "return_ref": "8/afternoon",
+      "meaning": "consent_version lar et tidlig dokumentert valg eller premiss vende tilbake som en senere, etterprøvbar følge for plan, relasjon og situert standing."
+    },
+    {
+      "id": "health_pressure",
+      "setup_ref": "9/morning",
+      "return_ref": "13/afternoon",
+      "meaning": "health_pressure lar et tidlig dokumentert valg eller premiss vende tilbake som en senere, etterprøvbar følge for plan, relasjon og situert standing."
+    },
+    {
+      "id": "historical_sorting",
+      "setup_ref": "2/lunch",
+      "return_ref": "12/afternoon",
+      "meaning": "historical_sorting lar et tidlig dokumentert valg eller premiss vende tilbake som en senere, etterprøvbar følge for plan, relasjon og situert standing."
+    }
+  ]
+}
