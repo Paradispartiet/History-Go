@@ -6,7 +6,7 @@ Rapporten måler om runtime kan presentere tilgjengelige canonical People-felt. 
 
 People-produksjon, claims og ferdigstatus eies av `docs/PEOPLE_PROFILE_CANONICAL.md`. Profiler uten v1-claims er `legacy_unreviewed`, selv når presentasjonsstatusen er `complete`.
 
-Source fingerprint: `36d3278a2f785dd9acbeed1e3c2a56cc96e766918498a7517a93d0ae4777d7c8`
+Source fingerprint: `986ba9b112991e7a3a610e3758528d0a19ac9595b1d5804e3ee493b08aed9dc8`
 
 ## Sammendrag
 
@@ -14,11 +14,11 @@ Source fingerprint: `36d3278a2f785dd9acbeed1e3c2a56cc96e766918498a7517a93d0ae477
 |---|---:|
 | Personer | 1426 |
 | Presentasjon complete | 70 |
-| Presentasjon strong | 408 |
-| Presentasjon partial | 933 |
+| Presentasjon strong | 409 |
+| Presentasjon partial | 932 |
 | Presentasjon sparse | 15 |
-| People Profile v1 ready | 78 |
-| Legacy uten v1-claims | 1348 |
+| People Profile v1 ready | 79 |
+| Legacy uten v1-claims | 1347 |
 | Ødelagte bildereferanser | 279 |
 | Eksplisitt initialfallback | 993 |
 | Implisitt initialfallback | 26 |
@@ -35,9 +35,9 @@ Source fingerprint: `36d3278a2f785dd9acbeed1e3c2a56cc96e766918498a7517a93d0ae477
 | educationDeclared | 63 | 4.4 % |
 | practiceDeclared | 1408 | 98.7 % |
 | placeGrounding | 1426 | 100 % |
-| sources | 467 | 32.7 % |
+| sources | 468 | 32.8 % |
 | imageContract | 1147 | 80.4 % |
-| profileStandard | 78 | 5.5 % |
+| profileStandard | 79 | 5.5 % |
 
 ## Kategorier
 
@@ -48,7 +48,7 @@ Source fingerprint: `36d3278a2f785dd9acbeed1e3c2a56cc96e766918498a7517a93d0ae477
 | litteratur | 172 | 36 | 20 | 116 | 0 | 16 | 156 | 70.5 |
 | musikk | 124 | 0 | 15 | 109 | 0 | 0 | 124 | 62.2 |
 | politikk | 114 | 5 | 50 | 59 | 0 | 17 | 97 | 68.1 |
-| kunst | 86 | 11 | 62 | 13 | 0 | 12 | 74 | 74 |
+| kunst | 86 | 11 | 63 | 12 | 0 | 13 | 73 | 74.1 |
 | naeringsliv | 81 | 5 | 30 | 32 | 14 | 8 | 73 | 62.9 |
 | by | 79 | 9 | 55 | 15 | 0 | 21 | 58 | 74.3 |
 | scenekunst | 48 | 1 | 16 | 31 | 0 | 1 | 47 | 64.6 |
