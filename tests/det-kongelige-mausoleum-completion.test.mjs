@@ -97,7 +97,7 @@ test("Religion-quizen er normal 4x7, har 2x7 normalåpning og sen metode/teori",
   assert.equal(context.categoryId,"religion");
 });
 
-test("Story, Lesespor og Språkleksikon er materialisert uten falsk Fagverk-fallback",()=>{
+test("Story, Lesespor, Språkleksikon og Place-eid Fagverk er materialisert",()=>{
   assert.equal(leksikon.length,1);
   assert.equal(leksikon[0].chronology.length,5);
   assert.equal(stories.length,1);
@@ -109,8 +109,12 @@ test("Story, Lesespor og Språkleksikon er materialisert uten falsk Fagverk-fall
   assert.ok(language.entries.length>=5);
   const reading=read("data/lesespor/oslo/lesespor_oslo_religion.json");
   assert.ok(reading.items.filter(item=>item.place_ids?.includes(place.id)).length>=3);
-  assert.equal(Object.hasOwn(place,"fagverk"),false);
+  assert.equal(place.fagverk.schema,"history_go_place_fagverk_v2");
+  assert.equal(place.fagverk.level,"standard");
+  assert.equal(place.fagverk.status,"curated");
+  assert.deepEqual(place.fagverk.subject_ids,["religion"]);
+  assert.deepEqual(place.fagverk.emne_ids,["em_religion_hellige_rom","em_religion_ritualer_praksis","em_religion_religionshistorie_lokalt","em_religion_kristendom","em_religion_religion_og_samfunn"]);
+  assert.deepEqual(place.fagverk.chapter_ids,[]);
   assert.equal(audit.status,"PASS");
-  assert.equal(audit.fagverk.status,"LINKED_UNFINISHED");
   assert.equal(audit.quality_score.total,30);
 });
