@@ -1,0 +1,127 @@
+name: TEMP Juss field 4 fulltext field 5 source-first
+
+on:
+  push:
+    branches:
+      - agent/fagverk-juss-rettsvitenskap-field-4-fulltext-field-5-source-first-20260901
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tmp-juss-field4-fulltext-field5-source-first
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    if: github.event.head_commit.message == 'Run fail-closed Juss field 4 fulltext field 5 source-first'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact Juss branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/fagverk-juss-rettsvitenskap-field-4-fulltext-field-5-source-first-20260901
+          fetch-depth: 1
+          show-progress: false
+
+      - name: Use Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Syntax-check TEMP generator
+        run: node --check scripts/tmp-materialize-juss-field4-fulltext-field5-source-first.mjs
+
+      - name: Generate candidate state or capture exact failure
+        run: |
+          set +e
+          node scripts/tmp-materialize-juss-field4-fulltext-field5-source-first.mjs > /tmp/juss-generator.log 2>&1
+          status=$?
+          set -e
+          cat /tmp/juss-generator.log
+          if [ "$status" -ne 0 ]; then
+            git reset --hard HEAD
+            git clean -fd
+            mkdir -p reports/fagverk
+            tail -n 120 /tmp/juss-generator.log > reports/fagverk/tmp-juss-field4-field5-generator-error.txt
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add reports/fagverk/tmp-juss-field4-field5-generator-error.txt
+            if ! git diff --cached --quiet; then
+              git commit -m 'Capture Juss field 4 field 5 generator error'
+              git push origin HEAD:agent/fagverk-juss-rettsvitenskap-field-4-fulltext-field-5-source-first-20260901
+            fi
+            exit "$status"
+          fi
+
+      - name: Syntax-check generated Juss gates
+        run: |
+          node --check scripts/audit-juss-rettsvitenskap-human-rights-echr-rights-protection-fulltext-v1.mjs
+          node --check scripts/materialize-juss-rettsvitenskap-human-rights-echr-rights-protection-fulltext-v1.mjs
+          node --check scripts/brief-juss-rettsvitenskap-eu-eea-public-international-law-international-sources-sources-v1.mjs
+          node --check scripts/audit-juss-rettsvitenskap-reconciliation-v1.mjs
+          node --check tests/juss-rettsvitenskap-human-rights-echr-rights-protection-fulltext-v1.test.mjs
+          node --check tests/juss-rettsvitenskap-eu-eea-public-international-law-international-sources-source-brief-v1.test.mjs
+          node --check tests/juss-rettsvitenskap-reconciliation-v1.test.mjs
+
+      - name: Run isolated Field 4 and Field 5 gates
+        run: |
+          node scripts/brief-juss-rettsvitenskap-human-rights-echr-rights-protection-sources-v1.mjs
+          node scripts/audit-juss-rettsvitenskap-human-rights-echr-rights-protection-fulltext-v1.mjs
+          node scripts/materialize-juss-rettsvitenskap-human-rights-echr-rights-protection-fulltext-v1.mjs
+          node scripts/brief-juss-rettsvitenskap-eu-eea-public-international-law-international-sources-sources-v1.mjs
+          node --test tests/juss-rettsvitenskap-human-rights-echr-rights-protection-source-brief-v1.test.mjs tests/juss-rettsvitenskap-human-rights-echr-rights-protection-fulltext-v1.test.mjs tests/juss-rettsvitenskap-eu-eea-public-international-law-international-sources-source-brief-v1.test.mjs tests/juss-rettsvitenskap-reconciliation-v1.test.mjs
+
+      - name: Create local candidate checkpoint for deterministic CI
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git reset .github/workflows/tmp-juss-field4-fulltext-field5-source-first.yml
+          if git diff --cached --quiet; then
+            echo 'No candidate changes generated before deterministic checkpoint' >&2
+            exit 1
+          fi
+          if git diff --cached --name-only | grep -q '^.github/workflows/'; then
+            echo 'Refusing workflow mutation in local candidate checkpoint' >&2
+            exit 1
+          fi
+          git commit -m 'TEMP local Juss field 4 field 5 candidate checkpoint'
+
+      - name: Run registry-driven Juss and shared Fagverk gates
+        run: node scripts/run-fagverk-domain-ci-v1.mjs --subject juss_rettsvitenskap
+
+      - name: Verify canonical progress and no premature completion
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const reg=JSON.parse(fs.readFileSync('data/fag/politikk/juss_rettsvitenskap/production_registry_v1.json','utf8'));
+          const category=JSON.parse(fs.readFileSync('data/categories/category_contract.json','utf8'));
+          const sub=category.canonicalSubcategories.politikk.find(row=>row.id==='juss_rettsvitenskap');
+          if(reg.progress.materializedDomains!==4||reg.progress.totalDomains!==12||reg.progress.strictCompletionProven!==false||reg.materialized.length!==4) throw new Error('Expected canonical Juss 4/12 state');
+          if(reg.next_gate!=='eu_eea_public_international_law_international_sources_fulltext') throw new Error('Expected Field 5 fulltext as next gate');
+          if(reg.materialized[3]?.domain_id!=='menneskerettigheter_emk_rettighetsvern') throw new Error('Expected Menneskerettigheter as materialized Field 4');
+          if(sub?.status!=='expansion_planned') throw new Error('Juss category completed prematurely');
+          NODE
+          git diff --check
+
+      - name: Remove TEMP production surfaces
+        run: |
+          rm scripts/tmp-materialize-juss-field4-fulltext-field5-source-first.mjs
+          rm -f reports/fagverk/tmp-juss-field4-field5-generator-error.txt
+          test ! -e scripts/tmp-materialize-juss-field4-fulltext-field5-source-first.mjs
+          test ! -e reports/fagverk/tmp-juss-field4-field5-generator-error.txt
+          test -e .github/workflows/tmp-juss-field4-fulltext-field5-source-first.yml
+
+      - name: Finalize and push permanent candidate only after all gates pass
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git reset .github/workflows/tmp-juss-field4-fulltext-field5-source-first.yml
+          if git diff --cached --name-only | grep -q '^.github/workflows/'; then
+            echo 'Refusing workflow mutation from Actions token' >&2
+            exit 1
+          fi
+          git commit --amend -m 'Materialize Juss field 4 and prepare field 5 source-first'
+          git push origin HEAD:agent/fagverk-juss-rettsvitenskap-field-4-fulltext-field-5-source-first-20260901
