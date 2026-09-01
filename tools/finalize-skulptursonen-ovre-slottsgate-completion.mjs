@@ -588,6 +588,7 @@ Object.assign(workcard, {
   notes: ["Eksisterende verifisert geometri og begge linjegrenser er bevart uendret.", "Fire samlinger er People, Objects, Brands og Productions.", "Kunst quizProduction er aktivert med normal 4×7 og Knowledge-binding.", "Prosjektperioden 2019–2024, historiske verk og dagens ukjente installasjon er eksplisitt avgrenset."]
 });
 write(workcardFile, workcard);
+execFileSync(process.execPath, ["scripts/build-place-open-payloads.mjs"], { cwd: root, stdio: "inherit" });
 execFileSync(process.execPath, ["--experimental-strip-types", "scripts/build-civication-scenario-people-index.mts"], { cwd: root, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/build-epoke-place-index.mjs"], { cwd: root, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/build-fagverk-release-manifest.mjs"], { cwd: root, stdio: "inherit" });
