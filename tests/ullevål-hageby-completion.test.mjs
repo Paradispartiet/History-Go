@@ -2,7 +2,8 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import test from "node:test";
 import sharp from "sharp";
-import { validatePacket } from "../scripts/validate-place-description-production-v4_2_policy.mjs";
+import { validateRepository } from "../scripts/validate-place-description-production-v4_2.mjs";
+import { applySourceLedLengthPolicy } from "../scripts/validate-place-description-production-v4_2_policy.mjs";
 
 const read = (file) => JSON.parse(fs.readFileSync(file, "utf8"));
 const placeFile = "data/places/by/oslo/places/ullevål_hageby.json";
@@ -102,9 +103,11 @@ test("before-now and source conflicts remain explicit", () => {
 
 test("production packet and workcard close fail-closed at 30/30", () => {
   const place = read(placeFile);
-  const packet = read(`data/places/production/${placeId}.json`);
-  const result = validatePacket({ packet, place, packetFile: `data/places/production/${placeId}.json`, now: new Date("2026-09-02T12:00:00Z") });
-  assert.deepEqual(result.issues, []);
+  const packetFile = `data/places/production/${placeId}.json`;
+  const packet = read(packetFile);
+  const validation = applySourceLedLengthPolicy(validateRepository({ now: new Date("2026-09-02T12:00:00Z") }));
+  const packetIssues = validation.issues.filter((issue) => issue.packetFile === packetFile);
+  assert.deepEqual(packetIssues, []);
   assert.equal(packet.status, "ready_v4_2");
   assert.equal(packet.metadataSnapshot.year, 1915);
   assert.deepEqual(packet.metadataSnapshot.coordinates, { lat: 59.9435082, lon: 10.7337546 });
