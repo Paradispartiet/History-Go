@@ -1,0 +1,1 @@
+import test from 'node:test';import assert from 'node:assert/strict';import { audit } from '../scripts/audit-fysikk-reconciliation-v1.mjs';test('Fysikk reconciliation beviser 12/12 strict',()=>{const r=audit();assert.equal(r.materialized,12);assert.equal(r.sourceFirstReady,12);assert.equal(r.strictCompletionProven,true);assert.equal(r.nextDomain,null)});

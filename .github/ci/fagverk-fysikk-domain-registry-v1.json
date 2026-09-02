@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "subject": "fysikk",
+  "ownerSubject": "vitenskap",
+  "canonicalSubcategoryId": "fysikk",
+  "totalDomains": 12,
+  "ci": {
+    "changeTokens": [
+      "/fysikk/",
+      "fysikk-",
+      "fysikk_strict"
+    ],
+    "progress": {
+      "kind": "registered_chapter_count",
+      "source": "data/fag/vitenskap/fysikk/production_registry_v1.json",
+      "pointer": [
+        "progress",
+        "materializedDomains"
+      ]
+    },
+    "cumulativeAudits": [
+      "scripts/audit-fysikk-reconciliation-v1.mjs"
+    ],
+    "cumulativeTests": [
+      "tests/fysikk-reconciliation-v1.test.mjs"
+    ],
+    "deterministicPaths": [
+      "data/fag/vitenskap/fysikk",
+      "data/fagverk/vitenskap/fysikk",
+      "reports/fagverk/fysikk-strict-v1-audit.json"
+    ]
+  },
+  "strictCompletion": {
+    "bindings": "data/fagverk/vitenskap/fysikk/eksperiment-instrumentering-beregning-data.json",
+    "audit": "scripts/audit-fysikk-strict-v1.mjs",
+    "auditTest": "tests/fysikk-strict-v1.test.mjs",
+    "materializer": "scripts/materialize-fysikk-strict-v1.mjs",
+    "completionTest": "tests/fysikk-strict-v1.test.mjs",
+    "auditReport": "reports/fagverk/fysikk-strict-v1-audit.json",
+    "completionReport": "reports/fagverk/fysikk-strict-v1-audit.json"
+  },
+  "domains": [
+    {
+      "ordinal": 1,
+      "domainId": "grunnlag_maling_modeller_klassisk_mekanikk",
+      "slug": "grunnlag-maling-modeller-klassisk-mekanikk",
+      "fulltextMaterializer": "scripts/materialize-fysikk-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-fysikk-strict-v1.mjs",
+      "fulltextTest": "tests/fysikk-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 2,
+      "domainId": "termodynamikk_statistisk_fysikk",
+      "slug": "termodynamikk-statistisk-fysikk",
+      "fulltextMaterializer": "scripts/materialize-fysikk-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-fysikk-strict-v1.mjs",
+      "fulltextTest": "tests/fysikk-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 3,
+      "domainId": "svingninger_bolger_lyd_optikk",
+      "slug": "svingninger-bolger-lyd-optikk",
+      "fulltextMaterializer": "scripts/materialize-fysikk-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-fysikk-strict-v1.mjs",
+      "fulltextTest": "tests/fysikk-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 4,
+      "domainId": "elektromagnetisme_kretser_felt",
+      "slug": "elektromagnetisme-kretser-felt",
+      "fulltextMaterializer": "scripts/materialize-fysikk-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-fysikk-strict-v1.mjs",
+      "fulltextTest": "tests/fysikk-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 5,
+      "domainId": "kvantemekanikk_tilstander_maling",
+      "slug": "kvantemekanikk-tilstander-maling",
+      "fulltextMaterializer": "scripts/materialize-fysikk-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-fysikk-strict-v1.mjs",
+      "fulltextTest": "tests/fysikk-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 6,
+      "domainId": "relativitet_romtid_gravitasjon",
+      "slug": "relativitet-romtid-gravitasjon",
+      "fulltextMaterializer": "scripts/materialize-fysikk-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-fysikk-strict-v1.mjs",
+      "fulltextTest": "tests/fysikk-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 7,
+      "domainId": "atom_molekyl_kondensert_materialfysikk",
+      "slug": "atom-molekyl-kondensert-materialfysikk",
+      "fulltextMaterializer": "scripts/materialize-fysikk-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-fysikk-strict-v1.mjs",
+      "fulltextTest": "tests/fysikk-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 8,
+      "domainId": "kjernefysikk_straling_reaksjoner",
+      "slug": "kjernefysikk-straling-reaksjoner",
+      "fulltextMaterializer": "scripts/materialize-fysikk-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-fysikk-strict-v1.mjs",
+      "fulltextTest": "tests/fysikk-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 9,
+      "domainId": "partikkelfysikk_standardmodellen",
+      "slug": "partikkelfysikk-standardmodellen",
+      "fulltextMaterializer": "scripts/materialize-fysikk-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-fysikk-strict-v1.mjs",
+      "fulltextTest": "tests/fysikk-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 10,
+      "domainId": "astrofysikk_stjerner_galakser",
+      "slug": "astrofysikk-stjerner-galakser",
+      "fulltextMaterializer": "scripts/materialize-fysikk-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-fysikk-strict-v1.mjs",
+      "fulltextTest": "tests/fysikk-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 11,
+      "domainId": "kosmologi_gravitasjonsbolger_multibudbringer",
+      "slug": "kosmologi-gravitasjonsbolger-multibudbringer",
+      "fulltextMaterializer": "scripts/materialize-fysikk-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-fysikk-strict-v1.mjs",
+      "fulltextTest": "tests/fysikk-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 12,
+      "domainId": "eksperiment_instrumentering_beregning_data",
+      "slug": "eksperiment-instrumentering-beregning-data",
+      "fulltextMaterializer": "scripts/materialize-fysikk-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-fysikk-strict-v1.mjs",
+      "fulltextTest": "tests/fysikk-strict-v1.test.mjs"
+    }
+  ]
+}

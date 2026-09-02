@@ -10,8 +10,8 @@ import {
 
 const registries = loadRegistries();
 
-test("Helse, Utdanning, Sosiologi/antropologi, Geografi, Språk/lingvistikk and Juss/rettsvitenskap use one domain CI registry contract", () => {
-  assert.deepEqual(Object.keys(registries), ["helse", "utdanning", "sosiologi_antropologi", "geografi", "sprak_lingvistikk", "juss_rettsvitenskap"]);
+test("Helse, Utdanning, Sosiologi/antropologi, Geografi, Språk/lingvistikk Juss/rettsvitenskap and Fysikk use one domain CI registry contract", () => {
+  assert.deepEqual(Object.keys(registries), ["helse", "utdanning", "sosiologi_antropologi", "geografi", "sprak_lingvistikk", "juss_rettsvitenskap", "fysikk"]);
   for (const [subject, registry] of Object.entries(registries)) {
     const validated = validateRegistry(registry);
     assert.equal(registry.subject, subject);
@@ -48,8 +48,12 @@ test("domain routing selects affected subjects and fans shared changes into one 
   }), ["juss_rettsvitenskap"]);
   assert.deepEqual(selectSubjects({
     registries,
+    changedFiles: ["data/fag/vitenskap/fysikk/production_registry_v1.json"],
+  }), ["fysikk"]);
+  assert.deepEqual(selectSubjects({
+    registries,
     changedFiles: ["data/fagverk/subject_inventory.json"],
-  }), ["helse", "utdanning", "sosiologi_antropologi", "geografi", "sprak_lingvistikk", "juss_rettsvitenskap"]);
+  }), ["helse", "utdanning", "sosiologi_antropologi", "geografi", "sprak_lingvistikk", "juss_rettsvitenskap", "fysikk"]);
 });
 
 test("shared domain workflow triggers on every Geografi surface routed by the registry", () => {
@@ -92,4 +96,10 @@ test("shared domain workflow triggers on every Juss & rettsvitenskap surface rou
   ]) {
     assert.equal(workflow.includes(pathPattern), true, "workflow mangler Juss-trigger " + pathPattern);
   }
+});
+
+
+test("shared domain workflow triggers on every Fysikk surface routed by the registry", () => {
+  const workflow = readFileSync(".github/workflows/fagverk-domain-registry.yml", "utf8");
+  for (const pathPattern of ["data/fag/vitenskap/fysikk/**","data/fagverk/vitenskap/fysikk/**","reports/fagverk/fysikk-*.json","scripts/*fysikk*","tests/fysikk-*.test.mjs",".github/ci/fagverk-fysikk-domain-registry-v1.json"]) assert.equal(workflow.includes(pathPattern), true, "workflow mangler Fysikk-trigger " + pathPattern);
 });
