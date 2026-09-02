@@ -1,0 +1,61 @@
+name: TEMP Scenekunst institusjonsledelse Role World materialization
+
+on:
+  push:
+    branches:
+      - agent/civication-scenekunst-institusjonsledelse-role-world-rollout
+    paths:
+      - scripts/TEMP-materialize-scenekunst-institusjonsledelse-role-world.mjs
+      - .github/workflows/TEMP-scenekunst-institusjonsledelse-role-world-materialize.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temp-scenekunst-institusjonsledelse-role-world
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Author Role World and registrations
+        run: node scripts/TEMP-materialize-scenekunst-institusjonsledelse-role-world.mjs
+      - name: Regenerate canonical derived state
+        run: |
+          node scripts/audit-civication-career-gameplay.mjs --write
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+          node scripts/build-civication-scene-registry.mjs --write --json
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+      - name: Verify fail-closed gates
+        run: |
+          node tests/civication-scenekunst-institusjonsledelse-role-world-rollout.test.js
+          node tests/civication-scenekunst-institusjonsledelse-prerequisites.test.js
+          node scripts/build-civication-scene-registry.mjs --check --json
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
+          node scripts/audit-civication-career-gameplay.mjs --check
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --check
+          npm run test:civication
+          git diff --check
+      - name: Publish verified permanent state
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git rm .github/workflows/TEMP-scenekunst-institusjonsledelse-role-world-materialize.yml
+          git rm scripts/TEMP-materialize-scenekunst-institusjonsledelse-role-world.mjs
+          git add -u
+          git add data/Civication/roleWorlds/scenekunst/scenekunst_institusjonsledelse.json
+          git add reports/CIVICATION_SCENEKUNST_INSTITUSJONSLEDELSE_ROLE_WORLD_ROLLOUT_SOURCE_FIRST.md
+          git add tests/civication-scenekunst-institusjonsledelse-role-world-rollout.test.js
+          git diff --cached --check
+          git commit -m 'Complete Scenekunst institusjonsledelse Role World'
+          git push origin HEAD:$GITHUB_REF_NAME
