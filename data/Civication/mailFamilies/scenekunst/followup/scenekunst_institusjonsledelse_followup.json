@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_institusjonsledelse",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "institusjonsledelse_tiltak_som_ikke_virket",
+      "purpose": "Bruk kontrollpunktet til å revidere tiltak som ikke reduserte belastningen.",
+      "learning_focus": [
+        "kunstnerisk_retning",
+        "mandat_og_delegasjon",
+        "arbeidsmiljo_og_ressursrealisme",
+        "sporbar_styring",
+        "waiting_handoff_rework"
+      ],
+      "mails": [
+        {
+          "id": "institusjonsledelse_followup_tiltak_uten_effekt_001",
+          "mail_type": "followup",
+          "mail_family": "institusjonsledelse_tiltak_som_ikke_virket",
+          "role_scope": "scenekunst_institusjonsledelse",
+          "phase": "forenoon",
+          "day_phase": "morning",
+          "priority": 133,
+          "from": "Sigrid",
+          "people_ref": "sigrid_hovedverneombud",
+          "person_id": "sigrid_hovedverneombud",
+          "place_id": "arbeidsmiljo_varsling_og_tiltaksrom",
+          "subject": "Overtiden falt, men uforutsigbarheten og fraværet gjorde det ikke",
+          "summary": "Kontrollpunktet viser at overtidsgrensen ble fulgt, mens sene endringer, rollekonflikt og korttidsfravær består. Oppfølgingen tester om lederen bruker tiltaket som bevis på handlekraft eller gjenåpner årsak, berørte arbeidsprosesser og ansvar. Tidligere tiltak skal beholdes som evidens, ikke slettes fordi det bare virket på én indikator.",
+          "situation": [
+            "Registrert overtid er lavere enn før tiltaket.",
+            "Endringsvarsler, rollekonflikt og fravær viser fortsatt belastning.",
+            "Sigrid trenger at ny vurdering skiller målt etterlevelse fra faktisk arbeidsmiljøeffekt."
+          ],
+          "task_domain": "scenekunstinstitusjon_og_ledelse",
+          "competency": "tiltaksevaluering_og_rework",
+          "pressure": "synlig_etterlevelse_vs_reell_virkning",
+          "choice_axis": "bevar_evidens_og_revider_vs_erklar_suksess",
+          "consequence_axis": "larende_arbeidsgiveransvar_vs_malingsteater",
+          "narrative_arc": "tiltaksrework",
+          "situated_audience_id": "ansatte_vernetjeneste_og_tillitsvalgte",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Behold første tiltak og gjenåpne arbeidsprosessen",
+              "reply": "Jeg registrerer at overtidsdelen virket, men at samlet effekt uteble, kartlegger endringsflyt og rolleansvar med berørte og Sigrid, og setter et nytt avgrenset tiltak med eier, varighet og kontrollpunkt.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "arbeidsgiveransvar"
+              ],
+              "feedback": "Lederloggen viser både læring og restproblem. Ansatte slipper å bevise at en grønn indikator skjuler belastning, og institusjonen kan justere bare berørte prosesser uten å framstille første tiltak som verdiløst eller fullført.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Rapporter tiltaket som gjennomført og vellykket",
+              "reply": "Jeg dokumenterer at overtidsmålet er nådd og lar linjelederne følge opp øvrige samarbeidsproblemer lokalt, fordi den formelle arbeidsgiverhandlingen ellers kan bli stående åpen uten klar slutt.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Rapporteringen blir ryddig, men en målt aktivitet erstatter virkningen tiltaket skulle ha. Uforutsigbarhet og fravær privatiseres som lokale samarbeidsproblem, og senere skade vil møte et offisielt spor som feilaktig sier at risikoen var håndtert.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

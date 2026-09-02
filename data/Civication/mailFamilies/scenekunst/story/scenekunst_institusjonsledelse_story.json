@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_institusjonsledelse",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "institusjonsledelse_suksess_og_kapasitetsgjeld",
+      "purpose": "Vis hvordan offentlig suksess kan skjule arbeid, risiko og utsatt vedlikehold.",
+      "learning_focus": [
+        "kunstnerisk_retning",
+        "mandat_og_delegasjon",
+        "arbeidsmiljo_og_ressursrealisme",
+        "sporbar_styring",
+        "waiting_handoff_rework"
+      ],
+      "mails": [
+        {
+          "id": "institusjonsledelse_story_suksess_kapasitetsgjeld_001",
+          "mail_type": "story",
+          "mail_family": "institusjonsledelse_suksess_og_kapasitetsgjeld",
+          "role_scope": "scenekunst_institusjonsledelse",
+          "phase": "forenoon",
+          "day_phase": "morning",
+          "priority": 136,
+          "from": "Henrik",
+          "people_ref": "henrik_okonomi_og_administrasjonssjef",
+          "person_id": "henrik_okonomi_og_administrasjonssjef",
+          "place_id": "budsjett_kapasitet_og_forpliktelsesrom",
+          "subject": "Utsolgte forestillinger skjuler vedlikehold, avspasering og utsatt utvikling",
+          "summary": "Publikumssuksessen gir billettinntekter og krav om forlengelse, men Henriks logg viser teknisk vedlikehold, avspasering og kunstnerisk utviklingsarbeid som allerede er skjøvet. Historien tester om lederen lar synlig resultat bli bevis på bærekraft, eller priser inn kapasitetsgjeld, arbeidstid og langsiktig mandat før beslutning.",
+          "situation": [
+            "Inntekten ved forlengelse er reell, men krever de samme menneskene og systemene som bærer restarbeidet.",
+            "Vedlikehold og avspasering er utsatt, ikke spart bort.",
+            "Utviklingsprosjektet som må vike er del av institusjonens vedtatte langsiktige mandat."
+          ],
+          "task_domain": "scenekunstinstitusjon_og_ledelse",
+          "competency": "langsiktig_portefolje_og_kapasitetsgjeld",
+          "pressure": "kortsiktig_suksess_vs_institusjonell_baerekraft",
+          "choice_axis": "full_kostnad_og_alternativ_vs_billettinntekt_som_fasit",
+          "consequence_axis": "langsiktig_mandat_vs_utarming",
+          "narrative_arc": "suksessgjeld",
+          "situated_audience_id": "publikum_presse_og_samarbeidspartnere",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Pris inn gjelden og legg fram et reelt valg",
+              "reply": "Jeg beregner inntekt sammen med arbeidstid, vedlikehold, avspasering og tapt utvikling, og legger fram en avgrenset forlengelse med finansiert restitusjon mot alternativet å avslutte som planlagt.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "arbeidsgiveransvar"
+              ],
+              "feedback": "Suksessen får verdi uten å bli et moralsk krav om mer arbeid. Publikum, styre og ansatte kan se hva forlengelsen faktisk koster, og lederen kan senere kontrolleres både på inntekt, arbeidsmiljø og langsiktig kunstnerisk effekt.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Forleng fordi etterspørselen finansierer seg selv",
+              "reply": "Jeg forlenger spilleperioden og bruker merinntekten som bevis på at kapasiteten kan økes, mens vedlikehold og utviklingsarbeid flyttes til en roligere periode etter sesongen.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Billettsalget ser ut som gevinst, men finansieres av skjult arbeid og oppgaver uten ny eier eller dato. Publikumssuksess får definere mandatet, og når roligere periode ikke kommer, vender gjelden tilbake som drifts- og tillitsproblem.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

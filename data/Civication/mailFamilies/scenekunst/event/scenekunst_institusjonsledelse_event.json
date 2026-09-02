@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_institusjonsledelse",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "institusjonsledelse_endret_finansieringspremiss",
+      "purpose": "Gjenåpne bare berørte forpliktelser når finansieringsgrunnlaget endres.",
+      "learning_focus": [
+        "kunstnerisk_retning",
+        "mandat_og_delegasjon",
+        "arbeidsmiljo_og_ressursrealisme",
+        "sporbar_styring",
+        "waiting_handoff_rework"
+      ],
+      "mails": [
+        {
+          "id": "institusjonsledelse_event_tilskuddskutt_001",
+          "mail_type": "event",
+          "mail_family": "institusjonsledelse_endret_finansieringspremiss",
+          "role_scope": "scenekunst_institusjonsledelse",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 135,
+          "from": "Leo",
+          "people_ref": "leo_styreleder",
+          "person_id": "leo_styreleder",
+          "place_id": "styre_eier_og_offentlighetsrom",
+          "subject": "Tilskuddsbrevet reduserer rammen etter at samarbeidspartnerne har fått optimistiske signaler",
+          "summary": "Et formelt tilskuddsbrev reduserer den forventede rammen og gjør gjestespillet ufinansiert. Hendelsen endrer budsjett, kontraktsmulighet og offentlig plan, men ikke alle kunstneriske premisser. Lederen må gjenåpne bare berørte valg, varsle riktige parter og legge fram styresak uten å late som avslaget skyldes kunstnerisk kvalitet.",
+          "situation": [
+            "Det betingede scenarioet er ikke kontraktsfestet, men en samarbeidspartner har mottatt optimistisk framdriftsinformasjon.",
+            "Basisprogrammet har finansiering dersom gjestespillet tas ut eller får ny dekning.",
+            "Tilskuddsvedtaket gir økonomisk ramme, ikke kunstnerisk vurdering."
+          ],
+          "task_domain": "scenekunstinstitusjon_og_ledelse",
+          "competency": "endret_premiss_og_rework",
+          "pressure": "ekstern_finansiering_vs_intern_forpliktelse",
+          "choice_axis": "avgrenset_gjenapning_vs_panikkomlegging",
+          "consequence_axis": "tillit_og_styrbarhet_vs_bredt_tap",
+          "narrative_arc": "tilskuddskutt",
+          "situated_audience_id": "styre_eier_og_finansiering",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjenåpne gjestespillet og korriger statusen",
+              "reply": "Jeg låser basisprogrammet, gjenåpner bare gjestespillets budsjett, avtale og kommunikasjon, varsler samarbeidspartneren om det formelle vedtaket og legger fram finansierte alternativer for Leo og styret.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "arbeidsgiveransvar"
+              ],
+              "feedback": "Tidligere arbeid beholdes, mens det endrede premisset får riktig konsekvens og eier. Samarbeidspartneren får sann status før kontrakt, og styret kan velge mellom ny dekning og avgrenset bortfall uten å lese avslaget som kunstnerisk dom.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Kutt jevnt i hele sesongen for å beskytte gjestespillet",
+              "reply": "Jeg reduserer alle produksjonsbudsjetter og ber avdelingene hente inn differansen, slik at det profilerte gjestespillet og den offentlige planen kan stå uendret.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Én ufinansiert satsing sprer rework til hele sesongen uten nytt kunstnerisk eller arbeidsmiljømessig grunnlag. Avslaget skjules som generell innsparing, og ansatte og andre kunstnere betaler for optimistiske signaler de ikke eide.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
