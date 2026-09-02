@@ -1,0 +1,26 @@
+{
+  "schema": "history-go.fagverk-place-page-coverage-semantics.v1",
+  "status": "active",
+  "authoritative_counts": "reports/fagverk/fagverk-place-page-coverage-v2.json",
+  "legacy_completed_place_migration": {
+    "scope": "original_explicit_completed_place_legacy_list",
+    "completed": 44,
+    "total": 44,
+    "missing": 0,
+    "status": "complete",
+    "closed_by": "PR #5606"
+  },
+  "coverage_interpretation": {
+    "curated": "Place-eid, nivåvalidert og kuratert history_go_place_fagverk_v2.",
+    "in_production": "Place-eid Fagverk-blokk finnes, men er ikke ferdig kuratert.",
+    "linked_unfinished": "Canonical Place mangler Place-eid kuratert Fagverk v2, men har løste fag- eller emnebindinger.",
+    "category_only_unfinished": "Canonical Place mangler Place-eid kuratert Fagverk v2 og har bare kategoriens canonicale faginngang."
+  },
+  "backlog_semantics": {
+    "unfinished_counts_are_post_production_backlog": false,
+    "unfinished_counts_are_global_coverage": true,
+    "meaning": "Globale unfinished-tall beskriver canonicale steder som ennå ikke har Place-eid kuratert Fagverk v2. De skal ikke behandles som manglende leveranser etter fullført stedsproduksjon uten separat evidens for at det aktuelle stedet faktisk er fullprodusert uten Fagverk.",
+    "ordinary_production_rule": "Nye steder og steder som fullproduseres eller vesentlig revideres skal materialisere Fagverk v2 i samme stedsproduksjon.",
+    "historical_measurements": "Felter som existing_fagverk og andre nullmålinger beskriver førtilstand og er ikke current status etter senere materialisering."
+  }
+}
