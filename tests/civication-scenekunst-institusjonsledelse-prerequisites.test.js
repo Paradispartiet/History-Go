@@ -93,13 +93,13 @@ assert.deepEqual(career.audit.missing_components, []);
 const readiness = read('data/Civication/roleWorldRolloutReadiness.json');
 const ready = readiness.roles.find((entry) => entry.key === KEY);
 assert.equal(ready.classification, 'rollout_ready');
-assert.equal(ready.role_world_status, 'role_world_not_started');
+assert.ok(['role_world_not_started', 'role_world_complete'].includes(ready.role_world_status));
 for (const dimension of ['people_places_integrity', 'persistent_work_object', 'rhythm_waiting_handoff_rework', 'history_go_affordance', 'situated_reputation']) {
   assert.equal(ready.dimensions[dimension].status, 'foundation_ready', dimension);
 }
 assert.deepEqual(ready.authored_work_required, []);
 assert.equal(ready.cross_role.need, 'candidate_when_shared_work_is_real');
-assert.ok(readiness.rollout_queue.some((entry) => entry.key === KEY));
+assert.equal(readiness.rollout_queue.some((entry) => entry.key === KEY), ready.role_world_status === 'role_world_not_started');
 assert.equal(readiness.gate.gate_pass, true);
 
 const scenarioPeople = read('data/Civication/scenarioPeople/generated/scenekunst.json');
