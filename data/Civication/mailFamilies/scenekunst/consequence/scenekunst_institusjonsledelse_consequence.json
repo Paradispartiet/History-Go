@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_institusjonsledelse",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "institusjonsledelse_uformelt_lofte_som_forpliktelse",
+      "purpose": "La et tidligere uformelt løfte vende tilbake som kontrakts- og tillitsproblem.",
+      "learning_focus": [
+        "kunstnerisk_retning",
+        "mandat_og_delegasjon",
+        "arbeidsmiljo_og_ressursrealisme",
+        "sporbar_styring",
+        "waiting_handoff_rework"
+      ],
+      "mails": [
+        {
+          "id": "institusjonsledelse_consequence_uformelt_lofte_001",
+          "mail_type": "consequence",
+          "mail_family": "institusjonsledelse_uformelt_lofte_som_forpliktelse",
+          "role_scope": "scenekunst_institusjonsledelse",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 131,
+          "from": "Henrik",
+          "people_ref": "henrik_okonomi_og_administrasjonssjef",
+          "person_id": "henrik_okonomi_og_administrasjonssjef",
+          "place_id": "budsjett_kapasitet_og_forpliktelsesrom",
+          "subject": "Det muntlige forlengelsessignalet kommer tilbake som kontraktsforventning",
+          "summary": "Samarbeidspartneren sender kontraktsutkast og viser til at både styreleder og institusjonsleder beskrev forlengelsen som ønsket. Selv uten signatur har de planlagt ansatte og avvist annet arbeid. Konsekvensen viser at uformell optimisme skaper økonomisk og relasjonell forpliktelse. Lederen må rekonstruere signalene, korrigere status, behandle påført kostnad og lære inn en kontroll uten å late som ingen avtale betyr ingen skade.",
+          "situation": [
+            "Lederloggen viser interesse og scenario, men den eksterne samtalen ble ikke registrert med tydelig forbehold.",
+            "Samarbeidspartneren har innrettet seg og kan ha reell kostnad selv om formell kontrakt mangler.",
+            "Henrik trenger at økonomisk og relasjonell konsekvens skilles fra spørsmålet om juridisk binding."
+          ],
+          "task_domain": "scenekunstinstitusjon_og_ledelse",
+          "competency": "forsinket_ledelseskonsekvens",
+          "pressure": "uformell_status_vs_reell_innrettelse",
+          "choice_axis": "rekonstruksjon_korreksjon_og_reparasjon_vs_formalisme",
+          "consequence_axis": "tillit_og_okonomi_vs_fornektet_ansvar",
+          "narrative_arc": "uformelt_lofte",
+          "situated_audience_id": "publikum_presse_og_samarbeidspartnere",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Rekonstruer, korriger og behandle den påførte konsekvensen",
+              "reply": "Jeg samler hva Leo og jeg faktisk sa, korrigerer at intet vedtak eller finansiering forelå, ber Henrik vurdere økonomisk eksponering og møter samarbeidspartneren om dokumentert innrettelse og mulig reparasjon før ny beslutning.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "arbeidsgiveransvar"
+              ],
+              "feedback": "Institusjonen innrømmer virkningen uten å oppfinne en signert avtale. Samarbeidspartneren får en redelig prosess, styret får sann risiko, og framtidige eksterne signaler bindes til skriftlig status, fullmakt og eksplisitt forbehold.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Avvis forventningen fordi ingen kontrakt er signert",
+              "reply": "Jeg svarer at samtalen bare uttrykte interesse og at institusjonen ikke har ansvar for samarbeidspartnerens planlegging uten et signert dokument eller formelt styrevedtak.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Den formelle grensen kan være relevant, men brukes til å benekte faktisk lederatferd og påført tillitstap. Samarbeidspartneren bærer hele kostnaden, mens institusjonen lærer at muntlig myndighet er konsekvensfri helt til signatur.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

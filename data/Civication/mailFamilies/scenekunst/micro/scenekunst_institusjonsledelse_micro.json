@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_institusjonsledelse",
+  "mail_type": "micro",
+  "families": [
+    {
+      "id": "institusjonsledelse_beslutningsklart_handoff",
+      "purpose": "Lever et kort, sant og mandatkorrekt styre- eller krisehandoff.",
+      "learning_focus": [
+        "kunstnerisk_retning",
+        "mandat_og_delegasjon",
+        "arbeidsmiljo_og_ressursrealisme",
+        "sporbar_styring",
+        "waiting_handoff_rework"
+      ],
+      "mails": [
+        {
+          "id": "institusjonsledelse_micro_tjue_minutters_styrehandoff_001",
+          "mail_type": "micro",
+          "mail_family": "institusjonsledelse_beslutningsklart_handoff",
+          "role_scope": "scenekunst_institusjonsledelse",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 134,
+          "from": "Leo",
+          "people_ref": "leo_styreleder",
+          "person_id": "leo_styreleder",
+          "place_id": "styre_eier_og_offentlighetsrom",
+          "subject": "Du har tjue minutter til å avklare hva styret faktisk skal beslutte",
+          "summary": "Leo trenger et kort ekstraordinært beslutningsgrunnlag før samarbeidspartnerens frist. Mikrooppgaven er å levere gjeldende loggversjon, formelt finansieringspremiss, to finansierte alternativer, arbeidsmiljørisiko på riktig nivå, anbefaling, beslutningssetning og kontrollpunkt uten å komprimere bort personvern, uenighet eller fullmaktsgrense.",
+          "situation": [
+            "Tilskuddsbrevet er formelt, men kunstnerisk og operativ konsekvens krever lederens anbefaling.",
+            "Styret trenger ikke identifiserende varslingsopplysninger for å beslutte økonomisk ramme.",
+            "Samarbeidspartnerens frist gjør presisjon viktigere, ikke mindre."
+          ],
+          "task_domain": "scenekunstinstitusjon_og_ledelse",
+          "competency": "beslutningshandoff",
+          "pressure": "tidsfrist_vs_mandat_og_konfidensialitet",
+          "choice_axis": "minimum_trygg_beslutningspakke_vs_statusmelding_som_vedtak",
+          "consequence_axis": "gyldig_hurtigvedtak_vs_sen_ansvarssvikt",
+          "narrative_arc": "styrehandoff",
+          "situated_audience_id": "styre_eier_og_finansiering",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lever minimumet for et gyldig og kontrollerbart vedtak",
+              "reply": "Jeg sender formelt premiss, berørt produksjon, to dekkede alternativer, aggregert kapasitets- og arbeidsmiljørisiko, min anbefaling, nøyaktig vedtakspunkt, gjennomføringsansvar og dato for ny rapportering.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "arbeidsgiveransvar"
+              ],
+              "feedback": "Leo og styret kan beslutte innen eget mandat uten å arve operativ personalsak eller uklar kommunikasjon. Handoffet er kort, men senere aktører kan rekonstruere både grunnlag, uenighet, fullmakt og når virkningen skal prøves.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Send anbefalingen som foreløpig beslutning",
+              "reply": "Jeg skriver at ledelsen anbefaler og derfor iverksetter gjestespillet, med forbehold om styrets etterfølgende godkjenning, slik at samarbeidspartneren kan få bekreftelse innen fristen.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Tidsfristen holdes, men anbefaling blir gjort til vedtak og styret får bare mulighet til å ratifisere en ekstern forpliktelse. Fullmakt, økonomi og ansvar glir sammen i et kort notat som senere vil se mer avklart ut enn det var.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
