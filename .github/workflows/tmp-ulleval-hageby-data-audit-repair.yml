@@ -1,0 +1,85 @@
+name: tmp Ullevål Hageby data audit repair
+on:
+  push:
+    branches:
+      - work/ulleval-hageby-completion-20260902
+permissions:
+  contents: write
+jobs:
+  repair:
+    if: github.event.head_commit.message != 'Repair Ullevål Hageby data audit state'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/ulleval-hageby-completion-20260902
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Replay on fresh main
+        run: |
+          git config user.name "Paradispartiet"
+          git config user.email "paradispartiet@gmail.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+      - name: Repair quiz source brief
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const quizFile = 'data/quiz/by/ullevål_hageby_sets.json';
+          const briefFile = 'data/quiz/production_briefs/by/ullevål_hageby.json';
+          const quiz = JSON.parse(fs.readFileSync(quizFile, 'utf8'));
+          const brief = JSON.parse(fs.readFileSync(briefFile, 'utf8'));
+          const pc = quiz.production_context;
+          for (const field of ['existing_quiz_audit', 'profile_decision', 'held_back_candidates']) {
+            if (pc[field] === undefined) throw new Error(`Quiz production_context.${field} missing`);
+            brief[field] = pc[field];
+          }
+          const curriculumPairs = {
+            module_ids: 'pensum_module_ids',
+            emne_ids: 'emne_ids',
+            topic_hook_ids: 'topic_hook_ids',
+            method_ids: 'method_ids',
+            thinker_ids: 'thinker_ids',
+            works: 'works'
+          };
+          brief.selected_curriculum = {};
+          for (const [briefField, contextField] of Object.entries(curriculumPairs)) {
+            if (!Array.isArray(pc[contextField])) throw new Error(`Quiz production_context.${contextField} missing`);
+            brief.selected_curriculum[briefField] = pc[contextField];
+          }
+          fs.writeFileSync(briefFile, `${JSON.stringify(brief, null, 2)}\n`);
+          NODE
+      - name: Regenerate affected artifacts
+        run: |
+          npm ci --no-audit --no-fund
+          node scripts/build-quiz-production-context.mjs --category by --target ullevål_hageby --output data/quiz/production_context/by/ullevål_hageby.json
+          npm run civication:history-people:build
+      - name: Normalize generated quiz context whitespace
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const file = 'data/quiz/production_context/by/ullevål_hageby.json';
+          const text = fs.readFileSync(file, 'utf8');
+          const normalized = text.split(/\r?\n/).map((line) => line.replace(/[ \t]+$/u, '')).join('\n');
+          fs.writeFileSync(file, `${normalized.replace(/\n*$/u, '')}\n`);
+          NODE
+      - name: Verify quiz production context
+        run: npm run audit:quiz-production-context
+      - name: Verify quiz progression
+        run: npm run audit:quiz-progression
+      - name: Verify quiz theory binding
+        run: npm run audit:quiz-theory-binding
+      - name: Verify Civication history people
+        run: npm run civication:history-people:check
+      - name: Verify people shell
+        run: bash scripts/check-people.sh
+      - name: Verify whitespace
+        run: git diff --check
+      - name: Publish repaired candidate
+        run: |
+          git add -A
+          git commit -m "Repair Ullevål Hageby data audit state"
+          git push origin HEAD:work/ulleval-hageby-completion-20260902
+# retrigger against main 1be27c7d51ab1a15ab47018273caf898f131532b
