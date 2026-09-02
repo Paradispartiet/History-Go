@@ -1,0 +1,1129 @@
+{
+  "schema": "history_go_fagverk_matematikk_strict_domain_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-09-02",
+  "subject": "vitenskap",
+  "subject_id": "vitenskap",
+  "canonical_subcategory_id": "matematikk",
+  "ordinal": 4,
+  "domain_id": "abstrakt_algebra_grupper_ringer_kropper",
+  "id": "abstrakt-algebra-grupper-ringer-kropper",
+  "chapter_id": "abstrakt-algebra-grupper-ringer-kropper",
+  "title": "Abstrakt algebra: grupper, ringer, kropper og struktur",
+  "subtitle": "Strict Matematikk-felt 4 av 12: source-first, fulltekst, claims, vurderinger og case",
+  "lead": "Abstrakt algebra: grupper, ringer, kropper og struktur er materialisert som et selvstendig felt i Matematikk-registeret med eksplisitte definisjoner, beviskjeder, objekt–representasjon-skille, numerisk feilkontroll og en tydelig grense mellom matematisk korrekthet og empirisk modelladekvathet.",
+  "source_registry": "data/fag/vitenskap/matematikk/source_registry_v1.json",
+  "source_first": {
+    "status": "pass",
+    "source_ids": [
+      "vit2-02-lean-propositions-proofs",
+      "vit2-05-mit-discrete",
+      "vit2-06-mit-linear-algebra",
+      "vit2-07-mit-algebra",
+      "vit2-09-uio-euclid",
+      "mat-src-11-mit-real-analysis",
+      "mat-src-13-mit-number-theory",
+      "mat-src-14-mit-topology"
+    ],
+    "topic_briefs": [
+      {
+        "id": "mat04-t01",
+        "title": "Grupper og symmetri",
+        "core": "Grupper formaliserer en lukket assosiativ operasjon med identitet og inverser og gir et språk for symmetrier og transformasjoner.",
+        "boundary": "At en samling transformasjoner ser symmetrisk ut er ikke nok; gruppeaksiomene må verifiseres.",
+        "planned_claim_ids": [
+          "mat04-01-1",
+          "mat04-01-2",
+          "mat04-01-3",
+          "mat04-01-4"
+        ]
+      },
+      {
+        "id": "mat04-t02",
+        "title": "Undergrupper og generatorer",
+        "core": "Undergrupper og generatorsett beskriver hvordan større algebraiske strukturer kan bygges fra mindre deler.",
+        "boundary": "Et valgt generatorsett er ikke unikt og må skilles fra selve gruppen.",
+        "planned_claim_ids": [
+          "mat04-02-1",
+          "mat04-02-2",
+          "mat04-02-3",
+          "mat04-02-4"
+        ]
+      },
+      {
+        "id": "mat04-t03",
+        "title": "Homomorfier, kjerner og kvotientgrupper",
+        "core": "Gruppehomomorfier bevarer operasjonen, og kjerner og kvotientkonstruksjoner gjør strukturelle sammenhenger presise.",
+        "boundary": "En homomorfi trenger ikke være injektiv eller surjektiv uten ekstra betingelser.",
+        "planned_claim_ids": [
+          "mat04-03-1",
+          "mat04-03-2",
+          "mat04-03-3",
+          "mat04-03-4"
+        ]
+      },
+      {
+        "id": "mat04-t04",
+        "title": "Ringer og idealer",
+        "core": "Ringer kombinerer additive og multiplikative strukturer og idealer organiserer hvilke kvotienter og divisibilitetsmønstre som er kompatible med ringoperasjonene.",
+        "boundary": "Ringmultiplikasjon trenger ikke være kommutativ og elementer trenger ikke ha multiplikativ invers.",
+        "planned_claim_ids": [
+          "mat04-04-1",
+          "mat04-04-2",
+          "mat04-04-3",
+          "mat04-04-4"
+        ]
+      },
+      {
+        "id": "mat04-t05",
+        "title": "Kropper og polynomer",
+        "core": "Kropper gir divisjon med alle ikke-null-elementer og danner et naturlig grunnlag for polynom- og lineæralgebraiske konstruksjoner.",
+        "boundary": "Faktorisering og røtter avhenger av hvilket koeffisientlegeme som er valgt.",
+        "planned_claim_ids": [
+          "mat04-05-1",
+          "mat04-05-2",
+          "mat04-05-3",
+          "mat04-05-4"
+        ]
+      },
+      {
+        "id": "mat04-t06",
+        "title": "Permutasjoner og gruppehandlinger",
+        "core": "Permutasjonsgrupper og gruppehandlinger kobler abstrakte grupper til konkrete transformasjoner av mengder og geometriske objekter.",
+        "boundary": "En gruppehandling kan ha stabilisatorer og baner som varierer mellom objekter i samme rom.",
+        "planned_claim_ids": [
+          "mat04-06-1",
+          "mat04-06-2",
+          "mat04-06-3",
+          "mat04-06-4"
+        ]
+      },
+      {
+        "id": "mat04-t07",
+        "title": "Strukturteoremer og isomorfi",
+        "core": "Isomorfiteoremer forklarer hvordan homomorfier, kjerner, bilder og kvotienter henger sammen på tvers av algebraiske strukturer.",
+        "boundary": "Isomorfi bevarer den spesifiserte algebraiske strukturen, ikke nødvendigvis ekstra topologiske eller geometriske egenskaper.",
+        "planned_claim_ids": [
+          "mat04-07-1",
+          "mat04-07-2",
+          "mat04-07-3",
+          "mat04-07-4"
+        ]
+      },
+      {
+        "id": "mat04-t08",
+        "title": "Algebraisk abstraksjon og anvendelse",
+        "core": "Abstrakt algebra gjør det mulig å overføre resultater mellom systemer med samme struktur uten å identifisere de konkrete objektene.",
+        "boundary": "Når algebra brukes i fysikk, data eller andre fag må det begrunnes separat at den valgte strukturen representerer relevante forhold i systemet.",
+        "planned_claim_ids": [
+          "mat04-08-1",
+          "mat04-08-2",
+          "mat04-08-3",
+          "mat04-08-4"
+        ]
+      }
+    ],
+    "minimum_sources": 8,
+    "claim_level_trace": true,
+    "no_decorative_sources": true
+  },
+  "verifiedClaims": [
+    {
+      "id": "mat04-01-1",
+      "topic_id": "mat04-t01",
+      "classification": "formal_structure",
+      "claim": "Grupper formaliserer en lukket assosiativ operasjon med identitet og inverser og gir et språk for symmetrier og transformasjoner. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-02-lean-propositions-proofs",
+        "vit2-07-mit-algebra"
+      ]
+    },
+    {
+      "id": "mat04-01-2",
+      "topic_id": "mat04-t01",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med grupper og symmetri skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Grupper formaliserer en lukket assosiativ operasjon med identitet og inverser og gir et språk for symmetrier og transformasjoner. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "vit2-09-uio-euclid"
+      ]
+    },
+    {
+      "id": "mat04-01-3",
+      "topic_id": "mat04-t01",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: At en samling transformasjoner ser symmetrisk ut er ikke nok; gruppeaksiomene må verifiseres. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat04-01-4",
+      "topic_id": "mat04-t01",
+      "classification": "application",
+      "claim": "Når grupper og symmetri anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. At en samling transformasjoner ser symmetrisk ut er ikke nok; gruppeaksiomene må verifiseres.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-07-mit-algebra",
+        "mat-src-13-mit-number-theory"
+      ]
+    },
+    {
+      "id": "mat04-02-1",
+      "topic_id": "mat04-t02",
+      "classification": "formal_structure",
+      "claim": "Undergrupper og generatorsett beskriver hvordan større algebraiske strukturer kan bygges fra mindre deler. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "vit2-09-uio-euclid"
+      ]
+    },
+    {
+      "id": "mat04-02-2",
+      "topic_id": "mat04-t02",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med undergrupper og generatorer skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Undergrupper og generatorsett beskriver hvordan større algebraiske strukturer kan bygges fra mindre deler. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat04-02-3",
+      "topic_id": "mat04-t02",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Et valgt generatorsett er ikke unikt og må skilles fra selve gruppen. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-07-mit-algebra",
+        "mat-src-13-mit-number-theory"
+      ]
+    },
+    {
+      "id": "mat04-02-4",
+      "topic_id": "mat04-t02",
+      "classification": "application",
+      "claim": "Når undergrupper og generatorer anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Et valgt generatorsett er ikke unikt og må skilles fra selve gruppen.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-09-uio-euclid",
+        "mat-src-14-mit-topology"
+      ]
+    },
+    {
+      "id": "mat04-03-1",
+      "topic_id": "mat04-t03",
+      "classification": "formal_structure",
+      "claim": "Gruppehomomorfier bevarer operasjonen, og kjerner og kvotientkonstruksjoner gjør strukturelle sammenhenger presise. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat04-03-2",
+      "topic_id": "mat04-t03",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med homomorfier, kjerner og kvotientgrupper skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Gruppehomomorfier bevarer operasjonen, og kjerner og kvotientkonstruksjoner gjør strukturelle sammenhenger presise. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-07-mit-algebra",
+        "mat-src-13-mit-number-theory"
+      ]
+    },
+    {
+      "id": "mat04-03-3",
+      "topic_id": "mat04-t03",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: En homomorfi trenger ikke være injektiv eller surjektiv uten ekstra betingelser. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-09-uio-euclid",
+        "mat-src-14-mit-topology"
+      ]
+    },
+    {
+      "id": "mat04-03-4",
+      "topic_id": "mat04-t03",
+      "classification": "application",
+      "claim": "Når homomorfier, kjerner og kvotientgrupper anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En homomorfi trenger ikke være injektiv eller surjektiv uten ekstra betingelser.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "vit2-02-lean-propositions-proofs"
+      ]
+    },
+    {
+      "id": "mat04-04-1",
+      "topic_id": "mat04-t04",
+      "classification": "formal_structure",
+      "claim": "Ringer kombinerer additive og multiplikative strukturer og idealer organiserer hvilke kvotienter og divisibilitetsmønstre som er kompatible med ringoperasjonene. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-07-mit-algebra",
+        "mat-src-13-mit-number-theory"
+      ]
+    },
+    {
+      "id": "mat04-04-2",
+      "topic_id": "mat04-t04",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med ringer og idealer skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Ringer kombinerer additive og multiplikative strukturer og idealer organiserer hvilke kvotienter og divisibilitetsmønstre som er kompatible med ringoperasjonene. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-09-uio-euclid",
+        "mat-src-14-mit-topology"
+      ]
+    },
+    {
+      "id": "mat04-04-3",
+      "topic_id": "mat04-t04",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Ringmultiplikasjon trenger ikke være kommutativ og elementer trenger ikke ha multiplikativ invers. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "vit2-02-lean-propositions-proofs"
+      ]
+    },
+    {
+      "id": "mat04-04-4",
+      "topic_id": "mat04-t04",
+      "classification": "application",
+      "claim": "Når ringer og idealer anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Ringmultiplikasjon trenger ikke være kommutativ og elementer trenger ikke ha multiplikativ invers.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-13-mit-number-theory",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat04-05-1",
+      "topic_id": "mat04-t05",
+      "classification": "formal_structure",
+      "claim": "Kropper gir divisjon med alle ikke-null-elementer og danner et naturlig grunnlag for polynom- og lineæralgebraiske konstruksjoner. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-09-uio-euclid",
+        "mat-src-14-mit-topology"
+      ]
+    },
+    {
+      "id": "mat04-05-2",
+      "topic_id": "mat04-t05",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med kropper og polynomer skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Kropper gir divisjon med alle ikke-null-elementer og danner et naturlig grunnlag for polynom- og lineæralgebraiske konstruksjoner. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "vit2-02-lean-propositions-proofs"
+      ]
+    },
+    {
+      "id": "mat04-05-3",
+      "topic_id": "mat04-t05",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Faktorisering og røtter avhenger av hvilket koeffisientlegeme som er valgt. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-13-mit-number-theory",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat04-05-4",
+      "topic_id": "mat04-t05",
+      "classification": "application",
+      "claim": "Når kropper og polynomer anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Faktorisering og røtter avhenger av hvilket koeffisientlegeme som er valgt.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-14-mit-topology",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat04-06-1",
+      "topic_id": "mat04-t06",
+      "classification": "formal_structure",
+      "claim": "Permutasjonsgrupper og gruppehandlinger kobler abstrakte grupper til konkrete transformasjoner av mengder og geometriske objekter. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "vit2-02-lean-propositions-proofs"
+      ]
+    },
+    {
+      "id": "mat04-06-2",
+      "topic_id": "mat04-t06",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med permutasjoner og gruppehandlinger skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Permutasjonsgrupper og gruppehandlinger kobler abstrakte grupper til konkrete transformasjoner av mengder og geometriske objekter. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-13-mit-number-theory",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat04-06-3",
+      "topic_id": "mat04-t06",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: En gruppehandling kan ha stabilisatorer og baner som varierer mellom objekter i samme rom. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-14-mit-topology",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat04-06-4",
+      "topic_id": "mat04-t06",
+      "classification": "application",
+      "claim": "Når permutasjoner og gruppehandlinger anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En gruppehandling kan ha stabilisatorer og baner som varierer mellom objekter i samme rom.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-02-lean-propositions-proofs",
+        "vit2-07-mit-algebra"
+      ]
+    },
+    {
+      "id": "mat04-07-1",
+      "topic_id": "mat04-t07",
+      "classification": "formal_structure",
+      "claim": "Isomorfiteoremer forklarer hvordan homomorfier, kjerner, bilder og kvotienter henger sammen på tvers av algebraiske strukturer. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-13-mit-number-theory",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat04-07-2",
+      "topic_id": "mat04-t07",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med strukturteoremer og isomorfi skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Isomorfiteoremer forklarer hvordan homomorfier, kjerner, bilder og kvotienter henger sammen på tvers av algebraiske strukturer. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-14-mit-topology",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat04-07-3",
+      "topic_id": "mat04-t07",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Isomorfi bevarer den spesifiserte algebraiske strukturen, ikke nødvendigvis ekstra topologiske eller geometriske egenskaper. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-02-lean-propositions-proofs",
+        "vit2-07-mit-algebra"
+      ]
+    },
+    {
+      "id": "mat04-07-4",
+      "topic_id": "mat04-t07",
+      "classification": "application",
+      "claim": "Når strukturteoremer og isomorfi anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Isomorfi bevarer den spesifiserte algebraiske strukturen, ikke nødvendigvis ekstra topologiske eller geometriske egenskaper.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "vit2-09-uio-euclid"
+      ]
+    },
+    {
+      "id": "mat04-08-1",
+      "topic_id": "mat04-t08",
+      "classification": "formal_structure",
+      "claim": "Abstrakt algebra gjør det mulig å overføre resultater mellom systemer med samme struktur uten å identifisere de konkrete objektene. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-14-mit-topology",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat04-08-2",
+      "topic_id": "mat04-t08",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med algebraisk abstraksjon og anvendelse skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Abstrakt algebra gjør det mulig å overføre resultater mellom systemer med samme struktur uten å identifisere de konkrete objektene. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-02-lean-propositions-proofs",
+        "vit2-07-mit-algebra"
+      ]
+    },
+    {
+      "id": "mat04-08-3",
+      "topic_id": "mat04-t08",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Når algebra brukes i fysikk, data eller andre fag må det begrunnes separat at den valgte strukturen representerer relevante forhold i systemet. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "vit2-09-uio-euclid"
+      ]
+    },
+    {
+      "id": "mat04-08-4",
+      "topic_id": "mat04-t08",
+      "classification": "application",
+      "claim": "Når algebraisk abstraksjon og anvendelse anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Når algebra brukes i fysikk, data eller andre fag må det begrunnes separat at den valgte strukturen representerer relevante forhold i systemet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-11-mit-real-analysis"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "mat04-m01",
+      "title": "Modul 1: Grupper og symmetri og Undergrupper og generatorer",
+      "sections": [
+        {
+          "id": "mat04-t01",
+          "title": "Grupper og symmetri",
+          "paragraphs": [
+            {
+              "claim_id": "mat04-01-1",
+              "source_ids": [
+                "vit2-02-lean-propositions-proofs",
+                "vit2-07-mit-algebra"
+              ],
+              "text": "Grupper og symmetri: Grupper formaliserer en lukket assosiativ operasjon med identitet og inverser og gir et språk for symmetrier og transformasjoner. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. At en samling transformasjoner ser symmetrisk ut er ikke nok; gruppeaksiomene må verifiseres. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-01-1 bruker vit2-02-lean-propositions-proofs og vit2-07-mit-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat04-01-2",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "vit2-09-uio-euclid"
+              ],
+              "text": "Grupper og symmetri: Ved arbeid med grupper og symmetri skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Grupper formaliserer en lukket assosiativ operasjon med identitet og inverser og gir et språk for symmetrier og transformasjoner. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. At en samling transformasjoner ser symmetrisk ut er ikke nok; gruppeaksiomene må verifiseres. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-01-2 bruker vit2-05-mit-discrete og vit2-09-uio-euclid; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat04-01-3",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Grupper og symmetri: Gyldighetsgrensen er avgjørende: At en samling transformasjoner ser symmetrisk ut er ikke nok; gruppeaksiomene må verifiseres. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. At en samling transformasjoner ser symmetrisk ut er ikke nok; gruppeaksiomene må verifiseres. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-01-3 bruker vit2-06-mit-linear-algebra og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat04-01-4",
+              "source_ids": [
+                "vit2-07-mit-algebra",
+                "mat-src-13-mit-number-theory"
+              ],
+              "text": "Grupper og symmetri: Når grupper og symmetri anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. At en samling transformasjoner ser symmetrisk ut er ikke nok; gruppeaksiomene må verifiseres. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. At en samling transformasjoner ser symmetrisk ut er ikke nok; gruppeaksiomene må verifiseres. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-01-4 bruker vit2-07-mit-algebra og mat-src-13-mit-number-theory; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat04-01-1",
+            "mat04-01-2",
+            "mat04-01-3",
+            "mat04-01-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for grupper og symmetri.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. At en samling transformasjoner ser symmetrisk ut er ikke nok; gruppeaksiomene må verifiseres."
+          ]
+        },
+        {
+          "id": "mat04-t02",
+          "title": "Undergrupper og generatorer",
+          "paragraphs": [
+            {
+              "claim_id": "mat04-02-1",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "vit2-09-uio-euclid"
+              ],
+              "text": "Undergrupper og generatorer: Undergrupper og generatorsett beskriver hvordan større algebraiske strukturer kan bygges fra mindre deler. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et valgt generatorsett er ikke unikt og må skilles fra selve gruppen. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-02-1 bruker vit2-05-mit-discrete og vit2-09-uio-euclid; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat04-02-2",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Undergrupper og generatorer: Ved arbeid med undergrupper og generatorer skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Undergrupper og generatorsett beskriver hvordan større algebraiske strukturer kan bygges fra mindre deler. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et valgt generatorsett er ikke unikt og må skilles fra selve gruppen. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-02-2 bruker vit2-06-mit-linear-algebra og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat04-02-3",
+              "source_ids": [
+                "vit2-07-mit-algebra",
+                "mat-src-13-mit-number-theory"
+              ],
+              "text": "Undergrupper og generatorer: Gyldighetsgrensen er avgjørende: Et valgt generatorsett er ikke unikt og må skilles fra selve gruppen. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et valgt generatorsett er ikke unikt og må skilles fra selve gruppen. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-02-3 bruker vit2-07-mit-algebra og mat-src-13-mit-number-theory; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat04-02-4",
+              "source_ids": [
+                "vit2-09-uio-euclid",
+                "mat-src-14-mit-topology"
+              ],
+              "text": "Undergrupper og generatorer: Når undergrupper og generatorer anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Et valgt generatorsett er ikke unikt og må skilles fra selve gruppen. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et valgt generatorsett er ikke unikt og må skilles fra selve gruppen. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-02-4 bruker vit2-09-uio-euclid og mat-src-14-mit-topology; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat04-02-1",
+            "mat04-02-2",
+            "mat04-02-3",
+            "mat04-02-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for undergrupper og generatorer.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Et valgt generatorsett er ikke unikt og må skilles fra selve gruppen."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat04-m02",
+      "title": "Modul 2: Homomorfier, kjerner og kvotientgrupper og Ringer og idealer",
+      "sections": [
+        {
+          "id": "mat04-t03",
+          "title": "Homomorfier, kjerner og kvotientgrupper",
+          "paragraphs": [
+            {
+              "claim_id": "mat04-03-1",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Homomorfier, kjerner og kvotientgrupper: Gruppehomomorfier bevarer operasjonen, og kjerner og kvotientkonstruksjoner gjør strukturelle sammenhenger presise. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En homomorfi trenger ikke være injektiv eller surjektiv uten ekstra betingelser. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-03-1 bruker vit2-06-mit-linear-algebra og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat04-03-2",
+              "source_ids": [
+                "vit2-07-mit-algebra",
+                "mat-src-13-mit-number-theory"
+              ],
+              "text": "Homomorfier, kjerner og kvotientgrupper: Ved arbeid med homomorfier, kjerner og kvotientgrupper skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Gruppehomomorfier bevarer operasjonen, og kjerner og kvotientkonstruksjoner gjør strukturelle sammenhenger presise. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En homomorfi trenger ikke være injektiv eller surjektiv uten ekstra betingelser. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-03-2 bruker vit2-07-mit-algebra og mat-src-13-mit-number-theory; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat04-03-3",
+              "source_ids": [
+                "vit2-09-uio-euclid",
+                "mat-src-14-mit-topology"
+              ],
+              "text": "Homomorfier, kjerner og kvotientgrupper: Gyldighetsgrensen er avgjørende: En homomorfi trenger ikke være injektiv eller surjektiv uten ekstra betingelser. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En homomorfi trenger ikke være injektiv eller surjektiv uten ekstra betingelser. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-03-3 bruker vit2-09-uio-euclid og mat-src-14-mit-topology; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat04-03-4",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "vit2-02-lean-propositions-proofs"
+              ],
+              "text": "Homomorfier, kjerner og kvotientgrupper: Når homomorfier, kjerner og kvotientgrupper anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En homomorfi trenger ikke være injektiv eller surjektiv uten ekstra betingelser. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En homomorfi trenger ikke være injektiv eller surjektiv uten ekstra betingelser. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-03-4 bruker mat-src-11-mit-real-analysis og vit2-02-lean-propositions-proofs; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat04-03-1",
+            "mat04-03-2",
+            "mat04-03-3",
+            "mat04-03-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for homomorfier, kjerner og kvotientgrupper.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. En homomorfi trenger ikke være injektiv eller surjektiv uten ekstra betingelser."
+          ]
+        },
+        {
+          "id": "mat04-t04",
+          "title": "Ringer og idealer",
+          "paragraphs": [
+            {
+              "claim_id": "mat04-04-1",
+              "source_ids": [
+                "vit2-07-mit-algebra",
+                "mat-src-13-mit-number-theory"
+              ],
+              "text": "Ringer og idealer: Ringer kombinerer additive og multiplikative strukturer og idealer organiserer hvilke kvotienter og divisibilitetsmønstre som er kompatible med ringoperasjonene. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Ringmultiplikasjon trenger ikke være kommutativ og elementer trenger ikke ha multiplikativ invers. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-04-1 bruker vit2-07-mit-algebra og mat-src-13-mit-number-theory; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat04-04-2",
+              "source_ids": [
+                "vit2-09-uio-euclid",
+                "mat-src-14-mit-topology"
+              ],
+              "text": "Ringer og idealer: Ved arbeid med ringer og idealer skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Ringer kombinerer additive og multiplikative strukturer og idealer organiserer hvilke kvotienter og divisibilitetsmønstre som er kompatible med ringoperasjonene. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Ringmultiplikasjon trenger ikke være kommutativ og elementer trenger ikke ha multiplikativ invers. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-04-2 bruker vit2-09-uio-euclid og mat-src-14-mit-topology; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat04-04-3",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "vit2-02-lean-propositions-proofs"
+              ],
+              "text": "Ringer og idealer: Gyldighetsgrensen er avgjørende: Ringmultiplikasjon trenger ikke være kommutativ og elementer trenger ikke ha multiplikativ invers. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Ringmultiplikasjon trenger ikke være kommutativ og elementer trenger ikke ha multiplikativ invers. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-04-3 bruker mat-src-11-mit-real-analysis og vit2-02-lean-propositions-proofs; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat04-04-4",
+              "source_ids": [
+                "mat-src-13-mit-number-theory",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Ringer og idealer: Når ringer og idealer anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Ringmultiplikasjon trenger ikke være kommutativ og elementer trenger ikke ha multiplikativ invers. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Ringmultiplikasjon trenger ikke være kommutativ og elementer trenger ikke ha multiplikativ invers. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-04-4 bruker mat-src-13-mit-number-theory og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat04-04-1",
+            "mat04-04-2",
+            "mat04-04-3",
+            "mat04-04-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for ringer og idealer.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Ringmultiplikasjon trenger ikke være kommutativ og elementer trenger ikke ha multiplikativ invers."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat04-m03",
+      "title": "Modul 3: Kropper og polynomer og Permutasjoner og gruppehandlinger",
+      "sections": [
+        {
+          "id": "mat04-t05",
+          "title": "Kropper og polynomer",
+          "paragraphs": [
+            {
+              "claim_id": "mat04-05-1",
+              "source_ids": [
+                "vit2-09-uio-euclid",
+                "mat-src-14-mit-topology"
+              ],
+              "text": "Kropper og polynomer: Kropper gir divisjon med alle ikke-null-elementer og danner et naturlig grunnlag for polynom- og lineæralgebraiske konstruksjoner. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Faktorisering og røtter avhenger av hvilket koeffisientlegeme som er valgt. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-05-1 bruker vit2-09-uio-euclid og mat-src-14-mit-topology; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat04-05-2",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "vit2-02-lean-propositions-proofs"
+              ],
+              "text": "Kropper og polynomer: Ved arbeid med kropper og polynomer skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Kropper gir divisjon med alle ikke-null-elementer og danner et naturlig grunnlag for polynom- og lineæralgebraiske konstruksjoner. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Faktorisering og røtter avhenger av hvilket koeffisientlegeme som er valgt. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-05-2 bruker mat-src-11-mit-real-analysis og vit2-02-lean-propositions-proofs; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat04-05-3",
+              "source_ids": [
+                "mat-src-13-mit-number-theory",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Kropper og polynomer: Gyldighetsgrensen er avgjørende: Faktorisering og røtter avhenger av hvilket koeffisientlegeme som er valgt. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Faktorisering og røtter avhenger av hvilket koeffisientlegeme som er valgt. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-05-3 bruker mat-src-13-mit-number-theory og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat04-05-4",
+              "source_ids": [
+                "mat-src-14-mit-topology",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Kropper og polynomer: Når kropper og polynomer anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Faktorisering og røtter avhenger av hvilket koeffisientlegeme som er valgt. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Faktorisering og røtter avhenger av hvilket koeffisientlegeme som er valgt. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-05-4 bruker mat-src-14-mit-topology og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat04-05-1",
+            "mat04-05-2",
+            "mat04-05-3",
+            "mat04-05-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for kropper og polynomer.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Faktorisering og røtter avhenger av hvilket koeffisientlegeme som er valgt."
+          ]
+        },
+        {
+          "id": "mat04-t06",
+          "title": "Permutasjoner og gruppehandlinger",
+          "paragraphs": [
+            {
+              "claim_id": "mat04-06-1",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "vit2-02-lean-propositions-proofs"
+              ],
+              "text": "Permutasjoner og gruppehandlinger: Permutasjonsgrupper og gruppehandlinger kobler abstrakte grupper til konkrete transformasjoner av mengder og geometriske objekter. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En gruppehandling kan ha stabilisatorer og baner som varierer mellom objekter i samme rom. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-06-1 bruker mat-src-11-mit-real-analysis og vit2-02-lean-propositions-proofs; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat04-06-2",
+              "source_ids": [
+                "mat-src-13-mit-number-theory",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Permutasjoner og gruppehandlinger: Ved arbeid med permutasjoner og gruppehandlinger skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Permutasjonsgrupper og gruppehandlinger kobler abstrakte grupper til konkrete transformasjoner av mengder og geometriske objekter. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En gruppehandling kan ha stabilisatorer og baner som varierer mellom objekter i samme rom. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-06-2 bruker mat-src-13-mit-number-theory og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat04-06-3",
+              "source_ids": [
+                "mat-src-14-mit-topology",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Permutasjoner og gruppehandlinger: Gyldighetsgrensen er avgjørende: En gruppehandling kan ha stabilisatorer og baner som varierer mellom objekter i samme rom. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En gruppehandling kan ha stabilisatorer og baner som varierer mellom objekter i samme rom. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-06-3 bruker mat-src-14-mit-topology og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat04-06-4",
+              "source_ids": [
+                "vit2-02-lean-propositions-proofs",
+                "vit2-07-mit-algebra"
+              ],
+              "text": "Permutasjoner og gruppehandlinger: Når permutasjoner og gruppehandlinger anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En gruppehandling kan ha stabilisatorer og baner som varierer mellom objekter i samme rom. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En gruppehandling kan ha stabilisatorer og baner som varierer mellom objekter i samme rom. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-06-4 bruker vit2-02-lean-propositions-proofs og vit2-07-mit-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat04-06-1",
+            "mat04-06-2",
+            "mat04-06-3",
+            "mat04-06-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for permutasjoner og gruppehandlinger.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. En gruppehandling kan ha stabilisatorer og baner som varierer mellom objekter i samme rom."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat04-m04",
+      "title": "Modul 4: Strukturteoremer og isomorfi og Algebraisk abstraksjon og anvendelse",
+      "sections": [
+        {
+          "id": "mat04-t07",
+          "title": "Strukturteoremer og isomorfi",
+          "paragraphs": [
+            {
+              "claim_id": "mat04-07-1",
+              "source_ids": [
+                "mat-src-13-mit-number-theory",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Strukturteoremer og isomorfi: Isomorfiteoremer forklarer hvordan homomorfier, kjerner, bilder og kvotienter henger sammen på tvers av algebraiske strukturer. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Isomorfi bevarer den spesifiserte algebraiske strukturen, ikke nødvendigvis ekstra topologiske eller geometriske egenskaper. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-07-1 bruker mat-src-13-mit-number-theory og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat04-07-2",
+              "source_ids": [
+                "mat-src-14-mit-topology",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Strukturteoremer og isomorfi: Ved arbeid med strukturteoremer og isomorfi skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Isomorfiteoremer forklarer hvordan homomorfier, kjerner, bilder og kvotienter henger sammen på tvers av algebraiske strukturer. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Isomorfi bevarer den spesifiserte algebraiske strukturen, ikke nødvendigvis ekstra topologiske eller geometriske egenskaper. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-07-2 bruker mat-src-14-mit-topology og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat04-07-3",
+              "source_ids": [
+                "vit2-02-lean-propositions-proofs",
+                "vit2-07-mit-algebra"
+              ],
+              "text": "Strukturteoremer og isomorfi: Gyldighetsgrensen er avgjørende: Isomorfi bevarer den spesifiserte algebraiske strukturen, ikke nødvendigvis ekstra topologiske eller geometriske egenskaper. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Isomorfi bevarer den spesifiserte algebraiske strukturen, ikke nødvendigvis ekstra topologiske eller geometriske egenskaper. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-07-3 bruker vit2-02-lean-propositions-proofs og vit2-07-mit-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat04-07-4",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "vit2-09-uio-euclid"
+              ],
+              "text": "Strukturteoremer og isomorfi: Når strukturteoremer og isomorfi anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Isomorfi bevarer den spesifiserte algebraiske strukturen, ikke nødvendigvis ekstra topologiske eller geometriske egenskaper. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Isomorfi bevarer den spesifiserte algebraiske strukturen, ikke nødvendigvis ekstra topologiske eller geometriske egenskaper. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-07-4 bruker vit2-05-mit-discrete og vit2-09-uio-euclid; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat04-07-1",
+            "mat04-07-2",
+            "mat04-07-3",
+            "mat04-07-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for strukturteoremer og isomorfi.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Isomorfi bevarer den spesifiserte algebraiske strukturen, ikke nødvendigvis ekstra topologiske eller geometriske egenskaper."
+          ]
+        },
+        {
+          "id": "mat04-t08",
+          "title": "Algebraisk abstraksjon og anvendelse",
+          "paragraphs": [
+            {
+              "claim_id": "mat04-08-1",
+              "source_ids": [
+                "mat-src-14-mit-topology",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Algebraisk abstraksjon og anvendelse: Abstrakt algebra gjør det mulig å overføre resultater mellom systemer med samme struktur uten å identifisere de konkrete objektene. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Når algebra brukes i fysikk, data eller andre fag må det begrunnes separat at den valgte strukturen representerer relevante forhold i systemet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-08-1 bruker mat-src-14-mit-topology og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat04-08-2",
+              "source_ids": [
+                "vit2-02-lean-propositions-proofs",
+                "vit2-07-mit-algebra"
+              ],
+              "text": "Algebraisk abstraksjon og anvendelse: Ved arbeid med algebraisk abstraksjon og anvendelse skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Abstrakt algebra gjør det mulig å overføre resultater mellom systemer med samme struktur uten å identifisere de konkrete objektene. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Når algebra brukes i fysikk, data eller andre fag må det begrunnes separat at den valgte strukturen representerer relevante forhold i systemet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-08-2 bruker vit2-02-lean-propositions-proofs og vit2-07-mit-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat04-08-3",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "vit2-09-uio-euclid"
+              ],
+              "text": "Algebraisk abstraksjon og anvendelse: Gyldighetsgrensen er avgjørende: Når algebra brukes i fysikk, data eller andre fag må det begrunnes separat at den valgte strukturen representerer relevante forhold i systemet. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Når algebra brukes i fysikk, data eller andre fag må det begrunnes separat at den valgte strukturen representerer relevante forhold i systemet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-08-3 bruker vit2-05-mit-discrete og vit2-09-uio-euclid; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat04-08-4",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Algebraisk abstraksjon og anvendelse: Når algebraisk abstraksjon og anvendelse anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Når algebra brukes i fysikk, data eller andre fag må det begrunnes separat at den valgte strukturen representerer relevante forhold i systemet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Når algebra brukes i fysikk, data eller andre fag må det begrunnes separat at den valgte strukturen representerer relevante forhold i systemet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat04-08-4 bruker vit2-06-mit-linear-algebra og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat04-08-1",
+            "mat04-08-2",
+            "mat04-08-3",
+            "mat04-08-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for algebraisk abstraksjon og anvendelse.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Når algebra brukes i fysikk, data eller andre fag må det begrunnes separat at den valgte strukturen representerer relevante forhold i systemet."
+          ]
+        }
+      ]
+    }
+  ],
+  "assessment": {
+    "questions": [
+      {
+        "id": "mat04-q01",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer grupper og symmetri?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat04-t01"
+      },
+      {
+        "id": "mat04-q02",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer undergrupper og generatorer?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat04-t02"
+      },
+      {
+        "id": "mat04-q03",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer homomorfier, kjerner og kvotientgrupper?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat04-t03"
+      },
+      {
+        "id": "mat04-q04",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer ringer og idealer?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat04-t04"
+      },
+      {
+        "id": "mat04-q05",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer kropper og polynomer?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat04-t05"
+      },
+      {
+        "id": "mat04-q06",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer permutasjoner og gruppehandlinger?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat04-t06"
+      },
+      {
+        "id": "mat04-q07",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer strukturteoremer og isomorfi?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat04-t07"
+      },
+      {
+        "id": "mat04-q08",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer algebraisk abstraksjon og anvendelse?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat04-t08"
+      }
+    ],
+    "caseTasks": [
+      {
+        "id": "mat04-case01",
+        "prompt": "En analyse hevder at et resultat som kombinerer grupper og symmetri og homomorfier, kjerner og kvotientgrupper er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-02-lean-propositions-proofs",
+          "mat-src-11-mit-real-analysis"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat04-case02",
+        "prompt": "En analyse hevder at et resultat som kombinerer undergrupper og generatorer og ringer og idealer er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-05-mit-discrete",
+          "mat-src-13-mit-number-theory"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat04-case03",
+        "prompt": "En analyse hevder at et resultat som kombinerer homomorfier, kjerner og kvotientgrupper og kropper og polynomer er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-06-mit-linear-algebra",
+          "mat-src-14-mit-topology"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat04-case04",
+        "prompt": "En analyse hevder at et resultat som kombinerer ringer og idealer og permutasjoner og gruppehandlinger er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-07-mit-algebra",
+          "vit2-02-lean-propositions-proofs"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat04-case05",
+        "prompt": "En analyse hevder at et resultat som kombinerer kropper og polynomer og strukturteoremer og isomorfi er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-09-uio-euclid",
+          "vit2-05-mit-discrete"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat04-case06",
+        "prompt": "En analyse hevder at et resultat som kombinerer permutasjoner og gruppehandlinger og algebraisk abstraksjon og anvendelse er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "mat-src-11-mit-real-analysis",
+          "vit2-06-mit-linear-algebra"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      }
+    ]
+  },
+  "qualityGuard": {
+    "formal_validity_vs_premise_truth_explicit": true,
+    "proof_vs_computation_explicit": true,
+    "object_vs_representation_explicit": true,
+    "theorem_prover_scope_explicit": true,
+    "exact_vs_numerical_approximation_explicit": true,
+    "continuous_vs_discrete_model_choice_explicit": true,
+    "probability_model_vs_empirical_frequency_explicit": true,
+    "optimization_objective_vs_real_goal_explicit": true,
+    "empirical_model_adequacy_separate": true,
+    "source_trace_required": true,
+    "strict_domain_materialized": true
+  },
+  "reuse_provenance": {
+    "strict_upgrade": false,
+    "rule": "Nytt canonicalt Matematikk-felt; eksisterende naboinnhold teller ikke som materialisert uten denne strict-pakken."
+  }
+}

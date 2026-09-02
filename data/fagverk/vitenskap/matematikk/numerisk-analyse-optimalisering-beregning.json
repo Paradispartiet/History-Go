@@ -1,0 +1,1129 @@
+{
+  "schema": "history_go_fagverk_matematikk_strict_domain_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-09-02",
+  "subject": "vitenskap",
+  "subject_id": "vitenskap",
+  "canonical_subcategory_id": "matematikk",
+  "ordinal": 11,
+  "domain_id": "numerisk_analyse_optimalisering_beregning",
+  "id": "numerisk-analyse-optimalisering-beregning",
+  "chapter_id": "numerisk-analyse-optimalisering-beregning",
+  "title": "Numerisk analyse, optimalisering og beregningsmatematikk",
+  "subtitle": "Strict Matematikk-felt 11 av 12: source-first, fulltekst, claims, vurderinger og case",
+  "lead": "Numerisk analyse, optimalisering og beregningsmatematikk er materialisert som et selvstendig felt i Matematikk-registeret med eksplisitte definisjoner, beviskjeder, objekt–representasjon-skille, numerisk feilkontroll og en tydelig grense mellom matematisk korrekthet og empirisk modelladekvathet.",
+  "source_registry": "data/fag/vitenskap/matematikk/source_registry_v1.json",
+  "source_first": {
+    "status": "pass",
+    "source_ids": [
+      "mat-src-17-mit-numerical-analysis",
+      "mat-src-15-mit-optimization",
+      "vit2-06-mit-linear-algebra",
+      "vit2-08-mit-calculus",
+      "mat-src-11-mit-real-analysis",
+      "mat-src-12-mit-differential-equations",
+      "mat-src-16-mit-probability-statistics",
+      "vit2-05-mit-discrete"
+    ],
+    "topic_briefs": [
+      {
+        "id": "mat11-t01",
+        "title": "Flyttall, avrunding og kondisjonering",
+        "core": "Numeriske beregninger representerer tall med endelig presisjon, og feil påvirkes både av avrunding og problemets kondisjonering.",
+        "boundary": "Flere utskrevne sifre betyr ikke flere korrekte sifre når kondisjonering eller avrundingsfeil dominerer.",
+        "planned_claim_ids": [
+          "mat11-01-1",
+          "mat11-01-2",
+          "mat11-01-3",
+          "mat11-01-4"
+        ]
+      },
+      {
+        "id": "mat11-t02",
+        "title": "Diskretisering og trunkeringsfeil",
+        "core": "Numeriske metoder erstatter kontinuerlige objekter med endelige representasjoner og introduserer kontrollerbar diskretiserings- eller trunkeringsfeil.",
+        "boundary": "Finere diskretisering forbedrer ikke nødvendigvis resultatet dersom avrunding, ustabilitet eller modellfeil dominerer.",
+        "planned_claim_ids": [
+          "mat11-02-1",
+          "mat11-02-2",
+          "mat11-02-3",
+          "mat11-02-4"
+        ]
+      },
+      {
+        "id": "mat11-t03",
+        "title": "Rotfinningsmetoder",
+        "core": "Iterative rotfinningsmetoder som biseksjon og Newton-metoden bruker ulike antakelser og konvergensmekanismer.",
+        "boundary": "Newton-iterasjon kan feile eller konvergere til en annen rot når startverdi og lokal geometri er ugunstig.",
+        "planned_claim_ids": [
+          "mat11-03-1",
+          "mat11-03-2",
+          "mat11-03-3",
+          "mat11-03-4"
+        ]
+      },
+      {
+        "id": "mat11-t04",
+        "title": "Numerisk integrasjon og derivasjon",
+        "core": "Kvadratur og differansemetoder approksimerer integraler og deriverte med feil som avhenger av regularitet, steglengde og metodeorden.",
+        "boundary": "Numerisk derivasjon kan forsterke støy og krever en annen feilbalanse enn numerisk integrasjon.",
+        "planned_claim_ids": [
+          "mat11-04-1",
+          "mat11-04-2",
+          "mat11-04-3",
+          "mat11-04-4"
+        ]
+      },
+      {
+        "id": "mat11-t05",
+        "title": "Lineære numeriske systemer",
+        "core": "Numerisk lineær algebra analyserer faktoriseringer, iterative metoder og kondisjonering for store eller approksimerte systemer.",
+        "boundary": "En liten residual garanterer ikke en liten løsningsfeil i et dårlig kondisjonert problem.",
+        "planned_claim_ids": [
+          "mat11-05-1",
+          "mat11-05-2",
+          "mat11-05-3",
+          "mat11-05-4"
+        ]
+      },
+      {
+        "id": "mat11-t06",
+        "title": "Objektfunksjon og begrensninger",
+        "core": "Optimalisering formaliserer et mål som skal minimeres eller maksimeres under eksplisitte variabel- og begrensningsbetingelser.",
+        "boundary": "Den matematiske objektfunksjonen er en valgt representasjon av et mål og er ikke automatisk identisk med den virkelige beslutningsverdien.",
+        "planned_claim_ids": [
+          "mat11-06-1",
+          "mat11-06-2",
+          "mat11-06-3",
+          "mat11-06-4"
+        ]
+      },
+      {
+        "id": "mat11-t07",
+        "title": "Konveksitet, dualitet og optimalitet",
+        "core": "Konvekse problemer har struktur som gir sterke lokale–globale optimalitetsresultater og duale beskrivelser under passende betingelser.",
+        "boundary": "Ikke-konvekse problemer kan ha lokale optima og krever andre garantier enn konvekse problemer.",
+        "planned_claim_ids": [
+          "mat11-07-1",
+          "mat11-07-2",
+          "mat11-07-3",
+          "mat11-07-4"
+        ]
+      },
+      {
+        "id": "mat11-t08",
+        "title": "Algoritme, stopping og verifikasjon",
+        "core": "Beregningsalgoritmer trenger stoppkriterier, feilmål og uavhengige kontroller slik at numerisk resultat kan skilles fra faktisk matematisk garanti.",
+        "boundary": "At en algoritme stopper eller returnerer et tall beviser ikke at tallet er korrekt eller globalt optimalt.",
+        "planned_claim_ids": [
+          "mat11-08-1",
+          "mat11-08-2",
+          "mat11-08-3",
+          "mat11-08-4"
+        ]
+      }
+    ],
+    "minimum_sources": 8,
+    "claim_level_trace": true,
+    "no_decorative_sources": true
+  },
+  "verifiedClaims": [
+    {
+      "id": "mat11-01-1",
+      "topic_id": "mat11-t01",
+      "classification": "formal_structure",
+      "claim": "Numeriske beregninger representerer tall med endelig presisjon, og feil påvirkes både av avrunding og problemets kondisjonering. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-17-mit-numerical-analysis",
+        "vit2-08-mit-calculus"
+      ]
+    },
+    {
+      "id": "mat11-01-2",
+      "topic_id": "mat11-t01",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med flyttall, avrunding og kondisjonering skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Numeriske beregninger representerer tall med endelig presisjon, og feil påvirkes både av avrunding og problemets kondisjonering. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-15-mit-optimization",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat11-01-3",
+      "topic_id": "mat11-t01",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Flere utskrevne sifre betyr ikke flere korrekte sifre når kondisjonering eller avrundingsfeil dominerer. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-12-mit-differential-equations"
+      ]
+    },
+    {
+      "id": "mat11-01-4",
+      "topic_id": "mat11-t01",
+      "classification": "application",
+      "claim": "Når flyttall, avrunding og kondisjonering anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Flere utskrevne sifre betyr ikke flere korrekte sifre når kondisjonering eller avrundingsfeil dominerer.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-08-mit-calculus",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat11-02-1",
+      "topic_id": "mat11-t02",
+      "classification": "formal_structure",
+      "claim": "Numeriske metoder erstatter kontinuerlige objekter med endelige representasjoner og introduserer kontrollerbar diskretiserings- eller trunkeringsfeil. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-15-mit-optimization",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat11-02-2",
+      "topic_id": "mat11-t02",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med diskretisering og trunkeringsfeil skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Numeriske metoder erstatter kontinuerlige objekter med endelige representasjoner og introduserer kontrollerbar diskretiserings- eller trunkeringsfeil. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-12-mit-differential-equations"
+      ]
+    },
+    {
+      "id": "mat11-02-3",
+      "topic_id": "mat11-t02",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Finere diskretisering forbedrer ikke nødvendigvis resultatet dersom avrunding, ustabilitet eller modellfeil dominerer. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-08-mit-calculus",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat11-02-4",
+      "topic_id": "mat11-t02",
+      "classification": "application",
+      "claim": "Når diskretisering og trunkeringsfeil anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Finere diskretisering forbedrer ikke nødvendigvis resultatet dersom avrunding, ustabilitet eller modellfeil dominerer.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat11-03-1",
+      "topic_id": "mat11-t03",
+      "classification": "formal_structure",
+      "claim": "Iterative rotfinningsmetoder som biseksjon og Newton-metoden bruker ulike antakelser og konvergensmekanismer. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-12-mit-differential-equations"
+      ]
+    },
+    {
+      "id": "mat11-03-2",
+      "topic_id": "mat11-t03",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med rotfinningsmetoder skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Iterative rotfinningsmetoder som biseksjon og Newton-metoden bruker ulike antakelser og konvergensmekanismer. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-08-mit-calculus",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat11-03-3",
+      "topic_id": "mat11-t03",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Newton-iterasjon kan feile eller konvergere til en annen rot når startverdi og lokal geometri er ugunstig. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat11-03-4",
+      "topic_id": "mat11-t03",
+      "classification": "application",
+      "claim": "Når rotfinningsmetoder anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Newton-iterasjon kan feile eller konvergere til en annen rot når startverdi og lokal geometri er ugunstig.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-12-mit-differential-equations",
+        "mat-src-17-mit-numerical-analysis"
+      ]
+    },
+    {
+      "id": "mat11-04-1",
+      "topic_id": "mat11-t04",
+      "classification": "formal_structure",
+      "claim": "Kvadratur og differansemetoder approksimerer integraler og deriverte med feil som avhenger av regularitet, steglengde og metodeorden. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-08-mit-calculus",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat11-04-2",
+      "topic_id": "mat11-t04",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med numerisk integrasjon og derivasjon skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Kvadratur og differansemetoder approksimerer integraler og deriverte med feil som avhenger av regularitet, steglengde og metodeorden. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat11-04-3",
+      "topic_id": "mat11-t04",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Numerisk derivasjon kan forsterke støy og krever en annen feilbalanse enn numerisk integrasjon. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-12-mit-differential-equations",
+        "mat-src-17-mit-numerical-analysis"
+      ]
+    },
+    {
+      "id": "mat11-04-4",
+      "topic_id": "mat11-t04",
+      "classification": "application",
+      "claim": "Når numerisk integrasjon og derivasjon anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Numerisk derivasjon kan forsterke støy og krever en annen feilbalanse enn numerisk integrasjon.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "mat-src-15-mit-optimization"
+      ]
+    },
+    {
+      "id": "mat11-05-1",
+      "topic_id": "mat11-t05",
+      "classification": "formal_structure",
+      "claim": "Numerisk lineær algebra analyserer faktoriseringer, iterative metoder og kondisjonering for store eller approksimerte systemer. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat11-05-2",
+      "topic_id": "mat11-t05",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med lineære numeriske systemer skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Numerisk lineær algebra analyserer faktoriseringer, iterative metoder og kondisjonering for store eller approksimerte systemer. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-12-mit-differential-equations",
+        "mat-src-17-mit-numerical-analysis"
+      ]
+    },
+    {
+      "id": "mat11-05-3",
+      "topic_id": "mat11-t05",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: En liten residual garanterer ikke en liten løsningsfeil i et dårlig kondisjonert problem. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "mat-src-15-mit-optimization"
+      ]
+    },
+    {
+      "id": "mat11-05-4",
+      "topic_id": "mat11-t05",
+      "classification": "application",
+      "claim": "Når lineære numeriske systemer anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En liten residual garanterer ikke en liten løsningsfeil i et dårlig kondisjonert problem.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat11-06-1",
+      "topic_id": "mat11-t06",
+      "classification": "formal_structure",
+      "claim": "Optimalisering formaliserer et mål som skal minimeres eller maksimeres under eksplisitte variabel- og begrensningsbetingelser. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-12-mit-differential-equations",
+        "mat-src-17-mit-numerical-analysis"
+      ]
+    },
+    {
+      "id": "mat11-06-2",
+      "topic_id": "mat11-t06",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med objektfunksjon og begrensninger skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Optimalisering formaliserer et mål som skal minimeres eller maksimeres under eksplisitte variabel- og begrensningsbetingelser. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "mat-src-15-mit-optimization"
+      ]
+    },
+    {
+      "id": "mat11-06-3",
+      "topic_id": "mat11-t06",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Den matematiske objektfunksjonen er en valgt representasjon av et mål og er ikke automatisk identisk med den virkelige beslutningsverdien. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat11-06-4",
+      "topic_id": "mat11-t06",
+      "classification": "application",
+      "claim": "Når objektfunksjon og begrensninger anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Den matematiske objektfunksjonen er en valgt representasjon av et mål og er ikke automatisk identisk med den virkelige beslutningsverdien.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-17-mit-numerical-analysis",
+        "vit2-08-mit-calculus"
+      ]
+    },
+    {
+      "id": "mat11-07-1",
+      "topic_id": "mat11-t07",
+      "classification": "formal_structure",
+      "claim": "Konvekse problemer har struktur som gir sterke lokale–globale optimalitetsresultater og duale beskrivelser under passende betingelser. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "mat-src-15-mit-optimization"
+      ]
+    },
+    {
+      "id": "mat11-07-2",
+      "topic_id": "mat11-t07",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med konveksitet, dualitet og optimalitet skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Konvekse problemer har struktur som gir sterke lokale–globale optimalitetsresultater og duale beskrivelser under passende betingelser. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat11-07-3",
+      "topic_id": "mat11-t07",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Ikke-konvekse problemer kan ha lokale optima og krever andre garantier enn konvekse problemer. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-17-mit-numerical-analysis",
+        "vit2-08-mit-calculus"
+      ]
+    },
+    {
+      "id": "mat11-07-4",
+      "topic_id": "mat11-t07",
+      "classification": "application",
+      "claim": "Når konveksitet, dualitet og optimalitet anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Ikke-konvekse problemer kan ha lokale optima og krever andre garantier enn konvekse problemer.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-15-mit-optimization",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat11-08-1",
+      "topic_id": "mat11-t08",
+      "classification": "formal_structure",
+      "claim": "Beregningsalgoritmer trenger stoppkriterier, feilmål og uavhengige kontroller slik at numerisk resultat kan skilles fra faktisk matematisk garanti. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat11-08-2",
+      "topic_id": "mat11-t08",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med algoritme, stopping og verifikasjon skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Beregningsalgoritmer trenger stoppkriterier, feilmål og uavhengige kontroller slik at numerisk resultat kan skilles fra faktisk matematisk garanti. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-17-mit-numerical-analysis",
+        "vit2-08-mit-calculus"
+      ]
+    },
+    {
+      "id": "mat11-08-3",
+      "topic_id": "mat11-t08",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: At en algoritme stopper eller returnerer et tall beviser ikke at tallet er korrekt eller globalt optimalt. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-15-mit-optimization",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat11-08-4",
+      "topic_id": "mat11-t08",
+      "classification": "application",
+      "claim": "Når algoritme, stopping og verifikasjon anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. At en algoritme stopper eller returnerer et tall beviser ikke at tallet er korrekt eller globalt optimalt.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-12-mit-differential-equations"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "mat11-m01",
+      "title": "Modul 1: Flyttall, avrunding og kondisjonering og Diskretisering og trunkeringsfeil",
+      "sections": [
+        {
+          "id": "mat11-t01",
+          "title": "Flyttall, avrunding og kondisjonering",
+          "paragraphs": [
+            {
+              "claim_id": "mat11-01-1",
+              "source_ids": [
+                "mat-src-17-mit-numerical-analysis",
+                "vit2-08-mit-calculus"
+              ],
+              "text": "Flyttall, avrunding og kondisjonering: Numeriske beregninger representerer tall med endelig presisjon, og feil påvirkes både av avrunding og problemets kondisjonering. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Flere utskrevne sifre betyr ikke flere korrekte sifre når kondisjonering eller avrundingsfeil dominerer. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-01-1 bruker mat-src-17-mit-numerical-analysis og vit2-08-mit-calculus; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat11-01-2",
+              "source_ids": [
+                "mat-src-15-mit-optimization",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Flyttall, avrunding og kondisjonering: Ved arbeid med flyttall, avrunding og kondisjonering skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Numeriske beregninger representerer tall med endelig presisjon, og feil påvirkes både av avrunding og problemets kondisjonering. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Flere utskrevne sifre betyr ikke flere korrekte sifre når kondisjonering eller avrundingsfeil dominerer. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-01-2 bruker mat-src-15-mit-optimization og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat11-01-3",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-12-mit-differential-equations"
+              ],
+              "text": "Flyttall, avrunding og kondisjonering: Gyldighetsgrensen er avgjørende: Flere utskrevne sifre betyr ikke flere korrekte sifre når kondisjonering eller avrundingsfeil dominerer. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Flere utskrevne sifre betyr ikke flere korrekte sifre når kondisjonering eller avrundingsfeil dominerer. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-01-3 bruker vit2-06-mit-linear-algebra og mat-src-12-mit-differential-equations; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat11-01-4",
+              "source_ids": [
+                "vit2-08-mit-calculus",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Flyttall, avrunding og kondisjonering: Når flyttall, avrunding og kondisjonering anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Flere utskrevne sifre betyr ikke flere korrekte sifre når kondisjonering eller avrundingsfeil dominerer. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Flere utskrevne sifre betyr ikke flere korrekte sifre når kondisjonering eller avrundingsfeil dominerer. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-01-4 bruker vit2-08-mit-calculus og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat11-01-1",
+            "mat11-01-2",
+            "mat11-01-3",
+            "mat11-01-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for flyttall, avrunding og kondisjonering.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Flere utskrevne sifre betyr ikke flere korrekte sifre når kondisjonering eller avrundingsfeil dominerer."
+          ]
+        },
+        {
+          "id": "mat11-t02",
+          "title": "Diskretisering og trunkeringsfeil",
+          "paragraphs": [
+            {
+              "claim_id": "mat11-02-1",
+              "source_ids": [
+                "mat-src-15-mit-optimization",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Diskretisering og trunkeringsfeil: Numeriske metoder erstatter kontinuerlige objekter med endelige representasjoner og introduserer kontrollerbar diskretiserings- eller trunkeringsfeil. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Finere diskretisering forbedrer ikke nødvendigvis resultatet dersom avrunding, ustabilitet eller modellfeil dominerer. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-02-1 bruker mat-src-15-mit-optimization og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat11-02-2",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-12-mit-differential-equations"
+              ],
+              "text": "Diskretisering og trunkeringsfeil: Ved arbeid med diskretisering og trunkeringsfeil skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Numeriske metoder erstatter kontinuerlige objekter med endelige representasjoner og introduserer kontrollerbar diskretiserings- eller trunkeringsfeil. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Finere diskretisering forbedrer ikke nødvendigvis resultatet dersom avrunding, ustabilitet eller modellfeil dominerer. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-02-2 bruker vit2-06-mit-linear-algebra og mat-src-12-mit-differential-equations; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat11-02-3",
+              "source_ids": [
+                "vit2-08-mit-calculus",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Diskretisering og trunkeringsfeil: Gyldighetsgrensen er avgjørende: Finere diskretisering forbedrer ikke nødvendigvis resultatet dersom avrunding, ustabilitet eller modellfeil dominerer. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Finere diskretisering forbedrer ikke nødvendigvis resultatet dersom avrunding, ustabilitet eller modellfeil dominerer. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-02-3 bruker vit2-08-mit-calculus og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat11-02-4",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Diskretisering og trunkeringsfeil: Når diskretisering og trunkeringsfeil anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Finere diskretisering forbedrer ikke nødvendigvis resultatet dersom avrunding, ustabilitet eller modellfeil dominerer. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Finere diskretisering forbedrer ikke nødvendigvis resultatet dersom avrunding, ustabilitet eller modellfeil dominerer. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-02-4 bruker mat-src-11-mit-real-analysis og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat11-02-1",
+            "mat11-02-2",
+            "mat11-02-3",
+            "mat11-02-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for diskretisering og trunkeringsfeil.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Finere diskretisering forbedrer ikke nødvendigvis resultatet dersom avrunding, ustabilitet eller modellfeil dominerer."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat11-m02",
+      "title": "Modul 2: Rotfinningsmetoder og Numerisk integrasjon og derivasjon",
+      "sections": [
+        {
+          "id": "mat11-t03",
+          "title": "Rotfinningsmetoder",
+          "paragraphs": [
+            {
+              "claim_id": "mat11-03-1",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-12-mit-differential-equations"
+              ],
+              "text": "Rotfinningsmetoder: Iterative rotfinningsmetoder som biseksjon og Newton-metoden bruker ulike antakelser og konvergensmekanismer. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Newton-iterasjon kan feile eller konvergere til en annen rot når startverdi og lokal geometri er ugunstig. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-03-1 bruker vit2-06-mit-linear-algebra og mat-src-12-mit-differential-equations; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat11-03-2",
+              "source_ids": [
+                "vit2-08-mit-calculus",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Rotfinningsmetoder: Ved arbeid med rotfinningsmetoder skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Iterative rotfinningsmetoder som biseksjon og Newton-metoden bruker ulike antakelser og konvergensmekanismer. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Newton-iterasjon kan feile eller konvergere til en annen rot når startverdi og lokal geometri er ugunstig. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-03-2 bruker vit2-08-mit-calculus og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat11-03-3",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Rotfinningsmetoder: Gyldighetsgrensen er avgjørende: Newton-iterasjon kan feile eller konvergere til en annen rot når startverdi og lokal geometri er ugunstig. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Newton-iterasjon kan feile eller konvergere til en annen rot når startverdi og lokal geometri er ugunstig. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-03-3 bruker mat-src-11-mit-real-analysis og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat11-03-4",
+              "source_ids": [
+                "mat-src-12-mit-differential-equations",
+                "mat-src-17-mit-numerical-analysis"
+              ],
+              "text": "Rotfinningsmetoder: Når rotfinningsmetoder anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Newton-iterasjon kan feile eller konvergere til en annen rot når startverdi og lokal geometri er ugunstig. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Newton-iterasjon kan feile eller konvergere til en annen rot når startverdi og lokal geometri er ugunstig. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-03-4 bruker mat-src-12-mit-differential-equations og mat-src-17-mit-numerical-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat11-03-1",
+            "mat11-03-2",
+            "mat11-03-3",
+            "mat11-03-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for rotfinningsmetoder.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Newton-iterasjon kan feile eller konvergere til en annen rot når startverdi og lokal geometri er ugunstig."
+          ]
+        },
+        {
+          "id": "mat11-t04",
+          "title": "Numerisk integrasjon og derivasjon",
+          "paragraphs": [
+            {
+              "claim_id": "mat11-04-1",
+              "source_ids": [
+                "vit2-08-mit-calculus",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Numerisk integrasjon og derivasjon: Kvadratur og differansemetoder approksimerer integraler og deriverte med feil som avhenger av regularitet, steglengde og metodeorden. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Numerisk derivasjon kan forsterke støy og krever en annen feilbalanse enn numerisk integrasjon. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-04-1 bruker vit2-08-mit-calculus og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat11-04-2",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Numerisk integrasjon og derivasjon: Ved arbeid med numerisk integrasjon og derivasjon skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Kvadratur og differansemetoder approksimerer integraler og deriverte med feil som avhenger av regularitet, steglengde og metodeorden. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Numerisk derivasjon kan forsterke støy og krever en annen feilbalanse enn numerisk integrasjon. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-04-2 bruker mat-src-11-mit-real-analysis og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat11-04-3",
+              "source_ids": [
+                "mat-src-12-mit-differential-equations",
+                "mat-src-17-mit-numerical-analysis"
+              ],
+              "text": "Numerisk integrasjon og derivasjon: Gyldighetsgrensen er avgjørende: Numerisk derivasjon kan forsterke støy og krever en annen feilbalanse enn numerisk integrasjon. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Numerisk derivasjon kan forsterke støy og krever en annen feilbalanse enn numerisk integrasjon. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-04-3 bruker mat-src-12-mit-differential-equations og mat-src-17-mit-numerical-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat11-04-4",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "mat-src-15-mit-optimization"
+              ],
+              "text": "Numerisk integrasjon og derivasjon: Når numerisk integrasjon og derivasjon anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Numerisk derivasjon kan forsterke støy og krever en annen feilbalanse enn numerisk integrasjon. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Numerisk derivasjon kan forsterke støy og krever en annen feilbalanse enn numerisk integrasjon. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-04-4 bruker mat-src-16-mit-probability-statistics og mat-src-15-mit-optimization; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat11-04-1",
+            "mat11-04-2",
+            "mat11-04-3",
+            "mat11-04-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for numerisk integrasjon og derivasjon.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Numerisk derivasjon kan forsterke støy og krever en annen feilbalanse enn numerisk integrasjon."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat11-m03",
+      "title": "Modul 3: Lineære numeriske systemer og Objektfunksjon og begrensninger",
+      "sections": [
+        {
+          "id": "mat11-t05",
+          "title": "Lineære numeriske systemer",
+          "paragraphs": [
+            {
+              "claim_id": "mat11-05-1",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Lineære numeriske systemer: Numerisk lineær algebra analyserer faktoriseringer, iterative metoder og kondisjonering for store eller approksimerte systemer. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En liten residual garanterer ikke en liten løsningsfeil i et dårlig kondisjonert problem. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-05-1 bruker mat-src-11-mit-real-analysis og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat11-05-2",
+              "source_ids": [
+                "mat-src-12-mit-differential-equations",
+                "mat-src-17-mit-numerical-analysis"
+              ],
+              "text": "Lineære numeriske systemer: Ved arbeid med lineære numeriske systemer skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Numerisk lineær algebra analyserer faktoriseringer, iterative metoder og kondisjonering for store eller approksimerte systemer. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En liten residual garanterer ikke en liten løsningsfeil i et dårlig kondisjonert problem. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-05-2 bruker mat-src-12-mit-differential-equations og mat-src-17-mit-numerical-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat11-05-3",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "mat-src-15-mit-optimization"
+              ],
+              "text": "Lineære numeriske systemer: Gyldighetsgrensen er avgjørende: En liten residual garanterer ikke en liten løsningsfeil i et dårlig kondisjonert problem. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En liten residual garanterer ikke en liten løsningsfeil i et dårlig kondisjonert problem. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-05-3 bruker mat-src-16-mit-probability-statistics og mat-src-15-mit-optimization; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat11-05-4",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Lineære numeriske systemer: Når lineære numeriske systemer anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En liten residual garanterer ikke en liten løsningsfeil i et dårlig kondisjonert problem. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En liten residual garanterer ikke en liten løsningsfeil i et dårlig kondisjonert problem. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-05-4 bruker vit2-05-mit-discrete og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat11-05-1",
+            "mat11-05-2",
+            "mat11-05-3",
+            "mat11-05-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for lineære numeriske systemer.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. En liten residual garanterer ikke en liten løsningsfeil i et dårlig kondisjonert problem."
+          ]
+        },
+        {
+          "id": "mat11-t06",
+          "title": "Objektfunksjon og begrensninger",
+          "paragraphs": [
+            {
+              "claim_id": "mat11-06-1",
+              "source_ids": [
+                "mat-src-12-mit-differential-equations",
+                "mat-src-17-mit-numerical-analysis"
+              ],
+              "text": "Objektfunksjon og begrensninger: Optimalisering formaliserer et mål som skal minimeres eller maksimeres under eksplisitte variabel- og begrensningsbetingelser. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Den matematiske objektfunksjonen er en valgt representasjon av et mål og er ikke automatisk identisk med den virkelige beslutningsverdien. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-06-1 bruker mat-src-12-mit-differential-equations og mat-src-17-mit-numerical-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat11-06-2",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "mat-src-15-mit-optimization"
+              ],
+              "text": "Objektfunksjon og begrensninger: Ved arbeid med objektfunksjon og begrensninger skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Optimalisering formaliserer et mål som skal minimeres eller maksimeres under eksplisitte variabel- og begrensningsbetingelser. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Den matematiske objektfunksjonen er en valgt representasjon av et mål og er ikke automatisk identisk med den virkelige beslutningsverdien. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-06-2 bruker mat-src-16-mit-probability-statistics og mat-src-15-mit-optimization; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat11-06-3",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Objektfunksjon og begrensninger: Gyldighetsgrensen er avgjørende: Den matematiske objektfunksjonen er en valgt representasjon av et mål og er ikke automatisk identisk med den virkelige beslutningsverdien. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Den matematiske objektfunksjonen er en valgt representasjon av et mål og er ikke automatisk identisk med den virkelige beslutningsverdien. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-06-3 bruker vit2-05-mit-discrete og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat11-06-4",
+              "source_ids": [
+                "mat-src-17-mit-numerical-analysis",
+                "vit2-08-mit-calculus"
+              ],
+              "text": "Objektfunksjon og begrensninger: Når objektfunksjon og begrensninger anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Den matematiske objektfunksjonen er en valgt representasjon av et mål og er ikke automatisk identisk med den virkelige beslutningsverdien. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Den matematiske objektfunksjonen er en valgt representasjon av et mål og er ikke automatisk identisk med den virkelige beslutningsverdien. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-06-4 bruker mat-src-17-mit-numerical-analysis og vit2-08-mit-calculus; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat11-06-1",
+            "mat11-06-2",
+            "mat11-06-3",
+            "mat11-06-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for objektfunksjon og begrensninger.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Den matematiske objektfunksjonen er en valgt representasjon av et mål og er ikke automatisk identisk med den virkelige beslutningsverdien."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat11-m04",
+      "title": "Modul 4: Konveksitet, dualitet og optimalitet og Algoritme, stopping og verifikasjon",
+      "sections": [
+        {
+          "id": "mat11-t07",
+          "title": "Konveksitet, dualitet og optimalitet",
+          "paragraphs": [
+            {
+              "claim_id": "mat11-07-1",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "mat-src-15-mit-optimization"
+              ],
+              "text": "Konveksitet, dualitet og optimalitet: Konvekse problemer har struktur som gir sterke lokale–globale optimalitetsresultater og duale beskrivelser under passende betingelser. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Ikke-konvekse problemer kan ha lokale optima og krever andre garantier enn konvekse problemer. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-07-1 bruker mat-src-16-mit-probability-statistics og mat-src-15-mit-optimization; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat11-07-2",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Konveksitet, dualitet og optimalitet: Ved arbeid med konveksitet, dualitet og optimalitet skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Konvekse problemer har struktur som gir sterke lokale–globale optimalitetsresultater og duale beskrivelser under passende betingelser. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Ikke-konvekse problemer kan ha lokale optima og krever andre garantier enn konvekse problemer. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-07-2 bruker vit2-05-mit-discrete og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat11-07-3",
+              "source_ids": [
+                "mat-src-17-mit-numerical-analysis",
+                "vit2-08-mit-calculus"
+              ],
+              "text": "Konveksitet, dualitet og optimalitet: Gyldighetsgrensen er avgjørende: Ikke-konvekse problemer kan ha lokale optima og krever andre garantier enn konvekse problemer. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Ikke-konvekse problemer kan ha lokale optima og krever andre garantier enn konvekse problemer. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-07-3 bruker mat-src-17-mit-numerical-analysis og vit2-08-mit-calculus; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat11-07-4",
+              "source_ids": [
+                "mat-src-15-mit-optimization",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Konveksitet, dualitet og optimalitet: Når konveksitet, dualitet og optimalitet anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Ikke-konvekse problemer kan ha lokale optima og krever andre garantier enn konvekse problemer. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Ikke-konvekse problemer kan ha lokale optima og krever andre garantier enn konvekse problemer. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-07-4 bruker mat-src-15-mit-optimization og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat11-07-1",
+            "mat11-07-2",
+            "mat11-07-3",
+            "mat11-07-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for konveksitet, dualitet og optimalitet.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Ikke-konvekse problemer kan ha lokale optima og krever andre garantier enn konvekse problemer."
+          ]
+        },
+        {
+          "id": "mat11-t08",
+          "title": "Algoritme, stopping og verifikasjon",
+          "paragraphs": [
+            {
+              "claim_id": "mat11-08-1",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Algoritme, stopping og verifikasjon: Beregningsalgoritmer trenger stoppkriterier, feilmål og uavhengige kontroller slik at numerisk resultat kan skilles fra faktisk matematisk garanti. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. At en algoritme stopper eller returnerer et tall beviser ikke at tallet er korrekt eller globalt optimalt. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-08-1 bruker vit2-05-mit-discrete og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat11-08-2",
+              "source_ids": [
+                "mat-src-17-mit-numerical-analysis",
+                "vit2-08-mit-calculus"
+              ],
+              "text": "Algoritme, stopping og verifikasjon: Ved arbeid med algoritme, stopping og verifikasjon skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Beregningsalgoritmer trenger stoppkriterier, feilmål og uavhengige kontroller slik at numerisk resultat kan skilles fra faktisk matematisk garanti. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. At en algoritme stopper eller returnerer et tall beviser ikke at tallet er korrekt eller globalt optimalt. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-08-2 bruker mat-src-17-mit-numerical-analysis og vit2-08-mit-calculus; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat11-08-3",
+              "source_ids": [
+                "mat-src-15-mit-optimization",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Algoritme, stopping og verifikasjon: Gyldighetsgrensen er avgjørende: At en algoritme stopper eller returnerer et tall beviser ikke at tallet er korrekt eller globalt optimalt. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. At en algoritme stopper eller returnerer et tall beviser ikke at tallet er korrekt eller globalt optimalt. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-08-3 bruker mat-src-15-mit-optimization og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat11-08-4",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-12-mit-differential-equations"
+              ],
+              "text": "Algoritme, stopping og verifikasjon: Når algoritme, stopping og verifikasjon anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. At en algoritme stopper eller returnerer et tall beviser ikke at tallet er korrekt eller globalt optimalt. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. At en algoritme stopper eller returnerer et tall beviser ikke at tallet er korrekt eller globalt optimalt. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat11-08-4 bruker vit2-06-mit-linear-algebra og mat-src-12-mit-differential-equations; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat11-08-1",
+            "mat11-08-2",
+            "mat11-08-3",
+            "mat11-08-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for algoritme, stopping og verifikasjon.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. At en algoritme stopper eller returnerer et tall beviser ikke at tallet er korrekt eller globalt optimalt."
+          ]
+        }
+      ]
+    }
+  ],
+  "assessment": {
+    "questions": [
+      {
+        "id": "mat11-q01",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer flyttall, avrunding og kondisjonering?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat11-t01"
+      },
+      {
+        "id": "mat11-q02",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer diskretisering og trunkeringsfeil?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat11-t02"
+      },
+      {
+        "id": "mat11-q03",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer rotfinningsmetoder?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat11-t03"
+      },
+      {
+        "id": "mat11-q04",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer numerisk integrasjon og derivasjon?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat11-t04"
+      },
+      {
+        "id": "mat11-q05",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer lineære numeriske systemer?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat11-t05"
+      },
+      {
+        "id": "mat11-q06",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer objektfunksjon og begrensninger?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat11-t06"
+      },
+      {
+        "id": "mat11-q07",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer konveksitet, dualitet og optimalitet?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat11-t07"
+      },
+      {
+        "id": "mat11-q08",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer algoritme, stopping og verifikasjon?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat11-t08"
+      }
+    ],
+    "caseTasks": [
+      {
+        "id": "mat11-case01",
+        "prompt": "En analyse hevder at et resultat som kombinerer flyttall, avrunding og kondisjonering og rotfinningsmetoder er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "mat-src-17-mit-numerical-analysis",
+          "mat-src-12-mit-differential-equations"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat11-case02",
+        "prompt": "En analyse hevder at et resultat som kombinerer diskretisering og trunkeringsfeil og numerisk integrasjon og derivasjon er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "mat-src-15-mit-optimization",
+          "mat-src-16-mit-probability-statistics"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat11-case03",
+        "prompt": "En analyse hevder at et resultat som kombinerer rotfinningsmetoder og lineære numeriske systemer er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-06-mit-linear-algebra",
+          "vit2-05-mit-discrete"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat11-case04",
+        "prompt": "En analyse hevder at et resultat som kombinerer numerisk integrasjon og derivasjon og objektfunksjon og begrensninger er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-08-mit-calculus",
+          "mat-src-17-mit-numerical-analysis"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat11-case05",
+        "prompt": "En analyse hevder at et resultat som kombinerer lineære numeriske systemer og konveksitet, dualitet og optimalitet er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "mat-src-11-mit-real-analysis",
+          "mat-src-15-mit-optimization"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat11-case06",
+        "prompt": "En analyse hevder at et resultat som kombinerer objektfunksjon og begrensninger og algoritme, stopping og verifikasjon er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "mat-src-12-mit-differential-equations",
+          "vit2-06-mit-linear-algebra"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      }
+    ]
+  },
+  "qualityGuard": {
+    "formal_validity_vs_premise_truth_explicit": true,
+    "proof_vs_computation_explicit": true,
+    "object_vs_representation_explicit": true,
+    "theorem_prover_scope_explicit": true,
+    "exact_vs_numerical_approximation_explicit": true,
+    "continuous_vs_discrete_model_choice_explicit": true,
+    "probability_model_vs_empirical_frequency_explicit": true,
+    "optimization_objective_vs_real_goal_explicit": true,
+    "empirical_model_adequacy_separate": true,
+    "source_trace_required": true,
+    "strict_domain_materialized": true
+  },
+  "reuse_provenance": {
+    "strict_upgrade": false,
+    "rule": "Nytt canonicalt Matematikk-felt; eksisterende naboinnhold teller ikke som materialisert uten denne strict-pakken."
+  }
+}

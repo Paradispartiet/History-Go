@@ -1,0 +1,1129 @@
+{
+  "schema": "history_go_fagverk_matematikk_strict_domain_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-09-02",
+  "subject": "vitenskap",
+  "subject_id": "vitenskap",
+  "canonical_subcategory_id": "matematikk",
+  "ordinal": 10,
+  "domain_id": "sannsynlighet_statistikk_stokastiske_modeller",
+  "id": "sannsynlighet-statistikk-stokastiske-modeller",
+  "chapter_id": "sannsynlighet-statistikk-stokastiske-modeller",
+  "title": "Sannsynlighet, statistikk og stokastiske modeller",
+  "subtitle": "Strict Matematikk-felt 10 av 12: source-first, fulltekst, claims, vurderinger og case",
+  "lead": "Sannsynlighet, statistikk og stokastiske modeller er materialisert som et selvstendig felt i Matematikk-registeret med eksplisitte definisjoner, beviskjeder, objekt–representasjon-skille, numerisk feilkontroll og en tydelig grense mellom matematisk korrekthet og empirisk modelladekvathet.",
+  "source_registry": "data/fag/vitenskap/matematikk/source_registry_v1.json",
+  "source_first": {
+    "status": "pass",
+    "source_ids": [
+      "mat-src-16-mit-probability-statistics",
+      "vit2-05-mit-discrete",
+      "vit2-08-mit-calculus",
+      "mat-src-11-mit-real-analysis",
+      "vit2-06-mit-linear-algebra",
+      "mat-src-15-mit-optimization",
+      "mat-src-17-mit-numerical-analysis",
+      "vit2-02-lean-propositions-proofs"
+    ],
+    "topic_briefs": [
+      {
+        "id": "mat10-t01",
+        "title": "Utfallsrom og sannsynlighetsmål",
+        "core": "Sannsynlighet formaliserer tilfeldige hendelser ved et utfallsrom, en hendelsesstruktur og et mål som følger sannsynlighetsaksiomene.",
+        "boundary": "Et sannsynlighetsmål er en matematisk modell og må ikke forveksles med en observert relativ frekvens i ett endelig datasett.",
+        "planned_claim_ids": [
+          "mat10-01-1",
+          "mat10-01-2",
+          "mat10-01-3",
+          "mat10-01-4"
+        ]
+      },
+      {
+        "id": "mat10-t02",
+        "title": "Betinget sannsynlighet og Bayes",
+        "core": "Betinget sannsynlighet og Bayes' regel oppdaterer relasjoner mellom hendelser når informasjon om en betingelse er gitt.",
+        "boundary": "Bayes' regel er en identitet; empirisk kvalitet avhenger fortsatt av modell, prior, likelihood og datagrunnlag.",
+        "planned_claim_ids": [
+          "mat10-02-1",
+          "mat10-02-2",
+          "mat10-02-3",
+          "mat10-02-4"
+        ]
+      },
+      {
+        "id": "mat10-t03",
+        "title": "Uavhengighet",
+        "core": "Uavhengighet formaliserer at felles sannsynlighet faktoriserer under en spesifisert modell.",
+        "boundary": "Null korrelasjon er ikke generelt det samme som uavhengighet.",
+        "planned_claim_ids": [
+          "mat10-03-1",
+          "mat10-03-2",
+          "mat10-03-3",
+          "mat10-03-4"
+        ]
+      },
+      {
+        "id": "mat10-t04",
+        "title": "Tilfeldige variable og fordelinger",
+        "core": "Tilfeldige variable kobler utfall til numeriske verdier og beskrives gjennom fordelinger, forventning og andre funksjonaler.",
+        "boundary": "En teoretisk fordelingsfamilie må begrunnes før den brukes som modell for observerte data.",
+        "planned_claim_ids": [
+          "mat10-04-1",
+          "mat10-04-2",
+          "mat10-04-3",
+          "mat10-04-4"
+        ]
+      },
+      {
+        "id": "mat10-t05",
+        "title": "Forventning, varians og kovarians",
+        "core": "Forventning og varians oppsummerer sentraltendens og spredning under en sannsynlighetsmodell, mens kovarians beskriver lineær samvariasjon.",
+        "boundary": "Sammenfattende momenter kan være like for svært ulike fordelinger og gir ikke full distribusjonsinformasjon.",
+        "planned_claim_ids": [
+          "mat10-05-1",
+          "mat10-05-2",
+          "mat10-05-3",
+          "mat10-05-4"
+        ]
+      },
+      {
+        "id": "mat10-t06",
+        "title": "Store talls lov og sentralgrenseteorem",
+        "core": "Grenseteoremer beskriver asymptotisk oppførsel av gjennomsnitt og summer under eksplisitte betingelser.",
+        "boundary": "Asymptotiske teoremer garanterer ikke at en gitt endelig utvalgsstørrelse er tilstrekkelig.",
+        "planned_claim_ids": [
+          "mat10-06-1",
+          "mat10-06-2",
+          "mat10-06-3",
+          "mat10-06-4"
+        ]
+      },
+      {
+        "id": "mat10-t07",
+        "title": "Estimering og usikkerhet",
+        "core": "Statistisk estimering kobler data til parametre eller funksjoner og må ledsages av modellforutsetninger og usikkerhetsbeskrivelse.",
+        "boundary": "Et punktestimat uten konfidens-, posterior- eller annen usikkerhetsanalyse kan gi falsk presisjon.",
+        "planned_claim_ids": [
+          "mat10-07-1",
+          "mat10-07-2",
+          "mat10-07-3",
+          "mat10-07-4"
+        ]
+      },
+      {
+        "id": "mat10-t08",
+        "title": "Hypotesetesting, prediksjon og modellkritikk",
+        "core": "Tester og prediksjonsmetoder vurderer data relativt til modeller, men tolkning krever effektstørrelser, feiltyper, validering og kontekst.",
+        "boundary": "En liten p-verdi er ikke sannsynligheten for at nullhypotesen er sann og gir ikke alene praktisk betydning.",
+        "planned_claim_ids": [
+          "mat10-08-1",
+          "mat10-08-2",
+          "mat10-08-3",
+          "mat10-08-4"
+        ]
+      }
+    ],
+    "minimum_sources": 8,
+    "claim_level_trace": true,
+    "no_decorative_sources": true
+  },
+  "verifiedClaims": [
+    {
+      "id": "mat10-01-1",
+      "topic_id": "mat10-t01",
+      "classification": "formal_structure",
+      "claim": "Sannsynlighet formaliserer tilfeldige hendelser ved et utfallsrom, en hendelsesstruktur og et mål som følger sannsynlighetsaksiomene. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat10-01-2",
+      "topic_id": "mat10-t01",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med utfallsrom og sannsynlighetsmål skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Sannsynlighet formaliserer tilfeldige hendelser ved et utfallsrom, en hendelsesstruktur og et mål som følger sannsynlighetsaksiomene. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat10-01-3",
+      "topic_id": "mat10-t01",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Et sannsynlighetsmål er en matematisk modell og må ikke forveksles med en observert relativ frekvens i ett endelig datasett. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-08-mit-calculus",
+        "mat-src-15-mit-optimization"
+      ]
+    },
+    {
+      "id": "mat10-01-4",
+      "topic_id": "mat10-t01",
+      "classification": "application",
+      "claim": "Når utfallsrom og sannsynlighetsmål anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Et sannsynlighetsmål er en matematisk modell og må ikke forveksles med en observert relativ frekvens i ett endelig datasett.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "mat-src-17-mit-numerical-analysis"
+      ]
+    },
+    {
+      "id": "mat10-02-1",
+      "topic_id": "mat10-t02",
+      "classification": "formal_structure",
+      "claim": "Betinget sannsynlighet og Bayes' regel oppdaterer relasjoner mellom hendelser når informasjon om en betingelse er gitt. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat10-02-2",
+      "topic_id": "mat10-t02",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med betinget sannsynlighet og bayes skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Betinget sannsynlighet og Bayes' regel oppdaterer relasjoner mellom hendelser når informasjon om en betingelse er gitt. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-08-mit-calculus",
+        "mat-src-15-mit-optimization"
+      ]
+    },
+    {
+      "id": "mat10-02-3",
+      "topic_id": "mat10-t02",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Bayes' regel er en identitet; empirisk kvalitet avhenger fortsatt av modell, prior, likelihood og datagrunnlag. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "mat-src-17-mit-numerical-analysis"
+      ]
+    },
+    {
+      "id": "mat10-02-4",
+      "topic_id": "mat10-t02",
+      "classification": "application",
+      "claim": "Når betinget sannsynlighet og bayes anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Bayes' regel er en identitet; empirisk kvalitet avhenger fortsatt av modell, prior, likelihood og datagrunnlag.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "vit2-02-lean-propositions-proofs"
+      ]
+    },
+    {
+      "id": "mat10-03-1",
+      "topic_id": "mat10-t03",
+      "classification": "formal_structure",
+      "claim": "Uavhengighet formaliserer at felles sannsynlighet faktoriserer under en spesifisert modell. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-08-mit-calculus",
+        "mat-src-15-mit-optimization"
+      ]
+    },
+    {
+      "id": "mat10-03-2",
+      "topic_id": "mat10-t03",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med uavhengighet skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Uavhengighet formaliserer at felles sannsynlighet faktoriserer under en spesifisert modell. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "mat-src-17-mit-numerical-analysis"
+      ]
+    },
+    {
+      "id": "mat10-03-3",
+      "topic_id": "mat10-t03",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Null korrelasjon er ikke generelt det samme som uavhengighet. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "vit2-02-lean-propositions-proofs"
+      ]
+    },
+    {
+      "id": "mat10-03-4",
+      "topic_id": "mat10-t03",
+      "classification": "application",
+      "claim": "Når uavhengighet anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Null korrelasjon er ikke generelt det samme som uavhengighet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-15-mit-optimization",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat10-04-1",
+      "topic_id": "mat10-t04",
+      "classification": "formal_structure",
+      "claim": "Tilfeldige variable kobler utfall til numeriske verdier og beskrives gjennom fordelinger, forventning og andre funksjonaler. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "mat-src-17-mit-numerical-analysis"
+      ]
+    },
+    {
+      "id": "mat10-04-2",
+      "topic_id": "mat10-t04",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med tilfeldige variable og fordelinger skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Tilfeldige variable kobler utfall til numeriske verdier og beskrives gjennom fordelinger, forventning og andre funksjonaler. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "vit2-02-lean-propositions-proofs"
+      ]
+    },
+    {
+      "id": "mat10-04-3",
+      "topic_id": "mat10-t04",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: En teoretisk fordelingsfamilie må begrunnes før den brukes som modell for observerte data. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-15-mit-optimization",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat10-04-4",
+      "topic_id": "mat10-t04",
+      "classification": "application",
+      "claim": "Når tilfeldige variable og fordelinger anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En teoretisk fordelingsfamilie må begrunnes før den brukes som modell for observerte data.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-17-mit-numerical-analysis",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat10-05-1",
+      "topic_id": "mat10-t05",
+      "classification": "formal_structure",
+      "claim": "Forventning og varians oppsummerer sentraltendens og spredning under en sannsynlighetsmodell, mens kovarians beskriver lineær samvariasjon. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "vit2-02-lean-propositions-proofs"
+      ]
+    },
+    {
+      "id": "mat10-05-2",
+      "topic_id": "mat10-t05",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med forventning, varians og kovarians skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Forventning og varians oppsummerer sentraltendens og spredning under en sannsynlighetsmodell, mens kovarians beskriver lineær samvariasjon. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-15-mit-optimization",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat10-05-3",
+      "topic_id": "mat10-t05",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Sammenfattende momenter kan være like for svært ulike fordelinger og gir ikke full distribusjonsinformasjon. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-17-mit-numerical-analysis",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat10-05-4",
+      "topic_id": "mat10-t05",
+      "classification": "application",
+      "claim": "Når forventning, varians og kovarians anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Sammenfattende momenter kan være like for svært ulike fordelinger og gir ikke full distribusjonsinformasjon.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-02-lean-propositions-proofs",
+        "vit2-08-mit-calculus"
+      ]
+    },
+    {
+      "id": "mat10-06-1",
+      "topic_id": "mat10-t06",
+      "classification": "formal_structure",
+      "claim": "Grenseteoremer beskriver asymptotisk oppførsel av gjennomsnitt og summer under eksplisitte betingelser. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-15-mit-optimization",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat10-06-2",
+      "topic_id": "mat10-t06",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med store talls lov og sentralgrenseteorem skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Grenseteoremer beskriver asymptotisk oppførsel av gjennomsnitt og summer under eksplisitte betingelser. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-17-mit-numerical-analysis",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat10-06-3",
+      "topic_id": "mat10-t06",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Asymptotiske teoremer garanterer ikke at en gitt endelig utvalgsstørrelse er tilstrekkelig. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-02-lean-propositions-proofs",
+        "vit2-08-mit-calculus"
+      ]
+    },
+    {
+      "id": "mat10-06-4",
+      "topic_id": "mat10-t06",
+      "classification": "application",
+      "claim": "Når store talls lov og sentralgrenseteorem anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Asymptotiske teoremer garanterer ikke at en gitt endelig utvalgsstørrelse er tilstrekkelig.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat10-07-1",
+      "topic_id": "mat10-t07",
+      "classification": "formal_structure",
+      "claim": "Statistisk estimering kobler data til parametre eller funksjoner og må ledsages av modellforutsetninger og usikkerhetsbeskrivelse. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-17-mit-numerical-analysis",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat10-07-2",
+      "topic_id": "mat10-t07",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med estimering og usikkerhet skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Statistisk estimering kobler data til parametre eller funksjoner og må ledsages av modellforutsetninger og usikkerhetsbeskrivelse. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-02-lean-propositions-proofs",
+        "vit2-08-mit-calculus"
+      ]
+    },
+    {
+      "id": "mat10-07-3",
+      "topic_id": "mat10-t07",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Et punktestimat uten konfidens-, posterior- eller annen usikkerhetsanalyse kan gi falsk presisjon. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat10-07-4",
+      "topic_id": "mat10-t07",
+      "classification": "application",
+      "claim": "Når estimering og usikkerhet anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Et punktestimat uten konfidens-, posterior- eller annen usikkerhetsanalyse kan gi falsk presisjon.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat10-08-1",
+      "topic_id": "mat10-t08",
+      "classification": "formal_structure",
+      "claim": "Tester og prediksjonsmetoder vurderer data relativt til modeller, men tolkning krever effektstørrelser, feiltyper, validering og kontekst. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-02-lean-propositions-proofs",
+        "vit2-08-mit-calculus"
+      ]
+    },
+    {
+      "id": "mat10-08-2",
+      "topic_id": "mat10-t08",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med hypotesetesting, prediksjon og modellkritikk skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Tester og prediksjonsmetoder vurderer data relativt til modeller, men tolkning krever effektstørrelser, feiltyper, validering og kontekst. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat10-08-3",
+      "topic_id": "mat10-t08",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: En liten p-verdi er ikke sannsynligheten for at nullhypotesen er sann og gir ikke alene praktisk betydning. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat10-08-4",
+      "topic_id": "mat10-t08",
+      "classification": "application",
+      "claim": "Når hypotesetesting, prediksjon og modellkritikk anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En liten p-verdi er ikke sannsynligheten for at nullhypotesen er sann og gir ikke alene praktisk betydning.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-08-mit-calculus",
+        "mat-src-15-mit-optimization"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "mat10-m01",
+      "title": "Modul 1: Utfallsrom og sannsynlighetsmål og Betinget sannsynlighet og Bayes",
+      "sections": [
+        {
+          "id": "mat10-t01",
+          "title": "Utfallsrom og sannsynlighetsmål",
+          "paragraphs": [
+            {
+              "claim_id": "mat10-01-1",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Utfallsrom og sannsynlighetsmål: Sannsynlighet formaliserer tilfeldige hendelser ved et utfallsrom, en hendelsesstruktur og et mål som følger sannsynlighetsaksiomene. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et sannsynlighetsmål er en matematisk modell og må ikke forveksles med en observert relativ frekvens i ett endelig datasett. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-01-1 bruker mat-src-16-mit-probability-statistics og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat10-01-2",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Utfallsrom og sannsynlighetsmål: Ved arbeid med utfallsrom og sannsynlighetsmål skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Sannsynlighet formaliserer tilfeldige hendelser ved et utfallsrom, en hendelsesstruktur og et mål som følger sannsynlighetsaksiomene. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et sannsynlighetsmål er en matematisk modell og må ikke forveksles med en observert relativ frekvens i ett endelig datasett. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-01-2 bruker vit2-05-mit-discrete og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat10-01-3",
+              "source_ids": [
+                "vit2-08-mit-calculus",
+                "mat-src-15-mit-optimization"
+              ],
+              "text": "Utfallsrom og sannsynlighetsmål: Gyldighetsgrensen er avgjørende: Et sannsynlighetsmål er en matematisk modell og må ikke forveksles med en observert relativ frekvens i ett endelig datasett. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et sannsynlighetsmål er en matematisk modell og må ikke forveksles med en observert relativ frekvens i ett endelig datasett. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-01-3 bruker vit2-08-mit-calculus og mat-src-15-mit-optimization; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat10-01-4",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "mat-src-17-mit-numerical-analysis"
+              ],
+              "text": "Utfallsrom og sannsynlighetsmål: Når utfallsrom og sannsynlighetsmål anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Et sannsynlighetsmål er en matematisk modell og må ikke forveksles med en observert relativ frekvens i ett endelig datasett. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et sannsynlighetsmål er en matematisk modell og må ikke forveksles med en observert relativ frekvens i ett endelig datasett. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-01-4 bruker mat-src-11-mit-real-analysis og mat-src-17-mit-numerical-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat10-01-1",
+            "mat10-01-2",
+            "mat10-01-3",
+            "mat10-01-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for utfallsrom og sannsynlighetsmål.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Et sannsynlighetsmål er en matematisk modell og må ikke forveksles med en observert relativ frekvens i ett endelig datasett."
+          ]
+        },
+        {
+          "id": "mat10-t02",
+          "title": "Betinget sannsynlighet og Bayes",
+          "paragraphs": [
+            {
+              "claim_id": "mat10-02-1",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Betinget sannsynlighet og Bayes: Betinget sannsynlighet og Bayes' regel oppdaterer relasjoner mellom hendelser når informasjon om en betingelse er gitt. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Bayes' regel er en identitet; empirisk kvalitet avhenger fortsatt av modell, prior, likelihood og datagrunnlag. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-02-1 bruker vit2-05-mit-discrete og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat10-02-2",
+              "source_ids": [
+                "vit2-08-mit-calculus",
+                "mat-src-15-mit-optimization"
+              ],
+              "text": "Betinget sannsynlighet og Bayes: Ved arbeid med betinget sannsynlighet og bayes skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Betinget sannsynlighet og Bayes' regel oppdaterer relasjoner mellom hendelser når informasjon om en betingelse er gitt. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Bayes' regel er en identitet; empirisk kvalitet avhenger fortsatt av modell, prior, likelihood og datagrunnlag. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-02-2 bruker vit2-08-mit-calculus og mat-src-15-mit-optimization; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat10-02-3",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "mat-src-17-mit-numerical-analysis"
+              ],
+              "text": "Betinget sannsynlighet og Bayes: Gyldighetsgrensen er avgjørende: Bayes' regel er en identitet; empirisk kvalitet avhenger fortsatt av modell, prior, likelihood og datagrunnlag. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Bayes' regel er en identitet; empirisk kvalitet avhenger fortsatt av modell, prior, likelihood og datagrunnlag. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-02-3 bruker mat-src-11-mit-real-analysis og mat-src-17-mit-numerical-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat10-02-4",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "vit2-02-lean-propositions-proofs"
+              ],
+              "text": "Betinget sannsynlighet og Bayes: Når betinget sannsynlighet og bayes anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Bayes' regel er en identitet; empirisk kvalitet avhenger fortsatt av modell, prior, likelihood og datagrunnlag. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Bayes' regel er en identitet; empirisk kvalitet avhenger fortsatt av modell, prior, likelihood og datagrunnlag. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-02-4 bruker vit2-06-mit-linear-algebra og vit2-02-lean-propositions-proofs; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat10-02-1",
+            "mat10-02-2",
+            "mat10-02-3",
+            "mat10-02-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for betinget sannsynlighet og bayes.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Bayes' regel er en identitet; empirisk kvalitet avhenger fortsatt av modell, prior, likelihood og datagrunnlag."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat10-m02",
+      "title": "Modul 2: Uavhengighet og Tilfeldige variable og fordelinger",
+      "sections": [
+        {
+          "id": "mat10-t03",
+          "title": "Uavhengighet",
+          "paragraphs": [
+            {
+              "claim_id": "mat10-03-1",
+              "source_ids": [
+                "vit2-08-mit-calculus",
+                "mat-src-15-mit-optimization"
+              ],
+              "text": "Uavhengighet: Uavhengighet formaliserer at felles sannsynlighet faktoriserer under en spesifisert modell. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Null korrelasjon er ikke generelt det samme som uavhengighet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-03-1 bruker vit2-08-mit-calculus og mat-src-15-mit-optimization; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat10-03-2",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "mat-src-17-mit-numerical-analysis"
+              ],
+              "text": "Uavhengighet: Ved arbeid med uavhengighet skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Uavhengighet formaliserer at felles sannsynlighet faktoriserer under en spesifisert modell. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Null korrelasjon er ikke generelt det samme som uavhengighet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-03-2 bruker mat-src-11-mit-real-analysis og mat-src-17-mit-numerical-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat10-03-3",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "vit2-02-lean-propositions-proofs"
+              ],
+              "text": "Uavhengighet: Gyldighetsgrensen er avgjørende: Null korrelasjon er ikke generelt det samme som uavhengighet. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Null korrelasjon er ikke generelt det samme som uavhengighet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-03-3 bruker vit2-06-mit-linear-algebra og vit2-02-lean-propositions-proofs; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat10-03-4",
+              "source_ids": [
+                "mat-src-15-mit-optimization",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Uavhengighet: Når uavhengighet anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Null korrelasjon er ikke generelt det samme som uavhengighet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Null korrelasjon er ikke generelt det samme som uavhengighet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-03-4 bruker mat-src-15-mit-optimization og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat10-03-1",
+            "mat10-03-2",
+            "mat10-03-3",
+            "mat10-03-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for uavhengighet.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Null korrelasjon er ikke generelt det samme som uavhengighet."
+          ]
+        },
+        {
+          "id": "mat10-t04",
+          "title": "Tilfeldige variable og fordelinger",
+          "paragraphs": [
+            {
+              "claim_id": "mat10-04-1",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "mat-src-17-mit-numerical-analysis"
+              ],
+              "text": "Tilfeldige variable og fordelinger: Tilfeldige variable kobler utfall til numeriske verdier og beskrives gjennom fordelinger, forventning og andre funksjonaler. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En teoretisk fordelingsfamilie må begrunnes før den brukes som modell for observerte data. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-04-1 bruker mat-src-11-mit-real-analysis og mat-src-17-mit-numerical-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat10-04-2",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "vit2-02-lean-propositions-proofs"
+              ],
+              "text": "Tilfeldige variable og fordelinger: Ved arbeid med tilfeldige variable og fordelinger skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Tilfeldige variable kobler utfall til numeriske verdier og beskrives gjennom fordelinger, forventning og andre funksjonaler. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En teoretisk fordelingsfamilie må begrunnes før den brukes som modell for observerte data. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-04-2 bruker vit2-06-mit-linear-algebra og vit2-02-lean-propositions-proofs; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat10-04-3",
+              "source_ids": [
+                "mat-src-15-mit-optimization",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Tilfeldige variable og fordelinger: Gyldighetsgrensen er avgjørende: En teoretisk fordelingsfamilie må begrunnes før den brukes som modell for observerte data. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En teoretisk fordelingsfamilie må begrunnes før den brukes som modell for observerte data. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-04-3 bruker mat-src-15-mit-optimization og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat10-04-4",
+              "source_ids": [
+                "mat-src-17-mit-numerical-analysis",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Tilfeldige variable og fordelinger: Når tilfeldige variable og fordelinger anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En teoretisk fordelingsfamilie må begrunnes før den brukes som modell for observerte data. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En teoretisk fordelingsfamilie må begrunnes før den brukes som modell for observerte data. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-04-4 bruker mat-src-17-mit-numerical-analysis og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat10-04-1",
+            "mat10-04-2",
+            "mat10-04-3",
+            "mat10-04-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for tilfeldige variable og fordelinger.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. En teoretisk fordelingsfamilie må begrunnes før den brukes som modell for observerte data."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat10-m03",
+      "title": "Modul 3: Forventning, varians og kovarians og Store talls lov og sentralgrenseteorem",
+      "sections": [
+        {
+          "id": "mat10-t05",
+          "title": "Forventning, varians og kovarians",
+          "paragraphs": [
+            {
+              "claim_id": "mat10-05-1",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "vit2-02-lean-propositions-proofs"
+              ],
+              "text": "Forventning, varians og kovarians: Forventning og varians oppsummerer sentraltendens og spredning under en sannsynlighetsmodell, mens kovarians beskriver lineær samvariasjon. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Sammenfattende momenter kan være like for svært ulike fordelinger og gir ikke full distribusjonsinformasjon. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-05-1 bruker vit2-06-mit-linear-algebra og vit2-02-lean-propositions-proofs; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat10-05-2",
+              "source_ids": [
+                "mat-src-15-mit-optimization",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Forventning, varians og kovarians: Ved arbeid med forventning, varians og kovarians skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Forventning og varians oppsummerer sentraltendens og spredning under en sannsynlighetsmodell, mens kovarians beskriver lineær samvariasjon. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Sammenfattende momenter kan være like for svært ulike fordelinger og gir ikke full distribusjonsinformasjon. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-05-2 bruker mat-src-15-mit-optimization og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat10-05-3",
+              "source_ids": [
+                "mat-src-17-mit-numerical-analysis",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Forventning, varians og kovarians: Gyldighetsgrensen er avgjørende: Sammenfattende momenter kan være like for svært ulike fordelinger og gir ikke full distribusjonsinformasjon. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Sammenfattende momenter kan være like for svært ulike fordelinger og gir ikke full distribusjonsinformasjon. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-05-3 bruker mat-src-17-mit-numerical-analysis og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat10-05-4",
+              "source_ids": [
+                "vit2-02-lean-propositions-proofs",
+                "vit2-08-mit-calculus"
+              ],
+              "text": "Forventning, varians og kovarians: Når forventning, varians og kovarians anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Sammenfattende momenter kan være like for svært ulike fordelinger og gir ikke full distribusjonsinformasjon. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Sammenfattende momenter kan være like for svært ulike fordelinger og gir ikke full distribusjonsinformasjon. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-05-4 bruker vit2-02-lean-propositions-proofs og vit2-08-mit-calculus; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat10-05-1",
+            "mat10-05-2",
+            "mat10-05-3",
+            "mat10-05-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for forventning, varians og kovarians.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Sammenfattende momenter kan være like for svært ulike fordelinger og gir ikke full distribusjonsinformasjon."
+          ]
+        },
+        {
+          "id": "mat10-t06",
+          "title": "Store talls lov og sentralgrenseteorem",
+          "paragraphs": [
+            {
+              "claim_id": "mat10-06-1",
+              "source_ids": [
+                "mat-src-15-mit-optimization",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Store talls lov og sentralgrenseteorem: Grenseteoremer beskriver asymptotisk oppførsel av gjennomsnitt og summer under eksplisitte betingelser. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Asymptotiske teoremer garanterer ikke at en gitt endelig utvalgsstørrelse er tilstrekkelig. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-06-1 bruker mat-src-15-mit-optimization og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat10-06-2",
+              "source_ids": [
+                "mat-src-17-mit-numerical-analysis",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Store talls lov og sentralgrenseteorem: Ved arbeid med store talls lov og sentralgrenseteorem skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Grenseteoremer beskriver asymptotisk oppførsel av gjennomsnitt og summer under eksplisitte betingelser. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Asymptotiske teoremer garanterer ikke at en gitt endelig utvalgsstørrelse er tilstrekkelig. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-06-2 bruker mat-src-17-mit-numerical-analysis og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat10-06-3",
+              "source_ids": [
+                "vit2-02-lean-propositions-proofs",
+                "vit2-08-mit-calculus"
+              ],
+              "text": "Store talls lov og sentralgrenseteorem: Gyldighetsgrensen er avgjørende: Asymptotiske teoremer garanterer ikke at en gitt endelig utvalgsstørrelse er tilstrekkelig. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Asymptotiske teoremer garanterer ikke at en gitt endelig utvalgsstørrelse er tilstrekkelig. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-06-3 bruker vit2-02-lean-propositions-proofs og vit2-08-mit-calculus; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat10-06-4",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Store talls lov og sentralgrenseteorem: Når store talls lov og sentralgrenseteorem anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Asymptotiske teoremer garanterer ikke at en gitt endelig utvalgsstørrelse er tilstrekkelig. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Asymptotiske teoremer garanterer ikke at en gitt endelig utvalgsstørrelse er tilstrekkelig. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-06-4 bruker mat-src-16-mit-probability-statistics og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat10-06-1",
+            "mat10-06-2",
+            "mat10-06-3",
+            "mat10-06-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for store talls lov og sentralgrenseteorem.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Asymptotiske teoremer garanterer ikke at en gitt endelig utvalgsstørrelse er tilstrekkelig."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat10-m04",
+      "title": "Modul 4: Estimering og usikkerhet og Hypotesetesting, prediksjon og modellkritikk",
+      "sections": [
+        {
+          "id": "mat10-t07",
+          "title": "Estimering og usikkerhet",
+          "paragraphs": [
+            {
+              "claim_id": "mat10-07-1",
+              "source_ids": [
+                "mat-src-17-mit-numerical-analysis",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Estimering og usikkerhet: Statistisk estimering kobler data til parametre eller funksjoner og må ledsages av modellforutsetninger og usikkerhetsbeskrivelse. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et punktestimat uten konfidens-, posterior- eller annen usikkerhetsanalyse kan gi falsk presisjon. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-07-1 bruker mat-src-17-mit-numerical-analysis og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat10-07-2",
+              "source_ids": [
+                "vit2-02-lean-propositions-proofs",
+                "vit2-08-mit-calculus"
+              ],
+              "text": "Estimering og usikkerhet: Ved arbeid med estimering og usikkerhet skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Statistisk estimering kobler data til parametre eller funksjoner og må ledsages av modellforutsetninger og usikkerhetsbeskrivelse. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et punktestimat uten konfidens-, posterior- eller annen usikkerhetsanalyse kan gi falsk presisjon. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-07-2 bruker vit2-02-lean-propositions-proofs og vit2-08-mit-calculus; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat10-07-3",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Estimering og usikkerhet: Gyldighetsgrensen er avgjørende: Et punktestimat uten konfidens-, posterior- eller annen usikkerhetsanalyse kan gi falsk presisjon. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et punktestimat uten konfidens-, posterior- eller annen usikkerhetsanalyse kan gi falsk presisjon. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-07-3 bruker mat-src-16-mit-probability-statistics og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat10-07-4",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Estimering og usikkerhet: Når estimering og usikkerhet anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Et punktestimat uten konfidens-, posterior- eller annen usikkerhetsanalyse kan gi falsk presisjon. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et punktestimat uten konfidens-, posterior- eller annen usikkerhetsanalyse kan gi falsk presisjon. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-07-4 bruker vit2-05-mit-discrete og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat10-07-1",
+            "mat10-07-2",
+            "mat10-07-3",
+            "mat10-07-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for estimering og usikkerhet.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Et punktestimat uten konfidens-, posterior- eller annen usikkerhetsanalyse kan gi falsk presisjon."
+          ]
+        },
+        {
+          "id": "mat10-t08",
+          "title": "Hypotesetesting, prediksjon og modellkritikk",
+          "paragraphs": [
+            {
+              "claim_id": "mat10-08-1",
+              "source_ids": [
+                "vit2-02-lean-propositions-proofs",
+                "vit2-08-mit-calculus"
+              ],
+              "text": "Hypotesetesting, prediksjon og modellkritikk: Tester og prediksjonsmetoder vurderer data relativt til modeller, men tolkning krever effektstørrelser, feiltyper, validering og kontekst. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En liten p-verdi er ikke sannsynligheten for at nullhypotesen er sann og gir ikke alene praktisk betydning. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-08-1 bruker vit2-02-lean-propositions-proofs og vit2-08-mit-calculus; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat10-08-2",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Hypotesetesting, prediksjon og modellkritikk: Ved arbeid med hypotesetesting, prediksjon og modellkritikk skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Tester og prediksjonsmetoder vurderer data relativt til modeller, men tolkning krever effektstørrelser, feiltyper, validering og kontekst. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En liten p-verdi er ikke sannsynligheten for at nullhypotesen er sann og gir ikke alene praktisk betydning. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-08-2 bruker mat-src-16-mit-probability-statistics og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat10-08-3",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Hypotesetesting, prediksjon og modellkritikk: Gyldighetsgrensen er avgjørende: En liten p-verdi er ikke sannsynligheten for at nullhypotesen er sann og gir ikke alene praktisk betydning. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En liten p-verdi er ikke sannsynligheten for at nullhypotesen er sann og gir ikke alene praktisk betydning. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-08-3 bruker vit2-05-mit-discrete og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat10-08-4",
+              "source_ids": [
+                "vit2-08-mit-calculus",
+                "mat-src-15-mit-optimization"
+              ],
+              "text": "Hypotesetesting, prediksjon og modellkritikk: Når hypotesetesting, prediksjon og modellkritikk anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En liten p-verdi er ikke sannsynligheten for at nullhypotesen er sann og gir ikke alene praktisk betydning. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En liten p-verdi er ikke sannsynligheten for at nullhypotesen er sann og gir ikke alene praktisk betydning. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat10-08-4 bruker vit2-08-mit-calculus og mat-src-15-mit-optimization; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat10-08-1",
+            "mat10-08-2",
+            "mat10-08-3",
+            "mat10-08-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for hypotesetesting, prediksjon og modellkritikk.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. En liten p-verdi er ikke sannsynligheten for at nullhypotesen er sann og gir ikke alene praktisk betydning."
+          ]
+        }
+      ]
+    }
+  ],
+  "assessment": {
+    "questions": [
+      {
+        "id": "mat10-q01",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer utfallsrom og sannsynlighetsmål?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat10-t01"
+      },
+      {
+        "id": "mat10-q02",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer betinget sannsynlighet og bayes?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat10-t02"
+      },
+      {
+        "id": "mat10-q03",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer uavhengighet?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat10-t03"
+      },
+      {
+        "id": "mat10-q04",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer tilfeldige variable og fordelinger?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat10-t04"
+      },
+      {
+        "id": "mat10-q05",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer forventning, varians og kovarians?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat10-t05"
+      },
+      {
+        "id": "mat10-q06",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer store talls lov og sentralgrenseteorem?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat10-t06"
+      },
+      {
+        "id": "mat10-q07",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer estimering og usikkerhet?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat10-t07"
+      },
+      {
+        "id": "mat10-q08",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer hypotesetesting, prediksjon og modellkritikk?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat10-t08"
+      }
+    ],
+    "caseTasks": [
+      {
+        "id": "mat10-case01",
+        "prompt": "En analyse hevder at et resultat som kombinerer utfallsrom og sannsynlighetsmål og uavhengighet er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "mat-src-16-mit-probability-statistics",
+          "mat-src-15-mit-optimization"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat10-case02",
+        "prompt": "En analyse hevder at et resultat som kombinerer betinget sannsynlighet og bayes og tilfeldige variable og fordelinger er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-05-mit-discrete",
+          "mat-src-17-mit-numerical-analysis"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat10-case03",
+        "prompt": "En analyse hevder at et resultat som kombinerer uavhengighet og forventning, varians og kovarians er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-08-mit-calculus",
+          "vit2-02-lean-propositions-proofs"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat10-case04",
+        "prompt": "En analyse hevder at et resultat som kombinerer tilfeldige variable og fordelinger og store talls lov og sentralgrenseteorem er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "mat-src-11-mit-real-analysis",
+          "mat-src-16-mit-probability-statistics"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat10-case05",
+        "prompt": "En analyse hevder at et resultat som kombinerer forventning, varians og kovarians og estimering og usikkerhet er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-06-mit-linear-algebra",
+          "vit2-05-mit-discrete"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat10-case06",
+        "prompt": "En analyse hevder at et resultat som kombinerer store talls lov og sentralgrenseteorem og hypotesetesting, prediksjon og modellkritikk er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "mat-src-15-mit-optimization",
+          "vit2-08-mit-calculus"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      }
+    ]
+  },
+  "qualityGuard": {
+    "formal_validity_vs_premise_truth_explicit": true,
+    "proof_vs_computation_explicit": true,
+    "object_vs_representation_explicit": true,
+    "theorem_prover_scope_explicit": true,
+    "exact_vs_numerical_approximation_explicit": true,
+    "continuous_vs_discrete_model_choice_explicit": true,
+    "probability_model_vs_empirical_frequency_explicit": true,
+    "optimization_objective_vs_real_goal_explicit": true,
+    "empirical_model_adequacy_separate": true,
+    "source_trace_required": true,
+    "strict_domain_materialized": true
+  },
+  "reuse_provenance": {
+    "strict_upgrade": false,
+    "rule": "Nytt canonicalt Matematikk-felt; eksisterende naboinnhold teller ikke som materialisert uten denne strict-pakken."
+  }
+}
