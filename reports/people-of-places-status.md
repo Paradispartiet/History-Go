@@ -1,12 +1,12 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-09-01T17:55:56.464Z
+Generert: 2026-09-02T08:42:41.319Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-09-01T17:55:56.464Z |
+| generatedAt | 2026-09-02T08:42:41.319Z |
 | peopleFilesRead | 768 |
 | totalPeople | 1430 |
 | uniquePeopleIds | 1430 |
@@ -1659,7 +1659,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 
 ## Image/cardImage audit
 
-Mangler filer for image/cardImage/media: 574
+Mangler filer for image/cardImage/media: 572
 
 | Fil | Person | Felt | Bane |
 |---|---|---|---|
@@ -1859,8 +1859,6 @@ Mangler filer for image/cardImage/media: 574
 | data/people/historie/oslo/people_historie_oslo.json | kristine_bonnevie / Kristine Bonnevie | cardImage | bilder/kort/people/kristine_bonnevie.PNG |
 | data/people/historie/oslo/people_historie_oslo.json | anna_sethne / Anna Sethne | image | bilder/kort/people/anna_sethne.PNG |
 | data/people/historie/oslo/people_historie_oslo.json | anna_sethne / Anna Sethne | cardImage | bilder/kort/people/anna_sethne.PNG |
-| data/people/historie/oslo/people_historie_oslo.json | alexis_de_chateauneuf / Alexis de Chateauneuf | image | bilder/kort/people/alexis_de_chateauneuf.PNG |
-| data/people/historie/oslo/people_historie_oslo.json | alexis_de_chateauneuf / Alexis de Chateauneuf | cardImage | bilder/kort/people/alexis_de_chateauneuf.PNG |
 | data/people/historie/oslo/people_historie_oslo.json | wilhelm_von_hanno / Wilhelm von Hanno | image | bilder/kort/people/wilhelm_von_hanno.PNG |
 | data/people/historie/oslo/people_historie_oslo.json | wilhelm_von_hanno / Wilhelm von Hanno | cardImage | bilder/kort/people/wilhelm_von_hanno.PNG |
 | data/people/historie/oslo/people_historie_oslo.json | haakon_nyhuus / Haakon Nyhuus | image | bilder/kort/people/haakon_nyhuus.PNG |
@@ -2272,3 +2270,4 @@ Mangler filer for image/cardImage/media: 574
 - Ingen people entries ble flyttet.
 - Ingen nye place IDs ble opprettet.
 - Scriptet leser data og skriver kun rapportene `reports/people-of-places-status.json` og `reports/people-of-places-status.md`.
+

@@ -1,0 +1,126 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "alexis_de_chateauneuf",
+  "profile_file": "data/people/historie/oslo/people_historie_oslo.json",
+  "identity": {
+    "canonical_identity": "Alexis de Chateauneuf",
+    "name_variants": [
+      "Alexis De Chateauneuf"
+    ],
+    "not": [
+      "Wilhelm von Hanno",
+      "andre personer med etternavnet Chateauneuf"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity",
+      "claim": "Alexis de Chateauneuf levde fra 1799 til 1853.",
+      "status": "verified",
+      "source_url": "https://nbl.snl.no/Alexis_De_Chateauneuf",
+      "source_location": "Biografisk innledning",
+      "source_type": "biographical_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-01",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "competition",
+      "claim": "Chateauneuf vant arkitektkonkurransen om Trefoldighetskirken i 1849.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/Trefoldighetskirken",
+      "source_location": "Arkitekturhistorie",
+      "source_type": "institutional_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-01",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "completion_boundary",
+      "claim": "Wilhelm von Hanno videreførte byggearbeidet etter Chateauneuf.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/Trefoldighetskirken",
+      "source_location": "Arkitekturhistorie",
+      "source_type": "institutional_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-01",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "image_identity",
+      "claim": "Commons-posten identifiserer litografiet som et portrett av Alexis de Chateauneuf.",
+      "status": "verified",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Robert_Schneider-Otto_Speckter_-_Alexis_de_Chateauneuf.jpg",
+      "source_location": "Filtittel og kunstverksmetadata",
+      "source_type": "catalogue",
+      "temporal_status": "historical",
+      "verified_at": "2026-09-01",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity"
+    ],
+    "year": [
+      "competition"
+    ],
+    "placeId": [
+      "competition"
+    ],
+    "places[trefoldighetskirken]": [
+      "competition"
+    ],
+    "image": [
+      "image_identity"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "competition"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "competition"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "completion_boundary"
+        ]
+      },
+      {
+        "sentence": 4,
+        "claim_ids": [
+          "competition",
+          "completion_boundary"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "4/4",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-09-01",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}
