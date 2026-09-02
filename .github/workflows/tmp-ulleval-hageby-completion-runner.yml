@@ -1,0 +1,39 @@
+name: tmp Ullevål Hageby completion runner
+on:
+  push:
+    branches:
+      - work/ulleval-hageby-completion-20260902
+permissions:
+  contents: write
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/ulleval-hageby-completion-20260902
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Finalize canonical Place
+        run: |
+          npm ci --no-audit --no-fund
+          node tools/finalize-ulleval-hageby-completion.mjs
+          node tests/ullevål-hageby-completion.test.mjs
+          npm run places:index:check
+          npm run place-open:check
+          node scripts/audit-fagverk-place-pages.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          git diff --check
+          git status --short
+      - name: Publish candidate and remove runner
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "Paradispartiet"
+          git config user.email "paradispartiet@gmail.com"
+          git rm .github/workflows/tmp-ulleval-hageby-completion-runner.yml
+          git add -A
+          git commit -m "Complete Ullevål Hageby Place production"
+          git push origin HEAD:work/ulleval-hageby-completion-20260902 --force
