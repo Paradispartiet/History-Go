@@ -43,13 +43,21 @@ jobs:
           if (found !== 1) throw new Error(`Expected exactly one Ullevål kommune Lesespor item, found ${found}`);
           fs.writeFileSync(lesesporFile, `${JSON.stringify(root, null, 2)}\n`);
 
-          const testFile = 'tests/epoke-place-index.test.mjs';
-          let testText = fs.readFileSync(testFile, 'utf8');
-          const oldLine = 'assert.equal(index.stats.canonical_story_milestone_count, 218);';
-          const newLine = 'assert.equal(index.stats.canonical_story_milestone_count, 219);';
-          if (!testText.includes(oldLine) && !testText.includes(newLine)) throw new Error('Epoch story milestone assertion not found');
-          if (testText.includes(oldLine)) testText = testText.replace(oldLine, newLine);
-          fs.writeFileSync(testFile, testText);
+          const epochTestFile = 'tests/epoke-place-index.test.mjs';
+          let epochTestText = fs.readFileSync(epochTestFile, 'utf8');
+          const oldEpochLine = 'assert.equal(index.stats.canonical_story_milestone_count, 218);';
+          const newEpochLine = 'assert.equal(index.stats.canonical_story_milestone_count, 219);';
+          if (!epochTestText.includes(oldEpochLine) && !epochTestText.includes(newEpochLine)) throw new Error('Epoch story milestone assertion not found');
+          if (epochTestText.includes(oldEpochLine)) epochTestText = epochTestText.replace(oldEpochLine, newEpochLine);
+          fs.writeFileSync(epochTestFile, epochTestText);
+
+          const ullevalTestFile = 'tests/ullevål-hageby-completion.test.mjs';
+          let ullevalTestText = fs.readFileSync(ullevalTestFile, 'utf8');
+          const oldStoryScoreLine = 'assert.equal(story.score.total, 17);';
+          const newStoryScoreLine = 'assert.equal(story.score.total, 16);';
+          if (!ullevalTestText.includes(oldStoryScoreLine) && !ullevalTestText.includes(newStoryScoreLine)) throw new Error('Ullevål Story total assertion not found');
+          if (ullevalTestText.includes(oldStoryScoreLine)) ullevalTestText = ullevalTestText.replace(oldStoryScoreLine, newStoryScoreLine);
+          fs.writeFileSync(ullevalTestFile, ullevalTestText);
           NODE
       - name: Regenerate composed canonical state
         run: |
