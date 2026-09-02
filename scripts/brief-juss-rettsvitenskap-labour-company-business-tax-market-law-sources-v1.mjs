@@ -1,0 +1,169 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const write = (file, value) => {
+  const target = path.join(ROOT, file);
+  fs.mkdirSync(path.dirname(target), { recursive: true });
+  fs.writeFileSync(target, `${JSON.stringify(value, null, 2)}\n`);
+};
+const assert = (condition, message) => { if (!condition) throw new Error(message); };
+
+const sources = [
+  { id:'biz01-arbeidsmiljoloven', title:'Lov om arbeidsmiljø, arbeidstid og stillingsvern mv. (arbeidsmiljøloven) – LOV-2005-06-17-62', publisher:'Lovdata', type:'current-statute', url:'https://lovdata.no/nav/lov/2005-06-17-62', evidence_role:'arbeidstakerbegrep-arbeidsavtale-hms-arbeidstid-ansettelse-oppsigelse-avskjed-virksomhetsoverdragelse', retrieval_status:'verified_2026_09_02' },
+  { id:'biz02-ferieloven', title:'Lov om ferie (ferieloven) – LOV-1988-04-29-21', publisher:'Lovdata', type:'current-statute', url:'https://lovdata.no/nav/lov/1988-04-29-21', evidence_role:'feriefritid-feriepenger-fastsetting-overforing-opphor', retrieval_status:'verified_2026_09_02' },
+  { id:'biz03-likestillings-diskrimineringsloven', title:'Lov om likestilling og forbud mot diskriminering (likestillings- og diskrimineringsloven) – LOV-2017-06-16-51', publisher:'Lovdata', type:'current-statute', url:'https://lovdata.no/nav/lov/2017-06-16-51', evidence_role:'diskrimineringsforbud-tilrettelegging-arbeidsforhold-bevisbyrde-oppreisning-erstatning', retrieval_status:'verified_2026_09_02' },
+  { id:'biz04-aksjeloven', title:'Lov om aksjeselskaper (aksjeloven) – LOV-1997-06-13-44', publisher:'Lovdata', type:'current-statute', url:'https://lovdata.no/nav/lov/1997-06-13-44', evidence_role:'as-stiftelse-kapital-eiere-organer-utdeling-fusjon-fisjon-opplosning', retrieval_status:'verified_2026_09_02' },
+  { id:'biz05-allmennaksjeloven', title:'Lov om allmennaksjeselskaper (allmennaksjeloven) – LOV-1997-06-13-45', publisher:'Lovdata', type:'current-statute', url:'https://lovdata.no/nav/lov/1997-06-13-45', evidence_role:'asa-stiftelse-kapital-organer-aksjer-utdeling-fusjon-fisjon', retrieval_status:'verified_2026_09_02' },
+  { id:'biz06-selskapsloven', title:'Lov om ansvarlige selskaper og kommandittselskaper (selskapsloven) – LOV-1985-06-21-83', publisher:'Lovdata', type:'current-statute', url:'https://lovdata.no/nav/lov/1985-06-21-83', evidence_role:'ansvarlig-selskap-deltakeransvar-selskapsavtale-forvaltning-opplosning', retrieval_status:'verified_2026_09_02' },
+  { id:'biz07-foretaksregisterloven-2025', title:'Lov om Foretaksregisteret (foretaksregisterloven) – LOV-2025-06-20-106', publisher:'Lovdata', type:'current-statute-partial-commencement', url:'https://lovdata.no/nav/lov/2025-06-20-106', evidence_role:'registreringsplikt-registeropplysninger-meldinger-kontroll-legitimasjonsvirkning-overgang-2026', retrieval_status:'verified_2026_09_02' },
+  { id:'biz08-regnskapsloven', title:'Lov om årsregnskap m.v. (regnskapsloven) – LOV-1998-07-17-56', publisher:'Lovdata', type:'current-statute', url:'https://lovdata.no/nav/lov/1998-07-17-56', evidence_role:'regnskapsplikt-arsregnskap-arsberetning-vurdering-noter-offentlighet', retrieval_status:'verified_2026_09_02' },
+  { id:'biz09-skatteloven', title:'Lov om skatt av formue og inntekt (skatteloven) – LOV-1999-03-26-14', publisher:'Lovdata', type:'current-statute', url:'https://lovdata.no/nav/lov/1999-03-26-14', evidence_role:'skattesubjekt-skatteplikt-inntekt-fradrag-gevinst-tap-selskap-aksjonaer', retrieval_status:'verified_2026_09_02' },
+  { id:'biz10-skatteforvaltningsloven', title:'Lov om skatteforvaltning (skatteforvaltningsloven) – LOV-2016-05-27-14', publisher:'Lovdata', type:'current-statute', url:'https://lovdata.no/nav/lov/2016-05-27-14', evidence_role:'opplysningsplikt-fastsetting-kontroll-endring-klage-tilleggsskatt', retrieval_status:'verified_2026_09_02' },
+  { id:'biz11-merverdiavgiftsloven', title:'Lov om merverdiavgift (merverdiavgiftsloven) – LOV-2009-06-19-58', publisher:'Lovdata', type:'current-statute', url:'https://lovdata.no/nav/lov/2009-06-19-58', evidence_role:'registrering-omsetning-uttak-innforsel-beregningsgrunnlag-fradrag-fritak', retrieval_status:'verified_2026_09_02' },
+  { id:'biz12-konkurranseloven', title:'Lov om konkurranse mellom foretak og kontroll med foretakssammenslutninger (konkurranseloven) – LOV-2004-03-05-12', publisher:'Lovdata', type:'current-statute', url:'https://lovdata.no/nav/lov/2004-03-05-12', evidence_role:'konkurransebegrensende-samarbeid-dominans-foretakssammenslutning-kontroll-sanksjon', retrieval_status:'verified_2026_09_02' },
+  { id:'biz13-markedsforingsloven', title:'Lov om kontroll med markedsføring og avtalevilkår mv. (markedsføringsloven) – LOV-2009-01-09-2', publisher:'Lovdata', type:'current-statute', url:'https://lovdata.no/nav/lov/2009-01-09-2', evidence_role:'urimelig-handelspraksis-villedning-prisopplysning-avtalevilkar-naeringsdrivende-handheving', retrieval_status:'verified_2026_09_02' }
+];
+
+const topic_briefs = [
+  {
+    id:'arbeidsforhold-klassifisering-avtale-og-styringsrett', title:'Arbeidsforhold, klassifisering, arbeidsavtale og styringsrett', method_ids:['met_employment_status','met_employment_contract'],
+    boundary:'Arbeidstakerstatus, arbeidsavtalens innhold og arbeidsgivers styringsrett er forskjellige spørsmål. Partenes etikett kan ikke alene avgjøre om lovens arbeidstakervern gjelder, og styringsretten må utøves innenfor lov, tariff, individuell avtale og saklige grenser.',
+    source_ids:['biz01-arbeidsmiljoloven','biz02-ferieloven','biz03-likestillings-diskrimineringsloven'],
+    planned_claims:[
+      {id:'business-01',text:'Om en person er arbeidstaker må avgjøres etter det reelle tilknytningsforholdet og lovens kriterier, ikke bare kontraktens overskrift; klassifiseringen får følger for blant annet arbeidsmiljø- og ferierettigheter.',source_ids:['biz01-arbeidsmiljoloven','biz02-ferieloven'],status:'planned_requires_fulltext_verification'},
+      {id:'business-02',text:'Arbeidsavtalen skal oppfylle arbeidsmiljølovens krav til skriftlighet og vesentlige arbeidsvilkår, mens lovbestemte feriekrav består som et eget spor som ikke kan erstattes av uklare avtaleklausuler.',source_ids:['biz01-arbeidsmiljoloven','biz02-ferieloven'],status:'planned_requires_fulltext_verification'},
+      {id:'business-03',text:'Arbeidsgivers styringsrett gir ikke fri adgang til å endre stilling, arbeidstid eller arbeidssted; lov, avtale og diskrimineringsvern må kontrolleres før en instruks eller endring kan anses bindende.',source_ids:['biz01-arbeidsmiljoloven','biz03-likestillings-diskrimineringsloven'],status:'planned_requires_fulltext_verification'},
+      {id:'business-04',text:'Ufravikelige minimumsrettigheter etter arbeidsmiljø- og ferielovgivningen må identifiseres før en individuell avtale gis virkning, og avtalefrihet kan ikke brukes til å fjerne lovvern som uttrykkelig er gjort ufravikelig.',source_ids:['biz01-arbeidsmiljoloven','biz02-ferieloven'],status:'planned_requires_fulltext_verification'}
+    ]
+  },
+  {
+    id:'arbeidsmiljo-arbeidstid-ferie-og-diskriminering', title:'Arbeidsmiljø, arbeidstid, ferie og diskriminering', method_ids:['met_working_environment','met_equal_treatment'],
+    boundary:'Systematisk HMS, arbeidstid, ferie, diskriminering og tilrettelegging har ulike hjemler og rettsvirkninger. Et lovlig arbeidstidsoppsett beviser ikke at arbeidsmiljøet er forsvarlig, og ferie er ikke det samme som fritid etter arbeidstidsreglene.',
+    source_ids:['biz01-arbeidsmiljoloven','biz02-ferieloven','biz03-likestillings-diskrimineringsloven'],
+    planned_claims:[
+      {id:'business-05',text:'Arbeidsgiver skal arbeide systematisk for et fullt forsvarlig arbeidsmiljø, og plikten må ses sammen med særskilte krav til individuell tilrettelegging uten at HMS- og diskrimineringsreglene blandes sammen.',source_ids:['biz01-arbeidsmiljoloven','biz03-likestillings-diskrimineringsloven'],status:'planned_requires_fulltext_verification'},
+      {id:'business-06',text:'Alminnelig arbeidstid, overtid, gjennomsnittsberegning, pauser og hvileperioder må prøves etter arbeidsmiljølovens egne vilkår; ferie etter ferieloven er et separat årlig fraværssystem.',source_ids:['biz01-arbeidsmiljoloven','biz02-ferieloven'],status:'planned_requires_fulltext_verification'},
+      {id:'business-07',text:'Feriefritid og feriepenger er forskjellige rettigheter med egne opptjenings- og fastsettingsregler, og de må holdes atskilt fra lønn, arbeidstid og andre permisjoner etter arbeidsmiljøloven.',source_ids:['biz02-ferieloven','biz01-arbeidsmiljoloven'],status:'planned_requires_fulltext_verification'},
+      {id:'business-08',text:'Diskriminering, trakassering og manglende tilrettelegging må vurderes etter likestillings- og diskrimineringslovens vilkår og reaksjoner, samtidig som arbeidsmiljølovens vern kan gi selvstendige plikter i samme arbeidsforhold.',source_ids:['biz03-likestillings-diskrimineringsloven','biz01-arbeidsmiljoloven'],status:'planned_requires_fulltext_verification'}
+    ]
+  },
+  {
+    id:'ansettelse-oppsigelse-avskjed-og-virksomhetsoverdragelse', title:'Ansettelse, oppsigelse, avskjed og virksomhetsoverdragelse', method_ids:['met_employment_entry_exit','met_business_transfer'],
+    boundary:'Fast og midlertidig ansettelse, oppsigelse, avskjed og virksomhetsoverdragelse har ulike vilkår. Eierskifte i et selskap er ikke automatisk virksomhetsoverdragelse, og selskapsrettslig omorganisering erstatter ikke arbeidsrettslig stillingsvern.',
+    source_ids:['biz01-arbeidsmiljoloven','biz03-likestillings-diskrimineringsloven','biz04-aksjeloven'],
+    planned_claims:[
+      {id:'business-09',text:'Fast ansettelse er arbeidsmiljølovens utgangspunkt, mens midlertidighet krever særskilt hjemmel; rekrutteringen må samtidig respektere diskrimineringsforbud og lovlige krav til kvalifikasjoner.',source_ids:['biz01-arbeidsmiljoloven','biz03-likestillings-diskrimineringsloven'],status:'planned_requires_fulltext_verification'},
+      {id:'business-10',text:'Oppsigelse krever saklig grunn og korrekt prosess etter arbeidsmiljøloven, og en begrunnelse som direkte eller indirekte bygger på et vernet diskrimineringsgrunnlag må vurderes særskilt.',source_ids:['biz01-arbeidsmiljoloven','biz03-likestillings-diskrimineringsloven'],status:'planned_requires_fulltext_verification'},
+      {id:'business-11',text:'Avskjed er en mer inngripende reaksjon enn ordinær oppsigelse og har en strengere terskel; samme faktum kan også reise diskrimineringsspørsmål som ikke avgjøres bare ved at arbeidsrettslig mislighold påvises.',source_ids:['biz01-arbeidsmiljoloven','biz03-likestillings-diskrimineringsloven'],status:'planned_requires_fulltext_verification'},
+      {id:'business-12',text:'Virksomhetsoverdragelse må vurderes etter arbeidsmiljølovens kriterier om overføring av en selvstendig enhet, mens et rent aksjesalg etter aksjeloven normalt endrer eierskapet til selskapet uten at arbeidsgiversubjektet skiftes på samme måte.',source_ids:['biz01-arbeidsmiljoloven','biz04-aksjeloven'],status:'planned_requires_fulltext_verification'}
+    ]
+  },
+  {
+    id:'selskapsformer-stiftelse-ansvar-og-registrering', title:'Selskapsformer, stiftelse, ansvar og registrering', method_ids:['met_company_form','met_business_registration'],
+    boundary:'Aksjeselskap, allmennaksjeselskap og ansvarlig selskap har forskjellige regler om kapital, deltakeransvar og organisasjon. Materiell selskapsrett, stiftelse og registervirkning må holdes atskilt. Foretaksregisterloven av 2025 har bestemmelsesvis ikrafttredelse i 2026 og må versjonskontrolleres på paragrafnivå.',
+    source_ids:['biz04-aksjeloven','biz05-allmennaksjeloven','biz06-selskapsloven','biz07-foretaksregisterloven-2025'],
+    planned_claims:[
+      {id:'business-13',text:'Aksjeselskap og allmennaksjeselskap er egne rettssubjekter med begrenset eieransvar og lovbestemte kapitalkrav, men ASA-reglene kan ikke automatisk brukes på et ordinært AS.',source_ids:['biz04-aksjeloven','biz05-allmennaksjeloven'],status:'planned_requires_fulltext_verification'},
+      {id:'business-14',text:'I ansvarlige selskaper kan deltakerne ha personlig ansvar etter selskapslovens modell, noe som må skilles fra aksjeeiernes begrensede ansvar i et aksjeselskap før risiko og finansiering vurderes.',source_ids:['biz06-selskapsloven','biz04-aksjeloven'],status:'planned_requires_fulltext_verification'},
+      {id:'business-15',text:'Stiftelse av aksjeselskap krever at aksjelovens dokument-, kapital- og innbetalingsvilkår oppfylles og at registrering skjer etter gjeldende foretaksregisterlov; registrering reparerer ikke ethvert materiell stiftelsesproblem.',source_ids:['biz04-aksjeloven','biz07-foretaksregisterloven-2025'],status:'planned_requires_fulltext_verification'},
+      {id:'business-16',text:'Foretaksregisterets registrering og legitimasjonsvirkninger må vurderes etter 2025-lovens bestemmelser og konkrete ikrafttredelse, separat fra om den underliggende selskapsbeslutningen er gyldig etter aksje- eller selskapsretten.',source_ids:['biz07-foretaksregisterloven-2025','biz04-aksjeloven'],status:'planned_requires_fulltext_verification'}
+    ]
+  },
+  {
+    id:'selskapsorganer-kapital-utdeling-og-regnskap', title:'Selskapsorganer, kapital, utdeling og regnskap', method_ids:['met_corporate_governance','met_capital_accounts'],
+    boundary:'Generalforsamling, styre og daglig leder har ulike kompetanseområder. Selskapsrettslig adgang til utdeling, regnskapsmessig resultat og skattemessig inntekt er forskjellige størrelser, og årsregnskapets godkjenning skaper ikke i seg selv utdelingsadgang.',
+    source_ids:['biz04-aksjeloven','biz05-allmennaksjeloven','biz08-regnskapsloven','biz07-foretaksregisterloven-2025'],
+    planned_claims:[
+      {id:'business-17',text:'Kompetansen mellom generalforsamling, styre og daglig leder må fastsettes etter selskapsformen og sakstypen; eierflertall kan ikke uten videre overta oppgaver som loven legger til et annet organ.',source_ids:['biz04-aksjeloven','biz05-allmennaksjeloven'],status:'planned_requires_fulltext_verification'},
+      {id:'business-18',text:'Utbytte og andre utdelinger krever selskapsrettslig hjemmel, korrekt beslutning og tilstrekkelig utdelingsgrunnlag, mens regnskapsloven bestemmer hvordan årsregnskap og relevante poster skal utarbeides og presenteres.',source_ids:['biz04-aksjeloven','biz08-regnskapsloven'],status:'planned_requires_fulltext_verification'},
+      {id:'business-19',text:'Kapitalforhøyelse, kapitalnedsettelse, fusjon og fisjon har egne prosedyrer og kreditorvern i aksje- og allmennaksjeloven; en regnskapsmessig postering kan ikke erstatte den selskapsrettslige prosessen.',source_ids:['biz04-aksjeloven','biz05-allmennaksjeloven'],status:'planned_requires_fulltext_verification'},
+      {id:'business-20',text:'Regnskapsplikt, årsregnskap, årsberetning og offentliggjøring må vurderes etter regnskapsloven, mens hvilke selskaps- og registeropplysninger som skal meldes følger egne selskaps- og foretaksregisterregler.',source_ids:['biz08-regnskapsloven','biz07-foretaksregisterloven-2025'],status:'planned_requires_fulltext_verification'}
+    ]
+  },
+  {
+    id:'skattesubjekt-inntekt-fradrag-og-selskapsbeskatning', title:'Skattesubjekt, inntekt, fradrag og selskapsbeskatning', method_ids:['met_tax_base','met_company_tax'],
+    boundary:'Skattesubjekt, skattepliktens omfang, inntektsføring, fradrag, gevinst/tap og aksjonærbeskatning er separate ledd. Regnskapsmessig behandling kan være relevant, men er ikke identisk med skattemessig klassifisering.',
+    source_ids:['biz09-skatteloven','biz08-regnskapsloven','biz04-aksjeloven'],
+    planned_claims:[
+      {id:'business-21',text:'Skatteplikt må begynne med å identifisere riktig skattesubjekt og skattepliktens geografiske og personlige omfang; selskapsformen etter aksjeloven kan være relevant uten å erstatte skattelovens egne hjemler.',source_ids:['biz09-skatteloven','biz04-aksjeloven'],status:'planned_requires_fulltext_verification'},
+      {id:'business-22',text:'Skattepliktig inntekt og fradragsrett må klassifiseres etter skatteloven, mens regnskapsføringen gir et eget rapporteringsspor; regnskapsmessig kostnad er derfor ikke automatisk skattemessig fradrag.',source_ids:['biz09-skatteloven','biz08-regnskapsloven'],status:'planned_requires_fulltext_verification'},
+      {id:'business-23',text:'Selskapets skatt og aksjonærens skatt er separate skattesubjekt- og inntektsspørsmål; en selskapsrettslig lovlig utdeling må fortsatt klassifiseres skattemessig hos både selskap og mottaker.',source_ids:['biz09-skatteloven','biz04-aksjeloven'],status:'planned_requires_fulltext_verification'},
+      {id:'business-24',text:'Gevinst, tap, realisasjon og skattemessig tidfesting må vurderes etter skattelovens regler og kan avvike fra regnskapsmessig periodisering eller verdsettelse i årsregnskapet.',source_ids:['biz09-skatteloven','biz08-regnskapsloven'],status:'planned_requires_fulltext_verification'}
+    ]
+  },
+  {
+    id:'skatteforvaltning-merverdiavgift-og-kontroll', title:'Skatteforvaltning, merverdiavgift og kontroll', method_ids:['met_tax_procedure','met_vat'],
+    boundary:'Materiell skatteplikt, merverdiavgiftsplikt og skatteforvaltningsprosess er forskjellige spørsmål. Registrering, fastsetting, kontroll, endring, klage og tilleggsskatt må skilles fra selve beregningen av inntektsskatt eller merverdiavgift.',
+    source_ids:['biz09-skatteloven','biz10-skatteforvaltningsloven','biz11-merverdiavgiftsloven','biz08-regnskapsloven'],
+    planned_claims:[
+      {id:'business-25',text:'Skatteloven fastsetter materielle inntekts- og fradragsregler, mens skatteforvaltningsloven regulerer opplysninger, fastsetting, kontroll, endring og klage; prosessreglene kan ikke brukes som selvstendig hjemmel for en ny skatteplikt.',source_ids:['biz09-skatteloven','biz10-skatteforvaltningsloven'],status:'planned_requires_fulltext_verification'},
+      {id:'business-26',text:'Merverdiavgiftsplikt krever kontroll av registrering, omsetning eller annen avgiftshendelse, geografisk virkeområde og eventuelle fritak eller unntak, og må holdes atskilt fra virksomhetens inntektsskatt.',source_ids:['biz11-merverdiavgiftsloven','biz09-skatteloven'],status:'planned_requires_fulltext_verification'},
+      {id:'business-27',text:'Utgående og inngående merverdiavgift samt fradragsrett må knyttes til den konkrete transaksjonen og dokumentasjonen, mens regnskapsloven regulerer rapporteringen uten å skape avgiftsfradrag alene.',source_ids:['biz11-merverdiavgiftsloven','biz08-regnskapsloven'],status:'planned_requires_fulltext_verification'},
+      {id:'business-28',text:'Endring av skattefastsetting, kontroll, tilleggsskatt og klage følger skatteforvaltningslovens egne vilkår og frister også når den materielle feilen gjelder merverdiavgift; reaksjon og hovedkrav må prøves separat.',source_ids:['biz10-skatteforvaltningsloven','biz11-merverdiavgiftsloven'],status:'planned_requires_fulltext_verification'}
+    ]
+  },
+  {
+    id:'konkurranse-markedsforing-og-markedsatferd', title:'Konkurranse, markedsføring og markedsatferd', method_ids:['met_competition_law','met_marketing_practice'],
+    boundary:'Konkurranseretten beskytter konkurranseprosessen gjennom regler om samarbeid, dominans og foretakssammenslutninger, mens markedsføringsloven regulerer handelspraksis, informasjon, avtalevilkår og næringsdrivendes interesser. De to regelsettene kan gjelde samme marked uten å ha samme test eller sanksjon.',
+    source_ids:['biz12-konkurranseloven','biz13-markedsforingsloven','biz04-aksjeloven'],
+    planned_claims:[
+      {id:'business-29',text:'Forbudet mot konkurransebegrensende samarbeid og forbudet mot utilbørlig utnyttelse av dominerende stilling har ulike vilkår og må skilles både fra hverandre og fra markedsføringslovens regler om urimelig handelspraksis.',source_ids:['biz12-konkurranseloven','biz13-markedsforingsloven'],status:'planned_requires_fulltext_verification'},
+      {id:'business-30',text:'En fusjon eller annen foretakssammenslutning kan være selskapsrettslig gyldig etter aksjeloven, men likevel kreve konkurranserettslig kontroll; selskapsrettslig gjennomføring og konkurranserettslig tillatelighet er separate porter.',source_ids:['biz12-konkurranseloven','biz04-aksjeloven'],status:'planned_requires_fulltext_verification'},
+      {id:'business-31',text:'Villedende handlinger, villedende utelatelser og andre urimelige handelspraksiser må vurderes etter markedsføringslovens konkrete vilkår, mens markedsmakt eller konkurransebegrensning krever en egen konkurranserettslig analyse.',source_ids:['biz13-markedsforingsloven','biz12-konkurranseloven'],status:'planned_requires_fulltext_verification'},
+      {id:'business-32',text:'Markedsføringslovens vern av næringsdrivendes interesser og konkurranselovens vern av markedets konkurransestruktur kan overlappe faktuelt, men rettsgrunnlag, myndighet, bevistema og sanksjoner må identifiseres hver for seg.',source_ids:['biz13-markedsforingsloven','biz12-konkurranseloven'],status:'planned_requires_fulltext_verification'}
+    ]
+  }
+];
+
+const planned_assessments = topic_briefs.map((topic, index) => ({ id:`assess-business-${String(index + 1).padStart(2,'0')}`, title:`Analyser ${topic.title.toLowerCase()}`, claim_ids:topic.planned_claims.map((claim) => claim.id) }));
+const decision_scenarios = [
+  {id:'case-business-01',title:'Konsulent eller arbeidstaker',source_ids:['biz01-arbeidsmiljoloven','biz02-ferieloven','biz03-likestillings-diskrimineringsloven'],prompt:'En person fakturerer som konsulent, men arbeider fast under virksomhetens ledelse og arbeidstid. Klassifiser tilknytningen og skill arbeidstakerstatus, arbeidsavtale, ferie, arbeidstid og diskrimineringsvern.'},
+  {id:'case-business-02',title:'Overtid, ferie og tilrettelegging',source_ids:['biz01-arbeidsmiljoloven','biz02-ferieloven','biz03-likestillings-diskrimineringsloven'],prompt:'En arbeidstaker har langvarig overtid, utsatt ferie og behov for tilrettelegging. Skill arbeidstid, HMS, feriefritid, feriepenger og diskrimineringsrettslig tilrettelegging.'},
+  {id:'case-business-03',title:'Nedbemanning ved eierskifte',source_ids:['biz01-arbeidsmiljoloven','biz03-likestillings-diskrimineringsloven','biz04-aksjeloven'],prompt:'Et aksjeselskap får nye eiere og varsler nedbemanning. Skill aksjesalg, eventuell virksomhetsoverdragelse, saklig oppsigelse, prosess og diskrimineringsvern.'},
+  {id:'case-business-04',title:'AS eller ansvarlig selskap',source_ids:['biz04-aksjeloven','biz06-selskapsloven','biz07-foretaksregisterloven-2025'],prompt:'Tre gründere skal velge selskapsform. Sammenlign kapital, personlig ansvar, styring, stiftelse og registrering, og kontroller hvilken foretaksregisterbestemmelse som er i kraft i september 2026.'},
+  {id:'case-business-05',title:'Utbytte, regnskap og skatt',source_ids:['biz04-aksjeloven','biz08-regnskapsloven','biz09-skatteloven','biz10-skatteforvaltningsloven'],prompt:'Et selskap ønsker stor utdeling etter et godt regnskapsår. Skill utdelingsadgang, regnskapsresultat, selskapets skatteposisjon, aksjonærens skatteposisjon og rapporteringsplikter.'},
+  {id:'case-business-06',title:'Pris-kampanje og markedskonsentrasjon',source_ids:['biz11-merverdiavgiftsloven','biz12-konkurranseloven','biz13-markedsforingsloven'],prompt:'To store konkurrenter planlegger felles kampanje og tett prissamarbeid. Vurder markedsføringens prisopplysninger, merverdiavgiftsbehandling og konkurranserettslige grenser uten å blande regelsettene.'}
+];
+
+const brief = {
+  schema:'history_go_juss_rettsvitenskap_labour_company_business_tax_market_law_source_claim_brief_v1',
+  version:'1.0.0', updated_at:'2026-09-02', status:'source_first_ready_not_materialized', subject_id:'politikk', canonical_subcategory_id:'juss_rettsvitenskap',
+  domain:{ordinal:11,id:'arbeids_selskaps_naerings_skatt_markedsrett',title:'Arbeids-, selskaps-, nærings-, skatte- og markedsrett',production_mode:'new_production_required'},
+  source_strategy:{source_first:true,inspectable_urls_required:true,claim_level_trace_required:true,minimum_sources_per_claim:2,fulltext_materialization_required_before_counting:true,primary_or_institutional_sources_preferred:true,jurisdiction_and_time_scope_required:true,employment_status_contract_working_time_and_termination_must_be_distinguished:true,company_form_registration_liability_governance_and_accounts_must_be_distinguished:true,tax_base_tax_procedure_and_vat_must_be_distinguished:true,competition_and_marketing_law_must_be_distinguished:true,foretaksregister_2025_provision_level_commencement_required:true,repealed_1985_foretaksregister_law_must_not_be_used_as_current:true,legal_education_is_not_personal_legal_advice:true},
+  sources, topic_briefs, planned_assessments, decision_scenarios,
+  fulltext_requirements:{modules:4,sections:8,paragraphs:32,verified_claims:32,assessments:8,decision_scenarios:6}
+};
+
+export function audit() {
+  const claims = brief.topic_briefs.flatMap((topic) => topic.planned_claims);
+  assert(brief.sources.length === 13, 'Felt 11 krever 13 kilder');
+  assert(brief.topic_briefs.length === 8 && claims.length === 32, 'Felt 11 krever 8 emner / 32 claims');
+  assert(brief.planned_assessments.length === 8 && brief.decision_scenarios.length === 6, 'Felt 11 krever 8 vurderinger / 6 case');
+  assert(brief.sources.every((source) => source.url.startsWith('https://') && source.retrieval_status === 'verified_2026_09_02'), 'Alle Felt 11-kilder må være verifiserte og inspiserbare');
+  assert(claims.every((claim) => claim.status === 'planned_requires_fulltext_verification' && claim.source_ids.length >= 2), 'Alle Felt 11-claims må ha minst to kilder');
+  const sourceIds = new Set(brief.sources.map((source) => source.id));
+  assert(claims.every((claim) => claim.source_ids.every((id) => sourceIds.has(id))), 'Ukjent kilde-ID i Felt 11 claim');
+  const registrySource = brief.sources.find((source) => source.id === 'biz07-foretaksregisterloven-2025');
+  assert(registrySource?.title.includes('LOV-2025-06-20-106') && registrySource.type === 'current-statute-partial-commencement', 'Felt 11 må bruke 2025-foretaksregisterloven med ikrafttredelseskontroll');
+  assert(!brief.sources.some((source) => source.title.includes('LOV-1985-06-21-78')), 'Opphevet foretaksregisterlov av 1985 skal ikke brukes som gjeldende kilde');
+  const report = {
+    schema:'history_go_juss_rettsvitenskap_labour_company_business_tax_market_law_source_brief_audit_v1', version:'1.0.0', updated_at:'2026-09-02', subject_id:'politikk', canonical_subcategory_id:'juss_rettsvitenskap', domain_id:'arbeids_selskaps_naerings_skatt_markedsrett', status:'pass_source_first_ready_not_materialized',
+    counts:{sources:13,topics:8,plannedClaims:32,plannedAssessments:8,decisionScenarios:6},
+    gates:{source_first:true,inspectable_urls:true,minimum_two_sources_per_claim:true,jurisdiction_and_time_scope:true,employment_boundaries:true,company_and_registration_boundaries:true,tax_and_vat_boundaries:true,competition_and_marketing_boundaries:true,foretaksregister_2025_transition:true,repealed_1985_register_law_excluded:true,not_materialized:true},
+    next_gate:'labour_company_business_tax_market_law_fulltext'
+  };
+  write('data/fag/politikk/juss_rettsvitenskap/labour_company_business_tax_market_law_source_claim_brief_v1.json', brief);
+  write('reports/fagverk/juss-rettsvitenskap-labour-company-business-tax-market-law-source-brief-v1-audit.json', report);
+  return report;
+}
+
+try {
+  const report = audit();
+  console.log(`Arbeids-/selskaps-/skatte-/markedsrett source-first OK: ${report.counts.sources} kilder / ${report.counts.topics} emner / ${report.counts.plannedClaims} claims.`);
+} catch (error) {
+  console.error(error.message);
+  process.exitCode = 1;
+}
