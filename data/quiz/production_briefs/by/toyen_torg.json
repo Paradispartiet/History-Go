@@ -1,0 +1,396 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "by",
+  "targetId": "toyen_torg",
+  "profile_hint": "normal",
+  "reviewed_at": "2026-09-01",
+  "review_note": "Fire læringsjobber dekker torgrommet, Tøyenteppene og aktørene, Venteplassen og kildekritisk byromsanalyse.",
+  "scope": {
+    "place": "Tøyen torg",
+    "production_profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "total_questions": 28,
+    "normal_opening_questions": 14
+  },
+  "sources": {
+    "municipality": {
+      "url": "https://magasin.oslo.kommune.no/byplan/gode-ideer-gir-gode-moteplasser",
+      "source_type": "municipal_primary_source",
+      "review_status": "reviewed",
+      "review_note": "Programmet og hele 2013-potten er kontrollert."
+    },
+    "grindaker": {
+      "url": "https://grindaker.no/projects/toyen-torg/",
+      "source_type": "project_primary_source",
+      "review_status": "reviewed",
+      "review_note": "Tidsløp, aktører, Venteplassen, tegl, kunst, møbler og lysmaster er kontrollert."
+    },
+    "nla": {
+      "url": "https://landskapsarkitektur.no/prosjekter/toyen-torg",
+      "source_type": "professional_association_reference",
+      "review_status": "reviewed",
+      "review_note": "Fire innganger, 1970-tallsramme, materialer, aktører og prosjektperiode er kontrollert."
+    },
+    "bratseth": {
+      "url": "https://scandinavianacademicpress.no/wp-content/uploads/sites/7/2025/03/03006_Improvisasjon_Innmat-OA_Bratseth.pdf",
+      "source_type": "open_academic_chapter",
+      "review_status": "reviewed",
+      "review_note": "Eierskap, aktørkonflikt, den midlertidige testingen og forskjellen mot permanent plan er kontrollert."
+    },
+    "oslo_prize": {
+      "url": "https://www.oslo.kommune.no/utmerkelser-og-priser/oslo-bys-arkitekturpris/pameldte/pameldte-prosjekter-til-oslo-bys-arkitekturpris-2020/",
+      "source_type": "municipal_project_catalogue",
+      "review_status": "reviewed",
+      "review_note": "Påmelding, aktørliste og det avvikende arealtallet er kontrollert."
+    },
+    "commons_2006": {
+      "url": "https://commons.wikimedia.org/wiki/File:Toyen_senter.jpg",
+      "source_type": "licensed_image_record",
+      "review_status": "reviewed",
+      "review_note": "Motiv, 2006-datering og public-domain-status er kontrollert."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "kur_by_02_nabolag_ulikhet_segregering",
+      "kur_by_04_historiske_lag_og_transformasjon"
+    ],
+    "emne_ids": [
+      "em_by_offentlige_rom_motesteder",
+      "em_by_sosial_miks_i_offentlige_rom",
+      "em_by_lavterskel_moteplasser_uten_kjopspress",
+      "em_by_materialitet_og_sanseerfaring",
+      "em_by_styring_forvaltning_planmakt"
+    ],
+    "topic_hook_ids": [
+      "byliv_aapne_rom",
+      "ark_transformasjon",
+      "ark_makt"
+    ],
+    "method_ids": [
+      "met_feltobservasjon",
+      "met_for_etter",
+      "met_aktoranalyse"
+    ],
+    "thinker_ids": [
+      "william_h_whyte"
+    ],
+    "works": [
+      "The Social Life of Small Urban Spaces"
+    ]
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/by/toyen_torg_sets.json",
+      "data/quiz/manifest.json"
+    ],
+    "active_before": {
+      "file": "data/quiz/by/toyen_torg_sets.json",
+      "set_count": 6,
+      "question_count": 42,
+      "finding": "Alle 42 spørsmål hadde fasit i svarposisjon 0; senere sett inneholdt generisk teori og ustabile nåpåstander."
+    },
+    "decisions": [
+      "Erstatt pakken med en kildeledet 4×7-pakke i By-kategorien.",
+      "Hold de første 14 spørsmålene teori- og metodefrie.",
+      "Fordel fasitposisjonene 10/9/9 og utelat ustabile virksomhetsopplysninger."
+    ],
+    "knowledge_migration": "Alle spørsmål får stabile Tøyen torg-, claim- og Knowledge-ID-er."
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Torget har fire tydelige læringsjobber og tilstrekkelig direkte kildebredde for standardprofilen; seks sett ville kreve generisk eller perifer filler."
+  },
+  "held_back_candidates": [
+    "Ett ubetinget arealtall: kildene oppgir 5200, 5330 og 5400 kvadratmeter.",
+    "Dagens næringsdrivende og tjenestetilbud som volatile quizfakta.",
+    "Tøyen hovedgård, Botanisk hage og T-banestasjonen som om de var deler av torget.",
+    "Påstanden om at lysmastene fra 1970-årene er bevart som originalmateriale."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_toyen_torg_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Tøyen torg er det bilfrie sentertorget i Tøyensenteret.",
+      "source_ids": ["nla"],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Fire hovedinnganger fører inn til torget.",
+      "source_ids": ["nla", "grindaker"],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Teglbygningene rundt torgrommet stammer fra 1970-årene.",
+      "source_ids": ["nla"],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Tøyen torg fikk hele årets kommunale pott for torg og møteplasser i 2013.",
+      "source_ids": ["municipality"],
+      "source_origin": "external",
+      "emne_id": "em_by_styring_forvaltning_planmakt"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Prøveprosjektet i 2015 het Venteplassen.",
+      "source_ids": ["grindaker", "bratseth"],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Byverkstedet stod for den midlertidige testingen.",
+      "source_ids": ["grindaker", "bratseth"],
+      "source_origin": "external",
+      "emne_id": "em_by_styring_forvaltning_planmakt"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Grindakers permanente prosjektperiode var 2016–18.",
+      "source_ids": ["grindaker", "nla"],
+      "source_origin": "external",
+      "emne_id": "em_by_styring_forvaltning_planmakt"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Bymiljøetaten var oppdragsgiver for det permanente prosjektet.",
+      "source_ids": ["grindaker", "nla"],
+      "source_origin": "external",
+      "emne_id": "em_by_styring_forvaltning_planmakt"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Teglbelegget bruker åtte farger.",
+      "source_ids": ["grindaker", "nla"],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Gulvet rommer tre mønstrete Tøyentepper og et diamantmønster i midten.",
+      "source_ids": ["grindaker", "nla"],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Mari Meen Halsøy utviklet Blomst og Biblo med ungdommer fra T-Town.",
+      "source_ids": ["grindaker", "nla"],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Tøyenteppene er integrert i selve torggulvet.",
+      "source_ids": ["grindaker", "nla"],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "De eldre lysmastene var teknisk utslitt og ble erstattet.",
+      "source_ids": ["grindaker", "nla"],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "De nye lysmastene viderefører den karakteristiske 1970-tallsformen.",
+      "source_ids": ["grindaker", "nla"],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Erfaringer fra Venteplassen ble tatt videre i den permanente møbleringen.",
+      "source_ids": ["grindaker"],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Den akademiske studien viser at ikke alle midlertidige kvaliteter ble beholdt i den permanente teglplanen.",
+      "source_ids": ["bratseth"],
+      "source_origin": "external",
+      "emne_id": "em_by_styring_forvaltning_planmakt"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Arealet er utelatt fordi tre prosjektkilder oppgir ulike tall.",
+      "source_ids": ["nla", "grindaker", "oslo_prize"],
+      "source_origin": "external",
+      "emne_id": "em_by_styring_forvaltning_planmakt"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Torgets 1970-tallsramme og 2018-flate er to synlige historiske lag.",
+      "source_ids": ["nla", "grindaker"],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Fotografiet fra 2006 dokumenterer senterrammen før den permanente ombyggingen.",
+      "source_ids": ["commons_2006"],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Oslo kommune registrerte Tøyen torg som påmeldt, ikke som vinner, i arkitekturprisen 2020.",
+      "source_ids": ["oslo_prize"],
+      "source_origin": "external",
+      "emne_id": "em_by_styring_forvaltning_planmakt"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Eierskap og ulike fornyelsesinteresser gjorde prosessen lang og konfliktfylt.",
+      "source_ids": ["bratseth"],
+      "source_origin": "external",
+      "emne_id": "em_by_styring_forvaltning_planmakt"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Feltobservasjon kan kartlegge innganger, ganglinjer og synlig opphold.",
+      "source_ids": ["grindaker", "nla"],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Sosial miks kan ikke fastslås ved å gjette menneskers identitet fra utseende.",
+      "source_ids": ["bratseth"],
+      "source_origin": "external",
+      "emne_id": "em_by_sosial_miks_i_offentlige_rom"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Aktøranalyse skiller dokumenterte roller og interesser fra antatte motiver.",
+      "source_ids": ["bratseth", "grindaker"],
+      "source_origin": "external",
+      "emne_id": "em_by_styring_forvaltning_planmakt"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kildekritikk beholder sprikende arealtall som konflikt i stedet for å velge ett uten grunnlag.",
+      "source_ids": ["nla", "grindaker", "oslo_prize"],
+      "source_origin": "external",
+      "emne_id": "em_by_styring_forvaltning_planmakt"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Et før–nå-par med ulike ståsteder viser overordnet endring, ikke pikselnøyaktig forskjell.",
+      "source_ids": ["commons_2006", "grindaker"],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Designkontinuitet betyr her at formen ble videreført selv om originalmaterialet ble skiftet ut.",
+      "source_ids": ["grindaker", "nla"],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_toyen_torg_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Midlertidig testing kan påvirke en permanent plan uten å bestemme alle sluttvalgene.",
+      "source_ids": ["grindaker", "bratseth"],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    }
+  ]
+}

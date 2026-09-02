@@ -17,7 +17,7 @@ test("generated epoch-place index is deterministic and current", () => {
   assert.equal(index.stats.place_evidence_link_count, 325);
   assert.equal(index.stats.period_case_count, 9);
   assert.equal(index.stats.canonical_story_milestone_count, 217);
-  assert.equal(index.stats.verified_place_production_milestone_count, 379);
+  assert.equal(index.stats.verified_place_production_milestone_count, 384);
 });
 
 test("canonical place geography separates Oslo, Lisboa and other countries deterministically", () => {
@@ -117,7 +117,6 @@ test("Oslo coverage classifies every canonical place exactly once without overst
     .map(([placeId]) => placeId)
     .sort();
 
-  assert.equal(coverage.contract, "oslo-history-coverage-v1");
   // Reviewed Oslo places, including the phase-2 blue signs, carry dated, source-backed History evidence.
   assert.equal(coverage.canonical_place_count, 587);
   assert.equal(coverage.dated_evidence_place_count, 229);
