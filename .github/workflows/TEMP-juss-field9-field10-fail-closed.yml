@@ -1,0 +1,92 @@
+name: TEMP Juss field 9 fulltext and field 10 source-first
+
+on:
+  push:
+    branches:
+      - agent/fagverk-juss-rettsvitenskap-field-9-fulltext-field-10-source-first-20260902
+
+permissions:
+  contents: write
+
+jobs:
+  materialize-verify-clean:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Write canonical bindings and materialize field 9
+        run: |
+          node scripts/TEMP-finalize-juss-field9-field10-v1.mjs
+          node scripts/materialize-juss-rettsvitenskap-tort-property-private-law-priority-protection-fulltext-v1.mjs
+
+      - name: Run source-first and strict fulltext audits
+        run: |
+          node scripts/brief-juss-rettsvitenskap-tort-property-private-law-priority-protection-sources-v1.mjs
+          node scripts/audit-juss-rettsvitenskap-tort-property-private-law-priority-protection-fulltext-v1.mjs
+          node scripts/brief-juss-rettsvitenskap-family-child-inheritance-person-law-sources-v1.mjs
+          node scripts/audit-juss-rettsvitenskap-reconciliation-v1.mjs
+
+      - name: Run focused Juss tests
+        run: |
+          node --test \
+            tests/juss-rettsvitenskap-tort-property-private-law-priority-protection-source-brief-v1.test.mjs \
+            tests/juss-rettsvitenskap-tort-property-private-law-priority-protection-fulltext-v1.test.mjs \
+            tests/juss-rettsvitenskap-family-child-inheritance-person-law-source-brief-v1.test.mjs \
+            tests/juss-rettsvitenskap-reconciliation-v1.test.mjs
+
+      - name: Run full registry-selected Juss domain gate
+        run: node scripts/run-fagverk-domain-ci-v1.mjs --subject juss_rettsvitenskap
+
+      - name: Capture deterministic output
+        run: |
+          git diff -- . ':(exclude).github/workflows/TEMP-juss-field9-field10-fail-closed.yml' ':(exclude)scripts/TEMP-finalize-juss-field9-field10-v1.mjs' > /tmp/juss-first.diff
+          test -s /tmp/juss-first.diff
+
+      - name: Deterministic rerun
+        run: |
+          node scripts/materialize-juss-rettsvitenskap-tort-property-private-law-priority-protection-fulltext-v1.mjs
+          node scripts/brief-juss-rettsvitenskap-tort-property-private-law-priority-protection-sources-v1.mjs
+          node scripts/audit-juss-rettsvitenskap-tort-property-private-law-priority-protection-fulltext-v1.mjs
+          node scripts/brief-juss-rettsvitenskap-family-child-inheritance-person-law-sources-v1.mjs
+          node scripts/audit-juss-rettsvitenskap-reconciliation-v1.mjs
+          node --test \
+            tests/juss-rettsvitenskap-tort-property-private-law-priority-protection-source-brief-v1.test.mjs \
+            tests/juss-rettsvitenskap-tort-property-private-law-priority-protection-fulltext-v1.test.mjs \
+            tests/juss-rettsvitenskap-family-child-inheritance-person-law-source-brief-v1.test.mjs \
+            tests/juss-rettsvitenskap-reconciliation-v1.test.mjs
+          node scripts/run-fagverk-domain-ci-v1.mjs --subject juss_rettsvitenskap
+          git diff -- . ':(exclude).github/workflows/TEMP-juss-field9-field10-fail-closed.yml' ':(exclude)scripts/TEMP-finalize-juss-field9-field10-v1.mjs' > /tmp/juss-second.diff
+          cmp /tmp/juss-first.diff /tmp/juss-second.diff
+
+      - name: Clean TEMP surfaces and validate patch
+        run: |
+          rm -f .github/workflows/TEMP-juss-field9-field10-fail-closed.yml
+          rm -f scripts/TEMP-finalize-juss-field9-field10-v1.mjs
+          git add -A
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo 'Expected materialized canonical changes are missing' >&2
+            exit 1
+          fi
+          if git diff --cached --name-only | grep -E '(^|/)(TEMP-|TEMP_)'; then
+            echo 'TEMP surface would remain in permanent tree' >&2
+            exit 1
+          fi
+
+      - name: Commit verified canonical output
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Materialize Juss field 9 and prepare field 10 source-first'
+          git push origin HEAD:agent/fagverk-juss-rettsvitenskap-field-9-fulltext-field-10-source-first-20260902
