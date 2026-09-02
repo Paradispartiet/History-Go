@@ -36,6 +36,19 @@ jobs:
             if (pc[field] === undefined) throw new Error(`Quiz production_context.${field} missing`);
             brief[field] = pc[field];
           }
+          const curriculumPairs = {
+            module_ids: 'pensum_module_ids',
+            emne_ids: 'emne_ids',
+            topic_hook_ids: 'topic_hook_ids',
+            method_ids: 'method_ids',
+            thinker_ids: 'thinker_ids',
+            works: 'works'
+          };
+          brief.selected_curriculum = {};
+          for (const [briefField, contextField] of Object.entries(curriculumPairs)) {
+            if (!Array.isArray(pc[contextField])) throw new Error(`Quiz production_context.${contextField} missing`);
+            brief.selected_curriculum[briefField] = pc[contextField];
+          }
           fs.writeFileSync(briefFile, `${JSON.stringify(brief, null, 2)}\n`);
           NODE
       - name: Regenerate affected artifacts
