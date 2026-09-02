@@ -117,8 +117,8 @@ test("Story, Lesespor, Språkleksikon og Place-eid Fagverk er materialisert",()=
   assert.deepEqual(place.fagverk.subject_ids,["religion"]);
   assert.deepEqual(place.fagverk.emne_ids,["em_religion_hellige_rom","em_religion_ritualer_praksis","em_religion_religionshistorie_lokalt","em_religion_kristendom","em_religion_religion_og_samfunn"]);
   assert.deepEqual(place.fagverk.chapter_ids,[]);
-  assert.equal(fagverkRegistry.places[place.id].schema,"history_go_place_fagverk_v2");
-  assert.equal(fagverkRegistry.places[place.id].status,"curated");
+  assert.equal(fagverkRegistry.placeLinks[place.id].schema,"history_go_place_fagverk_v2");
+  assert.equal(fagverkRegistry.placeLinks[place.id].status,"curated");
   assert.equal(workcard.fagverk,"curated");
   assert.equal(audit.fagverk.status,"CURATED");
   assert.equal(audit.status,"PASS");
