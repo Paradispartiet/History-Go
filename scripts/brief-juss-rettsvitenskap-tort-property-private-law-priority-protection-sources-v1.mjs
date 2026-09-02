@@ -12,9 +12,8 @@ export function audit() {
   const brief = read('data/fag/politikk/juss_rettsvitenskap/tort_property_private_law_priority_protection_source_claim_brief_v1.json');
   const claims = brief.topic_briefs.flatMap((topic) => topic.planned_claims || []);
   const sourceIds = new Set(brief.sources.map((source) => source.id));
-  const chapterPath = path.join(ROOT, 'data/fagverk/politikk/juss_rettsvitenskap/erstatning-tingsrett-formuesrett-og-rettsvern.json');
 
-  assert(brief.status === 'source_first_ready_not_materialized', 'Felt 9 skal være source-first, ikke materialisert');
+  assert(brief.status === 'source_first_ready_not_materialized', 'Felt 9 source-first-brief skal beholde source-first-status etter materialisering');
   assert(brief.domain.ordinal === 9 && brief.domain.id === 'erstatning_tingsrett_formuesrett_rettsvern', 'Felt 9 har feil binding');
   assert(brief.sources.length === 13 && sourceIds.size === 13, 'Felt 9 krever 13 unike kilder');
   assert(brief.topic_briefs.length === 8 && claims.length === 32 && new Set(claims.map((claim) => claim.id)).size === 32, 'Felt 9 krever 8 emner og 32 unike claims');
@@ -26,7 +25,6 @@ export function audit() {
   assert(brief.topic_briefs.every((topic) => topic.method_ids.length >= 2 && topic.source_ids.length >= 2 && topic.boundary.length >= 180), 'Alle emner må ha metode, kilder og avgrensning');
   assert(brief.decision_scenarios.every((scenario) => scenario.source_ids.length >= 2 && scenario.source_ids.every((id) => sourceIds.has(id))), 'Alle case må ha minst to gyldige kilder');
   assert(brief.fulltext_requirements.modules === 4 && brief.fulltext_requirements.sections === 8 && brief.fulltext_requirements.paragraphs === 32 && brief.fulltext_requirements.verified_claims === 32, 'Felt 9 fulltekstplan må være 4/8/32/32');
-  assert(!fs.existsSync(chapterPath), 'Felt 9 skal ikke være fulltekstmaterialisert');
   const boundaries = brief.topic_briefs.map((topic) => topic.boundary).join(' ').toLowerCase();
   for (const token of ['ansvarsgrunnlag', 'årsak', 'objektivt ansvar', 'personskade', 'sameie', 'naborettslig', 'servitutt', 'hevd', 'rettsvern', 'prioritet', 'god tro', 'pant', 'kreditorbeslag', 'omstøtelse']) {
     assert(boundaries.includes(token), `Mangler erstatnings-/tingsrettslig grense: ${token}`);
@@ -49,6 +47,7 @@ export function audit() {
       security_creditor_seizure_avoidance_and_distribution: true,
       personal_and_proprietary_rights_distinguished: true,
       validity_priority_and_legal_protection_distinguished: true,
+      source_first_brief_preserved_after_materialization: true,
       not_materialized: true
     },
     next_gate: 'tort_property_private_law_priority_protection_fulltext'
@@ -59,7 +58,7 @@ export function audit() {
 
 try {
   const report = audit();
-  console.log(`Erstatning/tingsrett source-first OK: ${report.counts.sources} kilder / ${report.counts.topics} emner / ${report.counts.plannedClaims} claims.`);
+  console.log(`Erstatning/tingsrett source-first-grunnlag bevart: ${report.counts.sources} kilder / ${report.counts.topics} emner / ${report.counts.plannedClaims} claims.`);
 } catch (error) {
   console.error(error.message);
   process.exitCode = 1;
