@@ -65,14 +65,18 @@ jobs:
           const normalized = text.split(/\r?\n/).map((line) => line.replace(/[ \t]+$/u, '')).join('\n');
           fs.writeFileSync(file, `${normalized.replace(/\n*$/u, '')}\n`);
           NODE
-      - name: Verify data audit repairs
-        run: |
-          npm run audit:quiz-production-context
-          npm run audit:quiz-progression
-          npm run audit:quiz-theory-binding
-          npm run civication:history-people:check
-          bash scripts/check-people.sh
-          git diff --check
+      - name: Verify quiz production context
+        run: npm run audit:quiz-production-context
+      - name: Verify quiz progression
+        run: npm run audit:quiz-progression
+      - name: Verify quiz theory binding
+        run: npm run audit:quiz-theory-binding
+      - name: Verify Civication history people
+        run: npm run civication:history-people:check
+      - name: Verify people shell
+        run: bash scripts/check-people.sh
+      - name: Verify whitespace
+        run: git diff --check
       - name: Publish repaired candidate
         run: |
           git add -A
