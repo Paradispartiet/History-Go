@@ -45,10 +45,14 @@ jobs:
 
           const epochTestFile = 'tests/epoke-place-index.test.mjs';
           let epochTestText = fs.readFileSync(epochTestFile, 'utf8');
-          const oldEpochLine = 'assert.equal(index.stats.canonical_story_milestone_count, 218);';
-          const newEpochLine = 'assert.equal(index.stats.canonical_story_milestone_count, 219);';
-          if (!epochTestText.includes(oldEpochLine) && !epochTestText.includes(newEpochLine)) throw new Error('Epoch story milestone assertion not found');
-          if (epochTestText.includes(oldEpochLine)) epochTestText = epochTestText.replace(oldEpochLine, newEpochLine);
+          const replacements = [
+            ['assert.equal(index.stats.canonical_story_milestone_count, 218);', 'assert.equal(index.stats.canonical_story_milestone_count, 219);', 'Epoch story milestone assertion'],
+            ['assert.equal(index.stats.verified_place_production_milestone_count, 392);', 'assert.equal(index.stats.verified_place_production_milestone_count, 402);', 'Epoch verified production milestone assertion']
+          ];
+          for (const [oldLine, newLine, label] of replacements) {
+            if (!epochTestText.includes(oldLine) && !epochTestText.includes(newLine)) throw new Error(`${label} not found`);
+            if (epochTestText.includes(oldLine)) epochTestText = epochTestText.replace(oldLine, newLine);
+          }
           fs.writeFileSync(epochTestFile, epochTestText);
 
           const ullevalTestFile = 'tests/ullevål-hageby-completion.test.mjs';
