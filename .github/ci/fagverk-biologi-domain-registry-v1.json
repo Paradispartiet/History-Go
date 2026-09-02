@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "subject": "biologi",
+  "ownerSubject": "natur",
+  "canonicalSubcategoryId": "biologi",
+  "totalDomains": 12,
+  "ci": {
+    "changeTokens": [
+      "/biologi/",
+      "biologi-",
+      "biologi_strict"
+    ],
+    "progress": {
+      "kind": "registered_chapter_count",
+      "source": "data/fag/natur/biologi/production_registry_v1.json",
+      "pointer": [
+        "progress",
+        "materializedDomains"
+      ]
+    },
+    "cumulativeAudits": [
+      "scripts/audit-biologi-reconciliation-v1.mjs"
+    ],
+    "cumulativeTests": [
+      "tests/biologi-reconciliation-v1.test.mjs"
+    ],
+    "deterministicPaths": [
+      "data/fag/natur/biologi",
+      "data/fagverk/natur/biologi",
+      "reports/fagverk/biologi-strict-v1-audit.json"
+    ]
+  },
+  "strictCompletion": {
+    "bindings": "data/fagverk/natur/biologi/eksperimentell-biologi-feltmetoder-bioinformatikk-reproduserbarhet.json",
+    "audit": "scripts/audit-biologi-strict-v1.mjs",
+    "auditTest": "tests/biologi-strict-v1.test.mjs",
+    "materializer": "scripts/materialize-biologi-strict-v1.mjs",
+    "completionTest": "tests/biologi-strict-v1.test.mjs",
+    "auditReport": "reports/fagverk/biologi-strict-v1-audit.json",
+    "completionReport": "reports/fagverk/biologi-strict-v1-audit.json"
+  },
+  "domains": [
+    {
+      "ordinal": 1,
+      "domainId": "cellebiologi_membraner_organeller_transport",
+      "slug": "cellebiologi-membraner-organeller-transport",
+      "fulltextMaterializer": "scripts/materialize-biologi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-biologi-strict-v1.mjs",
+      "fulltextTest": "tests/biologi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 2,
+      "domainId": "molekylaer_biologi_dna_rna_protein_genregulering",
+      "slug": "molekylaer-biologi-dna-rna-protein-genregulering",
+      "fulltextMaterializer": "scripts/materialize-biologi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-biologi-strict-v1.mjs",
+      "fulltextTest": "tests/biologi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 3,
+      "domainId": "genetikk_genomikk_arv_variation",
+      "slug": "genetikk-genomikk-arv-variation",
+      "fulltextMaterializer": "scripts/materialize-biologi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-biologi-strict-v1.mjs",
+      "fulltextTest": "tests/biologi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 4,
+      "domainId": "utviklingsbiologi_reproduksjon_livssykluser",
+      "slug": "utviklingsbiologi-reproduksjon-livssykluser",
+      "fulltextMaterializer": "scripts/materialize-biologi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-biologi-strict-v1.mjs",
+      "fulltextTest": "tests/biologi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 5,
+      "domainId": "evolusjon_populasjoner_artsdannelse",
+      "slug": "evolusjon-populasjoner-artsdannelse",
+      "fulltextMaterializer": "scripts/materialize-biologi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-biologi-strict-v1.mjs",
+      "fulltextTest": "tests/biologi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 6,
+      "domainId": "systematikk_fylogeni_biodiversitet",
+      "slug": "systematikk-fylogeni-biodiversitet",
+      "fulltextMaterializer": "scripts/materialize-biologi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-biologi-strict-v1.mjs",
+      "fulltextTest": "tests/biologi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 7,
+      "domainId": "mikrobiologi_virus_sopp_protister_mikrobiomer",
+      "slug": "mikrobiologi-virus-sopp-protister-mikrobiomer",
+      "fulltextMaterializer": "scripts/materialize-biologi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-biologi-strict-v1.mjs",
+      "fulltextTest": "tests/biologi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 8,
+      "domainId": "botanikk_plantefysiologi_utvikling",
+      "slug": "botanikk-plantefysiologi-utvikling",
+      "fulltextMaterializer": "scripts/materialize-biologi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-biologi-strict-v1.mjs",
+      "fulltextTest": "tests/biologi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 9,
+      "domainId": "zoologi_komparativ_anatomi_atferd",
+      "slug": "zoologi-komparativ-anatomi-atferd",
+      "fulltextMaterializer": "scripts/materialize-biologi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-biologi-strict-v1.mjs",
+      "fulltextTest": "tests/biologi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 10,
+      "domainId": "fysiologi_homeostase_energi_signalering",
+      "slug": "fysiologi-homeostase-energi-signalering",
+      "fulltextMaterializer": "scripts/materialize-biologi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-biologi-strict-v1.mjs",
+      "fulltextTest": "tests/biologi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 11,
+      "domainId": "okologi_populasjon_samfunn_okosystem",
+      "slug": "okologi-populasjon-samfunn-okosystem",
+      "fulltextMaterializer": "scripts/materialize-biologi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-biologi-strict-v1.mjs",
+      "fulltextTest": "tests/biologi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 12,
+      "domainId": "eksperimentell_biologi_feltmetoder_bioinformatikk_reproduserbarhet",
+      "slug": "eksperimentell-biologi-feltmetoder-bioinformatikk-reproduserbarhet",
+      "fulltextMaterializer": "scripts/materialize-biologi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-biologi-strict-v1.mjs",
+      "fulltextTest": "tests/biologi-strict-v1.test.mjs"
+    }
+  ]
+}

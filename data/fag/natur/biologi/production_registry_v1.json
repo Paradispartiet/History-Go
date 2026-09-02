@@ -1,0 +1,152 @@
+{
+  "schema": "history_go_canonical_subcategory_production_registry_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-09-02",
+  "owner_subject_id": "natur",
+  "canonical_subcategory_id": "biologi",
+  "label": "Biologi",
+  "status": "strict_completion_proven",
+  "source_registry": "data/fag/natur/biologi/source_registry_v1.json",
+  "progress": {
+    "materializedDomains": 12,
+    "totalDomains": 12,
+    "strictCompletionProven": true
+  },
+  "rules": {
+    "subcategory_is_not_top_level_subject": true,
+    "existing_owner_content_is_not_moved_or_deleted": true,
+    "reuse_requires_explicit_strict_upgrade": true,
+    "secondary_links_do_not_count_as_materialized": true,
+    "source_brief_does_not_count_as_materialized": true,
+    "complete_requires_all_domains_and_strict_proof": true,
+    "biological_level_boundary_required": true,
+    "observation_inference_boundary_required": true,
+    "correlation_causation_boundary_required": true,
+    "teleology_prohibited": true,
+    "detection_replication_controls_required": true,
+    "clinical_advice_out_of_scope": true
+  },
+  "reuse": {
+    "legacy_chapters": [
+      "data/fagverk/natur/artskunnskap_systematikk.json",
+      "data/fagverk/natur/evolusjon_biologisk_mangfold.json",
+      "data/fagverk/natur/botanikk_vegetasjon.json",
+      "data/fagverk/natur/zoologi_dyreliv.json",
+      "data/fagverk/natur/organismebiologi_fysiologi.json",
+      "data/fagverk/natur/sopp_lav_mikroorganismer.json",
+      "data/fagverk/natur/okosystem_mangfold_habitat.json"
+    ],
+    "legacy_subject_id": "natur",
+    "legacy_preserved": true,
+    "strict_upgrade_domain_ids": [
+      "cellebiologi_membraner_organeller_transport",
+      "genetikk_genomikk_arv_variation",
+      "evolusjon_populasjoner_artsdannelse",
+      "systematikk_fylogeni_biodiversitet",
+      "mikrobiologi_virus_sopp_protister_mikrobiomer",
+      "botanikk_plantefysiologi_utvikling",
+      "zoologi_komparativ_anatomi_atferd",
+      "fysiologi_homeostase_energi_signalering",
+      "okologi_populasjon_samfunn_okosystem"
+    ]
+  },
+  "next_gate": "maintenance_source_refresh_experiment_field_case_expansion",
+  "materialized": [
+    {
+      "ordinal": 1,
+      "domain_id": "cellebiologi_membraner_organeller_transport",
+      "slug": "cellebiologi-membraner-organeller-transport",
+      "chapter": "data/fagverk/natur/biologi/cellebiologi-membraner-organeller-transport.json",
+      "legacy_source": "data/fagverk/natur/organismebiologi_fysiologi.json",
+      "audit": "reports/fagverk/biologi-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 2,
+      "domain_id": "molekylaer_biologi_dna_rna_protein_genregulering",
+      "slug": "molekylaer-biologi-dna-rna-protein-genregulering",
+      "chapter": "data/fagverk/natur/biologi/molekylaer-biologi-dna-rna-protein-genregulering.json",
+      "legacy_source": null,
+      "audit": "reports/fagverk/biologi-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 3,
+      "domain_id": "genetikk_genomikk_arv_variation",
+      "slug": "genetikk-genomikk-arv-variation",
+      "chapter": "data/fagverk/natur/biologi/genetikk-genomikk-arv-variation.json",
+      "legacy_source": "data/fagverk/natur/evolusjon_biologisk_mangfold.json",
+      "audit": "reports/fagverk/biologi-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 4,
+      "domain_id": "utviklingsbiologi_reproduksjon_livssykluser",
+      "slug": "utviklingsbiologi-reproduksjon-livssykluser",
+      "chapter": "data/fagverk/natur/biologi/utviklingsbiologi-reproduksjon-livssykluser.json",
+      "legacy_source": null,
+      "audit": "reports/fagverk/biologi-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 5,
+      "domain_id": "evolusjon_populasjoner_artsdannelse",
+      "slug": "evolusjon-populasjoner-artsdannelse",
+      "chapter": "data/fagverk/natur/biologi/evolusjon-populasjoner-artsdannelse.json",
+      "legacy_source": "data/fagverk/natur/evolusjon_biologisk_mangfold.json",
+      "audit": "reports/fagverk/biologi-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 6,
+      "domain_id": "systematikk_fylogeni_biodiversitet",
+      "slug": "systematikk-fylogeni-biodiversitet",
+      "chapter": "data/fagverk/natur/biologi/systematikk-fylogeni-biodiversitet.json",
+      "legacy_source": "data/fagverk/natur/artskunnskap_systematikk.json",
+      "audit": "reports/fagverk/biologi-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 7,
+      "domain_id": "mikrobiologi_virus_sopp_protister_mikrobiomer",
+      "slug": "mikrobiologi-virus-sopp-protister-mikrobiomer",
+      "chapter": "data/fagverk/natur/biologi/mikrobiologi-virus-sopp-protister-mikrobiomer.json",
+      "legacy_source": "data/fagverk/natur/sopp_lav_mikroorganismer.json",
+      "audit": "reports/fagverk/biologi-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 8,
+      "domain_id": "botanikk_plantefysiologi_utvikling",
+      "slug": "botanikk-plantefysiologi-utvikling",
+      "chapter": "data/fagverk/natur/biologi/botanikk-plantefysiologi-utvikling.json",
+      "legacy_source": "data/fagverk/natur/botanikk_vegetasjon.json",
+      "audit": "reports/fagverk/biologi-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 9,
+      "domain_id": "zoologi_komparativ_anatomi_atferd",
+      "slug": "zoologi-komparativ-anatomi-atferd",
+      "chapter": "data/fagverk/natur/biologi/zoologi-komparativ-anatomi-atferd.json",
+      "legacy_source": "data/fagverk/natur/zoologi_dyreliv.json",
+      "audit": "reports/fagverk/biologi-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 10,
+      "domain_id": "fysiologi_homeostase_energi_signalering",
+      "slug": "fysiologi-homeostase-energi-signalering",
+      "chapter": "data/fagverk/natur/biologi/fysiologi-homeostase-energi-signalering.json",
+      "legacy_source": "data/fagverk/natur/organismebiologi_fysiologi.json",
+      "audit": "reports/fagverk/biologi-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 11,
+      "domain_id": "okologi_populasjon_samfunn_okosystem",
+      "slug": "okologi-populasjon-samfunn-okosystem",
+      "chapter": "data/fagverk/natur/biologi/okologi-populasjon-samfunn-okosystem.json",
+      "legacy_source": "data/fagverk/natur/okosystem_mangfold_habitat.json",
+      "audit": "reports/fagverk/biologi-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 12,
+      "domain_id": "eksperimentell_biologi_feltmetoder_bioinformatikk_reproduserbarhet",
+      "slug": "eksperimentell-biologi-feltmetoder-bioinformatikk-reproduserbarhet",
+      "chapter": "data/fagverk/natur/biologi/eksperimentell-biologi-feltmetoder-bioinformatikk-reproduserbarhet.json",
+      "legacy_source": null,
+      "audit": "reports/fagverk/biologi-strict-v1-audit.json"
+    }
+  ]
+}
