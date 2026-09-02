@@ -1,0 +1,1041 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "spesialistpsykolog",
+  "title": "Spesialistpsykolog — prøvbar ekspertise, faggrense og situert tillit",
+  "status": "role_world_complete",
+  "materialization": {
+    "authored_dimensions": [
+      "situated_reputation"
+    ],
+    "no_new_runtime": true,
+    "existing_plan_preserved": true,
+    "existing_role_model_preserved": true,
+    "existing_people_foundation_preserved": true,
+    "existing_work_grammar_preserved": true,
+    "existing_persistent_work_preserved": true,
+    "existing_rhythm_preserved": true,
+    "cross_role_link_materialized": false,
+    "source_refs": [
+      "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json#spesialistpsykolog_job_hypotesestart_001",
+      "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json#spesialistpsykolog_job_begrunnet_tilpasning_002",
+      "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json#spesialistpsykolog_job_veiledning_uten_overtakelse_003",
+      "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json#spesialistpsykolog_job_metodepilot_004",
+      "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json#spesialistpsykolog_people_sanders_prioritet_001",
+      "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json#spesialistpsykolog_people_idas_begrunnelse_002",
+      "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json#spesialistpsykolog_people_ravis_motforklaring_003",
+      "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json#spesialistpsykolog_people_noras_tidsfrist_004",
+      "data/Civication/mailFamilies/psykologi/conflict/spesialistpsykolog_conflict.json#spesialistpsykolog_conflict_spesialitetsgrense_001",
+      "data/Civication/mailFamilies/psykologi/story/spesialistpsykolog_story.json#spesialistpsykolog_story_ekspertstatus_som_fasit_001",
+      "data/Civication/mailFamilies/psykologi/event/spesialistpsykolog_event.json#spesialistpsykolog_event_endret_risiko_001",
+      "data/Civication/mailFamilies/psykologi/micro/spesialistpsykolog_micro.json#spesialistpsykolog_micro_beslutningskritisk_minutt_001",
+      "data/Civication/mailFamilies/psykologi/followup/spesialistpsykolog_followup.json#spesialistpsykolog_followup_tiltak_som_ma_revideres_001",
+      "data/Civication/mailFamilies/psykologi/knowledge/spesialistpsykolog_knowledge.json#spesialistpsykolog_knowledge_profesjonshistorisk_kildegrense_001",
+      "data/Civication/mailFamilies/psykologi/consequence/spesialistpsykolog_consequence.json#spesialistpsykolog_consequence_taus_motstemme_001"
+    ]
+  },
+  "existing_work_continuity": {
+    "runtime_binding": "existing_mail_plan_and_work_grammar",
+    "new_runtime_state": false,
+    "work_loops": [
+      "pasientmal -> konkurrerende hypoteser -> avgrenset vurdering -> samtykke og tiltak -> waiting pa ny informasjon -> evaluering -> rework -> lukking eller eskalering",
+      "kollegasporsmal -> begrunnelse og risiko -> spesialistrad -> navngitt handoff -> kollegaens beslutning -> oppfolging -> ny veiledning eller annen spesialitet"
+    ],
+    "persistent_work_object": "spesialistforlopets_hypotese_tiltak_og_veiledningslogg",
+    "canonical_surfaces": [
+      "data/Civication/roleModels/psykologi/spesialistpsykolog.json",
+      "data/Civication/workGrammars/psykologi/spesialistpsykolog.json",
+      "data/Civication/mailPlans/psykologi/spesialistpsykolog_plan.json",
+      "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json",
+      "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json",
+      "data/Civication/mailFamilies/psykologi/conflict/spesialistpsykolog_conflict.json",
+      "data/Civication/mailFamilies/psykologi/story/spesialistpsykolog_story.json",
+      "data/Civication/mailFamilies/psykologi/event/spesialistpsykolog_event.json",
+      "data/Civication/mailFamilies/psykologi/micro/spesialistpsykolog_micro.json",
+      "data/Civication/mailFamilies/psykologi/followup/spesialistpsykolog_followup.json",
+      "data/Civication/mailFamilies/psykologi/knowledge/spesialistpsykolog_knowledge.json",
+      "data/Civication/mailFamilies/psykologi/consequence/spesialistpsykolog_consequence.json"
+    ],
+    "rule": "Eksisterende plan, fire fiktive aktører, fire arbeidsflater, dobbel autorisasjonsport, venting, handoff, rework og ansvarsskille forblir authoritative."
+  },
+  "sociological_core": [
+    "ekspertstatus fordeler taletid, tvilskostnad og definisjonsmakt i kliniske rom",
+    "standardisering og individuell tilpasning fordeler synlighet mellom gjennomsnitt og faktisk pasientutfall",
+    "veiledning, status og organisasjonspress kan flytte ansvar uten at en formell handoff har skjedd"
+  ],
+  "employment_conditions": [
+    "separat psykologautorisasjon eller lisens og spesialistgodkjenning",
+    "klinisk arbeid innen faktisk spesialitet og stilling",
+    "faglig forventning uten automatisk status som faglig ansvarlig"
+  ],
+  "professional_culture": [
+    "presis usikkerhet er en del av ekspertisen",
+    "motstemme og rework er kvalitetsressurser",
+    "veiledning skal styrke dømmekraft uten skjult ansvarsovertakelse"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "sander_pasient_komplekst_forlop_world",
+      "social_function": "Sander holder sitt eget mål, sin hverdagskontekst og erfaringen av hva tiltakene faktisk gjør. Han gjør det mulig å prøve om en spesialistformulering hjelper personen den gjelder, eller bare skaper en ryddig fortelling for fagmiljøet.",
+      "class_position": "pasient i et komplekst, fiktivt forløp",
+      "status": "Situert profesjonell standing knyttet til spesialistpoliklinikkens_forlopsrom.",
+      "power_over_player": "Sander eier medvirkning, samtykke og retten til å få usikkerhet forklart. Han kan ikke pålegges en metode fordi den passer spesialistens fordypning, og informasjon om ham kan bare deles når behandlingsgrunnlag, nødvendighet og rolle er avklart.",
+      "wants": "At eget mål, samtykke og erfaring av tiltaket veier tyngre enn hvor elegant spesialistens forklaring ser ut for teamet.",
+      "conceals": "Han toner ned tvil og belastning når han merker at fagmiljøet allerede har investert status i én forklaring.",
+      "speech_style": "Konkret om hverdagsvirkning og prioritet, men mer forsiktig når ekspertspråk eller tidspress gjør korreksjon sosialt kostbar.",
+      "teaches_player": "At pasientmedvirkning må kunne endre arbeidshypotesen, tiltaket og effektskriteriet, ikke bare bekrefte en ferdig plan."
+    },
+    {
+      "id": "ida_psykolog_i_veiledning_world",
+      "social_function": "Ida har gjort den løpende kliniske vurderingen og trenger hjelp til å teste begrunnelse, risiko og endringskriterier. Hun viser om spesialistens råd bygger hennes dømmekraft eller gjør henne avhengig av en autoritativ fasit.",
+      "class_position": "psykolog i veiledning",
+      "status": "Situert profesjonell standing knyttet til veiledningsrommet_for_klinisk_begrunnelse.",
+      "power_over_player": "Ida beholder klinisk ansvar innen egen rolle og må selv kunne dokumentere beslutningen. Spesialisten kan gi råd og kreve forsvarlig eskalering, men kan ikke stille seg som skjult beslutningstaker eller overføre ansvar uten eksplisitt handoff.",
+      "wants": "Å utvikle en begrunnelse hun selv kan stå for, dokumentere og revidere uten å bli forlatt alene med risikoen.",
+      "conceals": "Hun kan be om fasit når statusforskjellen gjør det tryggere enn å vise hvor egen vurdering fortsatt er usikker.",
+      "speech_style": "Presis om observasjoner, men søker eksplisitt bekreftelse når klinisk ansvar, hierarki og frykt for feil møtes.",
+      "teaches_player": "At veiledning bygger dømmekraft når rådets rekkevidde og den veilededes beslutningsansvar forblir synlige."
+    },
+    {
+      "id": "ravi_spesialist_annen_fordypning_world",
+      "social_function": "Ravi ser et mønster fra en annen spesialitet og utfordrer hvilke data som mangler før planen låses. Han gjør faggrensen konkret og hindrer at én spesialistkompetanse framstilles som generell ekspertise på alle kliniske områder.",
+      "class_position": "spesialistpsykolog med en annen fordypning",
+      "status": "Situert profesjonell standing knyttet til tverrspesialistisk_hypotesemote.",
+      "power_over_player": "Ravi kan bidra med en avgrenset vurdering og navngi behov for videre kompetanse. Han overtar ikke hele forløpet ved å være uenig, og spilleren kan verken avvise eller delegere til ham uten å klargjøre spørsmål, ansvar og informasjonsgrunnlag.",
+      "wants": "At spørsmålet til hans fordypning er avgrenset nok til at motforklaringen kan prøves uten at han arver hele forløpet.",
+      "conceals": "Han kan undervurdere hvor lett et tydelig avgrenset innspill senere blir sitert som en full klinisk konklusjon.",
+      "speech_style": "Hypoteseorientert og knapp, med tydelige krav til manglende observasjon, informasjonsgrunnlag og videre eier.",
+      "teaches_player": "At respekt for annen ekspertise krever et reelt spørsmål og en eksplisitt handoff, ikke statuslån eller ansvarsdumping."
+    },
+    {
+      "id": "nora_teamleder_spesialisttjeneste_world",
+      "social_function": "Nora eier arbeidsflyt, frister og forbedringsrom og vil redusere ubegrunnet variasjon. Hun synliggjør når produksjonspress eller ønsket om lik praksis forsøker å gjøre en foreløpig spesialistvurdering til bindende standard.",
+      "class_position": "teamleder for den fiktive spesialisttjenesten",
+      "status": "Situert profesjonell standing knyttet til metode_og_kvalitetsverkstedet.",
+      "power_over_player": "Nora kan prioritere tid, be om dokumentert kvalitetsarbeid og plassere organisatorisk ansvar. Hun kan ikke gi spesialistgodkjenning, overstyre samtykke eller gjøre ledelsesmandat til diagnostisk, behandlingsmessig eller lovregulert myndighet.",
+      "wants": "Å få framdrift og mer lik praksis uten at pilotresultat, produksjonspress eller spesialistprestisje skjuler variasjon og risiko.",
+      "conceals": "Hun frykter at åpen usikkerhet skal bli lest oppover som svak styring og kan derfor ønske konklusjon før læringen er moden.",
+      "speech_style": "Frist- og kvalitetsorientert, mottakelig for tydelige målekriterier, men utålmodig med restarbeid som mangler eier.",
+      "teaches_player": "At ledelsesmandat kan plassere tid og prosess, men aldri produsere spesialistkompetanse eller klinisk myndighet."
+    }
+  ],
+  "social_environments": [
+    "spesialistpoliklinikkens_forlopsrom",
+    "veiledningsrommet_for_klinisk_begrunnelse",
+    "tverrspesialistisk_hypotesemote",
+    "metode_og_kvalitetsverkstedet"
+  ],
+  "slow_axes": [
+    "patient_goal",
+    "hypothesis_openness",
+    "specialty_scope",
+    "guidance_responsibility",
+    "method_adaptation",
+    "private_containment"
+  ],
+  "situated_reputation_model": {
+    "global_score_allowed": false,
+    "audiences": [
+      {
+        "id": "patients",
+        "standing_axis": "goal_consent_and_explanation_standing",
+        "cares_about": [
+          "at eget mål, samtykke og erfaring faktisk kan endre forløpet",
+          "at usikkerhet forklares uten at ekspertstatus blir fasit"
+        ],
+        "cannot_grant": "Pasientens tillit kan ikke gi spesialisten kompetanse utenfor egen fordypning, frita andre fra ansvar eller skape lovregulert myndighet."
+      },
+      {
+        "id": "supervised_psychologists",
+        "standing_axis": "guidance_and_responsibility_standing",
+        "cares_about": [
+          "veiledning som styrker egen begrunnelse og dømmekraft",
+          "at råd, beslutning og ansvar forblir sporbare og adskilte"
+        ],
+        "cannot_grant": "Veiledningsstanding kan ikke gjøre spesialisten til skjult beslutningstaker eller flytte psykologens kliniske ansvar uten eksplisitt handoff."
+      },
+      {
+        "id": "peer_specialists",
+        "standing_axis": "scope_and_dissent_standing",
+        "cares_about": [
+          "presise spesialitetsgrenser og reell plass for motforklaringer",
+          "at uenighet bevares til evidensen kan skille hypotesene"
+        ],
+        "cannot_grant": "Kollegial standing kan ikke gjøre én fordypning universell eller overføre hele forløpet til den som leverer en avgrenset vurdering."
+      },
+      {
+        "id": "clinical_team",
+        "standing_axis": "usable_expertise_and_handoff_standing",
+        "cares_about": [
+          "råd som kan prøves, evalueres og revideres i arbeidshverdagen",
+          "navngitt beslutningseier, ventepunkt og kriterium for gjenåpning"
+        ],
+        "cannot_grant": "Teamstanding kan ikke gjøre et spesialistråd til bindende klinisk regel eller oppheve kvalifikasjons-, samtykke- og ansvarsgrenser."
+      },
+      {
+        "id": "service_leadership",
+        "standing_axis": "delivery_and_governance_standing",
+        "cares_about": [
+          "framdrift uten falsk sikkerhet eller skjult restarbeid",
+          "at metodepilot, variasjon og risiko styres etterprøvbart"
+        ],
+        "cannot_grant": "Lederstanding kan ikke gi spesialistgodkjenning, behandlingsmyndighet eller status som faglig ansvarlig uten særskilt kvalifikasjon og utpeking."
+      },
+      {
+        "id": "quality_and_oversight",
+        "standing_axis": "traceability_and_learning_standing",
+        "cares_about": [
+          "versjonert evidens, begrunnede avvik og dokumentert rework",
+          "at læring skiller metodeeffekt fra status, lojalitet og rapportpress"
+        ],
+        "cannot_grant": "Kvalitetsstanding kan ikke erstatte dagens kliniske evidens, personvernkrav eller rett myndighetsnivå med en historisk eller administrativ fortelling."
+      },
+      {
+        "id": "private_relations",
+        "standing_axis": "private_containment_standing",
+        "cares_about": [
+          "nærvær uten uformell drøfting av kliniske opplysninger",
+          "at ekspertpress og tvil bæres uten å gjøre nære relasjoner til reservekolleger"
+        ],
+        "cannot_grant": "Privat tillit kan ikke brukes som faglig fullmakt, klinisk konsultasjon eller mottakssted for taushetsbelagte opplysninger."
+      }
+    ],
+    "authority_separation": "Standing kan aldri gi psykologautorisasjon, spesialistgodkjenning, kompetanse utenfor faktisk fordypning, status som faglig ansvarlig, lovregulert vedtakskompetanse, persondatatilgang eller skjult ansvarsovertakelse.",
+    "rule": "Standing divergerer mellom publikum, kan gå i ulike retninger etter samme kliniske valg og summeres aldri globalt."
+  },
+  "history_go_affordance": {
+    "source_ref": "data/Civication/mailFamilies/psykologi/knowledge/spesialistpsykolog_knowledge.json#spesialistpsykolog_knowledge_profesjonshistorisk_kildegrense_001",
+    "knowledge_use": "Institusjons- og profesjonshistorie brukes til å undersøke hvordan ekspertstatus, kliniske kategorier og organisatoriske forventninger former dagens spørsmål.",
+    "better_question": "Hvilke historiske institusjons-, profesjons- og normalitetsforhold gjorde denne ekspertforklaringen plausibel og autoritativ, hvem eller hvilken evidens blir mindre synlig av den, hva viser dagens kliniske data, og hvilken kvalifisert rolle eier den nåværende beslutningen?",
+    "authority_boundary": "History Go kan skjerpe spørsmål om institusjon, kategori og ekspertmakt, men kan ikke diagnostisere, behandle, gi autorisasjon eller spesialistgodkjenning, avgjøre dagens kliniske valg eller skape lovregulert myndighet."
+  },
+  "cross_role_link": {
+    "status": "candidate_when_shared_work_is_real",
+    "materialized": false,
+    "new_runtime": false,
+    "companion_keys": [
+      "psykologi/psykolog",
+      "psykologi/fagansvarlig",
+      "psykologi/klinikkleder"
+    ],
+    "rule": "Readiness-behovet er not_required_for_rollout; ingen delt runtime eller shared_work_object opprettes før faktisk felles arbeid, samtykke, eierskap og handoff er styrt."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "class_power",
+    "bureaucratic_power",
+    "care_vs_efficiency",
+    "shame_reputation",
+    "status_anxiety",
+    "public_private_leakage",
+    "local_knowledge_vs_system",
+    "invisible_work",
+    "emotional_labor"
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Teamet vil ha ett endelig svar før Sanders konkurrerende hypoteser er prøvd, og ekspertforventningen gjør et foreløpig råd sosialt tyngre enn evidensen. Morgenen krever at spilleren skiller Sanders ord, dokumentert evidens, kollegers observasjoner og egen spesialisttolkning; spesialitetsgrense, samtykke, risiko og manglende data merkes før loggen oppdateres. Sesongen åpner med at presis usikkerhet må være et arbeidsprodukt, ikke en svakhet som skjules. I D1-morning oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "patients",
+        "standing_consequence": "D1-morning gjør den situerte kostnaden synlig for patients, som vurderer spesialisten etter at eget mål, samtykke og erfaring faktisk kan endre forløpet. Når kildene og hullene skilles før første handling, kan senere beslutninger etterprøves; skjules tolkningen som fakta, arver resten av dagen en autoritet evidensen aldri bar. Sesongen åpner med at presis usikkerhet må være et arbeidsprodukt, ikke en svakhet som skjules. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json#spesialistpsykolog_job_hypotesestart_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Teamet vil ha ett endelig svar før Sanders konkurrerende hypoteser er prøvd, og ekspertforventningen gjør et foreløpig råd sosialt tyngre enn evidensen. I lunsjsamtalen må den mest berørte stemmen få korrigere premisset, mens faglig uenighet, emosjonelt arbeid og forskjellen mellom råd og beslutning bevares uten en høflig konsensusmaske. Sesongen åpner med at presis usikkerhet må være et arbeidsprodukt, ikke en svakhet som skjules. I D1-lunch oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "supervised_psychologists",
+        "standing_consequence": "D1-lunch gjør den situerte kostnaden synlig for supervised_psychologists, som vurderer spesialisten etter veiledning som styrker egen begrunnelse og dømmekraft. Når korrigering og motstemme får stå i loggen, kan relasjonen forbedre neste vurdering; redigeres den bort, blir stillhet og lettelse feilaktig lest som faglig enighet. Sesongen åpner med at presis usikkerhet må være et arbeidsprodukt, ikke en svakhet som skjules. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json#spesialistpsykolog_job_begrunnet_tilpasning_002"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Teamet vil ha ett endelig svar før Sanders konkurrerende hypoteser er prøvd, og ekspertforventningen gjør et foreløpig råd sosialt tyngre enn evidensen. Ettermiddagsvalget må angi et avgrenset tiltak eller ventepunkt, navngitt eier, evalueringstid og gjenåpningskriterium, med eksplisitt eskalering når spørsmålet ligger utenfor egen spesialitet eller stilling. Sesongen åpner med at presis usikkerhet må være et arbeidsprodukt, ikke en svakhet som skjules. I D1-afternoon oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "peer_specialists",
+        "standing_consequence": "D1-afternoon gjør den situerte kostnaden synlig for peer_specialists, som vurderer spesialisten etter presise spesialitetsgrenser og reell plass for motforklaringer. Når eier, rekkevidde, ventepunkt og stoppregel er eksplisitte, kan rådet brukes uten ansvarsglidning; ellers arver personen med minst status både risiko og forklaringsbyrde. Sesongen åpner med at presis usikkerhet må være et arbeidsprodukt, ikke en svakhet som skjules. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json#spesialistpsykolog_job_veiledning_uten_overtakelse_003"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Teamet vil ha ett endelig svar før Sanders konkurrerende hypoteser er prøvd, og ekspertforventningen gjør et foreløpig råd sosialt tyngre enn evidensen. Kvelden viser hva ekspertpresset gjorde med tvil, språk og nærvær; restarbeid må bli igjen i den versjonerte loggen uten at kliniske opplysninger eller beslutningsbyrde flyttes til privatlivet. Sesongen åpner med at presis usikkerhet må være et arbeidsprodukt, ikke en svakhet som skjules. I D1-evening oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "clinical_team",
+        "standing_consequence": "D1-evening gjør den situerte kostnaden synlig for clinical_team, som vurderer spesialisten etter råd som kan prøves, evalueres og revideres i arbeidshverdagen. Når restarbeid og privat grense føres sant, kan neste dag starte med riktig problem; hvis spesialisten absorberer alt selv, skjules systemkostnaden bak profesjonell utholdenhet. Sesongen åpner med at presis usikkerhet må være et arbeidsprodukt, ikke en svakhet som skjules. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json#spesialistpsykolog_job_metodepilot_004"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Sander beskriver et hverdagsmål som ikke er operativt i den foreløpige planen, selv om planen er klinisk ryddig og lett å rapportere. Morgenen krever at spilleren skiller Sanders ord, dokumentert evidens, kollegers observasjoner og egen spesialisttolkning; spesialitetsgrense, samtykke, risiko og manglende data merkes før loggen oppdateres. Pasientmålet må kunne endre både vurderingsspørsmål og kriteriet for effekt. I D2-morning oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "supervised_psychologists",
+        "standing_consequence": "D2-morning gjør den situerte kostnaden synlig for supervised_psychologists, som vurderer spesialisten etter veiledning som styrker egen begrunnelse og dømmekraft. Når kildene og hullene skilles før første handling, kan senere beslutninger etterprøves; skjules tolkningen som fakta, arver resten av dagen en autoritet evidensen aldri bar. Pasientmålet må kunne endre både vurderingsspørsmål og kriteriet for effekt. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json#spesialistpsykolog_people_sanders_prioritet_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Sander beskriver et hverdagsmål som ikke er operativt i den foreløpige planen, selv om planen er klinisk ryddig og lett å rapportere. I lunsjsamtalen må den mest berørte stemmen få korrigere premisset, mens faglig uenighet, emosjonelt arbeid og forskjellen mellom råd og beslutning bevares uten en høflig konsensusmaske. Pasientmålet må kunne endre både vurderingsspørsmål og kriteriet for effekt. I D2-lunch oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "peer_specialists",
+        "standing_consequence": "D2-lunch gjør den situerte kostnaden synlig for peer_specialists, som vurderer spesialisten etter presise spesialitetsgrenser og reell plass for motforklaringer. Når korrigering og motstemme får stå i loggen, kan relasjonen forbedre neste vurdering; redigeres den bort, blir stillhet og lettelse feilaktig lest som faglig enighet. Pasientmålet må kunne endre både vurderingsspørsmål og kriteriet for effekt. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json#spesialistpsykolog_people_idas_begrunnelse_002"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Sander beskriver et hverdagsmål som ikke er operativt i den foreløpige planen, selv om planen er klinisk ryddig og lett å rapportere. Ettermiddagsvalget må angi et avgrenset tiltak eller ventepunkt, navngitt eier, evalueringstid og gjenåpningskriterium, med eksplisitt eskalering når spørsmålet ligger utenfor egen spesialitet eller stilling. Pasientmålet må kunne endre både vurderingsspørsmål og kriteriet for effekt. I D2-afternoon oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "clinical_team",
+        "standing_consequence": "D2-afternoon gjør den situerte kostnaden synlig for clinical_team, som vurderer spesialisten etter råd som kan prøves, evalueres og revideres i arbeidshverdagen. Når eier, rekkevidde, ventepunkt og stoppregel er eksplisitte, kan rådet brukes uten ansvarsglidning; ellers arver personen med minst status både risiko og forklaringsbyrde. Pasientmålet må kunne endre både vurderingsspørsmål og kriteriet for effekt. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json#spesialistpsykolog_people_ravis_motforklaring_003"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Sander beskriver et hverdagsmål som ikke er operativt i den foreløpige planen, selv om planen er klinisk ryddig og lett å rapportere. Kvelden viser hva ekspertpresset gjorde med tvil, språk og nærvær; restarbeid må bli igjen i den versjonerte loggen uten at kliniske opplysninger eller beslutningsbyrde flyttes til privatlivet. Pasientmålet må kunne endre både vurderingsspørsmål og kriteriet for effekt. I D2-evening oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "service_leadership",
+        "standing_consequence": "D2-evening gjør den situerte kostnaden synlig for service_leadership, som vurderer spesialisten etter framdrift uten falsk sikkerhet eller skjult restarbeid. Når restarbeid og privat grense føres sant, kan neste dag starte med riktig problem; hvis spesialisten absorberer alt selv, skjules systemkostnaden bak profesjonell utholdenhet. Pasientmålet må kunne endre både vurderingsspørsmål og kriteriet for effekt. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json#spesialistpsykolog_people_noras_tidsfrist_004"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Ida ber spesialisten velge neste kliniske steg fordi hun frykter å stå alene med risikoen dersom hennes egen vurdering viser seg å være feil. Morgenen krever at spilleren skiller Sanders ord, dokumentert evidens, kollegers observasjoner og egen spesialisttolkning; spesialitetsgrense, samtykke, risiko og manglende data merkes før loggen oppdateres. Veiledningens kvalitet prøves når status kan gi rask trygghet ved å skjule hvem som faktisk besluttet. I D3-morning oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "peer_specialists",
+        "standing_consequence": "D3-morning gjør den situerte kostnaden synlig for peer_specialists, som vurderer spesialisten etter presise spesialitetsgrenser og reell plass for motforklaringer. Når kildene og hullene skilles før første handling, kan senere beslutninger etterprøves; skjules tolkningen som fakta, arver resten av dagen en autoritet evidensen aldri bar. Veiledningens kvalitet prøves når status kan gi rask trygghet ved å skjule hvem som faktisk besluttet. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/conflict/spesialistpsykolog_conflict.json#spesialistpsykolog_conflict_spesialitetsgrense_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Ida ber spesialisten velge neste kliniske steg fordi hun frykter å stå alene med risikoen dersom hennes egen vurdering viser seg å være feil. I lunsjsamtalen må den mest berørte stemmen få korrigere premisset, mens faglig uenighet, emosjonelt arbeid og forskjellen mellom råd og beslutning bevares uten en høflig konsensusmaske. Veiledningens kvalitet prøves når status kan gi rask trygghet ved å skjule hvem som faktisk besluttet. I D3-lunch oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "clinical_team",
+        "standing_consequence": "D3-lunch gjør den situerte kostnaden synlig for clinical_team, som vurderer spesialisten etter råd som kan prøves, evalueres og revideres i arbeidshverdagen. Når korrigering og motstemme får stå i loggen, kan relasjonen forbedre neste vurdering; redigeres den bort, blir stillhet og lettelse feilaktig lest som faglig enighet. Veiledningens kvalitet prøves når status kan gi rask trygghet ved å skjule hvem som faktisk besluttet. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/story/spesialistpsykolog_story.json#spesialistpsykolog_story_ekspertstatus_som_fasit_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Ida ber spesialisten velge neste kliniske steg fordi hun frykter å stå alene med risikoen dersom hennes egen vurdering viser seg å være feil. Ettermiddagsvalget må angi et avgrenset tiltak eller ventepunkt, navngitt eier, evalueringstid og gjenåpningskriterium, med eksplisitt eskalering når spørsmålet ligger utenfor egen spesialitet eller stilling. Veiledningens kvalitet prøves når status kan gi rask trygghet ved å skjule hvem som faktisk besluttet. I D3-afternoon oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "service_leadership",
+        "standing_consequence": "D3-afternoon gjør den situerte kostnaden synlig for service_leadership, som vurderer spesialisten etter framdrift uten falsk sikkerhet eller skjult restarbeid. Når eier, rekkevidde, ventepunkt og stoppregel er eksplisitte, kan rådet brukes uten ansvarsglidning; ellers arver personen med minst status både risiko og forklaringsbyrde. Veiledningens kvalitet prøves når status kan gi rask trygghet ved å skjule hvem som faktisk besluttet. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/event/spesialistpsykolog_event.json#spesialistpsykolog_event_endret_risiko_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Ida ber spesialisten velge neste kliniske steg fordi hun frykter å stå alene med risikoen dersom hennes egen vurdering viser seg å være feil. Kvelden viser hva ekspertpresset gjorde med tvil, språk og nærvær; restarbeid må bli igjen i den versjonerte loggen uten at kliniske opplysninger eller beslutningsbyrde flyttes til privatlivet. Veiledningens kvalitet prøves når status kan gi rask trygghet ved å skjule hvem som faktisk besluttet. I D3-evening oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "quality_and_oversight",
+        "standing_consequence": "D3-evening gjør den situerte kostnaden synlig for quality_and_oversight, som vurderer spesialisten etter versjonert evidens, begrunnede avvik og dokumentert rework. Når restarbeid og privat grense føres sant, kan neste dag starte med riktig problem; hvis spesialisten absorberer alt selv, skjules systemkostnaden bak profesjonell utholdenhet. Veiledningens kvalitet prøves når status kan gi rask trygghet ved å skjule hvem som faktisk besluttet. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/micro/spesialistpsykolog_micro.json#spesialistpsykolog_micro_beslutningskritisk_minutt_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Standardmetoden treffer hovedhypotesen, men kolliderer med Sanders prioritet, toleranse og praktiske rammer på en måte manualen ikke avgjør. Morgenen krever at spilleren skiller Sanders ord, dokumentert evidens, kollegers observasjoner og egen spesialisttolkning; spesialitetsgrense, samtykke, risiko og manglende data merkes før loggen oppdateres. En tilpasning må være både individuelt relevant og etterprøvbar nok til senere rework. I D4-morning oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "clinical_team",
+        "standing_consequence": "D4-morning gjør den situerte kostnaden synlig for clinical_team, som vurderer spesialisten etter råd som kan prøves, evalueres og revideres i arbeidshverdagen. Når kildene og hullene skilles før første handling, kan senere beslutninger etterprøves; skjules tolkningen som fakta, arver resten av dagen en autoritet evidensen aldri bar. En tilpasning må være både individuelt relevant og etterprøvbar nok til senere rework. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/followup/spesialistpsykolog_followup.json#spesialistpsykolog_followup_tiltak_som_ma_revideres_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Standardmetoden treffer hovedhypotesen, men kolliderer med Sanders prioritet, toleranse og praktiske rammer på en måte manualen ikke avgjør. I lunsjsamtalen må den mest berørte stemmen få korrigere premisset, mens faglig uenighet, emosjonelt arbeid og forskjellen mellom råd og beslutning bevares uten en høflig konsensusmaske. En tilpasning må være både individuelt relevant og etterprøvbar nok til senere rework. I D4-lunch oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "service_leadership",
+        "standing_consequence": "D4-lunch gjør den situerte kostnaden synlig for service_leadership, som vurderer spesialisten etter framdrift uten falsk sikkerhet eller skjult restarbeid. Når korrigering og motstemme får stå i loggen, kan relasjonen forbedre neste vurdering; redigeres den bort, blir stillhet og lettelse feilaktig lest som faglig enighet. En tilpasning må være både individuelt relevant og etterprøvbar nok til senere rework. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/knowledge/spesialistpsykolog_knowledge.json#spesialistpsykolog_knowledge_profesjonshistorisk_kildegrense_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Standardmetoden treffer hovedhypotesen, men kolliderer med Sanders prioritet, toleranse og praktiske rammer på en måte manualen ikke avgjør. Ettermiddagsvalget må angi et avgrenset tiltak eller ventepunkt, navngitt eier, evalueringstid og gjenåpningskriterium, med eksplisitt eskalering når spørsmålet ligger utenfor egen spesialitet eller stilling. En tilpasning må være både individuelt relevant og etterprøvbar nok til senere rework. I D4-afternoon oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "quality_and_oversight",
+        "standing_consequence": "D4-afternoon gjør den situerte kostnaden synlig for quality_and_oversight, som vurderer spesialisten etter versjonert evidens, begrunnede avvik og dokumentert rework. Når eier, rekkevidde, ventepunkt og stoppregel er eksplisitte, kan rådet brukes uten ansvarsglidning; ellers arver personen med minst status både risiko og forklaringsbyrde. En tilpasning må være både individuelt relevant og etterprøvbar nok til senere rework. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/consequence/spesialistpsykolog_consequence.json#spesialistpsykolog_consequence_taus_motstemme_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Standardmetoden treffer hovedhypotesen, men kolliderer med Sanders prioritet, toleranse og praktiske rammer på en måte manualen ikke avgjør. Kvelden viser hva ekspertpresset gjorde med tvil, språk og nærvær; restarbeid må bli igjen i den versjonerte loggen uten at kliniske opplysninger eller beslutningsbyrde flyttes til privatlivet. En tilpasning må være både individuelt relevant og etterprøvbar nok til senere rework. I D4-evening oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "D4-evening gjør den situerte kostnaden synlig for private_relations, som vurderer spesialisten etter nærvær uten uformell drøfting av kliniske opplysninger. Når restarbeid og privat grense føres sant, kan neste dag starte med riktig problem; hvis spesialisten absorberer alt selv, skjules systemkostnaden bak profesjonell utholdenhet. En tilpasning må være både individuelt relevant og etterprøvbar nok til senere rework. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json#spesialistpsykolog_job_hypotesestart_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Ravi presenterer en motforklaring fra en annen fordypning og viser at den opprinnelige hypotesen mangler én beslutningskritisk observasjon. Morgenen krever at spilleren skiller Sanders ord, dokumentert evidens, kollegers observasjoner og egen spesialisttolkning; spesialitetsgrense, samtykke, risiko og manglende data merkes før loggen oppdateres. Faggrensen blir synlig når en legitim motstemme verken kan avvises eller gjøres til full ansvarsovertakelse. I D5-morning oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "service_leadership",
+        "standing_consequence": "D5-morning gjør den situerte kostnaden synlig for service_leadership, som vurderer spesialisten etter framdrift uten falsk sikkerhet eller skjult restarbeid. Når kildene og hullene skilles før første handling, kan senere beslutninger etterprøves; skjules tolkningen som fakta, arver resten av dagen en autoritet evidensen aldri bar. Faggrensen blir synlig når en legitim motstemme verken kan avvises eller gjøres til full ansvarsovertakelse. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json#spesialistpsykolog_job_begrunnet_tilpasning_002"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Ravi presenterer en motforklaring fra en annen fordypning og viser at den opprinnelige hypotesen mangler én beslutningskritisk observasjon. I lunsjsamtalen må den mest berørte stemmen få korrigere premisset, mens faglig uenighet, emosjonelt arbeid og forskjellen mellom råd og beslutning bevares uten en høflig konsensusmaske. Faggrensen blir synlig når en legitim motstemme verken kan avvises eller gjøres til full ansvarsovertakelse. I D5-lunch oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "quality_and_oversight",
+        "standing_consequence": "D5-lunch gjør den situerte kostnaden synlig for quality_and_oversight, som vurderer spesialisten etter versjonert evidens, begrunnede avvik og dokumentert rework. Når korrigering og motstemme får stå i loggen, kan relasjonen forbedre neste vurdering; redigeres den bort, blir stillhet og lettelse feilaktig lest som faglig enighet. Faggrensen blir synlig når en legitim motstemme verken kan avvises eller gjøres til full ansvarsovertakelse. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json#spesialistpsykolog_job_veiledning_uten_overtakelse_003"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Ravi presenterer en motforklaring fra en annen fordypning og viser at den opprinnelige hypotesen mangler én beslutningskritisk observasjon. Ettermiddagsvalget må angi et avgrenset tiltak eller ventepunkt, navngitt eier, evalueringstid og gjenåpningskriterium, med eksplisitt eskalering når spørsmålet ligger utenfor egen spesialitet eller stilling. Faggrensen blir synlig når en legitim motstemme verken kan avvises eller gjøres til full ansvarsovertakelse. I D5-afternoon oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "D5-afternoon gjør den situerte kostnaden synlig for private_relations, som vurderer spesialisten etter nærvær uten uformell drøfting av kliniske opplysninger. Når eier, rekkevidde, ventepunkt og stoppregel er eksplisitte, kan rådet brukes uten ansvarsglidning; ellers arver personen med minst status både risiko og forklaringsbyrde. Faggrensen blir synlig når en legitim motstemme verken kan avvises eller gjøres til full ansvarsovertakelse. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json#spesialistpsykolog_job_metodepilot_004"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Ravi presenterer en motforklaring fra en annen fordypning og viser at den opprinnelige hypotesen mangler én beslutningskritisk observasjon. Kvelden viser hva ekspertpresset gjorde med tvil, språk og nærvær; restarbeid må bli igjen i den versjonerte loggen uten at kliniske opplysninger eller beslutningsbyrde flyttes til privatlivet. Faggrensen blir synlig når en legitim motstemme verken kan avvises eller gjøres til full ansvarsovertakelse. I D5-evening oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "patients",
+        "standing_consequence": "D5-evening gjør den situerte kostnaden synlig for patients, som vurderer spesialisten etter at eget mål, samtykke og erfaring faktisk kan endre forløpet. Når restarbeid og privat grense føres sant, kan neste dag starte med riktig problem; hvis spesialisten absorberer alt selv, skjules systemkostnaden bak profesjonell utholdenhet. Faggrensen blir synlig når en legitim motstemme verken kan avvises eller gjøres til full ansvarsovertakelse. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json#spesialistpsykolog_people_sanders_prioritet_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Forløpet venter på den beslutningskritiske observasjonen, mens teamets kalender og Sanders belastning gjør det fristende å behandle venting som passivitet. Morgenen krever at spilleren skiller Sanders ord, dokumentert evidens, kollegers observasjoner og egen spesialisttolkning; spesialitetsgrense, samtykke, risiko og manglende data merkes før loggen oppdateres. Venting må få eier, risikogrense og vurderingsdato uten å late som kunnskapen allerede finnes. I D6-morning oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "quality_and_oversight",
+        "standing_consequence": "D6-morning gjør den situerte kostnaden synlig for quality_and_oversight, som vurderer spesialisten etter versjonert evidens, begrunnede avvik og dokumentert rework. Når kildene og hullene skilles før første handling, kan senere beslutninger etterprøves; skjules tolkningen som fakta, arver resten av dagen en autoritet evidensen aldri bar. Venting må få eier, risikogrense og vurderingsdato uten å late som kunnskapen allerede finnes. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json#spesialistpsykolog_people_idas_begrunnelse_002"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Forløpet venter på den beslutningskritiske observasjonen, mens teamets kalender og Sanders belastning gjør det fristende å behandle venting som passivitet. I lunsjsamtalen må den mest berørte stemmen få korrigere premisset, mens faglig uenighet, emosjonelt arbeid og forskjellen mellom råd og beslutning bevares uten en høflig konsensusmaske. Venting må få eier, risikogrense og vurderingsdato uten å late som kunnskapen allerede finnes. I D6-lunch oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "D6-lunch gjør den situerte kostnaden synlig for private_relations, som vurderer spesialisten etter nærvær uten uformell drøfting av kliniske opplysninger. Når korrigering og motstemme får stå i loggen, kan relasjonen forbedre neste vurdering; redigeres den bort, blir stillhet og lettelse feilaktig lest som faglig enighet. Venting må få eier, risikogrense og vurderingsdato uten å late som kunnskapen allerede finnes. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json#spesialistpsykolog_people_ravis_motforklaring_003"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Forløpet venter på den beslutningskritiske observasjonen, mens teamets kalender og Sanders belastning gjør det fristende å behandle venting som passivitet. Ettermiddagsvalget må angi et avgrenset tiltak eller ventepunkt, navngitt eier, evalueringstid og gjenåpningskriterium, med eksplisitt eskalering når spørsmålet ligger utenfor egen spesialitet eller stilling. Venting må få eier, risikogrense og vurderingsdato uten å late som kunnskapen allerede finnes. I D6-afternoon oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "patients",
+        "standing_consequence": "D6-afternoon gjør den situerte kostnaden synlig for patients, som vurderer spesialisten etter at eget mål, samtykke og erfaring faktisk kan endre forløpet. Når eier, rekkevidde, ventepunkt og stoppregel er eksplisitte, kan rådet brukes uten ansvarsglidning; ellers arver personen med minst status både risiko og forklaringsbyrde. Venting må få eier, risikogrense og vurderingsdato uten å late som kunnskapen allerede finnes. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json#spesialistpsykolog_people_noras_tidsfrist_004"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Forløpet venter på den beslutningskritiske observasjonen, mens teamets kalender og Sanders belastning gjør det fristende å behandle venting som passivitet. Kvelden viser hva ekspertpresset gjorde med tvil, språk og nærvær; restarbeid må bli igjen i den versjonerte loggen uten at kliniske opplysninger eller beslutningsbyrde flyttes til privatlivet. Venting må få eier, risikogrense og vurderingsdato uten å late som kunnskapen allerede finnes. I D6-evening oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "supervised_psychologists",
+        "standing_consequence": "D6-evening gjør den situerte kostnaden synlig for supervised_psychologists, som vurderer spesialisten etter veiledning som styrker egen begrunnelse og dømmekraft. Når restarbeid og privat grense føres sant, kan neste dag starte med riktig problem; hvis spesialisten absorberer alt selv, skjules systemkostnaden bak profesjonell utholdenhet. Venting må få eier, risikogrense og vurderingsdato uten å late som kunnskapen allerede finnes. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/conflict/spesialistpsykolog_conflict.json#spesialistpsykolog_conflict_spesialitetsgrense_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Ny informasjon endrer risikobildet mens vurderingen fortsatt venter på Ravis avgrensede kompetanse, og gårsdagens tiltak kan ikke bare fortsette umerket. Morgenen krever at spilleren skiller Sanders ord, dokumentert evidens, kollegers observasjoner og egen spesialisttolkning; spesialitetsgrense, samtykke, risiko og manglende data merkes før loggen oppdateres. En endret risiko må åpne riktig del av loggen uten at spesialistrådet overtar den akutte beslutningslinjen. I D7-morning oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "D7-morning gjør den situerte kostnaden synlig for private_relations, som vurderer spesialisten etter nærvær uten uformell drøfting av kliniske opplysninger. Når kildene og hullene skilles før første handling, kan senere beslutninger etterprøves; skjules tolkningen som fakta, arver resten av dagen en autoritet evidensen aldri bar. En endret risiko må åpne riktig del av loggen uten at spesialistrådet overtar den akutte beslutningslinjen. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/story/spesialistpsykolog_story.json#spesialistpsykolog_story_ekspertstatus_som_fasit_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Ny informasjon endrer risikobildet mens vurderingen fortsatt venter på Ravis avgrensede kompetanse, og gårsdagens tiltak kan ikke bare fortsette umerket. I lunsjsamtalen må den mest berørte stemmen få korrigere premisset, mens faglig uenighet, emosjonelt arbeid og forskjellen mellom råd og beslutning bevares uten en høflig konsensusmaske. En endret risiko må åpne riktig del av loggen uten at spesialistrådet overtar den akutte beslutningslinjen. I D7-lunch oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "patients",
+        "standing_consequence": "D7-lunch gjør den situerte kostnaden synlig for patients, som vurderer spesialisten etter at eget mål, samtykke og erfaring faktisk kan endre forløpet. Når korrigering og motstemme får stå i loggen, kan relasjonen forbedre neste vurdering; redigeres den bort, blir stillhet og lettelse feilaktig lest som faglig enighet. En endret risiko må åpne riktig del av loggen uten at spesialistrådet overtar den akutte beslutningslinjen. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/event/spesialistpsykolog_event.json#spesialistpsykolog_event_endret_risiko_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Ny informasjon endrer risikobildet mens vurderingen fortsatt venter på Ravis avgrensede kompetanse, og gårsdagens tiltak kan ikke bare fortsette umerket. Ettermiddagsvalget må angi et avgrenset tiltak eller ventepunkt, navngitt eier, evalueringstid og gjenåpningskriterium, med eksplisitt eskalering når spørsmålet ligger utenfor egen spesialitet eller stilling. En endret risiko må åpne riktig del av loggen uten at spesialistrådet overtar den akutte beslutningslinjen. I D7-afternoon oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "supervised_psychologists",
+        "standing_consequence": "D7-afternoon gjør den situerte kostnaden synlig for supervised_psychologists, som vurderer spesialisten etter veiledning som styrker egen begrunnelse og dømmekraft. Når eier, rekkevidde, ventepunkt og stoppregel er eksplisitte, kan rådet brukes uten ansvarsglidning; ellers arver personen med minst status både risiko og forklaringsbyrde. En endret risiko må åpne riktig del av loggen uten at spesialistrådet overtar den akutte beslutningslinjen. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/micro/spesialistpsykolog_micro.json#spesialistpsykolog_micro_beslutningskritisk_minutt_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Ny informasjon endrer risikobildet mens vurderingen fortsatt venter på Ravis avgrensede kompetanse, og gårsdagens tiltak kan ikke bare fortsette umerket. Kvelden viser hva ekspertpresset gjorde med tvil, språk og nærvær; restarbeid må bli igjen i den versjonerte loggen uten at kliniske opplysninger eller beslutningsbyrde flyttes til privatlivet. En endret risiko må åpne riktig del av loggen uten at spesialistrådet overtar den akutte beslutningslinjen. I D7-evening oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "peer_specialists",
+        "standing_consequence": "D7-evening gjør den situerte kostnaden synlig for peer_specialists, som vurderer spesialisten etter presise spesialitetsgrenser og reell plass for motforklaringer. Når restarbeid og privat grense føres sant, kan neste dag starte med riktig problem; hvis spesialisten absorberer alt selv, skjules systemkostnaden bak profesjonell utholdenhet. En endret risiko må åpne riktig del av loggen uten at spesialistrådet overtar den akutte beslutningslinjen. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/followup/spesialistpsykolog_followup.json#spesialistpsykolog_followup_tiltak_som_ma_revideres_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Handoffen til Ravi inneholder mye klinisk bakgrunn, men mangler det presise spørsmålet, objektversjonen og hvem som eier beslutningen etter svaret. Morgenen krever at spilleren skiller Sanders ord, dokumentert evidens, kollegers observasjoner og egen spesialisttolkning; spesialitetsgrense, samtykke, risiko og manglende data merkes før loggen oppdateres. Dataminimering og ansvar blir samme kvalitetsproblem når mer informasjon ikke skaper en bedre overføring. I D8-morning oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "patients",
+        "standing_consequence": "D8-morning gjør den situerte kostnaden synlig for patients, som vurderer spesialisten etter at eget mål, samtykke og erfaring faktisk kan endre forløpet. Når kildene og hullene skilles før første handling, kan senere beslutninger etterprøves; skjules tolkningen som fakta, arver resten av dagen en autoritet evidensen aldri bar. Dataminimering og ansvar blir samme kvalitetsproblem når mer informasjon ikke skaper en bedre overføring. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/knowledge/spesialistpsykolog_knowledge.json#spesialistpsykolog_knowledge_profesjonshistorisk_kildegrense_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Handoffen til Ravi inneholder mye klinisk bakgrunn, men mangler det presise spørsmålet, objektversjonen og hvem som eier beslutningen etter svaret. I lunsjsamtalen må den mest berørte stemmen få korrigere premisset, mens faglig uenighet, emosjonelt arbeid og forskjellen mellom råd og beslutning bevares uten en høflig konsensusmaske. Dataminimering og ansvar blir samme kvalitetsproblem når mer informasjon ikke skaper en bedre overføring. I D8-lunch oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "supervised_psychologists",
+        "standing_consequence": "D8-lunch gjør den situerte kostnaden synlig for supervised_psychologists, som vurderer spesialisten etter veiledning som styrker egen begrunnelse og dømmekraft. Når korrigering og motstemme får stå i loggen, kan relasjonen forbedre neste vurdering; redigeres den bort, blir stillhet og lettelse feilaktig lest som faglig enighet. Dataminimering og ansvar blir samme kvalitetsproblem når mer informasjon ikke skaper en bedre overføring. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/consequence/spesialistpsykolog_consequence.json#spesialistpsykolog_consequence_taus_motstemme_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Handoffen til Ravi inneholder mye klinisk bakgrunn, men mangler det presise spørsmålet, objektversjonen og hvem som eier beslutningen etter svaret. Ettermiddagsvalget må angi et avgrenset tiltak eller ventepunkt, navngitt eier, evalueringstid og gjenåpningskriterium, med eksplisitt eskalering når spørsmålet ligger utenfor egen spesialitet eller stilling. Dataminimering og ansvar blir samme kvalitetsproblem når mer informasjon ikke skaper en bedre overføring. I D8-afternoon oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "peer_specialists",
+        "standing_consequence": "D8-afternoon gjør den situerte kostnaden synlig for peer_specialists, som vurderer spesialisten etter presise spesialitetsgrenser og reell plass for motforklaringer. Når eier, rekkevidde, ventepunkt og stoppregel er eksplisitte, kan rådet brukes uten ansvarsglidning; ellers arver personen med minst status både risiko og forklaringsbyrde. Dataminimering og ansvar blir samme kvalitetsproblem når mer informasjon ikke skaper en bedre overføring. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json#spesialistpsykolog_job_hypotesestart_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Handoffen til Ravi inneholder mye klinisk bakgrunn, men mangler det presise spørsmålet, objektversjonen og hvem som eier beslutningen etter svaret. Kvelden viser hva ekspertpresset gjorde med tvil, språk og nærvær; restarbeid må bli igjen i den versjonerte loggen uten at kliniske opplysninger eller beslutningsbyrde flyttes til privatlivet. Dataminimering og ansvar blir samme kvalitetsproblem når mer informasjon ikke skaper en bedre overføring. I D8-evening oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "clinical_team",
+        "standing_consequence": "D8-evening gjør den situerte kostnaden synlig for clinical_team, som vurderer spesialisten etter råd som kan prøves, evalueres og revideres i arbeidshverdagen. Når restarbeid og privat grense føres sant, kan neste dag starte med riktig problem; hvis spesialisten absorberer alt selv, skjules systemkostnaden bak profesjonell utholdenhet. Dataminimering og ansvar blir samme kvalitetsproblem når mer informasjon ikke skaper en bedre overføring. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json#spesialistpsykolog_job_begrunnet_tilpasning_002"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Nora vil standardisere en metodepilot fordi gjennomsnittet ser lovende ut, mens variasjonen viser at noen forløp trenger annen tilpasning og tettere evaluering. Morgenen krever at spilleren skiller Sanders ord, dokumentert evidens, kollegers observasjoner og egen spesialisttolkning; spesialitetsgrense, samtykke, risiko og manglende data merkes før loggen oppdateres. Fagutvikling må tåle forskjeller i utfall før en preferanse blir presentert som klinisk regel. I D9-morning oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "supervised_psychologists",
+        "standing_consequence": "D9-morning gjør den situerte kostnaden synlig for supervised_psychologists, som vurderer spesialisten etter veiledning som styrker egen begrunnelse og dømmekraft. Når kildene og hullene skilles før første handling, kan senere beslutninger etterprøves; skjules tolkningen som fakta, arver resten av dagen en autoritet evidensen aldri bar. Fagutvikling må tåle forskjeller i utfall før en preferanse blir presentert som klinisk regel. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json#spesialistpsykolog_job_veiledning_uten_overtakelse_003"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Nora vil standardisere en metodepilot fordi gjennomsnittet ser lovende ut, mens variasjonen viser at noen forløp trenger annen tilpasning og tettere evaluering. I lunsjsamtalen må den mest berørte stemmen få korrigere premisset, mens faglig uenighet, emosjonelt arbeid og forskjellen mellom råd og beslutning bevares uten en høflig konsensusmaske. Fagutvikling må tåle forskjeller i utfall før en preferanse blir presentert som klinisk regel. I D9-lunch oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "peer_specialists",
+        "standing_consequence": "D9-lunch gjør den situerte kostnaden synlig for peer_specialists, som vurderer spesialisten etter presise spesialitetsgrenser og reell plass for motforklaringer. Når korrigering og motstemme får stå i loggen, kan relasjonen forbedre neste vurdering; redigeres den bort, blir stillhet og lettelse feilaktig lest som faglig enighet. Fagutvikling må tåle forskjeller i utfall før en preferanse blir presentert som klinisk regel. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json#spesialistpsykolog_job_metodepilot_004"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Nora vil standardisere en metodepilot fordi gjennomsnittet ser lovende ut, mens variasjonen viser at noen forløp trenger annen tilpasning og tettere evaluering. Ettermiddagsvalget må angi et avgrenset tiltak eller ventepunkt, navngitt eier, evalueringstid og gjenåpningskriterium, med eksplisitt eskalering når spørsmålet ligger utenfor egen spesialitet eller stilling. Fagutvikling må tåle forskjeller i utfall før en preferanse blir presentert som klinisk regel. I D9-afternoon oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "clinical_team",
+        "standing_consequence": "D9-afternoon gjør den situerte kostnaden synlig for clinical_team, som vurderer spesialisten etter råd som kan prøves, evalueres og revideres i arbeidshverdagen. Når eier, rekkevidde, ventepunkt og stoppregel er eksplisitte, kan rådet brukes uten ansvarsglidning; ellers arver personen med minst status både risiko og forklaringsbyrde. Fagutvikling må tåle forskjeller i utfall før en preferanse blir presentert som klinisk regel. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json#spesialistpsykolog_people_sanders_prioritet_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Nora vil standardisere en metodepilot fordi gjennomsnittet ser lovende ut, mens variasjonen viser at noen forløp trenger annen tilpasning og tettere evaluering. Kvelden viser hva ekspertpresset gjorde med tvil, språk og nærvær; restarbeid må bli igjen i den versjonerte loggen uten at kliniske opplysninger eller beslutningsbyrde flyttes til privatlivet. Fagutvikling må tåle forskjeller i utfall før en preferanse blir presentert som klinisk regel. I D9-evening oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "service_leadership",
+        "standing_consequence": "D9-evening gjør den situerte kostnaden synlig for service_leadership, som vurderer spesialisten etter framdrift uten falsk sikkerhet eller skjult restarbeid. Når restarbeid og privat grense føres sant, kan neste dag starte med riktig problem; hvis spesialisten absorberer alt selv, skjules systemkostnaden bak profesjonell utholdenhet. Fagutvikling må tåle forskjeller i utfall før en preferanse blir presentert som klinisk regel. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json#spesialistpsykolog_people_idas_begrunnelse_002"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Oppfølgingen viser delvis effekt: Sander beskriver én konkret forbedring, men hovedmålet står stille og én belastning har økt siden tilpasningen. Morgenen krever at spilleren skiller Sanders ord, dokumentert evidens, kollegers observasjoner og egen spesialisttolkning; spesialitetsgrense, samtykke, risiko og manglende data merkes før loggen oppdateres. Rework må bevare både det som virket og det som falsifiserer den for enkle suksessfortellingen. I D10-morning oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "peer_specialists",
+        "standing_consequence": "D10-morning gjør den situerte kostnaden synlig for peer_specialists, som vurderer spesialisten etter presise spesialitetsgrenser og reell plass for motforklaringer. Når kildene og hullene skilles før første handling, kan senere beslutninger etterprøves; skjules tolkningen som fakta, arver resten av dagen en autoritet evidensen aldri bar. Rework må bevare både det som virket og det som falsifiserer den for enkle suksessfortellingen. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json#spesialistpsykolog_people_ravis_motforklaring_003"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Oppfølgingen viser delvis effekt: Sander beskriver én konkret forbedring, men hovedmålet står stille og én belastning har økt siden tilpasningen. I lunsjsamtalen må den mest berørte stemmen få korrigere premisset, mens faglig uenighet, emosjonelt arbeid og forskjellen mellom råd og beslutning bevares uten en høflig konsensusmaske. Rework må bevare både det som virket og det som falsifiserer den for enkle suksessfortellingen. I D10-lunch oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "clinical_team",
+        "standing_consequence": "D10-lunch gjør den situerte kostnaden synlig for clinical_team, som vurderer spesialisten etter råd som kan prøves, evalueres og revideres i arbeidshverdagen. Når korrigering og motstemme får stå i loggen, kan relasjonen forbedre neste vurdering; redigeres den bort, blir stillhet og lettelse feilaktig lest som faglig enighet. Rework må bevare både det som virket og det som falsifiserer den for enkle suksessfortellingen. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json#spesialistpsykolog_people_noras_tidsfrist_004"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Oppfølgingen viser delvis effekt: Sander beskriver én konkret forbedring, men hovedmålet står stille og én belastning har økt siden tilpasningen. Ettermiddagsvalget må angi et avgrenset tiltak eller ventepunkt, navngitt eier, evalueringstid og gjenåpningskriterium, med eksplisitt eskalering når spørsmålet ligger utenfor egen spesialitet eller stilling. Rework må bevare både det som virket og det som falsifiserer den for enkle suksessfortellingen. I D10-afternoon oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "service_leadership",
+        "standing_consequence": "D10-afternoon gjør den situerte kostnaden synlig for service_leadership, som vurderer spesialisten etter framdrift uten falsk sikkerhet eller skjult restarbeid. Når eier, rekkevidde, ventepunkt og stoppregel er eksplisitte, kan rådet brukes uten ansvarsglidning; ellers arver personen med minst status både risiko og forklaringsbyrde. Rework må bevare både det som virket og det som falsifiserer den for enkle suksessfortellingen. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/conflict/spesialistpsykolog_conflict.json#spesialistpsykolog_conflict_spesialitetsgrense_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Oppfølgingen viser delvis effekt: Sander beskriver én konkret forbedring, men hovedmålet står stille og én belastning har økt siden tilpasningen. Kvelden viser hva ekspertpresset gjorde med tvil, språk og nærvær; restarbeid må bli igjen i den versjonerte loggen uten at kliniske opplysninger eller beslutningsbyrde flyttes til privatlivet. Rework må bevare både det som virket og det som falsifiserer den for enkle suksessfortellingen. I D10-evening oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "quality_and_oversight",
+        "standing_consequence": "D10-evening gjør den situerte kostnaden synlig for quality_and_oversight, som vurderer spesialisten etter versjonert evidens, begrunnede avvik og dokumentert rework. Når restarbeid og privat grense føres sant, kan neste dag starte med riktig problem; hvis spesialisten absorberer alt selv, skjules systemkostnaden bak profesjonell utholdenhet. Rework må bevare både det som virket og det som falsifiserer den for enkle suksessfortellingen. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/story/spesialistpsykolog_story.json#spesialistpsykolog_story_ekspertstatus_som_fasit_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "En eldre veiledning blir sitert i teamet som om spesialisten hadde besluttet fast praksis, selv om rådet gjaldt én versjon av ett forløp. Morgenen krever at spilleren skiller Sanders ord, dokumentert evidens, kollegers observasjoner og egen spesialisttolkning; spesialitetsgrense, samtykke, risiko og manglende data merkes før loggen oppdateres. Gjenfortalt ekspertstatus må føres tilbake til spørsmål, evidens, rekkevidde og faktisk beslutningseier. I D11-morning oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "clinical_team",
+        "standing_consequence": "D11-morning gjør den situerte kostnaden synlig for clinical_team, som vurderer spesialisten etter råd som kan prøves, evalueres og revideres i arbeidshverdagen. Når kildene og hullene skilles før første handling, kan senere beslutninger etterprøves; skjules tolkningen som fakta, arver resten av dagen en autoritet evidensen aldri bar. Gjenfortalt ekspertstatus må føres tilbake til spørsmål, evidens, rekkevidde og faktisk beslutningseier. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/event/spesialistpsykolog_event.json#spesialistpsykolog_event_endret_risiko_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "En eldre veiledning blir sitert i teamet som om spesialisten hadde besluttet fast praksis, selv om rådet gjaldt én versjon av ett forløp. I lunsjsamtalen må den mest berørte stemmen få korrigere premisset, mens faglig uenighet, emosjonelt arbeid og forskjellen mellom råd og beslutning bevares uten en høflig konsensusmaske. Gjenfortalt ekspertstatus må føres tilbake til spørsmål, evidens, rekkevidde og faktisk beslutningseier. I D11-lunch oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "service_leadership",
+        "standing_consequence": "D11-lunch gjør den situerte kostnaden synlig for service_leadership, som vurderer spesialisten etter framdrift uten falsk sikkerhet eller skjult restarbeid. Når korrigering og motstemme får stå i loggen, kan relasjonen forbedre neste vurdering; redigeres den bort, blir stillhet og lettelse feilaktig lest som faglig enighet. Gjenfortalt ekspertstatus må føres tilbake til spørsmål, evidens, rekkevidde og faktisk beslutningseier. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/micro/spesialistpsykolog_micro.json#spesialistpsykolog_micro_beslutningskritisk_minutt_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "En eldre veiledning blir sitert i teamet som om spesialisten hadde besluttet fast praksis, selv om rådet gjaldt én versjon av ett forløp. Ettermiddagsvalget må angi et avgrenset tiltak eller ventepunkt, navngitt eier, evalueringstid og gjenåpningskriterium, med eksplisitt eskalering når spørsmålet ligger utenfor egen spesialitet eller stilling. Gjenfortalt ekspertstatus må føres tilbake til spørsmål, evidens, rekkevidde og faktisk beslutningseier. I D11-afternoon oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "quality_and_oversight",
+        "standing_consequence": "D11-afternoon gjør den situerte kostnaden synlig for quality_and_oversight, som vurderer spesialisten etter versjonert evidens, begrunnede avvik og dokumentert rework. Når eier, rekkevidde, ventepunkt og stoppregel er eksplisitte, kan rådet brukes uten ansvarsglidning; ellers arver personen med minst status både risiko og forklaringsbyrde. Gjenfortalt ekspertstatus må føres tilbake til spørsmål, evidens, rekkevidde og faktisk beslutningseier. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/followup/spesialistpsykolog_followup.json#spesialistpsykolog_followup_tiltak_som_ma_revideres_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "En eldre veiledning blir sitert i teamet som om spesialisten hadde besluttet fast praksis, selv om rådet gjaldt én versjon av ett forløp. Kvelden viser hva ekspertpresset gjorde med tvil, språk og nærvær; restarbeid må bli igjen i den versjonerte loggen uten at kliniske opplysninger eller beslutningsbyrde flyttes til privatlivet. Gjenfortalt ekspertstatus må føres tilbake til spørsmål, evidens, rekkevidde og faktisk beslutningseier. I D11-evening oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "D11-evening gjør den situerte kostnaden synlig for private_relations, som vurderer spesialisten etter nærvær uten uformell drøfting av kliniske opplysninger. Når restarbeid og privat grense føres sant, kan neste dag starte med riktig problem; hvis spesialisten absorberer alt selv, skjules systemkostnaden bak profesjonell utholdenhet. Gjenfortalt ekspertstatus må føres tilbake til spørsmål, evidens, rekkevidde og faktisk beslutningseier. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/knowledge/spesialistpsykolog_knowledge.json#spesialistpsykolog_knowledge_profesjonshistorisk_kildegrense_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "History Go-sporet ved Psykologisk institutt viser hvordan institusjoner og profesjonshistorie har formet hvem som får definere kliniske spørsmål og normalitet. Morgenen krever at spilleren skiller Sanders ord, dokumentert evidens, kollegers observasjoner og egen spesialisttolkning; spesialitetsgrense, samtykke, risiko og manglende data merkes før loggen oppdateres. Historien skal gjøre dagens ekspertpremiss mer prøvbart, men kan ikke levere behandlingssvaret. I D12-morning oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "service_leadership",
+        "standing_consequence": "D12-morning gjør den situerte kostnaden synlig for service_leadership, som vurderer spesialisten etter framdrift uten falsk sikkerhet eller skjult restarbeid. Når kildene og hullene skilles før første handling, kan senere beslutninger etterprøves; skjules tolkningen som fakta, arver resten av dagen en autoritet evidensen aldri bar. Historien skal gjøre dagens ekspertpremiss mer prøvbart, men kan ikke levere behandlingssvaret. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/consequence/spesialistpsykolog_consequence.json#spesialistpsykolog_consequence_taus_motstemme_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "History Go-sporet ved Psykologisk institutt viser hvordan institusjoner og profesjonshistorie har formet hvem som får definere kliniske spørsmål og normalitet. I lunsjsamtalen må den mest berørte stemmen få korrigere premisset, mens faglig uenighet, emosjonelt arbeid og forskjellen mellom råd og beslutning bevares uten en høflig konsensusmaske. Historien skal gjøre dagens ekspertpremiss mer prøvbart, men kan ikke levere behandlingssvaret. I D12-lunch oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "quality_and_oversight",
+        "standing_consequence": "D12-lunch gjør den situerte kostnaden synlig for quality_and_oversight, som vurderer spesialisten etter versjonert evidens, begrunnede avvik og dokumentert rework. Når korrigering og motstemme får stå i loggen, kan relasjonen forbedre neste vurdering; redigeres den bort, blir stillhet og lettelse feilaktig lest som faglig enighet. Historien skal gjøre dagens ekspertpremiss mer prøvbart, men kan ikke levere behandlingssvaret. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json#spesialistpsykolog_job_hypotesestart_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "History Go-sporet ved Psykologisk institutt viser hvordan institusjoner og profesjonshistorie har formet hvem som får definere kliniske spørsmål og normalitet. Ettermiddagsvalget må angi et avgrenset tiltak eller ventepunkt, navngitt eier, evalueringstid og gjenåpningskriterium, med eksplisitt eskalering når spørsmålet ligger utenfor egen spesialitet eller stilling. Historien skal gjøre dagens ekspertpremiss mer prøvbart, men kan ikke levere behandlingssvaret. I D12-afternoon oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "D12-afternoon gjør den situerte kostnaden synlig for private_relations, som vurderer spesialisten etter nærvær uten uformell drøfting av kliniske opplysninger. Når eier, rekkevidde, ventepunkt og stoppregel er eksplisitte, kan rådet brukes uten ansvarsglidning; ellers arver personen med minst status både risiko og forklaringsbyrde. Historien skal gjøre dagens ekspertpremiss mer prøvbart, men kan ikke levere behandlingssvaret. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json#spesialistpsykolog_job_begrunnet_tilpasning_002"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "History Go-sporet ved Psykologisk institutt viser hvordan institusjoner og profesjonshistorie har formet hvem som får definere kliniske spørsmål og normalitet. Kvelden viser hva ekspertpresset gjorde med tvil, språk og nærvær; restarbeid må bli igjen i den versjonerte loggen uten at kliniske opplysninger eller beslutningsbyrde flyttes til privatlivet. Historien skal gjøre dagens ekspertpremiss mer prøvbart, men kan ikke levere behandlingssvaret. I D12-evening oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "patients",
+        "standing_consequence": "D12-evening gjør den situerte kostnaden synlig for patients, som vurderer spesialisten etter at eget mål, samtykke og erfaring faktisk kan endre forløpet. Når restarbeid og privat grense føres sant, kan neste dag starte med riktig problem; hvis spesialisten absorberer alt selv, skjules systemkostnaden bak profesjonell utholdenhet. Historien skal gjøre dagens ekspertpremiss mer prøvbart, men kan ikke levere behandlingssvaret. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json#spesialistpsykolog_job_veiledning_uten_overtakelse_003"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Senere praksis viser at en yngre kollega lot være å melde uenighet fordi forrige spesialistkonklusjon ble oppfattet som lukket og organisatorisk ønsket. Morgenen krever at spilleren skiller Sanders ord, dokumentert evidens, kollegers observasjoner og egen spesialisttolkning; spesialitetsgrense, samtykke, risiko og manglende data merkes før loggen oppdateres. Den tause motstemmen vender tilbake som pasientsikkerhets- og læringskostnad, ikke bare som et relasjonsproblem. I D13-morning oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "quality_and_oversight",
+        "standing_consequence": "D13-morning gjør den situerte kostnaden synlig for quality_and_oversight, som vurderer spesialisten etter versjonert evidens, begrunnede avvik og dokumentert rework. Når kildene og hullene skilles før første handling, kan senere beslutninger etterprøves; skjules tolkningen som fakta, arver resten av dagen en autoritet evidensen aldri bar. Den tause motstemmen vender tilbake som pasientsikkerhets- og læringskostnad, ikke bare som et relasjonsproblem. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/job/spesialistpsykolog_job.json#spesialistpsykolog_job_metodepilot_004"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Senere praksis viser at en yngre kollega lot være å melde uenighet fordi forrige spesialistkonklusjon ble oppfattet som lukket og organisatorisk ønsket. I lunsjsamtalen må den mest berørte stemmen få korrigere premisset, mens faglig uenighet, emosjonelt arbeid og forskjellen mellom råd og beslutning bevares uten en høflig konsensusmaske. Den tause motstemmen vender tilbake som pasientsikkerhets- og læringskostnad, ikke bare som et relasjonsproblem. I D13-lunch oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "D13-lunch gjør den situerte kostnaden synlig for private_relations, som vurderer spesialisten etter nærvær uten uformell drøfting av kliniske opplysninger. Når korrigering og motstemme får stå i loggen, kan relasjonen forbedre neste vurdering; redigeres den bort, blir stillhet og lettelse feilaktig lest som faglig enighet. Den tause motstemmen vender tilbake som pasientsikkerhets- og læringskostnad, ikke bare som et relasjonsproblem. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json#spesialistpsykolog_people_sanders_prioritet_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Senere praksis viser at en yngre kollega lot være å melde uenighet fordi forrige spesialistkonklusjon ble oppfattet som lukket og organisatorisk ønsket. Ettermiddagsvalget må angi et avgrenset tiltak eller ventepunkt, navngitt eier, evalueringstid og gjenåpningskriterium, med eksplisitt eskalering når spørsmålet ligger utenfor egen spesialitet eller stilling. Den tause motstemmen vender tilbake som pasientsikkerhets- og læringskostnad, ikke bare som et relasjonsproblem. I D13-afternoon oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "patients",
+        "standing_consequence": "D13-afternoon gjør den situerte kostnaden synlig for patients, som vurderer spesialisten etter at eget mål, samtykke og erfaring faktisk kan endre forløpet. Når eier, rekkevidde, ventepunkt og stoppregel er eksplisitte, kan rådet brukes uten ansvarsglidning; ellers arver personen med minst status både risiko og forklaringsbyrde. Den tause motstemmen vender tilbake som pasientsikkerhets- og læringskostnad, ikke bare som et relasjonsproblem. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json#spesialistpsykolog_people_idas_begrunnelse_002"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Senere praksis viser at en yngre kollega lot være å melde uenighet fordi forrige spesialistkonklusjon ble oppfattet som lukket og organisatorisk ønsket. Kvelden viser hva ekspertpresset gjorde med tvil, språk og nærvær; restarbeid må bli igjen i den versjonerte loggen uten at kliniske opplysninger eller beslutningsbyrde flyttes til privatlivet. Den tause motstemmen vender tilbake som pasientsikkerhets- og læringskostnad, ikke bare som et relasjonsproblem. I D13-evening oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "supervised_psychologists",
+        "standing_consequence": "D13-evening gjør den situerte kostnaden synlig for supervised_psychologists, som vurderer spesialisten etter veiledning som styrker egen begrunnelse og dømmekraft. Når restarbeid og privat grense føres sant, kan neste dag starte med riktig problem; hvis spesialisten absorberer alt selv, skjules systemkostnaden bak profesjonell utholdenhet. Den tause motstemmen vender tilbake som pasientsikkerhets- og læringskostnad, ikke bare som et relasjonsproblem. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json#spesialistpsykolog_people_ravis_motforklaring_003"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Sluttgjennomgangen må skille Sanders mål og utfall fra metodepilotens prestisje, plassere gjenværende usikkerhet og navngi hvem som eier neste vurdering. Morgenen krever at spilleren skiller Sanders ord, dokumentert evidens, kollegers observasjoner og egen spesialisttolkning; spesialitetsgrense, samtykke, risiko og manglende data merkes før loggen oppdateres. Lukking må vise hva som er lært, hva som fortsatt er åpent og hvilken myndighet spesialiststatus aldri ga. I D14-morning oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "private_relations",
+        "standing_consequence": "D14-morning gjør den situerte kostnaden synlig for private_relations, som vurderer spesialisten etter nærvær uten uformell drøfting av kliniske opplysninger. Når kildene og hullene skilles før første handling, kan senere beslutninger etterprøves; skjules tolkningen som fakta, arver resten av dagen en autoritet evidensen aldri bar. Lukking må vise hva som er lært, hva som fortsatt er åpent og hvilken myndighet spesialiststatus aldri ga. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/people/spesialistpsykolog_people.json#spesialistpsykolog_people_noras_tidsfrist_004"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Sluttgjennomgangen må skille Sanders mål og utfall fra metodepilotens prestisje, plassere gjenværende usikkerhet og navngi hvem som eier neste vurdering. I lunsjsamtalen må den mest berørte stemmen få korrigere premisset, mens faglig uenighet, emosjonelt arbeid og forskjellen mellom råd og beslutning bevares uten en høflig konsensusmaske. Lukking må vise hva som er lært, hva som fortsatt er åpent og hvilken myndighet spesialiststatus aldri ga. I D14-lunch oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "patients",
+        "standing_consequence": "D14-lunch gjør den situerte kostnaden synlig for patients, som vurderer spesialisten etter at eget mål, samtykke og erfaring faktisk kan endre forløpet. Når korrigering og motstemme får stå i loggen, kan relasjonen forbedre neste vurdering; redigeres den bort, blir stillhet og lettelse feilaktig lest som faglig enighet. Lukking må vise hva som er lært, hva som fortsatt er åpent og hvilken myndighet spesialiststatus aldri ga. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/conflict/spesialistpsykolog_conflict.json#spesialistpsykolog_conflict_spesialitetsgrense_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Sluttgjennomgangen må skille Sanders mål og utfall fra metodepilotens prestisje, plassere gjenværende usikkerhet og navngi hvem som eier neste vurdering. Ettermiddagsvalget må angi et avgrenset tiltak eller ventepunkt, navngitt eier, evalueringstid og gjenåpningskriterium, med eksplisitt eskalering når spørsmålet ligger utenfor egen spesialitet eller stilling. Lukking må vise hva som er lært, hva som fortsatt er åpent og hvilken myndighet spesialiststatus aldri ga. I D14-afternoon oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "supervised_psychologists",
+        "standing_consequence": "D14-afternoon gjør den situerte kostnaden synlig for supervised_psychologists, som vurderer spesialisten etter veiledning som styrker egen begrunnelse og dømmekraft. Når eier, rekkevidde, ventepunkt og stoppregel er eksplisitte, kan rådet brukes uten ansvarsglidning; ellers arver personen med minst status både risiko og forklaringsbyrde. Lukking må vise hva som er lært, hva som fortsatt er åpent og hvilken myndighet spesialiststatus aldri ga. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/story/spesialistpsykolog_story.json#spesialistpsykolog_story_ekspertstatus_som_fasit_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Sluttgjennomgangen må skille Sanders mål og utfall fra metodepilotens prestisje, plassere gjenværende usikkerhet og navngi hvem som eier neste vurdering. Kvelden viser hva ekspertpresset gjorde med tvil, språk og nærvær; restarbeid må bli igjen i den versjonerte loggen uten at kliniske opplysninger eller beslutningsbyrde flyttes til privatlivet. Lukking må vise hva som er lært, hva som fortsatt er åpent og hvilken myndighet spesialiststatus aldri ga. I D14-evening oppdateres spesialistforløpets hypotese-, tiltaks- og veiledningslogg gjennom den kanoniske scenen, uten ny runtime. Spesialistgodkjenning gjelder faktisk fordypning og stilling; den blir aldri generell klinisk kompetanse, skjult ansvarsovertakelse eller automatisk status som faglig ansvarlig.",
+        "standing_audience": "peer_specialists",
+        "standing_consequence": "D14-evening gjør den situerte kostnaden synlig for peer_specialists, som vurderer spesialisten etter presise spesialitetsgrenser og reell plass for motforklaringer. Når restarbeid og privat grense føres sant, kan neste dag starte med riktig problem; hvis spesialisten absorberer alt selv, skjules systemkostnaden bak profesjonell utholdenhet. Lukking må vise hva som er lært, hva som fortsatt er åpent og hvilken myndighet spesialiststatus aldri ga. Håndteringen kan styrke standing her og samtidig svekke den hos et annet publikum som bærer en annen kostnad. Følgen summeres aldri globalt og gir ingen ny klinisk, juridisk, informasjons- eller beslutningsmyndighet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/psykologi/event/spesialistpsykolog_event.json#spesialistpsykolog_event_endret_risiko_001"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "sander_goal_and_effect",
+      "relationship": "Sanders mål og erfaring prøver om forløpsloggen faktisk kan endres av personen den gjelder, også når en ryddig klinisk fortelling peker en annen vei.",
+      "beat_refs": [
+        "1/lunch",
+        "2/morning",
+        "4/lunch",
+        "7/afternoon",
+        "10/morning",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "ida_guidance_and_responsibility",
+      "relationship": "Idas behov for støtte krysser statusforskjell, risiko og senere gjenfortelling av rådet uten at veiledning blir skjult beslutning.",
+      "beat_refs": [
+        "3/morning",
+        "3/afternoon",
+        "6/lunch",
+        "8/afternoon",
+        "11/morning",
+        "13/lunch"
+      ]
+    },
+    {
+      "id": "ravi_scope_and_dissent",
+      "relationship": "Ravis avgrensede motforklaring gjør spesialitetsgrensen, informasjonsbehovet og handoffen til et vedvarende ansvarsspørsmål.",
+      "beat_refs": [
+        "5/morning",
+        "5/afternoon",
+        "6/afternoon",
+        "8/morning",
+        "8/afternoon",
+        "13/afternoon"
+      ]
+    },
+    {
+      "id": "nora_standardization_and_power",
+      "relationship": "Noras legitime behov for framdrift og lik praksis kolliderer med klinisk variasjon, faglig motstemme og myndighetsgrenser.",
+      "beat_refs": [
+        "1/afternoon",
+        "4/afternoon",
+        "7/morning",
+        "9/morning",
+        "9/afternoon",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "hypothesis_waiting_and_rework",
+      "relationship": "Den konkurrerende hypotesen følger venting, endret risiko, delvis effekt og rework uten at tidligere evidens eller ansvar slettes.",
+      "beat_refs": [
+        "1/morning",
+        "5/lunch",
+        "6/morning",
+        "7/lunch",
+        "10/afternoon",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "history_status_and_learning",
+      "relationship": "Profesjonshistorien skjerper spørsmålet om ekspertstatus og institusjonsmakt før den tause motstemmen vender tilbake som dagens kvalitetsproblem.",
+      "beat_refs": [
+        "2/lunch",
+        "9/lunch",
+        "11/lunch",
+        "12/morning",
+        "12/afternoon",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "private_containment",
+      "relationship": "Ekspertpress, tvil og klinisk alvor får privat etterklang uten at nære relasjoner blir reservekolleger eller mottakere av pasientopplysninger.",
+      "beat_refs": [
+        "1/evening",
+        "3/evening",
+        "7/evening",
+        "10/evening",
+        "12/evening",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "private_aftermath_1",
+      "beat_refs": [
+        "1/evening",
+        "3/evening"
+      ],
+      "meaning": "Klinisk alvor, statuspress og tvil bæres uten pasientopplysninger, uformell konsultasjon eller døgnkontinuerlig ekspertberedskap i privatlivet."
+    },
+    {
+      "id": "private_aftermath_2",
+      "beat_refs": [
+        "4/evening",
+        "7/evening"
+      ],
+      "meaning": "Klinisk alvor, statuspress og tvil bæres uten pasientopplysninger, uformell konsultasjon eller døgnkontinuerlig ekspertberedskap i privatlivet."
+    },
+    {
+      "id": "private_aftermath_3",
+      "beat_refs": [
+        "8/evening",
+        "10/evening"
+      ],
+      "meaning": "Klinisk alvor, statuspress og tvil bæres uten pasientopplysninger, uformell konsultasjon eller døgnkontinuerlig ekspertberedskap i privatlivet."
+    },
+    {
+      "id": "private_aftermath_4",
+      "beat_refs": [
+        "11/evening",
+        "12/evening"
+      ],
+      "meaning": "Klinisk alvor, statuspress og tvil bæres uten pasientopplysninger, uformell konsultasjon eller døgnkontinuerlig ekspertberedskap i privatlivet."
+    },
+    {
+      "id": "private_aftermath_5",
+      "beat_refs": [
+        "13/evening",
+        "14/evening"
+      ],
+      "meaning": "Klinisk alvor, statuspress og tvil bæres uten pasientopplysninger, uformell konsultasjon eller døgnkontinuerlig ekspertberedskap i privatlivet."
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "premature_closure",
+      "setup_ref": "1/morning",
+      "return_ref": "13/morning",
+      "meaning": "premature_closure lar et tidlig dokumentert premiss vende tilbake som en senere, etterprøvbar følge for forløp, ansvar og situert standing."
+    },
+    {
+      "id": "patient_goal",
+      "setup_ref": "2/morning",
+      "return_ref": "10/morning",
+      "meaning": "patient_goal lar et tidlig dokumentert premiss vende tilbake som en senere, etterprøvbar følge for forløp, ansvar og situert standing."
+    },
+    {
+      "id": "guidance_as_decision",
+      "setup_ref": "3/afternoon",
+      "return_ref": "11/morning",
+      "meaning": "guidance_as_decision lar et tidlig dokumentert premiss vende tilbake som en senere, etterprøvbar følge for forløp, ansvar og situert standing."
+    },
+    {
+      "id": "method_adaptation",
+      "setup_ref": "4/afternoon",
+      "return_ref": "10/afternoon",
+      "meaning": "method_adaptation lar et tidlig dokumentert premiss vende tilbake som en senere, etterprøvbar følge for forløp, ansvar og situert standing."
+    },
+    {
+      "id": "specialty_dissent",
+      "setup_ref": "5/morning",
+      "return_ref": "13/afternoon",
+      "meaning": "specialty_dissent lar et tidlig dokumentert premiss vende tilbake som en senere, etterprøvbar følge for forløp, ansvar og situert standing."
+    },
+    {
+      "id": "waiting_risk",
+      "setup_ref": "6/morning",
+      "return_ref": "7/afternoon",
+      "meaning": "waiting_risk lar et tidlig dokumentert premiss vende tilbake som en senere, etterprøvbar følge for forløp, ansvar og situert standing."
+    },
+    {
+      "id": "handoff_scope",
+      "setup_ref": "8/morning",
+      "return_ref": "11/afternoon",
+      "meaning": "handoff_scope lar et tidlig dokumentert premiss vende tilbake som en senere, etterprøvbar følge for forløp, ansvar og situert standing."
+    },
+    {
+      "id": "pilot_status",
+      "setup_ref": "9/morning",
+      "return_ref": "14/afternoon",
+      "meaning": "pilot_status lar et tidlig dokumentert premiss vende tilbake som en senere, etterprøvbar følge for forløp, ansvar og situert standing."
+    }
+  ]
+}
