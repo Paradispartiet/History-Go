@@ -1,17 +1,21 @@
 # Fagverk-sted v2 – arbeidskort
 
-Status: aktivt legacy-migrerings- og produksjonsprogram
+Status: **legacy-migrering fullført; integrert sted-for-sted-produksjon aktiv**  
 Canonical siderolle: `docs/FAGVERK.md` og `docs/FAGVERK_NAVIGATION.md`  
 Audit: `scripts/audit-fagverk-place-pages.mjs`  
-Baseline: `reports/fagverk/fagverk-place-page-coverage-v2.json`
+Dekningsrapport: `reports/fagverk/fagverk-place-page-coverage-v2.json`
 
-Den ordinære stedsproduksjonen eies av `docs/PLACE_PRODUCTION_CHECKLIST.md`. Nye steder og steder som fullproduseres eller vesentlig revideres får Fagverk-siden i samme source review, Place-fil, PR og closeout; dette arbeidskortet er ikke en tillatelse til å utsette Fagverk til en senere batch. Separate batcher brukes til å lukke den eksisterende legacy-backloggen for steder som ikke samtidig er i ordinær stedsproduksjon.
+Den ordinære stedsproduksjonen eies av `docs/PLACE_PRODUCTION_CHECKLIST.md`. Nye steder og steder som fullproduseres eller vesentlig revideres får Fagverk-siden i samme source review, Place-fil, PR og closeout. Fagverk skal ikke skyves til en senere batch når stedet allerede er i ordinær produksjon.
 
-## Mål
+Den opprinnelige eksplisitte legacy-listen over allerede ferdigproduserte steder er **lukket 44/44** via PR #5606. Det finnes derfor ikke en separat post-produksjonsbacklog for disse 44 stedene. Dette dokumentet er nå en historisk migreringsreferanse og en presisering av den aktive integrerte produksjonsregelen, ikke en åpen legacy-kø.
 
-Alle canonicale steder skal ha en stedsspesifikk fagverkside. En fungerende rute eller en kategoribasert standardtekst er ikke tilstrekkelig ferdigbevis.
+## Mål og aktiv regel
+
+Alle canonicale steder skal over tid ha en stedsspesifikk fagverkside. En fungerende rute eller en kategoribasert standardtekst er ikke tilstrekkelig ferdigbevis.
 
 Stedssiden skal alltid bruke samme manifest-resolverte fagmodell som `fagverk.html`. Stedlig læringsinnhold eies av Place-kildens `fagverk`-blokk; registryet inneholder bare sourcefil, felt, schema, nivå og status. Siden skal aldri opprette egne emner, kapitler, begrepsdefinisjoner, progresjonsdata eller kategori-fallbacktekster.
+
+Når et sted ennå ikke er fullprodusert, kan coverage-auditen fortsatt klassifisere Fagverk-siden som `linked_unfinished` eller `category_only_unfinished`. Disse klassene beskriver **global canonical dekning**, ikke etterslep etter en allerede avsluttet stedsproduksjon. Stedet får Place-eid Fagverk v2 når det går gjennom den ordinære stedsproduksjonen.
 
 ## Produksjonsnivåer
 
@@ -36,24 +40,23 @@ Alle synlige handlingsflater skal være faktiske lenker:
 
 Ikke-klikkbare chips, kort som ser interaktive ut uten `href`, og lenker til `fagverk-forside.html?subject=…` er blocker.
 
-## Baseline 31. august 2026
+## Migreringshistorikk og coverage-semantikk
 
-Auditen måler 1 532 steder mot `data/places/regler/place_fagverk_v2.schema.json`:
+Den første repository-wide baselinen 31. august 2026 målte 1 532 canonicale steder og bare én kuratert referanseside. Deretter ble den eksplisitte listen over 44 steder som allerede var ferdigprodusert før den integrerte Fagverk-regelen migrert i egne legacy-batcher.
 
-- 1 ferdig kuratert referanseside: Regjeringskvartalet;
-- 595 uferdige sider med minst én løst, dokumentert emnekobling;
-- 936 uferdige sider med bare kategoriens operative canonicale faginngang;
-- 0 øvrige sider som kan regnes som ferdige bare fordi de har stedsbeskrivelse, URL eller emnebinding.
+PR #5606 lukket denne avgrensede migreringen som **44/44**. De siste fire var Lilleborg Fabrikker, Øvre Foss–Hjula Veveri, Akershus slottskirke og Det kongelige mausoleum.
 
-Tallene er baseline og produksjonskø, ikke ferdigpåstand. Rapporten skal regenereres ved hver batch.
+`reports/fagverk/fagverk-place-page-coverage-v2.json` eier alltid de ferske globale dekningstallene. Rapportens `linked_unfinished` og `category_only_unfinished` betyr at et canonical Place ennå ikke har Place-eid kuratert Fagverk v2. Tallene skal **ikke** omtales som antall Fagverk-sider som mangler etter fullført stedsproduksjon, og skal **ikke** brukes som en ny legacy-backlog.
 
-## Batchregel
+Historiske nullmålinger som `existing_fagverk` i et workcard beskriver tilstanden før den aktuelle produksjonen. De er evidens og skal ikke leses som current status etter at canonical Place og registry er kuratert.
+
+## Aktiv produksjonsregel
 
 1. Ta aldri et sted ut av en aktiv ordinær stedsproduksjon for å behandle Fagverk senere; følg den integrerte gaten i `docs/PLACE_PRODUCTION_CHECKLIST.md`.
-2. Prioriter ellers fulle legacy-steder før fokuserte steder, og fokuserte steder før mikrosteder med samme faglige betydning.
-3. Produser ett faglig sammenhengende legacy-stedskull per PR.
-4. Kurer emnebindinger og linser mot canonical fagpakke; ikke kopier emneinnhold inn i Place.
-5. Kjør coverage-audit, lenketest og reell browserklikk-QA.
-6. Merge først etter grønn full CI og låst head-SHA.
+2. Lås Fagverk-nivå og læringsjobb i samme preflight som resten av stedet.
+3. Kurer emnebindinger og linser mot canonical fagpakke; ikke kopier emneinnhold inn i Place.
+4. Materialiser Place-eid `history_go_place_fagverk_v2` og den smale registry-indeksen i samme produksjon.
+5. Kjør coverage-audit, lenketest og reell browserklikk-QA før closeout.
+6. Merge først etter grønne relevante CI-porter og låst head-SHA.
 
-Programmet er ferdig når `in_production` og `missing` er null, alle nivåer består sin substansport, og hoved- og browserportene er grønne på `main`.
+Den separate 44-steders legacy-migreringen er ferdig. Videre økning i global Fagverk-dekning skjer gjennom ordinær stedsproduksjon eller gjennom en ny, eksplisitt avgrenset migrering som dokumenterer sitt eget scope; globale unfinished-tall alene oppretter ikke en slik backlog.
