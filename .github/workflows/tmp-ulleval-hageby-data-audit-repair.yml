@@ -17,6 +17,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
+      - name: Replay on fresh main
+        run: |
+          git config user.name "Paradispartiet"
+          git config user.email "paradispartiet@gmail.com"
+          git fetch origin main
+          git merge --no-edit origin/main
       - name: Repair quiz source brief
         run: |
           node - <<'NODE'
@@ -47,8 +53,6 @@ jobs:
           git diff --check
       - name: Publish repaired candidate
         run: |
-          git config user.name "Paradispartiet"
-          git config user.email "paradispartiet@gmail.com"
           git add -A
           git commit -m "Repair Ullevål Hageby data audit state"
           git push origin HEAD:work/ulleval-hageby-completion-20260902
