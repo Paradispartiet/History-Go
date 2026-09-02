@@ -1,0 +1,298 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_dramaturgi_og_utvikling",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "dramaturgi_kunstneriske_relasjoner",
+      "purpose": "Tren faglig uenighet og reparasjon med tydelig forfatter-, regi-, research- og produksjonsmandat.",
+      "learning_focus": [
+        "analytisk_presisjon",
+        "kilde_og_versjonsspor",
+        "kunstnerisk_dialog",
+        "authority_and_rights_boundary",
+        "waiting_handoff_rework"
+      ],
+      "mails": [
+        {
+          "id": "dramaturgi_people_liv_respons_001",
+          "mail_type": "people",
+          "mail_family": "dramaturgi_kunstneriske_relasjoner",
+          "role_scope": "scenekunst_dramaturgi_og_utvikling",
+          "phase": "forenoon",
+          "day_phase": "morning",
+          "priority": 145,
+          "from": "Liv",
+          "people_ref": "liv_dramatiker",
+          "person_id": "liv_dramatiker",
+          "place_id": "tekstlaboratorium_og_versjonsbord",
+          "subject": "Liv leser strukturkartet som en dom over teksten",
+          "summary": "Liv reagerer på at et tidligere notat rangerte scenene som svake og sterke uten å beskrive hvilken funksjon vurderingen gjaldt. Relasjonen trenger en reparasjon som er faglig, ikke smigrende: dramaturgen må eie det upresise språket, vende tilbake til tekstens uttalte mål og tilby konkurrerende lesninger som Liv kan svare på som forfatter.",
+          "situation": [
+            "Det gamle notatet bruker vurderingsord uten å vise observasjon eller konsekvens.",
+            "Liv har stoppet omskrivingen fordi hun opplever at dramaturgen allerede har valgt løsning.",
+            "En ny respons må bevare reell uenighet og samtidig gjenopprette forfatterens beslutningsrom."
+          ],
+          "task_domain": "dramaturgi_og_scenisk_utvikling",
+          "competency": "dialogkvalitet_og_forfatterrelasjon",
+          "pressure": "faglig_motstand_vs_relativiserende_forsoning",
+          "choice_axis": "ansvarlig_presisering_vs_falsk_enighet",
+          "consequence_axis": "arbeidsallianse_med_uenighet_vs_taus_mandatkamp",
+          "narrative_arc": "liv_respons",
+          "situated_audience_id": "dramatiker_og_rettighetshaver",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Eie upresisjonen og åpne to funksjonslesninger",
+              "reply": "Jeg sier at rangeringen var ubegrunnet, viser hvilke konkrete overganger jeg observerte, knytter dem til Livs uttalte mål og legger frem to mulige funksjoner uten å velge teksten på hennes vegne.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "kunstnerisk_dialog",
+                "mandat"
+              ],
+              "feedback": "Liv får grunn til å stole på at kritikken kan etterprøves selv når hun er uenig. Relasjonen blir ikke reparert ved å fjerne faglig motstand, men ved at språk, mål og mandat blir tydelige nok til at forfatteren kan velge en ny versjon eller avvise hypotesen begrunnet.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Trekk hele analysen for å roe samarbeidet",
+              "reply": "Jeg sier at notatet bare var en personlig reaksjon og at alle scenene egentlig fungerer, slik at Liv kan gå videre uten å oppleve dramaturgisk press eller flere strukturelle innvendinger.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Konflikten dempes kort, men Liv mister både den nyttige observasjonen og muligheten til å forstå hva som faktisk gikk galt i kommunikasjonen. Dramaturgen blir enten taus eller uforutsigbar, og samme strukturproblem kommer tilbake senere uten et språk teamet deler.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "dramaturgi_people_samir_uenighet_002",
+          "mail_type": "people",
+          "mail_family": "dramaturgi_kunstneriske_relasjoner",
+          "role_scope": "scenekunst_dramaturgi_og_utvikling",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 144,
+          "from": "Samir",
+          "people_ref": "samir_regissor",
+          "person_id": "samir_regissor",
+          "place_id": "provesal_og_observasjonsplass",
+          "subject": "Samir ber dramaturgen avgjøre striden med forfatteren",
+          "summary": "Samir og Liv leser korpartiets funksjon motsatt: han ser en scenisk motor, hun ser at figurens ansvar blir fordelt bort. Samir ber dramaturgen si hvem som har rett før kveldens prøve. Rollen skal gjøre alternativenes virkning, tekstlige premiss og rettighetsgrense tydelig, men beslutningen kan ikke kamufleres som nøytral analyse.",
+          "situation": [
+            "Begge lesninger har støtte i ulike deler av materialet og gir ulike publikumsposisjoner.",
+            "Prøvetiden er knapp, men en avgrenset A/B-test er fortsatt mulig.",
+            "Samir eier prøveprioriteringen; Liv eier tekstendringen innen avtalen."
+          ],
+          "task_domain": "dramaturgi_og_scenisk_utvikling",
+          "competency": "kunstnerisk_sparring_og_mandat",
+          "pressure": "uenighet_og_tid_vs_rollegrense",
+          "choice_axis": "konsekvenskart_og_test_vs_dommerrolle",
+          "consequence_axis": "kunstnerisk_beslutning_med_grunnlag_vs_skjult_makt",
+          "narrative_arc": "samir_uenighet",
+          "situated_audience_id": "regissor_og_ensemble",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Kartlegg to virkninger og foreslå en avgrenset A/B-prøve",
+              "reply": "Jeg viser hvordan koret henholdsvis driver handlingen og flytter ansvar, peker på hvilke tekststeder hver lesning bygger på, og foreslår to korte prøver før Samir og Liv tar sine respektive beslutninger.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "kunstnerisk_dialog",
+                "mandat"
+              ],
+              "feedback": "Uenigheten blir produktiv fordi den kan ses i rommet uten at dramaturgen later som ett faglig språk opphever mandatfordelingen. Samir kan prioritere prøven, Liv kan vurdere tekstens konsekvens, og arbeidsboken beholder hvorfor det endelige valget ble tatt.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Erklær regissørens lesning som dramaturgisk riktig",
+              "reply": "Jeg konkluderer med at koret objektivt er forestillingens motor og anbefaler at Samir prøver denne løsningen som gjeldende, mens Livs innvending registreres som en forfatterpreferanse.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Prøven sparer tid, men dramaturgisk autoritet brukes til å omdefinere en reell kunstnerisk og opphavsrettslig uenighet. Livs premiss blir redusert uten beslutning, og senere konflikt vil handle om skjult makt i stedet for om verkets virkning.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "dramaturgi_people_ingrid_motfunn_003",
+          "mail_type": "people",
+          "mail_family": "dramaturgi_kunstneriske_relasjoner",
+          "role_scope": "scenekunst_dramaturgi_og_utvikling",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 143,
+          "from": "Ingrid",
+          "people_ref": "ingrid_researchansvarlig",
+          "person_id": "ingrid_researchansvarlig",
+          "place_id": "research_og_kildeverksted",
+          "subject": "Ingrids nye funn motsier arbeidsbokens historiske premiss",
+          "summary": "Ingrid finner en samtidstekst som gjør den etablerte historiske forklaringen mindre sikker. Funnet fjerner ikke nødvendigvis forestillingens kunstneriske idé, men krever at påstand, fortellerposisjon og programtekst vurderes på nytt. Dramaturgen må gjøre korreksjonen mulig uten å straffe researchen for å komme sent eller skjule usikkerheten av lojalitet til prosessen.",
+          "situation": [
+            "Den nye kilden er identifisert og relevant, men må leses sammen med tidligere materiale.",
+            "En monolog og et programutkast bruker den gamle forklaringen uten forbehold.",
+            "Ingrid trenger trygghet for at et motfunn blir registrert selv om det skaper rework."
+          ],
+          "task_domain": "dramaturgi_og_scenisk_utvikling",
+          "competency": "kildebevisst_kunstnerisk_revisjon",
+          "pressure": "investert_kunstnerisk_ide_vs_nytt_evidensgrunnlag",
+          "choice_axis": "synlig_motfunn_og_avgrenset_rework_vs_kildelojalitet_til_gammel_ide",
+          "consequence_axis": "troverdig_prosess_vs_bekreftelsesbias",
+          "narrative_arc": "ingrid_motfunn",
+          "situated_audience_id": "research_og_formidling",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrer motfunnet og gjenåpne de berørte påstandene",
+              "reply": "Jeg legger kilden inn med kontekst og usikkerhet, peker ut monologen og programlinjen den berører, og ber Ingrid formulere hva funnet faktisk kan og ikke kan motsi før teamet velger kunstnerisk respons.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "kunstnerisk_dialog",
+                "mandat"
+              ],
+              "feedback": "Researchen kan korrigere prosessen uten å diktere forestillingens mening. Rework blir avgrenset til de stedene som låner faktapåstand fra det gamle premisset, og Ingrid ser at presis motstand styrker arbeidsboken i stedet for å bli behandlet som forsinkelse.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Arkiver funnet som interessant bakgrunn uten produksjonsvirkning",
+              "reply": "Jeg legger kilden i bakgrunnsmappen, men lar monolog og programtekst stå fordi prøvene allerede har investert i den første forklaringen og et sent funn ikke bør velte helheten.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Den kunstneriske linjen bevares, men arbeidsboken skjuler at teamet kjenner til evidens som svekker den offentlige påstanden. Ingrid lærer at uønskede funn ikke påvirker beslutningen, og senere kritikk kan ikke møtes med et ærlig kildespor.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "dramaturgi_people_maja_rework_004",
+          "mail_type": "people",
+          "mail_family": "dramaturgi_kunstneriske_relasjoner",
+          "role_scope": "scenekunst_dramaturgi_og_utvikling",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 142,
+          "from": "Maja",
+          "people_ref": "maja_produksjonsleder",
+          "person_id": "maja_produksjonsleder",
+          "place_id": "produksjonsmote_og_beslutningsrom",
+          "subject": "Maja trenger rework som kan planlegges, ikke et generelt ønske",
+          "summary": "Et dramaturgisk notat sier at andre akt må tenkes på nytt, men Maja kan ikke se hvilke sider, prøver, fag eller frister dette gjelder. Hun ber om et planbart handoff. Dramaturgen må avgrense hva som gjenåpnes og hvilket kunstnerisk svar som trengs, samtidig som Maja ikke gjøres ansvarlig for å avgjøre selve verksspørsmålet.",
+          "situation": [
+            "Notatet peker på et reelt forløpsproblem, men bruker ingen versjons- eller scenereferanser.",
+            "Lyd og kostyme arbeider allerede på elementer fra andre akt.",
+            "Samir og Liv må eie det kunstneriske svaret; Maja må eie konsekvensplanen."
+          ],
+          "task_domain": "dramaturgi_og_scenisk_utvikling",
+          "competency": "avgrenset_rework_og_produksjonsdialog",
+          "pressure": "helhetlig_kunstnerisk_problem_vs_konkret_planbehov",
+          "choice_axis": "berort_scope_og_delt_eierskap_vs_vag_totalomstart",
+          "consequence_axis": "styrbar_revisjon_vs_produksjonsmessig_kaos",
+          "narrative_arc": "maja_rework",
+          "situated_audience_id": "produksjon_og_institusjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avgrens scener, avhengigheter og to separate eiere",
+              "reply": "Jeg peker ut scene 7 og 8 i versjon 06, beskriver hvilket forløpsspørsmål Liv og Samir må avklare, og gir Maja listen over lyd-, kostyme- og prøveavhengigheter hun kan replanlegge når svaret foreligger.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "kunstnerisk_dialog",
+                "mandat"
+              ],
+              "feedback": "Det kunstneriske problemet reduseres ikke til produksjonslogistikk, men rework får en kant teamet kan handle på. Maja ser hva som venter, fagene ser hva som fortsatt er gyldig, og Liv og Samir beholder ansvaret for verkets nye løsning.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Be produksjonen holde hele andre akt åpen",
+              "reply": "Jeg ber Maja stoppe alle leveranser knyttet til andre akt til den dramaturgiske helheten er løst, uten å angi scener eller beslutningspunkt fordi en for tidlig avgrensning kan binde kunsten.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Dramaturgen beskytter sin analyse mot forenkling, men flytter kostnad og usikkerhet til alle andre fag. Maja tvinges til å tolke kunstnerisk scope, unødvendig arbeid stopper, og teamet mister skillet mellom reell risiko og generell uro.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

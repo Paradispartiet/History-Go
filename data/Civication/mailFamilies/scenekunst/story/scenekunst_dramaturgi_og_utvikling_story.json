@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_dramaturgi_og_utvikling",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "dramaturgi_tekst_kilde_og_ansvar",
+      "purpose": "Vis hvordan en tidlig hypotese kan endre offentlig formidling og kreve sporbar korreksjon.",
+      "learning_focus": [
+        "analytisk_presisjon",
+        "kilde_og_versjonsspor",
+        "kunstnerisk_dialog",
+        "authority_and_rights_boundary",
+        "waiting_handoff_rework"
+      ],
+      "mails": [
+        {
+          "id": "dramaturgi_story_programtekst_001",
+          "mail_type": "story",
+          "mail_family": "dramaturgi_tekst_kilde_og_ansvar",
+          "role_scope": "scenekunst_dramaturgi_og_utvikling",
+          "phase": "forenoon",
+          "day_phase": "morning",
+          "priority": 145,
+          "from": "Ingrid",
+          "people_ref": "ingrid_researchansvarlig",
+          "person_id": "ingrid_researchansvarlig",
+          "place_id": "research_og_kildeverksted",
+          "subject": "Programteksten gjør en omstridt forklaring til dokumentert historie",
+          "summary": "Kommunikasjon har hentet en formulering fra en tidlig dramaturgisk hypotese og skrevet at forestillingen avslører den egentlige årsaken til en historisk konflikt. Ingrid varsler at kildene ikke støtter sikkerheten. Historien krever en korreksjon som bevarer forestillingens spørsmål, viser hvordan feilen oppstod og stanser videre spredning uten å late som kommunikasjon alene skapte problemet.",
+          "situation": [
+            "Hypotesen var tydelig merket i arbeidsboken, men handoff til programtekst manglet kildegrense.",
+            "Teksten er ennå ikke trykket, men er delt med presse og samarbeidspartnere.",
+            "Liv og Samir må godkjenne ny kunstnerisk formulering; Ingrid må kontrollere faktagrensen."
+          ],
+          "task_domain": "dramaturgi_og_scenisk_utvikling",
+          "competency": "offentlig_formidling_og_kildeansvar",
+          "pressure": "tydelig_markedsfortelling_vs_dokumentert_usikkerhet",
+          "choice_axis": "korriger_og_vis_opphav_vs_forsvar_med_kunstnerisk_frihet",
+          "consequence_axis": "troverdig_offentlig_sporsmal_vs_villedende_autoritet",
+          "narrative_arc": "programtekst",
+          "situated_audience_id": "research_og_formidling",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stans teksten, spor overgangen og foreslå presis usikkerhet",
+              "reply": "Jeg stopper videre distribusjon, viser hvor hypotesen mistet merkingen, ber Ingrid avgrense hva kildene støtter og sender Liv og Samir et forslag som beholder forestillingens spørsmål uten å hevde endelig historisk årsak.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "kunstnerisk_dialog",
+                "mandat"
+              ],
+              "feedback": "Korreksjonen tar ansvar for hele overleveringskjeden og gjør ikke kommunikasjon til syndebukk. Forestillingen kan fortsatt være tydelig, men tydeligheten ligger i hvilket spørsmål den undersøker; presse og publikum mottar ikke dramaturgisk spekulasjon forkledd som dokumentert funn.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Forsvar formuleringen som kunstnerisk tolkning",
+              "reply": "Jeg lar programteksten stå og forklarer til Ingrid at publikum forstår at en forestilling tolker fritt, slik at vi ikke svekker kommunikasjonen med forbehold som gjør premieren mindre tydelig.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Markedsføringen beholder kraft, men eksplisitt faktaspråk kan ikke reddes av en uuttrykt forventning om kunstnerisk frihet. Når kildespørsmålet kommer, fremstår teamet som om det kjente usikkerheten og valgte å skjule den for å beskytte fortellingen.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

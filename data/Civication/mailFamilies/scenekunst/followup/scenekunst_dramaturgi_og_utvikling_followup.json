@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_dramaturgi_og_utvikling",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "dramaturgi_rework_etter_prove",
+      "purpose": "Følg en dramaturgisk hypotese tilbake til ny prøve og revider den når funnet ikke holder.",
+      "learning_focus": [
+        "analytisk_presisjon",
+        "kilde_og_versjonsspor",
+        "kunstnerisk_dialog",
+        "authority_and_rights_boundary",
+        "waiting_handoff_rework"
+      ],
+      "mails": [
+        {
+          "id": "dramaturgi_followup_hypotese_som_ikke_holdt_001",
+          "mail_type": "followup",
+          "mail_family": "dramaturgi_rework_etter_prove",
+          "role_scope": "scenekunst_dramaturgi_og_utvikling",
+          "phase": "forenoon",
+          "day_phase": "morning",
+          "priority": 145,
+          "from": "Samir",
+          "people_ref": "samir_regissor",
+          "person_id": "samir_regissor",
+          "place_id": "provesal_og_observasjonsplass",
+          "subject": "Den lovende pausehypotesen holdt ikke i ny prøve",
+          "summary": "Neste prøve gjentar pausen under kontrollerte forhold, men den tidlige vendingen oppstår ikke. Oppfølgingen tester om dramaturgen bruker arbeidsboken som læringsspor eller som forsvar for sin første analyse. Hypotesen må nedgraderes, alternative forklaringer åpnes og tidligere notat beholdes, uten å gjøre én negativ prøve til bevis for at romlig handling aldri kan virke.",
+          "situation": [
+            "Den planlagte variasjonen ble gjennomført, og observasjonen kan sammenlignes med forrige prøve.",
+            "Andre forhold som publikumsvinkel og skuespillerens blikk var ikke identiske.",
+            "Samir trenger forslag til hva som er verdt å teste én gang til før sporet lukkes."
+          ],
+          "task_domain": "dramaturgi_og_scenisk_utvikling",
+          "competency": "oppfolging_og_epistemisk_rework",
+          "pressure": "faglig_prestisje_vs_korrigerbar_hypotese",
+          "choice_axis": "nedgrader_og_design_ny_test_vs_bortforklar_resultat",
+          "consequence_axis": "tillit_til_larende_analyse_vs_skjult_bekreftelsesbias",
+          "narrative_arc": "hypotese_som_ikke_holdt",
+          "situated_audience_id": "regissor_og_ensemble",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Nedgrader hypotesen og isoler én alternativ variabel",
+              "reply": "Jeg registrerer at pausen alene ikke gjenskapte virkningen, beholder første observasjon som historikk og foreslår én ny prøve som varierer blikkretningen før Samir avgjør om sporet skal lukkes.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "kunstnerisk_dialog",
+                "mandat"
+              ],
+              "feedback": "Arbeidsboken viser at dramaturgisk kunnskap kan endres uten å omskrive fortiden. Samir får en begrenset kostnad og et tydelig stoppunkt, mens ensemblet ser at et mislykket forsøk gir informasjon og ikke blir behandlet som personlig nederlag.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Forklar bort prøven som manglende konsentrasjon",
+              "reply": "Jeg beholder pausehypotesen som gyldig og noterer at ensemblet ikke gjennomførte intensjonen presist nok, slik at vi kan gå videre uten å bruke mer tid på å revidere analysen.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Dramaturgens første idé beskyttes, men observasjonen brukes asymmetrisk: suksess teller som bevis, mens motfunn legges på ensemblet. Tilliten svekkes, og senere beslutninger bygger på en arbeidsbok som ikke lenger kan korrigere sine egne premisser.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

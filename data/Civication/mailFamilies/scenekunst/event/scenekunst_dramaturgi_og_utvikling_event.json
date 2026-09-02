@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_dramaturgi_og_utvikling",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "dramaturgi_endret_premiss",
+      "purpose": "La et eksternt rettighetsavslag gjenåpne bare de berørte delene av prosessen.",
+      "learning_focus": [
+        "analytisk_presisjon",
+        "kilde_og_versjonsspor",
+        "kunstnerisk_dialog",
+        "authority_and_rights_boundary",
+        "waiting_handoff_rework"
+      ],
+      "mails": [
+        {
+          "id": "dramaturgi_event_rettighetsavslag_001",
+          "mail_type": "event",
+          "mail_family": "dramaturgi_endret_premiss",
+          "role_scope": "scenekunst_dramaturgi_og_utvikling",
+          "phase": "forenoon",
+          "day_phase": "morning",
+          "priority": 145,
+          "from": "Ingrid",
+          "people_ref": "ingrid_researchansvarlig",
+          "person_id": "ingrid_researchansvarlig",
+          "place_id": "research_og_kildeverksted",
+          "subject": "Arkivet avslår bruk av lydopptaket i forestillingen",
+          "summary": "Rettighetsavklaringen kommer tilbake med et tydelig avslag på bruk av et historisk lydopptak som hittil har båret overgangen mellom scene fire og fem. Hendelsen endrer ikke alle deler av forestillingen, men den gjenåpner kildebruk, lydgrep, timing og programomtale. Dramaturgen må versjonere rework uten å omskrive avslaget til et kunstnerisk råd.",
+          "situation": [
+            "Avslaget gjelder selve lydfilen; et kildeavgrenset referat kan vurderes separat.",
+            "Lydteamet har bygget timing rundt opptakets lengde og stemmekvalitet.",
+            "Liv og Samir må utvikle nytt grep, mens Ingrid og Maja eier ulike avklaringer."
+          ],
+          "task_domain": "dramaturgi_og_scenisk_utvikling",
+          "competency": "hendelsesdrevet_rework_og_rettighetsbevissthet",
+          "pressure": "tapt_kunstnerisk_element_vs_presis_revisjon",
+          "choice_axis": "berort_rework_med_eiere_vs_uautorisert_erstatningsbruk",
+          "consequence_axis": "lovlig_ny_form_vs_rettighets_og_tillitsbrudd",
+          "narrative_arc": "rettighetsavslag",
+          "situated_audience_id": "research_og_formidling",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjenåpne overgangen og fordel fire avgrensede oppgaver",
+              "reply": "Jeg registrerer avslaget ordrett, sperrer lydfilen, markerer sceneovergangen og programlinjen som berørt, og fordeler kunstnerisk nytest, kildeformulering, lydkonsekvens og tidsplan til riktige eiere.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "kunstnerisk_dialog",
+                "mandat"
+              ],
+              "feedback": "Arbeidsboken viser at en ekstern beslutning utløste rework uten å late som hele verket falt sammen. Teamet kan skape et nytt grep innen avklarte rettigheter, og tidligere arbeid forblir forståelig som del av prosessen selv om det ikke kan publiseres.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Bruk et kortere utdrag som om avslaget ikke omfatter det",
+              "reply": "Jeg foreslår at lydteamet beholder noen få sekunder og at programteksten unngår å nevne kilden, fordi et så kort kunstnerisk sitat neppe vil utløse den samme rettighetsinnvendingen.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Overgangen kan bevares, men dramaturgen gjør juridisk gjetning til produksjonsbeslutning og skjuler bruken. Et senere krav rammer både tillit og premiereplan, og arbeidsboken dokumenterer en bevisst omgåelse i stedet for et redelig kunstnerisk svar.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
