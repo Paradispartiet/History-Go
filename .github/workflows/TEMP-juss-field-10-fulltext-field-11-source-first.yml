@@ -36,12 +36,37 @@ jobs:
           cp scripts/TEMP-test-juss-field11.mjs tests/juss-rettsvitenskap-labour-company-business-tax-market-law-source-brief-v1.test.mjs
           cp scripts/TEMP-next-juss-reconciliation-v1.mjs scripts/audit-juss-rettsvitenskap-reconciliation-v1.mjs
           cp scripts/TEMP-next-juss-reconciliation-v1.test.mjs tests/juss-rettsvitenskap-reconciliation-v1.test.mjs
-      - name: Focused and cumulative Juss tests
+      - name: Focused gates
         run: |
           node scripts/audit-juss-rettsvitenskap-family-child-inheritance-person-law-fulltext-v1.mjs
           node scripts/brief-juss-rettsvitenskap-labour-company-business-tax-market-law-sources-v1.mjs
           node scripts/audit-juss-rettsvitenskap-reconciliation-v1.mjs
-          node --test tests/juss-rettsvitenskap-*.test.mjs
+      - name: Cumulative Juss tests with deterministic diagnostics
+        run: |
+          report="reports/TEMP-juss-cumulative-failures.txt"
+          : > "$report"
+          failed=0
+          count=0
+          for f in tests/juss-rettsvitenskap-*.test.mjs; do
+            count=$((count + 1))
+            echo "=== $f ===" | tee -a "$report"
+            if node --test "$f" >> "$report" 2>&1; then
+              echo "PASS $f" | tee -a "$report"
+            else
+              echo "FAIL $f" | tee -a "$report"
+              failed=1
+            fi
+          done
+          echo "TOTAL $count" | tee -a "$report"
+          cat "$report"
+          exit "$failed"
+      - name: Upload cumulative failure diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: TEMP-juss-cumulative-failures
+          path: reports/TEMP-juss-cumulative-failures.txt
+          if-no-files-found: error
       - name: Remove TEMP surfaces
         run: |
           rm -f .github/workflows/TEMP-juss-field-10-fulltext-field-11-source-first.yml
@@ -53,6 +78,7 @@ jobs:
           rm -f scripts/TEMP-finalize-juss-field10-field11.mjs
           rm -f scripts/TEMP-next-juss-reconciliation-v1.mjs
           rm -f scripts/TEMP-next-juss-reconciliation-v1.test.mjs
+          rm -f reports/TEMP-juss-cumulative-failures.txt
           if git ls-files | grep -E '(^|/)TEMP-(juss|materialize-juss-field10|audit-juss-field10|test-juss-field10|source-juss-field11|test-juss-field11|finalize-juss-field10-field11|next-juss-reconciliation)' ; then
             echo 'TEMP-flater gjenstår' >&2
             exit 1
