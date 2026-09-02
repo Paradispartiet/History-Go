@@ -198,7 +198,7 @@ test('pilotsettet dekker fire schemafamilier uten å gjøre Teknologi til toppfa
   assert.equal(new Set([...pilots.map((x) => x.schemaFamily), t.schemaFamily]).size, 4);
 });
 
-test('19+1-utvidelsen låser sju eksplisitte canonicale underkategorier', () => {
+test('19+1-utvidelsen låser åtte eksplisitte canonicale underkategorier', () => {
   const c = readJson('data/categories/category_contract.json');
   const rows = Object.entries(c.canonicalSubcategories).flatMap(([owner, items]) =>
     items.map((item) => `${owner}/${item.id}`)
@@ -210,7 +210,8 @@ test('19+1-utvidelsen låser sju eksplisitte canonicale underkategorier', () => 
     'politikk/sosiologi_antropologi',
     'helse/medisin_helsevitenskap',
     'utdanning/pedagogikk_utdanningsvitenskap',
-    'vitenskap/fysikk'
+    'vitenskap/fysikk',
+    'vitenskap/kjemi'
   ]);
   assert.equal(c.labels.litteratur, 'Språk & litteratur');
 });
