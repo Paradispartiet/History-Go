@@ -1,0 +1,39 @@
+name: Temporary Aker Brygge year correction
+
+on:
+  push:
+    branches:
+      - work/aker-brygge-fagverk-v2-20260902
+
+permissions:
+  contents: write
+
+jobs:
+  correct:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/aker-brygge-fagverk-v2-20260902
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Correct canonical year and rebuild generated payload
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const file = 'data/places/by/oslo/places/aker_brygge.json';
+          const place = JSON.parse(fs.readFileSync(file, 'utf8'));
+          place.year = 1986;
+          fs.writeFileSync(file, `${JSON.stringify(place, null, 2)}\n`);
+          NODE
+          node scripts/build-place-open-payloads.mjs
+          rm .github/workflows/tmp-aker-brygge-year-1986.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/by/oslo/places/aker_brygge.json data/runtime/place-open/aker_brygge.json .github/workflows/tmp-aker-brygge-year-1986.yml
+          if ! git diff --cached --quiet; then
+            git commit -m "Correct Aker Brygge year to 1986"
+            git push origin HEAD:work/aker-brygge-fagverk-v2-20260902
+          fi
