@@ -1,4 +1,4 @@
-name: Tigeren description scope diagnose once
+name: Tigeren description scope repair once
 
 on:
   push:
@@ -8,22 +8,23 @@ on:
       - .github/workflows/tigeren-description-scope-repair-once.yml
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  diagnose-scope:
+  repair-scope:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: true
 
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: npm
 
-      - name: Prepare repaired workspace
+      - name: Prepare repaired branch state
         shell: bash
         run: |
           set -euo pipefail
@@ -47,35 +48,17 @@ jobs:
           git diff --cached --check
           git commit -m "fix(scope): keep Tigeren descriptions in v4.2 lane"
 
-      - name: Diagnose Description v4.2 gate
-        id: description
-        continue-on-error: true
+      - name: Validate Description v4.2 gate
         run: node scripts/validate-place-description-production-v4_2.mjs --changed --base origin/main --head HEAD
 
-      - name: Diagnose place-open check
-        id: placeopen
-        continue-on-error: true
+      - name: Validate place-open
         run: npm run place-open:check
 
-      - name: Diagnose Fagverk audit
-        id: audit
-        continue-on-error: true
+      - name: Validate Fagverk audit
         run: node scripts/audit-fagverk-place-pages.mjs
 
-      - name: Diagnose Fagverk tests
-        id: tests
-        continue-on-error: true
+      - name: Validate Fagverk tests
         run: node --test tests/fagverk-place-pages.test.mjs tests/fagverk-place-rendering.test.mjs tests/fagverk-place-substance-audit.test.mjs
 
-      - name: Report diagnostic result
-        shell: bash
-        env:
-          DESCRIPTION: ${{ steps.description.outcome }}
-          PLACEOPEN: ${{ steps.placeopen.outcome }}
-          AUDIT: ${{ steps.audit.outcome }}
-          TESTS: ${{ steps.tests.outcome }}
-        run: |
-          echo "description=$DESCRIPTION"
-          echo "placeopen=$PLACEOPEN"
-          echo "audit=$AUDIT"
-          echo "tests=$TESTS"
+      - name: Push repaired branch
+        run: git push origin HEAD:work/tigeren-fagverk-v2-20260902
