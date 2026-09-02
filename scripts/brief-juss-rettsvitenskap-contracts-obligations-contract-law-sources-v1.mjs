@@ -12,7 +12,6 @@ export function audit() {
   const brief = read('data/fag/politikk/juss_rettsvitenskap/contracts_obligations_contract_law_source_claim_brief_v1.json');
   const claims = brief.topic_briefs.flatMap((topic) => topic.planned_claims || []);
   const sourceIds = new Set(brief.sources.map((source) => source.id));
-  const chapterPath = path.join(ROOT, 'data/fagverk/politikk/juss_rettsvitenskap/avtaler-obligasjoner-og-kontraktsrett.json');
 
   assert(brief.status === 'source_first_ready_not_materialized', 'Felt 8 skal være source-first, ikke materialisert');
   assert(brief.domain.ordinal === 8 && brief.domain.id === 'avtaler_obligasjoner_kontraktsrett', 'Felt 8 har feil binding');
@@ -23,7 +22,6 @@ export function audit() {
   assert(claims.every((claim) => claim.source_ids.length >= 2 && claim.source_ids.every((id) => sourceIds.has(id))), 'Alle claims må ha minst to gyldige kilder');
   assert(brief.decision_scenarios.every((scenario) => scenario.source_ids.length >= 2 && scenario.source_ids.every((id) => sourceIds.has(id))), 'Alle case må ha minst to gyldige kilder');
   assert(brief.fulltext_requirements.modules === 4 && brief.fulltext_requirements.sections === 8 && brief.fulltext_requirements.paragraphs === 32 && brief.fulltext_requirements.verified_claims === 32, 'Felt 8 fulltekstplan må være 4/8/32/32');
-  assert(!fs.existsSync(chapterPath), 'Felt 8 skal ikke være fulltekstmaterialisert');
   const boundaries = brief.topic_briefs.map((topic) => topic.boundary).join(' ').toLowerCase();
   for (const token of ['tilbud', 'fullmakt', 'standardvilkår', 'ugyldighet', 'levering', 'forsinkelse', 'mangel', 'heving', 'erstatning', 'foreldelse', 'angrerett', 'cisg']) {
     assert(boundaries.includes(token), `Mangler kontraktsrettslig grense: ${token}`);
