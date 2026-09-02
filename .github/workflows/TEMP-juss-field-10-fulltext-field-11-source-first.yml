@@ -36,10 +36,13 @@ jobs:
           cp scripts/TEMP-test-juss-field11.mjs tests/juss-rettsvitenskap-labour-company-business-tax-market-law-source-brief-v1.test.mjs
           cp scripts/TEMP-next-juss-reconciliation-v1.mjs scripts/audit-juss-rettsvitenskap-reconciliation-v1.mjs
           cp scripts/TEMP-next-juss-reconciliation-v1.test.mjs tests/juss-rettsvitenskap-reconciliation-v1.test.mjs
+          cp scripts/TEMP-repair-juss-field9-source-brief.mjs scripts/brief-juss-rettsvitenskap-tort-property-private-law-priority-protection-sources-v1.mjs
+          cp scripts/TEMP-repair-juss-field9-source-brief.test.mjs tests/juss-rettsvitenskap-tort-property-private-law-priority-protection-source-brief-v1.test.mjs
       - name: Focused gates
         run: |
           node scripts/audit-juss-rettsvitenskap-family-child-inheritance-person-law-fulltext-v1.mjs
           node scripts/brief-juss-rettsvitenskap-labour-company-business-tax-market-law-sources-v1.mjs
+          node scripts/brief-juss-rettsvitenskap-tort-property-private-law-priority-protection-sources-v1.mjs
           node scripts/audit-juss-rettsvitenskap-reconciliation-v1.mjs
       - name: Cumulative Juss tests with deterministic diagnostics
         run: |
@@ -78,8 +81,10 @@ jobs:
           rm -f scripts/TEMP-finalize-juss-field10-field11.mjs
           rm -f scripts/TEMP-next-juss-reconciliation-v1.mjs
           rm -f scripts/TEMP-next-juss-reconciliation-v1.test.mjs
+          rm -f scripts/TEMP-repair-juss-field9-source-brief.mjs
+          rm -f scripts/TEMP-repair-juss-field9-source-brief.test.mjs
           rm -f reports/TEMP-juss-cumulative-failures.txt
-          if git ls-files | grep -E '(^|/)TEMP-(juss|materialize-juss-field10|audit-juss-field10|test-juss-field10|source-juss-field11|test-juss-field11|finalize-juss-field10-field11|next-juss-reconciliation)' ; then
+          if git ls-files | grep -E '(^|/)TEMP-(juss|materialize-juss-field10|audit-juss-field10|test-juss-field10|source-juss-field11|test-juss-field11|finalize-juss-field10-field11|next-juss-reconciliation|repair-juss-field9)' ; then
             echo 'TEMP-flater gjenstår' >&2
             exit 1
           fi
