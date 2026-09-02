@@ -53,8 +53,8 @@ jobs:
 
           const ullevalTestFile = 'tests/ullevål-hageby-completion.test.mjs';
           let ullevalTestText = fs.readFileSync(ullevalTestFile, 'utf8');
-          const oldStoryScoreLine = 'assert.equal(story.score.total, 17);';
-          const newStoryScoreLine = 'assert.equal(story.score.total, 16);';
+          const oldStoryScoreLine = 'assert.equal(stories[0].score.total, 17);';
+          const newStoryScoreLine = 'assert.equal(stories[0].score.total, 16);';
           if (!ullevalTestText.includes(oldStoryScoreLine) && !ullevalTestText.includes(newStoryScoreLine)) throw new Error('Ullevål Story total assertion not found');
           if (ullevalTestText.includes(oldStoryScoreLine)) ullevalTestText = ullevalTestText.replace(oldStoryScoreLine, newStoryScoreLine);
           fs.writeFileSync(ullevalTestFile, ullevalTestText);
