@@ -23,6 +23,34 @@ jobs:
           git config user.email "paradispartiet@gmail.com"
           git fetch origin main
           git merge --no-edit origin/main
+      - name: Repair final theory binding
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const quizFile = 'data/quiz/by/ullevål_hageby_sets.json';
+          const quiz = JSON.parse(fs.readFileSync(quizFile, 'utf8'));
+          const questions = (quiz.sets || []).flatMap((set) => set.questions || []);
+          const theoryQuestion = questions.find((question) => question.id === 'ullevål_hageby_quiz_25');
+          if (!theoryQuestion) throw new Error('Missing Ullevål Hageby theory question 25');
+          if (theoryQuestion.emne_id !== 'em_by_boligstruktur') {
+            throw new Error(`Unexpected q25 emne_id: ${theoryQuestion.emne_id}`);
+          }
+          theoryQuestion.topic_hook_id = 'bolig_boligtyper';
+          theoryQuestion.thinker_id = 'david_harvey';
+          theoryQuestion.work = 'Rebel Cities';
+          theoryQuestion.theory_ref = {
+            topic_hook_id: 'bolig_boligtyper',
+            thinker_id: 'david_harvey',
+            work: 'Rebel Cities',
+            why_it_helps: 'Boligtypeperspektivet kobler hagebyens planlagte boligform til hvordan boligstruktur organiserer tilgang, hverdagsrom og byutvikling.'
+          };
+          const context = quiz.production_context || (quiz.production_context = {});
+          const addUnique = (values, value) => [...new Set([...(Array.isArray(values) ? values : []), value])];
+          context.topic_hook_ids = addUnique(context.topic_hook_ids, 'bolig_boligtyper');
+          context.thinker_ids = addUnique(context.thinker_ids, 'david_harvey');
+          context.works = addUnique(context.works, 'Rebel Cities');
+          fs.writeFileSync(quizFile, `${JSON.stringify(quiz, null, 2)}\n`);
+          NODE
       - name: Repair quiz source brief
         run: |
           node - <<'NODE'
@@ -82,4 +110,4 @@ jobs:
           git add -A
           git commit -m "Repair Ullevål Hageby data audit state"
           git push origin HEAD:work/ulleval-hageby-completion-20260902
-# retrigger current data repair — pass 3
+# retrigger current data repair — pass 4
