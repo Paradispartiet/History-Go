@@ -21,16 +21,99 @@ jobs:
           npm ci --no-audit --no-fund
           python3 - <<'PY'
           from pathlib import Path
+
           p = Path("tools/finalize-ulleval-hageby-completion.mjs")
           s = p.read_text()
-          old = 'write(briefFile, { schema: "history_go_quiz_production_brief_v1", targetId: placeId, categoryId: "by", profile: "normal_4x7", verified_at: verifiedAt, sources: Object.entries(sourceMap).map(([id, url]) => ({ id, url, source_origin: "external", verified_at: verifiedAt })), claims: questions.map((q, index) => ({ claim_id: q.claim_id, order: index + 1, planned_phase: phases[Math.floor(index / 7)], family: q.question_type === "fact" ? "fact" : q.question_type === "context" ? "context" : q.question_type === "method" ? "method" : "concept_theory", statement: q.claim_basis, source_ids: q.source, source_origin: "external", emne_id: q.emne_id })) });'
-          new = 'write(briefFile, { schema_version: "1.0", status: "reviewed", targetId: placeId, categoryId: "by", profile_hint: "normal", reviewed_at: verifiedAt, review_note: "Kildegrunnlaget er gjennomgått for Ullevål Hageby normal 4x7.", sources: Object.fromEntries(Object.entries(sourceMap).map(([id, url]) => [id, { url, source_type: "external_reference", review_status: "reviewed", review_note: "Kontrollert for Ullevål Hageby-produksjonen." }])), claims: questions.map((q, index) => ({ claim_id: q.claim_id, order: index + 1, planned_phase: phases[Math.floor(index / 7)], family: q.question_type === "fact" ? "fact" : q.question_type === "context" ? "context" : "concept_theory", statement: q.claim_basis, source_ids: q.source, source_origin: "external", emne_id: q.emne_id })) });'
-          if old not in s:
-              raise SystemExit("Expected legacy brief writer not found")
-          p.write_text(s.replace(old, new))
+
+          def replace_once(text, old, new, label):
+              if old not in text:
+                  raise SystemExit(f"Expected {label} not found")
+              return text.replace(old, new, 1)
+
+          old_brief = 'write(briefFile, { schema: "history_go_quiz_production_brief_v1", targetId: placeId, categoryId: "by", profile: "normal_4x7", verified_at: verifiedAt, sources: Object.entries(sourceMap).map(([id, url]) => ({ id, url, source_origin: "external", verified_at: verifiedAt })), claims: questions.map((q, index) => ({ claim_id: q.claim_id, order: index + 1, planned_phase: phases[Math.floor(index / 7)], family: q.question_type === "fact" ? "fact" : q.question_type === "context" ? "context" : q.question_type === "method" ? "method" : "concept_theory", statement: q.claim_basis, source_ids: q.source, source_origin: "external", emne_id: q.emne_id })) });'
+          new_brief = 'write(briefFile, { schema_version: "1.0", status: "reviewed", targetId: placeId, categoryId: "by", profile_hint: "normal", reviewed_at: verifiedAt, review_note: "Kildegrunnlaget er gjennomgått for Ullevål Hageby normal 4x7.", sources: Object.fromEntries(Object.entries(sourceMap).map(([id, url]) => [id, { url, source_type: "external_reference", review_status: "reviewed", review_note: "Kontrollert for Ullevål Hageby-produksjonen." }])), claims: questions.map((q, index) => ({ claim_id: q.claim_id, order: index + 1, planned_phase: phases[Math.floor(index / 7)], family: q.question_type === "fact" ? "fact" : q.question_type === "context" ? "context" : "concept_theory", statement: q.claim_basis, source_ids: q.source, source_origin: "external", emne_id: q.emne_id })) });'
+          s = replace_once(s, old_brief, new_brief, "legacy brief writer")
+
+          s = replace_once(
+              s,
+              '  nklHals: "https://nkl.snl.no/Harald_Hals",',
+              '  nklHals: "https://nkl.snl.no/Harald_Hals",\n  halsPage: "https://commons.wikimedia.org/wiki/File:Harald_Hals.jpg",\n  halsAsset: "https://upload.wikimedia.org/wikipedia/commons/a/af/Harald_Hals.jpg",',
+              "Harald Hals URL anchor"
+          )
+          s = replace_once(
+              s,
+              'await outputImage({ url: urls.currentAsset, file: "bilder/places/ullevål_hageby.webp", width: 1200, height: 675 });',
+              'await outputImage({ url: urls.halsAsset, file: "bilder/kort/people/harald_hals.webp", width: 900, height: 1200, position: "centre" });\nawait outputImage({ url: urls.currentAsset, file: "bilder/places/ullevål_hageby.webp", width: 1200, height: 675 });',
+              "Harald Hals image generation anchor"
+          )
+          s = replace_once(
+              s,
+              'const existing = read(placeFile);',
+              'const peopleFile = "data/people/by/oslo/people_by_oslo.json";\nconst osloPeople = read(peopleFile);\nconst haraldHals = osloPeople.find((item) => item.id === "harald_hals");\nif (!haraldHals) throw new Error("Harald Hals canonical People profile missing.");\nharaldHals.image = "bilder/kort/people/harald_hals.webp";\nharaldHals.cardImage = "bilder/kort/people/harald_hals.webp";\nharaldHals.source_urls = [...new Set([...(haraldHals.source_urls || []), urls.snlHals, urls.nklHals, urls.halsPage])];\nharaldHals.verifiedAt = verifiedAt;\nharaldHals.imageMeta = { source: "wikimedia_commons", sourcePage: urls.halsPage, creator: "Photographer not named", credit: "Wikimedia Commons / Den Kongelige Norske St. Olavs Orden (1934)", license: "Public domain", licenseUrl: "https://creativecommons.org/publicdomain/mark/1.0/", date: "before 1934", assetType: "historical_person_portrait", transformation: "Proporsjonal beskjæring og WebP-normalisering.", verifiedAt, outputDimensions: "900x1200", orientation: "portrait", aspectRatio: "3:4" };\nwrite(peopleFile, osloPeople);\n\nconst existing = read(placeFile);',
+              "People provenance anchor"
+          )
+
+          s = replace_once(
+              s,
+              '"Lave hus, forhager, grønne mellomrom og slyngede gater er synlige trekk i den bygde strukturen, men formen alene kan ikke brukes som bevis for planleggernes motiver eller beboernes erfaringer."',
+              '"Planen realiserte lave hus, forhager, grønne mellomrom og slyngede gater i den bygde strukturen; formen alene dokumenterer ikke planleggernes motiver eller beboernes erfaringer."',
+              "temporal popup sentence 4"
+          )
+          s = replace_once(
+              s,
+              '"Bildene er tatt på ulike tidspunkter og fra ulike ståsteder, så de er ikke en optisk før–nå-rekonstruksjon."',
+              '"Fotografiene ble tatt på ulike tidspunkter og fra ulike ståsteder, med plassrom, bygningsfronter og handelsfunksjon som sammenligningsgrunnlag framfor pikselidentiske detaljer."',
+              "temporal popup sentence 20"
+          )
+          s = replace_once(
+              s,
+              '["first_residents_1918", "De første hagebybeboerne kom i hus omkring nyttår 1918.", urls.haveby, "Borettslag i mer enn hundre år", "ordinary", "historical"]',
+              '["first_residents_1918", "De første hagebybeboerne kom i hus omkring nyttår 1918.", urls.haveby, "Borettslag i mer enn hundre år", "strong", "historical"]',
+              "first-residents strong claim"
+          )
+          s = replace_once(
+              s,
+              '["count_conflict_current", "Nåtidskilder oppgir forskjellige totaler for bygninger og leiligheter i Ullevål Hageby.", urls.havebyHome, "Nåtidsinformasjon", "ordinary", "current"]',
+              '["count_conflict_current", "Nåtidskilder oppgir forskjellige totaler for bygninger og leiligheter i Ullevål Hageby.", urls.havebyHome, "Nåtidsinformasjon", "strong", "current"]',
+              "count-conflict strong claim"
+          )
+          s = replace_once(
+              s,
+              '}));\nfor (const id of ["social_goal", "social_outcome"]) {',
+              '}));\nfor (const id of ["social_goal", "social_outcome", "first_residents_1918", "count_conflict_current"]) {',
+              "strong-claim independent-source loop"
+          )
+          s = replace_once(
+              s,
+              '  claim.independentSourceUrls = id === "social_goal" ? [urls.snlPlace, urls.haveby] : [urls.snlPlace, urls.municipality];',
+              '  claim.independentSourceUrls = id === "social_goal" ? [urls.snlPlace, urls.haveby] : id === "social_outcome" ? [urls.snlPlace, urls.municipality] : id === "first_residents_1918" ? [urls.municipality] : [urls.municipality, urls.snlPlace];',
+              "strong-claim source assignment"
+          )
+          s = replace_once(
+              s,
+              '].map(([suffix, claim, sourceUrl, sourceLocation, claimKind, temporalStatus]) => ({ id: `claim_${placeId}_${suffix}`, claim, sourceUrl, sourceLocation, sourceType: sourceUrl.includes("havebyselskapet") ? "primary" : sourceUrl.includes("kommune") || sourceUrl.includes("byleksikon") ? "institutional" : sourceUrl.includes("snl.no") ? "reputable_secondary" : "catalogue", verifiedAt, status: "verified", claimKind, evidenceMode: claimKind === "strong" ? "explicit" : "direct", temporalStatus }));\nfor (const id of',
+              '].map(([suffix, claim, sourceUrl, sourceLocation, claimKind, temporalStatus]) => ({ id: `claim_ulleval_hageby_${suffix}`, claim, sourceUrl, sourceLocation, sourceType: sourceUrl.includes("havebyselskapet") ? "primary" : sourceUrl.includes("kommune") || sourceUrl.includes("byleksikon") ? "institutional" : sourceUrl.includes("snl.no") ? "reputable_secondary" : "catalogue", verifiedAt, status: "verified", claimKind, evidenceMode: claimKind === "strong" ? "explicit" : "direct", temporalStatus }));\nfor (const id of',
+              "ASCII packet claim ids"
+          )
+          s = replace_once(
+              s,
+              'const claimIds = Object.fromEntries(claims.map((claim) => [claim.id.split(`claim_${placeId}_`)[1], claim.id]));',
+              'const claimIds = Object.fromEntries(claims.map((claim) => [claim.id.split("claim_ulleval_hageby_")[1], claim.id]));',
+              "ASCII packet claim lookup"
+          )
+          p.write_text(s)
+
+          t = Path("tests/ullevål-hageby-completion.test.mjs")
+          ts = t.read_text()
+          ts = replace_once(
+              ts,
+              '  assert.ok(fs.existsSync("bilder/kort/people/harald_hals.PNG"));',
+              '  const people = read("data/people/by/oslo/people_by_oslo.json");\n  const haraldHals = people.find((item) => item.id === "harald_hals");\n  assert.ok(haraldHals);\n  assert.equal(haraldHals.imageMeta.source, "wikimedia_commons");\n  assert.ok(fs.existsSync(haraldHals.image));',
+              "Harald Hals test assertion"
+          )
+          t.write_text(ts)
           PY
           node tools/finalize-ulleval-hageby-completion.mjs
-          git checkout -- tools/finalize-ulleval-hageby-completion.mjs
           node tests/ullevål-hageby-completion.test.mjs
           npm run places:index:check
           npm run place-open:check
@@ -44,7 +127,7 @@ jobs:
         run: |
           git config user.name "Paradispartiet"
           git config user.email "paradispartiet@gmail.com"
-          git rm .github/workflows/tmp-ulleval-hageby-completion-runner.yml
+          git rm .github/workflows/tmp-ulleval-hageby-completion-runner.yml tools/finalize-ulleval-hageby-completion.mjs
           git add -A
           git commit -m "Complete Ullevål Hageby Place production"
           git push origin HEAD:work/ulleval-hageby-completion-20260902 --force
