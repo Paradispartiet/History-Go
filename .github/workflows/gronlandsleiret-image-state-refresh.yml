@@ -1,0 +1,55 @@
+name: Refresh Grønlandsleiret image state
+
+on:
+  push:
+    branches:
+      - work/gronlandsleiret-fagverk-v2-20260902
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/gronlandsleiret-fagverk-v2-20260902
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch current main
+        run: git fetch origin main
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Refresh canonical place-image state
+        run: node scripts/build-place-image-state.mjs
+
+      - name: Commit clean final tree
+        run: |
+          git rm .github/workflows/gronlandsleiret-image-state-refresh.yml
+          git add -A
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git commit -m 'chore: refresh place image state for Grønlandsleiret Fagverk'
+
+      - name: Validate refreshed state and Fagverk contracts
+        run: |
+          npm run places:image-state:check
+          npm run places:index:check
+          npm run places:images:check
+          node scripts/audit-place-image-registry.mjs
+          node --test tests/fagverk-and-place-contracts.test.mjs
+          node scripts/validate-place-description-production-v4_2_policy.mjs --changed --base origin/main --head HEAD
+          node scripts/audit-fagverk-place-pages.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run place-open:check
+          git diff --check origin/main...HEAD
+
+      - name: Push refreshed branch
+        run: git push origin HEAD:work/gronlandsleiret-fagverk-v2-20260902
