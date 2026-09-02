@@ -1,0 +1,56 @@
+name: Finalize Grønlandsleiret Fagverk
+
+on:
+  push:
+    branches:
+      - work/gronlandsleiret-fagverk-v2-20260902
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/gronlandsleiret-fagverk-v2-20260902
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch current main
+        run: git fetch origin main
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Regenerate derived artifacts
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+          node scripts/audit-fagverk-place-pages.mjs --write
+          node scripts/build-fagverk-release-manifest.mjs
+
+      - name: Commit clean final tree
+        run: |
+          git rm .github/workflows/gronlandsleiret-fagverk-finalize.yml
+          git add -A
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git commit -m 'Fagverk v2: materialize Grønlandsleiret artifacts'
+
+      - name: Validate final tree
+        run: |
+          node scripts/validate-place-description-production-v4_2_policy.mjs --changed --base origin/main --head HEAD
+          node scripts/audit-fagverk-place-pages.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run places:index:check
+          npm run place-open:check
+          node --test tests/fagverk-place-pages.test.mjs tests/fagverk-place-rendering.test.mjs tests/fagverk-place-substance-audit.test.mjs
+          git diff --check origin/main...HEAD
+
+      - name: Push finalized branch
+        run: git push origin HEAD:work/gronlandsleiret-fagverk-v2-20260902
