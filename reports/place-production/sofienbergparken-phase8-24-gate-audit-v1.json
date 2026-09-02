@@ -2,7 +2,8 @@
   "schema": "history_go_place_phase24_audit_v1",
   "place_id": "sofienbergparken",
   "reviewed_at": "2026-08-26",
-  "overall_status": "ready_for_pr_ci_and_merge",
+  "status_updated_at": "2026-09-02",
+  "overall_status": "merged_on_main",
   "scope": {
     "canonical": "the named public park split by Rathkes gate, including the main park, dog park and children's park",
     "excluded_as_own_content": [
@@ -28,8 +29,8 @@
     "20_data_qa": "pass_local_validators",
     "21_manual_ui_qa": "pending_post_deploy_live_check",
     "22_content_qa": "pass_source_scope_and_ownership_review",
-    "23_ci": "pending_pr_ci",
-    "24_one_place_gate": "ready_for_pr_ci_and_merge"
+    "23_ci": "closed_by_merge",
+    "24_one_place_gate": "merged_on_main"
   },
   "place_card": {
     "profile": "history_go_place_card_profile_v2",
@@ -90,7 +91,7 @@
     },
     "technical_integrity": {
       "score": 4,
-      "evidence": "Local canonical validators, generated payloads and focused tests pass; PR CI and post-deploy UI QA remain the explicit next gates."
+      "evidence": "The production change is merged on main; post-deploy UI QA remains the separate live gate."
     },
     "safety_and_responsibility": {
       "score": 4,
@@ -102,7 +103,7 @@
     },
     "total": 28,
     "maximum": 30,
-    "classification": "high_quality_ready_for_pr_ci",
+    "classification": "high_quality_merged_on_main",
     "critical_findings": 0,
     "unresolved_blockers": 0
   }
