@@ -27,6 +27,24 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Index Grønlandsleiret Fagverk
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = 'data/fagverk/fagverk_registry.json';
+          const registry = JSON.parse(fs.readFileSync(path, 'utf8'));
+          registry.updatedAt = '2026-09-02';
+          registry.placeLinks ||= {};
+          registry.placeLinks.gronlandsleiret = {
+            sourceFile: 'places/by/oslo/places/gronlandsleiret.json',
+            field: 'fagverk',
+            schema: 'history_go_place_fagverk_v2',
+            level: 'full',
+            status: 'curated'
+          };
+          fs.writeFileSync(path, `${JSON.stringify(registry, null, 2)}\n`);
+          NODE
+
       - name: Regenerate derived artifacts
         run: |
           npm run places:index:build
