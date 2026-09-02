@@ -1,0 +1,298 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_institusjonsledelse",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "institusjonsledelse_lederrelasjoner",
+      "purpose": "Prøv relasjon, motstemme og mandat med de fire navngitte arbeidsaktørene.",
+      "learning_focus": [
+        "kunstnerisk_retning",
+        "mandat_og_delegasjon",
+        "arbeidsmiljo_og_ressursrealisme",
+        "sporbar_styring",
+        "waiting_handoff_rework"
+      ],
+      "mails": [
+        {
+          "id": "institusjonsledelse_people_amina_retning_001",
+          "mail_type": "people",
+          "mail_family": "institusjonsledelse_lederrelasjoner",
+          "role_scope": "scenekunst_institusjonsledelse",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 141,
+          "from": "Amina",
+          "people_ref": "amina_programsjef",
+          "person_id": "amina_programsjef",
+          "place_id": "sesongportefolje_og_mandatkart",
+          "subject": "Amina opplever kapasitetskuttet som mistillit til den kunstneriske retningen",
+          "summary": "Etter prioriteringen mener Amina at lederen bruker økonomi til å gjøre programarbeidet mindre modig. Relasjonen trenger mer enn forsikring: lederen må vise hvilke kunstneriske kriterier som faktisk avgjorde prioriteringen, hvilke forslag som fortsatt lever som betingede scenarioer, og hva Amina eier fram mot neste kontrollpunkt uten å love at alle prosjekter vender tilbake.",
+          "situation": [
+            "Amina har brukt måneder på relasjoner og kunstnerisk utvikling som ikke kan reduseres til en budsjettlinje.",
+            "Prioriteringen var nødvendig, men begrunnelsen skiller foreløpig ikke kunstnerisk verdi fra produksjonskapasitet.",
+            "Hennes delegerte programmandat må være reelt også når lederen setter ramme."
+          ],
+          "task_domain": "scenekunstinstitusjon_og_ledelse",
+          "competency": "kunstnerisk_ledelse_og_delegasjon",
+          "pressure": "lederprioritering_vs_faglig_eierskap",
+          "choice_axis": "begrunnet_retning_og_reelt_mandat_vs_trøst_og_skult_overstyring",
+          "consequence_axis": "faglig_tillit_vs_status_og_ansvarstap",
+          "narrative_arc": "amina_retning",
+          "situated_audience_id": "kunstnerisk_program_og_fagmiljo",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gå gjennom kriteriene og avtal hennes neste mandat",
+              "reply": "Jeg viser hvilke kunstneriske mål som består, hvilke kapasitetsgrenser som avgjorde rekkefølgen og gir Amina eksplisitt mandat til å utvikle det betingede sporet fram til et navngitt finansierings- og kapasitetsvalg.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "arbeidsgiveransvar"
+              ],
+              "feedback": "Amina får verken tom ros eller skjult avslag. Hun kan prøve lederens begrunnelse, eie reelt videre arbeid og senere holde beslutningen ansvarlig for kunstnerisk virkning, uten at delegasjonen blir et løfte om kontrakt eller premiere.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Si at styret krevde kuttet og be henne være lojal",
+              "reply": "Jeg forklarer at styrets forventninger og økonomien gjorde valget nødvendig, og ber Amina samle programteamet bak den vedtatte sesongen uten å åpne diskusjonen igjen.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Konflikten blir kortere, men lederen låner styrets autoritet uten et konkret vedtak og reduserer Amina til budbringer. Kunstneriske kriterier, delegering og restarbeid forsvinner, og relasjonen lærer at motstemme bare øker lojalitetskostnaden.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "institusjonsledelse_people_henrik_prognose_002",
+          "mail_type": "people",
+          "mail_family": "institusjonsledelse_lederrelasjoner",
+          "role_scope": "scenekunst_institusjonsledelse",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 140,
+          "from": "Henrik",
+          "people_ref": "henrik_okonomi_og_administrasjonssjef",
+          "person_id": "henrik_okonomi_og_administrasjonssjef",
+          "place_id": "budsjett_kapasitet_og_forpliktelsesrom",
+          "subject": "Henrik nekter å attestere optimismen i lederens prognose",
+          "summary": "Henrik avviser å signere et notat som omtaler den sannsynlige tilskuddsinntekten som sikret. Lederen opplever at han bremser et tidskritisk kunstnerisk valg, mens Henrik ser at egen faglige attestasjon brukes som garanti. Relasjonen må repareres gjennom tydelig scenario, fullmakt og uenighetsspor, ikke gjennom statuspress eller omgåelse.",
+          "situation": [
+            "Notatet skal brukes både internt og i dialog med en kunstnerisk samarbeidspartner.",
+            "Henrik kan bekrefte søknad og sannsynlighet, men ikke disponibel inntekt.",
+            "Lederen kan velge risiko innen delegert ramme, men kan ikke forfalske økonomifaglig attestasjon."
+          ],
+          "task_domain": "scenekunstinstitusjon_og_ledelse",
+          "competency": "okonomifaglig_motstemme_og_ledervalg",
+          "pressure": "kunstnerisk_tidsvindu_vs_sann_attestasjon",
+          "choice_axis": "uenighet_i_sporet_vs_lederstatus_som_fakta",
+          "consequence_axis": "faglig_tillit_vs_skult_risiko",
+          "narrative_arc": "henrik_prognose",
+          "situated_audience_id": "styre_eier_og_finansiering",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bevar Henriks attestasjon og ta ledervalget eksplisitt",
+              "reply": "Jeg endrer notatet til betinget scenario, lar Henrik attestere bare dokumentert dekning og sannsynlighet, og registrerer separat hvilket reversibelt risikonivå jeg som leder velger innen delegasjonen.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "arbeidsgiveransvar"
+              ],
+              "feedback": "Henrik slipper å gi falsk sikkerhet, mens lederen fortsatt kan bruke sitt mandat og eie risikoen. Senere svar kan sammenlignes med forutsetningen, og styret ser forskjellen mellom økonomifaglig grunnlag og ledelsens prioritering.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Finn en formulering han kan signere uten å mene",
+              "reply": "Jeg ber Henrik bruke ordet forventet i stedet for sikret og signere helheten, slik at samarbeidspartneren oppfatter finansieringen som reell og vi beholder forhandlingsposisjonen.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Språket blir juridisk mykere, men funksjonen er fortsatt å låne Henriks autoritet til et ufinansiert løfte. Relasjonen og kontrollsporet svekkes, og senere avslag vil framstå som uforutsett i stedet for en risiko lederen valgte.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "institusjonsledelse_people_sigrid_fortrolighet_003",
+          "mail_type": "people",
+          "mail_family": "institusjonsledelse_lederrelasjoner",
+          "role_scope": "scenekunst_institusjonsledelse",
+          "phase": "forenoon",
+          "day_phase": "morning",
+          "priority": 139,
+          "from": "Sigrid",
+          "people_ref": "sigrid_hovedverneombud",
+          "person_id": "sigrid_hovedverneombud",
+          "place_id": "arbeidsmiljo_varsling_og_tiltaksrom",
+          "subject": "Sigrid advarer mot å bruke varselet i offentlig forsvar",
+          "summary": "Kommunikasjon vil forklare utsettelsen med at institusjonen tar arbeidsmiljø på alvor. Sigrid ser at formuleringen kan identifisere miljøet og gjøre varslerne til del av en omdømmestrategi. Lederen må finne et sant offentlig svar som ikke røper sak, årsak eller tiltak utover formålet, samtidig som utsettelsen ikke framstilles som teknisk tilfeldighet.",
+          "situation": [
+            "Utsettelsen er offentlig og krever en institusjonell forklaring.",
+            "Den konkrete arbeidsgiverprosessen er fortrolig og ikke ferdig undersøkt.",
+            "Sigrids motstemme gjelder formål og vern, ikke kontroll over all ekstern kommunikasjon."
+          ],
+          "task_domain": "scenekunstinstitusjon_og_ledelse",
+          "competency": "fortrolighet_og_offentlig_ansvar",
+          "pressure": "transparenspress_vs_vern_og_formalsbegrensning",
+          "choice_axis": "sant_avgrenset_svar_vs_varsel_som_omdommeskjold",
+          "consequence_axis": "trygghet_og_tillit_vs_eksponering",
+          "narrative_arc": "sigrid_fortrolighet",
+          "situated_audience_id": "ansatte_vernetjeneste_og_tillitsvalgte",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Forklar lederansvaret uten å beskrive saken",
+              "reply": "Jeg sier at institusjonen har utsatt for å sikre forsvarlige arbeids- og produksjonsrammer, at berørte følges opp i riktig prosess, og at vi ikke kommenterer person- eller saksopplysninger mens faktagrunnlaget utvikles.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "arbeidsgiveransvar"
+              ],
+              "feedback": "Offentligheten får en ansvarlig forklaring, mens varslernes informasjon ikke gjøres til merkevare. Sigrids selvstendige rolle respekteres, og lederen beholder ansvar for både arbeidsgiveroppfølging og senere presis kommunikasjon.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Fortell at varsler viser at ledelsen handler ansvarlig",
+              "reply": "Jeg framhever at vi mottok bekymringsmeldinger og grep inn raskt, uten navn, slik at publikum forstår at institusjonen prioriterer arbeidsmiljø og ikke bare har planleggingsproblemer.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Formuleringen kan gi omdømmegevinst, men gjør fortrolig medvirkning til lederens bevis på handlekraft og kan indirekte identifisere miljøet. Ansatte lærer at varsling får offentlig funksjon før fakta og kontradiksjon er avklart.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "institusjonsledelse_people_leo_mandat_004",
+          "mail_type": "people",
+          "mail_family": "institusjonsledelse_lederrelasjoner",
+          "role_scope": "scenekunst_institusjonsledelse",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 138,
+          "from": "Leo",
+          "people_ref": "leo_styreleder",
+          "person_id": "leo_styreleder",
+          "place_id": "styre_eier_og_offentlighetsrom",
+          "subject": "Leo omtaler styrets interesse som om forlengelsen allerede er vedtatt",
+          "summary": "Etter en uformell samtale sier Leo til en samarbeidspartner at styret ønsker forlengelse. Det kan leses som beslutning, finansieringssignal og instruks til administrasjonen. Lederen må korrigere uten å ydmyke styrelederen, registrere den faktiske statusen og sikre at senere styrebehandling ikke bare bekrefter et offentlig løfte.",
+          "situation": [
+            "Styret har diskutert muligheten, men saken og finansieringen er ikke behandlet.",
+            "Samarbeidspartneren trenger rask avklaring før egne kontrakter forlenges.",
+            "Lederen og styrelederen har ulike mandater og deler ansvar for at ekstern status er sann."
+          ],
+          "task_domain": "scenekunstinstitusjon_og_ledelse",
+          "competency": "styrelederrelasjon_og_formell_beslutning",
+          "pressure": "offentlig_forventning_vs_gyldig_styreprosess",
+          "choice_axis": "presis_korreksjon_og_sakssetting_vs_late_som_vedtak",
+          "consequence_axis": "styringstillit_vs_forhandsbinding",
+          "narrative_arc": "leo_mandat",
+          "situated_audience_id": "styre_eier_og_finansiering",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Korriger statusen og sett formell sak",
+              "reply": "Jeg avklarer med Leo at samtalen uttrykte interesse, ikke vedtak, sender samarbeidspartneren en felles presisering og legger fram beslutningsgrunnlag med finansiering, kapasitet og habilitet før styret eventuelt binder institusjonen.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "arbeidsgiveransvar"
+              ],
+              "feedback": "Leo beholder verdighet og styret får et reelt valg i stedet for å ratifisere en forventning. Samarbeidspartneren får sann status, mens lederen viser at god styredialog også innebærer å avgrense styreleders uformelle signal.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Bruk signalet som forhandlingsfordel",
+              "reply": "Jeg lar samarbeidspartneren forstå at styret står bak forlengelsen og arbeider videre som om vedtaket kommer, fordi en korreksjon nå kan svekke tilliten og gjøre avtalen dyrere.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Forhandlingen får fart, men styrets framtidige valg og budsjett bindes sosialt før formelt vedtak. Leo og lederen deler en uklar fullmakt, og senere motstand vil ramme samarbeidspartneren som om institusjonen brøt et løfte.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

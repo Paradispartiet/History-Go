@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_institusjonsledelse",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "institusjonsledelse_premierepress_og_arbeidsmiljo",
+      "purpose": "Hold kunstnerisk ambisjon og arbeidsgiverplikt adskilt når premierepresset øker.",
+      "learning_focus": [
+        "kunstnerisk_retning",
+        "mandat_og_delegasjon",
+        "arbeidsmiljo_og_ressursrealisme",
+        "sporbar_styring",
+        "waiting_handoff_rework"
+      ],
+      "mails": [
+        {
+          "id": "institusjonsledelse_conflict_premiere_arbeidsmiljo_001",
+          "mail_type": "conflict",
+          "mail_family": "institusjonsledelse_premierepress_og_arbeidsmiljo",
+          "role_scope": "scenekunst_institusjonsledelse",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 137,
+          "from": "Sigrid",
+          "people_ref": "sigrid_hovedverneombud",
+          "person_id": "sigrid_hovedverneombud",
+          "place_id": "arbeidsmiljo_varsling_og_tiltaksrom",
+          "subject": "Premieren krever mer arbeid, mens det midlertidige tiltaket krever mindre",
+          "summary": "Regissør og programteam ber om ekstra kveldsprøver for å redde en profilert premiere, samtidig som arbeidsgiveroppfølgingen har satt grense for overtid og endringer. Amina frykter kunstnerisk sammenbrudd, Sigrid frykter gjentatt skade. Lederen må beslutte ramme, mulig utsettelse og kunstnerisk handlingsrom uten å gjøre arbeidsmiljø til smakskonflikt eller vern til regi.",
+          "situation": [
+            "Midlertidig tiltak begrenser overtid og sene planendringer til kontrollpunktet.",
+            "Den kunstneriske planen forutsetter tre ekstra kvelder med samme berørte avdelinger.",
+            "Utsettelse har økonomisk og offentlig konsekvens, men produksjonspress opphever ikke arbeidsgiverplikten."
+          ],
+          "task_domain": "scenekunstinstitusjon_og_ledelse",
+          "competency": "kriseprioritering_og_arbeidsgiveransvar",
+          "pressure": "premiere_og_prestisje_vs_forsvarlig_arbeid",
+          "choice_axis": "beskyttet_ramme_og_reell_konsekvens_vs_unntak_for_kunst",
+          "consequence_axis": "langsiktig_tillit_vs_skade_og_ansvar",
+          "narrative_arc": "premierekonflikt",
+          "situated_audience_id": "ansatte_vernetjeneste_og_tillitsvalgte",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bevar tiltaket og velg en produksjonskonsekvens",
+              "reply": "Jeg opprettholder arbeidsmiljørammen, ber Amina og produksjonen velge mellom redusert scenisk omfang og utsettelse innen dokumentert kostnad, og setter nytt kontrollpunkt uten å be Sigrid godkjenne kunstnerisk løsning.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "arbeidsgiveransvar"
+              ],
+              "feedback": "Institusjonen bærer selv konsekvensen av sin kapasitet i stedet for å legge den på ansatte. Kunstnerisk ledelse beholder reelle alternativer, vernetjenesten beholder sin rolle, og senere evaluering kan vise både kunstnerisk og arbeidsmiljømessig virkning.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Gi et premiereunntak mot frivillig samtykke",
+              "reply": "Jeg åpner for de tre kveldene dersom hver medarbeider bekrefter frivillig deltakelse, fordi premieren er tidsavgrenset og teamet selv bør få velge hvor mye de vil investere.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Frivillighet i et hierarkisk og kontraktsbundet miljø brukes til å omgå et systemtiltak. Belastningen og ansvaret individualiseres, og lederen skaper presedens for at kunstnerisk prestisje kan overstyre arbeidsmiljøgrensen når presset er høyt nok.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
