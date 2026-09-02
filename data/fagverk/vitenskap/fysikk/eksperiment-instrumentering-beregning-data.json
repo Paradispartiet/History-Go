@@ -1,0 +1,1125 @@
+{
+  "schema": "history_go_fagverk_fysikk_strict_domain_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-09-02",
+  "subject": "vitenskap",
+  "subject_id": "vitenskap",
+  "canonical_subcategory_id": "fysikk",
+  "ordinal": 12,
+  "domain_id": "eksperiment_instrumentering_beregning_data",
+  "id": "eksperiment-instrumentering-beregning-data",
+  "chapter_id": "eksperiment-instrumentering-beregning-data",
+  "title": "Eksperiment, instrumentering, beregning og datafysikk",
+  "subtitle": "Strict Fysikk-felt 12 av 12: source-first, fulltekst, claims, vurderinger og case",
+  "lead": "Eksperiment, instrumentering, beregning og datafysikk er materialisert som et selvstendig felt i Fysikk-registeret. Feltet prioriterer målbare størrelser, eksplisitte modeller, gyldighetsområder, usikkerhet og etterprøvbar kildebruk.",
+  "source_registry": "data/fag/vitenskap/fysikk/source_registry_v1.json",
+  "source_first": {
+    "status": "pass",
+    "source_ids": [
+      "fys-src-13-bipm-si",
+      "fys-src-14-nist-codata",
+      "vit3-01-mit-classical-mechanics",
+      "vit3-02-mit-statistical-mechanics",
+      "vit3-03-mit-waves-optics",
+      "vit3-04-mit-electromagnetism",
+      "vit3-05-mit-quantum",
+      "vit3-10-nasa-ems"
+    ],
+    "topic_briefs": [
+      {
+        "id": "fys12-t01",
+        "title": "Eksperimentdesign og hypotese",
+        "core": "Et fysikkeksperiment må koble en presis modellprediksjon til observerbare størrelser, kontrollvariabler og en analyseplan.",
+        "boundary": "Et resultat blir ikke sterkt bare fordi apparatet er avansert; identifikasjonsstrategien må være tydelig.",
+        "planned_claim_ids": [
+          "fys12-01-1",
+          "fys12-01-2",
+          "fys12-01-3",
+          "fys12-01-4"
+        ]
+      },
+      {
+        "id": "fys12-t02",
+        "title": "Sensorer, respons og kalibrering",
+        "core": "Sensorrespons må karakteriseres mot referanser slik at råsignal kan omformes til fysisk størrelse med kjent usikkerhet.",
+        "boundary": "Kalibrering er tids-, område- og kontekstavhengig og kan ikke antas konstant uten kontroll.",
+        "planned_claim_ids": [
+          "fys12-02-1",
+          "fys12-02-2",
+          "fys12-02-3",
+          "fys12-02-4"
+        ]
+      },
+      {
+        "id": "fys12-t03",
+        "title": "Støy og signalbehandling",
+        "core": "Støy beskrives statistisk og kan filtreres eller modelleres, men signalbehandling må bevare relevant fysikkinformasjon.",
+        "boundary": "Et glattere signal er ikke automatisk et mer korrekt signal; filtrering kan introdusere bias.",
+        "planned_claim_ids": [
+          "fys12-03-1",
+          "fys12-03-2",
+          "fys12-03-3",
+          "fys12-03-4"
+        ]
+      },
+      {
+        "id": "fys12-t04",
+        "title": "Feilpropagasjon og kovarians",
+        "core": "Usikkerheter i inngangsvariabler må propagere til avledede størrelser, og korrelasjoner må tas med når de er relevante.",
+        "boundary": "Kvadratsummering uten uavhengighetsantakelse kan gi feil samlet usikkerhet.",
+        "planned_claim_ids": [
+          "fys12-04-1",
+          "fys12-04-2",
+          "fys12-04-3",
+          "fys12-04-4"
+        ]
+      },
+      {
+        "id": "fys12-t05",
+        "title": "Parameterestimering",
+        "core": "Parametre estimeres ved å sammenligne data med modellfamilier gjennom eksplisitte sannsynlighets- eller tapsfunksjoner.",
+        "boundary": "Best-fit er ikke identisk med sann modell, og parameterusikkerhet må skilles fra modellusikkerhet.",
+        "planned_claim_ids": [
+          "fys12-05-1",
+          "fys12-05-2",
+          "fys12-05-3",
+          "fys12-05-4"
+        ]
+      },
+      {
+        "id": "fys12-t06",
+        "title": "Numeriske metoder og simulering",
+        "core": "Numeriske løsninger gjør komplekse modeller beregnbare gjennom diskretisering, iterasjon og approksimasjon.",
+        "boundary": "Numerisk konvergens må testes; en stabil kode kan fortsatt løse feil ligning eller feil randbetingelser.",
+        "planned_claim_ids": [
+          "fys12-06-1",
+          "fys12-06-2",
+          "fys12-06-3",
+          "fys12-06-4"
+        ]
+      },
+      {
+        "id": "fys12-t07",
+        "title": "Reproduserbarhet og dataflyt",
+        "core": "Reproduserbar fysikk krever sporbar dataflyt fra rådata via kalibrering og behandling til figurer, tabeller og inferens.",
+        "boundary": "En publisert graf uten kode-, metode- eller dataproveniens kan være vanskelig å etterprøve.",
+        "planned_claim_ids": [
+          "fys12-07-1",
+          "fys12-07-2",
+          "fys12-07-3",
+          "fys12-07-4"
+        ]
+      },
+      {
+        "id": "fys12-t08",
+        "title": "Modellvalg og validering",
+        "core": "Modeller vurderes mot prediktiv ytelse, restledd, alternative forklaringer og uavhengige datasett.",
+        "boundary": "Kompleksitet må balanseres mot informasjonsinnhold; flere parametre gir ikke automatisk bedre fysikk.",
+        "planned_claim_ids": [
+          "fys12-08-1",
+          "fys12-08-2",
+          "fys12-08-3",
+          "fys12-08-4"
+        ]
+      }
+    ],
+    "minimum_sources": 8,
+    "claim_level_trace": true,
+    "no_decorative_sources": true
+  },
+  "verifiedClaims": [
+    {
+      "id": "fys12-01-1",
+      "topic_id": "fys12-t01",
+      "classification": "principle",
+      "claim": "Et fysikkeksperiment må koble en presis modellprediksjon til observerbare størrelser, kontrollvariabler og en analyseplan. Dette må uttrykkes med eksplisitte størrelser, modeller eller ligninger slik at påstanden kan testes og sammenlignes med alternative beskrivelser.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "fys-src-13-bipm-si",
+        "vit3-02-mit-statistical-mechanics"
+      ]
+    },
+    {
+      "id": "fys12-01-2",
+      "topic_id": "fys12-t01",
+      "classification": "measurement",
+      "claim": "Empirisk arbeid med eksperimentdesign og hypotese krever at råsignal, måleprosedyre, kalibrering og avledede størrelser holdes analytisk atskilt. Et fysikkeksperiment må koble en presis modellprediksjon til observerbare størrelser, kontrollvariabler og en analyseplan.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "fys-src-14-nist-codata",
+        "vit3-03-mit-waves-optics"
+      ]
+    },
+    {
+      "id": "fys12-01-3",
+      "topic_id": "fys12-t01",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Et resultat blir ikke sterkt bare fordi apparatet er avansert; identifikasjonsstrategien må være tydelig. En strict fysikkforklaring skal derfor angi hvilke antakelser som kan bryte sammen før konklusjonen generaliseres.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit3-01-mit-classical-mechanics",
+        "vit3-04-mit-electromagnetism"
+      ]
+    },
+    {
+      "id": "fys12-01-4",
+      "topic_id": "fys12-t01",
+      "classification": "application",
+      "claim": "Ved anvendelse av eksperimentdesign og hypotese må en prediksjon knyttes til observerbare størrelser og en eksplisitt usikkerhetsvurdering. Resultatet bør utfordres mot minst én alternativ modell, approksimasjon eller systematisk feilkilde.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit3-02-mit-statistical-mechanics",
+        "vit3-05-mit-quantum"
+      ]
+    },
+    {
+      "id": "fys12-02-1",
+      "topic_id": "fys12-t02",
+      "classification": "principle",
+      "claim": "Sensorrespons må karakteriseres mot referanser slik at råsignal kan omformes til fysisk størrelse med kjent usikkerhet. Dette må uttrykkes med eksplisitte størrelser, modeller eller ligninger slik at påstanden kan testes og sammenlignes med alternative beskrivelser.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "fys-src-14-nist-codata",
+        "vit3-03-mit-waves-optics"
+      ]
+    },
+    {
+      "id": "fys12-02-2",
+      "topic_id": "fys12-t02",
+      "classification": "measurement",
+      "claim": "Empirisk arbeid med sensorer, respons og kalibrering krever at råsignal, måleprosedyre, kalibrering og avledede størrelser holdes analytisk atskilt. Sensorrespons må karakteriseres mot referanser slik at råsignal kan omformes til fysisk størrelse med kjent usikkerhet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit3-01-mit-classical-mechanics",
+        "vit3-04-mit-electromagnetism"
+      ]
+    },
+    {
+      "id": "fys12-02-3",
+      "topic_id": "fys12-t02",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Kalibrering er tids-, område- og kontekstavhengig og kan ikke antas konstant uten kontroll. En strict fysikkforklaring skal derfor angi hvilke antakelser som kan bryte sammen før konklusjonen generaliseres.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit3-02-mit-statistical-mechanics",
+        "vit3-05-mit-quantum"
+      ]
+    },
+    {
+      "id": "fys12-02-4",
+      "topic_id": "fys12-t02",
+      "classification": "application",
+      "claim": "Ved anvendelse av sensorer, respons og kalibrering må en prediksjon knyttes til observerbare størrelser og en eksplisitt usikkerhetsvurdering. Resultatet bør utfordres mot minst én alternativ modell, approksimasjon eller systematisk feilkilde.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit3-03-mit-waves-optics",
+        "vit3-10-nasa-ems"
+      ]
+    },
+    {
+      "id": "fys12-03-1",
+      "topic_id": "fys12-t03",
+      "classification": "principle",
+      "claim": "Støy beskrives statistisk og kan filtreres eller modelleres, men signalbehandling må bevare relevant fysikkinformasjon. Dette må uttrykkes med eksplisitte størrelser, modeller eller ligninger slik at påstanden kan testes og sammenlignes med alternative beskrivelser.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit3-01-mit-classical-mechanics",
+        "vit3-04-mit-electromagnetism"
+      ]
+    },
+    {
+      "id": "fys12-03-2",
+      "topic_id": "fys12-t03",
+      "classification": "measurement",
+      "claim": "Empirisk arbeid med støy og signalbehandling krever at råsignal, måleprosedyre, kalibrering og avledede størrelser holdes analytisk atskilt. Støy beskrives statistisk og kan filtreres eller modelleres, men signalbehandling må bevare relevant fysikkinformasjon.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit3-02-mit-statistical-mechanics",
+        "vit3-05-mit-quantum"
+      ]
+    },
+    {
+      "id": "fys12-03-3",
+      "topic_id": "fys12-t03",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Et glattere signal er ikke automatisk et mer korrekt signal; filtrering kan introdusere bias. En strict fysikkforklaring skal derfor angi hvilke antakelser som kan bryte sammen før konklusjonen generaliseres.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit3-03-mit-waves-optics",
+        "vit3-10-nasa-ems"
+      ]
+    },
+    {
+      "id": "fys12-03-4",
+      "topic_id": "fys12-t03",
+      "classification": "application",
+      "claim": "Ved anvendelse av støy og signalbehandling må en prediksjon knyttes til observerbare størrelser og en eksplisitt usikkerhetsvurdering. Resultatet bør utfordres mot minst én alternativ modell, approksimasjon eller systematisk feilkilde.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit3-04-mit-electromagnetism",
+        "fys-src-13-bipm-si"
+      ]
+    },
+    {
+      "id": "fys12-04-1",
+      "topic_id": "fys12-t04",
+      "classification": "principle",
+      "claim": "Usikkerheter i inngangsvariabler må propagere til avledede størrelser, og korrelasjoner må tas med når de er relevante. Dette må uttrykkes med eksplisitte størrelser, modeller eller ligninger slik at påstanden kan testes og sammenlignes med alternative beskrivelser.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit3-02-mit-statistical-mechanics",
+        "vit3-05-mit-quantum"
+      ]
+    },
+    {
+      "id": "fys12-04-2",
+      "topic_id": "fys12-t04",
+      "classification": "measurement",
+      "claim": "Empirisk arbeid med feilpropagasjon og kovarians krever at råsignal, måleprosedyre, kalibrering og avledede størrelser holdes analytisk atskilt. Usikkerheter i inngangsvariabler må propagere til avledede størrelser, og korrelasjoner må tas med når de er relevante.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit3-03-mit-waves-optics",
+        "vit3-10-nasa-ems"
+      ]
+    },
+    {
+      "id": "fys12-04-3",
+      "topic_id": "fys12-t04",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Kvadratsummering uten uavhengighetsantakelse kan gi feil samlet usikkerhet. En strict fysikkforklaring skal derfor angi hvilke antakelser som kan bryte sammen før konklusjonen generaliseres.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit3-04-mit-electromagnetism",
+        "fys-src-13-bipm-si"
+      ]
+    },
+    {
+      "id": "fys12-04-4",
+      "topic_id": "fys12-t04",
+      "classification": "application",
+      "claim": "Ved anvendelse av feilpropagasjon og kovarians må en prediksjon knyttes til observerbare størrelser og en eksplisitt usikkerhetsvurdering. Resultatet bør utfordres mot minst én alternativ modell, approksimasjon eller systematisk feilkilde.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit3-05-mit-quantum",
+        "fys-src-14-nist-codata"
+      ]
+    },
+    {
+      "id": "fys12-05-1",
+      "topic_id": "fys12-t05",
+      "classification": "principle",
+      "claim": "Parametre estimeres ved å sammenligne data med modellfamilier gjennom eksplisitte sannsynlighets- eller tapsfunksjoner. Dette må uttrykkes med eksplisitte størrelser, modeller eller ligninger slik at påstanden kan testes og sammenlignes med alternative beskrivelser.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit3-03-mit-waves-optics",
+        "vit3-10-nasa-ems"
+      ]
+    },
+    {
+      "id": "fys12-05-2",
+      "topic_id": "fys12-t05",
+      "classification": "measurement",
+      "claim": "Empirisk arbeid med parameterestimering krever at råsignal, måleprosedyre, kalibrering og avledede størrelser holdes analytisk atskilt. Parametre estimeres ved å sammenligne data med modellfamilier gjennom eksplisitte sannsynlighets- eller tapsfunksjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit3-04-mit-electromagnetism",
+        "fys-src-13-bipm-si"
+      ]
+    },
+    {
+      "id": "fys12-05-3",
+      "topic_id": "fys12-t05",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Best-fit er ikke identisk med sann modell, og parameterusikkerhet må skilles fra modellusikkerhet. En strict fysikkforklaring skal derfor angi hvilke antakelser som kan bryte sammen før konklusjonen generaliseres.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit3-05-mit-quantum",
+        "fys-src-14-nist-codata"
+      ]
+    },
+    {
+      "id": "fys12-05-4",
+      "topic_id": "fys12-t05",
+      "classification": "application",
+      "claim": "Ved anvendelse av parameterestimering må en prediksjon knyttes til observerbare størrelser og en eksplisitt usikkerhetsvurdering. Resultatet bør utfordres mot minst én alternativ modell, approksimasjon eller systematisk feilkilde.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit3-10-nasa-ems",
+        "vit3-01-mit-classical-mechanics"
+      ]
+    },
+    {
+      "id": "fys12-06-1",
+      "topic_id": "fys12-t06",
+      "classification": "principle",
+      "claim": "Numeriske løsninger gjør komplekse modeller beregnbare gjennom diskretisering, iterasjon og approksimasjon. Dette må uttrykkes med eksplisitte størrelser, modeller eller ligninger slik at påstanden kan testes og sammenlignes med alternative beskrivelser.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit3-04-mit-electromagnetism",
+        "fys-src-13-bipm-si"
+      ]
+    },
+    {
+      "id": "fys12-06-2",
+      "topic_id": "fys12-t06",
+      "classification": "measurement",
+      "claim": "Empirisk arbeid med numeriske metoder og simulering krever at råsignal, måleprosedyre, kalibrering og avledede størrelser holdes analytisk atskilt. Numeriske løsninger gjør komplekse modeller beregnbare gjennom diskretisering, iterasjon og approksimasjon.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit3-05-mit-quantum",
+        "fys-src-14-nist-codata"
+      ]
+    },
+    {
+      "id": "fys12-06-3",
+      "topic_id": "fys12-t06",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Numerisk konvergens må testes; en stabil kode kan fortsatt løse feil ligning eller feil randbetingelser. En strict fysikkforklaring skal derfor angi hvilke antakelser som kan bryte sammen før konklusjonen generaliseres.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit3-10-nasa-ems",
+        "vit3-01-mit-classical-mechanics"
+      ]
+    },
+    {
+      "id": "fys12-06-4",
+      "topic_id": "fys12-t06",
+      "classification": "application",
+      "claim": "Ved anvendelse av numeriske metoder og simulering må en prediksjon knyttes til observerbare størrelser og en eksplisitt usikkerhetsvurdering. Resultatet bør utfordres mot minst én alternativ modell, approksimasjon eller systematisk feilkilde.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "fys-src-13-bipm-si",
+        "vit3-02-mit-statistical-mechanics"
+      ]
+    },
+    {
+      "id": "fys12-07-1",
+      "topic_id": "fys12-t07",
+      "classification": "principle",
+      "claim": "Reproduserbar fysikk krever sporbar dataflyt fra rådata via kalibrering og behandling til figurer, tabeller og inferens. Dette må uttrykkes med eksplisitte størrelser, modeller eller ligninger slik at påstanden kan testes og sammenlignes med alternative beskrivelser.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit3-05-mit-quantum",
+        "fys-src-14-nist-codata"
+      ]
+    },
+    {
+      "id": "fys12-07-2",
+      "topic_id": "fys12-t07",
+      "classification": "measurement",
+      "claim": "Empirisk arbeid med reproduserbarhet og dataflyt krever at råsignal, måleprosedyre, kalibrering og avledede størrelser holdes analytisk atskilt. Reproduserbar fysikk krever sporbar dataflyt fra rådata via kalibrering og behandling til figurer, tabeller og inferens.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit3-10-nasa-ems",
+        "vit3-01-mit-classical-mechanics"
+      ]
+    },
+    {
+      "id": "fys12-07-3",
+      "topic_id": "fys12-t07",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: En publisert graf uten kode-, metode- eller dataproveniens kan være vanskelig å etterprøve. En strict fysikkforklaring skal derfor angi hvilke antakelser som kan bryte sammen før konklusjonen generaliseres.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "fys-src-13-bipm-si",
+        "vit3-02-mit-statistical-mechanics"
+      ]
+    },
+    {
+      "id": "fys12-07-4",
+      "topic_id": "fys12-t07",
+      "classification": "application",
+      "claim": "Ved anvendelse av reproduserbarhet og dataflyt må en prediksjon knyttes til observerbare størrelser og en eksplisitt usikkerhetsvurdering. Resultatet bør utfordres mot minst én alternativ modell, approksimasjon eller systematisk feilkilde.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "fys-src-14-nist-codata",
+        "vit3-03-mit-waves-optics"
+      ]
+    },
+    {
+      "id": "fys12-08-1",
+      "topic_id": "fys12-t08",
+      "classification": "principle",
+      "claim": "Modeller vurderes mot prediktiv ytelse, restledd, alternative forklaringer og uavhengige datasett. Dette må uttrykkes med eksplisitte størrelser, modeller eller ligninger slik at påstanden kan testes og sammenlignes med alternative beskrivelser.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit3-10-nasa-ems",
+        "vit3-01-mit-classical-mechanics"
+      ]
+    },
+    {
+      "id": "fys12-08-2",
+      "topic_id": "fys12-t08",
+      "classification": "measurement",
+      "claim": "Empirisk arbeid med modellvalg og validering krever at råsignal, måleprosedyre, kalibrering og avledede størrelser holdes analytisk atskilt. Modeller vurderes mot prediktiv ytelse, restledd, alternative forklaringer og uavhengige datasett.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "fys-src-13-bipm-si",
+        "vit3-02-mit-statistical-mechanics"
+      ]
+    },
+    {
+      "id": "fys12-08-3",
+      "topic_id": "fys12-t08",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Kompleksitet må balanseres mot informasjonsinnhold; flere parametre gir ikke automatisk bedre fysikk. En strict fysikkforklaring skal derfor angi hvilke antakelser som kan bryte sammen før konklusjonen generaliseres.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "fys-src-14-nist-codata",
+        "vit3-03-mit-waves-optics"
+      ]
+    },
+    {
+      "id": "fys12-08-4",
+      "topic_id": "fys12-t08",
+      "classification": "application",
+      "claim": "Ved anvendelse av modellvalg og validering må en prediksjon knyttes til observerbare størrelser og en eksplisitt usikkerhetsvurdering. Resultatet bør utfordres mot minst én alternativ modell, approksimasjon eller systematisk feilkilde.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit3-01-mit-classical-mechanics",
+        "vit3-04-mit-electromagnetism"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "fys12-m01",
+      "title": "Modul 1: Eksperimentdesign og hypotese og Sensorer, respons og kalibrering",
+      "sections": [
+        {
+          "id": "fys12-t01",
+          "title": "Eksperimentdesign og hypotese",
+          "paragraphs": [
+            {
+              "claim_id": "fys12-01-1",
+              "source_ids": [
+                "fys-src-13-bipm-si",
+                "vit3-02-mit-statistical-mechanics"
+              ],
+              "text": "Eksperimentdesign og hypotese: Et fysikkeksperiment må koble en presis modellprediksjon til observerbare størrelser, kontrollvariabler og en analyseplan. Dette må uttrykkes med eksplisitte størrelser, modeller eller ligninger slik at påstanden kan testes og sammenlignes med alternative beskrivelser. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Et resultat blir ikke sterkt bare fordi apparatet er avansert; identifikasjonsstrategien må være tydelig. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-01-1 bruker fys-src-13-bipm-si og vit3-02-mit-statistical-mechanics; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            },
+            {
+              "claim_id": "fys12-01-2",
+              "source_ids": [
+                "fys-src-14-nist-codata",
+                "vit3-03-mit-waves-optics"
+              ],
+              "text": "Eksperimentdesign og hypotese: Empirisk arbeid med eksperimentdesign og hypotese krever at råsignal, måleprosedyre, kalibrering og avledede størrelser holdes analytisk atskilt. Et fysikkeksperiment må koble en presis modellprediksjon til observerbare størrelser, kontrollvariabler og en analyseplan. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Et resultat blir ikke sterkt bare fordi apparatet er avansert; identifikasjonsstrategien må være tydelig. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-01-2 bruker fys-src-14-nist-codata og vit3-03-mit-waves-optics; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            },
+            {
+              "claim_id": "fys12-01-3",
+              "source_ids": [
+                "vit3-01-mit-classical-mechanics",
+                "vit3-04-mit-electromagnetism"
+              ],
+              "text": "Eksperimentdesign og hypotese: Gyldighetsgrensen er avgjørende: Et resultat blir ikke sterkt bare fordi apparatet er avansert; identifikasjonsstrategien må være tydelig. En strict fysikkforklaring skal derfor angi hvilke antakelser som kan bryte sammen før konklusjonen generaliseres. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Et resultat blir ikke sterkt bare fordi apparatet er avansert; identifikasjonsstrategien må være tydelig. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-01-3 bruker vit3-01-mit-classical-mechanics og vit3-04-mit-electromagnetism; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            },
+            {
+              "claim_id": "fys12-01-4",
+              "source_ids": [
+                "vit3-02-mit-statistical-mechanics",
+                "vit3-05-mit-quantum"
+              ],
+              "text": "Eksperimentdesign og hypotese: Ved anvendelse av eksperimentdesign og hypotese må en prediksjon knyttes til observerbare størrelser og en eksplisitt usikkerhetsvurdering. Resultatet bør utfordres mot minst én alternativ modell, approksimasjon eller systematisk feilkilde. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Et resultat blir ikke sterkt bare fordi apparatet er avansert; identifikasjonsstrategien må være tydelig. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-01-4 bruker vit3-02-mit-statistical-mechanics og vit3-05-mit-quantum; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            }
+          ],
+          "paragraphClaimIds": [
+            "fys12-01-1",
+            "fys12-01-2",
+            "fys12-01-3",
+            "fys12-01-4"
+          ],
+          "analysisFrame": [
+            "Måling → representasjon → modell for eksperimentdesign og hypotese. Skill observerbar størrelse fra avledet parameter og dokumenter instrument- eller dataledd.",
+            "Gyldighetsområde → alternativ forklaring → test. Et resultat blir ikke sterkt bare fordi apparatet er avansert; identifikasjonsstrategien må være tydelig. Bruk uten dette skillet er eksplisitt blokkert."
+          ]
+        },
+        {
+          "id": "fys12-t02",
+          "title": "Sensorer, respons og kalibrering",
+          "paragraphs": [
+            {
+              "claim_id": "fys12-02-1",
+              "source_ids": [
+                "fys-src-14-nist-codata",
+                "vit3-03-mit-waves-optics"
+              ],
+              "text": "Sensorer, respons og kalibrering: Sensorrespons må karakteriseres mot referanser slik at råsignal kan omformes til fysisk størrelse med kjent usikkerhet. Dette må uttrykkes med eksplisitte størrelser, modeller eller ligninger slik at påstanden kan testes og sammenlignes med alternative beskrivelser. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Kalibrering er tids-, område- og kontekstavhengig og kan ikke antas konstant uten kontroll. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-02-1 bruker fys-src-14-nist-codata og vit3-03-mit-waves-optics; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            },
+            {
+              "claim_id": "fys12-02-2",
+              "source_ids": [
+                "vit3-01-mit-classical-mechanics",
+                "vit3-04-mit-electromagnetism"
+              ],
+              "text": "Sensorer, respons og kalibrering: Empirisk arbeid med sensorer, respons og kalibrering krever at råsignal, måleprosedyre, kalibrering og avledede størrelser holdes analytisk atskilt. Sensorrespons må karakteriseres mot referanser slik at råsignal kan omformes til fysisk størrelse med kjent usikkerhet. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Kalibrering er tids-, område- og kontekstavhengig og kan ikke antas konstant uten kontroll. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-02-2 bruker vit3-01-mit-classical-mechanics og vit3-04-mit-electromagnetism; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            },
+            {
+              "claim_id": "fys12-02-3",
+              "source_ids": [
+                "vit3-02-mit-statistical-mechanics",
+                "vit3-05-mit-quantum"
+              ],
+              "text": "Sensorer, respons og kalibrering: Gyldighetsgrensen er avgjørende: Kalibrering er tids-, område- og kontekstavhengig og kan ikke antas konstant uten kontroll. En strict fysikkforklaring skal derfor angi hvilke antakelser som kan bryte sammen før konklusjonen generaliseres. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Kalibrering er tids-, område- og kontekstavhengig og kan ikke antas konstant uten kontroll. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-02-3 bruker vit3-02-mit-statistical-mechanics og vit3-05-mit-quantum; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            },
+            {
+              "claim_id": "fys12-02-4",
+              "source_ids": [
+                "vit3-03-mit-waves-optics",
+                "vit3-10-nasa-ems"
+              ],
+              "text": "Sensorer, respons og kalibrering: Ved anvendelse av sensorer, respons og kalibrering må en prediksjon knyttes til observerbare størrelser og en eksplisitt usikkerhetsvurdering. Resultatet bør utfordres mot minst én alternativ modell, approksimasjon eller systematisk feilkilde. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Kalibrering er tids-, område- og kontekstavhengig og kan ikke antas konstant uten kontroll. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-02-4 bruker vit3-03-mit-waves-optics og vit3-10-nasa-ems; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            }
+          ],
+          "paragraphClaimIds": [
+            "fys12-02-1",
+            "fys12-02-2",
+            "fys12-02-3",
+            "fys12-02-4"
+          ],
+          "analysisFrame": [
+            "Måling → representasjon → modell for sensorer, respons og kalibrering. Skill observerbar størrelse fra avledet parameter og dokumenter instrument- eller dataledd.",
+            "Gyldighetsområde → alternativ forklaring → test. Kalibrering er tids-, område- og kontekstavhengig og kan ikke antas konstant uten kontroll. Bruk uten dette skillet er eksplisitt blokkert."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fys12-m02",
+      "title": "Modul 2: Støy og signalbehandling og Feilpropagasjon og kovarians",
+      "sections": [
+        {
+          "id": "fys12-t03",
+          "title": "Støy og signalbehandling",
+          "paragraphs": [
+            {
+              "claim_id": "fys12-03-1",
+              "source_ids": [
+                "vit3-01-mit-classical-mechanics",
+                "vit3-04-mit-electromagnetism"
+              ],
+              "text": "Støy og signalbehandling: Støy beskrives statistisk og kan filtreres eller modelleres, men signalbehandling må bevare relevant fysikkinformasjon. Dette må uttrykkes med eksplisitte størrelser, modeller eller ligninger slik at påstanden kan testes og sammenlignes med alternative beskrivelser. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Et glattere signal er ikke automatisk et mer korrekt signal; filtrering kan introdusere bias. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-03-1 bruker vit3-01-mit-classical-mechanics og vit3-04-mit-electromagnetism; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            },
+            {
+              "claim_id": "fys12-03-2",
+              "source_ids": [
+                "vit3-02-mit-statistical-mechanics",
+                "vit3-05-mit-quantum"
+              ],
+              "text": "Støy og signalbehandling: Empirisk arbeid med støy og signalbehandling krever at råsignal, måleprosedyre, kalibrering og avledede størrelser holdes analytisk atskilt. Støy beskrives statistisk og kan filtreres eller modelleres, men signalbehandling må bevare relevant fysikkinformasjon. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Et glattere signal er ikke automatisk et mer korrekt signal; filtrering kan introdusere bias. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-03-2 bruker vit3-02-mit-statistical-mechanics og vit3-05-mit-quantum; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            },
+            {
+              "claim_id": "fys12-03-3",
+              "source_ids": [
+                "vit3-03-mit-waves-optics",
+                "vit3-10-nasa-ems"
+              ],
+              "text": "Støy og signalbehandling: Gyldighetsgrensen er avgjørende: Et glattere signal er ikke automatisk et mer korrekt signal; filtrering kan introdusere bias. En strict fysikkforklaring skal derfor angi hvilke antakelser som kan bryte sammen før konklusjonen generaliseres. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Et glattere signal er ikke automatisk et mer korrekt signal; filtrering kan introdusere bias. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-03-3 bruker vit3-03-mit-waves-optics og vit3-10-nasa-ems; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            },
+            {
+              "claim_id": "fys12-03-4",
+              "source_ids": [
+                "vit3-04-mit-electromagnetism",
+                "fys-src-13-bipm-si"
+              ],
+              "text": "Støy og signalbehandling: Ved anvendelse av støy og signalbehandling må en prediksjon knyttes til observerbare størrelser og en eksplisitt usikkerhetsvurdering. Resultatet bør utfordres mot minst én alternativ modell, approksimasjon eller systematisk feilkilde. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Et glattere signal er ikke automatisk et mer korrekt signal; filtrering kan introdusere bias. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-03-4 bruker vit3-04-mit-electromagnetism og fys-src-13-bipm-si; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            }
+          ],
+          "paragraphClaimIds": [
+            "fys12-03-1",
+            "fys12-03-2",
+            "fys12-03-3",
+            "fys12-03-4"
+          ],
+          "analysisFrame": [
+            "Måling → representasjon → modell for støy og signalbehandling. Skill observerbar størrelse fra avledet parameter og dokumenter instrument- eller dataledd.",
+            "Gyldighetsområde → alternativ forklaring → test. Et glattere signal er ikke automatisk et mer korrekt signal; filtrering kan introdusere bias. Bruk uten dette skillet er eksplisitt blokkert."
+          ]
+        },
+        {
+          "id": "fys12-t04",
+          "title": "Feilpropagasjon og kovarians",
+          "paragraphs": [
+            {
+              "claim_id": "fys12-04-1",
+              "source_ids": [
+                "vit3-02-mit-statistical-mechanics",
+                "vit3-05-mit-quantum"
+              ],
+              "text": "Feilpropagasjon og kovarians: Usikkerheter i inngangsvariabler må propagere til avledede størrelser, og korrelasjoner må tas med når de er relevante. Dette må uttrykkes med eksplisitte størrelser, modeller eller ligninger slik at påstanden kan testes og sammenlignes med alternative beskrivelser. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Kvadratsummering uten uavhengighetsantakelse kan gi feil samlet usikkerhet. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-04-1 bruker vit3-02-mit-statistical-mechanics og vit3-05-mit-quantum; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            },
+            {
+              "claim_id": "fys12-04-2",
+              "source_ids": [
+                "vit3-03-mit-waves-optics",
+                "vit3-10-nasa-ems"
+              ],
+              "text": "Feilpropagasjon og kovarians: Empirisk arbeid med feilpropagasjon og kovarians krever at råsignal, måleprosedyre, kalibrering og avledede størrelser holdes analytisk atskilt. Usikkerheter i inngangsvariabler må propagere til avledede størrelser, og korrelasjoner må tas med når de er relevante. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Kvadratsummering uten uavhengighetsantakelse kan gi feil samlet usikkerhet. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-04-2 bruker vit3-03-mit-waves-optics og vit3-10-nasa-ems; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            },
+            {
+              "claim_id": "fys12-04-3",
+              "source_ids": [
+                "vit3-04-mit-electromagnetism",
+                "fys-src-13-bipm-si"
+              ],
+              "text": "Feilpropagasjon og kovarians: Gyldighetsgrensen er avgjørende: Kvadratsummering uten uavhengighetsantakelse kan gi feil samlet usikkerhet. En strict fysikkforklaring skal derfor angi hvilke antakelser som kan bryte sammen før konklusjonen generaliseres. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Kvadratsummering uten uavhengighetsantakelse kan gi feil samlet usikkerhet. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-04-3 bruker vit3-04-mit-electromagnetism og fys-src-13-bipm-si; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            },
+            {
+              "claim_id": "fys12-04-4",
+              "source_ids": [
+                "vit3-05-mit-quantum",
+                "fys-src-14-nist-codata"
+              ],
+              "text": "Feilpropagasjon og kovarians: Ved anvendelse av feilpropagasjon og kovarians må en prediksjon knyttes til observerbare størrelser og en eksplisitt usikkerhetsvurdering. Resultatet bør utfordres mot minst én alternativ modell, approksimasjon eller systematisk feilkilde. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Kvadratsummering uten uavhengighetsantakelse kan gi feil samlet usikkerhet. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-04-4 bruker vit3-05-mit-quantum og fys-src-14-nist-codata; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            }
+          ],
+          "paragraphClaimIds": [
+            "fys12-04-1",
+            "fys12-04-2",
+            "fys12-04-3",
+            "fys12-04-4"
+          ],
+          "analysisFrame": [
+            "Måling → representasjon → modell for feilpropagasjon og kovarians. Skill observerbar størrelse fra avledet parameter og dokumenter instrument- eller dataledd.",
+            "Gyldighetsområde → alternativ forklaring → test. Kvadratsummering uten uavhengighetsantakelse kan gi feil samlet usikkerhet. Bruk uten dette skillet er eksplisitt blokkert."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fys12-m03",
+      "title": "Modul 3: Parameterestimering og Numeriske metoder og simulering",
+      "sections": [
+        {
+          "id": "fys12-t05",
+          "title": "Parameterestimering",
+          "paragraphs": [
+            {
+              "claim_id": "fys12-05-1",
+              "source_ids": [
+                "vit3-03-mit-waves-optics",
+                "vit3-10-nasa-ems"
+              ],
+              "text": "Parameterestimering: Parametre estimeres ved å sammenligne data med modellfamilier gjennom eksplisitte sannsynlighets- eller tapsfunksjoner. Dette må uttrykkes med eksplisitte størrelser, modeller eller ligninger slik at påstanden kan testes og sammenlignes med alternative beskrivelser. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Best-fit er ikke identisk med sann modell, og parameterusikkerhet må skilles fra modellusikkerhet. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-05-1 bruker vit3-03-mit-waves-optics og vit3-10-nasa-ems; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            },
+            {
+              "claim_id": "fys12-05-2",
+              "source_ids": [
+                "vit3-04-mit-electromagnetism",
+                "fys-src-13-bipm-si"
+              ],
+              "text": "Parameterestimering: Empirisk arbeid med parameterestimering krever at råsignal, måleprosedyre, kalibrering og avledede størrelser holdes analytisk atskilt. Parametre estimeres ved å sammenligne data med modellfamilier gjennom eksplisitte sannsynlighets- eller tapsfunksjoner. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Best-fit er ikke identisk med sann modell, og parameterusikkerhet må skilles fra modellusikkerhet. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-05-2 bruker vit3-04-mit-electromagnetism og fys-src-13-bipm-si; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            },
+            {
+              "claim_id": "fys12-05-3",
+              "source_ids": [
+                "vit3-05-mit-quantum",
+                "fys-src-14-nist-codata"
+              ],
+              "text": "Parameterestimering: Gyldighetsgrensen er avgjørende: Best-fit er ikke identisk med sann modell, og parameterusikkerhet må skilles fra modellusikkerhet. En strict fysikkforklaring skal derfor angi hvilke antakelser som kan bryte sammen før konklusjonen generaliseres. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Best-fit er ikke identisk med sann modell, og parameterusikkerhet må skilles fra modellusikkerhet. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-05-3 bruker vit3-05-mit-quantum og fys-src-14-nist-codata; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            },
+            {
+              "claim_id": "fys12-05-4",
+              "source_ids": [
+                "vit3-10-nasa-ems",
+                "vit3-01-mit-classical-mechanics"
+              ],
+              "text": "Parameterestimering: Ved anvendelse av parameterestimering må en prediksjon knyttes til observerbare størrelser og en eksplisitt usikkerhetsvurdering. Resultatet bør utfordres mot minst én alternativ modell, approksimasjon eller systematisk feilkilde. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Best-fit er ikke identisk med sann modell, og parameterusikkerhet må skilles fra modellusikkerhet. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-05-4 bruker vit3-10-nasa-ems og vit3-01-mit-classical-mechanics; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            }
+          ],
+          "paragraphClaimIds": [
+            "fys12-05-1",
+            "fys12-05-2",
+            "fys12-05-3",
+            "fys12-05-4"
+          ],
+          "analysisFrame": [
+            "Måling → representasjon → modell for parameterestimering. Skill observerbar størrelse fra avledet parameter og dokumenter instrument- eller dataledd.",
+            "Gyldighetsområde → alternativ forklaring → test. Best-fit er ikke identisk med sann modell, og parameterusikkerhet må skilles fra modellusikkerhet. Bruk uten dette skillet er eksplisitt blokkert."
+          ]
+        },
+        {
+          "id": "fys12-t06",
+          "title": "Numeriske metoder og simulering",
+          "paragraphs": [
+            {
+              "claim_id": "fys12-06-1",
+              "source_ids": [
+                "vit3-04-mit-electromagnetism",
+                "fys-src-13-bipm-si"
+              ],
+              "text": "Numeriske metoder og simulering: Numeriske løsninger gjør komplekse modeller beregnbare gjennom diskretisering, iterasjon og approksimasjon. Dette må uttrykkes med eksplisitte størrelser, modeller eller ligninger slik at påstanden kan testes og sammenlignes med alternative beskrivelser. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Numerisk konvergens må testes; en stabil kode kan fortsatt løse feil ligning eller feil randbetingelser. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-06-1 bruker vit3-04-mit-electromagnetism og fys-src-13-bipm-si; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            },
+            {
+              "claim_id": "fys12-06-2",
+              "source_ids": [
+                "vit3-05-mit-quantum",
+                "fys-src-14-nist-codata"
+              ],
+              "text": "Numeriske metoder og simulering: Empirisk arbeid med numeriske metoder og simulering krever at råsignal, måleprosedyre, kalibrering og avledede størrelser holdes analytisk atskilt. Numeriske løsninger gjør komplekse modeller beregnbare gjennom diskretisering, iterasjon og approksimasjon. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Numerisk konvergens må testes; en stabil kode kan fortsatt løse feil ligning eller feil randbetingelser. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-06-2 bruker vit3-05-mit-quantum og fys-src-14-nist-codata; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            },
+            {
+              "claim_id": "fys12-06-3",
+              "source_ids": [
+                "vit3-10-nasa-ems",
+                "vit3-01-mit-classical-mechanics"
+              ],
+              "text": "Numeriske metoder og simulering: Gyldighetsgrensen er avgjørende: Numerisk konvergens må testes; en stabil kode kan fortsatt løse feil ligning eller feil randbetingelser. En strict fysikkforklaring skal derfor angi hvilke antakelser som kan bryte sammen før konklusjonen generaliseres. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Numerisk konvergens må testes; en stabil kode kan fortsatt løse feil ligning eller feil randbetingelser. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-06-3 bruker vit3-10-nasa-ems og vit3-01-mit-classical-mechanics; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            },
+            {
+              "claim_id": "fys12-06-4",
+              "source_ids": [
+                "fys-src-13-bipm-si",
+                "vit3-02-mit-statistical-mechanics"
+              ],
+              "text": "Numeriske metoder og simulering: Ved anvendelse av numeriske metoder og simulering må en prediksjon knyttes til observerbare størrelser og en eksplisitt usikkerhetsvurdering. Resultatet bør utfordres mot minst én alternativ modell, approksimasjon eller systematisk feilkilde. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Numerisk konvergens må testes; en stabil kode kan fortsatt løse feil ligning eller feil randbetingelser. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-06-4 bruker fys-src-13-bipm-si og vit3-02-mit-statistical-mechanics; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            }
+          ],
+          "paragraphClaimIds": [
+            "fys12-06-1",
+            "fys12-06-2",
+            "fys12-06-3",
+            "fys12-06-4"
+          ],
+          "analysisFrame": [
+            "Måling → representasjon → modell for numeriske metoder og simulering. Skill observerbar størrelse fra avledet parameter og dokumenter instrument- eller dataledd.",
+            "Gyldighetsområde → alternativ forklaring → test. Numerisk konvergens må testes; en stabil kode kan fortsatt løse feil ligning eller feil randbetingelser. Bruk uten dette skillet er eksplisitt blokkert."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fys12-m04",
+      "title": "Modul 4: Reproduserbarhet og dataflyt og Modellvalg og validering",
+      "sections": [
+        {
+          "id": "fys12-t07",
+          "title": "Reproduserbarhet og dataflyt",
+          "paragraphs": [
+            {
+              "claim_id": "fys12-07-1",
+              "source_ids": [
+                "vit3-05-mit-quantum",
+                "fys-src-14-nist-codata"
+              ],
+              "text": "Reproduserbarhet og dataflyt: Reproduserbar fysikk krever sporbar dataflyt fra rådata via kalibrering og behandling til figurer, tabeller og inferens. Dette må uttrykkes med eksplisitte størrelser, modeller eller ligninger slik at påstanden kan testes og sammenlignes med alternative beskrivelser. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. En publisert graf uten kode-, metode- eller dataproveniens kan være vanskelig å etterprøve. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-07-1 bruker vit3-05-mit-quantum og fys-src-14-nist-codata; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            },
+            {
+              "claim_id": "fys12-07-2",
+              "source_ids": [
+                "vit3-10-nasa-ems",
+                "vit3-01-mit-classical-mechanics"
+              ],
+              "text": "Reproduserbarhet og dataflyt: Empirisk arbeid med reproduserbarhet og dataflyt krever at råsignal, måleprosedyre, kalibrering og avledede størrelser holdes analytisk atskilt. Reproduserbar fysikk krever sporbar dataflyt fra rådata via kalibrering og behandling til figurer, tabeller og inferens. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. En publisert graf uten kode-, metode- eller dataproveniens kan være vanskelig å etterprøve. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-07-2 bruker vit3-10-nasa-ems og vit3-01-mit-classical-mechanics; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            },
+            {
+              "claim_id": "fys12-07-3",
+              "source_ids": [
+                "fys-src-13-bipm-si",
+                "vit3-02-mit-statistical-mechanics"
+              ],
+              "text": "Reproduserbarhet og dataflyt: Gyldighetsgrensen er avgjørende: En publisert graf uten kode-, metode- eller dataproveniens kan være vanskelig å etterprøve. En strict fysikkforklaring skal derfor angi hvilke antakelser som kan bryte sammen før konklusjonen generaliseres. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. En publisert graf uten kode-, metode- eller dataproveniens kan være vanskelig å etterprøve. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-07-3 bruker fys-src-13-bipm-si og vit3-02-mit-statistical-mechanics; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            },
+            {
+              "claim_id": "fys12-07-4",
+              "source_ids": [
+                "fys-src-14-nist-codata",
+                "vit3-03-mit-waves-optics"
+              ],
+              "text": "Reproduserbarhet og dataflyt: Ved anvendelse av reproduserbarhet og dataflyt må en prediksjon knyttes til observerbare størrelser og en eksplisitt usikkerhetsvurdering. Resultatet bør utfordres mot minst én alternativ modell, approksimasjon eller systematisk feilkilde. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. En publisert graf uten kode-, metode- eller dataproveniens kan være vanskelig å etterprøve. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-07-4 bruker fys-src-14-nist-codata og vit3-03-mit-waves-optics; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            }
+          ],
+          "paragraphClaimIds": [
+            "fys12-07-1",
+            "fys12-07-2",
+            "fys12-07-3",
+            "fys12-07-4"
+          ],
+          "analysisFrame": [
+            "Måling → representasjon → modell for reproduserbarhet og dataflyt. Skill observerbar størrelse fra avledet parameter og dokumenter instrument- eller dataledd.",
+            "Gyldighetsområde → alternativ forklaring → test. En publisert graf uten kode-, metode- eller dataproveniens kan være vanskelig å etterprøve. Bruk uten dette skillet er eksplisitt blokkert."
+          ]
+        },
+        {
+          "id": "fys12-t08",
+          "title": "Modellvalg og validering",
+          "paragraphs": [
+            {
+              "claim_id": "fys12-08-1",
+              "source_ids": [
+                "vit3-10-nasa-ems",
+                "vit3-01-mit-classical-mechanics"
+              ],
+              "text": "Modellvalg og validering: Modeller vurderes mot prediktiv ytelse, restledd, alternative forklaringer og uavhengige datasett. Dette må uttrykkes med eksplisitte størrelser, modeller eller ligninger slik at påstanden kan testes og sammenlignes med alternative beskrivelser. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Kompleksitet må balanseres mot informasjonsinnhold; flere parametre gir ikke automatisk bedre fysikk. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-08-1 bruker vit3-10-nasa-ems og vit3-01-mit-classical-mechanics; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            },
+            {
+              "claim_id": "fys12-08-2",
+              "source_ids": [
+                "fys-src-13-bipm-si",
+                "vit3-02-mit-statistical-mechanics"
+              ],
+              "text": "Modellvalg og validering: Empirisk arbeid med modellvalg og validering krever at råsignal, måleprosedyre, kalibrering og avledede størrelser holdes analytisk atskilt. Modeller vurderes mot prediktiv ytelse, restledd, alternative forklaringer og uavhengige datasett. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Kompleksitet må balanseres mot informasjonsinnhold; flere parametre gir ikke automatisk bedre fysikk. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-08-2 bruker fys-src-13-bipm-si og vit3-02-mit-statistical-mechanics; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            },
+            {
+              "claim_id": "fys12-08-3",
+              "source_ids": [
+                "fys-src-14-nist-codata",
+                "vit3-03-mit-waves-optics"
+              ],
+              "text": "Modellvalg og validering: Gyldighetsgrensen er avgjørende: Kompleksitet må balanseres mot informasjonsinnhold; flere parametre gir ikke automatisk bedre fysikk. En strict fysikkforklaring skal derfor angi hvilke antakelser som kan bryte sammen før konklusjonen generaliseres. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Kompleksitet må balanseres mot informasjonsinnhold; flere parametre gir ikke automatisk bedre fysikk. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-08-3 bruker fys-src-14-nist-codata og vit3-03-mit-waves-optics; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            },
+            {
+              "claim_id": "fys12-08-4",
+              "source_ids": [
+                "vit3-01-mit-classical-mechanics",
+                "vit3-04-mit-electromagnetism"
+              ],
+              "text": "Modellvalg og validering: Ved anvendelse av modellvalg og validering må en prediksjon knyttes til observerbare størrelser og en eksplisitt usikkerhetsvurdering. Resultatet bør utfordres mot minst én alternativ modell, approksimasjon eller systematisk feilkilde. Strict evidenskjede: angi først hva som måles eller kontrolleres, deretter hvordan råsignal eller startdata omformes til en fysisk størrelse, så modellens ligninger og antakelser, og til slutt usikkerhet og gyldighetsområde. Kompleksitet må balanseres mot informasjonsinnhold; flere parametre gir ikke automatisk bedre fysikk. Dette skillet hindrer at idealisering presenteres som direkte observasjon eller at en numerisk tilpasning blir tolket som bevis for én unik mekanisme. Analysen skal kontrollere dimensjoner og skala og peke ut minst én alternativ modell, approksimasjon eller systematisk feilkilde. Kildesporet for fys12-08-4 bruker vit3-01-mit-classical-mechanics og vit3-04-mit-electromagnetism; påstanden er verifisert 2. september 2026 og kildene inngår i argumentet, ikke som dekorasjon."
+            }
+          ],
+          "paragraphClaimIds": [
+            "fys12-08-1",
+            "fys12-08-2",
+            "fys12-08-3",
+            "fys12-08-4"
+          ],
+          "analysisFrame": [
+            "Måling → representasjon → modell for modellvalg og validering. Skill observerbar størrelse fra avledet parameter og dokumenter instrument- eller dataledd.",
+            "Gyldighetsområde → alternativ forklaring → test. Kompleksitet må balanseres mot informasjonsinnhold; flere parametre gir ikke automatisk bedre fysikk. Bruk uten dette skillet er eksplisitt blokkert."
+          ]
+        }
+      ]
+    }
+  ],
+  "assessment": {
+    "questions": [
+      {
+        "id": "fys12-q01",
+        "question": "Hvilken arbeidsmåte er mest faglig presis når du analyserer eksperimentdesign og hypotese?",
+        "choices": [
+          "Skille observasjon, avledet størrelse, modellforutsetning og usikkerhet før konklusjonen trekkes.",
+          "Velge den enkleste formelen og behandle alle målinger som eksakte.",
+          "Bruke én illustrasjon som bevis uavhengig av instrument og skala.",
+          "Forklare avvik ved å endre definisjonene etter at dataene er sett."
+        ],
+        "correctIndex": 0,
+        "topic_id": "fys12-t01"
+      },
+      {
+        "id": "fys12-q02",
+        "question": "Hvilken arbeidsmåte er mest faglig presis når du analyserer sensorer, respons og kalibrering?",
+        "choices": [
+          "Skille observasjon, avledet størrelse, modellforutsetning og usikkerhet før konklusjonen trekkes.",
+          "Velge den enkleste formelen og behandle alle målinger som eksakte.",
+          "Bruke én illustrasjon som bevis uavhengig av instrument og skala.",
+          "Forklare avvik ved å endre definisjonene etter at dataene er sett."
+        ],
+        "correctIndex": 0,
+        "topic_id": "fys12-t02"
+      },
+      {
+        "id": "fys12-q03",
+        "question": "Hvilken arbeidsmåte er mest faglig presis når du analyserer støy og signalbehandling?",
+        "choices": [
+          "Skille observasjon, avledet størrelse, modellforutsetning og usikkerhet før konklusjonen trekkes.",
+          "Velge den enkleste formelen og behandle alle målinger som eksakte.",
+          "Bruke én illustrasjon som bevis uavhengig av instrument og skala.",
+          "Forklare avvik ved å endre definisjonene etter at dataene er sett."
+        ],
+        "correctIndex": 0,
+        "topic_id": "fys12-t03"
+      },
+      {
+        "id": "fys12-q04",
+        "question": "Hvilken arbeidsmåte er mest faglig presis når du analyserer feilpropagasjon og kovarians?",
+        "choices": [
+          "Skille observasjon, avledet størrelse, modellforutsetning og usikkerhet før konklusjonen trekkes.",
+          "Velge den enkleste formelen og behandle alle målinger som eksakte.",
+          "Bruke én illustrasjon som bevis uavhengig av instrument og skala.",
+          "Forklare avvik ved å endre definisjonene etter at dataene er sett."
+        ],
+        "correctIndex": 0,
+        "topic_id": "fys12-t04"
+      },
+      {
+        "id": "fys12-q05",
+        "question": "Hvilken arbeidsmåte er mest faglig presis når du analyserer parameterestimering?",
+        "choices": [
+          "Skille observasjon, avledet størrelse, modellforutsetning og usikkerhet før konklusjonen trekkes.",
+          "Velge den enkleste formelen og behandle alle målinger som eksakte.",
+          "Bruke én illustrasjon som bevis uavhengig av instrument og skala.",
+          "Forklare avvik ved å endre definisjonene etter at dataene er sett."
+        ],
+        "correctIndex": 0,
+        "topic_id": "fys12-t05"
+      },
+      {
+        "id": "fys12-q06",
+        "question": "Hvilken arbeidsmåte er mest faglig presis når du analyserer numeriske metoder og simulering?",
+        "choices": [
+          "Skille observasjon, avledet størrelse, modellforutsetning og usikkerhet før konklusjonen trekkes.",
+          "Velge den enkleste formelen og behandle alle målinger som eksakte.",
+          "Bruke én illustrasjon som bevis uavhengig av instrument og skala.",
+          "Forklare avvik ved å endre definisjonene etter at dataene er sett."
+        ],
+        "correctIndex": 0,
+        "topic_id": "fys12-t06"
+      },
+      {
+        "id": "fys12-q07",
+        "question": "Hvilken arbeidsmåte er mest faglig presis når du analyserer reproduserbarhet og dataflyt?",
+        "choices": [
+          "Skille observasjon, avledet størrelse, modellforutsetning og usikkerhet før konklusjonen trekkes.",
+          "Velge den enkleste formelen og behandle alle målinger som eksakte.",
+          "Bruke én illustrasjon som bevis uavhengig av instrument og skala.",
+          "Forklare avvik ved å endre definisjonene etter at dataene er sett."
+        ],
+        "correctIndex": 0,
+        "topic_id": "fys12-t07"
+      },
+      {
+        "id": "fys12-q08",
+        "question": "Hvilken arbeidsmåte er mest faglig presis når du analyserer modellvalg og validering?",
+        "choices": [
+          "Skille observasjon, avledet størrelse, modellforutsetning og usikkerhet før konklusjonen trekkes.",
+          "Velge den enkleste formelen og behandle alle målinger som eksakte.",
+          "Bruke én illustrasjon som bevis uavhengig av instrument og skala.",
+          "Forklare avvik ved å endre definisjonene etter at dataene er sett."
+        ],
+        "correctIndex": 0,
+        "topic_id": "fys12-t08"
+      }
+    ],
+    "caseTasks": [
+      {
+        "id": "fys12-case01",
+        "prompt": "Et datasett hevdes å støtte en modell som kombinerer eksperimentdesign og hypotese og støy og signalbehandling. Identifiser måleleddet, modellforutsetningene, én gyldighetsgrense og en alternativ test før du vurderer påstanden.",
+        "source_ids": [
+          "fys-src-13-bipm-si",
+          "vit3-04-mit-electromagnetism"
+        ],
+        "rubric": [
+          "måling og kalibrering",
+          "modell og antakelser",
+          "gyldighetsområde",
+          "alternativ test og usikkerhet"
+        ]
+      },
+      {
+        "id": "fys12-case02",
+        "prompt": "Et datasett hevdes å støtte en modell som kombinerer sensorer, respons og kalibrering og feilpropagasjon og kovarians. Identifiser måleleddet, modellforutsetningene, én gyldighetsgrense og en alternativ test før du vurderer påstanden.",
+        "source_ids": [
+          "fys-src-14-nist-codata",
+          "vit3-05-mit-quantum"
+        ],
+        "rubric": [
+          "måling og kalibrering",
+          "modell og antakelser",
+          "gyldighetsområde",
+          "alternativ test og usikkerhet"
+        ]
+      },
+      {
+        "id": "fys12-case03",
+        "prompt": "Et datasett hevdes å støtte en modell som kombinerer støy og signalbehandling og parameterestimering. Identifiser måleleddet, modellforutsetningene, én gyldighetsgrense og en alternativ test før du vurderer påstanden.",
+        "source_ids": [
+          "vit3-01-mit-classical-mechanics",
+          "vit3-10-nasa-ems"
+        ],
+        "rubric": [
+          "måling og kalibrering",
+          "modell og antakelser",
+          "gyldighetsområde",
+          "alternativ test og usikkerhet"
+        ]
+      },
+      {
+        "id": "fys12-case04",
+        "prompt": "Et datasett hevdes å støtte en modell som kombinerer feilpropagasjon og kovarians og numeriske metoder og simulering. Identifiser måleleddet, modellforutsetningene, én gyldighetsgrense og en alternativ test før du vurderer påstanden.",
+        "source_ids": [
+          "vit3-02-mit-statistical-mechanics",
+          "fys-src-13-bipm-si"
+        ],
+        "rubric": [
+          "måling og kalibrering",
+          "modell og antakelser",
+          "gyldighetsområde",
+          "alternativ test og usikkerhet"
+        ]
+      },
+      {
+        "id": "fys12-case05",
+        "prompt": "Et datasett hevdes å støtte en modell som kombinerer parameterestimering og reproduserbarhet og dataflyt. Identifiser måleleddet, modellforutsetningene, én gyldighetsgrense og en alternativ test før du vurderer påstanden.",
+        "source_ids": [
+          "vit3-03-mit-waves-optics",
+          "fys-src-14-nist-codata"
+        ],
+        "rubric": [
+          "måling og kalibrering",
+          "modell og antakelser",
+          "gyldighetsområde",
+          "alternativ test og usikkerhet"
+        ]
+      },
+      {
+        "id": "fys12-case06",
+        "prompt": "Et datasett hevdes å støtte en modell som kombinerer numeriske metoder og simulering og modellvalg og validering. Identifiser måleleddet, modellforutsetningene, én gyldighetsgrense og en alternativ test før du vurderer påstanden.",
+        "source_ids": [
+          "vit3-04-mit-electromagnetism",
+          "vit3-01-mit-classical-mechanics"
+        ],
+        "rubric": [
+          "måling og kalibrering",
+          "modell og antakelser",
+          "gyldighetsområde",
+          "alternativ test og usikkerhet"
+        ]
+      }
+    ]
+  },
+  "qualityGuard": {
+    "measurement_vs_model_explicit": true,
+    "uncertainty_required": true,
+    "validity_domain_required": true,
+    "alternative_model_or_systematic_required": true,
+    "source_trace_required": true,
+    "no_pseudophysical_metaphor_as_explanation": true,
+    "strict_domain_materialized": true
+  },
+  "reuse_provenance": {
+    "strict_upgrade": false,
+    "rule": "Nytt canonicalt Fysikk-felt; eksisterende naboinnhold teller ikke som materialisert uten denne strict-pakken."
+  }
+}
