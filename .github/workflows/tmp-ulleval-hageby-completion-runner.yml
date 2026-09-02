@@ -7,6 +7,7 @@ permissions:
   contents: write
 jobs:
   finalize:
+    if: github.event.head_commit.message != 'Materialize Ullevål Hageby Place production'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -121,13 +122,11 @@ jobs:
           node scripts/build-fagverk-release-manifest.mjs --check
           git diff --check
           git status --short
-      - name: Publish candidate and remove runner
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Publish validated candidate
         run: |
           git config user.name "Paradispartiet"
           git config user.email "paradispartiet@gmail.com"
-          git rm .github/workflows/tmp-ulleval-hageby-completion-runner.yml tools/finalize-ulleval-hageby-completion.mjs
+          git checkout -- tools/finalize-ulleval-hageby-completion.mjs
           git add -A
-          git commit -m "Complete Ullevål Hageby Place production"
+          git commit -m "Materialize Ullevål Hageby Place production"
           git push origin HEAD:work/ulleval-hageby-completion-20260902 --force
