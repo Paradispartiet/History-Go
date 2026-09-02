@@ -1,0 +1,1 @@
+import test from 'node:test';import assert from 'node:assert/strict';import { audit } from '../scripts/audit-juss-rettsvitenskap-legal-system-access-justice-professional-ethics-digital-law-fulltext-v1.mjs';test('Juss felt 12 beviser strict 12/12',()=>{const r=audit();assert.equal(r.gates.strict_completion,true);assert.equal(r.six_part_quality_review.total,30)});

@@ -1,0 +1,1 @@
+import test from 'node:test';import assert from 'node:assert/strict';import { audit } from '../scripts/audit-juss-rettsvitenskap-labour-company-business-tax-market-law-fulltext-v1.mjs';test('Juss felt 11 fulltekst 30/30',()=>{const r=audit();assert.equal(r.counts.paragraphs,32);assert.equal(r.six_part_quality_review.total,30)});
