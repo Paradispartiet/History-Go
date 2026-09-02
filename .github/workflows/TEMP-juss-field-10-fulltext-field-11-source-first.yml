@@ -1,0 +1,70 @@
+name: TEMP Juss field 10 fulltext field 11 source-first
+
+on:
+  push:
+    branches:
+      - agent/juss-field-10-fulltext-field-11-source-first-20260902
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Materialize field 10
+        run: node scripts/TEMP-materialize-juss-field10.mjs
+      - name: Audit field 10
+        run: node scripts/TEMP-audit-juss-field10.mjs
+      - name: Build and audit field 11 source-first
+        run: node scripts/TEMP-source-juss-field11.mjs
+      - name: Finalize canonical registry
+        run: node scripts/TEMP-finalize-juss-field10-field11.mjs
+      - name: Promote verified permanent gates
+        run: |
+          cp scripts/TEMP-materialize-juss-field10.mjs scripts/materialize-juss-rettsvitenskap-family-child-inheritance-person-law-fulltext-v1.mjs
+          cp scripts/TEMP-audit-juss-field10.mjs scripts/audit-juss-rettsvitenskap-family-child-inheritance-person-law-fulltext-v1.mjs
+          cp scripts/TEMP-source-juss-field11.mjs scripts/brief-juss-rettsvitenskap-labour-company-business-tax-market-law-sources-v1.mjs
+          cp scripts/TEMP-test-juss-field10.mjs tests/juss-rettsvitenskap-family-child-inheritance-person-law-fulltext-v1.test.mjs
+          cp scripts/TEMP-test-juss-field11.mjs tests/juss-rettsvitenskap-labour-company-business-tax-market-law-source-brief-v1.test.mjs
+          cp scripts/TEMP-next-juss-reconciliation-v1.mjs scripts/audit-juss-rettsvitenskap-reconciliation-v1.mjs
+          cp scripts/TEMP-next-juss-reconciliation-v1.test.mjs tests/juss-rettsvitenskap-reconciliation-v1.test.mjs
+      - name: Focused and cumulative Juss tests
+        run: |
+          node scripts/audit-juss-rettsvitenskap-family-child-inheritance-person-law-fulltext-v1.mjs
+          node scripts/brief-juss-rettsvitenskap-labour-company-business-tax-market-law-sources-v1.mjs
+          node scripts/audit-juss-rettsvitenskap-reconciliation-v1.mjs
+          node --test tests/juss-rettsvitenskap-*.test.mjs
+      - name: Remove TEMP surfaces
+        run: |
+          rm -f .github/workflows/TEMP-juss-field-10-fulltext-field-11-source-first.yml
+          rm -f scripts/TEMP-materialize-juss-field10.mjs
+          rm -f scripts/TEMP-audit-juss-field10.mjs
+          rm -f scripts/TEMP-test-juss-field10.mjs
+          rm -f scripts/TEMP-source-juss-field11.mjs
+          rm -f scripts/TEMP-test-juss-field11.mjs
+          rm -f scripts/TEMP-finalize-juss-field10-field11.mjs
+          rm -f scripts/TEMP-next-juss-reconciliation-v1.mjs
+          rm -f scripts/TEMP-next-juss-reconciliation-v1.test.mjs
+          if git ls-files | grep -E '(^|/)TEMP-(juss|materialize-juss-field10|audit-juss-field10|test-juss-field10|source-juss-field11|test-juss-field11|finalize-juss-field10-field11|next-juss-reconciliation)' ; then
+            echo 'TEMP-flater gjenstår' >&2
+            exit 1
+          fi
+      - name: Commit verified materialization
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'Ingen verifiserte endringer å committe' >&2
+            exit 1
+          fi
+          git commit -m 'Materialize Juss field 10 and prepare field 11 source-first'
+          git push origin HEAD:${GITHUB_REF_NAME}
