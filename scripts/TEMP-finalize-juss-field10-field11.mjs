@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -56,4 +57,20 @@ reconciliation.production_plan.strict_completion_proven = false;
 write(registryFile, registry);
 write(ciFile, ci);
 write(reconciliationFile, reconciliation);
-console.log('Juss canonical finalisert fail-closed: 10/12 materialisert, Felt 11 source-first klart.');
+
+const tempTrackedFiles = [
+  '.github/workflows/TEMP-juss-field-10-fulltext-field-11-source-first.yml',
+  'scripts/TEMP-materialize-juss-field10.mjs',
+  'scripts/TEMP-audit-juss-field10.mjs',
+  'scripts/TEMP-test-juss-field10.mjs',
+  'scripts/TEMP-source-juss-field11.mjs',
+  'scripts/TEMP-test-juss-field11.mjs',
+  'scripts/TEMP-finalize-juss-field10-field11.mjs',
+  'scripts/TEMP-next-juss-reconciliation-v1.mjs',
+  'scripts/TEMP-next-juss-reconciliation-v1.test.mjs',
+  'scripts/TEMP-repair-juss-field9-source-brief.mjs',
+  'scripts/TEMP-repair-juss-field9-source-brief.test.mjs'
+];
+execFileSync('git', ['rm', '--cached', '-f', '--ignore-unmatch', '--', ...tempTrackedFiles], { cwd: ROOT, stdio: 'inherit' });
+
+console.log('Juss canonical finalisert fail-closed: 10/12 materialisert, Felt 11 source-first klart; TEMP-slettinger staged før cleanup-port.');
