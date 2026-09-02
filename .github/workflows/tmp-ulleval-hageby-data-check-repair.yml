@@ -1,5 +1,6 @@
 name: tmp Ullevål Hageby data-check repair
 on:
+  workflow_dispatch:
   push:
     branches:
       - work/ulleval-hageby-completion-20260902
@@ -7,7 +8,7 @@ permissions:
   contents: write
 jobs:
   repair:
-    if: github.event.head_commit.message != 'Repair Ullevål Hageby Data checks on fresh main'
+    if: github.event_name == 'workflow_dispatch' || github.event.head_commit.message != 'Repair Ullevål Hageby Data checks on fresh main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
