@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-09-01T12:17:46.714Z
+Generert: 2026-09-02T08:42:39.128Z
 
 Aktive steder: 1597
 
@@ -90,7 +90,6 @@ Aktive steder: 1597
 | torshovdalen | data/coordinate-evidence/oslo/by/torshovdalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | torshovparken | data/coordinate-evidence/oslo/by/torshovparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | toyen_torg | data/coordinate-evidence/oslo/by/toyen_torg.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| trefoldighetskirken | data/coordinate-evidence/oslo/by/trefoldighetskirken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | trikk_17_18 | data/coordinate-evidence/oslo/by/trikk_17_18.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | tullin | data/coordinate-evidence/oslo/by/tullin.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ullern | data/coordinate-evidence/oslo/by/ullern.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -318,6 +317,7 @@ Aktive steder: 1597
 | youngstorget | data/coordinate-evidence/oslo/politikk/youngstorget.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | akershus_slottskirke | data/coordinate-evidence/oslo/religion/akershus_slottskirke.json | applied_to_place | candidate_ready_for_production | OK |
 | det_kongelige_mausoleum | data/coordinate-evidence/oslo/religion/det_kongelige_mausoleum.json | applied_to_place | candidate_ready_for_production | OK |
+| trefoldighetskirken | data/coordinate-evidence/oslo/religion/trefoldighetskirken.json | applied_to_place | candidate_ready_for_production | OK |
 | chat_noir | data/coordinate-evidence/oslo/scenekunst/chat_noir.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | edderkoppen_scene | data/coordinate-evidence/oslo/scenekunst/edderkoppen_scene.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | latter | data/coordinate-evidence/oslo/scenekunst/latter.json | applied_to_place | do_not_change_coordinates_yet | OK |
