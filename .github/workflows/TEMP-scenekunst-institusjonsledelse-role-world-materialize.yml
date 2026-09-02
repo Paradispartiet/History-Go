@@ -89,7 +89,7 @@ jobs:
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git rm .github/workflows/TEMP-scenekunst-institusjonsledelse-role-world-materialize.yml
-          git rm scripts/TEMP-materialize-scenekunst-institusjonsledelse-role-world.mjs
+          git rm -f scripts/TEMP-materialize-scenekunst-institusjonsledelse-role-world.mjs
           if [ -f reports/TEMP_SCENEKUNST_INSTITUSJONSLEDELSE_ROLE_WORLD_FAILURE.log ]; then git rm reports/TEMP_SCENEKUNST_INSTITUSJONSLEDELSE_ROLE_WORLD_FAILURE.log; fi
           git add -u
           git add data/Civication/roleWorlds/scenekunst/scenekunst_institusjonsledelse.json
