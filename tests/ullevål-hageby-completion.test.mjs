@@ -80,7 +80,7 @@ test("Story, chronology, language and four Lesespor are place-specific", () => {
   assert.equal(stories.length, 1);
   assert.equal(stories[0].quality_profile, "episode_v1");
   assert.equal(stories[0].type, "historical_event");
-  assert.equal(stories[0].score.total, 17);
+  assert.equal(stories[0].score.total, 16);
   assert.match(stories[0].title, /Mot solen/);
   const leksikon = read("data/leksikon/places/oslo/by/leksikon_ullevål_hageby.json");
   assert.equal(leksikon.length, 1);
