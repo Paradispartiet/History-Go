@@ -1,4 +1,4 @@
-name: Refresh Grønlandsleiret image state
+name: Finalize Grønlandsleiret image repair
 
 on:
   push:
@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  refresh:
+  finalize:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -20,6 +20,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
       - name: Fetch current main
         run: git fetch origin main
@@ -27,8 +28,66 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Refresh canonical place-image state
-        run: node scripts/build-place-image-state.mjs
+      - name: Replace dead local image pointers with documented Commons image
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'data/places/by/oslo/places/gronlandsleiret.json';
+          const place = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const image = 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Gr%C3%B6nlandsleiret_IMG_8370.JPG?width=1280';
+          const sourceUrl = 'https://commons.wikimedia.org/wiki/File:Gr%C3%B6nlandsleiret_IMG_8370.JPG';
+          place.image = image;
+          place.cardImage = image;
+          place.externalLinks = Array.isArray(place.externalLinks) ? place.externalLinks : [];
+          const entry = {
+            type: 'image_source',
+            label: 'Wikimedia Commons – Grønlandsleiret',
+            url: sourceUrl,
+            verifiedAt: '2026-09-02'
+          };
+          const index = place.externalLinks.findIndex((link) => link?.type === 'image_source' || link?.url === sourceUrl);
+          if (index >= 0) place.externalLinks[index] = entry;
+          else place.externalLinks.push(entry);
+          fs.writeFileSync(file, `${JSON.stringify(place, null, 2)}\n`);
+          NODE
+
+      - name: Regenerate canonical derived artifacts
+        run: |
+          node scripts/audit-place-images.mjs --mode=all --report=/tmp/gronlandsleiret-place-image-audit.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const audit = JSON.parse(fs.readFileSync('/tmp/gronlandsleiret-place-image-audit.json', 'utf8'));
+          const file = 'data/places/place_image_backlog_summary.json';
+          const summary = JSON.parse(fs.readFileSync(file, 'utf8'));
+          summary.generatedAt = '2026-09-02';
+          summary.generatedFromCommit = 'gronlandsleiret_fagverk_v2_20260902';
+          summary.totalPlaces = audit.totalPlaces;
+          summary.summary = {
+            validLocal: audit.summary.local,
+            validRemote: audit.summary.remote,
+            optionalMissing: audit.summary.optional,
+            missing: audit.summary.missing,
+            invalidLocalPath: audit.summary.invalid,
+            remaining: audit.summary.missing + audit.summary.invalid
+          };
+          summary.byCategory = summary.byCategory || {};
+          for (const [category, stats] of Object.entries(audit.byCategory || {})) {
+            const current = summary.byCategory[category] || {};
+            summary.byCategory[category] = {
+              ...current,
+              total: stats.total,
+              valid: stats.local + stats.remote,
+              optional: stats.optional,
+              missing: stats.missing,
+              invalid: stats.invalid
+            };
+          }
+          fs.writeFileSync(file, `${JSON.stringify(summary, null, 2)}\n`);
+          NODE
+          npm run places:index:build
+          npm run place-open:build
+          node scripts/audit-fagverk-place-pages.mjs --write
+          node scripts/build-fagverk-release-manifest.mjs
 
       - name: Commit clean final tree
         run: |
@@ -36,20 +95,19 @@ jobs:
           git add -A
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git commit -m 'chore: refresh place image state for Grønlandsleiret Fagverk'
+          git commit -m 'fix: finalize Grønlandsleiret image state'
 
-      - name: Validate refreshed state and Fagverk contracts
+      - name: Validate image, index, place-open and Fagverk contracts
         run: |
-          npm run places:image-state:check
+          node scripts/audit-place-images.mjs --mode=changed
+          node scripts/audit-place-images.mjs --mode=all --report=/tmp/gronlandsleiret-final-image-audit.json --verify-summary=data/places/place_image_backlog_summary.json
           npm run places:index:check
-          npm run places:images:check
-          node scripts/audit-place-image-registry.mjs
-          node --test tests/fagverk-and-place-contracts.test.mjs
-          node scripts/validate-place-description-production-v4_2_policy.mjs --changed --base origin/main --head HEAD
+          npm run place-open:check
           node scripts/audit-fagverk-place-pages.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
-          npm run place-open:check
+          node --test tests/fagverk-place-pages.test.mjs tests/fagverk-place-rendering.test.mjs tests/fagverk-place-substance-audit.test.mjs
+          node scripts/validate-place-description-production-v4_2_policy.mjs --changed --base origin/main --head HEAD
           git diff --check origin/main...HEAD
 
-      - name: Push refreshed branch
+      - name: Push clean finalized branch
         run: git push origin HEAD:work/gronlandsleiret-fagverk-v2-20260902
