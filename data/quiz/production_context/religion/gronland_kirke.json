@@ -1,0 +1,789 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "religion",
+  "targetId": "gronland_kirke",
+  "profile": "rich_5x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1084,
+    "selection_sha256": "8f3ab664061df6f90dc9d87116c3a8e144ba7ac10683f5fcd9b6f0ca246b3724",
+    "category_id": "religion",
+    "target_id": "gronland_kirke"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/religion/religionpensum_canonical_v1.json",
+      "bytes": 2087,
+      "sha256": "e796e7aa173447e187926526d884636d906fd03b3395cc3aa6e4fea9de53141c",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/religion/emner_religion_canonical_v1.json",
+      "bytes": 5745,
+      "sha256": "f0949c34f68d84797fe0995c8ac868d7e64b583edeaf583e68b50f4e8020ec0f",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/religion/fagkart_religion_canonical_v1.json",
+      "bytes": 3306,
+      "sha256": "4847e4249c18db7e478d737b3b1245fc985865cad2eafeba94c46847ffe7984a",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/religion/methods_religion_canonical_v1.json",
+      "bytes": 12487,
+      "sha256": "972c31b1f018c2df7090c8ea712b2597799ee23d404981f9fdbec04e8f3e15d1",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/religion/supersetQUIZMAL_religion.json",
+      "bytes": 5551,
+      "sha256": "9fa4e54657ecde48dc2fa55e9e7883c80b85f1fd9f265ad11062df7e5ef01132",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/religion/gronland_kirke.json",
+      "bytes": 16703,
+      "sha256": "22341b466268bf40e05cb7d01a77654173d6b93e184d4aa767bc76b477f747e4"
+    },
+    "target": {
+      "path": "data/places/religion/oslo/gronland_kirke/gronland_kirke.json",
+      "bytes": 31346,
+      "sha256": "899286f6d1c82b0f63381942cccb353f3997fdca13995acf09e9d27a7c72d53d"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1611,
+      "selection_sha256": "98d43e2a513b57197db93b9188595942c7a6de683c0a9d8d662b47e06965f785"
+    },
+    "relations": [
+      {
+        "path": "data/relations.json",
+        "matches": 1,
+        "selection_bytes": 242,
+        "selection_sha256": "deb8b495ff0b6bcda4382852f13dac0139c6081c7ae3e1dcac4bf528a4fb01dc"
+      }
+    ],
+    "stories": [
+      {
+        "path": "data/stories/stories_gronland_kirke.json",
+        "matches": 1,
+        "selection_bytes": 1997,
+        "selection_sha256": "187d5b2b1c353aa442301aeb07a0800caca04d6550068d633db70037ccc38888"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/religion/gronland_kirke_sets.json",
+  "source_registry": {
+    "official": {
+      "url": "https://www.kirken.no/gamlebyenoggronland",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Menighetsbruk og oppussingsstatus 2026 er kontrollert og tidsavgrenset."
+    },
+    "easter": {
+      "url": "https://www.kirken.no/nb-NO/fellesrad/kirkene-i-gamle-oslo/kirkene-i-gamle-oslo/gamlebyenoggronland/forsideoppslag/p%C3%A5sken%202026/",
+      "source_type": "official_event_program",
+      "review_status": "reviewed",
+      "review_note": "Påskeprogrammet 2026 dokumenterer konkret liturgisk praksis."
+    },
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Gr%C3%B8nland_kirke",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Arkitektur, innvielse, inventar og restaurering er kontrollert."
+    },
+    "area": {
+      "url": "https://oslobyleksikon.no/side/Gr%C3%B8nland_%28str%C3%B8k%29",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Byutvidelse og menighetshistoriske endringer er kontrollert."
+    },
+    "wilhelm": {
+      "url": "https://snl.no/Wilhelm_von_Hanno",
+      "source_type": "biographical_reference",
+      "review_status": "reviewed",
+      "review_note": "Arkitektidentiteten er kontrollert."
+    },
+    "jubilee": {
+      "url": "https://www.kirken.no/nb-NO/bispedommer/Oslo/nyhetsarkiv2/2019/gronland-150-ar/",
+      "source_type": "official_history",
+      "review_status": "reviewed",
+      "review_note": "150-årsjubileet bekrefter innvielsesåret og fortsatt menighetsbruk."
+    },
+    "font": {
+      "url": "https://commons.wikimedia.org/wiki/File:Gr%C3%B8nland_kirke_%E2%80%93_d%C3%B8pefont.jpg",
+      "source_type": "licensed_image_record",
+      "review_status": "reviewed",
+      "review_note": "Motiv, opphav og lisens hentes direkte fra Commons API."
+    },
+    "choir": {
+      "url": "https://commons.wikimedia.org/wiki/File:Gr%C3%B8nland_kirke_%E2%80%93_kor.jpg",
+      "source_type": "licensed_image_record",
+      "review_status": "reviewed",
+      "review_note": "Korparti, opphav og lisens hentes direkte fra Commons API."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/by/gronland_kirke_sets.json",
+      "data/quiz/religion/gronland_kirke_sets.json",
+      "data/quiz/manifest.json"
+    ],
+    "active_before": {
+      "categoryId": "by",
+      "set_count": 4,
+      "question_count": 28
+    },
+    "decisions": [
+      "Legacy By-quiz erstattes av en Religion-eid pakke ved full kategori-migrering.",
+      "De første 18 spørsmålene er teori- og metodefrie."
+    ],
+    "knowledge_migration": {
+      "status": "category_migration",
+      "retained_rule": "Stedsspesifikke fakta reverifiseres mot dagens Religion-kilder; By-emnebindinger kopieres ikke blindt."
+    }
+  },
+  "profile_decision": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "justification": "Fem sett dekker identitet, byutvidelse/inventar, ritual/nåtid, kildegrenser og metode/teori/syntese."
+  },
+  "held_back_candidates": [
+    "Påstander om forbipasserendes tro eller bakgrunn",
+    "oppussingsstatus formulert som permanent identitet",
+    "formell domkirkestatus for tilnavnet Østkantens katedral"
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 3,
+      "emner": 8,
+      "topic_hooks": 1,
+      "methods": 26
+    },
+    "candidate_emner": [
+      {
+        "id": "em_religion_hellige_rom",
+        "title": "Hellige rom",
+        "score": 100
+      },
+      {
+        "id": "em_religion_kristendom",
+        "title": "Kristendom",
+        "score": 100
+      },
+      {
+        "id": "em_religion_religion_og_samfunn",
+        "title": "Religion og samfunn",
+        "score": 100
+      },
+      {
+        "id": "em_religion_religionshistorie_lokalt",
+        "title": "Lokal religionshistorie",
+        "score": 100
+      },
+      {
+        "id": "em_religion_ritualer_praksis",
+        "title": "Ritualer og religiøs praksis",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "religion_ritual_fellesskap",
+        "title": "Ritual og kollektivt fellesskap",
+        "category_id": "praksis_ritual",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "kur_religion_01_rom_ritual",
+      "kur_religion_02_tradisjoner_historie",
+      "kur_religion_03_samfunn_reise"
+    ],
+    "emne_ids": [
+      "em_religion_hellige_rom",
+      "em_religion_ritualer_praksis",
+      "em_religion_religionshistorie_lokalt",
+      "em_religion_kristendom",
+      "em_religion_religion_og_samfunn"
+    ],
+    "topic_hook_ids": [
+      "religion_ritual_fellesskap"
+    ],
+    "method_ids": [
+      "met_religion_stedsobservasjon",
+      "met_religion_ritualanalyse",
+      "met_religion_historisk_kildeanalyse",
+      "met_religion_material_visual_and_architectural_analysis"
+    ],
+    "thinker_ids": [
+      "emile_durkheim"
+    ],
+    "works": [
+      "The Elementary Forms of Religious Life"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_gronland_kirke_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kirken ligger i Grønlandsleiret 34.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_hellige_rom"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon daterer innvielsen til 3. mars 1869.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Wilhelm von Hanno vant arkitektkonkurransen i 1864.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Biskop Jens Lauritz Arup innviet kirken.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_kristendom"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kirken er beskrevet som nyromansk.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_hellige_rom"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Fasadene er oppført i rød tegl.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_hellige_rom"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Tilnavnet er ikke formell domkirkestatus.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religion_og_samfunn"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Fem tyske glassmalerier ble bestilt til innvielsen.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_hellige_rom"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Byleksikon beskriver tre stålklokker fra Bochumer Verein.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Grønland ble innlemmet i Christiania i 1859.",
+      "source_ids": [
+        "area"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religion_og_samfunn"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kirken inngår i et institusjonsmiljø med skole, brannvern og politi.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religion_og_samfunn"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kirken ble restaurert i 1988.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Fra 2014 heter menigheten Gamlebyen og Grønland menighet.",
+      "source_ids": [
+        "area"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religion_og_samfunn"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo bispedømme dokumenterte 150-årsmarkering i 2019.",
+      "source_ids": [
+        "jubilee"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Døpefonten er en fysisk ritualgjenstand.",
+      "source_ids": [
+        "font"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_ritualer_praksis"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Dåp behandles som praksis, ikke som fysisk gjenstand.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_ritualer_praksis"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Programmet viser konkret påskepraksis i kirken.",
+      "source_ids": [
+        "easter"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_ritualer_praksis"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oppussingen er en tidsavgrenset driftsstatus.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religion_og_samfunn"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Menigheten opplyser at gudstjenestene flyttes til Gamlebyen kirke.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_ritualer_praksis"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Den offisielle siden oppgir 24. november 2026 som sluttdato.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religion_og_samfunn"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Fysiske spor kan observeres uten identitetsgjetting.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_hellige_rom"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Feltobservasjon må holde identitetsgrenser.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religion_og_samfunn"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Samlingen skiller materialitet fra utført praksis.",
+      "source_ids": [
+        "choir"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_hellige_rom"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Driftsstatus skal ikke bli permanent identitet.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religion_og_samfunn"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Historiske bilder kan belyse endring uten å være geometriske overlays.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Arkitekturen viser samlokalisering, ikke automatisk opplevelse eller legitimitet.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religion_og_samfunn"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Nåtidsstatus må bæres av en oppdatert institusjonskilde.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religion_og_samfunn"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Kilden beskriver et tilnavn knyttet til størrelse og virkning.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Metoden starter med observerbare spor.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_hellige_rom"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Ritualanalyse følger ordnet handling i kontekst.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_ritualer_praksis"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Historisk kildeanalyse skiller hendelser og kildelag.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Metoden kobler materialitet til kontekst uten identitetsgjetting.",
+      "source_ids": [
+        "choir"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_hellige_rom"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Objekt og praksis er ulike evidenstyper.",
+      "source_ids": [
+        "font"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_ritualer_praksis"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Durkheim gir et avgrenset grep for kollektive ritualer uten å erstatte stedskildene.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_ritualer_praksis"
+    },
+    {
+      "claim_id": "claim_gronland_kirke_quiz_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kildene dokumenterer både historisk bygg, menighetsbruk, materielle spor og tidsavgrenset drift.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religion_og_samfunn"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "relation",
+      "id": "rel_gronland_kirke_wilhelm_von_hanno",
+      "source_file": "data/relations.json",
+      "summary": null
+    },
+    {
+      "type": "story",
+      "id": "st_gronland_kirke_innvielsen_1869",
+      "source_file": "data/stories/stories_gronland_kirke.json",
+      "summary": "Ti år etter at Grønland ble innlemmet i Christiania, ble den nye kirken innviet som del av et større institusjonsmiljø i den voksende østlige bydelen."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "religion_gronland_kirke_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_gronland_kirke_quiz_01",
+        "claim_gronland_kirke_quiz_02",
+        "claim_gronland_kirke_quiz_03",
+        "claim_gronland_kirke_quiz_04",
+        "claim_gronland_kirke_quiz_05",
+        "claim_gronland_kirke_quiz_06",
+        "claim_gronland_kirke_quiz_07"
+      ]
+    },
+    {
+      "set_id": "religion_gronland_kirke_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_gronland_kirke_quiz_08",
+        "claim_gronland_kirke_quiz_09",
+        "claim_gronland_kirke_quiz_10",
+        "claim_gronland_kirke_quiz_11",
+        "claim_gronland_kirke_quiz_12",
+        "claim_gronland_kirke_quiz_13",
+        "claim_gronland_kirke_quiz_14"
+      ]
+    },
+    {
+      "set_id": "religion_gronland_kirke_set_3",
+      "order": 3,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_gronland_kirke_quiz_15",
+        "claim_gronland_kirke_quiz_16",
+        "claim_gronland_kirke_quiz_17",
+        "claim_gronland_kirke_quiz_18",
+        "claim_gronland_kirke_quiz_19",
+        "claim_gronland_kirke_quiz_20",
+        "claim_gronland_kirke_quiz_21"
+      ]
+    },
+    {
+      "set_id": "religion_gronland_kirke_set_4",
+      "order": 4,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_gronland_kirke_quiz_22",
+        "claim_gronland_kirke_quiz_23",
+        "claim_gronland_kirke_quiz_24",
+        "claim_gronland_kirke_quiz_25",
+        "claim_gronland_kirke_quiz_26",
+        "claim_gronland_kirke_quiz_27",
+        "claim_gronland_kirke_quiz_28"
+      ]
+    },
+    {
+      "set_id": "religion_gronland_kirke_set_5",
+      "order": 5,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_gronland_kirke_quiz_29",
+        "claim_gronland_kirke_quiz_30",
+        "claim_gronland_kirke_quiz_31",
+        "claim_gronland_kirke_quiz_32",
+        "claim_gronland_kirke_quiz_33",
+        "claim_gronland_kirke_quiz_34",
+        "claim_gronland_kirke_quiz_35"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 35,
+    "counts": {
+      "fact": 18,
+      "context": 9,
+      "concept_theory": 8
+    },
+    "ratios": {
+      "fact": 0.514,
+      "context": 0.257,
+      "concept_theory": 0.229
+    }
+  }
+}
