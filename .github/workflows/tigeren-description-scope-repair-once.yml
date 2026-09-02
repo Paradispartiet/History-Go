@@ -1,0 +1,69 @@
+name: Tigeren description scope repair once
+
+on:
+  push:
+    branches:
+      - work/tigeren-fagverk-v2-20260902
+    paths:
+      - .github/workflows/tigeren-description-scope-repair-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  repair-scope:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Restore legacy description fields from current main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          node <<'NODE'
+          const fs = require('fs');
+          const cp = require('child_process');
+          const file = 'data/places/by/oslo/places/tigeren.json';
+          const current = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const base = JSON.parse(cp.execFileSync('git', ['show', `origin/main:${file}`], {encoding:'utf8'}));
+          current.desc = base.desc;
+          current.popupDesc = base.popupDesc;
+          fs.writeFileSync(file, JSON.stringify(current, null, 2) + '\n');
+          NODE
+
+      - name: Install dependencies and rebuild place-open
+        run: |
+          npm ci
+          npm run place-open:build
+
+      - name: Commit scoped repair locally
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/tigeren-description-scope-repair-once.yml
+          git add data/places/by/oslo/places/tigeren.json data/runtime/place-open/tigeren.json
+          git diff --cached --check
+          git commit -m "fix(scope): keep Tigeren descriptions in v4.2 lane"
+
+      - name: Validate repaired PR scope and Fagverk
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/validate-place-description-production-v4_2.mjs --changed --base origin/main --head HEAD
+          npm run place-open:check
+          node scripts/audit-fagverk-place-pages.mjs
+          node --test tests/fagverk-place-pages.test.mjs tests/fagverk-place-rendering.test.mjs tests/fagverk-place-substance-audit.test.mjs
+
+      - name: Push repaired branch
+        run: git push origin HEAD:work/tigeren-fagverk-v2-20260902
