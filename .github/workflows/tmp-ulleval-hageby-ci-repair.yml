@@ -106,5 +106,7 @@ jobs:
       - name: Publish repaired candidate
         run: |
           git add -A
-          git commit -m "Repair Ullevål Hageby composed CI state"
+          if ! git diff --cached --quiet; then
+            git commit -m "Repair Ullevål Hageby composed CI state"
+          fi
           git push origin HEAD:work/ulleval-hageby-completion-20260902
