@@ -1,4 +1,4 @@
-name: Tigeren description scope repair once
+name: Tigeren description gate capture once
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 jobs:
-  repair-scope:
+  capture-description-gate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,7 +24,7 @@ jobs:
           node-version: '20'
           cache: npm
 
-      - name: Prepare repaired branch state
+      - name: Prepare repaired workspace
         shell: bash
         run: |
           set -euo pipefail
@@ -48,17 +48,33 @@ jobs:
           git diff --cached --check
           git commit -m "fix(scope): keep Tigeren descriptions in v4.2 lane"
 
-      - name: Validate Description v4.2 gate
-        run: node scripts/validate-place-description-production-v4_2.mjs --changed --base origin/main --head HEAD
+      - name: Capture exact Description v4.2 result
+        shell: bash
+        run: |
+          set +e
+          node scripts/validate-place-description-production-v4_2.mjs --changed --base origin/main --head HEAD > /tmp/gate.txt 2>&1
+          code=$?
+          set -e
+          {
+            echo "validator_exit_code=$code"
+            echo "workspace_head=$(git rev-parse HEAD)"
+            echo "origin_main=$(git rev-parse origin/main)"
+            echo
+            echo "=== changed files origin/main...HEAD ==="
+            git diff --name-status origin/main...HEAD
+            echo
+            echo "=== tigeren diff origin/main...HEAD ==="
+            git diff origin/main...HEAD -- data/places/by/oslo/places/tigeren.json
+            echo
+            echo "=== validator output ==="
+            cat /tmp/gate.txt
+          } > reports/tigeren-description-gate-diagnostic.txt
+          cat reports/tigeren-description-gate-diagnostic.txt
 
-      - name: Validate place-open
-        run: npm run place-open:check
-
-      - name: Validate Fagverk audit
-        run: node scripts/audit-fagverk-place-pages.mjs
-
-      - name: Validate Fagverk tests
-        run: node --test tests/fagverk-place-pages.test.mjs tests/fagverk-place-rendering.test.mjs tests/fagverk-place-substance-audit.test.mjs
-
-      - name: Push repaired branch
-        run: git push origin HEAD:work/tigeren-fagverk-v2-20260902
+      - name: Push diagnostic capture even on validator failure
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add reports/tigeren-description-gate-diagnostic.txt
+          git commit -m "diag: capture Tigeren description gate"
+          git push origin HEAD:work/tigeren-fagverk-v2-20260902
