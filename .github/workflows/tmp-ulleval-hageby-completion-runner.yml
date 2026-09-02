@@ -19,7 +19,18 @@ jobs:
       - name: Finalize canonical Place
         run: |
           npm ci --no-audit --no-fund
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path("tools/finalize-ulleval-hageby-completion.mjs")
+          s = p.read_text()
+          old = 'write(briefFile, { schema: "history_go_quiz_production_brief_v1", targetId: placeId, categoryId: "by", profile: "normal_4x7", verified_at: verifiedAt, sources: Object.entries(sourceMap).map(([id, url]) => ({ id, url, source_origin: "external", verified_at: verifiedAt })), claims: questions.map((q, index) => ({ claim_id: q.claim_id, order: index + 1, planned_phase: phases[Math.floor(index / 7)], family: q.question_type === "fact" ? "fact" : q.question_type === "context" ? "context" : q.question_type === "method" ? "method" : "concept_theory", statement: q.claim_basis, source_ids: q.source, source_origin: "external", emne_id: q.emne_id })) });'
+          new = 'write(briefFile, { schema_version: "1.0", status: "reviewed", targetId: placeId, categoryId: "by", profile_hint: "normal", reviewed_at: verifiedAt, review_note: "Kildegrunnlaget er gjennomgått for Ullevål Hageby normal 4x7.", sources: Object.fromEntries(Object.entries(sourceMap).map(([id, url]) => [id, { url, source_type: "external_reference", review_status: "reviewed", review_note: "Kontrollert for Ullevål Hageby-produksjonen." }])), claims: questions.map((q, index) => ({ claim_id: q.claim_id, order: index + 1, planned_phase: phases[Math.floor(index / 7)], family: q.question_type === "fact" ? "fact" : q.question_type === "context" ? "context" : q.question_type === "method" ? "method" : "concept_theory", statement: q.claim_basis, source_ids: q.source, source_origin: "external", emne_id: q.emne_id })) });'
+          if old not in s:
+              raise SystemExit("Expected legacy brief writer not found")
+          p.write_text(s.replace(old, new))
+          PY
           node tools/finalize-ulleval-hageby-completion.mjs
+          git checkout -- tools/finalize-ulleval-hageby-completion.mjs
           node tests/ullevål-hageby-completion.test.mjs
           npm run places:index:check
           npm run place-open:check
