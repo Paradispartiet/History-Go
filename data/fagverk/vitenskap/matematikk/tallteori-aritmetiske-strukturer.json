@@ -1,0 +1,1129 @@
+{
+  "schema": "history_go_fagverk_matematikk_strict_domain_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-09-02",
+  "subject": "vitenskap",
+  "subject_id": "vitenskap",
+  "canonical_subcategory_id": "matematikk",
+  "ordinal": 9,
+  "domain_id": "tallteori_aritmetiske_strukturer",
+  "id": "tallteori-aritmetiske-strukturer",
+  "chapter_id": "tallteori-aritmetiske-strukturer",
+  "title": "Tallteori og aritmetiske strukturer",
+  "subtitle": "Strict Matematikk-felt 9 av 12: source-first, fulltekst, claims, vurderinger og case",
+  "lead": "Tallteori og aritmetiske strukturer er materialisert som et selvstendig felt i Matematikk-registeret med eksplisitte definisjoner, beviskjeder, objekt–representasjon-skille, numerisk feilkontroll og en tydelig grense mellom matematisk korrekthet og empirisk modelladekvathet.",
+  "source_registry": "data/fag/vitenskap/matematikk/source_registry_v1.json",
+  "source_first": {
+    "status": "pass",
+    "source_ids": [
+      "mat-src-13-mit-number-theory",
+      "vit2-05-mit-discrete",
+      "vit2-07-mit-algebra",
+      "vit2-02-lean-propositions-proofs",
+      "vit2-03-lean-induction",
+      "mat-src-11-mit-real-analysis",
+      "vit2-06-mit-linear-algebra",
+      "vit2-09-uio-euclid"
+    ],
+    "topic_briefs": [
+      {
+        "id": "mat09-t01",
+        "title": "Delbarhet og største felles divisor",
+        "core": "Delbarhet organiserer heltallsaritmetikk, og Euklids algoritme beregner største felles divisor gjennom invariant reststruktur.",
+        "boundary": "Numeriske eksempler er ikke et bevis for alle heltall; divisibilitetsresultater krever deduktiv argumentasjon.",
+        "planned_claim_ids": [
+          "mat09-01-1",
+          "mat09-01-2",
+          "mat09-01-3",
+          "mat09-01-4"
+        ]
+      },
+      {
+        "id": "mat09-t02",
+        "title": "Primtall og faktorisering",
+        "core": "Primtall fungerer som grunnkomponenter i heltallsfaktorisering, og entydig faktorisering gir en sentral strukturell egenskap ved heltallene.",
+        "boundary": "Entydig faktorisering i heltall må ikke generaliseres ukritisk til alle ringer.",
+        "planned_claim_ids": [
+          "mat09-02-1",
+          "mat09-02-2",
+          "mat09-02-3",
+          "mat09-02-4"
+        ]
+      },
+      {
+        "id": "mat09-t03",
+        "title": "Kongruenser og modulær aritmetikk",
+        "core": "Kongruensregning organiserer heltall etter rester modulo et positivt heltall og bevarer bestemte aritmetiske operasjoner.",
+        "boundary": "Likhet modulo n er en ekvivalensrelasjon og er ikke vanlig heltallslikhet.",
+        "planned_claim_ids": [
+          "mat09-03-1",
+          "mat09-03-2",
+          "mat09-03-3",
+          "mat09-03-4"
+        ]
+      },
+      {
+        "id": "mat09-t04",
+        "title": "Fermat, Euler og multiplikative strukturer",
+        "core": "Resultater om potenser modulo n kobler relativ primitet, gruppestruktur og aritmetiske funksjoner.",
+        "boundary": "Teoremenes betingelser om primtall eller relativ primitet må kontrolleres før de anvendes.",
+        "planned_claim_ids": [
+          "mat09-04-1",
+          "mat09-04-2",
+          "mat09-04-3",
+          "mat09-04-4"
+        ]
+      },
+      {
+        "id": "mat09-t05",
+        "title": "Kinesisk restteorem",
+        "core": "Kinesisk restteorem samler kompatible kongruensbetingelser til løsninger modulo produktet når modulene oppfyller riktige relativ-prime betingelser.",
+        "boundary": "Entydigheten er modulo det samlede modulsystemet og er ikke en unik heltallsverdi uten representasjonsvalg.",
+        "planned_claim_ids": [
+          "mat09-05-1",
+          "mat09-05-2",
+          "mat09-05-3",
+          "mat09-05-4"
+        ]
+      },
+      {
+        "id": "mat09-t06",
+        "title": "Kvadratiske rester og reciprocity",
+        "core": "Kvadratiske rester beskriver når kongruensen x² ≡ a modulo p har løsninger og leder til strukturelle reciprocity-resultater.",
+        "boundary": "Kvadratisk residuositetsanalyse er relativ til valgt modulus og må ikke forveksles med fortegn eller kvadratrøtter over reelle tall.",
+        "planned_claim_ids": [
+          "mat09-06-1",
+          "mat09-06-2",
+          "mat09-06-3",
+          "mat09-06-4"
+        ]
+      },
+      {
+        "id": "mat09-t07",
+        "title": "Diofantiske ligninger",
+        "core": "Diofantiske ligninger søker heltalls- eller rasjonale løsninger og kombinerer divisibilitet, kongruenser og strukturelle argumenter.",
+        "boundary": "En reell eller numerisk løsning gir ikke automatisk en heltallsløsning.",
+        "planned_claim_ids": [
+          "mat09-07-1",
+          "mat09-07-2",
+          "mat09-07-3",
+          "mat09-07-4"
+        ]
+      },
+      {
+        "id": "mat09-t08",
+        "title": "Tallteori, algoritmer og anvendelser",
+        "core": "Tallteoretiske strukturer brukes i algoritmer og kryptografiske konstruksjoner gjennom presise aritmetiske egenskaper.",
+        "boundary": "En matematisk sikkerhetsantakelse eller kompleksitetsantakelse må skilles fra et formelt bevist teorem om systemet.",
+        "planned_claim_ids": [
+          "mat09-08-1",
+          "mat09-08-2",
+          "mat09-08-3",
+          "mat09-08-4"
+        ]
+      }
+    ],
+    "minimum_sources": 8,
+    "claim_level_trace": true,
+    "no_decorative_sources": true
+  },
+  "verifiedClaims": [
+    {
+      "id": "mat09-01-1",
+      "topic_id": "mat09-t01",
+      "classification": "formal_structure",
+      "claim": "Delbarhet organiserer heltallsaritmetikk, og Euklids algoritme beregner største felles divisor gjennom invariant reststruktur. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-13-mit-number-theory",
+        "vit2-02-lean-propositions-proofs"
+      ]
+    },
+    {
+      "id": "mat09-01-2",
+      "topic_id": "mat09-t01",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med delbarhet og største felles divisor skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Delbarhet organiserer heltallsaritmetikk, og Euklids algoritme beregner største felles divisor gjennom invariant reststruktur. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "vit2-03-lean-induction"
+      ]
+    },
+    {
+      "id": "mat09-01-3",
+      "topic_id": "mat09-t01",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Numeriske eksempler er ikke et bevis for alle heltall; divisibilitetsresultater krever deduktiv argumentasjon. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-07-mit-algebra",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat09-01-4",
+      "topic_id": "mat09-t01",
+      "classification": "application",
+      "claim": "Når delbarhet og største felles divisor anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Numeriske eksempler er ikke et bevis for alle heltall; divisibilitetsresultater krever deduktiv argumentasjon.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-02-lean-propositions-proofs",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat09-02-1",
+      "topic_id": "mat09-t02",
+      "classification": "formal_structure",
+      "claim": "Primtall fungerer som grunnkomponenter i heltallsfaktorisering, og entydig faktorisering gir en sentral strukturell egenskap ved heltallene. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "vit2-03-lean-induction"
+      ]
+    },
+    {
+      "id": "mat09-02-2",
+      "topic_id": "mat09-t02",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med primtall og faktorisering skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Primtall fungerer som grunnkomponenter i heltallsfaktorisering, og entydig faktorisering gir en sentral strukturell egenskap ved heltallene. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-07-mit-algebra",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat09-02-3",
+      "topic_id": "mat09-t02",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Entydig faktorisering i heltall må ikke generaliseres ukritisk til alle ringer. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-02-lean-propositions-proofs",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat09-02-4",
+      "topic_id": "mat09-t02",
+      "classification": "application",
+      "claim": "Når primtall og faktorisering anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Entydig faktorisering i heltall må ikke generaliseres ukritisk til alle ringer.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-03-lean-induction",
+        "vit2-09-uio-euclid"
+      ]
+    },
+    {
+      "id": "mat09-03-1",
+      "topic_id": "mat09-t03",
+      "classification": "formal_structure",
+      "claim": "Kongruensregning organiserer heltall etter rester modulo et positivt heltall og bevarer bestemte aritmetiske operasjoner. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-07-mit-algebra",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat09-03-2",
+      "topic_id": "mat09-t03",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med kongruenser og modulær aritmetikk skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Kongruensregning organiserer heltall etter rester modulo et positivt heltall og bevarer bestemte aritmetiske operasjoner. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-02-lean-propositions-proofs",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat09-03-3",
+      "topic_id": "mat09-t03",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Likhet modulo n er en ekvivalensrelasjon og er ikke vanlig heltallslikhet. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-03-lean-induction",
+        "vit2-09-uio-euclid"
+      ]
+    },
+    {
+      "id": "mat09-03-4",
+      "topic_id": "mat09-t03",
+      "classification": "application",
+      "claim": "Når kongruenser og modulær aritmetikk anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Likhet modulo n er en ekvivalensrelasjon og er ikke vanlig heltallslikhet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "mat-src-13-mit-number-theory"
+      ]
+    },
+    {
+      "id": "mat09-04-1",
+      "topic_id": "mat09-t04",
+      "classification": "formal_structure",
+      "claim": "Resultater om potenser modulo n kobler relativ primitet, gruppestruktur og aritmetiske funksjoner. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-02-lean-propositions-proofs",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat09-04-2",
+      "topic_id": "mat09-t04",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med fermat, euler og multiplikative strukturer skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Resultater om potenser modulo n kobler relativ primitet, gruppestruktur og aritmetiske funksjoner. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-03-lean-induction",
+        "vit2-09-uio-euclid"
+      ]
+    },
+    {
+      "id": "mat09-04-3",
+      "topic_id": "mat09-t04",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Teoremenes betingelser om primtall eller relativ primitet må kontrolleres før de anvendes. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "mat-src-13-mit-number-theory"
+      ]
+    },
+    {
+      "id": "mat09-04-4",
+      "topic_id": "mat09-t04",
+      "classification": "application",
+      "claim": "Når fermat, euler og multiplikative strukturer anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Teoremenes betingelser om primtall eller relativ primitet må kontrolleres før de anvendes.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat09-05-1",
+      "topic_id": "mat09-t05",
+      "classification": "formal_structure",
+      "claim": "Kinesisk restteorem samler kompatible kongruensbetingelser til løsninger modulo produktet når modulene oppfyller riktige relativ-prime betingelser. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-03-lean-induction",
+        "vit2-09-uio-euclid"
+      ]
+    },
+    {
+      "id": "mat09-05-2",
+      "topic_id": "mat09-t05",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med kinesisk restteorem skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Kinesisk restteorem samler kompatible kongruensbetingelser til løsninger modulo produktet når modulene oppfyller riktige relativ-prime betingelser. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "mat-src-13-mit-number-theory"
+      ]
+    },
+    {
+      "id": "mat09-05-3",
+      "topic_id": "mat09-t05",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Entydigheten er modulo det samlede modulsystemet og er ikke en unik heltallsverdi uten representasjonsvalg. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat09-05-4",
+      "topic_id": "mat09-t05",
+      "classification": "application",
+      "claim": "Når kinesisk restteorem anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Entydigheten er modulo det samlede modulsystemet og er ikke en unik heltallsverdi uten representasjonsvalg.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-09-uio-euclid",
+        "vit2-07-mit-algebra"
+      ]
+    },
+    {
+      "id": "mat09-06-1",
+      "topic_id": "mat09-t06",
+      "classification": "formal_structure",
+      "claim": "Kvadratiske rester beskriver når kongruensen x² ≡ a modulo p har løsninger og leder til strukturelle reciprocity-resultater. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "mat-src-13-mit-number-theory"
+      ]
+    },
+    {
+      "id": "mat09-06-2",
+      "topic_id": "mat09-t06",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med kvadratiske rester og reciprocity skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Kvadratiske rester beskriver når kongruensen x² ≡ a modulo p har løsninger og leder til strukturelle reciprocity-resultater. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat09-06-3",
+      "topic_id": "mat09-t06",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Kvadratisk residuositetsanalyse er relativ til valgt modulus og må ikke forveksles med fortegn eller kvadratrøtter over reelle tall. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-09-uio-euclid",
+        "vit2-07-mit-algebra"
+      ]
+    },
+    {
+      "id": "mat09-06-4",
+      "topic_id": "mat09-t06",
+      "classification": "application",
+      "claim": "Når kvadratiske rester og reciprocity anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Kvadratisk residuositetsanalyse er relativ til valgt modulus og må ikke forveksles med fortegn eller kvadratrøtter over reelle tall.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-13-mit-number-theory",
+        "vit2-02-lean-propositions-proofs"
+      ]
+    },
+    {
+      "id": "mat09-07-1",
+      "topic_id": "mat09-t07",
+      "classification": "formal_structure",
+      "claim": "Diofantiske ligninger søker heltalls- eller rasjonale løsninger og kombinerer divisibilitet, kongruenser og strukturelle argumenter. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat09-07-2",
+      "topic_id": "mat09-t07",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med diofantiske ligninger skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Diofantiske ligninger søker heltalls- eller rasjonale løsninger og kombinerer divisibilitet, kongruenser og strukturelle argumenter. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-09-uio-euclid",
+        "vit2-07-mit-algebra"
+      ]
+    },
+    {
+      "id": "mat09-07-3",
+      "topic_id": "mat09-t07",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: En reell eller numerisk løsning gir ikke automatisk en heltallsløsning. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-13-mit-number-theory",
+        "vit2-02-lean-propositions-proofs"
+      ]
+    },
+    {
+      "id": "mat09-07-4",
+      "topic_id": "mat09-t07",
+      "classification": "application",
+      "claim": "Når diofantiske ligninger anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En reell eller numerisk løsning gir ikke automatisk en heltallsløsning.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "vit2-03-lean-induction"
+      ]
+    },
+    {
+      "id": "mat09-08-1",
+      "topic_id": "mat09-t08",
+      "classification": "formal_structure",
+      "claim": "Tallteoretiske strukturer brukes i algoritmer og kryptografiske konstruksjoner gjennom presise aritmetiske egenskaper. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-09-uio-euclid",
+        "vit2-07-mit-algebra"
+      ]
+    },
+    {
+      "id": "mat09-08-2",
+      "topic_id": "mat09-t08",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med tallteori, algoritmer og anvendelser skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Tallteoretiske strukturer brukes i algoritmer og kryptografiske konstruksjoner gjennom presise aritmetiske egenskaper. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-13-mit-number-theory",
+        "vit2-02-lean-propositions-proofs"
+      ]
+    },
+    {
+      "id": "mat09-08-3",
+      "topic_id": "mat09-t08",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: En matematisk sikkerhetsantakelse eller kompleksitetsantakelse må skilles fra et formelt bevist teorem om systemet. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "vit2-03-lean-induction"
+      ]
+    },
+    {
+      "id": "mat09-08-4",
+      "topic_id": "mat09-t08",
+      "classification": "application",
+      "claim": "Når tallteori, algoritmer og anvendelser anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En matematisk sikkerhetsantakelse eller kompleksitetsantakelse må skilles fra et formelt bevist teorem om systemet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-07-mit-algebra",
+        "mat-src-11-mit-real-analysis"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "mat09-m01",
+      "title": "Modul 1: Delbarhet og største felles divisor og Primtall og faktorisering",
+      "sections": [
+        {
+          "id": "mat09-t01",
+          "title": "Delbarhet og største felles divisor",
+          "paragraphs": [
+            {
+              "claim_id": "mat09-01-1",
+              "source_ids": [
+                "mat-src-13-mit-number-theory",
+                "vit2-02-lean-propositions-proofs"
+              ],
+              "text": "Delbarhet og største felles divisor: Delbarhet organiserer heltallsaritmetikk, og Euklids algoritme beregner største felles divisor gjennom invariant reststruktur. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Numeriske eksempler er ikke et bevis for alle heltall; divisibilitetsresultater krever deduktiv argumentasjon. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-01-1 bruker mat-src-13-mit-number-theory og vit2-02-lean-propositions-proofs; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat09-01-2",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "vit2-03-lean-induction"
+              ],
+              "text": "Delbarhet og største felles divisor: Ved arbeid med delbarhet og største felles divisor skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Delbarhet organiserer heltallsaritmetikk, og Euklids algoritme beregner største felles divisor gjennom invariant reststruktur. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Numeriske eksempler er ikke et bevis for alle heltall; divisibilitetsresultater krever deduktiv argumentasjon. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-01-2 bruker vit2-05-mit-discrete og vit2-03-lean-induction; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat09-01-3",
+              "source_ids": [
+                "vit2-07-mit-algebra",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Delbarhet og største felles divisor: Gyldighetsgrensen er avgjørende: Numeriske eksempler er ikke et bevis for alle heltall; divisibilitetsresultater krever deduktiv argumentasjon. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Numeriske eksempler er ikke et bevis for alle heltall; divisibilitetsresultater krever deduktiv argumentasjon. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-01-3 bruker vit2-07-mit-algebra og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat09-01-4",
+              "source_ids": [
+                "vit2-02-lean-propositions-proofs",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Delbarhet og største felles divisor: Når delbarhet og største felles divisor anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Numeriske eksempler er ikke et bevis for alle heltall; divisibilitetsresultater krever deduktiv argumentasjon. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Numeriske eksempler er ikke et bevis for alle heltall; divisibilitetsresultater krever deduktiv argumentasjon. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-01-4 bruker vit2-02-lean-propositions-proofs og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat09-01-1",
+            "mat09-01-2",
+            "mat09-01-3",
+            "mat09-01-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for delbarhet og største felles divisor.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Numeriske eksempler er ikke et bevis for alle heltall; divisibilitetsresultater krever deduktiv argumentasjon."
+          ]
+        },
+        {
+          "id": "mat09-t02",
+          "title": "Primtall og faktorisering",
+          "paragraphs": [
+            {
+              "claim_id": "mat09-02-1",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "vit2-03-lean-induction"
+              ],
+              "text": "Primtall og faktorisering: Primtall fungerer som grunnkomponenter i heltallsfaktorisering, og entydig faktorisering gir en sentral strukturell egenskap ved heltallene. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Entydig faktorisering i heltall må ikke generaliseres ukritisk til alle ringer. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-02-1 bruker vit2-05-mit-discrete og vit2-03-lean-induction; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat09-02-2",
+              "source_ids": [
+                "vit2-07-mit-algebra",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Primtall og faktorisering: Ved arbeid med primtall og faktorisering skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Primtall fungerer som grunnkomponenter i heltallsfaktorisering, og entydig faktorisering gir en sentral strukturell egenskap ved heltallene. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Entydig faktorisering i heltall må ikke generaliseres ukritisk til alle ringer. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-02-2 bruker vit2-07-mit-algebra og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat09-02-3",
+              "source_ids": [
+                "vit2-02-lean-propositions-proofs",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Primtall og faktorisering: Gyldighetsgrensen er avgjørende: Entydig faktorisering i heltall må ikke generaliseres ukritisk til alle ringer. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Entydig faktorisering i heltall må ikke generaliseres ukritisk til alle ringer. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-02-3 bruker vit2-02-lean-propositions-proofs og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat09-02-4",
+              "source_ids": [
+                "vit2-03-lean-induction",
+                "vit2-09-uio-euclid"
+              ],
+              "text": "Primtall og faktorisering: Når primtall og faktorisering anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Entydig faktorisering i heltall må ikke generaliseres ukritisk til alle ringer. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Entydig faktorisering i heltall må ikke generaliseres ukritisk til alle ringer. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-02-4 bruker vit2-03-lean-induction og vit2-09-uio-euclid; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat09-02-1",
+            "mat09-02-2",
+            "mat09-02-3",
+            "mat09-02-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for primtall og faktorisering.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Entydig faktorisering i heltall må ikke generaliseres ukritisk til alle ringer."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat09-m02",
+      "title": "Modul 2: Kongruenser og modulær aritmetikk og Fermat, Euler og multiplikative strukturer",
+      "sections": [
+        {
+          "id": "mat09-t03",
+          "title": "Kongruenser og modulær aritmetikk",
+          "paragraphs": [
+            {
+              "claim_id": "mat09-03-1",
+              "source_ids": [
+                "vit2-07-mit-algebra",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Kongruenser og modulær aritmetikk: Kongruensregning organiserer heltall etter rester modulo et positivt heltall og bevarer bestemte aritmetiske operasjoner. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Likhet modulo n er en ekvivalensrelasjon og er ikke vanlig heltallslikhet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-03-1 bruker vit2-07-mit-algebra og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat09-03-2",
+              "source_ids": [
+                "vit2-02-lean-propositions-proofs",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Kongruenser og modulær aritmetikk: Ved arbeid med kongruenser og modulær aritmetikk skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Kongruensregning organiserer heltall etter rester modulo et positivt heltall og bevarer bestemte aritmetiske operasjoner. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Likhet modulo n er en ekvivalensrelasjon og er ikke vanlig heltallslikhet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-03-2 bruker vit2-02-lean-propositions-proofs og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat09-03-3",
+              "source_ids": [
+                "vit2-03-lean-induction",
+                "vit2-09-uio-euclid"
+              ],
+              "text": "Kongruenser og modulær aritmetikk: Gyldighetsgrensen er avgjørende: Likhet modulo n er en ekvivalensrelasjon og er ikke vanlig heltallslikhet. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Likhet modulo n er en ekvivalensrelasjon og er ikke vanlig heltallslikhet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-03-3 bruker vit2-03-lean-induction og vit2-09-uio-euclid; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat09-03-4",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "mat-src-13-mit-number-theory"
+              ],
+              "text": "Kongruenser og modulær aritmetikk: Når kongruenser og modulær aritmetikk anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Likhet modulo n er en ekvivalensrelasjon og er ikke vanlig heltallslikhet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Likhet modulo n er en ekvivalensrelasjon og er ikke vanlig heltallslikhet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-03-4 bruker mat-src-11-mit-real-analysis og mat-src-13-mit-number-theory; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat09-03-1",
+            "mat09-03-2",
+            "mat09-03-3",
+            "mat09-03-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for kongruenser og modulær aritmetikk.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Likhet modulo n er en ekvivalensrelasjon og er ikke vanlig heltallslikhet."
+          ]
+        },
+        {
+          "id": "mat09-t04",
+          "title": "Fermat, Euler og multiplikative strukturer",
+          "paragraphs": [
+            {
+              "claim_id": "mat09-04-1",
+              "source_ids": [
+                "vit2-02-lean-propositions-proofs",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Fermat, Euler og multiplikative strukturer: Resultater om potenser modulo n kobler relativ primitet, gruppestruktur og aritmetiske funksjoner. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Teoremenes betingelser om primtall eller relativ primitet må kontrolleres før de anvendes. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-04-1 bruker vit2-02-lean-propositions-proofs og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat09-04-2",
+              "source_ids": [
+                "vit2-03-lean-induction",
+                "vit2-09-uio-euclid"
+              ],
+              "text": "Fermat, Euler og multiplikative strukturer: Ved arbeid med fermat, euler og multiplikative strukturer skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Resultater om potenser modulo n kobler relativ primitet, gruppestruktur og aritmetiske funksjoner. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Teoremenes betingelser om primtall eller relativ primitet må kontrolleres før de anvendes. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-04-2 bruker vit2-03-lean-induction og vit2-09-uio-euclid; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat09-04-3",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "mat-src-13-mit-number-theory"
+              ],
+              "text": "Fermat, Euler og multiplikative strukturer: Gyldighetsgrensen er avgjørende: Teoremenes betingelser om primtall eller relativ primitet må kontrolleres før de anvendes. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Teoremenes betingelser om primtall eller relativ primitet må kontrolleres før de anvendes. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-04-3 bruker mat-src-11-mit-real-analysis og mat-src-13-mit-number-theory; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat09-04-4",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Fermat, Euler og multiplikative strukturer: Når fermat, euler og multiplikative strukturer anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Teoremenes betingelser om primtall eller relativ primitet må kontrolleres før de anvendes. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Teoremenes betingelser om primtall eller relativ primitet må kontrolleres før de anvendes. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-04-4 bruker vit2-06-mit-linear-algebra og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat09-04-1",
+            "mat09-04-2",
+            "mat09-04-3",
+            "mat09-04-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for fermat, euler og multiplikative strukturer.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Teoremenes betingelser om primtall eller relativ primitet må kontrolleres før de anvendes."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat09-m03",
+      "title": "Modul 3: Kinesisk restteorem og Kvadratiske rester og reciprocity",
+      "sections": [
+        {
+          "id": "mat09-t05",
+          "title": "Kinesisk restteorem",
+          "paragraphs": [
+            {
+              "claim_id": "mat09-05-1",
+              "source_ids": [
+                "vit2-03-lean-induction",
+                "vit2-09-uio-euclid"
+              ],
+              "text": "Kinesisk restteorem: Kinesisk restteorem samler kompatible kongruensbetingelser til løsninger modulo produktet når modulene oppfyller riktige relativ-prime betingelser. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Entydigheten er modulo det samlede modulsystemet og er ikke en unik heltallsverdi uten representasjonsvalg. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-05-1 bruker vit2-03-lean-induction og vit2-09-uio-euclid; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat09-05-2",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "mat-src-13-mit-number-theory"
+              ],
+              "text": "Kinesisk restteorem: Ved arbeid med kinesisk restteorem skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Kinesisk restteorem samler kompatible kongruensbetingelser til løsninger modulo produktet når modulene oppfyller riktige relativ-prime betingelser. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Entydigheten er modulo det samlede modulsystemet og er ikke en unik heltallsverdi uten representasjonsvalg. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-05-2 bruker mat-src-11-mit-real-analysis og mat-src-13-mit-number-theory; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat09-05-3",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Kinesisk restteorem: Gyldighetsgrensen er avgjørende: Entydigheten er modulo det samlede modulsystemet og er ikke en unik heltallsverdi uten representasjonsvalg. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Entydigheten er modulo det samlede modulsystemet og er ikke en unik heltallsverdi uten representasjonsvalg. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-05-3 bruker vit2-06-mit-linear-algebra og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat09-05-4",
+              "source_ids": [
+                "vit2-09-uio-euclid",
+                "vit2-07-mit-algebra"
+              ],
+              "text": "Kinesisk restteorem: Når kinesisk restteorem anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Entydigheten er modulo det samlede modulsystemet og er ikke en unik heltallsverdi uten representasjonsvalg. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Entydigheten er modulo det samlede modulsystemet og er ikke en unik heltallsverdi uten representasjonsvalg. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-05-4 bruker vit2-09-uio-euclid og vit2-07-mit-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat09-05-1",
+            "mat09-05-2",
+            "mat09-05-3",
+            "mat09-05-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for kinesisk restteorem.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Entydigheten er modulo det samlede modulsystemet og er ikke en unik heltallsverdi uten representasjonsvalg."
+          ]
+        },
+        {
+          "id": "mat09-t06",
+          "title": "Kvadratiske rester og reciprocity",
+          "paragraphs": [
+            {
+              "claim_id": "mat09-06-1",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "mat-src-13-mit-number-theory"
+              ],
+              "text": "Kvadratiske rester og reciprocity: Kvadratiske rester beskriver når kongruensen x² ≡ a modulo p har løsninger og leder til strukturelle reciprocity-resultater. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Kvadratisk residuositetsanalyse er relativ til valgt modulus og må ikke forveksles med fortegn eller kvadratrøtter over reelle tall. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-06-1 bruker mat-src-11-mit-real-analysis og mat-src-13-mit-number-theory; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat09-06-2",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Kvadratiske rester og reciprocity: Ved arbeid med kvadratiske rester og reciprocity skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Kvadratiske rester beskriver når kongruensen x² ≡ a modulo p har løsninger og leder til strukturelle reciprocity-resultater. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Kvadratisk residuositetsanalyse er relativ til valgt modulus og må ikke forveksles med fortegn eller kvadratrøtter over reelle tall. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-06-2 bruker vit2-06-mit-linear-algebra og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat09-06-3",
+              "source_ids": [
+                "vit2-09-uio-euclid",
+                "vit2-07-mit-algebra"
+              ],
+              "text": "Kvadratiske rester og reciprocity: Gyldighetsgrensen er avgjørende: Kvadratisk residuositetsanalyse er relativ til valgt modulus og må ikke forveksles med fortegn eller kvadratrøtter over reelle tall. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Kvadratisk residuositetsanalyse er relativ til valgt modulus og må ikke forveksles med fortegn eller kvadratrøtter over reelle tall. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-06-3 bruker vit2-09-uio-euclid og vit2-07-mit-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat09-06-4",
+              "source_ids": [
+                "mat-src-13-mit-number-theory",
+                "vit2-02-lean-propositions-proofs"
+              ],
+              "text": "Kvadratiske rester og reciprocity: Når kvadratiske rester og reciprocity anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Kvadratisk residuositetsanalyse er relativ til valgt modulus og må ikke forveksles med fortegn eller kvadratrøtter over reelle tall. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Kvadratisk residuositetsanalyse er relativ til valgt modulus og må ikke forveksles med fortegn eller kvadratrøtter over reelle tall. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-06-4 bruker mat-src-13-mit-number-theory og vit2-02-lean-propositions-proofs; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat09-06-1",
+            "mat09-06-2",
+            "mat09-06-3",
+            "mat09-06-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for kvadratiske rester og reciprocity.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Kvadratisk residuositetsanalyse er relativ til valgt modulus og må ikke forveksles med fortegn eller kvadratrøtter over reelle tall."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat09-m04",
+      "title": "Modul 4: Diofantiske ligninger og Tallteori, algoritmer og anvendelser",
+      "sections": [
+        {
+          "id": "mat09-t07",
+          "title": "Diofantiske ligninger",
+          "paragraphs": [
+            {
+              "claim_id": "mat09-07-1",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Diofantiske ligninger: Diofantiske ligninger søker heltalls- eller rasjonale løsninger og kombinerer divisibilitet, kongruenser og strukturelle argumenter. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En reell eller numerisk løsning gir ikke automatisk en heltallsløsning. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-07-1 bruker vit2-06-mit-linear-algebra og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat09-07-2",
+              "source_ids": [
+                "vit2-09-uio-euclid",
+                "vit2-07-mit-algebra"
+              ],
+              "text": "Diofantiske ligninger: Ved arbeid med diofantiske ligninger skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Diofantiske ligninger søker heltalls- eller rasjonale løsninger og kombinerer divisibilitet, kongruenser og strukturelle argumenter. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En reell eller numerisk løsning gir ikke automatisk en heltallsløsning. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-07-2 bruker vit2-09-uio-euclid og vit2-07-mit-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat09-07-3",
+              "source_ids": [
+                "mat-src-13-mit-number-theory",
+                "vit2-02-lean-propositions-proofs"
+              ],
+              "text": "Diofantiske ligninger: Gyldighetsgrensen er avgjørende: En reell eller numerisk løsning gir ikke automatisk en heltallsløsning. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En reell eller numerisk løsning gir ikke automatisk en heltallsløsning. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-07-3 bruker mat-src-13-mit-number-theory og vit2-02-lean-propositions-proofs; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat09-07-4",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "vit2-03-lean-induction"
+              ],
+              "text": "Diofantiske ligninger: Når diofantiske ligninger anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En reell eller numerisk løsning gir ikke automatisk en heltallsløsning. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En reell eller numerisk løsning gir ikke automatisk en heltallsløsning. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-07-4 bruker vit2-05-mit-discrete og vit2-03-lean-induction; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat09-07-1",
+            "mat09-07-2",
+            "mat09-07-3",
+            "mat09-07-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for diofantiske ligninger.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. En reell eller numerisk løsning gir ikke automatisk en heltallsløsning."
+          ]
+        },
+        {
+          "id": "mat09-t08",
+          "title": "Tallteori, algoritmer og anvendelser",
+          "paragraphs": [
+            {
+              "claim_id": "mat09-08-1",
+              "source_ids": [
+                "vit2-09-uio-euclid",
+                "vit2-07-mit-algebra"
+              ],
+              "text": "Tallteori, algoritmer og anvendelser: Tallteoretiske strukturer brukes i algoritmer og kryptografiske konstruksjoner gjennom presise aritmetiske egenskaper. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En matematisk sikkerhetsantakelse eller kompleksitetsantakelse må skilles fra et formelt bevist teorem om systemet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-08-1 bruker vit2-09-uio-euclid og vit2-07-mit-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat09-08-2",
+              "source_ids": [
+                "mat-src-13-mit-number-theory",
+                "vit2-02-lean-propositions-proofs"
+              ],
+              "text": "Tallteori, algoritmer og anvendelser: Ved arbeid med tallteori, algoritmer og anvendelser skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Tallteoretiske strukturer brukes i algoritmer og kryptografiske konstruksjoner gjennom presise aritmetiske egenskaper. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En matematisk sikkerhetsantakelse eller kompleksitetsantakelse må skilles fra et formelt bevist teorem om systemet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-08-2 bruker mat-src-13-mit-number-theory og vit2-02-lean-propositions-proofs; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat09-08-3",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "vit2-03-lean-induction"
+              ],
+              "text": "Tallteori, algoritmer og anvendelser: Gyldighetsgrensen er avgjørende: En matematisk sikkerhetsantakelse eller kompleksitetsantakelse må skilles fra et formelt bevist teorem om systemet. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En matematisk sikkerhetsantakelse eller kompleksitetsantakelse må skilles fra et formelt bevist teorem om systemet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-08-3 bruker vit2-05-mit-discrete og vit2-03-lean-induction; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat09-08-4",
+              "source_ids": [
+                "vit2-07-mit-algebra",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Tallteori, algoritmer og anvendelser: Når tallteori, algoritmer og anvendelser anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En matematisk sikkerhetsantakelse eller kompleksitetsantakelse må skilles fra et formelt bevist teorem om systemet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En matematisk sikkerhetsantakelse eller kompleksitetsantakelse må skilles fra et formelt bevist teorem om systemet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat09-08-4 bruker vit2-07-mit-algebra og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat09-08-1",
+            "mat09-08-2",
+            "mat09-08-3",
+            "mat09-08-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for tallteori, algoritmer og anvendelser.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. En matematisk sikkerhetsantakelse eller kompleksitetsantakelse må skilles fra et formelt bevist teorem om systemet."
+          ]
+        }
+      ]
+    }
+  ],
+  "assessment": {
+    "questions": [
+      {
+        "id": "mat09-q01",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer delbarhet og største felles divisor?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat09-t01"
+      },
+      {
+        "id": "mat09-q02",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer primtall og faktorisering?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat09-t02"
+      },
+      {
+        "id": "mat09-q03",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer kongruenser og modulær aritmetikk?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat09-t03"
+      },
+      {
+        "id": "mat09-q04",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer fermat, euler og multiplikative strukturer?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat09-t04"
+      },
+      {
+        "id": "mat09-q05",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer kinesisk restteorem?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat09-t05"
+      },
+      {
+        "id": "mat09-q06",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer kvadratiske rester og reciprocity?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat09-t06"
+      },
+      {
+        "id": "mat09-q07",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer diofantiske ligninger?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat09-t07"
+      },
+      {
+        "id": "mat09-q08",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer tallteori, algoritmer og anvendelser?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat09-t08"
+      }
+    ],
+    "caseTasks": [
+      {
+        "id": "mat09-case01",
+        "prompt": "En analyse hevder at et resultat som kombinerer delbarhet og største felles divisor og kongruenser og modulær aritmetikk er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "mat-src-13-mit-number-theory",
+          "mat-src-11-mit-real-analysis"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat09-case02",
+        "prompt": "En analyse hevder at et resultat som kombinerer primtall og faktorisering og fermat, euler og multiplikative strukturer er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-05-mit-discrete",
+          "vit2-06-mit-linear-algebra"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat09-case03",
+        "prompt": "En analyse hevder at et resultat som kombinerer kongruenser og modulær aritmetikk og kinesisk restteorem er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-07-mit-algebra",
+          "vit2-09-uio-euclid"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat09-case04",
+        "prompt": "En analyse hevder at et resultat som kombinerer fermat, euler og multiplikative strukturer og kvadratiske rester og reciprocity er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-02-lean-propositions-proofs",
+          "mat-src-13-mit-number-theory"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat09-case05",
+        "prompt": "En analyse hevder at et resultat som kombinerer kinesisk restteorem og diofantiske ligninger er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-03-lean-induction",
+          "vit2-05-mit-discrete"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat09-case06",
+        "prompt": "En analyse hevder at et resultat som kombinerer kvadratiske rester og reciprocity og tallteori, algoritmer og anvendelser er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "mat-src-11-mit-real-analysis",
+          "vit2-07-mit-algebra"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      }
+    ]
+  },
+  "qualityGuard": {
+    "formal_validity_vs_premise_truth_explicit": true,
+    "proof_vs_computation_explicit": true,
+    "object_vs_representation_explicit": true,
+    "theorem_prover_scope_explicit": true,
+    "exact_vs_numerical_approximation_explicit": true,
+    "continuous_vs_discrete_model_choice_explicit": true,
+    "probability_model_vs_empirical_frequency_explicit": true,
+    "optimization_objective_vs_real_goal_explicit": true,
+    "empirical_model_adequacy_separate": true,
+    "source_trace_required": true,
+    "strict_domain_materialized": true
+  },
+  "reuse_provenance": {
+    "strict_upgrade": false,
+    "rule": "Nytt canonicalt Matematikk-felt; eksisterende naboinnhold teller ikke som materialisert uten denne strict-pakken."
+  }
+}
