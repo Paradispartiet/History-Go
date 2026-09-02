@@ -1,0 +1,126 @@
+{
+  "schema": "history_go_phase1_24_quality_gate_v1",
+  "place_id": "trefoldighetskirken",
+  "verified_at": "2026-09-01",
+  "null_measurement": {
+    "measured_at_commit": "e6fa6683259c5fb7af9d25b90d7057d317c076ad",
+    "existing_place": true,
+    "coordinate_changed": false,
+    "existing_quiz": "none",
+    "existing_story": "none",
+    "existing_collections": 0
+  },
+  "collections": {
+    "required": [
+      "people",
+      "objects",
+      "brands",
+      "productions"
+    ],
+    "loaded_preview_images": 7,
+    "missing": 0,
+    "coverage_percent": 100
+  },
+  "people": {
+    "candidates_reviewed": [
+      "Alexis de Chateauneuf",
+      "Wilhelm von Hanno"
+    ],
+    "selected": [
+      "alexis_de_chateauneuf"
+    ],
+    "held_back": [
+      "Wilhelm von Hanno – direkte rolle, men ingen separat identitetskontrollert portrettressurs i denne leveransen."
+    ],
+    "image_coverage_percent": 100
+  },
+  "objects": {
+    "selected": [
+      "trefoldighetskirken_dapsengel",
+      "trefoldighetskirken_lysekrone"
+    ],
+    "held_back": [
+      "Altertavle og glassmalerier – verk, ikke Objects-fyll.",
+      "Eksakt år for Dåpsengelen – åpne kilder spriker."
+    ]
+  },
+  "brands": {
+    "selected": [
+      "den_norske_kirke"
+    ],
+    "held_back": [
+      "Trefoldighet som stedsnavn – Place-first og ikke en selvstendig Brand."
+    ],
+    "logo_coverage": {
+      "required": 1,
+      "reviewed": 1,
+      "missing": 0,
+      "percent": 100
+    }
+  },
+  "source_conflicts": [
+    {
+      "claim": "Dåpsengelen har ett sikkert år.",
+      "status": "qualified",
+      "reason": "Datering holdes åpen."
+    },
+    {
+      "claim": "Kirkebygningen var ferdig da kirkesenteret åpnet.",
+      "status": "rejected",
+      "reason": "Offisiell 2026-status skiller byggene."
+    }
+  ],
+  "conditional_modules": {
+    "stories": "not_applicable_after_narrative_gate",
+    "lesespor": "three_produced",
+    "language": "six_terms_produced",
+    "for_na": "produced_with_viewpoint_caveat",
+    "news": "one_temporal_status_produced",
+    "dialect": "not_applicable"
+  },
+  "manual_image_review": {
+    "status": "PASS",
+    "reviewed_assets": [
+      "bilder/places/trefoldighetskirken.webp",
+      "bilder/places/trefoldighetskirken_front_portrait.webp",
+      "bilder/historisk/trefoldighetskirken/trefoldighetskirken_ca_1890.webp",
+      "bilder/kort/people/alexis_de_chateauneuf.webp",
+      "bilder/kort/objects/trefoldighetskirken_dapsengel.webp",
+      "bilder/kort/objects/trefoldighetskirken_lysekrone.webp",
+      "bilder/kort/productions/trefoldighetskirken_kveldsmesser.webp",
+      "bilder/kort/productions/trefoldighetskirken_fredsbonn.webp",
+      "bilder/kort/productions/trefoldighetskirken_okumeniske_gudstjenester.webp",
+      "bilder/kort/brands/den_norske_kirke_nasjonal.webp"
+    ],
+    "note": "Alle utsnitt er visuelt kontrollert. Dokumentarfoto brukes med konkret motivrolle; ritualkort sier uttrykkelig når bildet bare viser rommet, før–nå-paret har ståstedsforbehold, og personkortet oppgir litografi."
+  },
+  "quality_score": {
+    "correctness_and_evidence": {
+      "score": 5,
+      "note": "Offisielle, institusjonelle, biografiske og billedkilder krysskontrollerer identitet, kronologi, inventar, praksis og tidsstatus."
+    },
+    "coverage_and_completion": {
+      "score": 5,
+      "note": "Fire bildeklare samlinger, ti milepæler, People-claims, språk, lesespor, Fagverk, før–nå, nåstatus og 5×7-quiz er materialisert."
+    },
+    "editorial_quality": {
+      "score": 5,
+      "note": "Bygg, kirkesenter, institusjon, verk, objekt, ritual og privat tro holdes eksplisitt atskilt."
+    },
+    "technical_integrity": {
+      "score": 5,
+      "note": "Deterministisk finalizer, manifester, coordinate-evidence-migrering, quizkontekst, Fagverk-register og permanent regresjon inngår."
+    },
+    "safety_and_responsibility": {
+      "score": 5,
+      "note": "Ingen trosidentitet tilskrives personer; midlertidig status og kildekonflikt publiseres med tydelige grenser."
+    },
+    "maintainability_and_auditability": {
+      "score": 5,
+      "note": "Claims, kilder, billedproveniens, holdbacks, quizbrief/context, arbeidskort og gateaudit er inspiserbare."
+    },
+    "total": 30,
+    "critical_findings": 0,
+    "unresolved_blockers": 0
+  }
+}

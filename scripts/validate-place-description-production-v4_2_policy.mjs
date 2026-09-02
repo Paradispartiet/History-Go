@@ -5,7 +5,7 @@ import { pathToFileURL } from 'node:url';
 import { validateRepository } from './validate-place-description-production-v4_2.mjs';
 
 export const LENGTH_POLICY_REVISION = '4.2.1-source-led-length';
-export const PR_SCOPE_POLICY_REVISION = '4.2.4-canonical-onboarding-coordinate-evidence';
+export const PR_SCOPE_POLICY_REVISION = '4.2.5-existing-place-coordinate-path-migration';
 export const MICRO_PLACE_POLICY_REVISION = '4.2.3-micro-place-reduced-quiz';
 
 const WORD_COUNT_ONLY_CODES = new Set([
@@ -55,7 +55,8 @@ function normalizeChangedEntries(entries) {
   return (Array.isArray(entries) ? entries : [])
     .map((entry) => ({
       status: String(entry?.status ?? '').trim(),
-      file: String(entry?.file ?? '').trim()
+      file: String(entry?.file ?? '').trim(),
+      previousFile: String(entry?.previousFile ?? '').trim()
     }))
     .filter((entry) => entry.status && entry.file);
 }
@@ -71,14 +72,48 @@ function readChangedEntries(base, head) {
     if (!output) return [];
     return output.split(/\r?\n/gu).map((line) => {
       const parts = line.split('\t');
+      const status = parts[0] ?? '';
+      const renamedOrCopied = /^[RC]/u.test(status) && parts.length >= 3;
       return {
-        status: parts[0] ?? '',
-        file: parts.at(-1) ?? ''
+        status,
+        file: parts.at(-1) ?? '',
+        previousFile: renamedOrCopied ? (parts[1] ?? '') : ''
       };
     });
   } catch {
     return [];
   }
+}
+
+function readJsonAtRef(ref, file, root = process.cwd()) {
+  if (!ref || !file) return null;
+  try {
+    const raw = execFileSync('git', ['show', ref + ':' + file], {
+      cwd: root,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe']
+    });
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+function coordinateEvidenceInvariant(value) {
+  const copy = JSON.parse(JSON.stringify(value ?? {}));
+  delete copy.placeFile;
+  delete copy.coordinateDecision;
+  delete copy.notes;
+  if (copy.currentCoordinate && typeof copy.currentCoordinate === 'object') {
+    delete copy.currentCoordinate.coordNote;
+  }
+  return copy;
+}
+
+function sameCoordinateEvidenceInvariant(before, after) {
+  return before !== null
+    && after !== null
+    && JSON.stringify(coordinateEvidenceInvariant(before)) === JSON.stringify(coordinateEvidenceInvariant(after));
 }
 
 /**
@@ -161,7 +196,7 @@ export function applyMicroPlaceQuizPolicy(report) {
  * while full production requires a changed canonical Place and its matching
  * production packet. Other PR-isolation findings remain blocking.
  */
-export function applyCanonicalPlaceOnboardingScopePolicy(report, changedEntries = []) {
+export function applyCanonicalPlaceOnboardingScopePolicy(report, changedEntries = [], context = {}) {
   const entries = normalizeChangedEntries(changedEntries);
   const addedPlaceFiles = entries
     .filter((entry) => entry.status.startsWith('A') && isCanonicalPlaceSourceFile(entry.file))
@@ -187,7 +222,7 @@ export function applyCanonicalPlaceOnboardingScopePolicy(report, changedEntries 
 
   const addedPlaceIds = new Set(addedPlaceFiles.map(placeIdFromJsonPath).filter(Boolean));
   const coordinateScopeEntries = entries.filter((entry) => entry.file.startsWith(COORDINATE_EVIDENCE_PREFIX)
-    || /coordinate/iu.test(path.basename(entry.file)));
+    || CANONICAL_ONBOARDING_COORDINATE_REPORTS.has(entry.file));
   const addedCoordinateEvidenceEntries = coordinateScopeEntries.filter((entry) => entry.file.startsWith(COORDINATE_EVIDENCE_PREFIX)
     && entry.file !== COORDINATE_EVIDENCE_MANIFEST_PATH
     && entry.status.startsWith('A'));
@@ -206,11 +241,79 @@ export function applyCanonicalPlaceOnboardingScopePolicy(report, changedEntries 
     && coordinateEvidenceMatchesAddedPlaces
     && coordinateScopeContainsOnlyOnboardingFiles;
 
+  const removedPlaceEntries = entries.filter((entry) => entry.status.startsWith('D') && isCanonicalPlaceSourceFile(entry.file));
+  const renamedPlaceEntries = entries.filter((entry) => /^[RC]/u.test(entry.status)
+    && isCanonicalPlaceSourceFile(entry.previousFile)
+    && isCanonicalPlaceSourceFile(entry.file));
+  const pathMigrationPlaceIds = new Set();
+  for (const entry of renamedPlaceEntries) {
+    const beforeId = placeIdFromJsonPath(entry.previousFile);
+    const afterId = placeIdFromJsonPath(entry.file);
+    if (beforeId && beforeId === afterId) pathMigrationPlaceIds.add(afterId);
+  }
+  for (const addedFile of addedPlaceFiles) {
+    const placeId = placeIdFromJsonPath(addedFile);
+    if (placeId && removedPlaceEntries.some((entry) => placeIdFromJsonPath(entry.file) === placeId)) {
+      pathMigrationPlaceIds.add(placeId);
+    }
+  }
+
+  const isCoordinateEvidenceRecord = (file) => String(file ?? '').startsWith(COORDINATE_EVIDENCE_PREFIX)
+    && String(file ?? '') !== COORDINATE_EVIDENCE_MANIFEST_PATH
+    && String(file ?? '').endsWith('.json');
+  const coordinateMigrationPairs = [];
+  for (const entry of coordinateScopeEntries) {
+    if (/^[RC]/u.test(entry.status)
+      && isCoordinateEvidenceRecord(entry.previousFile)
+      && isCoordinateEvidenceRecord(entry.file)
+      && placeIdFromJsonPath(entry.previousFile) === placeIdFromJsonPath(entry.file)) {
+      coordinateMigrationPairs.push({
+        placeId: placeIdFromJsonPath(entry.file),
+        previousFile: entry.previousFile,
+        file: entry.file
+      });
+    }
+  }
+  const deletedCoordinateEntries = coordinateScopeEntries.filter((entry) => entry.status.startsWith('D') && isCoordinateEvidenceRecord(entry.file));
+  const addedCoordinateEntries = coordinateScopeEntries.filter((entry) => entry.status.startsWith('A') && isCoordinateEvidenceRecord(entry.file));
+  for (const addedEntry of addedCoordinateEntries) {
+    const placeId = placeIdFromJsonPath(addedEntry.file);
+    const deletedEntry = deletedCoordinateEntries.find((entry) => placeIdFromJsonPath(entry.file) === placeId);
+    if (placeId && deletedEntry && !coordinateMigrationPairs.some((pair) => pair.placeId === placeId)) {
+      coordinateMigrationPairs.push({ placeId, previousFile: deletedEntry.file, file: addedEntry.file });
+    }
+  }
+
+  const readAtRef = typeof context.readJsonAtRef === 'function'
+    ? context.readJsonAtRef
+    : (ref, file) => readJsonAtRef(ref, file, context.root ?? process.cwd());
+  const matchingProductionPlaceIdSet = new Set(matchingProductionPlaceIds);
+  const verifiedCoordinateMigrationPairs = coordinateMigrationPairs.filter((pair) => {
+    if (!pathMigrationPlaceIds.has(pair.placeId) || !matchingProductionPlaceIdSet.has(pair.placeId)) return false;
+    const before = readAtRef(context.base, pair.previousFile);
+    const after = readAtRef(context.head ?? 'HEAD', pair.file);
+    return sameCoordinateEvidenceInvariant(before, after);
+  });
+  const allowedMigrationCoordinateFiles = new Set([
+    COORDINATE_EVIDENCE_MANIFEST_PATH,
+    ...CANONICAL_ONBOARDING_COORDINATE_REPORTS,
+    ...verifiedCoordinateMigrationPairs.flatMap((pair) => [pair.previousFile, pair.file])
+  ]);
+  const coordinateScopeContainsOnlyMigrationFiles = coordinateScopeEntries.length > 0
+    && coordinateScopeEntries.every((entry) => allowedMigrationCoordinateFiles.has(entry.file)
+      || (entry.previousFile && allowedMigrationCoordinateFiles.has(entry.previousFile)));
+  const existingPlaceCoordinatePathMigration = canonicalPlaceProduction
+    && manifestChanged
+    && coordinateEvidenceManifestChanged
+    && verifiedCoordinateMigrationPairs.length > 0
+    && verifiedCoordinateMigrationPairs.every((pair) => pathMigrationPlaceIds.has(pair.placeId))
+    && coordinateScopeContainsOnlyMigrationFiles;
+
   if (!canonicalOnboarding && !canonicalPlaceProduction) return report;
 
   const issues = Array.isArray(report?.issues) ? report.issues : [];
   const removableIssueCodes = new Set([GENERATED_INDEX_ISSUE_CODE]);
-  if (canonicalOnboardingCoordinates) removableIssueCodes.add(COORDINATE_SCOPE_ISSUE_CODE);
+  if (canonicalOnboardingCoordinates || existingPlaceCoordinatePathMigration) removableIssueCodes.add(COORDINATE_SCOPE_ISSUE_CODE);
   const removedIssues = issues.filter((issue) => removableIssueCodes.has(String(issue?.code ?? '')));
   if (removedIssues.length === 0) return report;
 
@@ -224,6 +327,9 @@ export function applyCanonicalPlaceOnboardingScopePolicy(report, changedEntries 
       canonicalPlaceOnboarding: canonicalOnboarding,
       canonicalPlaceProduction,
       canonicalOnboardingCoordinates,
+      existingPlaceCoordinatePathMigration,
+      pathMigrationPlaceIds: [...pathMigrationPlaceIds],
+      verifiedCoordinateMigrationPairs,
       addedPlaceFiles,
       changedPlaceFiles,
       changedProductionPackets,
@@ -288,7 +394,7 @@ function main() {
   const lengthAdjusted = applySourceLedLengthPolicy(raw);
   const microAdjusted = applyMicroPlaceQuizPolicy(lengthAdjusted);
   const report = options.changed
-    ? applyCanonicalPlaceOnboardingScopePolicy(microAdjusted, readChangedEntries(options.base, options.head))
+    ? applyCanonicalPlaceOnboardingScopePolicy(microAdjusted, readChangedEntries(options.base, options.head), { base: options.base, head: options.head, root: process.cwd() })
     : microAdjusted;
   writeReport(options.reportPath, report);
 

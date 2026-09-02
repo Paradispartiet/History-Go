@@ -1,0 +1,536 @@
+{
+  "schema_version": "1.0",
+  "categoryId": "religion",
+  "targetId": "trefoldighetskirken",
+  "scope": "place",
+  "status": "reviewed",
+  "reviewed_at": "2026-09-01",
+  "profile_hint": "rich_5x7",
+  "review_note": "Den norske kirke, Oslo byleksikon, NBL og Commons er lest som komplementære kilder; kirkebygget, kirkesenteret, institusjonen, verk og fysiske objekter holdes atskilt.",
+  "sources": {
+    "official": {
+      "url": "https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/trefoldighetskirken/om-domkirken/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Fredsoppdrag, kirkesenter og renoveringsstatus er kontrollert og tidsavgrenset."
+    },
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Trefoldighetskirken",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Arkitektur, inventar og hovedkronologi er kontrollert."
+    },
+    "alexis": {
+      "url": "https://nbl.snl.no/Alexis_De_Chateauneuf",
+      "source_type": "biographical_reference",
+      "review_status": "reviewed",
+      "review_note": "Arkitektidentitet og verkstilknytning er kontrollert."
+    },
+    "archive": {
+      "url": "https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/trefoldighetskirken/aktuelle/?page=8",
+      "source_type": "official_archive",
+      "review_status": "reviewed",
+      "review_note": "Kveldsmessse og fredsbønn er kontrollert som dokumentert praksis, ikke varig nåstatus."
+    },
+    "ecumenical": {
+      "url": "https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/trefoldighetskirken/aktuelle/arkiv/2022-06-15%20%C3%B8kumenisk%20gudstjeneste/",
+      "source_type": "official_event_archive",
+      "review_status": "reviewed",
+      "review_note": "Økumenisk gudstjeneste i 2022 er kontrollert."
+    },
+    "font": {
+      "url": "https://commons.wikimedia.org/wiki/File:Trefoldighetskirken_D%C3%B8pefont_engel1.JPG",
+      "source_type": "licensed_image_record",
+      "review_status": "reviewed",
+      "review_note": "Identitet, fotograf og lisens er kontrollert; datering brukes ikke som sikker faktapåstand."
+    },
+    "chandelier": {
+      "url": "https://commons.wikimedia.org/wiki/File:Trefoldighetskirken_Engel_og_lysekrone.JPG",
+      "source_type": "licensed_image_record",
+      "review_status": "reviewed",
+      "review_note": "Motiv, fotograf og lisens er kontrollert."
+    },
+    "historical": {
+      "url": "https://commons.wikimedia.org/wiki/File:Trefoldighetskirken_in_Oslo.jpg",
+      "source_type": "licensed_image_record",
+      "review_status": "reviewed",
+      "review_note": "Motiv, ca. 1890-datering og offentlig-domene-status er kontrollert."
+    }
+  },
+  "selected_curriculum": {
+    "emne_ids": [
+      "em_religion_hellige_rom",
+      "em_religion_ritualer_praksis",
+      "em_religion_religionshistorie_lokalt",
+      "em_religion_kristendom",
+      "em_religion_religion_og_samfunn"
+    ],
+    "topic_hook_ids": [
+      "religion_ritual_fellesskap"
+    ],
+    "method_ids": [
+      "met_religion_stedsobservasjon",
+      "met_religion_ritualanalyse",
+      "met_religion_historisk_kildeanalyse",
+      "met_religion_material_visual_and_architectural_analysis"
+    ],
+    "thinker_ids": [
+      "emile_durkheim"
+    ],
+    "works": [
+      "The Elementary Forms of Religious Life"
+    ]
+  },
+  "profile_decision": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "justification": "Fem selvstendige sett dekker identitet, arkitektur/inventar, ritual/samfunn, kildegrenser og metode/teori/syntese."
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/religion/trefoldighetskirken_sets.json",
+      "data/quiz/manifest.json"
+    ],
+    "active_before": {
+      "categoryId": null,
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "Ingen eldre canonical quiz finnes for Place-et.",
+      "De første 14 spørsmålene er teori- og metodefrie."
+    ],
+    "knowledge_migration": {
+      "status": "not_applicable",
+      "retained_rule": "Historie-emnebindingene migreres ikke inn i Religion-pakken."
+    }
+  },
+  "held_back_candidates": [
+    "Dåpsengelens sprikende datering",
+    "generiske kristendomsspørsmål uten stedsanker",
+    "renoveringsstatus formulert som varig identitet"
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Den offisielle besøksadressen er Akersgata 60.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_hellige_rom"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kirken ble innviet i 1858.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Alexis de Chateauneuf vant konkurransen om kirken i 1849.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Wilhelm von Hanno videreførte og fullførte byggearbeidet.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Trefoldighetskirken er oppført i rød tegl.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_hellige_rom"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon beskriver en kombinasjon av sentralkirke, korskirke og langkirke.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_hellige_rom"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kuppelen og lanterninen er sentrale trekk i kirkens silhuett.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_hellige_rom"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Julius Middelthun utførte marmorskulpturen ved døpefonten.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_kristendom"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Emanuel Vigeland utførte lysekronen.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_hellige_rom"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Lysekronen er datert til 1923.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Den offisielle kirkesiden daterer særmandatet til 2020.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religion_og_samfunn"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Trefoldighet kirkesenter åpnet 22. april 2026.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religion_og_samfunn"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Den norske kirke opplyste at kirkebygningen fortsatt var under renovering.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religion_og_samfunn"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Place-et gjelder kirkebygningen i Akersgata 60 og dens institusjonelle bruk.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_hellige_rom"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kuppelen fikk kobbertekking i 1863.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Trappene foran hovedinngangen ble bygd i 1883.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_hellige_rom"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kirken ble restaurert i perioden 1956–1958.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kirken gjenåpnet i 1997.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Trefoldighet er en kristen læreteologisk betegnelse, ikke en opptelling av bygg.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_kristendom"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Økumenikk viser til kristent samarbeid på tvers av kirkesamfunn.",
+      "source_ids": [
+        "ecumenical"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_kristendom"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Arkivkilden dokumenterer kveldsmesser, mens dagens driftsstatus er endret av renoveringen.",
+      "source_ids": [
+        "archive"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_ritualer_praksis"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Fredsbønn inngår i det dokumenterte freds- og forsoningsarbeidet.",
+      "source_ids": [
+        "archive"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_ritualer_praksis"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Den offisielle arkivsiden dokumenterer en økumenisk gudstjeneste i 2022.",
+      "source_ids": [
+        "ecumenical"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_ritualer_praksis"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Objects eier den fysiske gjenstanden, mens productions eier praksisen.",
+      "source_ids": [
+        "font"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_ritualer_praksis"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Bildene viser samme bygg rundt 1890 og i 2007, men fra ulike ståsteder.",
+      "source_ids": [
+        "historical"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Arkitektur dokumenterer materiell og institusjonell form, ikke privat trosopplevelse.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religion_og_samfunn"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kirken knytter plasseringen nær maktinstitusjoner til sitt samfunnsoppdrag.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religion_og_samfunn"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Midlertidig stenging og renovering er tidsavhengig nåtidsinformasjon.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religion_og_samfunn"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kildene støtter identitet og kunstner, men gir sprikende datering.",
+      "source_ids": [
+        "font"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Stedsobservasjon starter med observerbare romlige og materielle spor.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_hellige_rom"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Ritualanalyse undersøker dokumentert ordnet handling i kontekst.",
+      "source_ids": [
+        "ecumenical"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_ritualer_praksis"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Historisk kildeanalyse skiller konkurranse, videreføring og innvielse som separate ledd.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religionshistorie_lokalt"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Metoden kobler materialitet og rom til kontekst med tydelig tolkningsgrense.",
+      "source_ids": [
+        "font"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_hellige_rom"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Durkheims perspektiv gjør det mulig å undersøke hvordan dokumenterte fellesritualer kan styrke tilhørighet.",
+      "source_ids": [
+        "ecumenical"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_ritualer_praksis"
+    },
+    {
+      "claim_id": "claim_trefoldighetskirken_quiz_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kildene dokumenterer samtidig kirkerom, materiell religion, praksis, historisk endring og samfunnsoppdrag.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_religion_religion_og_samfunn"
+    }
+  ]
+}
