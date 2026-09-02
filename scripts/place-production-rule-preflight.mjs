@@ -21,6 +21,7 @@ export const STATIC_RULE_FILES = [
 
 const WORKCARD_SCHEMA = "history_go_place_workcard_v2";
 const PREFLIGHT_SCHEMA = "history_go_place_rule_preflight_v1";
+const STATUS_ONLY_WORKCARD_KEYS = new Set(["status", "branch_status", "live_status"]);
 
 function fail(message) {
   console.error(`PLACE RULE PREFLIGHT: ${message}`);
@@ -207,6 +208,17 @@ function requiresFreshWorkcard(base, relPath) {
   return false;
 }
 
+function withoutStatusOnlyWorkcardMetadata(workcard) {
+  if (!workcard || typeof workcard !== "object") return workcard;
+  return Object.fromEntries(Object.entries(workcard).filter(([key]) => !STATUS_ONLY_WORKCARD_KEYS.has(key)));
+}
+
+export function requiresFreshWorkcardEvidence(current, previous) {
+  if (!current || typeof current !== "object") return false;
+  if (!previous || typeof previous !== "object") return true;
+  return JSON.stringify(withoutStatusOnlyWorkcardMetadata(current)) !== JSON.stringify(withoutStatusOnlyWorkcardMetadata(previous));
+}
+
 function allWorkcards() {
   const dir = path.join(root, "reports/place-production");
   if (!fs.existsSync(dir)) return [];
@@ -228,7 +240,8 @@ function check(args) {
   if (!base) throw new Error("check requires --base <base-sha>");
   const changed = changedFiles(base);
   const errors = [];
-  const workcardsToValidate = new Set(changed.filter(file => file.startsWith("reports/place-production/") && file.endsWith("-workcard-current.json")));
+  const changedWorkcards = changed.filter(file => file.startsWith("reports/place-production/") && file.endsWith("-workcard-current.json"));
+  const workcardsToValidate = new Set(changedWorkcards.filter(relPath => requiresFreshWorkcardEvidence(safeReadJson(relPath), jsonAtBase(base, relPath))));
 
   for (const relPath of changed.filter(isCanonicalPlaceFile)) {
     if (!requiresFreshWorkcard(base, relPath)) continue;

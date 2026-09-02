@@ -1,7 +1,7 @@
 # Dælenenga idrettspark — arbeidskort
 
-Oppdatert: 2026-08-26  
-Samlet status: `READY_FOR_PR_CI_AND_MERGE`
+Oppdatert: 2026-09-02  
+Samlet status: `MERGED_ON_MAIN`
 
 | Fase | Status | Evidens |
 |---:|---|---|
@@ -9,8 +9,8 @@ Samlet status: `READY_FOR_PR_CI_AND_MERGE`
 | 20 | COMPLETE | Description v4.2, Knowledge, Story og place-open validert lokalt. |
 | 21 | PENDING | Manuell live-QA etter deploy. |
 | 22 | COMPLETE | Historiske og nåværende funksjoner, anleggsdeler og strøksgrense kontrollert. |
-| 23 | PENDING | PR-CI. |
-| 24 | READY | 28/30; ingen lokale blokkere. |
+| 23 | COMPLETE | Produksjonsendringen er merget og arbeidskortet ligger på `main`. |
+| 24 | COMPLETE | 28/30; ingen lokale blokkere; merge-status er lukket. |
 
 ## Påkrevd quizgjenbruk
 
