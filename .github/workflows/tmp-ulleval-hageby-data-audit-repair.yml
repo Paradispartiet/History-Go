@@ -1,0 +1,54 @@
+name: tmp Ullevål Hageby data audit repair
+on:
+  push:
+    branches:
+      - work/ulleval-hageby-completion-20260902
+permissions:
+  contents: write
+jobs:
+  repair:
+    if: github.event.head_commit.message != 'Repair Ullevål Hageby data audit state'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/ulleval-hageby-completion-20260902
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Repair quiz source brief
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const quizFile = 'data/quiz/by/ullevål_hageby_sets.json';
+          const briefFile = 'data/quiz/production_briefs/by/ullevål_hageby.json';
+          const quiz = JSON.parse(fs.readFileSync(quizFile, 'utf8'));
+          const brief = JSON.parse(fs.readFileSync(briefFile, 'utf8'));
+          const pc = quiz.production_context;
+          for (const field of ['existing_quiz_audit', 'profile_decision', 'held_back_candidates']) {
+            if (pc[field] === undefined) throw new Error(`Quiz production_context.${field} missing`);
+            brief[field] = pc[field];
+          }
+          fs.writeFileSync(briefFile, `${JSON.stringify(brief, null, 2)}\n`);
+          NODE
+      - name: Regenerate affected artifacts
+        run: |
+          npm ci --no-audit --no-fund
+          node scripts/build-quiz-production-context.mjs --category by --target ullevål_hageby --output data/quiz/production_context/by/ullevål_hageby.json
+          npm run civication:history-people:build
+      - name: Verify data audit repairs
+        run: |
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run civication:history-people:check
+          bash scripts/check-people.sh
+          git diff --check
+      - name: Publish repaired candidate
+        run: |
+          git config user.name "Paradispartiet"
+          git config user.email "paradispartiet@gmail.com"
+          git add -A
+          git commit -m "Repair Ullevål Hageby data audit state"
+          git push origin HEAD:work/ulleval-hageby-completion-20260902
