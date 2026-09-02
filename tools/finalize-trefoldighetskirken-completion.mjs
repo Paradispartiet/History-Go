@@ -328,6 +328,7 @@ write(imageBacklogFile, imageBacklog);
 execFileSync("npm", ["run", "places:index:build"], { cwd: root, stdio: "inherit" });
 await runBuildQuizProductionContext({ root, categoryId: "religion", targetId: placeId, outputPath: contextFile });
 execFileSync("npm", ["run", "civication:history-people:build"], { cwd: root, stdio: "inherit" });
+execFileSync(process.execPath, ["--experimental-strip-types", "scripts/build-civication-scenario-people-index.mts"], { cwd: root, stdio: "inherit" });
 execFileSync("npm", ["run", "epoker:places:build"], { cwd: root, stdio: "inherit" });
 execFileSync("npm", ["run", "place-open:build"], { cwd: root, stdio: "inherit" });
 console.log("Trefoldighetskirken completion materialized: 4 collections, 35 quiz questions, 10 chronology anchors, Story N/A after narrative gate.");
