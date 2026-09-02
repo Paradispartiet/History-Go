@@ -48,7 +48,11 @@ test("PlaceCard owns four real and image-backed collections without filler", () 
   assert.match(brand.logoMeta.disclosure, /ikke rekonstruert/i);
   assert.ok(fs.existsSync(brand.logo));
   assert.deepEqual(read("data/brands/brands_by_place.json")[placeId], [brand.id]);
-  assert.ok(fs.existsSync("bilder/kort/people/harald_hals.PNG"));
+  const people = read("data/people/by/oslo/people_by_oslo.json");
+  const haraldHals = people.find((item) => item.id === "harald_hals");
+  assert.ok(haraldHals);
+  assert.equal(haraldHals.imageMeta.source, "wikimedia_commons");
+  assert.ok(fs.existsSync(haraldHals.image));
 });
 
 test("modern By quiz replaces legacy ownership with 4x7 and protects opening phase", () => {

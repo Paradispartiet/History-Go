@@ -1,0 +1,1151 @@
+{
+  "targetId": "ullevål_hageby",
+  "categoryId": "by",
+  "generator_version": "v5_1_external_priority_normal_4x7",
+  "size_class": "normal",
+  "sources": {
+    "municipality": "https://magasin.oslo.kommune.no/byplan/ulleval-hageby-feiret-100-ar",
+    "haveby": "https://havebyselskapet.no/om-borettslaget/",
+    "damplassen": "https://oslobyleksikon.no/side/Damplassen",
+    "snl": "https://snl.no/Ullev%C3%A5l_hageby",
+    "historic": "https://commons.wikimedia.org/wiki/File:1370_Ullevaal_Samvirkelag_-_no-nb_digifoto_20150911_00038_bldsa_PK09125.jpg",
+    "current": "https://commons.wikimedia.org/wiki/File:Ullev%C3%A5l_Hageby_Damplass.jpg",
+    "garden": "https://snl.no/hageby"
+  },
+  "production_context": {
+    "manifest_category": "by",
+    "profile": "normal_4x7",
+    "standard_version": "3.3",
+    "source_brief": "data/quiz/production_briefs/by/ullevål_hageby.json",
+    "context_artifact": "data/quiz/production_context/by/ullevål_hageby.json",
+    "resolved_files": {
+      "pensum": "data/fag/by/pensum_by.json",
+      "emner": "data/fag/by/emner_by.json",
+      "fagkart": "data/fag/by/fagkart_by.json",
+      "methods": "data/fag/by/methods_by.json",
+      "supersetQuizMal": "data/fag/by/supersetQUIZMAL_by.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "kur_by_02_nabolag_ulikhet_segregering",
+      "kur_by_04_historiske_lag_og_transformasjon"
+    ],
+    "emne_ids": [
+      "em_by_boligstruktur",
+      "em_by_romlig_orden",
+      "em_by_boligpolitikk_affordability"
+    ],
+    "topic_hook_ids": [
+      "ark_transformasjon",
+      "ark_makt"
+    ],
+    "method_ids": [
+      "met_feltobservasjon",
+      "met_for_etter",
+      "met_aktoranalyse"
+    ],
+    "thinker_ids": [],
+    "works": [],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/by/ullevål_hageby_sets_merged.json",
+        "data/quiz/manifest.json"
+      ],
+      "active_before": {
+        "file": "data/quiz/by/ullevål_hageby_sets_merged.json",
+        "set_count": 3,
+        "question_count": 15,
+        "finding": "Legacy-pakken har bare 3×5 og erstattes av normal 4×7."
+      },
+      "decisions": [
+        "Erstatt legacy 3×5 med kildeledet 4×7.",
+        "Hold de første 14 spørsmålene teori- og metodefrie.",
+        "Ikke bruk sprikende bygnings-/leilighetstall eller eksakt 1917-dato som universell fasit."
+      ],
+      "knowledge_migration": "Alle 28 spørsmål får stabile Ullevål Hageby-, claim- og Knowledge-ID-er."
+    },
+    "profile_decision": {
+      "profile": "normal",
+      "set_count": 4,
+      "questions_per_set": 7,
+      "justification": "Stedet har fire tydelige læringsjobber og kildebredde for standard By-profil uten generisk filler."
+    },
+    "held_back_candidates": [
+      "Eksakt antall bygninger og leiligheter – nåtidskilder spriker.",
+      "Eksakt stiftelsesdato i oktober 1917 – kildene spriker.",
+      "Beboernes nåværende sosiale bakgrunn – skal ikke sluttes fra byform."
+    ],
+    "normal_opening_questions": 14,
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  },
+  "sets": [
+    {
+      "set_id": "by_ullevål_hageby_set_1",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "title": "Fra gård til plan",
+      "questions": [
+        {
+          "id": "ullevål_hageby_quiz_01",
+          "quiz_id": "by_ullevål_hageby_q01",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Hva kjøpte Kristiania kommune i 1909?",
+          "options": [
+            "Store Ullevål gård",
+            "Akers gårdsarkiv",
+            "Ullevål stadion"
+          ],
+          "answer": "Store Ullevål gård",
+          "answerIndex": 0,
+          "knowledge": "Store Ullevål gård ble kjøpt av Kristiania kommune i 1909.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_boligpolitikk_affordability",
+          "source": [
+            "municipality"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Store Ullevål gård ble kjøpt av Kristiania kommune i 1909.",
+          "claim_id": "claim_ullevål_hageby_quiz_01",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_01",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_01"
+          ],
+          "concepts": [],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ullevål_hageby_quiz_02",
+          "quiz_id": "by_ullevål_hageby_q02",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Når ble reguleringskonkurransen for Ullevål Hageby holdt?",
+          "options": [
+            "1903",
+            "1913",
+            "1925"
+          ],
+          "answer": "1913",
+          "answerIndex": 1,
+          "knowledge": "Reguleringskonkurransen ble holdt i 1913.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_romlig_orden",
+          "source": [
+            "municipality"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Reguleringskonkurransen ble holdt i 1913.",
+          "claim_id": "claim_ullevål_hageby_quiz_02",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_02",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_02"
+          ],
+          "concepts": [],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ullevål_hageby_quiz_03",
+          "quiz_id": "by_ullevål_hageby_q03",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Hva het Oscar Hoffs vinnerplan?",
+          "options": [
+            "Den grønne ring",
+            "Nye hjem",
+            "Mot solen"
+          ],
+          "answer": "Mot solen",
+          "answerIndex": 2,
+          "knowledge": "Oscar Hoff vant med planen «Mot solen».",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_romlig_orden",
+          "source": [
+            "municipality"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oscar Hoff vant med planen «Mot solen».",
+          "claim_id": "claim_ullevål_hageby_quiz_03",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_03",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_03"
+          ],
+          "concepts": [],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ullevål_hageby_quiz_04",
+          "quiz_id": "by_ullevål_hageby_q04",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Hvem vant reguleringskonkurransen?",
+          "options": [
+            "Oscar Hoff",
+            "Harald Hals",
+            "Ebenezer Howard"
+          ],
+          "answer": "Oscar Hoff",
+          "answerIndex": 0,
+          "knowledge": "Oscar Hoff vant reguleringskonkurransen.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_romlig_orden",
+          "source": [
+            "municipality"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oscar Hoff vant reguleringskonkurransen.",
+          "claim_id": "claim_ullevål_hageby_quiz_04",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_04",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_04"
+          ],
+          "concepts": [],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ullevål_hageby_quiz_05",
+          "quiz_id": "by_ullevål_hageby_q05",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Hvem ledet mye av arbeidet med bygningene?",
+          "options": [
+            "Julius Middelthun",
+            "Harald Hals",
+            "Frode Rinnan"
+          ],
+          "answer": "Harald Hals",
+          "answerIndex": 1,
+          "knowledge": "Harald Hals ledet mye av arbeidet med bygningene.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_boligstruktur",
+          "source": [
+            "municipality"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Harald Hals ledet mye av arbeidet med bygningene.",
+          "claim_id": "claim_ullevål_hageby_quiz_05",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_05",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_05"
+          ],
+          "concepts": [],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ullevål_hageby_quiz_06",
+          "quiz_id": "by_ullevål_hageby_q06",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Hvilket trekk passer best med hagebyideen her?",
+          "options": [
+            "Tette bakgårdskvartaler",
+            "Høyhus uten uteareal",
+            "Lave hus med hager og grønne mellomrom"
+          ],
+          "answer": "Lave hus med hager og grønne mellomrom",
+          "answerIndex": 2,
+          "knowledge": "Hagebyen ble utformet med lave hus, hager og grønne mellomrom.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_boligstruktur",
+          "source": [
+            "municipality"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Hagebyen ble utformet med lave hus, hager og grønne mellomrom.",
+          "claim_id": "claim_ullevål_hageby_quiz_06",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_06",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_06"
+          ],
+          "concepts": [],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ullevål_hageby_quiz_07",
+          "quiz_id": "by_ullevål_hageby_q07",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Hva er hagebyens lokale torg og sentrum?",
+          "options": [
+            "Damplassen",
+            "Youngstorget",
+            "Stortorvet"
+          ],
+          "answer": "Damplassen",
+          "answerIndex": 0,
+          "knowledge": "Damplassen er hagebyens lokale sentrum.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_romlig_orden",
+          "source": [
+            "damplassen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Damplassen er hagebyens lokale sentrum.",
+          "claim_id": "claim_ullevål_hageby_quiz_07",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_07",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_07"
+          ],
+          "concepts": [],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_ullevål_hageby_set_2",
+      "level": 2,
+      "order": 2,
+      "phase": "middle",
+      "title": "Hagebyen bygges",
+      "questions": [
+        {
+          "id": "ullevål_hageby_quiz_08",
+          "quiz_id": "by_ullevål_hageby_q08",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Når fikk Damplassen navnet sitt?",
+          "options": [
+            "1909",
+            "1918",
+            "1981"
+          ],
+          "answer": "1918",
+          "answerIndex": 1,
+          "knowledge": "Damplassen fikk navn i 1918.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_romlig_orden",
+          "source": [
+            "damplassen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Damplassen fikk navn i 1918.",
+          "claim_id": "claim_ullevål_hageby_quiz_08",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_08",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_08"
+          ],
+          "concepts": [],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ullevål_hageby_quiz_09",
+          "quiz_id": "by_ullevål_hageby_q09",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Hva ble etablert på Damplassen omkring 1920?",
+          "options": [
+            "En T-banestasjon",
+            "Et rådhus",
+            "Et dam- og fonteneanlegg"
+          ],
+          "answer": "Et dam- og fonteneanlegg",
+          "answerIndex": 2,
+          "knowledge": "Et dam- og fonteneanlegg ble etablert omkring 1920.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_romlig_orden",
+          "source": [
+            "damplassen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Et dam- og fonteneanlegg ble etablert omkring 1920.",
+          "claim_id": "claim_ullevål_hageby_quiz_09",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_09",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_09"
+          ],
+          "concepts": [],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ullevål_hageby_quiz_10",
+          "quiz_id": "by_ullevål_hageby_q10",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Hva het handelsaktøren rundt Damplassen på 1920-tallet?",
+          "options": [
+            "Ullevaal Samvirkelag",
+            "Christiania Glasmagasin",
+            "OBOS"
+          ],
+          "answer": "Ullevaal Samvirkelag",
+          "answerIndex": 0,
+          "knowledge": "Butikkene rundt Damplassen tilhørte Ullevaal Samvirkelag.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_boligstruktur",
+          "source": [
+            "damplassen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Butikkene rundt Damplassen tilhørte Ullevaal Samvirkelag.",
+          "claim_id": "claim_ullevål_hageby_quiz_10",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_10",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_10"
+          ],
+          "concepts": [],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ullevål_hageby_quiz_11",
+          "quiz_id": "by_ullevål_hageby_q11",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Når ble Kristiania Havebyselskap etablert?",
+          "options": [
+            "1913",
+            "1917",
+            "1927"
+          ],
+          "answer": "1917",
+          "answerIndex": 1,
+          "knowledge": "Kristiania Havebyselskap ble etablert i 1917.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_boligpolitikk_affordability",
+          "source": [
+            "haveby"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kristiania Havebyselskap ble etablert i 1917.",
+          "claim_id": "claim_ullevål_hageby_quiz_11",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_11",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_11"
+          ],
+          "concepts": [],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ullevål_hageby_quiz_12",
+          "quiz_id": "by_ullevål_hageby_q12",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Når flyttet de første beboerne inn omtrent?",
+          "options": [
+            "Omkring 1909",
+            "Omkring 1933",
+            "Omkring nyttår 1918"
+          ],
+          "answer": "Omkring nyttår 1918",
+          "answerIndex": 2,
+          "knowledge": "De første beboerne flyttet inn omkring nyttår 1918.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_boligpolitikk_affordability",
+          "source": [
+            "haveby"
+          ],
+          "source_origin": "external",
+          "claim_basis": "De første beboerne flyttet inn omkring nyttår 1918.",
+          "claim_id": "claim_ullevål_hageby_quiz_12",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_12",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_12"
+          ],
+          "concepts": [],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ullevål_hageby_quiz_13",
+          "quiz_id": "by_ullevål_hageby_q13",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Når ble hagebyen formelt overdratt til Oslo Havebyselskap?",
+          "options": [
+            "1925",
+            "1915",
+            "1981"
+          ],
+          "answer": "1925",
+          "answerIndex": 0,
+          "knowledge": "Hagebyen ble formelt overdratt i 1925.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_boligpolitikk_affordability",
+          "source": [
+            "haveby"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Hagebyen ble formelt overdratt i 1925.",
+          "claim_id": "claim_ullevål_hageby_quiz_13",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_13",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_13"
+          ],
+          "concepts": [],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ullevål_hageby_quiz_14",
+          "quiz_id": "by_ullevål_hageby_q14",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Hva var den opprinnelige sosiale målsettingen?",
+          "options": [
+            "Bare luksusboliger",
+            "Bedre boliger for arbeidere og folk med små inntekter",
+            "Bare studentboliger"
+          ],
+          "answer": "Bedre boliger for arbeidere og folk med små inntekter",
+          "answerIndex": 1,
+          "knowledge": "Prosjektet var knyttet til en sosial målsetting om bedre boliger for folk med små inntekter.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_boligpolitikk_affordability",
+          "source": [
+            "municipality"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Prosjektet var knyttet til en sosial målsetting om bedre boliger for folk med små inntekter.",
+          "claim_id": "claim_ullevål_hageby_quiz_14",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_14",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_14"
+          ],
+          "concepts": [],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_ullevål_hageby_set_3",
+      "level": 3,
+      "order": 3,
+      "phase": "bridge",
+      "title": "Damplassen og hverdagen",
+      "questions": [
+        {
+          "id": "ullevål_hageby_quiz_15",
+          "quiz_id": "by_ullevål_hageby_q15",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Hva skjedde med denne målsettingen i praksis?",
+          "options": [
+            "Boligene ble gratis",
+            "Området ble stående ubebygd",
+            "Prosjektet ble så dyrt at middelklassen dominerte innflyttingen"
+          ],
+          "answer": "Prosjektet ble så dyrt at middelklassen dominerte innflyttingen",
+          "answerIndex": 2,
+          "knowledge": "Kostnadsnivået bidro til at middelklassen dominerte innflyttingen.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_boligpolitikk_affordability",
+          "source": [
+            "haveby"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kostnadsnivået bidro til at middelklassen dominerte innflyttingen.",
+          "claim_id": "claim_ullevål_hageby_quiz_15",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_15",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_15"
+          ],
+          "concepts": [],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ullevål_hageby_quiz_16",
+          "quiz_id": "by_ullevål_hageby_q16",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Hva kan byformen alene ikke bevise?",
+          "options": [
+            "Beboernes sosiale identitet og erfaringer",
+            "At det finnes gater",
+            "At Damplassen er et torg"
+          ],
+          "answer": "Beboernes sosiale identitet og erfaringer",
+          "answerIndex": 0,
+          "knowledge": "Observerbar byform kan ikke alene bevise sosial identitet eller erfaring.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_romlig_orden",
+          "source": [
+            "snl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Observerbar byform kan ikke alene bevise sosial identitet eller erfaring.",
+          "claim_id": "claim_ullevål_hageby_quiz_16",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_16",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_16"
+          ],
+          "concepts": [],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ullevål_hageby_quiz_17",
+          "quiz_id": "by_ullevål_hageby_q17",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Hva dokumenterer et historisk Samvirkelag-foto best?",
+          "options": [
+            "Dagens butikktilbud",
+            "En konkret handelsidentitet på Damplassen",
+            "Alle beboernes inntekt"
+          ],
+          "answer": "En konkret handelsidentitet på Damplassen",
+          "answerIndex": 1,
+          "knowledge": "Det historiske fotografiet dokumenterer Ullevaal Samvirkelags fasadeidentitet på Damplassen.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_boligstruktur",
+          "source": [
+            "historic"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Det historiske fotografiet dokumenterer Ullevaal Samvirkelags fasadeidentitet på Damplassen.",
+          "claim_id": "claim_ullevål_hageby_quiz_17",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_17",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_17"
+          ],
+          "concepts": [],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ullevål_hageby_quiz_18",
+          "quiz_id": "by_ullevål_hageby_q18",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Hva bør sammenlignes i før–nå-bildene?",
+          "options": [
+            "Pikselidentiske detaljer",
+            "Beboernes private minner",
+            "Plassrom og bygningsfronter med ståstedsforbehold"
+          ],
+          "answer": "Plassrom og bygningsfronter med ståstedsforbehold",
+          "answerIndex": 2,
+          "knowledge": "Før–nå-bildene kan sammenlignes for romlige spor, men har ulike ståsteder.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_romlig_orden",
+          "source": [
+            "current"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Før–nå-bildene kan sammenlignes for romlige spor, men har ulike ståsteder.",
+          "claim_id": "claim_ullevål_hageby_quiz_18",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_18",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_18"
+          ],
+          "concepts": [],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ullevål_hageby_quiz_19",
+          "quiz_id": "by_ullevål_hageby_q19",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Hva er viktigst ved kildekonflikten om 1917?",
+          "options": [
+            "Bruke sikkert år uten å late som én dato er avklart",
+            "Velge den tidligste datoen",
+            "Ignorere begge kildene"
+          ],
+          "answer": "Bruke sikkert år uten å late som én dato er avklart",
+          "answerIndex": 0,
+          "knowledge": "Kildene støtter 1917, men spriker på eksakt oktoberdato.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_boligpolitikk_affordability",
+          "source": [
+            "haveby"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kildene støtter 1917, men spriker på eksakt oktoberdato.",
+          "claim_id": "claim_ullevål_hageby_quiz_19",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_19",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_19"
+          ],
+          "concepts": [],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ullevål_hageby_quiz_20",
+          "quiz_id": "by_ullevål_hageby_q20",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Hvorfor unngår produksjonen ett universelt boligantall?",
+          "options": [
+            "Området har ingen boliger",
+            "Nåtidskilder oppgir ulike totaler",
+            "Tall er forbudt i History Go"
+          ],
+          "answer": "Nåtidskilder oppgir ulike totaler",
+          "answerIndex": 1,
+          "knowledge": "Nåtidskilder oppgir ulike totaler for bygninger og leiligheter.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_boligstruktur",
+          "source": [
+            "haveby"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Nåtidskilder oppgir ulike totaler for bygninger og leiligheter.",
+          "claim_id": "claim_ullevål_hageby_quiz_20",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_20",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_20"
+          ],
+          "concepts": [],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ullevål_hageby_quiz_21",
+          "quiz_id": "by_ullevål_hageby_q21",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Hva viser verneregler i dagens hageby?",
+          "options": [
+            "At alle bygg kan rives fritt",
+            "At området ikke har arkitektonisk verdi",
+            "At bygningsmasse og utearealer behandles som en bevaringsverdig helhet"
+          ],
+          "answer": "At bygningsmasse og utearealer behandles som en bevaringsverdig helhet",
+          "answerIndex": 2,
+          "knowledge": "Oslo Havebyselskap beskriver hagebyen som en helhet med nasjonal verneverdi.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_boligstruktur",
+          "source": [
+            "haveby"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oslo Havebyselskap beskriver hagebyen som en helhet med nasjonal verneverdi.",
+          "claim_id": "claim_ullevål_hageby_quiz_21",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_21",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_21"
+          ],
+          "concepts": [],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_ullevål_hageby_set_4",
+      "level": 4,
+      "order": 4,
+      "phase": "final",
+      "title": "Metode og tolkning",
+      "questions": [
+        {
+          "id": "ullevål_hageby_quiz_22",
+          "quiz_id": "by_ullevål_hageby_q22",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Hva kan aktøranalyse skille mellom?",
+          "options": [
+            "Kommunen, planleggerne, Havebyselskapet og beboerne",
+            "Bare gatenavn",
+            "Bare byggematerialer"
+          ],
+          "answer": "Kommunen, planleggerne, Havebyselskapet og beboerne",
+          "answerIndex": 0,
+          "knowledge": "Aktøranalyse kan skille mellom institusjoner og roller i plan- og boligprosessen.",
+          "difficulty": 3,
+          "question_type": "method",
+          "emne_id": "em_by_boligpolitikk_affordability",
+          "source": [
+            "municipality"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Aktøranalyse kan skille mellom institusjoner og roller i plan- og boligprosessen.",
+          "claim_id": "claim_ullevål_hageby_quiz_22",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_22",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_22"
+          ],
+          "concepts": [
+            "hageby",
+            "romlig orden",
+            "boligpolitikk"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_aktoranalyse",
+          "guidance_basis": [
+            "data/fag/by/methods_by.json"
+          ]
+        },
+        {
+          "id": "ullevål_hageby_quiz_23",
+          "quiz_id": "by_ullevål_hageby_q23",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Hva registrerer feltobservasjon først?",
+          "options": [
+            "Planleggernes skjulte motiver",
+            "Synlige romlige og materielle spor",
+            "Beboernes inntekt"
+          ],
+          "answer": "Synlige romlige og materielle spor",
+          "answerIndex": 1,
+          "knowledge": "Feltobservasjon starter med synlige og etterprøvbare spor.",
+          "difficulty": 3,
+          "question_type": "method",
+          "emne_id": "em_by_romlig_orden",
+          "source": [
+            "current"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Feltobservasjon starter med synlige og etterprøvbare spor.",
+          "claim_id": "claim_ullevål_hageby_quiz_23",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_23",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_23"
+          ],
+          "concepts": [
+            "hageby",
+            "romlig orden",
+            "boligpolitikk"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_feltobservasjon",
+          "guidance_basis": [
+            "data/fag/by/methods_by.json"
+          ]
+        },
+        {
+          "id": "ullevål_hageby_quiz_24",
+          "quiz_id": "by_ullevål_hageby_q24",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Hva undersøker før–etter-metoden her?",
+          "options": [
+            "Hvem som bor i alle hus",
+            "Hva et enkelt foto føler",
+            "Endringer og kontinuiteter mellom dokumenterte tidslag"
+          ],
+          "answer": "Endringer og kontinuiteter mellom dokumenterte tidslag",
+          "answerIndex": 2,
+          "knowledge": "Før–etter-metoden undersøker dokumenterte endringer og kontinuiteter.",
+          "difficulty": 3,
+          "question_type": "method",
+          "emne_id": "em_by_romlig_orden",
+          "source": [
+            "historic"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Før–etter-metoden undersøker dokumenterte endringer og kontinuiteter.",
+          "claim_id": "claim_ullevål_hageby_quiz_24",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_24",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_24"
+          ],
+          "concepts": [
+            "hageby",
+            "romlig orden",
+            "boligpolitikk"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_for_etter",
+          "guidance_basis": [
+            "data/fag/by/methods_by.json"
+          ]
+        },
+        {
+          "id": "ullevål_hageby_quiz_25",
+          "quiz_id": "by_ullevål_hageby_q25",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Hva betyr hageby som fagbegrep?",
+          "options": [
+            "Lav boligbebyggelse med hager i en planlagt bystruktur",
+            "Et høyhusområde uten uteareal",
+            "En ren industrisone"
+          ],
+          "answer": "Lav boligbebyggelse med hager i en planlagt bystruktur",
+          "answerIndex": 0,
+          "knowledge": "Hageby betegner en planlagt bystruktur med lave boliger og hager.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_by_boligstruktur",
+          "source": [
+            "garden"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Hageby betegner en planlagt bystruktur med lave boliger og hager.",
+          "claim_id": "claim_ullevål_hageby_quiz_25",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_25",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_25"
+          ],
+          "concepts": [
+            "hageby",
+            "romlig orden",
+            "boligpolitikk"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ullevål_hageby_quiz_26",
+          "quiz_id": "by_ullevål_hageby_q26",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Hva gjør Damplassen viktig i romlig analyse?",
+          "options": [
+            "Den ligger utenfor hagebyen",
+            "Den fungerer som et lokalt sentrum i boligstrukturen",
+            "Den er bare en privat hage"
+          ],
+          "answer": "Den fungerer som et lokalt sentrum i boligstrukturen",
+          "answerIndex": 1,
+          "knowledge": "Damplassen fungerer som et lokalt sentrum i hagebyens romlige orden.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_by_romlig_orden",
+          "source": [
+            "damplassen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Damplassen fungerer som et lokalt sentrum i hagebyens romlige orden.",
+          "claim_id": "claim_ullevål_hageby_quiz_26",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_26",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_26"
+          ],
+          "concepts": [
+            "hageby",
+            "romlig orden",
+            "boligpolitikk"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ullevål_hageby_quiz_27",
+          "quiz_id": "by_ullevål_hageby_q27",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Hva viser Ullevål Hageby om boligpolitikk?",
+          "options": [
+            "At boligkostnader aldri påvirker tilgang",
+            "At planlegging bare handler om fasader",
+            "At ideal, finansiering og faktisk tilgang kan trekke i ulike retninger"
+          ],
+          "answer": "At ideal, finansiering og faktisk tilgang kan trekke i ulike retninger",
+          "answerIndex": 2,
+          "knowledge": "Ullevål Hageby viser en dokumentert spenning mellom sosial boligambisjon og økonomisk utfall.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_by_boligpolitikk_affordability",
+          "source": [
+            "snl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Ullevål Hageby viser en dokumentert spenning mellom sosial boligambisjon og økonomisk utfall.",
+          "claim_id": "claim_ullevål_hageby_quiz_27",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_27",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_27"
+          ],
+          "concepts": [
+            "hageby",
+            "romlig orden",
+            "boligpolitikk"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "ullevål_hageby_quiz_28",
+          "quiz_id": "by_ullevål_hageby_q28",
+          "categoryId": "by",
+          "placeId": "ullevål_hageby",
+          "targetId": "ullevål_hageby",
+          "question_scope": "place",
+          "question": "Hva er den sikreste observasjonsgrensen?",
+          "options": [
+            "Beskriv form først og bruk kilder før du tolker sosial årsak",
+            "Gjett beboernes bakgrunn fra husene",
+            "Bruk ett foto som bevis for alle perioder"
+          ],
+          "answer": "Beskriv form først og bruk kilder før du tolker sosial årsak",
+          "answerIndex": 0,
+          "knowledge": "Observasjon av form må skilles fra kildebasert tolkning av sosial årsak.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_by_romlig_orden",
+          "source": [
+            "current"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Observasjon av form må skilles fra kildebasert tolkning av sosial årsak.",
+          "claim_id": "claim_ullevål_hageby_quiz_28",
+          "primary_knowledge_unit_id": "ku_by_ullevål_hageby_28",
+          "knowledge_unit_ids": [
+            "ku_by_ullevål_hageby_28"
+          ],
+          "concepts": [
+            "hageby",
+            "romlig orden",
+            "boligpolitikk"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    }
+  ]
+}
