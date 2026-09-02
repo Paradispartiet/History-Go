@@ -1,21 +1,21 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-09-01T12:18:16.637Z
+Generert: 2026-09-01T17:55:56.464Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-09-01T12:18:16.637Z |
-| peopleFilesRead | 767 |
-| totalPeople | 1429 |
-| uniquePeopleIds | 1429 |
+| generatedAt | 2026-09-01T17:55:56.464Z |
+| peopleFilesRead | 768 |
+| totalPeople | 1430 |
+| uniquePeopleIds | 1430 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 0 |
 | peopleWithEmptyPlacesArray | 0 |
 | flatPeopleFiles | 0 |
-| geographicPeopleFiles | 767 |
+| geographicPeopleFiles | 768 |
 | categoriesRepresented | 17 |
 
 ## People-filer
@@ -168,6 +168,7 @@ Generert: 2026-09-01T12:18:16.637Z
 | data/people/kunst/oslo/roseslottet/vebjorn_sand.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/oslo/skulptursonen_ovre_slottsgate/vibeke_tandberg.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/oslo/tinghuset/people_oslo_tinghus_kunst_v1.json | kunst | ja | 4 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/kunst/oslo/toyen_torg/mari_meen_halsoy.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/vestland/etne/fugl_fonix/people_fugl_fonix_batch1.json | kunst | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/vestland/etne/people_musikkpaviljongen_doktorhagen_batch1.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/vestland/etne/people_skanevik_kultur_og_idrettshall_batch1.json | kunst | ja | 2 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -798,7 +799,7 @@ Generert: 2026-09-01T12:18:16.637Z
 | filantroper | 16 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | film_tv | 24 | 0 | 3 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | historie | 238 | 0 | 75 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| kunst | 81 | 0 | 30 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| kunst | 82 | 0 | 31 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | litteratur | 171 | 0 | 128 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | media | 31 | 0 | 6 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | musikk | 124 | 0 | 88 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
@@ -814,7 +815,7 @@ Generert: 2026-09-01T12:18:16.637Z
 
 ## Geografisk strukturstatus
 
-- Allerede geografisk strukturert: 767
+- Allerede geografisk strukturert: 768
 - Fortsatt flate filer: 0
 - Blandede kategorier: ingen
 - Trygge flate filer for neste geografiske split: ingen
@@ -985,6 +986,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/kunst/oslo/roseslottet/vebjorn_sand.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=kunst
 - data/people/kunst/oslo/skulptursonen_ovre_slottsgate/vibeke_tandberg.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=kunst
 - data/people/kunst/oslo/tinghuset/people_oslo_tinghus_kunst_v1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=4/4; source_place_id=0/4; placesArray=4/4; categories=kunst
+- data/people/kunst/oslo/toyen_torg/mari_meen_halsoy.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=1/1; placesArray=1/1; categories=kunst; schema_review: source_place_id brukes utenfor særskilt næringsliv-schema
 - data/people/kunst/vestland/etne/fugl_fonix/people_fugl_fonix_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=kunst
 - data/people/kunst/vestland/etne/people_musikkpaviljongen_doktorhagen_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=kunst
 - data/people/kunst/vestland/etne/people_skanevik_kultur_og_idrettshall_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=2/2; source_place_id=0/2; placesArray=2/2; categories=kunst

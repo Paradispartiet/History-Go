@@ -27,6 +27,10 @@ const BADGES = 'data/badges/index.json';
 const PLACES = 'data/places/places_index.json';
 const SCHEMA = 'history_go_lesespor_v1';
 const sourceQualities = new Set(['recognized', 'institutional', 'scholarly', 'canonical']);
+const sourceQualityAliases = new Map([
+  ['primary', 'institutional'],
+  ['academic', 'scholarly'],
+]);
 const curationStatuses = new Set(['strong_candidate', 'approved']);
 const forbidden = new Set(['article_body', 'fulltext', 'body', 'text', 'content']);
 
@@ -151,8 +155,12 @@ for (const entry of manifestFiles) {
     if (typeof item.relevance !== 'string' || !item.relevance.trim()) errors.push(`${file}: item ${itemId} must have a non-empty relevance`);
     if (typeof item.url !== 'string' || !item.url.trim()) errors.push(`${file}: item ${itemId} must have a non-empty url`);
     if (item.access !== 'open') errors.push(`${file}: item ${itemId} access must be "open"`);
-    if (!sourceQualities.has(String(item.source_quality ?? ''))) {
+    const rawSourceQuality = String(item.source_quality ?? '');
+    const sourceQuality = sourceQualityAliases.get(rawSourceQuality) ?? rawSourceQuality;
+    if (!sourceQualities.has(sourceQuality)) {
       errors.push(`${file}: item ${itemId} has invalid source_quality ${JSON.stringify(item.source_quality)}`);
+    } else if (sourceQuality !== rawSourceQuality) {
+      warnings.push(`${file}: item ${itemId} uses source_quality alias ${JSON.stringify(rawSourceQuality)}; canonical value is ${JSON.stringify(sourceQuality)}`);
     }
     if (!curationStatuses.has(String(item.curation_status ?? ''))) {
       errors.push(`${file}: item ${itemId} has invalid curation_status ${JSON.stringify(item.curation_status)}`);

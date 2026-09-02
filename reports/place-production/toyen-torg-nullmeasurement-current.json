@@ -1,0 +1,75 @@
+{
+  "schema": "history_go_place_nullmeasurement_v1",
+  "place_id": "toyen_torg",
+  "measured_at": "2026-09-01",
+  "base_commit": "e6fa6683259c5fb7af9d25b90d7057d317c076ad",
+  "status": "completed_baseline_preserved",
+  "canonical_decision": {
+    "represents": "Det navngitte offentlige torget ved Tøyensenteret, med 1970-tallets byrom og ombyggingen som åpnet i 2018 som hovedlag.",
+    "period": "1970-årene–2018",
+    "place_type": "public_square",
+    "primary_category": "by",
+    "place_scope": "single_place",
+    "excludes": [
+      "Tøyen som helt strøk",
+      "Tøyen hovedgård",
+      "Naturhistorisk museum og Botanisk hage",
+      "Tøyen T-banestasjon som selvstendig sted",
+      "løse nabolagsaktører uten dokumentert rolle på selve torget"
+    ]
+  },
+  "aliases_checked": [
+    "Tøyen torg",
+    "Tøyentorget",
+    "Tøyensenteret",
+    "Tøyen senter"
+  ],
+  "collision_audit": {
+    "canonical_place_found": true,
+    "canonical_place_id": "toyen_torg",
+    "open_pull_request_found": false,
+    "existing_completion_branch_found": false,
+    "existing_branch_found": true,
+    "existing_branch_notes": "Bare den allerede mergede Fagverk-v2-grenen work/toyen-torg-fagverk-v2-20260901 ble funnet.",
+    "notes": "Ingen åpen PR eller aktiv fullproduksjonsgren kolliderer med arbeidet. Eksisterende canonical Place skal etterproduseres, ikke dupliseres."
+  },
+  "coordinate_research": {
+    "locator_type": "public_square",
+    "existing": {
+      "lat": 59.9153,
+      "lon": 10.7756,
+      "coord_status": "verified_geometry",
+      "coord_role": "area_anchor"
+    },
+    "status": "existing_coordinate_verified_unchanged",
+    "decision": "Koordinatet er beholdt etter kontrakts- og stedsidentitetskontroll; area_anchor beskriver et punkt i torgflaten og gjør ikke stedet til placeScope area."
+  },
+  "subsystem_baseline": {
+    "place": "exists_without_production_status_or_profile",
+    "description_production": "partial",
+    "by_production": "missing",
+    "coordinate_evidence": "audit_required",
+    "leksikon": "weak_unsourced",
+    "chronology": "weak_no_exact_year",
+    "story": "legacy_non_episode_requires_audit",
+    "for_na": "missing_or_unverified",
+    "news": "audit_required",
+    "lesespor": "missing_or_unverified",
+    "sprakleksikon": "missing_or_unverified",
+    "people": "incorrect_existing_relations",
+    "objects": "not_materialized",
+    "brands": "not_materialized",
+    "structures": "not_materialized",
+    "quiz": "rich_6x7_with_answer_position_bias_and_source_audit_needed",
+    "knowledge": "exists_requires_audit",
+    "fagverk_place": "curated_full",
+    "images": "remote_place_image_without_validated_local_front_image"
+  },
+  "known_boundary_issues": [
+    "Jens Bjelke, Henrik Bjelke og Kristine Bonnevie er koblet til toyen_torg via Tøyen hovedgård eller museumsområdet, ikke det navngitte torget.",
+    "Nærliggende canonical Places kan bare brukes som relasjoner, ikke som structures eller samlingsfyll.",
+    "Tøyenteppene, lysmastene og Tøyensenteret må klassifiseres etter fysisk entitet og dokumentert rolle før de materialiseres.",
+    "Oppgitt areal varierer mellom 5200 og 5400 kvadratmeter i eksisterende materiale og må kildeforklares eller utelates."
+  ],
+  "next_gate": "Baseline lukket: canonical stedsidentitet og uendret koordinat ble bekreftet før produksjonen."
+}
