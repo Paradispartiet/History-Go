@@ -1,0 +1,71 @@
+name: tmp Ullevål Hageby data-check repair
+on:
+  push:
+    branches:
+      - work/ulleval-hageby-completion-20260902
+permissions:
+  contents: write
+jobs:
+  repair:
+    if: github.event.head_commit.message != 'Repair Ullevål Hageby Data checks on fresh main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/ulleval-hageby-completion-20260902
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Merge fresh main
+        run: |
+          git config user.name "Paradispartiet"
+          git config user.email "paradispartiet@gmail.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+      - name: Repair Ullevål quiz v3.3 brief contract
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const briefPath = 'data/quiz/production_briefs/by/ullevål_hageby.json';
+          const quizPath = 'data/quiz/by/ullevål_hageby_sets.json';
+          const brief = JSON.parse(fs.readFileSync(briefPath, 'utf8'));
+          const quiz = JSON.parse(fs.readFileSync(quizPath, 'utf8'));
+          const context = quiz.production_context;
+          if (!context || context.standard_version !== '3.3') throw new Error('Expected Ullevål Hageby quiz production_context standard 3.3');
+          for (const field of ['existing_quiz_audit', 'profile_decision', 'held_back_candidates']) {
+            if (!context[field]) throw new Error(`Quiz production_context mangler ${field}`);
+            brief[field] = context[field];
+          }
+          fs.writeFileSync(briefPath, `${JSON.stringify(brief, null, 2)}\n`);
+          NODE
+      - name: Install and regenerate derived state
+        run: |
+          npm ci --no-audit --no-fund
+          npm run civication:history-people:build
+          node scripts/build-quiz-production-context.mjs --category by --target ullevål_hageby --output data/quiz/production_context/by/ullevål_hageby.json
+          npm run places:index:build
+          node scripts/audit-fagverk-place-pages.mjs --write
+          node scripts/build-fagverk-release-manifest.mjs
+          npm run epoker:places:build
+          npm run place-open:build
+          npm run knowledge:canonical:write
+      - name: Verify Data checks and Ullevål contracts
+        run: |
+          bash scripts/check-people.sh
+          npm run civication:history-people:check
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          node tests/ullevål-hageby-completion.test.mjs
+          npm run places:index:check
+          npm run epoker:places:check
+          npm run place-open:check
+          node scripts/audit-fagverk-place-pages.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          git diff --check
+      - name: Publish repaired candidate
+        run: |
+          git add -A
+          git commit -m "Repair Ullevål Hageby Data checks on fresh main"
+          git push origin HEAD:work/ulleval-hageby-completion-20260902
