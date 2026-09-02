@@ -1,0 +1,282 @@
+{
+  "schema": "history_go_juss_rettsvitenskap_family_child_inheritance_person_law_source_claim_brief_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-09-02",
+  "status": "source_first_ready_not_materialized",
+  "subject_id": "politikk",
+  "canonical_subcategory_id": "juss_rettsvitenskap",
+  "domain": {
+    "ordinal": 10,
+    "id": "familie_barn_arv_personrett",
+    "title": "Familie-, barne-, arve- og personrett",
+    "production_mode": "new_production_required"
+  },
+  "source_strategy": {
+    "source_first": true,
+    "inspectable_urls_required": true,
+    "claim_level_trace_required": true,
+    "minimum_sources_per_claim": 2,
+    "fulltext_materialization_required_before_counting": true,
+    "primary_or_institutional_sources_preferred": true,
+    "jurisdiction_and_time_scope_required": true,
+    "family_status_property_and_inheritance_effects_must_be_distinguished": true,
+    "child_best_interests_participation_and_family_life_must_be_distinguished": true,
+    "current_and_enacted_not_in_force_law_must_be_distinguished": true,
+    "legal_capacity_guardianship_and_personal_autonomy_must_be_distinguished": true,
+    "registration_status_and_underlying_civil_right_must_be_distinguished": true,
+    "legal_education_is_not_personal_legal_advice": true
+  },
+  "sources": [
+    {
+      "id": "fam01-ekteskapsloven",
+      "title": "Lov om ekteskap (ekteskapsloven) – LOV-1991-07-04-47",
+      "publisher": "Lovdata",
+      "type": "current-statute",
+      "url": "https://lovdata.no/lov/1991-07-04-47",
+      "evidence_role": "ekteskapsvilkar-separasjon-skilsmisse-ektefelleformue-oppgjor",
+      "retrieval_status": "verified_2026_09_02"
+    },
+    {
+      "id": "fam02-barnelova-1981-current",
+      "title": "Lov om barn og foreldre (barnelova) – LOV-1981-04-08-7",
+      "publisher": "Lovdata",
+      "type": "current-statute",
+      "url": "https://lovdata.no/lov/1981-04-08-7",
+      "evidence_role": "gjeldende-foreldreskap-foreldreansvar-fast-bosted-samvar-underhold",
+      "retrieval_status": "verified_2026_09_02",
+      "effective_status": "in_force_as_of_2026_09_02"
+    },
+    {
+      "id": "fam03-barnelova-2025-not-in-force",
+      "title": "Lov om barn og foreldre (barnelova) – LOV-2025-06-20-40",
+      "publisher": "Lovdata",
+      "type": "enacted-statute-not-in-force",
+      "url": "https://lovdata.no/lov/2025-06-20-40",
+      "evidence_role": "vedtatt-fremtidig-barnelov-grunnrettigheter-foreldreskap-foreldreansvar-samvar-overgang",
+      "retrieval_status": "verified_2026_09_02",
+      "effective_status": "enacted_not_in_force_as_of_2026_09_02"
+    },
+    {
+      "id": "fam04-barnevernsloven",
+      "title": "Lov om barnevern (barnevernsloven) – LOV-2021-06-18-97",
+      "publisher": "Lovdata",
+      "type": "current-statute",
+      "url": "https://lovdata.no/lov/2021-06-18-97",
+      "evidence_role": "hjelpetiltak-akuttvedtak-omsorgsovertakelse-samvar-medvirkning-prosess",
+      "retrieval_status": "verified_2026_09_02"
+    },
+    {
+      "id": "fam05-arveloven",
+      "title": "Lov om arv og dødsboskifte (arveloven) – LOV-2019-06-14-21",
+      "publisher": "Lovdata",
+      "type": "current-statute",
+      "url": "https://lovdata.no/lov/2019-06-14-21",
+      "evidence_role": "slektsarv-ektefellearv-samboerarv-uskifte-pliktdel-testament-dodsbo-skifte",
+      "retrieval_status": "verified_2026_09_02"
+    },
+    {
+      "id": "fam06-vergemalsloven",
+      "title": "Lov om vergemål (vergemålsloven) – LOV-2010-03-26-9",
+      "publisher": "Lovdata",
+      "type": "current-statute",
+      "url": "https://lovdata.no/lov/2010-03-26-9",
+      "evidence_role": "mindrearige-voksne-vergemal-rettslig-handleevne-verge-fremtidsfullmakt",
+      "retrieval_status": "verified_2026_09_02"
+    },
+    {
+      "id": "fam07-adopsjonsloven",
+      "title": "Lov om adopsjon (adopsjonsloven) – LOV-2017-06-16-48",
+      "publisher": "Lovdata",
+      "type": "current-statute",
+      "url": "https://lovdata.no/lov/2017-06-16-48",
+      "evidence_role": "barnets-beste-samtykke-nasjonal-internasjonal-adopsjon-rettsvirkninger-anerkjennelse",
+      "retrieval_status": "verified_2026_09_02"
+    },
+    {
+      "id": "fam08-navneloven",
+      "title": "Lov om personnavn (navneloven) – LOV-2002-06-07-19",
+      "publisher": "Lovdata",
+      "type": "current-statute",
+      "url": "https://lovdata.no/lov/2002-06-07-19",
+      "evidence_role": "navneplikt-barns-navn-fornavn-etternavn-navneendring-adopsjon",
+      "retrieval_status": "verified_2026_09_02"
+    },
+    {
+      "id": "fam09-husstandsfellesskapsloven",
+      "title": "Lov om rett til felles bolig og innbo når husstandsfellesskap opphører (husstandsfellesskapsloven) – LOV-1991-07-04-45",
+      "publisher": "Lovdata",
+      "type": "current-statute",
+      "url": "https://lovdata.no/lov/1991-07-04-45",
+      "evidence_role": "samboere-husstandsfellesskap-bolig-innbo-overtakelse-opphor-dod",
+      "retrieval_status": "verified_2026_09_02"
+    },
+    {
+      "id": "fam10-menneskerettsloven",
+      "title": "Lov om styrking av menneskerettighetenes stilling i norsk rett (menneskerettsloven) – LOV-1999-05-21-30",
+      "publisher": "Lovdata",
+      "type": "current-statute-incorporation",
+      "url": "https://lovdata.no/lov/1999-05-21-30",
+      "evidence_role": "emk-familieliv-barnekonvensjon-barnets-beste-medvirkning-forrang",
+      "retrieval_status": "verified_2026_09_02"
+    },
+    {
+      "id": "fam11-grunnloven",
+      "title": "Kongeriket Norges Grunnlov – LOV-1814-05-17",
+      "publisher": "Lovdata",
+      "type": "current-constitution",
+      "url": "https://lovdata.no/lov/1814-05-17",
+      "evidence_role": "paragraf-102-privatliv-familieliv-paragraf-104-barnets-beste-medvirkning-integritet",
+      "retrieval_status": "verified_2026_09_02"
+    },
+    {
+      "id": "fam12-folkeregisterloven",
+      "title": "Lov om folkeregistrering (folkeregisterloven) – LOV-2016-12-09-88",
+      "publisher": "Lovdata",
+      "type": "current-statute",
+      "url": "https://lovdata.no/lov/2016-12-09-88",
+      "evidence_role": "personidentitet-familierelasjoner-sivilstand-bosted-registrering-meldeplikt",
+      "retrieval_status": "verified_2026_09_02"
+    },
+    {
+      "id": "fam13-personopplysningsloven",
+      "title": "Lov om behandling av personopplysninger (personopplysningsloven) – LOV-2018-06-15-38",
+      "publisher": "Lovdata",
+      "type": "current-statute-eea",
+      "url": "https://lovdata.no/lov/2018-06-15-38",
+      "evidence_role": "personopplysninger-behandlingsgrunnlag-barns-data-rettigheter-personvern-gdpr",
+      "retrieval_status": "verified_2026_09_02"
+    }
+  ],
+  "topic_briefs": [
+    {
+      "id": "ekteskap-inngaelse-opplosning-og-familieliv",
+      "title": "Ekteskap, inngåelse, oppløsning og familieliv",
+      "method_ids": ["met_family_status", "met_family_life_proportionality"],
+      "boundary": "Ekteskapets gyldighet og oppløsning følger ekteskapslovens vilkår og prosedyrer, mens retten til privat- og familieliv setter menneskerettslige rammer for myndighetsinngrep. Registrering dokumenterer status, men kan ikke alene erstatte de materielle vilkårene for at et ekteskap er gyldig eller oppløst.",
+      "source_ids": ["fam01-ekteskapsloven", "fam10-menneskerettsloven", "fam11-grunnloven", "fam12-folkeregisterloven"],
+      "planned_claims": [
+        {"id":"family-01","text":"Gyldig ekteskapsinngåelse krever at ekteskapslovens materielle vilkår, prøving og vigselsregler er oppfylt; retten til familieliv gir ikke i seg selv dispensasjon fra lovbestemte ekteskapsvilkår.","source_ids":["fam01-ekteskapsloven","fam10-menneskerettsloven"],"status":"planned_requires_fulltext_verification"},
+        {"id":"family-02","text":"Anerkjennelse av et ekteskap med utenlandsk tilknytning må vurderes etter ekteskapslovens anerkjennelsesregler og menneskerettslige rammer, mens en folkeregisteroppføring ikke alene avgjør den underliggende sivilrettslige gyldigheten.","source_ids":["fam01-ekteskapsloven","fam10-menneskerettsloven","fam12-folkeregisterloven"],"status":"planned_requires_fulltext_verification"},
+        {"id":"family-03","text":"Samlivsbrudd, separasjon og skilsmisse er forskjellige faktiske og rettslige stadier; sivilstand og de rettsvirkningene som følger av oppløsningen må knyttes til riktig vedtak, frist og registrering.","source_ids":["fam01-ekteskapsloven","fam12-folkeregisterloven"],"status":"planned_requires_fulltext_verification"},
+        {"id":"family-04","text":"Retten til privat- og familieliv beskytter personlige relasjoner mot uforholdsmessige offentlige inngrep, men hindrer ikke lovlig regulering av ekteskapsstatus, skilsmisse og tilhørende rettsvirkninger når hjemmel og proporsjonalitet er ivaretatt.","source_ids":["fam10-menneskerettsloven","fam11-grunnloven","fam01-ekteskapsloven"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id": "ektefelleformue-samboere-bolig-og-oppgjor",
+      "title": "Ektefelleformue, samboere, bolig og oppgjør",
+      "method_ids": ["met_family_property", "met_cohabitation_status"],
+      "boundary": "Eierskap, felleseie, særeie, skjevdeling og gjeldsansvar er forskjellige spørsmål. Felleseie betyr ikke at ektefellene automatisk eier alle eiendeler sammen. Samboere omfattes ikke generelt av ektefellenes formuesordning; husstandsfellesskapsloven gir avgrensede regler om bolig og innbo ved opphør.",
+      "source_ids": ["fam01-ekteskapsloven", "fam05-arveloven", "fam09-husstandsfellesskapsloven"],
+      "planned_claims": [
+        {"id":"family-05","text":"Felleseie er først og fremst en delingsordning ved opphør og er ikke det samme som sameie eller felles eierskap under ekteskapet; eiendomsrett og delingsgrunnlag må derfor fastsettes separat.","source_ids":["fam01-ekteskapsloven","fam05-arveloven"],"status":"planned_requires_fulltext_verification"},
+        {"id":"family-06","text":"Særeie, skjevdeling og ektefellenes gjeldsansvar har egne vilkår og virkninger; et formuesgode kan tilhøre én ektefelle selv om verdien helt eller delvis inngår i et senere økonomisk oppgjør.","source_ids":["fam01-ekteskapsloven","fam05-arveloven"],"status":"planned_requires_fulltext_verification"},
+        {"id":"family-07","text":"Samboere har ikke automatisk ektefellenes felleseieordning; ved opphør må eierskap og avtaler vurderes først, mens husstandsfellesskapsloven kan gi særskilte rettigheter til felles bolig eller innbo når lovens vilkår er oppfylt.","source_ids":["fam09-husstandsfellesskapsloven","fam01-ekteskapsloven"],"status":"planned_requires_fulltext_verification"},
+        {"id":"family-08","text":"Ved dødsfall må et mulig formuesoppgjør mellom partene skilles fra hvem som arver; rett til bolig eller innbo etter husstandsfellesskapsloven og arverett eller uskifte etter arveloven er selvstendige rettsspor.","source_ids":["fam05-arveloven","fam09-husstandsfellesskapsloven","fam01-ekteskapsloven"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id": "foreldreskap-foreldreansvar-bosted-samvar-og-lovovergang",
+      "title": "Foreldreskap, foreldreansvar, bosted, samvær og lovovergang",
+      "method_ids": ["met_parental_status", "met_child_law_transition"],
+      "boundary": "Per 2. september 2026 er barnelova 1981 gjeldende, mens barnelova 2025 er vedtatt men ikke i kraft fordi ikrafttredelsen fortsatt fastsettes av Kongen. Foreldreskap, foreldreansvar, fast bosted og samvær er forskjellige rettslige posisjoner, og fremtidige regler må aldri brukes som gjeldende hjemmel før ikrafttredelse.",
+      "source_ids": ["fam02-barnelova-1981-current", "fam03-barnelova-2025-not-in-force", "fam10-menneskerettsloven", "fam11-grunnloven", "fam12-folkeregisterloven"],
+      "planned_claims": [
+        {"id":"family-09","text":"Rettsspørsmål om foreldreskap, foreldreansvar, bosted og samvær må per 2. september 2026 avgjøres etter gjeldende barnelov 1981 og andre ikraftsatte regler; barnelova 2025 kan beskrives som vedtatt fremtidig rett, men ikke brukes som gjeldende hjemmel.","source_ids":["fam02-barnelova-1981-current","fam03-barnelova-2025-not-in-force"],"status":"planned_requires_fulltext_verification"},
+        {"id":"family-10","text":"Foreldreansvar, fast bosted og samvær regulerer ulike sider av forholdet mellom barn og foreldre; en forelder kan derfor ha foreldreansvar uten at barnet bor fast hos vedkommende, og samværsretten må vurderes særskilt.","source_ids":["fam02-barnelova-1981-current","fam10-menneskerettsloven"],"status":"planned_requires_fulltext_verification"},
+        {"id":"family-11","text":"Barnets beste og barnets rett til å bli hørt er sentrale normer ved avgjørelser om barnet, men vurderingen må knyttes til den konkrete beslutningen, barnets alder og modenhet og de rettslige rammene for familieliv og beskyttelse.","source_ids":["fam02-barnelova-1981-current","fam10-menneskerettsloven","fam11-grunnloven"],"status":"planned_requires_fulltext_verification"},
+        {"id":"family-12","text":"Folkeregisteret registrerer blant annet familierelasjoner og sivil status, men registreringen er ikke en generell materiell regel om hvem som rettslig er forelder eller hvem som har foreldreansvar; stiftelsesgrunnlaget må spores til familieretten.","source_ids":["fam02-barnelova-1981-current","fam12-folkeregisterloven"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id": "barnets-rettigheter-barnevern-medvirkning-og-proporsjonalitet",
+      "title": "Barnets rettigheter, barnevern, medvirkning og proporsjonalitet",
+      "method_ids": ["met_child_best_interests", "met_child_welfare_proportionality"],
+      "boundary": "Hjelpetiltak, akuttvedtak, omsorgsovertakelse og samværsregulering etter barnevernsloven har ulike vilkår og prosesser. Barnets beste, medvirkning, beskyttelse og familieliv må vurderes samlet, men hver beslutning trenger egen hjemmel og en konkret nødvendighets- og proporsjonalitetsvurdering.",
+      "source_ids": ["fam04-barnevernsloven", "fam02-barnelova-1981-current", "fam03-barnelova-2025-not-in-force", "fam10-menneskerettsloven", "fam11-grunnloven"],
+      "planned_claims": [
+        {"id":"family-13","text":"Frivillige hjelpetiltak, akuttvedtak og omsorgsovertakelse er ulike barnevernsinngrep med forskjellige vilkår og beslutningsprosesser; alvorlig bekymring alene gjør ikke alle tiltak rettslig utskiftbare.","source_ids":["fam04-barnevernsloven","fam10-menneskerettsloven"],"status":"planned_requires_fulltext_verification"},
+        {"id":"family-14","text":"Barnets beste og barnets rett til medvirkning skal inngå reelt i barnevernets beslutninger, sammen med kravene til beskyttelse, forsvarlig saksbehandling og respekt for familielivet.","source_ids":["fam04-barnevernsloven","fam10-menneskerettsloven","fam11-grunnloven"],"status":"planned_requires_fulltext_verification"},
+        {"id":"family-15","text":"Et inngrep i familielivet må ha hjemmel og være nødvendig og forholdsmessig; en omsorgsovertakelse endrer ikke automatisk det underliggende juridiske foreldreskapet, og spørsmål om samvær og gjenforening krever egne vurderinger.","source_ids":["fam04-barnevernsloven","fam10-menneskerettsloven","fam02-barnelova-1981-current"],"status":"planned_requires_fulltext_verification"},
+        {"id":"family-16","text":"Barnelova 2025 fremhever barns grunnleggende rettigheter i en ny lovstruktur, men før loven er satt i kraft må gjeldende barnelov, barnevernsloven, Grunnloven og inkorporerte menneskerettigheter brukes som operative rettskilder.","source_ids":["fam03-barnelova-2025-not-in-force","fam02-barnelova-1981-current","fam04-barnevernsloven","fam11-grunnloven"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id": "adopsjon-foreldrerelasjon-navn-og-registrering",
+      "title": "Adopsjon, foreldrerelasjon, navn og registrering",
+      "method_ids": ["met_adoption_status", "met_personal_status_effects"],
+      "boundary": "Adopsjon etablerer en varig rettslig familierelasjon gjennom lovbestemt myndighetsbehandling; privat enighet er ikke tilstrekkelig. Samtykke, barnets beste, internasjonal anerkjennelse, rettsvirkninger, navn og offentlig registrering er ulike spørsmål som må behandles i riktig rekkefølge.",
+      "source_ids": ["fam07-adopsjonsloven", "fam02-barnelova-1981-current", "fam03-barnelova-2025-not-in-force", "fam08-navneloven", "fam10-menneskerettsloven", "fam12-folkeregisterloven"],
+      "planned_claims": [
+        {"id":"family-17","text":"Adopsjon krever myndighetsavgjørelse etter adopsjonslovens vilkår om blant annet barnets beste og nødvendige samtykker; en privat omsorgs- eller familieavtale etablerer ikke i seg selv et adoptivforhold.","source_ids":["fam07-adopsjonsloven","fam10-menneskerettsloven"],"status":"planned_requires_fulltext_verification"},
+        {"id":"family-18","text":"En adopsjon etablerer rettslige bånd mellom adoptivbarn og adoptivforeldre med særskilte virkninger for tidligere familierelasjoner; dette må skilles fra foreldreansvar, fosterhjemsplassering og samværsregulering.","source_ids":["fam07-adopsjonsloven","fam02-barnelova-1981-current"],"status":"planned_requires_fulltext_verification"},
+        {"id":"family-19","text":"Internasjonal adopsjon krever kontroll av norsk kompetanse, anvendelig rett og anerkjennelse av utenlandske avgjørelser; barnets beste og familieliv inngår i vurderingen uten å erstatte lovens prosedyrer.","source_ids":["fam07-adopsjonsloven","fam10-menneskerettsloven"],"status":"planned_requires_fulltext_verification"},
+        {"id":"family-20","text":"Adopsjon kan få følger for personnavn og registrerte familierelasjoner, men navneendring og folkeregisterføring følger egne regler og må ikke forveksles med selve adopsjonsvedtakets gyldighet.","source_ids":["fam07-adopsjonsloven","fam08-navneloven","fam12-folkeregisterloven"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id": "arverekkefolge-ektefelle-samboer-uskifte-og-pliktdel",
+      "title": "Arverekkefølge, ektefelle, samboer, uskifte og pliktdel",
+      "method_ids": ["met_inheritance_order", "met_survivor_rights"],
+      "boundary": "Arverett må holdes atskilt fra formuesoppgjøret som bestemmer hva som faktisk tilhører dødsboet. Slekt, ektefelle og kvalifisert samboer kan ha forskjellige lovbestemte rettigheter, og uskifte er en særskilt ordning. Pliktdelsreglene begrenser testasjonsfriheten, men gjør ikke ethvert testament ugyldig.",
+      "source_ids": ["fam05-arveloven", "fam01-ekteskapsloven", "fam09-husstandsfellesskapsloven"],
+      "planned_claims": [
+        {"id":"family-21","text":"Når det ikke foreligger gyldig testament, fordeles arv etter arvelovens arvegangsklasser og særregler for ektefelle eller kvalifisert samboer; familiens faktiske nærhet kan ikke erstatte lovens vilkår.","source_ids":["fam05-arveloven","fam01-ekteskapsloven"],"status":"planned_requires_fulltext_verification"},
+        {"id":"family-22","text":"Ved en ektefelles død må ektefellenes formuesoppgjør gjennomføres eller avklares før netto dødsbo og arveandeler beregnes; felleseiedeling og ektefellearv er to forskjellige beregningstrinn.","source_ids":["fam01-ekteskapsloven","fam05-arveloven"],"status":"planned_requires_fulltext_verification"},
+        {"id":"family-23","text":"Samboeres arverett og uskifterett etter arveloven avhenger av særskilte lovvilkår og er ikke identisk med retten til bolig eller innbo etter husstandsfellesskapsloven.","source_ids":["fam05-arveloven","fam09-husstandsfellesskapsloven"],"status":"planned_requires_fulltext_verification"},
+        {"id":"family-24","text":"Livsarvingenes pliktdelsrett begrenser arvelaterens testasjonsfrihet innenfor arvelovens regler; gyldig testament må derfor tolkes og reduseres etter riktig regel fremfor å behandles som automatisk ugyldig i sin helhet.","source_ids":["fam05-arveloven","fam10-menneskerettsloven"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id": "testament-dodsbo-vergemal-handleevne-og-fremtidsfullmakt",
+      "title": "Testament, dødsbo, vergemål, handleevne og fremtidsfullmakt",
+      "method_ids": ["met_testament_validity", "met_legal_capacity_support"],
+      "boundary": "Testamentskompetanse, formkrav og testamentstolkning er egne spørsmål. Etter dødsfallet må boets gjeld, skifteform og representasjon avklares før utdeling. Vergemål, fratakelse av rettslig handleevne og fremtidsfullmakt har ulike terskler og virkninger; støttebehov er ikke automatisk tap av autonomi.",
+      "source_ids": ["fam05-arveloven", "fam06-vergemalsloven", "fam10-menneskerettsloven", "fam11-grunnloven"],
+      "planned_claims": [
+        {"id":"family-25","text":"Et testament må vurderes separat for testators kompetanse, lovbestemte formkrav, innhold og senere tilbakekall eller endring; et ønske om fordeling er ikke nok dersom lovens gyldighetsvilkår svikter.","source_ids":["fam05-arveloven","fam06-vergemalsloven"],"status":"planned_requires_fulltext_verification"},
+        {"id":"family-26","text":"Dødsboskifte krever at boets eiendeler, gjeld, arvinger og valgt skifteform identifiseres før utdeling; privat og offentlig skifte har ulike beslutnings- og representasjonsstrukturer.","source_ids":["fam05-arveloven","fam06-vergemalsloven"],"status":"planned_requires_fulltext_verification"},
+        {"id":"family-27","text":"En mindreårig eller en voksen under vergemål kan ha full arverett selv om disposisjonskompetansen over arven er begrenset eller støttet; eierskap til arv og rettslig handleevne må derfor skilles.","source_ids":["fam05-arveloven","fam06-vergemalsloven"],"status":"planned_requires_fulltext_verification"},
+        {"id":"family-28","text":"Fremtidsfullmakt og vergemål er alternative eller supplerende ordninger med ulike stiftelsesgrunnlag og kontrollmekanismer; et hjelpebehov innebærer ikke uten særskilt hjemmel at personen mister rettslig handleevne eller personlig autonomi.","source_ids":["fam06-vergemalsloven","fam10-menneskerettsloven","fam11-grunnloven"],"status":"planned_requires_fulltext_verification"}
+      ]
+    },
+    {
+      "id": "personnavn-folkeregistrering-handleevne-og-personvern",
+      "title": "Personnavn, folkeregistrering, handleevne og personvern",
+      "method_ids": ["met_personal_status", "met_personal_data_rights"],
+      "boundary": "Personnavn, folkeregisteropplysninger, rettslig handleevne og personvern beskriver forskjellige sider av personretten. En registrering kan være offentligrettslig dokumentasjon uten å skape den underliggende familieretten. Behandling av familie- og identitetsopplysninger krever eget behandlingsgrunnlag og respekt for privatliv og registrertes rettigheter.",
+      "source_ids": ["fam08-navneloven", "fam12-folkeregisterloven", "fam06-vergemalsloven", "fam13-personopplysningsloven", "fam10-menneskerettsloven", "fam11-grunnloven"],
+      "planned_claims": [
+        {"id":"family-29","text":"Valg og endring av personnavn følger navnelovens regler om fornavn, etternavn, barns navn og beskyttede navn; folkeregisterføring dokumenterer navnet, men gir ikke en fri materiell navnerett utenfor navneloven.","source_ids":["fam08-navneloven","fam12-folkeregisterloven"],"status":"planned_requires_fulltext_verification"},
+        {"id":"family-30","text":"Folkeregisterets opplysninger om bosted, sivilstand og familierelasjoner har viktige administrative virkninger, men en registrering avgjør ikke nødvendigvis alle underliggende privatrettslige spørsmål om ekteskap, foreldreskap eller eierskap.","source_ids":["fam12-folkeregisterloven","fam01-ekteskapsloven","fam02-barnelova-1981-current"],"status":"planned_requires_fulltext_verification"},
+        {"id":"family-31","text":"Vergemål innebærer ikke automatisk fratakelse av rettslig handleevne; eventuelle begrensninger krever særskilt hjemmel og forholdsmessighet, og den enkeltes vilje og personlige integritet må ivaretas innenfor lovens rammer.","source_ids":["fam06-vergemalsloven","fam10-menneskerettsloven","fam11-grunnloven"],"status":"planned_requires_fulltext_verification"},
+        {"id":"family-32","text":"At familie-, barne- eller arveretten trenger personopplysninger, opphever ikke personvernreglene; behandling må ha rettslig grunnlag, formålsbegrensning og nødvendige rettigheter og sikkerhetstiltak, særlig når opplysningene gjelder barn eller sensitive familieforhold.","source_ids":["fam13-personopplysningsloven","fam10-menneskerettsloven","fam11-grunnloven"],"status":"planned_requires_fulltext_verification"}
+      ]
+    }
+  ],
+  "planned_assessments": [
+    {"id":"assess-family-01","title":"Analyser ekteskap, inngåelse, oppløsning og familieliv","claim_ids":["family-01","family-02","family-03","family-04"]},
+    {"id":"assess-family-02","title":"Analyser ektefelleformue, samboere, bolig og oppgjør","claim_ids":["family-05","family-06","family-07","family-08"]},
+    {"id":"assess-family-03","title":"Analyser foreldreskap, foreldreansvar, bosted, samvær og lovovergang","claim_ids":["family-09","family-10","family-11","family-12"]},
+    {"id":"assess-family-04","title":"Analyser barnets rettigheter, barnevern, medvirkning og proporsjonalitet","claim_ids":["family-13","family-14","family-15","family-16"]},
+    {"id":"assess-family-05","title":"Analyser adopsjon, foreldrerelasjon, navn og registrering","claim_ids":["family-17","family-18","family-19","family-20"]},
+    {"id":"assess-family-06","title":"Analyser arverekkefølge, ektefelle, samboer, uskifte og pliktdel","claim_ids":["family-21","family-22","family-23","family-24"]},
+    {"id":"assess-family-07","title":"Analyser testament, dødsbo, vergemål, handleevne og fremtidsfullmakt","claim_ids":["family-25","family-26","family-27","family-28"]},
+    {"id":"assess-family-08","title":"Analyser personnavn, folkeregistrering, handleevne og personvern","claim_ids":["family-29","family-30","family-31","family-32"]}
+  ],
+  "decision_scenarios": [
+    {"id":"case-family-01","title":"Ekteskap inngått i utlandet og norsk registrering","source_ids":["fam01-ekteskapsloven","fam10-menneskerettsloven","fam12-folkeregisterloven"],"prompt":"Et par ber om norsk registrering av et ekteskap inngått i utlandet. Skill ekteskapets materielle gyldighet og anerkjennelse fra folkeregisterføring og vurder menneskerettslige rammer uten å la registreringen erstatte anerkjennelsesvilkårene."},
+    {"id":"case-family-02","title":"Foreldretvist mens ny barnelov venter på ikrafttredelse","source_ids":["fam02-barnelova-1981-current","fam03-barnelova-2025-not-in-force","fam10-menneskerettsloven","fam11-grunnloven"],"prompt":"Foreldre er uenige om foreldreansvar, fast bosted og samvær i september 2026. Bruk bare ikraftsatt rett som hjemmel, skill de tre rettsposisjonene og forklar hvilken begrenset rolle den vedtatte, men ikke ikraftsatte 2025-loven kan ha i en fremstilling av fremtidig rett."},
+    {"id":"case-family-03","title":"Akutt barnevernstiltak og familieliv","source_ids":["fam04-barnevernsloven","fam10-menneskerettsloven","fam11-grunnloven"],"prompt":"Barnevernet vurderer et akutt tiltak etter alvorlige opplysninger. Skill hjemmel, akuttfare, barnets medvirkning og beste, familieliv, forholdsmessighet og videre prosess fra vilkårene for en eventuell senere omsorgsovertakelse."},
+    {"id":"case-family-04","title":"Stebarnsadopsjon, navn og registrering","source_ids":["fam07-adopsjonsloven","fam08-navneloven","fam12-folkeregisterloven"],"prompt":"Etter en stebarnsadopsjon ønsker familien nytt etternavn og oppdatert familierelasjon i offentlige registre. Skill adopsjonsvedtakets vilkår og rettsvirkninger fra navnevalget og den etterfølgende registreringen."},
+    {"id":"case-family-05","title":"Ektefelles død med felleseie og testament","source_ids":["fam01-ekteskapsloven","fam05-arveloven"],"prompt":"En ektefelle dør med formue, gjeld, livsarvinger og testament. Gjennomfør først formuesoppgjøret, deretter avklar boet, ektefelle- og livsarvingrett, pliktdel, testament og eventuell uskifte uten å blande delings- og arvereglene."},
+    {"id":"case-family-06","title":"Arv til voksen under vergemål","source_ids":["fam05-arveloven","fam06-vergemalsloven","fam13-personopplysningsloven"],"prompt":"En voksen under vergemål mottar en betydelig arv. Skill arverett og eierskap fra vergens kompetanse og personens rettslige handleevne, og vurder hvordan nødvendige person- og formuesopplysninger kan behandles uten å anta at vergemålet opphever personvern eller autonomi."}
+  ],
+  "fulltext_requirements": {
+    "modules": 4,
+    "sections": 8,
+    "paragraphs": 32,
+    "verified_claims": 32,
+    "assessments": 8,
+    "decision_scenarios": 6
+  }
+}
