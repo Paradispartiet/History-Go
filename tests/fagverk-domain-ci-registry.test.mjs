@@ -10,8 +10,8 @@ import {
 
 const registries = loadRegistries();
 
-test("Helse, Utdanning, Sosiologi/antropologi, Geografi, Språk/lingvistikk Juss/rettsvitenskap and Fysikk use one domain CI registry contract", () => {
-  assert.deepEqual(Object.keys(registries), ["helse", "utdanning", "sosiologi_antropologi", "geografi", "sprak_lingvistikk", "juss_rettsvitenskap", "fysikk"]);
+test("Helse, Utdanning, Sosiologi/antropologi, Geografi, Språk/lingvistikk Juss/rettsvitenskap Fysikk and Kjemi use one domain CI registry contract", () => {
+  assert.deepEqual(Object.keys(registries), ["helse", "utdanning", "sosiologi_antropologi", "geografi", "sprak_lingvistikk", "juss_rettsvitenskap", "fysikk", "kjemi"]);
   for (const [subject, registry] of Object.entries(registries)) {
     const validated = validateRegistry(registry);
     assert.equal(registry.subject, subject);
@@ -52,8 +52,12 @@ test("domain routing selects affected subjects and fans shared changes into one 
   }), ["fysikk"]);
   assert.deepEqual(selectSubjects({
     registries,
+    changedFiles: ["data/fag/vitenskap/kjemi/production_registry_v1.json"],
+  }), ["kjemi"]);
+  assert.deepEqual(selectSubjects({
+    registries,
     changedFiles: ["data/fagverk/subject_inventory.json"],
-  }), ["helse", "utdanning", "sosiologi_antropologi", "geografi", "sprak_lingvistikk", "juss_rettsvitenskap", "fysikk"]);
+  }), ["helse", "utdanning", "sosiologi_antropologi", "geografi", "sprak_lingvistikk", "juss_rettsvitenskap", "fysikk", "kjemi"]);
 });
 
 test("shared domain workflow triggers on every Geografi surface routed by the registry", () => {
@@ -102,4 +106,10 @@ test("shared domain workflow triggers on every Juss & rettsvitenskap surface rou
 test("shared domain workflow triggers on every Fysikk surface routed by the registry", () => {
   const workflow = readFileSync(".github/workflows/fagverk-domain-registry.yml", "utf8");
   for (const pathPattern of ["data/fag/vitenskap/fysikk/**","data/fagverk/vitenskap/fysikk/**","reports/fagverk/fysikk-*.json","scripts/*fysikk*","tests/fysikk-*.test.mjs",".github/ci/fagverk-fysikk-domain-registry-v1.json"]) assert.equal(workflow.includes(pathPattern), true, "workflow mangler Fysikk-trigger " + pathPattern);
+});
+
+
+test("shared domain workflow triggers on every Kjemi surface routed by the registry", () => {
+  const workflow = readFileSync(".github/workflows/fagverk-domain-registry.yml", "utf8");
+  for (const pathPattern of ["data/fag/vitenskap/kjemi/**","data/fagverk/vitenskap/kjemi/**","reports/fagverk/kjemi-*.json","scripts/*kjemi*","tests/kjemi-*.test.mjs",".github/ci/fagverk-kjemi-domain-registry-v1.json"]) assert.equal(workflow.includes(pathPattern), true, "workflow mangler Kjemi-trigger " + pathPattern);
 });
