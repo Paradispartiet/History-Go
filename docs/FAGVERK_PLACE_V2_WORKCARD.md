@@ -5,7 +5,7 @@ Canonical siderolle: `docs/FAGVERK.md` og `docs/FAGVERK_NAVIGATION.md`
 Audit: `scripts/audit-fagverk-place-pages.mjs`  
 Dekningsrapport: `reports/fagverk/fagverk-place-page-coverage-v2.json`
 
-Den ordinære stedsproduksjonen eies av `docs/PLACE_PRODUCTION_CHECKLIST.md`. Nye steder og steder som fullproduseres eller vesentlig revideres får Fagverk-siden i samme source review, Place-fil, PR og closeout. Fagverk skal ikke skyves til en senere batch når stedet allerede er i ordinær produksjon.
+Den ordinære stedsproduksjonen eies av `docs/PLACE_PRODUCTION_CHECKLIST.md`. Nye steder og steder som fullproduseres eller vesentlig revideres får Fagverk-siden i samme source review, Place-fil, PR og closeout. At coverage-auditen fortsatt kan vise unfinished-steder er **ikke en tillatelse til å utsette Fagverk til en senere batch** når stedet allerede er i ordinær produksjon.
 
 Den opprinnelige eksplisitte legacy-listen over allerede ferdigproduserte steder er **lukket 44/44** via PR #5606. Det finnes derfor ikke en separat post-produksjonsbacklog for disse 44 stedene. Dette dokumentet er nå en historisk migreringsreferanse og en presisering av den aktive integrerte produksjonsregelen, ikke en åpen legacy-kø.
 
