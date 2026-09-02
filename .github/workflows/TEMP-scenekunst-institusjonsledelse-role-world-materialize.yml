@@ -40,6 +40,16 @@ jobs:
           p.write_text(s.replace(old, 'const testSource = `', 1))
           PY
           node scripts/TEMP-materialize-scenekunst-institusjonsledelse-role-world.mjs
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('tests/civication-scenekunst-institusjonsledelse-role-world-rollout.test.js')
+          s = p.read_text()
+          old = 'assert.match(source, /29/30/);'
+          new = 'assert.match(source, /29\\/30/);'
+          if old not in s:
+              raise SystemExit('Expected generated 29/30 regex marker missing')
+          p.write_text(s.replace(old, new, 1))
+          PY
       - name: Regenerate canonical derived state
         run: |
           node scripts/audit-civication-career-gameplay.mjs --write
@@ -58,7 +68,7 @@ jobs:
             git config user.name github-actions[bot]
             git config user.email 41898282+github-actions[bot]@users.noreply.github.com
             git add reports/TEMP_SCENEKUNST_INSTITUSJONSLEDELSE_ROLE_WORLD_FAILURE.log
-            git commit -m 'TEMP capture Institusjonsledelse Role World failure'
+            git commit -m 'TEMP capture Institusjonsledelse Role World failure' || true
             git push origin HEAD:$GITHUB_REF_NAME
             exit "$status"
           fi
