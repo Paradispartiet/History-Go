@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_dramaturgi_og_utvikling",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "dramaturgi_forsinket_kildekonsekvens",
+      "purpose": "La en tapt kildegrense vende tilbake senere og krev offentlig, lærende retting.",
+      "learning_focus": [
+        "analytisk_presisjon",
+        "kilde_og_versjonsspor",
+        "kunstnerisk_dialog",
+        "authority_and_rights_boundary",
+        "waiting_handoff_rework"
+      ],
+      "mails": [
+        {
+          "id": "dramaturgi_consequence_pressekilde_001",
+          "mail_type": "consequence",
+          "mail_family": "dramaturgi_forsinket_kildekonsekvens",
+          "role_scope": "scenekunst_dramaturgi_og_utvikling",
+          "phase": "forenoon",
+          "day_phase": "morning",
+          "priority": 145,
+          "from": "Maja",
+          "people_ref": "maja_produksjonsleder",
+          "person_id": "maja_produksjonsleder",
+          "place_id": "produksjonsmote_og_beslutningsrom",
+          "subject": "Den umerkede hypotesen kommer tilbake som pressesitat",
+          "summary": "En samarbeidspartner siterer den første programformuleringen i en pressemelding selv om teamet senere korrigerte sin egen tekst. Konsekvensen viser at en kildegrense som mistes i ett handoff kan leve videre utenfor arbeidsboken. Dramaturgen må rekonstruere spredningen, korrigere presist og lære inn en ny kontroll uten å kreve at alle eksterne tekster godkjennes som kunstnerisk materiale.",
+          "situation": [
+            "Den interne programteksten er rettet, men samarbeidspartneren arbeidet fra en tidligere e-post.",
+            "Pressemeldingen er publisert og har begynt å bli sitert videre.",
+            "Maja eier ekstern koordinering, Ingrid faktagrensen og kunstnerisk ledelse formuleringen."
+          ],
+          "task_domain": "dramaturgi_og_scenisk_utvikling",
+          "competency": "forsinket_konsekvens_og_korrigerende_handoff",
+          "pressure": "offentlig_tempo_vs_presis_retting",
+          "choice_axis": "spor_korriger_og_endre_kontroll_vs_stille_omskriving",
+          "consequence_axis": "gjenopprettet_tillit_og_laring_vs_varig_kildesvikt",
+          "narrative_arc": "pressekilde",
+          "situated_audience_id": "produksjon_og_institusjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Korriger kilden og lukk den faktiske spredningsveien",
+              "reply": "Jeg gir Maja den eksakte gamle og nye formuleringen, lar Ingrid dokumentere kildegrensen, ber samarbeidspartneren rette med synlig oppdatering og legger versjons-ID og faktakontroll inn i fremtidig pressehandoff.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "kunstnerisk_dialog",
+                "mandat"
+              ],
+              "feedback": "Rettelsen er konkret nok til at andre kan oppdatere uten å gjette, og teamet lærer hvor kontrollen faktisk manglet. Arbeidsboken brukes til å rekonstruere ansvar, ikke til å skjule feil; ekstern kommunikasjon får en bedre avgrensning uten å bli gjort til regiarbeid.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Bytt formuleringen stille i egne kanaler",
+              "reply": "Jeg oppdaterer nettsiden vår og lar samarbeidsmeldingen ligge, fordi en offentlig rettelse vil gi den gamle påstanden mer oppmerksomhet og skape et større problem enn selve ordlyden.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Egne flater ser riktige ut, men sitatet fortsetter i eksterne kanaler og nye lesere kan ikke vite hvilken versjon som gjelder. Teamet unngår kortvarig ubehag, men mister muligheten til å vise redelig korreksjon og å reparere den handoffen som faktisk feilet.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

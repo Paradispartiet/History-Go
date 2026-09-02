@@ -351,6 +351,15 @@
     "data/Civication/mailFamilies/religion/followup/religion_forskning_followup.json",
     "data/Civication/mailFamilies/religion/knowledge/religion_forskning_knowledge.json",
     "data/Civication/mailFamilies/religion/consequence/religion_forskning_consequence.json",
+    "data/Civication/mailFamilies/scenekunst/job/scenekunst_dramaturgi_og_utvikling_job.json",
+    "data/Civication/mailFamilies/scenekunst/people/scenekunst_dramaturgi_og_utvikling_people.json",
+    "data/Civication/mailFamilies/scenekunst/story/scenekunst_dramaturgi_og_utvikling_story.json",
+    "data/Civication/mailFamilies/scenekunst/conflict/scenekunst_dramaturgi_og_utvikling_conflict.json",
+    "data/Civication/mailFamilies/scenekunst/event/scenekunst_dramaturgi_og_utvikling_event.json",
+    "data/Civication/mailFamilies/scenekunst/micro/scenekunst_dramaturgi_og_utvikling_micro.json",
+    "data/Civication/mailFamilies/scenekunst/followup/scenekunst_dramaturgi_og_utvikling_followup.json",
+    "data/Civication/mailFamilies/scenekunst/knowledge/scenekunst_dramaturgi_og_utvikling_knowledge.json",
+    "data/Civication/mailFamilies/scenekunst/consequence/scenekunst_dramaturgi_og_utvikling_consequence.json",
     "data/Civication/mailFamilies/sosial_laering/job/barnehageassistent_job.json",
     "data/Civication/mailFamilies/sosial_laering/people/barnehageassistent_people.json",
     "data/Civication/mailFamilies/sosial_laering/story/barnehageassistent_story.json",
@@ -180431,6 +180440,2093 @@
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "delt_konsekvenskart_og_beslutningseiere_vs_dramaturgisk_dom",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Konflikten forsvinner ikke, men den blir mulig å løse uten at faglig autoritet brukes som snarvei. Hver part ser sin beslutning og den andres konsekvens, mens produksjonen kan planlegge rundt et sant ventepunkt og senere rekonstruere begrunnelsen.",
+            "id": "A",
+            "label": "Skill tekstvalg, regivalg og produksjonsfrist",
+            "reply": "Jeg dokumenterer hva prøven viste for tempo og ansvar, ber Liv avgjøre om ny tekst kan utvikles, lar Samir eie prøveprioriteringen og gir Maja et eksplisitt ventepunkt med dato for samlet beslutning.",
+            "tags": [
+              "sporbarhet",
+              "kunstnerisk_dialog",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen får et svar, men prøven brukes til å overkjøre forfatterrettighet og gjøre anbefaling til vedtak. Livs motforestilling blir feilaktig fremstilt som motstand mot evidens, og neste versjon bærer en mandatkonflikt arbeidsboken ikke lenger viser.",
+            "id": "B",
+            "label": "Velg korutvidelsen som beste dramaturgiske løsning",
+            "reply": "Jeg slår fast at A/B-prøven beviser korets funksjon, ber Liv skrive utvidelsen og informerer Maja om at Samirs løsning nå er dramaturgisk anbefalt som produksjonsgrunnlag.",
+            "tags": [
+              "fasitsprak",
+              "mandatglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "konfliktanalyse_og_kunstnerisk_mandat",
+        "consequence_axis": "legitim_kunstnerisk_avgjorelse_vs_skjult_overtakelse",
+        "day_phase": "morning",
+        "from": "Samir",
+        "id": "dramaturgi_conflict_korparti_001",
+        "mail_family": "dramaturgi_mandat_og_verk",
+        "mail_type": "conflict",
+        "narrative_arc": "korparti",
+        "people_ref": "samir_regissor",
+        "person_id": "samir_regissor",
+        "phase": "forenoon",
+        "place_id": "provesal_og_observasjonsplass",
+        "pressure": "produksjonsfrist_vs_reell_verkstrid",
+        "priority": 145,
+        "role_scope": "scenekunst_dramaturgi_og_utvikling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/conflict/scenekunst_dramaturgi_og_utvikling_conflict.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "regissor_og_ensemble",
+        "situation": [
+          "A/B-prøven viser at koret øker tempoet, men også endrer hvem publikum oppfatter som ansvarlig.",
+          "Utvidelsen krever tekst Liv ikke har skrevet og prøveprioritering Samir eier.",
+          "Maja trenger å vite når en avgjørelse kan komme, men kan ikke løse den kunstneriske striden."
+        ],
+        "subject": "Korpartiet splitter forfatterens og regissørens verkforståelse",
+        "summary": "Etter A/B-prøven mener Samir at koret må utvides, mens Liv mener det fratar hovedfiguren ansvar og krever ny tekst hun ikke har godkjent. Konflikten gjelder både scenisk virkning, verkspremiss og mandat. Dramaturgen må levere et etterprøvbart konsekvenskart og holde beslutningspunktene fra hverandre, ikke kåre en vinner.",
+        "task_domain": "dramaturgi_og_scenisk_utvikling"
+      },
+      "id": "dramaturgi_conflict_korparti_001",
+      "mail_type": "conflict",
+      "role_scope": "scenekunst_dramaturgi_og_utvikling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Konflikten forsvinner ikke, men den blir mulig å løse uten at faglig autoritet brukes som snarvei. Hver part ser sin beslutning og den andres konsekvens, mens produksjonen kan planlegge rundt et sant ventepunkt og senere rekonstruere begrunnelsen.",
+            "id": "A",
+            "label": "Skill tekstvalg, regivalg og produksjonsfrist",
+            "reply": "Jeg dokumenterer hva prøven viste for tempo og ansvar, ber Liv avgjøre om ny tekst kan utvikles, lar Samir eie prøveprioriteringen og gir Maja et eksplisitt ventepunkt med dato for samlet beslutning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen får et svar, men prøven brukes til å overkjøre forfatterrettighet og gjøre anbefaling til vedtak. Livs motforestilling blir feilaktig fremstilt som motstand mot evidens, og neste versjon bærer en mandatkonflikt arbeidsboken ikke lenger viser.",
+            "id": "B",
+            "label": "Velg korutvidelsen som beste dramaturgiske løsning",
+            "reply": "Jeg slår fast at A/B-prøven beviser korets funksjon, ber Liv skrive utvidelsen og informerer Maja om at Samirs løsning nå er dramaturgisk anbefalt som produksjonsgrunnlag."
+          }
+        ],
+        "content": {
+          "situation": [
+            "A/B-prøven viser at koret øker tempoet, men også endrer hvem publikum oppfatter som ansvarlig.",
+            "Utvidelsen krever tekst Liv ikke har skrevet og prøveprioritering Samir eier.",
+            "Maja trenger å vite når en avgjørelse kan komme, men kan ikke løse den kunstneriske striden."
+          ],
+          "subject": "Korpartiet splitter forfatterens og regissørens verkforståelse",
+          "summary": "Etter A/B-prøven mener Samir at koret må utvides, mens Liv mener det fratar hovedfiguren ansvar og krever ny tekst hun ikke har godkjent. Konflikten gjelder både scenisk virkning, verkspremiss og mandat. Dramaturgen må levere et etterprøvbart konsekvenskart og holde beslutningspunktene fra hverandre, ikke kåre en vinner."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "dramaturgi_conflict_korparti_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "provesal_og_observasjonsplass",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "dramaturgi_conflict_korparti_001",
+          "source_path": "data/Civication/mailFamilies/scenekunst/conflict/scenekunst_dramaturgi_og_utvikling_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_dramaturgi_og_utvikling.mail.dramaturgi_conflict_korparti_001",
+        "version": 1
+      },
+      "source_hash": "f513ec7cf72f70ff0077343ae8827ba1e5ec5d0811da199cfe2ae3db7439f274",
+      "source_path": "data/Civication/mailFamilies/scenekunst/conflict/scenekunst_dramaturgi_og_utvikling_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "spor_korriger_og_endre_kontroll_vs_stille_omskriving",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Rettelsen er konkret nok til at andre kan oppdatere uten å gjette, og teamet lærer hvor kontrollen faktisk manglet. Arbeidsboken brukes til å rekonstruere ansvar, ikke til å skjule feil; ekstern kommunikasjon får en bedre avgrensning uten å bli gjort til regiarbeid.",
+            "id": "A",
+            "label": "Korriger kilden og lukk den faktiske spredningsveien",
+            "reply": "Jeg gir Maja den eksakte gamle og nye formuleringen, lar Ingrid dokumentere kildegrensen, ber samarbeidspartneren rette med synlig oppdatering og legger versjons-ID og faktakontroll inn i fremtidig pressehandoff.",
+            "tags": [
+              "sporbarhet",
+              "kunstnerisk_dialog",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Egne flater ser riktige ut, men sitatet fortsetter i eksterne kanaler og nye lesere kan ikke vite hvilken versjon som gjelder. Teamet unngår kortvarig ubehag, men mister muligheten til å vise redelig korreksjon og å reparere den handoffen som faktisk feilet.",
+            "id": "B",
+            "label": "Bytt formuleringen stille i egne kanaler",
+            "reply": "Jeg oppdaterer nettsiden vår og lar samarbeidsmeldingen ligge, fordi en offentlig rettelse vil gi den gamle påstanden mer oppmerksomhet og skape et større problem enn selve ordlyden.",
+            "tags": [
+              "fasitsprak",
+              "mandatglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "forsinket_konsekvens_og_korrigerende_handoff",
+        "consequence_axis": "gjenopprettet_tillit_og_laring_vs_varig_kildesvikt",
+        "day_phase": "morning",
+        "from": "Maja",
+        "id": "dramaturgi_consequence_pressekilde_001",
+        "mail_family": "dramaturgi_forsinket_kildekonsekvens",
+        "mail_type": "consequence",
+        "narrative_arc": "pressekilde",
+        "people_ref": "maja_produksjonsleder",
+        "person_id": "maja_produksjonsleder",
+        "phase": "forenoon",
+        "place_id": "produksjonsmote_og_beslutningsrom",
+        "pressure": "offentlig_tempo_vs_presis_retting",
+        "priority": 145,
+        "role_scope": "scenekunst_dramaturgi_og_utvikling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/consequence/scenekunst_dramaturgi_og_utvikling_consequence.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "produksjon_og_institusjon",
+        "situation": [
+          "Den interne programteksten er rettet, men samarbeidspartneren arbeidet fra en tidligere e-post.",
+          "Pressemeldingen er publisert og har begynt å bli sitert videre.",
+          "Maja eier ekstern koordinering, Ingrid faktagrensen og kunstnerisk ledelse formuleringen."
+        ],
+        "subject": "Den umerkede hypotesen kommer tilbake som pressesitat",
+        "summary": "En samarbeidspartner siterer den første programformuleringen i en pressemelding selv om teamet senere korrigerte sin egen tekst. Konsekvensen viser at en kildegrense som mistes i ett handoff kan leve videre utenfor arbeidsboken. Dramaturgen må rekonstruere spredningen, korrigere presist og lære inn en ny kontroll uten å kreve at alle eksterne tekster godkjennes som kunstnerisk materiale.",
+        "task_domain": "dramaturgi_og_scenisk_utvikling"
+      },
+      "id": "dramaturgi_consequence_pressekilde_001",
+      "mail_type": "consequence",
+      "role_scope": "scenekunst_dramaturgi_og_utvikling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Rettelsen er konkret nok til at andre kan oppdatere uten å gjette, og teamet lærer hvor kontrollen faktisk manglet. Arbeidsboken brukes til å rekonstruere ansvar, ikke til å skjule feil; ekstern kommunikasjon får en bedre avgrensning uten å bli gjort til regiarbeid.",
+            "id": "A",
+            "label": "Korriger kilden og lukk den faktiske spredningsveien",
+            "reply": "Jeg gir Maja den eksakte gamle og nye formuleringen, lar Ingrid dokumentere kildegrensen, ber samarbeidspartneren rette med synlig oppdatering og legger versjons-ID og faktakontroll inn i fremtidig pressehandoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Egne flater ser riktige ut, men sitatet fortsetter i eksterne kanaler og nye lesere kan ikke vite hvilken versjon som gjelder. Teamet unngår kortvarig ubehag, men mister muligheten til å vise redelig korreksjon og å reparere den handoffen som faktisk feilet.",
+            "id": "B",
+            "label": "Bytt formuleringen stille i egne kanaler",
+            "reply": "Jeg oppdaterer nettsiden vår og lar samarbeidsmeldingen ligge, fordi en offentlig rettelse vil gi den gamle påstanden mer oppmerksomhet og skape et større problem enn selve ordlyden."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den interne programteksten er rettet, men samarbeidspartneren arbeidet fra en tidligere e-post.",
+            "Pressemeldingen er publisert og har begynt å bli sitert videre.",
+            "Maja eier ekstern koordinering, Ingrid faktagrensen og kunstnerisk ledelse formuleringen."
+          ],
+          "subject": "Den umerkede hypotesen kommer tilbake som pressesitat",
+          "summary": "En samarbeidspartner siterer den første programformuleringen i en pressemelding selv om teamet senere korrigerte sin egen tekst. Konsekvensen viser at en kildegrense som mistes i ett handoff kan leve videre utenfor arbeidsboken. Dramaturgen må rekonstruere spredningen, korrigere presist og lære inn en ny kontroll uten å kreve at alle eksterne tekster godkjennes som kunstnerisk materiale."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "dramaturgi_consequence_pressekilde_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "produksjonsmote_og_beslutningsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "dramaturgi_consequence_pressekilde_001",
+          "source_path": "data/Civication/mailFamilies/scenekunst/consequence/scenekunst_dramaturgi_og_utvikling_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_dramaturgi_og_utvikling.mail.dramaturgi_consequence_pressekilde_001",
+        "version": 1
+      },
+      "source_hash": "4cf9d668dba794e8debca42e3ec1a072417346db5fa760edad2e5af9278799ce",
+      "source_path": "data/Civication/mailFamilies/scenekunst/consequence/scenekunst_dramaturgi_og_utvikling_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "berort_rework_med_eiere_vs_uautorisert_erstatningsbruk",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidsboken viser at en ekstern beslutning utløste rework uten å late som hele verket falt sammen. Teamet kan skape et nytt grep innen avklarte rettigheter, og tidligere arbeid forblir forståelig som del av prosessen selv om det ikke kan publiseres.",
+            "id": "A",
+            "label": "Gjenåpne overgangen og fordel fire avgrensede oppgaver",
+            "reply": "Jeg registrerer avslaget ordrett, sperrer lydfilen, markerer sceneovergangen og programlinjen som berørt, og fordeler kunstnerisk nytest, kildeformulering, lydkonsekvens og tidsplan til riktige eiere.",
+            "tags": [
+              "sporbarhet",
+              "kunstnerisk_dialog",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Overgangen kan bevares, men dramaturgen gjør juridisk gjetning til produksjonsbeslutning og skjuler bruken. Et senere krav rammer både tillit og premiereplan, og arbeidsboken dokumenterer en bevisst omgåelse i stedet for et redelig kunstnerisk svar.",
+            "id": "B",
+            "label": "Bruk et kortere utdrag som om avslaget ikke omfatter det",
+            "reply": "Jeg foreslår at lydteamet beholder noen få sekunder og at programteksten unngår å nevne kilden, fordi et så kort kunstnerisk sitat neppe vil utløse den samme rettighetsinnvendingen.",
+            "tags": [
+              "fasitsprak",
+              "mandatglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "hendelsesdrevet_rework_og_rettighetsbevissthet",
+        "consequence_axis": "lovlig_ny_form_vs_rettighets_og_tillitsbrudd",
+        "day_phase": "morning",
+        "from": "Ingrid",
+        "id": "dramaturgi_event_rettighetsavslag_001",
+        "mail_family": "dramaturgi_endret_premiss",
+        "mail_type": "event",
+        "narrative_arc": "rettighetsavslag",
+        "people_ref": "ingrid_researchansvarlig",
+        "person_id": "ingrid_researchansvarlig",
+        "phase": "forenoon",
+        "place_id": "research_og_kildeverksted",
+        "pressure": "tapt_kunstnerisk_element_vs_presis_revisjon",
+        "priority": 145,
+        "role_scope": "scenekunst_dramaturgi_og_utvikling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/event/scenekunst_dramaturgi_og_utvikling_event.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "research_og_formidling",
+        "situation": [
+          "Avslaget gjelder selve lydfilen; et kildeavgrenset referat kan vurderes separat.",
+          "Lydteamet har bygget timing rundt opptakets lengde og stemmekvalitet.",
+          "Liv og Samir må utvikle nytt grep, mens Ingrid og Maja eier ulike avklaringer."
+        ],
+        "subject": "Arkivet avslår bruk av lydopptaket i forestillingen",
+        "summary": "Rettighetsavklaringen kommer tilbake med et tydelig avslag på bruk av et historisk lydopptak som hittil har båret overgangen mellom scene fire og fem. Hendelsen endrer ikke alle deler av forestillingen, men den gjenåpner kildebruk, lydgrep, timing og programomtale. Dramaturgen må versjonere rework uten å omskrive avslaget til et kunstnerisk råd.",
+        "task_domain": "dramaturgi_og_scenisk_utvikling"
+      },
+      "id": "dramaturgi_event_rettighetsavslag_001",
+      "mail_type": "event",
+      "role_scope": "scenekunst_dramaturgi_og_utvikling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidsboken viser at en ekstern beslutning utløste rework uten å late som hele verket falt sammen. Teamet kan skape et nytt grep innen avklarte rettigheter, og tidligere arbeid forblir forståelig som del av prosessen selv om det ikke kan publiseres.",
+            "id": "A",
+            "label": "Gjenåpne overgangen og fordel fire avgrensede oppgaver",
+            "reply": "Jeg registrerer avslaget ordrett, sperrer lydfilen, markerer sceneovergangen og programlinjen som berørt, og fordeler kunstnerisk nytest, kildeformulering, lydkonsekvens og tidsplan til riktige eiere."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Overgangen kan bevares, men dramaturgen gjør juridisk gjetning til produksjonsbeslutning og skjuler bruken. Et senere krav rammer både tillit og premiereplan, og arbeidsboken dokumenterer en bevisst omgåelse i stedet for et redelig kunstnerisk svar.",
+            "id": "B",
+            "label": "Bruk et kortere utdrag som om avslaget ikke omfatter det",
+            "reply": "Jeg foreslår at lydteamet beholder noen få sekunder og at programteksten unngår å nevne kilden, fordi et så kort kunstnerisk sitat neppe vil utløse den samme rettighetsinnvendingen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Avslaget gjelder selve lydfilen; et kildeavgrenset referat kan vurderes separat.",
+            "Lydteamet har bygget timing rundt opptakets lengde og stemmekvalitet.",
+            "Liv og Samir må utvikle nytt grep, mens Ingrid og Maja eier ulike avklaringer."
+          ],
+          "subject": "Arkivet avslår bruk av lydopptaket i forestillingen",
+          "summary": "Rettighetsavklaringen kommer tilbake med et tydelig avslag på bruk av et historisk lydopptak som hittil har båret overgangen mellom scene fire og fem. Hendelsen endrer ikke alle deler av forestillingen, men den gjenåpner kildebruk, lydgrep, timing og programomtale. Dramaturgen må versjonere rework uten å omskrive avslaget til et kunstnerisk råd."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "dramaturgi_event_rettighetsavslag_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "research_og_kildeverksted",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "dramaturgi_event_rettighetsavslag_001",
+          "source_path": "data/Civication/mailFamilies/scenekunst/event/scenekunst_dramaturgi_og_utvikling_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_dramaturgi_og_utvikling.mail.dramaturgi_event_rettighetsavslag_001",
+        "version": 1
+      },
+      "source_hash": "6e63b2e694c45f7ba9599a46bac3003745cb9fee5375bd8021116001cd76d668",
+      "source_path": "data/Civication/mailFamilies/scenekunst/event/scenekunst_dramaturgi_og_utvikling_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "nedgrader_og_design_ny_test_vs_bortforklar_resultat",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidsboken viser at dramaturgisk kunnskap kan endres uten å omskrive fortiden. Samir får en begrenset kostnad og et tydelig stoppunkt, mens ensemblet ser at et mislykket forsøk gir informasjon og ikke blir behandlet som personlig nederlag.",
+            "id": "A",
+            "label": "Nedgrader hypotesen og isoler én alternativ variabel",
+            "reply": "Jeg registrerer at pausen alene ikke gjenskapte virkningen, beholder første observasjon som historikk og foreslår én ny prøve som varierer blikkretningen før Samir avgjør om sporet skal lukkes.",
+            "tags": [
+              "sporbarhet",
+              "kunstnerisk_dialog",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Dramaturgens første idé beskyttes, men observasjonen brukes asymmetrisk: suksess teller som bevis, mens motfunn legges på ensemblet. Tilliten svekkes, og senere beslutninger bygger på en arbeidsbok som ikke lenger kan korrigere sine egne premisser.",
+            "id": "B",
+            "label": "Forklar bort prøven som manglende konsentrasjon",
+            "reply": "Jeg beholder pausehypotesen som gyldig og noterer at ensemblet ikke gjennomførte intensjonen presist nok, slik at vi kan gå videre uten å bruke mer tid på å revidere analysen.",
+            "tags": [
+              "fasitsprak",
+              "mandatglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "oppfolging_og_epistemisk_rework",
+        "consequence_axis": "tillit_til_larende_analyse_vs_skjult_bekreftelsesbias",
+        "day_phase": "morning",
+        "from": "Samir",
+        "id": "dramaturgi_followup_hypotese_som_ikke_holdt_001",
+        "mail_family": "dramaturgi_rework_etter_prove",
+        "mail_type": "followup",
+        "narrative_arc": "hypotese_som_ikke_holdt",
+        "people_ref": "samir_regissor",
+        "person_id": "samir_regissor",
+        "phase": "forenoon",
+        "place_id": "provesal_og_observasjonsplass",
+        "pressure": "faglig_prestisje_vs_korrigerbar_hypotese",
+        "priority": 145,
+        "role_scope": "scenekunst_dramaturgi_og_utvikling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/followup/scenekunst_dramaturgi_og_utvikling_followup.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "regissor_og_ensemble",
+        "situation": [
+          "Den planlagte variasjonen ble gjennomført, og observasjonen kan sammenlignes med forrige prøve.",
+          "Andre forhold som publikumsvinkel og skuespillerens blikk var ikke identiske.",
+          "Samir trenger forslag til hva som er verdt å teste én gang til før sporet lukkes."
+        ],
+        "subject": "Den lovende pausehypotesen holdt ikke i ny prøve",
+        "summary": "Neste prøve gjentar pausen under kontrollerte forhold, men den tidlige vendingen oppstår ikke. Oppfølgingen tester om dramaturgen bruker arbeidsboken som læringsspor eller som forsvar for sin første analyse. Hypotesen må nedgraderes, alternative forklaringer åpnes og tidligere notat beholdes, uten å gjøre én negativ prøve til bevis for at romlig handling aldri kan virke.",
+        "task_domain": "dramaturgi_og_scenisk_utvikling"
+      },
+      "id": "dramaturgi_followup_hypotese_som_ikke_holdt_001",
+      "mail_type": "followup",
+      "role_scope": "scenekunst_dramaturgi_og_utvikling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidsboken viser at dramaturgisk kunnskap kan endres uten å omskrive fortiden. Samir får en begrenset kostnad og et tydelig stoppunkt, mens ensemblet ser at et mislykket forsøk gir informasjon og ikke blir behandlet som personlig nederlag.",
+            "id": "A",
+            "label": "Nedgrader hypotesen og isoler én alternativ variabel",
+            "reply": "Jeg registrerer at pausen alene ikke gjenskapte virkningen, beholder første observasjon som historikk og foreslår én ny prøve som varierer blikkretningen før Samir avgjør om sporet skal lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Dramaturgens første idé beskyttes, men observasjonen brukes asymmetrisk: suksess teller som bevis, mens motfunn legges på ensemblet. Tilliten svekkes, og senere beslutninger bygger på en arbeidsbok som ikke lenger kan korrigere sine egne premisser.",
+            "id": "B",
+            "label": "Forklar bort prøven som manglende konsentrasjon",
+            "reply": "Jeg beholder pausehypotesen som gyldig og noterer at ensemblet ikke gjennomførte intensjonen presist nok, slik at vi kan gå videre uten å bruke mer tid på å revidere analysen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den planlagte variasjonen ble gjennomført, og observasjonen kan sammenlignes med forrige prøve.",
+            "Andre forhold som publikumsvinkel og skuespillerens blikk var ikke identiske.",
+            "Samir trenger forslag til hva som er verdt å teste én gang til før sporet lukkes."
+          ],
+          "subject": "Den lovende pausehypotesen holdt ikke i ny prøve",
+          "summary": "Neste prøve gjentar pausen under kontrollerte forhold, men den tidlige vendingen oppstår ikke. Oppfølgingen tester om dramaturgen bruker arbeidsboken som læringsspor eller som forsvar for sin første analyse. Hypotesen må nedgraderes, alternative forklaringer åpnes og tidligere notat beholdes, uten å gjøre én negativ prøve til bevis for at romlig handling aldri kan virke."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "dramaturgi_followup_hypotese_som_ikke_holdt_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "provesal_og_observasjonsplass",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "dramaturgi_followup_hypotese_som_ikke_holdt_001",
+          "source_path": "data/Civication/mailFamilies/scenekunst/followup/scenekunst_dramaturgi_og_utvikling_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_dramaturgi_og_utvikling.mail.dramaturgi_followup_hypotese_som_ikke_holdt_001",
+        "version": 1
+      },
+      "source_hash": "de6802fb8bccef3fa933b9ef932ef881f5d8985ad79deab57b22d747575aaadc",
+      "source_path": "data/Civication/mailFamilies/scenekunst/followup/scenekunst_dramaturgi_og_utvikling_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "avgrenset_overlevering_vs_falsk_sluttversjon",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Maja kan planlegge reell fremdrift uten å late som hele teksten er lukket. Hvert fag ser hva som kan brukes, hva som kan bli rework og hvem som skal svare; senere endringer treffer avgrensede leveranser i stedet for å rive opp hele produksjonen.",
+            "id": "A",
+            "label": "Overlever godkjente deler og sperr de åpne sporene",
+            "reply": "Jeg utgir versjon 06a med side- og fagspesifikk status, lar lyd og kostyme arbeide på godkjente partier, sperrer programbruk av sitatet og navngir Samir og rettighetsansvarlig som eiere med frist.",
+            "tags": [
+              "sporbarhet",
+              "kunstnerisk_dialog",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fagene får én fil, men den blander godkjent tekst, uavklart regi og uløst rettighet. Når ett av punktene endres, fremstår rework som uforutsett selv om risikoen var kjent, og arbeidsboken kan ikke vise hvem som gjorde venting om til godkjenning.",
+            "id": "B",
+            "label": "Frys alle åpne punkter som produksjonsgodkjent",
+            "reply": "Jeg fjerner ventemarkeringene og sender versjon 06 som endelig, fordi et samlet dokument vil redusere spørsmål fra fagene og gi Maja den tydelige milepælen produksjonsplanen krever.",
+            "tags": [
+              "fasitsprak",
+              "mandatglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "versjonsstyring_og_handoff",
+        "consequence_axis": "kontrollert_parallell_fremdrift_vs_dyr_rework",
+        "day_phase": "afternoon",
+        "from": "Maja",
+        "id": "dramaturgi_job_beslutningsversjon_004",
+        "mail_family": "dramaturgi_arbeidsbok",
+        "mail_type": "job",
+        "narrative_arc": "beslutningsversjon",
+        "people_ref": "maja_produksjonsleder",
+        "person_id": "maja_produksjonsleder",
+        "phase": "workday",
+        "place_id": "produksjonsmote_og_beslutningsrom",
+        "pressure": "produksjonsfrist_vs_sann_beslutningsstatus",
+        "priority": 142,
+        "role_scope": "scenekunst_dramaturgi_og_utvikling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_dramaturgi_og_utvikling_job.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "produksjon_og_institusjon",
+        "situation": [
+          "Tekstversjon 06 inneholder både godkjente endringer og to tydelig merkede åpne spor.",
+          "Tre produksjonsfag trenger ulike deler av materialet og tåler ikke samme grad av usikkerhet.",
+          "Handoff må gjøre det mulig å arbeide videre uten å lese venting som godkjenning."
+        ],
+        "subject": "Produksjonen trenger én versjon, men to beslutninger står åpne",
+        "summary": "Maja må sende tekst til lyd, kostyme og kommunikasjon, mens regissørens valg om korpartiet og rettighetsavklaringen for arkivsitatet fortsatt er åpne. Dramaturgens oppgave er å overlevere en beslutningsklar arbeidsbok med berørte sider, eiere, frister og reversible avgrensninger, ikke å skjule uavklarte punkter for å skape en pen fil.",
+        "task_domain": "dramaturgi_og_scenisk_utvikling"
+      },
+      "id": "dramaturgi_job_beslutningsversjon_004",
+      "mail_type": "job",
+      "role_scope": "scenekunst_dramaturgi_og_utvikling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Maja kan planlegge reell fremdrift uten å late som hele teksten er lukket. Hvert fag ser hva som kan brukes, hva som kan bli rework og hvem som skal svare; senere endringer treffer avgrensede leveranser i stedet for å rive opp hele produksjonen.",
+            "id": "A",
+            "label": "Overlever godkjente deler og sperr de åpne sporene",
+            "reply": "Jeg utgir versjon 06a med side- og fagspesifikk status, lar lyd og kostyme arbeide på godkjente partier, sperrer programbruk av sitatet og navngir Samir og rettighetsansvarlig som eiere med frist."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fagene får én fil, men den blander godkjent tekst, uavklart regi og uløst rettighet. Når ett av punktene endres, fremstår rework som uforutsett selv om risikoen var kjent, og arbeidsboken kan ikke vise hvem som gjorde venting om til godkjenning.",
+            "id": "B",
+            "label": "Frys alle åpne punkter som produksjonsgodkjent",
+            "reply": "Jeg fjerner ventemarkeringene og sender versjon 06 som endelig, fordi et samlet dokument vil redusere spørsmål fra fagene og gi Maja den tydelige milepælen produksjonsplanen krever."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Tekstversjon 06 inneholder både godkjente endringer og to tydelig merkede åpne spor.",
+            "Tre produksjonsfag trenger ulike deler av materialet og tåler ikke samme grad av usikkerhet.",
+            "Handoff må gjøre det mulig å arbeide videre uten å lese venting som godkjenning."
+          ],
+          "subject": "Produksjonen trenger én versjon, men to beslutninger står åpne",
+          "summary": "Maja må sende tekst til lyd, kostyme og kommunikasjon, mens regissørens valg om korpartiet og rettighetsavklaringen for arkivsitatet fortsatt er åpne. Dramaturgens oppgave er å overlevere en beslutningsklar arbeidsbok med berørte sider, eiere, frister og reversible avgrensninger, ikke å skjule uavklarte punkter for å skape en pen fil."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "dramaturgi_job_beslutningsversjon_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "produksjonsmote_og_beslutningsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "dramaturgi_job_beslutningsversjon_004",
+          "source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_dramaturgi_og_utvikling_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_dramaturgi_og_utvikling.mail.dramaturgi_job_beslutningsversjon_004",
+        "version": 1
+      },
+      "source_hash": "d641c58dcbdcd251d86a4ac861054ae7e24fa7a9d490f987476d7882c224b54e",
+      "source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_dramaturgi_og_utvikling_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "merket_usikkerhet_og_venting_vs_sikkert_fasitsprak",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Teamet kan undersøke hvorfor sitatet er viktig uten å forveksle virkning med dokumentasjon. Når svarene kommer, kan bare de berørte tekstleddene gjenåpnes, og både kunstnerisk valg, historisk usikkerhet og rettslig ansvar forblir rekonstruerbare.",
+            "id": "A",
+            "label": "Merk sitatet som uavklart og bestill presis dokumentasjon",
+            "reply": "Jeg beholder sitatet som kunstnerisk arbeidshypotese, registrerer manglende dato, avsender, dokument og bruksrett, og setter scene- og programbruk på vent til Ingrid og rettighetsansvarlig har levert hvert sitt svar.",
+            "tags": [
+              "sporbarhet",
+              "kunstnerisk_dialog",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Monologen og programteksten får en klar retning, men en foreløpig transkripsjon blir gjort til faktum før kilde og rettighet er kontrollert. Sen korreksjon kan kreve ny tekst, ny prøve og offentlig retting uten at arbeidsboken viser hvor antakelsen ble låst.",
+            "id": "B",
+            "label": "Behandle den overleverte ordlyden som autentisk",
+            "reply": "Jeg fører sitatet inn som bekreftet fordi arkivmappen virker troverdig og forestillingen trenger et fast historisk premiss nå; dato, kontekst og bruksrett kan kompletteres etter at prøvene har satt formen.",
+            "tags": [
+              "fasitsprak",
+              "mandatglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "research_og_kildekritikk",
+        "consequence_axis": "kildebevisst_kunstnerisk_frihet_vs_faktisk_og_rettslig_risiko",
+        "day_phase": "afternoon",
+        "from": "Ingrid",
+        "id": "dramaturgi_job_kildegrense_002",
+        "mail_family": "dramaturgi_arbeidsbok",
+        "mail_type": "job",
+        "narrative_arc": "kildegrense",
+        "people_ref": "ingrid_researchansvarlig",
+        "person_id": "ingrid_researchansvarlig",
+        "phase": "workday",
+        "place_id": "research_og_kildeverksted",
+        "pressure": "historisk_troverdighet_vs_dramatisk_fremdrift",
+        "priority": 144,
+        "role_scope": "scenekunst_dramaturgi_og_utvikling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_dramaturgi_og_utvikling_job.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "research_og_formidling",
+        "situation": [
+          "Den eksisterende kildereferansen peker til en mappe, ikke til et identifisert dokument.",
+          "Sitatet står allerede i en monolog og er omtalt som autentisk i et utkast til programtekst.",
+          "Neste steg avhenger av svar fra arkivet og rettighetsansvarlig, så venting må være synlig."
+        ],
+        "subject": "Et arkivsitat mangler dato og avsenderkontekst",
+        "summary": "Ingrid finner at sitatet som bærer forestillingens historiske premiss er transkribert uten sikker dato, full avsender eller dokumentert bruksrett. Teksten kan fortsatt arbeide kunstnerisk med usikkerheten, men arbeidsboken må skille ordlyd, proveniens, tolkning og rettighetsstatus før sitatet behandles som dokumentert utsagn i scene eller program.",
+        "task_domain": "dramaturgi_og_scenisk_utvikling"
+      },
+      "id": "dramaturgi_job_kildegrense_002",
+      "mail_type": "job",
+      "role_scope": "scenekunst_dramaturgi_og_utvikling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Teamet kan undersøke hvorfor sitatet er viktig uten å forveksle virkning med dokumentasjon. Når svarene kommer, kan bare de berørte tekstleddene gjenåpnes, og både kunstnerisk valg, historisk usikkerhet og rettslig ansvar forblir rekonstruerbare.",
+            "id": "A",
+            "label": "Merk sitatet som uavklart og bestill presis dokumentasjon",
+            "reply": "Jeg beholder sitatet som kunstnerisk arbeidshypotese, registrerer manglende dato, avsender, dokument og bruksrett, og setter scene- og programbruk på vent til Ingrid og rettighetsansvarlig har levert hvert sitt svar."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Monologen og programteksten får en klar retning, men en foreløpig transkripsjon blir gjort til faktum før kilde og rettighet er kontrollert. Sen korreksjon kan kreve ny tekst, ny prøve og offentlig retting uten at arbeidsboken viser hvor antakelsen ble låst.",
+            "id": "B",
+            "label": "Behandle den overleverte ordlyden som autentisk",
+            "reply": "Jeg fører sitatet inn som bekreftet fordi arkivmappen virker troverdig og forestillingen trenger et fast historisk premiss nå; dato, kontekst og bruksrett kan kompletteres etter at prøvene har satt formen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den eksisterende kildereferansen peker til en mappe, ikke til et identifisert dokument.",
+            "Sitatet står allerede i en monolog og er omtalt som autentisk i et utkast til programtekst.",
+            "Neste steg avhenger av svar fra arkivet og rettighetsansvarlig, så venting må være synlig."
+          ],
+          "subject": "Et arkivsitat mangler dato og avsenderkontekst",
+          "summary": "Ingrid finner at sitatet som bærer forestillingens historiske premiss er transkribert uten sikker dato, full avsender eller dokumentert bruksrett. Teksten kan fortsatt arbeide kunstnerisk med usikkerheten, men arbeidsboken må skille ordlyd, proveniens, tolkning og rettighetsstatus før sitatet behandles som dokumentert utsagn i scene eller program."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "dramaturgi_job_kildegrense_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "research_og_kildeverksted",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "dramaturgi_job_kildegrense_002",
+          "source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_dramaturgi_og_utvikling_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_dramaturgi_og_utvikling.mail.dramaturgi_job_kildegrense_002",
+        "version": 1
+      },
+      "source_hash": "26e992571661e2ef0e457abccd0f1c8089e41e54746a1f178b552675a5342df4",
+      "source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_dramaturgi_og_utvikling_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "observasjon_tolkning_og_ny_test_vs_reginotat_som_fasit",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Ensemblet får et reproducerbart forsøk i stedet for en løs vurdering. Samir beholder beslutningsmandatet, og arbeidsboken kan senere vise om virkningen kom fra rom, tempo, replikk eller kombinasjonen, også dersom første observasjon ikke lar seg gjenta.",
+            "id": "A",
+            "label": "Skill hendelse, tolkning og neste variasjon",
+            "reply": "Jeg beskriver den konkrete avstanden, pausen og publikumsrettede handlingen, merker vendepunktet som en tolkning og foreslår at neste prøve varierer bare pausen mens Samir avgjør om funnet skal bli del av regien.",
+            "tags": [
+              "sporbarhet",
+              "kunstnerisk_dialog",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Prøven får retning, men et engangsfunn blir gjort til vedtak uten Samirs beslutning og uten kontroll av årsaken. Dersom virkningen skyldtes andre forhold, vil senere rework starte fra en falsk sikkerhet og ensemblet mister muligheten til å lære av variasjonen.",
+            "id": "B",
+            "label": "Registrer improvisasjonen som ny regibeslutning",
+            "reply": "Jeg skriver at vendepunktet nå er flyttet til pausen og sender notatet som gjeldende løsning, slik at ensemblet kan gjenta funnet konsekvent uten å bruke mer prøvetid på alternative forklaringer.",
+            "tags": [
+              "fasitsprak",
+              "mandatglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "proveromsobservasjon",
+        "consequence_axis": "lærende_proveforlop_vs_frosset_tilfeldighet",
+        "day_phase": "afternoon",
+        "from": "Samir",
+        "id": "dramaturgi_job_proveobservasjon_003",
+        "mail_family": "dramaturgi_arbeidsbok",
+        "mail_type": "job",
+        "narrative_arc": "proveobservasjon",
+        "people_ref": "samir_regissor",
+        "person_id": "samir_regissor",
+        "phase": "workday",
+        "place_id": "provesal_og_observasjonsplass",
+        "pressure": "levende_prove_vs_for_tidlig_konklusjon",
+        "priority": 143,
+        "role_scope": "scenekunst_dramaturgi_og_utvikling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_dramaturgi_og_utvikling_job.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "regissor_og_ensemble",
+        "situation": [
+          "Arbeidsboken viser hypotesen om at vendingen bæres av en senere replikk.",
+          "Dagens prøve antyder at romlig handling og pause kan ha flyttet publikums forståelse.",
+          "Ensemblet trenger presis oppfølging, men Samir eier hva som faktisk videreføres."
+        ],
+        "subject": "Improvisasjonen flyttet vendepunktet uten at teksten ble endret",
+        "summary": "I prøven oppstår forestillingens avgjørende vending tidligere fordi skuespillerne endrer avstand og pauselengde, ikke fordi replikkene er nye. Samir trenger et notat som skiller observerbar hendelse fra dramaturgisk tolkning og som foreslår hva neste prøve skal variere. Notatet må ikke gjøre én prøve til endelig regiavgjørelse.",
+        "task_domain": "dramaturgi_og_scenisk_utvikling"
+      },
+      "id": "dramaturgi_job_proveobservasjon_003",
+      "mail_type": "job",
+      "role_scope": "scenekunst_dramaturgi_og_utvikling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Ensemblet får et reproducerbart forsøk i stedet for en løs vurdering. Samir beholder beslutningsmandatet, og arbeidsboken kan senere vise om virkningen kom fra rom, tempo, replikk eller kombinasjonen, også dersom første observasjon ikke lar seg gjenta.",
+            "id": "A",
+            "label": "Skill hendelse, tolkning og neste variasjon",
+            "reply": "Jeg beskriver den konkrete avstanden, pausen og publikumsrettede handlingen, merker vendepunktet som en tolkning og foreslår at neste prøve varierer bare pausen mens Samir avgjør om funnet skal bli del av regien."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Prøven får retning, men et engangsfunn blir gjort til vedtak uten Samirs beslutning og uten kontroll av årsaken. Dersom virkningen skyldtes andre forhold, vil senere rework starte fra en falsk sikkerhet og ensemblet mister muligheten til å lære av variasjonen.",
+            "id": "B",
+            "label": "Registrer improvisasjonen som ny regibeslutning",
+            "reply": "Jeg skriver at vendepunktet nå er flyttet til pausen og sender notatet som gjeldende løsning, slik at ensemblet kan gjenta funnet konsekvent uten å bruke mer prøvetid på alternative forklaringer."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Arbeidsboken viser hypotesen om at vendingen bæres av en senere replikk.",
+            "Dagens prøve antyder at romlig handling og pause kan ha flyttet publikums forståelse.",
+            "Ensemblet trenger presis oppfølging, men Samir eier hva som faktisk videreføres."
+          ],
+          "subject": "Improvisasjonen flyttet vendepunktet uten at teksten ble endret",
+          "summary": "I prøven oppstår forestillingens avgjørende vending tidligere fordi skuespillerne endrer avstand og pauselengde, ikke fordi replikkene er nye. Samir trenger et notat som skiller observerbar hendelse fra dramaturgisk tolkning og som foreslår hva neste prøve skal variere. Notatet må ikke gjøre én prøve til endelig regiavgjørelse."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "dramaturgi_job_proveobservasjon_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "provesal_og_observasjonsplass",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "dramaturgi_job_proveobservasjon_003",
+          "source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_dramaturgi_og_utvikling_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_dramaturgi_og_utvikling.mail.dramaturgi_job_proveobservasjon_003",
+        "version": 1
+      },
+      "source_hash": "5f8ce63e210c8ffdd9cff51bc8aad3befd7461f5dca60979c9bb62e4a3c24815",
+      "source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_dramaturgi_og_utvikling_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "provbar_funksjonshypotese_vs_skjult_medforfatterskap",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidsboken beholder Livs versjon og viser samtidig hvorfor overgangen må undersøkes. Forfatteren får et avgrenset utviklingsspørsmål, regissøren får en konkret prøve og neste versjon kan sammenlignes med observasjonen i stedet for med dramaturgens smak.",
+            "id": "A",
+            "label": "Kartlegg funksjon og formuler én prøvbar vending",
+            "reply": "Jeg markerer hva hver scene etablerer, hvilket forventet skifte som mangler mellom scene to og tre, og formulerer dette som et spørsmål Liv kan besvare og Samir kan prøve uten at jeg skriver en ny replikk.",
+            "tags": [
+              "sporbarhet",
+              "kunstnerisk_dialog",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Produksjonen får en raskere tekst, men forfatterens beslutning, rettighetsstatus og begrunnelsen for endringen forsvinner. Dersom replikkens løsning ikke virker i rommet, er det uklart hvem som bestilte den eller hvilken opprinnelig hypotese som skulle testes.",
+            "id": "B",
+            "label": "Skriv den manglende vendingen inn i teksten",
+            "reply": "Jeg lager en ny overgangsreplikk i versjon 04 og sender dokumentet videre som avklart, fordi prøven trenger en tydelig dramatisk vending før ensemblet kan arbeide effektivt.",
+            "tags": [
+              "fasitsprak",
+              "mandatglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "tekst_og_strukturanalyse",
+        "consequence_axis": "kunstnerisk_eierskap_og_laring_vs_mandatglidning",
+        "day_phase": "morning",
+        "from": "Liv",
+        "id": "dramaturgi_job_strukturkart_001",
+        "mail_family": "dramaturgi_arbeidsbok",
+        "mail_type": "job",
+        "narrative_arc": "strukturkart",
+        "people_ref": "liv_dramatiker",
+        "person_id": "liv_dramatiker",
+        "phase": "forenoon",
+        "place_id": "tekstlaboratorium_og_versjonsbord",
+        "pressure": "presis_analyse_vs_rask_omskriving",
+        "priority": 145,
+        "role_scope": "scenekunst_dramaturgi_og_utvikling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_dramaturgi_og_utvikling_job.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "dramatiker_og_rettighetshaver",
+        "situation": [
+          "Versjon 04 har sporbare endringer, men strukturkartet stopper før overgangene mellom scenene.",
+          "Liv vil ha et presist spørsmål som kan utløse en ny versjon, ikke en ferdig erstatningstekst.",
+          "Samir trenger en prøvbar hypotese som ikke later som dramaturgen allerede har avgjort virkningen."
+        ],
+        "subject": "Tre sterke scener mangler en synlig dramatisk vending",
+        "summary": "Liv leverer tekstversjon 04 med tre selvstendig sterke scener, men arbeidsboken viser ikke hvordan den andre scenen endrer figurens handlingsrom før den tredje. Oppgaven er å kartlegge funksjon, forventning og brudd uten å omskrive stemmen hennes eller presentere én strukturmodell som fasit. Versjonen må kunne prøves og senere sammenlignes med det ensemblet faktisk gjør.",
+        "task_domain": "dramaturgi_og_scenisk_utvikling"
+      },
+      "id": "dramaturgi_job_strukturkart_001",
+      "mail_type": "job",
+      "role_scope": "scenekunst_dramaturgi_og_utvikling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidsboken beholder Livs versjon og viser samtidig hvorfor overgangen må undersøkes. Forfatteren får et avgrenset utviklingsspørsmål, regissøren får en konkret prøve og neste versjon kan sammenlignes med observasjonen i stedet for med dramaturgens smak.",
+            "id": "A",
+            "label": "Kartlegg funksjon og formuler én prøvbar vending",
+            "reply": "Jeg markerer hva hver scene etablerer, hvilket forventet skifte som mangler mellom scene to og tre, og formulerer dette som et spørsmål Liv kan besvare og Samir kan prøve uten at jeg skriver en ny replikk."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Produksjonen får en raskere tekst, men forfatterens beslutning, rettighetsstatus og begrunnelsen for endringen forsvinner. Dersom replikkens løsning ikke virker i rommet, er det uklart hvem som bestilte den eller hvilken opprinnelig hypotese som skulle testes.",
+            "id": "B",
+            "label": "Skriv den manglende vendingen inn i teksten",
+            "reply": "Jeg lager en ny overgangsreplikk i versjon 04 og sender dokumentet videre som avklart, fordi prøven trenger en tydelig dramatisk vending før ensemblet kan arbeide effektivt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Versjon 04 har sporbare endringer, men strukturkartet stopper før overgangene mellom scenene.",
+            "Liv vil ha et presist spørsmål som kan utløse en ny versjon, ikke en ferdig erstatningstekst.",
+            "Samir trenger en prøvbar hypotese som ikke later som dramaturgen allerede har avgjort virkningen."
+          ],
+          "subject": "Tre sterke scener mangler en synlig dramatisk vending",
+          "summary": "Liv leverer tekstversjon 04 med tre selvstendig sterke scener, men arbeidsboken viser ikke hvordan den andre scenen endrer figurens handlingsrom før den tredje. Oppgaven er å kartlegge funksjon, forventning og brudd uten å omskrive stemmen hennes eller presentere én strukturmodell som fasit. Versjonen må kunne prøves og senere sammenlignes med det ensemblet faktisk gjør."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "dramaturgi_job_strukturkart_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "tekstlaboratorium_og_versjonsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "dramaturgi_job_strukturkart_001",
+          "source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_dramaturgi_og_utvikling_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_dramaturgi_og_utvikling.mail.dramaturgi_job_strukturkart_001",
+        "version": 1
+      },
+      "source_hash": "86f8f25d15f685b89d3c39029243977600133668f48c0fcc4ba00fed11d52a7f",
+      "source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_dramaturgi_og_utvikling_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "bedre_sporsmal_vs_fortidsfigur_som_fasit",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidsboken får en konkret historisk resonans uten å gjøre Johanne Dybwad til metodeoppskrift. Ingrid kan kontrollere kildegrensen, mens Liv, Samir og ensemblet fortsatt må undersøke dagens verk og ta sine egne mandatbundne beslutninger.",
+            "id": "A",
+            "label": "Bruk profilen til ett avgrenset tolkningsspørsmål",
+            "reply": "Jeg leser profilen, noterer hvilken historisk og institusjonell kontekst kildene faktisk støtter, og formulerer ett spørsmål om hvordan vår versjon fordeler tolkningsmakt mellom tekst, skuespiller og scene.",
+            "tags": [
+              "sporbarhet",
+              "kunstnerisk_dialog",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Henvisningen høres faglig sterk ut, men en historisk person brukes som lånt autoritet for et nåtidig valg profilen ikke kan avgjøre. Kilde, tolkning og mandat blandes, og teamet lærer mindre både om historien og om sin egen scene.",
+            "id": "B",
+            "label": "Bruk Dybwads autoritet som argument for løsningen",
+            "reply": "Jeg viser til Johanne Dybwads betydning og konkluderer med at skuespillertolkningen bør få forrang over tekststrukturen, slik at uenigheten kan lukkes med historisk tyngde.",
+            "tags": [
+              "fasitsprak",
+              "mandatglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "scenekunsthistorisk_kontekst_og_kildegrense",
+        "consequence_axis": "kontekstbevisst_utvikling_vs_autoritetslan",
+        "day_phase": "morning",
+        "from": "Ingrid",
+        "id": "dramaturgi_knowledge_dybwad_nationaltheatret_001",
+        "interaction_mode": "task",
+        "mail_family": "dramaturgi_kilde_og_scenekontekst",
+        "mail_type": "knowledge",
+        "narrative_arc": "dybwad_nationaltheatret",
+        "people_ref": "ingrid_researchansvarlig",
+        "person_id": "ingrid_researchansvarlig",
+        "phase": "forenoon",
+        "place_id": "nationaltheatret",
+        "pressure": "historisk_autoritet_vs_navaerende_kunstnerisk_undersokelse",
+        "priority": 145,
+        "role_scope": "scenekunst_dramaturgi_og_utvikling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/knowledge/scenekunst_dramaturgi_og_utvikling_knowledge.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "research_og_formidling",
+        "situation": [
+          "Johanne Dybwad er en canonical History Go-person knyttet til Nationaltheatret.",
+          "Oppgaven gjelder å lese en historisk profil og formulere ett kildeavgrenset spørsmål om tolkning og institusjon.",
+          "Historisk kontekst holdes adskilt fra dagens tekstversjon, forfatterrettighet og Samirs regibeslutning."
+        ],
+        "subject": "Johanne Dybwad kan skjerpe spørsmålet om tolkning, ikke gi en oppskrift",
+        "summary": "Ingrid ber deg lese den kildeforankrede History Go-profilen til Johanne Dybwad ved Nationaltheatret som scenekunsthistorisk inngang til forholdet mellom tekst, skuespillerarbeid, institusjon og skiftende tolkning. Oppgaven kan gi bedre spørsmål til arbeidsboken, men den kan ikke bevise hvordan den fiktive forestillingen bør spilles, gi rettigheter eller overføre kunstnerisk myndighet.",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/people/litteratur/oslo/nationaltheatret/johanne_dybwad.json",
+            "data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "scenekunst_dramaturgi_history_go_johanne_dybwad"
+        },
+        "task_domain": "dramaturgi_og_scenisk_utvikling",
+        "task_payload": {
+          "completion_mode": "read_profile",
+          "description": "Les den kildeforankrede profilen og noter ett spørsmål om hvordan tekst, skuespillertolkning og institusjon påvirker hverandre uten å gjøre historien til fasit for dagens produksjon.",
+          "person_id": "johanne_dybwad",
+          "return_context": {
+            "mail_id": "dramaturgi_knowledge_dybwad_nationaltheatret_001",
+            "role_scope": "scenekunst_dramaturgi_og_utvikling",
+            "source": "civication"
+          },
+          "target_type": "person",
+          "task_kind": "history_go_person",
+          "title": "Les Johanne Dybwad som scenekunsthistorisk kontekst"
+        }
+      },
+      "id": "dramaturgi_knowledge_dybwad_nationaltheatret_001",
+      "mail_type": "knowledge",
+      "role_scope": "scenekunst_dramaturgi_og_utvikling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidsboken får en konkret historisk resonans uten å gjøre Johanne Dybwad til metodeoppskrift. Ingrid kan kontrollere kildegrensen, mens Liv, Samir og ensemblet fortsatt må undersøke dagens verk og ta sine egne mandatbundne beslutninger.",
+            "id": "A",
+            "label": "Bruk profilen til ett avgrenset tolkningsspørsmål",
+            "reply": "Jeg leser profilen, noterer hvilken historisk og institusjonell kontekst kildene faktisk støtter, og formulerer ett spørsmål om hvordan vår versjon fordeler tolkningsmakt mellom tekst, skuespiller og scene."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Henvisningen høres faglig sterk ut, men en historisk person brukes som lånt autoritet for et nåtidig valg profilen ikke kan avgjøre. Kilde, tolkning og mandat blandes, og teamet lærer mindre både om historien og om sin egen scene.",
+            "id": "B",
+            "label": "Bruk Dybwads autoritet som argument for løsningen",
+            "reply": "Jeg viser til Johanne Dybwads betydning og konkluderer med at skuespillertolkningen bør få forrang over tekststrukturen, slik at uenigheten kan lukkes med historisk tyngde."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Johanne Dybwad er en canonical History Go-person knyttet til Nationaltheatret.",
+            "Oppgaven gjelder å lese en historisk profil og formulere ett kildeavgrenset spørsmål om tolkning og institusjon.",
+            "Historisk kontekst holdes adskilt fra dagens tekstversjon, forfatterrettighet og Samirs regibeslutning."
+          ],
+          "subject": "Johanne Dybwad kan skjerpe spørsmålet om tolkning, ikke gi en oppskrift",
+          "summary": "Ingrid ber deg lese den kildeforankrede History Go-profilen til Johanne Dybwad ved Nationaltheatret som scenekunsthistorisk inngang til forholdet mellom tekst, skuespillerarbeid, institusjon og skiftende tolkning. Oppgaven kan gi bedre spørsmål til arbeidsboken, men den kan ikke bevise hvordan den fiktive forestillingen bør spilles, gi rettigheter eller overføre kunstnerisk myndighet."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "dramaturgi_knowledge_dybwad_nationaltheatret_001",
+        "interaction_mode": "task",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "nationaltheatret",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "dramaturgi_knowledge_dybwad_nationaltheatret_001",
+          "source_path": "data/Civication/mailFamilies/scenekunst/knowledge/scenekunst_dramaturgi_og_utvikling_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/people/litteratur/oslo/nationaltheatret/johanne_dybwad.json",
+            "data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "scenekunst_dramaturgi_history_go_johanne_dybwad"
+        },
+        "thread_id": "scenekunst_dramaturgi_og_utvikling.mail.dramaturgi_knowledge_dybwad_nationaltheatret_001",
+        "version": 1
+      },
+      "source_hash": "368f526d07dfb5baf0afdd25706075627aedb020f926c2e1b486c5b078035efc",
+      "source_path": "data/Civication/mailFamilies/scenekunst/knowledge/scenekunst_dramaturgi_og_utvikling_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "seks_fakta_i_kort_status_vs_tvetydig_alt_er_nytt",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Den korte meldingen bevarer alle forskjellene som faktisk styrer neste handling. Ensemblet kan åpne riktig dokument og prøve avtalt grep, mens ingen fyller ventingen med egen tekst eller offentlig bruk; full begrunnelse ligger fortsatt i arbeidsboken.",
+            "id": "A",
+            "label": "Send versjon, scope, status, eier, frist og sperre",
+            "reply": "Jeg sender at 06b bare gjelder scene fem og overgangen, at regigrepet kan prøves, at teksten venter på Liv, at kildelinjen eies av Ingrid til klokken ti, og at programbruk er sperret.",
+            "tags": [
+              "sporbarhet",
+              "kunstnerisk_dialog",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Meldingen er rask, men gjør et delvis prøvedokument til generell godkjenning. Noen vil bruke ny scene, andre vil anta at resten også er endret, og den muntlige rettingen kommer etter at feil fil eller uavklart kilde allerede har skapt rework.",
+            "id": "B",
+            "label": "Send at ny versjon ligger klar til prøve",
+            "reply": "Jeg skriver bare at versjon 06b er den nye gjeldende filen og at alle bør bruke den i morgen, fordi detaljene kan forklares muntlig når teamet møtes.",
+            "tags": [
+              "fasitsprak",
+              "mandatglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "presis_mikrohandoff",
+        "consequence_axis": "trygg_neste_prove_vs_feil_versjon_og_rework",
+        "day_phase": "morning",
+        "from": "Maja",
+        "id": "dramaturgi_micro_tolv_minutters_handoff_001",
+        "mail_family": "dramaturgi_presis_handoff",
+        "mail_type": "micro",
+        "narrative_arc": "tolv_minutters_handoff",
+        "people_ref": "maja_produksjonsleder",
+        "person_id": "maja_produksjonsleder",
+        "phase": "forenoon",
+        "place_id": "produksjonsmote_og_beslutningsrom",
+        "pressure": "kort_tid_vs_full_sporbarhet",
+        "priority": 145,
+        "role_scope": "scenekunst_dramaturgi_og_utvikling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/micro/scenekunst_dramaturgi_og_utvikling_micro.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "produksjon_og_institusjon",
+        "situation": [
+          "Versjon 06b erstatter bare scene fem og overgangen til scene seks.",
+          "Regigrep er godkjent for prøve, mens ny tekst og kildeformulering fortsatt venter.",
+          "Ensemblet trenger én kort beskjed som ikke kan misforstås som full sluttversjon."
+        ],
+        "subject": "Du har tolv minutter til å overlevere nattens nye versjon",
+        "summary": "Maja må sende en kort status til neste dags prøve før teamet går hjem. Mikrooppgaven er ikke å komprimere bort usikkerhet, men å levere minimumet som gjør versjonen trygg å bruke: identitet, berørt scene, hva som faktisk er besluttet, hva som fortsatt venter, hvem som eier svaret og hvilken handling som er forbudt i mellomtiden.",
+        "task_domain": "dramaturgi_og_scenisk_utvikling"
+      },
+      "id": "dramaturgi_micro_tolv_minutters_handoff_001",
+      "mail_type": "micro",
+      "role_scope": "scenekunst_dramaturgi_og_utvikling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Den korte meldingen bevarer alle forskjellene som faktisk styrer neste handling. Ensemblet kan åpne riktig dokument og prøve avtalt grep, mens ingen fyller ventingen med egen tekst eller offentlig bruk; full begrunnelse ligger fortsatt i arbeidsboken.",
+            "id": "A",
+            "label": "Send versjon, scope, status, eier, frist og sperre",
+            "reply": "Jeg sender at 06b bare gjelder scene fem og overgangen, at regigrepet kan prøves, at teksten venter på Liv, at kildelinjen eies av Ingrid til klokken ti, og at programbruk er sperret."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Meldingen er rask, men gjør et delvis prøvedokument til generell godkjenning. Noen vil bruke ny scene, andre vil anta at resten også er endret, og den muntlige rettingen kommer etter at feil fil eller uavklart kilde allerede har skapt rework.",
+            "id": "B",
+            "label": "Send at ny versjon ligger klar til prøve",
+            "reply": "Jeg skriver bare at versjon 06b er den nye gjeldende filen og at alle bør bruke den i morgen, fordi detaljene kan forklares muntlig når teamet møtes."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Versjon 06b erstatter bare scene fem og overgangen til scene seks.",
+            "Regigrep er godkjent for prøve, mens ny tekst og kildeformulering fortsatt venter.",
+            "Ensemblet trenger én kort beskjed som ikke kan misforstås som full sluttversjon."
+          ],
+          "subject": "Du har tolv minutter til å overlevere nattens nye versjon",
+          "summary": "Maja må sende en kort status til neste dags prøve før teamet går hjem. Mikrooppgaven er ikke å komprimere bort usikkerhet, men å levere minimumet som gjør versjonen trygg å bruke: identitet, berørt scene, hva som faktisk er besluttet, hva som fortsatt venter, hvem som eier svaret og hvilken handling som er forbudt i mellomtiden."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "dramaturgi_micro_tolv_minutters_handoff_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "produksjonsmote_og_beslutningsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "dramaturgi_micro_tolv_minutters_handoff_001",
+          "source_path": "data/Civication/mailFamilies/scenekunst/micro/scenekunst_dramaturgi_og_utvikling_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_dramaturgi_og_utvikling.mail.dramaturgi_micro_tolv_minutters_handoff_001",
+        "version": 1
+      },
+      "source_hash": "8122d265a011fc98f6eef12a18d7f05ea336e9656d988344bb44e8059fe4a60b",
+      "source_path": "data/Civication/mailFamilies/scenekunst/micro/scenekunst_dramaturgi_og_utvikling_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "synlig_motfunn_og_avgrenset_rework_vs_kildelojalitet_til_gammel_ide",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Researchen kan korrigere prosessen uten å diktere forestillingens mening. Rework blir avgrenset til de stedene som låner faktapåstand fra det gamle premisset, og Ingrid ser at presis motstand styrker arbeidsboken i stedet for å bli behandlet som forsinkelse.",
+            "id": "A",
+            "label": "Registrer motfunnet og gjenåpne de berørte påstandene",
+            "reply": "Jeg legger kilden inn med kontekst og usikkerhet, peker ut monologen og programlinjen den berører, og ber Ingrid formulere hva funnet faktisk kan og ikke kan motsi før teamet velger kunstnerisk respons.",
+            "tags": [
+              "sporbarhet",
+              "kunstnerisk_dialog",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den kunstneriske linjen bevares, men arbeidsboken skjuler at teamet kjenner til evidens som svekker den offentlige påstanden. Ingrid lærer at uønskede funn ikke påvirker beslutningen, og senere kritikk kan ikke møtes med et ærlig kildespor.",
+            "id": "B",
+            "label": "Arkiver funnet som interessant bakgrunn uten produksjonsvirkning",
+            "reply": "Jeg legger kilden i bakgrunnsmappen, men lar monolog og programtekst stå fordi prøvene allerede har investert i den første forklaringen og et sent funn ikke bør velte helheten.",
+            "tags": [
+              "fasitsprak",
+              "mandatglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "kildebevisst_kunstnerisk_revisjon",
+        "consequence_axis": "troverdig_prosess_vs_bekreftelsesbias",
+        "day_phase": "afternoon",
+        "from": "Ingrid",
+        "id": "dramaturgi_people_ingrid_motfunn_003",
+        "mail_family": "dramaturgi_kunstneriske_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "ingrid_motfunn",
+        "people_ref": "ingrid_researchansvarlig",
+        "person_id": "ingrid_researchansvarlig",
+        "phase": "workday",
+        "place_id": "research_og_kildeverksted",
+        "pressure": "investert_kunstnerisk_ide_vs_nytt_evidensgrunnlag",
+        "priority": 143,
+        "role_scope": "scenekunst_dramaturgi_og_utvikling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_dramaturgi_og_utvikling_people.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "research_og_formidling",
+        "situation": [
+          "Den nye kilden er identifisert og relevant, men må leses sammen med tidligere materiale.",
+          "En monolog og et programutkast bruker den gamle forklaringen uten forbehold.",
+          "Ingrid trenger trygghet for at et motfunn blir registrert selv om det skaper rework."
+        ],
+        "subject": "Ingrids nye funn motsier arbeidsbokens historiske premiss",
+        "summary": "Ingrid finner en samtidstekst som gjør den etablerte historiske forklaringen mindre sikker. Funnet fjerner ikke nødvendigvis forestillingens kunstneriske idé, men krever at påstand, fortellerposisjon og programtekst vurderes på nytt. Dramaturgen må gjøre korreksjonen mulig uten å straffe researchen for å komme sent eller skjule usikkerheten av lojalitet til prosessen.",
+        "task_domain": "dramaturgi_og_scenisk_utvikling"
+      },
+      "id": "dramaturgi_people_ingrid_motfunn_003",
+      "mail_type": "people",
+      "role_scope": "scenekunst_dramaturgi_og_utvikling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Researchen kan korrigere prosessen uten å diktere forestillingens mening. Rework blir avgrenset til de stedene som låner faktapåstand fra det gamle premisset, og Ingrid ser at presis motstand styrker arbeidsboken i stedet for å bli behandlet som forsinkelse.",
+            "id": "A",
+            "label": "Registrer motfunnet og gjenåpne de berørte påstandene",
+            "reply": "Jeg legger kilden inn med kontekst og usikkerhet, peker ut monologen og programlinjen den berører, og ber Ingrid formulere hva funnet faktisk kan og ikke kan motsi før teamet velger kunstnerisk respons."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den kunstneriske linjen bevares, men arbeidsboken skjuler at teamet kjenner til evidens som svekker den offentlige påstanden. Ingrid lærer at uønskede funn ikke påvirker beslutningen, og senere kritikk kan ikke møtes med et ærlig kildespor.",
+            "id": "B",
+            "label": "Arkiver funnet som interessant bakgrunn uten produksjonsvirkning",
+            "reply": "Jeg legger kilden i bakgrunnsmappen, men lar monolog og programtekst stå fordi prøvene allerede har investert i den første forklaringen og et sent funn ikke bør velte helheten."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den nye kilden er identifisert og relevant, men må leses sammen med tidligere materiale.",
+            "En monolog og et programutkast bruker den gamle forklaringen uten forbehold.",
+            "Ingrid trenger trygghet for at et motfunn blir registrert selv om det skaper rework."
+          ],
+          "subject": "Ingrids nye funn motsier arbeidsbokens historiske premiss",
+          "summary": "Ingrid finner en samtidstekst som gjør den etablerte historiske forklaringen mindre sikker. Funnet fjerner ikke nødvendigvis forestillingens kunstneriske idé, men krever at påstand, fortellerposisjon og programtekst vurderes på nytt. Dramaturgen må gjøre korreksjonen mulig uten å straffe researchen for å komme sent eller skjule usikkerheten av lojalitet til prosessen."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "dramaturgi_people_ingrid_motfunn_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "research_og_kildeverksted",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "dramaturgi_people_ingrid_motfunn_003",
+          "source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_dramaturgi_og_utvikling_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_dramaturgi_og_utvikling.mail.dramaturgi_people_ingrid_motfunn_003",
+        "version": 1
+      },
+      "source_hash": "eab196e18746f08d45629a4bf3465b8e81709e2a271715c3ea2264ae7749f39c",
+      "source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_dramaturgi_og_utvikling_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "ansvarlig_presisering_vs_falsk_enighet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Liv får grunn til å stole på at kritikken kan etterprøves selv når hun er uenig. Relasjonen blir ikke reparert ved å fjerne faglig motstand, men ved at språk, mål og mandat blir tydelige nok til at forfatteren kan velge en ny versjon eller avvise hypotesen begrunnet.",
+            "id": "A",
+            "label": "Eie upresisjonen og åpne to funksjonslesninger",
+            "reply": "Jeg sier at rangeringen var ubegrunnet, viser hvilke konkrete overganger jeg observerte, knytter dem til Livs uttalte mål og legger frem to mulige funksjoner uten å velge teksten på hennes vegne.",
+            "tags": [
+              "sporbarhet",
+              "kunstnerisk_dialog",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Konflikten dempes kort, men Liv mister både den nyttige observasjonen og muligheten til å forstå hva som faktisk gikk galt i kommunikasjonen. Dramaturgen blir enten taus eller uforutsigbar, og samme strukturproblem kommer tilbake senere uten et språk teamet deler.",
+            "id": "B",
+            "label": "Trekk hele analysen for å roe samarbeidet",
+            "reply": "Jeg sier at notatet bare var en personlig reaksjon og at alle scenene egentlig fungerer, slik at Liv kan gå videre uten å oppleve dramaturgisk press eller flere strukturelle innvendinger.",
+            "tags": [
+              "fasitsprak",
+              "mandatglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "dialogkvalitet_og_forfatterrelasjon",
+        "consequence_axis": "arbeidsallianse_med_uenighet_vs_taus_mandatkamp",
+        "day_phase": "morning",
+        "from": "Liv",
+        "id": "dramaturgi_people_liv_respons_001",
+        "mail_family": "dramaturgi_kunstneriske_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "liv_respons",
+        "people_ref": "liv_dramatiker",
+        "person_id": "liv_dramatiker",
+        "phase": "forenoon",
+        "place_id": "tekstlaboratorium_og_versjonsbord",
+        "pressure": "faglig_motstand_vs_relativiserende_forsoning",
+        "priority": 145,
+        "role_scope": "scenekunst_dramaturgi_og_utvikling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_dramaturgi_og_utvikling_people.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "dramatiker_og_rettighetshaver",
+        "situation": [
+          "Det gamle notatet bruker vurderingsord uten å vise observasjon eller konsekvens.",
+          "Liv har stoppet omskrivingen fordi hun opplever at dramaturgen allerede har valgt løsning.",
+          "En ny respons må bevare reell uenighet og samtidig gjenopprette forfatterens beslutningsrom."
+        ],
+        "subject": "Liv leser strukturkartet som en dom over teksten",
+        "summary": "Liv reagerer på at et tidligere notat rangerte scenene som svake og sterke uten å beskrive hvilken funksjon vurderingen gjaldt. Relasjonen trenger en reparasjon som er faglig, ikke smigrende: dramaturgen må eie det upresise språket, vende tilbake til tekstens uttalte mål og tilby konkurrerende lesninger som Liv kan svare på som forfatter.",
+        "task_domain": "dramaturgi_og_scenisk_utvikling"
+      },
+      "id": "dramaturgi_people_liv_respons_001",
+      "mail_type": "people",
+      "role_scope": "scenekunst_dramaturgi_og_utvikling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Liv får grunn til å stole på at kritikken kan etterprøves selv når hun er uenig. Relasjonen blir ikke reparert ved å fjerne faglig motstand, men ved at språk, mål og mandat blir tydelige nok til at forfatteren kan velge en ny versjon eller avvise hypotesen begrunnet.",
+            "id": "A",
+            "label": "Eie upresisjonen og åpne to funksjonslesninger",
+            "reply": "Jeg sier at rangeringen var ubegrunnet, viser hvilke konkrete overganger jeg observerte, knytter dem til Livs uttalte mål og legger frem to mulige funksjoner uten å velge teksten på hennes vegne."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Konflikten dempes kort, men Liv mister både den nyttige observasjonen og muligheten til å forstå hva som faktisk gikk galt i kommunikasjonen. Dramaturgen blir enten taus eller uforutsigbar, og samme strukturproblem kommer tilbake senere uten et språk teamet deler.",
+            "id": "B",
+            "label": "Trekk hele analysen for å roe samarbeidet",
+            "reply": "Jeg sier at notatet bare var en personlig reaksjon og at alle scenene egentlig fungerer, slik at Liv kan gå videre uten å oppleve dramaturgisk press eller flere strukturelle innvendinger."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Det gamle notatet bruker vurderingsord uten å vise observasjon eller konsekvens.",
+            "Liv har stoppet omskrivingen fordi hun opplever at dramaturgen allerede har valgt løsning.",
+            "En ny respons må bevare reell uenighet og samtidig gjenopprette forfatterens beslutningsrom."
+          ],
+          "subject": "Liv leser strukturkartet som en dom over teksten",
+          "summary": "Liv reagerer på at et tidligere notat rangerte scenene som svake og sterke uten å beskrive hvilken funksjon vurderingen gjaldt. Relasjonen trenger en reparasjon som er faglig, ikke smigrende: dramaturgen må eie det upresise språket, vende tilbake til tekstens uttalte mål og tilby konkurrerende lesninger som Liv kan svare på som forfatter."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "dramaturgi_people_liv_respons_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "tekstlaboratorium_og_versjonsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "dramaturgi_people_liv_respons_001",
+          "source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_dramaturgi_og_utvikling_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_dramaturgi_og_utvikling.mail.dramaturgi_people_liv_respons_001",
+        "version": 1
+      },
+      "source_hash": "453d82f1a4745861d229fd1430b0d0af64f1e6fdc158c6776f8401f431a736b2",
+      "source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_dramaturgi_og_utvikling_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "berort_scope_og_delt_eierskap_vs_vag_totalomstart",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Det kunstneriske problemet reduseres ikke til produksjonslogistikk, men rework får en kant teamet kan handle på. Maja ser hva som venter, fagene ser hva som fortsatt er gyldig, og Liv og Samir beholder ansvaret for verkets nye løsning.",
+            "id": "A",
+            "label": "Avgrens scener, avhengigheter og to separate eiere",
+            "reply": "Jeg peker ut scene 7 og 8 i versjon 06, beskriver hvilket forløpsspørsmål Liv og Samir må avklare, og gir Maja listen over lyd-, kostyme- og prøveavhengigheter hun kan replanlegge når svaret foreligger.",
+            "tags": [
+              "sporbarhet",
+              "kunstnerisk_dialog",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Dramaturgen beskytter sin analyse mot forenkling, men flytter kostnad og usikkerhet til alle andre fag. Maja tvinges til å tolke kunstnerisk scope, unødvendig arbeid stopper, og teamet mister skillet mellom reell risiko og generell uro.",
+            "id": "B",
+            "label": "Be produksjonen holde hele andre akt åpen",
+            "reply": "Jeg ber Maja stoppe alle leveranser knyttet til andre akt til den dramaturgiske helheten er løst, uten å angi scener eller beslutningspunkt fordi en for tidlig avgrensning kan binde kunsten.",
+            "tags": [
+              "fasitsprak",
+              "mandatglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "avgrenset_rework_og_produksjonsdialog",
+        "consequence_axis": "styrbar_revisjon_vs_produksjonsmessig_kaos",
+        "day_phase": "afternoon",
+        "from": "Maja",
+        "id": "dramaturgi_people_maja_rework_004",
+        "mail_family": "dramaturgi_kunstneriske_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "maja_rework",
+        "people_ref": "maja_produksjonsleder",
+        "person_id": "maja_produksjonsleder",
+        "phase": "workday",
+        "place_id": "produksjonsmote_og_beslutningsrom",
+        "pressure": "helhetlig_kunstnerisk_problem_vs_konkret_planbehov",
+        "priority": 142,
+        "role_scope": "scenekunst_dramaturgi_og_utvikling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_dramaturgi_og_utvikling_people.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "produksjon_og_institusjon",
+        "situation": [
+          "Notatet peker på et reelt forløpsproblem, men bruker ingen versjons- eller scenereferanser.",
+          "Lyd og kostyme arbeider allerede på elementer fra andre akt.",
+          "Samir og Liv må eie det kunstneriske svaret; Maja må eie konsekvensplanen."
+        ],
+        "subject": "Maja trenger rework som kan planlegges, ikke et generelt ønske",
+        "summary": "Et dramaturgisk notat sier at andre akt må tenkes på nytt, men Maja kan ikke se hvilke sider, prøver, fag eller frister dette gjelder. Hun ber om et planbart handoff. Dramaturgen må avgrense hva som gjenåpnes og hvilket kunstnerisk svar som trengs, samtidig som Maja ikke gjøres ansvarlig for å avgjøre selve verksspørsmålet.",
+        "task_domain": "dramaturgi_og_scenisk_utvikling"
+      },
+      "id": "dramaturgi_people_maja_rework_004",
+      "mail_type": "people",
+      "role_scope": "scenekunst_dramaturgi_og_utvikling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Det kunstneriske problemet reduseres ikke til produksjonslogistikk, men rework får en kant teamet kan handle på. Maja ser hva som venter, fagene ser hva som fortsatt er gyldig, og Liv og Samir beholder ansvaret for verkets nye løsning.",
+            "id": "A",
+            "label": "Avgrens scener, avhengigheter og to separate eiere",
+            "reply": "Jeg peker ut scene 7 og 8 i versjon 06, beskriver hvilket forløpsspørsmål Liv og Samir må avklare, og gir Maja listen over lyd-, kostyme- og prøveavhengigheter hun kan replanlegge når svaret foreligger."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Dramaturgen beskytter sin analyse mot forenkling, men flytter kostnad og usikkerhet til alle andre fag. Maja tvinges til å tolke kunstnerisk scope, unødvendig arbeid stopper, og teamet mister skillet mellom reell risiko og generell uro.",
+            "id": "B",
+            "label": "Be produksjonen holde hele andre akt åpen",
+            "reply": "Jeg ber Maja stoppe alle leveranser knyttet til andre akt til den dramaturgiske helheten er løst, uten å angi scener eller beslutningspunkt fordi en for tidlig avgrensning kan binde kunsten."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Notatet peker på et reelt forløpsproblem, men bruker ingen versjons- eller scenereferanser.",
+            "Lyd og kostyme arbeider allerede på elementer fra andre akt.",
+            "Samir og Liv må eie det kunstneriske svaret; Maja må eie konsekvensplanen."
+          ],
+          "subject": "Maja trenger rework som kan planlegges, ikke et generelt ønske",
+          "summary": "Et dramaturgisk notat sier at andre akt må tenkes på nytt, men Maja kan ikke se hvilke sider, prøver, fag eller frister dette gjelder. Hun ber om et planbart handoff. Dramaturgen må avgrense hva som gjenåpnes og hvilket kunstnerisk svar som trengs, samtidig som Maja ikke gjøres ansvarlig for å avgjøre selve verksspørsmålet."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "dramaturgi_people_maja_rework_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "produksjonsmote_og_beslutningsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "dramaturgi_people_maja_rework_004",
+          "source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_dramaturgi_og_utvikling_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_dramaturgi_og_utvikling.mail.dramaturgi_people_maja_rework_004",
+        "version": 1
+      },
+      "source_hash": "bab5c38383774c0788038c55f65803f77d82a0f62abe12cb3ab3c3c0dbd21346",
+      "source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_dramaturgi_og_utvikling_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "konsekvenskart_og_test_vs_dommerrolle",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Uenigheten blir produktiv fordi den kan ses i rommet uten at dramaturgen later som ett faglig språk opphever mandatfordelingen. Samir kan prioritere prøven, Liv kan vurdere tekstens konsekvens, og arbeidsboken beholder hvorfor det endelige valget ble tatt.",
+            "id": "A",
+            "label": "Kartlegg to virkninger og foreslå en avgrenset A/B-prøve",
+            "reply": "Jeg viser hvordan koret henholdsvis driver handlingen og flytter ansvar, peker på hvilke tekststeder hver lesning bygger på, og foreslår to korte prøver før Samir og Liv tar sine respektive beslutninger.",
+            "tags": [
+              "sporbarhet",
+              "kunstnerisk_dialog",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Prøven sparer tid, men dramaturgisk autoritet brukes til å omdefinere en reell kunstnerisk og opphavsrettslig uenighet. Livs premiss blir redusert uten beslutning, og senere konflikt vil handle om skjult makt i stedet for om verkets virkning.",
+            "id": "B",
+            "label": "Erklær regissørens lesning som dramaturgisk riktig",
+            "reply": "Jeg konkluderer med at koret objektivt er forestillingens motor og anbefaler at Samir prøver denne løsningen som gjeldende, mens Livs innvending registreres som en forfatterpreferanse.",
+            "tags": [
+              "fasitsprak",
+              "mandatglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "kunstnerisk_sparring_og_mandat",
+        "consequence_axis": "kunstnerisk_beslutning_med_grunnlag_vs_skjult_makt",
+        "day_phase": "afternoon",
+        "from": "Samir",
+        "id": "dramaturgi_people_samir_uenighet_002",
+        "mail_family": "dramaturgi_kunstneriske_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "samir_uenighet",
+        "people_ref": "samir_regissor",
+        "person_id": "samir_regissor",
+        "phase": "workday",
+        "place_id": "provesal_og_observasjonsplass",
+        "pressure": "uenighet_og_tid_vs_rollegrense",
+        "priority": 144,
+        "role_scope": "scenekunst_dramaturgi_og_utvikling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_dramaturgi_og_utvikling_people.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "regissor_og_ensemble",
+        "situation": [
+          "Begge lesninger har støtte i ulike deler av materialet og gir ulike publikumsposisjoner.",
+          "Prøvetiden er knapp, men en avgrenset A/B-test er fortsatt mulig.",
+          "Samir eier prøveprioriteringen; Liv eier tekstendringen innen avtalen."
+        ],
+        "subject": "Samir ber dramaturgen avgjøre striden med forfatteren",
+        "summary": "Samir og Liv leser korpartiets funksjon motsatt: han ser en scenisk motor, hun ser at figurens ansvar blir fordelt bort. Samir ber dramaturgen si hvem som har rett før kveldens prøve. Rollen skal gjøre alternativenes virkning, tekstlige premiss og rettighetsgrense tydelig, men beslutningen kan ikke kamufleres som nøytral analyse.",
+        "task_domain": "dramaturgi_og_scenisk_utvikling"
+      },
+      "id": "dramaturgi_people_samir_uenighet_002",
+      "mail_type": "people",
+      "role_scope": "scenekunst_dramaturgi_og_utvikling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Uenigheten blir produktiv fordi den kan ses i rommet uten at dramaturgen later som ett faglig språk opphever mandatfordelingen. Samir kan prioritere prøven, Liv kan vurdere tekstens konsekvens, og arbeidsboken beholder hvorfor det endelige valget ble tatt.",
+            "id": "A",
+            "label": "Kartlegg to virkninger og foreslå en avgrenset A/B-prøve",
+            "reply": "Jeg viser hvordan koret henholdsvis driver handlingen og flytter ansvar, peker på hvilke tekststeder hver lesning bygger på, og foreslår to korte prøver før Samir og Liv tar sine respektive beslutninger."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Prøven sparer tid, men dramaturgisk autoritet brukes til å omdefinere en reell kunstnerisk og opphavsrettslig uenighet. Livs premiss blir redusert uten beslutning, og senere konflikt vil handle om skjult makt i stedet for om verkets virkning.",
+            "id": "B",
+            "label": "Erklær regissørens lesning som dramaturgisk riktig",
+            "reply": "Jeg konkluderer med at koret objektivt er forestillingens motor og anbefaler at Samir prøver denne løsningen som gjeldende, mens Livs innvending registreres som en forfatterpreferanse."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Begge lesninger har støtte i ulike deler av materialet og gir ulike publikumsposisjoner.",
+            "Prøvetiden er knapp, men en avgrenset A/B-test er fortsatt mulig.",
+            "Samir eier prøveprioriteringen; Liv eier tekstendringen innen avtalen."
+          ],
+          "subject": "Samir ber dramaturgen avgjøre striden med forfatteren",
+          "summary": "Samir og Liv leser korpartiets funksjon motsatt: han ser en scenisk motor, hun ser at figurens ansvar blir fordelt bort. Samir ber dramaturgen si hvem som har rett før kveldens prøve. Rollen skal gjøre alternativenes virkning, tekstlige premiss og rettighetsgrense tydelig, men beslutningen kan ikke kamufleres som nøytral analyse."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "dramaturgi_people_samir_uenighet_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "provesal_og_observasjonsplass",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "dramaturgi_people_samir_uenighet_002",
+          "source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_dramaturgi_og_utvikling_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_dramaturgi_og_utvikling.mail.dramaturgi_people_samir_uenighet_002",
+        "version": 1
+      },
+      "source_hash": "7640929b6e7f16307eb664bbc3fe6483174486572c742330a040d1f5879f9315",
+      "source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_dramaturgi_og_utvikling_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "korriger_og_vis_opphav_vs_forsvar_med_kunstnerisk_frihet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Korreksjonen tar ansvar for hele overleveringskjeden og gjør ikke kommunikasjon til syndebukk. Forestillingen kan fortsatt være tydelig, men tydeligheten ligger i hvilket spørsmål den undersøker; presse og publikum mottar ikke dramaturgisk spekulasjon forkledd som dokumentert funn.",
+            "id": "A",
+            "label": "Stans teksten, spor overgangen og foreslå presis usikkerhet",
+            "reply": "Jeg stopper videre distribusjon, viser hvor hypotesen mistet merkingen, ber Ingrid avgrense hva kildene støtter og sender Liv og Samir et forslag som beholder forestillingens spørsmål uten å hevde endelig historisk årsak.",
+            "tags": [
+              "sporbarhet",
+              "kunstnerisk_dialog",
+              "mandat"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Markedsføringen beholder kraft, men eksplisitt faktaspråk kan ikke reddes av en uuttrykt forventning om kunstnerisk frihet. Når kildespørsmålet kommer, fremstår teamet som om det kjente usikkerheten og valgte å skjule den for å beskytte fortellingen.",
+            "id": "B",
+            "label": "Forsvar formuleringen som kunstnerisk tolkning",
+            "reply": "Jeg lar programteksten stå og forklarer til Ingrid at publikum forstår at en forestilling tolker fritt, slik at vi ikke svekker kommunikasjonen med forbehold som gjør premieren mindre tydelig.",
+            "tags": [
+              "fasitsprak",
+              "mandatglidning",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "offentlig_formidling_og_kildeansvar",
+        "consequence_axis": "troverdig_offentlig_sporsmal_vs_villedende_autoritet",
+        "day_phase": "morning",
+        "from": "Ingrid",
+        "id": "dramaturgi_story_programtekst_001",
+        "mail_family": "dramaturgi_tekst_kilde_og_ansvar",
+        "mail_type": "story",
+        "narrative_arc": "programtekst",
+        "people_ref": "ingrid_researchansvarlig",
+        "person_id": "ingrid_researchansvarlig",
+        "phase": "forenoon",
+        "place_id": "research_og_kildeverksted",
+        "pressure": "tydelig_markedsfortelling_vs_dokumentert_usikkerhet",
+        "priority": 145,
+        "role_scope": "scenekunst_dramaturgi_og_utvikling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/story/scenekunst_dramaturgi_og_utvikling_story.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "research_og_formidling",
+        "situation": [
+          "Hypotesen var tydelig merket i arbeidsboken, men handoff til programtekst manglet kildegrense.",
+          "Teksten er ennå ikke trykket, men er delt med presse og samarbeidspartnere.",
+          "Liv og Samir må godkjenne ny kunstnerisk formulering; Ingrid må kontrollere faktagrensen."
+        ],
+        "subject": "Programteksten gjør en omstridt forklaring til dokumentert historie",
+        "summary": "Kommunikasjon har hentet en formulering fra en tidlig dramaturgisk hypotese og skrevet at forestillingen avslører den egentlige årsaken til en historisk konflikt. Ingrid varsler at kildene ikke støtter sikkerheten. Historien krever en korreksjon som bevarer forestillingens spørsmål, viser hvordan feilen oppstod og stanser videre spredning uten å late som kommunikasjon alene skapte problemet.",
+        "task_domain": "dramaturgi_og_scenisk_utvikling"
+      },
+      "id": "dramaturgi_story_programtekst_001",
+      "mail_type": "story",
+      "role_scope": "scenekunst_dramaturgi_og_utvikling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Korreksjonen tar ansvar for hele overleveringskjeden og gjør ikke kommunikasjon til syndebukk. Forestillingen kan fortsatt være tydelig, men tydeligheten ligger i hvilket spørsmål den undersøker; presse og publikum mottar ikke dramaturgisk spekulasjon forkledd som dokumentert funn.",
+            "id": "A",
+            "label": "Stans teksten, spor overgangen og foreslå presis usikkerhet",
+            "reply": "Jeg stopper videre distribusjon, viser hvor hypotesen mistet merkingen, ber Ingrid avgrense hva kildene støtter og sender Liv og Samir et forslag som beholder forestillingens spørsmål uten å hevde endelig historisk årsak."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Markedsføringen beholder kraft, men eksplisitt faktaspråk kan ikke reddes av en uuttrykt forventning om kunstnerisk frihet. Når kildespørsmålet kommer, fremstår teamet som om det kjente usikkerheten og valgte å skjule den for å beskytte fortellingen.",
+            "id": "B",
+            "label": "Forsvar formuleringen som kunstnerisk tolkning",
+            "reply": "Jeg lar programteksten stå og forklarer til Ingrid at publikum forstår at en forestilling tolker fritt, slik at vi ikke svekker kommunikasjonen med forbehold som gjør premieren mindre tydelig."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Hypotesen var tydelig merket i arbeidsboken, men handoff til programtekst manglet kildegrense.",
+            "Teksten er ennå ikke trykket, men er delt med presse og samarbeidspartnere.",
+            "Liv og Samir må godkjenne ny kunstnerisk formulering; Ingrid må kontrollere faktagrensen."
+          ],
+          "subject": "Programteksten gjør en omstridt forklaring til dokumentert historie",
+          "summary": "Kommunikasjon har hentet en formulering fra en tidlig dramaturgisk hypotese og skrevet at forestillingen avslører den egentlige årsaken til en historisk konflikt. Ingrid varsler at kildene ikke støtter sikkerheten. Historien krever en korreksjon som bevarer forestillingens spørsmål, viser hvordan feilen oppstod og stanser videre spredning uten å late som kommunikasjon alene skapte problemet."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "dramaturgi_story_programtekst_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "research_og_kildeverksted",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "dramaturgi_story_programtekst_001",
+          "source_path": "data/Civication/mailFamilies/scenekunst/story/scenekunst_dramaturgi_og_utvikling_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_dramaturgi_og_utvikling.mail.dramaturgi_story_programtekst_001",
+        "version": 1
+      },
+      "source_hash": "520f5593fc2e69537ccb527de4fd628b6beac4e60301db639fa21df59c61f77c",
+      "source_path": "data/Civication/mailFamilies/scenekunst/story/scenekunst_dramaturgi_og_utvikling_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
       "category": "sosial_laering",
       "compatibility_projection": {
         "branch_flags": [
@@ -206596,7 +208692,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "7713b7dd0470e8c782f0027fe78b44b96d7b77d893b0e4d05a12fbcd0673241a",
+  "registry_hash": "ed8dd222a59f8503d6f07d33d2e3b2088aa44eb5d5f368b60ff9f83dab8873a9",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -207785,6 +209881,23 @@
       "religion_forskning_knowledge_arkivstillhet",
       "religion_forskning_consequence_fagfelle"
     ],
+    "scenekunst/scenekunst_dramaturgi_og_utvikling": [
+      "dramaturgi_job_strukturkart_001",
+      "dramaturgi_job_kildegrense_002",
+      "dramaturgi_job_proveobservasjon_003",
+      "dramaturgi_job_beslutningsversjon_004",
+      "dramaturgi_people_liv_respons_001",
+      "dramaturgi_people_samir_uenighet_002",
+      "dramaturgi_people_ingrid_motfunn_003",
+      "dramaturgi_people_maja_rework_004",
+      "dramaturgi_story_programtekst_001",
+      "dramaturgi_conflict_korparti_001",
+      "dramaturgi_event_rettighetsavslag_001",
+      "dramaturgi_micro_tolv_minutters_handoff_001",
+      "dramaturgi_followup_hypotese_som_ikke_holdt_001",
+      "dramaturgi_knowledge_dybwad_nationaltheatret_001",
+      "dramaturgi_consequence_pressekilde_001"
+    ],
     "sosial_laering/barnehageassistent": [
       "sosial_laering_barnehageassistent_job_001",
       "sosial_laering_barnehageassistent_job_002",
@@ -208009,11 +210122,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 395,
+    "compiled_source_file_count": 404,
     "ignored_source_file_count": 1,
-    "input_file_count": 396,
-    "role_count": 49,
-    "scene_count": 1285,
+    "input_file_count": 405,
+    "role_count": 50,
+    "scene_count": 1300,
     "shadowed_duplicate_count": 0
   },
   "version": 1

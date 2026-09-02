@@ -1,0 +1,298 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_dramaturgi_og_utvikling",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "dramaturgi_arbeidsbok",
+      "purpose": "Før samme dramaturgiske arbeidsbok gjennom tekst, kilde, prøve og beslutningsversjon.",
+      "learning_focus": [
+        "analytisk_presisjon",
+        "kilde_og_versjonsspor",
+        "kunstnerisk_dialog",
+        "authority_and_rights_boundary",
+        "waiting_handoff_rework"
+      ],
+      "mails": [
+        {
+          "id": "dramaturgi_job_strukturkart_001",
+          "mail_type": "job",
+          "mail_family": "dramaturgi_arbeidsbok",
+          "role_scope": "scenekunst_dramaturgi_og_utvikling",
+          "phase": "forenoon",
+          "day_phase": "morning",
+          "priority": 145,
+          "from": "Liv",
+          "people_ref": "liv_dramatiker",
+          "person_id": "liv_dramatiker",
+          "place_id": "tekstlaboratorium_og_versjonsbord",
+          "subject": "Tre sterke scener mangler en synlig dramatisk vending",
+          "summary": "Liv leverer tekstversjon 04 med tre selvstendig sterke scener, men arbeidsboken viser ikke hvordan den andre scenen endrer figurens handlingsrom før den tredje. Oppgaven er å kartlegge funksjon, forventning og brudd uten å omskrive stemmen hennes eller presentere én strukturmodell som fasit. Versjonen må kunne prøves og senere sammenlignes med det ensemblet faktisk gjør.",
+          "situation": [
+            "Versjon 04 har sporbare endringer, men strukturkartet stopper før overgangene mellom scenene.",
+            "Liv vil ha et presist spørsmål som kan utløse en ny versjon, ikke en ferdig erstatningstekst.",
+            "Samir trenger en prøvbar hypotese som ikke later som dramaturgen allerede har avgjort virkningen."
+          ],
+          "task_domain": "dramaturgi_og_scenisk_utvikling",
+          "competency": "tekst_og_strukturanalyse",
+          "pressure": "presis_analyse_vs_rask_omskriving",
+          "choice_axis": "provbar_funksjonshypotese_vs_skjult_medforfatterskap",
+          "consequence_axis": "kunstnerisk_eierskap_og_laring_vs_mandatglidning",
+          "narrative_arc": "strukturkart",
+          "situated_audience_id": "dramatiker_og_rettighetshaver",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Kartlegg funksjon og formuler én prøvbar vending",
+              "reply": "Jeg markerer hva hver scene etablerer, hvilket forventet skifte som mangler mellom scene to og tre, og formulerer dette som et spørsmål Liv kan besvare og Samir kan prøve uten at jeg skriver en ny replikk.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "kunstnerisk_dialog",
+                "mandat"
+              ],
+              "feedback": "Arbeidsboken beholder Livs versjon og viser samtidig hvorfor overgangen må undersøkes. Forfatteren får et avgrenset utviklingsspørsmål, regissøren får en konkret prøve og neste versjon kan sammenlignes med observasjonen i stedet for med dramaturgens smak.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Skriv den manglende vendingen inn i teksten",
+              "reply": "Jeg lager en ny overgangsreplikk i versjon 04 og sender dokumentet videre som avklart, fordi prøven trenger en tydelig dramatisk vending før ensemblet kan arbeide effektivt.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Produksjonen får en raskere tekst, men forfatterens beslutning, rettighetsstatus og begrunnelsen for endringen forsvinner. Dersom replikkens løsning ikke virker i rommet, er det uklart hvem som bestilte den eller hvilken opprinnelig hypotese som skulle testes.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "dramaturgi_job_kildegrense_002",
+          "mail_type": "job",
+          "mail_family": "dramaturgi_arbeidsbok",
+          "role_scope": "scenekunst_dramaturgi_og_utvikling",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 144,
+          "from": "Ingrid",
+          "people_ref": "ingrid_researchansvarlig",
+          "person_id": "ingrid_researchansvarlig",
+          "place_id": "research_og_kildeverksted",
+          "subject": "Et arkivsitat mangler dato og avsenderkontekst",
+          "summary": "Ingrid finner at sitatet som bærer forestillingens historiske premiss er transkribert uten sikker dato, full avsender eller dokumentert bruksrett. Teksten kan fortsatt arbeide kunstnerisk med usikkerheten, men arbeidsboken må skille ordlyd, proveniens, tolkning og rettighetsstatus før sitatet behandles som dokumentert utsagn i scene eller program.",
+          "situation": [
+            "Den eksisterende kildereferansen peker til en mappe, ikke til et identifisert dokument.",
+            "Sitatet står allerede i en monolog og er omtalt som autentisk i et utkast til programtekst.",
+            "Neste steg avhenger av svar fra arkivet og rettighetsansvarlig, så venting må være synlig."
+          ],
+          "task_domain": "dramaturgi_og_scenisk_utvikling",
+          "competency": "research_og_kildekritikk",
+          "pressure": "historisk_troverdighet_vs_dramatisk_fremdrift",
+          "choice_axis": "merket_usikkerhet_og_venting_vs_sikkert_fasitsprak",
+          "consequence_axis": "kildebevisst_kunstnerisk_frihet_vs_faktisk_og_rettslig_risiko",
+          "narrative_arc": "kildegrense",
+          "situated_audience_id": "research_og_formidling",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Merk sitatet som uavklart og bestill presis dokumentasjon",
+              "reply": "Jeg beholder sitatet som kunstnerisk arbeidshypotese, registrerer manglende dato, avsender, dokument og bruksrett, og setter scene- og programbruk på vent til Ingrid og rettighetsansvarlig har levert hvert sitt svar.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "kunstnerisk_dialog",
+                "mandat"
+              ],
+              "feedback": "Teamet kan undersøke hvorfor sitatet er viktig uten å forveksle virkning med dokumentasjon. Når svarene kommer, kan bare de berørte tekstleddene gjenåpnes, og både kunstnerisk valg, historisk usikkerhet og rettslig ansvar forblir rekonstruerbare.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Behandle den overleverte ordlyden som autentisk",
+              "reply": "Jeg fører sitatet inn som bekreftet fordi arkivmappen virker troverdig og forestillingen trenger et fast historisk premiss nå; dato, kontekst og bruksrett kan kompletteres etter at prøvene har satt formen.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Monologen og programteksten får en klar retning, men en foreløpig transkripsjon blir gjort til faktum før kilde og rettighet er kontrollert. Sen korreksjon kan kreve ny tekst, ny prøve og offentlig retting uten at arbeidsboken viser hvor antakelsen ble låst.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "dramaturgi_job_proveobservasjon_003",
+          "mail_type": "job",
+          "mail_family": "dramaturgi_arbeidsbok",
+          "role_scope": "scenekunst_dramaturgi_og_utvikling",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 143,
+          "from": "Samir",
+          "people_ref": "samir_regissor",
+          "person_id": "samir_regissor",
+          "place_id": "provesal_og_observasjonsplass",
+          "subject": "Improvisasjonen flyttet vendepunktet uten at teksten ble endret",
+          "summary": "I prøven oppstår forestillingens avgjørende vending tidligere fordi skuespillerne endrer avstand og pauselengde, ikke fordi replikkene er nye. Samir trenger et notat som skiller observerbar hendelse fra dramaturgisk tolkning og som foreslår hva neste prøve skal variere. Notatet må ikke gjøre én prøve til endelig regiavgjørelse.",
+          "situation": [
+            "Arbeidsboken viser hypotesen om at vendingen bæres av en senere replikk.",
+            "Dagens prøve antyder at romlig handling og pause kan ha flyttet publikums forståelse.",
+            "Ensemblet trenger presis oppfølging, men Samir eier hva som faktisk videreføres."
+          ],
+          "task_domain": "dramaturgi_og_scenisk_utvikling",
+          "competency": "proveromsobservasjon",
+          "pressure": "levende_prove_vs_for_tidlig_konklusjon",
+          "choice_axis": "observasjon_tolkning_og_ny_test_vs_reginotat_som_fasit",
+          "consequence_axis": "lærende_proveforlop_vs_frosset_tilfeldighet",
+          "narrative_arc": "proveobservasjon",
+          "situated_audience_id": "regissor_og_ensemble",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skill hendelse, tolkning og neste variasjon",
+              "reply": "Jeg beskriver den konkrete avstanden, pausen og publikumsrettede handlingen, merker vendepunktet som en tolkning og foreslår at neste prøve varierer bare pausen mens Samir avgjør om funnet skal bli del av regien.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "kunstnerisk_dialog",
+                "mandat"
+              ],
+              "feedback": "Ensemblet får et reproducerbart forsøk i stedet for en løs vurdering. Samir beholder beslutningsmandatet, og arbeidsboken kan senere vise om virkningen kom fra rom, tempo, replikk eller kombinasjonen, også dersom første observasjon ikke lar seg gjenta.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Registrer improvisasjonen som ny regibeslutning",
+              "reply": "Jeg skriver at vendepunktet nå er flyttet til pausen og sender notatet som gjeldende løsning, slik at ensemblet kan gjenta funnet konsekvent uten å bruke mer prøvetid på alternative forklaringer.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Prøven får retning, men et engangsfunn blir gjort til vedtak uten Samirs beslutning og uten kontroll av årsaken. Dersom virkningen skyldtes andre forhold, vil senere rework starte fra en falsk sikkerhet og ensemblet mister muligheten til å lære av variasjonen.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "dramaturgi_job_beslutningsversjon_004",
+          "mail_type": "job",
+          "mail_family": "dramaturgi_arbeidsbok",
+          "role_scope": "scenekunst_dramaturgi_og_utvikling",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 142,
+          "from": "Maja",
+          "people_ref": "maja_produksjonsleder",
+          "person_id": "maja_produksjonsleder",
+          "place_id": "produksjonsmote_og_beslutningsrom",
+          "subject": "Produksjonen trenger én versjon, men to beslutninger står åpne",
+          "summary": "Maja må sende tekst til lyd, kostyme og kommunikasjon, mens regissørens valg om korpartiet og rettighetsavklaringen for arkivsitatet fortsatt er åpne. Dramaturgens oppgave er å overlevere en beslutningsklar arbeidsbok med berørte sider, eiere, frister og reversible avgrensninger, ikke å skjule uavklarte punkter for å skape en pen fil.",
+          "situation": [
+            "Tekstversjon 06 inneholder både godkjente endringer og to tydelig merkede åpne spor.",
+            "Tre produksjonsfag trenger ulike deler av materialet og tåler ikke samme grad av usikkerhet.",
+            "Handoff må gjøre det mulig å arbeide videre uten å lese venting som godkjenning."
+          ],
+          "task_domain": "dramaturgi_og_scenisk_utvikling",
+          "competency": "versjonsstyring_og_handoff",
+          "pressure": "produksjonsfrist_vs_sann_beslutningsstatus",
+          "choice_axis": "avgrenset_overlevering_vs_falsk_sluttversjon",
+          "consequence_axis": "kontrollert_parallell_fremdrift_vs_dyr_rework",
+          "narrative_arc": "beslutningsversjon",
+          "situated_audience_id": "produksjon_og_institusjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Overlever godkjente deler og sperr de åpne sporene",
+              "reply": "Jeg utgir versjon 06a med side- og fagspesifikk status, lar lyd og kostyme arbeide på godkjente partier, sperrer programbruk av sitatet og navngir Samir og rettighetsansvarlig som eiere med frist.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "kunstnerisk_dialog",
+                "mandat"
+              ],
+              "feedback": "Maja kan planlegge reell fremdrift uten å late som hele teksten er lukket. Hvert fag ser hva som kan brukes, hva som kan bli rework og hvem som skal svare; senere endringer treffer avgrensede leveranser i stedet for å rive opp hele produksjonen.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Frys alle åpne punkter som produksjonsgodkjent",
+              "reply": "Jeg fjerner ventemarkeringene og sender versjon 06 som endelig, fordi et samlet dokument vil redusere spørsmål fra fagene og gi Maja den tydelige milepælen produksjonsplanen krever.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Fagene får én fil, men den blander godkjent tekst, uavklart regi og uløst rettighet. Når ett av punktene endres, fremstår rework som uforutsett selv om risikoen var kjent, og arbeidsboken kan ikke vise hvem som gjorde venting om til godkjenning.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

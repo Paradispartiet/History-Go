@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_dramaturgi_og_utvikling",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "dramaturgi_mandat_og_verk",
+      "purpose": "Gjør en reell verkstrid beslutningsbar uten at dramaturgen overtar kunstnerisk myndighet.",
+      "learning_focus": [
+        "analytisk_presisjon",
+        "kilde_og_versjonsspor",
+        "kunstnerisk_dialog",
+        "authority_and_rights_boundary",
+        "waiting_handoff_rework"
+      ],
+      "mails": [
+        {
+          "id": "dramaturgi_conflict_korparti_001",
+          "mail_type": "conflict",
+          "mail_family": "dramaturgi_mandat_og_verk",
+          "role_scope": "scenekunst_dramaturgi_og_utvikling",
+          "phase": "forenoon",
+          "day_phase": "morning",
+          "priority": 145,
+          "from": "Samir",
+          "people_ref": "samir_regissor",
+          "person_id": "samir_regissor",
+          "place_id": "provesal_og_observasjonsplass",
+          "subject": "Korpartiet splitter forfatterens og regissørens verkforståelse",
+          "summary": "Etter A/B-prøven mener Samir at koret må utvides, mens Liv mener det fratar hovedfiguren ansvar og krever ny tekst hun ikke har godkjent. Konflikten gjelder både scenisk virkning, verkspremiss og mandat. Dramaturgen må levere et etterprøvbart konsekvenskart og holde beslutningspunktene fra hverandre, ikke kåre en vinner.",
+          "situation": [
+            "A/B-prøven viser at koret øker tempoet, men også endrer hvem publikum oppfatter som ansvarlig.",
+            "Utvidelsen krever tekst Liv ikke har skrevet og prøveprioritering Samir eier.",
+            "Maja trenger å vite når en avgjørelse kan komme, men kan ikke løse den kunstneriske striden."
+          ],
+          "task_domain": "dramaturgi_og_scenisk_utvikling",
+          "competency": "konfliktanalyse_og_kunstnerisk_mandat",
+          "pressure": "produksjonsfrist_vs_reell_verkstrid",
+          "choice_axis": "delt_konsekvenskart_og_beslutningseiere_vs_dramaturgisk_dom",
+          "consequence_axis": "legitim_kunstnerisk_avgjorelse_vs_skjult_overtakelse",
+          "narrative_arc": "korparti",
+          "situated_audience_id": "regissor_og_ensemble",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skill tekstvalg, regivalg og produksjonsfrist",
+              "reply": "Jeg dokumenterer hva prøven viste for tempo og ansvar, ber Liv avgjøre om ny tekst kan utvikles, lar Samir eie prøveprioriteringen og gir Maja et eksplisitt ventepunkt med dato for samlet beslutning.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "kunstnerisk_dialog",
+                "mandat"
+              ],
+              "feedback": "Konflikten forsvinner ikke, men den blir mulig å løse uten at faglig autoritet brukes som snarvei. Hver part ser sin beslutning og den andres konsekvens, mens produksjonen kan planlegge rundt et sant ventepunkt og senere rekonstruere begrunnelsen.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Velg korutvidelsen som beste dramaturgiske løsning",
+              "reply": "Jeg slår fast at A/B-prøven beviser korets funksjon, ber Liv skrive utvidelsen og informerer Maja om at Samirs løsning nå er dramaturgisk anbefalt som produksjonsgrunnlag.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Fristen får et svar, men prøven brukes til å overkjøre forfatterrettighet og gjøre anbefaling til vedtak. Livs motforestilling blir feilaktig fremstilt som motstand mot evidens, og neste versjon bærer en mandatkonflikt arbeidsboken ikke lenger viser.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

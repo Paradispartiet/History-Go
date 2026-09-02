@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_dramaturgi_og_utvikling",
+  "mail_type": "micro",
+  "families": [
+    {
+      "id": "dramaturgi_presis_handoff",
+      "purpose": "Komprimer handoff uten å komprimere bort versjon, venting, eier eller sperre.",
+      "learning_focus": [
+        "analytisk_presisjon",
+        "kilde_og_versjonsspor",
+        "kunstnerisk_dialog",
+        "authority_and_rights_boundary",
+        "waiting_handoff_rework"
+      ],
+      "mails": [
+        {
+          "id": "dramaturgi_micro_tolv_minutters_handoff_001",
+          "mail_type": "micro",
+          "mail_family": "dramaturgi_presis_handoff",
+          "role_scope": "scenekunst_dramaturgi_og_utvikling",
+          "phase": "forenoon",
+          "day_phase": "morning",
+          "priority": 145,
+          "from": "Maja",
+          "people_ref": "maja_produksjonsleder",
+          "person_id": "maja_produksjonsleder",
+          "place_id": "produksjonsmote_og_beslutningsrom",
+          "subject": "Du har tolv minutter til å overlevere nattens nye versjon",
+          "summary": "Maja må sende en kort status til neste dags prøve før teamet går hjem. Mikrooppgaven er ikke å komprimere bort usikkerhet, men å levere minimumet som gjør versjonen trygg å bruke: identitet, berørt scene, hva som faktisk er besluttet, hva som fortsatt venter, hvem som eier svaret og hvilken handling som er forbudt i mellomtiden.",
+          "situation": [
+            "Versjon 06b erstatter bare scene fem og overgangen til scene seks.",
+            "Regigrep er godkjent for prøve, mens ny tekst og kildeformulering fortsatt venter.",
+            "Ensemblet trenger én kort beskjed som ikke kan misforstås som full sluttversjon."
+          ],
+          "task_domain": "dramaturgi_og_scenisk_utvikling",
+          "competency": "presis_mikrohandoff",
+          "pressure": "kort_tid_vs_full_sporbarhet",
+          "choice_axis": "seks_fakta_i_kort_status_vs_tvetydig_alt_er_nytt",
+          "consequence_axis": "trygg_neste_prove_vs_feil_versjon_og_rework",
+          "narrative_arc": "tolv_minutters_handoff",
+          "situated_audience_id": "produksjon_og_institusjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Send versjon, scope, status, eier, frist og sperre",
+              "reply": "Jeg sender at 06b bare gjelder scene fem og overgangen, at regigrepet kan prøves, at teksten venter på Liv, at kildelinjen eies av Ingrid til klokken ti, og at programbruk er sperret.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "kunstnerisk_dialog",
+                "mandat"
+              ],
+              "feedback": "Den korte meldingen bevarer alle forskjellene som faktisk styrer neste handling. Ensemblet kan åpne riktig dokument og prøve avtalt grep, mens ingen fyller ventingen med egen tekst eller offentlig bruk; full begrunnelse ligger fortsatt i arbeidsboken.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Send at ny versjon ligger klar til prøve",
+              "reply": "Jeg skriver bare at versjon 06b er den nye gjeldende filen og at alle bør bruke den i morgen, fordi detaljene kan forklares muntlig når teamet møtes.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Meldingen er rask, men gjør et delvis prøvedokument til generell godkjenning. Noen vil bruke ny scene, andre vil anta at resten også er endret, og den muntlige rettingen kommer etter at feil fil eller uavklart kilde allerede har skapt rework.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
