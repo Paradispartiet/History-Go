@@ -25,6 +25,23 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
+      - name: Prefetch Commons assets with backoff
+        run: |
+          set -euo pipefail
+          mkdir -p .cache/bogstadveien-completion
+          UA='History-Go-place-production/1.0 (https://github.com/Paradispartiet/History-Go)'
+          fetch_asset() {
+            url="$1"
+            output="$2"
+            curl -fL --retry 8 --retry-delay 5 --retry-max-time 180 --retry-all-errors \
+              -A "$UA" -o "$output" "$url"
+            test "$(stat -c%s "$output")" -gt 1000
+          }
+          fetch_asset 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Bogstadveien.jpg' '.cache/bogstadveien-completion/bogstadveien.jpg'
+          sleep 5
+          fetch_asset 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Bogstadveien%2037%20IV.jpg' '.cache/bogstadveien-completion/bogstadveien-37-iv.jpg'
+          sleep 5
+          fetch_asset 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Bogstadveien%2039.jpg' '.cache/bogstadveien-completion/bogstadveien-39.jpg'
       - name: Materialize Bogstadveien
         run: node tools/finalize-bogstadveien-completion.mjs
       - name: Build derived state
