@@ -78,6 +78,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'docs/CIVICATION_ROLE_PACK_INDEX.md';
+          fs.writeFileSync(file, fs.readFileSync(file, 'utf8').replace(/\n+$/, '\n'));
+          NODE
           git diff --check
           git status --short
 
