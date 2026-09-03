@@ -15,14 +15,14 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 
 ## Sammendrag
 
-- complete_reference_v2: 43
+- complete_reference_v2: 44
 - complete_reference: 0
 - playable_v1: 1
 - partial_pack: 23
 - role_model_only: 189
 - generated_stub: 0
 - broken_mapping: 0
-- missing: 40
+- missing: 39
 
 ## Rolleindeks
 
@@ -262,7 +262,7 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | scenekunst | scenekunst_dramaturgi_og_utvikling | scenekunst_dramaturgi_og_utvikling | Dramaturgi og utvikling | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | scenekunst | scenekunst_institusjonsledelse | scenekunst_institusjonsledelse | Institusjonsledelse | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | scenekunst | scenekunst_program_og_kuratering | scenekunst_program_og_kuratering | Program og kuratering | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
-| scenekunst | scenekunst_regi_og_koreografi |  | scenekunst_regi_og_koreografi | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
+| scenekunst | scenekunst_regi_og_koreografi | scenekunst_regi_og_koreografi | Regi og koreografi | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | scenekunst | scenekunst_scene_og_produksjon |  | scenekunst_scene_og_produksjon | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | scenekunst | scenekunst_utoving_og_ensemble |  | scenekunst_utoving_og_ensemble | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | sosial_laering | barnehageassistent | sosial_laering_barnehageassistent | Barnehageassistent / pedagogisk medarbeider | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |

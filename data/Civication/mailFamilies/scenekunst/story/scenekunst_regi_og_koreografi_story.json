@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_regi_og_koreografi",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "regi_ensemblehistorie",
+      "purpose": "Authored directing/choreography gameplay with persistent rehearsal state and bounded authority.",
+      "learning_focus": [
+        "scenisk_komposisjon",
+        "ensemble_og_bevegelse",
+        "samtykke_og_hms",
+        "teknisk_integrasjon",
+        "versjon_handoff_og_rework"
+      ],
+      "mails": [
+        {
+          "id": "regi_ensemble_010",
+          "mail_type": "story",
+          "mail_family": "regi_ensemblehistorie",
+          "role_scope": "scenekunst_regi_og_koreografi",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 141,
+          "from": "Signe",
+          "people_ref": "signe_inspisient",
+          "person_id": "signe_inspisient",
+          "place_id": "gjennomlop_og_notebord",
+          "subject": "En stille utøver har sluttet å melde fra fordi noter endres før oppfølging",
+          "summary": "Prøveromsboken viser flere uavsluttede noter på samme person uten effektkontroll. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår.",
+          "situation": [
+            "Prøveromsboken viser flere uavsluttede noter på samme person uten effektkontroll.",
+            "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+            "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+          ],
+          "task_domain": "scenekunst_regi_og_koreografi",
+          "competency": "ensemblelaering",
+          "pressure": "kunstnerisk_intensjon_vs_sporbar_grense_og_versjon",
+          "choice_axis": "prøvbar_og_sporbar_rework_vs_skjult_lasing",
+          "consequence_axis": "baerekraftig_scenisk_utvikling_vs_tillit_sikkerhet_og_versjonsgjeld",
+          "narrative_arc": "ensemble_010",
+          "situated_audience_id": "proverom_ensemble_og_teknikk",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sporbar ensemblelaering før låsing",
+              "reply": "Velg én tidligere note, avklar hva dere observerer og lukk eller revider den før nye noter. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "samtykke",
+                "scenisk_arbeid"
+              ],
+              "feedback": "Velg én tidligere note, avklar hva dere observerer og lukk eller revider den før nye noter. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lås ensemblelaering uten full retest",
+              "reply": "Gi en ny mer presis note nå og betrakt de tidligere som erstattet. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer.",
+              "effect": -1,
+              "tags": [
+                "mandatglidning",
+                "versjonsgjeld",
+                "risiko"
+              ],
+              "feedback": "Gi en ny mer presis note nå og betrakt de tidligere som erstattet. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
