@@ -1,0 +1,152 @@
+{
+  "schema": "history_go_canonical_subcategory_production_registry_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-09-03",
+  "owner_subject_id": "natur",
+  "canonical_subcategory_id": "geologi_jordvitenskap",
+  "label": "Geologi & jordvitenskap",
+  "status": "strict_completion_proven",
+  "source_registry": "data/fag/natur/geologi_jordvitenskap/source_registry_v1.json",
+  "progress": {
+    "materializedDomains": 12,
+    "totalDomains": 12,
+    "strictCompletionProven": true
+  },
+  "rules": {
+    "subcategory_is_not_top_level_subject": true,
+    "existing_owner_content_is_not_moved_or_deleted": true,
+    "reuse_requires_explicit_strict_upgrade": true,
+    "secondary_links_do_not_count_as_materialized": true,
+    "source_brief_does_not_count_as_materialized": true,
+    "complete_requires_all_domains_and_strict_proof": true,
+    "solid_earth_scope_required": true,
+    "observation_inference_boundary_required": true,
+    "relative_absolute_age_boundary_required": true,
+    "map_model_outcrop_boundary_required": true,
+    "sampling_and_detection_limits_required": true,
+    "geografi_surface_boundary_required": true
+  },
+  "reuse": {
+    "legacy_chapters": [
+      "data/fagverk/natur/geologi_landskap_tid.json",
+      "data/fagverk/natur/geologi_naturhistorie_v5_3.json"
+    ],
+    "geografi_boundary_chapters": [
+      "data/fagverk/natur/geografi/geomorfologi-landskap-og-jordsystemer.json",
+      "data/fagverk/natur/geografi/klima-vaer-klimasoner-og-endring.json",
+      "data/fagverk/natur/geografi/hydrologi-hav-kryosfaere-og-vassdrag.json",
+      "data/fagverk/natur/geografi/naturfare-risiko-saarbarhet-planlegging-og-tilpasning.json"
+    ],
+    "legacy_subject_id": "natur",
+    "legacy_preserved": true,
+    "strict_upgrade_domain_ids": [
+      "mineralogi_krystallografi_materialegenskaper",
+      "petrologi_magmatisk_metamorf_sedimentaer",
+      "platetektonikk_deformasjon_strukturgeologi",
+      "vulkanisme_magmatisme_geotermiske_systemer",
+      "sedimentologi_bassenger_avsetningsmiljo",
+      "stratigrafi_geokronologi_dyp_tid",
+      "paleontologi_fossiler_biostratigrafi",
+      "feltgeologi_kartlegging_provetaking_geodata_usikkerhet"
+    ]
+  },
+  "next_gate": "maintenance_source_refresh_field_lab_case_expansion",
+  "materialized": [
+    {
+      "ordinal": 1,
+      "domain_id": "mineralogi_krystallografi_materialegenskaper",
+      "slug": "mineralogi-krystallografi-materialegenskaper",
+      "chapter": "data/fagverk/natur/geologi_jordvitenskap/mineralogi-krystallografi-materialegenskaper.json",
+      "legacy_source": "data/fagverk/natur/geologi_naturhistorie_v5_3.json",
+      "audit": "reports/fagverk/geologi-jordvitenskap-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 2,
+      "domain_id": "petrologi_magmatisk_metamorf_sedimentaer",
+      "slug": "petrologi-magmatisk-metamorf-sedimentaer",
+      "chapter": "data/fagverk/natur/geologi_jordvitenskap/petrologi-magmatisk-metamorf-sedimentaer.json",
+      "legacy_source": "data/fagverk/natur/geologi_naturhistorie_v5_3.json",
+      "audit": "reports/fagverk/geologi-jordvitenskap-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 3,
+      "domain_id": "jordas_indre_seismologi_geofysikk",
+      "slug": "jordas-indre-seismologi-geofysikk",
+      "chapter": "data/fagverk/natur/geologi_jordvitenskap/jordas-indre-seismologi-geofysikk.json",
+      "legacy_source": null,
+      "audit": "reports/fagverk/geologi-jordvitenskap-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 4,
+      "domain_id": "platetektonikk_deformasjon_strukturgeologi",
+      "slug": "platetektonikk-deformasjon-strukturgeologi",
+      "chapter": "data/fagverk/natur/geologi_jordvitenskap/platetektonikk-deformasjon-strukturgeologi.json",
+      "legacy_source": "data/fagverk/natur/geologi_naturhistorie_v5_3.json",
+      "audit": "reports/fagverk/geologi-jordvitenskap-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 5,
+      "domain_id": "vulkanisme_magmatisme_geotermiske_systemer",
+      "slug": "vulkanisme-magmatisme-geotermiske-systemer",
+      "chapter": "data/fagverk/natur/geologi_jordvitenskap/vulkanisme-magmatisme-geotermiske-systemer.json",
+      "legacy_source": "data/fagverk/natur/geologi_naturhistorie_v5_3.json",
+      "audit": "reports/fagverk/geologi-jordvitenskap-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 6,
+      "domain_id": "jordskjelv_forkastninger_seismisk_fare",
+      "slug": "jordskjelv-forkastninger-seismisk-fare",
+      "chapter": "data/fagverk/natur/geologi_jordvitenskap/jordskjelv-forkastninger-seismisk-fare.json",
+      "legacy_source": null,
+      "audit": "reports/fagverk/geologi-jordvitenskap-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 7,
+      "domain_id": "sedimentologi_bassenger_avsetningsmiljo",
+      "slug": "sedimentologi-bassenger-avsetningsmiljo",
+      "chapter": "data/fagverk/natur/geologi_jordvitenskap/sedimentologi-bassenger-avsetningsmiljo.json",
+      "legacy_source": "data/fagverk/natur/geologi_landskap_tid.json",
+      "audit": "reports/fagverk/geologi-jordvitenskap-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 8,
+      "domain_id": "stratigrafi_geokronologi_dyp_tid",
+      "slug": "stratigrafi-geokronologi-dyp-tid",
+      "chapter": "data/fagverk/natur/geologi_jordvitenskap/stratigrafi-geokronologi-dyp-tid.json",
+      "legacy_source": "data/fagverk/natur/geologi_naturhistorie_v5_3.json",
+      "audit": "reports/fagverk/geologi-jordvitenskap-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 9,
+      "domain_id": "paleontologi_fossiler_biostratigrafi",
+      "slug": "paleontologi-fossiler-biostratigrafi",
+      "chapter": "data/fagverk/natur/geologi_jordvitenskap/paleontologi-fossiler-biostratigrafi.json",
+      "legacy_source": "data/fagverk/natur/geologi_naturhistorie_v5_3.json",
+      "audit": "reports/fagverk/geologi-jordvitenskap-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 10,
+      "domain_id": "geokjemi_isotoper_jordmaterialer",
+      "slug": "geokjemi-isotoper-jordmaterialer",
+      "chapter": "data/fagverk/natur/geologi_jordvitenskap/geokjemi-isotoper-jordmaterialer.json",
+      "legacy_source": null,
+      "audit": "reports/fagverk/geologi-jordvitenskap-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 11,
+      "domain_id": "ressursgeologi_malmer_mineraler_grunnvann",
+      "slug": "ressursgeologi-malmer-mineraler-grunnvann",
+      "chapter": "data/fagverk/natur/geologi_jordvitenskap/ressursgeologi-malmer-mineraler-grunnvann.json",
+      "legacy_source": null,
+      "audit": "reports/fagverk/geologi-jordvitenskap-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 12,
+      "domain_id": "feltgeologi_kartlegging_provetaking_geodata_usikkerhet",
+      "slug": "feltgeologi-kartlegging-provetaking-geodata-usikkerhet",
+      "chapter": "data/fagverk/natur/geologi_jordvitenskap/feltgeologi-kartlegging-provetaking-geodata-usikkerhet.json",
+      "legacy_source": "data/fagverk/natur/geologi_landskap_tid.json",
+      "audit": "reports/fagverk/geologi-jordvitenskap-strict-v1-audit.json"
+    }
+  ]
+}
