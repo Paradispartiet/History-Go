@@ -35,22 +35,23 @@ jobs:
           const context = quiz.production_context;
           if (!context || context.standard_version !== '3.3') throw new Error('Expected Ullevål Hageby quiz production_context standard 3.3');
           const questions = (quiz.sets || []).flatMap((set) => set.questions || []);
-          const theoryQuestion = questions.find((question) => question.id === 'ullevål_hageby_quiz_25');
-          if (!theoryQuestion) throw new Error('Missing Ullevål Hageby theory question 25');
-          if (theoryQuestion.emne_id !== 'em_by_boligstruktur') throw new Error(`Unexpected q25 emne_id: ${theoryQuestion.emne_id}`);
-          theoryQuestion.topic_hook_id = 'bolig_boligtyper';
-          theoryQuestion.thinker_id = 'david_harvey';
-          theoryQuestion.work = 'Rebel Cities';
+          const theoryQuestion = questions.find((question) => question.id === 'ullevål_hageby_quiz_27');
+          if (!theoryQuestion) throw new Error('Missing Ullevål Hageby theory question 27');
+          if (theoryQuestion.emne_id !== 'em_by_boligpolitikk_affordability') throw new Error(`Unexpected q27 emne_id: ${theoryQuestion.emne_id}`);
+          theoryQuestion.topic_hook_id = 'boligpolitikk_affordability';
+          theoryQuestion.thinker_id = 'susan_fainstein';
+          theoryQuestion.work = 'The Just City';
           theoryQuestion.theory_ref = {
-            topic_hook_id: 'bolig_boligtyper',
-            thinker_id: 'david_harvey',
-            work: 'Rebel Cities',
-            why_it_helps: 'Boligtypeperspektivet kobler hagebyens planlagte boligform til hvordan boligstruktur organiserer tilgang, hverdagsrom og byutvikling.'
+            topic_hook_id: 'boligpolitikk_affordability',
+            thinker_id: 'susan_fainstein',
+            work: 'The Just City',
+            why_it_helps: 'Fainsteins perspektiv på den rettferdige byen gjør det mulig å analysere spenningen mellom sosial boligambisjon og faktisk tilgang uten å erstatte de stedsspesifikke kildene.'
           };
+          theoryQuestion.guidance_basis = ['data/fag/by/fagkart_by.json'];
           const addUnique = (values, value) => [...new Set([...(Array.isArray(values) ? values : []), value])];
-          context.topic_hook_ids = addUnique(context.topic_hook_ids, 'bolig_boligtyper');
-          context.thinker_ids = addUnique(context.thinker_ids, 'david_harvey');
-          context.works = addUnique(context.works, 'Rebel Cities');
+          context.topic_hook_ids = addUnique(context.topic_hook_ids, 'boligpolitikk_affordability');
+          context.thinker_ids = addUnique(context.thinker_ids, 'susan_fainstein');
+          context.works = addUnique(context.works, 'The Just City');
           for (const field of ['existing_quiz_audit', 'profile_decision', 'held_back_candidates']) {
             if (context[field] === undefined) throw new Error(`Quiz production_context.${field} missing`);
             brief[field] = context[field];
