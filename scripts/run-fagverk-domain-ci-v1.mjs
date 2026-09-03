@@ -12,6 +12,7 @@ const REGISTRY_PATHS = Object.freeze({
   utdanning: ".github/ci/fagverk-utdanning-domain-registry-v1.json",
   sosiologi_antropologi: ".github/ci/fagverk-sosiologi-antropologi-domain-registry-v1.json",
   geografi: ".github/ci/fagverk-geografi-domain-registry-v1.json",
+  biologi: ".github/ci/fagverk-biologi-domain-registry-v1.json",
   sprak_lingvistikk: ".github/ci/fagverk-sprak-lingvistikk-domain-registry-v1.json",
   juss_rettsvitenskap: ".github/ci/fagverk-juss-rettsvitenskap-domain-registry-v1.json",
   fysikk: ".github/ci/fagverk-fysikk-domain-registry-v1.json",
