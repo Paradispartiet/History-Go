@@ -1,19 +1,800 @@
 # People invalid place refs audit
 
-Generated: 2026-07-25T10:42:13.691Z
+Generated: 2026-09-03T05:35:01.737Z
 
 ## Sammendrag
-- People-filer lest: **730**
-- People lest: **1365**
-- People med ugyldige refs: **0**
-- Ugyldige refs: **0**
-- Unike ugyldige placeId-er: **0**
+- People-filer lest: **768**
+- People lest: **1430**
+- People med ugyldige refs: **62**
+- Ugyldige refs: **340**
+- Unike ugyldige placeId-er: **116**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **1365**
+- Duplikate interne place-referanser: **1483**
 
 ## Ugyldige refs gruppert per fil/person
+### data/people/by/oslo/gamle_radhus/lars_backer.json
+- **lars_backer** (Lars Backer)
+  - Christiania @ `works[0].place`
+### data/people/by/oslo/people_by_oslo.json
+- **arnstein_arneberg** (Arnstein Arneberg)
+  - Akershus festning, Oslo @ `works[4].place`
+  - Asker @ `works[3].place`
+  - Bygdøy, Oslo @ `works[2].place`
+  - FN-bygningen, New York @ `works[5].place`
+  - Kongens gate, Oslo @ `works[1].place`
+  - Madserud, Oslo @ `works[6].place`
+  - Oslo @ `works[0].place`
+- **magnus_poulsson** (Magnus Poulsson)
+  - Oslo @ `works[0].place`
+  - Oslo @ `works[1].place`
+  - Oslo @ `works[2].place`
+  - Sagene, Oslo @ `works[3].place`
+  - Sandvika @ `works[4].place`
+  - Stortingsgata, Oslo @ `works[5].place`
+  - Våler i Solør @ `works[6].place`
+- **henrik_bull** (Henrik Bull)
+  - Freia, Kristiania @ `works[5].place`
+  - Frogner, Kristiania @ `works[6].place`
+  - Grünerløkka, Oslo @ `works[0].place`
+  - Nobels gate, Oslo @ `works[4].place`
+  - Regjeringskvartalet, Oslo @ `works[3].place`
+  - Studenterlunden, Oslo @ `works[1].place`
+  - Tullinløkka, Oslo @ `works[2].place`
+- **harald_aars** (Harald Aars)
+  - Oslo @ `works[0].place`
+  - Oslo @ `works[1].place`
+  - Oslo @ `works[2].place`
+  - Oslo @ `works[3].place`
+  - Oslo @ `works[4].place`
+  - Stensparken, Oslo @ `works[5].place`
+- **albert_nordengen** (Albert Nordengen)
+  - Holmenkollen @ `works[4].place`
+  - Oslo @ `works[2].place`
+  - Oslo @ `works[6].place`
+  - Oslo @ `works[7].place`
+  - Oslo rådhus @ `works[0].place`
+  - Oslo rådhus @ `works[1].place`
+  - Oslo sentrum @ `works[5].place`
+  - Oslofjorden @ `works[3].place`
+- **hagbarth_schytte_berg** (Hagbarth Schytte-Berg)
+  - Oslo @ `works[3].place`
+  - Skien @ `works[0].place`
+  - Skien @ `works[1].place`
+  - Stensparken, Oslo @ `works[2].place`
+  - Trondheim @ `works[5].place`
+  - Ålesund @ `works[4].place`
+### data/people/historie/oslo/botsfengselet/frederik_holst.json
+- **frederik_holst** (Frederik Holst)
+  - Christiania @ `works[0].place`
+### data/people/historie/oslo/oslo_hospital/herman_wedel_major.json
+- **herman_wedel_major** (Herman Wedel Major)
+  - Norge @ `works[0].place`
+### data/people/historie/oslo/people_historie_oslo.json
+- **jens_bjelke** (Jens Bjelke)
+  - Akershus festning @ `works[5].place`
+  - Den gamle Krigsskolen, Oslo @ `works[3].place`
+### data/people/kunst/oslo/norske_grafikere/johan_nordhagen.json
+- **johan_nordhagen** (Johan Nordhagen)
+  - Kristiania @ `works[0].place`
+### data/people/kunst/oslo/people_kunst_oslo.json
+- **kjersti_wexelsen_goksoyr** (Kjersti Wexelsen Goksøyr)
+  - Borg videregående skole, Sarpsborg @ `works[1].place`
+  - Erkebispegården, Trondheim @ `works[5].place`
+  - Luftforsvarets høgskole, Stavern @ `works[2].place`
+  - Stensparken, Oslo @ `works[0].place`
+  - Suldal kommune @ `works[4].place`
+  - Utenriksdepartementets kunstsamling @ `works[3].place`
+- **henrik_sorensen** (Henrik Sørensen)
+  - Bergen Kunstmuseum @ `works[0].place`
+  - FN i Genève @ `works[3].place`
+  - Hamar domkirke @ `works[6].place`
+  - Holmsbu Billedgalleri @ `works[2].place`
+  - Holmsbu Billedgalleri @ `works[5].place`
+  - Nasjonalmuseet @ `works[1].place`
+  - Rådhushallen, Oslo @ `works[4].place`
+- **alf_rolfsen** (Alf Rolfsen)
+  - Det kongelige slott @ `works[5].place`
+  - Hansa-salen, Bergen @ `works[6].place`
+  - Haugesund rådhus @ `works[4].place`
+  - Oslo @ `works[0].place`
+  - Oslo @ `works[2].place`
+  - Oslo Håndverks- og Industriforening @ `works[1].place`
+  - Rådhushallen, Oslo @ `works[3].place`
+- **per_barclay** (Per Barclay)
+  - Henie Onstad Kunstsenter @ `works[4].place`
+  - Nasjonalmuseets samling @ `works[0].place`
+  - Redwood Library & Athenæum, USA @ `works[2].place`
+  - Stensparken, Oslo @ `works[3].place`
+- **jo_visdal** (Jo Visdal)
+  - Eidsvollsbygningen @ `works[5].place`
+  - Fagerborg kirke, Stensparken @ `works[3].place`
+  - Nasjonalmuseet og MUNCH @ `works[0].place`
+  - Nasjonalmuseet og Nationaltheatret @ `works[1].place`
+  - Nationaltheatret, Oslo @ `works[2].place`
+  - Norske mynter @ `works[4].place`
+- **lars_utne** (Lars Utne)
+  - Fagerborg kirke, Stensparken @ `works[2].place`
+  - Harald Hårdrådes plass, Oslo @ `works[3].place`
+  - Historisk museum, Oslo @ `works[1].place`
+  - Nasjonalmuseet @ `works[5].place`
+  - Nationaltheatret, Oslo @ `works[0].place`
+  - Norges Bank, Bankplassen @ `works[4].place`
+- **miksa_roth** (Miksa Róth)
+  - Budapest @ `works[0].place`
+  - Budapest @ `works[3].place`
+  - Budapest @ `works[5].place`
+  - Fagerborg kirke, Stensparken @ `works[1].place`
+  - Musikkakademiet, Budapest @ `works[2].place`
+  - Târgu Mureș, Romania @ `works[4].place`
+### data/people/kunst/oslo/skulptursonen_ovre_slottsgate/vibeke_tandberg.json
+- **vibeke_tandberg** (Vibeke Tandberg)
+  - Skulptursonen i Øvre Slottsgate @ `works[0].place`
+### data/people/litteratur/oslo/nationaltheatret/agnes_mowinckel.json
+- **agnes_mowinckel** (Agnes Mowinckel)
+  - Den Nationale Scene, Bergen @ `works[0].place`
+  - Det Norske Teatret @ `works[2].place`
+  - Det Norske Teatret @ `works[3].place`
+  - Folketeatret @ `works[4].place`
+  - Intimteatret, Kristiania @ `works[1].place`
+### data/people/litteratur/oslo/nationaltheatret/alfred_maurstad.json
+- **alfred_maurstad** (Alfred Maurstad)
+  - Det Norske Teatret @ `works[0].place`
+  - Det Norske Teatret @ `works[1].place`
+  - Det Norske Teatret @ `works[7].place`
+  - Nationaltheatret @ `works[2].place`
+  - Nationaltheatret @ `works[6].place`
+  - Norsk spillefilm @ `works[3].place`
+  - Norsk spillefilm @ `works[4].place`
+  - Norsk spillefilm @ `works[5].place`
+### data/people/litteratur/oslo/nationaltheatret/anders_mordal.json
+- **anders_mordal** (Anders Mordal)
+  - Den Nationale Scene @ `works[1].place`
+  - Nationaltheatret @ `works[2].place`
+  - Nationaltheatret @ `works[6].place`
+  - Nationaltheatret @ `works[7].place`
+  - Nationaltheatret / Torshovteatret @ `works[5].place`
+  - Norsk spillefilm @ `works[0].place`
+  - NRK @ `works[3].place`
+  - Trøndelag Teater @ `works[4].place`
+### data/people/litteratur/oslo/nationaltheatret/andrea_braein_hovig.json
+- **andrea_braein_hovig** (Andrea Bræin Hovig)
+  - Nationaltheatret @ `works[0].place`
+  - Nationaltheatret @ `works[1].place`
+  - Nationaltheatret @ `works[2].place`
+  - Nationaltheatret @ `works[3].place`
+### data/people/litteratur/oslo/nationaltheatret/andrine_saether.json
+- **andrine_saether** (Andrine Sæther)
+  - Nationaltheatret @ `works[0].place`
+  - Nationaltheatret @ `works[1].place`
+  - Nationaltheatret @ `works[2].place`
+  - Nationaltheatret @ `works[4].place`
+  - Nationaltheatret @ `works[5].place`
+  - Nationaltheatret @ `works[6].place`
+  - Nationaltheatret @ `works[7].place`
+  - Nationaltheatret @ `works[8].place`
+  - Nationaltheatret / Torshovteatret @ `works[3].place`
+### data/people/litteratur/oslo/nationaltheatret/anne_krigsvoll.json
+- **anne_krigsvoll** (Anne Krigsvoll)
+  - Fjernsynsteatret @ `works[2].place`
+  - Nationaltheatret @ `works[0].place`
+  - Nationaltheatret @ `works[1].place`
+  - Nationaltheatret @ `works[3].place`
+  - Nationaltheatret @ `works[5].place`
+  - Nationaltheatret @ `works[6].place`
+  - Nationaltheatret @ `works[7].place`
+  - Oslo Nye Teater @ `works[4].place`
+### data/people/litteratur/oslo/nationaltheatret/anne_marie_ottersen.json
+- **anne_marie_ottersen** (Anne Marie Ottersen)
+  - Det Norske Teatret / NRK Fjernsynsteatret @ `works[7].place`
+  - Nationaltheatret @ `works[0].place`
+  - Nationaltheatret @ `works[1].place`
+  - Nationaltheatret @ `works[3].place`
+  - Nationaltheatret @ `works[8].place`
+  - Nationaltheatret / turné @ `works[2].place`
+  - Norsk spillefilm @ `works[4].place`
+  - Norsk spillefilm @ `works[6].place`
+  - Oslo Nye Teater @ `works[5].place`
+### data/people/litteratur/oslo/nationaltheatret/anne_marit_jacobsen.json
+- **anne_marit_jacobsen** (Anne Marit Jacobsen)
+  - Centralteatret @ `works[9].place`
+  - Det Norske Teatret @ `works[10].place`
+  - Nationaltheatret @ `works[0].place`
+  - Nationaltheatret @ `works[11].place`
+  - Nationaltheatret @ `works[2].place`
+  - Nationaltheatret @ `works[5].place`
+  - Nationaltheatret @ `works[6].place`
+  - Nationaltheatret @ `works[7].place`
+  - Nationaltheatret @ `works[8].place`
+  - NRK Fjernsynsteatret @ `works[1].place`
+  - Oslo Nye Teater – Hovedscenen @ `works[4].place`
+  - Torshovteatret @ `works[3].place`
+### data/people/litteratur/oslo/nationaltheatret/anneke_von_der_lippe.json
+- **anneke_von_der_lippe** (Anneke von der Lippe)
+  - Det Norske Teatret @ `works[0].place`
+  - Det Norske Teatret @ `works[1].place`
+  - Det Norske Teatret @ `works[2].place`
+  - Det Norske Teatret @ `works[3].place`
+  - Det Norske Teatret @ `works[4].place`
+  - Nationaltheatret @ `works[5].place`
+  - Nationaltheatret @ `works[6].place`
+  - Nationaltheatret @ `works[7].place`
+  - Nationaltheatret @ `works[8].place`
+  - Nationaltheatret @ `works[9].place`
+  - NRK @ `works[10].place`
+### data/people/litteratur/oslo/nationaltheatret/anton_ronneberg.json
+- **anton_ronneberg** (Anton Rønneberg)
+  - Aftenposten @ `works[5].place`
+  - Bokutgivelse @ `works[6].place`
+  - Bokutgivelse @ `works[7].place`
+  - Bokutgivelse @ `works[9].place`
+  - Middagsavisen @ `works[1].place`
+  - Morgenbladet @ `works[2].place`
+  - Nationaltheatret @ `works[10].place`
+  - Nationaltheatret @ `works[3].place`
+  - Nationaltheatret @ `works[4].place`
+  - Nationaltheatret @ `works[8].place`
+  - Norges Kommunistblad @ `works[0].place`
+### data/people/litteratur/oslo/nationaltheatret/arild_brinchmann.json
+- **arild_brinchmann** (Arild Brinchmann)
+  - Det Norske Flyktningeråd @ `works[0].place`
+  - Nationaltheatret @ `works[10].place`
+  - Nationaltheatret @ `works[11].place`
+  - Nationaltheatret @ `works[12].place`
+  - Nationaltheatret @ `works[4].place`
+  - Nationaltheatret @ `works[5].place`
+  - Nationaltheatret @ `works[6].place`
+  - Nationaltheatret @ `works[7].place`
+  - Nationaltheatret @ `works[9].place`
+  - Nationaltheatret og Fagerborg skole @ `works[8].place`
+  - Norsk Film A/S @ `works[2].place`
+  - Norsk filmproduksjon @ `works[1].place`
+  - NRK Fjernsynsteatret @ `works[3].place`
+### data/people/litteratur/oslo/nationaltheatret/august_oddvar.json
+- **august_oddvar** (August Oddvar)
+  - Nationaltheatret @ `works[0].place`
+  - Nationaltheatret @ `works[1].place`
+  - Nationaltheatret @ `works[2].place`
+  - Nationaltheatret @ `works[3].place`
+  - Nationaltheatret @ `works[4].place`
+  - Nationaltheatret @ `works[5].place`
+  - Nationaltheatret @ `works[6].place`
+  - Nationaltheatret @ `works[7].place`
+### data/people/litteratur/oslo/nationaltheatret/axel_otto_normann.json
+- **axel_otto_normann** (Axel Otto Normann)
+  - Nationaltheatret @ `works[0].place`
+  - Nationaltheatret @ `works[1].place`
+### data/people/litteratur/oslo/nationaltheatret/bab_christensen.json
+- **bab_christensen** (Bab Christensen)
+  - Nationaltheatret @ `works[0].place`
+  - Nationaltheatret @ `works[1].place`
+  - Nationaltheatret @ `works[2].place`
+### data/people/litteratur/oslo/nationaltheatret/bente_borsum.json
+- **bente_borsum** (Bente Børsum)
+  - Nationaltheatret @ `works[0].place`
+  - Nationaltheatret @ `works[1].place`
+  - Nationaltheatret @ `works[2].place`
+### data/people/litteratur/oslo/nationaltheatret/bjarte_hjelmeland.json
+- **bjarte_hjelmeland** (Bjarte Hjelmeland)
+  - Hovedscenen, Nationaltheatret @ `works[1].place`
+  - Malersalen, Nationaltheatret @ `works[0].place`
+  - Torshovteatret, Nationaltheatret @ `works[2].place`
+### data/people/litteratur/oslo/nationaltheatret/bjorn_bjornson.json
+- **bjorn_bjornson** (Bjørn Bjørnson)
+  - Christiania Theater @ `works[1].place`
+  - Christiania Theater @ `works[4].place`
+  - Nationaltheatret @ `works[2].place`
+  - Nationaltheatret @ `works[3].place`
+  - Nationaltheatret @ `works[5].place`
+  - Nationaltheatret @ `works[6].place`
+  - Sachsen-Meiningens selskap @ `works[0].place`
+  - Skandinaviske og tyskspråklige scener @ `works[7].place`
+### data/people/litteratur/oslo/nationaltheatret/bjorn_saether.json
+- **bjorn_saether** (Bjørn Sæter)
+  - Torshovteatret, Nationaltheatret @ `works[0].place`
+  - Torshovteatret, Nationaltheatret @ `works[1].place`
+  - Torshovteatret, Nationaltheatret @ `works[2].place`
+  - Torshovteatret, Nationaltheatret @ `works[3].place`
+### data/people/litteratur/oslo/nationaltheatret/bjorn_skagestad.json
+- **bjorn_skagestad** (Bjørn Skagestad)
+  - Nationaltheatret @ `works[0].place`
+  - Nationaltheatret @ `works[1].place`
+  - Nationaltheatret @ `works[2].place`
+  - Nationaltheatret @ `works[3].place`
+### data/people/litteratur/oslo/nationaltheatret/carl_fredrik_engelstad.json
+- **carl_fredrik_engelstad** (Carl Fredrik Engelstad)
+  - Det Norske Teatret @ `works[3].place`
+  - Nationaltheatret @ `works[0].place`
+  - Nationaltheatret @ `works[1].place`
+  - Nationaltheatret @ `works[2].place`
+### data/people/litteratur/oslo/nationaltheatret/charles_marowitz.json
+- **charles_marowitz** (Charles Marowitz)
+  - Den Nationale Scene @ `works[1].place`
+  - Hovedscenen, Nationaltheatret @ `works[0].place`
+  - Oslo Nye Teater @ `works[2].place`
+### data/people/litteratur/oslo/nationaltheatret/david_knudsen.json
+- **david_knudsen** (David Knudsen)
+  - Nationaltheatret @ `works[0].place`
+  - Nationaltheatret @ `works[1].place`
+  - Nationaltheatret @ `works[2].place`
+### data/people/litteratur/oslo/nationaltheatret/edith_roger.json
+- **edith_roger** (Edith Roger)
+  - Hovedscenen, Nationaltheatret @ `works[0].place`
+  - Hovedscenen, Nationaltheatret @ `works[1].place`
+  - Hovedscenen, Nationaltheatret @ `works[2].place`
+  - Hovedscenen, Nationaltheatret @ `works[3].place`
+### data/people/litteratur/oslo/nationaltheatret/egil_eide.json
+- **egil_eide** (Egil Næss Eide)
+  - Den Nationale Scene @ `works[0].place`
+  - Nationaltheatret @ `works[1].place`
+  - Nationaltheatret @ `works[2].place`
+  - Nationaltheatret @ `works[3].place`
+  - Nationaltheatret @ `works[4].place`
+  - Nationaltheatret @ `works[6].place`
+  - Sverige @ `works[5].place`
+### data/people/litteratur/oslo/nationaltheatret/einar_skavlan.json
+- **einar_skavlan** (Einar Skavlan)
+  - Nationaltheatret @ `works[0].place`
+  - Norge @ `works[1].place`
+  - Norge @ `works[2].place`
+### data/people/litteratur/oslo/nationaltheatret/eindride_eidsvold.json
+- **eindride_eidsvold** (Eindride Eidsvold)
+  - Amfiscenen, Nationaltheatret @ `works[1].place`
+  - Hovedscenen, Nationaltheatret @ `works[0].place`
+  - Hovedscenen, Nationaltheatret @ `works[2].place`
+### data/people/litteratur/oslo/nationaltheatret/eirik_stubo.json
+- **eirik_stubo** (Eirik Stubø)
+  - Amfiscenen, Nationaltheatret @ `works[1].place`
+  - Hovedscenen, Nationaltheatret @ `works[2].place`
+  - Torshovteatret / National på Torshov @ `works[0].place`
+### data/people/litteratur/oslo/nationaltheatret/ella_hval.json
+- **ella_hval** (Ella Hval)
+  - Hovedscenen, Nationaltheatret @ `works[0].place`
+  - Hovedscenen, Nationaltheatret @ `works[1].place`
+  - Hovedscenen, Nationaltheatret @ `works[2].place`
+### data/people/litteratur/oslo/nationaltheatret/ellen_horn.json
+- **ellen_horn** (Ellen Horn)
+  - Amfiscenen, Nationaltheatret @ `works[2].place`
+  - Hovedscenen, Nationaltheatret @ `works[0].place`
+  - Hovedscenen, Nationaltheatret @ `works[1].place`
+### data/people/litteratur/oslo/nationaltheatret/gerd_grieg.json
+- **gerd_grieg** (Gerd Grieg)
+  - Nationaltheatret @ `works[0].place`
+  - Nationaltheatret @ `works[2].place`
+  - Nationaltheatret @ `works[3].place`
+  - Nationaltheatret @ `works[4].place`
+  - Nationaltheatret @ `works[5].place`
+  - Nationaltheatret @ `works[6].place`
+  - Nationaltheatret @ `works[7].place`
+  - Norsk spillefilm @ `works[1].place`
+### data/people/litteratur/oslo/nationaltheatret/halfdan_christensen.json
+- **halfdan_christensen** (Halfdan Christensen)
+  - Den Nationale Scene @ `works[0].place`
+  - Nationaltheatret @ `works[1].place`
+  - Nationaltheatret @ `works[2].place`
+  - Nationaltheatret @ `works[3].place`
+  - Nationaltheatret @ `works[4].place`
+  - Nationaltheatret @ `works[5].place`
+  - Nationaltheatret @ `works[6].place`
+  - Sverige @ `works[7].place`
+### data/people/litteratur/oslo/nationaltheatret/johanne_dybwad.json
+- **johanne_dybwad** (Johanne Dybwad)
+  - Den Nationale Scene og Christiania Theater @ `works[0].place`
+  - Nationaltheatret @ `works[1].place`
+  - Nationaltheatret @ `works[2].place`
+  - Nationaltheatret @ `works[3].place`
+  - Nationaltheatret @ `works[4].place`
+  - Nationaltheatret @ `works[5].place`
+  - Nationaltheatret @ `works[6].place`
+### data/people/litteratur/oslo/nationaltheatret/lillebil_ibsen.json
+- **lillebil_ibsen** (Lillebil Ibsen)
+  - Det Nye Teater @ `works[4].place`
+  - Max Reinhardts scene, Berlin @ `works[2].place`
+  - Nationaltheatret @ `works[0].place`
+  - Nationaltheatret @ `works[1].place`
+  - Nationaltheatret @ `works[5].place`
+  - Nationaltheatret @ `works[6].place`
+  - Nationaltheatret @ `works[7].place`
+  - Theatre Guild, New York @ `works[3].place`
+### data/people/litteratur/oslo/nationaltheatret/ragna_wettergreen.json
+- **ragna_wettergreen** (Ragna Wettergreen)
+  - Christiania Theater @ `works[0].place`
+  - Nationaltheatret @ `works[1].place`
+  - Nationaltheatret @ `works[2].place`
+  - Nationaltheatret @ `works[4].place`
+  - Nationaltheatret @ `works[5].place`
+  - Nationaltheatret @ `works[6].place`
+  - Norsk filmproduksjon @ `works[3].place`
+### data/people/litteratur/oslo/nationaltheatret/tore_segelcke.json
+- **tore_segelcke** (Tore Segelcke)
+  - Det Frie Teater @ `works[1].place`
+  - Det Norske Teatret @ `works[0].place`
+  - Nationaltheatret @ `works[2].place`
+  - Nationaltheatret @ `works[3].place`
+  - Nationaltheatret @ `works[4].place`
+  - Nationaltheatret @ `works[5].place`
+  - Nationaltheatret @ `works[6].place`
+  - Nationaltheatret @ `works[7].place`
+### data/people/naeringsliv/oslo/alunverket/peter_collett_alunverket.json
+- **peter_collett_alunverket** (Peter Collett)
+  - Christiania @ `works[0].place`
+  - Christiania @ `works[1].place`
+### data/people/naeringsliv/oslo/freia_fabrikken/johan_thrane_holst_freia.json
+- **johan_thrane_holst_freia** (Johan Throne Holst)
+  - Kristiania @ `works[2].place`
+  - Rodeløkka, Oslo @ `works[0].place`
+  - Sverige @ `works[1].place`
+### data/people/naeringsliv/oslo/lilleborg_fabrikker/peter_wessel_wind_kildal_lilleborg.json
+- **peter_wessel_wind_kildal_lilleborg** (Peter Wessel Wind Kildal)
+  - Kristiania @ `works[0].place`
+  - Kristiania @ `works[1].place`
+### data/people/naeringsliv/oslo/myrens_verksted/jens_jacob_jensen_myrens.json
+- **jens_jacob_jensen_myrens** (Jens Jacob Jensen)
+  - Fredrikstad @ `works[1].place`
+  - Kristiania @ `works[0].place`
+### data/people/naeringsliv/oslo/ovre_foss/halvor_schou.json
+- **halvor_schou** (Halvor Schou)
+  - Christiania @ `works[1].place`
+  - Sagene @ `works[0].place`
+### data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json
+- **rolf_stranger** (Rolf Stranger)
+  - Norges Varemesse @ `works[6].place`
+  - Oslo @ `works[2].place`
+  - Oslo @ `works[4].place`
+  - Oslo @ `works[7].place`
+  - Oslo Nye Teater @ `works[5].place`
+  - Oslo rådhus @ `works[0].place`
+  - Oslo rådhus @ `works[1].place`
+  - Stortinget @ `works[3].place`
+- **halvdan_eyvind_stokke** (Halvdan Eyvind Stokke)
+  - Aker @ `works[0].place`
+  - Nordmarka @ `works[5].place`
+  - Norges jernbanenett @ `works[6].place`
+  - Norges jernbanenett @ `works[7].place`
+  - Oslo @ `works[1].place`
+  - Oslo @ `works[4].place`
+  - Oslo rådhus @ `works[2].place`
+  - Oslo rådhus @ `works[3].place`
+### data/people/politikk/oslo/people_politikk_oslo.json
+- **haakon_vii** (Haakon VII)
+  - Akershus slott @ `works[7].place`
+  - Det kongelige slott @ `works[1].place`
+  - Det kongelige slott og Oslo @ `works[6].place`
+  - Elverum og Nybergsund @ `works[3].place`
+  - London @ `works[4].place`
+  - Norge @ `works[0].place`
+  - Oslo @ `works[5].place`
+  - Slottet og Stortinget @ `works[2].place`
 
 ## Unike ugyldige placeId-er og kandidatforslag
+- **Nationaltheatret** (likely_rename_to_existing_place, 122 treff)
+  - nationaltheatret (confidence: high)
+- **Oslo** (likely_rename_to_existing_place, 21 treff)
+  - borsen_oslo (confidence: medium)
+  - brannmuseet_oslo (confidence: medium)
+  - cinemateket_oslo (confidence: medium)
+  - clemenskirken_ruin_oslo (confidence: medium)
+  - dansens_hus_oslo (confidence: medium)
+- **Hovedscenen, Nationaltheatret** (likely_rename_to_existing_place, 14 treff)
+  - nationaltheatret (confidence: medium)
+  - nationaltheatret_stasjon (confidence: low)
+- **Det Norske Teatret** (likely_rename_to_existing_place, 13 treff)
+  - det_norske_teatret (confidence: high)
+- **Norsk spillefilm** (needs_manual_review, 7 treff)
+  - norsk_folkemuseum (confidence: low)
+- **Oslo rådhus** (likely_rename_to_existing_place, 6 treff)
+  - oslo_radhus (confidence: high)
+- **Christiania** (likely_rename_to_existing_place, 5 treff)
+  - christiania_seildugsfabrik (confidence: medium)
+  - christiania_torv (confidence: medium)
+- **Kristiania** (missing_place_candidate, 5 treff)
+  - missing_place_candidate
+- **Torshovteatret, Nationaltheatret** (likely_rename_to_existing_place, 5 treff)
+  - nationaltheatret (confidence: medium)
+  - torshov (confidence: medium)
+  - nationaltheatret_stasjon (confidence: low)
+- **Den Nationale Scene** (likely_rename_to_existing_place, 4 treff)
+  - den_nationale_scene (confidence: high)
+- **Norge** (likely_rename_to_existing_place, 4 treff)
+  - norges_bank_bankplassen_2 (confidence: medium)
+  - norges_bank_bankplassen_4 (confidence: medium)
+  - norges_hjemmefrontmuseum (confidence: medium)
+  - norges_varemesse (confidence: medium)
+- **Oslo Nye Teater** (likely_rename_to_existing_place, 4 treff)
+  - oslo_nye_teater_hovedscenen (confidence: medium)
+- **Stensparken, Oslo** (likely_rename_to_existing_place, 4 treff)
+  - stensparken (confidence: medium)
+  - borsen_oslo (confidence: low)
+  - brannmuseet_oslo (confidence: low)
+  - cinemateket_oslo (confidence: low)
+  - fyrlyset_oslo (confidence: low)
+- **Amfiscenen, Nationaltheatret** (likely_rename_to_existing_place, 3 treff)
+  - nationaltheatret (confidence: medium)
+  - nationaltheatret_stasjon (confidence: low)
+- **Bokutgivelse** (missing_place_candidate, 3 treff)
+  - missing_place_candidate
+- **Budapest** (missing_place_candidate, 3 treff)
+  - missing_place_candidate
+- **Christiania Theater** (needs_manual_review, 3 treff)
+  - christiania_seildugsfabrik (confidence: low)
+  - christiania_torv (confidence: low)
+- **Fagerborg kirke, Stensparken** (likely_rename_to_existing_place, 3 treff)
+  - fagerborg_kirke (confidence: medium)
+  - stensparken (confidence: medium)
+- **Sverige** (missing_place_candidate, 3 treff)
+  - missing_place_candidate
+- **Det kongelige slott** (needs_manual_review, 2 treff)
+  - det_kongelige_mausoleum (confidence: low)
+- **Holmsbu Billedgalleri** (missing_place_candidate, 2 treff)
+  - missing_place_candidate
+- **Nasjonalmuseet** (likely_rename_to_existing_place, 2 treff)
+  - nasjonalmuseet (confidence: high)
+- **Nationaltheatret / Torshovteatret** (likely_rename_to_existing_place, 2 treff)
+  - nationaltheatret (confidence: medium)
+  - torshov (confidence: medium)
+  - nationaltheatret_stasjon (confidence: low)
+- **Nationaltheatret, Oslo** (likely_rename_to_existing_place, 2 treff)
+  - nationaltheatret (confidence: medium)
+  - borsen_oslo (confidence: low)
+  - brannmuseet_oslo (confidence: low)
+  - cinemateket_oslo (confidence: low)
+  - fyrlyset_oslo (confidence: low)
+- **Norges jernbanenett** (needs_manual_review, 2 treff)
+  - norges_hjemmefrontmuseum (confidence: low)
+  - norges_varemesse (confidence: low)
+- **Norsk filmproduksjon** (needs_manual_review, 2 treff)
+  - norsk_folkemuseum (confidence: low)
+- **NRK** (likely_rename_to_existing_place, 2 treff)
+  - nrk_huset_marienlyst (confidence: medium)
+- **NRK Fjernsynsteatret** (missing_place_candidate, 2 treff)
+  - missing_place_candidate
+- **Rådhushallen, Oslo** (needs_manual_review, 2 treff)
+  - borsen_oslo (confidence: low)
+  - brannmuseet_oslo (confidence: low)
+  - cinemateket_oslo (confidence: low)
+  - fyrlyset_oslo (confidence: low)
+  - hallvardskirken_oslo (confidence: low)
+- **Skien** (likely_rename_to_existing_place, 2 treff)
+  - brekkeparken_skien (confidence: medium)
+  - gjerpen_kirke_skien (confidence: medium)
+  - ibsen_venstop_skien (confidence: medium)
+  - klosteroya_union_skien (confidence: medium)
+  - skien_kirke_byhistorie (confidence: medium)
+- **Aftenposten** (likely_rename_to_existing_place, 1 treff)
+  - aftenposten_akersgata (confidence: medium)
+- **Aker** (likely_rename_to_existing_place, 1 treff)
+  - aftenposten_akersgata (confidence: medium)
+  - aker_brygge (confidence: medium)
+  - akeroya_fort (confidence: medium)
+  - akerselva (confidence: medium)
+  - akerselva_utlop_bjorvika (confidence: medium)
+- **Akershus festning** (likely_rename_to_existing_place, 1 treff)
+  - akershus_festning (confidence: high)
+- **Akershus festning, Oslo** (likely_rename_to_existing_place, 1 treff)
+  - akershus_festning (confidence: medium)
+- **Akershus slott** (likely_rename_to_existing_place, 1 treff)
+  - akershus_slott (confidence: high)
+- **Asker** (likely_rename_to_existing_place, 1 treff)
+  - asker_kirke_kirkested (confidence: medium)
+  - braskereidfoss_kraftverk (confidence: medium)
+- **Bergen Kunstmuseum** (likely_rename_to_existing_place, 1 treff)
+  - bergen (confidence: medium)
+  - hulen_bergen (confidence: low)
+  - nordnes_bergen (confidence: low)
+  - nygardsparken_bergen (confidence: low)
+- **Borg videregående skole, Sarpsborg** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Bygdøy, Oslo** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Centralteatret** (likely_rename_to_existing_place, 1 treff)
+  - centralteatret (confidence: high)
+- **Den gamle Krigsskolen, Oslo** (likely_rename_to_existing_place, 1 treff)
+  - den_gamle_krigsskolen (confidence: medium)
+- **Den Nationale Scene og Christiania Theater** (likely_rename_to_existing_place, 1 treff)
+  - den_nationale_scene (confidence: medium)
+- **Den Nationale Scene, Bergen** (likely_rename_to_existing_place, 1 treff)
+  - bergen (confidence: medium)
+  - den_nationale_scene (confidence: medium)
+- **Det Frie Teater** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Det kongelige slott og Oslo** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Det Norske Flyktningeråd** (needs_manual_review, 1 treff)
+  - det_norske_teatret (confidence: low)
+- **Det Norske Teatret / NRK Fjernsynsteatret** (likely_rename_to_existing_place, 1 treff)
+  - det_norske_teatret (confidence: medium)
+- **Det Nye Teater** (needs_manual_review, 1 treff)
+  - oslo_nye_teater_hovedscenen (confidence: low)
+- **Eidsvollsbygningen** (likely_rename_to_existing_place, 1 treff)
+  - eidsvollsbygningen (confidence: high)
+- **Elverum og Nybergsund** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Erkebispegården, Trondheim** (needs_manual_review, 1 treff)
+  - nidaros_erkebispegarden (confidence: low)
+  - svartlamon_trondheim (confidence: low)
+- **Fjernsynsteatret** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **FN i Genève** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **FN-bygningen, New York** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Folketeatret** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Fredrikstad** (likely_rename_to_existing_place, 1 treff)
+  - fredrikstad_festning_gamlebyen (confidence: medium)
+  - indreroed_gard_fredrikstad (confidence: medium)
+- **Freia, Kristiania** (needs_manual_review, 1 treff)
+  - freia_fabrikken (confidence: low)
+- **Frogner, Kristiania** (likely_rename_to_existing_place, 1 treff)
+  - frogner (confidence: medium)
+  - frogner_hovedgard (confidence: low)
+  - frogner_kirke (confidence: low)
+  - frogner_stadion (confidence: low)
+- **Grünerløkka, Oslo** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Hamar domkirke** (needs_manual_review, 1 treff)
+  - domkirkeodden_hamar (confidence: low)
+  - hamar_teater (confidence: low)
+  - oslo_domkirke (confidence: low)
+  - tonsberg_domkirke (confidence: low)
+- **Hansa-salen, Bergen** (likely_rename_to_existing_place, 1 treff)
+  - bergen (confidence: medium)
+- **Harald Hårdrådes plass, Oslo** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Haugesund rådhus** (needs_manual_review, 1 treff)
+  - gamle_radhus (confidence: low)
+  - oslo_radhus (confidence: low)
+- **Henie Onstad Kunstsenter** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Historisk museum, Oslo** (likely_rename_to_existing_place, 1 treff)
+  - historisk_museum (confidence: medium)
+  - jodisk_museum_oslo (confidence: low)
+- **Holmenkollen** (likely_rename_to_existing_place, 1 treff)
+  - bla_skilt_holmenkollen_sanatorium_kongeveien_26 (confidence: medium)
+  - folkeobservatoriet_holmenkollen (confidence: medium)
+  - holmenkollen_kapell (confidence: medium)
+  - holmenkollen_nasjonalanlegg (confidence: medium)
+  - holmenkollen_skimuseum (confidence: medium)
+- **Intimteatret, Kristiania** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Kongens gate, Oslo** (needs_manual_review, 1 treff)
+  - waisenhuset_kongens_gate (confidence: low)
+  - mustadgarden_kongens_gate_3 (confidence: low)
+- **London** (likely_rename_to_existing_place, 1 treff)
+  - craven_cottage_london (confidence: medium)
+  - emirates_stadium_london (confidence: medium)
+  - gtech_community_stadium_london (confidence: medium)
+  - loftus_road_london (confidence: medium)
+  - london_stadium_london (confidence: medium)
+- **Luftforsvarets høgskole, Stavern** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Madserud, Oslo** (needs_manual_review, 1 treff)
+  - borsen_oslo (confidence: low)
+  - brannmuseet_oslo (confidence: low)
+  - cinemateket_oslo (confidence: low)
+  - fyrlyset_oslo (confidence: low)
+  - hallvardskirken_oslo (confidence: low)
+- **Malersalen, Nationaltheatret** (likely_rename_to_existing_place, 1 treff)
+  - nationaltheatret (confidence: medium)
+  - nationaltheatret_stasjon (confidence: low)
+- **Max Reinhardts scene, Berlin** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Middagsavisen** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Morgenbladet** (likely_rename_to_existing_place, 1 treff)
+  - bla (confidence: medium)
+- **Musikkakademiet, Budapest** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Nasjonalmuseet og MUNCH** (likely_rename_to_existing_place, 1 treff)
+  - nasjonalmuseet (confidence: medium)
+- **Nasjonalmuseet og Nationaltheatret** (likely_rename_to_existing_place, 1 treff)
+  - nasjonalmuseet (confidence: medium)
+  - nationaltheatret (confidence: medium)
+- **Nasjonalmuseets samling** (likely_rename_to_existing_place, 1 treff)
+  - nasjonalmuseet (confidence: medium)
+- **Nationaltheatret / turné** (likely_rename_to_existing_place, 1 treff)
+  - nationaltheatret (confidence: medium)
+  - nationaltheatret_stasjon (confidence: low)
+- **Nationaltheatret og Fagerborg skole** (likely_rename_to_existing_place, 1 treff)
+  - nationaltheatret (confidence: medium)
+- **Nobels gate, Oslo** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Nordmarka** (likely_rename_to_existing_place, 1 treff)
+  - framtidsbiblioteket_nordmarka (confidence: medium)
+- **Norges Bank, Bankplassen** (likely_rename_to_existing_place, 1 treff)
+  - bankplassen (confidence: medium)
+  - norges_bank_bankplassen_2 (confidence: medium)
+  - norges_bank_bankplassen_4 (confidence: medium)
+- **Norges Kommunistblad** (likely_rename_to_existing_place, 1 treff)
+  - bla (confidence: medium)
+  - norges_hjemmefrontmuseum (confidence: low)
+  - norges_varemesse (confidence: low)
+- **Norges Varemesse** (likely_rename_to_existing_place, 1 treff)
+  - norges_varemesse (confidence: high)
+- **Norsk Film A/S** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Norske mynter** (needs_manual_review, 1 treff)
+  - norske_grafikere (confidence: low)
+- **Oslo Håndverks- og Industriforening** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Oslo Nye Teater – Hovedscenen** (likely_rename_to_existing_place, 1 treff)
+  - oslo_nye_teater_hovedscenen (confidence: high)
+- **Oslo sentrum** (likely_rename_to_existing_place, 1 treff)
+  - oslo_s (confidence: medium)
+  - borsen_oslo (confidence: low)
+  - brannmuseet_oslo (confidence: low)
+  - cinemateket_oslo (confidence: low)
+  - fyrlyset_oslo (confidence: low)
+- **Oslofjorden** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Redwood Library & Athenæum, USA** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Regjeringskvartalet, Oslo** (likely_rename_to_existing_place, 1 treff)
+  - regjeringskvartalet (confidence: medium)
+  - borsen_oslo (confidence: low)
+  - brannmuseet_oslo (confidence: low)
+  - cinemateket_oslo (confidence: low)
+  - fyrlyset_oslo (confidence: low)
+- **Rodeløkka, Oslo** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Sachsen-Meiningens selskap** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Sagene** (likely_rename_to_existing_place, 1 treff)
+  - sagene (confidence: high)
+- **Sagene, Oslo** (likely_rename_to_existing_place, 1 treff)
+  - sagene (confidence: medium)
+  - borsen_oslo (confidence: low)
+  - brannmuseet_oslo (confidence: low)
+  - cinemateket_oslo (confidence: low)
+  - fyrlyset_oslo (confidence: low)
+- **Sandvika** (likely_rename_to_existing_place, 1 treff)
+  - lille_scene_sandvika (confidence: medium)
+  - sandvika_teater (confidence: medium)
+- **Skandinaviske og tyskspråklige scener** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Skulptursonen i Øvre Slottsgate** (needs_manual_review, 1 treff)
+  - skulptursonen_ovre_slottsgate (confidence: low)
+- **Slottet og Stortinget** (likely_rename_to_existing_place, 1 treff)
+  - slottet (confidence: medium)
+  - stortinget (confidence: medium)
+- **Stortinget** (likely_rename_to_existing_place, 1 treff)
+  - stortinget (confidence: high)
+- **Stortingsgata, Oslo** (needs_manual_review, 1 treff)
+  - borsen_oslo (confidence: low)
+  - brannmuseet_oslo (confidence: low)
+  - cinemateket_oslo (confidence: low)
+  - fyrlyset_oslo (confidence: low)
+  - hallvardskirken_oslo (confidence: low)
+- **Studenterlunden, Oslo** (needs_manual_review, 1 treff)
+  - borsen_oslo (confidence: low)
+  - brannmuseet_oslo (confidence: low)
+  - cinemateket_oslo (confidence: low)
+  - fyrlyset_oslo (confidence: low)
+  - hallvardskirken_oslo (confidence: low)
+- **Suldal kommune** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Târgu Mureș, Romania** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Theatre Guild, New York** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Torshovteatret** (likely_rename_to_existing_place, 1 treff)
+  - torshov (confidence: medium)
+- **Torshovteatret / National på Torshov** (likely_rename_to_existing_place, 1 treff)
+  - torshov (confidence: medium)
+- **Trondheim** (likely_rename_to_existing_place, 1 treff)
+  - ressurssenter_kvinner_trondheim (confidence: medium)
+  - svartlamon_trondheim (confidence: medium)
+  - trikkestallen_skatepark_trondheim (confidence: medium)
+  - uffa_huset_trondheim (confidence: medium)
+- **Trøndelag Teater** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Tullinløkka, Oslo** (likely_rename_to_existing_place, 1 treff)
+  - tullin (confidence: medium)
+- **Utenriksdepartementets kunstsamling** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Våler i Solør** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **Ålesund** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
 
 ## People uten gyldig sted
 
@@ -25,24 +806,29 @@ Generated: 2026-07-25T10:42:13.691Z
 - data/people/by/oslo/people_by_oslo.json :: kong_christian_iv (Kong Christian IV) -> oslo_radhus x2
 - data/people/by/oslo/people_by_oslo.json :: arnstein_arneberg (Arnstein Arneberg) -> oslo_radhus x2
 - data/people/by/oslo/people_by_oslo.json :: magnus_poulsson (Magnus Poulsson) -> oslo_radhus x2
+- data/people/by/oslo/people_by_oslo.json :: magnus_poulsson (Magnus Poulsson) -> Oslo x3
 - data/people/by/oslo/people_by_oslo.json :: henrik_bull (Henrik Bull) -> nationaltheatret x2
 - data/people/by/oslo/people_by_oslo.json :: erling_viksjo (Erling Viksjø) -> regjeringskvartalet x2
-- data/people/by/oslo/people_by_oslo.json :: sverre_fehn (Sverre Fehn) -> bankplassen x2
+- data/people/by/oslo/people_by_oslo.json :: sverre_fehn (Sverre Fehn) -> grunnlovsbygget_bankplassen x2
 - data/people/by/oslo/people_by_oslo.json :: ove_bang (Ove Bang) -> ullevål_hageby x2
 - data/people/by/oslo/people_by_oslo.json :: harald_aars (Harald Aars) -> stensparken x2
-- data/people/by/oslo/people_by_oslo.json :: kirsten_sand (Kirsten Sand) -> universitetsplassen x2
+- data/people/by/oslo/people_by_oslo.json :: harald_aars (Harald Aars) -> Oslo x5
 - data/people/by/oslo/people_by_oslo.json :: sverre_pedersen (Sverre Pedersen) -> oslo_radhus x2
-- data/people/by/oslo/people_by_oslo.json :: christian_norberg_schulz (Christian Norberg-Schulz) -> universitetsplassen x2
-- data/people/by/oslo/people_by_oslo.json :: thomas_thiis_evensen (Thomas Thiis-Evensen) -> universitetsplassen x2
+- data/people/by/oslo/people_by_oslo.json :: christian_norberg_schulz (Christian Norberg-Schulz) -> gamle_deichman x2
 - data/people/by/oslo/people_by_oslo.json :: geir_grung (Geir Grung) -> tjuvholmen x2
 - data/people/by/oslo/people_by_oslo.json :: fritz_heinrich_frolich (Fritz Heinrich Frølich) -> st_hanshaugen_park x2
 - data/people/by/oslo/people_by_oslo.json :: kjetil_traedal_thorsen (Kjetil Trædal Thorsen) -> bjorvika x2
 - data/people/by/oslo/people_by_oslo.json :: ellen_de_vibe (Ellen de Vibe) -> bjorvika x2
 - data/people/by/oslo/people_by_oslo.json :: jan_gehl (Jan Gehl) -> bjorvika x2
 - data/people/by/oslo/people_by_oslo.json :: albert_nordengen (Albert Nordengen) -> radhusplassen x2
+- data/people/by/oslo/people_by_oslo.json :: albert_nordengen (Albert Nordengen) -> Oslo rådhus x2
+- data/people/by/oslo/people_by_oslo.json :: albert_nordengen (Albert Nordengen) -> Oslo x3
 - data/people/by/oslo/people_by_oslo.json :: kristin_jarmund (Kristin Jarmund) -> vulkan_industriomrade x2
 - data/people/by/oslo/people_by_oslo.json :: hagbarth_schytte_berg (Hagbarth Schytte-Berg) -> stensparken x2
+- data/people/by/oslo/people_by_oslo.json :: hagbarth_schytte_berg (Hagbarth Schytte-Berg) -> Skien x2
 - data/people/by/oslo/people_by_oslo.json :: halvor_c_reiersen (Halvor C. Reiersen) -> stensparken x2
+- data/people/by/oslo/people_by_oslo.json :: oluf_martin_andersen (Oluf Martin Andersen) -> st_hanshaugen_park x2
+- data/people/by/oslo/people_by_oslo.json :: marius_rohne (Marius Røhne) -> sofienbergparken x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: halvdan_svarte (Halvdan Svarte) -> stein_ringerike_halvdanshaugen x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: haakon_grjotgardsson (Håkon Grjotgardsson) -> lade_gard x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: sigurd_ladejarl (Sigurd Ladejarl) -> lade_gard x2
@@ -107,8 +893,8 @@ Generated: 2026-07-25T10:42:13.691Z
 - data/people/historie/oslo/people_historie_oslo.json :: christian_krohg (Christian Krohg) -> karl_johan x2
 - data/people/historie/oslo/people_historie_oslo.json :: thorvald_meyer (Thorvald Meyer) -> birkelunden x2
 - data/people/historie/oslo/people_historie_oslo.json :: olaf_rye (Olaf Rye) -> olaf_ryes_plass x2
-- data/people/historie/oslo/people_historie_oslo.json :: bernt_anker (Bernt Anker) -> bankplassen x2
-- data/people/historie/oslo/people_historie_oslo.json :: georg_sverdrup (Georg Sverdrup) -> universitetsplassen x2
+- data/people/historie/oslo/people_historie_oslo.json :: bernt_anker (Bernt Anker) -> den_gamle_krigsskolen x2
+- data/people/historie/oslo/people_historie_oslo.json :: georg_sverdrup (Georg Sverdrup) -> karl_johan x2
 - data/people/historie/oslo/people_historie_oslo.json :: aasta_hansteen (Aasta Hansteen) -> karl_johan x2
 - data/people/historie/oslo/people_historie_oslo.json :: christian_magnus_falsen (Christian Magnus Falsen) -> eidsvollsbygningen x2
 - data/people/historie/oslo/people_historie_oslo.json :: wilhelm_f_k_christie (Wilhelm Frimann Koren Christie) -> eidsvollsbygningen x2
@@ -124,9 +910,9 @@ Generated: 2026-07-25T10:42:13.691Z
 - data/people/historie/oslo/people_historie_oslo.json :: arnulf_overland (Arnulf Øverland) -> grini_fangeleir x2
 - data/people/historie/oslo/people_historie_oslo.json :: sam_eyde (Sam Eyde) -> villa_grande x2
 - data/people/historie/oslo/people_historie_oslo.json :: maria_quisling (Maria Quisling) -> villa_grande x2
-- data/people/historie/oslo/people_historie_oslo.json :: jens_bjelke (Jens Bjelke) -> toyen_torg x2
-- data/people/historie/oslo/people_historie_oslo.json :: henrik_bjelke (Henrik Bjelke) -> toyen_torg x2
-- data/people/historie/oslo/people_historie_oslo.json :: kristine_bonnevie (Kristine Bonnevie) -> toyen_torg x2
+- data/people/historie/oslo/people_historie_oslo.json :: jens_bjelke (Jens Bjelke) -> toyen_hovedgard x2
+- data/people/historie/oslo/people_historie_oslo.json :: henrik_bjelke (Henrik Bjelke) -> toyen_hovedgard x2
+- data/people/historie/oslo/people_historie_oslo.json :: kristine_bonnevie (Kristine Bonnevie) -> naturhistorisk_museum x2
 - data/people/historie/oslo/people_historie_oslo.json :: anna_sethne (Anna Sethne) -> sagene_skole x2
 - data/people/historie/oslo/people_historie_oslo.json :: alexis_de_chateauneuf (Alexis de Chateauneuf) -> trefoldighetskirken x2
 - data/people/historie/oslo/people_historie_oslo.json :: wilhelm_von_hanno (Wilhelm von Hanno) -> gronland_kirke x2
@@ -148,6 +934,10 @@ Generated: 2026-07-25T10:42:13.691Z
 - data/people/historie/oslo/people_historie_oslo.json :: ingebjorg_hakonsdatter (Ingebjørg Håkonsdatter) -> akershus_festning x2
 - data/people/historie/oslo/people_historie_oslo.json :: haakon_haakonsson (Håkon Håkonsson) -> oslo_domkirke x2
 - data/people/historie/oslo/people_historie_oslo.json :: skule_baardsson (Skule Bårdsson) -> middelalder_oslo x2
+- data/people/historie/oslo/people_historie_oslo.json :: sigurd_dickman (Sigurd Dickman) -> damstredet_telthusbakken x2
+- data/people/historie/oslo/people_historie_oslo.json :: rolle_dickman (Rolle Dickman) -> damstredet_telthusbakken x2
+- data/people/historie/oslo/people_historie_oslo.json :: sigrun_berg (Sigrun Berg) -> damstredet_telthusbakken x2
+- data/people/historie/oslo/people_historie_oslo.json :: stig_egede_nissen (Stig Egede-Nissen) -> damstredet_telthusbakken x2
 - data/people/kunst/oslo/people_kunst_oslo.json :: munch (Edvard Munch) -> munch_museet x2
 - data/people/kunst/oslo/people_kunst_oslo.json :: harriet_backer (Harriet Backer) -> nasjonalmuseet x2
 - data/people/kunst/oslo/people_kunst_oslo.json :: gustav_vigeland (Gustav Vigeland) -> vigelandsparken x2
@@ -164,7 +954,14 @@ Generated: 2026-07-25T10:42:13.691Z
 - data/people/kunst/oslo/people_kunst_oslo.json :: pablo_picasso (Pablo Picasso) -> regjeringskvartalet x2
 - data/people/kunst/oslo/people_kunst_oslo.json :: carl_nesjar (Carl Nesjar) -> regjeringskvartalet x2
 - data/people/kunst/oslo/people_kunst_oslo.json :: henrik_sorensen (Henrik Sørensen) -> oslo_radhus x2
+- data/people/kunst/oslo/people_kunst_oslo.json :: henrik_sorensen (Henrik Sørensen) -> Holmsbu Billedgalleri x2
 - data/people/kunst/oslo/people_kunst_oslo.json :: alf_rolfsen (Alf Rolfsen) -> oslo_radhus x2
+- data/people/kunst/oslo/people_kunst_oslo.json :: alf_rolfsen (Alf Rolfsen) -> Oslo x2
+- data/people/kunst/oslo/people_kunst_oslo.json :: per_barclay (Per Barclay) -> stensparken x2
+- data/people/kunst/oslo/people_kunst_oslo.json :: jo_visdal (Jo Visdal) -> stensparken x2
+- data/people/kunst/oslo/people_kunst_oslo.json :: lars_utne (Lars Utne) -> stensparken x2
+- data/people/kunst/oslo/people_kunst_oslo.json :: miksa_roth (Miksa Róth) -> stensparken x2
+- data/people/kunst/oslo/people_kunst_oslo.json :: miksa_roth (Miksa Róth) -> Budapest x3
 - data/people/kunst/oslo/dyre_vaa.json :: dyre_vaa (Dyre Vaa) -> ankerbrua x2
 - data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json :: calouste_gulbenkian (Calouste Gulbenkian) -> lisbon_fundacao_calouste_gulbenkian x2
 - data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json :: joana_vasconcelos (Joana Vasconcelos) -> lisbon_maat x2
@@ -212,25 +1009,41 @@ Generated: 2026-07-25T10:42:13.691Z
 - data/people/litteratur/oslo/nasjonalbiblioteket/people_nasjonalbiblioteket.json :: axel_revold (Axel Revold) -> nasjonalbiblioteket x2
 - data/people/litteratur/oslo/nasjonalbiblioteket/people_nasjonalbiblioteket.json :: ase_wetas (Åse Wetås) -> nasjonalbiblioteket x2
 - data/people/litteratur/oslo/nationaltheatret/bjorn_bjornson.json :: bjorn_bjornson (Bjørn Bjørnson) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/bjorn_bjornson.json :: bjorn_bjornson (Bjørn Bjørnson) -> Christiania Theater x2
+- data/people/litteratur/oslo/nationaltheatret/bjorn_bjornson.json :: bjorn_bjornson (Bjørn Bjørnson) -> Nationaltheatret x4
 - data/people/litteratur/oslo/nationaltheatret/johanne_dybwad.json :: johanne_dybwad (Johanne Dybwad) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/johanne_dybwad.json :: johanne_dybwad (Johanne Dybwad) -> Nationaltheatret x6
 - data/people/litteratur/oslo/nationaltheatret/halfdan_christensen.json :: halfdan_christensen (Halfdan Christensen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/halfdan_christensen.json :: halfdan_christensen (Halfdan Christensen) -> Nationaltheatret x6
 - data/people/litteratur/oslo/nationaltheatret/ragna_wettergreen.json :: ragna_wettergreen (Ragna Wettergreen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/ragna_wettergreen.json :: ragna_wettergreen (Ragna Wettergreen) -> Nationaltheatret x5
 - data/people/litteratur/oslo/nationaltheatret/egil_eide.json :: egil_eide (Egil Næss Eide) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/egil_eide.json :: egil_eide (Egil Næss Eide) -> Nationaltheatret x5
 - data/people/litteratur/oslo/nationaltheatret/august_oddvar.json :: august_oddvar (August Oddvar) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/august_oddvar.json :: august_oddvar (August Oddvar) -> Nationaltheatret x8
 - data/people/litteratur/oslo/nationaltheatret/ingolf_schanche.json :: ingolf_schanche (Ingolf Schanche) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/hauk_aabel.json :: hauk_aabel (Hauk Aabel) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/harald_stormoen.json :: harald_stormoen (Harald Stormoen) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/david_knudsen.json :: david_knudsen (David Knudsen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/david_knudsen.json :: david_knudsen (David Knudsen) -> Nationaltheatret x3
 - data/people/litteratur/oslo/nationaltheatret/gerd_grieg.json :: gerd_grieg (Gerd Grieg) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/gerd_grieg.json :: gerd_grieg (Gerd Grieg) -> Nationaltheatret x7
 - data/people/litteratur/oslo/nationaltheatret/tore_segelcke.json :: tore_segelcke (Tore Segelcke) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/tore_segelcke.json :: tore_segelcke (Tore Segelcke) -> Nationaltheatret x6
 - data/people/litteratur/oslo/nationaltheatret/aase_bye.json :: aase_bye (Aase Bye) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/gerda_ring.json :: gerda_ring (Gerda Ring) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/agnes_mowinckel.json :: agnes_mowinckel (Agnes Mowinckel) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/agnes_mowinckel.json :: agnes_mowinckel (Agnes Mowinckel) -> Det Norske Teatret x2
 - data/people/litteratur/oslo/nationaltheatret/per_aabel.json :: per_aabel (Per Aabel) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/ella_hval.json :: ella_hval (Ella Hval) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/ella_hval.json :: ella_hval (Ella Hval) -> Hovedscenen, Nationaltheatret x3
 - data/people/litteratur/oslo/nationaltheatret/alfred_maurstad.json :: alfred_maurstad (Alfred Maurstad) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/alfred_maurstad.json :: alfred_maurstad (Alfred Maurstad) -> Det Norske Teatret x3
+- data/people/litteratur/oslo/nationaltheatret/alfred_maurstad.json :: alfred_maurstad (Alfred Maurstad) -> Nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/alfred_maurstad.json :: alfred_maurstad (Alfred Maurstad) -> Norsk spillefilm x3
 - data/people/litteratur/oslo/nationaltheatret/olafr_havrevold.json :: olafr_havrevold (Olafr Havrevold) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/lillebil_ibsen.json :: lillebil_ibsen (Lillebil Ibsen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/lillebil_ibsen.json :: lillebil_ibsen (Lillebil Ibsen) -> Nationaltheatret x5
 - data/people/litteratur/oslo/nationaltheatret/liv_dommersnes.json :: liv_dommersnes (Liv Dommersnes) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/ingerid_vardund.json :: ingerid_vardund (Ingerid Vardund) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/toralv_maurstad.json :: toralv_maurstad (Toralv Maurstad) -> nationaltheatret x2
@@ -241,6 +1054,7 @@ Generated: 2026-07-25T10:42:13.691Z
 - data/people/litteratur/oslo/nationaltheatret/mona_hofland.json :: mona_hofland (Mona Hofland) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/espen_skjonberg.json :: espen_skjonberg (Espen Skjønberg) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/anne_marit_jacobsen.json :: anne_marit_jacobsen (Anne Marit Jacobsen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/anne_marit_jacobsen.json :: anne_marit_jacobsen (Anne Marit Jacobsen) -> Nationaltheatret x7
 - data/people/litteratur/oslo/nationaltheatret/sverre_anker_ousdal.json :: sverre_anker_ousdal (Sverre Anker Ousdal) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/nils_ole_oftebro.json :: nils_ole_oftebro (Nils Ole Oftebro) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/froydis_armand.json :: froydis_armand (Frøydis Armand) -> nationaltheatret x2
@@ -248,16 +1062,23 @@ Generated: 2026-07-25T10:42:13.691Z
 - data/people/litteratur/oslo/nationaltheatret/gisken_armand.json :: gisken_armand (Gisken Armand) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/vilhelm_krag.json :: vilhelm_krag (Vilhelm Krag) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/einar_skavlan.json :: einar_skavlan (Einar Skavlan) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/einar_skavlan.json :: einar_skavlan (Einar Skavlan) -> Norge x2
 - data/people/litteratur/oslo/nationaltheatret/anton_ronneberg.json :: anton_ronneberg (Anton Rønneberg) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/anton_ronneberg.json :: anton_ronneberg (Anton Rønneberg) -> Nationaltheatret x4
+- data/people/litteratur/oslo/nationaltheatret/anton_ronneberg.json :: anton_ronneberg (Anton Rønneberg) -> Bokutgivelse x3
 - data/people/litteratur/oslo/nationaltheatret/johan_henrik_wiers_jenssen.json :: johan_henrik_wiers_jenssen (Johan Henrik Wiers-Jenssen) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/axel_otto_normann.json :: axel_otto_normann (Axel Otto Normann) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/axel_otto_normann.json :: axel_otto_normann (Axel Otto Normann) -> Nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/gustav_berg_jaeger.json :: gustav_berg_jaeger (Gustav Berg-Jæger) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/knut_hergel.json :: knut_hergel (Knut Hergel) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/carl_fredrik_engelstad.json :: carl_fredrik_engelstad (Carl Fredrik Engelstad) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/carl_fredrik_engelstad.json :: carl_fredrik_engelstad (Carl Fredrik Engelstad) -> Nationaltheatret x3
 - data/people/litteratur/oslo/nationaltheatret/erik_kristen_johanssen.json :: erik_kristen_johanssen (Erik Kristen-Johanssen) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/arild_brinchmann.json :: arild_brinchmann (Arild Brinchmann) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/arild_brinchmann.json :: arild_brinchmann (Arild Brinchmann) -> Nationaltheatret x8
 - data/people/litteratur/oslo/nationaltheatret/kjetil_bang_hansen.json :: kjetil_bang_hansen (Kjetil Bang-Hansen) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/ellen_horn.json :: ellen_horn (Ellen Horn) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/ellen_horn.json :: ellen_horn (Ellen Horn) -> Hovedscenen, Nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/ole_jorgen_nilsen.json :: ole_jorgen_nilsen (Ole-Jørgen Nilsen) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/sverre_rodahl.json :: sverre_rodahl (Sverre Rødahl) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/stein_winge.json :: stein_winge (Stein Winge) -> nationaltheatret x2
@@ -271,7 +1092,9 @@ Generated: 2026-07-25T10:42:13.691Z
 - data/people/litteratur/oslo/nationaltheatret/lars_nordrum.json :: lars_nordrum (Lars Nordrum) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/kirsten_sorlie.json :: kirsten_sorlie (Kirsten Sørlie) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/edith_roger.json :: edith_roger (Edith Roger) -> nationaltheatret x2
-- data/people/litteratur/oslo/nationaltheatret/bjorn_saether.json :: bjorn_saether (Bjørn Sæther) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/edith_roger.json :: edith_roger (Edith Roger) -> Hovedscenen, Nationaltheatret x4
+- data/people/litteratur/oslo/nationaltheatret/bjorn_saether.json :: bjorn_saether (Bjørn Sæter) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/bjorn_saether.json :: bjorn_saether (Bjørn Sæter) -> Torshovteatret, Nationaltheatret x4
 - data/people/litteratur/oslo/nationaltheatret/janken_varden.json :: janken_varden (Janken Varden) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/gustav_thomassen.json :: gustav_thomassen (Gustav Thomassen) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/oliver_neerland.json :: oliver_neerland (Oliver Neerland) -> nationaltheatret x2
@@ -282,20 +1105,25 @@ Generated: 2026-07-25T10:42:13.691Z
 - data/people/litteratur/oslo/nationaltheatret/thorbjorn_egner.json :: thorbjorn_egner (Thorbjørn Egner) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/sverre_brandt.json :: sverre_brandt (Sverre Brandt) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/marc_connelly.json :: marc_connelly (Marc Connelly) -> nationaltheatret x2
-- data/people/litteratur/oslo/nationaltheatret/henrik_bull.json :: henrik_bull_nationaltheatret (Henrik Bull) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/jan_gunnar_roise.json :: jan_gunnar_roise (Jan Gunnar Røise) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/kare_conradi.json :: kare_conradi (Kåre Conradi) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/mariann_hole.json :: mariann_hole (Mariann Hole) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/thorbjorn_harr.json :: thorbjorn_harr (Thorbjørn Harr) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/anders_mordal.json :: anders_mordal (Anders Mordal) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/anders_mordal.json :: anders_mordal (Anders Mordal) -> Nationaltheatret x3
 - data/people/litteratur/oslo/nationaltheatret/mads_ousdal.json :: mads_ousdal (Mads Ousdal) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/andrine_saether.json :: andrine_saether (Andrine Sæther) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/andrine_saether.json :: andrine_saether (Andrine Sæther) -> Nationaltheatret x8
 - data/people/litteratur/oslo/nationaltheatret/laila_goody.json :: laila_goody (Laila Goody) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/petronella_barker.json :: petronella_barker (Petronella Barker) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/trond_espen_seim.json :: trond_espen_seim (Trond Espen Seim) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/andrea_braein_hovig.json :: andrea_braein_hovig (Andrea Bræin Hovig) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/andrea_braein_hovig.json :: andrea_braein_hovig (Andrea Bræin Hovig) -> Nationaltheatret x4
 - data/people/litteratur/oslo/nationaltheatret/anneke_von_der_lippe.json :: anneke_von_der_lippe (Anneke von der Lippe) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/anneke_von_der_lippe.json :: anneke_von_der_lippe (Anneke von der Lippe) -> Det Norske Teatret x5
+- data/people/litteratur/oslo/nationaltheatret/anneke_von_der_lippe.json :: anneke_von_der_lippe (Anneke von der Lippe) -> Nationaltheatret x5
 - data/people/litteratur/oslo/nationaltheatret/anne_krigsvoll.json :: anne_krigsvoll (Anne Krigsvoll) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/anne_krigsvoll.json :: anne_krigsvoll (Anne Krigsvoll) -> Nationaltheatret x6
 - data/people/litteratur/oslo/nationaltheatret/ingjerd_egeberg.json :: ingjerd_egeberg (Ingjerd Egeberg) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/kari_simonsen.json :: kari_simonsen (Kari Simonsen) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/nicolai_cleve_broch.json :: nicolai_cleve_broch (Nicolai Cleve Broch) -> nationaltheatret x2
@@ -303,12 +1131,15 @@ Generated: 2026-07-25T10:42:13.691Z
 - data/people/litteratur/oslo/nationaltheatret/gard_b_eidsvold.json :: gard_b_eidsvold (Gard B. Eidsvold) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/kim_haugen.json :: kim_haugen (Kim Haugen) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/bjorn_skagestad.json :: bjorn_skagestad (Bjørn Skagestad) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/bjorn_skagestad.json :: bjorn_skagestad (Bjørn Skagestad) -> Nationaltheatret x4
 - data/people/litteratur/oslo/nationaltheatret/henrik_mestad.json :: henrik_mestad (Henrik Mestad) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/mari_maurstad.json :: mari_maurstad (Mari Maurstad) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/jan_gronli.json :: jan_gronli (Jan Grønli) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/oystein_roger.json :: oystein_roger (Øystein Røger) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/kjersti_elvik.json :: kjersti_elvik (Kjersti Elvik) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/anne_marie_ottersen.json :: anne_marie_ottersen (Anne Marie Ottersen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/anne_marie_ottersen.json :: anne_marie_ottersen (Anne Marie Ottersen) -> Nationaltheatret x4
+- data/people/litteratur/oslo/nationaltheatret/anne_marie_ottersen.json :: anne_marie_ottersen (Anne Marie Ottersen) -> Norsk spillefilm x2
 - data/people/litteratur/oslo/nationaltheatret/svein_tindberg.json :: svein_tindberg_nationaltheatret (Svein Tindberg) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/bjarte_hjelmeland.json :: bjarte_hjelmeland (Bjarte Hjelmeland) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/lasse_lindtner.json :: lasse_lindtner (Lasse Lindtner) -> nationaltheatret x2
@@ -318,12 +1149,15 @@ Generated: 2026-07-25T10:42:13.691Z
 - data/people/litteratur/oslo/nationaltheatret/jon_oigarden.json :: jon_oigarden (Jon Øigarden) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/trine_wiggen.json :: trine_wiggen (Trine Wiggen) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/eindride_eidsvold.json :: eindride_eidsvold (Eindride Eidsvold) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/eindride_eidsvold.json :: eindride_eidsvold (Eindride Eidsvold) -> Hovedscenen, Nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/tone_danielsen.json :: tone_danielsen (Tone Danielsen) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/per_christian_ellefsen.json :: per_christian_ellefsen (Per Christian Ellefsen) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/per_sunderland.json :: per_sunderland (Per Sunderland) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/knut_risan.json :: knut_risan (Knut Risan) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/bente_borsum.json :: bente_borsum (Bente Børsum) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/bente_borsum.json :: bente_borsum (Bente Børsum) -> Nationaltheatret x3
 - data/people/litteratur/oslo/nationaltheatret/bab_christensen.json :: bab_christensen (Bab Christensen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/bab_christensen.json :: bab_christensen (Bab Christensen) -> Nationaltheatret x3
 - data/people/litteratur/oslo/nationaltheatret/urda_arneberg.json :: urda_arneberg (Urda Arneberg) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/pelle_christensen.json :: pelle_christensen (Pelle Christensen) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/svein_sturla_hungnes.json :: svein_sturla_hungnes (Svein Sturla Hungnes) -> nationaltheatret x2
@@ -338,23 +1172,18 @@ Generated: 2026-07-25T10:42:13.691Z
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: anton_martin_schweigaard_okonomi (Anton Martin Schweigaard) -> grunnlovsbygget_bankplassen x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: sam_eyde_industriutbygger (Sam Eyde) -> akerselva x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: kristian_birkeland_teknologi_og_industri (Kristian Birkeland) -> akerselva x2
-- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: christen_smith_schous_bryggeri (Christen Smith) -> schous_bryggeri x2
-- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: ellef_ringnes_bryggeri_og_ledelse (Ellef Ringnes) -> ringnes_bryggeri x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: christian_schweigaard_post_og_administrasjon (Christian Schweigaard) -> oslo_posthus x2
-- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: alf_bjercke_industri_og_kvalitet (Alf Bjercke) -> lilleborg_fabrikker x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: thomas_heftye_bank_og_byutvikling (Thomas Heftye) -> grunnlovsbygget_bankplassen x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: olav_thon_eiendom_og_handel (Olav Thon) -> aker_brygge x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: petter_stordalen_hotell_og_service (Petter Stordalen) -> karl_johan x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: stein_erik_hagen_handel (Stein Erik Hagen) -> aker_brygge x2
-- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: amund_ringnes_bryggeri (Amund Ringnes) -> ringnes_bryggeri x2
-- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: herman_schou_bryggeri (Herman Schou) -> schous_bryggeri x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: fred_olsen_shipping (Fred. Olsen) -> akershus_kaier x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: wilhelm_wilhelmsen_shipping (Wilhelm Wilhelmsen) -> akershus_kaier x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: anders_jahre_shipping (Anders Jahre) -> akershus_kaier x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: nicolay_august_andresen_bank (Nicolay August Andresen) -> grunnlovsbygget_bankplassen x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: ellef_ringnes (Ellef Ringnes) -> ringnes_bryggeri x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: amund_ringnes (Amund Ringnes) -> ringnes_bryggeri x2
-- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: halvor_schou (Halvor Schou) -> schous_bryggeri x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: christian_julius_schou (Christian Julius Schou) -> schous_bryggeri x2
 - data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: tony_elliott (Tony Elliott) -> lisbon_mercado_da_ribeira x2
 - data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: jose_avillez (José Avillez) -> lisbon_mercado_da_ribeira x2
 - data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: paddy_cosgrave (Paddy Cosgrave) -> lisbon_altice_arena_web_summit x2
@@ -395,8 +1224,8 @@ Generated: 2026-07-25T10:42:13.691Z
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: rolf_stenersen (Rolf Stenersen) -> tjuvholmen x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: niels_onstad (Niels Onstad) -> astrup_fearnley x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: institusjonen_fritt_ord (Institusjonen Fritt Ord) -> stortinget x2
-- data/people/filantroper/oslo/people_filantroper_oslo.json :: sparebankstiftelsen_dnb (Sparebankstiftelsen DNB) -> bankplassen x2
-- data/people/filantroper/oslo/people_filantroper_oslo.json :: eckbos_legat (Eckbos Legat) -> universitetsplassen x2
+- data/people/filantroper/oslo/people_filantroper_oslo.json :: sparebankstiftelsen_dnb (Sparebankstiftelsen DNB) -> nasjonalmuseet x2
+- data/people/filantroper/oslo/people_filantroper_oslo.json :: eckbos_legat (Eckbos Legat) -> gamle_deichman x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: olav_thon (Olav Thon) -> universitetets_gamle_hovedbygning x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: fred_kavli (Fred Kavli) -> universitetets_gamle_hovedbygning x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: anders_jahre (Anders Jahre) -> universitetets_gamle_hovedbygning x2
@@ -404,7 +1233,6 @@ Generated: 2026-07-25T10:42:13.691Z
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: jens_christian_hauge (Jens Christian Hauge) -> stortinget x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: finn_skedsmo (Finn Skedsmo) -> stortinget x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: kavlifondet (Kavlifondet) -> universitetets_gamle_hovedbygning x2
-- data/people/filantroper/oslo/people_filantroper_oslo.json :: gjensidigestiftelsen (Gjensidigestiftelsen) -> bankplassen x2
 - data/people/natur/oslo/people_natur_oslo.json :: peter_christen_asbjornsen (Peter Christen Asbjørnsen) -> maridalsvannet x2
 - data/people/natur/oslo/people_natur_oslo.json :: michael_sars (Michael Sars) -> bygdoy_natur x2
 - data/people/natur/oslo/people_natur_oslo.json :: georg_ossian_sars (Georg Ossian Sars) -> hovedoya x2
@@ -438,14 +1266,14 @@ Generated: 2026-07-25T10:42:13.691Z
 - data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json :: felix_de_avelar_brotero (Félix de Avelar Brotero) -> lisbon_jardim_botanico x2
 - data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json :: francisco_caldeira_cabral (Francisco Caldeira Cabral) -> lisbon_jardim_botanico x2
 - data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json :: goncalo_ribeiro_telles (Gonçalo Ribeiro Telles) -> lisbon_jardim_botanico x2
-- data/people/politikk/oslo/people_politikk_oslo.json :: gro_harlem_brundtland (Gro Harlem Brundtland) -> stortinget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: gro_harlem_brundtland (Gro Harlem Brundtland) -> regjeringskvartalet x2
 - data/people/politikk/oslo/people_politikk_oslo.json :: jens_stoltenberg (Jens Stoltenberg) -> stortinget x2
 - data/people/politikk/oslo/people_politikk_oslo.json :: johan_sverdrup (Johan Sverdrup) -> stortinget x2
 - data/people/politikk/oslo/people_politikk_oslo.json :: ole_kopreitan (Ole Kopreitan) -> stortinget x2
 - data/people/politikk/oslo/people_politikk_oslo.json :: fredrikke_marie_qvam (Fredrikke Marie Qvam) -> stortinget x2
 - data/people/politikk/oslo/people_politikk_oslo.json :: gina_krog (Gina Krog) -> stortinget x2
-- data/people/politikk/oslo/people_politikk_oslo.json :: einar_gerhardsen (Einar Gerhardsen) -> youngstorget x2
-- data/people/politikk/oslo/people_politikk_oslo.json :: johan_nygaardsvold (Johan Nygaardsvold) -> stortinget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: einar_gerhardsen (Einar Gerhardsen) -> regjeringskvartalet x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: johan_nygaardsvold (Johan Nygaardsvold) -> regjeringskvartalet x2
 - data/people/politikk/oslo/people_politikk_oslo.json :: christian_michelsen (Christian Michelsen) -> stortinget x2
 - data/people/politikk/oslo/people_politikk_oslo.json :: haakon_vii (Haakon VII) -> slottet x2
 - data/people/politikk/oslo/people_politikk_oslo.json :: katti_anker_moller (Katti Anker Møller) -> stortinget x2
@@ -507,6 +1335,7 @@ Generated: 2026-07-25T10:42:13.691Z
 - data/people/sport/oslo/people_sport_oslo.json :: petter_thoresen (Petter Thoresen) -> manglerudhallen x2
 - data/people/sport/oslo/people_sport_oslo.json :: mathias_trygg (Mathias Trygg) -> manglerudhallen x2
 - data/people/sport/oslo/people_sport_oslo.json :: einar_bruno_larsen (Einar Bruno Larsen) -> jordal_amfi x2
+- data/people/sport/oslo/people_sport_oslo.json :: rolf_hofmo (Rolf Hofmo) -> ekebergsletta x2
 - data/people/sport/oslo/holmenkollen_nasjonalanlegg/thorleif_haug.json :: thorleif_haug (Thorleif Haug) -> holmenkollen_nasjonalanlegg x2
 - data/people/sport/oslo/holmenkollen_nasjonalanlegg/birger_ruud.json :: birger_ruud (Birger Ruud) -> holmenkollen_nasjonalanlegg x2
 - data/people/sport/oslo/holmenkollen_nasjonalanlegg/gjermund_eggen.json :: gjermund_eggen (Gjermund Eggen) -> holmenkollen_nasjonalanlegg x2
@@ -925,7 +1754,6 @@ Generated: 2026-07-25T10:42:13.691Z
 - data/people/musikk/oslo/det_norske_teatret/hulda_garborg.json :: hulda_garborg (Hulda Garborg) -> det_norske_teatret x2
 - data/people/musikk/oslo/det_norske_teatret/rasmus_rasmussen.json :: rasmus_rasmussen (Rasmus Rasmussen) -> det_norske_teatret x2
 - data/people/musikk/oslo/det_norske_teatret/edvard_drablos.json :: edvard_drablos (Edvard Drabløs) -> det_norske_teatret x2
-- data/people/musikk/oslo/det_norske_teatret/agnes_mowinckel_det_norske_teatret.json :: agnes_mowinckel_det_norske_teatret (Agnes Mowinckel) -> det_norske_teatret x2
 - data/people/musikk/oslo/det_norske_teatret/lars_tvinde.json :: lars_tvinde (Lars Tvinde) -> det_norske_teatret x2
 - data/people/musikk/oslo/det_norske_teatret/tormod_skagestad.json :: tormod_skagestad (Tormod Skagestad) -> det_norske_teatret x2
 - data/people/musikk/oslo/det_norske_teatret/egil_monn_iversen.json :: egil_monn_iversen (Egil Monn-Iversen) -> det_norske_teatret x2
@@ -971,7 +1799,6 @@ Generated: 2026-07-25T10:42:13.691Z
 - data/people/musikk/oslo/det_norske_teatret/tordis_maurstad.json :: tordis_maurstad (Tordis Maurstad) -> det_norske_teatret x2
 - data/people/musikk/oslo/det_norske_teatret/sossen_krohg_det_norske_teatret.json :: sossen_krohg_det_norske_teatret (Sossen Krohg) -> det_norske_teatret x2
 - data/people/musikk/oslo/det_norske_teatret/gisle_straume.json :: gisle_straume (Gisle Straume) -> det_norske_teatret x2
-- data/people/musikk/oslo/det_norske_teatret/alfred_maurstad_det_norske_teatret.json :: alfred_maurstad_det_norske_teatret (Alfred Maurstad) -> det_norske_teatret x2
 - data/people/musikk/oslo/det_norske_teatret/pal_sverre_hagen.json :: pal_sverre_hagen (Pål Sverre Hagen) -> det_norske_teatret x2
 - data/people/musikk/oslo/det_norske_teatret/renate_reinsve.json :: renate_reinsve (Renate Reinsve) -> det_norske_teatret x2
 - data/people/musikk/oslo/det_norske_teatret/ellen_dorrit_petersen.json :: ellen_dorrit_petersen (Ellen Dorrit Petersen) -> det_norske_teatret x2
@@ -1042,7 +1869,7 @@ Generated: 2026-07-25T10:42:13.691Z
 - data/people/politikk/akershus/eidsvollsbygningen/gregers_winther_wulfsberg.json :: gregers_winther_wulfsberg (Gregers Winther Wulfsberg) -> eidsvollsbygningen x2
 - data/people/politikk/akershus/eidsvollsbygningen/tallev_olsen_huvestad.json :: tallev_olsen_huvestad (Tallev Olsen Huvestad) -> eidsvollsbygningen x2
 - data/people/politikk/akershus/eidsvollsbygningen/ole_olsen_evenstad.json :: ole_olsen_evenstad (Ole Olsen Evenstad) -> eidsvollsbygningen x2
-- data/people/historie/oslo/akershus_festning/hannibal_sehested.json :: hannibal_sehested (Hannibal Sehested) -> akershus_festning x3
+- data/people/historie/oslo/akershus_festning/hannibal_sehested.json :: hannibal_sehested (Hannibal Sehested) -> akershus_festning x2
 - data/people/historie/oslo/akershus_festning/ulrik_frederik_gyldenlove.json :: ulrik_frederik_gyldenlove (Ulrik Frederik Gyldenløve) -> akershus_festning x2
 - data/people/historie/oslo/akershus_festning/karl_xii.json :: karl_xii (Karl XII) -> akershus_festning x2
 - data/people/historie/oslo/akershus_festning/jorgen_christopher_von_klenow.json :: jorgen_christopher_von_klenow (Jørgen Christopher von Klenow) -> akershus_festning x2
@@ -1269,6 +2096,8 @@ Generated: 2026-07-25T10:42:13.691Z
 - data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_02.json :: halvdan_koht (Halvdan Koht) -> victoria_terrasse x2
 - data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_02.json :: erna_solberg (Erna Solberg) -> statsministerboligen x2
 - data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json :: rolf_stranger (Rolf Stranger) -> oslo_radhus x2
+- data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json :: rolf_stranger (Rolf Stranger) -> Oslo rådhus x2
+- data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json :: rolf_stranger (Rolf Stranger) -> Oslo x3
 - data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json :: jorgen_knudsen (Jørgen Knudsen) -> folkets_hus_oslo x2
 - data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json :: yngve_hagensen (Yngve Hågensen) -> folkets_hus_oslo x2
 - data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json :: gerd_liv_valla (Gerd-Liv Valla) -> folkets_hus_oslo x2
@@ -1278,9 +2107,24 @@ Generated: 2026-07-25T10:42:13.691Z
 - data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json :: harald_v (Harald V) -> slottet x2
 - data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json :: halvard_lange (Halvard Lange) -> victoria_terrasse x2
 - data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json :: ulrik_olsen (Ulrik Olsen) -> victoria_terrasse x2
+- data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json :: halvdan_eyvind_stokke (Halvdan Eyvind Stokke) -> oslo_radhus x2
+- data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json :: halvdan_eyvind_stokke (Halvdan Eyvind Stokke) -> Oslo x2
+- data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json :: halvdan_eyvind_stokke (Halvdan Eyvind Stokke) -> Oslo rådhus x2
+- data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json :: halvdan_eyvind_stokke (Halvdan Eyvind Stokke) -> Norges jernbanenett x2
+- data/people/politikk/oslo/tinghuset/yngve_svendsen.json :: yngve_svendsen (Yngve Svendsen) -> tinghuset x2
+- data/people/politikk/oslo/tinghuset/people_oslo_tinghus_rettsstaten_v1.json :: wenche_elizabeth_arntzen (Wenche Elizabeth Arntzen) -> tinghuset x2
+- data/people/politikk/oslo/tinghuset/people_oslo_tinghus_rettsstaten_v1.json :: arne_lyng (Arne Lyng) -> tinghuset x2
+- data/people/politikk/oslo/tinghuset/people_oslo_tinghus_rettsstaten_v1.json :: inga_bejer_engh (Inga Bejer Engh) -> tinghuset x2
+- data/people/politikk/oslo/tinghuset/people_oslo_tinghus_rettsstaten_v1.json :: svein_holden (Svein Holden) -> tinghuset x2
+- data/people/politikk/oslo/tinghuset/people_oslo_tinghus_rettsstaten_v1.json :: geir_lippestad (Geir Lippestad) -> tinghuset x2
+- data/people/politikk/oslo/tinghuset/people_oslo_tinghus_rettsstaten_v1.json :: vibeke_hein_baera (Vibeke Hein Bæra) -> tinghuset x2
 - data/people/by/oslo/people_by_oslo_politics_places_batch_04.json :: henrik_thrap_meyer (Henrik Thrap-Meyer) -> victoria_terrasse x2
 - data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_04.json :: peter_fredrik_wergmann (Peter Fredrik Wergmann) -> slottet x2
 - data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_04.json :: johannes_flintoe (Johannes Flintoe) -> slottet x2
+- data/people/kunst/oslo/tinghuset/people_oslo_tinghus_kunst_v1.json :: nina_sundbye (Nina Sundbye) -> tinghuset x2
+- data/people/kunst/oslo/tinghuset/people_oslo_tinghus_kunst_v1.json :: svein_strand (Svein Strand) -> tinghuset x2
+- data/people/kunst/oslo/tinghuset/people_oslo_tinghus_kunst_v1.json :: svein_bolling (Svein Bolling) -> tinghuset x2
+- data/people/kunst/oslo/tinghuset/people_oslo_tinghus_kunst_v1.json :: ingunn_skogholt (Ingunn Skogholt) -> tinghuset x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo_politics_places_batch_04.json :: peter_petersen_victoria_terrasse (Peter Petersen) -> victoria_terrasse x2
 - data/people/historie/oslo/people_historie_oslo_politics_places_batch_04.json :: curt_brauer (Curt Bräuer) -> victoria_terrasse x2
 - data/people/historie/oslo/people_historie_oslo_politics_places_batch_04.json :: christian_mohr (Christian Mohr) -> victoria_terrasse x2
@@ -1383,5 +2227,75 @@ Generated: 2026-07-25T10:42:13.691Z
 - data/people/scenekunst/oslo/rommen_scene/erik_aldner.json :: erik_aldner (Erik Aldner) -> rommen_scene x2
 - data/people/scenekunst/oslo/salt_oslo/erlend_mogard_larsen.json :: erlend_mogard_larsen (Erlend Mogård-Larsen) -> salt_oslo x2
 - data/people/scenekunst/oslo/vega_scene/katinka_rydin_berge.json :: katinka_rydin_berge (Katinka Rydin Berge) -> vega_scene x2
+- data/people/religion/vestland/etne/people_etne_religion_rounds_batch1.json :: etne_kyrkjelydsmiljoet (Kyrkjelydsmiljøet i Etne kyrkje) -> etne_kyrkje x2
+- data/people/religion/vestland/etne/people_etne_religion_rounds_batch1.json :: frette_bedehus_og_kapellmiljoet (Bedehus- og kapellmiljøet på Frette) -> frette_kapell x2
+- data/people/religion/vestland/etne/people_etne_religion_rounds_batch1.json :: skanevik_kyrkjelydsmiljoet (Kyrkjelydsmiljøet i Skånevik kyrkje) -> skanevik_kyrkje x2
+- data/people/politikk/oslo/regjeringskvartalet/people_regjeringskvartalet_reconstruction_v1.json :: jard_bringedal (Jard Bringedal) -> regjeringskvartalet x2
+- data/people/kunst/oslo/regjeringskvartalet/people_regjeringskvartalet_art_v1.json :: do_ho_suh (Do Ho Suh) -> regjeringskvartalet x2
+- data/people/kunst/oslo/regjeringskvartalet/people_regjeringskvartalet_art_v1.json :: matias_faldbakken (Matias Faldbakken) -> regjeringskvartalet x2
+- data/people/kunst/oslo/regjeringskvartalet/people_regjeringskvartalet_art_v1.json :: jumana_manna (Jumana Manna) -> regjeringskvartalet x2
+- data/people/kunst/oslo/regjeringskvartalet/people_regjeringskvartalet_art_v1.json :: hannah_ryggen (Hannah Ryggen) -> regjeringskvartalet x2
+- data/people/by/oslo/torggata/thoger_binneballe.json :: thoger_binneballe (Thøger Binneballe) -> torggata x2
+- data/people/by/oslo/torggata/harald_olsen.json :: harald_olsen (Harald Olsen) -> torggata x2
+- data/people/by/oslo/torggata/alma_fahlstrom.json :: alma_fahlstrom (Alma Fahlstrøm) -> torggata x2
+- data/people/by/oslo/torggata/johan_fahlstrom.json :: johan_fahlstrom (Johan Fahlstrøm) -> torggata x2
+- data/people/by/oslo/torggata/ludvig_christian_jensen.json :: ludvig_christian_jensen (Ludvig Christian Jensen) -> torggata x2
+- data/people/by/oslo/torggata/adelsten_jensen.json :: adelsten_jensen (Adelsten Jensen) -> torggata x2
+- data/people/by/oslo/torggata/peter_marinius_jensen.json :: peter_marinius_jensen (Peter Marinius Jensen) -> torggata x2
+- data/people/by/oslo/torggata/karl_a_jensen.json :: karl_a_jensen (Karl A. Jensen) -> torggata x2
+- data/people/by/oslo/torggata/thorvald_jensen.json :: thorvald_jensen (Thorvald Jensen) -> torggata x2
+- data/people/by/oslo/torggata/nanna_broch.json :: nanna_broch (Nanna Broch) -> torggata x2
+- data/people/by/oslo/torggata/wulff_becker.json :: wulff_becker (Wulff Becker) -> torggata x2
+- data/people/by/oslo/torggata/martin_heinz_zilsel.json :: martin_heinz_zilsel (Martin Heinz Zilsel) -> torggata x2
+- data/people/by/oslo/torggata/alexander_claes.json :: alexander_claes (Alexander Claes) -> torggata x2
+- data/people/by/oslo/torggata/therese_hurwitz.json :: therese_hurwitz (Therese Hurwitz) -> torggata x2
+- data/people/by/oslo/torggata/jenny_hurwitz.json :: jenny_hurwitz (Jenny Hurwitz) -> torggata x2
+- data/people/by/oslo/torggata/fredrik_hurwitz.json :: fredrik_hurwitz (Fredrik Hurwitz) -> torggata x2
+- data/people/by/oslo/torggata/moritz_glott.json :: moritz_glott (Moritz Glott) -> torggata x2
+- data/people/psykologi/oslo/people_psykologi_oslo.json :: harald_schjelderup (Harald Schjelderup) -> psykologisk_institutt_uio x2
+- data/people/psykologi/oslo/people_psykologi_oslo.json :: ragnar_rommetveit (Ragnar Rommetveit) -> psykologisk_institutt_uio x2
+- data/people/psykologi/oslo/people_psykologi_oslo.json :: ase_gruda_skard (Åse Gruda Skard) -> psykologisk_institutt_uio x2
+- data/people/psykologi/oslo/people_psykologi_oslo.json :: nic_waal (Nic Waal) -> nic_waals_institutt x2
+- data/people/by/oslo/birkelunden/jack_johnsen.json :: jack_johnsen (Jack Johnsen) -> birkelunden x2
+- data/people/scenekunst/oslo/bankplassen/johannes_brun.json :: johannes_brun (Johannes Brun) -> bankplassen x2
+- data/people/subkultur/oslo/people_brugata_storgata_rusmiljo.json :: arild_knutsen (Arild Knutsen) -> brugata_storgata_rusmiljo x2
+- data/people/subkultur/oslo/people_brugata_storgata_rusmiljo.json :: ingvild_ofstad (Ingvild Ofstad) -> brugata_storgata_rusmiljo x2
+- data/people/subkultur/oslo/people_brugata_storgata_rusmiljo.json :: mikael_oscar_loum_johansen (Mikael Oscar Loum Johansen) -> brugata_storgata_rusmiljo x2
+- data/people/subkultur/oslo/people_brugata_storgata_rusmiljo.json :: iris_roise_aasebo (Iris Røise Aasebø) -> brugata_storgata_rusmiljo x2
+- data/people/naeringsliv/oslo/freia_fabrikken/johan_thrane_holst_freia.json :: johan_thrane_holst_freia (Johan Throne Holst) -> freia_fabrikken x2
+- data/people/naeringsliv/oslo/myrens_verksted/jens_jacob_jensen_myrens.json :: jens_jacob_jensen_myrens (Jens Jacob Jensen) -> myrens_verksted x2
+- data/people/naeringsliv/oslo/alunverket/peter_collett_alunverket.json :: peter_collett_alunverket (Peter Collett) -> alunverket x2
+- data/people/naeringsliv/oslo/alunverket/peter_collett_alunverket.json :: peter_collett_alunverket (Peter Collett) -> Christiania x2
+- data/people/naeringsliv/oslo/lilleborg_fabrikker/peter_wessel_wind_kildal_lilleborg.json :: peter_wessel_wind_kildal_lilleborg (Peter Wessel Wind Kildal) -> lilleborg_fabrikker x2
+- data/people/naeringsliv/oslo/lilleborg_fabrikker/peter_wessel_wind_kildal_lilleborg.json :: peter_wessel_wind_kildal_lilleborg (Peter Wessel Wind Kildal) -> Kristiania x2
+- data/people/naeringsliv/oslo/ovre_foss/halvor_schou.json :: halvor_schou (Halvor Schou) -> glads_molle x2
+- data/people/by/oslo/gamle_trikkestallen/per_horn.json :: per_horn (Per Horn) -> gamle_trikkestallen x2
+- data/people/historie/oslo/oslo_hospital/herman_wedel_major.json :: herman_wedel_major (Herman Wedel Major) -> oslo_hospital x2
+- data/people/historie/oslo/botsfengselet/frederik_holst.json :: frederik_holst (Frederik Holst) -> botsfengselet x2
+- data/people/historie/oslo/jan_greve_thaulow_petersen.json :: jan_greve_thaulow_petersen (Jan Greve Thaulow Petersen) -> ekeberg_helleristninger x2
+- data/people/historie/oslo/waisenhuset/people_waisenhuset.json :: christian_vii (Christian VII) -> waisenhuset_kongens_gate x2
+- data/people/historie/oslo/waisenhuset/people_waisenhuset.json :: christen_schmidt (Christen Schmidt) -> waisenhuset_kongens_gate x2
+- data/people/historie/oslo/waisenhuset/people_waisenhuset.json :: christian_schibsted (Christian Schibsted) -> waisenhuset_kongens_gate x2
+- data/people/kunst/oslo/norske_grafikere/johan_nordhagen.json :: johan_nordhagen (Johan Nordhagen) -> norske_grafikere x2
+- data/people/kunst/oslo/skulptursonen_ovre_slottsgate/vibeke_tandberg.json :: vibeke_tandberg (Vibeke Tandberg) -> skulptursonen_ovre_slottsgate x2
+- data/people/by/oslo/hammersborg_torg/people_hammersborg_torg.json :: frode_rinnan (Frode Rinnan) -> hammersborg_torg x2
+- data/people/by/oslo/hammersborg_torg/people_hammersborg_torg.json :: christian_fredrik_morgenstierne (Christian Fredrik von Munthe af Morgenstierne) -> hammersborg_torg x2
+- data/people/by/oslo/hammersborg_torg/people_hammersborg_torg.json :: peter_hoier_holtermann (Peter Høier Holtermann) -> hammersborg_torg x2
+- data/people/kunst/oslo/toyen_torg/mari_meen_halsoy.json :: mari_meen_halsoy (Mari Meen Halsøy) -> toyen_torg x2
 
 ## Anbefalt neste ryddebatch
+- Nationaltheatret (likely_rename_to_existing_place, 122 treff)
+- Oslo (likely_rename_to_existing_place, 21 treff)
+- Hovedscenen, Nationaltheatret (likely_rename_to_existing_place, 14 treff)
+- Det Norske Teatret (likely_rename_to_existing_place, 13 treff)
+- Norsk spillefilm (needs_manual_review, 7 treff)
+- Oslo rådhus (likely_rename_to_existing_place, 6 treff)
+- Christiania (likely_rename_to_existing_place, 5 treff)
+- Kristiania (missing_place_candidate, 5 treff)
+- Torshovteatret, Nationaltheatret (likely_rename_to_existing_place, 5 treff)
+- Den Nationale Scene (likely_rename_to_existing_place, 4 treff)
+- Norge (likely_rename_to_existing_place, 4 treff)
+- Oslo Nye Teater (likely_rename_to_existing_place, 4 treff)
+- Stensparken, Oslo (likely_rename_to_existing_place, 4 treff)
+- Amfiscenen, Nationaltheatret (likely_rename_to_existing_place, 3 treff)
+- Bokutgivelse (missing_place_candidate, 3 treff)

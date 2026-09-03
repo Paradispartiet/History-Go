@@ -68,8 +68,8 @@
   "source_files": {
     "brief": {
       "path": "data/quiz/production_briefs/by/ullevål_hageby.json",
-      "bytes": 11973,
-      "sha256": "654875a7419ca43a6439e5401a1e0a67f8853bd6119a68c6ea7b6a5d9557bad4"
+      "bytes": 13756,
+      "sha256": "c836caac9d35e5c249bb8c3d4c95af16e2ddebf50472e54fb75db77057385b45"
     },
     "target": {
       "path": "data/places/by/oslo/places/ullevål_hageby.json",
@@ -79,8 +79,8 @@
     "target_index": {
       "path": "data/places/places_index.json",
       "matches": 1,
-      "selection_bytes": 1271,
-      "selection_sha256": "474beca854157e0c6aad5ad2fd767339ca35324bfa5bf55e76b2981ed621eb37"
+      "selection_bytes": 1584,
+      "selection_sha256": "1e65991d383ba97a4df580caf337bb9fe219e1e63ba4bff4527c6a2089c8ad0f"
     },
     "relations": [
       {
@@ -95,7 +95,7 @@
         "path": "data/stories/stories_ullevål_hageby.json",
         "matches": 1,
         "selection_bytes": 2126,
-        "selection_sha256": "70d7370e7594c4c497c0911b3ea79bd3992258e0b91956d46b9f042bda94f7f6"
+        "selection_sha256": "52ad3ffc604a9447d69e32ea245bbcefb550da44d805586f29acc28d8050d0f5"
       }
     ]
   },
@@ -145,6 +145,35 @@
     }
   },
   "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/by/ullevål_hageby_sets_merged.json",
+      "data/quiz/manifest.json"
+    ],
+    "active_before": {
+      "file": "data/quiz/by/ullevål_hageby_sets_merged.json",
+      "set_count": 3,
+      "question_count": 15,
+      "finding": "Legacy-pakken har bare 3×5 og erstattes av normal 4×7."
+    },
+    "decisions": [
+      "Erstatt legacy 3×5 med kildeledet 4×7.",
+      "Hold de første 14 spørsmålene teori- og metodefrie.",
+      "Ikke bruk sprikende bygnings-/leilighetstall eller eksakt 1917-dato som universell fasit."
+    ],
+    "knowledge_migration": "Alle 28 spørsmål får stabile Ullevål Hageby-, claim- og Knowledge-ID-er."
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Stedet har fire tydelige læringsjobber og kildebredde for standard By-profil uten generisk filler."
+  },
+  "held_back_candidates": [
+    "Eksakt antall bygninger og leiligheter – nåtidskilder spriker.",
+    "Eksakt stiftelsesdato i oktober 1917 – kildene spriker.",
+    "Beboernes nåværende sosiale bakgrunn – skal ikke sluttes fra byform."
+  ],
   "considered_curriculum": {
     "counts": {
       "pensum_modules": 7,
@@ -256,7 +285,8 @@
   },
   "selected_curriculum": {
     "module_ids": [
-      "kur_by_01_byrom_akser_knutepunkt"
+      "kur_by_02_nabolag_ulikhet_segregering",
+      "kur_by_04_historiske_lag_og_transformasjon"
     ],
     "emne_ids": [
       "em_by_boligstruktur",
@@ -264,19 +294,21 @@
       "em_by_boligpolitikk_affordability"
     ],
     "topic_hook_ids": [
-      "ark_bygningstyper",
-      "bolig_boligtyper",
-      "bolig_endring_tid",
-      "bolig_fellesrom"
+      "ark_transformasjon",
+      "ark_makt",
+      "boligpolitikk_affordability"
     ],
     "method_ids": [
       "met_feltobservasjon",
-      "met_gis_romlig_analyse",
-      "met_morfologisk_analyse",
-      "met_for_etter"
+      "met_for_etter",
+      "met_aktoranalyse"
     ],
-    "thinker_ids": [],
-    "works": []
+    "thinker_ids": [
+      "susan_fainstein"
+    ],
+    "works": [
+      "The Just City"
+    ]
   },
   "claim_bank": [
     {

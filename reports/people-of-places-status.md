@@ -1,12 +1,12 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-09-02T08:42:41.319Z
+Generert: 2026-09-03T05:35:01.785Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-09-02T08:42:41.319Z |
+| generatedAt | 2026-09-03T05:35:01.785Z |
 | peopleFilesRead | 768 |
 | totalPeople | 1430 |
 | uniquePeopleIds | 1430 |
@@ -1659,14 +1659,12 @@ Entries med svak/manglende places[] etter auditreglene: 0
 
 ## Image/cardImage audit
 
-Mangler filer for image/cardImage/media: 572
+Mangler filer for image/cardImage/media: 570
 
 | Fil | Person | Felt | Bane |
 |---|---|---|---|
 | data/people/by/oslo/people_by_oslo.json | carl_berner / Carl Berner | image | bilder/kort/people/carl_berner.PNG |
 | data/people/by/oslo/people_by_oslo.json | carl_berner / Carl Berner | cardImage | bilder/kort/people/carl_berner.PNG |
-| data/people/by/oslo/people_by_oslo.json | harald_hals / Harald Hals | image | bilder/kort/people/harald_hals.PNG |
-| data/people/by/oslo/people_by_oslo.json | harald_hals / Harald Hals | cardImage | bilder/kort/people/harald_hals.PNG |
 | data/people/by/oslo/people_by_oslo.json | arne_korsmo / Arne Korsmo | image | bilder/kort/people/arne_korsmo.PNG |
 | data/people/by/oslo/people_by_oslo.json | arne_korsmo / Arne Korsmo | cardImage | bilder/kort/people/arne_korsmo.PNG |
 | data/people/by/oslo/people_by_oslo.json | kong_christian_iv / Kong Christian IV | image | bilder/kort/people/kong_christian_iv.PNG |
@@ -2270,4 +2268,3 @@ Mangler filer for image/cardImage/media: 572
 - Ingen people entries ble flyttet.
 - Ingen nye place IDs ble opprettet.
 - Scriptet leser data og skriver kun rapportene `reports/people-of-places-status.json` og `reports/people-of-places-status.md`.
-
