@@ -108,19 +108,28 @@ jobs:
               s = s.replace(old, new)
           p.write_text(s)
           PY
-      - name: Focused validation
-        run: |
-          node --test tests/bogstadveien-completion.test.mjs
-          node --test tests/epoke-place-index.test.mjs tests/epoker-runtime-place-index.test.mjs tests/epoke-viewer.test.mjs
-          npm run audit:quiz-manifest:v2
-          npm run audit:quiz-production-context
-          npm run audit:quiz-progression
-          npm run audit:quiz-theory-binding
-          npm run check:stories
-          npm run places:index:check
-          npm run place-open:check
-          node scripts/build-fagverk-release-manifest.mjs --check
-          git diff --check
+      - name: Bogstadveien contract
+        run: node --test tests/bogstadveien-completion.test.mjs
+      - name: Epoch runtime
+        run: node --test tests/epoke-place-index.test.mjs tests/epoker-runtime-place-index.test.mjs tests/epoke-viewer.test.mjs
+      - name: Quiz manifest
+        run: npm run audit:quiz-manifest:v2
+      - name: Quiz production context
+        run: npm run audit:quiz-production-context
+      - name: Quiz progression
+        run: npm run audit:quiz-progression
+      - name: Quiz theory binding
+        run: npm run audit:quiz-theory-binding
+      - name: Stories
+        run: npm run check:stories
+      - name: Places index
+        run: npm run places:index:check
+      - name: Place-open
+        run: npm run place-open:check
+      - name: Fagverk release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Diff check
+        run: git diff --check
       - name: Commit permanent Bogstadveien production
         run: |
           git config user.name "github-actions[bot]"
