@@ -378,6 +378,15 @@
     "data/Civication/mailFamilies/scenekunst/followup/scenekunst_program_og_kuratering_followup.json",
     "data/Civication/mailFamilies/scenekunst/knowledge/scenekunst_program_og_kuratering_knowledge.json",
     "data/Civication/mailFamilies/scenekunst/consequence/scenekunst_program_og_kuratering_consequence.json",
+    "data/Civication/mailFamilies/scenekunst/job/scenekunst_regi_og_koreografi_job.json",
+    "data/Civication/mailFamilies/scenekunst/people/scenekunst_regi_og_koreografi_people.json",
+    "data/Civication/mailFamilies/scenekunst/story/scenekunst_regi_og_koreografi_story.json",
+    "data/Civication/mailFamilies/scenekunst/conflict/scenekunst_regi_og_koreografi_conflict.json",
+    "data/Civication/mailFamilies/scenekunst/event/scenekunst_regi_og_koreografi_event.json",
+    "data/Civication/mailFamilies/scenekunst/micro/scenekunst_regi_og_koreografi_micro.json",
+    "data/Civication/mailFamilies/scenekunst/followup/scenekunst_regi_og_koreografi_followup.json",
+    "data/Civication/mailFamilies/scenekunst/knowledge/scenekunst_regi_og_koreografi_knowledge.json",
+    "data/Civication/mailFamilies/scenekunst/consequence/scenekunst_regi_og_koreografi_consequence.json",
     "data/Civication/mailFamilies/sosial_laering/job/barnehageassistent_job.json",
     "data/Civication/mailFamilies/sosial_laering/people/barnehageassistent_people.json",
     "data/Civication/mailFamilies/sosial_laering/story/barnehageassistent_story.json",
@@ -186719,6 +186728,2093 @@
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "prøvbar_og_sporbar_rework_vs_skjult_lasing",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Flytt samtalen tilbake til scenisk mål, bekreft grensen og utvikle et alternativ. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar makt og samtykke før låsing",
+            "reply": "Flytt samtalen tilbake til scenisk mål, bekreft grensen og utvikle et alternativ. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff.",
+            "tags": [
+              "sporbarhet",
+              "samtykke",
+              "scenisk_arbeid"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Forklar at krevende arbeid forutsetter at alle strekker komfortsonen når materialet trenger det. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås makt og samtykke uten full retest",
+            "reply": "Forklar at krevende arbeid forutsetter at alle strekker komfortsonen når materialet trenger det. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer.",
+            "tags": [
+              "mandatglidning",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "makt_og_samtykke",
+        "consequence_axis": "baerekraftig_scenisk_utvikling_vs_tillit_sikkerhet_og_versjonsgjeld",
+        "day_phase": "afternoon",
+        "from": "Amir",
+        "id": "regi_grense_009",
+        "mail_family": "regi_samtykke_og_makt",
+        "mail_type": "conflict",
+        "narrative_arc": "grense_009",
+        "people_ref": "amir_koreograf",
+        "person_id": "amir_koreograf",
+        "phase": "workday",
+        "place_id": "bevegelses_og_samtykkelogg",
+        "pressure": "kunstnerisk_intensjon_vs_sporbar_grense_og_versjon",
+        "priority": 142,
+        "role_scope": "scenekunst_regi_og_koreografi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/conflict/scenekunst_regi_og_koreografi_conflict.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "proverom_ensemble_og_teknikk",
+        "situation": [
+          "Frustrasjonen flytter seg fra løsningen til utøverens profesjonalitet og lojalitet.",
+          "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+          "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+        ],
+        "subject": "En utøver omtales som vanskelig etter å ha satt en fysisk grense",
+        "summary": "Frustrasjonen flytter seg fra løsningen til utøverens profesjonalitet og lojalitet. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_regi_og_koreografi"
+      },
+      "id": "regi_grense_009",
+      "mail_type": "conflict",
+      "role_scope": "scenekunst_regi_og_koreografi",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Flytt samtalen tilbake til scenisk mål, bekreft grensen og utvikle et alternativ. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar makt og samtykke før låsing",
+            "reply": "Flytt samtalen tilbake til scenisk mål, bekreft grensen og utvikle et alternativ. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Forklar at krevende arbeid forutsetter at alle strekker komfortsonen når materialet trenger det. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås makt og samtykke uten full retest",
+            "reply": "Forklar at krevende arbeid forutsetter at alle strekker komfortsonen når materialet trenger det. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Frustrasjonen flytter seg fra løsningen til utøverens profesjonalitet og lojalitet.",
+            "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+            "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+          ],
+          "subject": "En utøver omtales som vanskelig etter å ha satt en fysisk grense",
+          "summary": "Frustrasjonen flytter seg fra løsningen til utøverens profesjonalitet og lojalitet. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "regi_grense_009",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "bevegelses_og_samtykkelogg",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "regi_grense_009",
+          "source_path": "data/Civication/mailFamilies/scenekunst/conflict/scenekunst_regi_og_koreografi_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_regi_og_koreografi.mail.regi_grense_009",
+        "version": 1
+      },
+      "source_hash": "a3e54c1ba0e4e055a6d50f7893209d5e9ad805d5c00052e2192499b7f126a90e",
+      "source_path": "data/Civication/mailFamilies/scenekunst/conflict/scenekunst_regi_og_koreografi_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "prøvbar_og_sporbar_rework_vs_skjult_lasing",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Registrer faktisk kostnad og belastning og bruk konsekvensen som grense for senere rework. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar sen endring og konsekvens før låsing",
+            "reply": "Registrer faktisk kostnad og belastning og bruk konsekvensen som grense for senere rework. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff.",
+            "tags": [
+              "sporbarhet",
+              "samtykke",
+              "scenisk_arbeid"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Behandle resultatet som bevis på at den sene endringen var verdt belastningen. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås sen endring og konsekvens uten full retest",
+            "reply": "Behandle resultatet som bevis på at den sene endringen var verdt belastningen. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer.",
+            "tags": [
+              "mandatglidning",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sen_endring_og_konsekvens",
+        "consequence_axis": "baerekraftig_scenisk_utvikling_vs_tillit_sikkerhet_og_versjonsgjeld",
+        "day_phase": "afternoon",
+        "from": "Signe",
+        "id": "regi_sen_015",
+        "mail_family": "regi_sen_endring",
+        "mail_type": "consequence",
+        "narrative_arc": "sen_015",
+        "people_ref": "signe_inspisient",
+        "person_id": "signe_inspisient",
+        "phase": "workday",
+        "place_id": "gjennomlop_og_notebord",
+        "pressure": "kunstnerisk_intensjon_vs_sporbar_grense_og_versjon",
+        "priority": 136,
+        "role_scope": "scenekunst_regi_og_koreografi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/consequence/scenekunst_regi_og_koreografi_consequence.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "proverom_ensemble_og_teknikk",
+        "situation": [
+          "Endringen virket kunstnerisk, men varsling, retest og ressursbelastning ble undervurdert.",
+          "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+          "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+        ],
+        "subject": "Den sene endringen kostet en ekstra teknisk kveld og ny utøverslitasje",
+        "summary": "Endringen virket kunstnerisk, men varsling, retest og ressursbelastning ble undervurdert. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_regi_og_koreografi"
+      },
+      "id": "regi_sen_015",
+      "mail_type": "consequence",
+      "role_scope": "scenekunst_regi_og_koreografi",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Registrer faktisk kostnad og belastning og bruk konsekvensen som grense for senere rework. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar sen endring og konsekvens før låsing",
+            "reply": "Registrer faktisk kostnad og belastning og bruk konsekvensen som grense for senere rework. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Behandle resultatet som bevis på at den sene endringen var verdt belastningen. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås sen endring og konsekvens uten full retest",
+            "reply": "Behandle resultatet som bevis på at den sene endringen var verdt belastningen. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Endringen virket kunstnerisk, men varsling, retest og ressursbelastning ble undervurdert.",
+            "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+            "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+          ],
+          "subject": "Den sene endringen kostet en ekstra teknisk kveld og ny utøverslitasje",
+          "summary": "Endringen virket kunstnerisk, men varsling, retest og ressursbelastning ble undervurdert. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "regi_sen_015",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "gjennomlop_og_notebord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "regi_sen_015",
+          "source_path": "data/Civication/mailFamilies/scenekunst/consequence/scenekunst_regi_og_koreografi_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_regi_og_koreografi.mail.regi_sen_015",
+        "version": 1
+      },
+      "source_hash": "4654cb4a1fc3a7ecaa629a09c113d480655db8e280e312595a958a9f97c85d3a",
+      "source_path": "data/Civication/mailFamilies/scenekunst/consequence/scenekunst_regi_og_koreografi_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "prøvbar_og_sporbar_rework_vs_skjult_lasing",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Gjenåpne bare romavhengige ledd og retest avstand, tempo og sikkerhet. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar rom og rework før låsing",
+            "reply": "Gjenåpne bare romavhengige ledd og retest avstand, tempo og sikkerhet. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff.",
+            "tags": [
+              "sporbarhet",
+              "samtykke",
+              "scenisk_arbeid"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Kjør hele scenen i samme tempo så ensemblet ikke mister flyt. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås rom og rework uten full retest",
+            "reply": "Kjør hele scenen i samme tempo så ensemblet ikke mister flyt. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer.",
+            "tags": [
+              "mandatglidning",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "rom_og_rework",
+        "consequence_axis": "baerekraftig_scenisk_utvikling_vs_tillit_sikkerhet_og_versjonsgjeld",
+        "day_phase": "afternoon",
+        "from": "Even",
+        "id": "regi_rom_011",
+        "mail_family": "regi_endret_premiss",
+        "mail_type": "event",
+        "narrative_arc": "rom_011",
+        "people_ref": "even_teknisk_leder",
+        "person_id": "even_teknisk_leder",
+        "phase": "workday",
+        "place_id": "teknisk_integrasjonsrom",
+        "pressure": "kunstnerisk_intensjon_vs_sporbar_grense_og_versjon",
+        "priority": 140,
+        "role_scope": "scenekunst_regi_og_koreografi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/event/scenekunst_regi_og_koreografi_event.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "proverom_ensemble_og_teknikk",
+        "situation": [
+          "Løpesekvens og løft blir utrygge, mens resten av scenestrukturen fortsatt fungerer.",
+          "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+          "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+        ],
+        "subject": "Prøven flyttes til mindre rom og to sceneløsninger mister avstand",
+        "summary": "Løpesekvens og løft blir utrygge, mens resten av scenestrukturen fortsatt fungerer. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_regi_og_koreografi"
+      },
+      "id": "regi_rom_011",
+      "mail_type": "event",
+      "role_scope": "scenekunst_regi_og_koreografi",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Gjenåpne bare romavhengige ledd og retest avstand, tempo og sikkerhet. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar rom og rework før låsing",
+            "reply": "Gjenåpne bare romavhengige ledd og retest avstand, tempo og sikkerhet. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Kjør hele scenen i samme tempo så ensemblet ikke mister flyt. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås rom og rework uten full retest",
+            "reply": "Kjør hele scenen i samme tempo så ensemblet ikke mister flyt. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Løpesekvens og løft blir utrygge, mens resten av scenestrukturen fortsatt fungerer.",
+            "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+            "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+          ],
+          "subject": "Prøven flyttes til mindre rom og to sceneløsninger mister avstand",
+          "summary": "Løpesekvens og løft blir utrygge, mens resten av scenestrukturen fortsatt fungerer. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "regi_rom_011",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "teknisk_integrasjonsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "regi_rom_011",
+          "source_path": "data/Civication/mailFamilies/scenekunst/event/scenekunst_regi_og_koreografi_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_regi_og_koreografi.mail.regi_rom_011",
+        "version": 1
+      },
+      "source_hash": "02cb0aa6e1f99e5dfbef6adecf444a013bba0af90f379a0b611496bc63c6b040",
+      "source_path": "data/Civication/mailFamilies/scenekunst/event/scenekunst_regi_og_koreografi_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "prøvbar_og_sporbar_rework_vs_skjult_lasing",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Gjenåpne bare musikkavhengig timing og anslag, behold bevegelseslogikken og test ny lyd. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar rettighet og bounded rework før låsing",
+            "reply": "Gjenåpne bare musikkavhengig timing og anslag, behold bevegelseslogikken og test ny lyd. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff.",
+            "tags": [
+              "sporbarhet",
+              "samtykke",
+              "scenisk_arbeid"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Bygg hele scenen på nytt fordi sporet var del av den opprinnelige ideen. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås rettighet og bounded rework uten full retest",
+            "reply": "Bygg hele scenen på nytt fordi sporet var del av den opprinnelige ideen. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer.",
+            "tags": [
+              "mandatglidning",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "rettighet_og_bounded_rework",
+        "consequence_axis": "baerekraftig_scenisk_utvikling_vs_tillit_sikkerhet_og_versjonsgjeld",
+        "day_phase": "afternoon",
+        "from": "Nora",
+        "id": "regi_rettighet_013",
+        "mail_family": "regi_rework",
+        "mail_type": "followup",
+        "narrative_arc": "rettighet_013",
+        "people_ref": "nora_regissor",
+        "person_id": "nora_regissor",
+        "phase": "workday",
+        "place_id": "proverom_og_sceneplan",
+        "pressure": "kunstnerisk_intensjon_vs_sporbar_grense_og_versjon",
+        "priority": 138,
+        "role_scope": "scenekunst_regi_og_koreografi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/followup/scenekunst_regi_og_koreografi_followup.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "proverom_ensemble_og_teknikk",
+        "situation": [
+          "Bevegelsesmaterialet fungerer, men timing og anslag er bundet til musikken som ikke kan brukes.",
+          "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+          "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+        ],
+        "subject": "En musikkrettighet faller bort etter at koreografien er låst til sporet",
+        "summary": "Bevegelsesmaterialet fungerer, men timing og anslag er bundet til musikken som ikke kan brukes. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_regi_og_koreografi"
+      },
+      "id": "regi_rettighet_013",
+      "mail_type": "followup",
+      "role_scope": "scenekunst_regi_og_koreografi",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Gjenåpne bare musikkavhengig timing og anslag, behold bevegelseslogikken og test ny lyd. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar rettighet og bounded rework før låsing",
+            "reply": "Gjenåpne bare musikkavhengig timing og anslag, behold bevegelseslogikken og test ny lyd. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Bygg hele scenen på nytt fordi sporet var del av den opprinnelige ideen. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås rettighet og bounded rework uten full retest",
+            "reply": "Bygg hele scenen på nytt fordi sporet var del av den opprinnelige ideen. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Bevegelsesmaterialet fungerer, men timing og anslag er bundet til musikken som ikke kan brukes.",
+            "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+            "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+          ],
+          "subject": "En musikkrettighet faller bort etter at koreografien er låst til sporet",
+          "summary": "Bevegelsesmaterialet fungerer, men timing og anslag er bundet til musikken som ikke kan brukes. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "regi_rettighet_013",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "proverom_og_sceneplan",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "regi_rettighet_013",
+          "source_path": "data/Civication/mailFamilies/scenekunst/followup/scenekunst_regi_og_koreografi_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_regi_og_koreografi.mail.regi_rettighet_013",
+        "version": 1
+      },
+      "source_hash": "9caae8dc8b3974e49a4ad51ad5670117908cfbbd6d38a152a247871fc4248b3f",
+      "source_path": "data/Civication/mailFamilies/scenekunst/followup/scenekunst_regi_og_koreografi_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "prøvbar_og_sporbar_rework_vs_skjult_lasing",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Frys én gjeldende versjon per scene, marker betingede ledd og send samme endringsliste til alle. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar versjonskontroll og handoff før låsing",
+            "reply": "Frys én gjeldende versjon per scene, marker betingede ledd og send samme endringsliste til alle. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff.",
+            "tags": [
+              "sporbarhet",
+              "samtykke",
+              "scenisk_arbeid"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "La hver fagfunksjon bruke sin siste versjon og rydd forskjellene etter gjennomløpet. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås versjonskontroll og handoff uten full retest",
+            "reply": "La hver fagfunksjon bruke sin siste versjon og rydd forskjellene etter gjennomløpet. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer.",
+            "tags": [
+              "mandatglidning",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "versjonskontroll_og_handoff",
+        "consequence_axis": "baerekraftig_scenisk_utvikling_vs_tillit_sikkerhet_og_versjonsgjeld",
+        "day_phase": "afternoon",
+        "from": "Signe",
+        "id": "regi_gjennomlop_004",
+        "mail_family": "regi_proveromsbok",
+        "mail_type": "job",
+        "narrative_arc": "gjennomlop_004",
+        "people_ref": "signe_inspisient",
+        "person_id": "signe_inspisient",
+        "phase": "workday",
+        "place_id": "gjennomlop_og_notebord",
+        "pressure": "kunstnerisk_intensjon_vs_sporbar_grense_og_versjon",
+        "priority": 147,
+        "role_scope": "scenekunst_regi_og_koreografi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_regi_og_koreografi_job.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "proverom_ensemble_og_teknikk",
+        "situation": [
+          "Ensemble og teknikk har ulike notater på hvilke overganger som gjelder.",
+          "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+          "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+        ],
+        "subject": "Gjennomløpet nærmer seg mens tre scener finnes i to versjoner",
+        "summary": "Ensemble og teknikk har ulike notater på hvilke overganger som gjelder. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_regi_og_koreografi"
+      },
+      "id": "regi_gjennomlop_004",
+      "mail_type": "job",
+      "role_scope": "scenekunst_regi_og_koreografi",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Frys én gjeldende versjon per scene, marker betingede ledd og send samme endringsliste til alle. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar versjonskontroll og handoff før låsing",
+            "reply": "Frys én gjeldende versjon per scene, marker betingede ledd og send samme endringsliste til alle. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "La hver fagfunksjon bruke sin siste versjon og rydd forskjellene etter gjennomløpet. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås versjonskontroll og handoff uten full retest",
+            "reply": "La hver fagfunksjon bruke sin siste versjon og rydd forskjellene etter gjennomløpet. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Ensemble og teknikk har ulike notater på hvilke overganger som gjelder.",
+            "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+            "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+          ],
+          "subject": "Gjennomløpet nærmer seg mens tre scener finnes i to versjoner",
+          "summary": "Ensemble og teknikk har ulike notater på hvilke overganger som gjelder. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "regi_gjennomlop_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "gjennomlop_og_notebord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "regi_gjennomlop_004",
+          "source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_regi_og_koreografi_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_regi_og_koreografi.mail.regi_gjennomlop_004",
+        "version": 1
+      },
+      "source_hash": "29ed77348f8bdcf6533e30e7f653b440dd3db4811582307546b72f25b604d123",
+      "source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_regi_og_koreografi_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "prøvbar_og_sporbar_rework_vs_skjult_lasing",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Stopp løsningen, avklar grenser og utvikle alternative fysiske midler for samme sceniske mål. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar samtykke og bevegelse før låsing",
+            "reply": "Stopp løsningen, avklar grenser og utvikle alternative fysiske midler for samme sceniske mål. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff.",
+            "tags": [
+              "sporbarhet",
+              "samtykke",
+              "scenisk_arbeid"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Be utøveren prøve sekvensen én gang i fullt tempo og vurder grensen etterpå. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås samtykke og bevegelse uten full retest",
+            "reply": "Be utøveren prøve sekvensen én gang i fullt tempo og vurder grensen etterpå. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer.",
+            "tags": [
+              "mandatglidning",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "samtykke_og_bevegelse",
+        "consequence_axis": "baerekraftig_scenisk_utvikling_vs_tillit_sikkerhet_og_versjonsgjeld",
+        "day_phase": "morning",
+        "from": "Amir",
+        "id": "regi_samtykke_002",
+        "mail_family": "regi_proveromsbok",
+        "mail_type": "job",
+        "narrative_arc": "samtykke_002",
+        "people_ref": "amir_koreograf",
+        "person_id": "amir_koreograf",
+        "phase": "forenoon",
+        "place_id": "bevegelses_og_samtykkelogg",
+        "pressure": "kunstnerisk_intensjon_vs_sporbar_grense_og_versjon",
+        "priority": 149,
+        "role_scope": "scenekunst_regi_og_koreografi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_regi_og_koreografi_job.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "proverom_ensemble_og_teknikk",
+        "situation": [
+          "Sekvensen er sterk, men berører intim kontakt og belastning som ikke er avklart.",
+          "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+          "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+        ],
+        "subject": "En partnersekvens krever kontakt én utøver ikke har samtykket til",
+        "summary": "Sekvensen er sterk, men berører intim kontakt og belastning som ikke er avklart. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_regi_og_koreografi"
+      },
+      "id": "regi_samtykke_002",
+      "mail_type": "job",
+      "role_scope": "scenekunst_regi_og_koreografi",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Stopp løsningen, avklar grenser og utvikle alternative fysiske midler for samme sceniske mål. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar samtykke og bevegelse før låsing",
+            "reply": "Stopp løsningen, avklar grenser og utvikle alternative fysiske midler for samme sceniske mål. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Be utøveren prøve sekvensen én gang i fullt tempo og vurder grensen etterpå. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås samtykke og bevegelse uten full retest",
+            "reply": "Be utøveren prøve sekvensen én gang i fullt tempo og vurder grensen etterpå. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Sekvensen er sterk, men berører intim kontakt og belastning som ikke er avklart.",
+            "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+            "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+          ],
+          "subject": "En partnersekvens krever kontakt én utøver ikke har samtykket til",
+          "summary": "Sekvensen er sterk, men berører intim kontakt og belastning som ikke er avklart. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "regi_samtykke_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "bevegelses_og_samtykkelogg",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "regi_samtykke_002",
+          "source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_regi_og_koreografi_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_regi_og_koreografi.mail.regi_samtykke_002",
+        "version": 1
+      },
+      "source_hash": "dff641dfb394013b88a2ad0cd838103d02b076849a4514d209d164b81641545d",
+      "source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_regi_og_koreografi_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "prøvbar_og_sporbar_rework_vs_skjult_lasing",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Bryt målet ned til konkret handling, romlig relasjon og rytme og test én variabel om gangen. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar scenisk komposisjon før låsing",
+            "reply": "Bryt målet ned til konkret handling, romlig relasjon og rytme og test én variabel om gangen. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff.",
+            "tags": [
+              "sporbarhet",
+              "samtykke",
+              "scenisk_arbeid"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Forklar konseptet mer detaljert og be ensemblet spille ideen tydeligere. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås scenisk komposisjon uten full retest",
+            "reply": "Forklar konseptet mer detaljert og be ensemblet spille ideen tydeligere. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer.",
+            "tags": [
+              "mandatglidning",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "scenisk_komposisjon",
+        "consequence_axis": "baerekraftig_scenisk_utvikling_vs_tillit_sikkerhet_og_versjonsgjeld",
+        "day_phase": "morning",
+        "from": "Nora",
+        "id": "regi_scene_001",
+        "mail_family": "regi_proveromsbok",
+        "mail_type": "job",
+        "narrative_arc": "scene_001",
+        "people_ref": "nora_regissor",
+        "person_id": "nora_regissor",
+        "phase": "forenoon",
+        "place_id": "proverom_og_sceneplan",
+        "pressure": "kunstnerisk_intensjon_vs_sporbar_grense_og_versjon",
+        "priority": 150,
+        "role_scope": "scenekunst_regi_og_koreografi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_regi_og_koreografi_job.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "proverom_ensemble_og_teknikk",
+        "situation": [
+          "Ideen fungerer i samtale, men scenens handling og relasjon er uklar.",
+          "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+          "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+        ],
+        "subject": "Åpningsscenen forklarer konseptet, men handlingen leses ikke",
+        "summary": "Ideen fungerer i samtale, men scenens handling og relasjon er uklar. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_regi_og_koreografi"
+      },
+      "id": "regi_scene_001",
+      "mail_type": "job",
+      "role_scope": "scenekunst_regi_og_koreografi",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Bryt målet ned til konkret handling, romlig relasjon og rytme og test én variabel om gangen. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar scenisk komposisjon før låsing",
+            "reply": "Bryt målet ned til konkret handling, romlig relasjon og rytme og test én variabel om gangen. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Forklar konseptet mer detaljert og be ensemblet spille ideen tydeligere. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås scenisk komposisjon uten full retest",
+            "reply": "Forklar konseptet mer detaljert og be ensemblet spille ideen tydeligere. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Ideen fungerer i samtale, men scenens handling og relasjon er uklar.",
+            "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+            "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+          ],
+          "subject": "Åpningsscenen forklarer konseptet, men handlingen leses ikke",
+          "summary": "Ideen fungerer i samtale, men scenens handling og relasjon er uklar. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "regi_scene_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "proverom_og_sceneplan",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "regi_scene_001",
+          "source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_regi_og_koreografi_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_regi_og_koreografi.mail.regi_scene_001",
+        "version": 1
+      },
+      "source_hash": "1b24a5ca18f0fab0987cfb619b8861d879c0313964c9f9f5c1692ac6177d1b19",
+      "source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_regi_og_koreografi_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "prøvbar_og_sporbar_rework_vs_skjult_lasing",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Be Even definere sikkerhetsgrensene og test et kunstnerisk alternativ med samme funksjon. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar teknisk integrasjon før låsing",
+            "reply": "Be Even definere sikkerhetsgrensene og test et kunstnerisk alternativ med samme funksjon. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff.",
+            "tags": [
+              "sporbarhet",
+              "samtykke",
+              "scenisk_arbeid"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Lås bildet kunstnerisk og forvent at teknisk finner en måte å gjennomføre det på. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås teknisk integrasjon uten full retest",
+            "reply": "Lås bildet kunstnerisk og forvent at teknisk finner en måte å gjennomføre det på. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer.",
+            "tags": [
+              "mandatglidning",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "teknisk_integrasjon",
+        "consequence_axis": "baerekraftig_scenisk_utvikling_vs_tillit_sikkerhet_og_versjonsgjeld",
+        "day_phase": "morning",
+        "from": "Even",
+        "id": "regi_teknikk_003",
+        "mail_family": "regi_proveromsbok",
+        "mail_type": "job",
+        "narrative_arc": "teknikk_003",
+        "people_ref": "even_teknisk_leder",
+        "person_id": "even_teknisk_leder",
+        "phase": "forenoon",
+        "place_id": "teknisk_integrasjonsrom",
+        "pressure": "kunstnerisk_intensjon_vs_sporbar_grense_og_versjon",
+        "priority": 148,
+        "role_scope": "scenekunst_regi_og_koreografi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_regi_og_koreografi_job.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "proverom_ensemble_og_teknikk",
+        "situation": [
+          "Riggideen støtter komposisjonen, men last, tid eller sikring er ikke forsvarlig dokumentert.",
+          "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+          "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+        ],
+        "subject": "Det sceniske bildet krever en rigg teknisk leder ikke kan godkjenne",
+        "summary": "Riggideen støtter komposisjonen, men last, tid eller sikring er ikke forsvarlig dokumentert. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_regi_og_koreografi"
+      },
+      "id": "regi_teknikk_003",
+      "mail_type": "job",
+      "role_scope": "scenekunst_regi_og_koreografi",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Be Even definere sikkerhetsgrensene og test et kunstnerisk alternativ med samme funksjon. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar teknisk integrasjon før låsing",
+            "reply": "Be Even definere sikkerhetsgrensene og test et kunstnerisk alternativ med samme funksjon. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Lås bildet kunstnerisk og forvent at teknisk finner en måte å gjennomføre det på. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås teknisk integrasjon uten full retest",
+            "reply": "Lås bildet kunstnerisk og forvent at teknisk finner en måte å gjennomføre det på. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Riggideen støtter komposisjonen, men last, tid eller sikring er ikke forsvarlig dokumentert.",
+            "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+            "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+          ],
+          "subject": "Det sceniske bildet krever en rigg teknisk leder ikke kan godkjenne",
+          "summary": "Riggideen støtter komposisjonen, men last, tid eller sikring er ikke forsvarlig dokumentert. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "regi_teknikk_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "teknisk_integrasjonsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "regi_teknikk_003",
+          "source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_regi_og_koreografi_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_regi_og_koreografi.mail.regi_teknikk_003",
+        "version": 1
+      },
+      "source_hash": "3fba4eef58ee91ca80a4afb247da449d88e5af88dde92ea0ba4cef6552bcb825",
+      "source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_regi_og_koreografi_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "prøvbar_og_sporbar_rework_vs_skjult_lasing",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Les koblingen og formuler ett spørsmål om hvordan sceneinstruksjon, koreografi, ensemble og teaterrom påvirker hverandre over tid. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar history go refleksjon før låsing",
+            "reply": "Les koblingen og formuler ett spørsmål om hvordan sceneinstruksjon, koreografi, ensemble og teaterrom påvirker hverandre over tid. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff.",
+            "tags": [
+              "sporbarhet",
+              "samtykke",
+              "scenisk_arbeid"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Bruk historien som autoritet for at én regi- eller koreografisk metode er riktig i dagens produksjon. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås history go refleksjon uten full retest",
+            "reply": "Bruk historien som autoritet for at én regi- eller koreografisk metode er riktig i dagens produksjon. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer.",
+            "tags": [
+              "mandatglidning",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "history_go_refleksjon",
+        "consequence_axis": "baerekraftig_scenisk_utvikling_vs_tillit_sikkerhet_og_versjonsgjeld",
+        "day_phase": "afternoon",
+        "from": "Nora",
+        "id": "regi_edith_014",
+        "interaction_mode": "task",
+        "mail_family": "regi_history_go",
+        "mail_type": "knowledge",
+        "narrative_arc": "edith_014",
+        "people_ref": "nora_regissor",
+        "person_id": "nora_regissor",
+        "phase": "workday",
+        "place_id": "nationaltheatret",
+        "pressure": "kunstnerisk_intensjon_vs_sporbar_grense_og_versjon",
+        "priority": 137,
+        "role_scope": "scenekunst_regi_og_koreografi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/knowledge/scenekunst_regi_og_koreografi_knowledge.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "historisk_scenekunstkontekst",
+        "situation": [
+          "History Go har verifisert personpost om Edith Roger og scenekunstpost for Nationaltheatret; dette er historisk spørsmål, ikke metodefasit.",
+          "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+          "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+        ],
+        "subject": "Edith Roger og Nationaltheatret: hva kan historien lære oss om iscenesettelse?",
+        "summary": "History Go har verifisert personpost om Edith Roger og scenekunstpost for Nationaltheatret; dette er historisk spørsmål, ikke metodefasit. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår.",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/people/litteratur/oslo/nationaltheatret/edith_roger.json",
+            "data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "scenekunst_regi_og_koreografi_history_go_edith_roger"
+        },
+        "task_domain": "scenekunst_regi_og_koreografi",
+        "task_payload": {
+          "completion_mode": "read_profile",
+          "description": "Noter ett spørsmål om hvordan koreografi, sceneinstruksjon, ensemble og teaterrom kan påvirke hverandre over tid uten å gjøre historien til fasit for dagens metode eller mandat.",
+          "person_id": "edith_roger",
+          "return_context": {
+            "mail_id": "regi_edith_014",
+            "role_scope": "scenekunst_regi_og_koreografi",
+            "source": "civication"
+          },
+          "target_type": "person",
+          "task_kind": "history_go_person",
+          "title": "Les Edith Roger som historisk scenekunstkontekst"
+        }
+      },
+      "id": "regi_edith_014",
+      "mail_type": "knowledge",
+      "role_scope": "scenekunst_regi_og_koreografi",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Les koblingen og formuler ett spørsmål om hvordan sceneinstruksjon, koreografi, ensemble og teaterrom påvirker hverandre over tid. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar history go refleksjon før låsing",
+            "reply": "Les koblingen og formuler ett spørsmål om hvordan sceneinstruksjon, koreografi, ensemble og teaterrom påvirker hverandre over tid. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Bruk historien som autoritet for at én regi- eller koreografisk metode er riktig i dagens produksjon. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås history go refleksjon uten full retest",
+            "reply": "Bruk historien som autoritet for at én regi- eller koreografisk metode er riktig i dagens produksjon. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer."
+          }
+        ],
+        "content": {
+          "situation": [
+            "History Go har verifisert personpost om Edith Roger og scenekunstpost for Nationaltheatret; dette er historisk spørsmål, ikke metodefasit.",
+            "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+            "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+          ],
+          "subject": "Edith Roger og Nationaltheatret: hva kan historien lære oss om iscenesettelse?",
+          "summary": "History Go har verifisert personpost om Edith Roger og scenekunstpost for Nationaltheatret; dette er historisk spørsmål, ikke metodefasit. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "regi_edith_014",
+        "interaction_mode": "task",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "nationaltheatret",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "regi_edith_014",
+          "source_path": "data/Civication/mailFamilies/scenekunst/knowledge/scenekunst_regi_og_koreografi_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/people/litteratur/oslo/nationaltheatret/edith_roger.json",
+            "data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "scenekunst_regi_og_koreografi_history_go_edith_roger"
+        },
+        "thread_id": "scenekunst_regi_og_koreografi.mail.regi_edith_014",
+        "version": 1
+      },
+      "source_hash": "9660300ef799031d11940d0e353777005714be67cd5810b3c4994150553d4ad4",
+      "source_path": "data/Civication/mailFamilies/scenekunst/knowledge/scenekunst_regi_og_koreografi_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "prøvbar_og_sporbar_rework_vs_skjult_lasing",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Bruk én eksplisitt status per scene og skriv hva som gjenstår før neste status. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar statussprak før låsing",
+            "reply": "Bruk én eksplisitt status per scene og skriv hva som gjenstår før neste status. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff.",
+            "tags": [
+              "sporbarhet",
+              "samtykke",
+              "scenisk_arbeid"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Behold ordet ferdig og la hver fagfunksjon tolke hva som mangler. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås statussprak uten full retest",
+            "reply": "Behold ordet ferdig og la hver fagfunksjon tolke hva som mangler. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer.",
+            "tags": [
+              "mandatglidning",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "statussprak",
+        "consequence_axis": "baerekraftig_scenisk_utvikling_vs_tillit_sikkerhet_og_versjonsgjeld",
+        "day_phase": "afternoon",
+        "from": "Nora",
+        "id": "regi_status_012",
+        "mail_family": "regi_statussprak",
+        "mail_type": "micro",
+        "narrative_arc": "status_012",
+        "people_ref": "nora_regissor",
+        "person_id": "nora_regissor",
+        "phase": "workday",
+        "place_id": "proverom_og_sceneplan",
+        "pressure": "kunstnerisk_intensjon_vs_sporbar_grense_og_versjon",
+        "priority": 139,
+        "role_scope": "scenekunst_regi_og_koreografi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/micro/scenekunst_regi_og_koreografi_micro.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "proverom_ensemble_og_teknikk",
+        "situation": [
+          "Fire meldinger bruker ordet ferdig forskjellig og skaper versjonsuklarhet.",
+          "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+          "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+        ],
+        "subject": "Er scenen foreslått, prøvd, betinget eller låst?",
+        "summary": "Fire meldinger bruker ordet ferdig forskjellig og skaper versjonsuklarhet. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_regi_og_koreografi"
+      },
+      "id": "regi_status_012",
+      "mail_type": "micro",
+      "role_scope": "scenekunst_regi_og_koreografi",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Bruk én eksplisitt status per scene og skriv hva som gjenstår før neste status. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar statussprak før låsing",
+            "reply": "Bruk én eksplisitt status per scene og skriv hva som gjenstår før neste status. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Behold ordet ferdig og la hver fagfunksjon tolke hva som mangler. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås statussprak uten full retest",
+            "reply": "Behold ordet ferdig og la hver fagfunksjon tolke hva som mangler. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Fire meldinger bruker ordet ferdig forskjellig og skaper versjonsuklarhet.",
+            "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+            "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+          ],
+          "subject": "Er scenen foreslått, prøvd, betinget eller låst?",
+          "summary": "Fire meldinger bruker ordet ferdig forskjellig og skaper versjonsuklarhet. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "regi_status_012",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "proverom_og_sceneplan",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "regi_status_012",
+          "source_path": "data/Civication/mailFamilies/scenekunst/micro/scenekunst_regi_og_koreografi_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_regi_og_koreografi.mail.regi_status_012",
+        "version": 1
+      },
+      "source_hash": "56d4ce9dacc0d3219b9f117424610940aeb38bdbfd7c9dc422b8388a33fd4fb1",
+      "source_path": "data/Civication/mailFamilies/scenekunst/micro/scenekunst_regi_og_koreografi_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "prøvbar_og_sporbar_rework_vs_skjult_lasing",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Formuler felles mål, avklar hvem som eier blocking og bevegelsesdetalj i testen, og gi én oppgave. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar regi koreografi samordning før låsing",
+            "reply": "Formuler felles mål, avklar hvem som eier blocking og bevegelsesdetalj i testen, og gi én oppgave. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff.",
+            "tags": [
+              "sporbarhet",
+              "samtykke",
+              "scenisk_arbeid"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "La begge instruksene stå og be utøverne finne en personlig syntese. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås regi koreografi samordning uten full retest",
+            "reply": "La begge instruksene stå og be utøverne finne en personlig syntese. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer.",
+            "tags": [
+              "mandatglidning",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "regi_koreografi_samordning",
+        "consequence_axis": "baerekraftig_scenisk_utvikling_vs_tillit_sikkerhet_og_versjonsgjeld",
+        "day_phase": "afternoon",
+        "from": "Amir",
+        "id": "regi_amir_006",
+        "mail_family": "regi_arbeidsrelasjoner",
+        "mail_type": "people",
+        "narrative_arc": "amir_006",
+        "people_ref": "amir_koreograf",
+        "person_id": "amir_koreograf",
+        "phase": "workday",
+        "place_id": "bevegelses_og_samtykkelogg",
+        "pressure": "kunstnerisk_intensjon_vs_sporbar_grense_og_versjon",
+        "priority": 145,
+        "role_scope": "scenekunst_regi_og_koreografi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_regi_og_koreografi_people.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "arbeidsrelasjon",
+        "situation": [
+          "Utøverne prøver å tilfredsstille to instrukser samtidig og vet ikke hva som observeres.",
+          "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+          "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+        ],
+        "subject": "Amir og Nora gir motsatte fysiske instrukser mot samme mål",
+        "summary": "Utøverne prøver å tilfredsstille to instrukser samtidig og vet ikke hva som observeres. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_regi_og_koreografi"
+      },
+      "id": "regi_amir_006",
+      "mail_type": "people",
+      "role_scope": "scenekunst_regi_og_koreografi",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Formuler felles mål, avklar hvem som eier blocking og bevegelsesdetalj i testen, og gi én oppgave. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar regi koreografi samordning før låsing",
+            "reply": "Formuler felles mål, avklar hvem som eier blocking og bevegelsesdetalj i testen, og gi én oppgave. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "La begge instruksene stå og be utøverne finne en personlig syntese. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås regi koreografi samordning uten full retest",
+            "reply": "La begge instruksene stå og be utøverne finne en personlig syntese. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Utøverne prøver å tilfredsstille to instrukser samtidig og vet ikke hva som observeres.",
+            "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+            "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+          ],
+          "subject": "Amir og Nora gir motsatte fysiske instrukser mot samme mål",
+          "summary": "Utøverne prøver å tilfredsstille to instrukser samtidig og vet ikke hva som observeres. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "regi_amir_006",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "bevegelses_og_samtykkelogg",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "regi_amir_006",
+          "source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_regi_og_koreografi_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_regi_og_koreografi.mail.regi_amir_006",
+        "version": 1
+      },
+      "source_hash": "467ca47378d159b94cca3b10249ba29f9fe854164ad33631f8d8b27a1b4742fb",
+      "source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_regi_og_koreografi_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "prøvbar_og_sporbar_rework_vs_skjult_lasing",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Skill kunstnerisk funksjon fra mekanikken og bruk Even som premissgiver for en ny trygg test. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar sikkerhet og samarbeid før låsing",
+            "reply": "Skill kunstnerisk funksjon fra mekanikken og bruk Even som premissgiver for en ny trygg test. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff.",
+            "tags": [
+              "sporbarhet",
+              "samtykke",
+              "scenisk_arbeid"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Be om at overgangen kjøres uendret i generalprøven én gang. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås sikkerhet og samarbeid uten full retest",
+            "reply": "Be om at overgangen kjøres uendret i generalprøven én gang. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer.",
+            "tags": [
+              "mandatglidning",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sikkerhet_og_samarbeid",
+        "consequence_axis": "baerekraftig_scenisk_utvikling_vs_tillit_sikkerhet_og_versjonsgjeld",
+        "day_phase": "afternoon",
+        "from": "Even",
+        "id": "regi_even_008",
+        "mail_family": "regi_arbeidsrelasjoner",
+        "mail_type": "people",
+        "narrative_arc": "even_008",
+        "people_ref": "even_teknisk_leder",
+        "person_id": "even_teknisk_leder",
+        "phase": "workday",
+        "place_id": "teknisk_integrasjonsrom",
+        "pressure": "kunstnerisk_intensjon_vs_sporbar_grense_og_versjon",
+        "priority": 143,
+        "role_scope": "scenekunst_regi_og_koreografi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_regi_og_koreografi_people.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "arbeidsrelasjon",
+        "situation": [
+          "En ny teknisk test viser at tidsmarginen ved sceneskiftet er for liten.",
+          "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+          "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+        ],
+        "subject": "Even stopper en overgang som allerede er kunstnerisk populær",
+        "summary": "En ny teknisk test viser at tidsmarginen ved sceneskiftet er for liten. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_regi_og_koreografi"
+      },
+      "id": "regi_even_008",
+      "mail_type": "people",
+      "role_scope": "scenekunst_regi_og_koreografi",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Skill kunstnerisk funksjon fra mekanikken og bruk Even som premissgiver for en ny trygg test. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar sikkerhet og samarbeid før låsing",
+            "reply": "Skill kunstnerisk funksjon fra mekanikken og bruk Even som premissgiver for en ny trygg test. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Be om at overgangen kjøres uendret i generalprøven én gang. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås sikkerhet og samarbeid uten full retest",
+            "reply": "Be om at overgangen kjøres uendret i generalprøven én gang. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer."
+          }
+        ],
+        "content": {
+          "situation": [
+            "En ny teknisk test viser at tidsmarginen ved sceneskiftet er for liten.",
+            "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+            "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+          ],
+          "subject": "Even stopper en overgang som allerede er kunstnerisk populær",
+          "summary": "En ny teknisk test viser at tidsmarginen ved sceneskiftet er for liten. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "regi_even_008",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "teknisk_integrasjonsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "regi_even_008",
+          "source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_regi_og_koreografi_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_regi_og_koreografi.mail.regi_even_008",
+        "version": 1
+      },
+      "source_hash": "c0de06f6e1a37c2ed599e139fd709ec6e92768e428a44e57b4cfd7ddca769364",
+      "source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_regi_og_koreografi_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "prøvbar_og_sporbar_rework_vs_skjult_lasing",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Svar med hypotese, beslutningspunkt og hvem som varsles først etter at Nora faktisk låser retningen. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar mandat og regi før låsing",
+            "reply": "Svar med hypotese, beslutningspunkt og hvem som varsles først etter at Nora faktisk låser retningen. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff.",
+            "tags": [
+              "sporbarhet",
+              "samtykke",
+              "scenisk_arbeid"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Presenter ideen som ny sceneversjon og la Nora eventuelt trekke den tilbake senere. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås mandat og regi uten full retest",
+            "reply": "Presenter ideen som ny sceneversjon og la Nora eventuelt trekke den tilbake senere. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer.",
+            "tags": [
+              "mandatglidning",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "mandat_og_regi",
+        "consequence_axis": "baerekraftig_scenisk_utvikling_vs_tillit_sikkerhet_og_versjonsgjeld",
+        "day_phase": "afternoon",
+        "from": "Nora",
+        "id": "regi_nora_005",
+        "mail_family": "regi_arbeidsrelasjoner",
+        "mail_type": "people",
+        "narrative_arc": "nora_005",
+        "people_ref": "nora_regissor",
+        "person_id": "nora_regissor",
+        "phase": "workday",
+        "place_id": "proverom_og_sceneplan",
+        "pressure": "kunstnerisk_intensjon_vs_sporbar_grense_og_versjon",
+        "priority": 146,
+        "role_scope": "scenekunst_regi_og_koreografi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_regi_og_koreografi_people.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "arbeidsrelasjon",
+        "situation": [
+          "Regissørens idé er foreløpig, men ensemblet spør om den er bindende.",
+          "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+          "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+        ],
+        "subject": "Nora ber om støtte til en endring hun ennå ikke har besluttet",
+        "summary": "Regissørens idé er foreløpig, men ensemblet spør om den er bindende. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_regi_og_koreografi"
+      },
+      "id": "regi_nora_005",
+      "mail_type": "people",
+      "role_scope": "scenekunst_regi_og_koreografi",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Svar med hypotese, beslutningspunkt og hvem som varsles først etter at Nora faktisk låser retningen. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar mandat og regi før låsing",
+            "reply": "Svar med hypotese, beslutningspunkt og hvem som varsles først etter at Nora faktisk låser retningen. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Presenter ideen som ny sceneversjon og la Nora eventuelt trekke den tilbake senere. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås mandat og regi uten full retest",
+            "reply": "Presenter ideen som ny sceneversjon og la Nora eventuelt trekke den tilbake senere. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Regissørens idé er foreløpig, men ensemblet spør om den er bindende.",
+            "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+            "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+          ],
+          "subject": "Nora ber om støtte til en endring hun ennå ikke har besluttet",
+          "summary": "Regissørens idé er foreløpig, men ensemblet spør om den er bindende. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "regi_nora_005",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "proverom_og_sceneplan",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "regi_nora_005",
+          "source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_regi_og_koreografi_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_regi_og_koreografi.mail.regi_nora_005",
+        "version": 1
+      },
+      "source_hash": "6762ef2c00839777a685166c9b1873e4e49c897e05413aa1754b4a4b958784a4",
+      "source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_regi_og_koreografi_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "prøvbar_og_sporbar_rework_vs_skjult_lasing",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Behold noten som betinget og navngi avklaringene før Signe oppdaterer gjeldende versjon. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar proveromsbok og handoff før låsing",
+            "reply": "Behold noten som betinget og navngi avklaringene før Signe oppdaterer gjeldende versjon. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff.",
+            "tags": [
+              "sporbarhet",
+              "samtykke",
+              "scenisk_arbeid"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Be Signe sende noten som låst og korriger status senere hvis avklaringen blir negativ. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås proveromsbok og handoff uten full retest",
+            "reply": "Be Signe sende noten som låst og korriger status senere hvis avklaringen blir negativ. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer.",
+            "tags": [
+              "mandatglidning",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "proveromsbok_og_handoff",
+        "consequence_axis": "baerekraftig_scenisk_utvikling_vs_tillit_sikkerhet_og_versjonsgjeld",
+        "day_phase": "afternoon",
+        "from": "Signe",
+        "id": "regi_signe_007",
+        "mail_family": "regi_arbeidsrelasjoner",
+        "mail_type": "people",
+        "narrative_arc": "signe_007",
+        "people_ref": "signe_inspisient",
+        "person_id": "signe_inspisient",
+        "phase": "workday",
+        "place_id": "gjennomlop_og_notebord",
+        "pressure": "kunstnerisk_intensjon_vs_sporbar_grense_og_versjon",
+        "priority": 144,
+        "role_scope": "scenekunst_regi_og_koreografi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_regi_og_koreografi_people.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "arbeidsrelasjon",
+        "situation": [
+          "Noten er tydelig, men samtykke og teknisk respons mangler.",
+          "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+          "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+        ],
+        "subject": "Signe nekter å kalle en foreløpig note for låst sceneversjon",
+        "summary": "Noten er tydelig, men samtykke og teknisk respons mangler. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_regi_og_koreografi"
+      },
+      "id": "regi_signe_007",
+      "mail_type": "people",
+      "role_scope": "scenekunst_regi_og_koreografi",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Behold noten som betinget og navngi avklaringene før Signe oppdaterer gjeldende versjon. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar proveromsbok og handoff før låsing",
+            "reply": "Behold noten som betinget og navngi avklaringene før Signe oppdaterer gjeldende versjon. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Be Signe sende noten som låst og korriger status senere hvis avklaringen blir negativ. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås proveromsbok og handoff uten full retest",
+            "reply": "Be Signe sende noten som låst og korriger status senere hvis avklaringen blir negativ. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Noten er tydelig, men samtykke og teknisk respons mangler.",
+            "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+            "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+          ],
+          "subject": "Signe nekter å kalle en foreløpig note for låst sceneversjon",
+          "summary": "Noten er tydelig, men samtykke og teknisk respons mangler. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "regi_signe_007",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "gjennomlop_og_notebord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "regi_signe_007",
+          "source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_regi_og_koreografi_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_regi_og_koreografi.mail.regi_signe_007",
+        "version": 1
+      },
+      "source_hash": "5702ca257d996edd64c1f6da02717eec068ffd0b29d36a6c0ec299e3531f9ced",
+      "source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_regi_og_koreografi_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "prøvbar_og_sporbar_rework_vs_skjult_lasing",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Velg én tidligere note, avklar hva dere observerer og lukk eller revider den før nye noter. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar ensemblelaering før låsing",
+            "reply": "Velg én tidligere note, avklar hva dere observerer og lukk eller revider den før nye noter. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff.",
+            "tags": [
+              "sporbarhet",
+              "samtykke",
+              "scenisk_arbeid"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Gi en ny mer presis note nå og betrakt de tidligere som erstattet. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås ensemblelaering uten full retest",
+            "reply": "Gi en ny mer presis note nå og betrakt de tidligere som erstattet. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer.",
+            "tags": [
+              "mandatglidning",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "ensemblelaering",
+        "consequence_axis": "baerekraftig_scenisk_utvikling_vs_tillit_sikkerhet_og_versjonsgjeld",
+        "day_phase": "afternoon",
+        "from": "Signe",
+        "id": "regi_ensemble_010",
+        "mail_family": "regi_ensemblehistorie",
+        "mail_type": "story",
+        "narrative_arc": "ensemble_010",
+        "people_ref": "signe_inspisient",
+        "person_id": "signe_inspisient",
+        "phase": "workday",
+        "place_id": "gjennomlop_og_notebord",
+        "pressure": "kunstnerisk_intensjon_vs_sporbar_grense_og_versjon",
+        "priority": 141,
+        "role_scope": "scenekunst_regi_og_koreografi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/story/scenekunst_regi_og_koreografi_story.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "proverom_ensemble_og_teknikk",
+        "situation": [
+          "Prøveromsboken viser flere uavsluttede noter på samme person uten effektkontroll.",
+          "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+          "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+        ],
+        "subject": "En stille utøver har sluttet å melde fra fordi noter endres før oppfølging",
+        "summary": "Prøveromsboken viser flere uavsluttede noter på samme person uten effektkontroll. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_regi_og_koreografi"
+      },
+      "id": "regi_ensemble_010",
+      "mail_type": "story",
+      "role_scope": "scenekunst_regi_og_koreografi",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Velg én tidligere note, avklar hva dere observerer og lukk eller revider den før nye noter. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+            "id": "A",
+            "label": "Sporbar ensemblelaering før låsing",
+            "reply": "Velg én tidligere note, avklar hva dere observerer og lukk eller revider den før nye noter. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Gi en ny mer presis note nå og betrakt de tidligere som erstattet. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+            "id": "B",
+            "label": "Lås ensemblelaering uten full retest",
+            "reply": "Gi en ny mer presis note nå og betrakt de tidligere som erstattet. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Prøveromsboken viser flere uavsluttede noter på samme person uten effektkontroll.",
+            "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+            "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+          ],
+          "subject": "En stille utøver har sluttet å melde fra fordi noter endres før oppfølging",
+          "summary": "Prøveromsboken viser flere uavsluttede noter på samme person uten effektkontroll. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "regi_ensemble_010",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "gjennomlop_og_notebord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "regi_ensemble_010",
+          "source_path": "data/Civication/mailFamilies/scenekunst/story/scenekunst_regi_og_koreografi_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_regi_og_koreografi.mail.regi_ensemble_010",
+        "version": 1
+      },
+      "source_hash": "6a4841975a8e815f4880e0f4c9d01e27eb8b7f58b91c0b249c26f2247b4ebd96",
+      "source_path": "data/Civication/mailFamilies/scenekunst/story/scenekunst_regi_og_koreografi_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
       "category": "sosial_laering",
       "compatibility_projection": {
         "branch_flags": [
@@ -212884,7 +214980,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "da6bc76b8e02a2d94ccb692ede25557f9a4b84b2b4b6a6abafd0d76ba472808f",
+  "registry_hash": "95e2dff5584529f01bb75de72e73c356824b3bdbfdad23b5623053d16871dfbc",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -214124,6 +216220,23 @@
       "program_buresund_black_box_001",
       "program_uformelt_lovnad_001"
     ],
+    "scenekunst/scenekunst_regi_og_koreografi": [
+      "regi_scene_001",
+      "regi_samtykke_002",
+      "regi_teknikk_003",
+      "regi_gjennomlop_004",
+      "regi_nora_005",
+      "regi_amir_006",
+      "regi_signe_007",
+      "regi_even_008",
+      "regi_ensemble_010",
+      "regi_grense_009",
+      "regi_rom_011",
+      "regi_status_012",
+      "regi_rettighet_013",
+      "regi_edith_014",
+      "regi_sen_015"
+    ],
     "sosial_laering/barnehageassistent": [
       "sosial_laering_barnehageassistent_job_001",
       "sosial_laering_barnehageassistent_job_002",
@@ -214348,11 +216461,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 422,
+    "compiled_source_file_count": 431,
     "ignored_source_file_count": 1,
-    "input_file_count": 423,
-    "role_count": 52,
-    "scene_count": 1330,
+    "input_file_count": 432,
+    "role_count": 53,
+    "scene_count": 1345,
     "shadowed_duplicate_count": 0
   },
   "version": 1
