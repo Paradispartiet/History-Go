@@ -63,10 +63,12 @@ jobs:
           new_test = '''const economicProfileText=JSON.stringify({signature_features:quiz.profile_snapshot.signature_features,must_include:quiz.profile_snapshot.must_include,primary_angles:quiz.profile_snapshot.primary_angles,question_families:quiz.profile_snapshot.question_families});assert.doesNotMatch(economicProfileText,/kjøpekraft|prisnivå/i);assert.match(quiz.profile_snapshot.notes,/uten å utlede/i);'''
           old_score = '''score: { narrative: 4, historical: 3, source: 5, play_value: 3, originality: 3, total: 18 }'''
           new_score = '''score: { narrative: 3, historical: 2, source: 4, play_value: 3, originality: 3, total: 15 }'''
-          for label, old in [('quiz manifest', old_manifest), ('quiz context builder', old_builder), ('quiz regression', old_test), ('story score', old_score)]:
+          old_story_assert = '''assert.equal(stories[0].score.total,18);'''
+          new_story_assert = '''assert.equal(stories[0].score.total,15);'''
+          for label, old in [('quiz manifest', old_manifest), ('quiz context builder', old_builder), ('quiz regression', old_test), ('story score', old_score), ('story score regression', old_story_assert)]:
               if s.count(old) != 1:
                   raise SystemExit(f'{label} patch anchor count: {s.count(old)}')
-          s = s.replace(old_manifest,new_manifest).replace(old_builder,new_builder).replace(old_test,new_test).replace(old_score,new_score)
+          s = s.replace(old_manifest,new_manifest).replace(old_builder,new_builder).replace(old_test,new_test).replace(old_score,new_score).replace(old_story_assert,new_story_assert)
           p.write_text(s)
           PY
       - name: Materialize Bogstadveien
