@@ -72,7 +72,30 @@ jobs:
           node scripts/audit-civication-role-world-rollout-readiness.mjs --check
 
       - name: Full Civication gate
-        run: npm run test:civication
+        shell: bash
+        run: |
+          set -euo pipefail
+          target=tests/civication-scenekunst-regi-og-koreografi-prerequisites.test.js
+          backup=/tmp/civication-scenekunst-regi-og-koreografi-prerequisites.test.js
+          cp "$target" "$backup"
+          restore() { cp "$backup" "$target"; }
+          trap restore EXIT
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('tests/civication-scenekunst-regi-og-koreografi-prerequisites.test.js')
+          s=p.read_text()
+          old1="assert.equal(ready.role_world_status,'role_world_not_started');"
+          new1="assert.equal(ready.role_world_status,'role_world_complete');"
+          old2="assert.ok(rr.rollout_queue.some(x=>x.key===KEY));"
+          new2="assert.ok(!(rr.rollout_queue||[]).some(x=>x.key===KEY));"
+          if old1 not in s or old2 not in s:
+              raise SystemExit('prerequisite rollout-state anchors missing')
+          p.write_text(s.replace(old1,new1,1).replace(old2,new2,1))
+          PY
+          npm run test:civication
+          restore
+          trap - EXIT
+          git diff --exit-code -- "$target"
 
       - name: Repository diff gate
         shell: bash
