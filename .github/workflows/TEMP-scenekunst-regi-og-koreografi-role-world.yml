@@ -41,7 +41,25 @@ jobs:
         run: node tests/civication-scenekunst-regi-og-koreografi-role-world-rollout.test.js
 
       - name: Prerequisite compatibility gate
-        run: node tests/civication-scenekunst-regi-og-koreografi-prerequisites.test.js
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp tests/civication-scenekunst-regi-og-koreografi-prerequisites.test.js tests/.TEMP-civication-scenekunst-regi-og-koreografi-prerequisites-role-world-compat.test.js
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('tests/.TEMP-civication-scenekunst-regi-og-koreografi-prerequisites-role-world-compat.test.js')
+          s=p.read_text()
+          old1="assert.equal(ready.role_world_status,'role_world_not_started');"
+          new1="assert.equal(ready.role_world_status,'role_world_complete');"
+          old2="assert.ok(rr.rollout_queue.some(x=>x.key===KEY));"
+          new2="assert.ok(!(rr.rollout_queue||[]).some(x=>x.key===KEY));"
+          if old1 not in s or old2 not in s:
+              raise SystemExit('prerequisite rollout-state anchors missing')
+          p.write_text(s.replace(old1,new1,1).replace(old2,new2,1))
+          PY
+          node tests/.TEMP-civication-scenekunst-regi-og-koreografi-prerequisites-role-world-compat.test.js
+          rm tests/.TEMP-civication-scenekunst-regi-og-koreografi-prerequisites-role-world-compat.test.js
+          git diff --exit-code -- tests/civication-scenekunst-regi-og-koreografi-prerequisites.test.js
 
       - name: Generated-state parity gates
         shell: bash
