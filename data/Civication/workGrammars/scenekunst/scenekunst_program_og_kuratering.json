@@ -1,1 +1,208 @@
-{"schema":"civication_work_grammar_v2","version":2,"category":"scenekunst","role_scope":"scenekunst_program_og_kuratering","source":{"evidence":"data/Civication/scenekunstCareerLifeEvidence.json"},"badge_binding":{"badge_id":"scenekunst","badge_titles":["Scenekunstkurator"]},"task_families":["feltkartlegging","kunstnervurdering_og_research","programkomposisjon","dialog_og_avklaringer","kontekstualisering_og_evaluering"],"work_loops":[{"id":"program","steps":["kartlegg","vurder","sammenstill","avklar","beslutt_innen_mandat"]},{"id":"gjestespill","steps":["undersok","match_arena","avklar_krav","folg_gjennomforing","evaluer"]}],"practice_stories":[{"id":"s1","setup":"To sterke verk konkurrerer om én slot.","good":"Vurder dem mot eksplisitte programkriterier og dokumenter forskjellen.","bad":"Velg den kunstneren du allerede kjenner best."},{"id":"s2","setup":"Du har en nær relasjon til en søker.","good":"Opplys om habilitets-/interessekonflikten og bruk institusjonens prosedyre.","bad":"Vurder saken selv fordi du kjenner kvaliteten godt."},{"id":"s3","setup":"Et gjestespill mangler klar dokumentasjonsavtale.","good":"Avklar rettigheter før opptak, deling eller arkivering.","bad":"Filme først og spørre etterpå."},{"id":"s4","setup":"Programmet får kritikk for ensartet feltrepresentasjon.","good":"Undersøk data og utvalgslogikk og juster søk/kuratering der det er saklig grunnlag.","bad":"Svar at kunstnerisk kvalitet ikke kan diskuteres."},{"id":"s5","setup":"Et verk krever sceneteknikk arenaen ikke har.","good":"Vurder reell tilpasning med kunstner og teknisk ansvarlig før booking.","bad":"Book og forvent at teknikken løser det senere."}],"quality_axes":["programkoherens","kunstnerisk_begrunnelse","habilitet","representasjonsbevissthet","rettighetsklarhet","gjennomforbarhet"],"authority_boundary":{"may_not":["garantere_kontrakt_finansiering_eller_spilletid_uten_mandat","skjule_interessekonflikter","overstyre_teknisk_sikkerhetsvurdering","behandle_kunstnerisk_smak_som_objektiv_fakta"]}}
+{
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_program_og_kuratering",
+  "source": {
+    "evidence": "data/Civication/scenekunstCareerLifeEvidence.json"
+  },
+  "badge_binding": {
+    "badge_id": "scenekunst",
+    "badge_titles": [
+      "Scenekunstkurator"
+    ]
+  },
+  "task_families": [
+    "feltkartlegging",
+    "kunstnervurdering_og_research",
+    "programkomposisjon",
+    "dialog_og_avklaringer",
+    "kontekstualisering_og_evaluering"
+  ],
+  "work_loops": [
+    {
+      "id": "program",
+      "steps": [
+        "kartlegg",
+        "vurder",
+        "sammenstill",
+        "avklar",
+        "beslutt_innen_mandat"
+      ]
+    },
+    {
+      "id": "gjestespill",
+      "steps": [
+        "undersok",
+        "match_arena",
+        "avklar_krav",
+        "folg_gjennomforing",
+        "evaluer"
+      ]
+    }
+  ],
+  "practice_stories": [
+    {
+      "id": "s1",
+      "setup": "To sterke verk konkurrerer om én slot.",
+      "good": "Vurder dem mot eksplisitte programkriterier og dokumenter forskjellen.",
+      "bad": "Velg den kunstneren du allerede kjenner best."
+    },
+    {
+      "id": "s2",
+      "setup": "Du har en nær relasjon til en søker.",
+      "good": "Opplys om habilitets-/interessekonflikten og bruk institusjonens prosedyre.",
+      "bad": "Vurder saken selv fordi du kjenner kvaliteten godt."
+    },
+    {
+      "id": "s3",
+      "setup": "Et gjestespill mangler klar dokumentasjonsavtale.",
+      "good": "Avklar rettigheter før opptak, deling eller arkivering.",
+      "bad": "Filme først og spørre etterpå."
+    },
+    {
+      "id": "s4",
+      "setup": "Programmet får kritikk for ensartet feltrepresentasjon.",
+      "good": "Undersøk data og utvalgslogikk og juster søk/kuratering der det er saklig grunnlag.",
+      "bad": "Svar at kunstnerisk kvalitet ikke kan diskuteres."
+    },
+    {
+      "id": "s5",
+      "setup": "Et verk krever sceneteknikk arenaen ikke har.",
+      "good": "Vurder reell tilpasning med kunstner og teknisk ansvarlig før booking.",
+      "bad": "Book og forvent at teknikken løser det senere."
+    }
+  ],
+  "quality_axes": [
+    "programkoherens",
+    "kunstnerisk_begrunnelse",
+    "habilitet",
+    "representasjonsbevissthet",
+    "rettighetsklarhet",
+    "gjennomforbarhet"
+  ],
+  "authority_boundary": {
+    "may_not": [
+      "garantere_kontrakt_finansiering_eller_spilletid_uten_fullmakt",
+      "skjule_habilitets_eller_interessekonflikt",
+      "anta_rettigheter_eller_samtykke_som_ikke_er_dokumentert",
+      "overstyre_teknisk_sikkerhetsvurdering",
+      "behandle_kunstnerisk_smak_eller_representasjonsdata_som_objektiv_fasit"
+    ]
+  },
+  "role_id": "scenekunst_program_og_kuratering",
+  "work_world": "Kuratorisk programarbeid der feltresearch, kunstnerisk skjønn, habilitet, representasjon, rettigheter og arena-fit må holdes sporbare gjennom venting, beslutning, handoff og avgrenset rework.",
+  "pressure_axes": [
+    "kunstnerisk_risiko_vs_institusjonsmandat",
+    "feltrelasjon_vs_habilitet",
+    "representasjon_vs_reduksjonisme",
+    "kunstnerisk_onske_vs_rettigheter_og_arena_fit"
+  ],
+  "actor_grammar": [
+    {
+      "id": "leila_programsjef",
+      "name": "Leila",
+      "role": "programsjef",
+      "workplace_ids": [
+        "programbord_og_utvalgskart"
+      ]
+    },
+    {
+      "id": "tor_arena_og_produksjonssjef",
+      "name": "Tor",
+      "role": "arena- og produksjonssjef",
+      "workplace_ids": [
+        "arena_og_gjestespillkart"
+      ]
+    },
+    {
+      "id": "mina_rettighets_og_avtalekoordinator",
+      "name": "Mina",
+      "role": "rettighets- og avtalekoordinator",
+      "workplace_ids": [
+        "rettighets_og_avtalerom"
+      ]
+    },
+    {
+      "id": "yusuf_felt_og_publikumsanalytiker",
+      "name": "Yusuf",
+      "role": "felt- og publikumsanalytiker",
+      "workplace_ids": [
+        "feltresearch_og_representasjonskart"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "programbord_og_utvalgskart",
+      "name": "Programbordet og utvalgskartet",
+      "function": "Her holdes kandidatverk, eksplisitte kriterier, habilitetsstatus, anbefaling, beslutningseier og programstatus side om side, slik at foreløpig kuratorisk interesse ikke blir lest som skjult vedtak, bindende løfte eller produksjonsmessig godkjenning."
+    },
+    {
+      "id": "feltresearch_og_representasjonskart",
+      "name": "Feltresearch- og representasjonskartet",
+      "function": "Her holdes undersøkte miljøer, kunstnerskap, formater, publikumsrelasjoner, dokumenterte hull og usikre antakelser side om side, slik at foreløpig kuratorisk interesse ikke blir lest som skjult vedtak, bindende løfte eller produksjonsmessig godkjenning."
+    },
+    {
+      "id": "rettighets_og_avtalerom",
+      "name": "Rettighets- og avtalerommet",
+      "function": "Her holdes visning, dokumentasjon, kreditering, tekst, musikk, territorium, samtykke og forhandlingsstatus side om side, slik at foreløpig kuratorisk interesse ikke blir lest som skjult vedtak, bindende løfte eller produksjonsmessig godkjenning."
+    },
+    {
+      "id": "arena_og_gjestespillkart",
+      "name": "Arena- og gjestespillkartet",
+      "function": "Her holdes kunstneriske premisser, rom, rigg, sikkerhet, teknisk kapasitet, tidsvinduer og mulige tilpasninger side om side, slik at foreløpig kuratorisk interesse ikke blir lest som skjult vedtak, bindende løfte eller produksjonsmessig godkjenning."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "programportefolje_og_beslutningslogg",
+    "description": "Versjonert porteføljelogg for kandidatverk, kriterier, research, habilitet, representasjon, rettigheter, arena-fit, anbefaling, beslutningseier, avtale-/bookingstatus og senere effekt.",
+    "states": [
+      "kandidat_registrert",
+      "research_og_kriterier_kartlagt",
+      "venter_pa_habilitet_rettighet_eller_arena",
+      "anbefaling_formulert",
+      "programbeslutning_registrert",
+      "handoff_til_avtale_og_produksjon",
+      "rework_etter_endret_premiss"
+    ],
+    "handoff_rule": "Neste aktør mottar kandidat- og beslutningsstatus, kriterier, åpne konflikter og avhengigheter, faktisk beslutningseier og hva som må avklares før invitasjon, kontrakt eller produksjonsløfte."
+  },
+  "rhythm_contract": {
+    "loop": "signal/forslag -> feltresearch og kriterier -> habilitet/rettighet/representasjon/arena-fit -> waiting/venting -> anbefaling eller beslutning -> handoff -> effektkontroll -> bounded rework",
+    "waiting_states": [
+      "kunstnersvar",
+      "habilitetsavklaring",
+      "rettighets_eller_avtalestatus",
+      "teknisk_arenaavklaring"
+    ],
+    "rework_rule": "Et endret premiss gjenåpner bare berørte kandidater, kriterieledd, rettighetsfelt eller arenaantakelser; tidligere begrunnelser, beslutningseiere og avslåtte alternativer beholdes."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_scenekunst_inger_buresund_black_box_programmering",
+      "badge_id": "scenekunst",
+      "use": "Gir kildeforankret kontekst om Black Box teater, Inger Buresund og programmeringsteater, men ingen fasit for dagens utvalg eller kontrakts-, budsjett-, habilitets- eller programmeringsfullmakt."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "appointment_required",
+    "first_object": "programportefolje_og_beslutningslogg",
+    "first_task": "Registrer tre programkandidater med eksplisitte kriterier, habilitetsstatus, felt-/representasjonsresearch, rettigheter, arena-fit, beslutningseier og åpne avklaringer før invitasjon."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "scenekunst_program_og_kuratering",
+    "no_generic_fallback": true
+  }
+}

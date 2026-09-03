@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_program_og_kuratering",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "program_rework",
+      "purpose": "Role-specific authored program/curation gameplay with persistent portfolio state and bounded authority.",
+      "learning_focus": [
+        "programdramaturgi",
+        "habilitet_og_mandat",
+        "rettigheter_og_avtale",
+        "representasjon_og_feltresearch",
+        "arena_fit_og_rework"
+      ],
+      "mails": [
+        {
+          "id": "program_rettighet_arena_001",
+          "mail_type": "followup",
+          "mail_family": "program_rework",
+          "role_scope": "scenekunst_program_og_kuratering",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 138,
+          "from": "Mina",
+          "people_ref": "mina_rettighets_og_avtalekoordinator",
+          "person_id": "mina_rettighets_og_avtalekoordinator",
+          "place_id": "rettighets_og_avtalerom",
+          "subject": "Ny rettighetsbegrensning gjør den tidligere arena-løsningen mindre relevant",
+          "summary": "Forbud mot én projeksjon undergraver tilpasningen, mens habilitet, relevans og research står fast. Porteføljeloggen skal samtidig skille observerbare forhold, kuratorisk vurdering, uavklarte premisser og faktisk beslutningsstatus. Dermed kan senere endringer gjenåpne bare berørte kandidater uten at tidligere begrunnelse, habilitet eller ansvar forsvinner.",
+          "situation": [
+            "Forbud mot én projeksjon undergraver tilpasningen, mens habilitet, relevans og research står fast.",
+            "Kuratorisk interesse eller tidligere dialog er ikke det samme som formelt programvedtak, rettighet eller produksjonsgodkjenning.",
+            "Neste steg må ha navngitt eier og kunne gjenåpnes av ny dokumentert informasjon."
+          ],
+          "task_domain": "scenekunst_program_og_kuratering",
+          "competency": "avgrenset_rework",
+          "pressure": "kunstnerisk_skjonn_vs_sporbar_mandatgrense",
+          "choice_axis": "sporbar_vurdering_vs_skjult_vedtak",
+          "consequence_axis": "legitimt_program_og_larbar_rework_vs_tillits_og_mandatglidning",
+          "narrative_arc": "rettighet_arena_001",
+          "situated_audience_id": "programledelse_og_kunstnerisk_mandat",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør avgrenset rework sporbar før neste beslutning",
+              "reply": "Behold beslutningshistorikken og gjenåpne bare berørte rettighets-, arena- og kostnadsfelt med Mina, Tor og kunstner. Jeg registrerer også beslutningseier, hva som må bekreftes og hvilket avgrenset neste steg som gjelder, slik at anbefaling ikke blir lest som invitasjon, booking eller bindende løfte.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "kuratorisk_skjonn"
+              ],
+              "feedback": "Behold beslutningshistorikken og gjenåpne bare berørte rettighets-, arena- og kostnadsfelt med Mina, Tor og kunstner. Dette bevarer kunstnerisk risiko samtidig som kriterier, relasjoner og avhengigheter er synlige. Et nytt rettighets-, habilitets- eller arenasvar kan da gi avgrenset rework i stedet for at programhistorien må rekonstrueres.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lås avgrenset rework før avklaringen er ferdig",
+              "reply": "La programstatus stå og be kunstneren løse materialet direkte med produksjon uten ny programavklaring. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer avhengigheten senere dersom noen protesterer.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "La programstatus stå og be kunstneren løse materialet direkte med produksjon uten ny programavklaring. Dette skaper fremdrift på bekostning av sporbarhet og flytter risiko til kunstner, avtale eller produksjon. Når premisset endres blir det uklart hvem som lovet hva, hvilke kriterier som gjaldt og hvorfor alternativer ble valgt bort.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
