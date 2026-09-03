@@ -119,6 +119,21 @@ jobs:
         run: node scripts/audit-fagverk-place-pages.mjs
       - name: Verify Fagverk release manifest
         run: node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Normalize final verification output
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const { execFileSync } = require('child_process');
+          const changed = execFileSync('git', ['diff', '--name-only', '-z'], { encoding: 'utf8' }).split('\0').filter(Boolean);
+          for (const file of changed) {
+            if (!fs.existsSync(file) || !fs.statSync(file).isFile()) continue;
+            const buffer = fs.readFileSync(file);
+            if (buffer.includes(0)) continue;
+            const text = buffer.toString('utf8');
+            const normalized = text.split(/\r?\n/).map((line) => line.replace(/[ \t]+$/u, '')).join('\n').replace(/\n*$/u, '\n');
+            if (normalized !== text) fs.writeFileSync(file, normalized);
+          }
+          NODE
       - name: Verify whitespace
         run: git diff --check
       - name: Publish repaired candidate
