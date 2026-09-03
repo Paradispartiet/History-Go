@@ -11,7 +11,7 @@ import {
 const registries = loadRegistries();
 
 test("All strict canonical subcategories use one domain CI registry contract", () => {
-  assert.deepEqual(Object.keys(registries), ["helse", "utdanning", "sosiologi_antropologi", "geografi", "biologi", "sprak_lingvistikk", "juss_rettsvitenskap", "fysikk", "kjemi", "matematikk"]);
+  assert.deepEqual(Object.keys(registries), ["helse", "utdanning", "sosiologi_antropologi", "geografi", "biologi", "geologi_jordvitenskap", "sprak_lingvistikk", "juss_rettsvitenskap", "fysikk", "kjemi", "matematikk"]);
   for (const [subject, registry] of Object.entries(registries)) {
     const validated = validateRegistry(registry);
     assert.equal(registry.subject, subject);
@@ -27,17 +27,19 @@ test("domain routing selects affected subjects and fans shared changes into one 
   assert.deepEqual(selectSubjects({ registries, changedFiles: ["data/fag/politikk/sosiologi_antropologi/production_registry_v1.json"] }), ["sosiologi_antropologi"]);
   assert.deepEqual(selectSubjects({ registries, changedFiles: ["data/fag/natur/geografi/production_registry_v1.json"] }), ["geografi"]);
   assert.deepEqual(selectSubjects({ registries, changedFiles: ["data/fag/natur/biologi/production_registry_v1.json"] }), ["biologi"]);
+  assert.deepEqual(selectSubjects({ registries, changedFiles: ["data/fag/natur/geologi_jordvitenskap/production_registry_v1.json"] }), ["geologi_jordvitenskap"]);
   assert.deepEqual(selectSubjects({ registries, changedFiles: ["data/fag/litteratur/sprak_lingvistikk/production_registry_v1.json"] }), ["sprak_lingvistikk"]);
   assert.deepEqual(selectSubjects({ registries, changedFiles: ["data/fag/politikk/juss_rettsvitenskap/production_registry_v1.json"] }), ["juss_rettsvitenskap"]);
   assert.deepEqual(selectSubjects({ registries, changedFiles: ["data/fag/vitenskap/fysikk/production_registry_v1.json"] }), ["fysikk"]);
   assert.deepEqual(selectSubjects({ registries, changedFiles: ["data/fag/vitenskap/kjemi/production_registry_v1.json"] }), ["kjemi"]);
   assert.deepEqual(selectSubjects({ registries, changedFiles: ["data/fag/vitenskap/matematikk/production_registry_v1.json"] }), ["matematikk"]);
-  assert.deepEqual(selectSubjects({ registries, changedFiles: ["data/fagverk/subject_inventory.json"] }), ["helse", "utdanning", "sosiologi_antropologi", "geografi", "biologi", "sprak_lingvistikk", "juss_rettsvitenskap", "fysikk", "kjemi", "matematikk"]);
+  assert.deepEqual(selectSubjects({ registries, changedFiles: ["data/fagverk/subject_inventory.json"] }), ["helse", "utdanning", "sosiologi_antropologi", "geografi", "biologi", "geologi_jordvitenskap", "sprak_lingvistikk", "juss_rettsvitenskap", "fysikk", "kjemi", "matematikk"]);
 });
 
 const triggerCases = [
   ["Geografi", ["data/fag/natur/geografi/**","data/fagverk/natur/geografi/**","reports/fagverk/geografi-*.json","scripts/*geografi*","tests/geografi-*.test.mjs",".github/ci/fagverk-geografi-domain-registry-v1.json"]],
   ["Biologi", ["data/fag/natur/biologi/**","data/fagverk/natur/biologi/**","reports/fagverk/biologi-*.json","scripts/*biologi*","tests/biologi-*.test.mjs",".github/ci/fagverk-biologi-domain-registry-v1.json"]],
+  ["Geologi & jordvitenskap", ["data/fag/natur/geologi_jordvitenskap/**","data/fagverk/natur/geologi_jordvitenskap/**","reports/fagverk/geologi-jordvitenskap-*.json","scripts/*geologi-jordvitenskap*","tests/geologi-jordvitenskap-*.test.mjs",".github/ci/fagverk-geologi-jordvitenskap-domain-registry-v1.json"]],
   ["Språk & lingvistikk", ["data/fag/litteratur/sprak_lingvistikk/**","data/fagverk/litteratur/sprak_lingvistikk/**","reports/fagverk/sprak-lingvistikk-*.json","scripts/*sprak-lingvistikk*","tests/sprak-lingvistikk-*.test.mjs",".github/ci/fagverk-sprak-lingvistikk-domain-registry-v1.json"]],
   ["Juss & rettsvitenskap", ["data/fag/politikk/juss_rettsvitenskap/**","data/fagverk/politikk/juss_rettsvitenskap/**","reports/fagverk/juss-rettsvitenskap-*.json","scripts/*juss-rettsvitenskap*","tests/juss-rettsvitenskap-*.test.mjs",".github/ci/fagverk-juss-rettsvitenskap-domain-registry-v1.json"]],
   ["Fysikk", ["data/fag/vitenskap/fysikk/**","data/fagverk/vitenskap/fysikk/**","reports/fagverk/fysikk-*.json","scripts/*fysikk*","tests/fysikk-*.test.mjs",".github/ci/fagverk-fysikk-domain-registry-v1.json"]],

@@ -83,7 +83,7 @@ test('Natur-kategorigrensen er migrert til canonical category contract via #5496
   assert.equal(report.summary.migratedProductBoundaryCount, 1);
 
   const contract = JSON.parse(fs.readFileSync('data/categories/category_contract.json', 'utf8'));
-  assert.equal(contract.version, '1.11');
+  assert.equal(contract.version, '1.12');
   assert.ok(contract.updatedAt >= '2026-08-29', `Category contract predates Natur migration: ${contract.updatedAt}`);
   assert.match(contract.decisions.natur, /ikke bare/i);
   assert.match(contract.decisions.natur, /grønt/i);
