@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_scene_og_produksjon",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "scene_sen_endring",
+      "purpose": "Authored scene/production gameplay with persistent production state, truthful release status, explicit handoffs and bounded authority.",
+      "learning_focus": [
+        "produksjonsplan_og_call",
+        "teknisk_sikkerhet",
+        "cue_og_forestilling",
+        "publikumsflyt_og_tilgjengelighet",
+        "avvik_handoff_og_rework"
+      ],
+      "mails": [
+        {
+          "id": "scene_sen_endring_015",
+          "mail_type": "consequence",
+          "mail_family": "scene_sen_endring",
+          "role_scope": "scenekunst_scene_og_produksjon",
+          "phase": "late_workday",
+          "day_phase": "afternoon",
+          "priority": 136,
+          "from": "Jonas",
+          "people_ref": "jonas_inspisient",
+          "person_id": "jonas_inspisient",
+          "place_id": "inspisientpult_og_cuebok",
+          "subject": "En sen endring fra forrige forestilling har skapt skjult cue- og resetgjeld",
+          "summary": "Et improvisert grep reddet forrige forestilling, men neste dags reset viser at lys, scene og cuebok nå beskriver ulike utgangspunkt. Produksjonsboken skal samtidig skille planlagt, bekreftet, betinget og frigitt status for plan, bemanning, teknikk, cue og publikum. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, eier, sikkerhetsgrense eller varsling forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller bekreftet, hvem som må svare før neste statusendring, og hva resten av teamet skal beholde mens avklaringen pågår.",
+          "situation": [
+            "Et improvisert grep reddet forrige forestilling, men neste dags reset viser at lys, scene og cuebok nå beskriver ulike utgangspunkt.",
+            "Produksjonskoordinering er ikke i seg selv teknisk sikkerhetsgodkjenning, kunstnerisk mandat, rettighetsavklaring, kontraktsfullmakt eller universell-utforming-fasit.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere versjon slettes."
+          ],
+          "task_domain": "scenekunst_scene_og_produksjon",
+          "competency": "sen_konsekvens_og_bounded_rework",
+          "pressure": "produksjonsfart_vs_sporbar_frigivelse_og_handoff",
+          "choice_axis": "sann_status_og_bounded_rework_vs_antakelse_og_skjult_gjeld",
+          "consequence_axis": "baerekraftig_forestilling_vs_sikkerhets_versjons_og_tillitsgjeld",
+          "narrative_arc": "sen_endring_015",
+          "situated_audience_id": "scene_produksjon_og_publikum",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sporbar sen konsekvens og bounded rework med eksplisitt eier",
+              "reply": "Logg den faktiske konsekvensen, gjenåpne bare de berørte cue-, reset- og sceneleddene og krev ny felles versjon før gjennomløp. Jeg oppdaterer produksjonsbok, gjeldende status, beslutningseier, åpne avhengigheter og neste kontroll slik at koordinering ikke blir lest som teknisk frigivelse, kunstnerisk mandat, rettighetsavklaring eller bindende fullmakt.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "sikkerhet",
+                "handoff"
+              ],
+              "feedback": "Logg den faktiske konsekvensen, gjenåpne bare de berørte cue-, reset- og sceneleddene og krev ny felles versjon før gjennomløp. Dette holder produksjonen i bevegelse samtidig som scene, inspisient, teknikk og vertskap kan se hva som er planlagt, bekreftet, betinget og frigitt. Når premisset endres blir rework avgrenset, og status kan overleveres uten å skjule sikkerhet, arbeidstid, tilgjengelighet eller beslutningseier.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Anta sen konsekvens og bounded rework og fyll sporbarhet senere",
+              "reply": "La teamet gjenta gårsdagens improvisasjon siden den fungerte foran publikum og formaliser den etter noen forestillinger. Jeg lar produksjonsfarten være styrende og kompletterer status, eier, sikkerhets- eller handoffdetaljer senere dersom neste funksjon oppdager et problem eller ber om dokumentasjon.",
+              "effect": -1,
+              "tags": [
+                "mandatglidning",
+                "statusgjeld",
+                "risiko"
+              ],
+              "feedback": "La teamet gjenta gårsdagens improvisasjon siden den fungerte foran publikum og formaliser den etter noen forestillinger. Det kan spare minutter nå, men flytter usikkerhet og risiko til scene, inspisient, teknikk, utøvere eller publikum. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som frigav hva, og hvilke deler som faktisk må testes på nytt.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

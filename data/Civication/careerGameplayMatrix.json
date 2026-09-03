@@ -11,11 +11,11 @@
     "support_worlds": 1,
     "statuses": {
       "reference_complete": 5,
-      "playable": 44,
+      "playable": 45,
       "partial": 0,
-      "architecture_only": 36
+      "architecture_only": 35
     },
-    "runtime_gate_pass": 49,
+    "runtime_gate_pass": 50,
     "life_story_complete": 13,
     "component_debt": {
       "entry": {
@@ -24,13 +24,13 @@
         "missing": 0
       },
       "day_one": {
-        "complete": 49,
+        "complete": 50,
         "partial": 0,
-        "missing": 36
+        "missing": 35
       },
       "workday_loop": {
-        "complete": 49,
-        "partial": 36,
+        "complete": 50,
+        "partial": 35,
         "missing": 0
       },
       "practice_stories": {
@@ -39,24 +39,24 @@
         "missing": 0
       },
       "people": {
-        "complete": 49,
+        "complete": 50,
         "partial": 0,
-        "missing": 36
+        "missing": 35
       },
       "places": {
-        "complete": 49,
+        "complete": 50,
         "partial": 0,
-        "missing": 36
+        "missing": 35
       },
       "mail": {
-        "complete": 49,
+        "complete": 50,
         "partial": 0,
-        "missing": 36
+        "missing": 35
       },
       "knowledge": {
-        "complete": 49,
+        "complete": 50,
         "partial": 10,
-        "missing": 26
+        "missing": 25
       },
       "quality_axes": {
         "complete": 85,
@@ -69,14 +69,14 @@
         "missing": 0
       },
       "consequences": {
-        "complete": 49,
+        "complete": 50,
         "partial": 0,
-        "missing": 36
+        "missing": 35
       },
       "performance": {
-        "complete": 46,
+        "complete": 47,
         "partial": 3,
-        "missing": 36
+        "missing": 35
       },
       "economy": {
         "complete": 85,
@@ -84,14 +84,14 @@
         "missing": 0
       },
       "progression": {
-        "complete": 46,
+        "complete": 47,
         "partial": 3,
-        "missing": 36
+        "missing": 35
       },
       "exit": {
-        "complete": 46,
+        "complete": 47,
         "partial": 3,
-        "missing": 36
+        "missing": 35
       }
     }
   },
@@ -18909,6 +18909,7 @@
       "category": "scenekunst",
       "role_scope": "scenekunst_scene_og_produksjon",
       "declared_by": [
+        "mailPlan",
         "workGrammar"
       ],
       "badge_titles": [
@@ -18918,53 +18919,58 @@
         "Scenetekniker",
         "Scenevert"
       ],
-      "role_ids": [],
-      "status": "architecture_only",
+      "role_ids": [
+        "scenekunst_scene_og_produksjon"
+      ],
+      "status": "playable",
       "artifacts": {
-        "role_models": [],
+        "role_models": [
+          "data/Civication/roleModels/scenekunst/scenekunst_scene_og_produksjon.json"
+        ],
         "work_grammar": "data/Civication/workGrammars/scenekunst/scenekunst_scene_og_produksjon.json",
         "shared_work_grammars": [],
-        "mail_plan": null,
+        "mail_plan": "data/Civication/mailPlans/scenekunst/scenekunst_scene_og_produksjon_plan.json",
         "mail_families": {
           "job": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_scene_og_produksjon_job.json",
+            "count": 4
           },
           "people": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_scene_og_produksjon_people.json",
+            "count": 4
           },
           "conflict": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/scenekunst/conflict/scenekunst_scene_og_produksjon_conflict.json",
+            "count": 1
           },
           "story": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/scenekunst/story/scenekunst_scene_og_produksjon_story.json",
+            "count": 1
           },
           "event": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/scenekunst/event/scenekunst_scene_og_produksjon_event.json",
+            "count": 1
           },
           "micro": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/scenekunst/micro/scenekunst_scene_og_produksjon_micro.json",
+            "count": 1
           },
           "followup": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/scenekunst/followup/scenekunst_scene_og_produksjon_followup.json",
+            "count": 1
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/scenekunst/knowledge/scenekunst_scene_og_produksjon_knowledge.json",
+            "count": 1
           },
           "consequence": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/scenekunst/consequence/scenekunst_scene_og_produksjon_consequence.json",
+            "count": 1
           }
         },
         "role_tests": [
-          "tests/civication-scenekunst-life-career-split.test.js"
+          "tests/civication-scenekunst-life-career-split.test.js",
+          "tests/civication-scenekunst-scene-og-produksjon-prerequisites.test.js"
         ],
         "life_story": null
       },
@@ -18980,16 +18986,24 @@
             "note": "5 linked career title(s) have an offer policy and gate."
           },
           "day_one": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No day-one structure."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/scenekunst/scenekunst_scene_og_produksjon_plan.json",
+              "tests/civication-scenekunst-life-career-split.test.js",
+              "tests/civication-scenekunst-scene-og-produksjon-prerequisites.test.js"
+            ],
+            "note": "Role plan and role-specific test prove a first playable day."
           },
           "workday_loop": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/workGrammars/scenekunst/scenekunst_scene_og_produksjon.json"
+              "data/Civication/mailFamilies/scenekunst/job/scenekunst_scene_og_produksjon_job.json",
+              "data/Civication/mailPlans/scenekunst/scenekunst_scene_og_produksjon_plan.json",
+              "data/Civication/workGrammars/scenekunst/scenekunst_scene_og_produksjon.json",
+              "tests/civication-scenekunst-life-career-split.test.js",
+              "tests/civication-scenekunst-scene-og-produksjon-prerequisites.test.js"
             ],
-            "note": "Work-loop content exists, but the complete repeatable runtime path is not proven."
+            "note": "Repeatable work content is connected to a tested plan."
           },
           "practice_stories": {
             "level": "partial",
@@ -19000,28 +19014,51 @@
             "note": "5 FWG stories and 0 registered practice week(s)."
           },
           "people": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No work-world people layer."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/scenekunst/people/scenekunst_scene_og_produksjon_people.json",
+              "data/Civication/roleModels/scenekunst/scenekunst_scene_og_produksjon.json",
+              "data/Civication/workGrammars/scenekunst/scenekunst_scene_og_produksjon.json"
+            ],
+            "note": "Named/typed work relationships are used by people mails."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/roleModels/scenekunst/scenekunst_scene_og_produksjon.json",
+              "data/Civication/workGrammars/scenekunst/scenekunst_scene_og_produksjon.json"
+            ],
+            "note": "12 place/working-surface declarations."
           },
           "mail": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No role mail/event generation."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/scenekunst/conflict/scenekunst_scene_og_produksjon_conflict.json",
+              "data/Civication/mailFamilies/scenekunst/consequence/scenekunst_scene_og_produksjon_consequence.json",
+              "data/Civication/mailFamilies/scenekunst/event/scenekunst_scene_og_produksjon_event.json",
+              "data/Civication/mailFamilies/scenekunst/followup/scenekunst_scene_og_produksjon_followup.json",
+              "data/Civication/mailFamilies/scenekunst/job/scenekunst_scene_og_produksjon_job.json",
+              "data/Civication/mailFamilies/scenekunst/knowledge/scenekunst_scene_og_produksjon_knowledge.json",
+              "data/Civication/mailFamilies/scenekunst/micro/scenekunst_scene_og_produksjon_micro.json",
+              "data/Civication/mailFamilies/scenekunst/people/scenekunst_scene_og_produksjon_people.json",
+              "data/Civication/mailFamilies/scenekunst/story/scenekunst_scene_og_produksjon_story.json",
+              "data/Civication/mailPlans/scenekunst/scenekunst_scene_og_produksjon_plan.json"
+            ],
+            "note": "9/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No functional knowledge layer."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/scenekunst/knowledge/scenekunst_scene_og_produksjon_knowledge.json",
+              "data/Civication/roleModels/scenekunst/scenekunst_scene_og_produksjon.json",
+              "data/Civication/workGrammars/scenekunst/scenekunst_scene_og_produksjon.json"
+            ],
+            "note": "Knowledge content is connected to a mail or job-gate surface."
           },
           "quality_axes": {
             "level": "complete",
             "evidence": [
+              "data/Civication/roleModels/scenekunst/scenekunst_scene_og_produksjon.json",
               "data/Civication/workGrammars/scenekunst/scenekunst_scene_og_produksjon.json"
             ],
             "note": "Quality/competence axes are declared and connected to choice/consequence fields."
@@ -19029,19 +19066,30 @@
           "authority": {
             "level": "complete",
             "evidence": [
+              "data/Civication/roleModels/scenekunst/scenekunst_scene_og_produksjon.json",
               "data/Civication/workGrammars/scenekunst/scenekunst_scene_og_produksjon.json"
             ],
             "note": "Explicit authority boundary exists."
           },
           "consequences": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No consequence model."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/scenekunst/consequence/scenekunst_scene_og_produksjon_consequence.json",
+              "data/Civication/mailFamilies/scenekunst/followup/scenekunst_scene_og_produksjon_followup.json",
+              "tests/civication-scenekunst-life-career-split.test.js",
+              "tests/civication-scenekunst-scene-og-produksjon-prerequisites.test.js"
+            ],
+            "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No performance evaluation."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/scenekunst/scenekunst_scene_og_produksjon_plan.json",
+              "tests/civication-career-outcomes.test.js",
+              "tests/civication-scenekunst-life-career-split.test.js",
+              "tests/civication-scenekunst-scene-og-produksjon-prerequisites.test.js"
+            ],
+            "note": "Positive and negative outcomes are defined and role-tested."
           },
           "economy": {
             "level": "complete",
@@ -19053,33 +19101,42 @@
             "note": "Exact salary exists for all 5 linked career title(s)."
           },
           "progression": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No progression path."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/scenekunst/scenekunst_scene_og_produksjon_plan.json",
+              "data/Civication/roleModels/scenekunst/scenekunst_scene_og_produksjon.json",
+              "data/Civication/workGrammars/scenekunst/scenekunst_scene_og_produksjon.json",
+              "tests/civication-career-outcomes.test.js"
+            ],
+            "note": "Career path and positive runtime outcome are both present."
           },
           "exit": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No exit/job-change path."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/scenekunst/scenekunst_scene_og_produksjon_plan.json",
+              "data/Civication/roleModels/scenekunst/scenekunst_scene_og_produksjon.json",
+              "tests/civication-career-outcomes.test.js"
+            ],
+            "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
+        "runtime_gate": true,
+        "missing_components": [],
+        "complete_components": [
+          "entry",
           "day_one",
+          "workday_loop",
           "people",
           "places",
           "mail",
           "knowledge",
-          "consequences",
-          "performance",
-          "progression",
-          "exit"
-        ],
-        "complete_components": [
-          "entry",
           "quality_axes",
           "authority",
-          "economy"
+          "consequences",
+          "performance",
+          "economy",
+          "progression",
+          "exit"
         ],
         "practice_story_count": 5,
         "practice_weeks": [],

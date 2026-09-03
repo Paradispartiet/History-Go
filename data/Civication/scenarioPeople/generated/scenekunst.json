@@ -417,6 +417,21 @@
       "verification_required": true
     },
     {
+      "id": "ida_produksjonsleder",
+      "name": "ida_produksjonsleder",
+      "category": "scenekunst",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/scenekunst/scenekunst_scene_og_produksjon.json"
+      ],
+      "scenario_roles": [
+        "scenekunst_scene_og_produksjon"
+      ],
+      "verification_required": true
+    },
+    {
       "id": "ingrid_researchansvarlig",
       "name": "ingrid_researchansvarlig",
       "category": "scenekunst",
@@ -428,6 +443,21 @@
       ],
       "scenario_roles": [
         "scenekunst_dramaturgi_og_utvikling"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "jonas_inspisient",
+      "name": "jonas_inspisient",
+      "category": "scenekunst",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/scenekunst/scenekunst_scene_og_produksjon.json"
+      ],
+      "scenario_roles": [
+        "scenekunst_scene_og_produksjon"
       ],
       "verification_required": true
     },
@@ -492,6 +522,21 @@
       "verification_required": true
     },
     {
+      "id": "marwa_sceneteknisk_leder",
+      "name": "marwa_sceneteknisk_leder",
+      "category": "scenekunst",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/scenekunst/scenekunst_scene_og_produksjon.json"
+      ],
+      "scenario_roles": [
+        "scenekunst_scene_og_produksjon"
+      ],
+      "verification_required": true
+    },
+    {
       "id": "mina_rettighets_og_avtalekoordinator",
       "name": "mina_rettighets_og_avtalekoordinator",
       "category": "scenekunst",
@@ -533,6 +578,21 @@
       ],
       "scenario_roles": [
         "scenekunst_dramaturgi_og_utvikling"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "samira_publikumskoordinator",
+      "name": "samira_publikumskoordinator",
+      "category": "scenekunst",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/scenekunst/scenekunst_scene_og_produksjon.json"
+      ],
+      "scenario_roles": [
+        "scenekunst_scene_og_produksjon"
       ],
       "verification_required": true
     },
@@ -716,6 +776,48 @@
         "direct": 0,
         "strong": 2,
         "contextual": 46,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "scenekunst_scene_og_produksjon",
+      "role_scope": "scenekunst_scene_og_produksjon",
+      "title": "Scene og produksjon",
+      "source": "data/Civication/roleModels/scenekunst/scenekunst_scene_og_produksjon.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [
+          "aadne_sekkelsten",
+          "bokken_lasson",
+          "cliff_a_moustache",
+          "dag_froland",
+          "erik_aldner",
+          "inger_buresund",
+          "jan_lothe_eriksen",
+          "katinka_rydin_berge",
+          "lars_oyno",
+          "oivind_blunck",
+          "victor_bernau",
+          "wenche_foss"
+        ],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "produksjon",
+        "scene"
+      ],
+      "resolved_counts": {
+        "total": 48,
+        "existing_place_people": 48,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 12,
+        "contextual": 36,
         "excluded": 0
       }
     }
