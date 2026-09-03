@@ -1,0 +1,121 @@
+{
+  "schema": "history_go_canonical_subcategory_production_registry_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-09-02",
+  "owner_subject_id": "vitenskap",
+  "canonical_subcategory_id": "kjemi",
+  "label": "Kjemi",
+  "status": "strict_completion_proven",
+  "source_registry": "data/fag/vitenskap/kjemi/source_registry_v1.json",
+  "progress": {
+    "materializedDomains": 12,
+    "totalDomains": 12,
+    "strictCompletionProven": true
+  },
+  "rules": {
+    "subcategory_is_not_top_level_subject": true,
+    "existing_owner_content_is_not_moved_or_deleted": true,
+    "reuse_requires_explicit_strict_upgrade": true,
+    "secondary_links_do_not_count_as_materialized": true,
+    "source_brief_does_not_count_as_materialized": true,
+    "complete_requires_all_domains_and_strict_proof": true,
+    "structure_reactivity_boundary_required": true,
+    "thermodynamics_kinetics_boundary_required": true,
+    "sample_signal_inference_required": true,
+    "safety_required": true,
+    "technology_boundary_required": true
+  },
+  "reuse": {
+    "legacy_chapter": "data/fagverk/vitenskap/vitenskap-kjemi-fra-atomstruktur-til-materialegenskap.json",
+    "legacy_subject_id": "vitenskap",
+    "legacy_preserved": true,
+    "strict_upgrade_domain_id": "atomstruktur_periodesystem_kvantekjemi"
+  },
+  "next_gate": "maintenance_source_refresh_lab_case_expansion",
+  "materialized": [
+    {
+      "ordinal": 1,
+      "domain_id": "atomstruktur_periodesystem_kvantekjemi",
+      "slug": "atomstruktur-periodesystem-kvantekjemi",
+      "chapter": "data/fagverk/vitenskap/kjemi/atomstruktur-periodesystem-kvantekjemi.json",
+      "audit": "reports/fagverk/kjemi-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 2,
+      "domain_id": "binding_molekylstruktur_interaksjoner",
+      "slug": "binding-molekylstruktur-interaksjoner",
+      "chapter": "data/fagverk/vitenskap/kjemi/binding-molekylstruktur-interaksjoner.json",
+      "audit": "reports/fagverk/kjemi-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 3,
+      "domain_id": "stokiometri_likevekt_syre_base_redoks",
+      "slug": "stokiometri-likevekt-syre-base-redoks",
+      "chapter": "data/fagverk/vitenskap/kjemi/stokiometri-likevekt-syre-base-redoks.json",
+      "audit": "reports/fagverk/kjemi-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 4,
+      "domain_id": "termodynamikk_fase_likevekt_elektrokjemi",
+      "slug": "termodynamikk-fase-likevekt-elektrokjemi",
+      "chapter": "data/fagverk/vitenskap/kjemi/termodynamikk-fase-likevekt-elektrokjemi.json",
+      "audit": "reports/fagverk/kjemi-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 5,
+      "domain_id": "kinetikk_mekanismer_katalyse",
+      "slug": "kinetikk-mekanismer-katalyse",
+      "chapter": "data/fagverk/vitenskap/kjemi/kinetikk-mekanismer-katalyse.json",
+      "audit": "reports/fagverk/kjemi-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 6,
+      "domain_id": "organisk_kjemi_struktur_reaktivitet_syntese",
+      "slug": "organisk-kjemi-struktur-reaktivitet-syntese",
+      "chapter": "data/fagverk/vitenskap/kjemi/organisk-kjemi-struktur-reaktivitet-syntese.json",
+      "audit": "reports/fagverk/kjemi-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 7,
+      "domain_id": "uorganisk_koordineringskjemi_organometallisk",
+      "slug": "uorganisk-koordineringskjemi-organometallisk",
+      "chapter": "data/fagverk/vitenskap/kjemi/uorganisk-koordineringskjemi-organometallisk.json",
+      "audit": "reports/fagverk/kjemi-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 8,
+      "domain_id": "analytisk_kjemi_provetaking_separasjon_spektroskopi",
+      "slug": "analytisk-kjemi-provetaking-separasjon-spektroskopi",
+      "chapter": "data/fagverk/vitenskap/kjemi/analytisk-kjemi-provetaking-separasjon-spektroskopi.json",
+      "audit": "reports/fagverk/kjemi-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 9,
+      "domain_id": "fysisk_kjemi_kvante_statistikk_transport",
+      "slug": "fysisk-kjemi-kvante-statistikk-transport",
+      "chapter": "data/fagverk/vitenskap/kjemi/fysisk-kjemi-kvante-statistikk-transport.json",
+      "audit": "reports/fagverk/kjemi-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 10,
+      "domain_id": "biokjemi_kjemisk_biologi",
+      "slug": "biokjemi-kjemisk-biologi",
+      "chapter": "data/fagverk/vitenskap/kjemi/biokjemi-kjemisk-biologi.json",
+      "audit": "reports/fagverk/kjemi-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 11,
+      "domain_id": "faststoff_material_polymer_overflate",
+      "slug": "faststoff-material-polymer-overflate",
+      "chapter": "data/fagverk/vitenskap/kjemi/faststoff-material-polymer-overflate.json",
+      "audit": "reports/fagverk/kjemi-strict-v1-audit.json"
+    },
+    {
+      "ordinal": 12,
+      "domain_id": "laboratorium_syntese_sikkerhet_beregning_data",
+      "slug": "laboratorium-syntese-sikkerhet-beregning-data",
+      "chapter": "data/fagverk/vitenskap/kjemi/laboratorium-syntese-sikkerhet-beregning-data.json",
+      "audit": "reports/fagverk/kjemi-strict-v1-audit.json"
+    }
+  ]
+}

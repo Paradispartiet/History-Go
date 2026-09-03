@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "subject": "kjemi",
+  "ownerSubject": "vitenskap",
+  "canonicalSubcategoryId": "kjemi",
+  "totalDomains": 12,
+  "ci": {
+    "changeTokens": [
+      "/kjemi/",
+      "kjemi-",
+      "kjemi_strict"
+    ],
+    "progress": {
+      "kind": "registered_chapter_count",
+      "source": "data/fag/vitenskap/kjemi/production_registry_v1.json",
+      "pointer": [
+        "progress",
+        "materializedDomains"
+      ]
+    },
+    "cumulativeAudits": [
+      "scripts/audit-kjemi-reconciliation-v1.mjs"
+    ],
+    "cumulativeTests": [
+      "tests/kjemi-reconciliation-v1.test.mjs"
+    ],
+    "deterministicPaths": [
+      "data/fag/vitenskap/kjemi",
+      "data/fagverk/vitenskap/kjemi",
+      "reports/fagverk/kjemi-strict-v1-audit.json"
+    ]
+  },
+  "strictCompletion": {
+    "bindings": "data/fagverk/vitenskap/kjemi/laboratorium-syntese-sikkerhet-beregning-data.json",
+    "audit": "scripts/audit-kjemi-strict-v1.mjs",
+    "auditTest": "tests/kjemi-strict-v1.test.mjs",
+    "materializer": "scripts/materialize-kjemi-strict-v1.mjs",
+    "completionTest": "tests/kjemi-strict-v1.test.mjs",
+    "auditReport": "reports/fagverk/kjemi-strict-v1-audit.json",
+    "completionReport": "reports/fagverk/kjemi-strict-v1-audit.json"
+  },
+  "domains": [
+    {
+      "ordinal": 1,
+      "domainId": "atomstruktur_periodesystem_kvantekjemi",
+      "slug": "atomstruktur-periodesystem-kvantekjemi",
+      "fulltextMaterializer": "scripts/materialize-kjemi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-kjemi-strict-v1.mjs",
+      "fulltextTest": "tests/kjemi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 2,
+      "domainId": "binding_molekylstruktur_interaksjoner",
+      "slug": "binding-molekylstruktur-interaksjoner",
+      "fulltextMaterializer": "scripts/materialize-kjemi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-kjemi-strict-v1.mjs",
+      "fulltextTest": "tests/kjemi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 3,
+      "domainId": "stokiometri_likevekt_syre_base_redoks",
+      "slug": "stokiometri-likevekt-syre-base-redoks",
+      "fulltextMaterializer": "scripts/materialize-kjemi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-kjemi-strict-v1.mjs",
+      "fulltextTest": "tests/kjemi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 4,
+      "domainId": "termodynamikk_fase_likevekt_elektrokjemi",
+      "slug": "termodynamikk-fase-likevekt-elektrokjemi",
+      "fulltextMaterializer": "scripts/materialize-kjemi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-kjemi-strict-v1.mjs",
+      "fulltextTest": "tests/kjemi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 5,
+      "domainId": "kinetikk_mekanismer_katalyse",
+      "slug": "kinetikk-mekanismer-katalyse",
+      "fulltextMaterializer": "scripts/materialize-kjemi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-kjemi-strict-v1.mjs",
+      "fulltextTest": "tests/kjemi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 6,
+      "domainId": "organisk_kjemi_struktur_reaktivitet_syntese",
+      "slug": "organisk-kjemi-struktur-reaktivitet-syntese",
+      "fulltextMaterializer": "scripts/materialize-kjemi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-kjemi-strict-v1.mjs",
+      "fulltextTest": "tests/kjemi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 7,
+      "domainId": "uorganisk_koordineringskjemi_organometallisk",
+      "slug": "uorganisk-koordineringskjemi-organometallisk",
+      "fulltextMaterializer": "scripts/materialize-kjemi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-kjemi-strict-v1.mjs",
+      "fulltextTest": "tests/kjemi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 8,
+      "domainId": "analytisk_kjemi_provetaking_separasjon_spektroskopi",
+      "slug": "analytisk-kjemi-provetaking-separasjon-spektroskopi",
+      "fulltextMaterializer": "scripts/materialize-kjemi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-kjemi-strict-v1.mjs",
+      "fulltextTest": "tests/kjemi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 9,
+      "domainId": "fysisk_kjemi_kvante_statistikk_transport",
+      "slug": "fysisk-kjemi-kvante-statistikk-transport",
+      "fulltextMaterializer": "scripts/materialize-kjemi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-kjemi-strict-v1.mjs",
+      "fulltextTest": "tests/kjemi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 10,
+      "domainId": "biokjemi_kjemisk_biologi",
+      "slug": "biokjemi-kjemisk-biologi",
+      "fulltextMaterializer": "scripts/materialize-kjemi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-kjemi-strict-v1.mjs",
+      "fulltextTest": "tests/kjemi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 11,
+      "domainId": "faststoff_material_polymer_overflate",
+      "slug": "faststoff-material-polymer-overflate",
+      "fulltextMaterializer": "scripts/materialize-kjemi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-kjemi-strict-v1.mjs",
+      "fulltextTest": "tests/kjemi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 12,
+      "domainId": "laboratorium_syntese_sikkerhet_beregning_data",
+      "slug": "laboratorium-syntese-sikkerhet-beregning-data",
+      "fulltextMaterializer": "scripts/materialize-kjemi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-kjemi-strict-v1.mjs",
+      "fulltextTest": "tests/kjemi-strict-v1.test.mjs"
+    }
+  ]
+}

@@ -1,0 +1,1129 @@
+{
+  "schema": "history_go_fagverk_matematikk_strict_domain_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-09-02",
+  "subject": "vitenskap",
+  "subject_id": "vitenskap",
+  "canonical_subcategory_id": "matematikk",
+  "ordinal": 3,
+  "domain_id": "lineaer_algebra_vektorrom_operatorer",
+  "id": "lineaer-algebra-vektorrom-operatorer",
+  "chapter_id": "lineaer-algebra-vektorrom-operatorer",
+  "title": "Lineær algebra, vektorrom og lineære operatorer",
+  "subtitle": "Strict Matematikk-felt 3 av 12: source-first, fulltekst, claims, vurderinger og case",
+  "lead": "Lineær algebra, vektorrom og lineære operatorer er materialisert som et selvstendig felt i Matematikk-registeret med eksplisitte definisjoner, beviskjeder, objekt–representasjon-skille, numerisk feilkontroll og en tydelig grense mellom matematisk korrekthet og empirisk modelladekvathet.",
+  "source_registry": "data/fag/vitenskap/matematikk/source_registry_v1.json",
+  "source_first": {
+    "status": "pass",
+    "source_ids": [
+      "vit2-06-mit-linear-algebra",
+      "vit2-07-mit-algebra",
+      "vit2-08-mit-calculus",
+      "mat-src-11-mit-real-analysis",
+      "mat-src-12-mit-differential-equations",
+      "mat-src-15-mit-optimization",
+      "mat-src-16-mit-probability-statistics",
+      "mat-src-17-mit-numerical-analysis"
+    ],
+    "topic_briefs": [
+      {
+        "id": "mat03-t01",
+        "title": "Lineære ligningssystemer",
+        "core": "Lineære ligningssystemer kan analyseres gjennom eliminasjon, matriser og struktur i løsningsrommet.",
+        "boundary": "Numerisk løsning og eksakt symbolsk løsning kan ha ulike feilkilder og stabilitetskrav.",
+        "planned_claim_ids": [
+          "mat03-01-1",
+          "mat03-01-2",
+          "mat03-01-3",
+          "mat03-01-4"
+        ]
+      },
+      {
+        "id": "mat03-t02",
+        "title": "Vektorrom og underrom",
+        "core": "Vektorrom abstraherer addisjon og skalarmultiplikasjon og gjør lineær struktur uavhengig av én konkret koordinatrepresentasjon.",
+        "boundary": "En koordinatvektor er en representasjon av et vektorromselement relativt til en valgt basis.",
+        "planned_claim_ids": [
+          "mat03-02-1",
+          "mat03-02-2",
+          "mat03-02-3",
+          "mat03-02-4"
+        ]
+      },
+      {
+        "id": "mat03-t03",
+        "title": "Lineær uavhengighet, basis og dimensjon",
+        "core": "Basis og dimensjon formaliserer hvor mange uavhengige retninger som trengs for å representere et lineært rom.",
+        "boundary": "Antall koordinater avhenger av valgt basis, mens dimensjonen er en strukturell invariant for endeligdimensjonale rom.",
+        "planned_claim_ids": [
+          "mat03-03-1",
+          "mat03-03-2",
+          "mat03-03-3",
+          "mat03-03-4"
+        ]
+      },
+      {
+        "id": "mat03-t04",
+        "title": "Lineære transformasjoner og matriser",
+        "core": "Lineære transformasjoner bevarer lineær kombinasjon og kan representeres med matriser når basiser er valgt.",
+        "boundary": "Samme lineære operator kan ha ulike matriser i ulike basiser.",
+        "planned_claim_ids": [
+          "mat03-04-1",
+          "mat03-04-2",
+          "mat03-04-3",
+          "mat03-04-4"
+        ]
+      },
+      {
+        "id": "mat03-t05",
+        "title": "Determinant, rang og invertibilitet",
+        "core": "Determinant og rang gir informasjon om volumskalering, lineær uavhengighet og invertibilitet i endeligdimensjonale systemer.",
+        "boundary": "En liten determinant numerisk kan være et kondisjoneringsproblem og må ikke tolkes som eksakt singularitet uten toleranseanalyse.",
+        "planned_claim_ids": [
+          "mat03-05-1",
+          "mat03-05-2",
+          "mat03-05-3",
+          "mat03-05-4"
+        ]
+      },
+      {
+        "id": "mat03-t06",
+        "title": "Egenverdier og egenvektorer",
+        "core": "Egenverdier og egenvektorer identifiserer retninger som bare skaleres av en lineær operator og er sentrale i dynamikk og diagonaliseringsanalyse.",
+        "boundary": "Ikke alle operatorer har en full egenvektorbasis over det valgte talllegemet.",
+        "planned_claim_ids": [
+          "mat03-06-1",
+          "mat03-06-2",
+          "mat03-06-3",
+          "mat03-06-4"
+        ]
+      },
+      {
+        "id": "mat03-t07",
+        "title": "Indre produkt, ortogonalitet og projeksjon",
+        "core": "Indre produkter gir norm, vinkel, ortogonalitet og projeksjon og støtter minste-kvadraters løsninger.",
+        "boundary": "Valg av indre produkt bestemmer geometrien og må spesifiseres når ortogonalitet brukes.",
+        "planned_claim_ids": [
+          "mat03-07-1",
+          "mat03-07-2",
+          "mat03-07-3",
+          "mat03-07-4"
+        ]
+      },
+      {
+        "id": "mat03-t08",
+        "title": "Singulærverdier, kondisjonering og data",
+        "core": "Singulærverdier kan analysere rang, følsomhet og lavdimensjonale approksimasjoner i lineære problemer.",
+        "boundary": "En numerisk lav-rang-approksimasjon er modell- og toleranseavhengig og er ikke en eksakt algebraisk identitet.",
+        "planned_claim_ids": [
+          "mat03-08-1",
+          "mat03-08-2",
+          "mat03-08-3",
+          "mat03-08-4"
+        ]
+      }
+    ],
+    "minimum_sources": 8,
+    "claim_level_trace": true,
+    "no_decorative_sources": true
+  },
+  "verifiedClaims": [
+    {
+      "id": "mat03-01-1",
+      "topic_id": "mat03-t01",
+      "classification": "formal_structure",
+      "claim": "Lineære ligningssystemer kan analyseres gjennom eliminasjon, matriser og struktur i løsningsrommet. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat03-01-2",
+      "topic_id": "mat03-t01",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med lineære ligningssystemer skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Lineære ligningssystemer kan analyseres gjennom eliminasjon, matriser og struktur i løsningsrommet. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-07-mit-algebra",
+        "mat-src-12-mit-differential-equations"
+      ]
+    },
+    {
+      "id": "mat03-01-3",
+      "topic_id": "mat03-t01",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Numerisk løsning og eksakt symbolsk løsning kan ha ulike feilkilder og stabilitetskrav. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-08-mit-calculus",
+        "mat-src-15-mit-optimization"
+      ]
+    },
+    {
+      "id": "mat03-01-4",
+      "topic_id": "mat03-t01",
+      "classification": "application",
+      "claim": "Når lineære ligningssystemer anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Numerisk løsning og eksakt symbolsk løsning kan ha ulike feilkilder og stabilitetskrav.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat03-02-1",
+      "topic_id": "mat03-t02",
+      "classification": "formal_structure",
+      "claim": "Vektorrom abstraherer addisjon og skalarmultiplikasjon og gjør lineær struktur uavhengig av én konkret koordinatrepresentasjon. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-07-mit-algebra",
+        "mat-src-12-mit-differential-equations"
+      ]
+    },
+    {
+      "id": "mat03-02-2",
+      "topic_id": "mat03-t02",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med vektorrom og underrom skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Vektorrom abstraherer addisjon og skalarmultiplikasjon og gjør lineær struktur uavhengig av én konkret koordinatrepresentasjon. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-08-mit-calculus",
+        "mat-src-15-mit-optimization"
+      ]
+    },
+    {
+      "id": "mat03-02-3",
+      "topic_id": "mat03-t02",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: En koordinatvektor er en representasjon av et vektorromselement relativt til en valgt basis. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat03-02-4",
+      "topic_id": "mat03-t02",
+      "classification": "application",
+      "claim": "Når vektorrom og underrom anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En koordinatvektor er en representasjon av et vektorromselement relativt til en valgt basis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-12-mit-differential-equations",
+        "mat-src-17-mit-numerical-analysis"
+      ]
+    },
+    {
+      "id": "mat03-03-1",
+      "topic_id": "mat03-t03",
+      "classification": "formal_structure",
+      "claim": "Basis og dimensjon formaliserer hvor mange uavhengige retninger som trengs for å representere et lineært rom. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-08-mit-calculus",
+        "mat-src-15-mit-optimization"
+      ]
+    },
+    {
+      "id": "mat03-03-2",
+      "topic_id": "mat03-t03",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med lineær uavhengighet, basis og dimensjon skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Basis og dimensjon formaliserer hvor mange uavhengige retninger som trengs for å representere et lineært rom. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat03-03-3",
+      "topic_id": "mat03-t03",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Antall koordinater avhenger av valgt basis, mens dimensjonen er en strukturell invariant for endeligdimensjonale rom. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-12-mit-differential-equations",
+        "mat-src-17-mit-numerical-analysis"
+      ]
+    },
+    {
+      "id": "mat03-03-4",
+      "topic_id": "mat03-t03",
+      "classification": "application",
+      "claim": "Når lineær uavhengighet, basis og dimensjon anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Antall koordinater avhenger av valgt basis, mens dimensjonen er en strukturell invariant for endeligdimensjonale rom.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-15-mit-optimization",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat03-04-1",
+      "topic_id": "mat03-t04",
+      "classification": "formal_structure",
+      "claim": "Lineære transformasjoner bevarer lineær kombinasjon og kan representeres med matriser når basiser er valgt. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat03-04-2",
+      "topic_id": "mat03-t04",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med lineære transformasjoner og matriser skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Lineære transformasjoner bevarer lineær kombinasjon og kan representeres med matriser når basiser er valgt. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-12-mit-differential-equations",
+        "mat-src-17-mit-numerical-analysis"
+      ]
+    },
+    {
+      "id": "mat03-04-3",
+      "topic_id": "mat03-t04",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Samme lineære operator kan ha ulike matriser i ulike basiser. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-15-mit-optimization",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat03-04-4",
+      "topic_id": "mat03-t04",
+      "classification": "application",
+      "claim": "Når lineære transformasjoner og matriser anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Samme lineære operator kan ha ulike matriser i ulike basiser.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "vit2-07-mit-algebra"
+      ]
+    },
+    {
+      "id": "mat03-05-1",
+      "topic_id": "mat03-t05",
+      "classification": "formal_structure",
+      "claim": "Determinant og rang gir informasjon om volumskalering, lineær uavhengighet og invertibilitet i endeligdimensjonale systemer. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-12-mit-differential-equations",
+        "mat-src-17-mit-numerical-analysis"
+      ]
+    },
+    {
+      "id": "mat03-05-2",
+      "topic_id": "mat03-t05",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med determinant, rang og invertibilitet skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Determinant og rang gir informasjon om volumskalering, lineær uavhengighet og invertibilitet i endeligdimensjonale systemer. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-15-mit-optimization",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat03-05-3",
+      "topic_id": "mat03-t05",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: En liten determinant numerisk kan være et kondisjoneringsproblem og må ikke tolkes som eksakt singularitet uten toleranseanalyse. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "vit2-07-mit-algebra"
+      ]
+    },
+    {
+      "id": "mat03-05-4",
+      "topic_id": "mat03-t05",
+      "classification": "application",
+      "claim": "Når determinant, rang og invertibilitet anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En liten determinant numerisk kan være et kondisjoneringsproblem og må ikke tolkes som eksakt singularitet uten toleranseanalyse.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-17-mit-numerical-analysis",
+        "vit2-08-mit-calculus"
+      ]
+    },
+    {
+      "id": "mat03-06-1",
+      "topic_id": "mat03-t06",
+      "classification": "formal_structure",
+      "claim": "Egenverdier og egenvektorer identifiserer retninger som bare skaleres av en lineær operator og er sentrale i dynamikk og diagonaliseringsanalyse. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-15-mit-optimization",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat03-06-2",
+      "topic_id": "mat03-t06",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med egenverdier og egenvektorer skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Egenverdier og egenvektorer identifiserer retninger som bare skaleres av en lineær operator og er sentrale i dynamikk og diagonaliseringsanalyse. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "vit2-07-mit-algebra"
+      ]
+    },
+    {
+      "id": "mat03-06-3",
+      "topic_id": "mat03-t06",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Ikke alle operatorer har en full egenvektorbasis over det valgte talllegemet. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-17-mit-numerical-analysis",
+        "vit2-08-mit-calculus"
+      ]
+    },
+    {
+      "id": "mat03-06-4",
+      "topic_id": "mat03-t06",
+      "classification": "application",
+      "claim": "Når egenverdier og egenvektorer anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Ikke alle operatorer har en full egenvektorbasis over det valgte talllegemet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat03-07-1",
+      "topic_id": "mat03-t07",
+      "classification": "formal_structure",
+      "claim": "Indre produkter gir norm, vinkel, ortogonalitet og projeksjon og støtter minste-kvadraters løsninger. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "vit2-07-mit-algebra"
+      ]
+    },
+    {
+      "id": "mat03-07-2",
+      "topic_id": "mat03-t07",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med indre produkt, ortogonalitet og projeksjon skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Indre produkter gir norm, vinkel, ortogonalitet og projeksjon og støtter minste-kvadraters løsninger. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-17-mit-numerical-analysis",
+        "vit2-08-mit-calculus"
+      ]
+    },
+    {
+      "id": "mat03-07-3",
+      "topic_id": "mat03-t07",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Valg av indre produkt bestemmer geometrien og må spesifiseres når ortogonalitet brukes. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat03-07-4",
+      "topic_id": "mat03-t07",
+      "classification": "application",
+      "claim": "Når indre produkt, ortogonalitet og projeksjon anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Valg av indre produkt bestemmer geometrien og må spesifiseres når ortogonalitet brukes.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-07-mit-algebra",
+        "mat-src-12-mit-differential-equations"
+      ]
+    },
+    {
+      "id": "mat03-08-1",
+      "topic_id": "mat03-t08",
+      "classification": "formal_structure",
+      "claim": "Singulærverdier kan analysere rang, følsomhet og lavdimensjonale approksimasjoner i lineære problemer. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-17-mit-numerical-analysis",
+        "vit2-08-mit-calculus"
+      ]
+    },
+    {
+      "id": "mat03-08-2",
+      "topic_id": "mat03-t08",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med singulærverdier, kondisjonering og data skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Singulærverdier kan analysere rang, følsomhet og lavdimensjonale approksimasjoner i lineære problemer. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat03-08-3",
+      "topic_id": "mat03-t08",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: En numerisk lav-rang-approksimasjon er modell- og toleranseavhengig og er ikke en eksakt algebraisk identitet. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-07-mit-algebra",
+        "mat-src-12-mit-differential-equations"
+      ]
+    },
+    {
+      "id": "mat03-08-4",
+      "topic_id": "mat03-t08",
+      "classification": "application",
+      "claim": "Når singulærverdier, kondisjonering og data anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En numerisk lav-rang-approksimasjon er modell- og toleranseavhengig og er ikke en eksakt algebraisk identitet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-08-mit-calculus",
+        "mat-src-15-mit-optimization"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "mat03-m01",
+      "title": "Modul 1: Lineære ligningssystemer og Vektorrom og underrom",
+      "sections": [
+        {
+          "id": "mat03-t01",
+          "title": "Lineære ligningssystemer",
+          "paragraphs": [
+            {
+              "claim_id": "mat03-01-1",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Lineære ligningssystemer: Lineære ligningssystemer kan analyseres gjennom eliminasjon, matriser og struktur i løsningsrommet. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Numerisk løsning og eksakt symbolsk løsning kan ha ulike feilkilder og stabilitetskrav. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-01-1 bruker vit2-06-mit-linear-algebra og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat03-01-2",
+              "source_ids": [
+                "vit2-07-mit-algebra",
+                "mat-src-12-mit-differential-equations"
+              ],
+              "text": "Lineære ligningssystemer: Ved arbeid med lineære ligningssystemer skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Lineære ligningssystemer kan analyseres gjennom eliminasjon, matriser og struktur i løsningsrommet. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Numerisk løsning og eksakt symbolsk løsning kan ha ulike feilkilder og stabilitetskrav. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-01-2 bruker vit2-07-mit-algebra og mat-src-12-mit-differential-equations; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat03-01-3",
+              "source_ids": [
+                "vit2-08-mit-calculus",
+                "mat-src-15-mit-optimization"
+              ],
+              "text": "Lineære ligningssystemer: Gyldighetsgrensen er avgjørende: Numerisk løsning og eksakt symbolsk løsning kan ha ulike feilkilder og stabilitetskrav. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Numerisk løsning og eksakt symbolsk løsning kan ha ulike feilkilder og stabilitetskrav. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-01-3 bruker vit2-08-mit-calculus og mat-src-15-mit-optimization; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat03-01-4",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Lineære ligningssystemer: Når lineære ligningssystemer anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Numerisk løsning og eksakt symbolsk løsning kan ha ulike feilkilder og stabilitetskrav. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Numerisk løsning og eksakt symbolsk løsning kan ha ulike feilkilder og stabilitetskrav. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-01-4 bruker mat-src-11-mit-real-analysis og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat03-01-1",
+            "mat03-01-2",
+            "mat03-01-3",
+            "mat03-01-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for lineære ligningssystemer.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Numerisk løsning og eksakt symbolsk løsning kan ha ulike feilkilder og stabilitetskrav."
+          ]
+        },
+        {
+          "id": "mat03-t02",
+          "title": "Vektorrom og underrom",
+          "paragraphs": [
+            {
+              "claim_id": "mat03-02-1",
+              "source_ids": [
+                "vit2-07-mit-algebra",
+                "mat-src-12-mit-differential-equations"
+              ],
+              "text": "Vektorrom og underrom: Vektorrom abstraherer addisjon og skalarmultiplikasjon og gjør lineær struktur uavhengig av én konkret koordinatrepresentasjon. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En koordinatvektor er en representasjon av et vektorromselement relativt til en valgt basis. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-02-1 bruker vit2-07-mit-algebra og mat-src-12-mit-differential-equations; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat03-02-2",
+              "source_ids": [
+                "vit2-08-mit-calculus",
+                "mat-src-15-mit-optimization"
+              ],
+              "text": "Vektorrom og underrom: Ved arbeid med vektorrom og underrom skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Vektorrom abstraherer addisjon og skalarmultiplikasjon og gjør lineær struktur uavhengig av én konkret koordinatrepresentasjon. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En koordinatvektor er en representasjon av et vektorromselement relativt til en valgt basis. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-02-2 bruker vit2-08-mit-calculus og mat-src-15-mit-optimization; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat03-02-3",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Vektorrom og underrom: Gyldighetsgrensen er avgjørende: En koordinatvektor er en representasjon av et vektorromselement relativt til en valgt basis. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En koordinatvektor er en representasjon av et vektorromselement relativt til en valgt basis. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-02-3 bruker mat-src-11-mit-real-analysis og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat03-02-4",
+              "source_ids": [
+                "mat-src-12-mit-differential-equations",
+                "mat-src-17-mit-numerical-analysis"
+              ],
+              "text": "Vektorrom og underrom: Når vektorrom og underrom anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En koordinatvektor er en representasjon av et vektorromselement relativt til en valgt basis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En koordinatvektor er en representasjon av et vektorromselement relativt til en valgt basis. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-02-4 bruker mat-src-12-mit-differential-equations og mat-src-17-mit-numerical-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat03-02-1",
+            "mat03-02-2",
+            "mat03-02-3",
+            "mat03-02-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for vektorrom og underrom.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. En koordinatvektor er en representasjon av et vektorromselement relativt til en valgt basis."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat03-m02",
+      "title": "Modul 2: Lineær uavhengighet, basis og dimensjon og Lineære transformasjoner og matriser",
+      "sections": [
+        {
+          "id": "mat03-t03",
+          "title": "Lineær uavhengighet, basis og dimensjon",
+          "paragraphs": [
+            {
+              "claim_id": "mat03-03-1",
+              "source_ids": [
+                "vit2-08-mit-calculus",
+                "mat-src-15-mit-optimization"
+              ],
+              "text": "Lineær uavhengighet, basis og dimensjon: Basis og dimensjon formaliserer hvor mange uavhengige retninger som trengs for å representere et lineært rom. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Antall koordinater avhenger av valgt basis, mens dimensjonen er en strukturell invariant for endeligdimensjonale rom. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-03-1 bruker vit2-08-mit-calculus og mat-src-15-mit-optimization; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat03-03-2",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Lineær uavhengighet, basis og dimensjon: Ved arbeid med lineær uavhengighet, basis og dimensjon skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Basis og dimensjon formaliserer hvor mange uavhengige retninger som trengs for å representere et lineært rom. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Antall koordinater avhenger av valgt basis, mens dimensjonen er en strukturell invariant for endeligdimensjonale rom. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-03-2 bruker mat-src-11-mit-real-analysis og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat03-03-3",
+              "source_ids": [
+                "mat-src-12-mit-differential-equations",
+                "mat-src-17-mit-numerical-analysis"
+              ],
+              "text": "Lineær uavhengighet, basis og dimensjon: Gyldighetsgrensen er avgjørende: Antall koordinater avhenger av valgt basis, mens dimensjonen er en strukturell invariant for endeligdimensjonale rom. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Antall koordinater avhenger av valgt basis, mens dimensjonen er en strukturell invariant for endeligdimensjonale rom. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-03-3 bruker mat-src-12-mit-differential-equations og mat-src-17-mit-numerical-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat03-03-4",
+              "source_ids": [
+                "mat-src-15-mit-optimization",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Lineær uavhengighet, basis og dimensjon: Når lineær uavhengighet, basis og dimensjon anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Antall koordinater avhenger av valgt basis, mens dimensjonen er en strukturell invariant for endeligdimensjonale rom. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Antall koordinater avhenger av valgt basis, mens dimensjonen er en strukturell invariant for endeligdimensjonale rom. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-03-4 bruker mat-src-15-mit-optimization og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat03-03-1",
+            "mat03-03-2",
+            "mat03-03-3",
+            "mat03-03-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for lineær uavhengighet, basis og dimensjon.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Antall koordinater avhenger av valgt basis, mens dimensjonen er en strukturell invariant for endeligdimensjonale rom."
+          ]
+        },
+        {
+          "id": "mat03-t04",
+          "title": "Lineære transformasjoner og matriser",
+          "paragraphs": [
+            {
+              "claim_id": "mat03-04-1",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Lineære transformasjoner og matriser: Lineære transformasjoner bevarer lineær kombinasjon og kan representeres med matriser når basiser er valgt. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Samme lineære operator kan ha ulike matriser i ulike basiser. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-04-1 bruker mat-src-11-mit-real-analysis og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat03-04-2",
+              "source_ids": [
+                "mat-src-12-mit-differential-equations",
+                "mat-src-17-mit-numerical-analysis"
+              ],
+              "text": "Lineære transformasjoner og matriser: Ved arbeid med lineære transformasjoner og matriser skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Lineære transformasjoner bevarer lineær kombinasjon og kan representeres med matriser når basiser er valgt. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Samme lineære operator kan ha ulike matriser i ulike basiser. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-04-2 bruker mat-src-12-mit-differential-equations og mat-src-17-mit-numerical-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat03-04-3",
+              "source_ids": [
+                "mat-src-15-mit-optimization",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Lineære transformasjoner og matriser: Gyldighetsgrensen er avgjørende: Samme lineære operator kan ha ulike matriser i ulike basiser. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Samme lineære operator kan ha ulike matriser i ulike basiser. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-04-3 bruker mat-src-15-mit-optimization og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat03-04-4",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "vit2-07-mit-algebra"
+              ],
+              "text": "Lineære transformasjoner og matriser: Når lineære transformasjoner og matriser anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Samme lineære operator kan ha ulike matriser i ulike basiser. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Samme lineære operator kan ha ulike matriser i ulike basiser. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-04-4 bruker mat-src-16-mit-probability-statistics og vit2-07-mit-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat03-04-1",
+            "mat03-04-2",
+            "mat03-04-3",
+            "mat03-04-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for lineære transformasjoner og matriser.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Samme lineære operator kan ha ulike matriser i ulike basiser."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat03-m03",
+      "title": "Modul 3: Determinant, rang og invertibilitet og Egenverdier og egenvektorer",
+      "sections": [
+        {
+          "id": "mat03-t05",
+          "title": "Determinant, rang og invertibilitet",
+          "paragraphs": [
+            {
+              "claim_id": "mat03-05-1",
+              "source_ids": [
+                "mat-src-12-mit-differential-equations",
+                "mat-src-17-mit-numerical-analysis"
+              ],
+              "text": "Determinant, rang og invertibilitet: Determinant og rang gir informasjon om volumskalering, lineær uavhengighet og invertibilitet i endeligdimensjonale systemer. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En liten determinant numerisk kan være et kondisjoneringsproblem og må ikke tolkes som eksakt singularitet uten toleranseanalyse. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-05-1 bruker mat-src-12-mit-differential-equations og mat-src-17-mit-numerical-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat03-05-2",
+              "source_ids": [
+                "mat-src-15-mit-optimization",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Determinant, rang og invertibilitet: Ved arbeid med determinant, rang og invertibilitet skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Determinant og rang gir informasjon om volumskalering, lineær uavhengighet og invertibilitet i endeligdimensjonale systemer. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En liten determinant numerisk kan være et kondisjoneringsproblem og må ikke tolkes som eksakt singularitet uten toleranseanalyse. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-05-2 bruker mat-src-15-mit-optimization og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat03-05-3",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "vit2-07-mit-algebra"
+              ],
+              "text": "Determinant, rang og invertibilitet: Gyldighetsgrensen er avgjørende: En liten determinant numerisk kan være et kondisjoneringsproblem og må ikke tolkes som eksakt singularitet uten toleranseanalyse. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En liten determinant numerisk kan være et kondisjoneringsproblem og må ikke tolkes som eksakt singularitet uten toleranseanalyse. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-05-3 bruker mat-src-16-mit-probability-statistics og vit2-07-mit-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat03-05-4",
+              "source_ids": [
+                "mat-src-17-mit-numerical-analysis",
+                "vit2-08-mit-calculus"
+              ],
+              "text": "Determinant, rang og invertibilitet: Når determinant, rang og invertibilitet anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En liten determinant numerisk kan være et kondisjoneringsproblem og må ikke tolkes som eksakt singularitet uten toleranseanalyse. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En liten determinant numerisk kan være et kondisjoneringsproblem og må ikke tolkes som eksakt singularitet uten toleranseanalyse. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-05-4 bruker mat-src-17-mit-numerical-analysis og vit2-08-mit-calculus; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat03-05-1",
+            "mat03-05-2",
+            "mat03-05-3",
+            "mat03-05-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for determinant, rang og invertibilitet.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. En liten determinant numerisk kan være et kondisjoneringsproblem og må ikke tolkes som eksakt singularitet uten toleranseanalyse."
+          ]
+        },
+        {
+          "id": "mat03-t06",
+          "title": "Egenverdier og egenvektorer",
+          "paragraphs": [
+            {
+              "claim_id": "mat03-06-1",
+              "source_ids": [
+                "mat-src-15-mit-optimization",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Egenverdier og egenvektorer: Egenverdier og egenvektorer identifiserer retninger som bare skaleres av en lineær operator og er sentrale i dynamikk og diagonaliseringsanalyse. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Ikke alle operatorer har en full egenvektorbasis over det valgte talllegemet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-06-1 bruker mat-src-15-mit-optimization og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat03-06-2",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "vit2-07-mit-algebra"
+              ],
+              "text": "Egenverdier og egenvektorer: Ved arbeid med egenverdier og egenvektorer skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Egenverdier og egenvektorer identifiserer retninger som bare skaleres av en lineær operator og er sentrale i dynamikk og diagonaliseringsanalyse. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Ikke alle operatorer har en full egenvektorbasis over det valgte talllegemet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-06-2 bruker mat-src-16-mit-probability-statistics og vit2-07-mit-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat03-06-3",
+              "source_ids": [
+                "mat-src-17-mit-numerical-analysis",
+                "vit2-08-mit-calculus"
+              ],
+              "text": "Egenverdier og egenvektorer: Gyldighetsgrensen er avgjørende: Ikke alle operatorer har en full egenvektorbasis over det valgte talllegemet. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Ikke alle operatorer har en full egenvektorbasis over det valgte talllegemet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-06-3 bruker mat-src-17-mit-numerical-analysis og vit2-08-mit-calculus; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat03-06-4",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Egenverdier og egenvektorer: Når egenverdier og egenvektorer anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Ikke alle operatorer har en full egenvektorbasis over det valgte talllegemet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Ikke alle operatorer har en full egenvektorbasis over det valgte talllegemet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-06-4 bruker vit2-06-mit-linear-algebra og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat03-06-1",
+            "mat03-06-2",
+            "mat03-06-3",
+            "mat03-06-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for egenverdier og egenvektorer.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Ikke alle operatorer har en full egenvektorbasis over det valgte talllegemet."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat03-m04",
+      "title": "Modul 4: Indre produkt, ortogonalitet og projeksjon og Singulærverdier, kondisjonering og data",
+      "sections": [
+        {
+          "id": "mat03-t07",
+          "title": "Indre produkt, ortogonalitet og projeksjon",
+          "paragraphs": [
+            {
+              "claim_id": "mat03-07-1",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "vit2-07-mit-algebra"
+              ],
+              "text": "Indre produkt, ortogonalitet og projeksjon: Indre produkter gir norm, vinkel, ortogonalitet og projeksjon og støtter minste-kvadraters løsninger. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Valg av indre produkt bestemmer geometrien og må spesifiseres når ortogonalitet brukes. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-07-1 bruker mat-src-16-mit-probability-statistics og vit2-07-mit-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat03-07-2",
+              "source_ids": [
+                "mat-src-17-mit-numerical-analysis",
+                "vit2-08-mit-calculus"
+              ],
+              "text": "Indre produkt, ortogonalitet og projeksjon: Ved arbeid med indre produkt, ortogonalitet og projeksjon skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Indre produkter gir norm, vinkel, ortogonalitet og projeksjon og støtter minste-kvadraters løsninger. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Valg av indre produkt bestemmer geometrien og må spesifiseres når ortogonalitet brukes. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-07-2 bruker mat-src-17-mit-numerical-analysis og vit2-08-mit-calculus; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat03-07-3",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Indre produkt, ortogonalitet og projeksjon: Gyldighetsgrensen er avgjørende: Valg av indre produkt bestemmer geometrien og må spesifiseres når ortogonalitet brukes. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Valg av indre produkt bestemmer geometrien og må spesifiseres når ortogonalitet brukes. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-07-3 bruker vit2-06-mit-linear-algebra og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat03-07-4",
+              "source_ids": [
+                "vit2-07-mit-algebra",
+                "mat-src-12-mit-differential-equations"
+              ],
+              "text": "Indre produkt, ortogonalitet og projeksjon: Når indre produkt, ortogonalitet og projeksjon anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Valg av indre produkt bestemmer geometrien og må spesifiseres når ortogonalitet brukes. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Valg av indre produkt bestemmer geometrien og må spesifiseres når ortogonalitet brukes. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-07-4 bruker vit2-07-mit-algebra og mat-src-12-mit-differential-equations; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat03-07-1",
+            "mat03-07-2",
+            "mat03-07-3",
+            "mat03-07-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for indre produkt, ortogonalitet og projeksjon.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Valg av indre produkt bestemmer geometrien og må spesifiseres når ortogonalitet brukes."
+          ]
+        },
+        {
+          "id": "mat03-t08",
+          "title": "Singulærverdier, kondisjonering og data",
+          "paragraphs": [
+            {
+              "claim_id": "mat03-08-1",
+              "source_ids": [
+                "mat-src-17-mit-numerical-analysis",
+                "vit2-08-mit-calculus"
+              ],
+              "text": "Singulærverdier, kondisjonering og data: Singulærverdier kan analysere rang, følsomhet og lavdimensjonale approksimasjoner i lineære problemer. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En numerisk lav-rang-approksimasjon er modell- og toleranseavhengig og er ikke en eksakt algebraisk identitet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-08-1 bruker mat-src-17-mit-numerical-analysis og vit2-08-mit-calculus; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat03-08-2",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Singulærverdier, kondisjonering og data: Ved arbeid med singulærverdier, kondisjonering og data skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Singulærverdier kan analysere rang, følsomhet og lavdimensjonale approksimasjoner i lineære problemer. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En numerisk lav-rang-approksimasjon er modell- og toleranseavhengig og er ikke en eksakt algebraisk identitet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-08-2 bruker vit2-06-mit-linear-algebra og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat03-08-3",
+              "source_ids": [
+                "vit2-07-mit-algebra",
+                "mat-src-12-mit-differential-equations"
+              ],
+              "text": "Singulærverdier, kondisjonering og data: Gyldighetsgrensen er avgjørende: En numerisk lav-rang-approksimasjon er modell- og toleranseavhengig og er ikke en eksakt algebraisk identitet. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En numerisk lav-rang-approksimasjon er modell- og toleranseavhengig og er ikke en eksakt algebraisk identitet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-08-3 bruker vit2-07-mit-algebra og mat-src-12-mit-differential-equations; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat03-08-4",
+              "source_ids": [
+                "vit2-08-mit-calculus",
+                "mat-src-15-mit-optimization"
+              ],
+              "text": "Singulærverdier, kondisjonering og data: Når singulærverdier, kondisjonering og data anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En numerisk lav-rang-approksimasjon er modell- og toleranseavhengig og er ikke en eksakt algebraisk identitet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En numerisk lav-rang-approksimasjon er modell- og toleranseavhengig og er ikke en eksakt algebraisk identitet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat03-08-4 bruker vit2-08-mit-calculus og mat-src-15-mit-optimization; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat03-08-1",
+            "mat03-08-2",
+            "mat03-08-3",
+            "mat03-08-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for singulærverdier, kondisjonering og data.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. En numerisk lav-rang-approksimasjon er modell- og toleranseavhengig og er ikke en eksakt algebraisk identitet."
+          ]
+        }
+      ]
+    }
+  ],
+  "assessment": {
+    "questions": [
+      {
+        "id": "mat03-q01",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer lineære ligningssystemer?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat03-t01"
+      },
+      {
+        "id": "mat03-q02",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer vektorrom og underrom?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat03-t02"
+      },
+      {
+        "id": "mat03-q03",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer lineær uavhengighet, basis og dimensjon?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat03-t03"
+      },
+      {
+        "id": "mat03-q04",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer lineære transformasjoner og matriser?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat03-t04"
+      },
+      {
+        "id": "mat03-q05",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer determinant, rang og invertibilitet?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat03-t05"
+      },
+      {
+        "id": "mat03-q06",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer egenverdier og egenvektorer?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat03-t06"
+      },
+      {
+        "id": "mat03-q07",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer indre produkt, ortogonalitet og projeksjon?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat03-t07"
+      },
+      {
+        "id": "mat03-q08",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer singulærverdier, kondisjonering og data?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat03-t08"
+      }
+    ],
+    "caseTasks": [
+      {
+        "id": "mat03-case01",
+        "prompt": "En analyse hevder at et resultat som kombinerer lineære ligningssystemer og lineær uavhengighet, basis og dimensjon er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-06-mit-linear-algebra",
+          "mat-src-15-mit-optimization"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat03-case02",
+        "prompt": "En analyse hevder at et resultat som kombinerer vektorrom og underrom og lineære transformasjoner og matriser er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-07-mit-algebra",
+          "mat-src-16-mit-probability-statistics"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat03-case03",
+        "prompt": "En analyse hevder at et resultat som kombinerer lineær uavhengighet, basis og dimensjon og determinant, rang og invertibilitet er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-08-mit-calculus",
+          "mat-src-17-mit-numerical-analysis"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat03-case04",
+        "prompt": "En analyse hevder at et resultat som kombinerer lineære transformasjoner og matriser og egenverdier og egenvektorer er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "mat-src-11-mit-real-analysis",
+          "vit2-06-mit-linear-algebra"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat03-case05",
+        "prompt": "En analyse hevder at et resultat som kombinerer determinant, rang og invertibilitet og indre produkt, ortogonalitet og projeksjon er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "mat-src-12-mit-differential-equations",
+          "vit2-07-mit-algebra"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat03-case06",
+        "prompt": "En analyse hevder at et resultat som kombinerer egenverdier og egenvektorer og singulærverdier, kondisjonering og data er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "mat-src-15-mit-optimization",
+          "vit2-08-mit-calculus"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      }
+    ]
+  },
+  "qualityGuard": {
+    "formal_validity_vs_premise_truth_explicit": true,
+    "proof_vs_computation_explicit": true,
+    "object_vs_representation_explicit": true,
+    "theorem_prover_scope_explicit": true,
+    "exact_vs_numerical_approximation_explicit": true,
+    "continuous_vs_discrete_model_choice_explicit": true,
+    "probability_model_vs_empirical_frequency_explicit": true,
+    "optimization_objective_vs_real_goal_explicit": true,
+    "empirical_model_adequacy_separate": true,
+    "source_trace_required": true,
+    "strict_domain_materialized": true
+  },
+  "reuse_provenance": {
+    "strict_upgrade": false,
+    "rule": "Nytt canonicalt Matematikk-felt; eksisterende naboinnhold teller ikke som materialisert uten denne strict-pakken."
+  }
+}

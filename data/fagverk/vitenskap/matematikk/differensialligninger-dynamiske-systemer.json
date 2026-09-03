@@ -1,0 +1,1129 @@
+{
+  "schema": "history_go_fagverk_matematikk_strict_domain_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-09-02",
+  "subject": "vitenskap",
+  "subject_id": "vitenskap",
+  "canonical_subcategory_id": "matematikk",
+  "ordinal": 6,
+  "domain_id": "differensialligninger_dynamiske_systemer",
+  "id": "differensialligninger-dynamiske-systemer",
+  "chapter_id": "differensialligninger-dynamiske-systemer",
+  "title": "Differensialligninger og dynamiske systemer",
+  "subtitle": "Strict Matematikk-felt 6 av 12: source-first, fulltekst, claims, vurderinger og case",
+  "lead": "Differensialligninger og dynamiske systemer er materialisert som et selvstendig felt i Matematikk-registeret med eksplisitte definisjoner, beviskjeder, objekt–representasjon-skille, numerisk feilkontroll og en tydelig grense mellom matematisk korrekthet og empirisk modelladekvathet.",
+  "source_registry": "data/fag/vitenskap/matematikk/source_registry_v1.json",
+  "source_first": {
+    "status": "pass",
+    "source_ids": [
+      "mat-src-12-mit-differential-equations",
+      "vit2-08-mit-calculus",
+      "mat-src-11-mit-real-analysis",
+      "vit2-06-mit-linear-algebra",
+      "mat-src-14-mit-topology",
+      "mat-src-15-mit-optimization",
+      "mat-src-16-mit-probability-statistics",
+      "mat-src-17-mit-numerical-analysis"
+    ],
+    "topic_briefs": [
+      {
+        "id": "mat06-t01",
+        "title": "Førsteordens differensialligninger",
+        "core": "Førsteordens differensialligninger kobler en ukjent funksjon til dens endringsrate og kan analyseres analytisk eller numerisk under initialbetingelser.",
+        "boundary": "En differensialligning er en modellklasse; en konkret løsning krever initial- eller randbetingelser.",
+        "planned_claim_ids": [
+          "mat06-01-1",
+          "mat06-01-2",
+          "mat06-01-3",
+          "mat06-01-4"
+        ]
+      },
+      {
+        "id": "mat06-t02",
+        "title": "Lineære ligninger og superposisjon",
+        "core": "Lineære differensialligninger har en struktur der superposisjon organiserer homogene løsninger og partikulære bidrag.",
+        "boundary": "Superposisjon gjelder ikke generelt for ikke-lineære ligninger.",
+        "planned_claim_ids": [
+          "mat06-02-1",
+          "mat06-02-2",
+          "mat06-02-3",
+          "mat06-02-4"
+        ]
+      },
+      {
+        "id": "mat06-t03",
+        "title": "Systemer av differensialligninger",
+        "core": "Koblede systemer beskriver flere tilstandsvariabler samtidig og kan analyseres med matriser, egenverdier og faseportretter.",
+        "boundary": "En stabil linearisering beskriver bare lokal dynamikk nær det punktet der systemet lineariseres.",
+        "planned_claim_ids": [
+          "mat06-03-1",
+          "mat06-03-2",
+          "mat06-03-3",
+          "mat06-03-4"
+        ]
+      },
+      {
+        "id": "mat06-t04",
+        "title": "Eksistens og entydighet",
+        "core": "Eksistens- og entydighetssetninger angir betingelser som sikrer at et initialverdiproblem har en veldefinert løsning lokalt eller globalt.",
+        "boundary": "En numerisk kurve er ikke bevis på at den matematiske løsningen eksisterer eller er entydig under alle betingelser.",
+        "planned_claim_ids": [
+          "mat06-04-1",
+          "mat06-04-2",
+          "mat06-04-3",
+          "mat06-04-4"
+        ]
+      },
+      {
+        "id": "mat06-t05",
+        "title": "Likevekter og stabilitet",
+        "core": "Dynamiske systemer analyserer likevekter, lokal stabilitet og hvordan små perturbasjoner utvikler seg over tid.",
+        "boundary": "Lokal stabilitet må ikke forveksles med global stabilitet eller robusthet mot store perturbasjoner.",
+        "planned_claim_ids": [
+          "mat06-05-1",
+          "mat06-05-2",
+          "mat06-05-3",
+          "mat06-05-4"
+        ]
+      },
+      {
+        "id": "mat06-t06",
+        "title": "Ikke-linearitet og bifurkasjoner",
+        "core": "Ikke-lineære systemer kan endre kvalitativ dynamikk når parametre varierer, noe som organiseres gjennom bifurkasjoner og faseanalyse.",
+        "boundary": "Et enkelt parameterplott etablerer ikke alene bifurkasjonstype uten analytisk eller numerisk kontroll.",
+        "planned_claim_ids": [
+          "mat06-06-1",
+          "mat06-06-2",
+          "mat06-06-3",
+          "mat06-06-4"
+        ]
+      },
+      {
+        "id": "mat06-t07",
+        "title": "Randverdiproblemer",
+        "core": "Randverdiproblemer spesifiserer betingelser på flere punkter eller grenser og krever andre løsningsstrategier enn rene initialverdiproblemer.",
+        "boundary": "Å oppfylle differensialligningen lokalt er utilstrekkelig dersom randbetingelsene ikke tilfredsstilles.",
+        "planned_claim_ids": [
+          "mat06-07-1",
+          "mat06-07-2",
+          "mat06-07-3",
+          "mat06-07-4"
+        ]
+      },
+      {
+        "id": "mat06-t08",
+        "title": "Numerisk integrasjon av dynamikk",
+        "core": "Numeriske ODE-metoder diskretiserer tidsutvikling og må vurderes med konsistens, stabilitet, trinnstørrelse og feilkontroll.",
+        "boundary": "En numerisk simulering kan avvike dramatisk fra den matematiske løsningen dersom metoden eller trinnstørrelsen er ustabil.",
+        "planned_claim_ids": [
+          "mat06-08-1",
+          "mat06-08-2",
+          "mat06-08-3",
+          "mat06-08-4"
+        ]
+      }
+    ],
+    "minimum_sources": 8,
+    "claim_level_trace": true,
+    "no_decorative_sources": true
+  },
+  "verifiedClaims": [
+    {
+      "id": "mat06-01-1",
+      "topic_id": "mat06-t01",
+      "classification": "formal_structure",
+      "claim": "Førsteordens differensialligninger kobler en ukjent funksjon til dens endringsrate og kan analyseres analytisk eller numerisk under initialbetingelser. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-12-mit-differential-equations",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat06-01-2",
+      "topic_id": "mat06-t01",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med førsteordens differensialligninger skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Førsteordens differensialligninger kobler en ukjent funksjon til dens endringsrate og kan analyseres analytisk eller numerisk under initialbetingelser. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-08-mit-calculus",
+        "mat-src-14-mit-topology"
+      ]
+    },
+    {
+      "id": "mat06-01-3",
+      "topic_id": "mat06-t01",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: En differensialligning er en modellklasse; en konkret løsning krever initial- eller randbetingelser. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "mat-src-15-mit-optimization"
+      ]
+    },
+    {
+      "id": "mat06-01-4",
+      "topic_id": "mat06-t01",
+      "classification": "application",
+      "claim": "Når førsteordens differensialligninger anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En differensialligning er en modellklasse; en konkret løsning krever initial- eller randbetingelser.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat06-02-1",
+      "topic_id": "mat06-t02",
+      "classification": "formal_structure",
+      "claim": "Lineære differensialligninger har en struktur der superposisjon organiserer homogene løsninger og partikulære bidrag. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-08-mit-calculus",
+        "mat-src-14-mit-topology"
+      ]
+    },
+    {
+      "id": "mat06-02-2",
+      "topic_id": "mat06-t02",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med lineære ligninger og superposisjon skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Lineære differensialligninger har en struktur der superposisjon organiserer homogene løsninger og partikulære bidrag. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "mat-src-15-mit-optimization"
+      ]
+    },
+    {
+      "id": "mat06-02-3",
+      "topic_id": "mat06-t02",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Superposisjon gjelder ikke generelt for ikke-lineære ligninger. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat06-02-4",
+      "topic_id": "mat06-t02",
+      "classification": "application",
+      "claim": "Når lineære ligninger og superposisjon anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Superposisjon gjelder ikke generelt for ikke-lineære ligninger.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-14-mit-topology",
+        "mat-src-17-mit-numerical-analysis"
+      ]
+    },
+    {
+      "id": "mat06-03-1",
+      "topic_id": "mat06-t03",
+      "classification": "formal_structure",
+      "claim": "Koblede systemer beskriver flere tilstandsvariabler samtidig og kan analyseres med matriser, egenverdier og faseportretter. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "mat-src-15-mit-optimization"
+      ]
+    },
+    {
+      "id": "mat06-03-2",
+      "topic_id": "mat06-t03",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med systemer av differensialligninger skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Koblede systemer beskriver flere tilstandsvariabler samtidig og kan analyseres med matriser, egenverdier og faseportretter. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat06-03-3",
+      "topic_id": "mat06-t03",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: En stabil linearisering beskriver bare lokal dynamikk nær det punktet der systemet lineariseres. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-14-mit-topology",
+        "mat-src-17-mit-numerical-analysis"
+      ]
+    },
+    {
+      "id": "mat06-03-4",
+      "topic_id": "mat06-t03",
+      "classification": "application",
+      "claim": "Når systemer av differensialligninger anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En stabil linearisering beskriver bare lokal dynamikk nær det punktet der systemet lineariseres.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-15-mit-optimization",
+        "mat-src-12-mit-differential-equations"
+      ]
+    },
+    {
+      "id": "mat06-04-1",
+      "topic_id": "mat06-t04",
+      "classification": "formal_structure",
+      "claim": "Eksistens- og entydighetssetninger angir betingelser som sikrer at et initialverdiproblem har en veldefinert løsning lokalt eller globalt. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat06-04-2",
+      "topic_id": "mat06-t04",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med eksistens og entydighet skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Eksistens- og entydighetssetninger angir betingelser som sikrer at et initialverdiproblem har en veldefinert løsning lokalt eller globalt. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-14-mit-topology",
+        "mat-src-17-mit-numerical-analysis"
+      ]
+    },
+    {
+      "id": "mat06-04-3",
+      "topic_id": "mat06-t04",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: En numerisk kurve er ikke bevis på at den matematiske løsningen eksisterer eller er entydig under alle betingelser. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-15-mit-optimization",
+        "mat-src-12-mit-differential-equations"
+      ]
+    },
+    {
+      "id": "mat06-04-4",
+      "topic_id": "mat06-t04",
+      "classification": "application",
+      "claim": "Når eksistens og entydighet anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En numerisk kurve er ikke bevis på at den matematiske løsningen eksisterer eller er entydig under alle betingelser.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "vit2-08-mit-calculus"
+      ]
+    },
+    {
+      "id": "mat06-05-1",
+      "topic_id": "mat06-t05",
+      "classification": "formal_structure",
+      "claim": "Dynamiske systemer analyserer likevekter, lokal stabilitet og hvordan små perturbasjoner utvikler seg over tid. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-14-mit-topology",
+        "mat-src-17-mit-numerical-analysis"
+      ]
+    },
+    {
+      "id": "mat06-05-2",
+      "topic_id": "mat06-t05",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med likevekter og stabilitet skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Dynamiske systemer analyserer likevekter, lokal stabilitet og hvordan små perturbasjoner utvikler seg over tid. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-15-mit-optimization",
+        "mat-src-12-mit-differential-equations"
+      ]
+    },
+    {
+      "id": "mat06-05-3",
+      "topic_id": "mat06-t05",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Lokal stabilitet må ikke forveksles med global stabilitet eller robusthet mot store perturbasjoner. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "vit2-08-mit-calculus"
+      ]
+    },
+    {
+      "id": "mat06-05-4",
+      "topic_id": "mat06-t05",
+      "classification": "application",
+      "claim": "Når likevekter og stabilitet anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Lokal stabilitet må ikke forveksles med global stabilitet eller robusthet mot store perturbasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-17-mit-numerical-analysis",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat06-06-1",
+      "topic_id": "mat06-t06",
+      "classification": "formal_structure",
+      "claim": "Ikke-lineære systemer kan endre kvalitativ dynamikk når parametre varierer, noe som organiseres gjennom bifurkasjoner og faseanalyse. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-15-mit-optimization",
+        "mat-src-12-mit-differential-equations"
+      ]
+    },
+    {
+      "id": "mat06-06-2",
+      "topic_id": "mat06-t06",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med ikke-linearitet og bifurkasjoner skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Ikke-lineære systemer kan endre kvalitativ dynamikk når parametre varierer, noe som organiseres gjennom bifurkasjoner og faseanalyse. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "vit2-08-mit-calculus"
+      ]
+    },
+    {
+      "id": "mat06-06-3",
+      "topic_id": "mat06-t06",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Et enkelt parameterplott etablerer ikke alene bifurkasjonstype uten analytisk eller numerisk kontroll. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-17-mit-numerical-analysis",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat06-06-4",
+      "topic_id": "mat06-t06",
+      "classification": "application",
+      "claim": "Når ikke-linearitet og bifurkasjoner anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Et enkelt parameterplott etablerer ikke alene bifurkasjonstype uten analytisk eller numerisk kontroll.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-12-mit-differential-equations",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat06-07-1",
+      "topic_id": "mat06-t07",
+      "classification": "formal_structure",
+      "claim": "Randverdiproblemer spesifiserer betingelser på flere punkter eller grenser og krever andre løsningsstrategier enn rene initialverdiproblemer. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "vit2-08-mit-calculus"
+      ]
+    },
+    {
+      "id": "mat06-07-2",
+      "topic_id": "mat06-t07",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med randverdiproblemer skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Randverdiproblemer spesifiserer betingelser på flere punkter eller grenser og krever andre løsningsstrategier enn rene initialverdiproblemer. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-17-mit-numerical-analysis",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat06-07-3",
+      "topic_id": "mat06-t07",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Å oppfylle differensialligningen lokalt er utilstrekkelig dersom randbetingelsene ikke tilfredsstilles. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-12-mit-differential-equations",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat06-07-4",
+      "topic_id": "mat06-t07",
+      "classification": "application",
+      "claim": "Når randverdiproblemer anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Å oppfylle differensialligningen lokalt er utilstrekkelig dersom randbetingelsene ikke tilfredsstilles.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-08-mit-calculus",
+        "mat-src-14-mit-topology"
+      ]
+    },
+    {
+      "id": "mat06-08-1",
+      "topic_id": "mat06-t08",
+      "classification": "formal_structure",
+      "claim": "Numeriske ODE-metoder diskretiserer tidsutvikling og må vurderes med konsistens, stabilitet, trinnstørrelse og feilkontroll. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-17-mit-numerical-analysis",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat06-08-2",
+      "topic_id": "mat06-t08",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med numerisk integrasjon av dynamikk skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Numeriske ODE-metoder diskretiserer tidsutvikling og må vurderes med konsistens, stabilitet, trinnstørrelse og feilkontroll. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-12-mit-differential-equations",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat06-08-3",
+      "topic_id": "mat06-t08",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: En numerisk simulering kan avvike dramatisk fra den matematiske løsningen dersom metoden eller trinnstørrelsen er ustabil. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-08-mit-calculus",
+        "mat-src-14-mit-topology"
+      ]
+    },
+    {
+      "id": "mat06-08-4",
+      "topic_id": "mat06-t08",
+      "classification": "application",
+      "claim": "Når numerisk integrasjon av dynamikk anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En numerisk simulering kan avvike dramatisk fra den matematiske løsningen dersom metoden eller trinnstørrelsen er ustabil.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "mat-src-15-mit-optimization"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "mat06-m01",
+      "title": "Modul 1: Førsteordens differensialligninger og Lineære ligninger og superposisjon",
+      "sections": [
+        {
+          "id": "mat06-t01",
+          "title": "Førsteordens differensialligninger",
+          "paragraphs": [
+            {
+              "claim_id": "mat06-01-1",
+              "source_ids": [
+                "mat-src-12-mit-differential-equations",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Førsteordens differensialligninger: Førsteordens differensialligninger kobler en ukjent funksjon til dens endringsrate og kan analyseres analytisk eller numerisk under initialbetingelser. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En differensialligning er en modellklasse; en konkret løsning krever initial- eller randbetingelser. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-01-1 bruker mat-src-12-mit-differential-equations og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat06-01-2",
+              "source_ids": [
+                "vit2-08-mit-calculus",
+                "mat-src-14-mit-topology"
+              ],
+              "text": "Førsteordens differensialligninger: Ved arbeid med førsteordens differensialligninger skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Førsteordens differensialligninger kobler en ukjent funksjon til dens endringsrate og kan analyseres analytisk eller numerisk under initialbetingelser. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En differensialligning er en modellklasse; en konkret løsning krever initial- eller randbetingelser. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-01-2 bruker vit2-08-mit-calculus og mat-src-14-mit-topology; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat06-01-3",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "mat-src-15-mit-optimization"
+              ],
+              "text": "Førsteordens differensialligninger: Gyldighetsgrensen er avgjørende: En differensialligning er en modellklasse; en konkret løsning krever initial- eller randbetingelser. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En differensialligning er en modellklasse; en konkret løsning krever initial- eller randbetingelser. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-01-3 bruker mat-src-11-mit-real-analysis og mat-src-15-mit-optimization; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat06-01-4",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Førsteordens differensialligninger: Når førsteordens differensialligninger anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En differensialligning er en modellklasse; en konkret løsning krever initial- eller randbetingelser. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En differensialligning er en modellklasse; en konkret løsning krever initial- eller randbetingelser. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-01-4 bruker vit2-06-mit-linear-algebra og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat06-01-1",
+            "mat06-01-2",
+            "mat06-01-3",
+            "mat06-01-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for førsteordens differensialligninger.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. En differensialligning er en modellklasse; en konkret løsning krever initial- eller randbetingelser."
+          ]
+        },
+        {
+          "id": "mat06-t02",
+          "title": "Lineære ligninger og superposisjon",
+          "paragraphs": [
+            {
+              "claim_id": "mat06-02-1",
+              "source_ids": [
+                "vit2-08-mit-calculus",
+                "mat-src-14-mit-topology"
+              ],
+              "text": "Lineære ligninger og superposisjon: Lineære differensialligninger har en struktur der superposisjon organiserer homogene løsninger og partikulære bidrag. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Superposisjon gjelder ikke generelt for ikke-lineære ligninger. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-02-1 bruker vit2-08-mit-calculus og mat-src-14-mit-topology; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat06-02-2",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "mat-src-15-mit-optimization"
+              ],
+              "text": "Lineære ligninger og superposisjon: Ved arbeid med lineære ligninger og superposisjon skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Lineære differensialligninger har en struktur der superposisjon organiserer homogene løsninger og partikulære bidrag. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Superposisjon gjelder ikke generelt for ikke-lineære ligninger. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-02-2 bruker mat-src-11-mit-real-analysis og mat-src-15-mit-optimization; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat06-02-3",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Lineære ligninger og superposisjon: Gyldighetsgrensen er avgjørende: Superposisjon gjelder ikke generelt for ikke-lineære ligninger. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Superposisjon gjelder ikke generelt for ikke-lineære ligninger. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-02-3 bruker vit2-06-mit-linear-algebra og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat06-02-4",
+              "source_ids": [
+                "mat-src-14-mit-topology",
+                "mat-src-17-mit-numerical-analysis"
+              ],
+              "text": "Lineære ligninger og superposisjon: Når lineære ligninger og superposisjon anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Superposisjon gjelder ikke generelt for ikke-lineære ligninger. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Superposisjon gjelder ikke generelt for ikke-lineære ligninger. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-02-4 bruker mat-src-14-mit-topology og mat-src-17-mit-numerical-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat06-02-1",
+            "mat06-02-2",
+            "mat06-02-3",
+            "mat06-02-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for lineære ligninger og superposisjon.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Superposisjon gjelder ikke generelt for ikke-lineære ligninger."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat06-m02",
+      "title": "Modul 2: Systemer av differensialligninger og Eksistens og entydighet",
+      "sections": [
+        {
+          "id": "mat06-t03",
+          "title": "Systemer av differensialligninger",
+          "paragraphs": [
+            {
+              "claim_id": "mat06-03-1",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "mat-src-15-mit-optimization"
+              ],
+              "text": "Systemer av differensialligninger: Koblede systemer beskriver flere tilstandsvariabler samtidig og kan analyseres med matriser, egenverdier og faseportretter. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En stabil linearisering beskriver bare lokal dynamikk nær det punktet der systemet lineariseres. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-03-1 bruker mat-src-11-mit-real-analysis og mat-src-15-mit-optimization; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat06-03-2",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Systemer av differensialligninger: Ved arbeid med systemer av differensialligninger skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Koblede systemer beskriver flere tilstandsvariabler samtidig og kan analyseres med matriser, egenverdier og faseportretter. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En stabil linearisering beskriver bare lokal dynamikk nær det punktet der systemet lineariseres. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-03-2 bruker vit2-06-mit-linear-algebra og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat06-03-3",
+              "source_ids": [
+                "mat-src-14-mit-topology",
+                "mat-src-17-mit-numerical-analysis"
+              ],
+              "text": "Systemer av differensialligninger: Gyldighetsgrensen er avgjørende: En stabil linearisering beskriver bare lokal dynamikk nær det punktet der systemet lineariseres. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En stabil linearisering beskriver bare lokal dynamikk nær det punktet der systemet lineariseres. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-03-3 bruker mat-src-14-mit-topology og mat-src-17-mit-numerical-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat06-03-4",
+              "source_ids": [
+                "mat-src-15-mit-optimization",
+                "mat-src-12-mit-differential-equations"
+              ],
+              "text": "Systemer av differensialligninger: Når systemer av differensialligninger anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En stabil linearisering beskriver bare lokal dynamikk nær det punktet der systemet lineariseres. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En stabil linearisering beskriver bare lokal dynamikk nær det punktet der systemet lineariseres. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-03-4 bruker mat-src-15-mit-optimization og mat-src-12-mit-differential-equations; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat06-03-1",
+            "mat06-03-2",
+            "mat06-03-3",
+            "mat06-03-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for systemer av differensialligninger.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. En stabil linearisering beskriver bare lokal dynamikk nær det punktet der systemet lineariseres."
+          ]
+        },
+        {
+          "id": "mat06-t04",
+          "title": "Eksistens og entydighet",
+          "paragraphs": [
+            {
+              "claim_id": "mat06-04-1",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Eksistens og entydighet: Eksistens- og entydighetssetninger angir betingelser som sikrer at et initialverdiproblem har en veldefinert løsning lokalt eller globalt. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En numerisk kurve er ikke bevis på at den matematiske løsningen eksisterer eller er entydig under alle betingelser. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-04-1 bruker vit2-06-mit-linear-algebra og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat06-04-2",
+              "source_ids": [
+                "mat-src-14-mit-topology",
+                "mat-src-17-mit-numerical-analysis"
+              ],
+              "text": "Eksistens og entydighet: Ved arbeid med eksistens og entydighet skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Eksistens- og entydighetssetninger angir betingelser som sikrer at et initialverdiproblem har en veldefinert løsning lokalt eller globalt. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En numerisk kurve er ikke bevis på at den matematiske løsningen eksisterer eller er entydig under alle betingelser. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-04-2 bruker mat-src-14-mit-topology og mat-src-17-mit-numerical-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat06-04-3",
+              "source_ids": [
+                "mat-src-15-mit-optimization",
+                "mat-src-12-mit-differential-equations"
+              ],
+              "text": "Eksistens og entydighet: Gyldighetsgrensen er avgjørende: En numerisk kurve er ikke bevis på at den matematiske løsningen eksisterer eller er entydig under alle betingelser. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En numerisk kurve er ikke bevis på at den matematiske løsningen eksisterer eller er entydig under alle betingelser. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-04-3 bruker mat-src-15-mit-optimization og mat-src-12-mit-differential-equations; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat06-04-4",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "vit2-08-mit-calculus"
+              ],
+              "text": "Eksistens og entydighet: Når eksistens og entydighet anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En numerisk kurve er ikke bevis på at den matematiske løsningen eksisterer eller er entydig under alle betingelser. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En numerisk kurve er ikke bevis på at den matematiske løsningen eksisterer eller er entydig under alle betingelser. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-04-4 bruker mat-src-16-mit-probability-statistics og vit2-08-mit-calculus; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat06-04-1",
+            "mat06-04-2",
+            "mat06-04-3",
+            "mat06-04-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for eksistens og entydighet.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. En numerisk kurve er ikke bevis på at den matematiske løsningen eksisterer eller er entydig under alle betingelser."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat06-m03",
+      "title": "Modul 3: Likevekter og stabilitet og Ikke-linearitet og bifurkasjoner",
+      "sections": [
+        {
+          "id": "mat06-t05",
+          "title": "Likevekter og stabilitet",
+          "paragraphs": [
+            {
+              "claim_id": "mat06-05-1",
+              "source_ids": [
+                "mat-src-14-mit-topology",
+                "mat-src-17-mit-numerical-analysis"
+              ],
+              "text": "Likevekter og stabilitet: Dynamiske systemer analyserer likevekter, lokal stabilitet og hvordan små perturbasjoner utvikler seg over tid. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Lokal stabilitet må ikke forveksles med global stabilitet eller robusthet mot store perturbasjoner. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-05-1 bruker mat-src-14-mit-topology og mat-src-17-mit-numerical-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat06-05-2",
+              "source_ids": [
+                "mat-src-15-mit-optimization",
+                "mat-src-12-mit-differential-equations"
+              ],
+              "text": "Likevekter og stabilitet: Ved arbeid med likevekter og stabilitet skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Dynamiske systemer analyserer likevekter, lokal stabilitet og hvordan små perturbasjoner utvikler seg over tid. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Lokal stabilitet må ikke forveksles med global stabilitet eller robusthet mot store perturbasjoner. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-05-2 bruker mat-src-15-mit-optimization og mat-src-12-mit-differential-equations; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat06-05-3",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "vit2-08-mit-calculus"
+              ],
+              "text": "Likevekter og stabilitet: Gyldighetsgrensen er avgjørende: Lokal stabilitet må ikke forveksles med global stabilitet eller robusthet mot store perturbasjoner. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Lokal stabilitet må ikke forveksles med global stabilitet eller robusthet mot store perturbasjoner. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-05-3 bruker mat-src-16-mit-probability-statistics og vit2-08-mit-calculus; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat06-05-4",
+              "source_ids": [
+                "mat-src-17-mit-numerical-analysis",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Likevekter og stabilitet: Når likevekter og stabilitet anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Lokal stabilitet må ikke forveksles med global stabilitet eller robusthet mot store perturbasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Lokal stabilitet må ikke forveksles med global stabilitet eller robusthet mot store perturbasjoner. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-05-4 bruker mat-src-17-mit-numerical-analysis og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat06-05-1",
+            "mat06-05-2",
+            "mat06-05-3",
+            "mat06-05-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for likevekter og stabilitet.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Lokal stabilitet må ikke forveksles med global stabilitet eller robusthet mot store perturbasjoner."
+          ]
+        },
+        {
+          "id": "mat06-t06",
+          "title": "Ikke-linearitet og bifurkasjoner",
+          "paragraphs": [
+            {
+              "claim_id": "mat06-06-1",
+              "source_ids": [
+                "mat-src-15-mit-optimization",
+                "mat-src-12-mit-differential-equations"
+              ],
+              "text": "Ikke-linearitet og bifurkasjoner: Ikke-lineære systemer kan endre kvalitativ dynamikk når parametre varierer, noe som organiseres gjennom bifurkasjoner og faseanalyse. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et enkelt parameterplott etablerer ikke alene bifurkasjonstype uten analytisk eller numerisk kontroll. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-06-1 bruker mat-src-15-mit-optimization og mat-src-12-mit-differential-equations; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat06-06-2",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "vit2-08-mit-calculus"
+              ],
+              "text": "Ikke-linearitet og bifurkasjoner: Ved arbeid med ikke-linearitet og bifurkasjoner skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Ikke-lineære systemer kan endre kvalitativ dynamikk når parametre varierer, noe som organiseres gjennom bifurkasjoner og faseanalyse. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et enkelt parameterplott etablerer ikke alene bifurkasjonstype uten analytisk eller numerisk kontroll. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-06-2 bruker mat-src-16-mit-probability-statistics og vit2-08-mit-calculus; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat06-06-3",
+              "source_ids": [
+                "mat-src-17-mit-numerical-analysis",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Ikke-linearitet og bifurkasjoner: Gyldighetsgrensen er avgjørende: Et enkelt parameterplott etablerer ikke alene bifurkasjonstype uten analytisk eller numerisk kontroll. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et enkelt parameterplott etablerer ikke alene bifurkasjonstype uten analytisk eller numerisk kontroll. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-06-3 bruker mat-src-17-mit-numerical-analysis og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat06-06-4",
+              "source_ids": [
+                "mat-src-12-mit-differential-equations",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Ikke-linearitet og bifurkasjoner: Når ikke-linearitet og bifurkasjoner anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Et enkelt parameterplott etablerer ikke alene bifurkasjonstype uten analytisk eller numerisk kontroll. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et enkelt parameterplott etablerer ikke alene bifurkasjonstype uten analytisk eller numerisk kontroll. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-06-4 bruker mat-src-12-mit-differential-equations og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat06-06-1",
+            "mat06-06-2",
+            "mat06-06-3",
+            "mat06-06-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for ikke-linearitet og bifurkasjoner.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Et enkelt parameterplott etablerer ikke alene bifurkasjonstype uten analytisk eller numerisk kontroll."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat06-m04",
+      "title": "Modul 4: Randverdiproblemer og Numerisk integrasjon av dynamikk",
+      "sections": [
+        {
+          "id": "mat06-t07",
+          "title": "Randverdiproblemer",
+          "paragraphs": [
+            {
+              "claim_id": "mat06-07-1",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "vit2-08-mit-calculus"
+              ],
+              "text": "Randverdiproblemer: Randverdiproblemer spesifiserer betingelser på flere punkter eller grenser og krever andre løsningsstrategier enn rene initialverdiproblemer. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Å oppfylle differensialligningen lokalt er utilstrekkelig dersom randbetingelsene ikke tilfredsstilles. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-07-1 bruker mat-src-16-mit-probability-statistics og vit2-08-mit-calculus; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat06-07-2",
+              "source_ids": [
+                "mat-src-17-mit-numerical-analysis",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Randverdiproblemer: Ved arbeid med randverdiproblemer skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Randverdiproblemer spesifiserer betingelser på flere punkter eller grenser og krever andre løsningsstrategier enn rene initialverdiproblemer. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Å oppfylle differensialligningen lokalt er utilstrekkelig dersom randbetingelsene ikke tilfredsstilles. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-07-2 bruker mat-src-17-mit-numerical-analysis og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat06-07-3",
+              "source_ids": [
+                "mat-src-12-mit-differential-equations",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Randverdiproblemer: Gyldighetsgrensen er avgjørende: Å oppfylle differensialligningen lokalt er utilstrekkelig dersom randbetingelsene ikke tilfredsstilles. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Å oppfylle differensialligningen lokalt er utilstrekkelig dersom randbetingelsene ikke tilfredsstilles. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-07-3 bruker mat-src-12-mit-differential-equations og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat06-07-4",
+              "source_ids": [
+                "vit2-08-mit-calculus",
+                "mat-src-14-mit-topology"
+              ],
+              "text": "Randverdiproblemer: Når randverdiproblemer anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Å oppfylle differensialligningen lokalt er utilstrekkelig dersom randbetingelsene ikke tilfredsstilles. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Å oppfylle differensialligningen lokalt er utilstrekkelig dersom randbetingelsene ikke tilfredsstilles. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-07-4 bruker vit2-08-mit-calculus og mat-src-14-mit-topology; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat06-07-1",
+            "mat06-07-2",
+            "mat06-07-3",
+            "mat06-07-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for randverdiproblemer.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Å oppfylle differensialligningen lokalt er utilstrekkelig dersom randbetingelsene ikke tilfredsstilles."
+          ]
+        },
+        {
+          "id": "mat06-t08",
+          "title": "Numerisk integrasjon av dynamikk",
+          "paragraphs": [
+            {
+              "claim_id": "mat06-08-1",
+              "source_ids": [
+                "mat-src-17-mit-numerical-analysis",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Numerisk integrasjon av dynamikk: Numeriske ODE-metoder diskretiserer tidsutvikling og må vurderes med konsistens, stabilitet, trinnstørrelse og feilkontroll. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En numerisk simulering kan avvike dramatisk fra den matematiske løsningen dersom metoden eller trinnstørrelsen er ustabil. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-08-1 bruker mat-src-17-mit-numerical-analysis og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat06-08-2",
+              "source_ids": [
+                "mat-src-12-mit-differential-equations",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Numerisk integrasjon av dynamikk: Ved arbeid med numerisk integrasjon av dynamikk skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Numeriske ODE-metoder diskretiserer tidsutvikling og må vurderes med konsistens, stabilitet, trinnstørrelse og feilkontroll. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En numerisk simulering kan avvike dramatisk fra den matematiske løsningen dersom metoden eller trinnstørrelsen er ustabil. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-08-2 bruker mat-src-12-mit-differential-equations og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat06-08-3",
+              "source_ids": [
+                "vit2-08-mit-calculus",
+                "mat-src-14-mit-topology"
+              ],
+              "text": "Numerisk integrasjon av dynamikk: Gyldighetsgrensen er avgjørende: En numerisk simulering kan avvike dramatisk fra den matematiske løsningen dersom metoden eller trinnstørrelsen er ustabil. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En numerisk simulering kan avvike dramatisk fra den matematiske løsningen dersom metoden eller trinnstørrelsen er ustabil. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-08-3 bruker vit2-08-mit-calculus og mat-src-14-mit-topology; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat06-08-4",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "mat-src-15-mit-optimization"
+              ],
+              "text": "Numerisk integrasjon av dynamikk: Når numerisk integrasjon av dynamikk anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En numerisk simulering kan avvike dramatisk fra den matematiske løsningen dersom metoden eller trinnstørrelsen er ustabil. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En numerisk simulering kan avvike dramatisk fra den matematiske løsningen dersom metoden eller trinnstørrelsen er ustabil. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat06-08-4 bruker mat-src-11-mit-real-analysis og mat-src-15-mit-optimization; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat06-08-1",
+            "mat06-08-2",
+            "mat06-08-3",
+            "mat06-08-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for numerisk integrasjon av dynamikk.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. En numerisk simulering kan avvike dramatisk fra den matematiske løsningen dersom metoden eller trinnstørrelsen er ustabil."
+          ]
+        }
+      ]
+    }
+  ],
+  "assessment": {
+    "questions": [
+      {
+        "id": "mat06-q01",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer førsteordens differensialligninger?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat06-t01"
+      },
+      {
+        "id": "mat06-q02",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer lineære ligninger og superposisjon?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat06-t02"
+      },
+      {
+        "id": "mat06-q03",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer systemer av differensialligninger?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat06-t03"
+      },
+      {
+        "id": "mat06-q04",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer eksistens og entydighet?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat06-t04"
+      },
+      {
+        "id": "mat06-q05",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer likevekter og stabilitet?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat06-t05"
+      },
+      {
+        "id": "mat06-q06",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer ikke-linearitet og bifurkasjoner?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat06-t06"
+      },
+      {
+        "id": "mat06-q07",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer randverdiproblemer?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat06-t07"
+      },
+      {
+        "id": "mat06-q08",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer numerisk integrasjon av dynamikk?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat06-t08"
+      }
+    ],
+    "caseTasks": [
+      {
+        "id": "mat06-case01",
+        "prompt": "En analyse hevder at et resultat som kombinerer førsteordens differensialligninger og systemer av differensialligninger er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "mat-src-12-mit-differential-equations",
+          "mat-src-15-mit-optimization"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat06-case02",
+        "prompt": "En analyse hevder at et resultat som kombinerer lineære ligninger og superposisjon og eksistens og entydighet er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-08-mit-calculus",
+          "mat-src-16-mit-probability-statistics"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat06-case03",
+        "prompt": "En analyse hevder at et resultat som kombinerer systemer av differensialligninger og likevekter og stabilitet er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "mat-src-11-mit-real-analysis",
+          "mat-src-17-mit-numerical-analysis"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat06-case04",
+        "prompt": "En analyse hevder at et resultat som kombinerer eksistens og entydighet og ikke-linearitet og bifurkasjoner er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-06-mit-linear-algebra",
+          "mat-src-12-mit-differential-equations"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat06-case05",
+        "prompt": "En analyse hevder at et resultat som kombinerer likevekter og stabilitet og randverdiproblemer er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "mat-src-14-mit-topology",
+          "vit2-08-mit-calculus"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat06-case06",
+        "prompt": "En analyse hevder at et resultat som kombinerer ikke-linearitet og bifurkasjoner og numerisk integrasjon av dynamikk er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "mat-src-15-mit-optimization",
+          "mat-src-11-mit-real-analysis"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      }
+    ]
+  },
+  "qualityGuard": {
+    "formal_validity_vs_premise_truth_explicit": true,
+    "proof_vs_computation_explicit": true,
+    "object_vs_representation_explicit": true,
+    "theorem_prover_scope_explicit": true,
+    "exact_vs_numerical_approximation_explicit": true,
+    "continuous_vs_discrete_model_choice_explicit": true,
+    "probability_model_vs_empirical_frequency_explicit": true,
+    "optimization_objective_vs_real_goal_explicit": true,
+    "empirical_model_adequacy_separate": true,
+    "source_trace_required": true,
+    "strict_domain_materialized": true
+  },
+  "reuse_provenance": {
+    "strict_upgrade": false,
+    "rule": "Nytt canonicalt Matematikk-felt; eksisterende naboinnhold teller ikke som materialisert uten denne strict-pakken."
+  }
+}

@@ -1,0 +1,1139 @@
+{
+  "schema": "history_go_fagverk_matematikk_strict_domain_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-09-02",
+  "subject": "vitenskap",
+  "subject_id": "vitenskap",
+  "canonical_subcategory_id": "matematikk",
+  "ordinal": 1,
+  "domain_id": "grunnlag_logikk_bevis_formell_verifikasjon",
+  "id": "grunnlag-logikk-bevis-formell-verifikasjon",
+  "chapter_id": "grunnlag-logikk-bevis-formell-verifikasjon",
+  "title": "Grunnlag, logikk, bevis og formell verifikasjon",
+  "subtitle": "Strict Matematikk-felt 1 av 12: source-first, fulltekst, claims, vurderinger og case",
+  "lead": "Grunnlag, logikk, bevis og formell verifikasjon er materialisert som et selvstendig felt i Matematikk-registeret med eksplisitte definisjoner, beviskjeder, objekt–representasjon-skille, numerisk feilkontroll og en tydelig grense mellom matematisk korrekthet og empirisk modelladekvathet.",
+  "source_registry": "data/fag/vitenskap/matematikk/source_registry_v1.json",
+  "source_first": {
+    "status": "pass",
+    "source_ids": [
+      "vit2-01-lean-introduction",
+      "vit2-02-lean-propositions-proofs",
+      "vit2-03-lean-induction",
+      "vit2-04-lean-theorems-reference",
+      "vit2-05-mit-discrete",
+      "vit2-07-mit-algebra",
+      "mat-src-11-mit-real-analysis",
+      "mat-src-13-mit-number-theory"
+    ],
+    "topic_briefs": [
+      {
+        "id": "mat01-t01",
+        "title": "Utsagn, sannhetsverdier og logiske operatorer",
+        "core": "Matematiske utsagn organiseres med eksplisitte logiske operatorer og kvantorer slik at gyldige slutninger kan skilles fra språklig plausibilitet.",
+        "boundary": "Logisk form alene avgjør ikke om ikke-logiske premisser er sanne eller relevante.",
+        "planned_claim_ids": [
+          "mat01-01-1",
+          "mat01-01-2",
+          "mat01-01-3",
+          "mat01-01-4"
+        ]
+      },
+      {
+        "id": "mat01-t02",
+        "title": "Definisjoner, aksiomer og teoremer",
+        "core": "Definisjoner fastsetter begrepsbruk, aksiomer angir utgangspunkt og teoremer uttrykker konklusjoner som følger ved gyldige slutninger.",
+        "boundary": "Et teorem er alltid relativt til det formelle systemet og de forutsetningene som brukes.",
+        "planned_claim_ids": [
+          "mat01-02-1",
+          "mat01-02-2",
+          "mat01-02-3",
+          "mat01-02-4"
+        ]
+      },
+      {
+        "id": "mat01-t03",
+        "title": "Direkte bevis og kontraposisjon",
+        "core": "Direkte bevis og kontraposisjon etablerer implikasjoner ved eksplisitte deduktive kjeder.",
+        "boundary": "At en konklusjon virker rimelig eller har mange eksempler er ikke et deduktivt bevis.",
+        "planned_claim_ids": [
+          "mat01-03-1",
+          "mat01-03-2",
+          "mat01-03-3",
+          "mat01-03-4"
+        ]
+      },
+      {
+        "id": "mat01-t04",
+        "title": "Motsigelsesbevis",
+        "core": "Motsigelsesbevis antar negasjonen av ønsket konklusjon og viser at dette sammen med premissene fører til inkonsistens.",
+        "boundary": "Metoden krever kontroll av hvilke logiske prinsipper og premisser som faktisk brukes.",
+        "planned_claim_ids": [
+          "mat01-04-1",
+          "mat01-04-2",
+          "mat01-04-3",
+          "mat01-04-4"
+        ]
+      },
+      {
+        "id": "mat01-t05",
+        "title": "Matematisk induksjon",
+        "core": "Induksjon beviser utsagn over rekursivt organiserte strukturer ved et grunntrinn og et eksplisitt induksjonstrinn.",
+        "boundary": "Induksjon er et deduktivt prinsipp og må ikke forveksles med empirisk generalisering fra mange observerte tilfeller.",
+        "planned_claim_ids": [
+          "mat01-05-1",
+          "mat01-05-2",
+          "mat01-05-3",
+          "mat01-05-4"
+        ]
+      },
+      {
+        "id": "mat01-t06",
+        "title": "Eksistens, konstruksjon og entydighet",
+        "core": "Bevis kan skille mellom at et objekt eksisterer, at det kan konstrueres og at det er entydig under angitte betingelser.",
+        "boundary": "Et eksistensbevis gir ikke nødvendigvis en effektiv algoritme for å finne objektet.",
+        "planned_claim_ids": [
+          "mat01-06-1",
+          "mat01-06-2",
+          "mat01-06-3",
+          "mat01-06-4"
+        ]
+      },
+      {
+        "id": "mat01-t07",
+        "title": "Formelle språk og proof terms",
+        "core": "I formelle systemer kan utsagn og bevis representeres presist nok til at en liten verifikasjonskjerne kan kontrollere slutningskjeden.",
+        "boundary": "Maskinsjekk av et formalisert bevis validerer ikke automatisk den empiriske fortolkningen av symbolene.",
+        "planned_claim_ids": [
+          "mat01-07-1",
+          "mat01-07-2",
+          "mat01-07-3",
+          "mat01-07-4"
+        ]
+      },
+      {
+        "id": "mat01-t08",
+        "title": "Bevis, beregning og modellvalidering",
+        "core": "Bevis etablerer formelle konsekvenser, beregning finner eller approksimerer resultater, mens empirisk modellvalidering vurderer om en anvendt representasjon passer data og fenomen.",
+        "boundary": "Disse tre begrunnelsesformene må ikke slås sammen til én generell idé om at noe er bevist.",
+        "planned_claim_ids": [
+          "mat01-08-1",
+          "mat01-08-2",
+          "mat01-08-3",
+          "mat01-08-4"
+        ]
+      }
+    ],
+    "minimum_sources": 8,
+    "claim_level_trace": true,
+    "no_decorative_sources": true
+  },
+  "verifiedClaims": [
+    {
+      "id": "mat01-01-1",
+      "topic_id": "mat01-t01",
+      "classification": "formal_structure",
+      "claim": "Matematiske utsagn organiseres med eksplisitte logiske operatorer og kvantorer slik at gyldige slutninger kan skilles fra språklig plausibilitet. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-01-lean-introduction",
+        "vit2-04-lean-theorems-reference"
+      ]
+    },
+    {
+      "id": "mat01-01-2",
+      "topic_id": "mat01-t01",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med utsagn, sannhetsverdier og logiske operatorer skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Matematiske utsagn organiseres med eksplisitte logiske operatorer og kvantorer slik at gyldige slutninger kan skilles fra språklig plausibilitet. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-02-lean-propositions-proofs",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat01-01-3",
+      "topic_id": "mat01-t01",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Logisk form alene avgjør ikke om ikke-logiske premisser er sanne eller relevante. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-03-lean-induction",
+        "vit2-07-mit-algebra"
+      ]
+    },
+    {
+      "id": "mat01-01-4",
+      "topic_id": "mat01-t01",
+      "classification": "application",
+      "claim": "Når utsagn, sannhetsverdier og logiske operatorer anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Logisk form alene avgjør ikke om ikke-logiske premisser er sanne eller relevante.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-04-lean-theorems-reference",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat01-02-1",
+      "topic_id": "mat01-t02",
+      "classification": "formal_structure",
+      "claim": "Definisjoner fastsetter begrepsbruk, aksiomer angir utgangspunkt og teoremer uttrykker konklusjoner som følger ved gyldige slutninger. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-02-lean-propositions-proofs",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat01-02-2",
+      "topic_id": "mat01-t02",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med definisjoner, aksiomer og teoremer skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Definisjoner fastsetter begrepsbruk, aksiomer angir utgangspunkt og teoremer uttrykker konklusjoner som følger ved gyldige slutninger. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-03-lean-induction",
+        "vit2-07-mit-algebra"
+      ]
+    },
+    {
+      "id": "mat01-02-3",
+      "topic_id": "mat01-t02",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Et teorem er alltid relativt til det formelle systemet og de forutsetningene som brukes. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-04-lean-theorems-reference",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat01-02-4",
+      "topic_id": "mat01-t02",
+      "classification": "application",
+      "claim": "Når definisjoner, aksiomer og teoremer anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Et teorem er alltid relativt til det formelle systemet og de forutsetningene som brukes.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "mat-src-13-mit-number-theory"
+      ]
+    },
+    {
+      "id": "mat01-03-1",
+      "topic_id": "mat01-t03",
+      "classification": "formal_structure",
+      "claim": "Direkte bevis og kontraposisjon etablerer implikasjoner ved eksplisitte deduktive kjeder. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-03-lean-induction",
+        "vit2-07-mit-algebra"
+      ]
+    },
+    {
+      "id": "mat01-03-2",
+      "topic_id": "mat01-t03",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med direkte bevis og kontraposisjon skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Direkte bevis og kontraposisjon etablerer implikasjoner ved eksplisitte deduktive kjeder. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-04-lean-theorems-reference",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat01-03-3",
+      "topic_id": "mat01-t03",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: At en konklusjon virker rimelig eller har mange eksempler er ikke et deduktivt bevis. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "mat-src-13-mit-number-theory"
+      ]
+    },
+    {
+      "id": "mat01-03-4",
+      "topic_id": "mat01-t03",
+      "classification": "application",
+      "claim": "Når direkte bevis og kontraposisjon anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. At en konklusjon virker rimelig eller har mange eksempler er ikke et deduktivt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-07-mit-algebra",
+        "vit2-01-lean-introduction"
+      ]
+    },
+    {
+      "id": "mat01-04-1",
+      "topic_id": "mat01-t04",
+      "classification": "formal_structure",
+      "claim": "Motsigelsesbevis antar negasjonen av ønsket konklusjon og viser at dette sammen med premissene fører til inkonsistens. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-04-lean-theorems-reference",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat01-04-2",
+      "topic_id": "mat01-t04",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med motsigelsesbevis skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Motsigelsesbevis antar negasjonen av ønsket konklusjon og viser at dette sammen med premissene fører til inkonsistens. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "mat-src-13-mit-number-theory"
+      ]
+    },
+    {
+      "id": "mat01-04-3",
+      "topic_id": "mat01-t04",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Metoden krever kontroll av hvilke logiske prinsipper og premisser som faktisk brukes. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-07-mit-algebra",
+        "vit2-01-lean-introduction"
+      ]
+    },
+    {
+      "id": "mat01-04-4",
+      "topic_id": "mat01-t04",
+      "classification": "application",
+      "claim": "Når motsigelsesbevis anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Metoden krever kontroll av hvilke logiske prinsipper og premisser som faktisk brukes.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "vit2-02-lean-propositions-proofs"
+      ]
+    },
+    {
+      "id": "mat01-05-1",
+      "topic_id": "mat01-t05",
+      "classification": "formal_structure",
+      "claim": "Induksjon beviser utsagn over rekursivt organiserte strukturer ved et grunntrinn og et eksplisitt induksjonstrinn. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "mat-src-13-mit-number-theory"
+      ]
+    },
+    {
+      "id": "mat01-05-2",
+      "topic_id": "mat01-t05",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med matematisk induksjon skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Induksjon beviser utsagn over rekursivt organiserte strukturer ved et grunntrinn og et eksplisitt induksjonstrinn. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-07-mit-algebra",
+        "vit2-01-lean-introduction"
+      ]
+    },
+    {
+      "id": "mat01-05-3",
+      "topic_id": "mat01-t05",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Induksjon er et deduktivt prinsipp og må ikke forveksles med empirisk generalisering fra mange observerte tilfeller. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "vit2-02-lean-propositions-proofs"
+      ]
+    },
+    {
+      "id": "mat01-05-4",
+      "topic_id": "mat01-t05",
+      "classification": "application",
+      "claim": "Når matematisk induksjon anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Induksjon er et deduktivt prinsipp og må ikke forveksles med empirisk generalisering fra mange observerte tilfeller.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-13-mit-number-theory",
+        "vit2-03-lean-induction"
+      ]
+    },
+    {
+      "id": "mat01-06-1",
+      "topic_id": "mat01-t06",
+      "classification": "formal_structure",
+      "claim": "Bevis kan skille mellom at et objekt eksisterer, at det kan konstrueres og at det er entydig under angitte betingelser. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-07-mit-algebra",
+        "vit2-01-lean-introduction"
+      ]
+    },
+    {
+      "id": "mat01-06-2",
+      "topic_id": "mat01-t06",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med eksistens, konstruksjon og entydighet skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Bevis kan skille mellom at et objekt eksisterer, at det kan konstrueres og at det er entydig under angitte betingelser. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "vit2-02-lean-propositions-proofs"
+      ]
+    },
+    {
+      "id": "mat01-06-3",
+      "topic_id": "mat01-t06",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Et eksistensbevis gir ikke nødvendigvis en effektiv algoritme for å finne objektet. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-13-mit-number-theory",
+        "vit2-03-lean-induction"
+      ]
+    },
+    {
+      "id": "mat01-06-4",
+      "topic_id": "mat01-t06",
+      "classification": "application",
+      "claim": "Når eksistens, konstruksjon og entydighet anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Et eksistensbevis gir ikke nødvendigvis en effektiv algoritme for å finne objektet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-01-lean-introduction",
+        "vit2-04-lean-theorems-reference"
+      ]
+    },
+    {
+      "id": "mat01-07-1",
+      "topic_id": "mat01-t07",
+      "classification": "formal_structure",
+      "claim": "I formelle systemer kan utsagn og bevis representeres presist nok til at en liten verifikasjonskjerne kan kontrollere slutningskjeden. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "vit2-02-lean-propositions-proofs"
+      ]
+    },
+    {
+      "id": "mat01-07-2",
+      "topic_id": "mat01-t07",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med formelle språk og proof terms skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. I formelle systemer kan utsagn og bevis representeres presist nok til at en liten verifikasjonskjerne kan kontrollere slutningskjeden. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-13-mit-number-theory",
+        "vit2-03-lean-induction"
+      ]
+    },
+    {
+      "id": "mat01-07-3",
+      "topic_id": "mat01-t07",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Maskinsjekk av et formalisert bevis validerer ikke automatisk den empiriske fortolkningen av symbolene. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-01-lean-introduction",
+        "vit2-04-lean-theorems-reference"
+      ]
+    },
+    {
+      "id": "mat01-07-4",
+      "topic_id": "mat01-t07",
+      "classification": "application",
+      "claim": "Når formelle språk og proof terms anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Maskinsjekk av et formalisert bevis validerer ikke automatisk den empiriske fortolkningen av symbolene.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-02-lean-propositions-proofs",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat01-08-1",
+      "topic_id": "mat01-t08",
+      "classification": "formal_structure",
+      "claim": "Bevis etablerer formelle konsekvenser, beregning finner eller approksimerer resultater, mens empirisk modellvalidering vurderer om en anvendt representasjon passer data og fenomen. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-13-mit-number-theory",
+        "vit2-03-lean-induction"
+      ]
+    },
+    {
+      "id": "mat01-08-2",
+      "topic_id": "mat01-t08",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med bevis, beregning og modellvalidering skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Bevis etablerer formelle konsekvenser, beregning finner eller approksimerer resultater, mens empirisk modellvalidering vurderer om en anvendt representasjon passer data og fenomen. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-01-lean-introduction",
+        "vit2-04-lean-theorems-reference"
+      ]
+    },
+    {
+      "id": "mat01-08-3",
+      "topic_id": "mat01-t08",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Disse tre begrunnelsesformene må ikke slås sammen til én generell idé om at noe er bevist. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-02-lean-propositions-proofs",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat01-08-4",
+      "topic_id": "mat01-t08",
+      "classification": "application",
+      "claim": "Når bevis, beregning og modellvalidering anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Disse tre begrunnelsesformene må ikke slås sammen til én generell idé om at noe er bevist.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-03-lean-induction",
+        "vit2-07-mit-algebra"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "mat01-m01",
+      "title": "Modul 1: Utsagn, sannhetsverdier og logiske operatorer og Definisjoner, aksiomer og teoremer",
+      "sections": [
+        {
+          "id": "mat01-t01",
+          "title": "Utsagn, sannhetsverdier og logiske operatorer",
+          "paragraphs": [
+            {
+              "claim_id": "mat01-01-1",
+              "source_ids": [
+                "vit2-01-lean-introduction",
+                "vit2-04-lean-theorems-reference"
+              ],
+              "text": "Utsagn, sannhetsverdier og logiske operatorer: Matematiske utsagn organiseres med eksplisitte logiske operatorer og kvantorer slik at gyldige slutninger kan skilles fra språklig plausibilitet. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Logisk form alene avgjør ikke om ikke-logiske premisser er sanne eller relevante. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-01-1 bruker vit2-01-lean-introduction og vit2-04-lean-theorems-reference; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat01-01-2",
+              "source_ids": [
+                "vit2-02-lean-propositions-proofs",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Utsagn, sannhetsverdier og logiske operatorer: Ved arbeid med utsagn, sannhetsverdier og logiske operatorer skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Matematiske utsagn organiseres med eksplisitte logiske operatorer og kvantorer slik at gyldige slutninger kan skilles fra språklig plausibilitet. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Logisk form alene avgjør ikke om ikke-logiske premisser er sanne eller relevante. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-01-2 bruker vit2-02-lean-propositions-proofs og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat01-01-3",
+              "source_ids": [
+                "vit2-03-lean-induction",
+                "vit2-07-mit-algebra"
+              ],
+              "text": "Utsagn, sannhetsverdier og logiske operatorer: Gyldighetsgrensen er avgjørende: Logisk form alene avgjør ikke om ikke-logiske premisser er sanne eller relevante. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Logisk form alene avgjør ikke om ikke-logiske premisser er sanne eller relevante. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-01-3 bruker vit2-03-lean-induction og vit2-07-mit-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat01-01-4",
+              "source_ids": [
+                "vit2-04-lean-theorems-reference",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Utsagn, sannhetsverdier og logiske operatorer: Når utsagn, sannhetsverdier og logiske operatorer anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Logisk form alene avgjør ikke om ikke-logiske premisser er sanne eller relevante. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Logisk form alene avgjør ikke om ikke-logiske premisser er sanne eller relevante. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-01-4 bruker vit2-04-lean-theorems-reference og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat01-01-1",
+            "mat01-01-2",
+            "mat01-01-3",
+            "mat01-01-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for utsagn, sannhetsverdier og logiske operatorer.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Logisk form alene avgjør ikke om ikke-logiske premisser er sanne eller relevante."
+          ]
+        },
+        {
+          "id": "mat01-t02",
+          "title": "Definisjoner, aksiomer og teoremer",
+          "paragraphs": [
+            {
+              "claim_id": "mat01-02-1",
+              "source_ids": [
+                "vit2-02-lean-propositions-proofs",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Definisjoner, aksiomer og teoremer: Definisjoner fastsetter begrepsbruk, aksiomer angir utgangspunkt og teoremer uttrykker konklusjoner som følger ved gyldige slutninger. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et teorem er alltid relativt til det formelle systemet og de forutsetningene som brukes. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-02-1 bruker vit2-02-lean-propositions-proofs og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat01-02-2",
+              "source_ids": [
+                "vit2-03-lean-induction",
+                "vit2-07-mit-algebra"
+              ],
+              "text": "Definisjoner, aksiomer og teoremer: Ved arbeid med definisjoner, aksiomer og teoremer skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Definisjoner fastsetter begrepsbruk, aksiomer angir utgangspunkt og teoremer uttrykker konklusjoner som følger ved gyldige slutninger. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et teorem er alltid relativt til det formelle systemet og de forutsetningene som brukes. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-02-2 bruker vit2-03-lean-induction og vit2-07-mit-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat01-02-3",
+              "source_ids": [
+                "vit2-04-lean-theorems-reference",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Definisjoner, aksiomer og teoremer: Gyldighetsgrensen er avgjørende: Et teorem er alltid relativt til det formelle systemet og de forutsetningene som brukes. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et teorem er alltid relativt til det formelle systemet og de forutsetningene som brukes. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-02-3 bruker vit2-04-lean-theorems-reference og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat01-02-4",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "mat-src-13-mit-number-theory"
+              ],
+              "text": "Definisjoner, aksiomer og teoremer: Når definisjoner, aksiomer og teoremer anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Et teorem er alltid relativt til det formelle systemet og de forutsetningene som brukes. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et teorem er alltid relativt til det formelle systemet og de forutsetningene som brukes. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-02-4 bruker vit2-05-mit-discrete og mat-src-13-mit-number-theory; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat01-02-1",
+            "mat01-02-2",
+            "mat01-02-3",
+            "mat01-02-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for definisjoner, aksiomer og teoremer.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Et teorem er alltid relativt til det formelle systemet og de forutsetningene som brukes."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat01-m02",
+      "title": "Modul 2: Direkte bevis og kontraposisjon og Motsigelsesbevis",
+      "sections": [
+        {
+          "id": "mat01-t03",
+          "title": "Direkte bevis og kontraposisjon",
+          "paragraphs": [
+            {
+              "claim_id": "mat01-03-1",
+              "source_ids": [
+                "vit2-03-lean-induction",
+                "vit2-07-mit-algebra"
+              ],
+              "text": "Direkte bevis og kontraposisjon: Direkte bevis og kontraposisjon etablerer implikasjoner ved eksplisitte deduktive kjeder. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. At en konklusjon virker rimelig eller har mange eksempler er ikke et deduktivt bevis. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-03-1 bruker vit2-03-lean-induction og vit2-07-mit-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat01-03-2",
+              "source_ids": [
+                "vit2-04-lean-theorems-reference",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Direkte bevis og kontraposisjon: Ved arbeid med direkte bevis og kontraposisjon skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Direkte bevis og kontraposisjon etablerer implikasjoner ved eksplisitte deduktive kjeder. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. At en konklusjon virker rimelig eller har mange eksempler er ikke et deduktivt bevis. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-03-2 bruker vit2-04-lean-theorems-reference og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat01-03-3",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "mat-src-13-mit-number-theory"
+              ],
+              "text": "Direkte bevis og kontraposisjon: Gyldighetsgrensen er avgjørende: At en konklusjon virker rimelig eller har mange eksempler er ikke et deduktivt bevis. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. At en konklusjon virker rimelig eller har mange eksempler er ikke et deduktivt bevis. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-03-3 bruker vit2-05-mit-discrete og mat-src-13-mit-number-theory; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat01-03-4",
+              "source_ids": [
+                "vit2-07-mit-algebra",
+                "vit2-01-lean-introduction"
+              ],
+              "text": "Direkte bevis og kontraposisjon: Når direkte bevis og kontraposisjon anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. At en konklusjon virker rimelig eller har mange eksempler er ikke et deduktivt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. At en konklusjon virker rimelig eller har mange eksempler er ikke et deduktivt bevis. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-03-4 bruker vit2-07-mit-algebra og vit2-01-lean-introduction; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat01-03-1",
+            "mat01-03-2",
+            "mat01-03-3",
+            "mat01-03-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for direkte bevis og kontraposisjon.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. At en konklusjon virker rimelig eller har mange eksempler er ikke et deduktivt bevis."
+          ]
+        },
+        {
+          "id": "mat01-t04",
+          "title": "Motsigelsesbevis",
+          "paragraphs": [
+            {
+              "claim_id": "mat01-04-1",
+              "source_ids": [
+                "vit2-04-lean-theorems-reference",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Motsigelsesbevis: Motsigelsesbevis antar negasjonen av ønsket konklusjon og viser at dette sammen med premissene fører til inkonsistens. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Metoden krever kontroll av hvilke logiske prinsipper og premisser som faktisk brukes. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-04-1 bruker vit2-04-lean-theorems-reference og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat01-04-2",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "mat-src-13-mit-number-theory"
+              ],
+              "text": "Motsigelsesbevis: Ved arbeid med motsigelsesbevis skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Motsigelsesbevis antar negasjonen av ønsket konklusjon og viser at dette sammen med premissene fører til inkonsistens. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Metoden krever kontroll av hvilke logiske prinsipper og premisser som faktisk brukes. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-04-2 bruker vit2-05-mit-discrete og mat-src-13-mit-number-theory; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat01-04-3",
+              "source_ids": [
+                "vit2-07-mit-algebra",
+                "vit2-01-lean-introduction"
+              ],
+              "text": "Motsigelsesbevis: Gyldighetsgrensen er avgjørende: Metoden krever kontroll av hvilke logiske prinsipper og premisser som faktisk brukes. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Metoden krever kontroll av hvilke logiske prinsipper og premisser som faktisk brukes. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-04-3 bruker vit2-07-mit-algebra og vit2-01-lean-introduction; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat01-04-4",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "vit2-02-lean-propositions-proofs"
+              ],
+              "text": "Motsigelsesbevis: Når motsigelsesbevis anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Metoden krever kontroll av hvilke logiske prinsipper og premisser som faktisk brukes. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Metoden krever kontroll av hvilke logiske prinsipper og premisser som faktisk brukes. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-04-4 bruker mat-src-11-mit-real-analysis og vit2-02-lean-propositions-proofs; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat01-04-1",
+            "mat01-04-2",
+            "mat01-04-3",
+            "mat01-04-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for motsigelsesbevis.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Metoden krever kontroll av hvilke logiske prinsipper og premisser som faktisk brukes."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat01-m03",
+      "title": "Modul 3: Matematisk induksjon og Eksistens, konstruksjon og entydighet",
+      "sections": [
+        {
+          "id": "mat01-t05",
+          "title": "Matematisk induksjon",
+          "paragraphs": [
+            {
+              "claim_id": "mat01-05-1",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "mat-src-13-mit-number-theory"
+              ],
+              "text": "Matematisk induksjon: Induksjon beviser utsagn over rekursivt organiserte strukturer ved et grunntrinn og et eksplisitt induksjonstrinn. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Induksjon er et deduktivt prinsipp og må ikke forveksles med empirisk generalisering fra mange observerte tilfeller. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-05-1 bruker vit2-05-mit-discrete og mat-src-13-mit-number-theory; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat01-05-2",
+              "source_ids": [
+                "vit2-07-mit-algebra",
+                "vit2-01-lean-introduction"
+              ],
+              "text": "Matematisk induksjon: Ved arbeid med matematisk induksjon skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Induksjon beviser utsagn over rekursivt organiserte strukturer ved et grunntrinn og et eksplisitt induksjonstrinn. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Induksjon er et deduktivt prinsipp og må ikke forveksles med empirisk generalisering fra mange observerte tilfeller. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-05-2 bruker vit2-07-mit-algebra og vit2-01-lean-introduction; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat01-05-3",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "vit2-02-lean-propositions-proofs"
+              ],
+              "text": "Matematisk induksjon: Gyldighetsgrensen er avgjørende: Induksjon er et deduktivt prinsipp og må ikke forveksles med empirisk generalisering fra mange observerte tilfeller. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Induksjon er et deduktivt prinsipp og må ikke forveksles med empirisk generalisering fra mange observerte tilfeller. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-05-3 bruker mat-src-11-mit-real-analysis og vit2-02-lean-propositions-proofs; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat01-05-4",
+              "source_ids": [
+                "mat-src-13-mit-number-theory",
+                "vit2-03-lean-induction"
+              ],
+              "text": "Matematisk induksjon: Når matematisk induksjon anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Induksjon er et deduktivt prinsipp og må ikke forveksles med empirisk generalisering fra mange observerte tilfeller. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Induksjon er et deduktivt prinsipp og må ikke forveksles med empirisk generalisering fra mange observerte tilfeller. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-05-4 bruker mat-src-13-mit-number-theory og vit2-03-lean-induction; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat01-05-1",
+            "mat01-05-2",
+            "mat01-05-3",
+            "mat01-05-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for matematisk induksjon.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Induksjon er et deduktivt prinsipp og må ikke forveksles med empirisk generalisering fra mange observerte tilfeller."
+          ]
+        },
+        {
+          "id": "mat01-t06",
+          "title": "Eksistens, konstruksjon og entydighet",
+          "paragraphs": [
+            {
+              "claim_id": "mat01-06-1",
+              "source_ids": [
+                "vit2-07-mit-algebra",
+                "vit2-01-lean-introduction"
+              ],
+              "text": "Eksistens, konstruksjon og entydighet: Bevis kan skille mellom at et objekt eksisterer, at det kan konstrueres og at det er entydig under angitte betingelser. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et eksistensbevis gir ikke nødvendigvis en effektiv algoritme for å finne objektet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-06-1 bruker vit2-07-mit-algebra og vit2-01-lean-introduction; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat01-06-2",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "vit2-02-lean-propositions-proofs"
+              ],
+              "text": "Eksistens, konstruksjon og entydighet: Ved arbeid med eksistens, konstruksjon og entydighet skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Bevis kan skille mellom at et objekt eksisterer, at det kan konstrueres og at det er entydig under angitte betingelser. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et eksistensbevis gir ikke nødvendigvis en effektiv algoritme for å finne objektet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-06-2 bruker mat-src-11-mit-real-analysis og vit2-02-lean-propositions-proofs; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat01-06-3",
+              "source_ids": [
+                "mat-src-13-mit-number-theory",
+                "vit2-03-lean-induction"
+              ],
+              "text": "Eksistens, konstruksjon og entydighet: Gyldighetsgrensen er avgjørende: Et eksistensbevis gir ikke nødvendigvis en effektiv algoritme for å finne objektet. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et eksistensbevis gir ikke nødvendigvis en effektiv algoritme for å finne objektet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-06-3 bruker mat-src-13-mit-number-theory og vit2-03-lean-induction; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat01-06-4",
+              "source_ids": [
+                "vit2-01-lean-introduction",
+                "vit2-04-lean-theorems-reference"
+              ],
+              "text": "Eksistens, konstruksjon og entydighet: Når eksistens, konstruksjon og entydighet anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Et eksistensbevis gir ikke nødvendigvis en effektiv algoritme for å finne objektet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et eksistensbevis gir ikke nødvendigvis en effektiv algoritme for å finne objektet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-06-4 bruker vit2-01-lean-introduction og vit2-04-lean-theorems-reference; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat01-06-1",
+            "mat01-06-2",
+            "mat01-06-3",
+            "mat01-06-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for eksistens, konstruksjon og entydighet.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Et eksistensbevis gir ikke nødvendigvis en effektiv algoritme for å finne objektet."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat01-m04",
+      "title": "Modul 4: Formelle språk og proof terms og Bevis, beregning og modellvalidering",
+      "sections": [
+        {
+          "id": "mat01-t07",
+          "title": "Formelle språk og proof terms",
+          "paragraphs": [
+            {
+              "claim_id": "mat01-07-1",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "vit2-02-lean-propositions-proofs"
+              ],
+              "text": "Formelle språk og proof terms: I formelle systemer kan utsagn og bevis representeres presist nok til at en liten verifikasjonskjerne kan kontrollere slutningskjeden. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Maskinsjekk av et formalisert bevis validerer ikke automatisk den empiriske fortolkningen av symbolene. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-07-1 bruker mat-src-11-mit-real-analysis og vit2-02-lean-propositions-proofs; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat01-07-2",
+              "source_ids": [
+                "mat-src-13-mit-number-theory",
+                "vit2-03-lean-induction"
+              ],
+              "text": "Formelle språk og proof terms: Ved arbeid med formelle språk og proof terms skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. I formelle systemer kan utsagn og bevis representeres presist nok til at en liten verifikasjonskjerne kan kontrollere slutningskjeden. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Maskinsjekk av et formalisert bevis validerer ikke automatisk den empiriske fortolkningen av symbolene. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-07-2 bruker mat-src-13-mit-number-theory og vit2-03-lean-induction; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat01-07-3",
+              "source_ids": [
+                "vit2-01-lean-introduction",
+                "vit2-04-lean-theorems-reference"
+              ],
+              "text": "Formelle språk og proof terms: Gyldighetsgrensen er avgjørende: Maskinsjekk av et formalisert bevis validerer ikke automatisk den empiriske fortolkningen av symbolene. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Maskinsjekk av et formalisert bevis validerer ikke automatisk den empiriske fortolkningen av symbolene. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-07-3 bruker vit2-01-lean-introduction og vit2-04-lean-theorems-reference; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat01-07-4",
+              "source_ids": [
+                "vit2-02-lean-propositions-proofs",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Formelle språk og proof terms: Når formelle språk og proof terms anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Maskinsjekk av et formalisert bevis validerer ikke automatisk den empiriske fortolkningen av symbolene. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Maskinsjekk av et formalisert bevis validerer ikke automatisk den empiriske fortolkningen av symbolene. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-07-4 bruker vit2-02-lean-propositions-proofs og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat01-07-1",
+            "mat01-07-2",
+            "mat01-07-3",
+            "mat01-07-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for formelle språk og proof terms.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Maskinsjekk av et formalisert bevis validerer ikke automatisk den empiriske fortolkningen av symbolene."
+          ]
+        },
+        {
+          "id": "mat01-t08",
+          "title": "Bevis, beregning og modellvalidering",
+          "paragraphs": [
+            {
+              "claim_id": "mat01-08-1",
+              "source_ids": [
+                "mat-src-13-mit-number-theory",
+                "vit2-03-lean-induction"
+              ],
+              "text": "Bevis, beregning og modellvalidering: Bevis etablerer formelle konsekvenser, beregning finner eller approksimerer resultater, mens empirisk modellvalidering vurderer om en anvendt representasjon passer data og fenomen. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Disse tre begrunnelsesformene må ikke slås sammen til én generell idé om at noe er bevist. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-08-1 bruker mat-src-13-mit-number-theory og vit2-03-lean-induction; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat01-08-2",
+              "source_ids": [
+                "vit2-01-lean-introduction",
+                "vit2-04-lean-theorems-reference"
+              ],
+              "text": "Bevis, beregning og modellvalidering: Ved arbeid med bevis, beregning og modellvalidering skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Bevis etablerer formelle konsekvenser, beregning finner eller approksimerer resultater, mens empirisk modellvalidering vurderer om en anvendt representasjon passer data og fenomen. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Disse tre begrunnelsesformene må ikke slås sammen til én generell idé om at noe er bevist. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-08-2 bruker vit2-01-lean-introduction og vit2-04-lean-theorems-reference; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat01-08-3",
+              "source_ids": [
+                "vit2-02-lean-propositions-proofs",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Bevis, beregning og modellvalidering: Gyldighetsgrensen er avgjørende: Disse tre begrunnelsesformene må ikke slås sammen til én generell idé om at noe er bevist. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Disse tre begrunnelsesformene må ikke slås sammen til én generell idé om at noe er bevist. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-08-3 bruker vit2-02-lean-propositions-proofs og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat01-08-4",
+              "source_ids": [
+                "vit2-03-lean-induction",
+                "vit2-07-mit-algebra"
+              ],
+              "text": "Bevis, beregning og modellvalidering: Når bevis, beregning og modellvalidering anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Disse tre begrunnelsesformene må ikke slås sammen til én generell idé om at noe er bevist. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Disse tre begrunnelsesformene må ikke slås sammen til én generell idé om at noe er bevist. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat01-08-4 bruker vit2-03-lean-induction og vit2-07-mit-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat01-08-1",
+            "mat01-08-2",
+            "mat01-08-3",
+            "mat01-08-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for bevis, beregning og modellvalidering.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Disse tre begrunnelsesformene må ikke slås sammen til én generell idé om at noe er bevist."
+          ]
+        }
+      ]
+    }
+  ],
+  "assessment": {
+    "questions": [
+      {
+        "id": "mat01-q01",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer utsagn, sannhetsverdier og logiske operatorer?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat01-t01"
+      },
+      {
+        "id": "mat01-q02",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer definisjoner, aksiomer og teoremer?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat01-t02"
+      },
+      {
+        "id": "mat01-q03",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer direkte bevis og kontraposisjon?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat01-t03"
+      },
+      {
+        "id": "mat01-q04",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer motsigelsesbevis?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat01-t04"
+      },
+      {
+        "id": "mat01-q05",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer matematisk induksjon?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat01-t05"
+      },
+      {
+        "id": "mat01-q06",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer eksistens, konstruksjon og entydighet?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat01-t06"
+      },
+      {
+        "id": "mat01-q07",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer formelle språk og proof terms?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat01-t07"
+      },
+      {
+        "id": "mat01-q08",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer bevis, beregning og modellvalidering?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat01-t08"
+      }
+    ],
+    "caseTasks": [
+      {
+        "id": "mat01-case01",
+        "prompt": "En analyse hevder at et resultat som kombinerer utsagn, sannhetsverdier og logiske operatorer og direkte bevis og kontraposisjon er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-01-lean-introduction",
+          "vit2-07-mit-algebra"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat01-case02",
+        "prompt": "En analyse hevder at et resultat som kombinerer definisjoner, aksiomer og teoremer og motsigelsesbevis er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-02-lean-propositions-proofs",
+          "mat-src-11-mit-real-analysis"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat01-case03",
+        "prompt": "En analyse hevder at et resultat som kombinerer direkte bevis og kontraposisjon og matematisk induksjon er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-03-lean-induction",
+          "mat-src-13-mit-number-theory"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat01-case04",
+        "prompt": "En analyse hevder at et resultat som kombinerer motsigelsesbevis og eksistens, konstruksjon og entydighet er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-04-lean-theorems-reference",
+          "vit2-01-lean-introduction"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat01-case05",
+        "prompt": "En analyse hevder at et resultat som kombinerer matematisk induksjon og formelle språk og proof terms er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-05-mit-discrete",
+          "vit2-02-lean-propositions-proofs"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat01-case06",
+        "prompt": "En analyse hevder at et resultat som kombinerer eksistens, konstruksjon og entydighet og bevis, beregning og modellvalidering er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-07-mit-algebra",
+          "vit2-03-lean-induction"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      }
+    ]
+  },
+  "qualityGuard": {
+    "formal_validity_vs_premise_truth_explicit": true,
+    "proof_vs_computation_explicit": true,
+    "object_vs_representation_explicit": true,
+    "theorem_prover_scope_explicit": true,
+    "exact_vs_numerical_approximation_explicit": true,
+    "continuous_vs_discrete_model_choice_explicit": true,
+    "probability_model_vs_empirical_frequency_explicit": true,
+    "optimization_objective_vs_real_goal_explicit": true,
+    "empirical_model_adequacy_separate": true,
+    "source_trace_required": true,
+    "strict_domain_materialized": true
+  },
+  "reuse_provenance": {
+    "strict_upgrade": true,
+    "origin_chapter": "data/fagverk/vitenskap/vitenskap-matematisk-bevis-struktur-og-modell.json",
+    "origin_claims": "data/fagverk/vitenskap/vitenskap-matematisk-bevis-struktur-og-modell/claims.json",
+    "origin_subject_id": "vitenskap",
+    "origin_coverage_family_id": "mathematics_formal_sciences",
+    "origin_inventory": {
+      "emne_count": 5,
+      "method_count": 6,
+      "source_count": 10,
+      "verified_claim_count": 18
+    },
+    "rule": "Eksisterende Vitenskap-innhold bevares urørt; det teller kun som gjenbruksgrunnlag etter eksplisitt strict-upgrade."
+  }
+}

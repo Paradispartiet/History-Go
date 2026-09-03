@@ -1,0 +1,1125 @@
+{
+  "schema": "history_go_fagverk_kjemi_strict_domain_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-09-02",
+  "subject": "vitenskap",
+  "subject_id": "vitenskap",
+  "canonical_subcategory_id": "kjemi",
+  "ordinal": 8,
+  "domain_id": "analytisk_kjemi_provetaking_separasjon_spektroskopi",
+  "id": "analytisk-kjemi-provetaking-separasjon-spektroskopi",
+  "chapter_id": "analytisk-kjemi-provetaking-separasjon-spektroskopi",
+  "title": "Analytisk kjemi: prøvetaking, separasjon, kalibrering og spektroskopi",
+  "subtitle": "Strict Kjemi-felt 8 av 12: source-first, fulltekst, claims, vurderinger og case",
+  "lead": "Analytisk kjemi: prøvetaking, separasjon, kalibrering og spektroskopi er materialisert som et selvstendig felt i Kjemi-registeret. Feltet prioriterer kjemisk identitet, struktur–reaktivitet, masse- og energiregnskap, prøve–signal–slutning, gyldighetsområder og etterprøvbar kildebruk.",
+  "source_registry": "data/fag/vitenskap/kjemi/source_registry_v1.json",
+  "source_first": {
+    "status": "pass",
+    "source_ids": [
+      "vit4-08-mit-laboratory-chemistry",
+      "vit4-09-nist-chemistry-webbook",
+      "vit4-10-iupac-detection-limit",
+      "vit4-12-nist-xps",
+      "vit4-01-mit-principles-chemical-science",
+      "kjem-src-15-iupac-blue-book",
+      "kjem-src-16-acs-safety",
+      "kjem-src-18-mit-physical"
+    ],
+    "topic_briefs": [
+      {
+        "id": "kjem08-t01",
+        "title": "Representativ prøvetaking",
+        "core": "Analytisk kvalitet begynner med hvordan en fysisk prøve representerer systemet eller populasjonen som påstanden gjelder.",
+        "boundary": "Et presist instrument kan ikke rette opp systematisk skjev prøvetaking.",
+        "planned_claim_ids": [
+          "kjem08-01-1",
+          "kjem08-01-2",
+          "kjem08-01-3",
+          "kjem08-01-4"
+        ]
+      },
+      {
+        "id": "kjem08-t02",
+        "title": "Kalibrering og sporbar respons",
+        "core": "Kalibrering kobler instrumentrespons til mengde eller konsentrasjon gjennom referanser, modell og gyldighetsområde.",
+        "boundary": "En kalibreringskurve uten residual- og områdekontroll kan gi misvisende kvantifisering.",
+        "planned_claim_ids": [
+          "kjem08-02-1",
+          "kjem08-02-2",
+          "kjem08-02-3",
+          "kjem08-02-4"
+        ]
+      },
+      {
+        "id": "kjem08-t03",
+        "title": "Måleusikkerhet, presisjon og nøyaktighet",
+        "core": "Repeterbarhet, systematiske bidrag og referanser må skilles når analytisk usikkerhet vurderes.",
+        "boundary": "Høy presisjon beviser ikke høy nøyaktighet dersom bias er til stede.",
+        "planned_claim_ids": [
+          "kjem08-03-1",
+          "kjem08-03-2",
+          "kjem08-03-3",
+          "kjem08-03-4"
+        ]
+      },
+      {
+        "id": "kjem08-t04",
+        "title": "Deteksjons- og kvantifiseringsgrenser",
+        "core": "Deteksjonsgrenser beskriver statistisk skille fra blank, mens kvantifisering krever sterkere ytelseskrav.",
+        "boundary": "Ikke-detektert betyr ikke dokumentert fravær.",
+        "planned_claim_ids": [
+          "kjem08-04-1",
+          "kjem08-04-2",
+          "kjem08-04-3",
+          "kjem08-04-4"
+        ]
+      },
+      {
+        "id": "kjem08-t05",
+        "title": "Kromatografisk separasjon",
+        "core": "Kromatografi skiller komponenter gjennom forskjellig fordeling mellom mobil og stasjonær fase og må vurderes med oppløsning og retensjon.",
+        "boundary": "En enkelt retensjonstid er normalt ikke entydig kjemisk identifikasjon.",
+        "planned_claim_ids": [
+          "kjem08-05-1",
+          "kjem08-05-2",
+          "kjem08-05-3",
+          "kjem08-05-4"
+        ]
+      },
+      {
+        "id": "kjem08-t06",
+        "title": "Optisk og vibrasjonsspektroskopi",
+        "core": "UV/Vis, IR og andre spektroskopier kobler elektromagnetisk respons til elektroniske eller vibrasjonelle overganger.",
+        "boundary": "Spektralt samsvar må vurderes mot matrise, oppløsning og alternative forbindelser.",
+        "planned_claim_ids": [
+          "kjem08-06-1",
+          "kjem08-06-2",
+          "kjem08-06-3",
+          "kjem08-06-4"
+        ]
+      },
+      {
+        "id": "kjem08-t07",
+        "title": "Massespektrometri og NMR",
+        "core": "Massespektrometri og NMR gir komplementær evidens om masse, fragmentering, kjemisk miljø og koblinger.",
+        "boundary": "Ett signal eller én nominell masse etablerer ikke alene full struktur.",
+        "planned_claim_ids": [
+          "kjem08-07-1",
+          "kjem08-07-2",
+          "kjem08-07-3",
+          "kjem08-07-4"
+        ]
+      },
+      {
+        "id": "kjem08-t08",
+        "title": "Metodevalidering og multivariat analyse",
+        "core": "Analytiske metoder må dokumentere selektivitet, område, robusthet og relevant statistisk ytelse før rutinebruk.",
+        "boundary": "En høy modellscore uten uavhengig validering kan være overtilpasning.",
+        "planned_claim_ids": [
+          "kjem08-08-1",
+          "kjem08-08-2",
+          "kjem08-08-3",
+          "kjem08-08-4"
+        ]
+      }
+    ],
+    "minimum_sources": 8,
+    "claim_level_trace": true,
+    "no_decorative_sources": true
+  },
+  "verifiedClaims": [
+    {
+      "id": "kjem08-01-1",
+      "topic_id": "kjem08-t01",
+      "classification": "principle",
+      "claim": "Analytisk kvalitet begynner med hvordan en fysisk prøve representerer systemet eller populasjonen som påstanden gjelder. I en strict kjemiforklaring skal definisjoner, stoffidentitet, tilstandsbetingelser og relevante reaksjons- eller strukturmodeller oppgis eksplisitt slik at påstanden kan testes.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit4-08-mit-laboratory-chemistry",
+        "vit4-12-nist-xps"
+      ]
+    },
+    {
+      "id": "kjem08-01-2",
+      "topic_id": "kjem08-t01",
+      "classification": "measurement",
+      "claim": "Empirisk eller beregningsmessig arbeid med representativ prøvetaking krever at prøve eller startstruktur, råsignal eller beregningsinput, kalibrering eller modellparametre og avledet kjemisk størrelse holdes analytisk atskilt. Analytisk kvalitet begynner med hvordan en fysisk prøve representerer systemet eller populasjonen som påstanden gjelder.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit4-09-nist-chemistry-webbook",
+        "vit4-01-mit-principles-chemical-science"
+      ]
+    },
+    {
+      "id": "kjem08-01-3",
+      "topic_id": "kjem08-t01",
+      "classification": "boundary",
+      "claim": "Faggrensen er avgjørende: Et presist instrument kan ikke rette opp systematisk skjev prøvetaking. En strict kjemiforklaring skal derfor angi betingelser, gyldighetsområde og minst én alternativ kjemisk eller analytisk forklaring før konklusjonen generaliseres.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit4-10-iupac-detection-limit",
+        "kjem-src-15-iupac-blue-book"
+      ]
+    },
+    {
+      "id": "kjem08-01-4",
+      "topic_id": "kjem08-t01",
+      "classification": "application",
+      "claim": "Ved anvendelse av representativ prøvetaking må struktur- eller reaksjonspåstanden knyttes til observerbar kjemisk evidens, masse- eller energiregnskap og en eksplisitt vurdering av usikkerhet, selektivitet eller modellfeil. Et presist instrument kan ikke rette opp systematisk skjev prøvetaking.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit4-12-nist-xps",
+        "kjem-src-16-acs-safety"
+      ]
+    },
+    {
+      "id": "kjem08-02-1",
+      "topic_id": "kjem08-t02",
+      "classification": "principle",
+      "claim": "Kalibrering kobler instrumentrespons til mengde eller konsentrasjon gjennom referanser, modell og gyldighetsområde. I en strict kjemiforklaring skal definisjoner, stoffidentitet, tilstandsbetingelser og relevante reaksjons- eller strukturmodeller oppgis eksplisitt slik at påstanden kan testes.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit4-09-nist-chemistry-webbook",
+        "vit4-01-mit-principles-chemical-science"
+      ]
+    },
+    {
+      "id": "kjem08-02-2",
+      "topic_id": "kjem08-t02",
+      "classification": "measurement",
+      "claim": "Empirisk eller beregningsmessig arbeid med kalibrering og sporbar respons krever at prøve eller startstruktur, råsignal eller beregningsinput, kalibrering eller modellparametre og avledet kjemisk størrelse holdes analytisk atskilt. Kalibrering kobler instrumentrespons til mengde eller konsentrasjon gjennom referanser, modell og gyldighetsområde.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit4-10-iupac-detection-limit",
+        "kjem-src-15-iupac-blue-book"
+      ]
+    },
+    {
+      "id": "kjem08-02-3",
+      "topic_id": "kjem08-t02",
+      "classification": "boundary",
+      "claim": "Faggrensen er avgjørende: En kalibreringskurve uten residual- og områdekontroll kan gi misvisende kvantifisering. En strict kjemiforklaring skal derfor angi betingelser, gyldighetsområde og minst én alternativ kjemisk eller analytisk forklaring før konklusjonen generaliseres.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit4-12-nist-xps",
+        "kjem-src-16-acs-safety"
+      ]
+    },
+    {
+      "id": "kjem08-02-4",
+      "topic_id": "kjem08-t02",
+      "classification": "application",
+      "claim": "Ved anvendelse av kalibrering og sporbar respons må struktur- eller reaksjonspåstanden knyttes til observerbar kjemisk evidens, masse- eller energiregnskap og en eksplisitt vurdering av usikkerhet, selektivitet eller modellfeil. En kalibreringskurve uten residual- og områdekontroll kan gi misvisende kvantifisering.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit4-01-mit-principles-chemical-science",
+        "kjem-src-18-mit-physical"
+      ]
+    },
+    {
+      "id": "kjem08-03-1",
+      "topic_id": "kjem08-t03",
+      "classification": "principle",
+      "claim": "Repeterbarhet, systematiske bidrag og referanser må skilles når analytisk usikkerhet vurderes. I en strict kjemiforklaring skal definisjoner, stoffidentitet, tilstandsbetingelser og relevante reaksjons- eller strukturmodeller oppgis eksplisitt slik at påstanden kan testes.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit4-10-iupac-detection-limit",
+        "kjem-src-15-iupac-blue-book"
+      ]
+    },
+    {
+      "id": "kjem08-03-2",
+      "topic_id": "kjem08-t03",
+      "classification": "measurement",
+      "claim": "Empirisk eller beregningsmessig arbeid med måleusikkerhet, presisjon og nøyaktighet krever at prøve eller startstruktur, råsignal eller beregningsinput, kalibrering eller modellparametre og avledet kjemisk størrelse holdes analytisk atskilt. Repeterbarhet, systematiske bidrag og referanser må skilles når analytisk usikkerhet vurderes.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit4-12-nist-xps",
+        "kjem-src-16-acs-safety"
+      ]
+    },
+    {
+      "id": "kjem08-03-3",
+      "topic_id": "kjem08-t03",
+      "classification": "boundary",
+      "claim": "Faggrensen er avgjørende: Høy presisjon beviser ikke høy nøyaktighet dersom bias er til stede. En strict kjemiforklaring skal derfor angi betingelser, gyldighetsområde og minst én alternativ kjemisk eller analytisk forklaring før konklusjonen generaliseres.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit4-01-mit-principles-chemical-science",
+        "kjem-src-18-mit-physical"
+      ]
+    },
+    {
+      "id": "kjem08-03-4",
+      "topic_id": "kjem08-t03",
+      "classification": "application",
+      "claim": "Ved anvendelse av måleusikkerhet, presisjon og nøyaktighet må struktur- eller reaksjonspåstanden knyttes til observerbar kjemisk evidens, masse- eller energiregnskap og en eksplisitt vurdering av usikkerhet, selektivitet eller modellfeil. Høy presisjon beviser ikke høy nøyaktighet dersom bias er til stede.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "kjem-src-15-iupac-blue-book",
+        "vit4-08-mit-laboratory-chemistry"
+      ]
+    },
+    {
+      "id": "kjem08-04-1",
+      "topic_id": "kjem08-t04",
+      "classification": "principle",
+      "claim": "Deteksjonsgrenser beskriver statistisk skille fra blank, mens kvantifisering krever sterkere ytelseskrav. I en strict kjemiforklaring skal definisjoner, stoffidentitet, tilstandsbetingelser og relevante reaksjons- eller strukturmodeller oppgis eksplisitt slik at påstanden kan testes.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit4-12-nist-xps",
+        "kjem-src-16-acs-safety"
+      ]
+    },
+    {
+      "id": "kjem08-04-2",
+      "topic_id": "kjem08-t04",
+      "classification": "measurement",
+      "claim": "Empirisk eller beregningsmessig arbeid med deteksjons- og kvantifiseringsgrenser krever at prøve eller startstruktur, råsignal eller beregningsinput, kalibrering eller modellparametre og avledet kjemisk størrelse holdes analytisk atskilt. Deteksjonsgrenser beskriver statistisk skille fra blank, mens kvantifisering krever sterkere ytelseskrav.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit4-01-mit-principles-chemical-science",
+        "kjem-src-18-mit-physical"
+      ]
+    },
+    {
+      "id": "kjem08-04-3",
+      "topic_id": "kjem08-t04",
+      "classification": "boundary",
+      "claim": "Faggrensen er avgjørende: Ikke-detektert betyr ikke dokumentert fravær. En strict kjemiforklaring skal derfor angi betingelser, gyldighetsområde og minst én alternativ kjemisk eller analytisk forklaring før konklusjonen generaliseres.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "kjem-src-15-iupac-blue-book",
+        "vit4-08-mit-laboratory-chemistry"
+      ]
+    },
+    {
+      "id": "kjem08-04-4",
+      "topic_id": "kjem08-t04",
+      "classification": "application",
+      "claim": "Ved anvendelse av deteksjons- og kvantifiseringsgrenser må struktur- eller reaksjonspåstanden knyttes til observerbar kjemisk evidens, masse- eller energiregnskap og en eksplisitt vurdering av usikkerhet, selektivitet eller modellfeil. Ikke-detektert betyr ikke dokumentert fravær.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "kjem-src-16-acs-safety",
+        "vit4-09-nist-chemistry-webbook"
+      ]
+    },
+    {
+      "id": "kjem08-05-1",
+      "topic_id": "kjem08-t05",
+      "classification": "principle",
+      "claim": "Kromatografi skiller komponenter gjennom forskjellig fordeling mellom mobil og stasjonær fase og må vurderes med oppløsning og retensjon. I en strict kjemiforklaring skal definisjoner, stoffidentitet, tilstandsbetingelser og relevante reaksjons- eller strukturmodeller oppgis eksplisitt slik at påstanden kan testes.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit4-01-mit-principles-chemical-science",
+        "kjem-src-18-mit-physical"
+      ]
+    },
+    {
+      "id": "kjem08-05-2",
+      "topic_id": "kjem08-t05",
+      "classification": "measurement",
+      "claim": "Empirisk eller beregningsmessig arbeid med kromatografisk separasjon krever at prøve eller startstruktur, råsignal eller beregningsinput, kalibrering eller modellparametre og avledet kjemisk størrelse holdes analytisk atskilt. Kromatografi skiller komponenter gjennom forskjellig fordeling mellom mobil og stasjonær fase og må vurderes med oppløsning og retensjon.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "kjem-src-15-iupac-blue-book",
+        "vit4-08-mit-laboratory-chemistry"
+      ]
+    },
+    {
+      "id": "kjem08-05-3",
+      "topic_id": "kjem08-t05",
+      "classification": "boundary",
+      "claim": "Faggrensen er avgjørende: En enkelt retensjonstid er normalt ikke entydig kjemisk identifikasjon. En strict kjemiforklaring skal derfor angi betingelser, gyldighetsområde og minst én alternativ kjemisk eller analytisk forklaring før konklusjonen generaliseres.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "kjem-src-16-acs-safety",
+        "vit4-09-nist-chemistry-webbook"
+      ]
+    },
+    {
+      "id": "kjem08-05-4",
+      "topic_id": "kjem08-t05",
+      "classification": "application",
+      "claim": "Ved anvendelse av kromatografisk separasjon må struktur- eller reaksjonspåstanden knyttes til observerbar kjemisk evidens, masse- eller energiregnskap og en eksplisitt vurdering av usikkerhet, selektivitet eller modellfeil. En enkelt retensjonstid er normalt ikke entydig kjemisk identifikasjon.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "kjem-src-18-mit-physical",
+        "vit4-10-iupac-detection-limit"
+      ]
+    },
+    {
+      "id": "kjem08-06-1",
+      "topic_id": "kjem08-t06",
+      "classification": "principle",
+      "claim": "UV/Vis, IR og andre spektroskopier kobler elektromagnetisk respons til elektroniske eller vibrasjonelle overganger. I en strict kjemiforklaring skal definisjoner, stoffidentitet, tilstandsbetingelser og relevante reaksjons- eller strukturmodeller oppgis eksplisitt slik at påstanden kan testes.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "kjem-src-15-iupac-blue-book",
+        "vit4-08-mit-laboratory-chemistry"
+      ]
+    },
+    {
+      "id": "kjem08-06-2",
+      "topic_id": "kjem08-t06",
+      "classification": "measurement",
+      "claim": "Empirisk eller beregningsmessig arbeid med optisk og vibrasjonsspektroskopi krever at prøve eller startstruktur, råsignal eller beregningsinput, kalibrering eller modellparametre og avledet kjemisk størrelse holdes analytisk atskilt. UV/Vis, IR og andre spektroskopier kobler elektromagnetisk respons til elektroniske eller vibrasjonelle overganger.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "kjem-src-16-acs-safety",
+        "vit4-09-nist-chemistry-webbook"
+      ]
+    },
+    {
+      "id": "kjem08-06-3",
+      "topic_id": "kjem08-t06",
+      "classification": "boundary",
+      "claim": "Faggrensen er avgjørende: Spektralt samsvar må vurderes mot matrise, oppløsning og alternative forbindelser. En strict kjemiforklaring skal derfor angi betingelser, gyldighetsområde og minst én alternativ kjemisk eller analytisk forklaring før konklusjonen generaliseres.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "kjem-src-18-mit-physical",
+        "vit4-10-iupac-detection-limit"
+      ]
+    },
+    {
+      "id": "kjem08-06-4",
+      "topic_id": "kjem08-t06",
+      "classification": "application",
+      "claim": "Ved anvendelse av optisk og vibrasjonsspektroskopi må struktur- eller reaksjonspåstanden knyttes til observerbar kjemisk evidens, masse- eller energiregnskap og en eksplisitt vurdering av usikkerhet, selektivitet eller modellfeil. Spektralt samsvar må vurderes mot matrise, oppløsning og alternative forbindelser.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit4-08-mit-laboratory-chemistry",
+        "vit4-12-nist-xps"
+      ]
+    },
+    {
+      "id": "kjem08-07-1",
+      "topic_id": "kjem08-t07",
+      "classification": "principle",
+      "claim": "Massespektrometri og NMR gir komplementær evidens om masse, fragmentering, kjemisk miljø og koblinger. I en strict kjemiforklaring skal definisjoner, stoffidentitet, tilstandsbetingelser og relevante reaksjons- eller strukturmodeller oppgis eksplisitt slik at påstanden kan testes.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "kjem-src-16-acs-safety",
+        "vit4-09-nist-chemistry-webbook"
+      ]
+    },
+    {
+      "id": "kjem08-07-2",
+      "topic_id": "kjem08-t07",
+      "classification": "measurement",
+      "claim": "Empirisk eller beregningsmessig arbeid med massespektrometri og nmr krever at prøve eller startstruktur, råsignal eller beregningsinput, kalibrering eller modellparametre og avledet kjemisk størrelse holdes analytisk atskilt. Massespektrometri og NMR gir komplementær evidens om masse, fragmentering, kjemisk miljø og koblinger.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "kjem-src-18-mit-physical",
+        "vit4-10-iupac-detection-limit"
+      ]
+    },
+    {
+      "id": "kjem08-07-3",
+      "topic_id": "kjem08-t07",
+      "classification": "boundary",
+      "claim": "Faggrensen er avgjørende: Ett signal eller én nominell masse etablerer ikke alene full struktur. En strict kjemiforklaring skal derfor angi betingelser, gyldighetsområde og minst én alternativ kjemisk eller analytisk forklaring før konklusjonen generaliseres.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit4-08-mit-laboratory-chemistry",
+        "vit4-12-nist-xps"
+      ]
+    },
+    {
+      "id": "kjem08-07-4",
+      "topic_id": "kjem08-t07",
+      "classification": "application",
+      "claim": "Ved anvendelse av massespektrometri og nmr må struktur- eller reaksjonspåstanden knyttes til observerbar kjemisk evidens, masse- eller energiregnskap og en eksplisitt vurdering av usikkerhet, selektivitet eller modellfeil. Ett signal eller én nominell masse etablerer ikke alene full struktur.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit4-09-nist-chemistry-webbook",
+        "vit4-01-mit-principles-chemical-science"
+      ]
+    },
+    {
+      "id": "kjem08-08-1",
+      "topic_id": "kjem08-t08",
+      "classification": "principle",
+      "claim": "Analytiske metoder må dokumentere selektivitet, område, robusthet og relevant statistisk ytelse før rutinebruk. I en strict kjemiforklaring skal definisjoner, stoffidentitet, tilstandsbetingelser og relevante reaksjons- eller strukturmodeller oppgis eksplisitt slik at påstanden kan testes.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "kjem-src-18-mit-physical",
+        "vit4-10-iupac-detection-limit"
+      ]
+    },
+    {
+      "id": "kjem08-08-2",
+      "topic_id": "kjem08-t08",
+      "classification": "measurement",
+      "claim": "Empirisk eller beregningsmessig arbeid med metodevalidering og multivariat analyse krever at prøve eller startstruktur, råsignal eller beregningsinput, kalibrering eller modellparametre og avledet kjemisk størrelse holdes analytisk atskilt. Analytiske metoder må dokumentere selektivitet, område, robusthet og relevant statistisk ytelse før rutinebruk.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit4-08-mit-laboratory-chemistry",
+        "vit4-12-nist-xps"
+      ]
+    },
+    {
+      "id": "kjem08-08-3",
+      "topic_id": "kjem08-t08",
+      "classification": "boundary",
+      "claim": "Faggrensen er avgjørende: En høy modellscore uten uavhengig validering kan være overtilpasning. En strict kjemiforklaring skal derfor angi betingelser, gyldighetsområde og minst én alternativ kjemisk eller analytisk forklaring før konklusjonen generaliseres.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit4-09-nist-chemistry-webbook",
+        "vit4-01-mit-principles-chemical-science"
+      ]
+    },
+    {
+      "id": "kjem08-08-4",
+      "topic_id": "kjem08-t08",
+      "classification": "application",
+      "claim": "Ved anvendelse av metodevalidering og multivariat analyse må struktur- eller reaksjonspåstanden knyttes til observerbar kjemisk evidens, masse- eller energiregnskap og en eksplisitt vurdering av usikkerhet, selektivitet eller modellfeil. En høy modellscore uten uavhengig validering kan være overtilpasning.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit4-10-iupac-detection-limit",
+        "kjem-src-15-iupac-blue-book"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "kjem08-m01",
+      "title": "Modul 1: Representativ prøvetaking og Kalibrering og sporbar respons",
+      "sections": [
+        {
+          "id": "kjem08-t01",
+          "title": "Representativ prøvetaking",
+          "paragraphs": [
+            {
+              "claim_id": "kjem08-01-1",
+              "source_ids": [
+                "vit4-08-mit-laboratory-chemistry",
+                "vit4-12-nist-xps"
+              ],
+              "text": "Representativ prøvetaking: Analytisk kvalitet begynner med hvordan en fysisk prøve representerer systemet eller populasjonen som påstanden gjelder. I en strict kjemiforklaring skal definisjoner, stoffidentitet, tilstandsbetingelser og relevante reaksjons- eller strukturmodeller oppgis eksplisitt slik at påstanden kan testes. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. Et presist instrument kan ikke rette opp systematisk skjev prøvetaking. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-01-1 bruker vit4-08-mit-laboratory-chemistry og vit4-12-nist-xps; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            },
+            {
+              "claim_id": "kjem08-01-2",
+              "source_ids": [
+                "vit4-09-nist-chemistry-webbook",
+                "vit4-01-mit-principles-chemical-science"
+              ],
+              "text": "Representativ prøvetaking: Empirisk eller beregningsmessig arbeid med representativ prøvetaking krever at prøve eller startstruktur, råsignal eller beregningsinput, kalibrering eller modellparametre og avledet kjemisk størrelse holdes analytisk atskilt. Analytisk kvalitet begynner med hvordan en fysisk prøve representerer systemet eller populasjonen som påstanden gjelder. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. Et presist instrument kan ikke rette opp systematisk skjev prøvetaking. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-01-2 bruker vit4-09-nist-chemistry-webbook og vit4-01-mit-principles-chemical-science; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            },
+            {
+              "claim_id": "kjem08-01-3",
+              "source_ids": [
+                "vit4-10-iupac-detection-limit",
+                "kjem-src-15-iupac-blue-book"
+              ],
+              "text": "Representativ prøvetaking: Faggrensen er avgjørende: Et presist instrument kan ikke rette opp systematisk skjev prøvetaking. En strict kjemiforklaring skal derfor angi betingelser, gyldighetsområde og minst én alternativ kjemisk eller analytisk forklaring før konklusjonen generaliseres. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. Et presist instrument kan ikke rette opp systematisk skjev prøvetaking. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-01-3 bruker vit4-10-iupac-detection-limit og kjem-src-15-iupac-blue-book; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            },
+            {
+              "claim_id": "kjem08-01-4",
+              "source_ids": [
+                "vit4-12-nist-xps",
+                "kjem-src-16-acs-safety"
+              ],
+              "text": "Representativ prøvetaking: Ved anvendelse av representativ prøvetaking må struktur- eller reaksjonspåstanden knyttes til observerbar kjemisk evidens, masse- eller energiregnskap og en eksplisitt vurdering av usikkerhet, selektivitet eller modellfeil. Et presist instrument kan ikke rette opp systematisk skjev prøvetaking. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. Et presist instrument kan ikke rette opp systematisk skjev prøvetaking. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-01-4 bruker vit4-12-nist-xps og kjem-src-16-acs-safety; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            }
+          ],
+          "paragraphClaimIds": [
+            "kjem08-01-1",
+            "kjem08-01-2",
+            "kjem08-01-3",
+            "kjem08-01-4"
+          ],
+          "analysisFrame": [
+            "Prøve/struktur → signal/data → kalibrering/modell → kjemisk slutning for representativ prøvetaking.",
+            "Betingelser → gyldighetsområde → alternativ forklaring → test. Et presist instrument kan ikke rette opp systematisk skjev prøvetaking."
+          ]
+        },
+        {
+          "id": "kjem08-t02",
+          "title": "Kalibrering og sporbar respons",
+          "paragraphs": [
+            {
+              "claim_id": "kjem08-02-1",
+              "source_ids": [
+                "vit4-09-nist-chemistry-webbook",
+                "vit4-01-mit-principles-chemical-science"
+              ],
+              "text": "Kalibrering og sporbar respons: Kalibrering kobler instrumentrespons til mengde eller konsentrasjon gjennom referanser, modell og gyldighetsområde. I en strict kjemiforklaring skal definisjoner, stoffidentitet, tilstandsbetingelser og relevante reaksjons- eller strukturmodeller oppgis eksplisitt slik at påstanden kan testes. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. En kalibreringskurve uten residual- og områdekontroll kan gi misvisende kvantifisering. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-02-1 bruker vit4-09-nist-chemistry-webbook og vit4-01-mit-principles-chemical-science; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            },
+            {
+              "claim_id": "kjem08-02-2",
+              "source_ids": [
+                "vit4-10-iupac-detection-limit",
+                "kjem-src-15-iupac-blue-book"
+              ],
+              "text": "Kalibrering og sporbar respons: Empirisk eller beregningsmessig arbeid med kalibrering og sporbar respons krever at prøve eller startstruktur, råsignal eller beregningsinput, kalibrering eller modellparametre og avledet kjemisk størrelse holdes analytisk atskilt. Kalibrering kobler instrumentrespons til mengde eller konsentrasjon gjennom referanser, modell og gyldighetsområde. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. En kalibreringskurve uten residual- og områdekontroll kan gi misvisende kvantifisering. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-02-2 bruker vit4-10-iupac-detection-limit og kjem-src-15-iupac-blue-book; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            },
+            {
+              "claim_id": "kjem08-02-3",
+              "source_ids": [
+                "vit4-12-nist-xps",
+                "kjem-src-16-acs-safety"
+              ],
+              "text": "Kalibrering og sporbar respons: Faggrensen er avgjørende: En kalibreringskurve uten residual- og områdekontroll kan gi misvisende kvantifisering. En strict kjemiforklaring skal derfor angi betingelser, gyldighetsområde og minst én alternativ kjemisk eller analytisk forklaring før konklusjonen generaliseres. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. En kalibreringskurve uten residual- og områdekontroll kan gi misvisende kvantifisering. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-02-3 bruker vit4-12-nist-xps og kjem-src-16-acs-safety; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            },
+            {
+              "claim_id": "kjem08-02-4",
+              "source_ids": [
+                "vit4-01-mit-principles-chemical-science",
+                "kjem-src-18-mit-physical"
+              ],
+              "text": "Kalibrering og sporbar respons: Ved anvendelse av kalibrering og sporbar respons må struktur- eller reaksjonspåstanden knyttes til observerbar kjemisk evidens, masse- eller energiregnskap og en eksplisitt vurdering av usikkerhet, selektivitet eller modellfeil. En kalibreringskurve uten residual- og områdekontroll kan gi misvisende kvantifisering. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. En kalibreringskurve uten residual- og områdekontroll kan gi misvisende kvantifisering. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-02-4 bruker vit4-01-mit-principles-chemical-science og kjem-src-18-mit-physical; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            }
+          ],
+          "paragraphClaimIds": [
+            "kjem08-02-1",
+            "kjem08-02-2",
+            "kjem08-02-3",
+            "kjem08-02-4"
+          ],
+          "analysisFrame": [
+            "Prøve/struktur → signal/data → kalibrering/modell → kjemisk slutning for kalibrering og sporbar respons.",
+            "Betingelser → gyldighetsområde → alternativ forklaring → test. En kalibreringskurve uten residual- og områdekontroll kan gi misvisende kvantifisering."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kjem08-m02",
+      "title": "Modul 2: Måleusikkerhet, presisjon og nøyaktighet og Deteksjons- og kvantifiseringsgrenser",
+      "sections": [
+        {
+          "id": "kjem08-t03",
+          "title": "Måleusikkerhet, presisjon og nøyaktighet",
+          "paragraphs": [
+            {
+              "claim_id": "kjem08-03-1",
+              "source_ids": [
+                "vit4-10-iupac-detection-limit",
+                "kjem-src-15-iupac-blue-book"
+              ],
+              "text": "Måleusikkerhet, presisjon og nøyaktighet: Repeterbarhet, systematiske bidrag og referanser må skilles når analytisk usikkerhet vurderes. I en strict kjemiforklaring skal definisjoner, stoffidentitet, tilstandsbetingelser og relevante reaksjons- eller strukturmodeller oppgis eksplisitt slik at påstanden kan testes. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. Høy presisjon beviser ikke høy nøyaktighet dersom bias er til stede. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-03-1 bruker vit4-10-iupac-detection-limit og kjem-src-15-iupac-blue-book; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            },
+            {
+              "claim_id": "kjem08-03-2",
+              "source_ids": [
+                "vit4-12-nist-xps",
+                "kjem-src-16-acs-safety"
+              ],
+              "text": "Måleusikkerhet, presisjon og nøyaktighet: Empirisk eller beregningsmessig arbeid med måleusikkerhet, presisjon og nøyaktighet krever at prøve eller startstruktur, råsignal eller beregningsinput, kalibrering eller modellparametre og avledet kjemisk størrelse holdes analytisk atskilt. Repeterbarhet, systematiske bidrag og referanser må skilles når analytisk usikkerhet vurderes. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. Høy presisjon beviser ikke høy nøyaktighet dersom bias er til stede. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-03-2 bruker vit4-12-nist-xps og kjem-src-16-acs-safety; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            },
+            {
+              "claim_id": "kjem08-03-3",
+              "source_ids": [
+                "vit4-01-mit-principles-chemical-science",
+                "kjem-src-18-mit-physical"
+              ],
+              "text": "Måleusikkerhet, presisjon og nøyaktighet: Faggrensen er avgjørende: Høy presisjon beviser ikke høy nøyaktighet dersom bias er til stede. En strict kjemiforklaring skal derfor angi betingelser, gyldighetsområde og minst én alternativ kjemisk eller analytisk forklaring før konklusjonen generaliseres. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. Høy presisjon beviser ikke høy nøyaktighet dersom bias er til stede. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-03-3 bruker vit4-01-mit-principles-chemical-science og kjem-src-18-mit-physical; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            },
+            {
+              "claim_id": "kjem08-03-4",
+              "source_ids": [
+                "kjem-src-15-iupac-blue-book",
+                "vit4-08-mit-laboratory-chemistry"
+              ],
+              "text": "Måleusikkerhet, presisjon og nøyaktighet: Ved anvendelse av måleusikkerhet, presisjon og nøyaktighet må struktur- eller reaksjonspåstanden knyttes til observerbar kjemisk evidens, masse- eller energiregnskap og en eksplisitt vurdering av usikkerhet, selektivitet eller modellfeil. Høy presisjon beviser ikke høy nøyaktighet dersom bias er til stede. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. Høy presisjon beviser ikke høy nøyaktighet dersom bias er til stede. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-03-4 bruker kjem-src-15-iupac-blue-book og vit4-08-mit-laboratory-chemistry; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            }
+          ],
+          "paragraphClaimIds": [
+            "kjem08-03-1",
+            "kjem08-03-2",
+            "kjem08-03-3",
+            "kjem08-03-4"
+          ],
+          "analysisFrame": [
+            "Prøve/struktur → signal/data → kalibrering/modell → kjemisk slutning for måleusikkerhet, presisjon og nøyaktighet.",
+            "Betingelser → gyldighetsområde → alternativ forklaring → test. Høy presisjon beviser ikke høy nøyaktighet dersom bias er til stede."
+          ]
+        },
+        {
+          "id": "kjem08-t04",
+          "title": "Deteksjons- og kvantifiseringsgrenser",
+          "paragraphs": [
+            {
+              "claim_id": "kjem08-04-1",
+              "source_ids": [
+                "vit4-12-nist-xps",
+                "kjem-src-16-acs-safety"
+              ],
+              "text": "Deteksjons- og kvantifiseringsgrenser: Deteksjonsgrenser beskriver statistisk skille fra blank, mens kvantifisering krever sterkere ytelseskrav. I en strict kjemiforklaring skal definisjoner, stoffidentitet, tilstandsbetingelser og relevante reaksjons- eller strukturmodeller oppgis eksplisitt slik at påstanden kan testes. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. Ikke-detektert betyr ikke dokumentert fravær. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-04-1 bruker vit4-12-nist-xps og kjem-src-16-acs-safety; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            },
+            {
+              "claim_id": "kjem08-04-2",
+              "source_ids": [
+                "vit4-01-mit-principles-chemical-science",
+                "kjem-src-18-mit-physical"
+              ],
+              "text": "Deteksjons- og kvantifiseringsgrenser: Empirisk eller beregningsmessig arbeid med deteksjons- og kvantifiseringsgrenser krever at prøve eller startstruktur, råsignal eller beregningsinput, kalibrering eller modellparametre og avledet kjemisk størrelse holdes analytisk atskilt. Deteksjonsgrenser beskriver statistisk skille fra blank, mens kvantifisering krever sterkere ytelseskrav. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. Ikke-detektert betyr ikke dokumentert fravær. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-04-2 bruker vit4-01-mit-principles-chemical-science og kjem-src-18-mit-physical; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            },
+            {
+              "claim_id": "kjem08-04-3",
+              "source_ids": [
+                "kjem-src-15-iupac-blue-book",
+                "vit4-08-mit-laboratory-chemistry"
+              ],
+              "text": "Deteksjons- og kvantifiseringsgrenser: Faggrensen er avgjørende: Ikke-detektert betyr ikke dokumentert fravær. En strict kjemiforklaring skal derfor angi betingelser, gyldighetsområde og minst én alternativ kjemisk eller analytisk forklaring før konklusjonen generaliseres. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. Ikke-detektert betyr ikke dokumentert fravær. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-04-3 bruker kjem-src-15-iupac-blue-book og vit4-08-mit-laboratory-chemistry; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            },
+            {
+              "claim_id": "kjem08-04-4",
+              "source_ids": [
+                "kjem-src-16-acs-safety",
+                "vit4-09-nist-chemistry-webbook"
+              ],
+              "text": "Deteksjons- og kvantifiseringsgrenser: Ved anvendelse av deteksjons- og kvantifiseringsgrenser må struktur- eller reaksjonspåstanden knyttes til observerbar kjemisk evidens, masse- eller energiregnskap og en eksplisitt vurdering av usikkerhet, selektivitet eller modellfeil. Ikke-detektert betyr ikke dokumentert fravær. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. Ikke-detektert betyr ikke dokumentert fravær. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-04-4 bruker kjem-src-16-acs-safety og vit4-09-nist-chemistry-webbook; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            }
+          ],
+          "paragraphClaimIds": [
+            "kjem08-04-1",
+            "kjem08-04-2",
+            "kjem08-04-3",
+            "kjem08-04-4"
+          ],
+          "analysisFrame": [
+            "Prøve/struktur → signal/data → kalibrering/modell → kjemisk slutning for deteksjons- og kvantifiseringsgrenser.",
+            "Betingelser → gyldighetsområde → alternativ forklaring → test. Ikke-detektert betyr ikke dokumentert fravær."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kjem08-m03",
+      "title": "Modul 3: Kromatografisk separasjon og Optisk og vibrasjonsspektroskopi",
+      "sections": [
+        {
+          "id": "kjem08-t05",
+          "title": "Kromatografisk separasjon",
+          "paragraphs": [
+            {
+              "claim_id": "kjem08-05-1",
+              "source_ids": [
+                "vit4-01-mit-principles-chemical-science",
+                "kjem-src-18-mit-physical"
+              ],
+              "text": "Kromatografisk separasjon: Kromatografi skiller komponenter gjennom forskjellig fordeling mellom mobil og stasjonær fase og må vurderes med oppløsning og retensjon. I en strict kjemiforklaring skal definisjoner, stoffidentitet, tilstandsbetingelser og relevante reaksjons- eller strukturmodeller oppgis eksplisitt slik at påstanden kan testes. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. En enkelt retensjonstid er normalt ikke entydig kjemisk identifikasjon. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-05-1 bruker vit4-01-mit-principles-chemical-science og kjem-src-18-mit-physical; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            },
+            {
+              "claim_id": "kjem08-05-2",
+              "source_ids": [
+                "kjem-src-15-iupac-blue-book",
+                "vit4-08-mit-laboratory-chemistry"
+              ],
+              "text": "Kromatografisk separasjon: Empirisk eller beregningsmessig arbeid med kromatografisk separasjon krever at prøve eller startstruktur, råsignal eller beregningsinput, kalibrering eller modellparametre og avledet kjemisk størrelse holdes analytisk atskilt. Kromatografi skiller komponenter gjennom forskjellig fordeling mellom mobil og stasjonær fase og må vurderes med oppløsning og retensjon. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. En enkelt retensjonstid er normalt ikke entydig kjemisk identifikasjon. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-05-2 bruker kjem-src-15-iupac-blue-book og vit4-08-mit-laboratory-chemistry; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            },
+            {
+              "claim_id": "kjem08-05-3",
+              "source_ids": [
+                "kjem-src-16-acs-safety",
+                "vit4-09-nist-chemistry-webbook"
+              ],
+              "text": "Kromatografisk separasjon: Faggrensen er avgjørende: En enkelt retensjonstid er normalt ikke entydig kjemisk identifikasjon. En strict kjemiforklaring skal derfor angi betingelser, gyldighetsområde og minst én alternativ kjemisk eller analytisk forklaring før konklusjonen generaliseres. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. En enkelt retensjonstid er normalt ikke entydig kjemisk identifikasjon. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-05-3 bruker kjem-src-16-acs-safety og vit4-09-nist-chemistry-webbook; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            },
+            {
+              "claim_id": "kjem08-05-4",
+              "source_ids": [
+                "kjem-src-18-mit-physical",
+                "vit4-10-iupac-detection-limit"
+              ],
+              "text": "Kromatografisk separasjon: Ved anvendelse av kromatografisk separasjon må struktur- eller reaksjonspåstanden knyttes til observerbar kjemisk evidens, masse- eller energiregnskap og en eksplisitt vurdering av usikkerhet, selektivitet eller modellfeil. En enkelt retensjonstid er normalt ikke entydig kjemisk identifikasjon. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. En enkelt retensjonstid er normalt ikke entydig kjemisk identifikasjon. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-05-4 bruker kjem-src-18-mit-physical og vit4-10-iupac-detection-limit; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            }
+          ],
+          "paragraphClaimIds": [
+            "kjem08-05-1",
+            "kjem08-05-2",
+            "kjem08-05-3",
+            "kjem08-05-4"
+          ],
+          "analysisFrame": [
+            "Prøve/struktur → signal/data → kalibrering/modell → kjemisk slutning for kromatografisk separasjon.",
+            "Betingelser → gyldighetsområde → alternativ forklaring → test. En enkelt retensjonstid er normalt ikke entydig kjemisk identifikasjon."
+          ]
+        },
+        {
+          "id": "kjem08-t06",
+          "title": "Optisk og vibrasjonsspektroskopi",
+          "paragraphs": [
+            {
+              "claim_id": "kjem08-06-1",
+              "source_ids": [
+                "kjem-src-15-iupac-blue-book",
+                "vit4-08-mit-laboratory-chemistry"
+              ],
+              "text": "Optisk og vibrasjonsspektroskopi: UV/Vis, IR og andre spektroskopier kobler elektromagnetisk respons til elektroniske eller vibrasjonelle overganger. I en strict kjemiforklaring skal definisjoner, stoffidentitet, tilstandsbetingelser og relevante reaksjons- eller strukturmodeller oppgis eksplisitt slik at påstanden kan testes. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. Spektralt samsvar må vurderes mot matrise, oppløsning og alternative forbindelser. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-06-1 bruker kjem-src-15-iupac-blue-book og vit4-08-mit-laboratory-chemistry; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            },
+            {
+              "claim_id": "kjem08-06-2",
+              "source_ids": [
+                "kjem-src-16-acs-safety",
+                "vit4-09-nist-chemistry-webbook"
+              ],
+              "text": "Optisk og vibrasjonsspektroskopi: Empirisk eller beregningsmessig arbeid med optisk og vibrasjonsspektroskopi krever at prøve eller startstruktur, råsignal eller beregningsinput, kalibrering eller modellparametre og avledet kjemisk størrelse holdes analytisk atskilt. UV/Vis, IR og andre spektroskopier kobler elektromagnetisk respons til elektroniske eller vibrasjonelle overganger. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. Spektralt samsvar må vurderes mot matrise, oppløsning og alternative forbindelser. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-06-2 bruker kjem-src-16-acs-safety og vit4-09-nist-chemistry-webbook; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            },
+            {
+              "claim_id": "kjem08-06-3",
+              "source_ids": [
+                "kjem-src-18-mit-physical",
+                "vit4-10-iupac-detection-limit"
+              ],
+              "text": "Optisk og vibrasjonsspektroskopi: Faggrensen er avgjørende: Spektralt samsvar må vurderes mot matrise, oppløsning og alternative forbindelser. En strict kjemiforklaring skal derfor angi betingelser, gyldighetsområde og minst én alternativ kjemisk eller analytisk forklaring før konklusjonen generaliseres. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. Spektralt samsvar må vurderes mot matrise, oppløsning og alternative forbindelser. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-06-3 bruker kjem-src-18-mit-physical og vit4-10-iupac-detection-limit; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            },
+            {
+              "claim_id": "kjem08-06-4",
+              "source_ids": [
+                "vit4-08-mit-laboratory-chemistry",
+                "vit4-12-nist-xps"
+              ],
+              "text": "Optisk og vibrasjonsspektroskopi: Ved anvendelse av optisk og vibrasjonsspektroskopi må struktur- eller reaksjonspåstanden knyttes til observerbar kjemisk evidens, masse- eller energiregnskap og en eksplisitt vurdering av usikkerhet, selektivitet eller modellfeil. Spektralt samsvar må vurderes mot matrise, oppløsning og alternative forbindelser. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. Spektralt samsvar må vurderes mot matrise, oppløsning og alternative forbindelser. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-06-4 bruker vit4-08-mit-laboratory-chemistry og vit4-12-nist-xps; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            }
+          ],
+          "paragraphClaimIds": [
+            "kjem08-06-1",
+            "kjem08-06-2",
+            "kjem08-06-3",
+            "kjem08-06-4"
+          ],
+          "analysisFrame": [
+            "Prøve/struktur → signal/data → kalibrering/modell → kjemisk slutning for optisk og vibrasjonsspektroskopi.",
+            "Betingelser → gyldighetsområde → alternativ forklaring → test. Spektralt samsvar må vurderes mot matrise, oppløsning og alternative forbindelser."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kjem08-m04",
+      "title": "Modul 4: Massespektrometri og NMR og Metodevalidering og multivariat analyse",
+      "sections": [
+        {
+          "id": "kjem08-t07",
+          "title": "Massespektrometri og NMR",
+          "paragraphs": [
+            {
+              "claim_id": "kjem08-07-1",
+              "source_ids": [
+                "kjem-src-16-acs-safety",
+                "vit4-09-nist-chemistry-webbook"
+              ],
+              "text": "Massespektrometri og NMR: Massespektrometri og NMR gir komplementær evidens om masse, fragmentering, kjemisk miljø og koblinger. I en strict kjemiforklaring skal definisjoner, stoffidentitet, tilstandsbetingelser og relevante reaksjons- eller strukturmodeller oppgis eksplisitt slik at påstanden kan testes. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. Ett signal eller én nominell masse etablerer ikke alene full struktur. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-07-1 bruker kjem-src-16-acs-safety og vit4-09-nist-chemistry-webbook; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            },
+            {
+              "claim_id": "kjem08-07-2",
+              "source_ids": [
+                "kjem-src-18-mit-physical",
+                "vit4-10-iupac-detection-limit"
+              ],
+              "text": "Massespektrometri og NMR: Empirisk eller beregningsmessig arbeid med massespektrometri og nmr krever at prøve eller startstruktur, råsignal eller beregningsinput, kalibrering eller modellparametre og avledet kjemisk størrelse holdes analytisk atskilt. Massespektrometri og NMR gir komplementær evidens om masse, fragmentering, kjemisk miljø og koblinger. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. Ett signal eller én nominell masse etablerer ikke alene full struktur. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-07-2 bruker kjem-src-18-mit-physical og vit4-10-iupac-detection-limit; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            },
+            {
+              "claim_id": "kjem08-07-3",
+              "source_ids": [
+                "vit4-08-mit-laboratory-chemistry",
+                "vit4-12-nist-xps"
+              ],
+              "text": "Massespektrometri og NMR: Faggrensen er avgjørende: Ett signal eller én nominell masse etablerer ikke alene full struktur. En strict kjemiforklaring skal derfor angi betingelser, gyldighetsområde og minst én alternativ kjemisk eller analytisk forklaring før konklusjonen generaliseres. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. Ett signal eller én nominell masse etablerer ikke alene full struktur. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-07-3 bruker vit4-08-mit-laboratory-chemistry og vit4-12-nist-xps; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            },
+            {
+              "claim_id": "kjem08-07-4",
+              "source_ids": [
+                "vit4-09-nist-chemistry-webbook",
+                "vit4-01-mit-principles-chemical-science"
+              ],
+              "text": "Massespektrometri og NMR: Ved anvendelse av massespektrometri og nmr må struktur- eller reaksjonspåstanden knyttes til observerbar kjemisk evidens, masse- eller energiregnskap og en eksplisitt vurdering av usikkerhet, selektivitet eller modellfeil. Ett signal eller én nominell masse etablerer ikke alene full struktur. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. Ett signal eller én nominell masse etablerer ikke alene full struktur. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-07-4 bruker vit4-09-nist-chemistry-webbook og vit4-01-mit-principles-chemical-science; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            }
+          ],
+          "paragraphClaimIds": [
+            "kjem08-07-1",
+            "kjem08-07-2",
+            "kjem08-07-3",
+            "kjem08-07-4"
+          ],
+          "analysisFrame": [
+            "Prøve/struktur → signal/data → kalibrering/modell → kjemisk slutning for massespektrometri og nmr.",
+            "Betingelser → gyldighetsområde → alternativ forklaring → test. Ett signal eller én nominell masse etablerer ikke alene full struktur."
+          ]
+        },
+        {
+          "id": "kjem08-t08",
+          "title": "Metodevalidering og multivariat analyse",
+          "paragraphs": [
+            {
+              "claim_id": "kjem08-08-1",
+              "source_ids": [
+                "kjem-src-18-mit-physical",
+                "vit4-10-iupac-detection-limit"
+              ],
+              "text": "Metodevalidering og multivariat analyse: Analytiske metoder må dokumentere selektivitet, område, robusthet og relevant statistisk ytelse før rutinebruk. I en strict kjemiforklaring skal definisjoner, stoffidentitet, tilstandsbetingelser og relevante reaksjons- eller strukturmodeller oppgis eksplisitt slik at påstanden kan testes. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. En høy modellscore uten uavhengig validering kan være overtilpasning. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-08-1 bruker kjem-src-18-mit-physical og vit4-10-iupac-detection-limit; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            },
+            {
+              "claim_id": "kjem08-08-2",
+              "source_ids": [
+                "vit4-08-mit-laboratory-chemistry",
+                "vit4-12-nist-xps"
+              ],
+              "text": "Metodevalidering og multivariat analyse: Empirisk eller beregningsmessig arbeid med metodevalidering og multivariat analyse krever at prøve eller startstruktur, råsignal eller beregningsinput, kalibrering eller modellparametre og avledet kjemisk størrelse holdes analytisk atskilt. Analytiske metoder må dokumentere selektivitet, område, robusthet og relevant statistisk ytelse før rutinebruk. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. En høy modellscore uten uavhengig validering kan være overtilpasning. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-08-2 bruker vit4-08-mit-laboratory-chemistry og vit4-12-nist-xps; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            },
+            {
+              "claim_id": "kjem08-08-3",
+              "source_ids": [
+                "vit4-09-nist-chemistry-webbook",
+                "vit4-01-mit-principles-chemical-science"
+              ],
+              "text": "Metodevalidering og multivariat analyse: Faggrensen er avgjørende: En høy modellscore uten uavhengig validering kan være overtilpasning. En strict kjemiforklaring skal derfor angi betingelser, gyldighetsområde og minst én alternativ kjemisk eller analytisk forklaring før konklusjonen generaliseres. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. En høy modellscore uten uavhengig validering kan være overtilpasning. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-08-3 bruker vit4-09-nist-chemistry-webbook og vit4-01-mit-principles-chemical-science; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            },
+            {
+              "claim_id": "kjem08-08-4",
+              "source_ids": [
+                "vit4-10-iupac-detection-limit",
+                "kjem-src-15-iupac-blue-book"
+              ],
+              "text": "Metodevalidering og multivariat analyse: Ved anvendelse av metodevalidering og multivariat analyse må struktur- eller reaksjonspåstanden knyttes til observerbar kjemisk evidens, masse- eller energiregnskap og en eksplisitt vurdering av usikkerhet, selektivitet eller modellfeil. En høy modellscore uten uavhengig validering kan være overtilpasning. Strict evidenskjede: start med kjemisk identitet, sammensetning eller definert struktur og angi temperatur, trykk, fase, løsemiddel eller andre betingelser som kan endre resultatet. Deretter skilles fysisk prøve eller beregningsinput fra råsignal, kalibrering, bakgrunnskorreksjon og avledede størrelser. Reaksjonslikning, strukturformel, energiprofil eller statistisk modell behandles som en eksplisitt representasjon med testbare antakelser. En høy modellscore uten uavhengig validering kan være overtilpasning. Analysen skal kontrollere masse-, ladnings- eller energiregnskap når det er relevant, vurdere selektivitet og interferenser og peke ut minst én alternativ struktur, mekanisme eller systematisk feilkilde. Kildesporet for kjem08-08-4 bruker vit4-10-iupac-detection-limit og kjem-src-15-iupac-blue-book; begge kildene inngår i argumentet og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal svekkes dersom målegrunnlag, referansedata eller modellens gyldighetsområde ikke støtter den."
+            }
+          ],
+          "paragraphClaimIds": [
+            "kjem08-08-1",
+            "kjem08-08-2",
+            "kjem08-08-3",
+            "kjem08-08-4"
+          ],
+          "analysisFrame": [
+            "Prøve/struktur → signal/data → kalibrering/modell → kjemisk slutning for metodevalidering og multivariat analyse.",
+            "Betingelser → gyldighetsområde → alternativ forklaring → test. En høy modellscore uten uavhengig validering kan være overtilpasning."
+          ]
+        }
+      ]
+    }
+  ],
+  "assessment": {
+    "questions": [
+      {
+        "id": "kjem08-q01",
+        "question": "Hvilken arbeidsmåte er mest faglig presis når du analyserer representativ prøvetaking?",
+        "choices": [
+          "Skille prøve eller struktur, måle-/beregningsledd, kjemisk modell, betingelser og usikkerhet før konklusjonen trekkes.",
+          "Velge forventet produkt eller forklaring først og tolke alle signaler som bekreftelse.",
+          "Bruke ett spektralt eller numerisk treff som entydig identifikasjon uten kontroll av matrise og alternativer.",
+          "Behandle alle tabellverdier og modellparametre som eksakte og uavhengige av temperatur, fase og metode."
+        ],
+        "correctIndex": 0,
+        "topic_id": "kjem08-t01"
+      },
+      {
+        "id": "kjem08-q02",
+        "question": "Hvilken arbeidsmåte er mest faglig presis når du analyserer kalibrering og sporbar respons?",
+        "choices": [
+          "Skille prøve eller struktur, måle-/beregningsledd, kjemisk modell, betingelser og usikkerhet før konklusjonen trekkes.",
+          "Velge forventet produkt eller forklaring først og tolke alle signaler som bekreftelse.",
+          "Bruke ett spektralt eller numerisk treff som entydig identifikasjon uten kontroll av matrise og alternativer.",
+          "Behandle alle tabellverdier og modellparametre som eksakte og uavhengige av temperatur, fase og metode."
+        ],
+        "correctIndex": 0,
+        "topic_id": "kjem08-t02"
+      },
+      {
+        "id": "kjem08-q03",
+        "question": "Hvilken arbeidsmåte er mest faglig presis når du analyserer måleusikkerhet, presisjon og nøyaktighet?",
+        "choices": [
+          "Skille prøve eller struktur, måle-/beregningsledd, kjemisk modell, betingelser og usikkerhet før konklusjonen trekkes.",
+          "Velge forventet produkt eller forklaring først og tolke alle signaler som bekreftelse.",
+          "Bruke ett spektralt eller numerisk treff som entydig identifikasjon uten kontroll av matrise og alternativer.",
+          "Behandle alle tabellverdier og modellparametre som eksakte og uavhengige av temperatur, fase og metode."
+        ],
+        "correctIndex": 0,
+        "topic_id": "kjem08-t03"
+      },
+      {
+        "id": "kjem08-q04",
+        "question": "Hvilken arbeidsmåte er mest faglig presis når du analyserer deteksjons- og kvantifiseringsgrenser?",
+        "choices": [
+          "Skille prøve eller struktur, måle-/beregningsledd, kjemisk modell, betingelser og usikkerhet før konklusjonen trekkes.",
+          "Velge forventet produkt eller forklaring først og tolke alle signaler som bekreftelse.",
+          "Bruke ett spektralt eller numerisk treff som entydig identifikasjon uten kontroll av matrise og alternativer.",
+          "Behandle alle tabellverdier og modellparametre som eksakte og uavhengige av temperatur, fase og metode."
+        ],
+        "correctIndex": 0,
+        "topic_id": "kjem08-t04"
+      },
+      {
+        "id": "kjem08-q05",
+        "question": "Hvilken arbeidsmåte er mest faglig presis når du analyserer kromatografisk separasjon?",
+        "choices": [
+          "Skille prøve eller struktur, måle-/beregningsledd, kjemisk modell, betingelser og usikkerhet før konklusjonen trekkes.",
+          "Velge forventet produkt eller forklaring først og tolke alle signaler som bekreftelse.",
+          "Bruke ett spektralt eller numerisk treff som entydig identifikasjon uten kontroll av matrise og alternativer.",
+          "Behandle alle tabellverdier og modellparametre som eksakte og uavhengige av temperatur, fase og metode."
+        ],
+        "correctIndex": 0,
+        "topic_id": "kjem08-t05"
+      },
+      {
+        "id": "kjem08-q06",
+        "question": "Hvilken arbeidsmåte er mest faglig presis når du analyserer optisk og vibrasjonsspektroskopi?",
+        "choices": [
+          "Skille prøve eller struktur, måle-/beregningsledd, kjemisk modell, betingelser og usikkerhet før konklusjonen trekkes.",
+          "Velge forventet produkt eller forklaring først og tolke alle signaler som bekreftelse.",
+          "Bruke ett spektralt eller numerisk treff som entydig identifikasjon uten kontroll av matrise og alternativer.",
+          "Behandle alle tabellverdier og modellparametre som eksakte og uavhengige av temperatur, fase og metode."
+        ],
+        "correctIndex": 0,
+        "topic_id": "kjem08-t06"
+      },
+      {
+        "id": "kjem08-q07",
+        "question": "Hvilken arbeidsmåte er mest faglig presis når du analyserer massespektrometri og nmr?",
+        "choices": [
+          "Skille prøve eller struktur, måle-/beregningsledd, kjemisk modell, betingelser og usikkerhet før konklusjonen trekkes.",
+          "Velge forventet produkt eller forklaring først og tolke alle signaler som bekreftelse.",
+          "Bruke ett spektralt eller numerisk treff som entydig identifikasjon uten kontroll av matrise og alternativer.",
+          "Behandle alle tabellverdier og modellparametre som eksakte og uavhengige av temperatur, fase og metode."
+        ],
+        "correctIndex": 0,
+        "topic_id": "kjem08-t07"
+      },
+      {
+        "id": "kjem08-q08",
+        "question": "Hvilken arbeidsmåte er mest faglig presis når du analyserer metodevalidering og multivariat analyse?",
+        "choices": [
+          "Skille prøve eller struktur, måle-/beregningsledd, kjemisk modell, betingelser og usikkerhet før konklusjonen trekkes.",
+          "Velge forventet produkt eller forklaring først og tolke alle signaler som bekreftelse.",
+          "Bruke ett spektralt eller numerisk treff som entydig identifikasjon uten kontroll av matrise og alternativer.",
+          "Behandle alle tabellverdier og modellparametre som eksakte og uavhengige av temperatur, fase og metode."
+        ],
+        "correctIndex": 0,
+        "topic_id": "kjem08-t08"
+      }
+    ],
+    "caseTasks": [
+      {
+        "id": "kjem08-case01",
+        "prompt": "En rapport hevder at et kjemisk resultat samtidig støtter representativ prøvetaking og måleusikkerhet, presisjon og nøyaktighet. Rekonstruer prøve-/strukturleddet, måling eller beregning, kalibrering/modell, kjemisk slutning, én gyldighetsgrense og en alternativ test før du vurderer påstanden.",
+        "source_ids": [
+          "vit4-08-mit-laboratory-chemistry",
+          "kjem-src-15-iupac-blue-book"
+        ],
+        "rubric": [
+          "prøve, struktur og betingelser",
+          "måling, kalibrering eller beregningsmodell",
+          "kjemisk slutning og regnskap",
+          "alternativ forklaring, sikkerhet og usikkerhet"
+        ]
+      },
+      {
+        "id": "kjem08-case02",
+        "prompt": "En rapport hevder at et kjemisk resultat samtidig støtter kalibrering og sporbar respons og deteksjons- og kvantifiseringsgrenser. Rekonstruer prøve-/strukturleddet, måling eller beregning, kalibrering/modell, kjemisk slutning, én gyldighetsgrense og en alternativ test før du vurderer påstanden.",
+        "source_ids": [
+          "vit4-09-nist-chemistry-webbook",
+          "kjem-src-16-acs-safety"
+        ],
+        "rubric": [
+          "prøve, struktur og betingelser",
+          "måling, kalibrering eller beregningsmodell",
+          "kjemisk slutning og regnskap",
+          "alternativ forklaring, sikkerhet og usikkerhet"
+        ]
+      },
+      {
+        "id": "kjem08-case03",
+        "prompt": "En rapport hevder at et kjemisk resultat samtidig støtter måleusikkerhet, presisjon og nøyaktighet og kromatografisk separasjon. Rekonstruer prøve-/strukturleddet, måling eller beregning, kalibrering/modell, kjemisk slutning, én gyldighetsgrense og en alternativ test før du vurderer påstanden.",
+        "source_ids": [
+          "vit4-10-iupac-detection-limit",
+          "kjem-src-18-mit-physical"
+        ],
+        "rubric": [
+          "prøve, struktur og betingelser",
+          "måling, kalibrering eller beregningsmodell",
+          "kjemisk slutning og regnskap",
+          "alternativ forklaring, sikkerhet og usikkerhet"
+        ]
+      },
+      {
+        "id": "kjem08-case04",
+        "prompt": "En rapport hevder at et kjemisk resultat samtidig støtter deteksjons- og kvantifiseringsgrenser og optisk og vibrasjonsspektroskopi. Rekonstruer prøve-/strukturleddet, måling eller beregning, kalibrering/modell, kjemisk slutning, én gyldighetsgrense og en alternativ test før du vurderer påstanden.",
+        "source_ids": [
+          "vit4-12-nist-xps",
+          "vit4-08-mit-laboratory-chemistry"
+        ],
+        "rubric": [
+          "prøve, struktur og betingelser",
+          "måling, kalibrering eller beregningsmodell",
+          "kjemisk slutning og regnskap",
+          "alternativ forklaring, sikkerhet og usikkerhet"
+        ]
+      },
+      {
+        "id": "kjem08-case05",
+        "prompt": "En rapport hevder at et kjemisk resultat samtidig støtter kromatografisk separasjon og massespektrometri og nmr. Rekonstruer prøve-/strukturleddet, måling eller beregning, kalibrering/modell, kjemisk slutning, én gyldighetsgrense og en alternativ test før du vurderer påstanden.",
+        "source_ids": [
+          "vit4-01-mit-principles-chemical-science",
+          "vit4-09-nist-chemistry-webbook"
+        ],
+        "rubric": [
+          "prøve, struktur og betingelser",
+          "måling, kalibrering eller beregningsmodell",
+          "kjemisk slutning og regnskap",
+          "alternativ forklaring, sikkerhet og usikkerhet"
+        ]
+      },
+      {
+        "id": "kjem08-case06",
+        "prompt": "En rapport hevder at et kjemisk resultat samtidig støtter optisk og vibrasjonsspektroskopi og metodevalidering og multivariat analyse. Rekonstruer prøve-/strukturleddet, måling eller beregning, kalibrering/modell, kjemisk slutning, én gyldighetsgrense og en alternativ test før du vurderer påstanden.",
+        "source_ids": [
+          "kjem-src-15-iupac-blue-book",
+          "vit4-10-iupac-detection-limit"
+        ],
+        "rubric": [
+          "prøve, struktur og betingelser",
+          "måling, kalibrering eller beregningsmodell",
+          "kjemisk slutning og regnskap",
+          "alternativ forklaring, sikkerhet og usikkerhet"
+        ]
+      }
+    ]
+  },
+  "qualityGuard": {
+    "structure_measurement_inference_explicit": true,
+    "thermodynamics_kinetics_boundary": true,
+    "sample_signal_calibration_inference": true,
+    "safety_and_waste_required": true,
+    "technology_boundary_required": true,
+    "source_trace_required": true,
+    "strict_domain_materialized": true
+  },
+  "reuse_provenance": {
+    "strict_upgrade": false,
+    "rule": "Nytt canonicalt Kjemi-felt; eksisterende naboinnhold teller ikke som materialisert uten denne strict-pakken."
+  }
+}

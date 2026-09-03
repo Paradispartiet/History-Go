@@ -1,0 +1,1129 @@
+{
+  "schema": "history_go_fagverk_matematikk_strict_domain_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-09-02",
+  "subject": "vitenskap",
+  "subject_id": "vitenskap",
+  "canonical_subcategory_id": "matematikk",
+  "ordinal": 8,
+  "domain_id": "diskret_matematikk_kombinatorikk_grafer",
+  "id": "diskret-matematikk-kombinatorikk-grafer",
+  "chapter_id": "diskret-matematikk-kombinatorikk-grafer",
+  "title": "Diskret matematikk, kombinatorikk og grafteori",
+  "subtitle": "Strict Matematikk-felt 8 av 12: source-first, fulltekst, claims, vurderinger og case",
+  "lead": "Diskret matematikk, kombinatorikk og grafteori er materialisert som et selvstendig felt i Matematikk-registeret med eksplisitte definisjoner, beviskjeder, objekt–representasjon-skille, numerisk feilkontroll og en tydelig grense mellom matematisk korrekthet og empirisk modelladekvathet.",
+  "source_registry": "data/fag/vitenskap/matematikk/source_registry_v1.json",
+  "source_first": {
+    "status": "pass",
+    "source_ids": [
+      "vit2-05-mit-discrete",
+      "vit2-01-lean-introduction",
+      "vit2-02-lean-propositions-proofs",
+      "vit2-03-lean-induction",
+      "vit2-06-mit-linear-algebra",
+      "vit2-07-mit-algebra",
+      "mat-src-13-mit-number-theory",
+      "mat-src-16-mit-probability-statistics"
+    ],
+    "topic_briefs": [
+      {
+        "id": "mat08-t01",
+        "title": "Telling og bijeksjoner",
+        "core": "Kombinatorisk telling bruker bijeksjoner, produkt- og sumprinsipper for å redusere komplekse opptellingsproblemer til strukturer som kan kontrolleres.",
+        "boundary": "En opptelling er bare korrekt dersom kategoriene er uttømmende og uten utilsiktet dobbeltelling.",
+        "planned_claim_ids": [
+          "mat08-01-1",
+          "mat08-01-2",
+          "mat08-01-3",
+          "mat08-01-4"
+        ]
+      },
+      {
+        "id": "mat08-t02",
+        "title": "Permutasjoner og kombinasjoner",
+        "core": "Permutasjoner og kombinasjoner skiller ordnede og uordnede utvalg og gir grunnleggende telleformler.",
+        "boundary": "Formlene krever bestemte antakelser om gjentakelse og distinkte objekter som må oppgis.",
+        "planned_claim_ids": [
+          "mat08-02-1",
+          "mat08-02-2",
+          "mat08-02-3",
+          "mat08-02-4"
+        ]
+      },
+      {
+        "id": "mat08-t03",
+        "title": "Inklusjon–eksklusjon",
+        "core": "Inklusjon–eksklusjon korrigerer overlapp når størrelsen på unioner beregnes fra snitt av delmengder.",
+        "boundary": "Å summere delmengdestørrelser uten overlappskorreksjon kan gi systematisk dobbeltelling.",
+        "planned_claim_ids": [
+          "mat08-03-1",
+          "mat08-03-2",
+          "mat08-03-3",
+          "mat08-03-4"
+        ]
+      },
+      {
+        "id": "mat08-t04",
+        "title": "Rekurrenser",
+        "core": "Rekurrensrelasjoner definerer sekvenser gjennom tidligere ledd og kan analyseres med induksjon, karakteristiske ligninger eller genererende funksjoner.",
+        "boundary": "En rekurrens uten tilstrekkelige initialbetingelser bestemmer ikke en unik sekvens.",
+        "planned_claim_ids": [
+          "mat08-04-1",
+          "mat08-04-2",
+          "mat08-04-3",
+          "mat08-04-4"
+        ]
+      },
+      {
+        "id": "mat08-t05",
+        "title": "Grafer, noder og kanter",
+        "core": "Grafteori modellerer parvise relasjoner som noder og kanter og skiller struktur fra den visuelle tegningen av grafen.",
+        "boundary": "Samme abstrakte graf kan tegnes på mange måter; geometrisk plassering er ikke del av grafen med mindre den er eksplisitt modellert.",
+        "planned_claim_ids": [
+          "mat08-05-1",
+          "mat08-05-2",
+          "mat08-05-3",
+          "mat08-05-4"
+        ]
+      },
+      {
+        "id": "mat08-t06",
+        "title": "Stier, sammenheng og trær",
+        "core": "Stier, komponenter og trær organiserer hvordan noder kan nå hverandre og gir grunnlag for nettverksalgoritmer.",
+        "boundary": "Sammenheng i en graf er en relasjonsegenskap og innebærer ikke fysisk eller kausal sammenheng.",
+        "planned_claim_ids": [
+          "mat08-06-1",
+          "mat08-06-2",
+          "mat08-06-3",
+          "mat08-06-4"
+        ]
+      },
+      {
+        "id": "mat08-t07",
+        "title": "Matchinger, farging og ekstremal struktur",
+        "core": "Matchinger, graf-farging og ekstremale spørsmål formaliserer kompatibilitet og begrensninger i diskrete systemer.",
+        "boundary": "En optimal diskret løsning er optimal bare relativt til den valgte objektfunksjonen og begrensningene.",
+        "planned_claim_ids": [
+          "mat08-07-1",
+          "mat08-07-2",
+          "mat08-07-3",
+          "mat08-07-4"
+        ]
+      },
+      {
+        "id": "mat08-t08",
+        "title": "Diskret sannsynlighet og algoritmisk struktur",
+        "core": "Diskrete utfallsrom kobler kombinatorikk til sannsynlighet og algoritmeanalyse gjennom eksplisitt opptelling og struktur.",
+        "boundary": "Et uniformt sannsynlighetsrom kan ikke antas bare fordi utfallene er lette å liste opp.",
+        "planned_claim_ids": [
+          "mat08-08-1",
+          "mat08-08-2",
+          "mat08-08-3",
+          "mat08-08-4"
+        ]
+      }
+    ],
+    "minimum_sources": 8,
+    "claim_level_trace": true,
+    "no_decorative_sources": true
+  },
+  "verifiedClaims": [
+    {
+      "id": "mat08-01-1",
+      "topic_id": "mat08-t01",
+      "classification": "formal_structure",
+      "claim": "Kombinatorisk telling bruker bijeksjoner, produkt- og sumprinsipper for å redusere komplekse opptellingsproblemer til strukturer som kan kontrolleres. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "vit2-03-lean-induction"
+      ]
+    },
+    {
+      "id": "mat08-01-2",
+      "topic_id": "mat08-t01",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med telling og bijeksjoner skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Kombinatorisk telling bruker bijeksjoner, produkt- og sumprinsipper for å redusere komplekse opptellingsproblemer til strukturer som kan kontrolleres. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-01-lean-introduction",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat08-01-3",
+      "topic_id": "mat08-t01",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: En opptelling er bare korrekt dersom kategoriene er uttømmende og uten utilsiktet dobbeltelling. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-02-lean-propositions-proofs",
+        "vit2-07-mit-algebra"
+      ]
+    },
+    {
+      "id": "mat08-01-4",
+      "topic_id": "mat08-t01",
+      "classification": "application",
+      "claim": "Når telling og bijeksjoner anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En opptelling er bare korrekt dersom kategoriene er uttømmende og uten utilsiktet dobbeltelling.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-03-lean-induction",
+        "mat-src-13-mit-number-theory"
+      ]
+    },
+    {
+      "id": "mat08-02-1",
+      "topic_id": "mat08-t02",
+      "classification": "formal_structure",
+      "claim": "Permutasjoner og kombinasjoner skiller ordnede og uordnede utvalg og gir grunnleggende telleformler. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-01-lean-introduction",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat08-02-2",
+      "topic_id": "mat08-t02",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med permutasjoner og kombinasjoner skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Permutasjoner og kombinasjoner skiller ordnede og uordnede utvalg og gir grunnleggende telleformler. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-02-lean-propositions-proofs",
+        "vit2-07-mit-algebra"
+      ]
+    },
+    {
+      "id": "mat08-02-3",
+      "topic_id": "mat08-t02",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Formlene krever bestemte antakelser om gjentakelse og distinkte objekter som må oppgis. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-03-lean-induction",
+        "mat-src-13-mit-number-theory"
+      ]
+    },
+    {
+      "id": "mat08-02-4",
+      "topic_id": "mat08-t02",
+      "classification": "application",
+      "claim": "Når permutasjoner og kombinasjoner anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Formlene krever bestemte antakelser om gjentakelse og distinkte objekter som må oppgis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat08-03-1",
+      "topic_id": "mat08-t03",
+      "classification": "formal_structure",
+      "claim": "Inklusjon–eksklusjon korrigerer overlapp når størrelsen på unioner beregnes fra snitt av delmengder. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-02-lean-propositions-proofs",
+        "vit2-07-mit-algebra"
+      ]
+    },
+    {
+      "id": "mat08-03-2",
+      "topic_id": "mat08-t03",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med inklusjon–eksklusjon skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Inklusjon–eksklusjon korrigerer overlapp når størrelsen på unioner beregnes fra snitt av delmengder. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-03-lean-induction",
+        "mat-src-13-mit-number-theory"
+      ]
+    },
+    {
+      "id": "mat08-03-3",
+      "topic_id": "mat08-t03",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Å summere delmengdestørrelser uten overlappskorreksjon kan gi systematisk dobbeltelling. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat08-03-4",
+      "topic_id": "mat08-t03",
+      "classification": "application",
+      "claim": "Når inklusjon–eksklusjon anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Å summere delmengdestørrelser uten overlappskorreksjon kan gi systematisk dobbeltelling.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-07-mit-algebra",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat08-04-1",
+      "topic_id": "mat08-t04",
+      "classification": "formal_structure",
+      "claim": "Rekurrensrelasjoner definerer sekvenser gjennom tidligere ledd og kan analyseres med induksjon, karakteristiske ligninger eller genererende funksjoner. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-03-lean-induction",
+        "mat-src-13-mit-number-theory"
+      ]
+    },
+    {
+      "id": "mat08-04-2",
+      "topic_id": "mat08-t04",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med rekurrenser skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Rekurrensrelasjoner definerer sekvenser gjennom tidligere ledd og kan analyseres med induksjon, karakteristiske ligninger eller genererende funksjoner. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat08-04-3",
+      "topic_id": "mat08-t04",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: En rekurrens uten tilstrekkelige initialbetingelser bestemmer ikke en unik sekvens. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-07-mit-algebra",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat08-04-4",
+      "topic_id": "mat08-t04",
+      "classification": "application",
+      "claim": "Når rekurrenser anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En rekurrens uten tilstrekkelige initialbetingelser bestemmer ikke en unik sekvens.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-13-mit-number-theory",
+        "vit2-01-lean-introduction"
+      ]
+    },
+    {
+      "id": "mat08-05-1",
+      "topic_id": "mat08-t05",
+      "classification": "formal_structure",
+      "claim": "Grafteori modellerer parvise relasjoner som noder og kanter og skiller struktur fra den visuelle tegningen av grafen. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat08-05-2",
+      "topic_id": "mat08-t05",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med grafer, noder og kanter skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Grafteori modellerer parvise relasjoner som noder og kanter og skiller struktur fra den visuelle tegningen av grafen. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-07-mit-algebra",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat08-05-3",
+      "topic_id": "mat08-t05",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Samme abstrakte graf kan tegnes på mange måter; geometrisk plassering er ikke del av grafen med mindre den er eksplisitt modellert. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-13-mit-number-theory",
+        "vit2-01-lean-introduction"
+      ]
+    },
+    {
+      "id": "mat08-05-4",
+      "topic_id": "mat08-t05",
+      "classification": "application",
+      "claim": "Når grafer, noder og kanter anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Samme abstrakte graf kan tegnes på mange måter; geometrisk plassering er ikke del av grafen med mindre den er eksplisitt modellert.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "vit2-02-lean-propositions-proofs"
+      ]
+    },
+    {
+      "id": "mat08-06-1",
+      "topic_id": "mat08-t06",
+      "classification": "formal_structure",
+      "claim": "Stier, komponenter og trær organiserer hvordan noder kan nå hverandre og gir grunnlag for nettverksalgoritmer. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-07-mit-algebra",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat08-06-2",
+      "topic_id": "mat08-t06",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med stier, sammenheng og trær skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Stier, komponenter og trær organiserer hvordan noder kan nå hverandre og gir grunnlag for nettverksalgoritmer. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-13-mit-number-theory",
+        "vit2-01-lean-introduction"
+      ]
+    },
+    {
+      "id": "mat08-06-3",
+      "topic_id": "mat08-t06",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Sammenheng i en graf er en relasjonsegenskap og innebærer ikke fysisk eller kausal sammenheng. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "vit2-02-lean-propositions-proofs"
+      ]
+    },
+    {
+      "id": "mat08-06-4",
+      "topic_id": "mat08-t06",
+      "classification": "application",
+      "claim": "Når stier, sammenheng og trær anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Sammenheng i en graf er en relasjonsegenskap og innebærer ikke fysisk eller kausal sammenheng.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "vit2-03-lean-induction"
+      ]
+    },
+    {
+      "id": "mat08-07-1",
+      "topic_id": "mat08-t07",
+      "classification": "formal_structure",
+      "claim": "Matchinger, graf-farging og ekstremale spørsmål formaliserer kompatibilitet og begrensninger i diskrete systemer. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-13-mit-number-theory",
+        "vit2-01-lean-introduction"
+      ]
+    },
+    {
+      "id": "mat08-07-2",
+      "topic_id": "mat08-t07",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med matchinger, farging og ekstremal struktur skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Matchinger, graf-farging og ekstremale spørsmål formaliserer kompatibilitet og begrensninger i diskrete systemer. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "vit2-02-lean-propositions-proofs"
+      ]
+    },
+    {
+      "id": "mat08-07-3",
+      "topic_id": "mat08-t07",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: En optimal diskret løsning er optimal bare relativt til den valgte objektfunksjonen og begrensningene. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "vit2-03-lean-induction"
+      ]
+    },
+    {
+      "id": "mat08-07-4",
+      "topic_id": "mat08-t07",
+      "classification": "application",
+      "claim": "Når matchinger, farging og ekstremal struktur anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En optimal diskret løsning er optimal bare relativt til den valgte objektfunksjonen og begrensningene.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-01-lean-introduction",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat08-08-1",
+      "topic_id": "mat08-t08",
+      "classification": "formal_structure",
+      "claim": "Diskrete utfallsrom kobler kombinatorikk til sannsynlighet og algoritmeanalyse gjennom eksplisitt opptelling og struktur. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "vit2-02-lean-propositions-proofs"
+      ]
+    },
+    {
+      "id": "mat08-08-2",
+      "topic_id": "mat08-t08",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med diskret sannsynlighet og algoritmisk struktur skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Diskrete utfallsrom kobler kombinatorikk til sannsynlighet og algoritmeanalyse gjennom eksplisitt opptelling og struktur. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "vit2-03-lean-induction"
+      ]
+    },
+    {
+      "id": "mat08-08-3",
+      "topic_id": "mat08-t08",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Et uniformt sannsynlighetsrom kan ikke antas bare fordi utfallene er lette å liste opp. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-01-lean-introduction",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat08-08-4",
+      "topic_id": "mat08-t08",
+      "classification": "application",
+      "claim": "Når diskret sannsynlighet og algoritmisk struktur anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Et uniformt sannsynlighetsrom kan ikke antas bare fordi utfallene er lette å liste opp.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-02-lean-propositions-proofs",
+        "vit2-07-mit-algebra"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "mat08-m01",
+      "title": "Modul 1: Telling og bijeksjoner og Permutasjoner og kombinasjoner",
+      "sections": [
+        {
+          "id": "mat08-t01",
+          "title": "Telling og bijeksjoner",
+          "paragraphs": [
+            {
+              "claim_id": "mat08-01-1",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "vit2-03-lean-induction"
+              ],
+              "text": "Telling og bijeksjoner: Kombinatorisk telling bruker bijeksjoner, produkt- og sumprinsipper for å redusere komplekse opptellingsproblemer til strukturer som kan kontrolleres. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En opptelling er bare korrekt dersom kategoriene er uttømmende og uten utilsiktet dobbeltelling. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-01-1 bruker vit2-05-mit-discrete og vit2-03-lean-induction; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat08-01-2",
+              "source_ids": [
+                "vit2-01-lean-introduction",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Telling og bijeksjoner: Ved arbeid med telling og bijeksjoner skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Kombinatorisk telling bruker bijeksjoner, produkt- og sumprinsipper for å redusere komplekse opptellingsproblemer til strukturer som kan kontrolleres. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En opptelling er bare korrekt dersom kategoriene er uttømmende og uten utilsiktet dobbeltelling. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-01-2 bruker vit2-01-lean-introduction og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat08-01-3",
+              "source_ids": [
+                "vit2-02-lean-propositions-proofs",
+                "vit2-07-mit-algebra"
+              ],
+              "text": "Telling og bijeksjoner: Gyldighetsgrensen er avgjørende: En opptelling er bare korrekt dersom kategoriene er uttømmende og uten utilsiktet dobbeltelling. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En opptelling er bare korrekt dersom kategoriene er uttømmende og uten utilsiktet dobbeltelling. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-01-3 bruker vit2-02-lean-propositions-proofs og vit2-07-mit-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat08-01-4",
+              "source_ids": [
+                "vit2-03-lean-induction",
+                "mat-src-13-mit-number-theory"
+              ],
+              "text": "Telling og bijeksjoner: Når telling og bijeksjoner anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En opptelling er bare korrekt dersom kategoriene er uttømmende og uten utilsiktet dobbeltelling. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En opptelling er bare korrekt dersom kategoriene er uttømmende og uten utilsiktet dobbeltelling. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-01-4 bruker vit2-03-lean-induction og mat-src-13-mit-number-theory; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat08-01-1",
+            "mat08-01-2",
+            "mat08-01-3",
+            "mat08-01-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for telling og bijeksjoner.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. En opptelling er bare korrekt dersom kategoriene er uttømmende og uten utilsiktet dobbeltelling."
+          ]
+        },
+        {
+          "id": "mat08-t02",
+          "title": "Permutasjoner og kombinasjoner",
+          "paragraphs": [
+            {
+              "claim_id": "mat08-02-1",
+              "source_ids": [
+                "vit2-01-lean-introduction",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Permutasjoner og kombinasjoner: Permutasjoner og kombinasjoner skiller ordnede og uordnede utvalg og gir grunnleggende telleformler. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Formlene krever bestemte antakelser om gjentakelse og distinkte objekter som må oppgis. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-02-1 bruker vit2-01-lean-introduction og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat08-02-2",
+              "source_ids": [
+                "vit2-02-lean-propositions-proofs",
+                "vit2-07-mit-algebra"
+              ],
+              "text": "Permutasjoner og kombinasjoner: Ved arbeid med permutasjoner og kombinasjoner skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Permutasjoner og kombinasjoner skiller ordnede og uordnede utvalg og gir grunnleggende telleformler. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Formlene krever bestemte antakelser om gjentakelse og distinkte objekter som må oppgis. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-02-2 bruker vit2-02-lean-propositions-proofs og vit2-07-mit-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat08-02-3",
+              "source_ids": [
+                "vit2-03-lean-induction",
+                "mat-src-13-mit-number-theory"
+              ],
+              "text": "Permutasjoner og kombinasjoner: Gyldighetsgrensen er avgjørende: Formlene krever bestemte antakelser om gjentakelse og distinkte objekter som må oppgis. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Formlene krever bestemte antakelser om gjentakelse og distinkte objekter som må oppgis. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-02-3 bruker vit2-03-lean-induction og mat-src-13-mit-number-theory; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat08-02-4",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Permutasjoner og kombinasjoner: Når permutasjoner og kombinasjoner anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Formlene krever bestemte antakelser om gjentakelse og distinkte objekter som må oppgis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Formlene krever bestemte antakelser om gjentakelse og distinkte objekter som må oppgis. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-02-4 bruker vit2-06-mit-linear-algebra og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat08-02-1",
+            "mat08-02-2",
+            "mat08-02-3",
+            "mat08-02-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for permutasjoner og kombinasjoner.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Formlene krever bestemte antakelser om gjentakelse og distinkte objekter som må oppgis."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat08-m02",
+      "title": "Modul 2: Inklusjon–eksklusjon og Rekurrenser",
+      "sections": [
+        {
+          "id": "mat08-t03",
+          "title": "Inklusjon–eksklusjon",
+          "paragraphs": [
+            {
+              "claim_id": "mat08-03-1",
+              "source_ids": [
+                "vit2-02-lean-propositions-proofs",
+                "vit2-07-mit-algebra"
+              ],
+              "text": "Inklusjon–eksklusjon: Inklusjon–eksklusjon korrigerer overlapp når størrelsen på unioner beregnes fra snitt av delmengder. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Å summere delmengdestørrelser uten overlappskorreksjon kan gi systematisk dobbeltelling. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-03-1 bruker vit2-02-lean-propositions-proofs og vit2-07-mit-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat08-03-2",
+              "source_ids": [
+                "vit2-03-lean-induction",
+                "mat-src-13-mit-number-theory"
+              ],
+              "text": "Inklusjon–eksklusjon: Ved arbeid med inklusjon–eksklusjon skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Inklusjon–eksklusjon korrigerer overlapp når størrelsen på unioner beregnes fra snitt av delmengder. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Å summere delmengdestørrelser uten overlappskorreksjon kan gi systematisk dobbeltelling. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-03-2 bruker vit2-03-lean-induction og mat-src-13-mit-number-theory; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat08-03-3",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Inklusjon–eksklusjon: Gyldighetsgrensen er avgjørende: Å summere delmengdestørrelser uten overlappskorreksjon kan gi systematisk dobbeltelling. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Å summere delmengdestørrelser uten overlappskorreksjon kan gi systematisk dobbeltelling. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-03-3 bruker vit2-06-mit-linear-algebra og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat08-03-4",
+              "source_ids": [
+                "vit2-07-mit-algebra",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Inklusjon–eksklusjon: Når inklusjon–eksklusjon anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Å summere delmengdestørrelser uten overlappskorreksjon kan gi systematisk dobbeltelling. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Å summere delmengdestørrelser uten overlappskorreksjon kan gi systematisk dobbeltelling. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-03-4 bruker vit2-07-mit-algebra og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat08-03-1",
+            "mat08-03-2",
+            "mat08-03-3",
+            "mat08-03-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for inklusjon–eksklusjon.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Å summere delmengdestørrelser uten overlappskorreksjon kan gi systematisk dobbeltelling."
+          ]
+        },
+        {
+          "id": "mat08-t04",
+          "title": "Rekurrenser",
+          "paragraphs": [
+            {
+              "claim_id": "mat08-04-1",
+              "source_ids": [
+                "vit2-03-lean-induction",
+                "mat-src-13-mit-number-theory"
+              ],
+              "text": "Rekurrenser: Rekurrensrelasjoner definerer sekvenser gjennom tidligere ledd og kan analyseres med induksjon, karakteristiske ligninger eller genererende funksjoner. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En rekurrens uten tilstrekkelige initialbetingelser bestemmer ikke en unik sekvens. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-04-1 bruker vit2-03-lean-induction og mat-src-13-mit-number-theory; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat08-04-2",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Rekurrenser: Ved arbeid med rekurrenser skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Rekurrensrelasjoner definerer sekvenser gjennom tidligere ledd og kan analyseres med induksjon, karakteristiske ligninger eller genererende funksjoner. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En rekurrens uten tilstrekkelige initialbetingelser bestemmer ikke en unik sekvens. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-04-2 bruker vit2-06-mit-linear-algebra og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat08-04-3",
+              "source_ids": [
+                "vit2-07-mit-algebra",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Rekurrenser: Gyldighetsgrensen er avgjørende: En rekurrens uten tilstrekkelige initialbetingelser bestemmer ikke en unik sekvens. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En rekurrens uten tilstrekkelige initialbetingelser bestemmer ikke en unik sekvens. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-04-3 bruker vit2-07-mit-algebra og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat08-04-4",
+              "source_ids": [
+                "mat-src-13-mit-number-theory",
+                "vit2-01-lean-introduction"
+              ],
+              "text": "Rekurrenser: Når rekurrenser anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En rekurrens uten tilstrekkelige initialbetingelser bestemmer ikke en unik sekvens. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En rekurrens uten tilstrekkelige initialbetingelser bestemmer ikke en unik sekvens. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-04-4 bruker mat-src-13-mit-number-theory og vit2-01-lean-introduction; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat08-04-1",
+            "mat08-04-2",
+            "mat08-04-3",
+            "mat08-04-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for rekurrenser.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. En rekurrens uten tilstrekkelige initialbetingelser bestemmer ikke en unik sekvens."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat08-m03",
+      "title": "Modul 3: Grafer, noder og kanter og Stier, sammenheng og trær",
+      "sections": [
+        {
+          "id": "mat08-t05",
+          "title": "Grafer, noder og kanter",
+          "paragraphs": [
+            {
+              "claim_id": "mat08-05-1",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Grafer, noder og kanter: Grafteori modellerer parvise relasjoner som noder og kanter og skiller struktur fra den visuelle tegningen av grafen. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Samme abstrakte graf kan tegnes på mange måter; geometrisk plassering er ikke del av grafen med mindre den er eksplisitt modellert. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-05-1 bruker vit2-06-mit-linear-algebra og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat08-05-2",
+              "source_ids": [
+                "vit2-07-mit-algebra",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Grafer, noder og kanter: Ved arbeid med grafer, noder og kanter skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Grafteori modellerer parvise relasjoner som noder og kanter og skiller struktur fra den visuelle tegningen av grafen. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Samme abstrakte graf kan tegnes på mange måter; geometrisk plassering er ikke del av grafen med mindre den er eksplisitt modellert. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-05-2 bruker vit2-07-mit-algebra og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat08-05-3",
+              "source_ids": [
+                "mat-src-13-mit-number-theory",
+                "vit2-01-lean-introduction"
+              ],
+              "text": "Grafer, noder og kanter: Gyldighetsgrensen er avgjørende: Samme abstrakte graf kan tegnes på mange måter; geometrisk plassering er ikke del av grafen med mindre den er eksplisitt modellert. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Samme abstrakte graf kan tegnes på mange måter; geometrisk plassering er ikke del av grafen med mindre den er eksplisitt modellert. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-05-3 bruker mat-src-13-mit-number-theory og vit2-01-lean-introduction; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat08-05-4",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "vit2-02-lean-propositions-proofs"
+              ],
+              "text": "Grafer, noder og kanter: Når grafer, noder og kanter anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Samme abstrakte graf kan tegnes på mange måter; geometrisk plassering er ikke del av grafen med mindre den er eksplisitt modellert. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Samme abstrakte graf kan tegnes på mange måter; geometrisk plassering er ikke del av grafen med mindre den er eksplisitt modellert. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-05-4 bruker mat-src-16-mit-probability-statistics og vit2-02-lean-propositions-proofs; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat08-05-1",
+            "mat08-05-2",
+            "mat08-05-3",
+            "mat08-05-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for grafer, noder og kanter.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Samme abstrakte graf kan tegnes på mange måter; geometrisk plassering er ikke del av grafen med mindre den er eksplisitt modellert."
+          ]
+        },
+        {
+          "id": "mat08-t06",
+          "title": "Stier, sammenheng og trær",
+          "paragraphs": [
+            {
+              "claim_id": "mat08-06-1",
+              "source_ids": [
+                "vit2-07-mit-algebra",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Stier, sammenheng og trær: Stier, komponenter og trær organiserer hvordan noder kan nå hverandre og gir grunnlag for nettverksalgoritmer. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Sammenheng i en graf er en relasjonsegenskap og innebærer ikke fysisk eller kausal sammenheng. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-06-1 bruker vit2-07-mit-algebra og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat08-06-2",
+              "source_ids": [
+                "mat-src-13-mit-number-theory",
+                "vit2-01-lean-introduction"
+              ],
+              "text": "Stier, sammenheng og trær: Ved arbeid med stier, sammenheng og trær skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Stier, komponenter og trær organiserer hvordan noder kan nå hverandre og gir grunnlag for nettverksalgoritmer. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Sammenheng i en graf er en relasjonsegenskap og innebærer ikke fysisk eller kausal sammenheng. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-06-2 bruker mat-src-13-mit-number-theory og vit2-01-lean-introduction; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat08-06-3",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "vit2-02-lean-propositions-proofs"
+              ],
+              "text": "Stier, sammenheng og trær: Gyldighetsgrensen er avgjørende: Sammenheng i en graf er en relasjonsegenskap og innebærer ikke fysisk eller kausal sammenheng. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Sammenheng i en graf er en relasjonsegenskap og innebærer ikke fysisk eller kausal sammenheng. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-06-3 bruker mat-src-16-mit-probability-statistics og vit2-02-lean-propositions-proofs; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat08-06-4",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "vit2-03-lean-induction"
+              ],
+              "text": "Stier, sammenheng og trær: Når stier, sammenheng og trær anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Sammenheng i en graf er en relasjonsegenskap og innebærer ikke fysisk eller kausal sammenheng. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Sammenheng i en graf er en relasjonsegenskap og innebærer ikke fysisk eller kausal sammenheng. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-06-4 bruker vit2-05-mit-discrete og vit2-03-lean-induction; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat08-06-1",
+            "mat08-06-2",
+            "mat08-06-3",
+            "mat08-06-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for stier, sammenheng og trær.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Sammenheng i en graf er en relasjonsegenskap og innebærer ikke fysisk eller kausal sammenheng."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat08-m04",
+      "title": "Modul 4: Matchinger, farging og ekstremal struktur og Diskret sannsynlighet og algoritmisk struktur",
+      "sections": [
+        {
+          "id": "mat08-t07",
+          "title": "Matchinger, farging og ekstremal struktur",
+          "paragraphs": [
+            {
+              "claim_id": "mat08-07-1",
+              "source_ids": [
+                "mat-src-13-mit-number-theory",
+                "vit2-01-lean-introduction"
+              ],
+              "text": "Matchinger, farging og ekstremal struktur: Matchinger, graf-farging og ekstremale spørsmål formaliserer kompatibilitet og begrensninger i diskrete systemer. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En optimal diskret løsning er optimal bare relativt til den valgte objektfunksjonen og begrensningene. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-07-1 bruker mat-src-13-mit-number-theory og vit2-01-lean-introduction; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat08-07-2",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "vit2-02-lean-propositions-proofs"
+              ],
+              "text": "Matchinger, farging og ekstremal struktur: Ved arbeid med matchinger, farging og ekstremal struktur skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Matchinger, graf-farging og ekstremale spørsmål formaliserer kompatibilitet og begrensninger i diskrete systemer. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En optimal diskret løsning er optimal bare relativt til den valgte objektfunksjonen og begrensningene. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-07-2 bruker mat-src-16-mit-probability-statistics og vit2-02-lean-propositions-proofs; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat08-07-3",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "vit2-03-lean-induction"
+              ],
+              "text": "Matchinger, farging og ekstremal struktur: Gyldighetsgrensen er avgjørende: En optimal diskret løsning er optimal bare relativt til den valgte objektfunksjonen og begrensningene. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En optimal diskret løsning er optimal bare relativt til den valgte objektfunksjonen og begrensningene. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-07-3 bruker vit2-05-mit-discrete og vit2-03-lean-induction; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat08-07-4",
+              "source_ids": [
+                "vit2-01-lean-introduction",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Matchinger, farging og ekstremal struktur: Når matchinger, farging og ekstremal struktur anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En optimal diskret løsning er optimal bare relativt til den valgte objektfunksjonen og begrensningene. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En optimal diskret løsning er optimal bare relativt til den valgte objektfunksjonen og begrensningene. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-07-4 bruker vit2-01-lean-introduction og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat08-07-1",
+            "mat08-07-2",
+            "mat08-07-3",
+            "mat08-07-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for matchinger, farging og ekstremal struktur.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. En optimal diskret løsning er optimal bare relativt til den valgte objektfunksjonen og begrensningene."
+          ]
+        },
+        {
+          "id": "mat08-t08",
+          "title": "Diskret sannsynlighet og algoritmisk struktur",
+          "paragraphs": [
+            {
+              "claim_id": "mat08-08-1",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "vit2-02-lean-propositions-proofs"
+              ],
+              "text": "Diskret sannsynlighet og algoritmisk struktur: Diskrete utfallsrom kobler kombinatorikk til sannsynlighet og algoritmeanalyse gjennom eksplisitt opptelling og struktur. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et uniformt sannsynlighetsrom kan ikke antas bare fordi utfallene er lette å liste opp. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-08-1 bruker mat-src-16-mit-probability-statistics og vit2-02-lean-propositions-proofs; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat08-08-2",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "vit2-03-lean-induction"
+              ],
+              "text": "Diskret sannsynlighet og algoritmisk struktur: Ved arbeid med diskret sannsynlighet og algoritmisk struktur skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Diskrete utfallsrom kobler kombinatorikk til sannsynlighet og algoritmeanalyse gjennom eksplisitt opptelling og struktur. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et uniformt sannsynlighetsrom kan ikke antas bare fordi utfallene er lette å liste opp. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-08-2 bruker vit2-05-mit-discrete og vit2-03-lean-induction; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat08-08-3",
+              "source_ids": [
+                "vit2-01-lean-introduction",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Diskret sannsynlighet og algoritmisk struktur: Gyldighetsgrensen er avgjørende: Et uniformt sannsynlighetsrom kan ikke antas bare fordi utfallene er lette å liste opp. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et uniformt sannsynlighetsrom kan ikke antas bare fordi utfallene er lette å liste opp. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-08-3 bruker vit2-01-lean-introduction og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat08-08-4",
+              "source_ids": [
+                "vit2-02-lean-propositions-proofs",
+                "vit2-07-mit-algebra"
+              ],
+              "text": "Diskret sannsynlighet og algoritmisk struktur: Når diskret sannsynlighet og algoritmisk struktur anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Et uniformt sannsynlighetsrom kan ikke antas bare fordi utfallene er lette å liste opp. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Et uniformt sannsynlighetsrom kan ikke antas bare fordi utfallene er lette å liste opp. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat08-08-4 bruker vit2-02-lean-propositions-proofs og vit2-07-mit-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat08-08-1",
+            "mat08-08-2",
+            "mat08-08-3",
+            "mat08-08-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for diskret sannsynlighet og algoritmisk struktur.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Et uniformt sannsynlighetsrom kan ikke antas bare fordi utfallene er lette å liste opp."
+          ]
+        }
+      ]
+    }
+  ],
+  "assessment": {
+    "questions": [
+      {
+        "id": "mat08-q01",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer telling og bijeksjoner?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat08-t01"
+      },
+      {
+        "id": "mat08-q02",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer permutasjoner og kombinasjoner?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat08-t02"
+      },
+      {
+        "id": "mat08-q03",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer inklusjon–eksklusjon?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat08-t03"
+      },
+      {
+        "id": "mat08-q04",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer rekurrenser?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat08-t04"
+      },
+      {
+        "id": "mat08-q05",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer grafer, noder og kanter?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat08-t05"
+      },
+      {
+        "id": "mat08-q06",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer stier, sammenheng og trær?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat08-t06"
+      },
+      {
+        "id": "mat08-q07",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer matchinger, farging og ekstremal struktur?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat08-t07"
+      },
+      {
+        "id": "mat08-q08",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer diskret sannsynlighet og algoritmisk struktur?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat08-t08"
+      }
+    ],
+    "caseTasks": [
+      {
+        "id": "mat08-case01",
+        "prompt": "En analyse hevder at et resultat som kombinerer telling og bijeksjoner og inklusjon–eksklusjon er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-05-mit-discrete",
+          "vit2-07-mit-algebra"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat08-case02",
+        "prompt": "En analyse hevder at et resultat som kombinerer permutasjoner og kombinasjoner og rekurrenser er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-01-lean-introduction",
+          "mat-src-13-mit-number-theory"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat08-case03",
+        "prompt": "En analyse hevder at et resultat som kombinerer inklusjon–eksklusjon og grafer, noder og kanter er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-02-lean-propositions-proofs",
+          "mat-src-16-mit-probability-statistics"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat08-case04",
+        "prompt": "En analyse hevder at et resultat som kombinerer rekurrenser og stier, sammenheng og trær er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-03-lean-induction",
+          "vit2-05-mit-discrete"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat08-case05",
+        "prompt": "En analyse hevder at et resultat som kombinerer grafer, noder og kanter og matchinger, farging og ekstremal struktur er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-06-mit-linear-algebra",
+          "vit2-01-lean-introduction"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat08-case06",
+        "prompt": "En analyse hevder at et resultat som kombinerer stier, sammenheng og trær og diskret sannsynlighet og algoritmisk struktur er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-07-mit-algebra",
+          "vit2-02-lean-propositions-proofs"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      }
+    ]
+  },
+  "qualityGuard": {
+    "formal_validity_vs_premise_truth_explicit": true,
+    "proof_vs_computation_explicit": true,
+    "object_vs_representation_explicit": true,
+    "theorem_prover_scope_explicit": true,
+    "exact_vs_numerical_approximation_explicit": true,
+    "continuous_vs_discrete_model_choice_explicit": true,
+    "probability_model_vs_empirical_frequency_explicit": true,
+    "optimization_objective_vs_real_goal_explicit": true,
+    "empirical_model_adequacy_separate": true,
+    "source_trace_required": true,
+    "strict_domain_materialized": true
+  },
+  "reuse_provenance": {
+    "strict_upgrade": false,
+    "rule": "Nytt canonicalt Matematikk-felt; eksisterende naboinnhold teller ikke som materialisert uten denne strict-pakken."
+  }
+}

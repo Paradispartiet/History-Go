@@ -360,6 +360,8 @@ export function auditWorkflowRouting() {
     '.github/ci/fagverk-helse-domain-registry-v1.json',
     '.github/ci/fagverk-utdanning-domain-registry-v1.json',
     '.github/ci/fagverk-fysikk-domain-registry-v1.json',
+    '.github/ci/fagverk-kjemi-domain-registry-v1.json',
+    '.github/ci/fagverk-matematikk-domain-registry-v1.json',
   ]) {
     if (!domainRegistrySource.includes(registryPath)) {
       failures.push(`fagverk-domain-registry.yml: registry trigger is missing: ${registryPath}`);

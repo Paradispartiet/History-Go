@@ -1,0 +1,1 @@
+import test from 'node:test';import assert from 'node:assert/strict';import { audit } from '../scripts/audit-matematikk-reconciliation-v1.mjs';test('Matematikk reconciliation låser 12/12 uten neste produksjonsdomene',()=>{const r=audit();assert.equal(r.materialized,12);assert.equal(r.strictCompletionProven,true);assert.equal(r.nextDomain,null)});

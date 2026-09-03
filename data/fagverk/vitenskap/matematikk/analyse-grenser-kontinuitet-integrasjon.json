@@ -1,0 +1,1129 @@
+{
+  "schema": "history_go_fagverk_matematikk_strict_domain_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-09-02",
+  "subject": "vitenskap",
+  "subject_id": "vitenskap",
+  "canonical_subcategory_id": "matematikk",
+  "ordinal": 5,
+  "domain_id": "analyse_grenser_kontinuitet_integrasjon",
+  "id": "analyse-grenser-kontinuitet-integrasjon",
+  "chapter_id": "analyse-grenser-kontinuitet-integrasjon",
+  "title": "Matematisk analyse: grenser, kontinuitet, derivasjon og integrasjon",
+  "subtitle": "Strict Matematikk-felt 5 av 12: source-first, fulltekst, claims, vurderinger og case",
+  "lead": "Matematisk analyse: grenser, kontinuitet, derivasjon og integrasjon er materialisert som et selvstendig felt i Matematikk-registeret med eksplisitte definisjoner, beviskjeder, objekt–representasjon-skille, numerisk feilkontroll og en tydelig grense mellom matematisk korrekthet og empirisk modelladekvathet.",
+  "source_registry": "data/fag/vitenskap/matematikk/source_registry_v1.json",
+  "source_first": {
+    "status": "pass",
+    "source_ids": [
+      "vit2-08-mit-calculus",
+      "mat-src-11-mit-real-analysis",
+      "vit2-06-mit-linear-algebra",
+      "mat-src-12-mit-differential-equations",
+      "mat-src-14-mit-topology",
+      "mat-src-16-mit-probability-statistics",
+      "mat-src-17-mit-numerical-analysis",
+      "vit2-05-mit-discrete"
+    ],
+    "topic_briefs": [
+      {
+        "id": "mat05-t01",
+        "title": "Grenser og konvergens",
+        "core": "Grensebegrepet formaliserer hvordan funksjoner eller følger nærmer seg verdier og gir grunnlag for kontinuitet, derivasjon og integrasjon.",
+        "boundary": "Numerisk nærhet i mange punkter er ikke i seg selv et bevis på en matematisk grense.",
+        "planned_claim_ids": [
+          "mat05-01-1",
+          "mat05-01-2",
+          "mat05-01-3",
+          "mat05-01-4"
+        ]
+      },
+      {
+        "id": "mat05-t02",
+        "title": "Kontinuitet",
+        "core": "Kontinuitet kobler lokale grenseegenskaper til funksjonsverdier og støtter sentrale eksistens- og mellomverdisetninger.",
+        "boundary": "Kontinuitet avhenger av topologien og domenet og må ikke reduseres til at en graf kan tegnes uten å løfte blyanten.",
+        "planned_claim_ids": [
+          "mat05-02-1",
+          "mat05-02-2",
+          "mat05-02-3",
+          "mat05-02-4"
+        ]
+      },
+      {
+        "id": "mat05-t03",
+        "title": "Derivasjon og lokal linearisering",
+        "core": "Derivasjon beskriver lokal endring gjennom en grense av differansekvotienter og gir en lineær førsteordensapproksimasjon.",
+        "boundary": "At en derivert eksisterer i et punkt innebærer ikke at høyere deriverte eller en global lineær modell er gyldige.",
+        "planned_claim_ids": [
+          "mat05-03-1",
+          "mat05-03-2",
+          "mat05-03-3",
+          "mat05-03-4"
+        ]
+      },
+      {
+        "id": "mat05-t04",
+        "title": "Middelverdisetninger",
+        "core": "Middelverdisetninger kobler lokale derivater til endringer over intervaller og gir kontroll over monotoni og feilgrenser.",
+        "boundary": "Setningene krever eksplisitte regularitetsbetingelser som kontinuitet og deriverbarhet.",
+        "planned_claim_ids": [
+          "mat05-04-1",
+          "mat05-04-2",
+          "mat05-04-3",
+          "mat05-04-4"
+        ]
+      },
+      {
+        "id": "mat05-t05",
+        "title": "Riemann-integrasjon",
+        "core": "Riemann-integralet formaliserer akkumulert størrelse som grensen av summer over finere partisjoner.",
+        "boundary": "En integralverdi er en matematisk akkumulering; fysisk tolkning krever i tillegg en modell av hva integranden og variabelen representerer.",
+        "planned_claim_ids": [
+          "mat05-05-1",
+          "mat05-05-2",
+          "mat05-05-3",
+          "mat05-05-4"
+        ]
+      },
+      {
+        "id": "mat05-t06",
+        "title": "Analysens fundamentalteorem",
+        "core": "Fundamentalteoremet kobler derivasjon og integrasjon under passende regularitetsbetingelser.",
+        "boundary": "Sammenhengen gjelder ikke uten videre for vilkårlige funksjoner eller generaliserte integraler.",
+        "planned_claim_ids": [
+          "mat05-06-1",
+          "mat05-06-2",
+          "mat05-06-3",
+          "mat05-06-4"
+        ]
+      },
+      {
+        "id": "mat05-t07",
+        "title": "Følger og funksjonsrekker",
+        "core": "Punktvis og uniform konvergens skiller ulike måter funksjonsfølger kan nærme seg en grensefunksjon på.",
+        "boundary": "Punktvis konvergens alene bevarer ikke nødvendigvis kontinuitet, integrasjon eller derivasjon.",
+        "planned_claim_ids": [
+          "mat05-07-1",
+          "mat05-07-2",
+          "mat05-07-3",
+          "mat05-07-4"
+        ]
+      },
+      {
+        "id": "mat05-t08",
+        "title": "Eksakt analyse og numerisk approksimasjon",
+        "core": "Analytiske resultater kan gi eksakte egenskaper mens numeriske metoder approksimerer verdier med eksplisitte diskretiserings- og avrundingsfeil.",
+        "boundary": "En numerisk verdi med mange sifre er ikke et bevis på eksakt likhet eller en kontrollert feilgrense.",
+        "planned_claim_ids": [
+          "mat05-08-1",
+          "mat05-08-2",
+          "mat05-08-3",
+          "mat05-08-4"
+        ]
+      }
+    ],
+    "minimum_sources": 8,
+    "claim_level_trace": true,
+    "no_decorative_sources": true
+  },
+  "verifiedClaims": [
+    {
+      "id": "mat05-01-1",
+      "topic_id": "mat05-t01",
+      "classification": "formal_structure",
+      "claim": "Grensebegrepet formaliserer hvordan funksjoner eller følger nærmer seg verdier og gir grunnlag for kontinuitet, derivasjon og integrasjon. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-08-mit-calculus",
+        "mat-src-12-mit-differential-equations"
+      ]
+    },
+    {
+      "id": "mat05-01-2",
+      "topic_id": "mat05-t01",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med grenser og konvergens skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Grensebegrepet formaliserer hvordan funksjoner eller følger nærmer seg verdier og gir grunnlag for kontinuitet, derivasjon og integrasjon. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "mat-src-14-mit-topology"
+      ]
+    },
+    {
+      "id": "mat05-01-3",
+      "topic_id": "mat05-t01",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Numerisk nærhet i mange punkter er ikke i seg selv et bevis på en matematisk grense. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat05-01-4",
+      "topic_id": "mat05-t01",
+      "classification": "application",
+      "claim": "Når grenser og konvergens anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Numerisk nærhet i mange punkter er ikke i seg selv et bevis på en matematisk grense.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-12-mit-differential-equations",
+        "mat-src-17-mit-numerical-analysis"
+      ]
+    },
+    {
+      "id": "mat05-02-1",
+      "topic_id": "mat05-t02",
+      "classification": "formal_structure",
+      "claim": "Kontinuitet kobler lokale grenseegenskaper til funksjonsverdier og støtter sentrale eksistens- og mellomverdisetninger. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "mat-src-14-mit-topology"
+      ]
+    },
+    {
+      "id": "mat05-02-2",
+      "topic_id": "mat05-t02",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med kontinuitet skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Kontinuitet kobler lokale grenseegenskaper til funksjonsverdier og støtter sentrale eksistens- og mellomverdisetninger. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat05-02-3",
+      "topic_id": "mat05-t02",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Kontinuitet avhenger av topologien og domenet og må ikke reduseres til at en graf kan tegnes uten å løfte blyanten. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-12-mit-differential-equations",
+        "mat-src-17-mit-numerical-analysis"
+      ]
+    },
+    {
+      "id": "mat05-02-4",
+      "topic_id": "mat05-t02",
+      "classification": "application",
+      "claim": "Når kontinuitet anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Kontinuitet avhenger av topologien og domenet og må ikke reduseres til at en graf kan tegnes uten å løfte blyanten.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-14-mit-topology",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat05-03-1",
+      "topic_id": "mat05-t03",
+      "classification": "formal_structure",
+      "claim": "Derivasjon beskriver lokal endring gjennom en grense av differansekvotienter og gir en lineær førsteordensapproksimasjon. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat05-03-2",
+      "topic_id": "mat05-t03",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med derivasjon og lokal linearisering skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Derivasjon beskriver lokal endring gjennom en grense av differansekvotienter og gir en lineær førsteordensapproksimasjon. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-12-mit-differential-equations",
+        "mat-src-17-mit-numerical-analysis"
+      ]
+    },
+    {
+      "id": "mat05-03-3",
+      "topic_id": "mat05-t03",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: At en derivert eksisterer i et punkt innebærer ikke at høyere deriverte eller en global lineær modell er gyldige. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-14-mit-topology",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat05-03-4",
+      "topic_id": "mat05-t03",
+      "classification": "application",
+      "claim": "Når derivasjon og lokal linearisering anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. At en derivert eksisterer i et punkt innebærer ikke at høyere deriverte eller en global lineær modell er gyldige.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "vit2-08-mit-calculus"
+      ]
+    },
+    {
+      "id": "mat05-04-1",
+      "topic_id": "mat05-t04",
+      "classification": "formal_structure",
+      "claim": "Middelverdisetninger kobler lokale derivater til endringer over intervaller og gir kontroll over monotoni og feilgrenser. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-12-mit-differential-equations",
+        "mat-src-17-mit-numerical-analysis"
+      ]
+    },
+    {
+      "id": "mat05-04-2",
+      "topic_id": "mat05-t04",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med middelverdisetninger skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Middelverdisetninger kobler lokale derivater til endringer over intervaller og gir kontroll over monotoni og feilgrenser. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-14-mit-topology",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat05-04-3",
+      "topic_id": "mat05-t04",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Setningene krever eksplisitte regularitetsbetingelser som kontinuitet og deriverbarhet. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "vit2-08-mit-calculus"
+      ]
+    },
+    {
+      "id": "mat05-04-4",
+      "topic_id": "mat05-t04",
+      "classification": "application",
+      "claim": "Når middelverdisetninger anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Setningene krever eksplisitte regularitetsbetingelser som kontinuitet og deriverbarhet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-17-mit-numerical-analysis",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat05-05-1",
+      "topic_id": "mat05-t05",
+      "classification": "formal_structure",
+      "claim": "Riemann-integralet formaliserer akkumulert størrelse som grensen av summer over finere partisjoner. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-14-mit-topology",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat05-05-2",
+      "topic_id": "mat05-t05",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med riemann-integrasjon skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Riemann-integralet formaliserer akkumulert størrelse som grensen av summer over finere partisjoner. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "vit2-08-mit-calculus"
+      ]
+    },
+    {
+      "id": "mat05-05-3",
+      "topic_id": "mat05-t05",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: En integralverdi er en matematisk akkumulering; fysisk tolkning krever i tillegg en modell av hva integranden og variabelen representerer. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-17-mit-numerical-analysis",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat05-05-4",
+      "topic_id": "mat05-t05",
+      "classification": "application",
+      "claim": "Når riemann-integrasjon anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En integralverdi er en matematisk akkumulering; fysisk tolkning krever i tillegg en modell av hva integranden og variabelen representerer.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat05-06-1",
+      "topic_id": "mat05-t06",
+      "classification": "formal_structure",
+      "claim": "Fundamentalteoremet kobler derivasjon og integrasjon under passende regularitetsbetingelser. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "vit2-08-mit-calculus"
+      ]
+    },
+    {
+      "id": "mat05-06-2",
+      "topic_id": "mat05-t06",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med analysens fundamentalteorem skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Fundamentalteoremet kobler derivasjon og integrasjon under passende regularitetsbetingelser. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-17-mit-numerical-analysis",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat05-06-3",
+      "topic_id": "mat05-t06",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Sammenhengen gjelder ikke uten videre for vilkårlige funksjoner eller generaliserte integraler. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat05-06-4",
+      "topic_id": "mat05-t06",
+      "classification": "application",
+      "claim": "Når analysens fundamentalteorem anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Sammenhengen gjelder ikke uten videre for vilkårlige funksjoner eller generaliserte integraler.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-08-mit-calculus",
+        "mat-src-12-mit-differential-equations"
+      ]
+    },
+    {
+      "id": "mat05-07-1",
+      "topic_id": "mat05-t07",
+      "classification": "formal_structure",
+      "claim": "Punktvis og uniform konvergens skiller ulike måter funksjonsfølger kan nærme seg en grensefunksjon på. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-17-mit-numerical-analysis",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat05-07-2",
+      "topic_id": "mat05-t07",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med følger og funksjonsrekker skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Punktvis og uniform konvergens skiller ulike måter funksjonsfølger kan nærme seg en grensefunksjon på. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat05-07-3",
+      "topic_id": "mat05-t07",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Punktvis konvergens alene bevarer ikke nødvendigvis kontinuitet, integrasjon eller derivasjon. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-08-mit-calculus",
+        "mat-src-12-mit-differential-equations"
+      ]
+    },
+    {
+      "id": "mat05-07-4",
+      "topic_id": "mat05-t07",
+      "classification": "application",
+      "claim": "Når følger og funksjonsrekker anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Punktvis konvergens alene bevarer ikke nødvendigvis kontinuitet, integrasjon eller derivasjon.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "mat-src-14-mit-topology"
+      ]
+    },
+    {
+      "id": "mat05-08-1",
+      "topic_id": "mat05-t08",
+      "classification": "formal_structure",
+      "claim": "Analytiske resultater kan gi eksakte egenskaper mens numeriske metoder approksimerer verdier med eksplisitte diskretiserings- og avrundingsfeil. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat05-08-2",
+      "topic_id": "mat05-t08",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med eksakt analyse og numerisk approksimasjon skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Analytiske resultater kan gi eksakte egenskaper mens numeriske metoder approksimerer verdier med eksplisitte diskretiserings- og avrundingsfeil. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-08-mit-calculus",
+        "mat-src-12-mit-differential-equations"
+      ]
+    },
+    {
+      "id": "mat05-08-3",
+      "topic_id": "mat05-t08",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: En numerisk verdi med mange sifre er ikke et bevis på eksakt likhet eller en kontrollert feilgrense. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "mat-src-14-mit-topology"
+      ]
+    },
+    {
+      "id": "mat05-08-4",
+      "topic_id": "mat05-t08",
+      "classification": "application",
+      "claim": "Når eksakt analyse og numerisk approksimasjon anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En numerisk verdi med mange sifre er ikke et bevis på eksakt likhet eller en kontrollert feilgrense.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "mat05-m01",
+      "title": "Modul 1: Grenser og konvergens og Kontinuitet",
+      "sections": [
+        {
+          "id": "mat05-t01",
+          "title": "Grenser og konvergens",
+          "paragraphs": [
+            {
+              "claim_id": "mat05-01-1",
+              "source_ids": [
+                "vit2-08-mit-calculus",
+                "mat-src-12-mit-differential-equations"
+              ],
+              "text": "Grenser og konvergens: Grensebegrepet formaliserer hvordan funksjoner eller følger nærmer seg verdier og gir grunnlag for kontinuitet, derivasjon og integrasjon. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Numerisk nærhet i mange punkter er ikke i seg selv et bevis på en matematisk grense. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-01-1 bruker vit2-08-mit-calculus og mat-src-12-mit-differential-equations; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat05-01-2",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "mat-src-14-mit-topology"
+              ],
+              "text": "Grenser og konvergens: Ved arbeid med grenser og konvergens skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Grensebegrepet formaliserer hvordan funksjoner eller følger nærmer seg verdier og gir grunnlag for kontinuitet, derivasjon og integrasjon. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Numerisk nærhet i mange punkter er ikke i seg selv et bevis på en matematisk grense. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-01-2 bruker mat-src-11-mit-real-analysis og mat-src-14-mit-topology; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat05-01-3",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Grenser og konvergens: Gyldighetsgrensen er avgjørende: Numerisk nærhet i mange punkter er ikke i seg selv et bevis på en matematisk grense. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Numerisk nærhet i mange punkter er ikke i seg selv et bevis på en matematisk grense. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-01-3 bruker vit2-06-mit-linear-algebra og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat05-01-4",
+              "source_ids": [
+                "mat-src-12-mit-differential-equations",
+                "mat-src-17-mit-numerical-analysis"
+              ],
+              "text": "Grenser og konvergens: Når grenser og konvergens anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Numerisk nærhet i mange punkter er ikke i seg selv et bevis på en matematisk grense. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Numerisk nærhet i mange punkter er ikke i seg selv et bevis på en matematisk grense. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-01-4 bruker mat-src-12-mit-differential-equations og mat-src-17-mit-numerical-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat05-01-1",
+            "mat05-01-2",
+            "mat05-01-3",
+            "mat05-01-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for grenser og konvergens.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Numerisk nærhet i mange punkter er ikke i seg selv et bevis på en matematisk grense."
+          ]
+        },
+        {
+          "id": "mat05-t02",
+          "title": "Kontinuitet",
+          "paragraphs": [
+            {
+              "claim_id": "mat05-02-1",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "mat-src-14-mit-topology"
+              ],
+              "text": "Kontinuitet: Kontinuitet kobler lokale grenseegenskaper til funksjonsverdier og støtter sentrale eksistens- og mellomverdisetninger. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Kontinuitet avhenger av topologien og domenet og må ikke reduseres til at en graf kan tegnes uten å løfte blyanten. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-02-1 bruker mat-src-11-mit-real-analysis og mat-src-14-mit-topology; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat05-02-2",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Kontinuitet: Ved arbeid med kontinuitet skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Kontinuitet kobler lokale grenseegenskaper til funksjonsverdier og støtter sentrale eksistens- og mellomverdisetninger. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Kontinuitet avhenger av topologien og domenet og må ikke reduseres til at en graf kan tegnes uten å løfte blyanten. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-02-2 bruker vit2-06-mit-linear-algebra og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat05-02-3",
+              "source_ids": [
+                "mat-src-12-mit-differential-equations",
+                "mat-src-17-mit-numerical-analysis"
+              ],
+              "text": "Kontinuitet: Gyldighetsgrensen er avgjørende: Kontinuitet avhenger av topologien og domenet og må ikke reduseres til at en graf kan tegnes uten å løfte blyanten. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Kontinuitet avhenger av topologien og domenet og må ikke reduseres til at en graf kan tegnes uten å løfte blyanten. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-02-3 bruker mat-src-12-mit-differential-equations og mat-src-17-mit-numerical-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat05-02-4",
+              "source_ids": [
+                "mat-src-14-mit-topology",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Kontinuitet: Når kontinuitet anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Kontinuitet avhenger av topologien og domenet og må ikke reduseres til at en graf kan tegnes uten å løfte blyanten. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Kontinuitet avhenger av topologien og domenet og må ikke reduseres til at en graf kan tegnes uten å løfte blyanten. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-02-4 bruker mat-src-14-mit-topology og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat05-02-1",
+            "mat05-02-2",
+            "mat05-02-3",
+            "mat05-02-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for kontinuitet.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Kontinuitet avhenger av topologien og domenet og må ikke reduseres til at en graf kan tegnes uten å løfte blyanten."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat05-m02",
+      "title": "Modul 2: Derivasjon og lokal linearisering og Middelverdisetninger",
+      "sections": [
+        {
+          "id": "mat05-t03",
+          "title": "Derivasjon og lokal linearisering",
+          "paragraphs": [
+            {
+              "claim_id": "mat05-03-1",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Derivasjon og lokal linearisering: Derivasjon beskriver lokal endring gjennom en grense av differansekvotienter og gir en lineær førsteordensapproksimasjon. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. At en derivert eksisterer i et punkt innebærer ikke at høyere deriverte eller en global lineær modell er gyldige. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-03-1 bruker vit2-06-mit-linear-algebra og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat05-03-2",
+              "source_ids": [
+                "mat-src-12-mit-differential-equations",
+                "mat-src-17-mit-numerical-analysis"
+              ],
+              "text": "Derivasjon og lokal linearisering: Ved arbeid med derivasjon og lokal linearisering skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Derivasjon beskriver lokal endring gjennom en grense av differansekvotienter og gir en lineær førsteordensapproksimasjon. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. At en derivert eksisterer i et punkt innebærer ikke at høyere deriverte eller en global lineær modell er gyldige. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-03-2 bruker mat-src-12-mit-differential-equations og mat-src-17-mit-numerical-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat05-03-3",
+              "source_ids": [
+                "mat-src-14-mit-topology",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Derivasjon og lokal linearisering: Gyldighetsgrensen er avgjørende: At en derivert eksisterer i et punkt innebærer ikke at høyere deriverte eller en global lineær modell er gyldige. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. At en derivert eksisterer i et punkt innebærer ikke at høyere deriverte eller en global lineær modell er gyldige. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-03-3 bruker mat-src-14-mit-topology og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat05-03-4",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "vit2-08-mit-calculus"
+              ],
+              "text": "Derivasjon og lokal linearisering: Når derivasjon og lokal linearisering anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. At en derivert eksisterer i et punkt innebærer ikke at høyere deriverte eller en global lineær modell er gyldige. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. At en derivert eksisterer i et punkt innebærer ikke at høyere deriverte eller en global lineær modell er gyldige. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-03-4 bruker mat-src-16-mit-probability-statistics og vit2-08-mit-calculus; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat05-03-1",
+            "mat05-03-2",
+            "mat05-03-3",
+            "mat05-03-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for derivasjon og lokal linearisering.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. At en derivert eksisterer i et punkt innebærer ikke at høyere deriverte eller en global lineær modell er gyldige."
+          ]
+        },
+        {
+          "id": "mat05-t04",
+          "title": "Middelverdisetninger",
+          "paragraphs": [
+            {
+              "claim_id": "mat05-04-1",
+              "source_ids": [
+                "mat-src-12-mit-differential-equations",
+                "mat-src-17-mit-numerical-analysis"
+              ],
+              "text": "Middelverdisetninger: Middelverdisetninger kobler lokale derivater til endringer over intervaller og gir kontroll over monotoni og feilgrenser. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Setningene krever eksplisitte regularitetsbetingelser som kontinuitet og deriverbarhet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-04-1 bruker mat-src-12-mit-differential-equations og mat-src-17-mit-numerical-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat05-04-2",
+              "source_ids": [
+                "mat-src-14-mit-topology",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Middelverdisetninger: Ved arbeid med middelverdisetninger skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Middelverdisetninger kobler lokale derivater til endringer over intervaller og gir kontroll over monotoni og feilgrenser. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Setningene krever eksplisitte regularitetsbetingelser som kontinuitet og deriverbarhet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-04-2 bruker mat-src-14-mit-topology og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat05-04-3",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "vit2-08-mit-calculus"
+              ],
+              "text": "Middelverdisetninger: Gyldighetsgrensen er avgjørende: Setningene krever eksplisitte regularitetsbetingelser som kontinuitet og deriverbarhet. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Setningene krever eksplisitte regularitetsbetingelser som kontinuitet og deriverbarhet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-04-3 bruker mat-src-16-mit-probability-statistics og vit2-08-mit-calculus; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat05-04-4",
+              "source_ids": [
+                "mat-src-17-mit-numerical-analysis",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Middelverdisetninger: Når middelverdisetninger anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Setningene krever eksplisitte regularitetsbetingelser som kontinuitet og deriverbarhet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Setningene krever eksplisitte regularitetsbetingelser som kontinuitet og deriverbarhet. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-04-4 bruker mat-src-17-mit-numerical-analysis og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat05-04-1",
+            "mat05-04-2",
+            "mat05-04-3",
+            "mat05-04-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for middelverdisetninger.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Setningene krever eksplisitte regularitetsbetingelser som kontinuitet og deriverbarhet."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat05-m03",
+      "title": "Modul 3: Riemann-integrasjon og Analysens fundamentalteorem",
+      "sections": [
+        {
+          "id": "mat05-t05",
+          "title": "Riemann-integrasjon",
+          "paragraphs": [
+            {
+              "claim_id": "mat05-05-1",
+              "source_ids": [
+                "mat-src-14-mit-topology",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Riemann-integrasjon: Riemann-integralet formaliserer akkumulert størrelse som grensen av summer over finere partisjoner. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En integralverdi er en matematisk akkumulering; fysisk tolkning krever i tillegg en modell av hva integranden og variabelen representerer. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-05-1 bruker mat-src-14-mit-topology og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat05-05-2",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "vit2-08-mit-calculus"
+              ],
+              "text": "Riemann-integrasjon: Ved arbeid med riemann-integrasjon skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Riemann-integralet formaliserer akkumulert størrelse som grensen av summer over finere partisjoner. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En integralverdi er en matematisk akkumulering; fysisk tolkning krever i tillegg en modell av hva integranden og variabelen representerer. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-05-2 bruker mat-src-16-mit-probability-statistics og vit2-08-mit-calculus; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat05-05-3",
+              "source_ids": [
+                "mat-src-17-mit-numerical-analysis",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Riemann-integrasjon: Gyldighetsgrensen er avgjørende: En integralverdi er en matematisk akkumulering; fysisk tolkning krever i tillegg en modell av hva integranden og variabelen representerer. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En integralverdi er en matematisk akkumulering; fysisk tolkning krever i tillegg en modell av hva integranden og variabelen representerer. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-05-3 bruker mat-src-17-mit-numerical-analysis og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat05-05-4",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Riemann-integrasjon: Når riemann-integrasjon anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En integralverdi er en matematisk akkumulering; fysisk tolkning krever i tillegg en modell av hva integranden og variabelen representerer. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En integralverdi er en matematisk akkumulering; fysisk tolkning krever i tillegg en modell av hva integranden og variabelen representerer. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-05-4 bruker vit2-05-mit-discrete og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat05-05-1",
+            "mat05-05-2",
+            "mat05-05-3",
+            "mat05-05-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for riemann-integrasjon.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. En integralverdi er en matematisk akkumulering; fysisk tolkning krever i tillegg en modell av hva integranden og variabelen representerer."
+          ]
+        },
+        {
+          "id": "mat05-t06",
+          "title": "Analysens fundamentalteorem",
+          "paragraphs": [
+            {
+              "claim_id": "mat05-06-1",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "vit2-08-mit-calculus"
+              ],
+              "text": "Analysens fundamentalteorem: Fundamentalteoremet kobler derivasjon og integrasjon under passende regularitetsbetingelser. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Sammenhengen gjelder ikke uten videre for vilkårlige funksjoner eller generaliserte integraler. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-06-1 bruker mat-src-16-mit-probability-statistics og vit2-08-mit-calculus; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat05-06-2",
+              "source_ids": [
+                "mat-src-17-mit-numerical-analysis",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Analysens fundamentalteorem: Ved arbeid med analysens fundamentalteorem skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Fundamentalteoremet kobler derivasjon og integrasjon under passende regularitetsbetingelser. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Sammenhengen gjelder ikke uten videre for vilkårlige funksjoner eller generaliserte integraler. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-06-2 bruker mat-src-17-mit-numerical-analysis og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat05-06-3",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Analysens fundamentalteorem: Gyldighetsgrensen er avgjørende: Sammenhengen gjelder ikke uten videre for vilkårlige funksjoner eller generaliserte integraler. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Sammenhengen gjelder ikke uten videre for vilkårlige funksjoner eller generaliserte integraler. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-06-3 bruker vit2-05-mit-discrete og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat05-06-4",
+              "source_ids": [
+                "vit2-08-mit-calculus",
+                "mat-src-12-mit-differential-equations"
+              ],
+              "text": "Analysens fundamentalteorem: Når analysens fundamentalteorem anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Sammenhengen gjelder ikke uten videre for vilkårlige funksjoner eller generaliserte integraler. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Sammenhengen gjelder ikke uten videre for vilkårlige funksjoner eller generaliserte integraler. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-06-4 bruker vit2-08-mit-calculus og mat-src-12-mit-differential-equations; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat05-06-1",
+            "mat05-06-2",
+            "mat05-06-3",
+            "mat05-06-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for analysens fundamentalteorem.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Sammenhengen gjelder ikke uten videre for vilkårlige funksjoner eller generaliserte integraler."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat05-m04",
+      "title": "Modul 4: Følger og funksjonsrekker og Eksakt analyse og numerisk approksimasjon",
+      "sections": [
+        {
+          "id": "mat05-t07",
+          "title": "Følger og funksjonsrekker",
+          "paragraphs": [
+            {
+              "claim_id": "mat05-07-1",
+              "source_ids": [
+                "mat-src-17-mit-numerical-analysis",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Følger og funksjonsrekker: Punktvis og uniform konvergens skiller ulike måter funksjonsfølger kan nærme seg en grensefunksjon på. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Punktvis konvergens alene bevarer ikke nødvendigvis kontinuitet, integrasjon eller derivasjon. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-07-1 bruker mat-src-17-mit-numerical-analysis og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat05-07-2",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Følger og funksjonsrekker: Ved arbeid med følger og funksjonsrekker skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Punktvis og uniform konvergens skiller ulike måter funksjonsfølger kan nærme seg en grensefunksjon på. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Punktvis konvergens alene bevarer ikke nødvendigvis kontinuitet, integrasjon eller derivasjon. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-07-2 bruker vit2-05-mit-discrete og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat05-07-3",
+              "source_ids": [
+                "vit2-08-mit-calculus",
+                "mat-src-12-mit-differential-equations"
+              ],
+              "text": "Følger og funksjonsrekker: Gyldighetsgrensen er avgjørende: Punktvis konvergens alene bevarer ikke nødvendigvis kontinuitet, integrasjon eller derivasjon. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Punktvis konvergens alene bevarer ikke nødvendigvis kontinuitet, integrasjon eller derivasjon. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-07-3 bruker vit2-08-mit-calculus og mat-src-12-mit-differential-equations; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat05-07-4",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "mat-src-14-mit-topology"
+              ],
+              "text": "Følger og funksjonsrekker: Når følger og funksjonsrekker anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Punktvis konvergens alene bevarer ikke nødvendigvis kontinuitet, integrasjon eller derivasjon. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Punktvis konvergens alene bevarer ikke nødvendigvis kontinuitet, integrasjon eller derivasjon. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-07-4 bruker mat-src-11-mit-real-analysis og mat-src-14-mit-topology; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat05-07-1",
+            "mat05-07-2",
+            "mat05-07-3",
+            "mat05-07-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for følger og funksjonsrekker.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Punktvis konvergens alene bevarer ikke nødvendigvis kontinuitet, integrasjon eller derivasjon."
+          ]
+        },
+        {
+          "id": "mat05-t08",
+          "title": "Eksakt analyse og numerisk approksimasjon",
+          "paragraphs": [
+            {
+              "claim_id": "mat05-08-1",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Eksakt analyse og numerisk approksimasjon: Analytiske resultater kan gi eksakte egenskaper mens numeriske metoder approksimerer verdier med eksplisitte diskretiserings- og avrundingsfeil. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En numerisk verdi med mange sifre er ikke et bevis på eksakt likhet eller en kontrollert feilgrense. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-08-1 bruker vit2-05-mit-discrete og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat05-08-2",
+              "source_ids": [
+                "vit2-08-mit-calculus",
+                "mat-src-12-mit-differential-equations"
+              ],
+              "text": "Eksakt analyse og numerisk approksimasjon: Ved arbeid med eksakt analyse og numerisk approksimasjon skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Analytiske resultater kan gi eksakte egenskaper mens numeriske metoder approksimerer verdier med eksplisitte diskretiserings- og avrundingsfeil. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En numerisk verdi med mange sifre er ikke et bevis på eksakt likhet eller en kontrollert feilgrense. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-08-2 bruker vit2-08-mit-calculus og mat-src-12-mit-differential-equations; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat05-08-3",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "mat-src-14-mit-topology"
+              ],
+              "text": "Eksakt analyse og numerisk approksimasjon: Gyldighetsgrensen er avgjørende: En numerisk verdi med mange sifre er ikke et bevis på eksakt likhet eller en kontrollert feilgrense. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En numerisk verdi med mange sifre er ikke et bevis på eksakt likhet eller en kontrollert feilgrense. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-08-3 bruker mat-src-11-mit-real-analysis og mat-src-14-mit-topology; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat05-08-4",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Eksakt analyse og numerisk approksimasjon: Når eksakt analyse og numerisk approksimasjon anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En numerisk verdi med mange sifre er ikke et bevis på eksakt likhet eller en kontrollert feilgrense. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En numerisk verdi med mange sifre er ikke et bevis på eksakt likhet eller en kontrollert feilgrense. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat05-08-4 bruker vit2-06-mit-linear-algebra og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat05-08-1",
+            "mat05-08-2",
+            "mat05-08-3",
+            "mat05-08-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for eksakt analyse og numerisk approksimasjon.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. En numerisk verdi med mange sifre er ikke et bevis på eksakt likhet eller en kontrollert feilgrense."
+          ]
+        }
+      ]
+    }
+  ],
+  "assessment": {
+    "questions": [
+      {
+        "id": "mat05-q01",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer grenser og konvergens?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat05-t01"
+      },
+      {
+        "id": "mat05-q02",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer kontinuitet?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat05-t02"
+      },
+      {
+        "id": "mat05-q03",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer derivasjon og lokal linearisering?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat05-t03"
+      },
+      {
+        "id": "mat05-q04",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer middelverdisetninger?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat05-t04"
+      },
+      {
+        "id": "mat05-q05",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer riemann-integrasjon?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat05-t05"
+      },
+      {
+        "id": "mat05-q06",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer analysens fundamentalteorem?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat05-t06"
+      },
+      {
+        "id": "mat05-q07",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer følger og funksjonsrekker?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat05-t07"
+      },
+      {
+        "id": "mat05-q08",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer eksakt analyse og numerisk approksimasjon?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat05-t08"
+      }
+    ],
+    "caseTasks": [
+      {
+        "id": "mat05-case01",
+        "prompt": "En analyse hevder at et resultat som kombinerer grenser og konvergens og derivasjon og lokal linearisering er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-08-mit-calculus",
+          "mat-src-16-mit-probability-statistics"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat05-case02",
+        "prompt": "En analyse hevder at et resultat som kombinerer kontinuitet og middelverdisetninger er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "mat-src-11-mit-real-analysis",
+          "mat-src-17-mit-numerical-analysis"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat05-case03",
+        "prompt": "En analyse hevder at et resultat som kombinerer derivasjon og lokal linearisering og riemann-integrasjon er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-06-mit-linear-algebra",
+          "vit2-05-mit-discrete"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat05-case04",
+        "prompt": "En analyse hevder at et resultat som kombinerer middelverdisetninger og analysens fundamentalteorem er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "mat-src-12-mit-differential-equations",
+          "vit2-08-mit-calculus"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat05-case05",
+        "prompt": "En analyse hevder at et resultat som kombinerer riemann-integrasjon og følger og funksjonsrekker er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "mat-src-14-mit-topology",
+          "mat-src-11-mit-real-analysis"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat05-case06",
+        "prompt": "En analyse hevder at et resultat som kombinerer analysens fundamentalteorem og eksakt analyse og numerisk approksimasjon er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "mat-src-16-mit-probability-statistics",
+          "vit2-06-mit-linear-algebra"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      }
+    ]
+  },
+  "qualityGuard": {
+    "formal_validity_vs_premise_truth_explicit": true,
+    "proof_vs_computation_explicit": true,
+    "object_vs_representation_explicit": true,
+    "theorem_prover_scope_explicit": true,
+    "exact_vs_numerical_approximation_explicit": true,
+    "continuous_vs_discrete_model_choice_explicit": true,
+    "probability_model_vs_empirical_frequency_explicit": true,
+    "optimization_objective_vs_real_goal_explicit": true,
+    "empirical_model_adequacy_separate": true,
+    "source_trace_required": true,
+    "strict_domain_materialized": true
+  },
+  "reuse_provenance": {
+    "strict_upgrade": false,
+    "rule": "Nytt canonicalt Matematikk-felt; eksisterende naboinnhold teller ikke som materialisert uten denne strict-pakken."
+  }
+}

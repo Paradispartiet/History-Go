@@ -1,0 +1,1129 @@
+{
+  "schema": "history_go_fagverk_matematikk_strict_domain_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-09-02",
+  "subject": "vitenskap",
+  "subject_id": "vitenskap",
+  "canonical_subcategory_id": "matematikk",
+  "ordinal": 12,
+  "domain_id": "matematisk_modellering_anvendelser_usikkerhet",
+  "id": "matematisk-modellering-anvendelser-usikkerhet",
+  "chapter_id": "matematisk-modellering-anvendelser-usikkerhet",
+  "title": "Matematisk modellering, anvendelser og modellusikkerhet",
+  "subtitle": "Strict Matematikk-felt 12 av 12: source-first, fulltekst, claims, vurderinger og case",
+  "lead": "Matematisk modellering, anvendelser og modellusikkerhet er materialisert som et selvstendig felt i Matematikk-registeret med eksplisitte definisjoner, beviskjeder, objekt–representasjon-skille, numerisk feilkontroll og en tydelig grense mellom matematisk korrekthet og empirisk modelladekvathet.",
+  "source_registry": "data/fag/vitenskap/matematikk/source_registry_v1.json",
+  "source_first": {
+    "status": "pass",
+    "source_ids": [
+      "vit2-06-mit-linear-algebra",
+      "vit2-08-mit-calculus",
+      "mat-src-11-mit-real-analysis",
+      "mat-src-12-mit-differential-equations",
+      "mat-src-15-mit-optimization",
+      "mat-src-16-mit-probability-statistics",
+      "mat-src-17-mit-numerical-analysis",
+      "vit2-05-mit-discrete"
+    ],
+    "topic_briefs": [
+      {
+        "id": "mat12-t01",
+        "title": "Fra fenomen til variabler og relasjoner",
+        "core": "Matematisk modellering begynner med å velge hvilke størrelser, tilstander og relasjoner som skal representere et problem.",
+        "boundary": "Det som utelates av modellen kan være like viktig som det som formaliseres, og valgene må begrunnes eksternt.",
+        "planned_claim_ids": [
+          "mat12-01-1",
+          "mat12-01-2",
+          "mat12-01-3",
+          "mat12-01-4"
+        ]
+      },
+      {
+        "id": "mat12-t02",
+        "title": "Antakelser og idealiseringer",
+        "core": "Antakelser som linearitet, kontinuitet, uavhengighet eller homogenitet gjør problemer analyserbare og avgrenser samtidig modellens gyldighet.",
+        "boundary": "En matematisk konsekvens kan være eksakt selv om idealiseringen som knytter den til verden er svak.",
+        "planned_claim_ids": [
+          "mat12-02-1",
+          "mat12-02-2",
+          "mat12-02-3",
+          "mat12-02-4"
+        ]
+      },
+      {
+        "id": "mat12-t03",
+        "title": "Parameterisering og identifiserbarhet",
+        "core": "Parametre kan estimeres eller velges for å koble modellstruktur til data, men identifiserbarhet avgjør om ulike parameterverdier kan skilles fra observasjonene.",
+        "boundary": "God tilpasning alene viser ikke at parametrene eller mekanismen er entydig bestemt.",
+        "planned_claim_ids": [
+          "mat12-03-1",
+          "mat12-03-2",
+          "mat12-03-3",
+          "mat12-03-4"
+        ]
+      },
+      {
+        "id": "mat12-t04",
+        "title": "Skala, dimensjonsløse størrelser og reduksjon",
+        "core": "Skalering og dimensjonsløse variable kan synliggjøre dominante forhold og redusere antall effektive parametre i modeller.",
+        "boundary": "En skaleringsreduksjon er gyldig bare i det regime der de neglisjerte leddene faktisk er små.",
+        "planned_claim_ids": [
+          "mat12-04-1",
+          "mat12-04-2",
+          "mat12-04-3",
+          "mat12-04-4"
+        ]
+      },
+      {
+        "id": "mat12-t05",
+        "title": "Validering mot data",
+        "core": "En anvendt modell må sammenholdes med observasjoner eller data som ikke bare har bestemt modellens parametre dersom den skal vurderes empirisk.",
+        "boundary": "Formell korrekthet eller høy tilpasning på treningsdata er ikke uavhengig modellvalidering.",
+        "planned_claim_ids": [
+          "mat12-05-1",
+          "mat12-05-2",
+          "mat12-05-3",
+          "mat12-05-4"
+        ]
+      },
+      {
+        "id": "mat12-t06",
+        "title": "Sensitivitet og usikkerhetspropagasjon",
+        "core": "Sensitivitetsanalyse undersøker hvordan resultater endres når parametre, initialbetingelser eller data varierer, og kan kobles til usikkerhetspropagasjon.",
+        "boundary": "Usikkerhet i modellstruktur kan ikke alltid reduseres til parameterstandardavvik.",
+        "planned_claim_ids": [
+          "mat12-06-1",
+          "mat12-06-2",
+          "mat12-06-3",
+          "mat12-06-4"
+        ]
+      },
+      {
+        "id": "mat12-t07",
+        "title": "Alternative modeller og modellvalg",
+        "core": "Flere matematiske modeller kan forklare samme datasett, og sammenligning krever kriterier som prediksjon, enkelhet, robusthet og faglig plausibilitet.",
+        "boundary": "Én best score under ett kriterium gjør ikke en modell sann eller universelt best.",
+        "planned_claim_ids": [
+          "mat12-07-1",
+          "mat12-07-2",
+          "mat12-07-3",
+          "mat12-07-4"
+        ]
+      },
+      {
+        "id": "mat12-t08",
+        "title": "Beslutninger, optimalisering og normative valg",
+        "core": "Når modeller brukes til beslutninger kobles matematiske mål, begrensninger og usikkerhet til verdier eller prioriteringer som ligger utenfor den rene matematikken.",
+        "boundary": "En optimal løsning er bare optimal relativt til den formaliserte objektfunksjonen, begrensningene og usikkerhetsmodellen.",
+        "planned_claim_ids": [
+          "mat12-08-1",
+          "mat12-08-2",
+          "mat12-08-3",
+          "mat12-08-4"
+        ]
+      }
+    ],
+    "minimum_sources": 8,
+    "claim_level_trace": true,
+    "no_decorative_sources": true
+  },
+  "verifiedClaims": [
+    {
+      "id": "mat12-01-1",
+      "topic_id": "mat12-t01",
+      "classification": "formal_structure",
+      "claim": "Matematisk modellering begynner med å velge hvilke størrelser, tilstander og relasjoner som skal representere et problem. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-12-mit-differential-equations"
+      ]
+    },
+    {
+      "id": "mat12-01-2",
+      "topic_id": "mat12-t01",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med fra fenomen til variabler og relasjoner skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Matematisk modellering begynner med å velge hvilke størrelser, tilstander og relasjoner som skal representere et problem. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-08-mit-calculus",
+        "mat-src-15-mit-optimization"
+      ]
+    },
+    {
+      "id": "mat12-01-3",
+      "topic_id": "mat12-t01",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Det som utelates av modellen kan være like viktig som det som formaliseres, og valgene må begrunnes eksternt. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat12-01-4",
+      "topic_id": "mat12-t01",
+      "classification": "application",
+      "claim": "Når fra fenomen til variabler og relasjoner anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Det som utelates av modellen kan være like viktig som det som formaliseres, og valgene må begrunnes eksternt.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-12-mit-differential-equations",
+        "mat-src-17-mit-numerical-analysis"
+      ]
+    },
+    {
+      "id": "mat12-02-1",
+      "topic_id": "mat12-t02",
+      "classification": "formal_structure",
+      "claim": "Antakelser som linearitet, kontinuitet, uavhengighet eller homogenitet gjør problemer analyserbare og avgrenser samtidig modellens gyldighet. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-08-mit-calculus",
+        "mat-src-15-mit-optimization"
+      ]
+    },
+    {
+      "id": "mat12-02-2",
+      "topic_id": "mat12-t02",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med antakelser og idealiseringer skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Antakelser som linearitet, kontinuitet, uavhengighet eller homogenitet gjør problemer analyserbare og avgrenser samtidig modellens gyldighet. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat12-02-3",
+      "topic_id": "mat12-t02",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: En matematisk konsekvens kan være eksakt selv om idealiseringen som knytter den til verden er svak. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-12-mit-differential-equations",
+        "mat-src-17-mit-numerical-analysis"
+      ]
+    },
+    {
+      "id": "mat12-02-4",
+      "topic_id": "mat12-t02",
+      "classification": "application",
+      "claim": "Når antakelser og idealiseringer anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En matematisk konsekvens kan være eksakt selv om idealiseringen som knytter den til verden er svak.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-15-mit-optimization",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat12-03-1",
+      "topic_id": "mat12-t03",
+      "classification": "formal_structure",
+      "claim": "Parametre kan estimeres eller velges for å koble modellstruktur til data, men identifiserbarhet avgjør om ulike parameterverdier kan skilles fra observasjonene. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    },
+    {
+      "id": "mat12-03-2",
+      "topic_id": "mat12-t03",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med parameterisering og identifiserbarhet skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Parametre kan estimeres eller velges for å koble modellstruktur til data, men identifiserbarhet avgjør om ulike parameterverdier kan skilles fra observasjonene. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-12-mit-differential-equations",
+        "mat-src-17-mit-numerical-analysis"
+      ]
+    },
+    {
+      "id": "mat12-03-3",
+      "topic_id": "mat12-t03",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: God tilpasning alene viser ikke at parametrene eller mekanismen er entydig bestemt. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-15-mit-optimization",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat12-03-4",
+      "topic_id": "mat12-t03",
+      "classification": "application",
+      "claim": "Når parameterisering og identifiserbarhet anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. God tilpasning alene viser ikke at parametrene eller mekanismen er entydig bestemt.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat12-04-1",
+      "topic_id": "mat12-t04",
+      "classification": "formal_structure",
+      "claim": "Skalering og dimensjonsløse variable kan synliggjøre dominante forhold og redusere antall effektive parametre i modeller. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-12-mit-differential-equations",
+        "mat-src-17-mit-numerical-analysis"
+      ]
+    },
+    {
+      "id": "mat12-04-2",
+      "topic_id": "mat12-t04",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med skala, dimensjonsløse størrelser og reduksjon skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Skalering og dimensjonsløse variable kan synliggjøre dominante forhold og redusere antall effektive parametre i modeller. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-15-mit-optimization",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat12-04-3",
+      "topic_id": "mat12-t04",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: En skaleringsreduksjon er gyldig bare i det regime der de neglisjerte leddene faktisk er små. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat12-04-4",
+      "topic_id": "mat12-t04",
+      "classification": "application",
+      "claim": "Når skala, dimensjonsløse størrelser og reduksjon anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En skaleringsreduksjon er gyldig bare i det regime der de neglisjerte leddene faktisk er små.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-17-mit-numerical-analysis",
+        "vit2-08-mit-calculus"
+      ]
+    },
+    {
+      "id": "mat12-05-1",
+      "topic_id": "mat12-t05",
+      "classification": "formal_structure",
+      "claim": "En anvendt modell må sammenholdes med observasjoner eller data som ikke bare har bestemt modellens parametre dersom den skal vurderes empirisk. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-15-mit-optimization",
+        "vit2-05-mit-discrete"
+      ]
+    },
+    {
+      "id": "mat12-05-2",
+      "topic_id": "mat12-t05",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med validering mot data skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. En anvendt modell må sammenholdes med observasjoner eller data som ikke bare har bestemt modellens parametre dersom den skal vurderes empirisk. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat12-05-3",
+      "topic_id": "mat12-t05",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Formell korrekthet eller høy tilpasning på treningsdata er ikke uavhengig modellvalidering. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-17-mit-numerical-analysis",
+        "vit2-08-mit-calculus"
+      ]
+    },
+    {
+      "id": "mat12-05-4",
+      "topic_id": "mat12-t05",
+      "classification": "application",
+      "claim": "Når validering mot data anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Formell korrekthet eller høy tilpasning på treningsdata er ikke uavhengig modellvalidering.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat12-06-1",
+      "topic_id": "mat12-t06",
+      "classification": "formal_structure",
+      "claim": "Sensitivitetsanalyse undersøker hvordan resultater endres når parametre, initialbetingelser eller data varierer, og kan kobles til usikkerhetspropagasjon. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-16-mit-probability-statistics",
+        "vit2-06-mit-linear-algebra"
+      ]
+    },
+    {
+      "id": "mat12-06-2",
+      "topic_id": "mat12-t06",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med sensitivitet og usikkerhetspropagasjon skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Sensitivitetsanalyse undersøker hvordan resultater endres når parametre, initialbetingelser eller data varierer, og kan kobles til usikkerhetspropagasjon. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-17-mit-numerical-analysis",
+        "vit2-08-mit-calculus"
+      ]
+    },
+    {
+      "id": "mat12-06-3",
+      "topic_id": "mat12-t06",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Usikkerhet i modellstruktur kan ikke alltid reduseres til parameterstandardavvik. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat12-06-4",
+      "topic_id": "mat12-t06",
+      "classification": "application",
+      "claim": "Når sensitivitet og usikkerhetspropagasjon anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Usikkerhet i modellstruktur kan ikke alltid reduseres til parameterstandardavvik.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-12-mit-differential-equations"
+      ]
+    },
+    {
+      "id": "mat12-07-1",
+      "topic_id": "mat12-t07",
+      "classification": "formal_structure",
+      "claim": "Flere matematiske modeller kan forklare samme datasett, og sammenligning krever kriterier som prediksjon, enkelhet, robusthet og faglig plausibilitet. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-17-mit-numerical-analysis",
+        "vit2-08-mit-calculus"
+      ]
+    },
+    {
+      "id": "mat12-07-2",
+      "topic_id": "mat12-t07",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med alternative modeller og modellvalg skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Flere matematiske modeller kan forklare samme datasett, og sammenligning krever kriterier som prediksjon, enkelhet, robusthet og faglig plausibilitet. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat12-07-3",
+      "topic_id": "mat12-t07",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: Én best score under ett kriterium gjør ikke en modell sann eller universelt best. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-12-mit-differential-equations"
+      ]
+    },
+    {
+      "id": "mat12-07-4",
+      "topic_id": "mat12-t07",
+      "classification": "application",
+      "claim": "Når alternative modeller og modellvalg anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Én best score under ett kriterium gjør ikke en modell sann eller universelt best.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-08-mit-calculus",
+        "mat-src-15-mit-optimization"
+      ]
+    },
+    {
+      "id": "mat12-08-1",
+      "topic_id": "mat12-t08",
+      "classification": "formal_structure",
+      "claim": "Når modeller brukes til beslutninger kobles matematiske mål, begrensninger og usikkerhet til verdier eller prioriteringer som ligger utenfor den rene matematikken. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-05-mit-discrete",
+        "mat-src-11-mit-real-analysis"
+      ]
+    },
+    {
+      "id": "mat12-08-2",
+      "topic_id": "mat12-t08",
+      "classification": "proof_or_computation",
+      "claim": "Ved arbeid med beslutninger, optimalisering og normative valg skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Når modeller brukes til beslutninger kobles matematiske mål, begrensninger og usikkerhet til verdier eller prioriteringer som ligger utenfor den rene matematikken. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-06-mit-linear-algebra",
+        "mat-src-12-mit-differential-equations"
+      ]
+    },
+    {
+      "id": "mat12-08-3",
+      "topic_id": "mat12-t08",
+      "classification": "boundary",
+      "claim": "Gyldighetsgrensen er avgjørende: En optimal løsning er bare optimal relativt til den formaliserte objektfunksjonen, begrensningene og usikkerhetsmodellen. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "vit2-08-mit-calculus",
+        "mat-src-15-mit-optimization"
+      ]
+    },
+    {
+      "id": "mat12-08-4",
+      "topic_id": "mat12-t08",
+      "classification": "application",
+      "claim": "Når beslutninger, optimalisering og normative valg anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En optimal løsning er bare optimal relativt til den formaliserte objektfunksjonen, begrensningene og usikkerhetsmodellen.",
+      "status": "verified",
+      "verified_at": "2026-09-02",
+      "source_ids": [
+        "mat-src-11-mit-real-analysis",
+        "mat-src-16-mit-probability-statistics"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "mat12-m01",
+      "title": "Modul 1: Fra fenomen til variabler og relasjoner og Antakelser og idealiseringer",
+      "sections": [
+        {
+          "id": "mat12-t01",
+          "title": "Fra fenomen til variabler og relasjoner",
+          "paragraphs": [
+            {
+              "claim_id": "mat12-01-1",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-12-mit-differential-equations"
+              ],
+              "text": "Fra fenomen til variabler og relasjoner: Matematisk modellering begynner med å velge hvilke størrelser, tilstander og relasjoner som skal representere et problem. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Det som utelates av modellen kan være like viktig som det som formaliseres, og valgene må begrunnes eksternt. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-01-1 bruker vit2-06-mit-linear-algebra og mat-src-12-mit-differential-equations; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat12-01-2",
+              "source_ids": [
+                "vit2-08-mit-calculus",
+                "mat-src-15-mit-optimization"
+              ],
+              "text": "Fra fenomen til variabler og relasjoner: Ved arbeid med fra fenomen til variabler og relasjoner skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Matematisk modellering begynner med å velge hvilke størrelser, tilstander og relasjoner som skal representere et problem. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Det som utelates av modellen kan være like viktig som det som formaliseres, og valgene må begrunnes eksternt. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-01-2 bruker vit2-08-mit-calculus og mat-src-15-mit-optimization; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat12-01-3",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Fra fenomen til variabler og relasjoner: Gyldighetsgrensen er avgjørende: Det som utelates av modellen kan være like viktig som det som formaliseres, og valgene må begrunnes eksternt. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Det som utelates av modellen kan være like viktig som det som formaliseres, og valgene må begrunnes eksternt. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-01-3 bruker mat-src-11-mit-real-analysis og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat12-01-4",
+              "source_ids": [
+                "mat-src-12-mit-differential-equations",
+                "mat-src-17-mit-numerical-analysis"
+              ],
+              "text": "Fra fenomen til variabler og relasjoner: Når fra fenomen til variabler og relasjoner anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Det som utelates av modellen kan være like viktig som det som formaliseres, og valgene må begrunnes eksternt. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Det som utelates av modellen kan være like viktig som det som formaliseres, og valgene må begrunnes eksternt. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-01-4 bruker mat-src-12-mit-differential-equations og mat-src-17-mit-numerical-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat12-01-1",
+            "mat12-01-2",
+            "mat12-01-3",
+            "mat12-01-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for fra fenomen til variabler og relasjoner.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Det som utelates av modellen kan være like viktig som det som formaliseres, og valgene må begrunnes eksternt."
+          ]
+        },
+        {
+          "id": "mat12-t02",
+          "title": "Antakelser og idealiseringer",
+          "paragraphs": [
+            {
+              "claim_id": "mat12-02-1",
+              "source_ids": [
+                "vit2-08-mit-calculus",
+                "mat-src-15-mit-optimization"
+              ],
+              "text": "Antakelser og idealiseringer: Antakelser som linearitet, kontinuitet, uavhengighet eller homogenitet gjør problemer analyserbare og avgrenser samtidig modellens gyldighet. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En matematisk konsekvens kan være eksakt selv om idealiseringen som knytter den til verden er svak. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-02-1 bruker vit2-08-mit-calculus og mat-src-15-mit-optimization; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat12-02-2",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Antakelser og idealiseringer: Ved arbeid med antakelser og idealiseringer skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Antakelser som linearitet, kontinuitet, uavhengighet eller homogenitet gjør problemer analyserbare og avgrenser samtidig modellens gyldighet. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En matematisk konsekvens kan være eksakt selv om idealiseringen som knytter den til verden er svak. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-02-2 bruker mat-src-11-mit-real-analysis og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat12-02-3",
+              "source_ids": [
+                "mat-src-12-mit-differential-equations",
+                "mat-src-17-mit-numerical-analysis"
+              ],
+              "text": "Antakelser og idealiseringer: Gyldighetsgrensen er avgjørende: En matematisk konsekvens kan være eksakt selv om idealiseringen som knytter den til verden er svak. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En matematisk konsekvens kan være eksakt selv om idealiseringen som knytter den til verden er svak. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-02-3 bruker mat-src-12-mit-differential-equations og mat-src-17-mit-numerical-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat12-02-4",
+              "source_ids": [
+                "mat-src-15-mit-optimization",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Antakelser og idealiseringer: Når antakelser og idealiseringer anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En matematisk konsekvens kan være eksakt selv om idealiseringen som knytter den til verden er svak. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En matematisk konsekvens kan være eksakt selv om idealiseringen som knytter den til verden er svak. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-02-4 bruker mat-src-15-mit-optimization og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat12-02-1",
+            "mat12-02-2",
+            "mat12-02-3",
+            "mat12-02-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for antakelser og idealiseringer.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. En matematisk konsekvens kan være eksakt selv om idealiseringen som knytter den til verden er svak."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat12-m02",
+      "title": "Modul 2: Parameterisering og identifiserbarhet og Skala, dimensjonsløse størrelser og reduksjon",
+      "sections": [
+        {
+          "id": "mat12-t03",
+          "title": "Parameterisering og identifiserbarhet",
+          "paragraphs": [
+            {
+              "claim_id": "mat12-03-1",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Parameterisering og identifiserbarhet: Parametre kan estimeres eller velges for å koble modellstruktur til data, men identifiserbarhet avgjør om ulike parameterverdier kan skilles fra observasjonene. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. God tilpasning alene viser ikke at parametrene eller mekanismen er entydig bestemt. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-03-1 bruker mat-src-11-mit-real-analysis og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat12-03-2",
+              "source_ids": [
+                "mat-src-12-mit-differential-equations",
+                "mat-src-17-mit-numerical-analysis"
+              ],
+              "text": "Parameterisering og identifiserbarhet: Ved arbeid med parameterisering og identifiserbarhet skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Parametre kan estimeres eller velges for å koble modellstruktur til data, men identifiserbarhet avgjør om ulike parameterverdier kan skilles fra observasjonene. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. God tilpasning alene viser ikke at parametrene eller mekanismen er entydig bestemt. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-03-2 bruker mat-src-12-mit-differential-equations og mat-src-17-mit-numerical-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat12-03-3",
+              "source_ids": [
+                "mat-src-15-mit-optimization",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Parameterisering og identifiserbarhet: Gyldighetsgrensen er avgjørende: God tilpasning alene viser ikke at parametrene eller mekanismen er entydig bestemt. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. God tilpasning alene viser ikke at parametrene eller mekanismen er entydig bestemt. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-03-3 bruker mat-src-15-mit-optimization og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat12-03-4",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Parameterisering og identifiserbarhet: Når parameterisering og identifiserbarhet anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. God tilpasning alene viser ikke at parametrene eller mekanismen er entydig bestemt. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. God tilpasning alene viser ikke at parametrene eller mekanismen er entydig bestemt. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-03-4 bruker mat-src-16-mit-probability-statistics og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat12-03-1",
+            "mat12-03-2",
+            "mat12-03-3",
+            "mat12-03-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for parameterisering og identifiserbarhet.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. God tilpasning alene viser ikke at parametrene eller mekanismen er entydig bestemt."
+          ]
+        },
+        {
+          "id": "mat12-t04",
+          "title": "Skala, dimensjonsløse størrelser og reduksjon",
+          "paragraphs": [
+            {
+              "claim_id": "mat12-04-1",
+              "source_ids": [
+                "mat-src-12-mit-differential-equations",
+                "mat-src-17-mit-numerical-analysis"
+              ],
+              "text": "Skala, dimensjonsløse størrelser og reduksjon: Skalering og dimensjonsløse variable kan synliggjøre dominante forhold og redusere antall effektive parametre i modeller. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En skaleringsreduksjon er gyldig bare i det regime der de neglisjerte leddene faktisk er små. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-04-1 bruker mat-src-12-mit-differential-equations og mat-src-17-mit-numerical-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat12-04-2",
+              "source_ids": [
+                "mat-src-15-mit-optimization",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Skala, dimensjonsløse størrelser og reduksjon: Ved arbeid med skala, dimensjonsløse størrelser og reduksjon skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Skalering og dimensjonsløse variable kan synliggjøre dominante forhold og redusere antall effektive parametre i modeller. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En skaleringsreduksjon er gyldig bare i det regime der de neglisjerte leddene faktisk er små. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-04-2 bruker mat-src-15-mit-optimization og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat12-04-3",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Skala, dimensjonsløse størrelser og reduksjon: Gyldighetsgrensen er avgjørende: En skaleringsreduksjon er gyldig bare i det regime der de neglisjerte leddene faktisk er små. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En skaleringsreduksjon er gyldig bare i det regime der de neglisjerte leddene faktisk er små. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-04-3 bruker mat-src-16-mit-probability-statistics og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat12-04-4",
+              "source_ids": [
+                "mat-src-17-mit-numerical-analysis",
+                "vit2-08-mit-calculus"
+              ],
+              "text": "Skala, dimensjonsløse størrelser og reduksjon: Når skala, dimensjonsløse størrelser og reduksjon anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En skaleringsreduksjon er gyldig bare i det regime der de neglisjerte leddene faktisk er små. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En skaleringsreduksjon er gyldig bare i det regime der de neglisjerte leddene faktisk er små. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-04-4 bruker mat-src-17-mit-numerical-analysis og vit2-08-mit-calculus; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat12-04-1",
+            "mat12-04-2",
+            "mat12-04-3",
+            "mat12-04-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for skala, dimensjonsløse størrelser og reduksjon.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. En skaleringsreduksjon er gyldig bare i det regime der de neglisjerte leddene faktisk er små."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat12-m03",
+      "title": "Modul 3: Validering mot data og Sensitivitet og usikkerhetspropagasjon",
+      "sections": [
+        {
+          "id": "mat12-t05",
+          "title": "Validering mot data",
+          "paragraphs": [
+            {
+              "claim_id": "mat12-05-1",
+              "source_ids": [
+                "mat-src-15-mit-optimization",
+                "vit2-05-mit-discrete"
+              ],
+              "text": "Validering mot data: En anvendt modell må sammenholdes med observasjoner eller data som ikke bare har bestemt modellens parametre dersom den skal vurderes empirisk. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Formell korrekthet eller høy tilpasning på treningsdata er ikke uavhengig modellvalidering. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-05-1 bruker mat-src-15-mit-optimization og vit2-05-mit-discrete; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat12-05-2",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Validering mot data: Ved arbeid med validering mot data skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. En anvendt modell må sammenholdes med observasjoner eller data som ikke bare har bestemt modellens parametre dersom den skal vurderes empirisk. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Formell korrekthet eller høy tilpasning på treningsdata er ikke uavhengig modellvalidering. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-05-2 bruker mat-src-16-mit-probability-statistics og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat12-05-3",
+              "source_ids": [
+                "mat-src-17-mit-numerical-analysis",
+                "vit2-08-mit-calculus"
+              ],
+              "text": "Validering mot data: Gyldighetsgrensen er avgjørende: Formell korrekthet eller høy tilpasning på treningsdata er ikke uavhengig modellvalidering. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Formell korrekthet eller høy tilpasning på treningsdata er ikke uavhengig modellvalidering. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-05-3 bruker mat-src-17-mit-numerical-analysis og vit2-08-mit-calculus; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat12-05-4",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Validering mot data: Når validering mot data anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Formell korrekthet eller høy tilpasning på treningsdata er ikke uavhengig modellvalidering. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Formell korrekthet eller høy tilpasning på treningsdata er ikke uavhengig modellvalidering. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-05-4 bruker vit2-05-mit-discrete og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat12-05-1",
+            "mat12-05-2",
+            "mat12-05-3",
+            "mat12-05-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for validering mot data.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Formell korrekthet eller høy tilpasning på treningsdata er ikke uavhengig modellvalidering."
+          ]
+        },
+        {
+          "id": "mat12-t06",
+          "title": "Sensitivitet og usikkerhetspropagasjon",
+          "paragraphs": [
+            {
+              "claim_id": "mat12-06-1",
+              "source_ids": [
+                "mat-src-16-mit-probability-statistics",
+                "vit2-06-mit-linear-algebra"
+              ],
+              "text": "Sensitivitet og usikkerhetspropagasjon: Sensitivitetsanalyse undersøker hvordan resultater endres når parametre, initialbetingelser eller data varierer, og kan kobles til usikkerhetspropagasjon. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Usikkerhet i modellstruktur kan ikke alltid reduseres til parameterstandardavvik. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-06-1 bruker mat-src-16-mit-probability-statistics og vit2-06-mit-linear-algebra; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat12-06-2",
+              "source_ids": [
+                "mat-src-17-mit-numerical-analysis",
+                "vit2-08-mit-calculus"
+              ],
+              "text": "Sensitivitet og usikkerhetspropagasjon: Ved arbeid med sensitivitet og usikkerhetspropagasjon skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Sensitivitetsanalyse undersøker hvordan resultater endres når parametre, initialbetingelser eller data varierer, og kan kobles til usikkerhetspropagasjon. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Usikkerhet i modellstruktur kan ikke alltid reduseres til parameterstandardavvik. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-06-2 bruker mat-src-17-mit-numerical-analysis og vit2-08-mit-calculus; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat12-06-3",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Sensitivitet og usikkerhetspropagasjon: Gyldighetsgrensen er avgjørende: Usikkerhet i modellstruktur kan ikke alltid reduseres til parameterstandardavvik. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Usikkerhet i modellstruktur kan ikke alltid reduseres til parameterstandardavvik. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-06-3 bruker vit2-05-mit-discrete og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat12-06-4",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-12-mit-differential-equations"
+              ],
+              "text": "Sensitivitet og usikkerhetspropagasjon: Når sensitivitet og usikkerhetspropagasjon anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Usikkerhet i modellstruktur kan ikke alltid reduseres til parameterstandardavvik. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Usikkerhet i modellstruktur kan ikke alltid reduseres til parameterstandardavvik. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-06-4 bruker vit2-06-mit-linear-algebra og mat-src-12-mit-differential-equations; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat12-06-1",
+            "mat12-06-2",
+            "mat12-06-3",
+            "mat12-06-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for sensitivitet og usikkerhetspropagasjon.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Usikkerhet i modellstruktur kan ikke alltid reduseres til parameterstandardavvik."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mat12-m04",
+      "title": "Modul 4: Alternative modeller og modellvalg og Beslutninger, optimalisering og normative valg",
+      "sections": [
+        {
+          "id": "mat12-t07",
+          "title": "Alternative modeller og modellvalg",
+          "paragraphs": [
+            {
+              "claim_id": "mat12-07-1",
+              "source_ids": [
+                "mat-src-17-mit-numerical-analysis",
+                "vit2-08-mit-calculus"
+              ],
+              "text": "Alternative modeller og modellvalg: Flere matematiske modeller kan forklare samme datasett, og sammenligning krever kriterier som prediksjon, enkelhet, robusthet og faglig plausibilitet. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Én best score under ett kriterium gjør ikke en modell sann eller universelt best. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-07-1 bruker mat-src-17-mit-numerical-analysis og vit2-08-mit-calculus; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat12-07-2",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Alternative modeller og modellvalg: Ved arbeid med alternative modeller og modellvalg skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Flere matematiske modeller kan forklare samme datasett, og sammenligning krever kriterier som prediksjon, enkelhet, robusthet og faglig plausibilitet. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Én best score under ett kriterium gjør ikke en modell sann eller universelt best. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-07-2 bruker vit2-05-mit-discrete og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat12-07-3",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-12-mit-differential-equations"
+              ],
+              "text": "Alternative modeller og modellvalg: Gyldighetsgrensen er avgjørende: Én best score under ett kriterium gjør ikke en modell sann eller universelt best. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Én best score under ett kriterium gjør ikke en modell sann eller universelt best. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-07-3 bruker vit2-06-mit-linear-algebra og mat-src-12-mit-differential-equations; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat12-07-4",
+              "source_ids": [
+                "vit2-08-mit-calculus",
+                "mat-src-15-mit-optimization"
+              ],
+              "text": "Alternative modeller og modellvalg: Når alternative modeller og modellvalg anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. Én best score under ett kriterium gjør ikke en modell sann eller universelt best. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. Én best score under ett kriterium gjør ikke en modell sann eller universelt best. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-07-4 bruker vit2-08-mit-calculus og mat-src-15-mit-optimization; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat12-07-1",
+            "mat12-07-2",
+            "mat12-07-3",
+            "mat12-07-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for alternative modeller og modellvalg.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. Én best score under ett kriterium gjør ikke en modell sann eller universelt best."
+          ]
+        },
+        {
+          "id": "mat12-t08",
+          "title": "Beslutninger, optimalisering og normative valg",
+          "paragraphs": [
+            {
+              "claim_id": "mat12-08-1",
+              "source_ids": [
+                "vit2-05-mit-discrete",
+                "mat-src-11-mit-real-analysis"
+              ],
+              "text": "Beslutninger, optimalisering og normative valg: Når modeller brukes til beslutninger kobles matematiske mål, begrensninger og usikkerhet til verdier eller prioriteringer som ligger utenfor den rene matematikken. En strict matematisk framstilling angir definisjoner, domene, kvantorer og forutsetninger eksplisitt slik at påstanden og den deduktive kjeden kan kontrolleres uavhengig av eksempler eller illustrasjoner. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En optimal løsning er bare optimal relativt til den formaliserte objektfunksjonen, begrensningene og usikkerhetsmodellen. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-08-1 bruker vit2-05-mit-discrete og mat-src-11-mit-real-analysis; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat12-08-2",
+              "source_ids": [
+                "vit2-06-mit-linear-algebra",
+                "mat-src-12-mit-differential-equations"
+              ],
+              "text": "Beslutninger, optimalisering og normative valg: Ved arbeid med beslutninger, optimalisering og normative valg skal bevis, symbolsk transformasjon og numerisk beregning holdes analytisk atskilt. Når modeller brukes til beslutninger kobles matematiske mål, begrensninger og usikkerhet til verdier eller prioriteringer som ligger utenfor den rene matematikken. En beregnet verdi eller en stor samling eksempler kan støtte utforskning, men erstatter ikke et universelt bevis. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En optimal løsning er bare optimal relativt til den formaliserte objektfunksjonen, begrensningene og usikkerhetsmodellen. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-08-2 bruker vit2-06-mit-linear-algebra og mat-src-12-mit-differential-equations; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat12-08-3",
+              "source_ids": [
+                "vit2-08-mit-calculus",
+                "mat-src-15-mit-optimization"
+              ],
+              "text": "Beslutninger, optimalisering og normative valg: Gyldighetsgrensen er avgjørende: En optimal løsning er bare optimal relativt til den formaliserte objektfunksjonen, begrensningene og usikkerhetsmodellen. Formell korrekthet må derfor skilles fra sannheten til premisser, valg av representasjon, numerisk approksimasjon og eventuell empirisk modelladekvathet. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En optimal løsning er bare optimal relativt til den formaliserte objektfunksjonen, begrensningene og usikkerhetsmodellen. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-08-3 bruker vit2-08-mit-calculus og mat-src-15-mit-optimization; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            },
+            {
+              "claim_id": "mat12-08-4",
+              "source_ids": [
+                "mat-src-11-mit-real-analysis",
+                "mat-src-16-mit-probability-statistics"
+              ],
+              "text": "Beslutninger, optimalisering og normative valg: Når beslutninger, optimalisering og normative valg anvendes utenfor det rent formelle problemet, må det dokumenteres hva de matematiske objektene representerer, hvilke idealiseringer som brukes og hvordan sensitivitet, approksimasjonsfeil eller alternative modeller utfordrer konklusjonen. En optimal løsning er bare optimal relativt til den formaliserte objektfunksjonen, begrensningene og usikkerhetsmodellen. Strict begrunnelseskjede: Først fastsettes de matematiske objektene, definisjonene, domenet og premissene. Deretter skilles objektet fra symbol-, koordinat-, graf- eller matriserepresentasjonen som brukes i argumentet. Dersom konklusjonen etableres ved bevis, skal hvert inferensledd kunne kontrolleres uavhengig av numeriske eksempler; dersom resultatet framkommer numerisk, skal diskretisering, kondisjonering, stoppkriterium og feilestimat gjøres synlige der dette er relevant. En optimal løsning er bare optimal relativt til den formaliserte objektfunksjonen, begrensningene og usikkerhetsmodellen. Ved anvendelser kommer et ekstra nivå: en matematisk modell må koble formelle variable til observerbare eller beslutningsrelevante størrelser, og denne koblingen trenger separat evidens, sensitivitetsanalyse og relevante alternative modeller. Et maskinsjekket teorem, en optimal løsning eller en numerisk beregning kan dermed være korrekt innenfor det formelle problemet uten at den valgte anvendelsen er empirisk eller normativt adekvat. Kildesporet for mat12-08-4 bruker mat-src-11-mit-real-analysis og mat-src-16-mit-probability-statistics; begge kildene inngår i argumentets faglige struktur og er ikke dekorative. Påstanden er verifisert 2. september 2026, og konklusjonen skal begrenses dersom premisser, representasjon, konvergensbetingelser eller modellkobling ikke er dokumentert."
+            }
+          ],
+          "paragraphClaimIds": [
+            "mat12-08-1",
+            "mat12-08-2",
+            "mat12-08-3",
+            "mat12-08-4"
+          ],
+          "analysisFrame": [
+            "Objekt → definisjoner/premisser → representasjon → bevis eller beregning for beslutninger, optimalisering og normative valg.",
+            "Gyldighetsområde → approksimasjon/alternativ → eventuell ekstern modelltest. En optimal løsning er bare optimal relativt til den formaliserte objektfunksjonen, begrensningene og usikkerhetsmodellen."
+          ]
+        }
+      ]
+    }
+  ],
+  "assessment": {
+    "questions": [
+      {
+        "id": "mat12-q01",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer fra fenomen til variabler og relasjoner?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat12-t01"
+      },
+      {
+        "id": "mat12-q02",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer antakelser og idealiseringer?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat12-t02"
+      },
+      {
+        "id": "mat12-q03",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer parameterisering og identifiserbarhet?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat12-t03"
+      },
+      {
+        "id": "mat12-q04",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer skala, dimensjonsløse størrelser og reduksjon?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat12-t04"
+      },
+      {
+        "id": "mat12-q05",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer validering mot data?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat12-t05"
+      },
+      {
+        "id": "mat12-q06",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer sensitivitet og usikkerhetspropagasjon?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat12-t06"
+      },
+      {
+        "id": "mat12-q07",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer alternative modeller og modellvalg?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat12-t07"
+      },
+      {
+        "id": "mat12-q08",
+        "question": "Hvilken arbeidsmåte er mest matematisk presis når du analyserer beslutninger, optimalisering og normative valg?",
+        "choices": [
+          "Angi definisjoner og premisser, skill bevis fra beregning og representasjon, og kontroller gyldighetsområde eller approksimasjonsfeil før anvendelse.",
+          "Kontroller mange eksempler og behandle mønsteret som et universelt bevis.",
+          "Velg en intuitiv figur og anta at alle egenskaper i figuren tilhører det abstrakte objektet.",
+          "Bruk god tilpasning til ett datasett som bevis for både teoremet og den empiriske modellen."
+        ],
+        "correctIndex": 0,
+        "topic_id": "mat12-t08"
+      }
+    ],
+    "caseTasks": [
+      {
+        "id": "mat12-case01",
+        "prompt": "En analyse hevder at et resultat som kombinerer fra fenomen til variabler og relasjoner og parameterisering og identifiserbarhet er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-06-mit-linear-algebra",
+          "mat-src-16-mit-probability-statistics"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat12-case02",
+        "prompt": "En analyse hevder at et resultat som kombinerer antakelser og idealiseringer og skala, dimensjonsløse størrelser og reduksjon er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "vit2-08-mit-calculus",
+          "mat-src-17-mit-numerical-analysis"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat12-case03",
+        "prompt": "En analyse hevder at et resultat som kombinerer parameterisering og identifiserbarhet og validering mot data er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "mat-src-11-mit-real-analysis",
+          "vit2-05-mit-discrete"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat12-case04",
+        "prompt": "En analyse hevder at et resultat som kombinerer skala, dimensjonsløse størrelser og reduksjon og sensitivitet og usikkerhetspropagasjon er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "mat-src-12-mit-differential-equations",
+          "vit2-06-mit-linear-algebra"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat12-case05",
+        "prompt": "En analyse hevder at et resultat som kombinerer validering mot data og alternative modeller og modellvalg er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "mat-src-15-mit-optimization",
+          "vit2-08-mit-calculus"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      },
+      {
+        "id": "mat12-case06",
+        "prompt": "En analyse hevder at et resultat som kombinerer sensitivitet og usikkerhetspropagasjon og beslutninger, optimalisering og normative valg er bevist og derfor også validert i en anvendelse. Rekonstruer premissene, avgjør hva som faktisk er bevist eller beregnet, identifiser representasjons- eller approksimasjonsleddet og angi hvilken separat test som kreves for anvendelsen.",
+        "source_ids": [
+          "mat-src-16-mit-probability-statistics",
+          "mat-src-11-mit-real-analysis"
+        ],
+        "rubric": [
+          "definisjoner, domene og premisser",
+          "bevis, beregning og representasjon",
+          "gyldighetsområde eller feilkontroll",
+          "modelladekvathet, alternativ og ekstern evidens"
+        ]
+      }
+    ]
+  },
+  "qualityGuard": {
+    "formal_validity_vs_premise_truth_explicit": true,
+    "proof_vs_computation_explicit": true,
+    "object_vs_representation_explicit": true,
+    "theorem_prover_scope_explicit": true,
+    "exact_vs_numerical_approximation_explicit": true,
+    "continuous_vs_discrete_model_choice_explicit": true,
+    "probability_model_vs_empirical_frequency_explicit": true,
+    "optimization_objective_vs_real_goal_explicit": true,
+    "empirical_model_adequacy_separate": true,
+    "source_trace_required": true,
+    "strict_domain_materialized": true
+  },
+  "reuse_provenance": {
+    "strict_upgrade": false,
+    "rule": "Nytt canonicalt Matematikk-felt; eksisterende naboinnhold teller ikke som materialisert uten denne strict-pakken."
+  }
+}
