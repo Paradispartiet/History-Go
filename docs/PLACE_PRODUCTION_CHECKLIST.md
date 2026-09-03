@@ -101,6 +101,7 @@ For `major`, `standard` og `focused` kan følgende aldri settes profil-N/A:
 - relevante emner og fungerende stedsspesifikk Fagverk-side;
 - bildeproveniens for publiserte bilder;
 - stående, stedstro `frontImage` når ordinær PlaceCard brukes;
+- dedikert QuizCard/flip-bakside for hvert ordinært PlaceCard, med eksisterende quizkort gjenbrukt når det allerede finnes;
 - Språkleksikon med minst ett reelt stedsspesifikt navne-/begrepsspor;
 - chronology/epoke-research og materialisering av kvalifiserte eksakte ankere;
 - relasjons-/own-place-audit;
@@ -169,6 +170,10 @@ For nye og fullproduserte ordinære Places gjelder:
 - de fire samlingene vises i en fast, balansert 2×2-komposisjon;
 - People/Flora/Fauna beholder sirkelform; øvrige samlinger er avrundede rektangler;
 - `frontImage` er den stående hovedflaten og skal være en faktisk stående fil/variant (`height > width`), aldri bare en liggende fil beskåret av CSS;
+- hvert nytt eller fullprodusert ordinært Place skal ha et dedikert QuizCard som PlaceCard-bakside og kunne flippe fra `frontImage` til quizkortet gjennom den canonicale PlaceCard-runtimeflyten;
+- før nytt QuizCard produseres skal `bilder/QuizCards/**`, runtime-mapping/resolver og tidligere stedsspesifikke quizkort auditeres, slik at eksisterende quizkort bevares og ikke dobbeltproduseres;
+- `bilder/QuizCards/**` er kun QuizCard/flip-support og skal aldri brukes som `image`, `cardImage` eller `frontImage`; quizkortet skal være en separat visuell flate;
+- manglende QuizCard, manglende runtime-binding eller en flip som ikke virker med faktisk input er BLOCKED for ordinær fullproduksjon;
 - hvert samlingspreview er et faktisk bilde av ett canonical medlem, aldri `frontImage` brukt som falskt samlingspreview;
 - ikon-/statusvisning er bare runtime-fallback ved lastingsfeil og kan aldri lukke produksjonsgaten;
 - gamle Places kan beholde kompatibilitetsvisningen til de faktisk fullproduseres/revideres; ny/full produksjon migrerer alltid til firefeltskontrakten.
@@ -388,6 +393,8 @@ Hvis ikke, hører stoffet i chronology/leksikon i stedet. Et Focused Place kan v
 Quiz følger bare `data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`.
 
 Eksisterende aktive, arkiverte og alternative quizfiler auditeres før profilvalg.
+
+Quiz-auditen omfatter også den synlige QuizCard-flaten. Før nytt kort lages skal eksisterende `bilder/QuizCards/**`, tidligere quizkort og runtime-binding for `targetId` kontrolleres. Et eksisterende godt QuizCard gjenbrukes. Hvis kort mangler, produseres et dedikert stedsspesifikt QuizCard og bindes til PlaceCard-flippen; quizproduksjon er ikke closeout-klar før både quizdata og QuizCard-runtime er operative.
 
 Badge, underbadges og eventuell canonical `quizFocus` brukes til å planlegge hva som skal undersøkes og læres. De er ikke faktakilder.
 
@@ -643,6 +650,8 @@ Minimum:
 - kontroller Før/etter, Nyheter og Lesespor når de er valgt i innholdsplanen;
 - kontroller Quiz og Stories mot sine egne kontrakter;
 - kontroller `frontImage` som ekte stående fil;
+- kontroller at stedet har dedikert QuizCard, at eksisterende kort er gjenbrukt der det finnes, og at quizkortet ikke brukes som `image`, `cardImage` eller `frontImage`;
+- flip PlaceCard fra `frontImage` til QuizCard og tilbake på faktisk PR-head; kontroller mus/touch og relevant tastaturinput, at riktig stedskort vises, og at flippen ikke åpner feil sted eller skjuler quiztilgangen;
 - kontroller hver valgt PlaceCard-samling og dens popup;
 - kontroller at ingen valgt samling står tom eller mangler bilde;
 - kontroller at den fulle 2×2-layouten ser god ut på mobil og desktop;
@@ -667,7 +676,8 @@ Grønn CI kan aldri overstyre et dokumentert stygt, kunstig eller ufullstendig P
 7. filler for å nå felttall/fullness er forbudt;
 8. PlaceCard for nye/fullproduserte ordinære Places viser nøyaktig fire **ferdige** samlinger — aldri tomme reserver;
 9. ordinære fullprofiler bruker People, Objects, Brands og kategoriuttrykk; Related er aldri en samling;
-10. stedsprofil og Quiz-profil er separate beslutninger.
+10. stedsprofil og Quiz-profil er separate beslutninger;
+11. hvert ordinært fullprodusert Place har et eget operativt QuizCard som flip-bakside til `frontImage`; eksisterende QuizCards auditeres og gjenbrukes før ny produksjon, og `bilder/QuizCards/**` brukes aldri som ordinært Place-bilde.
 
 Ved konflikt med eldre formulering om fast firefelts-fullness, universell Brands/People/Objects-plikt, separat senere Fagverk-produksjon eller obligatorisk materialisering av et irrelevant subsystem gjelder denne v2.5-sjekklisten.
 
