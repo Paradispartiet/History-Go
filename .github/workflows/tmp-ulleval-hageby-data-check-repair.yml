@@ -8,7 +8,7 @@ permissions:
   contents: write
 jobs:
   repair:
-    if: github.event_name == 'workflow_dispatch' || github.event.head_commit.message != 'Repair Ullevål Hageby Data checks on fresh main'
+    if: github.event_name == 'workflow_dispatch' || (github.event.head_commit.message != 'Repair Ullevål Hageby Data checks on fresh main' && !startsWith(github.event.head_commit.message, 'Cleanup Ullevål Hageby'))
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,40 +24,90 @@ jobs:
           git config user.email "paradispartiet@gmail.com"
           git fetch origin main
           git merge --no-edit origin/main
-      - name: Repair Ullevål quiz v3.3 brief contract
+      - name: Repair Ullevål theory and v3.3 brief contract
         run: |
           node - <<'NODE'
           const fs = require('fs');
-          const briefPath = 'data/quiz/production_briefs/by/ullevål_hageby.json';
           const quizPath = 'data/quiz/by/ullevål_hageby_sets.json';
-          const brief = JSON.parse(fs.readFileSync(briefPath, 'utf8'));
+          const briefPath = 'data/quiz/production_briefs/by/ullevål_hageby.json';
           const quiz = JSON.parse(fs.readFileSync(quizPath, 'utf8'));
+          const brief = JSON.parse(fs.readFileSync(briefPath, 'utf8'));
           const context = quiz.production_context;
           if (!context || context.standard_version !== '3.3') throw new Error('Expected Ullevål Hageby quiz production_context standard 3.3');
+
+          const questions = (quiz.sets || []).flatMap((set) => set.questions || []);
+          const theoryQuestion = questions.find((question) => question.id === 'ullevål_hageby_quiz_25');
+          if (!theoryQuestion) throw new Error('Missing Ullevål Hageby theory question 25');
+          if (theoryQuestion.emne_id !== 'em_by_boligstruktur') throw new Error(`Unexpected q25 emne_id: ${theoryQuestion.emne_id}`);
+          theoryQuestion.topic_hook_id = 'bolig_boligtyper';
+          theoryQuestion.thinker_id = 'david_harvey';
+          theoryQuestion.work = 'Rebel Cities';
+          theoryQuestion.theory_ref = {
+            topic_hook_id: 'bolig_boligtyper',
+            thinker_id: 'david_harvey',
+            work: 'Rebel Cities',
+            why_it_helps: 'Boligtypeperspektivet kobler hagebyens planlagte boligform til hvordan boligstruktur organiserer tilgang, hverdagsrom og byutvikling.'
+          };
+
+          const addUnique = (values, value) => [...new Set([...(Array.isArray(values) ? values : []), value])];
+          context.topic_hook_ids = addUnique(context.topic_hook_ids, 'bolig_boligtyper');
+          context.thinker_ids = addUnique(context.thinker_ids, 'david_harvey');
+          context.works = addUnique(context.works, 'Rebel Cities');
+
           for (const field of ['existing_quiz_audit', 'profile_decision', 'held_back_candidates']) {
-            if (!context[field]) throw new Error(`Quiz production_context mangler ${field}`);
+            if (context[field] === undefined) throw new Error(`Quiz production_context.${field} missing`);
             brief[field] = context[field];
           }
+          const curriculumPairs = {
+            module_ids: 'pensum_module_ids',
+            emne_ids: 'emne_ids',
+            topic_hook_ids: 'topic_hook_ids',
+            method_ids: 'method_ids',
+            thinker_ids: 'thinker_ids',
+            works: 'works'
+          };
+          brief.selected_curriculum = {};
+          for (const [briefField, contextField] of Object.entries(curriculumPairs)) {
+            if (!Array.isArray(context[contextField])) throw new Error(`Quiz production_context.${contextField} missing`);
+            brief.selected_curriculum[briefField] = context[contextField];
+          }
+
+          fs.writeFileSync(quizPath, `${JSON.stringify(quiz, null, 2)}\n`);
           fs.writeFileSync(briefPath, `${JSON.stringify(brief, null, 2)}\n`);
           NODE
       - name: Install and regenerate derived state
         run: |
           npm ci --no-audit --no-fund
-          npm run civication:history-people:build
           node scripts/build-quiz-production-context.mjs --category by --target ullevål_hageby --output data/quiz/production_context/by/ullevål_hageby.json
+          npm run civication:history-people:build
           npm run places:index:build
           node scripts/audit-fagverk-place-pages.mjs --write
           node scripts/build-fagverk-release-manifest.mjs
           npm run epoker:places:build
           npm run place-open:build
           npm run knowledge:canonical:write
+      - name: Normalize changed text whitespace
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const { execFileSync } = require('child_process');
+          const changed = execFileSync('git', ['diff', '--name-only', '-z'], { encoding: 'utf8' }).split('\0').filter(Boolean);
+          for (const file of changed) {
+            if (!fs.existsSync(file) || !fs.statSync(file).isFile()) continue;
+            const buffer = fs.readFileSync(file);
+            if (buffer.includes(0)) continue;
+            const text = buffer.toString('utf8');
+            const normalized = text.split(/\r?\n/).map((line) => line.replace(/[ \t]+$/u, '')).join('\n').replace(/\n*$/u, '\n');
+            if (normalized !== text) fs.writeFileSync(file, normalized);
+          }
+          NODE
       - name: Verify Data checks and Ullevål contracts
         run: |
-          bash scripts/check-people.sh
-          npm run civication:history-people:check
           npm run audit:quiz-production-context
           npm run audit:quiz-progression
           npm run audit:quiz-theory-binding
+          npm run civication:history-people:check
+          bash scripts/check-people.sh
           node tests/ullevål-hageby-completion.test.mjs
           npm run places:index:check
           npm run epoker:places:check
