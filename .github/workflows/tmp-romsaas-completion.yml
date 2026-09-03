@@ -26,6 +26,18 @@ jobs:
           git merge --no-edit origin/main
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
+      - name: Patch Romsås quiz source brief mapping
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const file = 'tools/tmp-finalize-romsaas-completion.mjs';
+          let text = fs.readFileSync(file, 'utf8');
+          const before = "const claims=q.map((row,i)=>({claim_id:`claim_romsaås_quiz_${String(i+1).padStart(2,'0')}`,order:i+1,planned_phase:i<7?'opening':i<14?'middle':i<21?'bridge':'final',family:i>=21?'concept_theory':row[7]==='context'?'context':'fact',statement:row[4],source_ids:[row[5]],source_origin:'external',emne_id:row[6]}));";
+          const after = "const claims=q.map((row,i)=>({claim_id:`claim_romsaås_quiz_${String(i+1).padStart(2,'0')}`,order:i+1,planned_phase:i<7?'opening':i<14?'middle':i<21?'bridge':'final',family:i>=21?'concept_theory':row[6]==='context'?'context':'fact',statement:row[3],source_ids:[row[4]],source_origin:'external',emne_id:row[5]}));";
+          if (!text.includes(before)) throw new Error('Expected Romsås claims mapping not found');
+          text = text.replace(before, after);
+          fs.writeFileSync(file, text);
+          NODE
       - name: Materialize Romsås
         run: node --import=./tools/tmp-romsaas-fetch-shim.mjs tools/tmp-finalize-romsaas-completion.mjs
       - name: Regenerate affected canonical and runtime state
