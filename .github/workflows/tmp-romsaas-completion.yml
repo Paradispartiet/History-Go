@@ -27,11 +27,20 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
       - name: Patch Romsås production mappings
-        run: node tools/tmp-romsaas-patch.mjs
+        run: |
+          node tools/tmp-romsaas-patch.mjs
+          node - <<'NODE'
+          const fs = require('fs');
+          const file = 'tools/tmp-finalize-romsaas-completion.mjs';
+          let text = fs.readFileSync(file, 'utf8');
+          const before = "const quizProductionContext={manifest_category:'by',profile:'normal',standard_version:'3.3',";
+          const after = "const quizProductionContext={manifest_category:'by',profile:'normal_4x7',standard_version:'3.3',";
+          if (!text.includes(before)) throw new Error('Expected Romsås quiz production profile not found');
+          text = text.replace(before, after);
+          fs.writeFileSync(file, text);
+          NODE
       - name: Materialize Romsås
         run: node --import=./tools/tmp-romsaas-fetch-shim.mjs tools/tmp-finalize-romsaas-completion.mjs
-      - name: Regenerate quiz production context
-        run: node scripts/build-quiz-production-context.mjs --category by --target romsaås --output data/quiz/production_context/by/romsaås.json
       - name: Regenerate history people
         run: npm run civication:history-people:build
       - name: Regenerate places index
@@ -46,6 +55,8 @@ jobs:
         run: npm run place-open:build
       - name: Regenerate canonical knowledge
         run: npm run knowledge:canonical:write
+      - name: Regenerate quiz production context
+        run: node scripts/build-quiz-production-context.mjs --category by --target romsaås --output data/quiz/production_context/by/romsaås.json
       - name: Verify Romsås completion
         run: node tests/romsaas-completion.test.mjs
       - name: Verify quiz production context
