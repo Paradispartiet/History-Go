@@ -26,16 +26,31 @@ jobs:
           git merge --no-edit origin/main
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
-      - name: Patch Romsås quiz source brief mapping
+      - name: Patch Romsås production mappings
         run: |
           node - <<'NODE'
           const fs = require('fs');
           const file = 'tools/tmp-finalize-romsaas-completion.mjs';
           let text = fs.readFileSync(file, 'utf8');
-          const before = "const claims=q.map((row,i)=>({claim_id:`claim_romsaås_quiz_${String(i+1).padStart(2,'0')}`,order:i+1,planned_phase:i<7?'opening':i<14?'middle':i<21?'bridge':'final',family:i>=21?'concept_theory':row[7]==='context'?'context':'fact',statement:row[4],source_ids:[row[5]],source_origin:'external',emne_id:row[6]}));";
-          const after = "const claims=q.map((row,i)=>({claim_id:`claim_romsaås_quiz_${String(i+1).padStart(2,'0')}`,order:i+1,planned_phase:i<7?'opening':i<14?'middle':i<21?'bridge':'final',family:i>=21?'concept_theory':row[6]==='context'?'context':'fact',statement:row[3],source_ids:[row[4]],source_origin:'external',emne_id:row[5]}));";
-          if (!text.includes(before)) throw new Error('Expected Romsås claims mapping not found');
-          text = text.replace(before, after);
+
+          const claimsBefore = "const claims=q.map((row,i)=>({claim_id:`claim_romsaås_quiz_${String(i+1).padStart(2,'0')}`,order:i+1,planned_phase:i<7?'opening':i<14?'middle':i<21?'bridge':'final',family:i>=21?'concept_theory':row[7]==='context'?'context':'fact',statement:row[4],source_ids:[row[5]],source_origin:'external',emne_id:row[6]}));";
+          const claimsAfter = "const claims=q.map((row,i)=>({claim_id:`claim_romsaås_quiz_${String(i+1).padStart(2,'0')}`,order:i+1,planned_phase:i<7?'opening':i<14?'middle':i<21?'bridge':'final',family:i>=21?'concept_theory':row[6]==='context'?'context':'fact',statement:row[3],source_ids:[row[4]],source_origin:'external',emne_id:row[5]}));";
+          if (!text.includes(claimsBefore)) throw new Error('Expected Romsås claims mapping not found');
+          text = text.replace(claimsBefore, claimsAfter);
+
+          if (!text.includes('Nils A. Rosland')) throw new Error('Expected abbreviated Romsås architect name not found');
+          text = text.replaceAll('Nils A. Rosland', 'Nils Rosland');
+
+          const identityRow = " ['identity','Romsås er en planlagt drabantby øverst i Groruddalen.',urls.byleksikon,'Romsås','institutional','identity','current'],";
+          const prehistoryRow = " ['prehistory','Før drabantbyen var Romsås et jordbruks- og skogbruksområde med steinindustri og bosetting knyttet til steinhogging.',urls.byleksikon,'Romsås før utbyggingen','institutional','ordinary','historical'],\n";
+          if (!text.includes(identityRow)) throw new Error('Expected Romsås identity claim row not found');
+          text = text.replace(identityRow, prehistoryRow + identityRow);
+
+          const coverageBefore = "const popupCoverage=coverage(popupDesc,[['claim_romsaås_identity'],['claim_romsaås_expropriation'],['claim_romsaås_construction'],['claim_romsaås_team'],['claim_romsaås_grender','claim_romsaås_apartments'],['claim_romsaås_traffic'],['claim_romsaås_planquality'],['claim_romsaås_center'],['claim_romsaås_station'],['claim_romsaås_betong','claim_romsaås_art'],['claim_romsaås_park'],['claim_romsaås_identity','claim_romsaås_planquality']]);";
+          const coverageAfter = "const popupCoverage=coverage(popupDesc,[['claim_romsaås_prehistory'],['claim_romsaås_expropriation'],['claim_romsaås_construction'],['claim_romsaås_team'],['claim_romsaås_grender','claim_romsaås_apartments'],['claim_romsaås_traffic'],['claim_romsaås_planquality'],['claim_romsaås_center'],['claim_romsaås_station'],['claim_romsaås_betong','claim_romsaås_art'],['claim_romsaås_park'],['claim_romsaås_prehistory','claim_romsaås_construction','claim_romsaås_station','claim_romsaås_park','claim_romsaås_identitydon']]);";
+          if (!text.includes(coverageBefore)) throw new Error('Expected Romsås popup coverage mapping not found');
+          text = text.replace(coverageBefore, coverageAfter);
+
           fs.writeFileSync(file, text);
           NODE
       - name: Materialize Romsås
