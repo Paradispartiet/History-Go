@@ -84,7 +84,7 @@ jobs:
           import { buildEpokePlaceIndex } from './scripts/build-epoke-place-index.mjs';
           const index = buildEpokePlaceIndex();
           assert.equal(index.stats.canonical_story_milestone_count, 220);
-          assert.equal(index.stats.verified_place_production_milestone_count, 412);
+          assert.equal(index.stats.verified_place_production_milestone_count, 410);
           assert.equal(index.domains.historie.oslo_coverage.canonical_place_count, 587);
           assert.equal(index.domains.historie.oslo_coverage.dated_evidence_place_count, 231);
           assert.equal(index.domains.historie.oslo_coverage.documented_case_place_count, 2);
@@ -97,7 +97,7 @@ jobs:
           s = p.read_text()
           replacements = {
               'index.stats.canonical_story_milestone_count, 219': 'index.stats.canonical_story_milestone_count, 220',
-              'index.stats.verified_place_production_milestone_count, 402': 'index.stats.verified_place_production_milestone_count, 412',
+              'index.stats.verified_place_production_milestone_count, 402': 'index.stats.verified_place_production_milestone_count, 410',
               'coverage.dated_evidence_place_count, 230': 'coverage.dated_evidence_place_count, 231',
               'coverage.awaiting_source_backed_history_count, 355': 'coverage.awaiting_source_backed_history_count, 354',
               '["akershus_slott", "gamle_radhus"': '["akershus_slott", "bogstadveien", "gamle_radhus"',
