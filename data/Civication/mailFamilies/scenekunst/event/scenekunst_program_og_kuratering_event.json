@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_program_og_kuratering",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "program_endret_premiss",
+      "purpose": "Role-specific authored program/curation gameplay with persistent portfolio state and bounded authority.",
+      "learning_focus": [
+        "programdramaturgi",
+        "habilitet_og_mandat",
+        "rettigheter_og_avtale",
+        "representasjon_og_feltresearch",
+        "arena_fit_og_rework"
+      ],
+      "mails": [
+        {
+          "id": "program_datoendring_001",
+          "mail_type": "event",
+          "mail_family": "program_endret_premiss",
+          "role_scope": "scenekunst_program_og_kuratering",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 140,
+          "from": "Tor",
+          "people_ref": "tor_arena_og_produksjonssjef",
+          "person_id": "tor_arena_og_produksjonssjef",
+          "place_id": "arena_og_gjestespillkart",
+          "subject": "Turnéplanen flytter gjestespillet inn i en sal som ikke var vurdert",
+          "summary": "Kunstnerisk relevans er uendret, men ny sal har annen kapasitet og kunstneren må godkjenne tilpasning. Porteføljeloggen skal samtidig skille observerbare forhold, kuratorisk vurdering, uavklarte premisser og faktisk beslutningsstatus. Dermed kan senere endringer gjenåpne bare berørte kandidater uten at tidligere begrunnelse, habilitet eller ansvar forsvinner.",
+          "situation": [
+            "Kunstnerisk relevans er uendret, men ny sal har annen kapasitet og kunstneren må godkjenne tilpasning.",
+            "Kuratorisk interesse eller tidligere dialog er ikke det samme som formelt programvedtak, rettighet eller produksjonsgodkjenning.",
+            "Neste steg må ha navngitt eier og kunne gjenåpnes av ny dokumentert informasjon."
+          ],
+          "task_domain": "scenekunst_program_og_kuratering",
+          "competency": "endret_premiss_og_rework",
+          "pressure": "kunstnerisk_skjonn_vs_sporbar_mandatgrense",
+          "choice_axis": "sporbar_vurdering_vs_skjult_vedtak",
+          "consequence_axis": "legitimt_program_og_larbar_rework_vs_tillits_og_mandatglidning",
+          "narrative_arc": "datoendring_001",
+          "situated_audience_id": "programledelse_og_kunstnerisk_mandat",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør endret premiss og rework sporbar før neste beslutning",
+              "reply": "Behold tidligere kunstnerisk spor og gjenåpne bare arena, kapasitet, kostnad og kunstnerens godkjenning før ny beslutning. Jeg registrerer også beslutningseier, hva som må bekreftes og hvilket avgrenset neste steg som gjelder, slik at anbefaling ikke blir lest som invitasjon, booking eller bindende løfte.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "kuratorisk_skjonn"
+              ],
+              "feedback": "Behold tidligere kunstnerisk spor og gjenåpne bare arena, kapasitet, kostnad og kunstnerens godkjenning før ny beslutning. Dette bevarer kunstnerisk risiko samtidig som kriterier, relasjoner og avhengigheter er synlige. Et nytt rettighets-, habilitets- eller arenasvar kan da gi avgrenset rework i stedet for at programhistorien må rekonstrueres.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lås endret premiss og rework før avklaringen er ferdig",
+              "reply": "Flytt verket til ledig sal med samme status fordi det allerede er kunstnerisk valgt. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer avhengigheten senere dersom noen protesterer.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Flytt verket til ledig sal med samme status fordi det allerede er kunstnerisk valgt. Dette skaper fremdrift på bekostning av sporbarhet og flytter risiko til kunstner, avtale eller produksjon. Når premisset endres blir det uklart hvem som lovet hva, hvilke kriterier som gjaldt og hvorfor alternativer ble valgt bort.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

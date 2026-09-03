@@ -1,0 +1,298 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_program_og_kuratering",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "program_arbeidsrelasjoner",
+      "purpose": "Role-specific authored program/curation gameplay with persistent portfolio state and bounded authority.",
+      "learning_focus": [
+        "programdramaturgi",
+        "habilitet_og_mandat",
+        "rettigheter_og_avtale",
+        "representasjon_og_feltresearch",
+        "arena_fit_og_rework"
+      ],
+      "mails": [
+        {
+          "id": "program_leila_001",
+          "mail_type": "people",
+          "mail_family": "program_arbeidsrelasjoner",
+          "role_scope": "scenekunst_program_og_kuratering",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 146,
+          "from": "Leila",
+          "people_ref": "leila_programsjef",
+          "person_id": "leila_programsjef",
+          "place_id": "programbord_og_utvalgskart",
+          "subject": "Leila trenger anbefaling, ikke et vedtak hun aldri har fattet",
+          "summary": "Porteføljeloggen har en sterk anbefaling, men Leila har ikke brukt sitt delegerte beslutningspunkt. Porteføljeloggen skal samtidig skille observerbare forhold, kuratorisk vurdering, uavklarte premisser og faktisk beslutningsstatus. Dermed kan senere endringer gjenåpne bare berørte kandidater uten at tidligere begrunnelse, habilitet eller ansvar forsvinner.",
+          "situation": [
+            "Porteføljeloggen har en sterk anbefaling, men Leila har ikke brukt sitt delegerte beslutningspunkt.",
+            "Kuratorisk interesse eller tidligere dialog er ikke det samme som formelt programvedtak, rettighet eller produksjonsgodkjenning.",
+            "Neste steg må ha navngitt eier og kunne gjenåpnes av ny dokumentert informasjon."
+          ],
+          "task_domain": "scenekunst_program_og_kuratering",
+          "competency": "mandat_og_programbeslutning",
+          "pressure": "kunstnerisk_skjonn_vs_sporbar_mandatgrense",
+          "choice_axis": "sporbar_vurdering_vs_skjult_vedtak",
+          "consequence_axis": "legitimt_program_og_larbar_rework_vs_tillits_og_mandatglidning",
+          "narrative_arc": "leila_001",
+          "situated_audience_id": "arbeidsrelasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør mandat og programbeslutning sporbar før neste beslutning",
+              "reply": "Send anbefalingen med kriterier, usikkerhet og eksplisitt beslutningsfelt som Leila må eie før invitasjon. Jeg registrerer også beslutningseier, hva som må bekreftes og hvilket avgrenset neste steg som gjelder, slik at anbefaling ikke blir lest som invitasjon, booking eller bindende løfte.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "kuratorisk_skjonn"
+              ],
+              "feedback": "Send anbefalingen med kriterier, usikkerhet og eksplisitt beslutningsfelt som Leila må eie før invitasjon. Dette bevarer kunstnerisk risiko samtidig som kriterier, relasjoner og avhengigheter er synlige. Et nytt rettighets-, habilitets- eller arenasvar kan da gi avgrenset rework i stedet for at programhistorien må rekonstrueres.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lås mandat og programbeslutning før avklaringen er ferdig",
+              "reply": "Formuler anbefalingen som endelig program fordi Leila normalt følger kuratorens vurdering og kan korrigere senere. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer avhengigheten senere dersom noen protesterer.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Formuler anbefalingen som endelig program fordi Leila normalt følger kuratorens vurdering og kan korrigere senere. Dette skaper fremdrift på bekostning av sporbarhet og flytter risiko til kunstner, avtale eller produksjon. Når premisset endres blir det uklart hvem som lovet hva, hvilke kriterier som gjaldt og hvorfor alternativer ble valgt bort.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "program_tor_002",
+          "mail_type": "people",
+          "mail_family": "program_arbeidsrelasjoner",
+          "role_scope": "scenekunst_program_og_kuratering",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 145,
+          "from": "Tor",
+          "people_ref": "tor_arena_og_produksjonssjef",
+          "person_id": "tor_arena_og_produksjonssjef",
+          "place_id": "arena_og_gjestespillkart",
+          "subject": "Tors tekniske nei er ikke en kunstnerisk avvisning",
+          "summary": "Tor avviser én rigg av sikkerhetsgrunner, ikke verket; alternativ arena kan finnes. Porteføljeloggen skal samtidig skille observerbare forhold, kuratorisk vurdering, uavklarte premisser og faktisk beslutningsstatus. Dermed kan senere endringer gjenåpne bare berørte kandidater uten at tidligere begrunnelse, habilitet eller ansvar forsvinner.",
+          "situation": [
+            "Tor avviser én rigg av sikkerhetsgrunner, ikke verket; alternativ arena kan finnes.",
+            "Kuratorisk interesse eller tidligere dialog er ikke det samme som formelt programvedtak, rettighet eller produksjonsgodkjenning.",
+            "Neste steg må ha navngitt eier og kunne gjenåpnes av ny dokumentert informasjon."
+          ],
+          "task_domain": "scenekunst_program_og_kuratering",
+          "competency": "kunstnerisk_teknisk_grense",
+          "pressure": "kunstnerisk_skjonn_vs_sporbar_mandatgrense",
+          "choice_axis": "sporbar_vurdering_vs_skjult_vedtak",
+          "consequence_axis": "legitimt_program_og_larbar_rework_vs_tillits_og_mandatglidning",
+          "narrative_arc": "tor_002",
+          "situated_audience_id": "arbeidsrelasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør kunstnerisk teknisk grense sporbar før neste beslutning",
+              "reply": "Bevar kunstnerisk vurdering og registrer det tekniske nei-et som avgrenset premiss for ny arena-/tilpasningstest. Jeg registrerer også beslutningseier, hva som må bekreftes og hvilket avgrenset neste steg som gjelder, slik at anbefaling ikke blir lest som invitasjon, booking eller bindende løfte.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "kuratorisk_skjonn"
+              ],
+              "feedback": "Bevar kunstnerisk vurdering og registrer det tekniske nei-et som avgrenset premiss for ny arena-/tilpasningstest. Dette bevarer kunstnerisk risiko samtidig som kriterier, relasjoner og avhengigheter er synlige. Et nytt rettighets-, habilitets- eller arenasvar kan da gi avgrenset rework i stedet for at programhistorien må rekonstrueres.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lås kunstnerisk teknisk grense før avklaringen er ferdig",
+              "reply": "Stryk verket som kunstnerisk uegnet fordi teknisk avdeling har sagt nei til den første løsningen. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer avhengigheten senere dersom noen protesterer.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Stryk verket som kunstnerisk uegnet fordi teknisk avdeling har sagt nei til den første løsningen. Dette skaper fremdrift på bekostning av sporbarhet og flytter risiko til kunstner, avtale eller produksjon. Når premisset endres blir det uklart hvem som lovet hva, hvilke kriterier som gjaldt og hvorfor alternativer ble valgt bort.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "program_mina_003",
+          "mail_type": "people",
+          "mail_family": "program_arbeidsrelasjoner",
+          "role_scope": "scenekunst_program_og_kuratering",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 144,
+          "from": "Mina",
+          "people_ref": "mina_rettighets_og_avtalekoordinator",
+          "person_id": "mina_rettighets_og_avtalekoordinator",
+          "place_id": "rettighets_og_avtalerom",
+          "subject": "Mina ber programteamet slutte å bruke «avtalt» om en forhandling",
+          "summary": "Kunstneren er invitert, men honorar og dokumentasjonsrett er fortsatt åpne og Mina har ikke bekreftet avtale. Porteføljeloggen skal samtidig skille observerbare forhold, kuratorisk vurdering, uavklarte premisser og faktisk beslutningsstatus. Dermed kan senere endringer gjenåpne bare berørte kandidater uten at tidligere begrunnelse, habilitet eller ansvar forsvinner.",
+          "situation": [
+            "Kunstneren er invitert, men honorar og dokumentasjonsrett er fortsatt åpne og Mina har ikke bekreftet avtale.",
+            "Kuratorisk interesse eller tidligere dialog er ikke det samme som formelt programvedtak, rettighet eller produksjonsgodkjenning.",
+            "Neste steg må ha navngitt eier og kunne gjenåpnes av ny dokumentert informasjon."
+          ],
+          "task_domain": "scenekunst_program_og_kuratering",
+          "competency": "avtale_og_status",
+          "pressure": "kunstnerisk_skjonn_vs_sporbar_mandatgrense",
+          "choice_axis": "sporbar_vurdering_vs_skjult_vedtak",
+          "consequence_axis": "legitimt_program_og_larbar_rework_vs_tillits_og_mandatglidning",
+          "narrative_arc": "mina_003",
+          "situated_audience_id": "arbeidsrelasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør avtale og status sporbar før neste beslutning",
+              "reply": "Rett status til invitert/under forhandling og la Mina eie hva som faktisk er kontraktsmessig bekreftet. Jeg registrerer også beslutningseier, hva som må bekreftes og hvilket avgrenset neste steg som gjelder, slik at anbefaling ikke blir lest som invitasjon, booking eller bindende løfte.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "kuratorisk_skjonn"
+              ],
+              "feedback": "Rett status til invitert/under forhandling og la Mina eie hva som faktisk er kontraktsmessig bekreftet. Dette bevarer kunstnerisk risiko samtidig som kriterier, relasjoner og avhengigheter er synlige. Et nytt rettighets-, habilitets- eller arenasvar kan da gi avgrenset rework i stedet for at programhistorien må rekonstrueres.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lås avtale og status før avklaringen er ferdig",
+              "reply": "La «avtalt» stå internt fordi intensjonen er tydelig og detaljene uansett skal løses i kontrakten. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer avhengigheten senere dersom noen protesterer.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "La «avtalt» stå internt fordi intensjonen er tydelig og detaljene uansett skal løses i kontrakten. Dette skaper fremdrift på bekostning av sporbarhet og flytter risiko til kunstner, avtale eller produksjon. Når premisset endres blir det uklart hvem som lovet hva, hvilke kriterier som gjaldt og hvorfor alternativer ble valgt bort.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "program_yusuf_004",
+          "mail_type": "people",
+          "mail_family": "program_arbeidsrelasjoner",
+          "role_scope": "scenekunst_program_og_kuratering",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 143,
+          "from": "Yusuf",
+          "people_ref": "yusuf_felt_og_publikumsanalytiker",
+          "person_id": "yusuf_felt_og_publikumsanalytiker",
+          "place_id": "feltresearch_og_representasjonskart",
+          "subject": "Yusuf finner at researchlisten kommer fra de samme nettverkene igjen",
+          "summary": "Data viser snevert søkemønster, men sier ikke automatisk hvilke enkeltverk som er best. Porteføljeloggen skal samtidig skille observerbare forhold, kuratorisk vurdering, uavklarte premisser og faktisk beslutningsstatus. Dermed kan senere endringer gjenåpne bare berørte kandidater uten at tidligere begrunnelse, habilitet eller ansvar forsvinner.",
+          "situation": [
+            "Data viser snevert søkemønster, men sier ikke automatisk hvilke enkeltverk som er best.",
+            "Kuratorisk interesse eller tidligere dialog er ikke det samme som formelt programvedtak, rettighet eller produksjonsgodkjenning.",
+            "Neste steg må ha navngitt eier og kunne gjenåpnes av ny dokumentert informasjon."
+          ],
+          "task_domain": "scenekunst_program_og_kuratering",
+          "competency": "feltresearch_og_representasjon",
+          "pressure": "kunstnerisk_skjonn_vs_sporbar_mandatgrense",
+          "choice_axis": "sporbar_vurdering_vs_skjult_vedtak",
+          "consequence_axis": "legitimt_program_og_larbar_rework_vs_tillits_og_mandatglidning",
+          "narrative_arc": "yusuf_004",
+          "situated_audience_id": "arbeidsrelasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør feltresearch og representasjon sporbar før neste beslutning",
+              "reply": "Utvid researchkanaler og prøv kriteriene på et bredere felt før utvalget låses, uten å gjøre kunstnere til demografiske symboler. Jeg registrerer også beslutningseier, hva som må bekreftes og hvilket avgrenset neste steg som gjelder, slik at anbefaling ikke blir lest som invitasjon, booking eller bindende løfte.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "kuratorisk_skjonn"
+              ],
+              "feedback": "Utvid researchkanaler og prøv kriteriene på et bredere felt før utvalget låses, uten å gjøre kunstnere til demografiske symboler. Dette bevarer kunstnerisk risiko samtidig som kriterier, relasjoner og avhengigheter er synlige. Et nytt rettighets-, habilitets- eller arenasvar kan da gi avgrenset rework i stedet for at programhistorien må rekonstrueres.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lås feltresearch og representasjon før avklaringen er ferdig",
+              "reply": "Bytt straks inn én kandidat som signaliserer bredde og bruk det som bevis på at representasjonsproblemet er løst. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer avhengigheten senere dersom noen protesterer.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Bytt straks inn én kandidat som signaliserer bredde og bruk det som bevis på at representasjonsproblemet er løst. Dette skaper fremdrift på bekostning av sporbarhet og flytter risiko til kunstner, avtale eller produksjon. Når premisset endres blir det uklart hvem som lovet hva, hvilke kriterier som gjaldt og hvorfor alternativer ble valgt bort.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

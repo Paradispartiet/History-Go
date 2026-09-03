@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_program_og_kuratering",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "program_representasjon",
+      "purpose": "Role-specific authored program/curation gameplay with persistent portfolio state and bounded authority.",
+      "learning_focus": [
+        "programdramaturgi",
+        "habilitet_og_mandat",
+        "rettigheter_og_avtale",
+        "representasjon_og_feltresearch",
+        "arena_fit_og_rework"
+      ],
+      "mails": [
+        {
+          "id": "program_representasjon_001",
+          "mail_type": "story",
+          "mail_family": "program_representasjon",
+          "role_scope": "scenekunst_program_og_kuratering",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 141,
+          "from": "Yusuf",
+          "people_ref": "yusuf_felt_og_publikumsanalytiker",
+          "person_id": "yusuf_felt_og_publikumsanalytiker",
+          "place_id": "feltresearch_og_representasjonskart",
+          "subject": "Kritikken gjelder mønsteret i søket, ikke én kunstners identitet",
+          "summary": "Kritikken gjelder flere sesonger og samsvarer delvis med interne data; ingen kunstner er årsaken alene. Porteføljeloggen skal samtidig skille observerbare forhold, kuratorisk vurdering, uavklarte premisser og faktisk beslutningsstatus. Dermed kan senere endringer gjenåpne bare berørte kandidater uten at tidligere begrunnelse, habilitet eller ansvar forsvinner.",
+          "situation": [
+            "Kritikken gjelder flere sesonger og samsvarer delvis med interne data; ingen kunstner er årsaken alene.",
+            "Kuratorisk interesse eller tidligere dialog er ikke det samme som formelt programvedtak, rettighet eller produksjonsgodkjenning.",
+            "Neste steg må ha navngitt eier og kunne gjenåpnes av ny dokumentert informasjon."
+          ],
+          "task_domain": "scenekunst_program_og_kuratering",
+          "competency": "representasjonsbevisst_kuratering",
+          "pressure": "kunstnerisk_skjonn_vs_sporbar_mandatgrense",
+          "choice_axis": "sporbar_vurdering_vs_skjult_vedtak",
+          "consequence_axis": "legitimt_program_og_larbar_rework_vs_tillits_og_mandatglidning",
+          "narrative_arc": "representasjon_001",
+          "situated_audience_id": "programledelse_og_kunstnerisk_mandat",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør representasjonsbevisst kuratering sporbar før neste beslutning",
+              "reply": "Dokumenter hvilke søkekanaler som er snevre, åpne nye researchspor og test kriteriene på et bredere kandidatfelt. Jeg registrerer også beslutningseier, hva som må bekreftes og hvilket avgrenset neste steg som gjelder, slik at anbefaling ikke blir lest som invitasjon, booking eller bindende løfte.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "kuratorisk_skjonn"
+              ],
+              "feedback": "Dokumenter hvilke søkekanaler som er snevre, åpne nye researchspor og test kriteriene på et bredere kandidatfelt. Dette bevarer kunstnerisk risiko samtidig som kriterier, relasjoner og avhengigheter er synlige. Et nytt rettighets-, habilitets- eller arenasvar kan da gi avgrenset rework i stedet for at programhistorien må rekonstrueres.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lås representasjonsbevisst kuratering før avklaringen er ferdig",
+              "reply": "Svar med en rask symbolsk utskifting av ett verk og la den langsiktige researchpraksisen fortsette som før. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer avhengigheten senere dersom noen protesterer.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Svar med en rask symbolsk utskifting av ett verk og la den langsiktige researchpraksisen fortsette som før. Dette skaper fremdrift på bekostning av sporbarhet og flytter risiko til kunstner, avtale eller produksjon. Når premisset endres blir det uklart hvem som lovet hva, hvilke kriterier som gjaldt og hvorfor alternativer ble valgt bort.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
