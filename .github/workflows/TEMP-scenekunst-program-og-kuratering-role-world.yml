@@ -1,0 +1,96 @@
+name: TEMP Scenekunst program og kuratering Role World
+
+on:
+  push:
+    branches:
+      - agent/civication-scenekunst-program-og-kuratering-role-world-rollout
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Materialize authored Program og kuratering Role World
+        shell: bash
+        run: |
+          set -euo pipefail
+          node .github/TEMP-scenekunst-program-og-kuratering-role-world-materializer.mjs
+
+      - name: Regenerate canonical derived state
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audit-civication-career-gameplay.mjs --write
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+
+      - name: Focused Role World gate
+        run: node tests/civication-scenekunst-program-og-kuratering-role-world-rollout.test.js
+
+      - name: Prerequisite compatibility gate
+        run: node tests/civication-scenekunst-program-og-kuratering-prerequisites.test.js
+
+      - name: Role World architecture gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tests/civication-role-world-contract.test.js
+          node tests/civication-role-world-broad-rollout-policy.test.js
+
+      - name: Generated-state parity gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audit-civication-career-gameplay.mjs --check
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --check
+          node scripts/build-civication-scene-registry.mjs --check
+
+      - name: Full Civication gate
+        run: npm run test:civication
+
+      - name: Repository diff gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --check
+          git status --short
+
+      - name: Publish permanent Role World state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm -f .github/workflows/TEMP-scenekunst-program-og-kuratering-role-world.yml
+          git rm -f .github/TEMP-scenekunst-program-og-kuratering-role-world-materializer.mjs
+          git add \
+            data/Civication/careerGameplayMatrix.json \
+            data/Civication/roleWorldAuthoringChecklist.json \
+            data/Civication/roleWorldRolloutReadiness.json \
+            data/Civication/roleWorldThemeBank.json \
+            data/Civication/roleWorlds/index.json \
+            data/Civication/roleWorlds/scenekunst/scenekunst_program_og_kuratering.json \
+            reports/CIVICATION_SCENEKUNST_PROGRAM_OG_KURATERING_ROLE_WORLD_ROLLOUT_SOURCE_FIRST.md \
+            reports/civication-role-world-rollout-readiness.md \
+            reports/civication-career-gameplay-matrix.md \
+            tests/civication-scenekunst-program-og-kuratering-role-world-rollout.test.js
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo "No permanent Role World changes to publish"
+            exit 1
+          fi
+          git commit -m "Complete Scenekunst program og kuratering Role World"
+          git push origin HEAD:agent/civication-scenekunst-program-og-kuratering-role-world-rollout
