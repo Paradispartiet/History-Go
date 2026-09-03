@@ -52,11 +52,15 @@ jobs:
           new_manifest = '''const quizManifest=read("data/quiz/manifest.json"); const rows=(quizManifest.sets||[]).filter(row=>row.targetId===placeId); if(rows.length!==1)throw new Error(`Expected exactly one Bogstadveien quiz manifest row, got ${rows.length}`); rows[0].file=quizFile; write("data/quiz/manifest.json",quizManifest);'''
           old_builder = '''let contextBuilt=false; try{await runBuildQuizProductionContext(["--category","by","--target",placeId,"--output","data/quiz/production_context/by/bogstadveien.json"]);contextBuilt=true;}catch(error){console.error("Quiz context builder failed; leaving source brief for explicit repair:",error?.message||error);} if(!contextBuilt)write("data/quiz/production_context/by/bogstadveien.json",{schema_version:"1.0",categoryId:"by",targetId:placeId,generated_at:verifiedAt,source_brief:briefFile,profile_decision:brief.profile_decision,selected_curriculum:brief.selected_curriculum,existing_quiz_audit:brief.existing_quiz_audit,source_inventory:Object.entries(sourceMap).map(([id,value])=>({id,...value})),status:"materialized_from_reviewed_source_brief"});'''
           new_builder = '''let contextBuilt=false; try{await runBuildQuizProductionContext({root,categoryId:"by",targetId:placeId,outputPath:"data/quiz/production_context/by/bogstadveien.json"});contextBuilt=true;}catch(error){console.error("Quiz context builder failed; leaving source brief for explicit repair:",error?.message||error);} if(!contextBuilt)write("data/quiz/production_context/by/bogstadveien.json",{schema_version:"1.0",categoryId:"by",targetId:placeId,generated_at:verifiedAt,source_brief:briefFile,profile_decision:brief.profile_decision,selected_curriculum:brief.selected_curriculum,existing_quiz_audit:brief.existing_quiz_audit,source_inventory:Object.entries(sourceMap).map(([id,value])=>({id,...value})),status:"materialized_from_reviewed_source_brief"});'''
+          old_test = '''assert.doesNotMatch(JSON.stringify(quiz.profile_snapshot),/høy kjøpekraft|prisnivå/i);'''
+          new_test = '''const economicProfileText=JSON.stringify({signature_features:quiz.profile_snapshot.signature_features,must_include:quiz.profile_snapshot.must_include,primary_angles:quiz.profile_snapshot.primary_angles,question_families:quiz.profile_snapshot.question_families});assert.doesNotMatch(economicProfileText,/kjøpekraft|prisnivå/i);assert.match(quiz.profile_snapshot.notes,/uten å utlede/i);'''
           if old_manifest not in s:
               raise SystemExit('quiz manifest patch anchor missing')
           if old_builder not in s:
               raise SystemExit('quiz context builder patch anchor missing')
-          p.write_text(s.replace(old_manifest,new_manifest).replace(old_builder,new_builder))
+          if old_test not in s:
+              raise SystemExit('quiz regression patch anchor missing')
+          p.write_text(s.replace(old_manifest,new_manifest).replace(old_builder,new_builder).replace(old_test,new_test))
           PY
       - name: Materialize Bogstadveien
         run: node tools/finalize-bogstadveien-completion.mjs
