@@ -34,7 +34,6 @@ jobs:
           const brief = JSON.parse(fs.readFileSync(briefPath, 'utf8'));
           const context = quiz.production_context;
           if (!context || context.standard_version !== '3.3') throw new Error('Expected Ullevål Hageby quiz production_context standard 3.3');
-
           const questions = (quiz.sets || []).flatMap((set) => set.questions || []);
           const theoryQuestion = questions.find((question) => question.id === 'ullevål_hageby_quiz_25');
           if (!theoryQuestion) throw new Error('Missing Ullevål Hageby theory question 25');
@@ -48,12 +47,10 @@ jobs:
             work: 'Rebel Cities',
             why_it_helps: 'Boligtypeperspektivet kobler hagebyens planlagte boligform til hvordan boligstruktur organiserer tilgang, hverdagsrom og byutvikling.'
           };
-
           const addUnique = (values, value) => [...new Set([...(Array.isArray(values) ? values : []), value])];
           context.topic_hook_ids = addUnique(context.topic_hook_ids, 'bolig_boligtyper');
           context.thinker_ids = addUnique(context.thinker_ids, 'david_harvey');
           context.works = addUnique(context.works, 'Rebel Cities');
-
           for (const field of ['existing_quiz_audit', 'profile_decision', 'held_back_candidates']) {
             if (context[field] === undefined) throw new Error(`Quiz production_context.${field} missing`);
             brief[field] = context[field];
@@ -71,7 +68,6 @@ jobs:
             if (!Array.isArray(context[contextField])) throw new Error(`Quiz production_context.${contextField} missing`);
             brief.selected_curriculum[briefField] = context[contextField];
           }
-
           fs.writeFileSync(quizPath, `${JSON.stringify(quiz, null, 2)}\n`);
           fs.writeFileSync(briefPath, `${JSON.stringify(brief, null, 2)}\n`);
           NODE
@@ -101,20 +97,30 @@ jobs:
             if (normalized !== text) fs.writeFileSync(file, normalized);
           }
           NODE
-      - name: Verify Data checks and Ullevål contracts
-        run: |
-          npm run audit:quiz-production-context
-          npm run audit:quiz-progression
-          npm run audit:quiz-theory-binding
-          npm run civication:history-people:check
-          bash scripts/check-people.sh
-          node tests/ullevål-hageby-completion.test.mjs
-          npm run places:index:check
-          npm run epoker:places:check
-          npm run place-open:check
-          node scripts/audit-fagverk-place-pages.mjs
-          node scripts/build-fagverk-release-manifest.mjs --check
-          git diff --check
+      - name: Verify quiz production context
+        run: npm run audit:quiz-production-context
+      - name: Verify quiz progression
+        run: npm run audit:quiz-progression
+      - name: Verify quiz theory binding
+        run: npm run audit:quiz-theory-binding
+      - name: Verify Civication history people
+        run: npm run civication:history-people:check
+      - name: Verify people shell
+        run: bash scripts/check-people.sh
+      - name: Verify Ullevål completion
+        run: node tests/ullevål-hageby-completion.test.mjs
+      - name: Verify places index
+        run: npm run places:index:check
+      - name: Verify epoch index
+        run: npm run epoker:places:check
+      - name: Verify place-open
+        run: npm run place-open:check
+      - name: Verify Fagverk place pages
+        run: node scripts/audit-fagverk-place-pages.mjs
+      - name: Verify Fagverk release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Verify whitespace
+        run: git diff --check
       - name: Publish repaired candidate
         run: |
           git add -A
