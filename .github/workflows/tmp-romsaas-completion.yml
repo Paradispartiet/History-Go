@@ -1,0 +1,87 @@
+name: tmp Romsås completion
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - work/romsaas-completion-20260903
+permissions:
+  contents: write
+jobs:
+  materialize:
+    if: github.event_name == 'workflow_dispatch' || !startsWith(github.event.head_commit.message, 'Complete Romsås Place production')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/romsaas-completion-20260903
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Replay on fresh main
+        run: |
+          git config user.name "Paradispartiet"
+          git config user.email "paradispartiet@gmail.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Materialize Romsås
+        run: node tools/tmp-finalize-romsaas-completion.mjs
+      - name: Regenerate affected canonical and runtime state
+        run: |
+          node scripts/build-quiz-production-context.mjs --category by --target romsaås --output data/quiz/production_context/by/romsaås.json
+          npm run civication:history-people:build
+          npm run places:index:build
+          node scripts/audit-fagverk-place-pages.mjs --write
+          node scripts/build-fagverk-release-manifest.mjs
+          npm run epoker:places:build
+          npm run place-open:build
+          npm run knowledge:canonical:write
+      - name: Verify Romsås completion
+        run: node tests/romsaas-completion.test.mjs
+      - name: Verify quiz production context
+        run: npm run audit:quiz-production-context
+      - name: Verify quiz progression
+        run: npm run audit:quiz-progression
+      - name: Verify quiz theory binding
+        run: npm run audit:quiz-theory-binding
+      - name: Verify Civication history people
+        run: npm run civication:history-people:check
+      - name: Verify people shell
+        run: bash scripts/check-people.sh
+      - name: Verify places index
+        run: npm run places:index:check
+      - name: Verify epoch index
+        run: npm run epoker:places:check
+      - name: Verify place-open
+        run: npm run place-open:check
+      - name: Verify Fagverk place pages
+        run: node scripts/audit-fagverk-place-pages.mjs
+      - name: Verify Fagverk release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Normalize changed text whitespace
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const { execFileSync } = require('child_process');
+          const changed = execFileSync('git', ['diff', '--name-only', '-z'], { encoding: 'utf8' }).split('\0').filter(Boolean);
+          for (const file of changed) {
+            if (!fs.existsSync(file) || !fs.statSync(file).isFile()) continue;
+            const buffer = fs.readFileSync(file);
+            if (buffer.includes(0)) continue;
+            const text = buffer.toString('utf8');
+            const normalized = text.split(/\r?\n/).map(line => line.replace(/[ \t]+$/u, '')).join('\n').replace(/\n*$/u, '\n');
+            if (normalized !== text) fs.writeFileSync(file, normalized);
+          }
+          NODE
+      - name: Verify whitespace
+        run: git diff --check
+      - name: Publish clean candidate
+        run: |
+          rm tools/tmp-finalize-romsaas-completion.mjs
+          rm .github/workflows/tmp-romsaas-completion.yml
+          git add -A
+          git diff --cached --check
+          git commit -m "Complete Romsås Place production"
+          git push origin HEAD:work/romsaas-completion-20260903
