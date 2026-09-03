@@ -30,6 +30,23 @@ jobs:
           set -euo pipefail
           node .github/TEMP-scenekunst-program-og-kuratering-prerequisites-materializer.mjs
           sed -i 's@assert.deepEqual(p.workplace_ids,\[PLACES\[i\]\])@assert.deepEqual(p.workplace_ids,[({leila_programsjef:PLACES[0],tor_arena_og_produksjonssjef:PLACES[3],mina_rettighets_og_avtalekoordinator:PLACES[2],yusuf_felt_og_publikumsanalytiker:PLACES[1]})[p.id]])@' tests/civication-scenekunst-program-og-kuratering-prerequisites.test.js
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const role = 'scenekunst_program_og_kuratering';
+          const types = ['job','people','conflict','story','event','micro','followup','knowledge','consequence'];
+          for (const type of types) {
+            const file = `data/Civication/mailFamilies/scenekunst/${type}/${role}_${type}.json`;
+            const doc = JSON.parse(fs.readFileSync(file, 'utf8'));
+            for (const family of doc.families || []) {
+              for (const mail of family.mails || []) {
+                const topic = String(mail.competency || mail.narrative_arc || mail.id).replaceAll('_', ' ');
+                mail.choices[0].label = `Gjør ${topic} sporbar før neste beslutning`;
+                mail.choices[1].label = `Lås ${topic} før avklaringen er ferdig`;
+              }
+            }
+            fs.writeFileSync(file, JSON.stringify(doc, null, 2) + '\n');
+          }
+          NODE
 
       - name: Regenerate canonical derived state
         shell: bash
