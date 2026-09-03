@@ -49,7 +49,7 @@ jobs:
           fetch_asset 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Bogstadveien%2037%20IV.jpg' '.cache/bogstadveien-completion/bogstadveien-37-iv.jpg'
           sleep 5
           fetch_asset 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Bogstadveien%2039.jpg' '.cache/bogstadveien-completion/bogstadveien-39.jpg'
-      - name: Align finalizer with canonical quiz resolver
+      - name: Align finalizer with canonical contracts
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -61,13 +61,13 @@ jobs:
           new_builder = '''let contextBuilt=false; try{await runBuildQuizProductionContext({root,categoryId:"by",targetId:placeId,outputPath:"data/quiz/production_context/by/bogstadveien.json"});contextBuilt=true;}catch(error){console.error("Quiz context builder failed; leaving source brief for explicit repair:",error?.message||error);} if(!contextBuilt)write("data/quiz/production_context/by/bogstadveien.json",{schema_version:"1.0",categoryId:"by",targetId:placeId,generated_at:verifiedAt,source_brief:briefFile,profile_decision:brief.profile_decision,selected_curriculum:brief.selected_curriculum,existing_quiz_audit:brief.existing_quiz_audit,source_inventory:Object.entries(sourceMap).map(([id,value])=>({id,...value})),status:"materialized_from_reviewed_source_brief"});'''
           old_test = '''assert.doesNotMatch(JSON.stringify(quiz.profile_snapshot),/høy kjøpekraft|prisnivå/i);'''
           new_test = '''const economicProfileText=JSON.stringify({signature_features:quiz.profile_snapshot.signature_features,must_include:quiz.profile_snapshot.must_include,primary_angles:quiz.profile_snapshot.primary_angles,question_families:quiz.profile_snapshot.question_families});assert.doesNotMatch(economicProfileText,/kjøpekraft|prisnivå/i);assert.match(quiz.profile_snapshot.notes,/uten å utlede/i);'''
-          if old_manifest not in s:
-              raise SystemExit('quiz manifest patch anchor missing')
-          if old_builder not in s:
-              raise SystemExit('quiz context builder patch anchor missing')
-          if old_test not in s:
-              raise SystemExit('quiz regression patch anchor missing')
-          p.write_text(s.replace(old_manifest,new_manifest).replace(old_builder,new_builder).replace(old_test,new_test))
+          old_score = '''score: { narrative: 4, historical: 3, source: 5, play_value: 3, originality: 3, total: 18 }'''
+          new_score = '''score: { narrative: 3, historical: 2, source: 4, play_value: 3, originality: 3, total: 15 }'''
+          for label, old in [('quiz manifest', old_manifest), ('quiz context builder', old_builder), ('quiz regression', old_test), ('story score', old_score)]:
+              if s.count(old) != 1:
+                  raise SystemExit(f'{label} patch anchor count: {s.count(old)}')
+          s = s.replace(old_manifest,new_manifest).replace(old_builder,new_builder).replace(old_test,new_test).replace(old_score,new_score)
+          p.write_text(s)
           PY
       - name: Materialize Bogstadveien
         run: node tools/finalize-bogstadveien-completion.mjs
