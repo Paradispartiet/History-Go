@@ -33,9 +33,9 @@
       "needs_role_authored_work": 33,
       "blocked": 2
     },
-    "role_world_complete_or_pilot": 49,
-    "rollout_queue_roles": 36,
-    "first_wave_candidate_count": 1,
+    "role_world_complete_or_pilot": 50,
+    "rollout_queue_roles": 35,
+    "first_wave_candidate_count": 0,
     "role_level_blocked_count": 2,
     "structural_families_in_queue": 5
   },
@@ -51,34 +51,13 @@
     "gate_pass": true,
     "broad_rollout_allowed_now": true,
     "policy_recommendation": "controlled_rollout_open_with_role_level_gates",
-    "next_required_pr": "Role World rollout: scenekunst/scenekunst_scene_og_produksjon",
+    "next_required_pr": "Select next rollout_ready role",
     "rule": "A green readiness gate proves the program can safely begin controlled rollout. It does not make every role rollout_ready and it does not itself flip broad_rollout_allowed."
   },
-  "first_wave_candidates": [
-    {
-      "rank": 1,
-      "key": "scenekunst/scenekunst_scene_og_produksjon",
-      "classification": "rollout_ready",
-      "structural_family": "creative_production",
-      "priority_score": 1285,
-      "blockers": [],
-      "authored_work_required": [],
-      "cross_role_need": "candidate_when_shared_work_is_real"
-    }
-  ],
+  "first_wave_candidates": [],
   "rollout_queue": [
     {
       "rank": 1,
-      "key": "scenekunst/scenekunst_scene_og_produksjon",
-      "classification": "rollout_ready",
-      "structural_family": "creative_production",
-      "priority_score": 1285,
-      "blockers": [],
-      "authored_work_required": [],
-      "cross_role_need": "candidate_when_shared_work_is_real"
-    },
-    {
-      "rank": 2,
       "key": "scenekunst/scenekunst_utoving_og_ensemble",
       "classification": "needs_role_authored_work",
       "structural_family": "creative_production",
@@ -100,7 +79,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 3,
+      "rank": 2,
       "key": "subkultur/subkultur_kulturarena_ledelse",
       "classification": "needs_role_authored_work",
       "structural_family": "event_operational",
@@ -122,7 +101,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 4,
+      "rank": 3,
       "key": "subkultur/subkultur_produksjon_og_prosjekt",
       "classification": "needs_role_authored_work",
       "structural_family": "creative_production",
@@ -144,7 +123,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 5,
+      "rank": 4,
       "key": "subkultur/subkultur_produksjonsledelse",
       "classification": "needs_role_authored_work",
       "structural_family": "creative_production",
@@ -166,7 +145,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 6,
+      "rank": 5,
       "key": "subkultur/subkultur_program_og_koordinering",
       "classification": "needs_role_authored_work",
       "structural_family": "event_operational",
@@ -188,7 +167,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 7,
+      "rank": 6,
       "key": "historie/historie_fagledelse",
       "classification": "needs_role_authored_work",
       "structural_family": "other",
@@ -210,7 +189,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 8,
+      "rank": 7,
       "key": "historie/historie_forskning_og_akademia",
       "classification": "needs_role_authored_work",
       "structural_family": "research_education",
@@ -232,7 +211,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 9,
+      "rank": 8,
       "key": "historie/historie_forvaltning_og_radgivning",
       "classification": "needs_role_authored_work",
       "structural_family": "public_administration",
@@ -254,7 +233,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 10,
+      "rank": 9,
       "key": "historie/historie_institusjonsledelse",
       "classification": "needs_role_authored_work",
       "structural_family": "other",
@@ -276,7 +255,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 11,
+      "rank": 10,
       "key": "historie/historie_museum_og_samling",
       "classification": "needs_role_authored_work",
       "structural_family": "other",
@@ -298,7 +277,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 12,
+      "rank": 11,
       "key": "kunst/kunst_konservering_og_samling",
       "classification": "needs_role_authored_work",
       "structural_family": "other",
@@ -320,7 +299,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 13,
+      "rank": 12,
       "key": "kunst/kunst_kuratering_og_program",
       "classification": "needs_role_authored_work",
       "structural_family": "other",
@@ -342,7 +321,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 14,
+      "rank": 13,
       "key": "kunst/kunst_museumsledelse",
       "classification": "needs_role_authored_work",
       "structural_family": "other",
@@ -364,7 +343,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 15,
+      "rank": 14,
       "key": "kunst/kunst_publikum_og_formidling",
       "classification": "needs_role_authored_work",
       "structural_family": "other",
@@ -386,7 +365,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 16,
+      "rank": 15,
       "key": "natur/natur_biologi_og_forskning",
       "classification": "needs_role_authored_work",
       "structural_family": "research_education",
@@ -408,7 +387,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 17,
+      "rank": 16,
       "key": "natur/natur_felt_og_formidling",
       "classification": "needs_role_authored_work",
       "structural_family": "other",
@@ -430,7 +409,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 18,
+      "rank": 17,
       "key": "natur/natur_forvaltning_og_radgivning",
       "classification": "needs_role_authored_work",
       "structural_family": "public_administration",
@@ -452,7 +431,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 19,
+      "rank": 18,
       "key": "natur/natur_miljoledelse",
       "classification": "needs_role_authored_work",
       "structural_family": "other",
@@ -474,7 +453,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 20,
+      "rank": 19,
       "key": "natur/natur_politisk_myndighet",
       "classification": "needs_role_authored_work",
       "structural_family": "other",
@@ -496,7 +475,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 21,
+      "rank": 20,
       "key": "politikk/politikk_kommunal_ledelse",
       "classification": "needs_role_authored_work",
       "structural_family": "public_administration",
@@ -518,7 +497,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 22,
+      "rank": 21,
       "key": "politikk/politikk_organisasjonsarbeid",
       "classification": "needs_role_authored_work",
       "structural_family": "public_administration",
@@ -540,7 +519,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 23,
+      "rank": 22,
       "key": "politikk/politikk_parlamentarisk_arbeid",
       "classification": "needs_role_authored_work",
       "structural_family": "public_administration",
@@ -562,7 +541,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 24,
+      "rank": 23,
       "key": "politikk/politikk_politisk_radgivning",
       "classification": "needs_role_authored_work",
       "structural_family": "public_administration",
@@ -584,7 +563,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 25,
+      "rank": 24,
       "key": "politikk/politikk_regjeringsledelse",
       "classification": "needs_role_authored_work",
       "structural_family": "public_administration",
@@ -606,7 +585,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 26,
+      "rank": 25,
       "key": "religion/religion_fagledelse",
       "classification": "needs_role_authored_work",
       "structural_family": "other",
@@ -628,7 +607,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 27,
+      "rank": 26,
       "key": "religion/religion_formidling_og_kulturarv",
       "classification": "needs_role_authored_work",
       "structural_family": "other",
@@ -650,7 +629,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 28,
+      "rank": 27,
       "key": "religion/religion_utredning_og_radgivning",
       "classification": "needs_role_authored_work",
       "structural_family": "public_administration",
@@ -672,7 +651,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 29,
+      "rank": 28,
       "key": "vitenskap/vitenskap_assistent_og_laboratorium",
       "classification": "needs_role_authored_work",
       "structural_family": "research_education",
@@ -694,7 +673,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 30,
+      "rank": 29,
       "key": "vitenskap/vitenskap_doktorlop_og_postdoktor",
       "classification": "needs_role_authored_work",
       "structural_family": "research_education",
@@ -716,7 +695,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 31,
+      "rank": 30,
       "key": "vitenskap/vitenskap_forskning",
       "classification": "needs_role_authored_work",
       "structural_family": "research_education",
@@ -738,7 +717,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 32,
+      "rank": 31,
       "key": "vitenskap/vitenskap_forskningsledelse",
       "classification": "needs_role_authored_work",
       "structural_family": "research_education",
@@ -760,7 +739,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 33,
+      "rank": 32,
       "key": "vitenskap/vitenskap_institusjonsledelse",
       "classification": "needs_role_authored_work",
       "structural_family": "research_education",
@@ -782,7 +761,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 34,
+      "rank": 33,
       "key": "vitenskap/vitenskap_undervisning_og_forskning",
       "classification": "needs_role_authored_work",
       "structural_family": "research_education",
@@ -804,7 +783,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 35,
+      "rank": 34,
       "key": "musikk/musikk_scene_og_produksjon",
       "classification": "blocked",
       "structural_family": "creative_production",
@@ -829,7 +808,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 36,
+      "rank": 35,
       "key": "musikk/musikk_utoving_og_ensemble",
       "classification": "blocked",
       "structural_family": "other",
@@ -8078,15 +8057,16 @@
       ],
       "career_status": "playable",
       "runtime_gate": true,
-      "role_world_status": "role_world_not_started",
+      "role_world_status": "role_world_complete",
       "structural_family": "creative_production",
       "classification": "rollout_ready",
-      "priority_score": 1285,
+      "priority_score": 935,
       "dimensions": {
         "persistent_work_object": {
           "status": "foundation_ready",
           "evidence": [
             "data/Civication/mailFamilies/scenekunst/job/scenekunst_scene_og_produksjon_job.json",
+            "data/Civication/roleWorlds/scenekunst/scenekunst_scene_og_produksjon.json",
             "data/Civication/workGrammars/scenekunst/scenekunst_scene_og_produksjon.json"
           ],
           "rationale": "Existing work content carries stable object/case/project signals and a complete workday loop; the rollout PR must bind them explicitly to the locked persistent-work contract."
@@ -8104,6 +8084,7 @@
           "evidence": [
             "data/Civication/mailFamilies/scenekunst/job/scenekunst_scene_og_produksjon_job.json",
             "data/Civication/mailPlans/scenekunst/scenekunst_scene_og_produksjon_plan.json",
+            "data/Civication/roleWorlds/scenekunst/scenekunst_scene_og_produksjon.json",
             "data/Civication/workGrammars/scenekunst/scenekunst_scene_og_produksjon.json"
           ],
           "rationale": "The current runtime-authored role already exposes deadline/rework/handoff signals; rollout must make the rhythm role-specific and persistent."
@@ -8113,6 +8094,7 @@
           "evidence": [
             "data/Civication/mailFamilies/scenekunst/knowledge/scenekunst_scene_og_produksjon_knowledge.json",
             "data/Civication/roleModels/scenekunst/scenekunst_scene_og_produksjon.json",
+            "data/Civication/roleWorlds/scenekunst/scenekunst_scene_og_produksjon.json",
             "data/Civication/workGrammars/scenekunst/scenekunst_scene_og_produksjon.json"
           ],
           "rationale": "Career knowledge integration is complete; the rollout PR must author a concrete better-choice affordance while keeping authority independent from knowledge."
@@ -8121,7 +8103,8 @@
           "status": "foundation_ready",
           "evidence": [
             "data/Civication/mailFamilies/scenekunst/job/scenekunst_scene_og_produksjon_job.json",
-            "data/Civication/mailPlans/scenekunst/scenekunst_scene_og_produksjon_plan.json"
+            "data/Civication/mailPlans/scenekunst/scenekunst_scene_og_produksjon_plan.json",
+            "data/Civication/roleWorlds/scenekunst/scenekunst_scene_og_produksjon.json"
           ],
           "rationale": "Role-authored sources already contain situated audience/standing signals; rollout must bind only bounded authored audience IDs."
         },
@@ -8130,6 +8113,7 @@
           "evidence": [
             "data/Civication/mailFamilies/scenekunst/people/scenekunst_scene_og_produksjon_people.json",
             "data/Civication/roleModels/scenekunst/scenekunst_scene_og_produksjon.json",
+            "data/Civication/roleWorlds/scenekunst/scenekunst_scene_og_produksjon.json",
             "data/Civication/workGrammars/scenekunst/scenekunst_scene_og_produksjon.json"
           ],
           "rationale": "Career People and Places coverage is complete; rollout still must verify factual canonical references and keep invented workplace drama explicitly fictional."
@@ -8139,9 +8123,11 @@
           "evidence": [
             "data/Civication/mailFamilies/scenekunst/job/scenekunst_scene_og_produksjon_job.json",
             "data/Civication/mailPlans/scenekunst/scenekunst_scene_og_produksjon_plan.json",
+            "data/Civication/roleWorlds/scenekunst/scenekunst_scene_og_produksjon.json",
             "data/Civication/workGrammars/scenekunst/scenekunst_scene_og_produksjon.json",
             "tests/civication-scenekunst-life-career-split.test.js",
-            "tests/civication-scenekunst-scene-og-produksjon-prerequisites.test.js"
+            "tests/civication-scenekunst-scene-og-produksjon-prerequisites.test.js",
+            "tests/civication-scenekunst-scene-og-produksjon-role-world-rollout.test.js"
           ],
           "rationale": "Role-specific tests and authored source paths exist; rollout must add strict scene-registry parity and source provenance for new realism scenes."
         }
@@ -8159,11 +8145,13 @@
       "source_refs": [
         "data/Civication/mailFamilies/scenekunst/job/scenekunst_scene_og_produksjon_job.json",
         "data/Civication/mailPlans/scenekunst/scenekunst_scene_og_produksjon_plan.json",
+        "data/Civication/roleWorlds/scenekunst/scenekunst_scene_og_produksjon.json",
         "data/Civication/workGrammars/scenekunst/scenekunst_scene_og_produksjon.json",
         "tests/civication-scenekunst-life-career-split.test.js",
-        "tests/civication-scenekunst-scene-og-produksjon-prerequisites.test.js"
+        "tests/civication-scenekunst-scene-og-produksjon-prerequisites.test.js",
+        "tests/civication-scenekunst-scene-og-produksjon-role-world-rollout.test.js"
       ],
-      "already_reference_or_pilot": false
+      "already_reference_or_pilot": true
     },
     {
       "key": "scenekunst/scenekunst_utoving_og_ensemble",
