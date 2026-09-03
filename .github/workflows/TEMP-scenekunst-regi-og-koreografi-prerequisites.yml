@@ -24,6 +24,20 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Normalize authored mail depth
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('.github/TEMP-scenekunst-regi-og-koreografi-prerequisites-materializer.mjs')
+          s=p.read_text()
+          old=" Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner."
+          new=old+" Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår."
+          if old not in s:
+              raise SystemExit('mail-depth anchor missing')
+          p.write_text(s.replace(old,new,1))
+          PY
+
       - name: Materialize authored prerequisite package
         run: node .github/TEMP-scenekunst-regi-og-koreografi-prerequisites-materializer.mjs
 
