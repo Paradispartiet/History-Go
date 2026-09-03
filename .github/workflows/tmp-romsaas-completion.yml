@@ -56,10 +56,10 @@ jobs:
         run: node scripts/audit-fagverk-place-pages.mjs --write
       - name: Regenerate Fagverk release manifest
         run: node scripts/build-fagverk-release-manifest.mjs
-      - name: Regenerate epoch index
-        run: npm run epoker:places:build
       - name: Regenerate place-open
         run: npm run place-open:build
+      - name: Regenerate epoch index
+        run: npm run epoker:places:build
       - name: Regenerate canonical knowledge
         run: npm run knowledge:canonical:write
       - name: Regenerate quiz production context
