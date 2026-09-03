@@ -1,0 +1,57 @@
+name: TEMP Bogstadveien completion
+
+on:
+  push:
+    branches:
+      - work/bogstadveien-completion-20260903
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tmp-bogstadveien-completion-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Materialize Bogstadveien
+        run: node tools/finalize-bogstadveien-completion.mjs
+      - name: Build derived state
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+          npm run epoker:places:build
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Focused validation
+        run: |
+          node --test tests/bogstadveien-completion.test.mjs
+          node --test tests/epoke-place-index.test.mjs tests/epoker-runtime-place-index.test.mjs tests/epoke-viewer.test.mjs
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run check:stories
+          npm run places:index:check
+          npm run place-open:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          git diff --check
+      - name: Commit permanent Bogstadveien production
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/tmp-bogstadveien-completion.yml tools/finalize-bogstadveien-completion.mjs
+          git add -A
+          git diff --cached --check
+          git commit -m "Complete Bogstadveien Place production"
+          git push origin HEAD:work/bogstadveien-completion-20260903
