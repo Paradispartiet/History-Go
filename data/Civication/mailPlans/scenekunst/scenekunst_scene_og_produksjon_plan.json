@@ -1,0 +1,212 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "version": 1,
+  "id": "scenekunst_scene_og_produksjon_foundation_v1",
+  "category": "scenekunst",
+  "role_scope": "scenekunst_scene_og_produksjon",
+  "title": "Scene og produksjon",
+  "description": "Seksten steg gjennom samme produksjonsforløp fra første call og teknisk klargjøring til innslipp, cue, forestilling, turnéhandoff, avvik og sen konsekvens.",
+  "arc": {
+    "from": "Ny scene-/produksjonsfunksjon uten felles status for call, teknisk frigivelse, cue og publikum.",
+    "to": "Produksjonsmedarbeider som holder sann status og sikker handoff gjennom press uten å låne myndighet fra teknikk, kunstnerisk ledelse, rettighet eller kontrakt.",
+    "core_questions": [
+      "Hva er planlagt, hva er bekreftet, og hva er faktisk frigitt?",
+      "Hvem eier neste avklaring eller stoppkriterium?",
+      "Hvilke ledd må retestes eller varsles når premisset endres?"
+    ]
+  },
+  "situated_audience_contract": {
+    "no_global_score": true,
+    "audiences": [
+      "produksjon_og_inspisient",
+      "teknikk_og_sikkerhet",
+      "kunstnerisk_team_og_utovere",
+      "publikum_og_vertskap"
+    ],
+    "rule": "Standing er bundet til konkret arbeidsrelasjon og leveranse; den skaper aldri global score, teknisk frigivelse, kunstnerisk mandat, rettighet eller kontraktsfullmakt."
+  },
+  "outcome_rules": {
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 2,
+      "strikes_lte": 0
+    },
+    "fired": {
+      "stability_values": [
+        "FIRED"
+      ],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "stagnated": {
+      "autonomy_delta": -10,
+      "stability": "STAGNATED",
+      "add_branch_flags": [
+        "career_stagnated",
+        "produksjon_uten_sporbar_frigivelse"
+      ]
+    }
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Oppdater produksjonsbok/call med sann status, eier, avhengighet og neste kontroll.",
+      "allowed_families": [
+        "scene_produksjonsbok"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 2,
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Bevar koordinering, sikkerhet, kunstnerisk mandat, rettighet og tilgjengelighetsgrenser i arbeidsrelasjonen.",
+      "allowed_families": [
+        "scene_arbeidsrelasjoner"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 3,
+      "type": "knowledge",
+      "phase": "intro",
+      "step_goal": "Bruk History Go til et bedre produksjonsspørsmål uten fasitspråk.",
+      "allowed_families": [
+        "scene_history_go"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 4,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Oppdater produksjonsbok/call med sann status, eier, avhengighet og neste kontroll.",
+      "allowed_families": [
+        "scene_produksjonsbok"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 5,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Bevar koordinering, sikkerhet, kunstnerisk mandat, rettighet og tilgjengelighetsgrenser i arbeidsrelasjonen.",
+      "allowed_families": [
+        "scene_arbeidsrelasjoner"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 6,
+      "type": "conflict",
+      "phase": "advanced",
+      "step_goal": "Skill premierepress, arbeidstid, sikkerhet og kunstnerisk endring før beslutning.",
+      "allowed_families": [
+        "scene_sikkerhet_og_tidspress"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 7,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Oppdater produksjonsbok/call med sann status, eier, avhengighet og neste kontroll.",
+      "allowed_families": [
+        "scene_produksjonsbok"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 8,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Bevar koordinering, sikkerhet, kunstnerisk mandat, rettighet og tilgjengelighetsgrenser i arbeidsrelasjonen.",
+      "allowed_families": [
+        "scene_arbeidsrelasjoner"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 9,
+      "type": "event",
+      "phase": "advanced",
+      "step_goal": "Replanlegg berørte oppgaver når bemanning eller premiss endres.",
+      "allowed_families": [
+        "scene_endret_bemanning"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 10,
+      "type": "micro",
+      "phase": "advanced",
+      "step_goal": "Bruk eksplisitt statusspraak for klargjort, testet, betinget og frigitt.",
+      "allowed_families": [
+        "scene_statussprak"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 11,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Oppdater produksjonsbok/call med sann status, eier, avhengighet og neste kontroll.",
+      "allowed_families": [
+        "scene_produksjonsbok"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 12,
+      "type": "people",
+      "phase": "mastery",
+      "step_goal": "Bevar koordinering, sikkerhet, kunstnerisk mandat, rettighet og tilgjengelighetsgrenser i arbeidsrelasjonen.",
+      "allowed_families": [
+        "scene_arbeidsrelasjoner"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 13,
+      "type": "followup",
+      "phase": "mastery",
+      "step_goal": "Bruk faktisk effekt til avgrenset rework og ny handoff.",
+      "allowed_families": [
+        "scene_tilgjengelighet_og_handoff"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 14,
+      "type": "story",
+      "phase": "mastery",
+      "step_goal": "Bær samme produksjonsstatus gjennom hel forestilling og dokumenter avvik.",
+      "allowed_families": [
+        "scene_forestilling_i_drift"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 15,
+      "type": "consequence",
+      "phase": "mastery",
+      "step_goal": "Koble sen konsekvens til dokumentert versjon og bounded rework.",
+      "allowed_families": [
+        "scene_sen_endring"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 16,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Oppdater produksjonsbok/call med sann status, eier, avhengighet og neste kontroll.",
+      "allowed_families": [
+        "scene_produksjonsbok"
+      ],
+      "fallback_types": []
+    }
+  ]
+}

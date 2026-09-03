@@ -1,1 +1,213 @@
-{"schema":"civication_work_grammar_v2","version":2,"category":"scenekunst","role_scope":"scenekunst_scene_og_produksjon","source":{"evidence":"data/Civication/scenekunstCareerLifeEvidence.json"},"badge_binding":{"badge_id":"scenekunst","badge_titles":["Scenevert","Produksjonsassistent","Scenetekniker","Inspisientassistent","Produsent"]},"task_families":["publikum_og_vertskap","produksjonsplan_og_call","teknisk_klargjoring_og_sjekk","cue_og_forestilling","avvik_og_etterarbeid"],"work_loops":[{"id":"forestilling","steps":["klargjor","sjekk","call","gjennomfor","logg_avvik"]},{"id":"produksjonsdag","steps":["prioriter","fordel","koordiner","verifiser","overlever"]}],"practice_stories":[{"id":"s1","setup":"Dørene skal åpnes, men scenen er ikke teknisk frigitt.","good":"Hold publikum informert, koordiner med teknisk ansvarlig og åpne først når sikkerhetsstatus er avklart.","bad":"Åpne likevel for å unngå forsinkelse."},{"id":"s2","setup":"En scenemekanikk gir uventet feilmelding før et skift.","good":"Stans det berørte elementet, aktiver avtalt avviksprosedyre og finn en sikker alternativ løsning.","bad":"Be en medarbeider om å improvisere rundt sperren."},{"id":"s3","setup":"Regissøren ønsker et ekstra cue som kolliderer med bemanning.","good":"Synliggjør konsekvensen og avklar prioritering med ansvarlig kunstnerisk og teknisk linje.","bad":"Legg inn cue uten kapasitetssjekk."},{"id":"s4","setup":"En turnéarene har lavere bæreevne enn opprinnelig scene.","good":"Tilpass teknisk plan og dokumenter hva som må endres før rigg.","bad":"Bruk original rigg fordi forestillingen skal se lik ut."},{"id":"s5","setup":"En produksjonsdag går over planlagt arbeidstid.","good":"Replanlegg og eskaler bemannings-/arbeidstidsbehov etter gjeldende rammer.","bad":"Forutsett at alle bare blir til jobben er ferdig."}],"quality_axes":["sikkerhet","presisjon","flyt","kommunikasjon","tilgjengelighet","dokumentasjon"],"authority_boundary":{"may_not":["overstyre_godkjente_hms_og_sikkerhetsgrenser","endre_kunstnerisk_innhold_uten_mandat","inngaa_bindende_kontrakter_uten_fullmakt","ignorere_rettighets_eller_tilgjengelighetskrav"]}}
+{
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_scene_og_produksjon",
+  "source": {
+    "evidence": "data/Civication/scenekunstCareerLifeEvidence.json"
+  },
+  "badge_binding": {
+    "badge_id": "scenekunst",
+    "badge_titles": [
+      "Scenevert",
+      "Produksjonsassistent",
+      "Scenetekniker",
+      "Inspisientassistent",
+      "Produsent"
+    ]
+  },
+  "task_families": [
+    "publikum_og_vertskap",
+    "produksjonsplan_og_call",
+    "teknisk_klargjoring_og_sjekk",
+    "cue_og_forestilling",
+    "avvik_og_etterarbeid"
+  ],
+  "work_loops": [
+    {
+      "id": "forestilling",
+      "steps": [
+        "klargjor",
+        "sjekk",
+        "call",
+        "gjennomfor",
+        "logg_avvik"
+      ]
+    },
+    {
+      "id": "produksjonsdag",
+      "steps": [
+        "prioriter",
+        "fordel",
+        "koordiner",
+        "verifiser",
+        "overlever"
+      ]
+    }
+  ],
+  "practice_stories": [
+    {
+      "id": "s1",
+      "setup": "Dørene skal åpnes, men scenen er ikke teknisk frigitt.",
+      "good": "Hold publikum informert, koordiner med teknisk ansvarlig og åpne først når sikkerhetsstatus er avklart.",
+      "bad": "Åpne likevel for å unngå forsinkelse."
+    },
+    {
+      "id": "s2",
+      "setup": "En scenemekanikk gir uventet feilmelding før et skift.",
+      "good": "Stans det berørte elementet, aktiver avtalt avviksprosedyre og finn en sikker alternativ løsning.",
+      "bad": "Be en medarbeider om å improvisere rundt sperren."
+    },
+    {
+      "id": "s3",
+      "setup": "Regissøren ønsker et ekstra cue som kolliderer med bemanning.",
+      "good": "Synliggjør konsekvensen og avklar prioritering med ansvarlig kunstnerisk og teknisk linje.",
+      "bad": "Legg inn cue uten kapasitetssjekk."
+    },
+    {
+      "id": "s4",
+      "setup": "En turnéarene har lavere bæreevne enn opprinnelig scene.",
+      "good": "Tilpass teknisk plan og dokumenter hva som må endres før rigg.",
+      "bad": "Bruk original rigg fordi forestillingen skal se lik ut."
+    },
+    {
+      "id": "s5",
+      "setup": "En produksjonsdag går over planlagt arbeidstid.",
+      "good": "Replanlegg og eskaler bemannings-/arbeidstidsbehov etter gjeldende rammer.",
+      "bad": "Forutsett at alle bare blir til jobben er ferdig."
+    }
+  ],
+  "quality_axes": [
+    "sikkerhet",
+    "presisjon",
+    "flyt",
+    "kommunikasjon",
+    "tilgjengelighet",
+    "dokumentasjon"
+  ],
+  "authority_boundary": {
+    "may_not": [
+      "overstyre_godkjente_hms_og_sikkerhetsgrenser",
+      "endre_kunstnerisk_innhold_uten_mandat",
+      "inngaa_bindende_kontrakter_uten_fullmakt",
+      "ignorere_rettighets_eller_tilgjengelighetskrav",
+      "kommunisere_betinget_scene_som_teknisk_frigitt"
+    ]
+  },
+  "role_id": "scenekunst_scene_og_produksjon",
+  "work_world": "Scene- og produksjonsarbeid der samme produksjonsbok binder call, bemanning, teknisk frigivelse, cue, publikumsflyt, avvik og handoff sammen uten å blande koordinering med sikkerhets-, kunstnerisk-, rettighets- eller kontraktsmyndighet.",
+  "pressure_axes": [
+    "annonsert_start_vs_reell_scenefrigivelse",
+    "kunstnerisk_endring_vs_bemanning_og_teknisk_sikkerhet",
+    "produksjonsfart_vs_arbeidstid_og_dokumentasjon",
+    "publikumsforventning_vs_tilgjengelighet_og_sann_status"
+  ],
+  "actor_grammar": [
+    {
+      "id": "ida_produksjonsleder",
+      "name": "Ida",
+      "role": "produksjonsleder",
+      "workplace_ids": [
+        "produksjonskontor_og_callboard"
+      ]
+    },
+    {
+      "id": "jonas_inspisient",
+      "name": "Jonas",
+      "role": "inspisient",
+      "workplace_ids": [
+        "inspisientpult_og_cuebok"
+      ]
+    },
+    {
+      "id": "marwa_sceneteknisk_leder",
+      "name": "Marwa",
+      "role": "sceneteknisk leder",
+      "workplace_ids": [
+        "scene_og_teknisk_sjekkpunkt"
+      ]
+    },
+    {
+      "id": "samira_publikumskoordinator",
+      "name": "Samira",
+      "role": "publikums- og vertskapskoordinator",
+      "workplace_ids": [
+        "foaje_og_publikumsflyt"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "produksjonskontor_og_callboard",
+      "name": "Produksjonskontoret og callboardet",
+      "function": "Her holdes produksjonsplan, bemanning, calls, tidsvinduer, avhengigheter, beslutningseiere og distribuerte versjoner samlet. Flaten skiller planlagt fra bekreftet og frigitt, slik at en forskyvning i tid eller ressurs kan replanlegges uten å gjøre antakelser til godkjenninger."
+    },
+    {
+      "id": "scene_og_teknisk_sjekkpunkt",
+      "name": "Scenen og teknisk sjekkpunkt",
+      "function": "Her holdes rigg, strøm, lys, lyd, scenemekanikk, belastning, sikkerhetstest, avvik og teknisk frigivelse samlet. En kunstnerisk eller produksjonsmessig bestilling er aldri i seg selv sikkerhetsgodkjenning, og retest får navngitt eier og konkret omfang."
+    },
+    {
+      "id": "inspisientpult_og_cuebok",
+      "name": "Inspisientpulten og cueboken",
+      "function": "Her holdes calls, cues, stoppkriterier, gjeldende sceneversjon, kommunikasjon og forestillingsavvik samlet. Cueboken viser hva som er låst, betinget eller trukket tilbake slik at lys, lyd, scene og utøvere ikke arbeider etter ulike versjoner."
+    },
+    {
+      "id": "foaje_og_publikumsflyt",
+      "name": "Foajeen og publikumsflyten",
+      "function": "Her kobles innslipp, kø, universell utforming, vertskap, forsinkelsesinformasjon og publikumsbehov til faktisk scenestatus. Front-of-house får sann og tidsstemplet status uten å bli gjort til eier av teknisk frigivelse eller kunstnerisk beslutning."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "produksjonsbok_call_og_avvikslogg",
+    "description": "Versjonert produksjonsbok for plan, call, bemanning, scenestatus, teknisk frigivelse, cue, publikumsinformasjon, avvik, beslutningseier, handoff og senere effekt.",
+    "states": [
+      "plan_og_call_registrert",
+      "teknisk_klargjoring_pagar",
+      "venter_pa_frigivelse_eller_avklaring",
+      "betinget_klar",
+      "scene_teknisk_frigitt",
+      "forestilling_og_cue",
+      "avvik_og_bounded_rework",
+      "handoff_og_etterarbeid"
+    ],
+    "handoff_rule": "Neste funksjon mottar gjeldende plan/call, sceneversjon, teknisk status, bemanning, publikumspremiss, åpne avhengigheter, beslutningseier, siste avvik og konkret kontroll før status kan endres."
+  },
+  "rhythm_contract": {
+    "loop": "plan -> klargjor -> verify -> waiting/venting -> frigiv eller beting -> handoff -> cue/innslipp -> avvik -> effektkontroll -> bounded rework",
+    "waiting_states": [
+      "teknisk_sikkerhetsfrigivelse",
+      "kunstnerisk_avklaring",
+      "bemanning_eller_arbeidstid",
+      "rettighet_eller_tilgjengelighet"
+    ],
+    "rework_rule": "Endret premiss gjenåpner bare berørte plan-, bemannings-, teknikk-, cue-, publikums- eller rettighetsledd; tidligere status, begrunnelse, eier og varsling beholdes."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_scenekunst_edith_roger_nationaltheatret_produksjonsblikk",
+      "badge_id": "scenekunst",
+      "use": "Historisk kontekst om Edith Roger og Nationaltheatret som grunnlag for spørsmål om hvordan scenepraksis, ensemble og institusjonelle rammer henger sammen; aldri fasit for dagens sikkerhet, bemanning, cue eller produksjonsmyndighet."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "appointment_required",
+    "first_object": "produksjonsbok_call_og_avvikslogg",
+    "first_task": "Registrer dagens første call med sceneversjon, bemanning, teknisk status, innslippspremiss, beslutningseiere, åpne avhengigheter og hvilken kontroll som må passere før noe kommuniseres som frigitt."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "scenekunst_scene_og_produksjon",
+    "no_generic_fallback": true
+  }
+}
