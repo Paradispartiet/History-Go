@@ -29,7 +29,6 @@ jobs:
         run: |
           set -euo pipefail
           node .github/TEMP-scenekunst-program-og-kuratering-prerequisites-materializer.mjs
-          sed -i "s/assert.equal(pack.status,'complete_reference_v2')/assert.equal(pack.status,'complete_v2')/" tests/civication-scenekunst-program-og-kuratering-prerequisites.test.js
           sed -i 's@assert.deepEqual(p.workplace_ids,\[PLACES\[i\]\])@assert.deepEqual(p.workplace_ids,[({leila_programsjef:PLACES[0],tor_arena_og_produksjonssjef:PLACES[3],mina_rettighets_og_avtalekoordinator:PLACES[2],yusuf_felt_og_publikumsanalytiker:PLACES[1]})[p.id]])@' tests/civication-scenekunst-program-og-kuratering-prerequisites.test.js
 
       - name: Regenerate canonical derived state
