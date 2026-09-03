@@ -1,0 +1,102 @@
+name: TEMP Scenekunst scene og produksjon prerequisites
+
+on:
+  push:
+    branches:
+      - agent/civication-scenekunst-scene-og-produksjon-prerequisites-materialize
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Correct focused actor/workplace assertion in transient materializer
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('.github/TEMP-scenekunst-scene-og-produksjon-prerequisites-materializer.mjs')
+          s = p.read_text()
+          old = "assert.deepEqual(p.workplace_ids,[PLACES[i]]);"
+          new = "const expectedWorkplace={ida_produksjonsleder:'produksjonskontor_og_callboard',jonas_inspisient:'inspisientpult_og_cuebok',marwa_sceneteknisk_leder:'scene_og_teknisk_sjekkpunkt',samira_publikumskoordinator:'foaje_og_publikumsflyt'}[p.id];assert.ok(expectedWorkplace);assert.deepEqual(p.workplace_ids,[expectedWorkplace]);"
+          if s.count(old) != 1:
+              raise SystemExit(f'Expected exactly one positional workplace assertion, found {s.count(old)}')
+          p.write_text(s.replace(old, new))
+          PY
+
+      - name: Materialize authored Scene og produksjon prerequisites
+        run: node .github/TEMP-scenekunst-scene-og-produksjon-prerequisites-materializer.mjs
+
+      - name: Regenerate canonical derived state
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audit-civication-role-packs.mjs
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+          node scripts/build-civication-scene-registry.mjs --write
+          npm run build:civication:career-gameplay-matrix
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+
+      - name: Focused prerequisite gate
+        run: node tests/civication-scenekunst-scene-og-produksjon-prerequisites.test.js
+
+      - name: Scenekunst career compatibility gate
+        run: node tests/civication-scenekunst-life-career-split.test.js
+
+      - name: Generated-state parity gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audit-civication-role-packs.mjs
+          node scripts/audit-civication-career-gameplay.mjs --check
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
+          node scripts/build-civication-scene-registry.mjs --check
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --check
+
+      - name: Full Civication gate
+        run: npm run test:civication
+
+      - name: Repository diff gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('docs/CIVICATION_ROLE_PACK_INDEX.md')
+          if p.exists():
+              p.write_text(p.read_text().rstrip()+"\n")
+          PY
+          git diff --check
+          git status --short
+
+      - name: Publish permanent prerequisite state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm -f .github/workflows/TEMP-scenekunst-scene-og-produksjon-prerequisites.yml
+          git rm -f .github/TEMP-scenekunst-scene-og-produksjon-prerequisites-materializer.mjs
+          git add data/Civication docs/CIVICATION_ROLE_PACK_INDEX.md reports tests/civication-scenekunst-scene-og-produksjon-prerequisites.test.js
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo "No permanent prerequisite changes to publish"
+            exit 1
+          fi
+          git commit -m "Materialize Scenekunst scene og produksjon prerequisites"
+          git push origin HEAD:agent/civication-scenekunst-scene-og-produksjon-prerequisites-materialize
