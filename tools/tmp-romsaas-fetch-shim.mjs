@@ -7,7 +7,7 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 function directCommonsUrl(input) {
   const url = new URL(String(input));
   if (url.hostname !== 'commons.wikimedia.org' || !url.pathname.includes('/wiki/Special:Redirect/file/')) return null;
-  const filename = decodeURIComponent(url.pathname.split('/').pop());
+  const filename = decodeURIComponent(url.pathname.split('/').pop()).replace(/ /g, '_').normalize('NFC');
   const digest = crypto.createHash('md5').update(filename, 'utf8').digest('hex');
   return `https://upload.wikimedia.org/wikipedia/commons/${digest[0]}/${digest.slice(0, 2)}/${encodeURIComponent(filename)}`;
 }
