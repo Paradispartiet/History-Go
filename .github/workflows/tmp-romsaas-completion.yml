@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
       - name: Materialize Romsås
-        run: node tools/tmp-finalize-romsaas-completion.mjs
+        run: node --import=./tools/tmp-romsaas-fetch-shim.mjs tools/tmp-finalize-romsaas-completion.mjs
       - name: Regenerate affected canonical and runtime state
         run: |
           node scripts/build-quiz-production-context.mjs --category by --target romsaås --output data/quiz/production_context/by/romsaås.json
@@ -80,6 +80,7 @@ jobs:
       - name: Publish clean candidate
         run: |
           rm tools/tmp-finalize-romsaas-completion.mjs
+          rm tools/tmp-romsaas-fetch-shim.mjs
           rm .github/workflows/tmp-romsaas-completion.yml
           git add -A
           git diff --cached --check
