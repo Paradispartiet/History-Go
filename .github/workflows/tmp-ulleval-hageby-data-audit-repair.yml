@@ -1,4 +1,4 @@
-name: tmp Ullevål Hageby data audit repair
+name: tmp Ullevål Hageby data audit capture
 on:
   push:
     branches:
@@ -6,8 +6,8 @@ on:
 permissions:
   contents: write
 jobs:
-  repair:
-    if: github.event.head_commit.message != 'Repair Ullevål Hageby data audit state'
+  capture:
+    if: github.event.head_commit.message != 'Capture Ullevål Hageby data check failures'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,109 +17,32 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - name: Replay on fresh main
+      - name: Install
+        run: npm ci --no-audit --no-fund
+      - name: Capture failing audits
+        shell: bash
+        run: |
+          set +e
+          mkdir -p reports/tmp
+          : > reports/tmp/ulleval-hageby-data-check.log
+          run_check() {
+            echo "===== $1 =====" | tee -a reports/tmp/ulleval-hageby-data-check.log
+            shift
+            "$@" 2>&1 | tee -a reports/tmp/ulleval-hageby-data-check.log
+            code=${PIPESTATUS[0]}
+            echo "EXIT=$code" | tee -a reports/tmp/ulleval-hageby-data-check.log
+            echo | tee -a reports/tmp/ulleval-hageby-data-check.log
+          }
+          run_check quiz-production-context npm run audit:quiz-production-context
+          run_check quiz-progression npm run audit:quiz-progression
+          run_check quiz-theory-binding npm run audit:quiz-theory-binding
+          run_check civication-history-people npm run civication:history-people:check
+          run_check people-shell bash scripts/check-people.sh
+          exit 0
+      - name: Publish diagnostics
         run: |
           git config user.name "Paradispartiet"
           git config user.email "paradispartiet@gmail.com"
-          git fetch origin main
-          git merge --no-edit origin/main
-      - name: Repair final theory binding
-        run: |
-          node - <<'NODE'
-          const fs = require('fs');
-          const quizFile = 'data/quiz/by/ullevål_hageby_sets.json';
-          const quiz = JSON.parse(fs.readFileSync(quizFile, 'utf8'));
-          const questions = (quiz.sets || []).flatMap((set) => set.questions || []);
-          const theoryQuestion = questions.find((question) => question.id === 'ullevål_hageby_quiz_25');
-          if (!theoryQuestion) throw new Error('Missing Ullevål Hageby theory question 25');
-          if (theoryQuestion.emne_id !== 'em_by_boligstruktur') {
-            throw new Error(`Unexpected q25 emne_id: ${theoryQuestion.emne_id}`);
-          }
-          theoryQuestion.topic_hook_id = 'bolig_boligtyper';
-          theoryQuestion.thinker_id = 'david_harvey';
-          theoryQuestion.work = 'Rebel Cities';
-          theoryQuestion.theory_ref = {
-            topic_hook_id: 'bolig_boligtyper',
-            thinker_id: 'david_harvey',
-            work: 'Rebel Cities',
-            why_it_helps: 'Boligtypeperspektivet kobler hagebyens planlagte boligform til hvordan boligstruktur organiserer tilgang, hverdagsrom og byutvikling.'
-          };
-          const context = quiz.production_context || (quiz.production_context = {});
-          const addUnique = (values, value) => [...new Set([...(Array.isArray(values) ? values : []), value])];
-          context.topic_hook_ids = addUnique(context.topic_hook_ids, 'bolig_boligtyper');
-          context.thinker_ids = addUnique(context.thinker_ids, 'david_harvey');
-          context.works = addUnique(context.works, 'Rebel Cities');
-          fs.writeFileSync(quizFile, `${JSON.stringify(quiz, null, 2)}\n`);
-          NODE
-      - name: Repair quiz source brief
-        run: |
-          node - <<'NODE'
-          const fs = require('fs');
-          const quizFile = 'data/quiz/by/ullevål_hageby_sets.json';
-          const briefFile = 'data/quiz/production_briefs/by/ullevål_hageby.json';
-          const quiz = JSON.parse(fs.readFileSync(quizFile, 'utf8'));
-          const brief = JSON.parse(fs.readFileSync(briefFile, 'utf8'));
-          const pc = quiz.production_context;
-          for (const field of ['existing_quiz_audit', 'profile_decision', 'held_back_candidates']) {
-            if (pc[field] === undefined) throw new Error(`Quiz production_context.${field} missing`);
-            brief[field] = pc[field];
-          }
-          const curriculumPairs = {
-            module_ids: 'pensum_module_ids',
-            emne_ids: 'emne_ids',
-            topic_hook_ids: 'topic_hook_ids',
-            method_ids: 'method_ids',
-            thinker_ids: 'thinker_ids',
-            works: 'works'
-          };
-          brief.selected_curriculum = {};
-          for (const [briefField, contextField] of Object.entries(curriculumPairs)) {
-            if (!Array.isArray(pc[contextField])) throw new Error(`Quiz production_context.${contextField} missing`);
-            brief.selected_curriculum[briefField] = pc[contextField];
-          }
-          fs.writeFileSync(briefFile, `${JSON.stringify(brief, null, 2)}\n`);
-          NODE
-      - name: Regenerate affected artifacts
-        run: |
-          npm ci --no-audit --no-fund
-          node scripts/build-quiz-production-context.mjs --category by --target ullevål_hageby --output data/quiz/production_context/by/ullevål_hageby.json
-          npm run civication:history-people:build
-      - name: Normalize changed text whitespace
-        run: |
-          node - <<'NODE'
-          const fs = require('fs');
-          const { execFileSync } = require('child_process');
-          const changed = execFileSync('git', ['diff', '--name-only', '-z'], { encoding: 'utf8' })
-            .split('\0')
-            .filter(Boolean);
-          for (const file of changed) {
-            if (!fs.existsSync(file) || !fs.statSync(file).isFile()) continue;
-            const buffer = fs.readFileSync(file);
-            if (buffer.includes(0)) continue;
-            const text = buffer.toString('utf8');
-            const normalized = text
-              .split(/\r?\n/)
-              .map((line) => line.replace(/[ \t]+$/u, ''))
-              .join('\n')
-              .replace(/\n*$/u, '\n');
-            if (normalized !== text) fs.writeFileSync(file, normalized);
-          }
-          NODE
-      - name: Verify quiz production context
-        run: npm run audit:quiz-production-context
-      - name: Verify quiz progression
-        run: npm run audit:quiz-progression
-      - name: Verify quiz theory binding
-        run: npm run audit:quiz-theory-binding
-      - name: Verify Civication history people
-        run: npm run civication:history-people:check
-      - name: Verify people shell
-        run: bash scripts/check-people.sh
-      - name: Verify whitespace
-        run: git diff --check
-      - name: Publish repaired candidate
-        run: |
-          git add -A
-          git commit -m "Repair Ullevål Hageby data audit state"
+          git add reports/tmp/ulleval-hageby-data-check.log
+          git commit -m "Capture Ullevål Hageby data check failures"
           git push origin HEAD:work/ulleval-hageby-completion-20260902
-# retrigger current data repair — pass 5
