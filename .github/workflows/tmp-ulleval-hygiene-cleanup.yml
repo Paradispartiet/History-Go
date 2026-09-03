@@ -1,0 +1,26 @@
+name: tmp Ullevål Hageby hygiene cleanup
+on:
+  push:
+    branches:
+      - work/ulleval-hageby-completion-20260902
+permissions:
+  contents: write
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/ulleval-hageby-completion-20260902
+          fetch-depth: 0
+      - name: Restore oversized diagnostic reports from main
+        run: |
+          git config user.name "Paradispartiet"
+          git config user.email "paradispartiet@gmail.com"
+          git fetch origin main
+          git checkout origin/main -- reports/people-invalid-place-refs.json reports/people-place-coverage.json
+          git rm .github/workflows/tmp-ulleval-hygiene-cleanup.yml
+          git add -A
+          git diff --cached --check
+          git commit -m "Cleanup Ullevål Hageby oversized diagnostics"
+          git push origin HEAD:work/ulleval-hageby-completion-20260902
