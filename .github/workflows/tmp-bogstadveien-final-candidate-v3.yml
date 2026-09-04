@@ -45,19 +45,77 @@ jobs:
           set -euo pipefail
           bash /tmp/bogstad-fetch.sh
           bash /tmp/bogstad-materialize.sh
-      - name: Normalize Georg A. Nilsen provenance contract
+      - name: Replace Georg A. Nilsen context photo with official custom logo
         run: |
           set -euo pipefail
+          GEORG_LOGO='https://www.georganilsen.no/wp-content/uploads/2016/12/cropped-cropped-logo-georg-a-nilsen-sh-jpg.jpg'
+          curl -A 'Mozilla/5.0 History-Go source audit' -L --fail --retry 3 --connect-timeout 15 --max-time 60 "$GEORG_LOGO" -o /tmp/georg-a-nilsen-official-logo.jpg
+          file /tmp/georg-a-nilsen-official-logo.jpg
           node <<'NODE'
           const fs=require('fs');
-          const p='data/brands/brands_master.json';
-          const brands=JSON.parse(fs.readFileSync(p,'utf8'));
-          const georg=brands.find(row=>row.id==='georg_a_nilsen');
-          if(!georg?.logoMeta) throw new Error('Georg A. Nilsen logoMeta missing');
-          if(!/ikke rekonstruert|ikke en rekonstruert|ikke rekonstruert eller generert/i.test(georg.logoMeta.disclosure||'')) throw new Error('Georg A. Nilsen disclosure does not support provenance flags');
-          georg.logoMeta.generated=false;
-          georg.logoMeta.reconstructed=false;
-          fs.writeFileSync(p,JSON.stringify(brands,null,2)+'\n');
+          const path=require('path');
+          const sharp=require('sharp');
+          (async()=>{
+            const logoUrl='https://www.georganilsen.no/wp-content/uploads/2016/12/cropped-cropped-logo-georg-a-nilsen-sh-jpg.jpg';
+            const src='/tmp/georg-a-nilsen-official-logo.jpg';
+            const meta=await sharp(src).metadata();
+            if(meta.format!=='jpeg'||meta.width!==309||meta.height!==250) throw new Error(`Unexpected Georg A. Nilsen official logo: ${meta.format} ${meta.width}x${meta.height}`);
+            const localSource='bilder/kort/brands/georg_a_nilsen_source_official_custom_logo.jpg';
+            const output='bilder/kort/brands/georg_a_nilsen.webp';
+            fs.mkdirSync(path.dirname(localSource),{recursive:true});
+            fs.copyFileSync(src,localSource);
+            await sharp(src)
+              .resize(900,900,{fit:'contain',background:{r:255,g:255,b:255,alpha:0},withoutEnlargement:false})
+              .webp({quality:92})
+              .toFile(output);
+            const outMeta=await sharp(output).metadata();
+            if(outMeta.format!=='webp'||outMeta.width!==900||outMeta.height!==900) throw new Error(`Unexpected Georg output: ${outMeta.format} ${outMeta.width}x${outMeta.height}`);
+            const brandsPath='data/brands/brands_master.json';
+            const brands=JSON.parse(fs.readFileSync(brandsPath,'utf8'));
+            const georg=brands.find(row=>row.id==='georg_a_nilsen');
+            if(!georg) throw new Error('Georg A. Nilsen Brand missing');
+            georg.logo=output;
+            georg.source_urls=[...new Set([...(georg.source_urls||[]),'https://www.georganilsen.no/','https://www.georganilsen.no/var-historie/',logoUrl])];
+            georg.logoMeta={
+              source:'first_party_official_site',
+              sourcePage:'https://www.georganilsen.no/',
+              sourceUrl:logoUrl,
+              creator:'Georg A. Nilsen',
+              credit:'Georg A. Nilsen official website custom-logo',
+              rightsBasis:'Official brand asset used referentially',
+              license:'brand/trademark',
+              reviewStatus:'verified',
+              assetKind:'official_logo',
+              assetType:'first_party_custom_logo',
+              temporalScope:'current',
+              usageContext:'brand identification',
+              noEndorsement:true,
+              localSource,
+              generated:false,
+              reconstructed:false,
+              transformation:'Official first-party custom-logo JPEG; proportional resize; centre-square-canvas; WebP q92.',
+              outputDimensions:'900x900',
+              reviewedAt:'2026-09-04',
+              disclosure:'Autentisk offisiell custom-logo fra Georg A. Nilsens eget nettsted; ikke rekonstruert eller generert.'
+            };
+            fs.writeFileSync(brandsPath,JSON.stringify(brands,null,2)+'\n');
+            const auditPath='reports/place-production/bogstadveien-phase8c-brands-audit-v1.json';
+            const audit=JSON.parse(fs.readFileSync(auditPath,'utf8'));
+            const included=(audit.included||[]).find(row=>row.id==='georg_a_nilsen');
+            if(!included) throw new Error('Georg A. Nilsen audit row missing');
+            included.source_urls=georg.source_urls;
+            included.visual_decision='verified_first_party_official_custom_logo';
+            included.visual_source=logoUrl;
+            audit.source_corrections=[...(audit.source_corrections||[]).filter(row=>row.candidate!=='georg_a_nilsen'),{
+              candidate:'georg_a_nilsen',
+              correction:'Replaced documentary storefront context image with first-party official WordPress custom-logo; no reconstruction or generated mark.',
+              source_page:'https://www.georganilsen.no/',
+              source_url:logoUrl
+            }];
+            fs.writeFileSync(auditPath,JSON.stringify(audit,null,2)+'\n');
+            fs.rmSync('bilder/kort/brands/georg_a_nilsen_source_bogstadveien_30.jpg',{force:true});
+            fs.rmSync('bilder/kort/brands/georg_a_nilsen_source_bogstadveien_39.jpg',{force:true});
+          })().catch(err=>{console.error(err);process.exit(1)});
           NODE
       - name: Rebuild derived payloads and image backlog with schema validation
         run: |
