@@ -1,0 +1,35 @@
+name: TEMP Bogstadveien MOO diagnose
+on:
+  push:
+    branches: [control/bogstadveien-finalize-20260904-v3]
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Inspect official MOO asset and page
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import urllib.request,re
+          ua='History-Go-place-production/1.0 (https://github.com/Paradispartiet/History-Go)'
+          for url in ['https://www.moo.no/wp-content/uploads/2023/06/moo-logo.png','https://www.moo.no/']:
+            req=urllib.request.Request(url,headers={'User-Agent':ua})
+            with urllib.request.urlopen(req,timeout=45) as r:
+              data=r.read()
+              print('URL',url,'status',r.status,'content-type',r.headers.get('Content-Type'),'length',len(data))
+              if url.endswith('.png'):
+                open('/tmp/moo-logo.bin','wb').write(data)
+                print('hex',data[:80].hex())
+              else:
+                html=data.decode('utf-8','ignore')
+                for m in re.finditer(r'[^"\']*(?:logo|MOO)[^"\']*\.(?:png|svg|webp|jpg|jpeg)',html,re.I):
+                  print('candidate',m.group(0)[:500])
+                for pat in [r'<img[^>]+(?:class|id)=["\'][^"\']*(?:logo|custom-logo)[^"\']*["\'][^>]*>',r'<img[^>]+src=["\'][^"\']*moo[^"\']*["\'][^>]*>']:
+                  for mm in re.finditer(pat,html,re.I): print('img',mm.group(0)[:1000])
+          PY
+          file /tmp/moo-logo.bin || true
+          wc -c /tmp/moo-logo.bin || true
