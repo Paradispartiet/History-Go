@@ -1,0 +1,72 @@
+_governed'},
+  {id:'rights_crediting_standing',meaning:'Artister og rettighetshaveres tillit til at bruk, kreditering, dokumentasjon og publisering følger faktisk avtale og klarering.',runtime_binding:'editorial_only_until_governed'},
+  {id:'public_delivery_standing',meaning:'Publikums tillit til sann program-, tilgjengelighets- og hendelsesinformasjon og til konkret reparasjon når leveransen avviker.',runtime_binding:'editorial_only_until_governed'},
+  {id:'private_identity_boundary',meaning:'Om spilleren klarer å skille prosjektstanding, miljøtilhørighet og privat egenverdi uten å lekke fortrolige eller bindende arbeidsforhold inn i nære relasjoner.',runtime_binding:'editorial_only_until_governed'},
+  {id:'authority_boundary_clarity',meaning:'Om sosial og profesjonell standing forblir adskilt fra budsjettvedtak, arbeidsgiveransvar, kontraktsfullmakt, rettighetsklarering og HMS/sikkerhetsfrigivelse.',runtime_binding:'editorial_only_until_governed'}
+];
+world.situated_reputation_model={
+  global_score_allowed:false,
+  audiences,
+  divergence_examples:[
+    'Å kutte en profilert programpost kan svekke standing hos oppdragsgiver eller miljø på kort sikt samtidig som crew, økonomi og leverandører får større tillit til at prosjektet ikke skjuler kapasitets- og budsjettgjeld.',
+    'Å holde igjen en ferdig trailer til rettigheten er klar kan oppleves som tregt i kommunikasjonsteamet, men styrke motparts- og langsiktig profesjonell standing fordi bruksomfang og kreditering faktisk er lesbare.',
+    'Å stoppe for teknisk retest kan koste tidsplan og publikumskomfort i øyeblikket samtidig som crew- og sikkerhetsstanding styrkes; et senere vellykket arrangement opphever ikke behovet for den stoppen.'
+  ],
+  authority_separation:'Standing kan aldri gi eller slå sammen budsjett- eller innkjøpsvedtak, kontrakts- eller signaturfullmakt, arbeidsgiver- og personalmyndighet, rettighetsklarering, HMS- eller teknisk sikkerhetsfrigivelse, programmandat eller juridisk/offentlig myndighet.',
+  rule:'Standing divergerer mellom situerte publikum, kan gå i motsatte retninger etter samme produksjonsvalg og summeres aldri til en global reputation-score, skjult produsentautoritet eller automatisk rett til større oppdrag.'
+};
+const knowledgeRef=sourceRefs.find(x=>x.includes('/knowledge/'));
+world.history_go_affordance={
+  source_ref:knowledgeRef,
+  place_id:'club_7_vika',
+  knowledge_use:'Club 7 i Vika brukes som kildeforankret historisk inngang til spørsmål om subkulturell arena, programbredde, improvisasjon, miljøbygging, organisering og varighet.',
+  better_question:'Hvordan kan den konkrete historien om Club 7 i Vika og klubbens rolle som norsk motkulturarena hjelpe oss å undersøke hvordan kreative miljøer faktisk får program, mennesker, rom, penger og praktisk gjennomføring til å henge sammen over tid, hvilke kilder og motstemmer som viser kostnaden ved denne organiseringen, og hvilke forskjeller i dagens prosjektstyring, arbeidsmiljø, innkjøp, kontraktsfullmakt, rettigheter, kreditering, tilgjengelighet og HMS må synliggjøres før historien kan skjerpe—men aldri avgjøre—den fiktive produsentens valg?',
+  authority_boundary:'History Go kan gi kildeforankret kulturhistorie og bedre spørsmål om miljø, improvisasjon, organisering og varighet, men kan ikke fastsette dagens prosjektbaseline eller budsjett, inngå kontrakt, avgjøre arbeidsgiverforhold, klarere rettigheter, godkjenne HMS/sikkerhet eller utvide produsentens juridiske eller operative fullmakt.'
+};
+delete world.cross_role_link;
+world.cross_role_proof={
+  status:'not_materialized_no_shared_work_object',
+  shared_work_object_found:false,
+  new_runtime:false,
+  candidate_when_shared_work_is_real:true,
+  rule:'Readiness sier candidate_when_shared_work_is_real, og produksjonsledelse/program kan senere dele reelt arbeid, men denne rollouten beviser ikke ett allerede runtime-identisk shared work object med distinkte myndighetslinser. Role World fullføres derfor uten ny cross-role runtime; senere kobling må bevise faktisk delt arbeidsobjekt.'
+};
+world.theme_ids=['professional_culture','status_anxiety','shame_reputation','loyalty_up_down','social_mask','bureaucratic_power','precarity','public_private_leakage','care_vs_efficiency','invisible_work'];
+world.season={days:14,day_phases:phases,coverage};
+world.primary_threads=primaryThreads;
+world.private_aftermath=privateAftermath;
+world.delayed_consequences=delayed;
+writeJson(WORLD,world);
+
+const indexPath='data/Civication/roleWorlds/index.json';
+const index=read(indexPath);
+index.roles=(index.roles||[]).filter(x=>!(x.category==='subkultur'&&x.role_scope===ROLE));
+index.roles.push({category:'subkultur',role_scope:ROLE,status:'role_world_complete',path:WORLD});
+index.status=`${index.roles.length}_role_worlds_materialized`;
+index.effective_date='2026-09-04';
+writeJson(indexPath,index);
+
+const checklistPath='data/Civication/roleWorldAuthoringChecklist.json';
+const checklist=read(checklistPath);
+checklist.reference_worlds=[...new Set([...(checklist.reference_worlds||[]),WORLD])];
+writeJson(checklistPath,checklist);
+
+const themePath='data/Civication/roleWorldThemeBank.json';
+const themeBank=read(themePath);
+themeBank.reference_profiles=themeBank.reference_profiles||{};
+themeBank.reference_profiles[KEY]=world.theme_ids;
+writeJson(themePath,themeBank);
+
+const TEST=`const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const R=path.resolve(__dirname,'..'),read=p=>JSON.parse(fs.readFileSync(path.join(R,p),'utf8')),KEY='${KEY}',ROLE='${ROLE}',WORLD='${WORLD}',PLAN='${PLAN}',MODEL='${MODEL}',GRAMMAR='${GRAMMAR}';
+const world=read(WORLD);
+assert.equal(world.schema,'civication_role_world_v1');
+assert.equal(world.status,'role_world_complete');
+assert.deepEqual(world.materialization.authored_dimensions,['situated_reputation']);
+for(const k of ['no_new_runtime','existing_plan_preserved','existing_role_model_preserved','existing_people_foundation_preserved','existing_work_grammar_preserved','existing_persistent_work_preserved','existing_rhythm_preserved']) assert.equal(world.materialization[k],true,k);
+assert.equal(world.materialization.cross_role_link_materialized,false);
+assert.deepEqual(world.existing_work_continuity.work_loops,read(GRAMMAR).work_loops);
+assert.equal(world.existing_work_continuity.persistent_work_object,'prosjektplan_budsjett_kontrakt_og_avvikslogg');
+assert.equal(world.existing_work_continuity.new_runtime_state,false);
+assert.equal(read(PLAN).sequence.length,16);
+for(
