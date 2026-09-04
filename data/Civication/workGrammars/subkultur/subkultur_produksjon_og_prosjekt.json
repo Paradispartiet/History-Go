@@ -1,1 +1,227 @@
-{"schema":"civication_work_grammar_v2","version":2,"category":"subkultur","role_scope":"subkultur_produksjon_og_prosjekt","source":{"evidence":"data/Civication/subcultureCareerEvidence.json"},"badge_binding":{"badge_id":"subkultur","badge_titles":["Produsent","Prosjektleder (kulturarrangement)"]},"task_families":["prosjektplan_og_scope","budsjett_og_innkjop","produksjonskoordinering","risiko_og_beredskap","leveranse_og_evaluering"],"work_loops":[{"id":"leveranse","steps":["definer_leveranse","bygg_plan_og_budsjett","fordel_ansvar","gjennomfor_og_folg_avvik","evaluer_og_lukk"]},{"id":"avvik_og_kvalitet","steps":["fang_endringsonske","vurder_tid_kost_risiko","avklar_beslutning","oppdater_plan","kommuniser_konsekvens"]}],"practice_stories":[{"id":"scope_creep","setup":"To nye programposter legges til uten mer riggtid.","good":"Vis konsekvens for tid, kost og kapasitet og få eksplisitt prioritering.","bad":"La teamet 'løpe fortere' uten planendring."},{"id":"leverandoren","setup":"En leverandør melder avbud dagen før.","good":"Aktiver dokumentert reserveplan og prioriter kritisk funksjon.","bad":"Bestill første dyre erstatning uten mandat eller kontroll."},{"id":"publikumskapasitet","setup":"Ambisjonen krever tettere publikumsoppsett enn sikkerhetsplanen tåler.","good":"Reduser eller bygg om løsningen innen faktisk kapasitet.","bad":"Behandle sikkerhetskravet som noe man kan forhandle bort."},{"id":"budsjett","setup":"Produksjonskostnaden er høyere enn det som ble solgt inn.","good":"Rapporter gapet tidlig med prioriterte alternativer.","bad":"Skjul kostnaden til etter gjennomføring."},{"id":"crewkonflikt","setup":"Teknikk og program skylder på hverandre for forsinkelsen.","good":"Gå tilbake til ansvar, avhengigheter og konkret neste beslutning.","bad":"Velg side ut fra sosial tilhørighet."}],"quality_axes":["leveransepresisjon","budsjettkontroll","sikkerhet","teamflyt","avtalesporbarhet","laering_etter_prosjekt"],"authority_boundary":{"may_not":["skjule_budsjett_eller_sikkerhetsavvik","inngaa_avtaler_uten_mandat","presse_crew_til_usikkert_arbeid","bruke_frivillighet_som_erstatning_for_kritisk_fagkompetanse"]}}
+{
+  "schema": "civication_work_grammar_v2",
+  "version": 3,
+  "category": "subkultur",
+  "role_scope": "subkultur_produksjon_og_prosjekt",
+  "role_id": "subkultur_produsent",
+  "source": {
+    "evidence": "data/Civication/subcultureCareerEvidence.json"
+  },
+  "badge_binding": {
+    "badge_id": "subkultur",
+    "badge_titles": [
+      "Produsent",
+      "Prosjektleder (kulturarrangement)"
+    ]
+  },
+  "task_families": [
+    "prosjektmandat_og_scope",
+    "budsjett_innkjop_og_kontrakt",
+    "produksjonsplan_crew_og_leverandor",
+    "rettigheter_sikkerhet_og_avvik",
+    "handoff_sluttoppgjor_og_evaluering"
+  ],
+  "work_loops": [
+    {
+      "id": "leveranse",
+      "steps": [
+        "definer_scope_og_baseline",
+        "bygg_plan_budsjett_og_avhengigheter",
+        "avklar_fullmakt_rettighet_crew_og_sikkerhet",
+        "gjennomfor_og_folg_avvik",
+        "aksepter_lukk_og_lar"
+      ]
+    },
+    {
+      "id": "endring_og_rework",
+      "steps": [
+        "fang_endringsonske_eller_avvik",
+        "vurder_tid_kost_kvalitet_arbeidsmiljo_og_risiko",
+        "vent_pa_riktig_beslutning_eller_klarering",
+        "oppdater_baseline_og_handoff",
+        "retest_og_lukk_berorte_ledd"
+      ]
+    }
+  ],
+  "practice_stories": [
+    {
+      "id": "scope_creep",
+      "setup": "To nye programposter legges til uten mer riggtid eller budsjett.",
+      "good": "Vis konsekvens og få eksplisitt prioritering før ny baseline.",
+      "bad": "La teamet løpe fortere uten planendring."
+    },
+    {
+      "id": "leverandoren",
+      "setup": "En kritisk leverandør melder avbud dagen før.",
+      "good": "Aktiver dokumentert reserveplan og prioriter kritisk funksjon.",
+      "bad": "Bestill første dyre erstatning uten mandat eller kontroll."
+    },
+    {
+      "id": "publikumskapasitet",
+      "setup": "Ambisjonen krever tettere publikumsoppsett enn frigitt plan tåler.",
+      "good": "Reduser eller bygg om innen faktisk kapasitet og ny test.",
+      "bad": "Behandle sikkerhetskravet som forhandlingsbart."
+    },
+    {
+      "id": "budsjett",
+      "setup": "Produksjonskostnaden er høyere enn godkjent ramme.",
+      "good": "Rapporter gapet tidlig med alternativer og beslutningseier.",
+      "bad": "Skjul kostnaden til etter gjennomføring."
+    },
+    {
+      "id": "rettigheten",
+      "setup": "Kampanjematerialet er ferdig, men en sentral rettighet er fortsatt betinget.",
+      "good": "Hold publisering eller berørt bruk tilbake til klarering finnes.",
+      "bad": "Anta at relasjonen løser rettigheten i etterkant."
+    }
+  ],
+  "quality_axes": [
+    "leveransepresisjon",
+    "budsjettkontroll",
+    "arbeidsmiljo_og_crewflyt",
+    "kontrakts_og_rettighetssporbarhet",
+    "sikkerhet_og_beredskap",
+    "laering_og_ren_prosjektavslutning"
+  ],
+  "authority_boundary": {
+    "can": [
+      "koordinere prosjektleveranser innen delegert mandat",
+      "kreve eksplisitt status før bestilling_handoff_publisering_eller_gjennomforing",
+      "holde igjen berort arbeid når fullmakt_rettighet_bemanning_eller_sikkerhet mangler",
+      "loggfore avvik og gjenapne bare berorte prosjektledd"
+    ],
+    "may_not": [
+      "inngaa_bindende_avtaler_eller_bestillinger_utover_delegert_fullmakt",
+      "skjule_budsjett_kontrakt_rettighets_eller_sikkerhetsavvik_for_a_bevare_fremdrift",
+      "presse_crew_til_usikkert_arbeid_eller_omga_arbeidsrett_arbeidsgiveransvar_og_hviletid",
+      "bruke_frivillighet_som_erstatning_for_kritisk_fagkompetanse_eller_fast_ansvar",
+      "behandle_subkulturell_status_vennskap_eller_programonske_som_rettighetsklarering_signatur_eller_sikkerhetsfrigivelse"
+    ]
+  },
+  "work_world": "Kulturproduksjon der samme prosjektlogg binder bestilling, scope, baseline, budsjett, innkjøp, kontrakter, crew, leverandører, rettigheter, sikkerhet, avvik, handoff, aksept og sluttoppgjør sammen.",
+  "pressure_axes": [
+    "kreativ_ambisjon_vs_scope_tid_og_budsjett",
+    "deadline_vs_crew_belastning_og_sikkerhet",
+    "relasjon_og_miljostatus_vs_kontrakt_fullmakt_og_rettighet",
+    "leveransefart_vs_sann_avviksstatus_og_ren_avslutning"
+  ],
+  "actor_grammar": [
+    {
+      "id": "nora_program_og_oppdragsgiver",
+      "name": "Nora",
+      "role": "programansvarlig og oppdragsgiver",
+      "workplace_ids": [
+        "prosjektrom_scope_og_milepaeler"
+      ]
+    },
+    {
+      "id": "samir_teknisk_produksjon",
+      "name": "Samir",
+      "role": "teknisk produsent og crew-koordinator",
+      "workplace_ids": [
+        "produksjonsgulv_rigg_og_crewpunkt"
+      ]
+    },
+    {
+      "id": "liv_okonomi_og_innkjop",
+      "name": "Liv",
+      "role": "økonomi- og innkjøpskoordinator",
+      "workplace_ids": [
+        "budsjett_innkjop_og_kontraktsflate"
+      ]
+    },
+    {
+      "id": "jonas_rettigheter_og_leverandor",
+      "name": "Jonas",
+      "role": "kontrakt-, rettighets- og leverandørkoordinator",
+      "workplace_ids": [
+        "leveranse_rettighet_og_avviksbord"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "prosjektrom_scope_og_milepaeler",
+      "name": "Prosjektrommet for scope og milepæler",
+      "function": "Her ligger gjeldende prosjektmandat, mål, leveranseliste, milepæler, beslutningseiere, avhengigheter og endringslogg. Flaten skiller idé, forespørsel, godkjent endring og ny baseline, slik at et kreativt eller sosialt ønske ikke blir gratis skjult arbeid og slik at senere rework bare åpner de delene som faktisk er berørt."
+    },
+    {
+      "id": "budsjett_innkjop_og_kontraktsflate",
+      "name": "Budsjett-, innkjøps- og kontraktsflaten",
+      "function": "Her holdes estimat, godkjent ramme, tilbud, bestilling, avtale, betalingsplan, faktura, tilskuddsbinding og økonomisk prognose sammen. Flaten gjør det umulig å kalle en forventet inntekt disponibel eller et pristilbud bindende før riktig fullmakt og dokumentasjon finnes."
+    },
+    {
+      "id": "produksjonsgulv_rigg_og_crewpunkt",
+      "name": "Produksjonsgulvet, rigg- og crewpunktet",
+      "function": "Her møtes kjøreplan, rigg, tekniske avhengigheter, skift, pauser, fagkompetanse, kapasitet, sikkerhetsstatus og reell fremdrift. Et programønske kan ikke gjøre en uprøvd løsning eller ubemannet kritisk funksjon klar; endringer må inn i plan, ansvar og kontroll før ny frigivelse."
+    },
+    {
+      "id": "leveranse_rettighet_og_avviksbord",
+      "name": "Leveranse-, rettighets- og avviksbordet",
+      "function": "Her samles leverandørstatus, kontraktsversjon, rettigheter, kreditering, forsikring, avvik, akseptansekriterier, sluttoppgjør og dokumentert overlevering. Flaten skiller levert, godkjent, klarert og lukket, slik at prosjektavslutning ikke skjuler restarbeid, uavklarte krav eller senere konsekvenser."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "prosjektplan_budsjett_kontrakt_og_avvikslogg",
+    "description": "Versjonert prosjektlogg for mandat, scope, baseline, milepæler, budsjett, innkjøp, kontrakter, crew, leverandører, rettigheter, sikkerhet, avvik, beslutning/fullmakt, handoff, aksept, sluttoppgjør og senere effekt.",
+    "states": [
+      "bestilling_og_scope_registrert",
+      "baseline_budsjett_og_avhengigheter_kartlagt",
+      "venter_pa_tilbud_beslutning_signatur_rettighet_crew_eller_sikkerhet",
+      "betinget_produksjonsklar",
+      "delegert_beslutning_og_handoff",
+      "produksjon_og_kontroll",
+      "avvik_bounded_rework_og_retest",
+      "aksept_sluttoppgjor_og_lukking"
+    ],
+    "handoff_rule": "Neste funksjon mottar gjeldende prosjektversjon, scope/baseline, budsjett/prognose, bestillings- og kontraktsstatus, crew/leverandørstatus, rettigheter, sikkerhetsstatus, åpne avhengigheter, siste avvik, beslutningseier/fullmakt og konkret kontroll før status kan endres."
+  },
+  "rhythm_contract": {
+    "loop": "bestilling og scope -> baseline og budsjett -> avklaring -> waiting/venting -> delegert beslutning -> handoff -> produksjon -> kontroll/avvik -> bounded rework -> aksept og prosjektavslutning",
+    "waiting_states": [
+      "tilbud_eller_budsjettgodkjenning",
+      "kontrakt_signatur_eller_rettighetsklarering",
+      "crew_bemanning_eller_arbeidsgiveravklaring",
+      "teknisk_test_sikkerhetsfrigivelse_eller_leverandorbekreftelse"
+    ],
+    "rework_rule": "Endret premiss gjenåpner bare berørte scope-, budsjett-, innkjøps-, kontrakts-, crew-, leverandør-, rettighets- eller sikkerhetsledd; tidligere prosjektversjon, begrunnelse, eier, fullmakt og varsling beholdes."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_subkultur_club_7_produksjonsblikk",
+      "badge_id": "subkultur",
+      "use": "Historisk Club 7-kontekst brukes til å formulere bedre spørsmål om hvordan subkulturelle prosjekter organiserer sted, program, ressurser og miljø over tid; aldri som fasit for dagens budsjett, kontrakt, HMS, arbeidsrett eller rettighetsklarering."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "appointment_required",
+    "first_object": "prosjektplan_budsjett_kontrakt_og_avvikslogg",
+    "first_task": "Opprett første prosjektversjon med bestilling, scope, baseline, budsjett, milepæler, beslutningseiere, crew- og leverandørbehov, kontrakts-/rettighetsstatus, sikkerhetsforutsetninger, åpne avhengigheter og hva som fortsatt venter før noe kalles bestilt, signert, klart eller levert."
+  },
+  "situated_reputation_contract": {
+    "global_score_allowed": false,
+    "audiences": [
+      "oppdragsgiver_og_program",
+      "crew_og_tekniske_fag",
+      "okonomi_og_innkjop",
+      "leverandorer_rettighetshavere_og_artister",
+      "sikkerhet_husdrift_og_publikum"
+    ],
+    "rule": "Standing følger konkret leveranse, sann status og reparerbar handoff; den skaper aldri signaturrett, budsjettmyndighet, arbeidsgiverfullmakt, rettighetsklarering eller sikkerhetsfrigivelse."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "subkultur_produksjon_og_prosjekt",
+    "no_generic_fallback": true
+  }
+}

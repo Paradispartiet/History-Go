@@ -1,0 +1,113 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "subkultur",
+  "role_scope": "subkultur_produksjon_og_prosjekt",
+  "mail_type": "knowledge",
+  "families": [
+    {
+      "id": "subkultur_produksjon_og_prosjekt_kunnskap_i_bruk",
+      "purpose": "Authored Subkultur production/project gameplay with a persistent project baseline, explicit budget and contract states, bounded authority, crew/safety limits, rights clearance, handoffs, bounded rework and clean closeout.",
+      "learning_focus": [
+        "scope_baseline_og_endringsstyring",
+        "budsjett_innkjop_og_fullmakt",
+        "crew_arbeidsmiljo_og_sikkerhet",
+        "kontrakt_leverandor_rettighet_og_kreditering",
+        "handoff_avvik_bounded_rework_og_prosjektavslutning"
+      ],
+      "mails": [
+        {
+          "id": "prod_club7_003",
+          "mail_type": "knowledge",
+          "mail_family": "subkultur_produksjon_og_prosjekt_kunnskap_i_bruk",
+          "role_scope": "subkultur_produksjon_og_prosjekt",
+          "phase": "forenoon",
+          "day_phase": "morning",
+          "priority": 148,
+          "from": "Nora",
+          "people_ref": "nora_program_og_oppdragsgiver",
+          "person_id": "nora_program_og_oppdragsgiver",
+          "place_id": "club_7_vika",
+          "subject": "Club 7 som produksjonskontekst: hva må et kulturprosjekt bære når miljø, sted og program endres?",
+          "summary": "History Go har en kildebelagt Club 7-post som historisk anker. Den kan brukes til å spørre hvordan subkulturelle prosjekter holder miljø, sted, program og ressurser sammen over tid, men ikke som dagens produksjonsstandard. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter.",
+          "situation": [
+            "History Go har en kildebelagt Club 7-post som historisk anker. Den kan brukes til å spørre hvordan subkulturelle prosjekter holder miljø, sted, program og ressurser sammen over tid, men ikke som dagens produksjonsstandard.",
+            "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+          ],
+          "task_domain": "subkultur_produksjon_og_prosjekt",
+          "competency": "history_go_produksjonsrefleksjon",
+          "pressure": "kreativ_fart_og_deadline_vs_sporbar_leveranse_arbeidsmiljo_og_sikkerhet",
+          "choice_axis": "sann_status_og_bounded_rework_vs_antakelse_og_skjult_prosjektgjeld",
+          "consequence_axis": "robust_leveranse_vs_okonomi_kontrakt_arbeidsmiljo_sikkerhets_og_tillitsgjeld",
+          "narrative_arc": "club7",
+          "situated_audience_id": "historisk_subkulturkontekst",
+          "choices": [
+            {
+              "id": "A",
+              "label": "history_go_produksjonsrefleksjon: sporbar beslutning prod_club7_003",
+              "reply": "Les stedet og formuler ett spørsmål om hvilke organisatoriske avhengigheter en kulturproduksjon må gjøre synlige når sted, program og miljø endrer seg, uten å gjøre historien til fasit for dagens kontrakt, HMS eller budsjett. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "leveranse"
+              ],
+              "feedback": "Les stedet og formuler ett spørsmål om hvilke organisatoriske avhengigheter en kulturproduksjon må gjøre synlige når sted, program og miljø endrer seg, uten å gjøre historien til fasit for dagens kontrakt, HMS eller budsjett. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "history_go_produksjonsrefleksjon: skjult gjeld prod_club7_003",
+              "reply": "Bruk Club 7s motkulturstatus som argument for at muntlige avtaler, dugnad og fleksible sikkerhetsgrenser er mer autentiske enn dokumentert produksjonsstyring. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon.",
+              "effect": -1,
+              "tags": [
+                "mandatglidning",
+                "prosjektgjeld",
+                "risiko"
+              ],
+              "feedback": "Bruk Club 7s motkulturstatus som argument for at muntlige avtaler, dugnad og fleksible sikkerhetsgrenser er mer autentiske enn dokumentert produksjonsstyring. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ],
+          "interaction_mode": "task",
+          "task_contract": {
+            "task_id": "subkultur_produksjon_og_prosjekt_history_go_club_7",
+            "completion_rule": "history_go_payload_completed",
+            "failure_rule": "remain_open",
+            "evidence_refs": [
+              "data/places/subkultur/oslo/places_subkultur/club_7_vika.json"
+            ]
+          },
+          "task_payload": {
+            "task_kind": "history_go_place",
+            "target_type": "place",
+            "place_id": "club_7_vika",
+            "completion_mode": "read_place",
+            "title": "Les Club 7 som historisk produksjonskontekst",
+            "description": "Noter ett spørsmål om hvilke organisatoriske avhengigheter en kulturproduksjon må gjøre synlige når sted, program og miljø endres over tid, uten å gjøre historisk motkultur til fasit for dagens budsjett, arbeidsrett, kontrakt, sikkerhet eller rettigheter.",
+            "return_context": {
+              "source": "civication",
+              "mail_id": "prod_club7_003",
+              "role_scope": "subkultur_produksjon_og_prosjekt"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

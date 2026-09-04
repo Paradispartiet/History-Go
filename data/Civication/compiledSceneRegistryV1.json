@@ -457,7 +457,16 @@
     "data/Civication/mailFamilies/subkultur/micro/subkultur_kulturarena_ledelse_micro.json",
     "data/Civication/mailFamilies/subkultur/followup/subkultur_kulturarena_ledelse_followup.json",
     "data/Civication/mailFamilies/subkultur/knowledge/subkultur_kulturarena_ledelse_knowledge.json",
-    "data/Civication/mailFamilies/subkultur/consequence/subkultur_kulturarena_ledelse_consequence.json"
+    "data/Civication/mailFamilies/subkultur/consequence/subkultur_kulturarena_ledelse_consequence.json",
+    "data/Civication/mailFamilies/subkultur/job/subkultur_produksjon_og_prosjekt_job.json",
+    "data/Civication/mailFamilies/subkultur/people/subkultur_produksjon_og_prosjekt_people.json",
+    "data/Civication/mailFamilies/subkultur/story/subkultur_produksjon_og_prosjekt_story.json",
+    "data/Civication/mailFamilies/subkultur/conflict/subkultur_produksjon_og_prosjekt_conflict.json",
+    "data/Civication/mailFamilies/subkultur/event/subkultur_produksjon_og_prosjekt_event.json",
+    "data/Civication/mailFamilies/subkultur/micro/subkultur_produksjon_og_prosjekt_micro.json",
+    "data/Civication/mailFamilies/subkultur/followup/subkultur_produksjon_og_prosjekt_followup.json",
+    "data/Civication/mailFamilies/subkultur/knowledge/subkultur_produksjon_og_prosjekt_knowledge.json",
+    "data/Civication/mailFamilies/subkultur/consequence/subkultur_produksjon_og_prosjekt_consequence.json"
   ],
   "compiler_version": 1,
   "entries": [
@@ -221257,6 +221266,2091 @@
       "source_hash": "21c8c55d54b2dcbf0444e59c851d0c0876d3d6e03114447c10544cef93f6d79e",
       "source_path": "data/Civication/mailFamilies/subkultur/story/subkultur_kulturarena_ledelse_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sann_status_og_bounded_rework_vs_antakelse_og_skjult_prosjektgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Gå tilbake til godkjent baseline, synliggjør begrensningene og legg konkrete alternativer til riktig beslutningseier med effekt på tid, kost, kvalitet og risiko. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "scope_mandat_og_konflikt: sporbar beslutning prod_scopekonflikt_006",
+            "reply": "Gå tilbake til godkjent baseline, synliggjør begrensningene og legg konkrete alternativer til riktig beslutningseier med effekt på tid, kost, kvalitet og risiko. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "leveranse"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Støtt den siden som har høyest status i miljøet og press den andre til å absorbere konsekvensen uten ny beslutning. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "scope_mandat_og_konflikt: skjult gjeld prod_scopekonflikt_006",
+            "reply": "Støtt den siden som har høyest status i miljøet og press den andre til å absorbere konsekvensen uten ny beslutning. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon.",
+            "tags": [
+              "mandatglidning",
+              "prosjektgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "scope_mandat_og_konflikt",
+        "consequence_axis": "robust_leveranse_vs_okonomi_kontrakt_arbeidsmiljo_sikkerhets_og_tillitsgjeld",
+        "day_phase": "afternoon",
+        "from": "Nora",
+        "id": "prod_scopekonflikt_006",
+        "mail_family": "subkultur_produksjon_og_prosjekt_scope_og_mandatkonflikter",
+        "mail_type": "conflict",
+        "narrative_arc": "scopekonflikt",
+        "people_ref": "nora_program_og_oppdragsgiver",
+        "person_id": "nora_program_og_oppdragsgiver",
+        "phase": "advanced",
+        "place_id": "prosjektrom_scope_og_milepaeler",
+        "pressure": "kreativ_fart_og_deadline_vs_sporbar_leveranse_arbeidsmiljo_og_sikkerhet",
+        "priority": 145,
+        "role_scope": "subkultur_produksjon_og_prosjekt",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/conflict/subkultur_produksjon_og_prosjekt_conflict.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "oppdragsgiver_crew_og_tekniske_fag",
+        "situation": [
+          "Program mener alle elementer er identitetsbærende. Teknikk sier at riggtid, kapasitet og sikker kontroll ikke kan bære alt. Begge forventer at produsenten velger side.",
+          "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+          "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+        ],
+        "subject": "Program vil bevare hele ambisjonen mens teknikk krever at noe tas ut",
+        "summary": "Program mener alle elementer er identitetsbærende. Teknikk sier at riggtid, kapasitet og sikker kontroll ikke kan bære alt. Begge forventer at produsenten velger side. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter.",
+        "task_domain": "subkultur_produksjon_og_prosjekt"
+      },
+      "id": "prod_scopekonflikt_006",
+      "mail_type": "conflict",
+      "role_scope": "subkultur_produksjon_og_prosjekt",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Gå tilbake til godkjent baseline, synliggjør begrensningene og legg konkrete alternativer til riktig beslutningseier med effekt på tid, kost, kvalitet og risiko. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "scope_mandat_og_konflikt: sporbar beslutning prod_scopekonflikt_006",
+            "reply": "Gå tilbake til godkjent baseline, synliggjør begrensningene og legg konkrete alternativer til riktig beslutningseier med effekt på tid, kost, kvalitet og risiko. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Støtt den siden som har høyest status i miljøet og press den andre til å absorbere konsekvensen uten ny beslutning. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "scope_mandat_og_konflikt: skjult gjeld prod_scopekonflikt_006",
+            "reply": "Støtt den siden som har høyest status i miljøet og press den andre til å absorbere konsekvensen uten ny beslutning. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Program mener alle elementer er identitetsbærende. Teknikk sier at riggtid, kapasitet og sikker kontroll ikke kan bære alt. Begge forventer at produsenten velger side.",
+            "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+          ],
+          "subject": "Program vil bevare hele ambisjonen mens teknikk krever at noe tas ut",
+          "summary": "Program mener alle elementer er identitetsbærende. Teknikk sier at riggtid, kapasitet og sikker kontroll ikke kan bære alt. Begge forventer at produsenten velger side. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "prod_scopekonflikt_006",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "prosjektrom_scope_og_milepaeler",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "prod_scopekonflikt_006",
+          "source_path": "data/Civication/mailFamilies/subkultur/conflict/subkultur_produksjon_og_prosjekt_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_produksjon_og_prosjekt.mail.prod_scopekonflikt_006",
+        "version": 1
+      },
+      "source_hash": "adc3fcc2127d86f94d2729e21d1a6a683e8b4854af5489f36fc32bd8e20f5fce",
+      "source_path": "data/Civication/mailFamilies/subkultur/conflict/subkultur_produksjon_og_prosjekt_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sann_status_og_bounded_rework_vs_antakelse_og_skjult_prosjektgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Koble konsekvensen til den åpne posten, reparer kreditering og økonomi gjennom riktig ansvar, og endre avslutningskriteriet slik at samme type restpunkt får eier før fremtidig lukking. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "sen_konsekvens_og_laring: sporbar beslutning prod_senkonsekvens_015",
+            "reply": "Koble konsekvensen til den åpne posten, reparer kreditering og økonomi gjennom riktig ansvar, og endre avslutningskriteriet slik at samme type restpunkt får eier før fremtidig lukking. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "leveranse"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Behandle feilene som to separate uhell og unngå å gjenåpne prosjektloggen fordi det kan svekke inntrykket av vellykket levering. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "sen_konsekvens_og_laring: skjult gjeld prod_senkonsekvens_015",
+            "reply": "Behandle feilene som to separate uhell og unngå å gjenåpne prosjektloggen fordi det kan svekke inntrykket av vellykket levering. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon.",
+            "tags": [
+              "mandatglidning",
+              "prosjektgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sen_konsekvens_og_laring",
+        "consequence_axis": "robust_leveranse_vs_okonomi_kontrakt_arbeidsmiljo_sikkerhets_og_tillitsgjeld",
+        "day_phase": "evening",
+        "from": "Liv",
+        "id": "prod_senkonsekvens_015",
+        "mail_family": "subkultur_produksjon_og_prosjekt_sene_konsekvenser",
+        "mail_type": "consequence",
+        "narrative_arc": "senkonsekvens",
+        "people_ref": "liv_okonomi_og_innkjop",
+        "person_id": "liv_okonomi_og_innkjop",
+        "phase": "mastery",
+        "place_id": "leveranse_rettighet_og_avviksbord",
+        "pressure": "kreativ_fart_og_deadline_vs_sporbar_leveranse_arbeidsmiljo_og_sikkerhet",
+        "priority": 136,
+        "role_scope": "subkultur_produksjon_og_prosjekt",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/consequence/subkultur_produksjon_og_prosjekt_consequence.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "oppdragsgiver_okonomi_og_rettighetshavere",
+        "situation": [
+          "En krediteringsfeil og en sen leverandørfaktura kan spores til et restpunkt som ble stående uten eier ved prosjektavslutning. Oppdragsgiver spør hvorfor saken ikke var synlig tidligere.",
+          "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+          "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+        ],
+        "subject": "Tre uker senere blir et uavklart sluttpunkt til både merkostnad og tillitsproblem",
+        "summary": "En krediteringsfeil og en sen leverandørfaktura kan spores til et restpunkt som ble stående uten eier ved prosjektavslutning. Oppdragsgiver spør hvorfor saken ikke var synlig tidligere. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter.",
+        "task_domain": "subkultur_produksjon_og_prosjekt"
+      },
+      "id": "prod_senkonsekvens_015",
+      "mail_type": "consequence",
+      "role_scope": "subkultur_produksjon_og_prosjekt",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Koble konsekvensen til den åpne posten, reparer kreditering og økonomi gjennom riktig ansvar, og endre avslutningskriteriet slik at samme type restpunkt får eier før fremtidig lukking. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "sen_konsekvens_og_laring: sporbar beslutning prod_senkonsekvens_015",
+            "reply": "Koble konsekvensen til den åpne posten, reparer kreditering og økonomi gjennom riktig ansvar, og endre avslutningskriteriet slik at samme type restpunkt får eier før fremtidig lukking. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Behandle feilene som to separate uhell og unngå å gjenåpne prosjektloggen fordi det kan svekke inntrykket av vellykket levering. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "sen_konsekvens_og_laring: skjult gjeld prod_senkonsekvens_015",
+            "reply": "Behandle feilene som to separate uhell og unngå å gjenåpne prosjektloggen fordi det kan svekke inntrykket av vellykket levering. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "En krediteringsfeil og en sen leverandørfaktura kan spores til et restpunkt som ble stående uten eier ved prosjektavslutning. Oppdragsgiver spør hvorfor saken ikke var synlig tidligere.",
+            "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+          ],
+          "subject": "Tre uker senere blir et uavklart sluttpunkt til både merkostnad og tillitsproblem",
+          "summary": "En krediteringsfeil og en sen leverandørfaktura kan spores til et restpunkt som ble stående uten eier ved prosjektavslutning. Oppdragsgiver spør hvorfor saken ikke var synlig tidligere. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "prod_senkonsekvens_015",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "leveranse_rettighet_og_avviksbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "prod_senkonsekvens_015",
+          "source_path": "data/Civication/mailFamilies/subkultur/consequence/subkultur_produksjon_og_prosjekt_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_produksjon_og_prosjekt.mail.prod_senkonsekvens_015",
+        "version": 1
+      },
+      "source_hash": "7e0e9db394cefb398abc5e199c1d1a1b08079d28c1311429ee54ca540fc3bc93",
+      "source_path": "data/Civication/mailFamilies/subkultur/consequence/subkultur_produksjon_og_prosjekt_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sann_status_og_bounded_rework_vs_antakelse_og_skjult_prosjektgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Aktiver reserveplan, gjenåpne bare berørte budsjett-, rigg-, kontrakts- og sikkerhetsledd, og ikke kall løsningen klar før ny kontroll og beslutning er dokumentert. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "beredskap_og_replanlegging: sporbar beslutning prod_leverandorfall_009",
+            "reply": "Aktiver reserveplan, gjenåpne bare berørte budsjett-, rigg-, kontrakts- og sikkerhetsledd, og ikke kall løsningen klar før ny kontroll og beslutning er dokumentert. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "leveranse"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Bestill første tilgjengelige erstatning og behold opprinnelig kjøreplan for å unngå å skape uro i teamet. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "beredskap_og_replanlegging: skjult gjeld prod_leverandorfall_009",
+            "reply": "Bestill første tilgjengelige erstatning og behold opprinnelig kjøreplan for å unngå å skape uro i teamet. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon.",
+            "tags": [
+              "mandatglidning",
+              "prosjektgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "beredskap_og_replanlegging",
+        "consequence_axis": "robust_leveranse_vs_okonomi_kontrakt_arbeidsmiljo_sikkerhets_og_tillitsgjeld",
+        "day_phase": "afternoon",
+        "from": "Samir",
+        "id": "prod_leverandorfall_009",
+        "mail_family": "subkultur_produksjon_og_prosjekt_produksjonshendelser",
+        "mail_type": "event",
+        "narrative_arc": "leverandorfall",
+        "people_ref": "samir_teknisk_produksjon",
+        "person_id": "samir_teknisk_produksjon",
+        "phase": "advanced",
+        "place_id": "produksjonsgulv_rigg_og_crewpunkt",
+        "pressure": "kreativ_fart_og_deadline_vs_sporbar_leveranse_arbeidsmiljo_og_sikkerhet",
+        "priority": 142,
+        "role_scope": "subkultur_produksjon_og_prosjekt",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/event/subkultur_produksjon_og_prosjekt_event.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "crew_og_tekniske_fag",
+        "situation": [
+          "En leverandør som eier en sentral teknisk leveranse kan ikke møte. Reservealternativet krever annen rigg, høyere kostnad og ny sikkerhetskontroll.",
+          "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+          "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+        ],
+        "subject": "Kritisk leverandør melder avbud kvelden før innlast",
+        "summary": "En leverandør som eier en sentral teknisk leveranse kan ikke møte. Reservealternativet krever annen rigg, høyere kostnad og ny sikkerhetskontroll. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter.",
+        "task_domain": "subkultur_produksjon_og_prosjekt"
+      },
+      "id": "prod_leverandorfall_009",
+      "mail_type": "event",
+      "role_scope": "subkultur_produksjon_og_prosjekt",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Aktiver reserveplan, gjenåpne bare berørte budsjett-, rigg-, kontrakts- og sikkerhetsledd, og ikke kall løsningen klar før ny kontroll og beslutning er dokumentert. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "beredskap_og_replanlegging: sporbar beslutning prod_leverandorfall_009",
+            "reply": "Aktiver reserveplan, gjenåpne bare berørte budsjett-, rigg-, kontrakts- og sikkerhetsledd, og ikke kall løsningen klar før ny kontroll og beslutning er dokumentert. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Bestill første tilgjengelige erstatning og behold opprinnelig kjøreplan for å unngå å skape uro i teamet. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "beredskap_og_replanlegging: skjult gjeld prod_leverandorfall_009",
+            "reply": "Bestill første tilgjengelige erstatning og behold opprinnelig kjøreplan for å unngå å skape uro i teamet. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "En leverandør som eier en sentral teknisk leveranse kan ikke møte. Reservealternativet krever annen rigg, høyere kostnad og ny sikkerhetskontroll.",
+            "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+          ],
+          "subject": "Kritisk leverandør melder avbud kvelden før innlast",
+          "summary": "En leverandør som eier en sentral teknisk leveranse kan ikke møte. Reservealternativet krever annen rigg, høyere kostnad og ny sikkerhetskontroll. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "prod_leverandorfall_009",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "produksjonsgulv_rigg_og_crewpunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "prod_leverandorfall_009",
+          "source_path": "data/Civication/mailFamilies/subkultur/event/subkultur_produksjon_og_prosjekt_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_produksjon_og_prosjekt.mail.prod_leverandorfall_009",
+        "version": 1
+      },
+      "source_hash": "a7201cac9ba4211e8efc11ca80a30fa6a81a931fce368ea42a0fe9aca512d708",
+      "source_path": "data/Civication/mailFamilies/subkultur/event/subkultur_produksjon_og_prosjekt_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sann_status_og_bounded_rework_vs_antakelse_og_skjult_prosjektgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Koble faktisk arbeidstid og kostnad til prosjektversjonen, korriger estimater og bemanningspremiss, og gjenbruk bare reserveplanen med ny kapasitet og tydelig godkjenning. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "effekt_og_bounded_rework: sporbar beslutning prod_oppfolging_013",
+            "reply": "Koble faktisk arbeidstid og kostnad til prosjektversjonen, korriger estimater og bemanningspremiss, og gjenbruk bare reserveplanen med ny kapasitet og tydelig godkjenning. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "leveranse"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Behandle overskridelsen som et engangstilfelle fordi sluttproduktet ble bra og kopier samme plan til neste prosjekt. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "effekt_og_bounded_rework: skjult gjeld prod_oppfolging_013",
+            "reply": "Behandle overskridelsen som et engangstilfelle fordi sluttproduktet ble bra og kopier samme plan til neste prosjekt. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon.",
+            "tags": [
+              "mandatglidning",
+              "prosjektgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "effekt_og_bounded_rework",
+        "consequence_axis": "robust_leveranse_vs_okonomi_kontrakt_arbeidsmiljo_sikkerhets_og_tillitsgjeld",
+        "day_phase": "evening",
+        "from": "Samir",
+        "id": "prod_oppfolging_013",
+        "mail_family": "subkultur_produksjon_og_prosjekt_oppfolging",
+        "mail_type": "followup",
+        "narrative_arc": "oppfolging",
+        "people_ref": "samir_teknisk_produksjon",
+        "person_id": "samir_teknisk_produksjon",
+        "phase": "mastery",
+        "place_id": "produksjonsgulv_rigg_og_crewpunkt",
+        "pressure": "kreativ_fart_og_deadline_vs_sporbar_leveranse_arbeidsmiljo_og_sikkerhet",
+        "priority": 138,
+        "role_scope": "subkultur_produksjon_og_prosjekt",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/followup/subkultur_produksjon_og_prosjekt_followup.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "crew_og_okonomi",
+        "situation": [
+          "Arrangementet gikk godt for publikum, men timelister og avvikslogg viser ekstra skift, senere nedrigg og høyere kostnad. Samme løsning er foreslått for neste produksjon.",
+          "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+          "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+        ],
+        "subject": "Etter arrangementet viser timelistene at reserveplanen kostet mer arbeidstid enn antatt",
+        "summary": "Arrangementet gikk godt for publikum, men timelister og avvikslogg viser ekstra skift, senere nedrigg og høyere kostnad. Samme løsning er foreslått for neste produksjon. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter.",
+        "task_domain": "subkultur_produksjon_og_prosjekt"
+      },
+      "id": "prod_oppfolging_013",
+      "mail_type": "followup",
+      "role_scope": "subkultur_produksjon_og_prosjekt",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Koble faktisk arbeidstid og kostnad til prosjektversjonen, korriger estimater og bemanningspremiss, og gjenbruk bare reserveplanen med ny kapasitet og tydelig godkjenning. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "effekt_og_bounded_rework: sporbar beslutning prod_oppfolging_013",
+            "reply": "Koble faktisk arbeidstid og kostnad til prosjektversjonen, korriger estimater og bemanningspremiss, og gjenbruk bare reserveplanen med ny kapasitet og tydelig godkjenning. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Behandle overskridelsen som et engangstilfelle fordi sluttproduktet ble bra og kopier samme plan til neste prosjekt. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "effekt_og_bounded_rework: skjult gjeld prod_oppfolging_013",
+            "reply": "Behandle overskridelsen som et engangstilfelle fordi sluttproduktet ble bra og kopier samme plan til neste prosjekt. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Arrangementet gikk godt for publikum, men timelister og avvikslogg viser ekstra skift, senere nedrigg og høyere kostnad. Samme løsning er foreslått for neste produksjon.",
+            "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+          ],
+          "subject": "Etter arrangementet viser timelistene at reserveplanen kostet mer arbeidstid enn antatt",
+          "summary": "Arrangementet gikk godt for publikum, men timelister og avvikslogg viser ekstra skift, senere nedrigg og høyere kostnad. Samme løsning er foreslått for neste produksjon. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "prod_oppfolging_013",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "produksjonsgulv_rigg_og_crewpunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "prod_oppfolging_013",
+          "source_path": "data/Civication/mailFamilies/subkultur/followup/subkultur_produksjon_og_prosjekt_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_produksjon_og_prosjekt.mail.prod_oppfolging_013",
+        "version": 1
+      },
+      "source_hash": "402a73029ebc1036543cb1ae3da1f5bb21dd1b4418e2a6d1c875c2d11cf00cfa",
+      "source_path": "data/Civication/mailFamilies/subkultur/followup/subkultur_produksjon_og_prosjekt_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sann_status_og_bounded_rework_vs_antakelse_og_skjult_prosjektgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Oppdater prognosen, skill tilbud fra bestilling, vis alternativer og konsekvens, og få riktig eier til å beslutte budsjett eller scope før bestilling og ekstern kommunikasjon låses. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "budsjett_og_innkjop: sporbar beslutning prod_budsjett_004",
+            "reply": "Oppdater prognosen, skill tilbud fra bestilling, vis alternativer og konsekvens, og få riktig eier til å beslutte budsjett eller scope før bestilling og ekstern kommunikasjon låses. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "leveranse"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Bestill nå for å sikre kapasiteten og flytt kostnaden til en annen post senere dersom finansieringen ikke kommer. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "budsjett_og_innkjop: skjult gjeld prod_budsjett_004",
+            "reply": "Bestill nå for å sikre kapasiteten og flytt kostnaden til en annen post senere dersom finansieringen ikke kommer. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon.",
+            "tags": [
+              "mandatglidning",
+              "prosjektgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "budsjett_og_innkjop",
+        "consequence_axis": "robust_leveranse_vs_okonomi_kontrakt_arbeidsmiljo_sikkerhets_og_tillitsgjeld",
+        "day_phase": "morning",
+        "from": "Liv",
+        "id": "prod_budsjett_004",
+        "mail_family": "subkultur_produksjon_og_prosjekt_prosjektarbeid",
+        "mail_type": "job",
+        "narrative_arc": "budsjett",
+        "people_ref": "liv_okonomi_og_innkjop",
+        "person_id": "liv_okonomi_og_innkjop",
+        "phase": "forenoon",
+        "place_id": "budsjett_innkjop_og_kontraktsflate",
+        "pressure": "kreativ_fart_og_deadline_vs_sporbar_leveranse_arbeidsmiljo_og_sikkerhet",
+        "priority": 147,
+        "role_scope": "subkultur_produksjon_og_prosjekt",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/job/subkultur_produksjon_og_prosjekt_job.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "okonomi_og_innkjop",
+        "situation": [
+          "Et oppdatert tilbud viser at kritisk teknikk blir dyrere enn estimert. Kjøpet er ikke bestilt, men programmet omtaler løsningen som sikker og markedsmateriellet er i ferd med å låses.",
+          "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+          "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+        ],
+        "subject": "Nytt leverandørtilbud skyver prosjektet over godkjent kostnadsramme",
+        "summary": "Et oppdatert tilbud viser at kritisk teknikk blir dyrere enn estimert. Kjøpet er ikke bestilt, men programmet omtaler løsningen som sikker og markedsmateriellet er i ferd med å låses. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter.",
+        "task_domain": "subkultur_produksjon_og_prosjekt"
+      },
+      "id": "prod_budsjett_004",
+      "mail_type": "job",
+      "role_scope": "subkultur_produksjon_og_prosjekt",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Oppdater prognosen, skill tilbud fra bestilling, vis alternativer og konsekvens, og få riktig eier til å beslutte budsjett eller scope før bestilling og ekstern kommunikasjon låses. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "budsjett_og_innkjop: sporbar beslutning prod_budsjett_004",
+            "reply": "Oppdater prognosen, skill tilbud fra bestilling, vis alternativer og konsekvens, og få riktig eier til å beslutte budsjett eller scope før bestilling og ekstern kommunikasjon låses. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Bestill nå for å sikre kapasiteten og flytt kostnaden til en annen post senere dersom finansieringen ikke kommer. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "budsjett_og_innkjop: skjult gjeld prod_budsjett_004",
+            "reply": "Bestill nå for å sikre kapasiteten og flytt kostnaden til en annen post senere dersom finansieringen ikke kommer. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Et oppdatert tilbud viser at kritisk teknikk blir dyrere enn estimert. Kjøpet er ikke bestilt, men programmet omtaler løsningen som sikker og markedsmateriellet er i ferd med å låses.",
+            "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+          ],
+          "subject": "Nytt leverandørtilbud skyver prosjektet over godkjent kostnadsramme",
+          "summary": "Et oppdatert tilbud viser at kritisk teknikk blir dyrere enn estimert. Kjøpet er ikke bestilt, men programmet omtaler løsningen som sikker og markedsmateriellet er i ferd med å låses. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "prod_budsjett_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "budsjett_innkjop_og_kontraktsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "prod_budsjett_004",
+          "source_path": "data/Civication/mailFamilies/subkultur/job/subkultur_produksjon_og_prosjekt_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_produksjon_og_prosjekt.mail.prod_budsjett_004",
+        "version": 1
+      },
+      "source_hash": "36a3c1662da92e0330aaff899ad9d5f917c5cf45030a0781a5fd0ac328992986",
+      "source_path": "data/Civication/mailFamilies/subkultur/job/subkultur_produksjon_og_prosjekt_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sann_status_og_bounded_rework_vs_antakelse_og_skjult_prosjektgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Hold prosjektet i avslutningsstatus, fordel restpunkter, bevar avviks- og kontraktsspor og lukk først når aksept, økonomi, rettigheter og ansvar er eksplisitt overlevert. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "prosjektavslutning: sporbar beslutning prod_closeout_011",
+            "reply": "Hold prosjektet i avslutningsstatus, fordel restpunkter, bevar avviks- og kontraktsspor og lukk først når aksept, økonomi, rettigheter og ansvar er eksplisitt overlevert. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "leveranse"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Marker prosjektet som ferdig for å rydde porteføljen og la økonomi, kreditering og avvik håndteres i separate uformelle tråder. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "prosjektavslutning: skjult gjeld prod_closeout_011",
+            "reply": "Marker prosjektet som ferdig for å rydde porteføljen og la økonomi, kreditering og avvik håndteres i separate uformelle tråder. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon.",
+            "tags": [
+              "mandatglidning",
+              "prosjektgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "prosjektavslutning",
+        "consequence_axis": "robust_leveranse_vs_okonomi_kontrakt_arbeidsmiljo_sikkerhets_og_tillitsgjeld",
+        "day_phase": "morning",
+        "from": "Liv",
+        "id": "prod_closeout_011",
+        "mail_family": "subkultur_produksjon_og_prosjekt_prosjektarbeid",
+        "mail_type": "job",
+        "narrative_arc": "closeout",
+        "people_ref": "liv_okonomi_og_innkjop",
+        "person_id": "liv_okonomi_og_innkjop",
+        "phase": "forenoon",
+        "place_id": "leveranse_rettighet_og_avviksbord",
+        "pressure": "kreativ_fart_og_deadline_vs_sporbar_leveranse_arbeidsmiljo_og_sikkerhet",
+        "priority": 140,
+        "role_scope": "subkultur_produksjon_og_prosjekt",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/job/subkultur_produksjon_og_prosjekt_job.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "okonomi_leverandorer_og_oppdragsgiver",
+        "situation": [
+          "Arrangementet er gjennomført. Teamet vil arkivere prosjektet, men økonomi, sikkerhetsavvik og en rettighetsrelatert kreditering mangler dokumentert lukking og eier.",
+          "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+          "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+        ],
+        "subject": "Prosjektet ser ferdig ut, men to fakturaer, ett avvik og en kreditering er fortsatt åpne",
+        "summary": "Arrangementet er gjennomført. Teamet vil arkivere prosjektet, men økonomi, sikkerhetsavvik og en rettighetsrelatert kreditering mangler dokumentert lukking og eier. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter.",
+        "task_domain": "subkultur_produksjon_og_prosjekt"
+      },
+      "id": "prod_closeout_011",
+      "mail_type": "job",
+      "role_scope": "subkultur_produksjon_og_prosjekt",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Hold prosjektet i avslutningsstatus, fordel restpunkter, bevar avviks- og kontraktsspor og lukk først når aksept, økonomi, rettigheter og ansvar er eksplisitt overlevert. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "prosjektavslutning: sporbar beslutning prod_closeout_011",
+            "reply": "Hold prosjektet i avslutningsstatus, fordel restpunkter, bevar avviks- og kontraktsspor og lukk først når aksept, økonomi, rettigheter og ansvar er eksplisitt overlevert. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Marker prosjektet som ferdig for å rydde porteføljen og la økonomi, kreditering og avvik håndteres i separate uformelle tråder. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "prosjektavslutning: skjult gjeld prod_closeout_011",
+            "reply": "Marker prosjektet som ferdig for å rydde porteføljen og la økonomi, kreditering og avvik håndteres i separate uformelle tråder. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Arrangementet er gjennomført. Teamet vil arkivere prosjektet, men økonomi, sikkerhetsavvik og en rettighetsrelatert kreditering mangler dokumentert lukking og eier.",
+            "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+          ],
+          "subject": "Prosjektet ser ferdig ut, men to fakturaer, ett avvik og en kreditering er fortsatt åpne",
+          "summary": "Arrangementet er gjennomført. Teamet vil arkivere prosjektet, men økonomi, sikkerhetsavvik og en rettighetsrelatert kreditering mangler dokumentert lukking og eier. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "prod_closeout_011",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "leveranse_rettighet_og_avviksbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "prod_closeout_011",
+          "source_path": "data/Civication/mailFamilies/subkultur/job/subkultur_produksjon_og_prosjekt_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_produksjon_og_prosjekt.mail.prod_closeout_011",
+        "version": 1
+      },
+      "source_hash": "18a02416403217e93d112c71a24453f2366d6d064088da7c351f924f6903f519",
+      "source_path": "data/Civication/mailFamilies/subkultur/job/subkultur_produksjon_og_prosjekt_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sann_status_og_bounded_rework_vs_antakelse_og_skjult_prosjektgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Marker berørt materiale som betinget, hold publisering tilbake eller bytt til klarert innhold, og koble neste kontroll til dokumentert rettighetsstatus og riktig ansvarlig. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "rettigheter_og_publiseringshandoff: sporbar beslutning prod_rettighet_007",
+            "reply": "Marker berørt materiale som betinget, hold publisering tilbake eller bytt til klarert innhold, og koble neste kontroll til dokumentert rettighetsstatus og riktig ansvarlig. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "leveranse"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Publiser fordi alle involverte kjenner hverandre og ta formalitetene etterpå dersom noen faktisk protesterer. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "rettigheter_og_publiseringshandoff: skjult gjeld prod_rettighet_007",
+            "reply": "Publiser fordi alle involverte kjenner hverandre og ta formalitetene etterpå dersom noen faktisk protesterer. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon.",
+            "tags": [
+              "mandatglidning",
+              "prosjektgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "rettigheter_og_publiseringshandoff",
+        "consequence_axis": "robust_leveranse_vs_okonomi_kontrakt_arbeidsmiljo_sikkerhets_og_tillitsgjeld",
+        "day_phase": "morning",
+        "from": "Jonas",
+        "id": "prod_rettighet_007",
+        "mail_family": "subkultur_produksjon_og_prosjekt_prosjektarbeid",
+        "mail_type": "job",
+        "narrative_arc": "rettighet",
+        "people_ref": "jonas_rettigheter_og_leverandor",
+        "person_id": "jonas_rettigheter_og_leverandor",
+        "phase": "forenoon",
+        "place_id": "leveranse_rettighet_og_avviksbord",
+        "pressure": "kreativ_fart_og_deadline_vs_sporbar_leveranse_arbeidsmiljo_og_sikkerhet",
+        "priority": 144,
+        "role_scope": "subkultur_produksjon_og_prosjekt",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/job/subkultur_produksjon_og_prosjekt_job.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "leverandorer_rettighetshavere_og_artister",
+        "situation": [
+          "Kommunikasjonsteamet vil publisere en trailer. Jonas viser at én musikkbruk og én opptaksrett fortsatt er i forhandling og ikke kan behandles som klarert.",
+          "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+          "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+        ],
+        "subject": "Kampanjematerialet er ferdig, men musikk- og opptaksrettighetene er fortsatt betinget",
+        "summary": "Kommunikasjonsteamet vil publisere en trailer. Jonas viser at én musikkbruk og én opptaksrett fortsatt er i forhandling og ikke kan behandles som klarert. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter.",
+        "task_domain": "subkultur_produksjon_og_prosjekt"
+      },
+      "id": "prod_rettighet_007",
+      "mail_type": "job",
+      "role_scope": "subkultur_produksjon_og_prosjekt",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Marker berørt materiale som betinget, hold publisering tilbake eller bytt til klarert innhold, og koble neste kontroll til dokumentert rettighetsstatus og riktig ansvarlig. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "rettigheter_og_publiseringshandoff: sporbar beslutning prod_rettighet_007",
+            "reply": "Marker berørt materiale som betinget, hold publisering tilbake eller bytt til klarert innhold, og koble neste kontroll til dokumentert rettighetsstatus og riktig ansvarlig. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Publiser fordi alle involverte kjenner hverandre og ta formalitetene etterpå dersom noen faktisk protesterer. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "rettigheter_og_publiseringshandoff: skjult gjeld prod_rettighet_007",
+            "reply": "Publiser fordi alle involverte kjenner hverandre og ta formalitetene etterpå dersom noen faktisk protesterer. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Kommunikasjonsteamet vil publisere en trailer. Jonas viser at én musikkbruk og én opptaksrett fortsatt er i forhandling og ikke kan behandles som klarert.",
+            "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+          ],
+          "subject": "Kampanjematerialet er ferdig, men musikk- og opptaksrettighetene er fortsatt betinget",
+          "summary": "Kommunikasjonsteamet vil publisere en trailer. Jonas viser at én musikkbruk og én opptaksrett fortsatt er i forhandling og ikke kan behandles som klarert. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "prod_rettighet_007",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "leveranse_rettighet_og_avviksbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "prod_rettighet_007",
+          "source_path": "data/Civication/mailFamilies/subkultur/job/subkultur_produksjon_og_prosjekt_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_produksjon_og_prosjekt.mail.prod_rettighet_007",
+        "version": 1
+      },
+      "source_hash": "2e7e6cdafd863c9bc073580f09ccdb94e21257b6827f00e4efe809f09caf9a20",
+      "source_path": "data/Civication/mailFamilies/subkultur/job/subkultur_produksjon_og_prosjekt_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sann_status_og_bounded_rework_vs_antakelse_og_skjult_prosjektgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Registrer endringsønsket, vis konsekvens for tid, kost, crew, rettigheter og risiko, og få eksplisitt beslutning om ny baseline eller prioritering før teamet arbeider som om endringen er vedtatt. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "scope_og_baseline: sporbar beslutning prod_scope_001",
+            "reply": "Registrer endringsønsket, vis konsekvens for tid, kost, crew, rettigheter og risiko, og få eksplisitt beslutning om ny baseline eller prioritering før teamet arbeider som om endringen er vedtatt. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "leveranse"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Legg postene inn i kjøreplanen nå og be teamet finne effektiviseringer underveis slik at bestilleren slipper en vanskelig prioritering. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "scope_og_baseline: skjult gjeld prod_scope_001",
+            "reply": "Legg postene inn i kjøreplanen nå og be teamet finne effektiviseringer underveis slik at bestilleren slipper en vanskelig prioritering. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon.",
+            "tags": [
+              "mandatglidning",
+              "prosjektgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "scope_og_baseline",
+        "consequence_axis": "robust_leveranse_vs_okonomi_kontrakt_arbeidsmiljo_sikkerhets_og_tillitsgjeld",
+        "day_phase": "morning",
+        "from": "Nora",
+        "id": "prod_scope_001",
+        "mail_family": "subkultur_produksjon_og_prosjekt_prosjektarbeid",
+        "mail_type": "job",
+        "narrative_arc": "scope",
+        "people_ref": "nora_program_og_oppdragsgiver",
+        "person_id": "nora_program_og_oppdragsgiver",
+        "phase": "forenoon",
+        "place_id": "prosjektrom_scope_og_milepaeler",
+        "pressure": "kreativ_fart_og_deadline_vs_sporbar_leveranse_arbeidsmiljo_og_sikkerhet",
+        "priority": 150,
+        "role_scope": "subkultur_produksjon_og_prosjekt",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/job/subkultur_produksjon_og_prosjekt_job.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "oppdragsgiver_og_program",
+        "situation": [
+          "Oppdragsgiver ønsker to ekstra programposter. Riggtid, crew og budsjett er uendret, og ingen har besluttet hva som eventuelt skal tas ut.",
+          "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+          "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+        ],
+        "subject": "To nye programposter er kommet inn etter at prosjektets baseline ble godkjent",
+        "summary": "Oppdragsgiver ønsker to ekstra programposter. Riggtid, crew og budsjett er uendret, og ingen har besluttet hva som eventuelt skal tas ut. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter.",
+        "task_domain": "subkultur_produksjon_og_prosjekt"
+      },
+      "id": "prod_scope_001",
+      "mail_type": "job",
+      "role_scope": "subkultur_produksjon_og_prosjekt",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Registrer endringsønsket, vis konsekvens for tid, kost, crew, rettigheter og risiko, og få eksplisitt beslutning om ny baseline eller prioritering før teamet arbeider som om endringen er vedtatt. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "scope_og_baseline: sporbar beslutning prod_scope_001",
+            "reply": "Registrer endringsønsket, vis konsekvens for tid, kost, crew, rettigheter og risiko, og få eksplisitt beslutning om ny baseline eller prioritering før teamet arbeider som om endringen er vedtatt. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Legg postene inn i kjøreplanen nå og be teamet finne effektiviseringer underveis slik at bestilleren slipper en vanskelig prioritering. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "scope_og_baseline: skjult gjeld prod_scope_001",
+            "reply": "Legg postene inn i kjøreplanen nå og be teamet finne effektiviseringer underveis slik at bestilleren slipper en vanskelig prioritering. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Oppdragsgiver ønsker to ekstra programposter. Riggtid, crew og budsjett er uendret, og ingen har besluttet hva som eventuelt skal tas ut.",
+            "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+          ],
+          "subject": "To nye programposter er kommet inn etter at prosjektets baseline ble godkjent",
+          "summary": "Oppdragsgiver ønsker to ekstra programposter. Riggtid, crew og budsjett er uendret, og ingen har besluttet hva som eventuelt skal tas ut. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "prod_scope_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "prosjektrom_scope_og_milepaeler",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "prod_scope_001",
+          "source_path": "data/Civication/mailFamilies/subkultur/job/subkultur_produksjon_og_prosjekt_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_produksjon_og_prosjekt.mail.prod_scope_001",
+        "version": 1
+      },
+      "source_hash": "190a3012f0bb3de9f0d75653791ac4f7c1b67fc915d545671446b3ff04bcf66e",
+      "source_path": "data/Civication/mailFamilies/subkultur/job/subkultur_produksjon_og_prosjekt_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sann_status_og_bounded_rework_vs_antakelse_og_skjult_prosjektgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Les stedet og formuler ett spørsmål om hvilke organisatoriske avhengigheter en kulturproduksjon må gjøre synlige når sted, program og miljø endrer seg, uten å gjøre historien til fasit for dagens kontrakt, HMS eller budsjett. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "history_go_produksjonsrefleksjon: sporbar beslutning prod_club7_003",
+            "reply": "Les stedet og formuler ett spørsmål om hvilke organisatoriske avhengigheter en kulturproduksjon må gjøre synlige når sted, program og miljø endrer seg, uten å gjøre historien til fasit for dagens kontrakt, HMS eller budsjett. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "leveranse"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Bruk Club 7s motkulturstatus som argument for at muntlige avtaler, dugnad og fleksible sikkerhetsgrenser er mer autentiske enn dokumentert produksjonsstyring. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "history_go_produksjonsrefleksjon: skjult gjeld prod_club7_003",
+            "reply": "Bruk Club 7s motkulturstatus som argument for at muntlige avtaler, dugnad og fleksible sikkerhetsgrenser er mer autentiske enn dokumentert produksjonsstyring. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon.",
+            "tags": [
+              "mandatglidning",
+              "prosjektgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "history_go_produksjonsrefleksjon",
+        "consequence_axis": "robust_leveranse_vs_okonomi_kontrakt_arbeidsmiljo_sikkerhets_og_tillitsgjeld",
+        "day_phase": "morning",
+        "from": "Nora",
+        "id": "prod_club7_003",
+        "interaction_mode": "task",
+        "mail_family": "subkultur_produksjon_og_prosjekt_kunnskap_i_bruk",
+        "mail_type": "knowledge",
+        "narrative_arc": "club7",
+        "people_ref": "nora_program_og_oppdragsgiver",
+        "person_id": "nora_program_og_oppdragsgiver",
+        "phase": "forenoon",
+        "place_id": "club_7_vika",
+        "pressure": "kreativ_fart_og_deadline_vs_sporbar_leveranse_arbeidsmiljo_og_sikkerhet",
+        "priority": 148,
+        "role_scope": "subkultur_produksjon_og_prosjekt",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/knowledge/subkultur_produksjon_og_prosjekt_knowledge.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "historisk_subkulturkontekst",
+        "situation": [
+          "History Go har en kildebelagt Club 7-post som historisk anker. Den kan brukes til å spørre hvordan subkulturelle prosjekter holder miljø, sted, program og ressurser sammen over tid, men ikke som dagens produksjonsstandard.",
+          "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+          "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+        ],
+        "subject": "Club 7 som produksjonskontekst: hva må et kulturprosjekt bære når miljø, sted og program endres?",
+        "summary": "History Go har en kildebelagt Club 7-post som historisk anker. Den kan brukes til å spørre hvordan subkulturelle prosjekter holder miljø, sted, program og ressurser sammen over tid, men ikke som dagens produksjonsstandard. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter.",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/places/subkultur/oslo/places_subkultur/club_7_vika.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "subkultur_produksjon_og_prosjekt_history_go_club_7"
+        },
+        "task_domain": "subkultur_produksjon_og_prosjekt",
+        "task_payload": {
+          "completion_mode": "read_place",
+          "description": "Noter ett spørsmål om hvilke organisatoriske avhengigheter en kulturproduksjon må gjøre synlige når sted, program og miljø endres over tid, uten å gjøre historisk motkultur til fasit for dagens budsjett, arbeidsrett, kontrakt, sikkerhet eller rettigheter.",
+          "place_id": "club_7_vika",
+          "return_context": {
+            "mail_id": "prod_club7_003",
+            "role_scope": "subkultur_produksjon_og_prosjekt",
+            "source": "civication"
+          },
+          "target_type": "place",
+          "task_kind": "history_go_place",
+          "title": "Les Club 7 som historisk produksjonskontekst"
+        }
+      },
+      "id": "prod_club7_003",
+      "mail_type": "knowledge",
+      "role_scope": "subkultur_produksjon_og_prosjekt",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Les stedet og formuler ett spørsmål om hvilke organisatoriske avhengigheter en kulturproduksjon må gjøre synlige når sted, program og miljø endrer seg, uten å gjøre historien til fasit for dagens kontrakt, HMS eller budsjett. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "history_go_produksjonsrefleksjon: sporbar beslutning prod_club7_003",
+            "reply": "Les stedet og formuler ett spørsmål om hvilke organisatoriske avhengigheter en kulturproduksjon må gjøre synlige når sted, program og miljø endrer seg, uten å gjøre historien til fasit for dagens kontrakt, HMS eller budsjett. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Bruk Club 7s motkulturstatus som argument for at muntlige avtaler, dugnad og fleksible sikkerhetsgrenser er mer autentiske enn dokumentert produksjonsstyring. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "history_go_produksjonsrefleksjon: skjult gjeld prod_club7_003",
+            "reply": "Bruk Club 7s motkulturstatus som argument for at muntlige avtaler, dugnad og fleksible sikkerhetsgrenser er mer autentiske enn dokumentert produksjonsstyring. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "History Go har en kildebelagt Club 7-post som historisk anker. Den kan brukes til å spørre hvordan subkulturelle prosjekter holder miljø, sted, program og ressurser sammen over tid, men ikke som dagens produksjonsstandard.",
+            "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+          ],
+          "subject": "Club 7 som produksjonskontekst: hva må et kulturprosjekt bære når miljø, sted og program endres?",
+          "summary": "History Go har en kildebelagt Club 7-post som historisk anker. Den kan brukes til å spørre hvordan subkulturelle prosjekter holder miljø, sted, program og ressurser sammen over tid, men ikke som dagens produksjonsstandard. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "prod_club7_003",
+        "interaction_mode": "task",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "club_7_vika",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "prod_club7_003",
+          "source_path": "data/Civication/mailFamilies/subkultur/knowledge/subkultur_produksjon_og_prosjekt_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/places/subkultur/oslo/places_subkultur/club_7_vika.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "subkultur_produksjon_og_prosjekt_history_go_club_7"
+        },
+        "thread_id": "subkultur_produksjon_og_prosjekt.mail.prod_club7_003",
+        "version": 1
+      },
+      "source_hash": "1e676f87995b955ec7c27566b4ec523d6ddb389d7ce99906d2fa41b1591dfbd0",
+      "source_path": "data/Civication/mailFamilies/subkultur/knowledge/subkultur_produksjon_og_prosjekt_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sann_status_og_bounded_rework_vs_antakelse_og_skjult_prosjektgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Bruk eksplisitte statuser for tilbud mottatt, godkjent, bestilt, signert, levert og akseptert, og pek på hvilken overgang som mangler eier eller dokumentasjon. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "statuspresisjon: sporbar beslutning prod_statusord_010",
+            "reply": "Bruk eksplisitte statuser for tilbud mottatt, godkjent, bestilt, signert, levert og akseptert, og pek på hvilken overgang som mangler eier eller dokumentasjon. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "leveranse"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "La «bekreftet» stå fordi alle omtrent vet hva som menes og detaljene kan ryddes når leverandøren kommer. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "statuspresisjon: skjult gjeld prod_statusord_010",
+            "reply": "La «bekreftet» stå fordi alle omtrent vet hva som menes og detaljene kan ryddes når leverandøren kommer. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon.",
+            "tags": [
+              "mandatglidning",
+              "prosjektgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "statuspresisjon",
+        "consequence_axis": "robust_leveranse_vs_okonomi_kontrakt_arbeidsmiljo_sikkerhets_og_tillitsgjeld",
+        "day_phase": "afternoon",
+        "from": "Jonas",
+        "id": "prod_statusord_010",
+        "mail_family": "subkultur_produksjon_og_prosjekt_mikrobeslutninger",
+        "mail_type": "micro",
+        "narrative_arc": "statusord",
+        "people_ref": "jonas_rettigheter_og_leverandor",
+        "person_id": "jonas_rettigheter_og_leverandor",
+        "phase": "advanced",
+        "place_id": "leveranse_rettighet_og_avviksbord",
+        "pressure": "kreativ_fart_og_deadline_vs_sporbar_leveranse_arbeidsmiljo_og_sikkerhet",
+        "priority": 141,
+        "role_scope": "subkultur_produksjon_og_prosjekt",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/micro/subkultur_produksjon_og_prosjekt_micro.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "leverandorer_rettighetshavere_og_artister",
+        "situation": [
+          "Tre personer bruker ordet «bekreftet» om samme leveranse. Én mener pristilbud mottatt, én mener muntlig ja, mens kontrakten fortsatt ikke er signert.",
+          "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+          "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+        ],
+        "subject": "Er leveransen bestilt, bekreftet eller faktisk signert?",
+        "summary": "Tre personer bruker ordet «bekreftet» om samme leveranse. Én mener pristilbud mottatt, én mener muntlig ja, mens kontrakten fortsatt ikke er signert. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter.",
+        "task_domain": "subkultur_produksjon_og_prosjekt"
+      },
+      "id": "prod_statusord_010",
+      "mail_type": "micro",
+      "role_scope": "subkultur_produksjon_og_prosjekt",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Bruk eksplisitte statuser for tilbud mottatt, godkjent, bestilt, signert, levert og akseptert, og pek på hvilken overgang som mangler eier eller dokumentasjon. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "statuspresisjon: sporbar beslutning prod_statusord_010",
+            "reply": "Bruk eksplisitte statuser for tilbud mottatt, godkjent, bestilt, signert, levert og akseptert, og pek på hvilken overgang som mangler eier eller dokumentasjon. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "La «bekreftet» stå fordi alle omtrent vet hva som menes og detaljene kan ryddes når leverandøren kommer. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "statuspresisjon: skjult gjeld prod_statusord_010",
+            "reply": "La «bekreftet» stå fordi alle omtrent vet hva som menes og detaljene kan ryddes når leverandøren kommer. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Tre personer bruker ordet «bekreftet» om samme leveranse. Én mener pristilbud mottatt, én mener muntlig ja, mens kontrakten fortsatt ikke er signert.",
+            "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+          ],
+          "subject": "Er leveransen bestilt, bekreftet eller faktisk signert?",
+          "summary": "Tre personer bruker ordet «bekreftet» om samme leveranse. Én mener pristilbud mottatt, én mener muntlig ja, mens kontrakten fortsatt ikke er signert. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "prod_statusord_010",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "leveranse_rettighet_og_avviksbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "prod_statusord_010",
+          "source_path": "data/Civication/mailFamilies/subkultur/micro/subkultur_produksjon_og_prosjekt_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_produksjon_og_prosjekt.mail.prod_statusord_010",
+        "version": 1
+      },
+      "source_hash": "92e556a3883a2d2e5a1308a9936b8f0b0f59f3c21a35f808c6b8f9f1f2d95150",
+      "source_path": "data/Civication/mailFamilies/subkultur/micro/subkultur_produksjon_og_prosjekt_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sann_status_og_bounded_rework_vs_antakelse_og_skjult_prosjektgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Behandle skift- og kontrollbehovet som et reelt premiss, replanlegg eller skaff godkjent bemanning, og dokumenter hva som må være sant før ny kjøreplan frigives. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "crew_arbeidsmiljo_og_plan: sporbar beslutning prod_crew_005",
+            "reply": "Behandle skift- og kontrollbehovet som et reelt premiss, replanlegg eller skaff godkjent bemanning, og dokumenter hva som må være sant før ny kjøreplan frigives. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "leveranse"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Be crewet ta en ekstra innsats denne ene gangen og kompensere sosialt etterpå uten å endre plan, budsjett eller arbeidstidsforutsetning. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "crew_arbeidsmiljo_og_plan: skjult gjeld prod_crew_005",
+            "reply": "Be crewet ta en ekstra innsats denne ene gangen og kompensere sosialt etterpå uten å endre plan, budsjett eller arbeidstidsforutsetning. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon.",
+            "tags": [
+              "mandatglidning",
+              "prosjektgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "crew_arbeidsmiljo_og_plan",
+        "consequence_axis": "robust_leveranse_vs_okonomi_kontrakt_arbeidsmiljo_sikkerhets_og_tillitsgjeld",
+        "day_phase": "morning",
+        "from": "Samir",
+        "id": "prod_crew_005",
+        "mail_family": "subkultur_produksjon_og_prosjekt_arbeidsrelasjoner",
+        "mail_type": "people",
+        "narrative_arc": "crew",
+        "people_ref": "samir_teknisk_produksjon",
+        "person_id": "samir_teknisk_produksjon",
+        "phase": "forenoon",
+        "place_id": "produksjonsgulv_rigg_og_crewpunkt",
+        "pressure": "kreativ_fart_og_deadline_vs_sporbar_leveranse_arbeidsmiljo_og_sikkerhet",
+        "priority": 146,
+        "role_scope": "subkultur_produksjon_og_prosjekt",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/people/subkultur_produksjon_og_prosjekt_people.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "crew_og_tekniske_fag",
+        "situation": [
+          "Samir har regnet gjennom rigg og prøver. Dagens plan krever arbeid utover avtalt skift eller at en kritisk kontroll kuttes. Teamet forventer at produsenten finner en løsning.",
+          "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+          "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+        ],
+        "subject": "Samir sier kjøreplanen krever et ekstra skift som ingen har budsjettert eller bemannet",
+        "summary": "Samir har regnet gjennom rigg og prøver. Dagens plan krever arbeid utover avtalt skift eller at en kritisk kontroll kuttes. Teamet forventer at produsenten finner en løsning. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter.",
+        "task_domain": "subkultur_produksjon_og_prosjekt"
+      },
+      "id": "prod_crew_005",
+      "mail_type": "people",
+      "role_scope": "subkultur_produksjon_og_prosjekt",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Behandle skift- og kontrollbehovet som et reelt premiss, replanlegg eller skaff godkjent bemanning, og dokumenter hva som må være sant før ny kjøreplan frigives. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "crew_arbeidsmiljo_og_plan: sporbar beslutning prod_crew_005",
+            "reply": "Behandle skift- og kontrollbehovet som et reelt premiss, replanlegg eller skaff godkjent bemanning, og dokumenter hva som må være sant før ny kjøreplan frigives. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Be crewet ta en ekstra innsats denne ene gangen og kompensere sosialt etterpå uten å endre plan, budsjett eller arbeidstidsforutsetning. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "crew_arbeidsmiljo_og_plan: skjult gjeld prod_crew_005",
+            "reply": "Be crewet ta en ekstra innsats denne ene gangen og kompensere sosialt etterpå uten å endre plan, budsjett eller arbeidstidsforutsetning. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Samir har regnet gjennom rigg og prøver. Dagens plan krever arbeid utover avtalt skift eller at en kritisk kontroll kuttes. Teamet forventer at produsenten finner en løsning.",
+            "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+          ],
+          "subject": "Samir sier kjøreplanen krever et ekstra skift som ingen har budsjettert eller bemannet",
+          "summary": "Samir har regnet gjennom rigg og prøver. Dagens plan krever arbeid utover avtalt skift eller at en kritisk kontroll kuttes. Teamet forventer at produsenten finner en løsning. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "prod_crew_005",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "produksjonsgulv_rigg_og_crewpunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "prod_crew_005",
+          "source_path": "data/Civication/mailFamilies/subkultur/people/subkultur_produksjon_og_prosjekt_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_produksjon_og_prosjekt.mail.prod_crew_005",
+        "version": 1
+      },
+      "source_hash": "05b9bea76152e4b2179a50125c09a7f56ffbb84fdcb928c894de07da9f66c27b",
+      "source_path": "data/Civication/mailFamilies/subkultur/people/subkultur_produksjon_og_prosjekt_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sann_status_og_bounded_rework_vs_antakelse_og_skjult_prosjektgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Stans bare berørt handoff, avklar ansvar, forsikring, tilgang og kontraktsgrunnlag med riktig eier, og oppdater leverandørsporet før arbeidet fortsetter. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "leverandor_og_kontraktskontroll: sporbar beslutning prod_leverandor_012",
+            "reply": "Stans bare berørt handoff, avklar ansvar, forsikring, tilgang og kontraktsgrunnlag med riktig eier, og oppdater leverandørsporet før arbeidet fortsetter. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "leveranse"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "La arbeidet fortsette fordi hovedleverandøren sier de tar ansvaret, og unngå papirarbeid som kan forsinke innlast. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "leverandor_og_kontraktskontroll: skjult gjeld prod_leverandor_012",
+            "reply": "La arbeidet fortsette fordi hovedleverandøren sier de tar ansvaret, og unngå papirarbeid som kan forsinke innlast. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon.",
+            "tags": [
+              "mandatglidning",
+              "prosjektgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "leverandor_og_kontraktskontroll",
+        "consequence_axis": "robust_leveranse_vs_okonomi_kontrakt_arbeidsmiljo_sikkerhets_og_tillitsgjeld",
+        "day_phase": "morning",
+        "from": "Jonas",
+        "id": "prod_leverandor_012",
+        "mail_family": "subkultur_produksjon_og_prosjekt_arbeidsrelasjoner",
+        "mail_type": "people",
+        "narrative_arc": "leverandor",
+        "people_ref": "jonas_rettigheter_og_leverandor",
+        "person_id": "jonas_rettigheter_og_leverandor",
+        "phase": "forenoon",
+        "place_id": "leveranse_rettighet_og_avviksbord",
+        "pressure": "kreativ_fart_og_deadline_vs_sporbar_leveranse_arbeidsmiljo_og_sikkerhet",
+        "priority": 139,
+        "role_scope": "subkultur_produksjon_og_prosjekt",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/people/subkultur_produksjon_og_prosjekt_people.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "leverandorer_rettighetshavere_og_artister",
+        "situation": [
+          "Arbeidet pågår allerede. Underleverandøren kan være faglig god, men forsikring, ansvar, tilgang og kontraktsgrunnlag er ikke kontrollert mot gjeldende versjon.",
+          "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+          "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+        ],
+        "subject": "Jonas oppdager at leverandøren har satt inn en underleverandør som ikke står i avtalen",
+        "summary": "Arbeidet pågår allerede. Underleverandøren kan være faglig god, men forsikring, ansvar, tilgang og kontraktsgrunnlag er ikke kontrollert mot gjeldende versjon. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter.",
+        "task_domain": "subkultur_produksjon_og_prosjekt"
+      },
+      "id": "prod_leverandor_012",
+      "mail_type": "people",
+      "role_scope": "subkultur_produksjon_og_prosjekt",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Stans bare berørt handoff, avklar ansvar, forsikring, tilgang og kontraktsgrunnlag med riktig eier, og oppdater leverandørsporet før arbeidet fortsetter. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "leverandor_og_kontraktskontroll: sporbar beslutning prod_leverandor_012",
+            "reply": "Stans bare berørt handoff, avklar ansvar, forsikring, tilgang og kontraktsgrunnlag med riktig eier, og oppdater leverandørsporet før arbeidet fortsetter. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "La arbeidet fortsette fordi hovedleverandøren sier de tar ansvaret, og unngå papirarbeid som kan forsinke innlast. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "leverandor_og_kontraktskontroll: skjult gjeld prod_leverandor_012",
+            "reply": "La arbeidet fortsette fordi hovedleverandøren sier de tar ansvaret, og unngå papirarbeid som kan forsinke innlast. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Arbeidet pågår allerede. Underleverandøren kan være faglig god, men forsikring, ansvar, tilgang og kontraktsgrunnlag er ikke kontrollert mot gjeldende versjon.",
+            "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+          ],
+          "subject": "Jonas oppdager at leverandøren har satt inn en underleverandør som ikke står i avtalen",
+          "summary": "Arbeidet pågår allerede. Underleverandøren kan være faglig god, men forsikring, ansvar, tilgang og kontraktsgrunnlag er ikke kontrollert mot gjeldende versjon. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "prod_leverandor_012",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "leveranse_rettighet_og_avviksbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "prod_leverandor_012",
+          "source_path": "data/Civication/mailFamilies/subkultur/people/subkultur_produksjon_og_prosjekt_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_produksjon_og_prosjekt.mail.prod_leverandor_012",
+        "version": 1
+      },
+      "source_hash": "a9b541a093ba36e0f3bfe6aa715f4279af7208d0ef4a90488a4e23e2ac56bc13",
+      "source_path": "data/Civication/mailFamilies/subkultur/people/subkultur_produksjon_og_prosjekt_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sann_status_og_bounded_rework_vs_antakelse_og_skjult_prosjektgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Bekreft siste prosjektversjon og få riktig fullmakt før ordren sendes, eller eskaler et eksplisitt tidskritisk valg med konsekvens i stedet for å be Liv anta mandatet. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "fullmakt_og_bestilling: sporbar beslutning prod_okonomi_008",
+            "reply": "Bekreft siste prosjektversjon og få riktig fullmakt før ordren sendes, eller eskaler et eksplisitt tidskritisk valg med konsekvens i stedet for å be Liv anta mandatet. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "leveranse"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Be Liv sende ordren på din muntlige beskjed fordi prosjektet ellers blir forsinket, og få signaturen inn i etterkant. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "fullmakt_og_bestilling: skjult gjeld prod_okonomi_008",
+            "reply": "Be Liv sende ordren på din muntlige beskjed fordi prosjektet ellers blir forsinket, og få signaturen inn i etterkant. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon.",
+            "tags": [
+              "mandatglidning",
+              "prosjektgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "fullmakt_og_bestilling",
+        "consequence_axis": "robust_leveranse_vs_okonomi_kontrakt_arbeidsmiljo_sikkerhets_og_tillitsgjeld",
+        "day_phase": "morning",
+        "from": "Liv",
+        "id": "prod_okonomi_008",
+        "mail_family": "subkultur_produksjon_og_prosjekt_arbeidsrelasjoner",
+        "mail_type": "people",
+        "narrative_arc": "okonomi",
+        "people_ref": "liv_okonomi_og_innkjop",
+        "person_id": "liv_okonomi_og_innkjop",
+        "phase": "forenoon",
+        "place_id": "budsjett_innkjop_og_kontraktsflate",
+        "pressure": "kreativ_fart_og_deadline_vs_sporbar_leveranse_arbeidsmiljo_og_sikkerhet",
+        "priority": 143,
+        "role_scope": "subkultur_produksjon_og_prosjekt",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/people/subkultur_produksjon_og_prosjekt_people.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "okonomi_og_innkjop",
+        "situation": [
+          "Bestillingen må gå i dag for å holde tidsplanen. Liv mangler dokumentert fullmakt og budsjettposten er akkurat blitt endret i et annet møte.",
+          "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+          "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+        ],
+        "subject": "Liv ber om skriftlig bestillingsfullmakt før hun sender ordren",
+        "summary": "Bestillingen må gå i dag for å holde tidsplanen. Liv mangler dokumentert fullmakt og budsjettposten er akkurat blitt endret i et annet møte. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter.",
+        "task_domain": "subkultur_produksjon_og_prosjekt"
+      },
+      "id": "prod_okonomi_008",
+      "mail_type": "people",
+      "role_scope": "subkultur_produksjon_og_prosjekt",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Bekreft siste prosjektversjon og få riktig fullmakt før ordren sendes, eller eskaler et eksplisitt tidskritisk valg med konsekvens i stedet for å be Liv anta mandatet. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "fullmakt_og_bestilling: sporbar beslutning prod_okonomi_008",
+            "reply": "Bekreft siste prosjektversjon og få riktig fullmakt før ordren sendes, eller eskaler et eksplisitt tidskritisk valg med konsekvens i stedet for å be Liv anta mandatet. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Be Liv sende ordren på din muntlige beskjed fordi prosjektet ellers blir forsinket, og få signaturen inn i etterkant. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "fullmakt_og_bestilling: skjult gjeld prod_okonomi_008",
+            "reply": "Be Liv sende ordren på din muntlige beskjed fordi prosjektet ellers blir forsinket, og få signaturen inn i etterkant. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Bestillingen må gå i dag for å holde tidsplanen. Liv mangler dokumentert fullmakt og budsjettposten er akkurat blitt endret i et annet møte.",
+            "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+          ],
+          "subject": "Liv ber om skriftlig bestillingsfullmakt før hun sender ordren",
+          "summary": "Bestillingen må gå i dag for å holde tidsplanen. Liv mangler dokumentert fullmakt og budsjettposten er akkurat blitt endret i et annet møte. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "prod_okonomi_008",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "budsjett_innkjop_og_kontraktsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "prod_okonomi_008",
+          "source_path": "data/Civication/mailFamilies/subkultur/people/subkultur_produksjon_og_prosjekt_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_produksjon_og_prosjekt.mail.prod_okonomi_008",
+        "version": 1
+      },
+      "source_hash": "e99ee7c77ffdbd31bdb760b417774d06e05a9e27dff5dcee4debef2ce05ac1fd",
+      "source_path": "data/Civication/mailFamilies/subkultur/people/subkultur_produksjon_og_prosjekt_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sann_status_og_bounded_rework_vs_antakelse_og_skjult_prosjektgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Bevar relasjonen, men svar med hva som faktisk er godkjent og hva som fortsatt er et forslag. Legg ekstra leveranse inn som betinget endring med beslutningseier og frist. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "relasjon_og_mandat: sporbar beslutning prod_program_002",
+            "reply": "Bevar relasjonen, men svar med hva som faktisk er godkjent og hva som fortsatt er et forslag. Legg ekstra leveranse inn som betinget endring med beslutningseier og frist. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "leveranse"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Gi et uformelt ja fordi relasjonen er viktig, og regn med at økonomi og rettigheter kan ryddes når prosjektet er over. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "relasjon_og_mandat: skjult gjeld prod_program_002",
+            "reply": "Gi et uformelt ja fordi relasjonen er viktig, og regn med at økonomi og rettigheter kan ryddes når prosjektet er over. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon.",
+            "tags": [
+              "mandatglidning",
+              "prosjektgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "relasjon_og_mandat",
+        "consequence_axis": "robust_leveranse_vs_okonomi_kontrakt_arbeidsmiljo_sikkerhets_og_tillitsgjeld",
+        "day_phase": "morning",
+        "from": "Nora",
+        "id": "prod_program_002",
+        "mail_family": "subkultur_produksjon_og_prosjekt_arbeidsrelasjoner",
+        "mail_type": "people",
+        "narrative_arc": "program",
+        "people_ref": "nora_program_og_oppdragsgiver",
+        "person_id": "nora_program_og_oppdragsgiver",
+        "phase": "forenoon",
+        "place_id": "prosjektrom_scope_og_milepaeler",
+        "pressure": "kreativ_fart_og_deadline_vs_sporbar_leveranse_arbeidsmiljo_og_sikkerhet",
+        "priority": 149,
+        "role_scope": "subkultur_produksjon_og_prosjekt",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/people/subkultur_produksjon_og_prosjekt_people.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "oppdragsgiver_og_program",
+        "situation": [
+          "Nora vil sikre relasjonen til en artist og ber deg bekrefte ekstra opptak og etterarbeid i en muntlig samtale før kostnad og rettigheter er avklart.",
+          "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+          "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+        ],
+        "subject": "Nora ber deg love en artist en ekstra leveranse før scopeendringen er godkjent",
+        "summary": "Nora vil sikre relasjonen til en artist og ber deg bekrefte ekstra opptak og etterarbeid i en muntlig samtale før kostnad og rettigheter er avklart. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter.",
+        "task_domain": "subkultur_produksjon_og_prosjekt"
+      },
+      "id": "prod_program_002",
+      "mail_type": "people",
+      "role_scope": "subkultur_produksjon_og_prosjekt",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Bevar relasjonen, men svar med hva som faktisk er godkjent og hva som fortsatt er et forslag. Legg ekstra leveranse inn som betinget endring med beslutningseier og frist. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "relasjon_og_mandat: sporbar beslutning prod_program_002",
+            "reply": "Bevar relasjonen, men svar med hva som faktisk er godkjent og hva som fortsatt er et forslag. Legg ekstra leveranse inn som betinget endring med beslutningseier og frist. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Gi et uformelt ja fordi relasjonen er viktig, og regn med at økonomi og rettigheter kan ryddes når prosjektet er over. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "relasjon_og_mandat: skjult gjeld prod_program_002",
+            "reply": "Gi et uformelt ja fordi relasjonen er viktig, og regn med at økonomi og rettigheter kan ryddes når prosjektet er over. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Nora vil sikre relasjonen til en artist og ber deg bekrefte ekstra opptak og etterarbeid i en muntlig samtale før kostnad og rettigheter er avklart.",
+            "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+          ],
+          "subject": "Nora ber deg love en artist en ekstra leveranse før scopeendringen er godkjent",
+          "summary": "Nora vil sikre relasjonen til en artist og ber deg bekrefte ekstra opptak og etterarbeid i en muntlig samtale før kostnad og rettigheter er avklart. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "prod_program_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "prosjektrom_scope_og_milepaeler",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "prod_program_002",
+          "source_path": "data/Civication/mailFamilies/subkultur/people/subkultur_produksjon_og_prosjekt_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_produksjon_og_prosjekt.mail.prod_program_002",
+        "version": 1
+      },
+      "source_hash": "1d77c81a7ea228ed0b5bffcfeb68e1cde9f29b00a5e290c1077b5f190956edba",
+      "source_path": "data/Civication/mailFamilies/subkultur/people/subkultur_produksjon_og_prosjekt_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sann_status_og_bounded_rework_vs_antakelse_og_skjult_prosjektgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Bruk samme prosjektlogg gjennom dagen, registrer avvik med eier og konsekvens, gjenåpne bare berørte ledd og avslutt med tydelig handoff av det som fortsatt står åpent. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "helhetlig_prosjektleveranse: sporbar beslutning prod_dagen_014",
+            "reply": "Bruk samme prosjektlogg gjennom dagen, registrer avvik med eier og konsekvens, gjenåpne bare berørte ledd og avslutt med tydelig handoff av det som fortsatt står åpent. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "leveranse"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Løs hver hendelse i separate chat-tråder og oppdater hovedplanen først etterpå hvis noen ber om en samlet forklaring. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "helhetlig_prosjektleveranse: skjult gjeld prod_dagen_014",
+            "reply": "Løs hver hendelse i separate chat-tråder og oppdater hovedplanen først etterpå hvis noen ber om en samlet forklaring. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon.",
+            "tags": [
+              "mandatglidning",
+              "prosjektgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "helhetlig_prosjektleveranse",
+        "consequence_axis": "robust_leveranse_vs_okonomi_kontrakt_arbeidsmiljo_sikkerhets_og_tillitsgjeld",
+        "day_phase": "evening",
+        "from": "Nora",
+        "id": "prod_dagen_014",
+        "mail_family": "subkultur_produksjon_og_prosjekt_leveransefortelling",
+        "mail_type": "story",
+        "narrative_arc": "dagen",
+        "people_ref": "nora_program_og_oppdragsgiver",
+        "person_id": "nora_program_og_oppdragsgiver",
+        "phase": "mastery",
+        "place_id": "prosjektrom_scope_og_milepaeler",
+        "pressure": "kreativ_fart_og_deadline_vs_sporbar_leveranse_arbeidsmiljo_og_sikkerhet",
+        "priority": 137,
+        "role_scope": "subkultur_produksjon_og_prosjekt",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/story/subkultur_produksjon_og_prosjekt_story.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "alle_prosjektets_arbeidsrelasjoner",
+        "situation": [
+          "Produksjonsdagen inneholder artistforsinkelse, leverandørspørsmål, teknisk retest, publikumsendring og et sent krediteringskrav. Ingen enkelt hendelse skal få prosjektet til å miste baseline eller beslutningshistorikk.",
+          "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+          "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+        ],
+        "subject": "Fra innlast til siste faktiske handoff: bær samme prosjektversjon gjennom hele dagen",
+        "summary": "Produksjonsdagen inneholder artistforsinkelse, leverandørspørsmål, teknisk retest, publikumsendring og et sent krediteringskrav. Ingen enkelt hendelse skal få prosjektet til å miste baseline eller beslutningshistorikk. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter.",
+        "task_domain": "subkultur_produksjon_og_prosjekt"
+      },
+      "id": "prod_dagen_014",
+      "mail_type": "story",
+      "role_scope": "subkultur_produksjon_og_prosjekt",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Bruk samme prosjektlogg gjennom dagen, registrer avvik med eier og konsekvens, gjenåpne bare berørte ledd og avslutt med tydelig handoff av det som fortsatt står åpent. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+            "id": "A",
+            "label": "helhetlig_prosjektleveranse: sporbar beslutning prod_dagen_014",
+            "reply": "Bruk samme prosjektlogg gjennom dagen, registrer avvik med eier og konsekvens, gjenåpne bare berørte ledd og avslutt med tydelig handoff av det som fortsatt står åpent. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Løs hver hendelse i separate chat-tråder og oppdater hovedplanen først etterpå hvis noen ber om en samlet forklaring. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+            "id": "B",
+            "label": "helhetlig_prosjektleveranse: skjult gjeld prod_dagen_014",
+            "reply": "Løs hver hendelse i separate chat-tråder og oppdater hovedplanen først etterpå hvis noen ber om en samlet forklaring. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Produksjonsdagen inneholder artistforsinkelse, leverandørspørsmål, teknisk retest, publikumsendring og et sent krediteringskrav. Ingen enkelt hendelse skal få prosjektet til å miste baseline eller beslutningshistorikk.",
+            "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+          ],
+          "subject": "Fra innlast til siste faktiske handoff: bær samme prosjektversjon gjennom hele dagen",
+          "summary": "Produksjonsdagen inneholder artistforsinkelse, leverandørspørsmål, teknisk retest, publikumsendring og et sent krediteringskrav. Ingen enkelt hendelse skal få prosjektet til å miste baseline eller beslutningshistorikk. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "prod_dagen_014",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "prosjektrom_scope_og_milepaeler",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "prod_dagen_014",
+          "source_path": "data/Civication/mailFamilies/subkultur/story/subkultur_produksjon_og_prosjekt_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_produksjon_og_prosjekt.mail.prod_dagen_014",
+        "version": 1
+      },
+      "source_hash": "fd2e9cf8e0ec8fa62dceff4ac26244beb61b1bb73add31d1f4ca5edeb21478fe",
+      "source_path": "data/Civication/mailFamilies/subkultur/story/subkultur_produksjon_og_prosjekt_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
     }
   ],
   "ignored_source_files": [
@@ -221266,7 +223360,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "897b0eff6bc2295fa6a1a27c97f5744734fd3eee426d357ae634c2295601df2c",
+  "registry_hash": "9347dd92a102ddc8d1bb288ae3e09364e6091e17066bf4128157af6a442ba154",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -222769,6 +224863,23 @@
       "arena_tilgjengelighet_013",
       "arena_club7_003",
       "arena_skjult_gjeld_015"
+    ],
+    "subkultur/subkultur_produksjon_og_prosjekt": [
+      "prod_scope_001",
+      "prod_budsjett_004",
+      "prod_rettighet_007",
+      "prod_closeout_011",
+      "prod_program_002",
+      "prod_crew_005",
+      "prod_okonomi_008",
+      "prod_leverandor_012",
+      "prod_dagen_014",
+      "prod_scopekonflikt_006",
+      "prod_leverandorfall_009",
+      "prod_statusord_010",
+      "prod_oppfolging_013",
+      "prod_club7_003",
+      "prod_senkonsekvens_015"
     ]
   },
   "runtime_materialized_sources": [
@@ -222798,11 +224909,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 458,
+    "compiled_source_file_count": 467,
     "ignored_source_file_count": 1,
-    "input_file_count": 459,
-    "role_count": 56,
-    "scene_count": 1390,
+    "input_file_count": 468,
+    "role_count": 57,
+    "scene_count": 1405,
     "shadowed_duplicate_count": 0
   },
   "version": 1
