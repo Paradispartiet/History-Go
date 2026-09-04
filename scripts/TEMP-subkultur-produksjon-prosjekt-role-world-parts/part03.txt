@@ -1,0 +1,43 @@
+e hviletid og kritiske faggrenser.'],
+  ['muntlig ja er ikke signert avtale','En viktig leverandør og en kunstnerisk bidragsyter mener begge at prosjektet er enige, men pris, avlysning, bruksomfang og kreditering er fortsatt ulikt forstått.'],
+  ['sen programendring åpner baseline igjen','Nora ønsker en ny programpost etter at teknisk plan, bestillinger og kommunikasjon er langt kommet, og endringen berører flere ledd enn selve scenetiden.'],
+  ['kritisk leverandør faller bort','En underleverandør melder at en sentral leveranse ikke kommer, og prosjektet må skille hva som faktisk kan reddes fra hva som krever ny bestilling, nytt budsjett eller redusert scope.'],
+  ['rettighetsrest stopper ferdig kampanje','Trailer og dokumentasjonsplan er klare, men én musikkbruk og ett opptaksomfang er fortsatt betinget og kan ikke omtales som klarert.'],
+  ['teknisk integrasjon krever retest','En løsning som fungerte i enkel test oppfører seg annerledes når hele produksjonen kobles sammen, og tidspresset gjør det fristende å kalle et delresultat ferdig.'],
+  ['partnerønske møter prosjektmandat','En partner som bidrar med synlighet og ressurser ønsker et tillegg i gjennomføringen som ikke ligger i bestilling, avtalt scope eller avklart rettighets- og sikkerhetsbilde.'],
+  ['gjennomløp viser skjult rework','En full prøve avdekker at små tidligere kompromisser har samlet seg i handoffs, crewbelastning, publikumsinformasjon og tekniske overganger.'],
+  ['Club 7 åpner et produksjonshistorisk spørsmål','History Go bruker Club 7 i Vika som historisk inngang til å undersøke hvordan miljø, program, improvisasjon og varighet kan skjerpe dagens produksjonsspørsmål uten å være metodefasit.'],
+  ['live leveranse får et reelt avvik','Under gjennomføringen oppstår et avvik som berører både drift og publikum, mens prosjektet samtidig står under press fra tidsplan, sosial forventning og synlig omdømme.'],
+  ['sluttoppgjør avslører restpunkter','Etter gjennomføring er fakturaer, kreditering, rettighetsdokumentasjon, overtid og en leverandørreklamasjon ikke like lukket selv om arrangementet er over.'],
+  ['handback og neste prosjektversjon','Prosjektet skal lukkes og erfaring overføres uten at gode publikumsreaksjoner omskriver budsjettavvik, belastning, rettighetsrest, tekniske avvik eller uferdige motpartsforhold.']
+];
+
+const phases=['morning','lunch','afternoon','evening'];
+const beatTypes={morning:'task',lunch:'relationship',afternoon:'decision',evening:'private_consequence'};
+const threadIds=[
+  'scope_baseline_and_change_control',
+  'budget_procurement_and_forecast',
+  'crew_work_environment_and_capacity',
+  'supplier_contract_and_handoff',
+  'rights_crediting_and_publication',
+  'technical_safety_and_release',
+  'scene_public_legitimacy_and_private_load'
+];
+const audienceIds=audiences.map(x=>x.id);
+const coverage=[];
+for(let d=1;d<=14;d++){
+  for(let pi=0;pi<4;pi++){
+    const ph=phases[pi], [title,problem]=days[d-1];
+    const audience=audienceIds[(d+pi-1)%audienceIds.length];
+    const ref=sourceRefs[((d-1)*4+pi)%sourceRefs.length];
+    const thread=threadIds[(d+pi-1)%threadIds.length];
+    const phaseWork=ph==='morning'
+      ?'Morgenen etablerer sann prosjektstatus før nye handlinger: hva er bare forespurt eller estimert, hva er godkjent eller bestilt, hva er signert, levert, testet, akseptert og faktisk lukket.'
+      :ph==='lunch'
+      ?'Ved lunsj blir relasjonskostnaden synlig: oppdragsgiver, crew, frilanser, økonomi, leverandør, artist eller rettighetshaver kan ha gode grunner som trekker i ulike retninger, og sosial kapital må holdes adskilt fra fullmakt og profesjonell grense.'
+      :ph==='afternoon'
+      ?'I ettermiddagen må produsenten få fram et sporbar valg eller handoff med navngitt beslutningseier, oppdatert baseline, økonomisk konsekvens, kontrakts- og rettighetsstatus, arbeidsmiljøpremiss og konkret test eller kontroll før neste ledd kan kalles klart.'
+      :'Om kvelden blir den mindre synlige kostnaden tydelig: ansvarstyngde, skam, lettelse, statusangst eller frykt for å skuffe miljøet følger spilleren hjem, men privat støtte må ikke bli uformell beslutningslinje, leverandørforhandling eller sted for fortrolige arbeidsopplysninger.';
+    const summary=`Dag ${d}, ${ph}: ${title}. ${problem} ${phaseWork} Spilleren må bruke den eksisterende \`prosjektplan_budsjett_kontrakt_og_avvikslogg\` til å holde scope, prosjektversjon, budsjett/prognose, bestilling, kontrakt, crew, rettigheter, teknisk status, avvik, eier og neste kontroll i samme sannhetskjede. Et kreativt eller sosialt ønsket resultat får ikke løftes fra forespurt til godkjent, fra tilbud til bestilt, fra muntlig til signert, fra levert til akseptert eller fra betinget til frigitt bare fordi deadline, vennskap eller omdømme gjør venting ubehagelig. Hvis premisset endres skal bare berørte ledd gjenåpnes: tidligere baseline, begrunnelse, fullmakt, varsling, avvik og faktisk arbeid beholdes slik at bounded rework kan måles i tid, kostnad, kvalitet, arbeidsmiljø og risiko. Produsenten må samtidig skille koordinering fra myndighet: oppdragsgiver eier ikke teknisk frigivelse, teknisk fagfunksjon eier ikke budsjett, økonomi eier ikke kunstnerisk scope, og god leverandør- eller miljørelasjon er verken signatur eller rettighetsklarering. Beat-en krever en eksplisitt handoff som sier hva som er sant nå, hva som fortsatt venter, hvem som kan beslutte, hvem som bærer arbeidet, hva publikum eller motpart er lovet, og hvilket kontrollpunkt som må passeres før status kan endres. Slik materialiseres eksisterende mail-, plan- og work-grammar-substans uten ny prosjektmotor, omdømmemotor, kontraktsmotor, HMS-motor eller global styringsscore.`;
+    const a=audiences.find(x=>x.id===audience);
+    const standing=`Situert standing på dag ${d}, ${ph}, vurderes hos \`${audience}\` langs aksen \`${a.standing_axis}\`. Her teller ${a.cares_about.join(' og ')}. Standing styrkes når spilleren viser premiss, kostnad, venting, motstemme, fullmakt, beslutningseier, handoff og senere konsekvens presist nok til at dette publikummet kan forstå hva prosjektet faktisk skylder dem; den svekkes når tempo, sosial nærhet, kunstnerisk prestisje eller ønsket leveranse brukes til å skyve risiko til noen som ikke eier beslutningen eller ikke er kompensert for arbeidet. ${a.cannot_grant} Standing gjelder bare denne konkrete relasjonen og kan gå i motsatt retning hos et annet publikum etter samme valg. Den summeres aldri til en global reputation-score og kan senere endres nå
