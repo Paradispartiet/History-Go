@@ -37,22 +37,18 @@ jobs:
           if (quizClaims.length !== 35) {
             throw new Error(`Expected 35 Rodeløkka quiz claims, found ${quizClaims.length}`);
           }
-          const phaseBySet = new Map([
-            [1, 'opening'],
-            [2, 'middle'],
-            [3, 'middle'],
-            [4, 'bridge'],
-            [5, 'final'],
-          ]);
+          const seen = new Set();
           for (const claim of quizClaims) {
-            const set = Number(claim.planned_set);
-            const phase = phaseBySet.get(set);
-            if (!phase) throw new Error(`${claim.claim_id}: invalid planned_set ${claim.planned_set}`);
-            claim.planned_phase = phase;
+            const match = /^claim_rodelokka_quiz_(\d+)$/.exec(claim.claim_id || '');
+            const n = Number(match?.[1]);
+            if (!Number.isInteger(n) || n < 1 || n > 35 || seen.has(n)) {
+              throw new Error(`${claim.claim_id}: invalid or duplicate quiz claim order`);
+            }
+            seen.add(n);
+            claim.planned_phase = n <= 7 ? 'opening' : n <= 21 ? 'middle' : n <= 28 ? 'bridge' : 'final';
           }
-          const counts = Object.fromEntries([...phaseBySet.keys()].map((set) => [set, quizClaims.filter((claim) => Number(claim.planned_set) === set).length]));
-          for (const set of phaseBySet.keys()) {
-            if (counts[set] !== 7) throw new Error(`Set ${set}: expected 7 claims, found ${counts[set]}`);
+          for (let n = 1; n <= 35; n += 1) {
+            if (!seen.has(n)) throw new Error(`Missing claim_rodelokka_quiz_${String(n).padStart(2, '0')}`);
           }
           fs.writeFileSync(file, `${JSON.stringify(brief, null, 2)}\n`);
           NODE
