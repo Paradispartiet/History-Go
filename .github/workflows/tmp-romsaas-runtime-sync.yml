@@ -1,0 +1,66 @@
+name: tmp Romsås runtime sync
+on:
+  push:
+    branches:
+      - work/romsaas-completion-20260903
+permissions:
+  contents: write
+jobs:
+  sync:
+    if: github.event.head_commit.message != 'Synchronize Romsås story and place-open data'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/romsaas-completion-20260903
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Correct canonical Romsås story score
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const file = 'data/stories/stories_romsaås.json';
+          const stories = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const story = stories.find((item) => item.id === 'st_romsaås_seks_grender_1970_1974');
+          if (!story) throw new Error('Romsås story not found');
+          if (story.score?.historical !== 3 || story.score?.source !== 4) {
+            throw new Error(`Unexpected Romsås story score: ${JSON.stringify(story.score)}`);
+          }
+          story.score.historical = 2;
+          story.score.source = 5;
+          if (Object.values(story.score).filter((value) => Number.isFinite(value)).slice(0, 5).reduce((sum, value) => sum + value, 0) !== story.score.total) {
+            throw new Error('Romsås story score total no longer matches components');
+          }
+          fs.writeFileSync(file, JSON.stringify(stories, null, 2) + '\n');
+          NODE
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Regenerate place-open runtime
+        run: npm run place-open:build
+      - name: Regenerate epoch index after runtime stories
+        run: npm run epoker:places:build
+      - name: Verify place-open and epoch sync
+        run: |
+          npm run place-open:check
+          npm run test:place-open
+          npm run epoker:places:check
+      - name: Verify Stories and Lesespor governance
+        run: |
+          npm run build:tools --silent
+          node dist/tools/check_stories_integrity.mjs
+          node dist/tools/validate_lesespor.mjs
+      - name: Verify Romsås completion
+        run: node --test tests/romsaas-completion.test.mjs tests/epoke-place-index.test.mjs
+      - name: Verify diff
+        run: git diff --check
+      - name: Publish runtime synchronization
+        run: |
+          git config user.name "Paradispartiet"
+          git config user.email "paradispartiet@gmail.com"
+          rm .github/workflows/tmp-romsaas-runtime-sync.yml
+          git add -A
+          git diff --cached --check
+          git commit -m "Synchronize Romsås story and place-open data"
+          git push origin HEAD:work/romsaas-completion-20260903
