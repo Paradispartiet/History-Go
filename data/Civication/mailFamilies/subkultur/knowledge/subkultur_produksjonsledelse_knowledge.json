@@ -1,0 +1,113 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "subkultur",
+  "role_scope": "subkultur_produksjonsledelse",
+  "mail_type": "knowledge",
+  "families": [
+    {
+      "id": "subkultur_produksjonsledelse_kunnskap_i_bruk",
+      "purpose": "Authored Subkultur production-leadership gameplay with one versioned production book, explicit staffing and release states, bounded operational authority, safety/house interfaces, handoffs, bounded rework/retest and clean debrief.",
+      "learning_focus": [
+        "kjoreplan_versjon_og_handoff",
+        "bemanning_kvalifikasjon_skift_og_hvile",
+        "teknisk_sikkerhet_stoppeier_og_frigivelse",
+        "husdrift_publikumsflyt_og_beredskap",
+        "avvik_bounded_rework_retest_og_debrief"
+      ],
+      "mails": [
+        {
+          "id": "pl_club7_003",
+          "mail_type": "knowledge",
+          "mail_family": "subkultur_produksjonsledelse_kunnskap_i_bruk",
+          "role_scope": "subkultur_produksjonsledelse",
+          "phase": "forenoon",
+          "day_phase": "morning",
+          "priority": 148,
+          "from": "Adrian",
+          "people_ref": "adrian_stage_management_og_kjoreplan",
+          "person_id": "adrian_stage_management_og_kjoreplan",
+          "place_id": "club_7_vika",
+          "subject": "Club 7 som operativt produksjonsspørsmål: hva skjer når sted, program og miljø skifter?",
+          "summary": "History Go har en kildebelagt Club 7-post som historisk anker. Den kan brukes til å spørre hvilke operative avhengigheter som blir synlige når sted, program og miljø endrer seg, men ikke som dagens sikkerhets- eller bemanningsstandard. Produksjonsboken skal samtidig skille foreslått, besluttet, bemannet, testet, frigitt, distribuert, utført, avviket og lukket status, med kjøreplanversjon, crew/kvalifikasjon, skift/hvile, teknikk, sikkerhet/husdrift, publikumsflyt, stoppeier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere versjon, begrunnelse, varsling eller ansvar forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av produksjonen kan beholde mens saken venter.",
+          "situation": [
+            "History Go har en kildebelagt Club 7-post som historisk anker. Den kan brukes til å spørre hvilke operative avhengigheter som blir synlige når sted, program og miljø endrer seg, men ikke som dagens sikkerhets- eller bemanningsstandard.",
+            "Produksjonslederen kan koordinere og replanlegge innen delegert mandat, men kan ikke gjøre deadline, artiststatus, vennskap eller lojalitet til sikkerhetsdispensasjon, kvalifikasjon, arbeidsgiverunntak, rettighetsklarering eller universell kommandorett.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere produksjonsversjon slettes."
+          ],
+          "task_domain": "subkultur_produksjonsledelse",
+          "competency": "history_go_operativ_refleksjon",
+          "pressure": "deadline_og_publikumslovnad_vs_sporbar_operativ_leveranse_arbeidsmiljo_og_sikkerhet",
+          "choice_axis": "sann_status_stoppeier_og_bounded_rework_vs_antakelse_og_skjult_operativ_gjeld",
+          "consequence_axis": "robust_gjennomforing_vs_bemannings_teknisk_sikkerhets_og_tillitsgjeld",
+          "narrative_arc": "club7",
+          "situated_audience_id": "historisk_subkulturkontekst",
+          "choices": [
+            {
+              "id": "A",
+              "label": "history_go_operativ_refleksjon: sporbar beslutning pl_club7_003",
+              "reply": "Les stedet og formuler ett spørsmål om hvordan kjøreplan, mennesker, rom og overlevering må henge sammen når en kulturarena endrer premiss. Jeg oppdaterer produksjonsbok_kjoreplan_bemanning_sikkerhet_og_avvikslogg med gjeldende versjon, berørte ledd, beslutningseier eller stoppeier og neste kontroll slik at handoff kan etterprøves og bare nødvendig arbeid gjenåpnes.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "sikkerhet"
+              ],
+              "feedback": "Les stedet og formuler ett spørsmål om hvordan kjøreplan, mennesker, rom og overlevering må henge sammen når en kulturarena endrer premiss. Det beskytter fremdrift uten å skjule arbeidsmiljø, teknisk risiko, sikkerhet eller myndighetsgrense. Når premisset endres er det tydelig hvilken produksjonsversjon som gjaldt, hvem som eier neste kontroll og hvilke ledd som faktisk må retestes før gjenopptakelse.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "history_go_operativ_refleksjon: skjult gjeld pl_club7_003",
+              "reply": "Bruk Club 7s motkulturstatus som argument for at muntlige avtaler, dugnad og fleksible stopplinjer er mer autentiske enn dokumentert produksjonsstyring. Jeg lar tempo, status eller sosialt press styre nå og skyver kvalifikasjon, sikkerhet, hvile, versjonskontroll eller stoppeier til etterpå dersom noen ber om dokumentasjon.",
+              "effect": -1,
+              "tags": [
+                "mandatglidning",
+                "operativ_gjeld",
+                "risiko"
+              ],
+              "feedback": "Bruk Club 7s motkulturstatus som argument for at muntlige avtaler, dugnad og fleksible stopplinjer er mer autentiske enn dokumentert produksjonsstyring. Det kan bevare tempo eller sosial ro i øyeblikket, men flytter risiko til crew, fagansvarlige, husdrift eller publikum. Senere blir det uklart hvem som ga ordre, om bemanningen var kvalifisert, hva som var testet eller frigitt og hvem som skulle ha lukket avviket.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ],
+          "interaction_mode": "task",
+          "task_contract": {
+            "task_id": "subkultur_produksjonsledelse_history_go_club_7",
+            "completion_rule": "history_go_payload_completed",
+            "failure_rule": "remain_open",
+            "evidence_refs": [
+              "data/places/subkultur/oslo/places_subkultur/club_7_vika.json"
+            ]
+          },
+          "task_payload": {
+            "task_kind": "history_go_place",
+            "target_type": "place",
+            "place_id": "club_7_vika",
+            "completion_mode": "read_place",
+            "title": "Les Club 7 som historisk operativ produksjonskontekst",
+            "description": "Noter ett spørsmål om hvilke operative avhengigheter som blir synlige når sted, program og miljø endres over tid, uten å gjøre historisk motkultur til fasit for dagens HMS, brann-/kapasitetskrav, bemanning, arbeidstid, kommandolinje eller frigivelse.",
+            "return_context": {
+              "source": "civication",
+              "mail_id": "pl_club7_003",
+              "role_scope": "subkultur_produksjonsledelse"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
