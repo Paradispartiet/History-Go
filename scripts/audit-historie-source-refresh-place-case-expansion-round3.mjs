@@ -30,15 +30,15 @@ const REQUIRED_SOURCE_IDS = new Set([
   'histmaint3_oslo_vaterland_byplan_2026',
   'histmaint3_oppdagkvadraturen_treschowgarden',
   'histmaint3_oslobyleksikon_borsen_treschow',
-  'histmaint3_maritimt_fredensborg',
-  'histmaint3_maritimt_triangelfart'
+  'histmaint3_fram_second_expedition',
+  'histmaint3_npolar_fram_second_expedition'
 ]);
 const REQUIRED_PLACE_IDS = new Set([
   'victoria_terrasse',
   'bla_skilt_cathinka_guldberg_lovisenberggata_15a',
   'vaterland_historisk_elvelop',
   'treschowgarden',
-  'norsk_maritimt_museum'
+  'frammuseet'
 ]);
 
 const abs = (value) => path.join(ROOT, value);
