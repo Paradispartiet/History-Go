@@ -29,13 +29,13 @@
   "summary": {
     "canonical_career_roles": 85,
     "classifications": {
-      "rollout_ready": 51,
-      "needs_role_authored_work": 32,
+      "rollout_ready": 52,
+      "needs_role_authored_work": 31,
       "blocked": 2
     },
     "role_world_complete_or_pilot": 51,
     "rollout_queue_roles": 34,
-    "first_wave_candidate_count": 0,
+    "first_wave_candidate_count": 1,
     "role_level_blocked_count": 2,
     "structural_families_in_queue": 5
   },
@@ -51,31 +51,30 @@
     "gate_pass": true,
     "broad_rollout_allowed_now": true,
     "policy_recommendation": "controlled_rollout_open_with_role_level_gates",
-    "next_required_pr": "Select next rollout_ready role",
+    "next_required_pr": "Role World rollout: subkultur/subkultur_kulturarena_ledelse",
     "rule": "A green readiness gate proves the program can safely begin controlled rollout. It does not make every role rollout_ready and it does not itself flip broad_rollout_allowed."
   },
-  "first_wave_candidates": [],
+  "first_wave_candidates": [
+    {
+      "rank": 1,
+      "key": "subkultur/subkultur_kulturarena_ledelse",
+      "classification": "rollout_ready",
+      "structural_family": "event_operational",
+      "priority_score": 1285,
+      "blockers": [],
+      "authored_work_required": [],
+      "cross_role_need": "candidate_when_shared_work_is_real"
+    }
+  ],
   "rollout_queue": [
     {
       "rank": 1,
       "key": "subkultur/subkultur_kulturarena_ledelse",
-      "classification": "needs_role_authored_work",
+      "classification": "rollout_ready",
       "structural_family": "event_operational",
-      "priority_score": 545,
+      "priority_score": 1285,
       "blockers": [],
-      "authored_work_required": [
-        "career:day_one",
-        "career:knowledge",
-        "career:mail",
-        "career:people",
-        "career:places",
-        "career:workday_loop",
-        "history_go_affordance",
-        "people_places_integrity",
-        "persistent_work_object",
-        "rhythm_waiting_handoff_rework",
-        "situated_reputation"
-      ],
+      "authored_work_required": [],
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
@@ -8707,59 +8706,76 @@
       "badge_titles": [
         "Daglig leder (kulturarena)"
       ],
-      "career_status": "architecture_only",
-      "runtime_gate": false,
+      "career_status": "playable",
+      "runtime_gate": true,
       "role_world_status": "role_world_not_started",
       "structural_family": "event_operational",
-      "classification": "needs_role_authored_work",
-      "priority_score": 545,
+      "classification": "rollout_ready",
+      "priority_score": 1285,
       "dimensions": {
         "persistent_work_object": {
-          "status": "needs_role_authored_work",
+          "status": "foundation_ready",
           "evidence": [
+            "data/Civication/mailFamilies/subkultur/job/subkultur_kulturarena_ledelse_job.json",
             "data/Civication/workGrammars/subkultur/subkultur_kulturarena_ledelse.json"
           ],
-          "rationale": "The current career foundation does not yet prove a stable persistent work object across later scenes."
+          "rationale": "Existing work content carries stable object/case/project signals and a complete workday loop; the rollout PR must bind them explicitly to the locked persistent-work contract."
         },
         "institution_authority": {
           "status": "foundation_ready",
           "evidence": [
             "data/Civication/roleModels/subkultur/legend.json",
+            "data/Civication/roleModels/subkultur/subkultur_kulturarena_ledelse.json",
             "data/Civication/workGrammars/subkultur/subkultur_kulturarena_ledelse.json"
           ],
           "rationale": "Existing authored sources already expose institutional/authority language; rollout must preserve direct, approval, escalation and forbidden-action boundaries."
         },
         "rhythm_waiting_handoff_rework": {
-          "status": "needs_role_authored_work",
+          "status": "foundation_ready",
           "evidence": [
+            "data/Civication/mailFamilies/subkultur/job/subkultur_kulturarena_ledelse_job.json",
+            "data/Civication/mailPlans/subkultur/subkultur_kulturarena_ledelse_plan.json",
             "data/Civication/workGrammars/subkultur/subkultur_kulturarena_ledelse.json"
           ],
-          "rationale": "Waiting, handoff, interruption or rework is not yet explicit enough to prove a distinct role rhythm."
+          "rationale": "The current runtime-authored role already exposes deadline/rework/handoff signals; rollout must make the rhythm role-specific and persistent."
         },
         "history_go_affordance": {
-          "status": "needs_role_authored_work",
+          "status": "foundation_ready",
           "evidence": [
+            "data/Civication/mailFamilies/subkultur/knowledge/subkultur_kulturarena_ledelse_knowledge.json",
             "data/Civication/roleModels/subkultur/legend.json",
+            "data/Civication/roleModels/subkultur/subkultur_kulturarena_ledelse.json",
             "data/Civication/workGrammars/subkultur/subkultur_kulturarena_ledelse.json"
           ],
-          "rationale": "Knowledge bridge is partial; a concrete History Go affordance must be authored before this role is considered realism-ready."
+          "rationale": "Career knowledge integration is complete; the rollout PR must author a concrete better-choice affordance while keeping authority independent from knowledge."
         },
         "situated_reputation": {
-          "status": "needs_role_authored_work",
-          "evidence": [],
-          "rationale": "Situated reputation audiences are not yet explicit for this role; do not substitute the legacy/global reputation summary."
+          "status": "foundation_ready",
+          "evidence": [
+            "data/Civication/mailFamilies/subkultur/job/subkultur_kulturarena_ledelse_job.json",
+            "data/Civication/mailPlans/subkultur/subkultur_kulturarena_ledelse_plan.json"
+          ],
+          "rationale": "Role-authored sources already contain situated audience/standing signals; rollout must bind only bounded authored audience IDs."
         },
         "people_places_integrity": {
-          "status": "needs_role_authored_work",
-          "evidence": [],
-          "rationale": "People=missing, Places=missing; role-authored integration is incomplete."
+          "status": "foundation_ready",
+          "evidence": [
+            "data/Civication/mailFamilies/subkultur/people/subkultur_kulturarena_ledelse_people.json",
+            "data/Civication/roleModels/subkultur/legend.json",
+            "data/Civication/roleModels/subkultur/subkultur_kulturarena_ledelse.json",
+            "data/Civication/workGrammars/subkultur/subkultur_kulturarena_ledelse.json"
+          ],
+          "rationale": "Career People and Places coverage is complete; rollout still must verify factual canonical references and keep invented workplace drama explicitly fictional."
         },
         "provenance": {
           "status": "foundation_ready",
           "evidence": [
+            "data/Civication/mailFamilies/subkultur/job/subkultur_kulturarena_ledelse_job.json",
+            "data/Civication/mailPlans/subkultur/subkultur_kulturarena_ledelse_plan.json",
             "data/Civication/workGrammars/subkultur/subkultur_kulturarena_ledelse.json",
             "tests/civication-life-position-career-split.test.js",
-            "tests/civication-subkultur-career-architecture.test.js"
+            "tests/civication-subkultur-career-architecture.test.js",
+            "tests/civication-subkultur-kulturarena-ledelse-prerequisites.test.js"
           ],
           "rationale": "Role-specific tests and authored source paths exist; rollout must add strict scene-registry parity and source provenance for new realism scenes."
         }
@@ -8775,23 +8791,14 @@
         "rationale": "This role has plausible same-domain handoff or leadership counterparts; a shared object is a design candidate, not a mandatory gate."
       },
       "blockers": [],
-      "authored_work_required": [
-        "career:day_one",
-        "career:knowledge",
-        "career:mail",
-        "career:people",
-        "career:places",
-        "career:workday_loop",
-        "history_go_affordance",
-        "people_places_integrity",
-        "persistent_work_object",
-        "rhythm_waiting_handoff_rework",
-        "situated_reputation"
-      ],
+      "authored_work_required": [],
       "source_refs": [
+        "data/Civication/mailFamilies/subkultur/job/subkultur_kulturarena_ledelse_job.json",
+        "data/Civication/mailPlans/subkultur/subkultur_kulturarena_ledelse_plan.json",
         "data/Civication/workGrammars/subkultur/subkultur_kulturarena_ledelse.json",
         "tests/civication-life-position-career-split.test.js",
-        "tests/civication-subkultur-career-architecture.test.js"
+        "tests/civication-subkultur-career-architecture.test.js",
+        "tests/civication-subkultur-kulturarena-ledelse-prerequisites.test.js"
       ],
       "already_reference_or_pilot": false
     },
