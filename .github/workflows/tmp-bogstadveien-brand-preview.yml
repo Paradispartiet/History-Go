@@ -1,0 +1,45 @@
+name: TEMP Bogstadveien Brand preview
+on:
+  push:
+    branches: [control/bogstadveien-finalize-20260904-v3]
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Download source assets
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/bogstad-preview
+          python - <<'PY'
+          import urllib.request
+          ua='History-Go-place-production/1.0 (https://github.com/Paradispartiet/History-Go)'
+          urls={
+            'blue-master.jpg':'https://upload.wikimedia.org/wikipedia/commons/0/03/Bogstadveien_53_OB.%C3%9864_1727.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original',
+            'bytimo-identity.jpg':'https://mir-s3-cdn-cf.behance.net/project_modules/fs/1f5b0c25474497.56345da8bd99a.jpg'
+          }
+          for name,url in urls.items():
+            req=urllib.request.Request(url,headers={'User-Agent':ua})
+            with urllib.request.urlopen(req,timeout=45) as r:
+              data=r.read()
+              open('/tmp/bogstad-preview/'+name,'wb').write(data)
+              print(name, r.status, len(data), r.headers.get('Content-Type'))
+          PY
+      - name: Build contact sheets
+        run: |
+          python - <<'PY'
+          from PIL import Image,ImageDraw
+          from pathlib import Path
+          for name in ['blue-master.jpg','bytimo-identity.jpg']:
+            p=Path('/tmp/bogstad-preview')/name
+            im=Image.open(p).convert('RGB')
+            im.thumbnail((1200,900))
+            im.save(Path('/tmp/bogstad-preview')/(p.stem+'-preview.jpg'),quality=90)
+            print(name, Image.open(p).size)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bogstadveien-brand-preview
+          path: /tmp/bogstad-preview/*
