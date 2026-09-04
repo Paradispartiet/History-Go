@@ -5,7 +5,9 @@ on:
     paths:
       - 'data/fagverk/politikk/maintenance/**'
       - 'scripts/audit-politikk-source-refresh-case-expansion.mjs'
+      - 'scripts/audit-politikk-source-refresh-case-expansion-round2.mjs'
       - 'tests/politikk-source-refresh-case-expansion.test.mjs'
+      - 'tests/politikk-source-refresh-case-expansion-round2.test.mjs'
       - '.github/workflows/politikk-maintenance-integrity.yml'
 
 permissions:
@@ -29,7 +31,9 @@ jobs:
         run: |
           node --check scripts/audit-politikk-source-refresh-case-expansion.mjs
           node scripts/audit-politikk-source-refresh-case-expansion.mjs
-          node --test tests/politikk-source-refresh-case-expansion.test.mjs
+          node --check scripts/audit-politikk-source-refresh-case-expansion-round2.mjs
+          node scripts/audit-politikk-source-refresh-case-expansion-round2.mjs
+          node --test tests/politikk-source-refresh-case-expansion.test.mjs tests/politikk-source-refresh-case-expansion-round2.test.mjs
       - name: Preserve Politikk claim and theory integrity
         run: |
           node scripts/audit-politikk-subject-quality.mjs
