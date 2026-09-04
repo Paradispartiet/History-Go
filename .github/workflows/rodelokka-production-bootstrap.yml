@@ -33,9 +33,27 @@ jobs:
           import fs from 'node:fs';
           const file = 'data/quiz/production_briefs/by/rodelokka.json';
           const brief = JSON.parse(fs.readFileSync(file, 'utf8'));
-          const claim = (brief.claims || []).find((item) => item.claim_id === 'claim_rodelokka_quiz_08');
-          if (!claim) throw new Error('claim_rodelokka_quiz_08 missing from source brief');
-          claim.planned_phase = 'middle';
+          const quizClaims = (brief.claims || []).filter((item) => /^claim_rodelokka_quiz_\d+$/.test(item.claim_id || ''));
+          if (quizClaims.length !== 35) {
+            throw new Error(`Expected 35 Rodeløkka quiz claims, found ${quizClaims.length}`);
+          }
+          const phaseBySet = new Map([
+            [1, 'opening'],
+            [2, 'middle'],
+            [3, 'middle'],
+            [4, 'bridge'],
+            [5, 'final'],
+          ]);
+          for (const claim of quizClaims) {
+            const set = Number(claim.planned_set);
+            const phase = phaseBySet.get(set);
+            if (!phase) throw new Error(`${claim.claim_id}: invalid planned_set ${claim.planned_set}`);
+            claim.planned_phase = phase;
+          }
+          const counts = Object.fromEntries([...phaseBySet.keys()].map((set) => [set, quizClaims.filter((claim) => Number(claim.planned_set) === set).length]));
+          for (const set of phaseBySet.keys()) {
+            if (counts[set] !== 7) throw new Error(`Set ${set}: expected 7 claims, found ${counts[set]}`);
+          }
           fs.writeFileSync(file, `${JSON.stringify(brief, null, 2)}\n`);
           NODE
       - name: Materialize canonical derived data
