@@ -1,0 +1,261 @@
+{
+  "schema": "history_go_by_maintenance_round_v1",
+  "version": "1.0.0",
+  "subject_id": "by",
+  "round_id": "source_refresh_and_place_case_expansion_round3_2026_09_04",
+  "baseline_main_sha": "b402ef14f5d3fd95e3bd1ea5fbd850df6cfba25f",
+  "checked_at": "2026-09-04",
+  "status": "verified",
+  "scope": {
+    "new_strict_subcategory": false,
+    "place_production": false,
+    "canonical_architecture_change": false,
+    "purpose": "Avsluttende maintenance-reconciliation for By & arkitektur: oppfriske kilder og utvide stedscase i de sju kapitlene som ikke ble dekket i runde 1 eller 2, slik at alle 17 canonicale kapitler har eksplisitt vedlikeholdsbevis uten å endre fagarkitekturen."
+  },
+  "target_chapters": [
+    "byliv-offentlige-rom",
+    "byliv-sosial-offentlighet",
+    "byliv-hendelser-midlertidighet",
+    "byliv-stemning-mikrokomfort",
+    "byliv-rytmer-miks-konflikt",
+    "arkitektur-type-skala-byform",
+    "arkitektur-gatekant-makt-ombruk"
+  ],
+  "source_refresh": [
+    {
+      "id": "bymaint3_oslo_levende_oslo_2024",
+      "chapter_ids": ["byliv-offentlige-rom", "byliv-sosial-offentlighet", "byliv-rytmer-miks-konflikt"],
+      "publisher": "Oslo kommune",
+      "url": "https://www.oslo.kommune.no/byutvikling/levende-oslo/",
+      "source_location": "Levende Oslo viser Bylivsundersøkelsen 2024 med både spørreundersøkelse og egne fotgjengertellinger/oppholdsregistreringer; brukes som målegrunnlag og ikke som bevis for bruk ved et vilkårlig tidspunkt i 2026.",
+      "health": "verified_live",
+      "action": "latest_city_life_measurement_inventory"
+    },
+    {
+      "id": "bymaint3_oslo_architecture_meeting_places",
+      "chapter_ids": ["byliv-offentlige-rom", "byliv-sosial-offentlighet", "byliv-stemning-mikrokomfort"],
+      "publisher": "Oslo kommune",
+      "url": "https://www.oslo.kommune.no/byutvikling/arkitekturpolitikk-for-oslo/gode-moteplasser/",
+      "source_location": "Gjeldende arkitekturpolitisk innsatsområde B beskriver inkluderende og tilgjengelige møteplasser, gratis sittemuligheter, belysning, byromsnettverk og universell utforming som mål og kvalitetskrav, ikke målte effekter.",
+      "health": "verified_live",
+      "action": "current_public_space_policy_refresh"
+    },
+    {
+      "id": "bymaint3_dibk_tek17_outdoor_universal",
+      "chapter_ids": ["byliv-offentlige-rom", "byliv-sosial-offentlighet", "byliv-stemning-mikrokomfort", "arkitektur-type-skala-byform"],
+      "publisher": "Direktoratet for byggkvalitet",
+      "url": "https://www.dibk.no/regelverk/byggteknisk-forskrift-tek17/8/8-2",
+      "source_location": "Gjeldende TEK17 § 8-2 med veiledning om universell utforming av opparbeidet uteareal for allmennheten, publikumsbygg og arbeidsbygninger; brukes som regelkilde, ikke som bevis på lokal etterlevelse.",
+      "health": "verified_live",
+      "action": "current_regulatory_refresh"
+    },
+    {
+      "id": "bymaint3_oslo_byliv_grant_2026",
+      "chapter_ids": ["byliv-sosial-offentlighet", "byliv-hendelser-midlertidighet"],
+      "publisher": "Oslo kommune",
+      "url": "https://www.oslo.kommune.no/tilskudd-legater-og-stipend/bylivstilskudd/",
+      "source_location": "Aktiv 2026-ordning for åpne tiltak og aktiviteter i gater, plasser, torg og veiareal; ordningen dokumenterer formål og kriterier, men ikke at et finansiert tiltak automatisk skaper dokumentert sosial effekt.",
+      "health": "verified_live",
+      "action": "current_program_refresh"
+    },
+    {
+      "id": "bymaint3_oslo_public_space_rental_2026",
+      "chapter_ids": ["byliv-hendelser-midlertidighet", "byliv-rytmer-miks-konflikt"],
+      "publisher": "Oslo kommune",
+      "url": "https://www.oslo.kommune.no/gate-transport-og-parkering/leie-torg-fortau-og-gater/leie-areal/",
+      "source_location": "Gjeldende regler for bruk av kommunal grunn til blant annet arrangement, festival, stand, demonstrasjon og uteservering, inkludert krav om søknad og varsling ved store arrangementer.",
+      "health": "verified_live",
+      "action": "current_public_space_governance_refresh"
+    },
+    {
+      "id": "bymaint3_police_arrangements_current",
+      "chapter_ids": ["byliv-hendelser-midlertidighet", "byliv-rytmer-miks-konflikt"],
+      "publisher": "Politiet",
+      "url": "https://www.politiet.no/tjenester/arrangementer",
+      "source_location": "Gjeldende veiledning om melding til politiet for arrangement, demonstrasjon, opptog og stand på offentlig sted, med henvisning til politiloven § 11 og mulige vilkår for gjennomføring.",
+      "health": "verified_live",
+      "action": "current_public_order_rule_refresh"
+    },
+    {
+      "id": "bymaint3_oslo_oslometer_pilot_2026",
+      "chapter_ids": ["byliv-hendelser-midlertidighet", "byliv-rytmer-miks-konflikt", "arkitektur-gatekant-makt-ombruk"],
+      "publisher": "Oslo kommune",
+      "url": "https://www.oslo.kommune.no/gate-transport-og-parkering/leie-torg-fortau-og-gater/oslometer-pilot-2026/",
+      "source_location": "Oslometer-piloten gjelder 1. august–31. oktober 2026 i et avgrenset område i Bydel St. Hanshaugen og tillater inntil én meter søknadsfri uteservering på kommunal grunn for kvalifiserte serveringssteder.",
+      "health": "verified_live",
+      "action": "current_temporary_street_use_refresh"
+    },
+    {
+      "id": "bymaint3_oslo_lakkegata_pocket_park",
+      "chapter_ids": ["byliv-offentlige-rom", "byliv-stemning-mikrokomfort"],
+      "publisher": "Oslo kommune",
+      "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/lakkegata-lommepark",
+      "source_location": "Kommunens side beskriver lommeparker som små urbane møteplasser og klimatilpasningstiltak som kan bidra med vegetasjon og overvannshåndtering; konkrete kjøle- eller brukseffekter krever egne målinger.",
+      "health": "verified_live",
+      "action": "current_micro_public_space_refresh"
+    },
+    {
+      "id": "bymaint3_oslo_highrise_strategy",
+      "chapter_ids": ["arkitektur-type-skala-byform"],
+      "publisher": "Oslo kommune",
+      "url": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/hoyhus-i-oslo-strategi-for-barekraftige-hoyhus/",
+      "source_location": "Gjeldende høyhusstrategi vedtatt 27. september 2023 angir områder der høyhus kan vurderes, blant annet Økern, Majorstuen og Nydalen, og understreker at strategi ikke er det samme som prosjektvedtak.",
+      "health": "verified_live",
+      "action": "current_height_strategy_refresh"
+    },
+    {
+      "id": "bymaint3_oslo_kpa_development_areas_2026",
+      "chapter_ids": ["arkitektur-type-skala-byform"],
+      "publisher": "Oslo kommune",
+      "url": "https://www.oslo.kommune.no/politikk/kommuneplan/kommuneplanens-arealdel/utviklingsomrader/",
+      "source_location": "Kommunens 2026-side for utviklingsområder beskriver foreslåtte rammer for blant annet flerfunksjonalitet, tetthet og høyder; innholdet behandles som planforslag/statusinformasjon og ikke som ferdig utbygging.",
+      "health": "verified_live",
+      "action": "current_plan_proposal_refresh"
+    },
+    {
+      "id": "bymaint3_oslo_architecture_policy_reuse",
+      "chapter_ids": ["arkitektur-gatekant-makt-ombruk", "arkitektur-type-skala-byform"],
+      "publisher": "Oslo kommune",
+      "url": "https://www.oslo.kommune.no/byutvikling/arkitekturpolitikk-for-oslo/klimasmart-hovedstad/",
+      "source_location": "Arkitekturpolitikkens innsatsområde A fremhever bevaring, gjenbruk og omforming av eksisterende bygg samt historiske og stedbundne kvaliteter; dette er kommunale mål og vurderingsprinsipper, ikke lokal effektmåling.",
+      "health": "verified_live",
+      "action": "current_reuse_policy_refresh"
+    },
+    {
+      "id": "bymaint3_oslo_architecture_flexible_use",
+      "chapter_ids": ["arkitektur-gatekant-makt-ombruk"],
+      "publisher": "Oslo kommune",
+      "url": "https://www.oslo.kommune.no/byutvikling/arkitekturpolitikk-for-oslo/mangfoldig-og-skapende/",
+      "source_location": "Arkitekturpolitikkens innsatsområde C beskriver fleksibilitet, sambruk, flerbruk, omforming og midlertidig bruk som virkemidler i by- og næringsmiljøer; målformuleringer holdes adskilt fra dokumentert lokal bruk.",
+      "health": "verified_live",
+      "action": "current_flexible_use_policy_refresh"
+    },
+    {
+      "id": "bymaint3_riksantikvaren_reuse",
+      "chapter_ids": ["arkitektur-gatekant-makt-ombruk"],
+      "publisher": "Riksantikvaren",
+      "url": "https://www.riksantikvaren.no/klima-og-kulturminner/hvordan-redusere-klimabelastningene/rehabilitering-og-ombruk-av-bygninger/",
+      "source_location": "Riksantikvaren beskriver fortsatt bruk, rehabilitering og tilpasset ombruk av eksisterende bygninger som sentrale grep for å redusere ressursbruk og bevare kulturhistoriske og arkitektoniske verdier.",
+      "health": "verified_live",
+      "action": "institutional_reuse_evidence_refresh"
+    },
+    {
+      "id": "bymaint3_oslomet_public_space_research_2026",
+      "chapter_ids": ["byliv-sosial-offentlighet", "byliv-rytmer-miks-konflikt"],
+      "publisher": "OsloMet – storbyuniversitetet",
+      "url": "https://www.oslomet.no/forskning/forskningsprosjekter/seksuell-trakassering-i-det-offentlige-rom",
+      "source_location": "AFI-prosjektet startet 7. juli 2026 og undersøker trygghet, deltakelse og bevegelsesfrihet i gater, kollektivtransport, parker og andre offentlige rom; prosjektstatus brukes som forskningsagenda, ikke som ferdige funn.",
+      "health": "verified_live",
+      "action": "current_research_agenda_refresh"
+    }
+  ],
+  "cases": [
+    {
+      "id": "case_by3_public_space_observation_and_measurement_2026",
+      "title": "Offentlig rom: fra fysisk observasjon til målt opphold",
+      "chapter_id": "byliv-offentlige-rom",
+      "place_ids": ["olaf_ryes_plass", "kampen_park"],
+      "source_ids": ["bymaint3_oslo_levende_oslo_2024", "bymaint3_oslo_architecture_meeting_places", "bymaint3_dibk_tek17_outdoor_universal", "bymaint3_oslo_lakkegata_pocket_park"],
+      "case_claim": "Olaf Ryes plass og Kampen park gir to forskjellige feltinnganger til sittemuligheter, forbindelser, vegetasjon, opphold og gjennomgang. Oslo kommunes bylivsundersøkelse og arkitekturpolitikk samt TEK17 gjør det mulig å skille det som kan registreres på stedet fra representativ bruk, universell tilgjengelighet og dokumentert virkning; én observasjonsøkt kan derfor ikke alene beskrive hvem som bruker stedet eller hvor godt det fungerer over tid.",
+      "analysis_questions": [
+        "Hvilke trekk ved Olaf Ryes plass og Kampen park kan registreres direkte, og hvilke påstander om bruksmønster krever systematiske tellinger over flere tidspunkt?",
+        "Hvordan skiller et kommunalt mål om inviterende og tilgjengelige byrom seg fra dokumentert faktisk tilgjengelighet og bruk for ulike grupper?",
+        "Hvilke data måtte kobles til feltobservasjonen før en kunne sammenligne opphold, gjennomgang, sittebruk eller sesongvariasjon mellom de to stedene?"
+      ]
+    },
+    {
+      "id": "case_by3_social_publicness_without_identity_inference_2026",
+      "title": "Møteplass uten identitetsgjetting",
+      "chapter_id": "byliv-sosial-offentlighet",
+      "place_ids": ["sagene", "majorstuen_krysset"],
+      "source_ids": ["bymaint3_oslo_levende_oslo_2024", "bymaint3_oslo_architecture_meeting_places", "bymaint3_oslo_byliv_grant_2026", "bymaint3_oslomet_public_space_research_2026"],
+      "case_claim": "Sagene og Majorstuen-krysset brukes som kontrasterende arenaer for å analysere møteplasser, venting, passering og lavterskel offentlighet. Kildene dokumenterer kommunale mål, målemetoder, støtteordninger og en pågående forskningsagenda, men de gir ikke grunnlag for å fastslå identitet, motiv, tilhørighet eller opplevd trygghet hos personer som tilfeldigvis observeres på stedet.",
+      "analysis_questions": [
+        "Hvordan kan venting, småprat, passering og opphold registreres uten å tilskrive observerte personer identitet, sosial rolle eller motiv?",
+        "Hva er forskjellen mellom et åpent tiltak som oppfyller støttevilkår og dokumentert sosial inkludering eller redusert ensomhet blant faktiske brukere?",
+        "Hvordan bør en forskningsagenda om trygghet i offentlige rom brukes uten å presentere pågående forskning som ferdige funn om Sagene eller Majorstuen?"
+      ]
+    },
+    {
+      "id": "case_by3_temporary_events_rules_and_effects_2026",
+      "title": "Midlertidig byliv: tillatelse, arrangement og faktisk effekt",
+      "chapter_id": "byliv-hendelser-midlertidighet",
+      "place_ids": ["tullin", "olaf_ryes_plass"],
+      "source_ids": ["bymaint3_oslo_byliv_grant_2026", "bymaint3_oslo_public_space_rental_2026", "bymaint3_police_arrangements_current", "bymaint3_oslo_oslometer_pilot_2026"],
+      "case_claim": "Tullin og Olaf Ryes plass egner seg til å skille midlertidig fysisk bruk av byrom fra de administrative og rettslige rammene rundt arrangement, stand, markering og servering. Kommunens leie- og tilskuddsregler, politiets meldeordning og Oslometer-piloten dokumenterer ulike styringsformer, men verken tillatelse, støtte eller midlertidig møblering er i seg selv bevis for publikumsstørrelse, sosial effekt eller varig endring.",
+      "analysis_questions": [
+        "Hvilke typer midlertidig bruk kan observeres direkte på et sted, og hvilke opplysninger om tillatelse, leie eller politimelding må hentes fra dokumentasjon?",
+        "Hvorfor kan et gjennomført arrangement eller en lovlig uteservering ikke alene brukes som bevis på mer inkluderende, tryggere eller mer levende byrom?",
+        "Hvordan bør før-, under- og etterobservasjoner utformes dersom en faktisk vil undersøke om en midlertidig aktivitet endrer opphold, bevegelse eller bruksmiks?"
+      ]
+    },
+    {
+      "id": "case_by3_microcomfort_weather_and_design_2026",
+      "title": "Mikrokomfort: design, vær og faktisk opplevelse",
+      "chapter_id": "byliv-stemning-mikrokomfort",
+      "place_ids": ["kampen_park", "nydalen"],
+      "source_ids": ["bymaint3_oslo_architecture_meeting_places", "bymaint3_dibk_tek17_outdoor_universal", "bymaint3_oslo_lakkegata_pocket_park"],
+      "case_claim": "Kampen park og Nydalen brukes til å undersøke sol/skygge, materialer, vegetasjon, stigning, sittemuligheter og værbeskyttelse som observerbare forhold. Kommunale kvalitetsmål og TEK17 gir relevante normer, mens lommeparkeksempelet viser planlagte klima- og møteplassfunksjoner; synlig grønt, skygge eller møblering behandles likevel ikke som målt temperaturreduksjon, universell brukbarhet eller dokumentert trivsel uten egne målinger og brukerdata.",
+      "analysis_questions": [
+        "Hvilke mikroklimatiske og kroppslige forhold kan dokumenteres med temperatur, vind, sol/skygge og tilgjengelighetsmålinger fremfor bare visuell vurdering?",
+        "Hvordan skiller et designgrep som vegetasjon eller sittemøbel seg fra dokumentert effekt på temperatur, oppholdstid, komfort eller brukbarhet?",
+        "Hvordan bør observasjoner på ulike tidspunkt og værforhold organiseres før Kampen park og Nydalen kan sammenlignes på mikrokomfort?"
+      ]
+    },
+    {
+      "id": "case_by3_urban_rhythms_rules_and_conflict_2026",
+      "title": "Byrytmer: dag, kveld, regulering og konflikt",
+      "chapter_id": "byliv-rytmer-miks-konflikt",
+      "place_ids": ["majorstuen_krysset", "okern"],
+      "source_ids": ["bymaint3_oslo_levende_oslo_2024", "bymaint3_oslo_public_space_rental_2026", "bymaint3_police_arrangements_current", "bymaint3_oslo_oslometer_pilot_2026", "bymaint3_oslomet_public_space_research_2026"],
+      "case_claim": "Majorstuen-krysset og Økern gir to forskjellige innganger til tidsrytmer, transport, opphold, kommersiell aktivitet og mulig friksjon i byrom. Bylivsmålinger og regler for midlertidig bruk kan dokumentere enkelte rammer og mønstre, mens pågående trygghetsforskning viser hvilke spørsmål som fortsatt undersøkes; kortvarig feltobservasjon må derfor ikke gjøres om til påstander om stabile konfliktnivåer, kriminalitet, sosial miks eller hvem som føler seg trygge.",
+      "analysis_questions": [
+        "Hvordan kan dag/kveld- og hverdag/helg-rytmer undersøkes uten at noen få observasjonstidspunkter presenteres som stabile egenskaper ved stedet?",
+        "Hva kan regler om arrangement eller uteservering forklare om mulig bruk, og hva krever egne data om faktisk aktivitet, støy, konflikt eller opphold?",
+        "Hvordan kan forskningsspørsmål om trygghet og bevegelsesfrihet informere et feltopplegg uten å tilskrive Majorstuen eller Økern funn som ennå ikke foreligger?"
+      ]
+    },
+    {
+      "id": "case_by3_scale_typology_and_plan_status_2026",
+      "title": "Type, skala og planstatus uten å blande nivåene",
+      "chapter_id": "arkitektur-type-skala-byform",
+      "place_ids": ["nydalen", "okern", "majorstuen_tbanestasjon"],
+      "source_ids": ["bymaint3_dibk_tek17_outdoor_universal", "bymaint3_oslo_highrise_strategy", "bymaint3_oslo_kpa_development_areas_2026", "bymaint3_oslo_architecture_policy_reuse"],
+      "case_claim": "Nydalen, Økern og Majorstuen T-banestasjon brukes til å lese bygningstype, høyde, volum, forbindelser og romlig orden opp mot kommunale strategier. Høyhusstrategien og utviklingsområdesiden viser hvor bestemte høyder og flerfunksjonalitet kan vurderes, men strategi og planforslag er ikke det samme som vedtatt detaljregulering, igangsatt prosjekt eller ferdig bygning; feltmålt skala må derfor holdes adskilt fra framtidig planintensjon.",
+      "analysis_questions": [
+        "Hvordan kan bygningstype, volum og faktisk høyde registreres i felt uten å gjøre arkitektonisk skala til en automatisk dom over stedskvalitet?",
+        "Hva er den juridiske og analytiske forskjellen mellom høyhusstrategi, kommuneplanforslag, detaljregulering, byggetillatelse og ferdigstilt bygg?",
+        "Hvordan kan Nydalen, Økern og Majorstuen sammenlignes når både eksisterende byform og framtidige planrammer skal holdes eksplisitt adskilt?"
+      ]
+    },
+    {
+      "id": "case_by3_active_edges_reuse_and_power_2026",
+      "title": "Gatekant, ombruk og styringsmakt",
+      "chapter_id": "arkitektur-gatekant-makt-ombruk",
+      "place_ids": ["tullin", "sagene"],
+      "source_ids": ["bymaint3_oslo_oslometer_pilot_2026", "bymaint3_oslo_architecture_policy_reuse", "bymaint3_oslo_architecture_flexible_use", "bymaint3_riksantikvaren_reuse"],
+      "case_claim": "Tullin og Sagene brukes til å skille observerbar gatekant, innganger, fasadeaktivitet og fysisk ombruk fra beslutningsmakt, eierskap, planstatus og dokumentert klimavirkning. Oslos arkitekturpolitikk og Riksantikvarens ombruksveiledning gir styrings- og kunnskapsgrunnlag for fleksibilitet og fortsatt bruk av bygg, mens Oslometeren viser hvordan kommunale regler kan endre bruken av gatekanten; ingen av kildene gjør synlig aktivitet til bevis for lønnsomhet, eierskap eller sosial effekt.",
+      "analysis_questions": [
+        "Hvilke egenskaper ved gatekant og inngang kan observeres direkte på Tullin og Sagene, og hvilke påstander om eierskap, virksomhet eller beslutningsmakt krever dokumentkilder?",
+        "Hvordan skiller fortsatt bruk, rehabilitering, omforming og ombruk seg analytisk, og hvilke klima- eller kulturmiljøpåstander krever prosjektspesifikk dokumentasjon?",
+        "Hvordan kan en regelendring som Oslometeren påvirke mulighetsrommet ved en fasade uten at selve regelendringen omtales som dokumentert effekt på byliv eller omsetning?"
+      ]
+    }
+  ],
+  "quality_gates": {
+    "all_sources_https": true,
+    "all_sources_authoritative_or_institutional": true,
+    "all_cases_source_bound": true,
+    "all_cases_place_bound": true,
+    "all_case_places_canonical": true,
+    "all_case_places_new_to_complete_audit": true,
+    "round3_chapters_disjoint_from_round1_and_round2": true,
+    "round3_places_disjoint_from_round1_and_round2": true,
+    "all_17_chapters_reconciled_across_rounds": true,
+    "claim_provenance_preserved": true,
+    "theory_integrity_scope_unchanged": true,
+    "canonical_subject_architecture_unchanged": true,
+    "completion_status_preserved": true,
+    "field_observation_not_treated_as_statistical_legal_or_causal_proof": true
+  }
+}
