@@ -18,5 +18,21 @@ for(const t of world.primary_threads){
   if(value.length<220) throw new Error(`Strengthened relationship still too short: ${t.id} ${value.length}`);
   t.relationship=value;
 }
+
+const beatTypeByPhase={
+  morning:'task',
+  lunch:'relationship',
+  afternoon:'decision',
+  evening:'private_consequence'
+};
+const allowedBeatTypes=new Set(['info','conversation','relationship','social','task','decision','consequence','private_consequence']);
+if(!Array.isArray(world.season?.coverage)||world.season.coverage.length!==56) throw new Error('Expected 56 coverage beats');
+for(const beat of world.season.coverage){
+  const beatType=beatTypeByPhase[beat.phase];
+  if(!beatType) throw new Error(`Unexpected beat phase ${beat.phase}`);
+  beat.beat_type=beatType;
+  if(!allowedBeatTypes.has(beat.beat_type)) throw new Error(`Invalid canonical beat type ${beat.beat_type}`);
+}
+
 fs.writeFileSync(p,JSON.stringify(world,null,2)+'\n');
-console.log('Strengthened all seven primary thread relationships');
+console.log('Strengthened all seven primary thread relationships and assigned canonical beat types to 56 beats');
