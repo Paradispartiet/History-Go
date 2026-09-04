@@ -1,0 +1,32 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { auditKunstSourceRefreshPlaceCaseExpansion } from '../scripts/audit-kunst-source-refresh-place-case-expansion.mjs';
+
+test('Kunst maintenance round 1 reconciles all six canonical chapters with new place cases', () => {
+  const report = auditKunstSourceRefreshPlaceCaseExpansion();
+  assert.equal(report.status, 'passed');
+  assert.equal(report.round, 1);
+  assert.equal(report.source_refresh_count, 12);
+  assert.ok(report.publisher_count >= 8);
+  assert.equal(report.case_count, 6);
+  assert.equal(report.chapter_count, 6);
+  assert.equal(report.canonical_chapter_count, 6);
+  assert.equal(report.baseline_unique_place_count, 11);
+  assert.equal(report.new_unique_place_count, 6);
+  assert.equal(report.projected_unique_place_count, 17);
+  assert.equal(report.gates.source_health, true);
+  assert.equal(report.gates.canonical_chapter_identity, true);
+  assert.equal(report.gates.canonical_place_identity, true);
+  assert.equal(report.gates.full_6_of_6_chapter_reconciliation, true);
+  assert.equal(report.gates.place_non_overlap_complete_baseline, true);
+  assert.equal(report.gates.case_source_trace, true);
+  assert.equal(report.gates.claim_provenance_preserved, true);
+  assert.equal(report.gates.theory_integrity_scope_unchanged, true);
+  assert.equal(report.gates.subject_architecture_unchanged, true);
+  assert.equal(report.gates.completion_status_preserved, true);
+  assert.equal(report.gates.self_description_bounded, true);
+  assert.equal(report.gates.reception_inference_bounded, true);
+  assert.equal(report.gates.future_outcome_inference_bounded, true);
+  assert.equal(report.gates.no_strict_subcategory, true);
+  assert.equal(report.gates.no_place_production, true);
+});
