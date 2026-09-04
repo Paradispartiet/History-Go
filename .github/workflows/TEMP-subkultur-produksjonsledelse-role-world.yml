@@ -28,10 +28,10 @@ jobs:
         run: node .github/TEMP-subkultur-produksjonsledelse-role-world-materializer.mjs
       - name: Make standing consequences beat-specific
         run: node .github/TEMP-subkultur-produksjonsledelse-role-world-uniqueness-fix.mjs
-      - name: Regenerate Role World readiness
-        run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
       - name: Regenerate career gameplay matrix
         run: node scripts/audit-civication-career-gameplay.mjs --write
+      - name: Regenerate Role World readiness
+        run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
       - name: Focused Role World gate
         run: node tests/civication-subkultur-produksjonsledelse-role-world-rollout.test.js
       - name: Prerequisite compatibility
