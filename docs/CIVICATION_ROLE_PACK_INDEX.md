@@ -15,11 +15,11 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 
 ## Sammendrag
 
-- complete_reference_v2: 53
+- complete_reference_v2: 57
 - complete_reference: 0
 - playable_v1: 1
 - partial_pack: 23
-- role_model_only: 185
+- role_model_only: 182
 - generated_stub: 0
 - broken_mapping: 0
 - missing: 37
@@ -282,11 +282,11 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | sport | sport_trener | sport_trener | Trener | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | subkultur | subkultur_arrangementsdrift | subkultur_arrangementscrew | Arrangementscrew | ja | ja | ja | ja | ja | ja | nei | ja | nei | ja | ja | ja | ja | partial_pack |
 | subkultur | subkultur_arrangementsdrift | subkultur_kulturhusvert | Arrangementsdrift og publikumsvert | ja | ja | ja | ja | ja | ja | nei | ja | nei | ja | ja | ja | ja | partial_pack |
-| subkultur | subkultur_program_og_koordinering | subkultur_arrangementsplanlegger | Arrangementsplanlegger | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
-| subkultur | subkultur_program_og_koordinering | subkultur_booking_innholdskoordinator | Booking- og innholdskoordinator | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
+| subkultur | subkultur_program_og_koordinering | subkultur_arrangementsplanlegger | Arrangementsplanlegger | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
+| subkultur | subkultur_program_og_koordinering | subkultur_booking_innholdskoordinator | Booking- og innholdskoordinator | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | subkultur | subkultur_kulturarena_ledelse | subkultur_kulturarena_ledelse | Daglig leder (kulturarena) | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | subkultur | subkultur_arrangementsdrift | subkultur_kulturhusvert | Kulturhusvert | ja | ja | ja | ja | ja | ja | nei | ja | nei | ja | ja | ja | ja | partial_pack |
-| subkultur | subkultur_program_og_koordinering | subkultur_kulturkonsulent | Kulturkonsulent | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
+| subkultur | subkultur_program_og_koordinering | subkultur_kulturkonsulent | Kulturkonsulent | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | subkultur | subkultur_arrangementsdrift | subkultur_kulturmedarbeider | Kulturmedarbeider | ja | ja | ja | ja | ja | ja | nei | ja | nei | ja | ja | ja | ja | partial_pack |
 | subkultur | subkultur_kulturarena_ledelse | subkultur_kulturarena_ledelse | Ledelse av kulturarena | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | subkultur | subkultur_produksjon_og_prosjekt | subkultur_produsent | Produksjon og kulturprosjekt | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
@@ -294,6 +294,7 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | subkultur | subkultur_produksjonsledelse | subkultur_produksjonsledelse | Produksjonsledelse | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | subkultur | subkultur_produksjonsledelse | subkultur_produksjonsledelse | Produksjonsleder | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | subkultur | subkultur_produksjon_og_prosjekt | subkultur_produsent | Produsent | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
+| subkultur | subkultur_program_og_koordinering | subkultur_arrangementsplanlegger | Program og arrangementskoordinering | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | subkultur | subkultur_produksjon_og_prosjekt | subkultur_prosjektleder_kulturarrangement | Prosjektleder (kulturarrangement) | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | teater | ensemblemedlem | teater_ensemblemedlem | Ensemblemedlem | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | teater | fast_publikummer | teater_fast_publikummer | Fast publikummer | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |

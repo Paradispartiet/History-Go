@@ -1,0 +1,213 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "version": 1,
+  "id": "subkultur_program_og_koordinering_foundation_v1",
+  "category": "subkultur",
+  "role_scope": "subkultur_program_og_koordinering",
+  "title": "Program og arrangementskoordinering",
+  "description": "Seksten steg gjennom samme programløp fra kriterier og kandidater til booking, budsjett, partneravklaringer, betinget publisering, endring, bounded rework og sen konsekvens.",
+  "arc": {
+    "from": "Ny programkoordinator med mange relasjoner og gode ideer, men uten én felles sannhetskilde for kriterier, booking, økonomi, partnerpremisser og publiseringsstatus.",
+    "to": "Programkoordinator som kan prioritere, forhandle og kommunisere under press gjennom eksplisitt mandat, reelle kostnader, transparente kriterier og reparerbar handoff uten å gjøre miljøstatus eller muntlig interesse til avtale.",
+    "core_questions": [
+      "Hva er forslag, vurdert, anbefalt, mandatert, avtalt, logistisk avklart, publiserbart, publisert, endret og lukket?",
+      "Hvem eier neste booking-, budsjett-, partner-, rettighets-, kapasitets- eller publiseringsavklaring?",
+      "Hvilke deler må gjenåpnes når pris, avtale, kapasitet, partnerpremiss eller program endrer seg?"
+    ]
+  },
+  "situated_audience_contract": {
+    "no_global_score": true,
+    "audiences": [
+      "artister_og_representanter",
+      "lokal_scene_og_partnere",
+      "okonomi_avtale_og_ledelse",
+      "kommunikasjon_og_publikum",
+      "arena_produksjon_og_gjennomforing"
+    ],
+    "rule": "Standing er situert i konkrete program-, avtale-, partner- og leveranserelasjoner og skaper aldri global score, programrett, signaturmyndighet, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsmyndighet."
+  },
+  "outcome_rules": {
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 2,
+      "strikes_lte": 0
+    },
+    "fired": {
+      "stability_values": [
+        "FIRED"
+      ],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "stagnated": {
+      "autonomy_delta": -10,
+      "stability": "STAGNATED",
+      "add_branch_flags": [
+        "career_stagnated",
+        "programkoordinering_med_uklar_avtale_og_publiseringsstatus"
+      ]
+    }
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Oppdater programbok med sann program-, booking-, kostnads-, partner- og publiseringsstatus.",
+      "allowed_families": [
+        "subkultur_program_og_koordinering_programbok_og_beslutningslinje"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 2,
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Bevar relasjon og samarbeid uten å blande sosial kapital med programrett, kontrakt eller fullmakt.",
+      "allowed_families": [
+        "subkultur_program_og_koordinering_arbeidsrelasjoner_og_grenser"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 3,
+      "type": "knowledge",
+      "phase": "intro",
+      "step_goal": "Bruk History Go til et bedre historisk programspørsmål uten å gjøre historien til dagens booking- eller rettighetsfasit.",
+      "allowed_families": [
+        "subkultur_program_og_koordinering_kunnskap_i_bruk"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 4,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Oppdater programbok med sann program-, booking-, kostnads-, partner- og publiseringsstatus.",
+      "allowed_families": [
+        "subkultur_program_og_koordinering_programbok_og_beslutningslinje"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 5,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Bevar relasjon og samarbeid uten å blande sosial kapital med programrett, kontrakt eller fullmakt.",
+      "allowed_families": [
+        "subkultur_program_og_koordinering_arbeidsrelasjoner_og_grenser"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 6,
+      "type": "conflict",
+      "phase": "advanced",
+      "step_goal": "Skill press fra eksplisitte kriterier, mandat og reell kostnad før programbeslutning.",
+      "allowed_families": [
+        "subkultur_program_og_koordinering_programpress_og_kriterier"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 7,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Oppdater programbok med sann program-, booking-, kostnads-, partner- og publiseringsstatus.",
+      "allowed_families": [
+        "subkultur_program_og_koordinering_programbok_og_beslutningslinje"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 8,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Bevar relasjon og samarbeid uten å blande sosial kapital med programrett, kontrakt eller fullmakt.",
+      "allowed_families": [
+        "subkultur_program_og_koordinering_arbeidsrelasjoner_og_grenser"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 9,
+      "type": "event",
+      "phase": "advanced",
+      "step_goal": "Gjenåpne bare berørte ledd når avtale, pris, kapasitet, logistikk eller partnerpremiss endres.",
+      "allowed_families": [
+        "subkultur_program_og_koordinering_endring_og_replanlegging"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 10,
+      "type": "micro",
+      "phase": "advanced",
+      "step_goal": "Bruk eksplisitt språk for forslag, anbefalt, mandatert, avtalt, betinget, bekreftet og publisert.",
+      "allowed_families": [
+        "subkultur_program_og_koordinering_statussprak_og_forbehold"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 11,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Oppdater programbok med sann program-, booking-, kostnads-, partner- og publiseringsstatus.",
+      "allowed_families": [
+        "subkultur_program_og_koordinering_programbok_og_beslutningslinje"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 12,
+      "type": "people",
+      "phase": "mastery",
+      "step_goal": "Bevar relasjon og samarbeid uten å blande sosial kapital med programrett, kontrakt eller fullmakt.",
+      "allowed_families": [
+        "subkultur_program_og_koordinering_arbeidsrelasjoner_og_grenser"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 13,
+      "type": "followup",
+      "phase": "mastery",
+      "step_goal": "Bruk faktisk kostnad, partnerbelastning, publikumseffekt og avvik til bounded rework før neste program.",
+      "allowed_families": [
+        "subkultur_program_og_koordinering_ettervurdering_og_bounded_rework"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 14,
+      "type": "story",
+      "phase": "mastery",
+      "step_goal": "Bær samme programversjon fra forslag gjennom avtale og publisering til gjennomføring og ettervurdering.",
+      "allowed_families": [
+        "subkultur_program_og_koordinering_helt_programlop"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 15,
+      "type": "consequence",
+      "phase": "mastery",
+      "step_goal": "Koble sen konsekvens til dokumentert kriterie-, avtale-, kostnads- eller publiseringsgjeld.",
+      "allowed_families": [
+        "subkultur_program_og_koordinering_sene_konsekvenser"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 16,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Oppdater programbok med sann program-, booking-, kostnads-, partner- og publiseringsstatus.",
+      "allowed_families": [
+        "subkultur_program_og_koordinering_programbok_og_beslutningslinje"
+      ],
+      "fallback_types": []
+    }
+  ]
+}
