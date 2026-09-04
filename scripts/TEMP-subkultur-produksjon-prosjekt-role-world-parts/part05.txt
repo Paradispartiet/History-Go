@@ -1,0 +1,62 @@
+ skjult i håndoverleveringer.'},
+  {id:'rights_return',setup_ref:'7/morning',return_ref:'13/lunch',meaning:'Den betingede rettigheten returnerer i dokumentasjon og arkiv og tester om publisering og kreditering ble holdt tilbake eller replanlagt til faktisk klarering forelå.'},
+  {id:'technical_release_return',setup_ref:'8/morning',return_ref:'12/morning',meaning:'Integrasjonsfeilen returnerer på leveransedagen og viser om retesten etablerte en reell frigivelsesstatus eller bare et optimistisk minne om en deltest.'},
+  {id:'incident_learning_return',setup_ref:'12/morning',return_ref:'14/afternoon',meaning:'Live-avviket returnerer i handback og tester om hendelsen ble redusert til omdømme, eller om årsak, ansvar, faktisk effekt og forbedret kontrollpunkt er bevart.'}
+];
+
+const baseWorld=read('data/Civication/roleWorlds/subkultur/subkultur_arrangementsdrift.json');
+const world={...baseWorld};
+world.category='subkultur';
+world.role_scope=ROLE;
+world.title='Produksjon og kulturprosjekt — scope, penger, mennesker, motparter, rettigheter og situert leveransetillit';
+world.status='role_world_complete';
+world.materialization={
+  authored_dimensions:['situated_reputation'],
+  no_new_runtime:true,
+  existing_plan_preserved:true,
+  existing_role_model_preserved:true,
+  existing_people_foundation_preserved:true,
+  existing_work_grammar_preserved:true,
+  existing_persistent_work_preserved:true,
+  existing_rhythm_preserved:true,
+  cross_role_link_materialized:false,
+  source_refs:sourceRefs
+};
+world.existing_work_continuity={
+  runtime_binding:'existing_mail_plan_and_work_grammar',
+  new_runtime_state:false,
+  work_loops:grammar.work_loops,
+  persistent_work_object:'prosjektplan_budsjett_kontrakt_og_avvikslogg',
+  canonical_surfaces:[MODEL,GRAMMAR,PLAN,...TYPES.map(t=>`data/Civication/mailFamilies/subkultur/${t}/${ROLE}_${t}.json`)],
+  rule:'Eksisterende 16-stegsplan, fire fiktive arbeidsrelasjoner, fire produksjonsflater, waiting, handoff, bounded rework og prosjektplan_budsjett_kontrakt_og_avvikslogg forblir authoritative; Role World legger dramaturgisk dybde og situert standing oppå dette uten ny runtime.'
+};
+world.sociological_core=[
+  'Kulturproduksjon er et koordinert makt- og avhengighetsarbeid: oppdragsgiver kan ønske, økonomi kan vise ramme, teknikk kan frigive eget fagområde, leverandører og rettighetshavere kontrollerer motpartsforhold, crew bærer faktisk arbeid og publikum møter sluttresultatet.',
+  'Produsenten har høy relasjonell og informasjonsmessig sentralitet, men ikke universell myndighet. Profesjonell kvalitet ligger derfor i å gjøre forskjellen mellom koordinering, bestilling, signatur, arbeidsgiveransvar, rettighetsklarering og teknisk sikkerhetsfrigivelse synlig under press.',
+  'Langsiktig leveransetillit bygges når prosjektet tåler å registrere ubehagelige fakta—scope creep, kostnadsøkning, venting, overbelastning, leverandørsvikt, rettighetsrest og avvik—uten at kunstnerisk prestisje eller vellykket premiere omskriver historikken.'
+];
+world.employment_conditions=[
+  'formelt produsent- eller prosjektlederoppdrag med eksplisitt oppdragsgiver/arbeidsgiver, budsjett- og signaturlinje; Badge-progresjon, miljøstatus eller publikumssuksess gir aldri automatisk jobb eller fullmakt',
+  'arbeidstid, frilans- og frivilliggrenser, kritisk fagkompetanse, HMS, kontrakt, innkjøp, rettigheter, kreditering, tilgjengelighet og betalingsvilkår er reelle produksjonsbetingelser og kan ikke reduseres til personlig fleksibilitet',
+  'produsenten kan koordinere og replanlegge innen mandat, men må bevare skillet mellom kreativt ønske og vedtatt scope, tilbud og bestilling, muntlig forståelse og signert avtale, betinget og frigitt status'
+];
+world.professional_culture=[
+  'den som synliggjør forsinkelse, kostnad, sikkerhetsproblem eller rettighetsrest behandles som nødvendig informasjonsbærer, ikke som en som mangler lagånd eller subkulturell lojalitet',
+  'vennskap, høy miljøstatus, kjent artist, viktig partner eller utsolgt forventning kan være relevant kontekst, men gir ikke skjult prioritet, gratisarbeid, fullmakt eller fritak fra kontrakt, rettighet, arbeidsmiljø og sikkerhet',
+  'etterarbeid skiller publikums- og kunstnerisk suksess fra budsjettpresisjon, belastning, leverandørkvalitet, kreditering, rettighetsstatus, sikkerhetsavvik og sluttoppgjør; et godt arrangement alene beviser ikke en forsvarlig produksjonsprosess'
+];
+world.recurring_people_archetypes=archetypes;
+world.social_environments=[
+  'prosjektrom_scope_og_milepaeler der bestilling, baseline, avhengigheter, endringsønsker og aksept må dele samme prosjektversjon',
+  'budsjett_innkjop_og_kontraktsflate der estimat, tilbud, bestilling, signatur, prognose og betaling må være lesbare før økonomisk status endres',
+  'produksjonsgulv_rigg_og_crewpunkt der fagkompetanse, skift, hviletid, rigg, test og faktisk sikkerhetsfrigivelse møter deadline og kreativ ambisjon',
+  'leveranse_rettighet_og_avviksbord der kontrakt, bruksomfang, kreditering, dokumentasjon, avvik, reklamasjon og handback må kunne lukkes uten omdømmefilter',
+  'artist_partner_og_miljorelasjoner der sosial kapital og kreative bidrag må holdes adskilt fra signatur, gratisarbeid og skjult prioritet',
+  'publikums_og_kommunikasjonsflate der lovet program, tilgjengelighet, endring og hendelsesinformasjon må stemme med faktisk leveransestatus',
+  'privat_liv_uten_kontrakts_eller_personallekkasje der ansvar og statusangst kan bearbeides uten at hjemmet blir reservekontor eller uformell beslutningslinje'
+];
+world.slow_axes=[
+  {id:'commissioning_scope_standing',meaning:'Oppdragsgivers langsomme tillit til at produsenten beskytter formålet gjennom sann scope-status, lesbare konsekvenser og eksplisitt endringskontroll.',runtime_binding:'editorial_only_until_governed'},
+  {id:'crew_work_environment_standing',meaning:'Crew og frilanseres langsomme tillit til realistisk kapasitet, kompetansegrenser, hviletid, rettferdig belastning og at faglige stopp ikke straffes sosialt.',runtime_binding:'editorial_only_until_governed'},
+  {id:'finance_procurement_standing',meaning:'Økonomi og administrasjons tillit til at budsjett, prognose, bestilling, fullmakt og sluttoppgjør er sporbare på samme prosjektversjon.',runtime_binding:'editorial_only_until_governed'},
+  {id:'counterparty_contract_standing',meaning:'Leverandørers og partneres tillit til tydelige vilkår, endring, ansvar, levering og aksept uten at muntlig relasjon brukes som skjult kontrakt.',runtime_binding:'editorial_only_until
