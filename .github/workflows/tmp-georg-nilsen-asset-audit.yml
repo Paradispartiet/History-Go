@@ -1,0 +1,77 @@
+name: TEMP Georg A. Nilsen asset audit
+on:
+  push:
+    branches: [control/bogstadveien-finalize-20260904-v3]
+    paths: ['.github/workflows/tmp-georg-nilsen-asset-audit.yml']
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Fetch official pages and candidate assets
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/georg-audit
+          ua='Mozilla/5.0 History-Go source audit'
+          for url in \
+            'https://www.georganilsen.no/' \
+            'https://www.georganilsen.no/category/ikke-kategorisert/' \
+            'https://www.georganilsen.no/var-historie/'; do
+            name=$(echo "$url" | sed 's#https://##;s#[/:]#_#g')
+            curl -A "$ua" -L --fail --retry 3 --connect-timeout 15 --max-time 60 "$url" -o "/tmp/georg-audit/${name}.html"
+          done
+          python - <<'PY'
+          from pathlib import Path
+          from html.parser import HTMLParser
+          from urllib.parse import urljoin
+          import json,re
+          class P(HTMLParser):
+              def __init__(self,base): super().__init__(); self.base=base; self.rows=[]
+              def handle_starttag(self,tag,attrs):
+                  if tag!='img': return
+                  a=dict(attrs); src=a.get('src') or a.get('data-src') or a.get('data-lazy-src')
+                  if src:
+                      self.rows.append({'src':urljoin(self.base,src),'alt':a.get('alt',''),'class':a.get('class','')})
+          pages=[]
+          for f in Path('/tmp/georg-audit').glob('*.html'):
+              text=f.read_text(errors='replace')
+              base='https://www.georganilsen.no/'
+              p=P(base); p.feed(text)
+              rows=p.rows
+              # Also collect explicit image URLs embedded in CSS/JSON.
+              extras=re.findall(r'https?://[^\"\'<> ]+\.(?:png|jpe?g|webp|svg)(?:\?[^\"\'<> ]*)?',text,re.I)
+              pages.append({'file':f.name,'images':rows,'extraUrls':sorted(set(extras))})
+          Path('/tmp/georg-audit/assets.json').write_text(json.dumps(pages,ensure_ascii=False,indent=2))
+          print(Path('/tmp/georg-audit/assets.json').read_text()[:30000])
+          PY
+          python - <<'PY'
+          import json, pathlib, re, subprocess
+          pages=json.loads(pathlib.Path('/tmp/georg-audit/assets.json').read_text())
+          seen=[]
+          for page in pages:
+              for row in page['images']:
+                  u=row['src']; meta=(row.get('alt','')+' '+row.get('class','')+' '+u).lower()
+                  if any(k in meta for k in ['georg','nilsen','logo','butikkfasade','fasade']): seen.append((u,row.get('alt','')))
+              for u in page['extraUrls']:
+                  if any(k in u.lower() for k in ['georg','nilsen','logo','butikkfasade','fasade']): seen.append((u,''))
+          ded=[]
+          for x in seen:
+              if x[0] not in [d[0] for d in ded]: ded.append(x)
+          pathlib.Path('/tmp/georg-audit/candidates.txt').write_text('\n'.join(f'{u}\t{alt}' for u,alt in ded)+'\n')
+          print('CANDIDATES')
+          print(pathlib.Path('/tmp/georg-audit/candidates.txt').read_text())
+          for i,(u,alt) in enumerate(ded):
+              ext=re.search(r'\.(png|jpe?g|webp|svg)(?:\?|$)',u,re.I)
+              suffix='.'+(ext.group(1).lower() if ext else 'bin')
+              out=f'/tmp/georg-audit/candidate-{i:02d}{suffix}'
+              subprocess.run(['curl','-A','Mozilla/5.0 History-Go source audit','-L','--fail','--retry','2',u,'-o',out],check=False)
+          PY
+          file /tmp/georg-audit/candidate-* 2>/dev/null || true
+          identify /tmp/georg-audit/candidate-* 2>/dev/null || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: georg-a-nilsen-official-assets
+          path: /tmp/georg-audit
+          if-no-files-found: error
