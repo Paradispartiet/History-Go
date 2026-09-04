@@ -1,0 +1,1360 @@
+{
+  "targetId": "romsaås",
+  "categoryId": "by",
+  "generator_version": "history_go_manual_reviewed_v1",
+  "generated_from": "data/quiz/production_briefs/by/romsaås.json",
+  "sources": {
+    "byleksikon": "https://oslobyleksikon.no/side/Roms%C3%A5s_%28str%C3%B8k%29",
+    "municipality": "https://magasin.oslo.kommune.no/byplan/en-tidsreise-gjennom-groruddalen",
+    "identity": "https://magasin.oslo.kommune.no/byplan/fra-romsas-til-radhuset-stedsidentitet-i-oslo",
+    "center": "https://oslobyleksikon.no/side/Roms%C3%A5s_senter",
+    "station": "https://www.sporveien.no/vare-tjenester/t-banen/t-banestasjoner/o-s/romsas/",
+    "obos": "https://www.obos.no/temasider/forvaltning/hipp-hipp-hurra-borettslagenes-jubilanter-i-2024-vujpcrghxj",
+    "park": "https://oslobyleksikon.no/side/Svarttjernparken"
+  },
+  "production_context": {
+    "manifest_category": "by",
+    "profile": "normal_4x7",
+    "standard_version": "3.3",
+    "source_brief": "data/quiz/production_briefs/by/romsaås.json",
+    "context_artifact": "data/quiz/production_context/by/romsaås.json",
+    "resolved_files": {
+      "pensum": "data/fag/by/pensum_by.json",
+      "emner": "data/fag/by/emner_by.json",
+      "fagkart": "data/fag/by/fagkart_by.json",
+      "methods": "data/fag/by/methods_by.json",
+      "supersetQuizMal": "data/fag/by/supersetQUIZMAL_by.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "kur_by_02_nabolag_ulikhet_segregering",
+      "kur_by_04_historiske_lag_og_transformasjon"
+    ],
+    "emne_ids": [
+      "em_by_modernistisk_boligplanlegging",
+      "em_by_bydelsforskjeller_segregering"
+    ],
+    "topic_hook_ids": [
+      "bolig_boligtyper"
+    ],
+    "method_ids": [
+      "met_feltobservasjon",
+      "met_aktoranalyse",
+      "met_for_etter"
+    ],
+    "thinker_ids": [
+      "david_harvey"
+    ],
+    "works": [
+      "Rebel Cities"
+    ],
+    "source_review_status": "reviewed",
+    "theory_start_phase": "final",
+    "method_start_phase": "final",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/by/romsaås_sets_merged.json",
+        "data/quiz/manifest.json"
+      ],
+      "active_before": {
+        "file": "data/quiz/by/romsaås_sets_merged.json",
+        "set_count": 3,
+        "question_count": 15,
+        "finding": "Legacy-pakken er 3×5 og erstattes av kildeledet 4×7."
+      },
+      "decisions": [
+        "Erstatt legacy 3×5 med normal 4×7.",
+        "Behold de første 14 spørsmålene teori- og metodefrie.",
+        "Ikke bruk eksakt stasjonsdybde eller sosial bakgrunn som universell fasit."
+      ],
+      "knowledge_migration": "Alle 28 spørsmål får stabile Romsås-, claim- og Knowledge-ID-er."
+    },
+    "profile_decision": {
+      "profile": "normal",
+      "set_count": 4,
+      "questions_per_set": 7,
+      "justification": "Romsås har fire tydelige læringsjobber: plan og terreng, grend- og trafikkstruktur, senter/stasjon og kildekritisk sosial analyse."
+    },
+    "held_back_candidates": [
+      "Eksakt universell byggeperiode – kilder bruker noe ulike avgrensninger rundt 1969–74.",
+      "Eksakt dybde fra senter til stasjon – åpne kilder oppgir ulike mål.",
+      "Dagens beboeres sosiale sammensetning – krever egne data og kan ikke sluttes fra byformen."
+    ]
+  },
+  "sets": [
+    {
+      "set_id": "by_romsaås_set_1",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "title": "Plan og terreng",
+      "questions": [
+        {
+          "id": "romsaås_quiz_01",
+          "quiz_id": "by_romsaås_q01",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Hvorfor kunne Oslo kommune gjennomføre en samlet Romsås-plan i 1960-årene?",
+          "options": [
+            "Store arealer ble ekspropriert",
+            "Hele området var allerede kommunalt fra middelalderen",
+            "T-banen eide alle tomtene"
+          ],
+          "answer": "Store arealer ble ekspropriert",
+          "answerIndex": 0,
+          "knowledge": "Kommunal ekspropriasjon av store arealer la grunnlaget for samlet utbygging.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_modernistisk_boligplanlegging",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kommunal ekspropriasjon av store arealer la grunnlaget for samlet utbygging.",
+          "claim_id": "claim_romsaas_quiz_01",
+          "primary_knowledge_unit_id": "ku_by_romsaas_01",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_01"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "romsaås_quiz_02",
+          "quiz_id": "by_romsaås_q02",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Når skjøt hovedutbyggingen av Romsås fart?",
+          "options": [
+            "Omkring 1970",
+            "Omkring 1890",
+            "Etter 2015"
+          ],
+          "answer": "Omkring 1970",
+          "answerIndex": 0,
+          "knowledge": "Hovedutbyggingen startet omkring 1970 og pågikk i første halvdel av tiåret.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_modernistisk_boligplanlegging",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Hovedutbyggingen startet omkring 1970 og pågikk i første halvdel av tiåret.",
+          "claim_id": "claim_romsaas_quiz_02",
+          "primary_knowledge_unit_id": "ku_by_romsaas_02",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_02"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "romsaås_quiz_03",
+          "quiz_id": "by_romsaås_q03",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Hvor mange boliggrender organiserer hovedplanen?",
+          "options": [
+            "Tre",
+            "Seks",
+            "Tolv"
+          ],
+          "answer": "Seks",
+          "answerIndex": 1,
+          "knowledge": "Romsås ble organisert i seks navngitte boliggrender.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_modernistisk_boligplanlegging",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Romsås ble organisert i seks navngitte boliggrender.",
+          "claim_id": "claim_romsaas_quiz_03",
+          "primary_knowledge_unit_id": "ku_by_romsaas_03",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_03"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "romsaås_quiz_04",
+          "quiz_id": "by_romsaås_q04",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Hva het én av de seks grendene?",
+          "options": [
+            "Ravnkollen",
+            "Damplassen",
+            "Bjørvika"
+          ],
+          "answer": "Ravnkollen",
+          "answerIndex": 0,
+          "knowledge": "Ravnkollen er en av de seks boliggrendene på Romsås.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_modernistisk_boligplanlegging",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Ravnkollen er en av de seks boliggrendene på Romsås.",
+          "claim_id": "claim_romsaas_quiz_04",
+          "primary_knowledge_unit_id": "ku_by_romsaas_04",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_04"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "romsaås_quiz_05",
+          "quiz_id": "by_romsaås_q05",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Hvilket planprinsipp er særlig synlig på Romsås?",
+          "options": [
+            "Biltrafikk gjennom alle tun",
+            "Skille mellom gangsystem og biltrafikk",
+            "Ingen kollektivtransport"
+          ],
+          "answer": "Skille mellom gangsystem og biltrafikk",
+          "answerIndex": 1,
+          "knowledge": "Gangforbindelser og biltrafikk ble i stor grad organisert som separate systemer.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_modernistisk_boligplanlegging",
+          "source": [
+            "municipality"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Gangforbindelser og biltrafikk ble i stor grad organisert som separate systemer.",
+          "claim_id": "claim_romsaas_quiz_05",
+          "primary_knowledge_unit_id": "ku_by_romsaas_05",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_05"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "romsaås_quiz_06",
+          "quiz_id": "by_romsaås_q06",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Hva er viktig ved plasseringen av blokkene?",
+          "options": [
+            "De følger koller og skogterreng",
+            "De ligger bare i et flatt rutenett",
+            "De er samlet i ett høyhus"
+          ],
+          "answer": "De følger koller og skogterreng",
+          "answerIndex": 0,
+          "knowledge": "Bebyggelsen er lagt inn i høydeforskjeller, skog og koller.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_modernistisk_boligplanlegging",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bebyggelsen er lagt inn i høydeforskjeller, skog og koller.",
+          "claim_id": "claim_romsaas_quiz_06",
+          "primary_knowledge_unit_id": "ku_by_romsaas_06",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_06"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "romsaås_quiz_07",
+          "quiz_id": "by_romsaås_q07",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Hva åpnet på Romsås i 1972?",
+          "options": [
+            "Romsås senter",
+            "Den nye kirken fra 1995",
+            "Svarttjernparken"
+          ],
+          "answer": "Romsås senter",
+          "answerIndex": 0,
+          "knowledge": "Romsås senter åpnet i 1972 som lokalt servicepunkt.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_modernistisk_boligplanlegging",
+          "source": [
+            "center"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Romsås senter åpnet i 1972 som lokalt servicepunkt.",
+          "claim_id": "claim_romsaas_quiz_07",
+          "primary_knowledge_unit_id": "ku_by_romsaas_07",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_07"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_romsaås_set_2",
+      "level": 2,
+      "order": 2,
+      "phase": "middle",
+      "title": "Grender og hverdagsstruktur",
+      "questions": [
+        {
+          "id": "romsaås_quiz_08",
+          "quiz_id": "by_romsaås_q08",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Når åpnet Romsås T-banestasjon?",
+          "options": [
+            "1966",
+            "1974",
+            "2009"
+          ],
+          "answer": "1974",
+          "answerIndex": 1,
+          "knowledge": "Romsås T-banestasjon åpnet i 1974.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_modernistisk_boligplanlegging",
+          "source": [
+            "station"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Romsås T-banestasjon åpnet i 1974.",
+          "claim_id": "claim_romsaas_quiz_08",
+          "primary_knowledge_unit_id": "ku_by_romsaas_08",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_08"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "romsaås_quiz_09",
+          "quiz_id": "by_romsaås_q09",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Hvem tegnet Romsås T-banestasjon?",
+          "options": [
+            "Håkon Mjelva",
+            "Harald Hals",
+            "Christian Heinrich Grosch"
+          ],
+          "answer": "Håkon Mjelva",
+          "answerIndex": 0,
+          "knowledge": "Sporveien oppgir Håkon Mjelva som arkitekt for stasjonen.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_modernistisk_boligplanlegging",
+          "source": [
+            "station"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Sporveien oppgir Håkon Mjelva som arkitekt for stasjonen.",
+          "claim_id": "claim_romsaas_quiz_09",
+          "primary_knowledge_unit_id": "ku_by_romsaas_09",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_09"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "romsaås_quiz_10",
+          "quiz_id": "by_romsaås_q10",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Hva fikk stasjonen i 1976?",
+          "options": [
+            "Betongtavlen",
+            "Houens fonds diplom i 1890",
+            "Status som middelalderminne"
+          ],
+          "answer": "Betongtavlen",
+          "answerIndex": 0,
+          "knowledge": "Romsås stasjon fikk Betongtavlen i 1976.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_modernistisk_boligplanlegging",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Romsås stasjon fikk Betongtavlen i 1976.",
+          "claim_id": "claim_romsaas_quiz_10",
+          "primary_knowledge_unit_id": "ku_by_romsaas_10",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_10"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "romsaås_quiz_11",
+          "quiz_id": "by_romsaås_q11",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Hvilket kunstverk finnes på stasjonen?",
+          "options": [
+            "«Den spillende døren»",
+            "«Monolitten»",
+            "«Sinnataggen»"
+          ],
+          "answer": "«Den spillende døren»",
+          "answerIndex": 0,
+          "knowledge": "Sporveien dokumenterer Bjørn Evensens bronseskulptur «Den spillende døren».",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_modernistisk_boligplanlegging",
+          "source": [
+            "station"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Sporveien dokumenterer Bjørn Evensens bronseskulptur «Den spillende døren».",
+          "claim_id": "claim_romsaas_quiz_11",
+          "primary_knowledge_unit_id": "ku_by_romsaas_11",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_11"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "romsaås_quiz_12",
+          "quiz_id": "by_romsaås_q12",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Hva skjedde med den første Romsås kirke i 1986?",
+          "options": [
+            "Den brant",
+            "Den ble flyttet til sentrum",
+            "Den ble T-banestasjon"
+          ],
+          "answer": "Den brant",
+          "answerIndex": 0,
+          "knowledge": "Den første Romsås kirke gikk tapt i brann i 1986.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_modernistisk_boligplanlegging",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den første Romsås kirke gikk tapt i brann i 1986.",
+          "claim_id": "claim_romsaas_quiz_12",
+          "primary_knowledge_unit_id": "ku_by_romsaas_12",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_12"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "romsaås_quiz_13",
+          "quiz_id": "by_romsaås_q13",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Når åpnet Svarttjernparken?",
+          "options": [
+            "1974",
+            "1995",
+            "2009"
+          ],
+          "answer": "2009",
+          "answerIndex": 2,
+          "knowledge": "Svarttjernparken åpnet i 2009.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_modernistisk_boligplanlegging",
+          "source": [
+            "park"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Svarttjernparken åpnet i 2009.",
+          "claim_id": "claim_romsaas_quiz_13",
+          "primary_knowledge_unit_id": "ku_by_romsaas_13",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_13"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "romsaås_quiz_14",
+          "quiz_id": "by_romsaås_q14",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Hva framhever Oslo kommune som en planlagt kvalitet på Romsås?",
+          "options": [
+            "Bilfrie tun og nærhet til natur",
+            "Fravær av møteplasser",
+            "Bare privat biltransport"
+          ],
+          "answer": "Bilfrie tun og nærhet til natur",
+          "answerIndex": 0,
+          "knowledge": "Oslo kommune framhever bilfrie tun, naturkontakt og lokale møteplasser.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_modernistisk_boligplanlegging",
+          "source": [
+            "municipality"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oslo kommune framhever bilfrie tun, naturkontakt og lokale møteplasser.",
+          "claim_id": "claim_romsaas_quiz_14",
+          "primary_knowledge_unit_id": "ku_by_romsaas_14",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_14"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_romsaås_set_3",
+      "level": 3,
+      "order": 3,
+      "phase": "bridge",
+      "title": "Senter, identitet og senere lag",
+      "questions": [
+        {
+          "id": "romsaås_quiz_15",
+          "quiz_id": "by_romsaås_q15",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Hvorfor er seks-grend-strukturen viktig analytisk?",
+          "options": [
+            "Den viser hvordan et stort boligområde ble delt i mindre enheter",
+            "Den viser at Romsås mangler intern struktur",
+            "Den betyr at alle blokkene er identiske"
+          ],
+          "answer": "Den viser hvordan et stort boligområde ble delt i mindre enheter",
+          "answerIndex": 0,
+          "knowledge": "Grendene gjør det mulig å lese både helhet og lokal variasjon i samme plan.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_modernistisk_boligplanlegging",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Grendene gjør det mulig å lese både helhet og lokal variasjon i samme plan.",
+          "claim_id": "claim_romsaas_quiz_15",
+          "primary_knowledge_unit_id": "ku_by_romsaas_15",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_15"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "romsaås_quiz_16",
+          "quiz_id": "by_romsaås_q16",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Hva kan ikke avgjøres bare ved å se på blokkene?",
+          "options": [
+            "Om det finnes høydeforskjeller",
+            "Dagens beboeres sosiale sammensetning",
+            "Om stasjonen ligger i fjell"
+          ],
+          "answer": "Dagens beboeres sosiale sammensetning",
+          "answerIndex": 1,
+          "knowledge": "Byform alene dokumenterer ikke beboernes levekår eller sosiale sammensetning.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_bydelsforskjeller_segregering",
+          "source": [
+            "municipality"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Byform alene dokumenterer ikke beboernes levekår eller sosiale sammensetning.",
+          "claim_id": "claim_romsaas_quiz_16",
+          "primary_knowledge_unit_id": "ku_by_romsaas_16",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_16"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "romsaås_quiz_17",
+          "quiz_id": "by_romsaås_q17",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Hva viser oppgraderingen av stasjonen i 2013?",
+          "options": [
+            "At nyere tiltak kan inngå i et verneverdig 1970-tallsmiljø",
+            "At stasjonen ble revet",
+            "At Romsås mistet T-banen"
+          ],
+          "answer": "At nyere tiltak kan inngå i et verneverdig 1970-tallsmiljø",
+          "answerIndex": 0,
+          "knowledge": "Stasjonen ble oppgradert i 2013 samtidig som verneverdiene ble vektlagt.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_modernistisk_boligplanlegging",
+          "source": [
+            "station"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Stasjonen ble oppgradert i 2013 samtidig som verneverdiene ble vektlagt.",
+          "claim_id": "claim_romsaas_quiz_17",
+          "primary_knowledge_unit_id": "ku_by_romsaas_17",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_17"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "romsaås_quiz_18",
+          "quiz_id": "by_romsaås_q18",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Hvorfor er senteret viktig i en drabantbyanalyse?",
+          "options": [
+            "Det samler lokale tjenester og forbindelser",
+            "Det beviser hvem alle beboere er",
+            "Det erstatter hele boligområdet"
+          ],
+          "answer": "Det samler lokale tjenester og forbindelser",
+          "answerIndex": 0,
+          "knowledge": "Romsås senter ble planlagt som et lokalt service- og møtepunkt.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_modernistisk_boligplanlegging",
+          "source": [
+            "center"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Romsås senter ble planlagt som et lokalt service- og møtepunkt.",
+          "claim_id": "claim_romsaas_quiz_18",
+          "primary_knowledge_unit_id": "ku_by_romsaas_18",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_18"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "romsaås_quiz_19",
+          "quiz_id": "by_romsaås_q19",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Hva dokumenterer hoggelappene ved senteret?",
+          "options": [
+            "Et spor etter eldre steinhoggerpraksis",
+            "Et moderne parkeringssystem",
+            "En T-banelinje fra 1800-tallet"
+          ],
+          "answer": "Et spor etter eldre steinhoggerpraksis",
+          "answerIndex": 0,
+          "knowledge": "Hoggelappene er fysiske spor etter steinhoggernes arbeidsmaler.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_modernistisk_boligplanlegging",
+          "source": [
+            "center"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Hoggelappene er fysiske spor etter steinhoggernes arbeidsmaler.",
+          "claim_id": "claim_romsaas_quiz_19",
+          "primary_knowledge_unit_id": "ku_by_romsaas_19",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_19"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "romsaås_quiz_20",
+          "quiz_id": "by_romsaås_q20",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Hva gjør Don Martin relevant i en Romsås-pakke?",
+          "options": [
+            "Oslo kommune bruker ham som eksempel på sterk lokal stedsidentitet",
+            "Han tegnet T-banestasjonen",
+            "Han ledet Romsåsteamet"
+          ],
+          "answer": "Oslo kommune bruker ham som eksempel på sterk lokal stedsidentitet",
+          "answerIndex": 0,
+          "knowledge": "Oslo kommunes stedsidentitetsartikkel knytter Don Martins kunstneriske arbeid tydelig til Romsås.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_bydelsforskjeller_segregering",
+          "source": [
+            "identity"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oslo kommunes stedsidentitetsartikkel knytter Don Martins kunstneriske arbeid tydelig til Romsås.",
+          "claim_id": "claim_romsaas_quiz_20",
+          "primary_knowledge_unit_id": "ku_by_romsaas_20",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_20"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "romsaås_quiz_21",
+          "quiz_id": "by_romsaås_q21",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Hva er den viktigste kildegrensen når Romsås omtales sosialt?",
+          "options": [
+            "Skille dokumenterte planmål og identitetsfortellinger fra antakelser om dagens beboere",
+            "Tolke inntekt fra fasadefarge",
+            "Bruke ett bilde som full folketelling"
+          ],
+          "answer": "Skille dokumenterte planmål og identitetsfortellinger fra antakelser om dagens beboere",
+          "answerIndex": 0,
+          "knowledge": "Sosial analyse krever egne kilder og må ikke avledes mekanisk fra byformen.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_bydelsforskjeller_segregering",
+          "source": [
+            "municipality"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Sosial analyse krever egne kilder og må ikke avledes mekanisk fra byformen.",
+          "claim_id": "claim_romsaas_quiz_21",
+          "primary_knowledge_unit_id": "ku_by_romsaas_21",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_21"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_romsaås_set_4",
+      "level": 4,
+      "order": 4,
+      "phase": "final",
+      "title": "Metode og tolkning",
+      "questions": [
+        {
+          "id": "romsaås_quiz_22",
+          "quiz_id": "by_romsaås_q22",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Hva registrerer feltobservasjon først på Romsås?",
+          "options": [
+            "Synlige romlige og materielle spor",
+            "Skjulte motiver hos alle planleggere",
+            "Beboernes private økonomi"
+          ],
+          "answer": "Synlige romlige og materielle spor",
+          "answerIndex": 0,
+          "knowledge": "Feltobservasjon starter med terreng, forbindelser, bygninger og andre etterprøvbare spor.",
+          "difficulty": 3,
+          "question_type": "observation",
+          "emne_id": "em_by_modernistisk_boligplanlegging",
+          "source": [
+            "municipality"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Feltobservasjon starter med terreng, forbindelser, bygninger og andre etterprøvbare spor.",
+          "claim_id": "claim_romsaas_quiz_22",
+          "primary_knowledge_unit_id": "ku_by_romsaas_22",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_22"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_feltobservasjon",
+          "guidance_basis": [
+            "data/fag/by/methods_by.json"
+          ]
+        },
+        {
+          "id": "romsaås_quiz_23",
+          "quiz_id": "by_romsaås_q23",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Hva kan aktøranalyse skille mellom her?",
+          "options": [
+            "Kommune, arkitektteam, boligaktører og beboerroller",
+            "Bare blokkhøyder",
+            "Bare stasjonskunst"
+          ],
+          "answer": "Kommune, arkitektteam, boligaktører og beboerroller",
+          "answerIndex": 0,
+          "knowledge": "Aktøranalyse skiller mellom institusjoner, fagroller og brukergrupper i utbyggingen.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "emne_id": "em_by_bydelsforskjeller_segregering",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Aktøranalyse skiller mellom institusjoner, fagroller og brukergrupper i utbyggingen.",
+          "claim_id": "claim_romsaas_quiz_23",
+          "primary_knowledge_unit_id": "ku_by_romsaas_23",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_23"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_aktoranalyse",
+          "guidance_basis": [
+            "data/fag/by/methods_by.json"
+          ]
+        },
+        {
+          "id": "romsaås_quiz_24",
+          "quiz_id": "by_romsaås_q24",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Hva brukes før–etter-metoden til på Romsås?",
+          "options": [
+            "Å undersøke dokumenterte endringer og kontinuiteter",
+            "Å gjette et gammelt fotoår",
+            "Å fastslå dagens levekår"
+          ],
+          "answer": "Å undersøke dokumenterte endringer og kontinuiteter",
+          "answerIndex": 0,
+          "knowledge": "Før–etter-metoden kan skille hovedplanens varige trekk fra senere park-, kirke- og stasjonslag.",
+          "difficulty": 3,
+          "question_type": "comparison",
+          "emne_id": "em_by_modernistisk_boligplanlegging",
+          "source": [
+            "station"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Før–etter-metoden kan skille hovedplanens varige trekk fra senere park-, kirke- og stasjonslag.",
+          "claim_id": "claim_romsaas_quiz_24",
+          "primary_knowledge_unit_id": "ku_by_romsaas_24",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_24"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_for_etter",
+          "guidance_basis": [
+            "data/fag/by/methods_by.json"
+          ]
+        },
+        {
+          "id": "romsaås_quiz_25",
+          "quiz_id": "by_romsaås_q25",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Hva betyr trafikkseparasjon i denne sammenhengen?",
+          "options": [
+            "At gående og biltrafikk i stor grad føres i ulike systemer",
+            "At alle må kjøre bil",
+            "At T-banen er stengt"
+          ],
+          "answer": "At gående og biltrafikk i stor grad føres i ulike systemer",
+          "answerIndex": 0,
+          "knowledge": "Trafikkseparasjon er et sentralt fysisk planprinsipp på Romsås.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_by_modernistisk_boligplanlegging",
+          "source": [
+            "municipality"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Trafikkseparasjon er et sentralt fysisk planprinsipp på Romsås.",
+          "claim_id": "claim_romsaas_quiz_25",
+          "primary_knowledge_unit_id": "ku_by_romsaas_25",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_25"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "romsaås_quiz_26",
+          "quiz_id": "by_romsaås_q26",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Hva er en boliggrend i Romsås-planen?",
+          "options": [
+            "En mindre boligklynge innenfor den større drabantbyen",
+            "En privat gård uten forbindelse til området",
+            "En T-banestasjon"
+          ],
+          "answer": "En mindre boligklynge innenfor den større drabantbyen",
+          "answerIndex": 0,
+          "knowledge": "Grendbegrepet beskriver de seks mindre boligområdene innenfor helheten.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_by_modernistisk_boligplanlegging",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Grendbegrepet beskriver de seks mindre boligområdene innenfor helheten.",
+          "claim_id": "claim_romsaas_quiz_26",
+          "primary_knowledge_unit_id": "ku_by_romsaas_26",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_26"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "romsaås_quiz_27",
+          "quiz_id": "by_romsaås_q27",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Hva hjelper David Harveys perspektiv i «Rebel Cities» oss å spørre om her?",
+          "options": [
+            "Hvordan boligform, ressursfordeling og hvem byen er til for kan analyseres sammen",
+            "Hvilken blokkmaling som er penest",
+            "Hvilken T-banevogn som går raskest"
+          ],
+          "answer": "Hvordan boligform, ressursfordeling og hvem byen er til for kan analyseres sammen",
+          "answerIndex": 0,
+          "knowledge": "Harveys bykritiske perspektiv kan brukes til å koble fysisk boligproduksjon til spørsmål om tilgang, makt og urban ressursfordeling uten å erstatte stedskildene.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_by_modernistisk_boligplanlegging",
+          "source": [
+            "municipality"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Harveys bykritiske perspektiv kan brukes til å koble fysisk boligproduksjon til spørsmål om tilgang, makt og urban ressursfordeling uten å erstatte stedskildene.",
+          "claim_id": "claim_romsaas_quiz_27",
+          "primary_knowledge_unit_id": "ku_by_romsaas_27",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_27"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "topic_hook_id": "bolig_boligtyper",
+          "thinker_id": "david_harvey",
+          "work": "Rebel Cities",
+          "theory_ref": {
+            "topic_hook_id": "bolig_boligtyper",
+            "thinker_id": "david_harvey",
+            "work": "Rebel Cities",
+            "why_it_helps": "Harveys perspektiv kobler boligproduksjon til spørsmål om tilgang, makt og urban ressursfordeling uten å erstatte de stedsspesifikke Romsås-kildene."
+          },
+          "guidance_basis": [
+            "data/fag/by/fagkart_by.json"
+          ]
+        },
+        {
+          "id": "romsaås_quiz_28",
+          "quiz_id": "by_romsaås_q28",
+          "categoryId": "by",
+          "placeId": "romsaås",
+          "targetId": "romsaås",
+          "question_scope": "place",
+          "question": "Hva er den sikreste tolkingsregelen på Romsås?",
+          "options": [
+            "Beskriv synlige spor først og bruk separate kilder for sosial årsak",
+            "Les beboernes bakgrunn direkte ut av blokkene",
+            "La én kilde forklare alle perioder"
+          ],
+          "answer": "Beskriv synlige spor først og bruk separate kilder for sosial årsak",
+          "answerIndex": 0,
+          "knowledge": "Romsås bør analyseres med tydelig skille mellom observerbar form, dokumentert planhistorie og sosial tolkning.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_by_bydelsforskjeller_segregering",
+          "source": [
+            "municipality"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Romsås bør analyseres med tydelig skille mellom observerbar form, dokumentert planhistorie og sosial tolkning.",
+          "claim_id": "claim_romsaas_quiz_28",
+          "primary_knowledge_unit_id": "ku_by_romsaas_28",
+          "knowledge_unit_ids": [
+            "ku_by_romsaas_28"
+          ],
+          "concepts": [
+            "drabantby",
+            "terrengtilpasning",
+            "trafikkseparasjon"
+          ],
+          "concept_ids": [
+            "co_by_drabantby_403a07bc0a",
+            "co_by_terrengtilpasning_971c23d2ef",
+            "co_by_trafikkseparasjon_1c75529e4f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    }
+  ]
+}
