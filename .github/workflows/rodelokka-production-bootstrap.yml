@@ -27,6 +27,17 @@ jobs:
           base64 -d tools/build-rodelokka-completion.mjs.gz.b64 | gunzip > tools/build-rodelokka-completion.mjs
           node --check tools/build-rodelokka-completion.mjs
           node tools/build-rodelokka-completion.mjs
+      - name: Normalize Rodeløkka quiz phase metadata
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'data/quiz/production_briefs/by/rodelokka.json';
+          const brief = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const claim = (brief.claims || []).find((item) => item.claim_id === 'claim_rodelokka_quiz_08');
+          if (!claim) throw new Error('claim_rodelokka_quiz_08 missing from source brief');
+          claim.planned_phase = 'middle';
+          fs.writeFileSync(file, `${JSON.stringify(brief, null, 2)}\n`);
+          NODE
       - name: Materialize canonical derived data
         run: |
           npm run quiz:context -- --category by --target rodelokka --output data/quiz/production_context/by/rodelokka.json
