@@ -48,7 +48,7 @@ const career=read('data/Civication/careerGameplayMatrix.json').worlds.find(e=>e.
 assert.equal(career.status,'playable');assert.equal(career.audit.runtime_gate,true);assert.deepEqual(career.audit.missing_components,[]);
 const prereq=read(GRAMMAR);assert.equal(prereq.persistent_work_object_contract.id,'prosjektplan_budsjett_kontrakt_og_avvikslogg');
 const source=fs.readFileSync(path.join(R,'reports/CIVICATION_SUBKULTUR_PRODUKSJON_OG_PROSJEKT_ROLE_WORLD_ROLLOUT_SOURCE_FIRST.md'),'utf8');
-assert.match(source,/Editorial uniqueness/i);assert.match(source,/global reputation score/i);assert.match(source,/candidate_when_shared_work_is_real/);assert.match(source,/29\/30/);
+assert.match(source,/Editorial uniqueness/i);assert.match(source,/global reputation score/i);assert.match(source,/candidate_when_shared_work_is_real/);assert.match(source,/29\\/30/);
 console.log('Civication Subkultur Produksjon og prosjekt Role World rollout: OK');
 `;
 writeText('tests/civication-subkultur-produksjon-og-prosjekt-role-world-rollout.test.js',TEST);
