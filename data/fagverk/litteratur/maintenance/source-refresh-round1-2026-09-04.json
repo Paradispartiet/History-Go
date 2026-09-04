@@ -1,0 +1,133 @@
+{
+  "schema": "history_go_litteratur_maintenance_source_refresh_v1",
+  "version": "1.0.0",
+  "subject_id": "litteratur",
+  "round_id": "source_refresh_round1_2026_09_04",
+  "baseline_main_sha": "2caaf789e1df2bf3d64dfc52be9b56bccf4b50ec",
+  "checked_at": "2026-09-04",
+  "status": "verified",
+  "scope": {
+    "area_id": "faggrunnlag_metode_forskningspraksis",
+    "canonical_source_mutation": false,
+    "new_strict_subcategory": false,
+    "place_production": false,
+    "maintenance_evidence_only": true
+  },
+  "source_checks": [
+    {
+      "source_id": "src_lit_faggrunnlag_metode_forskningspraksis_s01_ntnu_laeringsutbytte",
+      "url": "https://www.ntnu.no/studier/balit/laringsutbytte",
+      "verification_state": "verified_live",
+      "evidence": "NTNU-siden svarer og viser gjeldende læringsutbytte for allmenn litteraturvitenskap under studieprogrammet Nordisk og litteraturvitenskap – bachelor. Kunnskap, ferdigheter og generell kompetanse er fortsatt eksplisitt publisert.",
+      "version_note": "Live 2026; programnavigasjonen har nyere programnavn, men den canonicale læringsutbyttesiden og faginnholdet består.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "source_id": "src_lit_faggrunnlag_metode_forskningspraksis_s02_uio_lit4000",
+      "url": "https://www.uio.no/studier/emner/hf/ilos/LIT4000/",
+      "verification_state": "crawler_access_restricted_403",
+      "evidence": "Direkte 2026-fetch via crawler returnerer HTTP 403. Det er ikke dokumentert 404, redirect til nytt emne eller autoritativ erstatnings-URL.",
+      "version_note": "Crawler-tilgang er blokkert; dette er ikke tilstrekkelig evidens for at emnesiden er avviklet.",
+      "action": "retain_until_authoritative_replacement_is_verified"
+    },
+    {
+      "source_id": "src_lit_faggrunnlag_metode_forskningspraksis_s03_uio_nor4430",
+      "url": "https://www.uio.no/studier/emner/hf/iln/NOR4430/",
+      "verification_state": "crawler_access_restricted_403",
+      "evidence": "Direkte 2026-fetch via crawler returnerer HTTP 403. Ingen autoritativ erstatningsside eller eksplisitt avviklingsmelding er verifisert.",
+      "version_note": "Crawler-tilgang er blokkert; canonical URL beholdes fail-closed fremfor å gjette på ny kursidentitet.",
+      "action": "retain_until_authoritative_replacement_is_verified"
+    },
+    {
+      "source_id": "src_lit_faggrunnlag_metode_forskningspraksis_s04_mla_scholarly_editions",
+      "url": "https://www.mla.org/Resources/Guidelines-and-Data/Reports-and-Professional-Guidelines/Guidelines-for-Editors-of-Scholarly-Editions",
+      "verification_state": "verified_live",
+      "evidence": "MLAs nåværende URL svarer i 2026 og identifiseres som Guidelines for Editors of Scholarly Editions. Siden er teknisk tung og crawleren ser hovedsakelig skall/iframe, men ressursidentiteten er fortsatt aktiv på MLA-domenet.",
+      "version_note": "Live MLA professional-guideline endpoint i 2026.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "source_id": "src_lit_faggrunnlag_metode_forskningspraksis_s05_mla_digital_edition",
+      "url": "https://www.mla.org/content/download/52050/1810116/rptCSE16.pdf",
+      "verification_state": "verified_live",
+      "evidence": "Den canonicale PDF-en kan fortsatt hentes og identifiseres som MLA Statement on the Scholarly Edition in the Digital Age, Web publication, May 2016.",
+      "version_note": "2016-erklæringen er fortsatt tilgjengelig på samme MLA-URL i 2026; alder skal ikke forveksles med lenkedød.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "source_id": "src_lit_faggrunnlag_metode_forskningspraksis_s06_mla_citations",
+      "url": "https://style.mla.org/in-text-citations-overview/",
+      "verification_state": "verified_live",
+      "evidence": "MLA Style Center-siden svarer i 2026, er publisert av MLA og beskriver gjeldende prinsipper for in-text citations med henvisning til niende utgave av MLA Handbook.",
+      "version_note": "Artikkel publisert 1. april 2021 og fortsatt aktiv i 2026.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "source_id": "src_lit_faggrunnlag_metode_forskningspraksis_s07_nesh",
+      "url": "https://www.forskningsetikk.no/retningslinjer/hum-sam/forskningsetiske-retningslinjer-for-samfunnsvitenskap-og-humaniora/",
+      "verification_state": "verified_live",
+      "evidence": "NESHs offisielle side svarer og identifiserer retningslinjene som 5. utgave 2021, redigert/oppdatert 2023. Ressursen er fortsatt gjeldende for humanistisk forskning.",
+      "version_note": "5. utgave 2021, oppdatert 2023; verifisert som gjeldende 2026.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "source_id": "src_lit_faggrunnlag_metode_forskningspraksis_s08_ibsen_hovedtekst",
+      "url": "https://www.ibsen.uio.no/DRVIT_Du%7CDuht.pdf",
+      "verification_state": "fetch_indeterminate_no_replacement",
+      "evidence": "Den konkrete hovedtekst-PDF-en lot seg ikke verifisere gjennom 2026-crawleren, men Henrik Ibsens skrifter er fortsatt operativt representert på samme domene og den tekstkritiske ledsagerkilden til Et dukkehjem er søkbar. Ingen autoritativ erstatnings-URL for akkurat hovedteksten er verifisert.",
+      "version_note": "Indeterminate fetch er ikke det samme som dokumentert lenkedød; replacement er derfor blokkert.",
+      "action": "retain_until_authoritative_replacement_is_verified"
+    },
+    {
+      "source_id": "src_lit_faggrunnlag_metode_forskningspraksis_s09_ibsen_tekstredegjorelse",
+      "url": "https://www.ibsen.uio.no/DRTEKSTRED_Du.pdf",
+      "verification_state": "verified_live",
+      "evidence": "Søkbar 2026-indeksering returnerer den eksakte PDF-en Henrik Ibsens Skrifter – Tekstkritisk redegjørelse til Et dukkehjem og dokumenterer tekstgrunnlag, manuskripter og utgavehistorikk.",
+      "version_note": "Eksakt canonical URL verifisert gjennom søkeindeks i 2026.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "source_id": "src_lit_faggrunnlag_metode_forskningspraksis_s10_nb_dukkehjem_manuskript",
+      "url": "https://www.nb.no/dokumentarv-i-nasjonalbiblioteket/henrik-ibsen-manuskriptmaterialet-til-et-dukkehjem/",
+      "verification_state": "verified_live",
+      "evidence": "Nasjonalbibliotekets Dokumentarv-side svarer i 2026 og dokumenterer at manuskriptmaterialet til Et dukkehjem oppbevares ved Nasjonalbiblioteket og inngår i den institusjonelle dokumentarven.",
+      "version_note": "Live Nasjonalbibliotek-kilde i 2026.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "source_id": "src_lit_faggrunnlag_metode_forskningspraksis_s11_sep_hermeneutics",
+      "url": "https://plato.stanford.edu/entries/hermeneutics/",
+      "verification_state": "verified_live",
+      "evidence": "Stanford Encyclopedia of Philosophy-siden svarer og oppgir substantive revision 30. april 2025. Den dekker hermeneutikk, fortolkningsvaliditet og den hermeneutiske sirkelen.",
+      "version_note": "Substantive revision 2025-04-30; verifisert live 2026.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "source_id": "src_lit_faggrunnlag_metode_forskningspraksis_s12_mla_research_guide",
+      "url": "https://www.mla.org/Publications/Bookstore/MLA-Guides/MLA-Guide-to-Undergraduate-Research-in-Literature-Second-Edition",
+      "verification_state": "verified_live",
+      "evidence": "MLAs nåværende bokside svarer i 2026 og identifiserer Second Edition av MLA Guide to Undergraduate Research in Literature som en guide til biblioteksressurser og forskningsprosessen i litteraturstudier.",
+      "version_note": "Second Edition er fortsatt aktiv på MLAs publikasjonsplattform i 2026.",
+      "action": "retain_canonical_url"
+    }
+  ],
+  "summary": {
+    "canonical_sources_checked": 12,
+    "verified_live": 9,
+    "crawler_access_restricted_403": 2,
+    "fetch_indeterminate_no_replacement": 1,
+    "canonical_url_replacements": 0
+  },
+  "quality_gates": {
+    "all_12_area_sources_accounted_for": true,
+    "canonical_source_ids_preserved": true,
+    "canonical_urls_preserved_without_authoritative_replacement": true,
+    "crawler_403_not_treated_as_dead_link": true,
+    "indeterminate_fetch_not_treated_as_dead_link": true,
+    "version_metadata_refreshed_in_maintenance_evidence": true,
+    "claim_provenance_scope_unchanged": true,
+    "theory_integrity_scope_unchanged": true,
+    "canonical_subject_architecture_unchanged": true,
+    "completion_status_preserved": true
+  }
+}
