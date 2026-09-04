@@ -59,6 +59,29 @@ jobs:
           }
           fs.writeFileSync(file, `${JSON.stringify(brief, null, 2)}\n`);
           NODE
+      - name: Normalize Rodeløkka Story manifest registration
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const manifestFile = 'data/stories/stories_manifest.json';
+          const storyFile = 'data/stories/stories_rodelokka.json';
+          const manifest = JSON.parse(fs.readFileSync(manifestFile, 'utf8'));
+          if (!Array.isArray(manifest.files)) throw new Error('stories_manifest.files is not an array');
+          if (!fs.existsSync(storyFile)) throw new Error(`${storyFile} missing after source builder`);
+          const otherEntries = manifest.files.filter((entry) => {
+            if (!entry || typeof entry !== 'object') return true;
+            return entry.entity_id !== 'rodelokka' && entry.path !== storyFile;
+          });
+          manifest.files = [
+            ...otherEntries,
+            { category: 'by', entity_id: 'rodelokka', path: storyFile },
+          ];
+          const rodelokkaEntries = manifest.files.filter((entry) => entry?.entity_id === 'rodelokka' || entry?.path === storyFile);
+          if (rodelokkaEntries.length !== 1 || rodelokkaEntries[0].path !== storyFile || rodelokkaEntries[0].entity_id !== 'rodelokka') {
+            throw new Error('Rodeløkka Story manifest registration did not normalize to exactly one canonical entry');
+          }
+          fs.writeFileSync(manifestFile, `${JSON.stringify(manifest, null, 2)}\n`);
+          NODE
       - name: Materialize canonical derived data
         run: |
           npm run quiz:context -- --category by --target rodelokka --output data/quiz/production_context/by/rodelokka.json
