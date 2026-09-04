@@ -1,7 +1,0 @@
-const testPath=path.join(ROOT,TEST);
-let testSource=fs.readFileSync(testPath,'utf8');
-const oldActorPlaceAssertion="assert.deepEqual(p.workplace_ids,[PLACES[i]])";
-const actorPlaceExpr="({nora_program_og_oppdragsgiver:'prosjektrom_scope_og_milepaeler',samir_teknisk_produksjon:'produksjonsgulv_rigg_og_crewpunkt',liv_okonomi_og_innkjop:'budsjett_innkjop_og_kontraktsflate',jonas_rettigheter_og_leverandor:'leveranse_rettighet_og_avviksbord'})[p.id]";
-if(!testSource.includes(oldActorPlaceAssertion)) throw new Error('Expected actor/place assertion not found');
-testSource=testSource.replace(oldActorPlaceAssertion,`assert.deepEqual(p.workplace_ids,[${actorPlaceExpr}])`);
-fs.writeFileSync(testPath,testSource,'utf8');

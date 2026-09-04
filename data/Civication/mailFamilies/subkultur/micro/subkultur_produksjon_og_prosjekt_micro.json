@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "subkultur",
+  "role_scope": "subkultur_produksjon_og_prosjekt",
+  "mail_type": "micro",
+  "families": [
+    {
+      "id": "subkultur_produksjon_og_prosjekt_mikrobeslutninger",
+      "purpose": "Authored Subkultur production/project gameplay with a persistent project baseline, explicit budget and contract states, bounded authority, crew/safety limits, rights clearance, handoffs, bounded rework and clean closeout.",
+      "learning_focus": [
+        "scope_baseline_og_endringsstyring",
+        "budsjett_innkjop_og_fullmakt",
+        "crew_arbeidsmiljo_og_sikkerhet",
+        "kontrakt_leverandor_rettighet_og_kreditering",
+        "handoff_avvik_bounded_rework_og_prosjektavslutning"
+      ],
+      "mails": [
+        {
+          "id": "prod_statusord_010",
+          "mail_type": "micro",
+          "mail_family": "subkultur_produksjon_og_prosjekt_mikrobeslutninger",
+          "role_scope": "subkultur_produksjon_og_prosjekt",
+          "phase": "advanced",
+          "day_phase": "afternoon",
+          "priority": 141,
+          "from": "Jonas",
+          "people_ref": "jonas_rettigheter_og_leverandor",
+          "person_id": "jonas_rettigheter_og_leverandor",
+          "place_id": "leveranse_rettighet_og_avviksbord",
+          "subject": "Er leveransen bestilt, bekreftet eller faktisk signert?",
+          "summary": "Tre personer bruker ordet «bekreftet» om samme leveranse. Én mener pristilbud mottatt, én mener muntlig ja, mens kontrakten fortsatt ikke er signert. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter.",
+          "situation": [
+            "Tre personer bruker ordet «bekreftet» om samme leveranse. Én mener pristilbud mottatt, én mener muntlig ja, mens kontrakten fortsatt ikke er signert.",
+            "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+          ],
+          "task_domain": "subkultur_produksjon_og_prosjekt",
+          "competency": "statuspresisjon",
+          "pressure": "kreativ_fart_og_deadline_vs_sporbar_leveranse_arbeidsmiljo_og_sikkerhet",
+          "choice_axis": "sann_status_og_bounded_rework_vs_antakelse_og_skjult_prosjektgjeld",
+          "consequence_axis": "robust_leveranse_vs_okonomi_kontrakt_arbeidsmiljo_sikkerhets_og_tillitsgjeld",
+          "narrative_arc": "statusord",
+          "situated_audience_id": "leverandorer_rettighetshavere_og_artister",
+          "choices": [
+            {
+              "id": "A",
+              "label": "statuspresisjon: sporbar beslutning prod_statusord_010",
+              "reply": "Bruk eksplisitte statuser for tilbud mottatt, godkjent, bestilt, signert, levert og akseptert, og pek på hvilken overgang som mangler eier eller dokumentasjon. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "leveranse"
+              ],
+              "feedback": "Bruk eksplisitte statuser for tilbud mottatt, godkjent, bestilt, signert, levert og akseptert, og pek på hvilken overgang som mangler eier eller dokumentasjon. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "statuspresisjon: skjult gjeld prod_statusord_010",
+              "reply": "La «bekreftet» stå fordi alle omtrent vet hva som menes og detaljene kan ryddes når leverandøren kommer. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon.",
+              "effect": -1,
+              "tags": [
+                "mandatglidning",
+                "prosjektgjeld",
+                "risiko"
+              ],
+              "feedback": "La «bekreftet» stå fordi alle omtrent vet hva som menes og detaljene kan ryddes når leverandøren kommer. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

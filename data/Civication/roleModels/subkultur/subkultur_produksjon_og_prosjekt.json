@@ -1,1 +1,241 @@
-{"schema":"civication_role_model_v2","version":2,"category":"subkultur","role_scope":"subkultur_produksjon_og_prosjekt","role_id":"subkultur_produsent","title":"Produksjon og kulturprosjekt","source":{"evidence":"data/Civication/subcultureCareerEvidence.json"},"badge_titles":["Produsent","Prosjektleder (kulturarrangement)"],"core_narrative":["Subkulturens Badge-status er et eget livs- og omdømmelag. Denne modellen beskriver bare den faktiske jobbhverdagen som låses opp separat, med tydelig mandat, sikkerhet og profesjonelle grenser."],"competence_axes":["prosjektstyring","budsjett_og_ressurs","produksjonsplan","kontrakt_og_leveranse","risiko_og_sikkerhet","team_og_interessenter"],"ideal_type_problems":[{"id":"scope_glir","problem":"Prosjektet får stadig nye ønsker uten mer tid eller penger."},{"id":"leverandor_svikter","problem":"En kritisk leveranse faller bort tett på arrangementet."},{"id":"sikkerhet_vs_ambisjon","problem":"Kunstnerisk idé presser kapasitet, rigg eller publikumsflyt."},{"id":"budsjettgap","problem":"Reell produksjonskostnad overstiger godkjent ramme."},{"id":"konflikt_i_team","problem":"Kreative og operative fagmiljøer skylder på hverandre når planen sprekker."}],"authority_boundaries":{"cannot":["skjule_budsjett_eller_sikkerhetsavvik","inngaa_avtaler_uten_mandat","presse_crew_til_usikkert_arbeid","bruke_frivillighet_som_erstatning_for_kritisk_fagkompetanse"]},"notes":["Shared canonical Subkultur work world; eksisterende individuelle v1-roleModels beholdes som kompatibilitetslag."]}
+{
+  "schema": "civication_role_model_v2",
+  "version": 2,
+  "category": "subkultur",
+  "role_scope": "subkultur_produksjon_og_prosjekt",
+  "role_id": "subkultur_produsent",
+  "title": "Produksjon og kulturprosjekt",
+  "source": {
+    "badge_file": "data/badges/subkultur.json",
+    "badge_id": "subkultur",
+    "evidence": "data/Civication/subcultureCareerEvidence.json"
+  },
+  "badge_titles": [
+    "Produsent",
+    "Prosjektleder (kulturarrangement)"
+  ],
+  "core_narrative": [
+    "Produksjon og kulturprosjekt gjør en kreativ bestilling til en sporbar leveranse gjennom scope, budsjett, plan, crew, leverandører, rettigheter, sikkerhet, avvik og sluttoppgjør; Badge-status gir aldri automatisk jobb, signaturrett eller sikkerhetsmyndighet.",
+    "Prosjektloggen skiller ønsket, godkjent, bestilt, signert, levert, testet og lukket status slik at fart, vennskap eller miljøtroverdighet aldri erstatter kontraktsfullmakt, arbeidsmiljø, sikkerhetsfrigivelse eller rettighetsklarering.",
+    "Arbeidet går i løkker av bestilling og baseline, estimering, venting på avklaring, beslutning, handoff, produksjon, kontroll, avvik, rework og prosjektavslutning der samme prosjektidentitet følger hele løpet."
+  ],
+  "competence_axes": [
+    "scope_og_endringsstyring",
+    "budsjett_og_innkjop",
+    "produksjonsplan_og_avhengigheter",
+    "kontrakt_rettigheter_og_leverandor",
+    "crew_arbeidsmiljo_og_sikkerhet",
+    "handoff_avvik_og_prosjektavslutning"
+  ],
+  "ideal_type_problems": [
+    {
+      "id": "scope_glir",
+      "problem": "Prosjektet får stadig nye ønsker uten mer tid, penger eller beslutning om hva som skal ut."
+    },
+    {
+      "id": "leverandor_svikter",
+      "problem": "En kritisk leverandør eller underleverandør faller bort tett på gjennomføring."
+    },
+    {
+      "id": "sikkerhet_vs_ambisjon",
+      "problem": "Kreativ idé presser rigg, kapasitet, arbeidstid eller publikumsflyt utover det som er frigitt."
+    },
+    {
+      "id": "budsjettgap",
+      "problem": "Reell kostnad overstiger godkjent ramme, mens bestilleren fortsatt forventer full leveranse."
+    },
+    {
+      "id": "rettighetsrest",
+      "problem": "Markedsføring eller dokumentasjon er klar, men en sentral rettighet eller kontraktsforpliktelse er ikke det."
+    }
+  ],
+  "authority_boundaries": {
+    "cannot": [
+      "inngaa_bindende_avtaler_eller_bestillinger_utover_delegert_fullmakt",
+      "skjule_budsjett_kontrakt_rettighets_eller_sikkerhetsavvik_for_a_bevare_fremdrift",
+      "presse_crew_til_usikkert_arbeid_eller_omga_arbeidsrett_arbeidsgiveransvar_og_hviletid",
+      "bruke_frivillighet_som_erstatning_for_kritisk_fagkompetanse_eller_fast_ansvar",
+      "behandle_subkulturell_status_vennskap_eller_programonske_som_rettighetsklarering_signatur_eller_sikkerhetsfrigivelse"
+    ]
+  },
+  "notes": [
+    "Shared canonical Subkultur work world; eksisterende individuelle v1-roleModels beholdes som kompatibilitetslag."
+  ],
+  "work_life": {
+    "daily_work": [
+      "Oppdaterer prosjektlogg med scope, baseline, budsjett, bestillinger, kontrakter, crew, rettigheter, sikkerhetsstatus, avvik, eier og neste kontroll.",
+      "Koordinerer program, teknikk, økonomi og leverandører uten å gjøre koordinering til signatur, juridisk klarering eller sikkerhetsfrigivelse.",
+      "Replanlegger når premisser endres, bevarer tidligere prosjektversjon og gjør konsekvens for tid, kost, kvalitet, arbeidsmiljø og risiko synlig.",
+      "Lukker prosjektet først når leveranser, aksept, fakturaer, rettigheter, avvik, læring og ansvar for restpunkter er eksplisitt overlevert."
+    ],
+    "responsibilities": [
+      "prosjektmandat, scope og milepæler",
+      "budsjett, innkjøp og prognose",
+      "produksjonsplan, crew og leverandører",
+      "kontrakter, rettigheter og kreditering",
+      "sikkerhet, avvik, handoff og prosjektavslutning"
+    ],
+    "work_environment": [
+      "Kulturproduksjon med programbestiller, teknisk team, økonomi, leverandører, frilansere, frivillige, artister og publikum, med reell venting på tilbud, godkjenning, signatur, rettighet, bemanning, teknisk test eller sikkerhetsfrigivelse."
+    ],
+    "status_position": [
+      "Tillit følger evnen til å levere under press uten å skjule scope-, økonomi-, arbeidsmiljø-, kontrakts-, rettighets- eller sikkerhetsgjeld; produsentstatus kan aldri brukes som universell fullmakt."
+    ],
+    "workplaces": [
+      "prosjektrom_scope_og_milepaeler",
+      "budsjett_innkjop_og_kontraktsflate",
+      "produksjonsgulv_rigg_og_crewpunkt",
+      "leveranse_rettighet_og_avviksbord"
+    ]
+  },
+  "career_path": {
+    "entry_from": [
+      "Avtalt produsent- eller prosjektlederoppdrag med eksplisitt arbeidsgiver/oppdragsgiver og mandat; Badge-progresjon alene gir ikke jobb, budsjett eller signaturrett."
+    ],
+    "progression_to": [
+      "Større produksjons-, portefølje- eller virksomhetsansvar når dokumentert leveranseevne, økonomi, arbeidsmiljø og delegasjon faktisk foreligger."
+    ],
+    "possible_promotions": [
+      "Seniorprodusent eller prosjektleder med større budsjett, flere leverandører og tydelig delegert beslutningsrom.",
+      "Produksjonsleder, porteføljeleder eller arena-/institusjonsansvar der ansvar, arbeidsgiverlinje og fullmakt er formelt avklart."
+    ],
+    "possible_exits": [
+      "Program og koordinering, produksjonsledelse, kulturarena-ledelse eller arrangementsdrift.",
+      "Innkjøp, partnerskap, prosjektadministrasjon, rettighetsarbeid eller annen koordinering der produksjonserfaring er relevant uten automatisk ny myndighet."
+    ],
+    "career_risks": [
+      "Høy sosial kapital og deadlinepress kan normalisere scope creep, gratis ekstraarbeid og uformelle avtaler.",
+      "Et sterkt leveransefokus kan skjule arbeidsmiljø-, sikkerhets-, rettighets- eller økonomigjeld dersom prosjektloggen ikke bevarer sann status."
+    ]
+  },
+  "required_knowledge": {
+    "education_basis": [
+      "Prosjektstyring, budsjettering, innkjøp, kontrakt og fullmakt, rettigheter, arbeidsmiljø, HMS, produksjonsplanlegging, leverandøroppfølging, tilgjengelighet, beredskap og etterrapportering."
+    ],
+    "skills": [
+      "scope_og_baseline",
+      "budsjett_prognose_og_innkjop",
+      "produksjonsplan_crew_og_avhengigheter",
+      "kontrakt_rettighet_og_kreditering",
+      "sikkerhet_avvik_og_replanlegging",
+      "handoff_sluttoppgjor_og_laring"
+    ],
+    "category_knowledge": [
+      "Hvordan subkulturelle kulturprosjekter kan bevare identitet og relasjoner samtidig som leveranser, penger, mennesker, rettigheter og sikkerhet behandles profesjonelt og sporbart."
+    ],
+    "history_go_badges": [
+      "subkultur"
+    ],
+    "place_connections": [
+      "prosjektrom_scope_og_milepaeler",
+      "budsjett_innkjop_og_kontraktsflate",
+      "produksjonsgulv_rigg_og_crewpunkt",
+      "leveranse_rettighet_og_avviksbord"
+    ],
+    "people_connections": [
+      "nora_program_og_oppdragsgiver",
+      "samir_teknisk_produksjon",
+      "liv_okonomi_og_innkjop",
+      "jonas_rettigheter_og_leverandor"
+    ]
+  },
+  "authority_boundary": {
+    "may": [
+      "koordinere prosjektarbeid og prioriteringer innen delegert mandat",
+      "be om og dokumentere økonomi-, kontrakts-, rettighets-, bemannings- og sikkerhetsavklaringer",
+      "holde igjen bestilling, handoff, publisering eller gjennomføring når nødvendig fullmakt eller frigivelse mangler",
+      "replanlegge berørte leveranser og rapportere konsekvens når premiss endres"
+    ],
+    "may_not": [
+      "inngaa_bindende_avtaler_eller_bestillinger_utover_delegert_fullmakt",
+      "skjule_budsjett_kontrakt_rettighets_eller_sikkerhetsavvik_for_a_bevare_fremdrift",
+      "presse_crew_til_usikkert_arbeid_eller_omga_arbeidsrett_arbeidsgiveransvar_og_hviletid",
+      "bruke_frivillighet_som_erstatning_for_kritisk_fagkompetanse_eller_fast_ansvar",
+      "behandle_subkulturell_status_vennskap_eller_programonske_som_rettighetsklarering_signatur_eller_sikkerhetsfrigivelse"
+    ]
+  },
+  "related_people": [
+    {
+      "id": "nora_program_og_oppdragsgiver",
+      "name": "Nora",
+      "role": "programansvarlig og oppdragsgiver",
+      "workplace_ids": [
+        "prosjektrom_scope_og_milepaeler"
+      ],
+      "function": "Nora bærer bestilling, programintensjon, målgruppe og den kreative ambisjonen inn i prosjektet. Hun gjør scope, prioriteringer og endringsønsker synlige før teamet begynner å behandle dem som vedtatte leveranser, og hun må skille ønsket effekt fra faktisk finansiert og kontraktsfestet omfang slik at produksjonen kan replanlegges uten skjult arbeid eller uformelle løfter.",
+      "authority_relation": "Nora kan beskrive behov, prioritere innen sitt bestillermandat og godkjenne leveranser der dette er delegert, men hun kan ikke utvide produsentens fullmakt, love penger som ikke finnes, overstyre sikkerhetsansvarlig, dispensere fra rettigheter eller arbeidsgivergrenser eller gjøre et programønske til bindende leverandør- eller crewforpliktelse. Produsenten må derfor få endringer eksplisitt besluttet og versjonert.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "samir_teknisk_produksjon",
+      "name": "Samir",
+      "role": "teknisk produsent og crew-koordinator",
+      "workplace_ids": [
+        "produksjonsgulv_rigg_og_crewpunkt"
+      ],
+      "function": "Samir holder tekniske avhengigheter, rigg, strøm, kapasitet, skift, fagkompetanse, reserveplan og reell gjennomførbarhet samlet. Han gjør konsekvensen av tidskutt og sene endringer synlig i crewplan og sikkerhetsstatus, og sørger for at dugnadsånd aldri blir brukt som erstatning for kritisk kompetanse, pauser eller en faktisk frigitt teknisk løsning.",
+      "authority_relation": "Samir kan stoppe eller holde igjen teknisk arbeid innen delegert sikkerhets- og fagmyndighet når forutsetninger ikke er oppfylt, og han kan kreve ny test eller bemanning. Han kan ikke inngå økonomiske avtaler på prosjektets vegne, utvide programmet, gjøre personalsanksjoner eller godkjenne rettigheter. Produsenten må behandle teknisk stopp som faktisk premiss og replanlegge berørte leveranser i stedet for å presse crew.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "liv_okonomi_og_innkjop",
+      "name": "Liv",
+      "role": "økonomi- og innkjøpskoordinator",
+      "workplace_ids": [
+        "budsjett_innkjop_og_kontraktsflate"
+      ],
+      "function": "Liv holder kostnadsramme, bestillinger, tilbud, innkjøpsspor, betalingsplan, fakturaer, tilskuddsbindinger og prognose samlet på samme prosjektversjon. Hun skiller estimert, godkjent, bestilt, levert og fakturert slik at prosjektet ikke kan finansiere nye ønsker med uuttalte antakelser eller skyve økonomiske avvik til sluttoppgjøret.",
+      "authority_relation": "Liv kan kreve korrekt bestillingsgrunnlag, synliggjøre avvik, holde igjen innkjøp som mangler fullmakt eller budsjettdekning og eskalere når vilkår endres. Hun kan ikke selv utvide totalrammen, godkjenne kunstnerisk scope, omgå anskaffelses- eller tilskuddsbetingelser eller gjøre et tilbud til avtale uten riktig signatur. Produsenten må skille økonomifakta fra egen disposisjonsrett.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "jonas_rettigheter_og_leverandor",
+      "name": "Jonas",
+      "role": "kontrakt-, rettighets- og leverandørkoordinator",
+      "workplace_ids": [
+        "leveranse_rettighet_og_avviksbord"
+      ],
+      "function": "Jonas samler kontraktsversjoner, leverandørforpliktelser, forsikring, kreditering, lisens- og rettighetsstatus, underleverandører og avvik i samme leveransespor. Han gjør det synlig når markedsføring, opptak, musikk, foto, kunstnerbidrag eller tekniske leveranser har en annen klareringsstatus enn prosjektplanen antar, slik at offentlig kommunikasjon ikke løper foran faktisk rett.",
+      "authority_relation": "Jonas kan markere betingelser, stoppe handoff som mangler dokumentert rettighet eller kontraktsgrunnlag og eskalere tolkning til riktig juridisk eller kontraktsansvarlig. Han kan ikke gi juridiske garantier utover dokumentasjon, signere uten fullmakt, endre honorar eller scope alene eller gjøre sosial tillit til rettighetsklarering. Produsenten må holde forespurt, forhandlet, signert og klarert status adskilt.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    }
+  ],
+  "related_places": [
+    {
+      "id": "prosjektrom_scope_og_milepaeler",
+      "name": "Prosjektrommet for scope og milepæler",
+      "function": "Her ligger gjeldende prosjektmandat, mål, leveranseliste, milepæler, beslutningseiere, avhengigheter og endringslogg. Flaten skiller idé, forespørsel, godkjent endring og ny baseline, slik at et kreativt eller sosialt ønske ikke blir gratis skjult arbeid og slik at senere rework bare åpner de delene som faktisk er berørt.",
+      "fictional_work_surface": true,
+      "canonical_place_ref": null
+    },
+    {
+      "id": "budsjett_innkjop_og_kontraktsflate",
+      "name": "Budsjett-, innkjøps- og kontraktsflaten",
+      "function": "Her holdes estimat, godkjent ramme, tilbud, bestilling, avtale, betalingsplan, faktura, tilskuddsbinding og økonomisk prognose sammen. Flaten gjør det umulig å kalle en forventet inntekt disponibel eller et pristilbud bindende før riktig fullmakt og dokumentasjon finnes.",
+      "fictional_work_surface": true,
+      "canonical_place_ref": null
+    },
+    {
+      "id": "produksjonsgulv_rigg_og_crewpunkt",
+      "name": "Produksjonsgulvet, rigg- og crewpunktet",
+      "function": "Her møtes kjøreplan, rigg, tekniske avhengigheter, skift, pauser, fagkompetanse, kapasitet, sikkerhetsstatus og reell fremdrift. Et programønske kan ikke gjøre en uprøvd løsning eller ubemannet kritisk funksjon klar; endringer må inn i plan, ansvar og kontroll før ny frigivelse.",
+      "fictional_work_surface": true,
+      "canonical_place_ref": null
+    },
+    {
+      "id": "leveranse_rettighet_og_avviksbord",
+      "name": "Leveranse-, rettighets- og avviksbordet",
+      "function": "Her samles leverandørstatus, kontraktsversjon, rettigheter, kreditering, forsikring, avvik, akseptansekriterier, sluttoppgjør og dokumentert overlevering. Flaten skiller levert, godkjent, klarert og lukket, slik at prosjektavslutning ikke skjuler restarbeid, uavklarte krav eller senere konsekvenser.",
+      "fictional_work_surface": true,
+      "canonical_place_ref": null
+    }
+  ]
+}

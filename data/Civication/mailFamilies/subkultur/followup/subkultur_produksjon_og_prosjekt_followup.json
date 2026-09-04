@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "subkultur",
+  "role_scope": "subkultur_produksjon_og_prosjekt",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "subkultur_produksjon_og_prosjekt_oppfolging",
+      "purpose": "Authored Subkultur production/project gameplay with a persistent project baseline, explicit budget and contract states, bounded authority, crew/safety limits, rights clearance, handoffs, bounded rework and clean closeout.",
+      "learning_focus": [
+        "scope_baseline_og_endringsstyring",
+        "budsjett_innkjop_og_fullmakt",
+        "crew_arbeidsmiljo_og_sikkerhet",
+        "kontrakt_leverandor_rettighet_og_kreditering",
+        "handoff_avvik_bounded_rework_og_prosjektavslutning"
+      ],
+      "mails": [
+        {
+          "id": "prod_oppfolging_013",
+          "mail_type": "followup",
+          "mail_family": "subkultur_produksjon_og_prosjekt_oppfolging",
+          "role_scope": "subkultur_produksjon_og_prosjekt",
+          "phase": "mastery",
+          "day_phase": "evening",
+          "priority": 138,
+          "from": "Samir",
+          "people_ref": "samir_teknisk_produksjon",
+          "person_id": "samir_teknisk_produksjon",
+          "place_id": "produksjonsgulv_rigg_og_crewpunkt",
+          "subject": "Etter arrangementet viser timelistene at reserveplanen kostet mer arbeidstid enn antatt",
+          "summary": "Arrangementet gikk godt for publikum, men timelister og avvikslogg viser ekstra skift, senere nedrigg og høyere kostnad. Samme løsning er foreslått for neste produksjon. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter.",
+          "situation": [
+            "Arrangementet gikk godt for publikum, men timelister og avvikslogg viser ekstra skift, senere nedrigg og høyere kostnad. Samme løsning er foreslått for neste produksjon.",
+            "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+          ],
+          "task_domain": "subkultur_produksjon_og_prosjekt",
+          "competency": "effekt_og_bounded_rework",
+          "pressure": "kreativ_fart_og_deadline_vs_sporbar_leveranse_arbeidsmiljo_og_sikkerhet",
+          "choice_axis": "sann_status_og_bounded_rework_vs_antakelse_og_skjult_prosjektgjeld",
+          "consequence_axis": "robust_leveranse_vs_okonomi_kontrakt_arbeidsmiljo_sikkerhets_og_tillitsgjeld",
+          "narrative_arc": "oppfolging",
+          "situated_audience_id": "crew_og_okonomi",
+          "choices": [
+            {
+              "id": "A",
+              "label": "effekt_og_bounded_rework: sporbar beslutning prod_oppfolging_013",
+              "reply": "Koble faktisk arbeidstid og kostnad til prosjektversjonen, korriger estimater og bemanningspremiss, og gjenbruk bare reserveplanen med ny kapasitet og tydelig godkjenning. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "leveranse"
+              ],
+              "feedback": "Koble faktisk arbeidstid og kostnad til prosjektversjonen, korriger estimater og bemanningspremiss, og gjenbruk bare reserveplanen med ny kapasitet og tydelig godkjenning. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "effekt_og_bounded_rework: skjult gjeld prod_oppfolging_013",
+              "reply": "Behandle overskridelsen som et engangstilfelle fordi sluttproduktet ble bra og kopier samme plan til neste prosjekt. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon.",
+              "effect": -1,
+              "tags": [
+                "mandatglidning",
+                "prosjektgjeld",
+                "risiko"
+              ],
+              "feedback": "Behandle overskridelsen som et engangstilfelle fordi sluttproduktet ble bra og kopier samme plan til neste prosjekt. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

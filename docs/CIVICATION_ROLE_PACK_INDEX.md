@@ -15,11 +15,11 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 
 ## Sammendrag
 
-- complete_reference_v2: 48
+- complete_reference_v2: 51
 - complete_reference: 0
 - playable_v1: 1
 - partial_pack: 23
-- role_model_only: 188
+- role_model_only: 186
 - generated_stub: 0
 - broken_mapping: 0
 - missing: 37
@@ -289,10 +289,11 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | subkultur | subkultur_program_og_koordinering | subkultur_kulturkonsulent | Kulturkonsulent | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | subkultur | subkultur_arrangementsdrift | subkultur_kulturmedarbeider | Kulturmedarbeider | ja | ja | ja | ja | ja | ja | nei | ja | nei | ja | ja | ja | ja | partial_pack |
 | subkultur | subkultur_kulturarena_ledelse | subkultur_kulturarena_ledelse | Ledelse av kulturarena | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
+| subkultur | subkultur_produksjon_og_prosjekt | subkultur_produsent | Produksjon og kulturprosjekt | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | subkultur | subkultur_arrangementsdrift | subkultur_produksjonsassistent | Produksjonsassistent | ja | ja | ja | ja | ja | ja | nei | ja | nei | ja | ja | ja | ja | partial_pack |
 | subkultur | subkultur_produksjonsledelse | subkultur_produksjonsledelse | Produksjonsleder | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
-| subkultur | subkultur_produksjon_og_prosjekt | subkultur_produsent | Produsent | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
-| subkultur | subkultur_produksjon_og_prosjekt | subkultur_prosjektleder_kulturarrangement | Prosjektleder (kulturarrangement) | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
+| subkultur | subkultur_produksjon_og_prosjekt | subkultur_produsent | Produsent | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
+| subkultur | subkultur_produksjon_og_prosjekt | subkultur_prosjektleder_kulturarrangement | Prosjektleder (kulturarrangement) | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | teater | ensemblemedlem | teater_ensemblemedlem | Ensemblemedlem | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | teater | fast_publikummer | teater_fast_publikummer | Fast publikummer | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | teater | hovedrolleinnehaver | teater_hovedrolleinnehaver | Hovedrolleinnehaver | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |

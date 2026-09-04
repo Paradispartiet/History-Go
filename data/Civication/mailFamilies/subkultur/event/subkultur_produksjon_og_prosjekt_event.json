@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "subkultur",
+  "role_scope": "subkultur_produksjon_og_prosjekt",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "subkultur_produksjon_og_prosjekt_produksjonshendelser",
+      "purpose": "Authored Subkultur production/project gameplay with a persistent project baseline, explicit budget and contract states, bounded authority, crew/safety limits, rights clearance, handoffs, bounded rework and clean closeout.",
+      "learning_focus": [
+        "scope_baseline_og_endringsstyring",
+        "budsjett_innkjop_og_fullmakt",
+        "crew_arbeidsmiljo_og_sikkerhet",
+        "kontrakt_leverandor_rettighet_og_kreditering",
+        "handoff_avvik_bounded_rework_og_prosjektavslutning"
+      ],
+      "mails": [
+        {
+          "id": "prod_leverandorfall_009",
+          "mail_type": "event",
+          "mail_family": "subkultur_produksjon_og_prosjekt_produksjonshendelser",
+          "role_scope": "subkultur_produksjon_og_prosjekt",
+          "phase": "advanced",
+          "day_phase": "afternoon",
+          "priority": 142,
+          "from": "Samir",
+          "people_ref": "samir_teknisk_produksjon",
+          "person_id": "samir_teknisk_produksjon",
+          "place_id": "produksjonsgulv_rigg_og_crewpunkt",
+          "subject": "Kritisk leverandør melder avbud kvelden før innlast",
+          "summary": "En leverandør som eier en sentral teknisk leveranse kan ikke møte. Reservealternativet krever annen rigg, høyere kostnad og ny sikkerhetskontroll. Prosjektloggen skal samtidig skille forespurt, godkjent, bestilt, signert, levert, testet, akseptert og lukket status, sammen med budsjett, crew, rettigheter, sikkerhet, beslutningseier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere baseline, begrunnelse, fullmakt eller varsling forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av prosjektet kan beholde mens saken venter.",
+          "situation": [
+            "En leverandør som eier en sentral teknisk leveranse kan ikke møte. Reservealternativet krever annen rigg, høyere kostnad og ny sikkerhetskontroll.",
+            "Produsenten kan koordinere prosjektet innen delegert mandat, men kan ikke gjøre programønske, miljøstatus eller deadline til signatur, rettighetsklarering, arbeidsgiverfullmakt eller sikkerhetsfrigivelse.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere prosjektversjon slettes."
+          ],
+          "task_domain": "subkultur_produksjon_og_prosjekt",
+          "competency": "beredskap_og_replanlegging",
+          "pressure": "kreativ_fart_og_deadline_vs_sporbar_leveranse_arbeidsmiljo_og_sikkerhet",
+          "choice_axis": "sann_status_og_bounded_rework_vs_antakelse_og_skjult_prosjektgjeld",
+          "consequence_axis": "robust_leveranse_vs_okonomi_kontrakt_arbeidsmiljo_sikkerhets_og_tillitsgjeld",
+          "narrative_arc": "leverandorfall",
+          "situated_audience_id": "crew_og_tekniske_fag",
+          "choices": [
+            {
+              "id": "A",
+              "label": "beredskap_og_replanlegging: sporbar beslutning prod_leverandorfall_009",
+              "reply": "Aktiver reserveplan, gjenåpne bare berørte budsjett-, rigg-, kontrakts- og sikkerhetsledd, og ikke kall løsningen klar før ny kontroll og beslutning er dokumentert. Jeg oppdaterer prosjektplan_budsjett_kontrakt_og_avvikslogg med gjeldende prosjektversjon, beslutningseier, fullmakt, åpne avhengigheter og neste kontroll slik at koordinering ikke kan leses som signatur, rettighetsklarering, arbeidsgiveravgjørelse eller sikkerhetsfrigivelse.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "leveranse"
+              ],
+              "feedback": "Aktiver reserveplan, gjenåpne bare berørte budsjett-, rigg-, kontrakts- og sikkerhetsledd, og ikke kall løsningen klar før ny kontroll og beslutning er dokumentert. Det beskytter fremdrift uten å skjule kostnad, arbeidsmiljø, rettighet, sikkerhet eller mandat. Når premisset endres er det tydelig hvilken prosjektversjon som gjaldt, hvem som eier neste beslutning og hvilke deler som faktisk skal åpnes igjen, mens resten av leveransen beholder sin dokumenterte status.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "beredskap_og_replanlegging: skjult gjeld prod_leverandorfall_009",
+              "reply": "Bestill første tilgjengelige erstatning og behold opprinnelig kjøreplan for å unngå å skape uro i teamet. Jeg lar tempo, relasjon eller deadline styre nå og kompletterer budsjett-, kontrakts-, arbeidsmiljø-, rettighets- eller sikkerhetssporet senere dersom neste funksjon ber om dokumentasjon.",
+              "effect": -1,
+              "tags": [
+                "mandatglidning",
+                "prosjektgjeld",
+                "risiko"
+              ],
+              "feedback": "Bestill første tilgjengelige erstatning og behold opprinnelig kjøreplan for å unngå å skape uro i teamet. Det kan bevare fart eller sosial ro i øyeblikket, men flytter usikkerhet og kostnad til crew, leverandører, oppdragsgiver, rettighetshavere eller publikum. Senere blir det vanskelig å bevise hva som var avtalt, hvilke penger som var disponible, om løsningen var frigitt og hvem som skulle ha lukket restpunktet.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
