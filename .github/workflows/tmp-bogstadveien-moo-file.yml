@@ -1,0 +1,19 @@
+name: TEMP Bogstadveien MOO file
+on:
+  push:
+    branches: [control/bogstadveien-finalize-20260904-v3]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Inspect MOO logo bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -L --max-time 15 -A 'History-Go-place-production/1.0' -D /tmp/headers -o /tmp/moo 'https://www.moo.no/wp-content/uploads/2023/06/moo-logo.png'
+          cat /tmp/headers
+          wc -c /tmp/moo
+          file /tmp/moo
+          xxd -l 160 /tmp/moo
