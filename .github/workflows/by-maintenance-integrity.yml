@@ -5,7 +5,9 @@ on:
     paths:
       - 'data/fagverk/by/maintenance/**'
       - 'scripts/audit-by-source-refresh-place-case-expansion.mjs'
+      - 'scripts/audit-by-source-refresh-place-case-expansion-round2.mjs'
       - 'tests/by-source-refresh-place-case-expansion.test.mjs'
+      - 'tests/by-source-refresh-place-case-expansion-round2.test.mjs'
       - '.github/workflows/by-maintenance-integrity.yml'
 
 permissions:
@@ -25,11 +27,13 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
-      - name: Audit By source refresh and place-case expansion
+      - name: Audit By maintenance rounds 1 and 2
         run: |
           node --check scripts/audit-by-source-refresh-place-case-expansion.mjs
+          node --check scripts/audit-by-source-refresh-place-case-expansion-round2.mjs
           node scripts/audit-by-source-refresh-place-case-expansion.mjs
-          node --test tests/by-source-refresh-place-case-expansion.test.mjs
+          node scripts/audit-by-source-refresh-place-case-expansion-round2.mjs
+          node --test tests/by-source-refresh-place-case-expansion.test.mjs tests/by-source-refresh-place-case-expansion-round2.test.mjs
       - name: Preserve By completion, theory and editorial integrity
         run: |
           node scripts/audit-fagverk-by-complete.mjs
