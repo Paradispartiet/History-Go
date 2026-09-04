@@ -1,6 +1,6 @@
 # People-place coverage audit
 
-Generert: 2026-09-04T06:39:45.316Z
+Generert: 2026-09-03T05:35:02.067Z
 
 ## Sammendrag
 
@@ -11,7 +11,7 @@ Generert: 2026-09-04T06:39:45.316Z
 - People-place-lenker: **0**
 - People koblet til flere gyldige steder: **0**
 - People uten gyldig sted: **1444**
-- Ugyldige place-referanser: **1691**
+- Ugyldige place-referanser: **1690**
 - Duplikate place-referanser inne på people: **1282**
 - People uten image: **1048**
 - People uten cardImage: **1052**
@@ -180,7 +180,7 @@ Generert: 2026-09-04T06:39:45.316Z
 - nikolas_arnesson (Nikolas Arnesson) -> hallvardskirken_oslo
 - inga_fra_varteig (Inga fra Varteig) -> varteig_kirke
 - inga_fra_varteig (Inga fra Varteig) -> nidaros_erkebispegarden
-- ... 1591 flere
+- ... 1590 flere
 
 ## Duplikate place-referanser inne på people
 
