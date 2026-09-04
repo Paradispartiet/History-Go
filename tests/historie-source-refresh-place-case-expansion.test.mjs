@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict';
+import test from 'node:test';
+import { auditHistorieSourceRefreshPlaceCaseExpansion } from '../scripts/audit-historie-source-refresh-place-case-expansion.mjs';
+
+test('Historie maintenance round 1 preserves completion and expands source-bound place cases', () => {
+  const report = auditHistorieSourceRefreshPlaceCaseExpansion();
+  assert.equal(report.status, 'passed');
+  assert.equal(report.round, 1);
+  assert.equal(report.source_refresh_count, 10);
+  assert.ok(report.publisher_count >= 7);
+  assert.equal(report.case_count, 5);
+  assert.equal(report.chapter_count, 5);
+  assert.equal(report.canonical_chapter_count, 23);
+  assert.equal(report.baseline_editorial_case_anchor_count, 54);
+  assert.equal(report.new_unique_place_count, 5);
+  assert.equal(report.projected_case_anchor_count, 59);
+  assert.equal(report.gates.source_health, true);
+  assert.equal(report.gates.canonical_chapter_identity, true);
+  assert.equal(report.gates.canonical_place_identity, true);
+  assert.equal(report.gates.case_places_new_to_editorial_baseline, true);
+  assert.equal(report.gates.case_source_trace, true);
+  assert.equal(report.gates.claim_provenance_preserved, true);
+  assert.equal(report.gates.historiography_and_theory_integrity_scope_unchanged, true);
+  assert.equal(report.gates.subject_architecture_unchanged, true);
+  assert.equal(report.gates.completion_status_preserved, true);
+  assert.equal(report.gates.source_conflicts_preserved, true);
+  assert.equal(report.gates.systemic_effects_not_localized_to_place_anchor, true);
+  assert.equal(report.gates.archaeological_context_bounded, true);
+  assert.equal(report.gates.no_strict_subcategory, true);
+  assert.equal(report.gates.no_place_production, true);
+});
