@@ -11,11 +11,11 @@
     "support_worlds": 1,
     "statuses": {
       "reference_complete": 5,
-      "playable": 49,
+      "playable": 50,
       "partial": 0,
-      "architecture_only": 31
+      "architecture_only": 30
     },
-    "runtime_gate_pass": 54,
+    "runtime_gate_pass": 55,
     "life_story_complete": 13,
     "component_debt": {
       "entry": {
@@ -24,13 +24,13 @@
         "missing": 0
       },
       "day_one": {
-        "complete": 54,
+        "complete": 55,
         "partial": 0,
-        "missing": 31
+        "missing": 30
       },
       "workday_loop": {
-        "complete": 54,
-        "partial": 31,
+        "complete": 55,
+        "partial": 30,
         "missing": 0
       },
       "practice_stories": {
@@ -39,23 +39,23 @@
         "missing": 0
       },
       "people": {
-        "complete": 54,
+        "complete": 55,
         "partial": 0,
-        "missing": 31
+        "missing": 30
       },
       "places": {
-        "complete": 54,
+        "complete": 55,
         "partial": 0,
-        "missing": 31
+        "missing": 30
       },
       "mail": {
-        "complete": 54,
+        "complete": 55,
         "partial": 0,
-        "missing": 31
+        "missing": 30
       },
       "knowledge": {
-        "complete": 54,
-        "partial": 7,
+        "complete": 55,
+        "partial": 6,
         "missing": 24
       },
       "quality_axes": {
@@ -69,14 +69,14 @@
         "missing": 0
       },
       "consequences": {
-        "complete": 54,
+        "complete": 55,
         "partial": 0,
-        "missing": 31
+        "missing": 30
       },
       "performance": {
-        "complete": 51,
+        "complete": 52,
         "partial": 3,
-        "missing": 31
+        "missing": 30
       },
       "economy": {
         "complete": 85,
@@ -84,14 +84,14 @@
         "missing": 0
       },
       "progression": {
-        "complete": 51,
+        "complete": 52,
         "partial": 3,
-        "missing": 31
+        "missing": 30
       },
       "exit": {
-        "complete": 51,
+        "complete": 52,
         "partial": 3,
-        "missing": 31
+        "missing": 30
       }
     }
   },
@@ -21983,6 +21983,7 @@
       "category": "subkultur",
       "role_scope": "subkultur_program_og_koordinering",
       "declared_by": [
+        "mailPlan",
         "workGrammar"
       ],
       "badge_titles": [
@@ -21995,57 +21996,59 @@
         "subkultur_booking_innholdskoordinator",
         "subkultur_kulturkonsulent"
       ],
-      "status": "architecture_only",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/subkultur/crew.json",
           "data/Civication/roleModels/subkultur/dandy.json",
-          "data/Civication/roleModels/subkultur/gangster.json"
+          "data/Civication/roleModels/subkultur/gangster.json",
+          "data/Civication/roleModels/subkultur/subkultur_program_og_koordinering.json"
         ],
         "work_grammar": "data/Civication/workGrammars/subkultur/subkultur_program_og_koordinering.json",
         "shared_work_grammars": [],
-        "mail_plan": null,
+        "mail_plan": "data/Civication/mailPlans/subkultur/subkultur_program_og_koordinering_plan.json",
         "mail_families": {
           "job": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/subkultur/job/subkultur_program_og_koordinering_job.json",
+            "count": 4
           },
           "people": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/subkultur/people/subkultur_program_og_koordinering_people.json",
+            "count": 4
           },
           "conflict": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/subkultur/conflict/subkultur_program_og_koordinering_conflict.json",
+            "count": 1
           },
           "story": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/subkultur/story/subkultur_program_og_koordinering_story.json",
+            "count": 1
           },
           "event": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/subkultur/event/subkultur_program_og_koordinering_event.json",
+            "count": 1
           },
           "micro": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/subkultur/micro/subkultur_program_og_koordinering_micro.json",
+            "count": 1
           },
           "followup": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/subkultur/followup/subkultur_program_og_koordinering_followup.json",
+            "count": 1
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/subkultur/knowledge/subkultur_program_og_koordinering_knowledge.json",
+            "count": 1
           },
           "consequence": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/subkultur/consequence/subkultur_program_og_koordinering_consequence.json",
+            "count": 1
           }
         },
         "role_tests": [
           "tests/civication-life-position-career-split.test.js",
-          "tests/civication-subkultur-career-architecture.test.js"
+          "tests/civication-subkultur-career-architecture.test.js",
+          "tests/civication-subkultur-program-og-koordinering-prerequisites.test.js"
         ],
         "life_story": null
       },
@@ -22061,16 +22064,26 @@
             "note": "3 linked career title(s) have an offer policy and gate."
           },
           "day_one": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No day-one structure."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/subkultur/subkultur_program_og_koordinering_plan.json",
+              "tests/civication-life-position-career-split.test.js",
+              "tests/civication-subkultur-career-architecture.test.js",
+              "tests/civication-subkultur-program-og-koordinering-prerequisites.test.js"
+            ],
+            "note": "Role plan and role-specific test prove a first playable day."
           },
           "workday_loop": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/workGrammars/subkultur/subkultur_program_og_koordinering.json"
+              "data/Civication/mailFamilies/subkultur/job/subkultur_program_og_koordinering_job.json",
+              "data/Civication/mailPlans/subkultur/subkultur_program_og_koordinering_plan.json",
+              "data/Civication/workGrammars/subkultur/subkultur_program_og_koordinering.json",
+              "tests/civication-life-position-career-split.test.js",
+              "tests/civication-subkultur-career-architecture.test.js",
+              "tests/civication-subkultur-program-og-koordinering-prerequisites.test.js"
             ],
-            "note": "Work-loop content exists, but the complete repeatable runtime path is not proven."
+            "note": "Repeatable work content is connected to a tested plan."
           },
           "practice_stories": {
             "level": "partial",
@@ -22081,29 +22094,55 @@
             "note": "5 FWG stories and 0 registered practice week(s)."
           },
           "people": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No work-world people layer."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/subkultur/people/subkultur_program_og_koordinering_people.json",
+              "data/Civication/roleModels/subkultur/crew.json",
+              "data/Civication/roleModels/subkultur/dandy.json",
+              "data/Civication/roleModels/subkultur/gangster.json",
+              "data/Civication/roleModels/subkultur/subkultur_program_og_koordinering.json",
+              "data/Civication/workGrammars/subkultur/subkultur_program_og_koordinering.json"
+            ],
+            "note": "Named/typed work relationships are used by people mails."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
-          },
-          "mail": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No role mail/event generation."
-          },
-          "knowledge": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/roleModels/subkultur/crew.json",
               "data/Civication/roleModels/subkultur/dandy.json",
               "data/Civication/roleModels/subkultur/gangster.json",
+              "data/Civication/roleModels/subkultur/subkultur_program_og_koordinering.json",
               "data/Civication/workGrammars/subkultur/subkultur_program_og_koordinering.json"
             ],
-            "note": "Knowledge exists, but its gameplay application is incomplete."
+            "note": "8 place/working-surface declarations."
+          },
+          "mail": {
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/subkultur/conflict/subkultur_program_og_koordinering_conflict.json",
+              "data/Civication/mailFamilies/subkultur/consequence/subkultur_program_og_koordinering_consequence.json",
+              "data/Civication/mailFamilies/subkultur/event/subkultur_program_og_koordinering_event.json",
+              "data/Civication/mailFamilies/subkultur/followup/subkultur_program_og_koordinering_followup.json",
+              "data/Civication/mailFamilies/subkultur/job/subkultur_program_og_koordinering_job.json",
+              "data/Civication/mailFamilies/subkultur/knowledge/subkultur_program_og_koordinering_knowledge.json",
+              "data/Civication/mailFamilies/subkultur/micro/subkultur_program_og_koordinering_micro.json",
+              "data/Civication/mailFamilies/subkultur/people/subkultur_program_og_koordinering_people.json",
+              "data/Civication/mailFamilies/subkultur/story/subkultur_program_og_koordinering_story.json",
+              "data/Civication/mailPlans/subkultur/subkultur_program_og_koordinering_plan.json"
+            ],
+            "note": "9/9 standard mail types plus tested plan/practice coverage."
+          },
+          "knowledge": {
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/subkultur/knowledge/subkultur_program_og_koordinering_knowledge.json",
+              "data/Civication/roleModels/subkultur/crew.json",
+              "data/Civication/roleModels/subkultur/dandy.json",
+              "data/Civication/roleModels/subkultur/gangster.json",
+              "data/Civication/roleModels/subkultur/subkultur_program_og_koordinering.json",
+              "data/Civication/workGrammars/subkultur/subkultur_program_og_koordinering.json"
+            ],
+            "note": "Knowledge content is connected to a mail or job-gate surface."
           },
           "quality_axes": {
             "level": "complete",
@@ -22111,6 +22150,7 @@
               "data/Civication/roleModels/subkultur/crew.json",
               "data/Civication/roleModels/subkultur/dandy.json",
               "data/Civication/roleModels/subkultur/gangster.json",
+              "data/Civication/roleModels/subkultur/subkultur_program_og_koordinering.json",
               "data/Civication/workGrammars/subkultur/subkultur_program_og_koordinering.json"
             ],
             "note": "Quality/competence axes are declared and connected to choice/consequence fields."
@@ -22121,19 +22161,32 @@
               "data/Civication/roleModels/subkultur/crew.json",
               "data/Civication/roleModels/subkultur/dandy.json",
               "data/Civication/roleModels/subkultur/gangster.json",
+              "data/Civication/roleModels/subkultur/subkultur_program_og_koordinering.json",
               "data/Civication/workGrammars/subkultur/subkultur_program_og_koordinering.json"
             ],
             "note": "Explicit authority boundary exists."
           },
           "consequences": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No consequence model."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/subkultur/consequence/subkultur_program_og_koordinering_consequence.json",
+              "data/Civication/mailFamilies/subkultur/followup/subkultur_program_og_koordinering_followup.json",
+              "tests/civication-life-position-career-split.test.js",
+              "tests/civication-subkultur-career-architecture.test.js",
+              "tests/civication-subkultur-program-og-koordinering-prerequisites.test.js"
+            ],
+            "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No performance evaluation."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/subkultur/subkultur_program_og_koordinering_plan.json",
+              "tests/civication-career-outcomes.test.js",
+              "tests/civication-life-position-career-split.test.js",
+              "tests/civication-subkultur-career-architecture.test.js",
+              "tests/civication-subkultur-program-og-koordinering-prerequisites.test.js"
+            ],
+            "note": "Positive and negative outcomes are defined and role-tested."
           },
           "economy": {
             "level": "complete",
@@ -22145,32 +22198,48 @@
             "note": "Exact salary exists for all 3 linked career title(s)."
           },
           "progression": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No progression path."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/subkultur/subkultur_program_og_koordinering_plan.json",
+              "data/Civication/roleModels/subkultur/crew.json",
+              "data/Civication/roleModels/subkultur/dandy.json",
+              "data/Civication/roleModels/subkultur/gangster.json",
+              "data/Civication/roleModels/subkultur/subkultur_program_og_koordinering.json",
+              "data/Civication/workGrammars/subkultur/subkultur_program_og_koordinering.json",
+              "tests/civication-career-outcomes.test.js"
+            ],
+            "note": "Career path and positive runtime outcome are both present."
           },
           "exit": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No exit/job-change path."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/subkultur/subkultur_program_og_koordinering_plan.json",
+              "data/Civication/roleModels/subkultur/crew.json",
+              "data/Civication/roleModels/subkultur/dandy.json",
+              "data/Civication/roleModels/subkultur/gangster.json",
+              "data/Civication/roleModels/subkultur/subkultur_program_og_koordinering.json",
+              "tests/civication-career-outcomes.test.js"
+            ],
+            "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
+        "runtime_gate": true,
+        "missing_components": [],
+        "complete_components": [
+          "entry",
           "day_one",
+          "workday_loop",
           "people",
           "places",
           "mail",
-          "consequences",
-          "performance",
-          "progression",
-          "exit"
-        ],
-        "complete_components": [
-          "entry",
+          "knowledge",
           "quality_axes",
           "authority",
-          "economy"
+          "consequences",
+          "performance",
+          "economy",
+          "progression",
+          "exit"
         ],
         "practice_story_count": 5,
         "practice_weeks": [],

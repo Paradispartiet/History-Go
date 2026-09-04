@@ -1,1 +1,230 @@
-{"schema":"civication_work_grammar_v2","version":2,"category":"subkultur","role_scope":"subkultur_program_og_koordinering","source":{"evidence":"data/Civication/subcultureCareerEvidence.json"},"badge_binding":{"badge_id":"subkultur","badge_titles":["Arrangementsplanlegger","Kulturkonsulent","Booking- og innholdskoordinator"]},"task_families":["programutvikling","booking_og_avtaler","budsjett_og_kjoreplan","kommunikasjon_og_markedsforing","partner_og_miljokoordinering"],"work_loops":[{"id":"leveranse","steps":["avklar_formal_og_malgruppe","bygg_programalternativer","beregn_kostnad_og_kapasitet","avklar_med_aktorer","publiser_og_folg_opp"]},{"id":"avvik_og_kvalitet","steps":["samle_innspill","skilj_krav_fra_onsker","prioriter_aapent","dokumenter_avtaler","oppdater_plan"]}],"practice_stories":[{"id":"det_dyre_navnet","setup":"Et kjent navn kan trekke publikum, men vil bruke nesten hele programbudsjettet.","good":"Lag alternativer som viser kostnad, publikumseffekt og hva som forsvinner.","bad":"Presenter kjendisen som eneste realistiske valg."},{"id":"muntlig_ja","setup":"En artist forventer at en hyggelig samtale betyr bekreftet booking.","good":"Skill interesse fra avtale og få mandat, pris og vilkår skriftlig.","bad":"La uklarheten stå fordi relasjonen er god."},{"id":"lokal_scene","setup":"Lokale aktører mener arenaen skylder dem en plass i programmet.","good":"Lag transparente kriterier og forklar hvordan helheten prioriteres.","bad":"Gi plass etter intern status og vennskap."},{"id":"gratisarbeid","setup":"Et prosjekt baserer kritiske oppgaver på at folk 'gjør det for miljøet'.","good":"Synliggjør arbeid, ansvar og hva som faktisk skal honoreres.","bad":"Gjem lønnsbehovet for å få budsjettet til å se balansert ut."},{"id":"lanseringsdato","setup":"Kommunikasjon vil lansere før logistikk og kapasitet er avklart.","good":"Marker hva som er bekreftet, hva som er betinget og hvem som eier risikoen.","bad":"Publiser full sikkerhet for å skape momentum."}],"quality_axes":["programkvalitet","avtalepresisjon","okonomisk_realitet","inkludering","gjennomforbarhet","relasjonell_tillit"],"authority_boundary":{"may_not":["love_booking_uten_mandat_eller_avtale","skjule_reelle_kostnader_for_a_fa_programmet_godkjent","bruke_subkulturell_status_som_ansettelses_eller_adgangskrav","dele_sensitive_opplysninger_uten_behov_og_grunnlag"]}}
+{
+  "schema": "civication_work_grammar_v2",
+  "version": 3,
+  "category": "subkultur",
+  "role_scope": "subkultur_program_og_koordinering",
+  "role_id": "subkultur_arrangementsplanlegger",
+  "source": {
+    "evidence": "data/Civication/subcultureCareerEvidence.json"
+  },
+  "badge_binding": {
+    "badge_id": "subkultur",
+    "badge_titles": [
+      "Arrangementsplanlegger",
+      "Kulturkonsulent",
+      "Booking- og innholdskoordinator"
+    ]
+  },
+  "task_families": [
+    "programutvikling_og_prioritering",
+    "booking_avtale_og_honorar",
+    "budsjett_og_total_kostnad",
+    "partner_lokal_scene_og_representasjon",
+    "publisering_logistikk_og_endringskontroll"
+  ],
+  "work_loops": [
+    {
+      "id": "programleveranse",
+      "steps": [
+        "brief_og_formal",
+        "samle_kandidater_og_partnerinnspill",
+        "bruk_kriterier_og_bygg_alternativer",
+        "vent_pa_mandat_pris_avtale_kapasitet_eller_rettighet",
+        "beslutt_og_handoff_innen_mandat",
+        "publiser_betinget_eller_bekreftet",
+        "folgende_leveransesjekk_og_lukking"
+      ]
+    },
+    {
+      "id": "endring_og_bounded_rework",
+      "steps": [
+        "oppdag_endret_premiss",
+        "identifiser_berort_program_avtale_budsjett_partner_eller_publisering",
+        "gjenapne_bare_berorte_ledd",
+        "revider_begrunnelse_og_distribuer_ny_status",
+        "bekreft_handoff_og_lukk"
+      ]
+    }
+  ],
+  "practice_stories": [
+    {
+      "id": "det_dyre_navnet",
+      "setup": "Et kjent navn vil bruke nesten hele programrammen.",
+      "good": "Vis alternativer med total kostnad, publikumsverdi og hva som fortrenges.",
+      "bad": "Presenter navnet som eneste realistiske valg."
+    },
+    {
+      "id": "muntlig_ja",
+      "setup": "En artist tror en positiv samtale betyr bekreftet booking.",
+      "good": "Skill interesse fra avtale og avklar mandat, pris og vilkår skriftlig.",
+      "bad": "La uklarheten stå for å bevare relasjonen."
+    },
+    {
+      "id": "lokal_scene",
+      "setup": "Lokale aktører mener historisk tilknytning gir rett til plass.",
+      "good": "Bruk transparente kriterier og forklar helhetsprioriteringen.",
+      "bad": "Gi plass etter intern status og vennskap."
+    },
+    {
+      "id": "gratisarbeid",
+      "setup": "Et samarbeid forutsetter kritisk gratisarbeid for å holde budsjettet.",
+      "good": "Synliggjør arbeid, honorar og alternativt omfang.",
+      "bad": "Skjul behovet som frivillighet."
+    },
+    {
+      "id": "lanseringsdato",
+      "setup": "Kommunikasjon vil lansere før flere premisser er bekreftet.",
+      "good": "Merk betinget status og hold igjen ubekreftede løfter.",
+      "bad": "Publiser som endelig for å skape momentum."
+    }
+  ],
+  "quality_axes": [
+    "programkvalitet",
+    "avtalepresisjon",
+    "okonomisk_realitet",
+    "representasjon_og_partnerrettferdighet",
+    "gjennomforbarhet",
+    "kommunikasjon_og_tillit"
+  ],
+  "authority_boundary": {
+    "can": [
+      "samle og prioritere programalternativer etter eksplisitte kriterier innen delegert mandat",
+      "innhente tilbud, avklare forbehold og koordinere bookingdialog uten å fremstille forhandling som avtale",
+      "holde igjen publisering eller merke den betinget når avtale, rettighet, kapasitet, logistikk eller økonomi ikke er bekreftet",
+      "revidere programalternativ og berørte handoffs når pris, partnerpremiss, kapasitet eller annen dokumentert forutsetning endres"
+    ],
+    "may_not": [
+      "love_booking_programplass_eller_offentlig_bekreftelse_uten_delegert_mandat_og_nodvendig_avtale",
+      "skjule_reelle_kostnader_honorar_eller_arbeidsbehov_for_a_fa_programmet_godkjent_eller_forvente_gratisarbeid_som_standard",
+      "bruke_subkulturell_status_vennskap_lojalitet_eller_personlig_relasjon_som_ansettelses_adgangs_eller_programkriterium",
+      "publisere_betinget_eller_uavklart_program_som_bekreftet_eller_overstyre_kapasitets_logistikk_rettighets_eller_sikkerhetsforbehold",
+      "produsere_juridisk_rettighets_okonomisk_signatur_arbeidsgiver_eller_sikkerhetsmyndighet_som_ikke_er_delegert"
+    ]
+  },
+  "work_world": "Program- og arrangementskoordinering der samme programbok binder kriterier, alternativer, bookingstatus, mandat, total kostnad, honorar, partnerpremisser, kapasitet/logistikk, rettighets-/avtalestatus, publisering, endringer, handoffs og ettervurdering sammen.",
+  "pressure_axes": [
+    "kjent_navn_og_publikumstrekk_vs_bredde_budsjett_og_lokal_scene",
+    "relasjon_og_muntlig_interesse_vs_mandat_avtale_og_rettigheter",
+    "lanseringsfrist_vs_sann_status_kapasitet_og_logistikk",
+    "diy_lojalitet_vs_honorar_reell_kostnad_og_transparente_kriterier"
+  ],
+  "actor_grammar": [
+    {
+      "id": "ida_booking_og_artistkontakt",
+      "name": "Ida",
+      "role": "booking- og artistkontakt",
+      "workplace_ids": [
+        "booking_avtale_honorar_og_mandatsspor"
+      ]
+    },
+    {
+      "id": "jonas_okonomi_og_avtale",
+      "name": "Jonas",
+      "role": "økonomi- og avtaleansvarlig",
+      "workplace_ids": [
+        "booking_avtale_honorar_og_mandatsspor"
+      ]
+    },
+    {
+      "id": "amina_lokal_scene_og_partnerkontakt",
+      "name": "Amina",
+      "role": "lokal scene- og partnerkontakt",
+      "workplace_ids": [
+        "partner_lokal_scene_og_representasjonsrom"
+      ]
+    },
+    {
+      "id": "thea_kommunikasjon_og_publisering",
+      "name": "Thea",
+      "role": "kommunikasjons- og publiseringsansvarlig",
+      "workplace_ids": [
+        "publiseringsplan_kapasitet_og_logistikkbord"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "programbord_prioritering_og_kriterielogg",
+      "name": "Programbordet, prioriteringen og kriterieloggen",
+      "function": "Her samles programalternativer, formål, målgrupper, kurateringskriterier, lokal forankring, representasjon, kapasitetsbehov og begrunnelser. Flaten skiller innspill, vurdering, anbefaling og besluttet program slik at kjente navn, vennskap eller intern miljøstatus ikke kan bli skjulte adgangskriterier, og slik at det er mulig å forklare hva som ble valgt bort når budsjett eller kapasitet endres."
+    },
+    {
+      "id": "booking_avtale_honorar_og_mandatsspor",
+      "name": "Booking-, avtale-, honorar- og mandatssporet",
+      "function": "Her ligger tilbud, tilgjengelighet, pris, total kostnad, kontraktsversjon, rettigheter, forbehold, signaturmyndighet og betalingspremisser. Flaten gjør det eksplisitt om noe bare er interesse, under forhandling, internt godkjent eller faktisk bindende, slik at muntlige ja, sosial nærhet eller tidsnød ikke kan forveksles med avtale eller økonomisk fullmakt."
+    },
+    {
+      "id": "partner_lokal_scene_og_representasjonsrom",
+      "name": "Partner-, lokal scene- og representasjonsrommet",
+      "function": "Her dokumenteres lokale aktører, samarbeid, hvem som er hørt, fordelingsvirkninger, honorert og frivillig arbeid, tilgjengelighet og begrunnede kriterier. Flaten skal gjøre forskjellen mellom å lytte til miljøet og å gi automatisk programrett tydelig, og synliggjør når belastning eller gratisarbeid flyttes over på små aktører for å få et program til å se billigere eller mer representativt ut."
+    },
+    {
+      "id": "publiseringsplan_kapasitet_og_logistikkbord",
+      "name": "Publiseringsplanen, kapasiteten og logistikkbordet",
+      "function": "Her bindes bekreftet programstatus til lanseringsdato, arena-/kapasitetsforutsetninger, praktiske avhengigheter, billettinformasjon, kanaltekster og nødvendige forbehold. Flaten skiller utkast, betinget informasjon og offentlig bekreftelse, og gjenåpner bare berørte deler når avtale, logistikk, rettighet, kapasitet eller program endres."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "programbok_booking_budsjett_avtale_og_publiseringslogg",
+    "description": "Versjonert programbok for formål, kriterier, programalternativer, bookingstatus, mandat, total kostnad/honorar, kontrakt/rettighet, partner- og lokal scene-premisser, kapasitet/logistikk, publiseringsstatus, beslutning, handoff, endring og ettervurdering.",
+    "states": [
+      "brief_og_kriterier_laset",
+      "kandidater_og_partnerinnspill_samlet",
+      "alternativer_og_kostnad_vurdert",
+      "venter_pa_mandat_pris_avtale_kapasitet_rettighet_eller_partner",
+      "beslutning_og_bookinghandoff",
+      "betinget_eller_bekreftet_publiserbar",
+      "publisert_og_leveransekoordinert",
+      "endring_bounded_rework_og_lukking"
+    ],
+    "handoff_rule": "Neste funksjon mottar gjeldende programversjon, beslutningsgrunnlag, booking-/avtalestatus, økonomi/honorar, partner- og kapasitetsforbehold, publiseringsstatus, åpne spørsmål, eier og konkret neste kontroll før status kan endres."
+  },
+  "rhythm_contract": {
+    "loop": "brief -> kandidat/partnerinnspill -> kriterier og alternativer -> waiting/venting -> mandatert beslutning -> booking/partner-handoff -> betinget/bekreftet publisering -> leveransesjekk -> bounded rework -> review/lukking",
+    "waiting_states": [
+      "artisttilbud_mandat_eller_signatur",
+      "budsjett_total_kostnad_eller_honoraravklaring",
+      "partner_lokal_scene_representasjon_eller_ressursavklaring",
+      "kapasitet_logistikk_rettighet_eller_publiseringsbekreftelse"
+    ],
+    "rework_rule": "Endret premiss gjenåpner bare berørte program-, booking-, avtale-, budsjett-, partner-, logistikk- eller publiseringsledd; tidligere programversjon, kriterier, begrunnelse, forbehold, varsling og hvem som kan bekrefte beholdes."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_subkultur_club_7_program_og_miljoblikk",
+      "badge_id": "subkultur",
+      "use": "Historisk Club 7-kontekst brukes til å stille bedre spørsmål om programbredde, miljø, publikum og organisatoriske rammer; aldri som fasit for dagens bookingmandat, honorar, kontrakt, rettigheter, kapasitet, sikkerhet eller publiseringsgodkjenning."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "appointment_required",
+    "first_object": "programbok_booking_budsjett_avtale_og_publiseringslogg",
+    "first_task": "Opprett første programversjon med formål, kriterier, kandidater, bookingstatus, total kostnad/honorar, partnerpremisser, kapasitet/logistikk, kontrakt/rettighet, publiseringsstatus, beslutningseiere og hva som fortsatt venter før noe kan kalles avtalt eller offentlig bekreftet."
+  },
+  "situated_reputation_contract": {
+    "global_score_allowed": false,
+    "audiences": [
+      "artister_og_representanter",
+      "lokal_scene_og_partnere",
+      "okonomi_avtale_og_ledelse",
+      "kommunikasjon_og_publikum",
+      "arena_produksjon_og_gjennomforing"
+    ],
+    "rule": "Standing følger konkret programfaglig pålitelighet, avtalepresisjon, rettferdig kriteriebruk og sann status; den gir aldri booking-, signatur-, rettighets-, arbeidsgiver-, sikkerhets- eller adgangsmyndighet."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "subkultur_program_og_koordinering",
+    "no_generic_fallback": true
+  }
+}

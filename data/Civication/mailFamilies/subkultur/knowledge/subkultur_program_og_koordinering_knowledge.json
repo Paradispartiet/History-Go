@@ -1,0 +1,117 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "subkultur",
+  "role_scope": "subkultur_program_og_koordinering",
+  "mail_type": "knowledge",
+  "families": [
+    {
+      "id": "subkultur_program_og_koordinering_kunnskap_i_bruk",
+      "purpose": "Authored Subkultur program-and-coordination gameplay for knowledge: transparent criteria, explicit booking mandate, real cost/honour, partner fairness, truthful publication status and bounded rework without global reputation or invented authority.",
+      "learning_focus": [
+        "programkriterier_og_begrunnelse",
+        "booking_mandat_avtale_og_rettighet",
+        "budsjett_honorar_og_reell_kostnad",
+        "partner_lokal_scene_og_representasjon",
+        "publiseringsstatus_handoff_og_bounded_rework"
+      ],
+      "mails": [
+        {
+          "id": "pk_knowledge_003",
+          "mail_type": "knowledge",
+          "mail_family": "subkultur_program_og_koordinering_kunnskap_i_bruk",
+          "role_scope": "subkultur_program_og_koordinering",
+          "phase": "forenoon",
+          "day_phase": "morning",
+          "priority": 148,
+          "from": "Amina",
+          "people_ref": "amina_lokal_scene_og_partnerkontakt",
+          "person_id": "amina_lokal_scene_og_partnerkontakt",
+          "place_id": "club_7_vika",
+          "subject": "Club 7 gir et historisk spørsmål om bredde, miljø og programrammer",
+          "summary": "Amina foreslår å bruke Club 7 som historisk inngang til å undersøke hvordan sted, miljø, programbredde og organisatoriske rammer påvirket hverandre. Poenget er å skjerpe dagens spørsmål, ikke å kopiere historiske praksiser. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes.",
+          "situation": [
+            "Amina foreslår å bruke Club 7 som historisk inngang til å undersøke hvordan sted, miljø, programbredde og organisatoriske rammer påvirket hverandre. Poenget er å skjerpe dagens spørsmål, ikke å kopiere historiske praksiser.",
+            "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+            "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+          ],
+          "task_domain": "subkultur_program_og_koordinering",
+          "competency": "historisk_programblikk",
+          "pressure": "relasjon_status_og_deadline_vs_transparente_kriterier_mandat_reell_kostnad_og_sann_status",
+          "choice_axis": "sporbar_kriteriebasert_beslutning_vs_uklart_løfte_og_skjult_programgjeld",
+          "consequence_axis": "robust_program_tillit_og_gjennomforbarhet_vs_avtale_kostnads_partner_og_publiseringsgjeld",
+          "narrative_arc": "kunnskap",
+          "situated_audience_id": "lokal_scene_og_partnere",
+          "choices": [
+            {
+              "id": "A",
+              "label": "historisk_programblikk: sporbar beslutning pk_knowledge_003",
+              "reply": "Fullfør History Go-sporet og bruk det til å formulere et bedre spørsmål om dagens programkriterier, miljørelasjoner og rammer, uten å avlede mandat eller rettigheter fra historien. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "kriterier"
+              ],
+              "feedback": "Fullfør History Go-sporet og bruk det til å formulere et bedre spørsmål om dagens programkriterier, miljørelasjoner og rammer, uten å avlede mandat eller rettigheter fra historien. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "clarity": 2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "historisk_programblikk: skjult programgjeld pk_knowledge_003",
+              "reply": "Bruk Club 7 som argument for at dagens miljøaktører bør få plass eller særbehandling uten ordinær avtale og kriterievurdering. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør.",
+              "effect": -1,
+              "tags": [
+                "mandatglidning",
+                "programgjeld",
+                "risiko"
+              ],
+              "feedback": "Bruk Club 7 som argument for at dagens miljøaktører bør få plass eller særbehandling uten ordinær avtale og kriterievurdering. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ],
+          "interaction_mode": "task",
+          "task_contract": {
+            "task_id": "subkultur_program_og_koordinering_history_go_club_7",
+            "completion_rule": "history_go_payload_completed",
+            "failure_rule": "remain_open",
+            "evidence_refs": [
+              "data/places/subkultur/oslo/places_subkultur/club_7_vika.json",
+              "data/runtime/place-open/club_7_vika.json"
+            ],
+            "authority_boundary": "Historical evidence may sharpen present-day questions about program breadth, milieu and organization, but cannot grant booking mandate, program entitlement, contract/rights clearance, fee authority, capacity approval or safety authority."
+          },
+          "task_payload": {
+            "task_kind": "history_go_place",
+            "target_type": "place",
+            "place_id": "club_7_vika",
+            "completion_mode": "read_place",
+            "title": "Les Club 7 som historisk operativ produksjonskontekst",
+            "description": "Noter ett spørsmål om hvilke operative avhengigheter som blir synlige når sted, program og miljø endres over tid, uten å gjøre historisk motkultur til fasit for dagens HMS, brann-/kapasitetskrav, bemanning, arbeidstid, kommandolinje eller frigivelse.",
+            "return_context": {
+              "source": "civication",
+              "mail_id": "pl_club7_003",
+              "role_scope": "subkultur_program_og_koordinering"
+            },
+            "badge_id": "subkultur",
+            "knowledge_dependency_id": "history_go_subkultur_club_7_program_og_miljoblikk"
+          }
+        }
+      ]
+    }
+  ]
+}
