@@ -1,0 +1,36 @@
+name: Kunst maintenance integrity
+
+on:
+  pull_request:
+    paths:
+      - 'data/fagverk/kunst/maintenance/**'
+      - 'scripts/audit-kunst-source-refresh-place-case-expansion.mjs'
+      - 'tests/kunst-source-refresh-place-case-expansion.test.mjs'
+      - '.github/workflows/kunst-maintenance-integrity.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  maintenance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Audit Kunst maintenance reconciliation
+        run: |
+          node --check scripts/audit-kunst-source-refresh-place-case-expansion.mjs
+          node scripts/audit-kunst-source-refresh-place-case-expansion.mjs
+          node --test tests/kunst-source-refresh-place-case-expansion.test.mjs
+      - name: Preserve Kunst completion, theory and shared Fagverk integrity
+        run: |
+          node scripts/audit-fagverk-kunst-complete.mjs
+          node tools/audit-kunst-theory-integrity.mjs
+          node --test tests/kunst-theory-integrity.test.mjs tests/fagverk-kunst-*.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-subject-inventory.test.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
