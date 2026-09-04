@@ -35,60 +35,15 @@ jobs:
       - name: Focused Role World gate
         run: node tests/civication-subkultur-produksjon-og-prosjekt-role-world-rollout.test.js
       - name: Prerequisite compatibility after Role World completion
-        shell: bash
-        run: |
-          set -euo pipefail
-          src='tests/civication-subkultur-produksjon-og-prosjekt-prerequisites.test.js'
-          tmp='tests/TEMP-civication-subkultur-produksjon-og-prosjekt-prerequisites-role-world-compat.test.js'
-          trap 'rm -f "$tmp"' EXIT
-          SRC="$src" TMP="$tmp" node - <<'NODE'
-          const fs = require('node:fs');
-          const src = process.env.SRC;
-          const tmp = process.env.TMP;
-          const text = fs.readFileSync(src, 'utf8');
-          const needle = "assert.equal(ready.role_world_status,'role_world_not_started')";
-          const replacement = "assert.equal(ready.role_world_status,'role_world_complete')";
-          const count = text.split(needle).length - 1;
-          if (count !== 1) throw new Error(`Expected exactly one prerequisite-phase status assertion, got ${count}`);
-          fs.writeFileSync(tmp, text.replace(needle, replacement), 'utf8');
-          NODE
-          node "$tmp"
+        run: node tests/civication-subkultur-produksjon-og-prosjekt-prerequisites.test.js
       - name: Career gameplay parity
         run: node scripts/audit-civication-career-gameplay.mjs --check
       - name: Role World readiness parity
         run: node scripts/audit-civication-role-world-rollout-readiness.mjs --check
       - name: Compiled scene registry parity
         run: node scripts/build-civication-scene-registry.mjs --check
-      - name: Full Civication with phase-aware prerequisite compatibility
-        shell: bash
-        run: |
-          set -euo pipefail
-          src='tests/civication-subkultur-produksjon-og-prosjekt-prerequisites.test.js'
-          backup='/tmp/civication-subkultur-produksjon-og-prosjekt-prerequisites.test.js'
-          cp "$src" "$backup"
-          trap 'cp "$backup" "$src"' EXIT
-          SRC="$src" node - <<'NODE'
-          const fs = require('node:fs');
-          const src = process.env.SRC;
-          const text = fs.readFileSync(src, 'utf8');
-          const needle = "assert.equal(ready.role_world_status,'role_world_not_started')";
-          const replacement = "assert.equal(ready.role_world_status,'role_world_complete')";
-          const count = text.split(needle).length - 1;
-          if (count !== 1) throw new Error(`Expected exactly one prerequisite-phase status assertion, got ${count}`);
-          fs.writeFileSync(src, text.replace(needle, replacement), 'utf8');
-          NODE
-          npm run test:civication
-      - name: Verify prerequisite test restored
-        shell: bash
-        run: |
-          node - <<'NODE'
-          const fs = require('node:fs');
-          const text = fs.readFileSync('tests/civication-subkultur-produksjon-og-prosjekt-prerequisites.test.js', 'utf8');
-          const oldNeedle = "assert.equal(ready.role_world_status,'role_world_not_started')";
-          const completedNeedle = "assert.equal(ready.role_world_status,'role_world_complete')";
-          if ((text.split(oldNeedle).length - 1) !== 1) throw new Error('Original prerequisite-phase assertion was not restored exactly');
-          if ((text.split(completedNeedle).length - 1) !== 0) throw new Error('Temporary completed-status assertion leaked into permanent prerequisite test');
-          NODE
+      - name: Full Civication
+        run: npm run test:civication
       - name: Repository diff gate
         run: git diff --check
       - name: Publish permanent Role World state
@@ -108,6 +63,7 @@ jobs:
             data/Civication/roleWorldRolloutReadiness.json \
             reports/CIVICATION_SUBKULTUR_PRODUKSJON_OG_PROSJEKT_ROLE_WORLD_ROLLOUT_SOURCE_FIRST.md \
             tests/civication-subkultur-produksjon-og-prosjekt-role-world-rollout.test.js \
+            tests/civication-subkultur-produksjon-og-prosjekt-prerequisites.test.js \
             .github/TEMP-subkultur-produksjon-prosjekt-role-world-materializer.mjs \
             .github/TEMP-subkultur-produksjon-prosjekt-role-world-standing-normalizer.mjs \
             .github/workflows/TEMP-subkultur-produksjon-prosjekt-role-world.yml
