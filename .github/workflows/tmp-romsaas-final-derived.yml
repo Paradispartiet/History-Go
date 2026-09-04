@@ -1,0 +1,51 @@
+name: TEMP Romsås final derived artifacts
+
+on:
+  push:
+    branches:
+      - work/romsaas-completion-20260903
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    if: ${{ !startsWith(github.event.head_commit.message, 'Regenerate Romsås final derived artifacts') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/romsaas-completion-20260903
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci --no-audit --no-fund
+
+      - name: Regenerate Romsås quiz production context
+        run: node scripts/build-quiz-production-context.mjs --category by --target romsaås --output data/quiz/production_context/by/romsaås.json
+
+      - name: Regenerate Fagverk release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs
+
+      - name: Verify quiz production context
+        run: npm run audit:quiz-production-context
+
+      - name: Verify Fagverk release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs --check
+
+      - name: Verify place image backlog summary
+        run: node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json --verify-summary=data/places/place_image_backlog_summary.json
+
+      - name: Publish clean derived artifacts
+        run: |
+          git rm .github/workflows/tmp-romsaas-final-derived.yml
+          git add data/quiz/production_context/by/romsaås.json data/fagverk/fagverk_release.json data/places/place_image_backlog_summary.json
+          git diff --cached --check
+          git config user.name "Paradispartiet"
+          git config user.email "paradispartiet@gmail.com"
+          git commit -m "Regenerate Romsås final derived artifacts"
+          git push origin HEAD:work/romsaas-completion-20260903
