@@ -24,8 +24,8 @@ const TARGET_CHAPTERS = new Set([
 const REQUIRED_SOURCE_IDS = new Set([
   'histmaint3_oslobyleksikon_victoria_terrasse',
   'histmaint3_regjeringen_victoria_nou1998',
-  'histmaint3_oslohospital_history',
-  'histmaint3_oslobyleksikon_oslo_hospital',
+  'histmaint3_lovisenberg_history',
+  'histmaint3_ldh_cathinka_history',
   'histmaint3_oslobyleksikon_vaterland',
   'histmaint3_oslo_vaterland_byplan_2026',
   'histmaint3_snl_oslo_bors_2025',
@@ -35,7 +35,7 @@ const REQUIRED_SOURCE_IDS = new Set([
 ]);
 const REQUIRED_PLACE_IDS = new Set([
   'victoria_terrasse',
-  'oslo_hospital',
+  'bla_skilt_cathinka_guldberg_lovisenberggata_15a',
   'vaterland_historisk_elvelop',
   'borsen_oslo',
   'norsk_maritimt_museum'
