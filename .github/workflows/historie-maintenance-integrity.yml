@@ -6,8 +6,10 @@ on:
       - 'data/fagverk/historie/maintenance/**'
       - 'scripts/audit-historie-source-refresh-place-case-expansion.mjs'
       - 'scripts/audit-historie-source-refresh-place-case-expansion-round2.mjs'
+      - 'scripts/audit-historie-source-refresh-place-case-expansion-round3.mjs'
       - 'tests/historie-source-refresh-place-case-expansion.test.mjs'
       - 'tests/historie-source-refresh-place-case-expansion-round2.test.mjs'
+      - 'tests/historie-source-refresh-place-case-expansion-round3.test.mjs'
       - '.github/workflows/historie-maintenance-integrity.yml'
 
 permissions:
@@ -28,13 +30,15 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
-      - name: Audit Historie maintenance rounds 1 and 2
+      - name: Audit Historie maintenance rounds 1, 2 and 3
         run: |
           node --check scripts/audit-historie-source-refresh-place-case-expansion.mjs
           node --check scripts/audit-historie-source-refresh-place-case-expansion-round2.mjs
+          node --check scripts/audit-historie-source-refresh-place-case-expansion-round3.mjs
           node scripts/audit-historie-source-refresh-place-case-expansion.mjs
           node scripts/audit-historie-source-refresh-place-case-expansion-round2.mjs
-          node --test tests/historie-source-refresh-place-case-expansion.test.mjs tests/historie-source-refresh-place-case-expansion-round2.test.mjs
+          node scripts/audit-historie-source-refresh-place-case-expansion-round3.mjs
+          node --test tests/historie-source-refresh-place-case-expansion.test.mjs tests/historie-source-refresh-place-case-expansion-round2.test.mjs tests/historie-source-refresh-place-case-expansion-round3.test.mjs
       - name: Preserve Historie completion, source authority and theory integrity
         run: |
           node tools/validate-historie-curriculum-architecture.mjs
