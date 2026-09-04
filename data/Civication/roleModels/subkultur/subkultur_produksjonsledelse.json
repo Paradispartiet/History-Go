@@ -1,1 +1,210 @@
-{"schema":"civication_role_model_v2","version":2,"category":"subkultur","role_scope":"subkultur_produksjonsledelse","role_id":"subkultur_produksjonsledelse","title":"Produksjonsledelse","source":{"evidence":"data/Civication/subcultureCareerEvidence.json"},"badge_titles":["Produksjonsleder"],"core_narrative":["Subkulturens Badge-status er et eget livs- og omdømmelag. Denne modellen beskriver bare den faktiske jobbhverdagen som låses opp separat, med tydelig mandat, sikkerhet og profesjonelle grenser."],"competence_axes":["operativ_ledelse","bemanning_og_vakt","sikkerhet_og_beredskap","teknisk_koordinering","tidsstyring","avvik_og_beslutning"],"ideal_type_problems":[{"id":"stans_eller_apne","problem":"Dørene skal åpne, men et sikkerhetskritisk punkt er ikke lukket."},{"id":"bemanning","problem":"Sykdom gjør at en kritisk funksjon mangler."},{"id":"teknisk_avvik","problem":"Et teknisk problem påvirker både program og sikkerhet."},{"id":"uformell_ordre","problem":"En sterk profil i miljøet prøver å overstyre produksjonslinjen."},{"id":"sliten_stab","problem":"Crewet har jobbet for lenge og feilraten øker."}],"authority_boundaries":{"cannot":["overstyre_formell_sikkerhetsmyndighet","godta_ukvalifisert_bemanning_i_kritiske_funksjoner","skjule_alvorlige_avvik_for_a_holde_tidsplan","bruke_status_eller_vennskap_som_operativ_kommandolinje"]},"notes":["Shared canonical Subkultur work world; eksisterende individuelle v1-roleModels beholdes som kompatibilitetslag."]}
+{
+  "schema": "civication_role_model_v2",
+  "version": 2,
+  "category": "subkultur",
+  "role_scope": "subkultur_produksjonsledelse",
+  "role_id": "subkultur_produksjonsledelse",
+  "title": "Produksjonsledelse",
+  "source": {
+    "badge_file": "data/badges/subkultur.json",
+    "badge_id": "subkultur",
+    "evidence": "data/Civication/subcultureCareerEvidence.json"
+  },
+  "badge_titles": [
+    "Produksjonsleder"
+  ],
+  "core_narrative": [
+    "Produksjonsledelse gjør en planlagt kulturproduksjon gjennomførbar i sanntid ved å holde kjøreplan, bemanning, tekniske forutsetninger, sikkerhet, publikumsflyt, avvik og handoffs i én sporbar operativ linje; Badge-status gir aldri automatisk jobb, kommando- eller sikkerhetsmyndighet.",
+    "Produksjonsboken skiller foreslått, besluttet, bemannet, testet, frigitt, distribuert, utført, avviket og lukket status slik at tidsplan, artiststatus eller dugnadsånd ikke kan bli erstatning for kvalifikasjon, arbeidsgiveransvar eller formell stoppeier.",
+    "Arbeidet går i en rytme av brief, kontrollpunkt, venting på kvalifikasjon eller frigivelse, delegert beslutning, handoff, åpning/gjennomføring, avvik, bounded rework, retest og debrief der samme produksjonsversjon følger hele løpet."
+  ],
+  "competence_axes": [
+    "operativ_ledelse",
+    "bemanning_skift_og_hvile",
+    "sikkerhet_beredskap_og_husdrift",
+    "teknisk_koordinering_og_frigivelse",
+    "kjoreplan_cue_og_handoff",
+    "avvik_replanlegging_og_lukking"
+  ],
+  "ideal_type_problems": [
+    {
+      "id": "stans_eller_apne",
+      "problem": "Dørene skal åpne, men et sikkerhetskritisk punkt er ikke lukket."
+    },
+    {
+      "id": "bemanning",
+      "problem": "Sykdom gjør at en kritisk funksjon mangler kvalifisert bemanning."
+    },
+    {
+      "id": "teknisk_avvik",
+      "problem": "Et teknisk problem påvirker både program, cue-kjede og sikkerhet."
+    },
+    {
+      "id": "uformell_ordre",
+      "problem": "En sterk artist eller profil prøver å overstyre produksjonslinjen direkte."
+    },
+    {
+      "id": "sliten_stab",
+      "problem": "Crewet har jobbet lenge, hvilebehovet øker og feilraten begynner å stige."
+    }
+  ],
+  "authority_boundaries": {
+    "cannot": [
+      "overstyre_formell_sikkerhets_hms_husdrift_eller_teknisk_stoppeier",
+      "godta_ukvalifisert_bemanning_i_kritiske_funksjoner_eller_omga_arbeidsgiveransvar_hviletid_og_arbeidsmiljo",
+      "skjule_alvorlige_avvik_eller_kalle_uavklart_status_klar_for_a_bevare_tidsplan_eller_publikumslovnad",
+      "bruke_artiststatus_vennskap_lojalitet_eller_miljotroverdighet_som_operativ_kommandolinje",
+      "produsere_medisinsk_juridisk_rettighets_eller_ansettelsesmyndighet_som_ikke_er_delegert"
+    ]
+  },
+  "notes": [
+    "Shared canonical Subkultur work world; eksisterende individuelle v1-roleModels beholdes som kompatibilitetslag."
+  ],
+  "work_life": {
+    "daily_work": [
+      "Oppdaterer produksjonsboken med kjøreplanversjon, bemanning, kvalifikasjoner, skift/hvile, teknisk og sikkerhetsstatus, publikumspremisser, åpne avvik, eier og neste kontroll.",
+      "Briefer crew og fordeler arbeid innen delegert linje uten å gjøre koordinering til sikkerhetsdispensasjon, arbeidsgiverunntak, medisinsk vurdering eller rettighetsklarering.",
+      "Replanlegger når fravær, teknikk, husdrift, artistbehov eller publikumsflyt endrer premiss, og bevarer tidligere versjon slik at bounded rework kan etterprøves.",
+      "Lukker skift og produksjonsdag først når handoffs, avvik, hvilebehov, restpunkter og ansvar for neste kontroll er eksplisitt overlevert."
+    ],
+    "responsibilities": [
+      "kjøreplan, cue og operativ kommandolinje",
+      "crew, kvalifikasjon, skift og hvile",
+      "tekniske avhengigheter, test og frigivelse",
+      "husdrift, sikkerhet, beredskap og publikumsflyt",
+      "avvik, replanlegging, handoff og debrief"
+    ],
+    "work_environment": [
+      "Kulturproduksjon med artister, stage management, tekniske fag, crew, husdrift, sikkerhet og publikum, med reell venting på kvalifisert bemanning, teknisk test, hus-/sikkerhetsfrigivelse, artistklarhet eller bekreftet handoff."
+    ],
+    "status_position": [
+      "Tillit følger evnen til å holde sann operativ status, beskytte crew og publikum og replanlegge under press; produksjonslederstatus kan aldri brukes som universell kommandorett eller sikkerhetsdispensasjon."
+    ],
+    "workplaces": [
+      "produksjonskontroll_kjoreplan_og_beslutningslogg",
+      "crew_bemanning_skift_og_hvilepunkt",
+      "teknisk_sikkerhet_rigg_og_frigivelse",
+      "publikumsflyt_husdrift_og_avvikssentral"
+    ]
+  },
+  "career_path": {
+    "entry_from": [
+      "Avtalt produksjonslederoppdrag med eksplisitt arbeidsgiver/oppdragsgiver, operativt mandat og avklart sikkerhets-/huslinje; Badge-progresjon alene gir ikke jobb eller kommandorett."
+    ],
+    "progression_to": [
+      "Større produksjoner eller arenaansvar når dokumentert leveranseevne, sikkerhetsforståelse, bemanningspraksis og delegasjon faktisk foreligger."
+    ],
+    "possible_promotions": [
+      "Senior produksjonsleder med større crew, flere soner og tydeligere delegert beslutningsrom.",
+      "Drifts-, arena- eller teknisk produksjonsansvar der arbeidsgiverlinje, budsjett og formell myndighet er eksplisitt avklart."
+    ],
+    "possible_exits": [
+      "Produksjon og prosjekt, kulturarena-ledelse, program/koordinering eller arrangementsdrift.",
+      "Teknisk produksjon, stage management, bemanningskoordinering, husdrift eller annen operativ ledelse der erfaring er relevant uten automatisk ny myndighet."
+    ],
+    "career_risks": [
+      "Deadline og publikumsløfter kan normalisere skjult overtid, uformelle kommandolinjer og press mot stoppeiere.",
+      "Høy sosial kapital kan gjøre det vanskelig å si nei til artist- eller miljøønsker selv når bemanning, teknikk eller sikkerhet ikke er klar."
+    ]
+  },
+  "required_knowledge": {
+    "education_basis": [
+      "Operativ produksjonsledelse, kjøreplan og cue, bemanning og kompetanse, arbeidsmiljø og hvile, HMS/beredskap, tekniske kontrollpunkter, publikumsflyt, kommunikasjon, avvik og debrief."
+    ],
+    "skills": [
+      "kjoreplan_og_versjonskontroll",
+      "bemanning_kvalifikasjon_skift_og_hvile",
+      "teknisk_test_og_frigivelse",
+      "sikkerhet_husdrift_og_publikumsflyt",
+      "operativ_handoff_og_kommunikasjon",
+      "avvik_bounded_rework_retest_og_debrief"
+    ],
+    "category_knowledge": [
+      "Hvordan subkulturelle arrangementer kan bevare identitet, relasjoner og tempo samtidig som crew, kommandolinje, teknikk, sikkerhet og publikum behandles profesjonelt og sporbart."
+    ],
+    "history_go_badges": [
+      "subkultur"
+    ],
+    "place_connections": [
+      "produksjonskontroll_kjoreplan_og_beslutningslogg",
+      "crew_bemanning_skift_og_hvilepunkt",
+      "teknisk_sikkerhet_rigg_og_frigivelse",
+      "publikumsflyt_husdrift_og_avvikssentral"
+    ],
+    "people_connections": [
+      "mika_teknisk_sjef",
+      "selma_crew_og_bemanning",
+      "adrian_stage_management_og_kjoreplan",
+      "eva_husdrift_sikkerhet_og_publikum"
+    ]
+  },
+  "authority_boundary": {
+    "may": [
+      "koordinere operativ produksjonslinje, kjøreplan, crew og handoffs innen delegert mandat",
+      "fordele og omfordele oppgaver til kvalifiserte funksjoner innen bemannings- og arbeidsgivergrenser",
+      "holde igjen åpning, cue eller berørt leveranse når dokumentert forutsetning mangler",
+      "replanlegge berørte ledd, varsle konsekvens og kreve ny kontroll før gjenopptakelse"
+    ],
+    "may_not": [
+      "overstyre_formell_sikkerhets_hms_husdrift_eller_teknisk_stoppeier",
+      "godta_ukvalifisert_bemanning_i_kritiske_funksjoner_eller_omga_arbeidsgiveransvar_hviletid_og_arbeidsmiljo",
+      "skjule_alvorlige_avvik_eller_kalle_uavklart_status_klar_for_a_bevare_tidsplan_eller_publikumslovnad",
+      "bruke_artiststatus_vennskap_lojalitet_eller_miljotroverdighet_som_operativ_kommandolinje",
+      "produsere_medisinsk_juridisk_rettighets_eller_ansettelsesmyndighet_som_ikke_er_delegert"
+    ]
+  },
+  "related_people": [
+    {
+      "id": "mika_teknisk_sjef",
+      "name": "Mika",
+      "role": "teknisk sjef og faglig stoppeier",
+      "workplace_ids": [
+        "teknisk_sikkerhet_rigg_og_frigivelse"
+      ],
+      "function": "Mika holder teknisk kapasitet, riggstatus, kritiske avhengigheter, testresultater, fagkompetanse og eksplisitte stoppunkter samlet. Han gjør det synlig når kunstnerisk eller tidsmessig press endrer en forutsetning som krever ny teknisk vurdering, og skiller anbefaling, testet løsning og faktisk frigivelse slik at produksjonsledelsen ikke kan omtale en uprøvd løsning som klar.",
+      "authority_relation": "Mika kan stanse eller holde igjen teknisk arbeid innen sin delegerte fag- og sikkerhetsmyndighet, kreve ny test og avvise arbeid som mangler riktig kompetanse. Han kan ikke alene endre program, ansettelsesvilkår, publikumsstrategi eller økonomisk ramme. Produksjonslederen må behandle et gyldig teknisk stopp som bindende premiss og replanlegge berørte ledd fremfor å presse gjennom åpning.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "selma_crew_og_bemanning",
+      "name": "Selma",
+      "role": "crew- og bemanningskoordinator",
+      "workplace_ids": [
+        "crew_bemanning_skift_og_hvilepunkt"
+      ],
+      "function": "Selma holder funksjonsbehov, kvalifikasjoner, skift, pauser, hviletid, fravær, reservebemanning og konkret overlevering synlig. Hun gjør forskjellen mellom en person som er tilgjengelig og en person som faktisk er kvalifisert og forsvarlig satt opp i funksjonen, og varsler når lojalitet, frivillighet eller overtidsvilje brukes som erstatning for bemanning eller arbeidsgiveransvar.",
+      "authority_relation": "Selma kan dokumentere bemanningsgap, foreslå kvalifiserte reserver, kreve avklaring av skift og hvile og eskalere når arbeidsbelastning eller kompetanse ikke er forsvarlig. Hun kan ikke dispensere fra arbeidsgiveransvar, lov- eller avtalegrenser, medisinske vurderinger eller fagkrav. Produksjonslederen kan omfordele arbeid innen mandat, men kan ikke gjøre villighet til kvalifikasjon eller oppheve hvilebehov.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "adrian_stage_management_og_kjoreplan",
+      "name": "Adrian",
+      "role": "stage manager og kjøreplaneier",
+      "workplace_ids": [
+        "produksjonskontroll_kjoreplan_og_beslutningslogg"
+      ],
+      "function": "Adrian holder gjeldende kjøreplan, cue-versjon, åpningstid, avhengigheter, kontaktpunkter og operative handoffs samlet. Han gjør alle sene endringer versjonerte og lesbare for de funksjonene som faktisk berøres, slik at muntlige ønsker fra artist, program eller ledelse ikke blir parallelle kommandolinjer og gjennomføring kan pauses, rekkefølges eller gjenopptas fra en kjent operativ sannhet.",
+      "authority_relation": "Adrian kan distribuere og håndheve gjeldende kjøreplan og cue-versjon innen delegert stage-management-mandat, holde igjen et cue som mangler forutsetning og kreve bekreftet handoff. Han kan ikke overstyre formell sikkerhetsmyndighet, bemanningskrav, artistens rettigheter eller arbeidsgiveransvar. Produksjonslederen kan beslutte operativ replanlegging innen eget mandat, men endringen må inn i samme versjonerte linje.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "eva_husdrift_sikkerhet_og_publikum",
+      "name": "Eva",
+      "role": "husdrift-, sikkerhets- og publikumsansvarlig",
+      "workplace_ids": [
+        "publikumsflyt_husdrift_og_avvikssentral"
+      ],
+      "function": "Eva holder rømningsveier, kapasitet, adgang, vakthold, publikumsflyt, beredskapskontakt, husregler og åpne driftsavvik samlet før innslipp og gjennom hele arrangementet. Hun skiller det produksjonen ønsker å love publikum fra det huset faktisk kan åpne for, og gjør endringer i rom, kø, adgang eller kapasitet til eksplisitte operative premisser som må nå kjøreplan og crew.",
+      "authority_relation": "Eva kan holde igjen innslipp eller berørte områder innen delegert hus-, sikkerhets- eller publikumsmyndighet når krav ikke er oppfylt, og kan kreve korrigering og ny kontroll. Hun kan ikke overta kunstnerisk program, personaldisiplin eller tekniske fagavgjørelser uten mandat. Produksjonslederen må behandle husets gyldige stopp- og kapasitetsgrenser som faktiske rammer, ikke som forhandlingskort.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    }
+  ]
+}

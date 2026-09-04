@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "subkultur",
+  "role_scope": "subkultur_produksjonsledelse",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "subkultur_produksjonsledelse_hel_produksjonsdag",
+      "purpose": "Authored Subkultur production-leadership gameplay with one versioned production book, explicit staffing and release states, bounded operational authority, safety/house interfaces, handoffs, bounded rework/retest and clean debrief.",
+      "learning_focus": [
+        "kjoreplan_versjon_og_handoff",
+        "bemanning_kvalifikasjon_skift_og_hvile",
+        "teknisk_sikkerhet_stoppeier_og_frigivelse",
+        "husdrift_publikumsflyt_og_beredskap",
+        "avvik_bounded_rework_retest_og_debrief"
+      ],
+      "mails": [
+        {
+          "id": "pl_dag_014",
+          "mail_type": "story",
+          "mail_family": "subkultur_produksjonsledelse_hel_produksjonsdag",
+          "role_scope": "subkultur_produksjonsledelse",
+          "phase": "forenoon",
+          "day_phase": "morning",
+          "priority": 137,
+          "from": "Adrian",
+          "people_ref": "adrian_stage_management_og_kjoreplan",
+          "person_id": "adrian_stage_management_og_kjoreplan",
+          "place_id": "produksjonskontroll_kjoreplan_og_beslutningslogg",
+          "subject": "En hel produksjonsdag fra første brief via stopp og replanlegging til dokumentert lukking",
+          "summary": "Morgenen starter med én kjøreplan, fravær gir nytt bemanningspremiss, teknisk test forsinker åpning, publikumsflyt må justeres og ett artistønske endrer rekkefølgen. Historien må bæres av samme produksjonsversjon og sporbare handoffs. Produksjonsboken skal samtidig skille foreslått, besluttet, bemannet, testet, frigitt, distribuert, utført, avviket og lukket status, med kjøreplanversjon, crew/kvalifikasjon, skift/hvile, teknikk, sikkerhet/husdrift, publikumsflyt, stoppeier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere versjon, begrunnelse, varsling eller ansvar forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av produksjonen kan beholde mens saken venter.",
+          "situation": [
+            "Morgenen starter med én kjøreplan, fravær gir nytt bemanningspremiss, teknisk test forsinker åpning, publikumsflyt må justeres og ett artistønske endrer rekkefølgen. Historien må bæres av samme produksjonsversjon og sporbare handoffs.",
+            "Produksjonslederen kan koordinere og replanlegge innen delegert mandat, men kan ikke gjøre deadline, artiststatus, vennskap eller lojalitet til sikkerhetsdispensasjon, kvalifikasjon, arbeidsgiverunntak, rettighetsklarering eller universell kommandorett.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere produksjonsversjon slettes."
+          ],
+          "task_domain": "subkultur_produksjonsledelse",
+          "competency": "helhetlig_operativ_ledelse",
+          "pressure": "deadline_og_publikumslovnad_vs_sporbar_operativ_leveranse_arbeidsmiljo_og_sikkerhet",
+          "choice_axis": "sann_status_stoppeier_og_bounded_rework_vs_antakelse_og_skjult_operativ_gjeld",
+          "consequence_axis": "robust_gjennomforing_vs_bemannings_teknisk_sikkerhets_og_tillitsgjeld",
+          "narrative_arc": "dag",
+          "situated_audience_id": "artister_program_og_oppdragsgiver",
+          "choices": [
+            {
+              "id": "A",
+              "label": "helhetlig_operativ_ledelse: sporbar beslutning pl_dag_014",
+              "reply": "Bær alle endringer gjennom samme produksjonsbok, la hver stoppeier beholde myndighet, distribuer nye versjoner og lukk med restpunkter og ansvar. Jeg oppdaterer produksjonsbok_kjoreplan_bemanning_sikkerhet_og_avvikslogg med gjeldende versjon, berørte ledd, beslutningseier eller stoppeier og neste kontroll slik at handoff kan etterprøves og bare nødvendig arbeid gjenåpnes.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "sikkerhet"
+              ],
+              "feedback": "Bær alle endringer gjennom samme produksjonsbok, la hver stoppeier beholde myndighet, distribuer nye versjoner og lukk med restpunkter og ansvar. Det beskytter fremdrift uten å skjule arbeidsmiljø, teknisk risiko, sikkerhet eller myndighetsgrense. Når premisset endres er det tydelig hvilken produksjonsversjon som gjaldt, hvem som eier neste kontroll og hvilke ledd som faktisk må retestes før gjenopptakelse.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "helhetlig_operativ_ledelse: skjult gjeld pl_dag_014",
+              "reply": "La hvert fag håndtere sin del muntlig gjennom dagen og skriv en samlet etterrapport fra hukommelsen når publikum har gått. Jeg lar tempo, status eller sosialt press styre nå og skyver kvalifikasjon, sikkerhet, hvile, versjonskontroll eller stoppeier til etterpå dersom noen ber om dokumentasjon.",
+              "effect": -1,
+              "tags": [
+                "mandatglidning",
+                "operativ_gjeld",
+                "risiko"
+              ],
+              "feedback": "La hvert fag håndtere sin del muntlig gjennom dagen og skriv en samlet etterrapport fra hukommelsen når publikum har gått. Det kan bevare tempo eller sosial ro i øyeblikket, men flytter risiko til crew, fagansvarlige, husdrift eller publikum. Senere blir det uklart hvem som ga ordre, om bemanningen var kvalifisert, hva som var testet eller frigitt og hvem som skulle ha lukket avviket.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

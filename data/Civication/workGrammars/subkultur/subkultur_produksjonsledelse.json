@@ -1,1 +1,227 @@
-{"schema":"civication_work_grammar_v2","version":2,"category":"subkultur","role_scope":"subkultur_produksjonsledelse","source":{"evidence":"data/Civication/subcultureCareerEvidence.json"},"badge_binding":{"badge_id":"subkultur","badge_titles":["Produksjonsleder"]},"task_families":["bemanning_og_skift","kjoreplan_og_operativ_flyt","sikkerhet_og_beredskap","teknisk_og_scene_koordinering","avvik_og_etterarbeid"],"work_loops":[{"id":"leveranse","steps":["brief_team","verifiser_kritiske_punkter","driv_kjoreplan","handter_avvik","debrief_og_logg"]},{"id":"avvik_og_kvalitet","steps":["oppdag_avvik","klassifiser_kritikalitet","stans_eller_tilpass","fordel_ny_plan","bekreft_lukking"]}],"practice_stories":[{"id":"ikke_klar","setup":"Åpningstid er nå, men rømningsvei er blokkert av rigg.","good":"Hold åpning til kritisk punkt er lukket og kommuniser ny plan.","bad":"Åpne og håp at riggen flyttes før den trengs."},{"id":"sykdom","setup":"En nøkkelperson melder sykdom før innslipp.","good":"Finn kvalifisert erstatning eller reduser produksjonen.","bad":"Sett en tilfeldig frivillig i funksjonen."},{"id":"teknisk_stans","setup":"Et teknisk avvik truer programflyten.","good":"Koordiner fagansvarlig, program og publikum med tydelig beslutning.","bad":"La alle løse sin del uten felles kommandolinje."},{"id":"ikonet","setup":"En kjent aktør krever å endre planen direkte med crew.","good":"Hold endringer gjennom ansvarlig produksjonslinje.","bad":"La status overstyre plan og ansvar."},{"id":"sliten_stab","setup":"Staben begynner å gjøre små feil etter en lang dag.","good":"Rebalanser oppgaver og pauser før feil blir sikkerhetsrisiko.","bad":"Bruk lojalitetspress for å holde tempoet."}],"quality_axes":["sikkerhet","operativ_klarhet","bemanningskvalitet","tidskontroll","kommunikasjon","avvikssporbarhet"],"authority_boundary":{"may_not":["overstyre_formell_sikkerhetsmyndighet","godta_ukvalifisert_bemanning_i_kritiske_funksjoner","skjule_alvorlige_avvik_for_a_holde_tidsplan","bruke_status_eller_vennskap_som_operativ_kommandolinje"]}}
+{
+  "schema": "civication_work_grammar_v2",
+  "version": 3,
+  "category": "subkultur",
+  "role_scope": "subkultur_produksjonsledelse",
+  "role_id": "subkultur_produksjonsledelse",
+  "source": {
+    "evidence": "data/Civication/subcultureCareerEvidence.json"
+  },
+  "badge_binding": {
+    "badge_id": "subkultur",
+    "badge_titles": [
+      "Produksjonsleder"
+    ]
+  },
+  "task_families": [
+    "kjoreplan_og_operativ_flyt",
+    "bemanning_skift_og_hvile",
+    "teknisk_sikkerhet_og_frigivelse",
+    "husdrift_beredskap_og_publikum",
+    "avvik_handoff_retest_og_debrief"
+  ],
+  "work_loops": [
+    {
+      "id": "operativ_leveranse",
+      "steps": [
+        "brief_og_las_gjeldende_versjon",
+        "verifiser_kritiske_kontrollpunkter",
+        "vent_pa_riktig_bemanning_test_eller_frigivelse",
+        "beslutt_og_handoff_innen_mandat",
+        "driv_apning_og_gjennomforing",
+        "debrief_og_lukk"
+      ]
+    },
+    {
+      "id": "avvik_og_bounded_rework",
+      "steps": [
+        "oppdag_og_logg_avvik",
+        "klassifiser_kritikalitet_og_stoppeier",
+        "stans_eller_tilpass_berort_ledd",
+        "replanlegg_og_distribuer_ny_versjon",
+        "retest_bekreft_og_gjenoppta"
+      ]
+    }
+  ],
+  "practice_stories": [
+    {
+      "id": "ikke_klar",
+      "setup": "Åpningstid er nå, men en rømningsvei er blokkert av rigg.",
+      "good": "Hold berørt åpning til stoppeier har bekreftet korrigering og ny kontroll.",
+      "bad": "Åpne og håp riggen flyttes før den trengs."
+    },
+    {
+      "id": "sykdom",
+      "setup": "En nøkkelperson melder sykdom før innslipp.",
+      "good": "Finn kvalifisert reserve eller reduser produksjonen og replanlegg.",
+      "bad": "Sett en tilfeldig frivillig i kritisk funksjon."
+    },
+    {
+      "id": "teknisk_stans",
+      "setup": "Et teknisk avvik truer programflyt og sikkerhet.",
+      "good": "Respekter faglig stopp, fordel ny plan og krev ny test før cue frigjøres.",
+      "bad": "La hvert fag løse sin del mens showet fortsetter som planlagt."
+    },
+    {
+      "id": "ikonet",
+      "setup": "En kjent aktør krever å endre planen direkte med crew.",
+      "good": "Før endringen gjennom ansvarlig produksjonslinje og ny versjon.",
+      "bad": "La status overstyre kjøreplan og ansvar."
+    },
+    {
+      "id": "sliten_stab",
+      "setup": "Staben begynner å gjøre små feil etter en lang dag.",
+      "good": "Rebalanser oppgaver, pauser og omfang før feil blir sikkerhetsrisiko.",
+      "bad": "Bruk lojalitetspress for å holde tempoet."
+    }
+  ],
+  "quality_axes": [
+    "sikkerhet",
+    "operativ_klarhet",
+    "bemanningskvalitet",
+    "tids_og_versjonskontroll",
+    "kommunikasjon_og_handoff",
+    "avvikssporbarhet_og_retest"
+  ],
+  "authority_boundary": {
+    "can": [
+      "koordinere operativ produksjonslinje, kjøreplan, crew og handoffs innen delegert mandat",
+      "fordele og omfordele oppgaver til kvalifiserte funksjoner innen bemannings- og arbeidsgivergrenser",
+      "holde igjen åpning, cue eller berørt leveranse når dokumentert forutsetning mangler",
+      "replanlegge berørte ledd, varsle konsekvens og kreve ny kontroll før gjenopptakelse"
+    ],
+    "may_not": [
+      "overstyre_formell_sikkerhets_hms_husdrift_eller_teknisk_stoppeier",
+      "godta_ukvalifisert_bemanning_i_kritiske_funksjoner_eller_omga_arbeidsgiveransvar_hviletid_og_arbeidsmiljo",
+      "skjule_alvorlige_avvik_eller_kalle_uavklart_status_klar_for_a_bevare_tidsplan_eller_publikumslovnad",
+      "bruke_artiststatus_vennskap_lojalitet_eller_miljotroverdighet_som_operativ_kommandolinje",
+      "produsere_medisinsk_juridisk_rettighets_eller_ansettelsesmyndighet_som_ikke_er_delegert"
+    ]
+  },
+  "work_world": "Operativ kulturproduksjon der samme produksjonsbok binder kjøreplan, crew, kvalifikasjon, skift/hvile, teknisk status, sikkerhet, husdrift, publikumsflyt, avvik, beslutning, handoff, retest og debrief sammen.",
+  "pressure_axes": [
+    "deadline_og_publikumslovnad_vs_sikkerhet_og_sann_status",
+    "artiststatus_og_lojalitet_vs_operativ_kommandolinje",
+    "bemanningspress_vs_kvalifikasjon_hvile_og_arbeidsmiljo",
+    "programflyt_vs_teknisk_stopp_husdrift_og_bounded_rework"
+  ],
+  "actor_grammar": [
+    {
+      "id": "mika_teknisk_sjef",
+      "name": "Mika",
+      "role": "teknisk sjef og faglig stoppeier",
+      "workplace_ids": [
+        "teknisk_sikkerhet_rigg_og_frigivelse"
+      ]
+    },
+    {
+      "id": "selma_crew_og_bemanning",
+      "name": "Selma",
+      "role": "crew- og bemanningskoordinator",
+      "workplace_ids": [
+        "crew_bemanning_skift_og_hvilepunkt"
+      ]
+    },
+    {
+      "id": "adrian_stage_management_og_kjoreplan",
+      "name": "Adrian",
+      "role": "stage manager og kjøreplaneier",
+      "workplace_ids": [
+        "produksjonskontroll_kjoreplan_og_beslutningslogg"
+      ]
+    },
+    {
+      "id": "eva_husdrift_sikkerhet_og_publikum",
+      "name": "Eva",
+      "role": "husdrift-, sikkerhets- og publikumsansvarlig",
+      "workplace_ids": [
+        "publikumsflyt_husdrift_og_avvikssentral"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "produksjonskontroll_kjoreplan_og_beslutningslogg",
+      "name": "Produksjonskontrollen, kjøreplanen og beslutningsloggen",
+      "function": "Her ligger gjeldende kjøreplan, operative milepæler, cue-versjon, ansvar, stoppunkter, beslutninger, handoffs og hvem som må bekrefte neste overgang. Flaten skiller foreslått, besluttet, distribuert, bekreftet og utført slik at en muntlig endring aldri kan bli en skjult parallell kommandolinje."
+    },
+    {
+      "id": "crew_bemanning_skift_og_hvilepunkt",
+      "name": "Crew-, bemannings-, skift- og hvilepunktet",
+      "function": "Her holdes funksjonsbehov, kvalifikasjoner, faktisk bemanning, skift, pauser, hvile, fravær, reserve og overlevering samlet. Flaten gjør det synlig når en kritisk funksjon mangler kompetanse eller arbeidstiden presser feilrisikoen opp, slik at produksjonsledelsen må redusere, omfordele eller eskalere i stedet for å bruke lojalitet som løsning."
+    },
+    {
+      "id": "teknisk_sikkerhet_rigg_og_frigivelse",
+      "name": "Teknisk sikkerhet, rigg og frigivelsespunkt",
+      "function": "Her samles riggstatus, tekniske tester, kritiske feil, avhengigheter, fagansvar, isolering, ny test og eksplisitt frigivelse. En løsning er ikke klar fordi tidsplanen trenger den; dersom premiss, last, plassering eller bruk endres, må bare berørte tekniske ledd gjenåpnes og retestes av riktig faglinje."
+    },
+    {
+      "id": "publikumsflyt_husdrift_og_avvikssentral",
+      "name": "Publikumsflyt, husdrift og avvikssentral",
+      "function": "Her samles kapasitet, rømningsveier, adgang, vakthold, kø, beredskap, husavvik, publikumsinformasjon og status før åpning. Flaten binder driftsbeslutninger tilbake til kjøreplanen slik at publikumsløfter, artiststatus eller deadline aldri kan gjøre en blokkert rømningsvei, uavklart kapasitet eller manglende bemanning akseptabel."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "produksjonsbok_kjoreplan_bemanning_sikkerhet_og_avvikslogg",
+    "description": "Versjonert produksjonsbok for kjøreplan/cue, bemanning, kvalifikasjon, skift/hvile, tekniske kontrollpunkter, sikkerhet/husdrift, publikumsflyt, avvik, beslutning/stoppeier, handoff, retest, gjenopptakelse og debrief.",
+    "states": [
+      "brief_og_produksjonsversjon_laset",
+      "kritiske_kontrollpunkter_kartlagt",
+      "venter_pa_bemanning_test_frigivelse_eller_handoff",
+      "betinget_operativt_klar",
+      "delegert_beslutning_og_distribuert_handoff",
+      "apning_og_gjennomforing",
+      "avvik_bounded_rework_og_retest",
+      "debrief_restpunkt_og_lukking"
+    ],
+    "handoff_rule": "Neste funksjon mottar gjeldende kjøreplan/cue-versjon, bemanning og kvalifikasjon, skift/hvile, teknisk og sikkerhetsstatus, publikums-/husdriftspremiss, åpne avvik, beslutningseier/stoppeier og konkret neste kontroll før status kan endres."
+  },
+  "rhythm_contract": {
+    "loop": "brief -> kritiske kontrollpunkter -> waiting/venting -> delegert beslutning -> handoff -> åpning/gjennomføring -> avvik -> bounded rework/retest -> debrief/lukking",
+    "waiting_states": [
+      "kvalifisert_reserve_eller_skiftavklaring",
+      "teknisk_test_eller_faglig_frigivelse",
+      "husdrift_sikkerhet_kapasitet_eller_publikumsavklaring",
+      "bekreftet_kjoreplan_cue_eller_handoff"
+    ],
+    "rework_rule": "Endret premiss gjenåpner bare berørte kjøreplan-, bemannings-, tekniske-, sikkerhets-, husdrifts- eller publikumsledd; tidligere produksjonsversjon, begrunnelse, stoppeier, varsling og hvem som kan frigive beholdes."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_subkultur_club_7_operativt_produksjonsblikk",
+      "badge_id": "subkultur",
+      "use": "Historisk Club 7-kontekst brukes til å formulere bedre spørsmål om hvordan skiftende sted, program og miljø skaper operative avhengigheter; aldri som fasit for dagens HMS, brann-/kapasitetskrav, bemanning, arbeidstid, kommandolinje eller frigivelsesmyndighet."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "appointment_required",
+    "first_object": "produksjonsbok_kjoreplan_bemanning_sikkerhet_og_avvikslogg",
+    "first_task": "Opprett første produksjonsversjon med kjøreplan/cue, kritiske kontrollpunkter, bemanning og kvalifikasjon, skift/hvile, tekniske avhengigheter, sikkerhet/husdrift, publikumsflyt, stoppeiere, åpne avvik og hva som fortsatt venter før dørene, et cue eller en sone kan kalles operativt klar."
+  },
+  "situated_reputation_contract": {
+    "global_score_allowed": false,
+    "audiences": [
+      "crew_og_stage_management",
+      "tekniske_fag_og_stoppeiere",
+      "husdrift_sikkerhet_og_vakthold",
+      "artister_program_og_oppdragsgiver",
+      "publikum_og_arrangementsdrift"
+    ],
+    "rule": "Standing følger konkret operativ pålitelighet, sann status, beskyttelse av mennesker og reparerbar handoff; den skaper aldri sikkerhetsdispensasjon, arbeidsgiverfullmakt, medisinsk/juridisk myndighet eller universell kommandorett."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "subkultur_produksjonsledelse",
+    "no_generic_fallback": true
+  }
+}
