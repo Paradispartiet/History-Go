@@ -1,0 +1,213 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "version": 1,
+  "id": "scenekunst_utoving_og_ensemble_foundation_v1",
+  "category": "scenekunst",
+  "role_scope": "scenekunst_utoving_og_ensemble",
+  "title": "Utøving og ensemble",
+  "description": "Seksten steg gjennom samme utøverforløp fra første rolle- og partnerprøve til note, cue, fravær/cover, forestilling, belastningsoppfølging og sen konsekvens.",
+  "arc": {
+    "from": "Ny utøverfunksjon uten felles sannhetskilde for sceneversjon, note, partnerpremiss, cue og belastning.",
+    "to": "Utøver som bærer presis og bærekraftig ensemblepraksis gjennom press uten å låne myndighet fra arbeidsgiver, regi/koreografi, partner, HMS, medisin eller rettighet.",
+    "core_questions": [
+      "Hva er bare lest eller prøvd, hva er faktisk avtalt, og hva er forestillingsklart?",
+      "Hvem eier neste kunstneriske, partner-, cue-, HMS- eller bemanningsavklaring?",
+      "Hvilke ledd må retestes når note, partner, rom, cue eller belastning endres?"
+    ]
+  },
+  "situated_audience_contract": {
+    "no_global_score": true,
+    "audiences": [
+      "ensemble_og_partnere",
+      "regi_og_koreografi",
+      "inspisient_og_scene",
+      "arbeidsgiver_og_hms",
+      "privat_restitusjon"
+    ],
+    "rule": "Standing er bundet til konkret arbeidsrelasjon og leveranse; den skaper aldri global score, casting/ansettelse, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt."
+  },
+  "outcome_rules": {
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 2,
+      "strikes_lte": 0
+    },
+    "fired": {
+      "stability_values": [
+        "FIRED"
+      ],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "stagnated": {
+      "autonomy_delta": -10,
+      "stability": "STAGNATED",
+      "add_branch_flags": [
+        "career_stagnated",
+        "utover_uten_sporbar_ensembleversjon"
+      ]
+    }
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Oppdater ensemblebok med sann sceneversjon, note, partner-/belastningspremiss og neste retest.",
+      "allowed_families": [
+        "utover_ensemblebok"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 2,
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Bevar kunstnerisk oppgave, partnerautonomi, cue og arbeidsgiver-/regi-/HMS-grenser i arbeidsrelasjonen.",
+      "allowed_families": [
+        "utover_arbeidsrelasjoner"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 3,
+      "type": "knowledge",
+      "phase": "intro",
+      "step_goal": "Bruk History Go til et bedre utøver- og ensemblespørsmål uten fasitspråk.",
+      "allowed_families": [
+        "utover_history_go"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 4,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Oppdater ensemblebok med sann sceneversjon, note, partner-/belastningspremiss og neste retest.",
+      "allowed_families": [
+        "utover_ensemblebok"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 5,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Bevar kunstnerisk oppgave, partnerautonomi, cue og arbeidsgiver-/regi-/HMS-grenser i arbeidsrelasjonen.",
+      "allowed_families": [
+        "utover_arbeidsrelasjoner"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 6,
+      "type": "conflict",
+      "phase": "advanced",
+      "step_goal": "Skill premierepress, samtykke, belastning og kunstnerisk mål før beslutning.",
+      "allowed_families": [
+        "utover_grense_og_premierepress"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 7,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Oppdater ensemblebok med sann sceneversjon, note, partner-/belastningspremiss og neste retest.",
+      "allowed_families": [
+        "utover_ensemblebok"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 8,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Bevar kunstnerisk oppgave, partnerautonomi, cue og arbeidsgiver-/regi-/HMS-grenser i arbeidsrelasjonen.",
+      "allowed_families": [
+        "utover_arbeidsrelasjoner"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 9,
+      "type": "event",
+      "phase": "advanced",
+      "step_goal": "Bygg sikker cover-versjon når fravær eller premiss endres.",
+      "allowed_families": [
+        "utover_fravaer_og_cover"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 10,
+      "type": "micro",
+      "phase": "advanced",
+      "step_goal": "Bruk eksplisitt språk for lest, prøvd, avtalt, betinget og forestillingsklar.",
+      "allowed_families": [
+        "utover_notesprak_og_status"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 11,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Oppdater ensemblebok med sann sceneversjon, note, partner-/belastningspremiss og neste retest.",
+      "allowed_families": [
+        "utover_ensemblebok"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 12,
+      "type": "people",
+      "phase": "mastery",
+      "step_goal": "Bevar kunstnerisk oppgave, partnerautonomi, cue og arbeidsgiver-/regi-/HMS-grenser i arbeidsrelasjonen.",
+      "allowed_families": [
+        "utover_arbeidsrelasjoner"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 13,
+      "type": "followup",
+      "phase": "mastery",
+      "step_goal": "Bruk faktisk belastning og forestillingseffekt til avgrenset rework og ny handoff.",
+      "allowed_families": [
+        "utover_belastning_og_restitusjon"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 14,
+      "type": "story",
+      "phase": "mastery",
+      "step_goal": "Bær samme ensembleversjon gjennom hel forestilling og dokumenter avvik og effekt.",
+      "allowed_families": [
+        "utover_forestilling_i_drift"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 15,
+      "type": "consequence",
+      "phase": "mastery",
+      "step_goal": "Koble sen note eller improvisasjon til dokumentert partner-, cue- og versjonsgjeld.",
+      "allowed_families": [
+        "utover_sen_note_og_cuegjeld"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 16,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Oppdater ensemblebok med sann sceneversjon, note, partner-/belastningspremiss og neste retest.",
+      "allowed_families": [
+        "utover_ensemblebok"
+      ],
+      "fallback_types": []
+    }
+  ]
+}

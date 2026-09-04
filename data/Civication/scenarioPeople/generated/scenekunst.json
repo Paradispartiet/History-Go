@@ -432,6 +432,21 @@
       "verification_required": true
     },
     {
+      "id": "ingeborg_inspisient",
+      "name": "ingeborg_inspisient",
+      "category": "scenekunst",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/scenekunst/scenekunst_utoving_og_ensemble.json"
+      ],
+      "scenario_roles": [
+        "scenekunst_utoving_og_ensemble"
+      ],
+      "verification_required": true
+    },
+    {
       "id": "ingrid_researchansvarlig",
       "name": "ingrid_researchansvarlig",
       "category": "scenekunst",
@@ -492,6 +507,21 @@
       "verification_required": true
     },
     {
+      "id": "leo_understudy",
+      "name": "leo_understudy",
+      "category": "scenekunst",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/scenekunst/scenekunst_utoving_og_ensemble.json"
+      ],
+      "scenario_roles": [
+        "scenekunst_utoving_og_ensemble"
+      ],
+      "verification_required": true
+    },
+    {
       "id": "liv_dramatiker",
       "name": "liv_dramatiker",
       "category": "scenekunst",
@@ -518,6 +548,21 @@
       ],
       "scenario_roles": [
         "scenekunst_dramaturgi_og_utvikling"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "malik_danser",
+      "name": "malik_danser",
+      "category": "scenekunst",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/scenekunst/scenekunst_utoving_og_ensemble.json"
+      ],
+      "scenario_roles": [
+        "scenekunst_utoving_og_ensemble"
       ],
       "verification_required": true
     },
@@ -593,6 +638,21 @@
       ],
       "scenario_roles": [
         "scenekunst_scene_og_produksjon"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "sara_skuespiller",
+      "name": "sara_skuespiller",
+      "category": "scenekunst",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/scenekunst/scenekunst_utoving_og_ensemble.json"
+      ],
+      "scenario_roles": [
+        "scenekunst_utoving_og_ensemble"
       ],
       "verification_required": true
     },
@@ -818,6 +878,40 @@
         "direct": 0,
         "strong": 12,
         "contextual": 36,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "scenekunst_utoving_og_ensemble",
+      "role_scope": "scenekunst_utoving_og_ensemble",
+      "title": "Utøving og ensemble",
+      "source": "data/Civication/roleModels/scenekunst/scenekunst_utoving_og_ensemble.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [
+          "dan_fosse",
+          "folketeateret_musikalmiljoet",
+          "willie_hoel"
+        ],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "ensemble",
+        "utoving",
+        "utøving"
+      ],
+      "resolved_counts": {
+        "total": 48,
+        "existing_place_people": 48,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 3,
+        "contextual": 45,
         "excluded": 0
       }
     }

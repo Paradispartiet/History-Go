@@ -396,6 +396,15 @@
     "data/Civication/mailFamilies/scenekunst/followup/scenekunst_scene_og_produksjon_followup.json",
     "data/Civication/mailFamilies/scenekunst/knowledge/scenekunst_scene_og_produksjon_knowledge.json",
     "data/Civication/mailFamilies/scenekunst/consequence/scenekunst_scene_og_produksjon_consequence.json",
+    "data/Civication/mailFamilies/scenekunst/job/scenekunst_utoving_og_ensemble_job.json",
+    "data/Civication/mailFamilies/scenekunst/people/scenekunst_utoving_og_ensemble_people.json",
+    "data/Civication/mailFamilies/scenekunst/story/scenekunst_utoving_og_ensemble_story.json",
+    "data/Civication/mailFamilies/scenekunst/conflict/scenekunst_utoving_og_ensemble_conflict.json",
+    "data/Civication/mailFamilies/scenekunst/event/scenekunst_utoving_og_ensemble_event.json",
+    "data/Civication/mailFamilies/scenekunst/micro/scenekunst_utoving_og_ensemble_micro.json",
+    "data/Civication/mailFamilies/scenekunst/followup/scenekunst_utoving_og_ensemble_followup.json",
+    "data/Civication/mailFamilies/scenekunst/knowledge/scenekunst_utoving_og_ensemble_knowledge.json",
+    "data/Civication/mailFamilies/scenekunst/consequence/scenekunst_utoving_og_ensemble_consequence.json",
     "data/Civication/mailFamilies/sosial_laering/job/barnehageassistent_job.json",
     "data/Civication/mailFamilies/sosial_laering/people/barnehageassistent_people.json",
     "data/Civication/mailFamilies/sosial_laering/story/barnehageassistent_story.json",
@@ -190911,6 +190920,2093 @@
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "sann_ensembleversjon_og_bounded_rework_vs_statuspress_og_skjult_gjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Hold kropp, samtykke, HMS og kunstnerisk mål som separate premisser, eskaler til riktige eiere og velg bare en versjon som faktisk kan prøves forsvarlig. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar press og grensemyndighet med eksplisitt premiss",
+            "reply": "Hold kropp, samtykke, HMS og kunstnerisk mål som separate premisser, eskaler til riktige eiere og velg bare en versjon som faktisk kan prøves forsvarlig. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "grense"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Be partnerne bli enige om å bære sekvensen gjennom premieren og evaluere belastningen etterpå. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta press og grensemyndighet og fyll handoff senere",
+            "reply": "Be partnerne bli enige om å bære sekvensen gjennom premieren og evaluere belastningen etterpå. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "press_og_grensemyndighet",
+        "consequence_axis": "baerekraftig_repeterbar_forestilling_vs_partner_cue_og_belastningsgjeld",
+        "day_phase": "afternoon",
+        "from": "Sara",
+        "id": "utover_premierepress_009",
+        "mail_family": "utover_grense_og_premierepress",
+        "mail_type": "conflict",
+        "narrative_arc": "premierepress_009",
+        "people_ref": "sara_skuespiller",
+        "person_id": "sara_skuespiller",
+        "phase": "workday",
+        "place_id": "proverom_og_rollelogg",
+        "pressure": "kunstnerisk_og_forestillingstempo_vs_sporbar_note_grense_og_handoff",
+        "priority": 142,
+        "role_scope": "scenekunst_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/conflict/scenekunst_utoving_og_ensemble_conflict.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "utover_ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "En sekvens er kunstnerisk sentral, men partnerens belastning og samtykkepremiss er endret samtidig som teamet vil unngå å åpne materialet sent.",
+          "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+          "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+        ],
+        "subject": "Premierepress gjør at smerte, samtykke og kunstnerisk lojalitet blandes sammen",
+        "summary": "En sekvens er kunstnerisk sentral, men partnerens belastning og samtykkepremiss er endret samtidig som teamet vil unngå å åpne materialet sent. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_utoving_og_ensemble"
+      },
+      "id": "utover_premierepress_009",
+      "mail_type": "conflict",
+      "role_scope": "scenekunst_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Hold kropp, samtykke, HMS og kunstnerisk mål som separate premisser, eskaler til riktige eiere og velg bare en versjon som faktisk kan prøves forsvarlig. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar press og grensemyndighet med eksplisitt premiss",
+            "reply": "Hold kropp, samtykke, HMS og kunstnerisk mål som separate premisser, eskaler til riktige eiere og velg bare en versjon som faktisk kan prøves forsvarlig. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Be partnerne bli enige om å bære sekvensen gjennom premieren og evaluere belastningen etterpå. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta press og grensemyndighet og fyll handoff senere",
+            "reply": "Be partnerne bli enige om å bære sekvensen gjennom premieren og evaluere belastningen etterpå. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring."
+          }
+        ],
+        "content": {
+          "situation": [
+            "En sekvens er kunstnerisk sentral, men partnerens belastning og samtykkepremiss er endret samtidig som teamet vil unngå å åpne materialet sent.",
+            "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+            "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+          ],
+          "subject": "Premierepress gjør at smerte, samtykke og kunstnerisk lojalitet blandes sammen",
+          "summary": "En sekvens er kunstnerisk sentral, men partnerens belastning og samtykkepremiss er endret samtidig som teamet vil unngå å åpne materialet sent. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "utover_premierepress_009",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "proverom_og_rollelogg",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "utover_premierepress_009",
+          "source_path": "data/Civication/mailFamilies/scenekunst/conflict/scenekunst_utoving_og_ensemble_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_utoving_og_ensemble.mail.utover_premierepress_009",
+        "version": 1
+      },
+      "source_hash": "08d8b9f4dedab06bab7bdd472dd26992121aa216808c4007d2c370b3eaec8ae0",
+      "source_path": "data/Civication/mailFamilies/scenekunst/conflict/scenekunst_utoving_og_ensemble_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "sann_ensembleversjon_og_bounded_rework_vs_statuspress_og_skjult_gjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Logg faktisk effekt, gjenåpne bare berørte note-, partner- og cueledd og krev én ny felles versjon før gjennomløp. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar sen konsekvens og bounded rework med eksplisitt premiss",
+            "reply": "Logg faktisk effekt, gjenåpne bare berørte note-, partner- og cueledd og krev én ny felles versjon før gjennomløp. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "grense"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "La ensemblet gjenta gårsdagens løsning siden den fungerte og formaliser detaljene etter noen forestillinger. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta sen konsekvens og bounded rework og fyll handoff senere",
+            "reply": "La ensemblet gjenta gårsdagens løsning siden den fungerte og formaliser detaljene etter noen forestillinger. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sen_konsekvens_og_bounded_rework",
+        "consequence_axis": "baerekraftig_repeterbar_forestilling_vs_partner_cue_og_belastningsgjeld",
+        "day_phase": "afternoon",
+        "from": "Ingeborg",
+        "id": "utover_sen_note_015",
+        "mail_family": "utover_sen_note_og_cuegjeld",
+        "mail_type": "consequence",
+        "narrative_arc": "sen_note_015",
+        "people_ref": "ingeborg_inspisient",
+        "person_id": "ingeborg_inspisient",
+        "phase": "late_workday",
+        "place_id": "scene_cue_og_ensembleposisjon",
+        "pressure": "kunstnerisk_og_forestillingstempo_vs_sporbar_note_grense_og_handoff",
+        "priority": 136,
+        "role_scope": "scenekunst_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/consequence/scenekunst_utoving_og_ensemble_consequence.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "utover_ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "En improvisert justering fungerte foran publikum, men neste dags gjennomgang viser at partner, cue og rollelogg beskriver tre ulike utgangspunkt.",
+          "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+          "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+        ],
+        "subject": "En sen note reddet gårsdagens scene, men har skapt skjult partner- og cuegjeld",
+        "summary": "En improvisert justering fungerte foran publikum, men neste dags gjennomgang viser at partner, cue og rollelogg beskriver tre ulike utgangspunkt. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_utoving_og_ensemble"
+      },
+      "id": "utover_sen_note_015",
+      "mail_type": "consequence",
+      "role_scope": "scenekunst_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Logg faktisk effekt, gjenåpne bare berørte note-, partner- og cueledd og krev én ny felles versjon før gjennomløp. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar sen konsekvens og bounded rework med eksplisitt premiss",
+            "reply": "Logg faktisk effekt, gjenåpne bare berørte note-, partner- og cueledd og krev én ny felles versjon før gjennomløp. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "La ensemblet gjenta gårsdagens løsning siden den fungerte og formaliser detaljene etter noen forestillinger. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta sen konsekvens og bounded rework og fyll handoff senere",
+            "reply": "La ensemblet gjenta gårsdagens løsning siden den fungerte og formaliser detaljene etter noen forestillinger. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring."
+          }
+        ],
+        "content": {
+          "situation": [
+            "En improvisert justering fungerte foran publikum, men neste dags gjennomgang viser at partner, cue og rollelogg beskriver tre ulike utgangspunkt.",
+            "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+            "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+          ],
+          "subject": "En sen note reddet gårsdagens scene, men har skapt skjult partner- og cuegjeld",
+          "summary": "En improvisert justering fungerte foran publikum, men neste dags gjennomgang viser at partner, cue og rollelogg beskriver tre ulike utgangspunkt. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "utover_sen_note_015",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "scene_cue_og_ensembleposisjon",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "utover_sen_note_015",
+          "source_path": "data/Civication/mailFamilies/scenekunst/consequence/scenekunst_utoving_og_ensemble_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_utoving_og_ensemble.mail.utover_sen_note_015",
+        "version": 1
+      },
+      "source_hash": "b8b907103ba02765a36214b764c4a4b306fd4ccd807b6431d5ee7c13ce08b50d",
+      "source_path": "data/Civication/mailFamilies/scenekunst/consequence/scenekunst_utoving_og_ensemble_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "sann_ensembleversjon_og_bounded_rework_vs_statuspress_og_skjult_gjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Gjenåpne bare berørte partner-, cue- og bevegelsesledd, bygg en sikker minimumsversjon og bekreft den i avgrenset gjennomløp. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar fravaer cover og replan med eksplisitt premiss",
+            "reply": "Gjenåpne bare berørte partner-, cue- og bevegelsesledd, bygg en sikker minimumsversjon og bekreft den i avgrenset gjennomløp. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "grense"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Kopier original rolle så detaljert som mulig og forvent at resten av ensemblet kompenserer i forestilling. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta fravaer cover og replan og fyll handoff senere",
+            "reply": "Kopier original rolle så detaljert som mulig og forvent at resten av ensemblet kompenserer i forestilling. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "fravaer_cover_og_replan",
+        "consequence_axis": "baerekraftig_repeterbar_forestilling_vs_partner_cue_og_belastningsgjeld",
+        "day_phase": "afternoon",
+        "from": "Leo",
+        "id": "utover_fravaer_011",
+        "mail_family": "utover_fravaer_og_cover",
+        "mail_type": "event",
+        "narrative_arc": "fravaer_011",
+        "people_ref": "leo_understudy",
+        "person_id": "leo_understudy",
+        "phase": "late_workday",
+        "place_id": "garderobe_og_restitusjonsflate",
+        "pressure": "kunstnerisk_og_forestillingstempo_vs_sporbar_note_grense_og_handoff",
+        "priority": 140,
+        "role_scope": "scenekunst_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/event/scenekunst_utoving_og_ensemble_event.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "utover_ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "Fraværet endrer partnerlinjer, entréer og én fysisk sekvens, mens resten av forestillingen fortsatt kan bæres dersom handoff og prioritering er presis.",
+          "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+          "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+        ],
+        "subject": "En medspiller blir syk samme dag og ensemblet må bygge en robust cover-versjon",
+        "summary": "Fraværet endrer partnerlinjer, entréer og én fysisk sekvens, mens resten av forestillingen fortsatt kan bæres dersom handoff og prioritering er presis. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_utoving_og_ensemble"
+      },
+      "id": "utover_fravaer_011",
+      "mail_type": "event",
+      "role_scope": "scenekunst_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Gjenåpne bare berørte partner-, cue- og bevegelsesledd, bygg en sikker minimumsversjon og bekreft den i avgrenset gjennomløp. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar fravaer cover og replan med eksplisitt premiss",
+            "reply": "Gjenåpne bare berørte partner-, cue- og bevegelsesledd, bygg en sikker minimumsversjon og bekreft den i avgrenset gjennomløp. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Kopier original rolle så detaljert som mulig og forvent at resten av ensemblet kompenserer i forestilling. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta fravaer cover og replan og fyll handoff senere",
+            "reply": "Kopier original rolle så detaljert som mulig og forvent at resten av ensemblet kompenserer i forestilling. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Fraværet endrer partnerlinjer, entréer og én fysisk sekvens, mens resten av forestillingen fortsatt kan bæres dersom handoff og prioritering er presis.",
+            "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+            "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+          ],
+          "subject": "En medspiller blir syk samme dag og ensemblet må bygge en robust cover-versjon",
+          "summary": "Fraværet endrer partnerlinjer, entréer og én fysisk sekvens, mens resten av forestillingen fortsatt kan bæres dersom handoff og prioritering er presis. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "utover_fravaer_011",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "garderobe_og_restitusjonsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "utover_fravaer_011",
+          "source_path": "data/Civication/mailFamilies/scenekunst/event/scenekunst_utoving_og_ensemble_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_utoving_og_ensemble.mail.utover_fravaer_011",
+        "version": 1
+      },
+      "source_hash": "1ccc847e608f412dff8aa226c0d7dcc0f7e6b523a56aa0b24da7b6c19c55d438",
+      "source_path": "data/Civication/mailFamilies/scenekunst/event/scenekunst_utoving_og_ensemble_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "sann_ensembleversjon_og_bounded_rework_vs_statuspress_og_skjult_gjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Behold fungerende kunstnerisk mål, registrer faktisk effekt og gjenåpne bare bevegelses-, tempo- og partnerleddene som må tilpasses før ny handoff. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar effektkontroll restitusjon og rework med eksplisitt premiss",
+            "reply": "Behold fungerende kunstnerisk mål, registrer faktisk effekt og gjenåpne bare bevegelses-, tempo- og partnerleddene som må tilpasses før ny handoff. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "grense"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Behold løsningen fordi den virker scenisk og øk restitusjonen mellom forestillingene uten å endre materialet. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta effektkontroll restitusjon og rework og fyll handoff senere",
+            "reply": "Behold løsningen fordi den virker scenisk og øk restitusjonen mellom forestillingene uten å endre materialet. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "effektkontroll_restitusjon_og_rework",
+        "consequence_axis": "baerekraftig_repeterbar_forestilling_vs_partner_cue_og_belastningsgjeld",
+        "day_phase": "afternoon",
+        "from": "Malik",
+        "id": "utover_belastning_013",
+        "mail_family": "utover_belastning_og_restitusjon",
+        "mail_type": "followup",
+        "narrative_arc": "belastning_013",
+        "people_ref": "malik_danser",
+        "person_id": "malik_danser",
+        "phase": "late_workday",
+        "place_id": "bevegelsesrom_og_grenselogging",
+        "pressure": "kunstnerisk_og_forestillingstempo_vs_sporbar_note_grense_og_handoff",
+        "priority": 138,
+        "role_scope": "scenekunst_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/followup/scenekunst_utoving_og_ensemble_followup.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "utover_ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "Publikumsresponsen var sterk, men belastningsloggen viser at en fysisk overgang gir tydelig større kostnad etter full forestilling enn i prøverommet.",
+          "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+          "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+        ],
+        "subject": "En vellykket forestillingsløsning gir mer belastning enn prøvene viste",
+        "summary": "Publikumsresponsen var sterk, men belastningsloggen viser at en fysisk overgang gir tydelig større kostnad etter full forestilling enn i prøverommet. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_utoving_og_ensemble"
+      },
+      "id": "utover_belastning_013",
+      "mail_type": "followup",
+      "role_scope": "scenekunst_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Behold fungerende kunstnerisk mål, registrer faktisk effekt og gjenåpne bare bevegelses-, tempo- og partnerleddene som må tilpasses før ny handoff. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar effektkontroll restitusjon og rework med eksplisitt premiss",
+            "reply": "Behold fungerende kunstnerisk mål, registrer faktisk effekt og gjenåpne bare bevegelses-, tempo- og partnerleddene som må tilpasses før ny handoff. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Behold løsningen fordi den virker scenisk og øk restitusjonen mellom forestillingene uten å endre materialet. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta effektkontroll restitusjon og rework og fyll handoff senere",
+            "reply": "Behold løsningen fordi den virker scenisk og øk restitusjonen mellom forestillingene uten å endre materialet. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Publikumsresponsen var sterk, men belastningsloggen viser at en fysisk overgang gir tydelig større kostnad etter full forestilling enn i prøverommet.",
+            "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+            "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+          ],
+          "subject": "En vellykket forestillingsløsning gir mer belastning enn prøvene viste",
+          "summary": "Publikumsresponsen var sterk, men belastningsloggen viser at en fysisk overgang gir tydelig større kostnad etter full forestilling enn i prøverommet. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "utover_belastning_013",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "bevegelsesrom_og_grenselogging",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "utover_belastning_013",
+          "source_path": "data/Civication/mailFamilies/scenekunst/followup/scenekunst_utoving_og_ensemble_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_utoving_og_ensemble.mail.utover_belastning_013",
+        "version": 1
+      },
+      "source_hash": "7c5fcb4284e9dad5d493bea68ee8845ea99bb5f8a5550d68c5d10f134df6e65f",
+      "source_path": "data/Civication/mailFamilies/scenekunst/followup/scenekunst_utoving_og_ensemble_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "sann_ensembleversjon_og_bounded_rework_vs_statuspress_og_skjult_gjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Hold endringen betinget, oppdater én sceneversjon og bekreft cue og partnerposisjon i kontrollert gjennomløp før den låses. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar cue og ensemblehandoff med eksplisitt premiss",
+            "reply": "Hold endringen betinget, oppdater én sceneversjon og bekreft cue og partnerposisjon i kontrollert gjennomløp før den låses. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "grense"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "La utøverne bruke den nye blockingen og be Ingeborg flytte cueet når hun ser hvor dere havner. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta cue og ensemblehandoff og fyll handoff senere",
+            "reply": "La utøverne bruke den nye blockingen og be Ingeborg flytte cueet når hun ser hvor dere havner. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "cue_og_ensemblehandoff",
+        "consequence_axis": "baerekraftig_repeterbar_forestilling_vs_partner_cue_og_belastningsgjeld",
+        "day_phase": "morning",
+        "from": "Ingeborg",
+        "id": "utover_cue_003",
+        "mail_family": "utover_ensemblebok",
+        "mail_type": "job",
+        "narrative_arc": "cue_003",
+        "people_ref": "ingeborg_inspisient",
+        "person_id": "ingeborg_inspisient",
+        "phase": "forenoon",
+        "place_id": "scene_cue_og_ensembleposisjon",
+        "pressure": "kunstnerisk_og_forestillingstempo_vs_sporbar_note_grense_og_handoff",
+        "priority": 148,
+        "role_scope": "scenekunst_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_utoving_og_ensemble_job.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "utover_ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "En sen blocking-endring gir bedre scenisk lesbarhet, men entré, lyscue og partnerposisjon peker nå på to ulike versjoner.",
+          "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+          "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+        ],
+        "subject": "Ny blocking flytter entréen, men cueboken og ensemblet har ikke samme posisjon",
+        "summary": "En sen blocking-endring gir bedre scenisk lesbarhet, men entré, lyscue og partnerposisjon peker nå på to ulike versjoner. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_utoving_og_ensemble"
+      },
+      "id": "utover_cue_003",
+      "mail_type": "job",
+      "role_scope": "scenekunst_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Hold endringen betinget, oppdater én sceneversjon og bekreft cue og partnerposisjon i kontrollert gjennomløp før den låses. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar cue og ensemblehandoff med eksplisitt premiss",
+            "reply": "Hold endringen betinget, oppdater én sceneversjon og bekreft cue og partnerposisjon i kontrollert gjennomløp før den låses. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "La utøverne bruke den nye blockingen og be Ingeborg flytte cueet når hun ser hvor dere havner. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta cue og ensemblehandoff og fyll handoff senere",
+            "reply": "La utøverne bruke den nye blockingen og be Ingeborg flytte cueet når hun ser hvor dere havner. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring."
+          }
+        ],
+        "content": {
+          "situation": [
+            "En sen blocking-endring gir bedre scenisk lesbarhet, men entré, lyscue og partnerposisjon peker nå på to ulike versjoner.",
+            "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+            "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+          ],
+          "subject": "Ny blocking flytter entréen, men cueboken og ensemblet har ikke samme posisjon",
+          "summary": "En sen blocking-endring gir bedre scenisk lesbarhet, men entré, lyscue og partnerposisjon peker nå på to ulike versjoner. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "utover_cue_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "scene_cue_og_ensembleposisjon",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "utover_cue_003",
+          "source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_utoving_og_ensemble_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_utoving_og_ensemble.mail.utover_cue_003",
+        "version": 1
+      },
+      "source_hash": "3526a40bee7bb88b4c271cc1d69279e5fded6532cd9c8b39d3d87a231d351f35",
+      "source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_utoving_og_ensemble_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "sann_ensembleversjon_og_bounded_rework_vs_statuspress_og_skjult_gjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Stopp ved det endrede kontaktpunktet, avklar partnerpremiss og test et alternativ med samme sceniske funksjon før intensiteten økes. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar partner samtykke og retest med eksplisitt premiss",
+            "reply": "Stopp ved det endrede kontaktpunktet, avklar partnerpremiss og test et alternativ med samme sceniske funksjon før intensiteten økes. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "grense"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Behold sekvensen fordi begge tidligere har sagt ja til fysisk partnerarbeid. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta partner samtykke og retest og fyll handoff senere",
+            "reply": "Behold sekvensen fordi begge tidligere har sagt ja til fysisk partnerarbeid. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "partner_samtykke_og_retest",
+        "consequence_axis": "baerekraftig_repeterbar_forestilling_vs_partner_cue_og_belastningsgjeld",
+        "day_phase": "morning",
+        "from": "Malik",
+        "id": "utover_grense_002",
+        "mail_family": "utover_ensemblebok",
+        "mail_type": "job",
+        "narrative_arc": "grense_002",
+        "people_ref": "malik_danser",
+        "person_id": "malik_danser",
+        "phase": "forenoon",
+        "place_id": "bevegelsesrom_og_grenselogging",
+        "pressure": "kunstnerisk_og_forestillingstempo_vs_sporbar_note_grense_og_handoff",
+        "priority": 149,
+        "role_scope": "scenekunst_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_utoving_og_ensemble_job.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "utover_ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "En koreografisk endring flytter vekt og kontaktpunkt slik at forrige partneravtale ikke lenger beskriver den faktiske sekvensen.",
+          "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+          "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+        ],
+        "subject": "Partnersekvensen virker kunstnerisk, men kontakten er endret siden siste samtykke",
+        "summary": "En koreografisk endring flytter vekt og kontaktpunkt slik at forrige partneravtale ikke lenger beskriver den faktiske sekvensen. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_utoving_og_ensemble"
+      },
+      "id": "utover_grense_002",
+      "mail_type": "job",
+      "role_scope": "scenekunst_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Stopp ved det endrede kontaktpunktet, avklar partnerpremiss og test et alternativ med samme sceniske funksjon før intensiteten økes. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar partner samtykke og retest med eksplisitt premiss",
+            "reply": "Stopp ved det endrede kontaktpunktet, avklar partnerpremiss og test et alternativ med samme sceniske funksjon før intensiteten økes. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Behold sekvensen fordi begge tidligere har sagt ja til fysisk partnerarbeid. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta partner samtykke og retest og fyll handoff senere",
+            "reply": "Behold sekvensen fordi begge tidligere har sagt ja til fysisk partnerarbeid. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring."
+          }
+        ],
+        "content": {
+          "situation": [
+            "En koreografisk endring flytter vekt og kontaktpunkt slik at forrige partneravtale ikke lenger beskriver den faktiske sekvensen.",
+            "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+            "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+          ],
+          "subject": "Partnersekvensen virker kunstnerisk, men kontakten er endret siden siste samtykke",
+          "summary": "En koreografisk endring flytter vekt og kontaktpunkt slik at forrige partneravtale ikke lenger beskriver den faktiske sekvensen. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "utover_grense_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "bevegelsesrom_og_grenselogging",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "utover_grense_002",
+          "source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_utoving_og_ensemble_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_utoving_og_ensemble.mail.utover_grense_002",
+        "version": 1
+      },
+      "source_hash": "023ec600c90327c02edcdbf17c17bb0c74c74c81cddf44d2a0e38bf106ba9d12",
+      "source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_utoving_og_ensemble_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "sann_ensembleversjon_og_bounded_rework_vs_statuspress_og_skjult_gjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Prøv noten i avgrenset form, merk sceneversjonen og gjør partner- og cue-handoff eksplisitt før den behandles som ny avtalt versjon. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar note og sceneversjon med eksplisitt premiss",
+            "reply": "Prøv noten i avgrenset form, merk sceneversjonen og gjør partner- og cue-handoff eksplisitt før den behandles som ny avtalt versjon. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "grense"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Spill den nye rytmen fullt ut i neste gjennomløp og la ensemblet justere seg i fart. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta note og sceneversjon og fyll handoff senere",
+            "reply": "Spill den nye rytmen fullt ut i neste gjennomløp og la ensemblet justere seg i fart. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "note_og_sceneversjon",
+        "consequence_axis": "baerekraftig_repeterbar_forestilling_vs_partner_cue_og_belastningsgjeld",
+        "day_phase": "morning",
+        "from": "Sara",
+        "id": "utover_note_001",
+        "mail_family": "utover_ensemblebok",
+        "mail_type": "job",
+        "narrative_arc": "note_001",
+        "people_ref": "sara_skuespiller",
+        "person_id": "sara_skuespiller",
+        "phase": "forenoon",
+        "place_id": "proverom_og_rollelogg",
+        "pressure": "kunstnerisk_og_forestillingstempo_vs_sporbar_note_grense_og_handoff",
+        "priority": 150,
+        "role_scope": "scenekunst_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_utoving_og_ensemble_job.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "utover_ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "Reginoten er tydelig for spilleren, men to medspillere og cueplanen arbeider fortsatt fra forrige rytme og overgang.",
+          "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+          "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+        ],
+        "subject": "En ny note endrer scenens rytme, men partnerne har fortsatt gammel versjon",
+        "summary": "Reginoten er tydelig for spilleren, men to medspillere og cueplanen arbeider fortsatt fra forrige rytme og overgang. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_utoving_og_ensemble"
+      },
+      "id": "utover_note_001",
+      "mail_type": "job",
+      "role_scope": "scenekunst_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Prøv noten i avgrenset form, merk sceneversjonen og gjør partner- og cue-handoff eksplisitt før den behandles som ny avtalt versjon. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar note og sceneversjon med eksplisitt premiss",
+            "reply": "Prøv noten i avgrenset form, merk sceneversjonen og gjør partner- og cue-handoff eksplisitt før den behandles som ny avtalt versjon. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Spill den nye rytmen fullt ut i neste gjennomløp og la ensemblet justere seg i fart. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta note og sceneversjon og fyll handoff senere",
+            "reply": "Spill den nye rytmen fullt ut i neste gjennomløp og la ensemblet justere seg i fart. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Reginoten er tydelig for spilleren, men to medspillere og cueplanen arbeider fortsatt fra forrige rytme og overgang.",
+            "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+            "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+          ],
+          "subject": "En ny note endrer scenens rytme, men partnerne har fortsatt gammel versjon",
+          "summary": "Reginoten er tydelig for spilleren, men to medspillere og cueplanen arbeider fortsatt fra forrige rytme og overgang. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "utover_note_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "proverom_og_rollelogg",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "utover_note_001",
+          "source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_utoving_og_ensemble_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_utoving_og_ensemble.mail.utover_note_001",
+        "version": 1
+      },
+      "source_hash": "fb455302891cd2fda96c425ec2b13d875c13a29be1cc75b4a19aaaa33575464d",
+      "source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_utoving_og_ensemble_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "sann_ensembleversjon_og_bounded_rework_vs_statuspress_og_skjult_gjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Meld faktisk belastning til riktig funksjon, skill privat restitusjon fra medisinsk vurdering og avklar cover eller forenkling før neste forestilling. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar belastning og egenforvaltning med eksplisitt premiss",
+            "reply": "Meld faktisk belastning til riktig funksjon, skill privat restitusjon fra medisinsk vurdering og avklar cover eller forenkling før neste forestilling. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "grense"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Skjul smerten og spar energi i enkelte scener uten å endre ensemblets forventninger. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta belastning og egenforvaltning og fyll handoff senere",
+            "reply": "Skjul smerten og spar energi i enkelte scener uten å endre ensemblets forventninger. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "belastning_og_egenforvaltning",
+        "consequence_axis": "baerekraftig_repeterbar_forestilling_vs_partner_cue_og_belastningsgjeld",
+        "day_phase": "morning",
+        "from": "Leo",
+        "id": "utover_restitusjon_004",
+        "mail_family": "utover_ensemblebok",
+        "mail_type": "job",
+        "narrative_arc": "restitusjon_004",
+        "people_ref": "leo_understudy",
+        "person_id": "leo_understudy",
+        "phase": "forenoon",
+        "place_id": "garderobe_og_restitusjonsflate",
+        "pressure": "kunstnerisk_og_forestillingstempo_vs_sporbar_note_grense_og_handoff",
+        "priority": 147,
+        "role_scope": "scenekunst_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_utoving_og_ensemble_job.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "utover_ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "Belastningsloggen viser økende smerte og mindre restitusjon samtidig som cover-kapasiteten er usikker og forestillingen nærmer seg.",
+          "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+          "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+        ],
+        "subject": "Tredje forestilling på rad gir økende belastning før et mulig innhopp",
+        "summary": "Belastningsloggen viser økende smerte og mindre restitusjon samtidig som cover-kapasiteten er usikker og forestillingen nærmer seg. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_utoving_og_ensemble"
+      },
+      "id": "utover_restitusjon_004",
+      "mail_type": "job",
+      "role_scope": "scenekunst_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Meld faktisk belastning til riktig funksjon, skill privat restitusjon fra medisinsk vurdering og avklar cover eller forenkling før neste forestilling. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar belastning og egenforvaltning med eksplisitt premiss",
+            "reply": "Meld faktisk belastning til riktig funksjon, skill privat restitusjon fra medisinsk vurdering og avklar cover eller forenkling før neste forestilling. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Skjul smerten og spar energi i enkelte scener uten å endre ensemblets forventninger. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta belastning og egenforvaltning og fyll handoff senere",
+            "reply": "Skjul smerten og spar energi i enkelte scener uten å endre ensemblets forventninger. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Belastningsloggen viser økende smerte og mindre restitusjon samtidig som cover-kapasiteten er usikker og forestillingen nærmer seg.",
+            "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+            "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+          ],
+          "subject": "Tredje forestilling på rad gir økende belastning før et mulig innhopp",
+          "summary": "Belastningsloggen viser økende smerte og mindre restitusjon samtidig som cover-kapasiteten er usikker og forestillingen nærmer seg. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "utover_restitusjon_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "garderobe_og_restitusjonsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "utover_restitusjon_004",
+          "source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_utoving_og_ensemble_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_utoving_og_ensemble.mail.utover_restitusjon_004",
+        "version": 1
+      },
+      "source_hash": "e63666741e7af873b46034caaac48ae397be56d96e368d72991f72801816a7e0",
+      "source_path": "data/Civication/mailFamilies/scenekunst/job/scenekunst_utoving_og_ensemble_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "sann_ensembleversjon_og_bounded_rework_vs_statuspress_og_skjult_gjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Les koblingen og formuler ett spørsmål om hvordan sceneinstruksjon, ensemble, rollepraksis og institusjonelle vilkår påvirket hverandre uten å låne historisk autoritet til dagens samtykke, casting eller HMS. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar history go utoverrefleksjon med eksplisitt premiss",
+            "reply": "Les koblingen og formuler ett spørsmål om hvordan sceneinstruksjon, ensemble, rollepraksis og institusjonelle vilkår påvirket hverandre uten å låne historisk autoritet til dagens samtykke, casting eller HMS. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "grense"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Bruk den historiske koblingen som bevis for at dagens ensemble bør følge én bestemt spillestil eller prøveetikk. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta history go utoverrefleksjon og fyll handoff senere",
+            "reply": "Bruk den historiske koblingen som bevis for at dagens ensemble bør følge én bestemt spillestil eller prøveetikk. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "history_go_utoverrefleksjon",
+        "consequence_axis": "baerekraftig_repeterbar_forestilling_vs_partner_cue_og_belastningsgjeld",
+        "day_phase": "afternoon",
+        "from": "Sara",
+        "id": "utover_edith_014",
+        "interaction_mode": "task",
+        "mail_family": "utover_history_go",
+        "mail_type": "knowledge",
+        "narrative_arc": "edith_014",
+        "people_ref": "sara_skuespiller",
+        "person_id": "sara_skuespiller",
+        "phase": "late_workday",
+        "place_id": "nationaltheatret",
+        "pressure": "kunstnerisk_og_forestillingstempo_vs_sporbar_note_grense_og_handoff",
+        "priority": 137,
+        "role_scope": "scenekunst_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/knowledge/scenekunst_utoving_og_ensemble_knowledge.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "historisk_scenekunstkontekst",
+        "situation": [
+          "History Go har verifisert personpost om Edith Roger og scenekunstpost for Nationaltheatret; koblingen brukes til historiske spørsmål om iscenesettelse, ensemble og utøverpraksis, ikke som fasit for dagens metode.",
+          "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+          "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+        ],
+        "subject": "Edith Roger og Nationaltheatret: hvilke utøver- og ensemblespørsmål blir synlige historisk?",
+        "summary": "History Go har verifisert personpost om Edith Roger og scenekunstpost for Nationaltheatret; koblingen brukes til historiske spørsmål om iscenesettelse, ensemble og utøverpraksis, ikke som fasit for dagens metode. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår.",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/people/litteratur/oslo/nationaltheatret/edith_roger.json",
+            "data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "scenekunst_utoving_og_ensemble_history_go_edith_roger"
+        },
+        "task_domain": "scenekunst_utoving_og_ensemble",
+        "task_payload": {
+          "completion_mode": "read_profile",
+          "description": "Noter ett spørsmål om hvordan sceneinstruksjon, ensemble, rollepraksis og institusjonelle vilkår påvirket hverandre uten å gjøre historien til fasit for dagens casting, samtykke, HMS eller kunstneriske metode.",
+          "person_id": "edith_roger",
+          "return_context": {
+            "mail_id": "utover_edith_014",
+            "role_scope": "scenekunst_utoving_og_ensemble",
+            "source": "civication"
+          },
+          "target_type": "person",
+          "task_kind": "history_go_person",
+          "title": "Les Edith Roger som historisk utøver- og ensemblesammenheng"
+        }
+      },
+      "id": "utover_edith_014",
+      "mail_type": "knowledge",
+      "role_scope": "scenekunst_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Les koblingen og formuler ett spørsmål om hvordan sceneinstruksjon, ensemble, rollepraksis og institusjonelle vilkår påvirket hverandre uten å låne historisk autoritet til dagens samtykke, casting eller HMS. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar history go utoverrefleksjon med eksplisitt premiss",
+            "reply": "Les koblingen og formuler ett spørsmål om hvordan sceneinstruksjon, ensemble, rollepraksis og institusjonelle vilkår påvirket hverandre uten å låne historisk autoritet til dagens samtykke, casting eller HMS. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Bruk den historiske koblingen som bevis for at dagens ensemble bør følge én bestemt spillestil eller prøveetikk. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta history go utoverrefleksjon og fyll handoff senere",
+            "reply": "Bruk den historiske koblingen som bevis for at dagens ensemble bør følge én bestemt spillestil eller prøveetikk. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring."
+          }
+        ],
+        "content": {
+          "situation": [
+            "History Go har verifisert personpost om Edith Roger og scenekunstpost for Nationaltheatret; koblingen brukes til historiske spørsmål om iscenesettelse, ensemble og utøverpraksis, ikke som fasit for dagens metode.",
+            "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+            "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+          ],
+          "subject": "Edith Roger og Nationaltheatret: hvilke utøver- og ensemblespørsmål blir synlige historisk?",
+          "summary": "History Go har verifisert personpost om Edith Roger og scenekunstpost for Nationaltheatret; koblingen brukes til historiske spørsmål om iscenesettelse, ensemble og utøverpraksis, ikke som fasit for dagens metode. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "utover_edith_014",
+        "interaction_mode": "task",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "nationaltheatret",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "utover_edith_014",
+          "source_path": "data/Civication/mailFamilies/scenekunst/knowledge/scenekunst_utoving_og_ensemble_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/people/litteratur/oslo/nationaltheatret/edith_roger.json",
+            "data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "scenekunst_utoving_og_ensemble_history_go_edith_roger"
+        },
+        "thread_id": "scenekunst_utoving_og_ensemble.mail.utover_edith_014",
+        "version": 1
+      },
+      "source_hash": "a42a3c404c8bbeadcf35aafdfe0eede58b35beccd731c0402812c8b55043615c",
+      "source_path": "data/Civication/mailFamilies/scenekunst/knowledge/scenekunst_utoving_og_ensemble_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "sann_ensembleversjon_og_bounded_rework_vs_statuspress_og_skjult_gjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Bruk eksplisitte statuser som lest, prøvd, avtalt, betinget og forestillingsklar med tidsstempel og eier for siste endring. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar notesprak og status med eksplisitt premiss",
+            "reply": "Bruk eksplisitte statuser som lest, prøvd, avtalt, betinget og forestillingsklar med tidsstempel og eier for siste endring. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "grense"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Be ensemblet bruke «kan» konsekvent og forklare detaljene når noen spør. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta notesprak og status og fyll handoff senere",
+            "reply": "Be ensemblet bruke «kan» konsekvent og forklare detaljene når noen spør. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "notesprak_og_status",
+        "consequence_axis": "baerekraftig_repeterbar_forestilling_vs_partner_cue_og_belastningsgjeld",
+        "day_phase": "afternoon",
+        "from": "Ingeborg",
+        "id": "utover_status_012",
+        "mail_family": "utover_notesprak_og_status",
+        "mail_type": "micro",
+        "narrative_arc": "status_012",
+        "people_ref": "ingeborg_inspisient",
+        "person_id": "ingeborg_inspisient",
+        "phase": "late_workday",
+        "place_id": "scene_cue_og_ensembleposisjon",
+        "pressure": "kunstnerisk_og_forestillingstempo_vs_sporbar_note_grense_og_handoff",
+        "priority": 139,
+        "role_scope": "scenekunst_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/micro/scenekunst_utoving_og_ensemble_micro.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "utover_ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "Utøvere bruker samme uttrykk om materiale som er lest, prøvd én gang, avtalt med regi og faktisk bekreftet mot cue og partner.",
+          "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+          "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+        ],
+        "subject": "«Vi kan den» brukes om prøvd, avtalt og forestillingsklar versjon",
+        "summary": "Utøvere bruker samme uttrykk om materiale som er lest, prøvd én gang, avtalt med regi og faktisk bekreftet mot cue og partner. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_utoving_og_ensemble"
+      },
+      "id": "utover_status_012",
+      "mail_type": "micro",
+      "role_scope": "scenekunst_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Bruk eksplisitte statuser som lest, prøvd, avtalt, betinget og forestillingsklar med tidsstempel og eier for siste endring. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar notesprak og status med eksplisitt premiss",
+            "reply": "Bruk eksplisitte statuser som lest, prøvd, avtalt, betinget og forestillingsklar med tidsstempel og eier for siste endring. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Be ensemblet bruke «kan» konsekvent og forklare detaljene når noen spør. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta notesprak og status og fyll handoff senere",
+            "reply": "Be ensemblet bruke «kan» konsekvent og forklare detaljene når noen spør. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Utøvere bruker samme uttrykk om materiale som er lest, prøvd én gang, avtalt med regi og faktisk bekreftet mot cue og partner.",
+            "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+            "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+          ],
+          "subject": "«Vi kan den» brukes om prøvd, avtalt og forestillingsklar versjon",
+          "summary": "Utøvere bruker samme uttrykk om materiale som er lest, prøvd én gang, avtalt med regi og faktisk bekreftet mot cue og partner. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "utover_status_012",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "scene_cue_og_ensembleposisjon",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "utover_status_012",
+          "source_path": "data/Civication/mailFamilies/scenekunst/micro/scenekunst_utoving_og_ensemble_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_utoving_og_ensemble.mail.utover_status_012",
+        "version": 1
+      },
+      "source_hash": "ca2a821a23f76d653d81deb67470fb238a004729755faeaededec4384e597c4c",
+      "source_path": "data/Civication/mailFamilies/scenekunst/micro/scenekunst_utoving_og_ensemble_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "sann_ensembleversjon_og_bounded_rework_vs_statuspress_og_skjult_gjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Gi henne sann betinget status, identifiser gjeldende versjon og bekreft cue gjennom avtalt test uten å gjøre henne til kunstnerisk beslutningseier. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar inspisient og versjonsgrense med eksplisitt premiss",
+            "reply": "Gi henne sann betinget status, identifiser gjeldende versjon og bekreft cue gjennom avtalt test uten å gjøre henne til kunstnerisk beslutningseier. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "grense"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Be Ingeborg kalle overgangen etter beste skjønn fordi utøverne kjenner materialet. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta inspisient og versjonsgrense og fyll handoff senere",
+            "reply": "Be Ingeborg kalle overgangen etter beste skjønn fordi utøverne kjenner materialet. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "inspisient_og_versjonsgrense",
+        "consequence_axis": "baerekraftig_repeterbar_forestilling_vs_partner_cue_og_belastningsgjeld",
+        "day_phase": "afternoon",
+        "from": "Ingeborg",
+        "id": "utover_ingeborg_007",
+        "mail_family": "utover_arbeidsrelasjoner",
+        "mail_type": "people",
+        "narrative_arc": "ingeborg_007",
+        "people_ref": "ingeborg_inspisient",
+        "person_id": "ingeborg_inspisient",
+        "phase": "workday",
+        "place_id": "scene_cue_og_ensembleposisjon",
+        "pressure": "kunstnerisk_og_forestillingstempo_vs_sporbar_note_grense_og_handoff",
+        "priority": 144,
+        "role_scope": "scenekunst_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_utoving_og_ensemble_people.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "utover_ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "Ensemblet opplever overgangen som nesten klar, men Ingeborg mangler én felles sceneversjon og eksplisitt cue-bekreftelse.",
+          "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+          "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+        ],
+        "subject": "Ingeborg nekter å kalle en overgang som fortsatt har uklar håndoff",
+        "summary": "Ensemblet opplever overgangen som nesten klar, men Ingeborg mangler én felles sceneversjon og eksplisitt cue-bekreftelse. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_utoving_og_ensemble"
+      },
+      "id": "utover_ingeborg_007",
+      "mail_type": "people",
+      "role_scope": "scenekunst_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Gi henne sann betinget status, identifiser gjeldende versjon og bekreft cue gjennom avtalt test uten å gjøre henne til kunstnerisk beslutningseier. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar inspisient og versjonsgrense med eksplisitt premiss",
+            "reply": "Gi henne sann betinget status, identifiser gjeldende versjon og bekreft cue gjennom avtalt test uten å gjøre henne til kunstnerisk beslutningseier. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Be Ingeborg kalle overgangen etter beste skjønn fordi utøverne kjenner materialet. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta inspisient og versjonsgrense og fyll handoff senere",
+            "reply": "Be Ingeborg kalle overgangen etter beste skjønn fordi utøverne kjenner materialet. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Ensemblet opplever overgangen som nesten klar, men Ingeborg mangler én felles sceneversjon og eksplisitt cue-bekreftelse.",
+            "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+            "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+          ],
+          "subject": "Ingeborg nekter å kalle en overgang som fortsatt har uklar håndoff",
+          "summary": "Ensemblet opplever overgangen som nesten klar, men Ingeborg mangler én felles sceneversjon og eksplisitt cue-bekreftelse. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "utover_ingeborg_007",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "scene_cue_og_ensembleposisjon",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "utover_ingeborg_007",
+          "source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_utoving_og_ensemble_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_utoving_og_ensemble.mail.utover_ingeborg_007",
+        "version": 1
+      },
+      "source_hash": "a00bf95cce6ba1d92e69d0f2e45714c69f08e26001917313d9ef310c4419cc97",
+      "source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_utoving_og_ensemble_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "sann_ensembleversjon_og_bounded_rework_vs_statuspress_og_skjult_gjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Prioriter sikker minimumsversjon, gi Leo eksplisitt partner- og cuegjennomgang og marker hva som fortsatt er betinget før innhopp. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar cover handoff og realistisk kompetanse med eksplisitt premiss",
+            "reply": "Prioriter sikker minimumsversjon, gi Leo eksplisitt partner- og cuegjennomgang og marker hva som fortsatt er betinget før innhopp. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "grense"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "La Leo gå inn på full versjon fordi ensemblet kan hjelpe ham gjennom detaljene under forestillingen. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta cover handoff og realistisk kompetanse og fyll handoff senere",
+            "reply": "La Leo gå inn på full versjon fordi ensemblet kan hjelpe ham gjennom detaljene under forestillingen. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "cover_handoff_og_realistisk_kompetanse",
+        "consequence_axis": "baerekraftig_repeterbar_forestilling_vs_partner_cue_og_belastningsgjeld",
+        "day_phase": "afternoon",
+        "from": "Leo",
+        "id": "utover_leo_008",
+        "mail_family": "utover_arbeidsrelasjoner",
+        "mail_type": "people",
+        "narrative_arc": "leo_008",
+        "people_ref": "leo_understudy",
+        "person_id": "leo_understudy",
+        "phase": "workday",
+        "place_id": "garderobe_og_restitusjonsflate",
+        "pressure": "kunstnerisk_og_forestillingstempo_vs_sporbar_note_grense_og_handoff",
+        "priority": 143,
+        "role_scope": "scenekunst_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_utoving_og_ensemble_people.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "utover_ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "Et mulig innhopp er tidskritisk, og cover har tekst og hovedblocking men mangler erfaring med to partneroverganger og ett teknisk cue.",
+          "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+          "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+        ],
+        "subject": "Leo kan dekke rollen, men har ikke fått prøve alle partner- og cueoverganger",
+        "summary": "Et mulig innhopp er tidskritisk, og cover har tekst og hovedblocking men mangler erfaring med to partneroverganger og ett teknisk cue. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_utoving_og_ensemble"
+      },
+      "id": "utover_leo_008",
+      "mail_type": "people",
+      "role_scope": "scenekunst_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Prioriter sikker minimumsversjon, gi Leo eksplisitt partner- og cuegjennomgang og marker hva som fortsatt er betinget før innhopp. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar cover handoff og realistisk kompetanse med eksplisitt premiss",
+            "reply": "Prioriter sikker minimumsversjon, gi Leo eksplisitt partner- og cuegjennomgang og marker hva som fortsatt er betinget før innhopp. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "La Leo gå inn på full versjon fordi ensemblet kan hjelpe ham gjennom detaljene under forestillingen. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta cover handoff og realistisk kompetanse og fyll handoff senere",
+            "reply": "La Leo gå inn på full versjon fordi ensemblet kan hjelpe ham gjennom detaljene under forestillingen. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Et mulig innhopp er tidskritisk, og cover har tekst og hovedblocking men mangler erfaring med to partneroverganger og ett teknisk cue.",
+            "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+            "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+          ],
+          "subject": "Leo kan dekke rollen, men har ikke fått prøve alle partner- og cueoverganger",
+          "summary": "Et mulig innhopp er tidskritisk, og cover har tekst og hovedblocking men mangler erfaring med to partneroverganger og ett teknisk cue. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "utover_leo_008",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "garderobe_og_restitusjonsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "utover_leo_008",
+          "source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_utoving_og_ensemble_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_utoving_og_ensemble.mail.utover_leo_008",
+        "version": 1
+      },
+      "source_hash": "e388ff4e4ebd04bc80054b7a6b4562992c80d8f3f79b4eae3180cb8f67db46ac",
+      "source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_utoving_og_ensemble_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "sann_ensembleversjon_og_bounded_rework_vs_statuspress_og_skjult_gjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Skill scenisk mål fra belastende virkemiddel, dokumenter grensen uten personstraff og utvikle et alternativ som kan retestes. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar grensekommunikasjon og statuspress med eksplisitt premiss",
+            "reply": "Skill scenisk mål fra belastende virkemiddel, dokumenter grensen uten personstraff og utvikle et alternativ som kan retestes. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "grense"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Be Malik prøve én gang til for å bevise at grensen ikke bare handler om usikkerhet. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta grensekommunikasjon og statuspress og fyll handoff senere",
+            "reply": "Be Malik prøve én gang til for å bevise at grensen ikke bare handler om usikkerhet. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "grensekommunikasjon_og_statuspress",
+        "consequence_axis": "baerekraftig_repeterbar_forestilling_vs_partner_cue_og_belastningsgjeld",
+        "day_phase": "afternoon",
+        "from": "Malik",
+        "id": "utover_malik_006",
+        "mail_family": "utover_arbeidsrelasjoner",
+        "mail_type": "people",
+        "narrative_arc": "malik_006",
+        "people_ref": "malik_danser",
+        "person_id": "malik_danser",
+        "phase": "workday",
+        "place_id": "bevegelsesrom_og_grenselogging",
+        "pressure": "kunstnerisk_og_forestillingstempo_vs_sporbar_note_grense_og_handoff",
+        "priority": 145,
+        "role_scope": "scenekunst_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_utoving_og_ensemble_people.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "utover_ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "En fysisk grense endrer virkemiddelet i en scene, og frustrasjon i rommet begynner å gli over i vurdering av profesjonalitet.",
+          "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+          "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+        ],
+        "subject": "Malik setter en kroppslig grense som blir omtalt som manglende intensitet",
+        "summary": "En fysisk grense endrer virkemiddelet i en scene, og frustrasjon i rommet begynner å gli over i vurdering av profesjonalitet. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_utoving_og_ensemble"
+      },
+      "id": "utover_malik_006",
+      "mail_type": "people",
+      "role_scope": "scenekunst_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Skill scenisk mål fra belastende virkemiddel, dokumenter grensen uten personstraff og utvikle et alternativ som kan retestes. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar grensekommunikasjon og statuspress med eksplisitt premiss",
+            "reply": "Skill scenisk mål fra belastende virkemiddel, dokumenter grensen uten personstraff og utvikle et alternativ som kan retestes. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Be Malik prøve én gang til for å bevise at grensen ikke bare handler om usikkerhet. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta grensekommunikasjon og statuspress og fyll handoff senere",
+            "reply": "Be Malik prøve én gang til for å bevise at grensen ikke bare handler om usikkerhet. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring."
+          }
+        ],
+        "content": {
+          "situation": [
+            "En fysisk grense endrer virkemiddelet i en scene, og frustrasjon i rommet begynner å gli over i vurdering av profesjonalitet.",
+            "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+            "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+          ],
+          "subject": "Malik setter en kroppslig grense som blir omtalt som manglende intensitet",
+          "summary": "En fysisk grense endrer virkemiddelet i en scene, og frustrasjon i rommet begynner å gli over i vurdering av profesjonalitet. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "utover_malik_006",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "bevegelsesrom_og_grenselogging",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "utover_malik_006",
+          "source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_utoving_og_ensemble_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_utoving_og_ensemble.mail.utover_malik_006",
+        "version": 1
+      },
+      "source_hash": "18c646bd1287e3676d4f4fc69b7de6c7f2382dfec0bcc3c2c3d2f5a227a3e53e",
+      "source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_utoving_og_ensemble_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "sann_ensembleversjon_og_bounded_rework_vs_statuspress_og_skjult_gjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Be om én prøvbar prioritering, gjør egen tolkning eksplisitt og test effekten med partneren før mer materiale legges på. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar rollevalg og motstemme med eksplisitt premiss",
+            "reply": "Be om én prøvbar prioritering, gjør egen tolkning eksplisitt og test effekten med partneren før mer materiale legges på. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "grense"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Velg den noten som føles kunstnerisk sterkest og anta at partneren skjønner retningen. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta rollevalg og motstemme og fyll handoff senere",
+            "reply": "Velg den noten som føles kunstnerisk sterkest og anta at partneren skjønner retningen. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "rollevalg_og_motstemme",
+        "consequence_axis": "baerekraftig_repeterbar_forestilling_vs_partner_cue_og_belastningsgjeld",
+        "day_phase": "morning",
+        "from": "Sara",
+        "id": "utover_sara_005",
+        "mail_family": "utover_arbeidsrelasjoner",
+        "mail_type": "people",
+        "narrative_arc": "sara_005",
+        "people_ref": "sara_skuespiller",
+        "person_id": "sara_skuespiller",
+        "phase": "forenoon",
+        "place_id": "proverom_og_rollelogg",
+        "pressure": "kunstnerisk_og_forestillingstempo_vs_sporbar_note_grense_og_handoff",
+        "priority": 146,
+        "role_scope": "scenekunst_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_utoving_og_ensemble_people.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "utover_ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "Regi og bevegelsesarbeid peker mot samme sceneeffekt, men gir to uforenlige konkrete oppgaver i neste sekvens.",
+          "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+          "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+        ],
+        "subject": "Sara får to motstridende noter og vet ikke hvilken versjon partneren følger",
+        "summary": "Regi og bevegelsesarbeid peker mot samme sceneeffekt, men gir to uforenlige konkrete oppgaver i neste sekvens. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_utoving_og_ensemble"
+      },
+      "id": "utover_sara_005",
+      "mail_type": "people",
+      "role_scope": "scenekunst_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Be om én prøvbar prioritering, gjør egen tolkning eksplisitt og test effekten med partneren før mer materiale legges på. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar rollevalg og motstemme med eksplisitt premiss",
+            "reply": "Be om én prøvbar prioritering, gjør egen tolkning eksplisitt og test effekten med partneren før mer materiale legges på. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Velg den noten som føles kunstnerisk sterkest og anta at partneren skjønner retningen. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta rollevalg og motstemme og fyll handoff senere",
+            "reply": "Velg den noten som føles kunstnerisk sterkest og anta at partneren skjønner retningen. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Regi og bevegelsesarbeid peker mot samme sceneeffekt, men gir to uforenlige konkrete oppgaver i neste sekvens.",
+            "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+            "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+          ],
+          "subject": "Sara får to motstridende noter og vet ikke hvilken versjon partneren følger",
+          "summary": "Regi og bevegelsesarbeid peker mot samme sceneeffekt, men gir to uforenlige konkrete oppgaver i neste sekvens. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "utover_sara_005",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "proverom_og_rollelogg",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "utover_sara_005",
+          "source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_utoving_og_ensemble_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_utoving_og_ensemble.mail.utover_sara_005",
+        "version": 1
+      },
+      "source_hash": "84431b7fb850da8ab644c170122db7a9f69c62691886f10fc0d026a3b9ccc0b7",
+      "source_path": "data/Civication/mailFamilies/scenekunst/people/scenekunst_utoving_og_ensemble_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "scenekunst",
+      "compatibility_projection": {
+        "category": "scenekunst",
+        "choice_axis": "sann_ensembleversjon_og_bounded_rework_vs_statuspress_og_skjult_gjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Bevar avtalt struktur, responder levende innen rammen og logg avvik med effekt og eier slik at neste forestilling kan justeres uten muntlig gjeld. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar forestilling og repeterbarhet med eksplisitt premiss",
+            "reply": "Bevar avtalt struktur, responder levende innen rammen og logg avvik med effekt og eier slik at neste forestilling kan justeres uten muntlig gjeld. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet.",
+            "tags": [
+              "sporbarhet",
+              "ensemble",
+              "grense"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "La erfarne utøvere løse avvik intuitivt og samle bare de største notene etter applaus. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta forestilling og repeterbarhet og fyll handoff senere",
+            "reply": "La erfarne utøvere løse avvik intuitivt og samle bare de største notene etter applaus. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring.",
+            "tags": [
+              "statuspress",
+              "versjonsgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "forestilling_og_repeterbarhet",
+        "consequence_axis": "baerekraftig_repeterbar_forestilling_vs_partner_cue_og_belastningsgjeld",
+        "day_phase": "afternoon",
+        "from": "Ingeborg",
+        "id": "utover_forestilling_010",
+        "mail_family": "utover_forestilling_i_drift",
+        "mail_type": "story",
+        "narrative_arc": "forestilling_010",
+        "people_ref": "ingeborg_inspisient",
+        "person_id": "ingeborg_inspisient",
+        "phase": "workday",
+        "place_id": "scene_cue_og_ensembleposisjon",
+        "pressure": "kunstnerisk_og_forestillingstempo_vs_sporbar_note_grense_og_handoff",
+        "priority": 141,
+        "role_scope": "scenekunst_utoving_og_ensemble",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/scenekunst/story/scenekunst_utoving_og_ensemble_story.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "utover_ensemble_og_arbeidsrelasjon",
+        "situation": [
+          "Ensemblet har en stabil versjon, men publikumsenergi, små cueforskyvninger og fysisk belastning skaper fristelse til å improvisere hver løsning lokalt.",
+          "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+          "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+        ],
+        "subject": "Forestillingen må bæres fra oppvarming til siste cue uten at små avvik blir skjult",
+        "summary": "Ensemblet har en stabil versjon, men publikumsenergi, små cueforskyvninger og fysisk belastning skaper fristelse til å improvisere hver løsning lokalt. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår.",
+        "task_domain": "scenekunst_utoving_og_ensemble"
+      },
+      "id": "utover_forestilling_010",
+      "mail_type": "story",
+      "role_scope": "scenekunst_utoving_og_ensemble",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Bevar avtalt struktur, responder levende innen rammen og logg avvik med effekt og eier slik at neste forestilling kan justeres uten muntlig gjeld. Dette holder prøven og forestillingen i bevegelse samtidig som utøvere, partner, inspisient og kunstnerisk/teknisk linje kan se hva som er prøvd, avtalt, betinget og forestillingsklart. Når premisset endres blir rework avgrenset, og handoff kan skje uten å skjule samtykke, belastning, cue eller beslutningseier.",
+            "id": "A",
+            "label": "Sporbar forestilling og repeterbarhet med eksplisitt premiss",
+            "reply": "Bevar avtalt struktur, responder levende innen rammen og logg avvik med effekt og eier slik at neste forestilling kan justeres uten muntlig gjeld. Jeg oppdaterer ensemblebok, sceneversjon, partner-/belastningspremiss, beslutningseier og neste retest slik at kunstnerisk initiativ ikke blir lest som regi-, arbeidsgiver-, samtykke-, HMS-, medisinsk- eller rettighetsmyndighet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "La erfarne utøvere løse avvik intuitivt og samle bare de største notene etter applaus. Det kan spare tid nå, men flytter usikkerhet og risiko til partner, ensemble, inspisient eller egen kropp. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som faktisk samtykket til hva, og hvilke deler som må prøves eller avklares på nytt.",
+            "id": "B",
+            "label": "Anta forestilling og repeterbarhet og fyll handoff senere",
+            "reply": "La erfarne utøvere løse avvik intuitivt og samle bare de største notene etter applaus. Jeg lar prøve- eller forestillingsfarten være styrende og kompletterer versjon, partnerpremiss, belastning eller cue-handoff senere dersom neste aktør oppdager et problem eller ber om avklaring."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Ensemblet har en stabil versjon, men publikumsenergi, små cueforskyvninger og fysisk belastning skaper fristelse til å improvisere hver løsning lokalt.",
+            "Utøverens faglige initiativ er ikke i seg selv arbeidsgivermyndighet, regi/koreografi-mandat, partnerens samtykke, HMS/medisinsk godkjenning eller rettighetsfullmakt.",
+            "Neste steg må ha eksplisitt sceneversjon, premiss og eier og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere observasjon eller partneravtale slettes."
+          ],
+          "subject": "Forestillingen må bæres fra oppvarming til siste cue uten at små avvik blir skjult",
+          "summary": "Ensemblet har en stabil versjon, men publikumsenergi, små cueforskyvninger og fysisk belastning skaper fristelse til å improvisere hver løsning lokalt. Ensembleboken skal samtidig skille lest/prøvd, avtalt, betinget og forestillingsklar status for rolle, partner, belastning, cue og forestilling. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere observasjon, sceneversjon, samtykkepremiss, beslutningseier eller handoff forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller avtalt, hvem som må svare før neste statusendring, og hva resten av ensemblet skal beholde mens avklaringen pågår."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "utover_forestilling_010",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "scene_cue_og_ensembleposisjon",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "utover_forestilling_010",
+          "source_path": "data/Civication/mailFamilies/scenekunst/story/scenekunst_utoving_og_ensemble_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "scenekunst_utoving_og_ensemble.mail.utover_forestilling_010",
+        "version": 1
+      },
+      "source_hash": "06c8a8aa652ca9b0dc132e802ee6c39fc26ae87393fb1a749512a89db74fd75a",
+      "source_path": "data/Civication/mailFamilies/scenekunst/story/scenekunst_utoving_og_ensemble_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
       "category": "sosial_laering",
       "compatibility_projection": {
         "branch_flags": [
@@ -217076,7 +219172,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "ac4d0931ce487fdc6a866caf11097dcdf84abe7a283bd939f73728d4717acc8b",
+  "registry_hash": "ecff08e5fd0c6cd761d1d540895d31b028559e6e20ca7ec625327f7f8d488829",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -218350,6 +220446,23 @@
       "scene_edith_014",
       "scene_sen_endring_015"
     ],
+    "scenekunst/scenekunst_utoving_og_ensemble": [
+      "utover_note_001",
+      "utover_grense_002",
+      "utover_cue_003",
+      "utover_restitusjon_004",
+      "utover_sara_005",
+      "utover_malik_006",
+      "utover_ingeborg_007",
+      "utover_leo_008",
+      "utover_forestilling_010",
+      "utover_premierepress_009",
+      "utover_fravaer_011",
+      "utover_status_012",
+      "utover_belastning_013",
+      "utover_edith_014",
+      "utover_sen_note_015"
+    ],
     "sosial_laering/barnehageassistent": [
       "sosial_laering_barnehageassistent_job_001",
       "sosial_laering_barnehageassistent_job_002",
@@ -218574,11 +220687,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 440,
+    "compiled_source_file_count": 449,
     "ignored_source_file_count": 1,
-    "input_file_count": 441,
-    "role_count": 54,
-    "scene_count": 1360,
+    "input_file_count": 450,
+    "role_count": 55,
+    "scene_count": 1375,
     "shadowed_duplicate_count": 0
   },
   "version": 1
