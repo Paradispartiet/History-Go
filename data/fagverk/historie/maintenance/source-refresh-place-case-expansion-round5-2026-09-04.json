@@ -1,0 +1,137 @@
+{
+  "schema": "history_go_historie_maintenance_round_v1",
+  "version": "1.0.0",
+  "subject_id": "historie",
+  "round_id": "source_refresh_and_place_case_expansion_round5_2026_09_04",
+  "baseline_main_sha": "a4c47ad3b8a2898b0a4b9299effefacc3184e39f",
+  "checked_at": "2026-09-04",
+  "status": "verified",
+  "scope": {
+    "new_strict_subcategory": false,
+    "place_production": false,
+    "canonical_architecture_change": false,
+    "maintenance_evidence_only": true,
+    "final_reconciliation_round": true
+  },
+  "target_chapters": [
+    "samisk_urfolkshistorie",
+    "offentlighet_mobilisering_bevegelser",
+    "kald_krig_etterkrig"
+  ],
+  "source_refresh": [
+    {
+      "id": "histmaint5_norsk_folkemuseum_baastede",
+      "publisher": "Norsk Folkemuseum",
+      "url": "https://norskfolkemuseum.no/baastede",
+      "source_location": "Bååstede-siden dokumenterer avtalen mellom Norsk Folkemuseum, Kulturhistorisk museum og Sametinget, overføring av over 1600 samiske gjenstander og prosjektets formål om større samisk råderett over egen kulturarv.",
+      "health": "verified_live",
+      "authority": "institutional_collection_history",
+      "chapter_ids": ["samisk_urfolkshistorie"]
+    },
+    {
+      "id": "histmaint5_sametinget_museer_baastede",
+      "publisher": "Sametinget",
+      "url": "https://sametinget.no/kultur/kunst-og-kulturutovelse/museer/",
+      "source_location": "Sametingets museumsoversikt beskriver de seks konsoliderte samiske museumssiidaene, Bååstede-overføringen i 2019 og behovet for at samiske institusjoner kan forvalte og formidle den tilbakeførte kulturarven.",
+      "health": "verified_live",
+      "authority": "indigenous_public_authority",
+      "chapter_ids": ["samisk_urfolkshistorie"]
+    },
+    {
+      "id": "histmaint5_stortinget_protest_history",
+      "publisher": "Stortinget",
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Historikk/historisk-dokumentasjon/Protest",
+      "source_location": "Stortingets protesthistorikk dokumenterer blant annet Alta-saken, underskriftskampanjer, sivil ulydighet og den samiske sultestreiken på Eidsvolls plass høsten 1979 som del av en lengre mobiliserings- og beslutningsprosess.",
+      "health": "verified_live",
+      "authority": "official_parliamentary_history",
+      "chapter_ids": ["offentlighet_mobilisering_bevegelser"]
+    },
+    {
+      "id": "histmaint5_stortinget_eidsvolls_plass",
+      "publisher": "Stortinget",
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/sesjonsrapporter/stortingsaret-20162017/eidsvolls-plass",
+      "source_location": "Stortingets historikk over Eidsvolls plass beskriver plassen som en sentral arena for ytringsfrihet og engasjement og viser etterkrigseksempler fra bilavgifts-, NATO-, Vietnam- og Alta-demonstrasjoner.",
+      "health": "verified_live",
+      "authority": "official_parliamentary_place_history",
+      "chapter_ids": ["offentlighet_mobilisering_bevegelser"]
+    },
+    {
+      "id": "histmaint5_fhm_forsvarsmuseet",
+      "publisher": "Forsvarshistorisk museum",
+      "url": "https://www.forsvarshistoriskmuseum.no/forsvarsmuseet",
+      "source_location": "Forsvarsmuseets nåværende presentasjon beskriver museet som hovedmuseum for Forsvarets historie med gjenstander, bildearkiv, bibliotek og utstillinger som dekker strategi, teknologi, politikk og militære institusjoner fram til vår tid.",
+      "health": "verified_live",
+      "authority": "national_military_museum",
+      "chapter_ids": ["kald_krig_etterkrig"]
+    },
+    {
+      "id": "histmaint5_forsvaret_nato_2026",
+      "publisher": "Forsvaret",
+      "url": "https://www.forsvaret.no/om-forsvaret/operasjoner-og-ovelser/nato",
+      "source_location": "Forsvarets NATO-side, oppdatert 23. mars 2026, dokumenterer norsk medlemskap fra 1949, alliansens rolle som kollektivt forsvar under den kalde krigen og Norges strategiske plassering mot Sovjetunionen.",
+      "health": "verified_live",
+      "authority": "official_armed_forces_history",
+      "chapter_ids": ["kald_krig_etterkrig"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "hist_case5_norsk_folkemuseum_baastede_repatriation",
+      "title": "Norsk Folkemuseum og Bååstede: samlinger, fornorskningshistorie og samisk råderett over kulturarv",
+      "chapter_id": "samisk_urfolkshistorie",
+      "place_ids": ["norsk_folkemuseum"],
+      "source_ids": ["histmaint5_norsk_folkemuseum_baastede", "histmaint5_sametinget_museer_baastede"],
+      "case_claim": "Norsk Folkemuseum kan brukes som et konkret institusjonsanker for å undersøke hvordan samiske gjenstander ble samlet, klassifisert, oppbevart og senere tilbakeført, men museet må ikke gjøres til sentrum for samisk historie. Bååstede dokumenterer at over 1600 gjenstander ble overført til samiske museer, mens Sametingets egen framstilling knytter tilbakeføringen til samisk forvaltning, formidling og institusjonsbygging. Caset skal derfor flytte forklaringskraft fra majoritetsmuseets samling alene til relasjonen mellom innsamling, fornorskning, museumsmakt, samiske krav, samiske institusjoner og urfolksrett. Norsk Folkemuseum er et spor etter denne maktrelasjonen, ikke en geografisk erstatning for Sápmi eller samiske aktørperspektiver.",
+      "analysis_questions": [
+        "Hvordan endrer Bååstede tolkningen av museumsinnsamling når gjenstandene analyseres både som historiske kilder og som kulturarv med spørsmål om eierskap, råderett, språk, kunnskap og institusjonell makt?",
+        "Hva tilfører Sametingets perspektiv som urfolksrepresentativ offentlig myndighet utover Norsk Folkemuseums egen prosjektbeskrivelse, og hvordan bør uenighet om tempo, ressurser og forvaltning behandles kildekritisk?",
+        "Hvordan kan Norsk Folkemuseum brukes som stedanker uten å flytte samisk historie til Oslo, og hvilke andre geografier, muntlige tradisjoner og samiske institusjoner må inn for å unngå et majoritetssentrert narrativ?"
+      ]
+    },
+    {
+      "id": "hist_case5_eidsvolls_plass_public_mobilization",
+      "title": "Eidsvolls plass: demonstrasjon, organisering og politisk offentlighet gjennom etterkrigstiden",
+      "chapter_id": "offentlighet_mobilisering_bevegelser",
+      "place_ids": ["eidsvolls_plass"],
+      "source_ids": ["histmaint5_stortinget_protest_history", "histmaint5_stortinget_eidsvolls_plass"],
+      "case_claim": "Eidsvolls plass gir et presist stedanker for å analysere hvordan kollektiv mobilisering blir synlig foran den representative makten, men plassen forklarer ikke bevegelsene alene. Stortingets kilder dokumenterer demonstrasjoner mot bilavgifter og NATO, Vietnam-markeringen i 1968 og den samiske sultestreiken under Alta-konflikten i 1979, samtidig som Alta-historikken viser underskriftskampanjer, organisering, sivil ulydighet og beslutninger som strakte seg langt utover plassen. Caset skal skille møteplassen fra organisasjonene, sakene, nettverkene, mediene og de institusjonelle beslutningskjedene som gjorde mobilisering politisk virkningsfull eller virkningssvak.",
+      "analysis_questions": [
+        "Hva gjør Eidsvolls plass til en strategisk offentlighetsarena foran Stortinget, og hvilke mekanismer gjør at en synlig demonstrasjon kan få oppmerksomhet uten nødvendigvis å endre et politisk vedtak?",
+        "Hvordan viser Alta-saken forskjellen mellom en enkelt sultestreik på plassen og den bredere mobiliseringen gjennom organisasjoner, underskrifter, sivil ulydighet, rettighetsargumenter og konflikt ved utbyggingsstedet?",
+        "Hvordan kan ulike demonstrasjoner på samme sted sammenlignes uten å anta at NATO-protester, Vietnam-motstand, bondeaksjoner og samisk rettighetskamp hadde samme organisering, sosiale basis eller politiske virkning?"
+      ]
+    },
+    {
+      "id": "hist_case5_forsvarsmuseet_cold_war_defence_system",
+      "title": "Forsvarsmuseet og etterkrigsforsvaret: materiell kultur, NATO og den kalde krigens norske sikkerhetssystem",
+      "chapter_id": "kald_krig_etterkrig",
+      "place_ids": ["forsvarsmuseet"],
+      "source_ids": ["histmaint5_fhm_forsvarsmuseet", "histmaint5_forsvaret_nato_2026"],
+      "case_claim": "Forsvarsmuseet kan brukes som materiell og institusjonell inngang til etterkrigstidens forsvar, men museumsbygningen er ikke et hendelsessted for den kalde krigen som helhet. Forsvarshistorisk museum forvalter gjenstander, bilder, bibliotek og utstillinger som gjør strategi, teknologi og militære institusjoner etterprøvbare som historiske spor. Forsvarets oppdaterte NATO-historikk dokumenterer samtidig medlemskapet fra 1949, kollektivt forsvar, den strategiske grensen mot Sovjetunionen og alliansens betydning for norsk sikkerhetspolitikk. Caset skal koble materiell kultur til nasjonale beslutninger og transnasjonale allianser uten å la våpen og uniformsobjekter stå som selvforklarende bevis for opprustning, avskrekking eller politisk konsensus.",
+      "analysis_questions": [
+        "Hva kan gjenstander, bilder og militære samlinger på Forsvarsmuseet dokumentere om teknologi, organisasjon og beredskap, og hvilke sikkerhetspolitiske årsaker må dokumenteres gjennom andre kilder?",
+        "Hvordan endret NATO-medlemskapet fra 1949 norsk forsvarsplanlegging, og hvordan kan vi skille allianseforpliktelser, geografisk strategisk betydning og innenrikspolitisk debatt fra hverandre analytisk?",
+        "Hvordan unngår vi at et militærmuseum produserer en institusjonssentrert kaldkrigshistorie, og hvilke sivile, kritiske, internasjonale og hverdagslige perspektiver må sammenholdes med Forsvarets egne kilder?"
+      ]
+    }
+  ],
+  "quality_gates": {
+    "all_sources_https": true,
+    "all_sources_authoritative_or_institutional": true,
+    "all_cases_source_bound": true,
+    "all_cases_place_bound": true,
+    "all_case_places_canonical": true,
+    "all_case_places_new_to_editorial_baseline": true,
+    "round5_chapters_disjoint_from_round1_round2_round3_round4": true,
+    "round5_places_disjoint_from_round1_round2_round3_round4": true,
+    "all_23_canonical_chapters_covered": true,
+    "maintenance_cycle_reconciled": true,
+    "claim_provenance_preserved": true,
+    "historiography_and_theory_integrity_scope_unchanged": true,
+    "canonical_subject_architecture_unchanged": true,
+    "completion_status_preserved": true,
+    "indigenous_self_representation_preserved": true,
+    "protest_place_not_equated_with_entire_movement": true,
+    "museum_not_equated_with_entire_cold_war": true
+  }
+}
