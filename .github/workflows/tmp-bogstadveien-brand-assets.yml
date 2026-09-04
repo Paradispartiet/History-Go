@@ -39,7 +39,6 @@ jobs:
               low=raw.lower()
               if any(k in low for k in ['logo','wordmark','brandmark','header','favicon']):
                 candidates.append(urllib.parse.urljoin(base,raw))
-            # also capture nearby tags whose alt/class/id mention logo
             for tag in re.findall(r'(?is)<(?:img|source|link|meta)\b[^>]*>',html):
               low=tag.lower()
               if not any(k in low for k in ['logo','wordmark','brandmark']): continue
@@ -54,18 +53,26 @@ jobs:
               if c not in seen: seen.append(c)
             for c in seen[:30]: print('CANDIDATE',c)
             print('COUNT',len(seen))
+            if brand in {'by_timo','varsity_headwear'}:
+              print('INLINE_DIAGNOSTICS')
+              snippets=[]
+              for pattern in [r'(?is)<svg\b.{0,6000}?</svg>', r'(?is)<[^>]+(?:logo|wordmark|bytimo|varsity)[^>]*>']:
+                for mm in re.finditer(pattern,html):
+                  sn=re.sub(r'\s+',' ',mm.group(0))
+                  if sn not in snippets: snippets.append(sn)
+              for sn in snippets[:20]: print('SNIPPET',sn[:4000])
+              print('INLINE_COUNT',len(snippets))
           PY
 
       - name: Discover Blue Master historical source
         run: |
           set -euo pipefail
           python - <<'PY'
-          import urllib.request, urllib.parse, re
+          import urllib.request, urllib.parse
           ua='History-Go-place-production/1.0 (https://github.com/Paradispartiet/History-Go)'
           title='Bogstadveien 53 OB.Ø64 1727.jpg'
           api='https://commons.wikimedia.org/w/api.php?action=query&format=json&prop=imageinfo&iiprop=url%7Cextmetadata&titles=File:'+urllib.parse.quote(title)
           req=urllib.request.Request(api,headers={'User-Agent':ua})
           with urllib.request.urlopen(req,timeout=30) as r:
-            data=r.read().decode('utf-8','ignore')
-            print('COMMONS_API',data)
+            print('COMMONS_API',r.read().decode('utf-8','ignore'))
           PY
