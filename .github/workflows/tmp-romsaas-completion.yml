@@ -54,8 +54,6 @@ jobs:
         run: npm run places:index:build
       - name: Regenerate Fagverk place audit
         run: node scripts/audit-fagverk-place-pages.mjs --write
-      - name: Regenerate Fagverk release manifest
-        run: node scripts/build-fagverk-release-manifest.mjs
       - name: Regenerate place-open
         run: npm run place-open:build
       - name: Regenerate epoch index
@@ -64,6 +62,8 @@ jobs:
         run: npm run knowledge:canonical:write
       - name: Regenerate quiz production context
         run: node scripts/build-quiz-production-context.mjs --category by --target romsaås --output data/quiz/production_context/by/romsaås.json
+      - name: Regenerate Fagverk release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs
       - name: Verify Romsås completion
         run: node tests/romsaas-completion.test.mjs
       - name: Verify quiz production context
