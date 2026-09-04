@@ -26,6 +26,8 @@ jobs:
         run: node --check .github/TEMP-subkultur-produksjonsledelse-role-world-materializer.mjs
       - name: Materialize authored Role World
         run: node .github/TEMP-subkultur-produksjonsledelse-role-world-materializer.mjs
+      - name: Make standing consequences beat-specific
+        run: node .github/TEMP-subkultur-produksjonsledelse-role-world-uniqueness-fix.mjs
       - name: Regenerate Role World readiness
         run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
       - name: Focused Role World gate
@@ -49,6 +51,7 @@ jobs:
         run: |
           set -euo pipefail
           rm -f .github/TEMP-subkultur-produksjonsledelse-role-world-materializer.mjs
+          rm -f .github/TEMP-subkultur-produksjonsledelse-role-world-uniqueness-fix.mjs
           rm -f .github/workflows/TEMP-subkultur-produksjonsledelse-role-world.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -62,6 +65,7 @@ jobs:
             reports/civication-role-world-rollout-readiness.md \
             tests/civication-subkultur-produksjonsledelse-role-world-rollout.test.js \
             .github/TEMP-subkultur-produksjonsledelse-role-world-materializer.mjs \
+            .github/TEMP-subkultur-produksjonsledelse-role-world-uniqueness-fix.mjs \
             .github/workflows/TEMP-subkultur-produksjonsledelse-role-world.yml
           git diff --cached --check
           git commit -m "Complete Subkultur Produksjonsledelse Role World [materialized]"
