@@ -1,0 +1,65 @@
+{
+  "schema": "history_go_fagverk_expansion_19_plus_1_final_reconciliation_v1",
+  "version": "1.0.0",
+  "status": "strict_completion_reconciled",
+  "audited_main_sha": "9aa59b5995cee6c4495aee8f54ace7e57bc60221",
+  "audited_at": "2026-09-04",
+  "historical_authority_audit": "reports/fagverk/fagverk-expansion-19-plus-1-reconciliation-v1.json",
+  "strict_integrity_evidence": "reports/fagverk/fagverk-theory-integrity-audit.json",
+  "category_contract": "data/categories/category_contract.json",
+  "subject_status": "data/fagverk/subject_status.json",
+  "scope": {
+    "top_level_subjects": 19,
+    "nested_specializations": 1,
+    "total_audited_units": 20,
+    "strictly_proven_units": 20,
+    "canonical_subcategories": 12,
+    "foundation_materialized_subcategories": 12
+  },
+  "queues": {
+    "proof_reconciliation": [],
+    "expansion_production": [],
+    "content_repair": [],
+    "strict_subcategory_production": []
+  },
+  "canonical_subcategories": [
+    "natur/geografi",
+    "natur/biologi",
+    "natur/geologi_jordvitenskap",
+    "litteratur/sprak_lingvistikk",
+    "politikk/juss_rettsvitenskap",
+    "politikk/sosiologi_antropologi",
+    "helse/medisin_helsevitenskap",
+    "utdanning/pedagogikk_utdanningsvitenskap",
+    "vitenskap/fysikk",
+    "vitenskap/kjemi",
+    "vitenskap/matematikk",
+    "naeringsliv/okonomi"
+  ],
+  "ownership_decisions": {
+    "technology": {
+      "canonical_parent_subject": "vitenskap",
+      "top_level_subject": false,
+      "relationship": "nested_specialization"
+    },
+    "computing_data_ai": {
+      "canonical_parent_subject": "vitenskap",
+      "specialization": "teknologi",
+      "relationship": "nested_strong",
+      "new_canonical_subcategory_required": false
+    }
+  },
+  "completion_gates": {
+    "all_19_top_level_subjects_materialized": true,
+    "all_19_top_level_subjects_audited": true,
+    "all_20_units_strictly_proven": true,
+    "all_12_canonical_subcategories_foundation_materialized": true,
+    "proof_reconciliation_queue_empty": true,
+    "expansion_production_queue_empty": true,
+    "content_repair_queue_empty": true,
+    "strict_subcategory_queue_empty": true
+  },
+  "next_work_class": "maintenance_source_refresh_and_place_case_expansion",
+  "next_strict_subject": null,
+  "note": "19+1-programmet og den eksplisitte 12-underkategoriutvidelsen er slutt-reconcilet mot canonical main. Det finnes ikke et trettende strict-underfag i gjeldende category contract. Informatikk, data og AI forblir nested strong under Vitenskap → Teknologi og skal ikke opprettes som separat canonicalt toppfag eller underfag uten en egen senere kategoriendring."
+}
