@@ -1,0 +1,90 @@
+name: TEMP Subkultur Produksjon og prosjekt prerequisites replay
+
+on:
+  push:
+    branches:
+      - agent/civication-subkultur-produksjon-prosjekt-prerequisites-replay
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: ${{ !contains(github.event.head_commit.message, '[materialized]') && !contains(github.event.head_commit.message, '[diagnostic]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Assemble and verify TEMP generator
+        shell: bash
+        run: |
+          cat scripts/TEMP-subkultur-produksjon-prosjekt-parts/part0{1..7}.txt > /tmp/TEMP-produksjon-prosjekt-base.mjs
+          echo "5d8c3007b553f2611c5abc0cf44963db2a7c53b28f75d45174c7f53328185528  /tmp/TEMP-produksjon-prosjekt-base.mjs" | sha256sum -c -
+          echo "47f723456c6ce4a49877c94a3f6bbba9fc83d4fed299fbb2c5aedad6a5be88d1  scripts/TEMP-subkultur-produksjon-prosjekt-parts/part08.txt" | sha256sum -c -
+          echo "a498d59d4bb3fcfdeb529bd9c05cf3f4218ffda94f9674fe6edf02383954346c  scripts/TEMP-subkultur-produksjon-prosjekt-parts/part09.txt" | sha256sum -c -
+          cat /tmp/TEMP-produksjon-prosjekt-base.mjs scripts/TEMP-subkultur-produksjon-prosjekt-parts/part08.txt scripts/TEMP-subkultur-produksjon-prosjekt-parts/part09.txt > scripts/TEMP-materialize-subkultur-produksjon-og-prosjekt-prerequisites.mjs
+          node --check scripts/TEMP-materialize-subkultur-produksjon-og-prosjekt-prerequisites.mjs
+      - name: Materialize prerequisite package
+        run: node scripts/TEMP-materialize-subkultur-produksjon-og-prosjekt-prerequisites.mjs
+      - name: Regenerate role-pack index
+        run: node scripts/audit-civication-role-packs.mjs
+      - name: Normalize generated role-pack EOF
+        run: node -e "const fs=require('fs');const p='docs/CIVICATION_ROLE_PACK_INDEX.md';const s=fs.readFileSync(p,'utf8');fs.writeFileSync(p,s.replace(/\n+$/,'\n'));"
+      - name: Regenerate career matrix
+        run: node scripts/audit-civication-career-gameplay.mjs --write
+      - name: Regenerate Role World readiness
+        run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+      - name: Focused prerequisite gate
+        shell: bash
+        run: |
+          set +e
+          node tests/civication-subkultur-produksjon-og-prosjekt-prerequisites.test.js > /tmp/focused-prerequisite.log 2>&1
+          status=$?
+          cat /tmp/focused-prerequisite.log
+          if [ "$status" -ne 0 ]; then
+            mkdir -p reports
+            {
+              echo "TEMP diagnostic only — focused prerequisite gate failed"
+              echo "run_head=${GITHUB_SHA}"
+              echo
+              tail -n 80 /tmp/focused-prerequisite.log
+            } > reports/TEMP_SUBKULTUR_PRODUKSJON_PROSJEKT_PREREQUISITE_FAILURE.txt
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add reports/TEMP_SUBKULTUR_PRODUKSJON_PROSJEKT_PREREQUISITE_FAILURE.txt
+            git commit -m "TEMP: capture Produksjon og prosjekt prerequisite replay failure [diagnostic]"
+            git push origin HEAD:${GITHUB_REF_NAME}
+          fi
+          exit "$status"
+      - name: Regenerate compiled scene registry
+        run: node scripts/build-civication-scene-registry.mjs --write
+      - name: Compiled scene parity
+        run: node scripts/build-civication-scene-registry.mjs --check
+      - name: Full Civication
+        run: npm run test:civication
+      - name: Diff cleanliness
+        run: git diff --check
+      - name: Publish clean permanent state
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f .github/workflows/TEMP-subkultur-produksjon-og-prosjekt-prerequisites-replay.yml
+          rm -rf scripts/TEMP-subkultur-produksjon-prosjekt-parts
+          rm -f scripts/TEMP-materialize-subkultur-produksjon-og-prosjekt-prerequisites.mjs
+          rm -f reports/TEMP_SUBKULTUR_PRODUKSJON_PROSJEKT_PREREQUISITE_FAILURE.txt
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No permanent changes"
+            exit 1
+          fi
+          git diff --cached --check
+          git commit -m "Materialize Subkultur Produksjon og prosjekt prerequisites [materialized]"
+          git push origin HEAD:${GITHUB_REF_NAME}
