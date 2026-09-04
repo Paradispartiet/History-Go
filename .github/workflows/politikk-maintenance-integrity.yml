@@ -1,0 +1,38 @@
+name: Politikk maintenance integrity
+
+on:
+  pull_request:
+    paths:
+      - 'data/fagverk/politikk/maintenance/**'
+      - 'scripts/audit-politikk-source-refresh-case-expansion.mjs'
+      - 'tests/politikk-source-refresh-case-expansion.test.mjs'
+      - '.github/workflows/politikk-maintenance-integrity.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  maintenance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Audit Politikk source refresh and case expansion
+        run: |
+          node --check scripts/audit-politikk-source-refresh-case-expansion.mjs
+          node scripts/audit-politikk-source-refresh-case-expansion.mjs
+          node --test tests/politikk-source-refresh-case-expansion.test.mjs
+      - name: Preserve Politikk claim and theory integrity
+        run: |
+          node scripts/audit-politikk-subject-quality.mjs
+          node scripts/audit-politikk-thinker-integrity.mjs
+          node tools/audit-politikk-theory-integrity.mjs
+          node scripts/audit-fagverk-politikk-runtime-equivalence.mjs

@@ -1,0 +1,183 @@
+{
+  "schema": "history_go_politikk_maintenance_round_v1",
+  "version": "1.0.0",
+  "subject_id": "politikk",
+  "round_id": "source_refresh_and_case_expansion_2026_09_04",
+  "baseline_main_sha": "002910c8314aebf7224241606d42c236f8d43add",
+  "checked_at": "2026-09-04",
+  "status": "verified",
+  "scope": {
+    "new_strict_subcategory": false,
+    "civication": false,
+    "place_production": false,
+    "purpose": "Vedlikeholde eksisterende Politikk & samfunn-fagverk gjennom kildeoppfriskning, lenkehelse og konkrete samtidige case uten å endre canonical fagarkitektur."
+  },
+  "source_refresh": [
+    {
+      "id": "maint_stortinget_tasks",
+      "existing_source_ids": ["storting_roles"],
+      "chapter_ids": ["norsk-politikk-eos-eu-flernivastyring", "parlamentarisme"],
+      "publisher": "Stortinget",
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/",
+      "source_location": "Stortingets oppgaver: lovgivning, statsbudsjett, kontroll med regjeringen og politisk debatt.",
+      "health": "verified_live",
+      "action": "retained_and_refreshed"
+    },
+    {
+      "id": "maint_stortinget_lovarbeid",
+      "existing_source_ids": ["storting_law"],
+      "chapter_ids": ["norsk-politikk-eos-eu-flernivastyring", "rett-lov-rettssikkerhet"],
+      "publisher": "Stortinget",
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Arbeidet/Lovarbeidet",
+      "source_location": "Forberedende lovarbeid, lovforslag, komitébehandling, to behandlinger i plenum og sanksjonering.",
+      "health": "verified_live",
+      "action": "canonical_url_refresh"
+    },
+    {
+      "id": "maint_stortinget_2025_2029",
+      "existing_source_ids": [],
+      "chapter_ids": ["valg-partier-velgeratferd", "parlamentarisme"],
+      "publisher": "Stortinget",
+      "url": "https://www.stortinget.no/representanter-og-komiteer/",
+      "source_location": "Partifordeling for stortingsperioden 2025–2029 og 169 representanter.",
+      "health": "verified_live",
+      "action": "new_current_source"
+    },
+    {
+      "id": "maint_stortinget_oslo_2025_2029",
+      "existing_source_ids": [],
+      "chapter_ids": ["valg-partier-velgeratferd"],
+      "publisher": "Stortinget",
+      "url": "https://stortinget.no/no/Representanter-og-komiteer/valgdistriktene/Oslo/",
+      "source_location": "Oslo valgdistrikt i perioden 2025–2029: 20 innvalgte representanter og partifordeling.",
+      "health": "verified_live",
+      "action": "new_current_source"
+    },
+    {
+      "id": "maint_valg_2025_data",
+      "existing_source_ids": ["valg_results"],
+      "chapter_ids": ["valg-partier-velgeratferd"],
+      "publisher": "Valgdirektoratet",
+      "url": "https://www.valg.no/om-valgdirektoratet/om-valgdirektoratet/pressesider/API-med-valgresultater/",
+      "source_location": "Offisiell dokumentasjon av tilgang til valgresultater for stortingsvalget 2025 via valgresultat.no og API.",
+      "health": "verified_live",
+      "action": "current_election_refresh"
+    },
+    {
+      "id": "maint_oslo_governance",
+      "existing_source_ids": ["oslo_governance", "oslo_radhus"],
+      "chapter_ids": ["norsk-politikk-eos-eu-flernivastyring", "forvaltning", "offentlig-politikk-beslutning-implementering"],
+      "publisher": "Oslo kommune",
+      "url": "https://www.oslo.kommune.no/politikk/slik-styres-oslo/",
+      "source_location": "Parlamentarisk modell med bystyre og byråd, budsjettmyndighet, kontroll og kommunale/fylkeskommunale funksjoner.",
+      "health": "verified_live",
+      "action": "retained_and_refreshed"
+    },
+    {
+      "id": "maint_efta_eealaw",
+      "existing_source_ids": ["eea_process"],
+      "chapter_ids": ["norsk-politikk-eos-eu-flernivastyring"],
+      "publisher": "European Free Trade Association",
+      "url": "https://www.efta.int/eealaw",
+      "source_location": "Prosessen fra EU-rettsakt til vurdering av EØS-relevans, EØS-komitébeslutning, konstitusjonelle krav og ikrafttredelse.",
+      "health": "verified_live",
+      "action": "retained_and_refreshed"
+    },
+    {
+      "id": "maint_utredningsinstruksen_2025",
+      "existing_source_ids": ["utredningsinstruksen"],
+      "chapter_ids": ["offentlig-politikk-beslutning-implementering", "norsk-politikk-eos-eu-flernivastyring"],
+      "publisher": "Finansdepartementet",
+      "url": "https://www.regjeringen.no/no/dokumenter/utredningsinstruksen/id3060944/",
+      "source_location": "Gjeldende instruks fastsatt 18. oktober 2024, sist oppdatert 3. juni 2025; seks minimumsspørsmål og presiseringer for EØS-saker.",
+      "health": "verified_live",
+      "action": "current_revision_refresh"
+    },
+    {
+      "id": "maint_state_municipal_governance",
+      "existing_source_ids": ["state_municipal_guide"],
+      "chapter_ids": ["forvaltning", "norsk-politikk-eos-eu-flernivastyring"],
+      "publisher": "Kommunal- og distriktsdepartementet",
+      "url": "https://www.regjeringen.no/no/dokumenter/veileder-om-statlig-styring-av-kommuner-og-fylkeskommuner/id2791598/",
+      "source_location": "Prinsipper og retningslinjer for statlig styring, lov/forskrift, økonomiske virkemidler, øremerking og rapportering.",
+      "health": "verified_live",
+      "action": "retained_and_refreshed"
+    }
+  ],
+  "cases": [
+    {
+      "id": "case_stortinget_partifordeling_2025_2029",
+      "title": "Fra valgresultat til parlamentarisk styrkeforhold 2025–2029",
+      "chapter_id": "valg-partier-velgeratferd",
+      "place_ids": ["stortinget", "eidsvolls_plass"],
+      "source_ids": ["maint_stortinget_2025_2029", "maint_valg_2025_data"],
+      "case_claim": "Stortingsperioden 2025–2029 gir et ferskt case for å skille stemmegivning, mandatfordeling, partigruppestørrelse og parlamentarisk forhandlingsmakt; Stortinget oppgir 169 representanter fordelt på ni partigrupper.",
+      "analysis_questions": [
+        "Hvordan skiller mandatfordelingen seg analytisk fra nasjonal stemmeandel?",
+        "Hvilke koalisjoner eller sak-til-sak-flertall er aritmetisk mulige uten at aritmetikk alene forklarer faktisk samarbeid?",
+        "Hvordan kan Eidsvolls plass brukes som offentlighets- og mobiliseringscase uten å forveksle synlighet med formell beslutningsmakt?"
+      ]
+    },
+    {
+      "id": "case_oslo_valgdistrikt_2025_2029",
+      "title": "Oslo som valgdistrikt i stortingsperioden 2025–2029",
+      "chapter_id": "valg-partier-velgeratferd",
+      "place_ids": ["stortinget", "oslo_radhus"],
+      "source_ids": ["maint_stortinget_oslo_2025_2029", "maint_stortinget_2025_2029"],
+      "case_claim": "Oslo valgdistrikt har 20 innvalgte representanter i perioden 2025–2029, fordelt på sju partier, og egner seg som konkret case for geografisk representasjon, partistruktur og forskjellen mellom nasjonalt og distriktsvis mandatgrunnlag.",
+      "analysis_questions": [
+        "Hvorfor kan partifordelingen i Oslo avvike fra den nasjonale fordelingen?",
+        "Hva må undersøkes før en hevder at distriktsrepresentanter opptrer som en samlet Oslo-blokk?",
+        "Hvordan skiller Stortingets nasjonale mandat seg fra Oslo rådhus' kommunale mandat?"
+      ]
+    },
+    {
+      "id": "case_oslo_parlamentarisme_styringskjede",
+      "title": "Oslo rådhus som case for kommunal parlamentarisme",
+      "chapter_id": "forvaltning",
+      "place_ids": ["oslo_radhus"],
+      "source_ids": ["maint_oslo_governance", "maint_state_municipal_governance"],
+      "case_claim": "Oslo styres parlamentarisk med bystyret som øverste politiske organ og byrådet ansvarlig overfor bystyret; caset gjør det mulig å følge budsjett, kontroll, administrativ gjennomføring og statlige rammer i samme styringskjede.",
+      "analysis_questions": [
+        "Hvilke beslutninger treffes av bystyret, og hvilke gjennomføres av byrådet og administrasjonen?",
+        "Hvor oppstår lokalt skjønn innenfor nasjonale lover og økonomiske rammer?",
+        "Hvilke dokumenter trengs for å skille politisk vedtak fra administrativ implementering?"
+      ]
+    },
+    {
+      "id": "case_eos_fra_regjeringskvartalet_til_stortinget",
+      "title": "EØS-rettsakt fra administrativ vurdering til parlamentarisk samtykke",
+      "chapter_id": "norsk-politikk-eos-eu-flernivastyring",
+      "place_ids": ["regjeringskvartalet", "stortinget"],
+      "source_ids": ["maint_efta_eealaw", "maint_utredningsinstruksen_2025", "maint_stortinget_tasks"],
+      "case_claim": "EØS-prosessen kan analyseres som en flernivåkjede der EU-regelverk vurderes for EØS-relevans, behandles gjennom EØS-komiteen og ved behov møter norske konstitusjonelle krav før nasjonal gjennomføring; den reviderte Utredningsinstruksen skjerper samtidig arbeidet med EØS-saker.",
+      "analysis_questions": [
+        "Hvilke ledd innebærer påvirkning, hvilke innebærer formell beslutning og hvilke innebærer gjennomføring?",
+        "Når oppstår behov for parlamentarisk samtykke i Norge?",
+        "Hvordan kan Regjeringskvartalet og Stortinget brukes som innganger til hvert sitt dokumentledd uten at stedene i seg selv blir bevis?"
+      ]
+    },
+    {
+      "id": "case_lovarbeid_utredning_til_vedtak",
+      "title": "Fra utredning til lovvedtak",
+      "chapter_id": "offentlig-politikk-beslutning-implementering",
+      "place_ids": ["regjeringskvartalet", "stortinget"],
+      "source_ids": ["maint_utredningsinstruksen_2025", "maint_stortinget_lovarbeid"],
+      "case_claim": "Et statlig lovtiltak kan følges fra problem- og tiltaksutredning i forvaltningen gjennom lovforslag og komitébehandling til plenumsbehandling og sanksjonering; kjeden skiller beslutningsgrunnlag, politisk valg og formelt vedtak.",
+      "analysis_questions": [
+        "Hvilke av Utredningsinstruksens seks spørsmål er eksplisitt besvart i beslutningsgrunnlaget?",
+        "Hva endres mellom proposisjon, komitéinnstilling og endelig lovvedtak?",
+        "Hvilke aktører har påvirkningsmulighet uten selv å ha vedtakskompetanse?"
+      ]
+    }
+  ],
+  "quality_gates": {
+    "all_sources_https": true,
+    "all_sources_authoritative_or_institutional": true,
+    "all_cases_source_bound": true,
+    "all_cases_place_bound": true,
+    "claim_provenance_preserved": true,
+    "theory_integrity_scope_unchanged": true,
+    "canonical_subject_architecture_unchanged": true
+  }
+}
