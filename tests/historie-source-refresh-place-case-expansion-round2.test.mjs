@@ -1,0 +1,35 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { auditHistorieSourceRefreshPlaceCaseExpansionRound2 } from '../scripts/audit-historie-source-refresh-place-case-expansion-round2.mjs';
+
+test('Historie maintenance round 2 expands five new chapters and places without weakening completion', () => {
+  const report = auditHistorieSourceRefreshPlaceCaseExpansionRound2();
+  assert.equal(report.status, 'passed');
+  assert.equal(report.round, 2);
+  assert.equal(report.source_refresh_count, 10);
+  assert.equal(report.case_count, 5);
+  assert.equal(report.chapter_count, 5);
+  assert.equal(report.combined_maintenance_chapter_count, 10);
+  assert.equal(report.canonical_chapter_count, 23);
+  assert.equal(report.baseline_editorial_case_anchor_count, 54);
+  assert.equal(report.round1_new_place_count, 5);
+  assert.equal(report.round2_new_place_count, 5);
+  assert.equal(report.projected_case_anchor_count, 64);
+  assert.ok(report.projected_unique_place_count >= report.baseline_editorial_unique_place_count + 10);
+  assert.equal(report.gates.source_health, true);
+  assert.equal(report.gates.canonical_chapter_identity, true);
+  assert.equal(report.gates.canonical_place_identity, true);
+  assert.equal(report.gates.chapter_non_overlap_round1, true);
+  assert.equal(report.gates.place_non_overlap_editorial_and_round1, true);
+  assert.equal(report.gates.case_source_trace, true);
+  assert.equal(report.gates.claim_provenance_preserved, true);
+  assert.equal(report.gates.historiography_and_theory_integrity_scope_unchanged, true);
+  assert.equal(report.gates.subject_architecture_unchanged, true);
+  assert.equal(report.gates.completion_status_preserved, true);
+  assert.equal(report.gates.museum_representation_bounded, true);
+  assert.equal(report.gates.present_day_retrojection_bounded, true);
+  assert.equal(report.gates.planned_project_status_bounded, true);
+  assert.equal(report.gates.systemic_effects_not_localized_to_place_anchor, true);
+  assert.equal(report.gates.no_strict_subcategory, true);
+  assert.equal(report.gates.no_place_production, true);
+});
