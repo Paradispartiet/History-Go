@@ -1,0 +1,39 @@
+name: TEMP patch Bogstadveien finalizer
+on:
+  push:
+    branches: [control/bogstadveien-finalize-20260904-v3]
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Patch MOO validation and self-remove
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('.github/workflows/tmp-bogstadveien-final-candidate.yml')
+          s=p.read_text()
+          old="""          import json,re,urllib.request,urllib.parse\n"""
+          new="""          import json,re,urllib.request,urllib.parse,struct\n"""
+          if old not in s:
+            raise SystemExit('import anchor missing')
+          s=s.replace(old,new,1)
+          old2="""              if len(data)<500: raise RuntimeError(f'{name}: suspiciously small asset')\n              open('/tmp/bogstad-brands/'+name,'wb').write(data)\n"""
+          new2="""              if name=='moo.png':\n                if len(data)<33 or data[:8] != b'\\x89PNG\\r\\n\\x1a\\n': raise RuntimeError('moo.png: invalid PNG')\n                w,h=struct.unpack('>II',data[16:24])\n                if (w,h)!=(199,198): raise RuntimeError(f'moo.png: unexpected dimensions {(w,h)}')\n              elif len(data)<500:\n                raise RuntimeError(f'{name}: suspiciously small asset')\n              open('/tmp/bogstad-brands/'+name,'wb').write(data)\n"""
+          if old2 not in s:
+            raise SystemExit('validation anchor missing')
+          s=s.replace(old2,new2,1)
+          p.write_text(s)
+          PY
+          rm .github/workflows/tmp-bogstadveien-patch-finalizer.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git diff --cached --check
+          git commit -m "TEMP: validate official MOO logo by PNG dimensions"
+          git push origin HEAD:control/bogstadveien-finalize-20260904-v3
