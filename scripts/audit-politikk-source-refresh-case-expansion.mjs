@@ -7,7 +7,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const MAINTENANCE_FILE = 'data/fagverk/politikk/maintenance/source-refresh-case-expansion-2026-09-04.json';
 const STATUS_FILE = 'data/fagverk/subject_status.json';
 const POLITIKK_ROOT = 'data/fagverk/politikk';
-const PLACE_FILE = 'data/places/politikk/oslo/places_politikk.json';
+const PLACE_DIR = 'data/places/politikk/oslo/places_politikk';
 
 const abs = (value) => path.join(ROOT, value);
 const readJson = (value) => JSON.parse(fs.readFileSync(abs(value), 'utf8'));
@@ -32,17 +32,16 @@ function collectCanonicalSourceIds() {
   return ids;
 }
 
-function collectEntityIds(value, result = new Set()) {
-  if (Array.isArray(value)) {
-    for (const item of value) collectEntityIds(item, result);
-    return result;
+function collectCanonicalPlaceIds() {
+  const ids = new Set();
+  const dir = abs(PLACE_DIR);
+  assert(fs.existsSync(dir) && fs.statSync(dir).isDirectory(), `Canonical Politikk-place-katalog mangler: ${PLACE_DIR}`);
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (!entry.isFile() || !entry.name.endsWith('.json')) continue;
+    const doc = JSON.parse(fs.readFileSync(path.join(dir, entry.name), 'utf8'));
+    if (text(doc.id)) ids.add(text(doc.id));
   }
-  if (!value || typeof value !== 'object') return result;
-  for (const key of ['id', 'place_id', 'placeId']) {
-    if (typeof value[key] === 'string' && text(value[key])) result.add(text(value[key]));
-  }
-  for (const item of Object.values(value)) collectEntityIds(item, result);
-  return result;
+  return ids;
 }
 
 export function auditPolitikkSourceRefreshCaseExpansion() {
@@ -106,8 +105,7 @@ export function auditPolitikkSourceRefreshCaseExpansion() {
   for (const id of requiredRefreshIds) assert(refreshIds.has(id), `Mangler obligatorisk vedlikeholdskilde: ${id}`);
   assert(currentSourceCount >= 2, 'Vedlikeholdsrunden skal tilføre minst to reelt nye samtidige kildekontroller');
 
-  const placeDoc = readJson(PLACE_FILE);
-  const placeIds = collectEntityIds(placeDoc);
+  const placeIds = collectCanonicalPlaceIds();
   const caseIds = new Set();
   const usedRefreshIds = new Set();
   const usedPlaceIds = new Set();
