@@ -28,8 +28,8 @@ const REQUIRED_SOURCE_IDS = new Set([
   'histmaint3_ldh_cathinka_history',
   'histmaint3_oslobyleksikon_vaterland',
   'histmaint3_oslo_vaterland_byplan_2026',
-  'histmaint3_snl_oslo_bors_2025',
-  'histmaint3_euronext_oslo_bors_2025',
+  'histmaint3_oppdagkvadraturen_treschowgarden',
+  'histmaint3_oslobyleksikon_borsen_treschow',
   'histmaint3_maritimt_fredensborg',
   'histmaint3_maritimt_triangelfart'
 ]);
@@ -37,7 +37,7 @@ const REQUIRED_PLACE_IDS = new Set([
   'victoria_terrasse',
   'bla_skilt_cathinka_guldberg_lovisenberggata_15a',
   'vaterland_historisk_elvelop',
-  'borsen_oslo',
+  'treschowgarden',
   'norsk_maritimt_museum'
 ]);
 
