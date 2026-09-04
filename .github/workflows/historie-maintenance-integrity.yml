@@ -8,10 +8,12 @@ on:
       - 'scripts/audit-historie-source-refresh-place-case-expansion-round2.mjs'
       - 'scripts/audit-historie-source-refresh-place-case-expansion-round3.mjs'
       - 'scripts/audit-historie-source-refresh-place-case-expansion-round4.mjs'
+      - 'scripts/audit-historie-source-refresh-place-case-expansion-round5.mjs'
       - 'tests/historie-source-refresh-place-case-expansion.test.mjs'
       - 'tests/historie-source-refresh-place-case-expansion-round2.test.mjs'
       - 'tests/historie-source-refresh-place-case-expansion-round3.test.mjs'
       - 'tests/historie-source-refresh-place-case-expansion-round4.test.mjs'
+      - 'tests/historie-source-refresh-place-case-expansion-round5.test.mjs'
       - '.github/workflows/historie-maintenance-integrity.yml'
 
 permissions:
@@ -32,17 +34,19 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
-      - name: Audit Historie maintenance rounds 1, 2, 3 and 4
+      - name: Audit Historie maintenance rounds 1, 2, 3, 4 and 5
         run: |
           node --check scripts/audit-historie-source-refresh-place-case-expansion.mjs
           node --check scripts/audit-historie-source-refresh-place-case-expansion-round2.mjs
           node --check scripts/audit-historie-source-refresh-place-case-expansion-round3.mjs
           node --check scripts/audit-historie-source-refresh-place-case-expansion-round4.mjs
+          node --check scripts/audit-historie-source-refresh-place-case-expansion-round5.mjs
           node scripts/audit-historie-source-refresh-place-case-expansion.mjs
           node scripts/audit-historie-source-refresh-place-case-expansion-round2.mjs
           node scripts/audit-historie-source-refresh-place-case-expansion-round3.mjs
           node scripts/audit-historie-source-refresh-place-case-expansion-round4.mjs
-          node --test tests/historie-source-refresh-place-case-expansion.test.mjs tests/historie-source-refresh-place-case-expansion-round2.test.mjs tests/historie-source-refresh-place-case-expansion-round3.test.mjs tests/historie-source-refresh-place-case-expansion-round4.test.mjs
+          node scripts/audit-historie-source-refresh-place-case-expansion-round5.mjs
+          node --test tests/historie-source-refresh-place-case-expansion.test.mjs tests/historie-source-refresh-place-case-expansion-round2.test.mjs tests/historie-source-refresh-place-case-expansion-round3.test.mjs tests/historie-source-refresh-place-case-expansion-round4.test.mjs tests/historie-source-refresh-place-case-expansion-round5.test.mjs
       - name: Preserve Historie completion, source authority and theory integrity
         run: |
           node tools/validate-historie-curriculum-architecture.mjs
