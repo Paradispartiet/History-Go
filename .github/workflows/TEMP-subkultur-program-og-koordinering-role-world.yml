@@ -24,8 +24,12 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Syntax check Role World materializer
         run: node --check .github/TEMP-subkultur-program-og-koordinering-role-world-materializer.mjs
+      - name: Syntax check thread-depth strengthening
+        run: node --check .github/TEMP-subkultur-program-og-koordinering-role-world-thread-depth-fix.mjs
       - name: Materialize Role World
         run: node .github/TEMP-subkultur-program-og-koordinering-role-world-materializer.mjs
+      - name: Strengthen primary thread relationships
+        run: node .github/TEMP-subkultur-program-og-koordinering-role-world-thread-depth-fix.mjs
       - name: Regenerate career gameplay matrix
         run: node scripts/audit-civication-career-gameplay.mjs --write
       - name: Regenerate Role World readiness
@@ -51,6 +55,7 @@ jobs:
         run: |
           set -euo pipefail
           rm -f .github/TEMP-subkultur-program-og-koordinering-role-world-materializer.mjs
+          rm -f .github/TEMP-subkultur-program-og-koordinering-role-world-thread-depth-fix.mjs
           rm -f .github/workflows/TEMP-subkultur-program-og-koordinering-role-world.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -66,6 +71,7 @@ jobs:
             reports/civication-role-world-rollout-readiness.md \
             tests/civication-subkultur-program-og-koordinering-role-world-rollout.test.js \
             .github/TEMP-subkultur-program-og-koordinering-role-world-materializer.mjs \
+            .github/TEMP-subkultur-program-og-koordinering-role-world-thread-depth-fix.mjs \
             .github/workflows/TEMP-subkultur-program-og-koordinering-role-world.yml
           git diff --cached --check
           git commit -m "Complete Subkultur Program og koordinering Role World [materialized]"
