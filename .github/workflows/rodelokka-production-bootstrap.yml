@@ -47,6 +47,37 @@ jobs:
             if (!allowedFamilies.has(claim.family)) throw new Error(`${claim.claim_id}: unsupported claim family ${claim.family}`);
           }
           for (let n = 1; n <= 35; n += 1) if (!seen.has(n)) throw new Error(`Missing claim_rodelokka_quiz_${String(n).padStart(2, '0')}`);
+          brief.existing_quiz_audit = {
+            searched_paths: [
+              'data/quiz/manifest.json',
+              'data/quiz/by/rodelokka_sets.json',
+              'data/quiz/by/rodelokka_sets_merged.json',
+              'data/places/by/oslo/places/rodelokka.json'
+            ],
+            active_before: {
+              file: 'data/quiz/by/rodelokka_sets_merged.json',
+              set_count: 5,
+              question_count: 30,
+              finding: 'Legacy merged normal_place 5x6 package existed, but no standard rodelokka_sets.json package or canonical v3.3 source-brief/context pair existed.'
+            },
+            decisions: [
+              'Reuse source-backed factual coverage where it remains valid, but materialize the active package as canonical rich 5x7.',
+              'Keep the first fourteen questions in normal fact/context progression and reserve theory or method work for the final phase.',
+              'Require every active question to resolve through reviewed source claims and the canonical production context.'
+            ],
+            knowledge_migration: 'The legacy 5x6 package is treated as editorial input only; canonical Knowledge and quiz context are regenerated from the reviewed 35-claim source brief.'
+          };
+          brief.profile_decision = {
+            profile: 'rich',
+            set_count: 5,
+            questions_per_set: 7,
+            justification: 'Rodeløkka supports five distinct source-backed learning jobs across settlement history, wooden-house morphology, working-class urbanization, preservation and contemporary historical reading.'
+          };
+          brief.held_back_candidates = [
+            'Claims that general Grünerløkka history automatically applies to Rodeløkka without place-specific evidence.',
+            'Named people, brands or neighboring institutions whose connection is only geographic proximity rather than documented Rodeløkka relevance.',
+            'Exact causal claims about gentrification or preservation effects that are not directly supported by the reviewed source set.'
+          ];
           fs.writeFileSync(file, `${JSON.stringify(brief, null, 2)}\n`);
           NODE
       - name: Normalize Rodeløkka Story manifest registration
