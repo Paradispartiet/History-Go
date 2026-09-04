@@ -1,0 +1,205 @@
+{
+  "schema": "history_go_by_maintenance_round_v1",
+  "version": "1.0.0",
+  "subject_id": "by",
+  "round_id": "source_refresh_and_place_case_expansion_round2_2026_09_04",
+  "baseline_main_sha": "09b7607542060dfaf8bcf49515c8266dcb33ce7e",
+  "checked_at": "2026-09-04",
+  "status": "verified",
+  "scope": {
+    "new_strict_subcategory": false,
+    "place_production": false,
+    "canonical_architecture_change": false,
+    "purpose": "Andre vedlikeholds- og utvidelsesrunde for By & arkitektur: oppfriske autoritative kilder og legge til geografisk bredere canonicale stedscase i fem kapitler som ikke inngikk i runde 1, uten å endre fagarkitekturen eller completion-semantikken."
+  },
+  "target_chapters": [
+    "bolig-nabolag-tilgang-endring",
+    "urbanisme-idealer-forbindelser-fortetting",
+    "arbeid-naering-handel-logistikk",
+    "historiske-lag-ruiner-minner",
+    "makt-konflikt-protest-grenser-trygghet"
+  ],
+  "source_refresh": [
+    {
+      "id": "bymaint2_oslo_area_initiatives_2026",
+      "chapter_ids": ["bolig-nabolag-tilgang-endring"],
+      "publisher": "Oslo kommune",
+      "url": "https://www.oslo.kommune.no/byutvikling/omradesatsingene-i-oslo/hva-er-omradesatsingene-i-oslo/",
+      "source_location": "Gjeldende oversikt over Oslos tre områdesatsinger, deres geografiske virkeområder og formålet om å styrke nabolag og motvirke utenforskap; områdeinnsats behandles som styringsgrep, ikke som bevis på individuell levekårseffekt.",
+      "health": "verified_live",
+      "action": "current_neighborhood_policy_refresh"
+    },
+    {
+      "id": "bymaint2_dibk_outdoor_area_tek17",
+      "chapter_ids": ["bolig-nabolag-tilgang-endring"],
+      "publisher": "Direktoratet for byggkvalitet",
+      "url": "https://www.dibk.no/regelverk/byggteknisk-forskrift-tek17/8/8-3",
+      "source_location": "Gjeldende TEK17-veiledning til uteoppholdsareal: arealer skal etter funksjon være egnet for rekreasjon, lek og aktiviteter, og egnetheten skal dokumenteres i plan- eller prosjekteringsgrunnlaget.",
+      "health": "verified_live",
+      "action": "current_building_regulation_refresh"
+    },
+    {
+      "id": "bymaint2_oslo_kpa_development_areas_2026",
+      "chapter_ids": ["urbanisme-idealer-forbindelser-fortetting"],
+      "publisher": "Oslo kommune",
+      "url": "https://www.oslo.kommune.no/politikk/kommuneplan/kommuneplanens-arealdel/utviklingsomrader/",
+      "source_location": "Gjeldende høringsmateriale for kommuneplanens arealdel med utviklingsområder, flerfunksjonalitet, tetthet, arbeidsplasser og boligandel; høringsforslaget behandles eksplisitt som forslag og ikke som allerede vedtatt planstatus.",
+      "health": "verified_live",
+      "action": "current_planning_framework_refresh"
+    },
+    {
+      "id": "bymaint2_oslo_fjordbyen_tjuvholmen",
+      "chapter_ids": ["urbanisme-idealer-forbindelser-fortetting"],
+      "publisher": "Oslo kommune",
+      "url": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/fjordbyen/tjuvholmen/",
+      "source_location": "Kommunens dokumentasjon av Tjuvholmen som ferdigstilt Fjordby-prosjekt: overordnet regulering i 2004, byggestart 2005, ferdigstillelse i 2014 og blanding av boliger, arbeidsplasser, park og publikumsfunksjoner.",
+      "health": "verified_live",
+      "action": "built_urbanism_case_refresh"
+    },
+    {
+      "id": "bymaint2_oslo_havnepromenaden",
+      "chapter_ids": ["urbanisme-idealer-forbindelser-fortetting", "arbeid-naering-handel-logistikk"],
+      "publisher": "Oslo kommune",
+      "url": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/fjordbyen/havnepromenaden",
+      "source_location": "Gjeldende prosjektbeskrivelse av Havnepromenaden og samarbeidet mellom kommunale etater, Oslo Havn, private grunneiere og aktører; brukes til å skille offentlig forbindelse fra tilgrensende kommersiell drift.",
+      "health": "verified_live",
+      "action": "waterfront_public_realm_refresh"
+    },
+    {
+      "id": "bymaint2_ssb_employment_q4_2025",
+      "chapter_ids": ["arbeid-naering-handel-logistikk"],
+      "publisher": "Statistisk sentralbyrå",
+      "url": "https://www.ssb.no/arbeid-og-lonn/sysselsetting/statistikk/sysselsetting-registerbasert",
+      "source_location": "Registerbasert sysselsetting for 4. kvartal 2025, inkludert sysselsatte etter arbeidsstedsfylke og næring; Oslo hadde 538 130 sysselsatte etter arbeidssted og statistikken brukes på aggregert nivå.",
+      "health": "verified_live",
+      "action": "current_employment_refresh"
+    },
+    {
+      "id": "bymaint2_ssb_retail_2026",
+      "chapter_ids": ["arbeid-naering-handel-logistikk"],
+      "publisher": "Statistisk sentralbyrå",
+      "url": "https://www.ssb.no/varehandel-og-tjenesteyting/varehandel/statistikk/omsetning-i-varehandel",
+      "source_location": "Gjeldende omsetningsstatistikk for varehandel med regional tabell 14830 og terminer gjennom 2026; brukes for å skille regional omsetning fra synlig kundetrafikk eller enkeltbutikkers økonomi.",
+      "health": "verified_live",
+      "action": "current_retail_turnover_refresh"
+    },
+    {
+      "id": "bymaint2_oslo_gul_liste_2026",
+      "chapter_ids": ["historiske-lag-ruiner-minner"],
+      "publisher": "Oslo kommune",
+      "url": "https://www.oslo.kommune.no/plan-bygg-og-eiendom/kulturminner-og-bevaring/gul-liste/",
+      "source_location": "Byantikvarens gjeldende Gul liste i Kulturminnesøk med skille mellom fredet, vernet etter plan- og bygningsloven og kommunalt listeført; listeføring behandles ikke som én ensartet juridisk vernekategori.",
+      "health": "verified_live",
+      "action": "current_heritage_status_refresh"
+    },
+    {
+      "id": "bymaint2_oslo_byantikvaren_2026",
+      "chapter_ids": ["historiske-lag-ruiner-minner"],
+      "publisher": "Byantikvaren, Oslo kommune",
+      "url": "https://www.oslo.kommune.no/etater-foretak-og-ombud/byantikvaren/",
+      "source_location": "Gjeldende beskrivelse av Byantikvaren som kommunens faglige rådgiver for bevaring av arkitektoniske og kulturhistoriske bygninger, anlegg, miljøer og arkeologiske kulturminner, med 2026-oppdrag knyttet til Gul liste og arealplanlegging.",
+      "health": "verified_live",
+      "action": "current_heritage_governance_refresh"
+    },
+    {
+      "id": "bymaint2_oslo_public_space_rental_2026",
+      "chapter_ids": ["arbeid-naering-handel-logistikk", "makt-konflikt-protest-grenser-trygghet"],
+      "publisher": "Oslo kommune",
+      "url": "https://www.oslo.kommune.no/gate-transport-og-parkering/leie-torg-fortau-og-gater/leie-areal/",
+      "source_location": "Gjeldende regler for bruk og leie av kommunalt areal til blant annet uteservering, vareutstilling, stand, arrangement, demonstrasjon og markering; arealdisponering skilles fra politisk forhåndsgodkjenning av budskap.",
+      "health": "verified_live",
+      "action": "current_public_space_use_refresh"
+    },
+    {
+      "id": "bymaint2_police_arrangements_demonstrations",
+      "chapter_ids": ["makt-konflikt-protest-grenser-trygghet"],
+      "publisher": "Politiet",
+      "url": "https://www.politiet.no/tjenester/arrangementer",
+      "source_location": "Gjeldende politiveiledning om arrangementer og demonstrasjoner på offentlig sted, inkludert meldeplikt etter politiloven § 11, mulige vilkår av hensyn til orden og ferdsel og egne Oslo-frister.",
+      "health": "verified_live",
+      "action": "current_assembly_rule_refresh"
+    }
+  ],
+  "cases": [
+    {
+      "id": "case_by_neighborhood_structure_access_2026",
+      "title": "Nabolagsstruktur, områdesatsing og brukbare fellesrom",
+      "chapter_id": "bolig-nabolag-tilgang-endring",
+      "place_ids": ["romsaås", "markveien"],
+      "source_ids": ["bymaint2_oslo_area_initiatives_2026", "bymaint2_dibk_outdoor_area_tek17"],
+      "case_claim": "Oslo kommunes områdesatsinger og TEK17s krav til egnet uteoppholdsareal gir to ulike evidenstyper for å analysere nabolag: offentlig områdestyring og tekniske funksjonskrav. Romsås og Markveien brukes som kontrasterende feltinnganger til boligstruktur og fellesrom, men observasjon av bygninger eller brukere brukes ikke til å tilordne beboere inntekt, eierform, trygghet eller levekår.",
+      "analysis_questions": [
+        "Hvordan kan Romsås og Markveien sammenlignes som bolig- og nabolagsstrukturer uten å bruke fasader eller observerte personer som bevis for eierform, inntekt eller sosial status?",
+        "Hva kan TEK17 si om krav til egnet uteoppholdsareal, og hvilke spørsmål om faktisk brukskvalitet krever feltdata, brukerperspektiv eller annen empirisk dokumentasjon?",
+        "Hvorfor må en områdesatsings mål og virkemidler skilles fra dokumentert effekt på levekår, tilhørighet eller boligstabilitet for bestemte husholdninger?"
+      ]
+    },
+    {
+      "id": "case_by_fjordcity_plan_to_built_form_2026",
+      "title": "Fra planideal til ferdigstilt fjordby",
+      "chapter_id": "urbanisme-idealer-forbindelser-fortetting",
+      "place_ids": ["sorenga", "tjuvholmen"],
+      "source_ids": ["bymaint2_oslo_kpa_development_areas_2026", "bymaint2_oslo_fjordbyen_tjuvholmen", "bymaint2_oslo_havnepromenaden"],
+      "case_claim": "Kommuneplanens utviklingsområder gir et aktuelt planrammeverk, mens Tjuvholmen og Havnepromenaden dokumenterer gjennomførte Fjordby-grep. Sørenga og Tjuvholmen brukes til å skille planideal, juridisk plan, bygget form, funksjonsmiks og offentlig forbindelse; et høringsforslag eller fysisk ferdigstillelse behandles aldri som automatisk bevis på faktisk byliv, tilgjengelighet eller sosial effekt.",
+      "analysis_questions": [
+        "Hvordan skiller et utviklingsområde i kommuneplanens høringsmateriale seg fra en vedtatt regulering og fra et ferdigstilt byutviklingsprosjekt som Tjuvholmen?",
+        "Hvilke fysiske trekk ved Sørenga og Tjuvholmen kan registreres som fortetting, funksjonsmiks eller forbindelser, og hvilke kvalitets- eller brukspåstander krever egne data?",
+        "Hvordan kan Havnepromenaden analyseres som sammenhengende offentlig forbindelse samtidig som tilgrensende arealer har ulike eiere, funksjoner og kommersielle tilbud?"
+      ]
+    },
+    {
+      "id": "case_by_commercial_street_waterfront_work_2026",
+      "title": "Arbeidsby, handel og offentlig-kommersielle grensesnitt",
+      "chapter_id": "arbeid-naering-handel-logistikk",
+      "place_ids": ["torggata", "tjuvholmen"],
+      "source_ids": ["bymaint2_oslo_havnepromenaden", "bymaint2_ssb_employment_q4_2025", "bymaint2_ssb_retail_2026", "bymaint2_oslo_public_space_rental_2026"],
+      "case_claim": "SSBs ferske sysselsettings- og varehandelsstatistikk, kommunens regler for bruk av offentlig areal og Havnepromenadens styringsmodell gir et case for å skille arbeidssted, handel, fysisk næringsaktivitet og offentlig rom. Torggata og Tjuvholmen brukes som feltinnganger, men kundemengde, åpne lokaler eller uteserveringsmøbler brukes ikke som bevis for omsetning, lønnsomhet eller regional næringsutvikling.",
+      "analysis_questions": [
+        "Hva kan observeres direkte om handel og næringsbruk i Torggata og på Tjuvholmen, og hvilke påstander om sysselsetting eller omsetning må hentes fra register- og statistikkdata?",
+        "Hvordan skiller retten eller avtalen til å disponere kommunalt areal for uteservering eller stand seg fra virksomhetens faktiske åpningstid, kundetall eller økonomiske resultat?",
+        "Hvordan kan offentlig tilgjengelig sjøfront og kommersielle tilbud eksistere side om side uten at tilgrensende privat drift i seg selv beviser privatisering av selve promenaden?"
+      ]
+    },
+    {
+      "id": "case_by_heritage_layer_protection_2026",
+      "title": "Synlige historiske lag og dokumentert vernestatus",
+      "chapter_id": "historiske-lag-ruiner-minner",
+      "place_ids": ["damstredet_telthusbakken", "hammersborg_torg"],
+      "source_ids": ["bymaint2_oslo_gul_liste_2026", "bymaint2_oslo_byantikvaren_2026"],
+      "case_claim": "Byantikvarens rolle og den oppdaterte Gule listen gir et aktuelt institusjonelt grunnlag for å skille fysiske historiske spor fra dokumentert kulturminnestatus. Damstredet/Telthusbakken og Hammersborg torg brukes til å undersøke lag, omforming og minne i byrommet, men alder, fredning, planvern eller kommunal listeføring utledes aldri fra utseende alene.",
+      "analysis_questions": [
+        "Hvilke historiske spor kan dokumenteres gjennom feltobservasjon i Damstredet/Telthusbakken og på Hammersborg torg, og hvilke opplysninger om alder eller vern krever arkiv- og registerkilder?",
+        "Hvorfor må fredet, vernet etter plan- og bygningsloven og kommunalt listeført holdes fra hverandre når Gul liste brukes i en stedsanalyse?",
+        "Hvordan kan et sted som er kraftig omformet fortsatt analyseres som historisk lag uten å fremstille rekonstruerte, flyttede eller nyere elementer som opprinnelige levn?"
+      ]
+    },
+    {
+      "id": "case_by_public_space_assembly_rules_2026",
+      "title": "Offentlig rom, markering og regulert bruk",
+      "chapter_id": "makt-konflikt-protest-grenser-trygghet",
+      "place_ids": ["hammersborg_torg", "markveien"],
+      "source_ids": ["bymaint2_oslo_public_space_rental_2026", "bymaint2_police_arrangements_demonstrations"],
+      "case_claim": "Oslo kommunes regler for bruk av kommunalt areal og Politiets veiledning om demonstrasjoner gjør det mulig å skille eierskap, arealdisponering, meldeplikt, ordensvilkår og ytringsfrihet. Hammersborg torg og Markveien brukes som feltsteder for romlige terskler og bruksmuligheter, men synlig kontrollinfrastruktur eller fravær av en demonstrasjon brukes ikke som bevis for politisk adgang, ekskludering eller faktisk trygghet.",
+      "analysis_questions": [
+        "Hva er forskjellen mellom kommunens tillatelse til å bruke et areal, politiets melde- eller vilkårsregime og en politisk vurdering av selve budskapet i en demonstrasjon?",
+        "Hvilke fysiske terskler, skilt eller avgrensninger kan observeres ved Hammersborg torg og Markveien, og hvorfor dokumenterer de ikke alene hvem som faktisk inkluderes eller ekskluderes?",
+        "Hvordan kan en analysere trygghet, kontroll og forsamlingsbruk i et byrom uten å gjøre ett observasjonstidspunkt til bevis for stabil praksis, kriminalitetsnivå eller gruppers erfaringer?"
+      ]
+    }
+  ],
+  "quality_gates": {
+    "all_sources_https": true,
+    "all_sources_authoritative_or_institutional": true,
+    "all_cases_source_bound": true,
+    "all_cases_place_bound": true,
+    "all_case_places_canonical": true,
+    "all_case_places_new_to_complete_audit": true,
+    "round2_chapters_disjoint_from_round1": true,
+    "round2_places_disjoint_from_round1": true,
+    "claim_provenance_preserved": true,
+    "theory_integrity_scope_unchanged": true,
+    "canonical_subject_architecture_unchanged": true,
+    "completion_status_preserved": true,
+    "field_observation_not_treated_as_statistical_or_legal_proof": true
+  }
+}
