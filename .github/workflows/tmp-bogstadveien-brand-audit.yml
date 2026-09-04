@@ -1,0 +1,33 @@
+name: TEMP Bogstadveien brand audit
+
+on:
+  push:
+    branches:
+      - control/bogstadveien-brand-audit-20260904
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+      - name: Dump Bogstadveien brand candidates
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const ids = [
+            'aesop','amundsen_sports','blue_master','by_timo','carlings','gant','henri_lloyd','hestra','holzweiler','hoyer','janus','junkyard','levis','moniker','moo','varsity_headwear','volt','georg_a_nilsen'
+          ];
+          const master = JSON.parse(fs.readFileSync('data/brands/brands_master.json','utf8'));
+          const byId = new Map(master.map(x=>[x.id,x]));
+          for (const id of ids) {
+            const b = byId.get(id);
+            console.log('===', id, '===');
+            if (!b) { console.log('MISSING'); continue; }
+            console.log(JSON.stringify({
+              id:b.id,name:b.name,brand_group:b.brand_group,brand_type:b.brand_type,brand_kind:b.brand_kind,sector:b.sector,state:b.state,status:b.status,verification:b.verification,verified_at:b.verified_at,logo:b.logo,logo_exists:b.logo?fs.existsSync(b.logo):false,source_urls:b.source_urls,place_ids:b.place_ids,tags:b.tags,desc:b.desc,popupdesc:b.popupdesc,logoMeta:b.logoMeta,imageMeta:b.imageMeta
+            }, null, 2));
+          }
+          console.log('CURRENT_MAPPING', JSON.stringify(JSON.parse(fs.readFileSync('data/brands/brands_by_place.json','utf8')).bogstadveien));
+          NODE
