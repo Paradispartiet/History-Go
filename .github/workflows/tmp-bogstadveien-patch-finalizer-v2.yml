@@ -1,0 +1,46 @@
+name: TEMP patch Bogstadveien finalizer v2
+on:
+  push:
+    branches: [control/bogstadveien-finalize-20260904-v3]
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Patch final candidate fail-closed gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('.github/workflows/tmp-bogstadveien-final-candidate.yml')
+          s=p.read_text()
+          old="              if len(data)<500: raise RuntimeError(f'{name}: suspiciously small asset')"
+          new="""              if name=='moo.png':
+                if len(data)<33 or data[:8] != b'\\x89PNG\\r\\n\\x1a\\n': raise RuntimeError('moo.png: invalid PNG')
+                w,h=__import__('struct').unpack('>II',data[16:24])
+                if (w,h)!=(199,198): raise RuntimeError(f'moo.png: unexpected dimensions {(w,h)}')
+              elif len(data)<500: raise RuntimeError(f'{name}: suspiciously small asset')"""
+          if old not in s: raise SystemExit('MOO validation anchor missing')
+          s=s.replace(old,new,1)
+          old="const fs=require('fs');const p='data/places/place_image_backlog_summary.json';const s=JSON.parse(fs.readFileSync(p));const r=JSON.parse(fs.readFileSync('reports/place-image-audit.json'));s.generatedAt='2026-09-04';s.generatedFromCommit='bogstadveien_place_completion_20260904';s.totalPlaces=r.totalPlaces;s.summary={validLocal:r.summary.local,validRemote:r.summary.remote,optionalMissing:r.summary.optional,missing:r.summary.missing,invalidLocalPath:r.summary.invalid,remaining:r.summary.missing+r.summary.invalid};fs.writeFileSync(p,JSON.stringify(s,null,2)+'\\n');"
+          new="const fs=require('fs');const p='data/places/place_image_backlog_summary.json';const r=JSON.parse(fs.readFileSync('reports/place-image-audit.json'));const s={generatedAt:r.generatedAt,schemaVersion:r.schemaVersion,summary:r.summary,qualityBuckets:r.qualityBuckets};fs.writeFileSync(p,JSON.stringify(s,null,2)+'\\n');"
+          if old not in s: raise SystemExit('backlog summary anchor missing')
+          s=s.replace(old,new,1)
+          old='          node --test tests/bogstadveien-completion.test.mjs\n          bash scripts/check-places.sh'
+          new='          node --test tests/bogstadveien-completion.test.mjs\n          npm run test:quiz-content-audit\n          bash scripts/check-places.sh'
+          if old not in s: raise SystemExit('quiz gate anchor missing')
+          s=s.replace(old,new,1)
+          p.write_text(s)
+          PY
+          rm -f .github/workflows/tmp-bogstadveien-patch-finalizer.yml .github/workflows/tmp-bogstadveien-patch-finalizer-v2.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git diff --cached --check
+          git commit -m "TEMP: correct Bogstadveien final candidate gates"
+          git push origin HEAD:control/bogstadveien-finalize-20260904-v3
