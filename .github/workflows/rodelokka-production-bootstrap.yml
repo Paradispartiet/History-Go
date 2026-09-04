@@ -27,7 +27,7 @@ jobs:
           base64 -d tools/build-rodelokka-completion.mjs.gz.b64 | gunzip > tools/build-rodelokka-completion.mjs
           node --check tools/build-rodelokka-completion.mjs
           node tools/build-rodelokka-completion.mjs
-      - name: Normalize Rodeløkka quiz phase metadata
+      - name: Normalize Rodeløkka quiz source-brief metadata
         run: |
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
@@ -37,6 +37,7 @@ jobs:
           if (quizClaims.length !== 35) {
             throw new Error(`Expected 35 Rodeløkka quiz claims, found ${quizClaims.length}`);
           }
+          const allowedFamilies = new Set(['fact', 'context', 'concept_theory']);
           const seen = new Set();
           for (const claim of quizClaims) {
             const match = /^claim_rodelokka_quiz_(\d+)$/.exec(claim.claim_id || '');
@@ -46,6 +47,12 @@ jobs:
             }
             seen.add(n);
             claim.planned_phase = n <= 7 ? 'opening' : n <= 21 ? 'middle' : n <= 28 ? 'bridge' : 'final';
+            if (claim.claim_id === 'claim_rodelokka_quiz_35' && claim.family === 'synthesis') {
+              claim.family = 'concept_theory';
+            }
+            if (!allowedFamilies.has(claim.family)) {
+              throw new Error(`${claim.claim_id}: unsupported claim family ${claim.family}`);
+            }
           }
           for (let n = 1; n <= 35; n += 1) {
             if (!seen.has(n)) throw new Error(`Missing claim_rodelokka_quiz_${String(n).padStart(2, '0')}`);
