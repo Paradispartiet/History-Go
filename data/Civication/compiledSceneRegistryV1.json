@@ -475,7 +475,16 @@
     "data/Civication/mailFamilies/subkultur/micro/subkultur_produksjonsledelse_micro.json",
     "data/Civication/mailFamilies/subkultur/followup/subkultur_produksjonsledelse_followup.json",
     "data/Civication/mailFamilies/subkultur/knowledge/subkultur_produksjonsledelse_knowledge.json",
-    "data/Civication/mailFamilies/subkultur/consequence/subkultur_produksjonsledelse_consequence.json"
+    "data/Civication/mailFamilies/subkultur/consequence/subkultur_produksjonsledelse_consequence.json",
+    "data/Civication/mailFamilies/subkultur/job/subkultur_program_og_koordinering_job.json",
+    "data/Civication/mailFamilies/subkultur/people/subkultur_program_og_koordinering_people.json",
+    "data/Civication/mailFamilies/subkultur/story/subkultur_program_og_koordinering_story.json",
+    "data/Civication/mailFamilies/subkultur/conflict/subkultur_program_og_koordinering_conflict.json",
+    "data/Civication/mailFamilies/subkultur/event/subkultur_program_og_koordinering_event.json",
+    "data/Civication/mailFamilies/subkultur/micro/subkultur_program_og_koordinering_micro.json",
+    "data/Civication/mailFamilies/subkultur/followup/subkultur_program_og_koordinering_followup.json",
+    "data/Civication/mailFamilies/subkultur/knowledge/subkultur_program_og_koordinering_knowledge.json",
+    "data/Civication/mailFamilies/subkultur/consequence/subkultur_program_og_koordinering_consequence.json"
   ],
   "compiler_version": 1,
   "entries": [
@@ -225445,6 +225454,2096 @@
       "source_hash": "768ae9797a5a5707dab5201f560501f12409039c92fc2e3a78af810a00a01805",
       "source_path": "data/Civication/mailFamilies/subkultur/story/subkultur_produksjonsledelse_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sporbar_kriteriebasert_beslutning_vs_uklart_løfte_og_skjult_programgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "clarity": 2,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Hold samme kriterier, dokumenter forespørselen og eskaler kun hvis en formell beslutningseier faktisk vil overstyre med synlig begrunnelse og konsekvens. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "kriterier_vs_statuspress: sporbar beslutning pk_konflikt_006",
+            "reply": "Hold samme kriterier, dokumenter forespørselen og eskaler kun hvis en formell beslutningseier faktisk vil overstyre med synlig begrunnelse og konsekvens. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kriterier"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Legg aktøren inn uten spor for å unngå konflikt og juster kriteriene i etterkant. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "kriterier_vs_statuspress: skjult programgjeld pk_konflikt_006",
+            "reply": "Legg aktøren inn uten spor for å unngå konflikt og juster kriteriene i etterkant. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør.",
+            "tags": [
+              "mandatglidning",
+              "programgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "kriterier_vs_statuspress",
+        "consequence_axis": "robust_program_tillit_og_gjennomforbarhet_vs_avtale_kostnads_partner_og_publiseringsgjeld",
+        "day_phase": "morning",
+        "from": "Amina",
+        "id": "pk_konflikt_006",
+        "mail_family": "subkultur_program_og_koordinering_programpress_og_kriterier",
+        "mail_type": "conflict",
+        "narrative_arc": "konflikt",
+        "people_ref": "amina_lokal_scene_og_partnerkontakt",
+        "person_id": "amina_lokal_scene_og_partnerkontakt",
+        "phase": "forenoon",
+        "place_id": "partner_lokal_scene_og_representasjonsrom",
+        "pressure": "relasjon_status_og_deadline_vs_transparente_kriterier_mandat_reell_kostnad_og_sann_status",
+        "priority": 145,
+        "role_scope": "subkultur_program_og_koordinering",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/conflict/subkultur_program_og_koordinering_conflict.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "lokal_scene_og_partnere",
+        "situation": [
+          "En profilert aktør viser til direkte relasjon til ledelsen og forventer å bli satt inn i programmet. Amina varsler at flere lokale aktører nylig måtte dokumentere samme kriterier og kostnader.",
+          "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+          "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+        ],
+        "subject": "En profilert venn av ledelsen krever plass uten å gå gjennom kriteriene",
+        "summary": "En profilert aktør viser til direkte relasjon til ledelsen og forventer å bli satt inn i programmet. Amina varsler at flere lokale aktører nylig måtte dokumentere samme kriterier og kostnader. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes.",
+        "task_domain": "subkultur_program_og_koordinering"
+      },
+      "id": "pk_konflikt_006",
+      "mail_type": "conflict",
+      "role_scope": "subkultur_program_og_koordinering",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Hold samme kriterier, dokumenter forespørselen og eskaler kun hvis en formell beslutningseier faktisk vil overstyre med synlig begrunnelse og konsekvens. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "kriterier_vs_statuspress: sporbar beslutning pk_konflikt_006",
+            "reply": "Hold samme kriterier, dokumenter forespørselen og eskaler kun hvis en formell beslutningseier faktisk vil overstyre med synlig begrunnelse og konsekvens. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Legg aktøren inn uten spor for å unngå konflikt og juster kriteriene i etterkant. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "kriterier_vs_statuspress: skjult programgjeld pk_konflikt_006",
+            "reply": "Legg aktøren inn uten spor for å unngå konflikt og juster kriteriene i etterkant. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "En profilert aktør viser til direkte relasjon til ledelsen og forventer å bli satt inn i programmet. Amina varsler at flere lokale aktører nylig måtte dokumentere samme kriterier og kostnader.",
+            "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+            "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+          ],
+          "subject": "En profilert venn av ledelsen krever plass uten å gå gjennom kriteriene",
+          "summary": "En profilert aktør viser til direkte relasjon til ledelsen og forventer å bli satt inn i programmet. Amina varsler at flere lokale aktører nylig måtte dokumentere samme kriterier og kostnader. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "pk_konflikt_006",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "partner_lokal_scene_og_representasjonsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "pk_konflikt_006",
+          "source_path": "data/Civication/mailFamilies/subkultur/conflict/subkultur_program_og_koordinering_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_program_og_koordinering.mail.pk_konflikt_006",
+        "version": 1
+      },
+      "source_hash": "6e4a5f41ddd74617116d60ff40e8ec587e8f5b82d6caf8f5064ecc8a9d65748d",
+      "source_path": "data/Civication/mailFamilies/subkultur/conflict/subkultur_program_og_koordinering_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sporbar_kriteriebasert_beslutning_vs_uklart_løfte_og_skjult_programgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "clarity": 2,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Anerkjenn uklarheten, finn dokumentasjonen, avklar hva som faktisk ble mandatert og bygg et tydeligere booking- og bekreftelseskriterium for neste løp. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "sen_konsekvens_og_laring: sporbar beslutning pk_consequence_015",
+            "reply": "Anerkjenn uklarheten, finn dokumentasjonen, avklar hva som faktisk ble mandatert og bygg et tydeligere booking- og bekreftelseskriterium for neste løp. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kriterier"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Avvis kravet som misforståelse uten å undersøke egen statusbruk og fortsett med samme muntlige praksis. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "sen_konsekvens_og_laring: skjult programgjeld pk_consequence_015",
+            "reply": "Avvis kravet som misforståelse uten å undersøke egen statusbruk og fortsett med samme muntlige praksis. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør.",
+            "tags": [
+              "mandatglidning",
+              "programgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sen_konsekvens_og_laring",
+        "consequence_axis": "robust_program_tillit_og_gjennomforbarhet_vs_avtale_kostnads_partner_og_publiseringsgjeld",
+        "day_phase": "morning",
+        "from": "Ida",
+        "id": "pk_consequence_015",
+        "mail_family": "subkultur_program_og_koordinering_sene_konsekvenser",
+        "mail_type": "consequence",
+        "narrative_arc": "konsekvens",
+        "people_ref": "ida_booking_og_artistkontakt",
+        "person_id": "ida_booking_og_artistkontakt",
+        "phase": "forenoon",
+        "place_id": "booking_avtale_honorar_og_mandatsspor",
+        "pressure": "relasjon_status_og_deadline_vs_transparente_kriterier_mandat_reell_kostnad_og_sann_status",
+        "priority": 136,
+        "role_scope": "subkultur_program_og_koordinering",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/consequence/subkultur_program_og_koordinering_consequence.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "artister_og_representanter",
+        "situation": [
+          "En representant viser til en tidligere positiv samtale som de oppfattet som booking. Programboken fra den perioden skiller ikke tydelig mellom interesse og avtale, og uklarheten påvirker både tillit og ny programplan.",
+          "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+          "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+        ],
+        "subject": "Et tidligere muntlig løfte kommer tilbake som krav om plass og honorar",
+        "summary": "En representant viser til en tidligere positiv samtale som de oppfattet som booking. Programboken fra den perioden skiller ikke tydelig mellom interesse og avtale, og uklarheten påvirker både tillit og ny programplan. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes.",
+        "task_domain": "subkultur_program_og_koordinering"
+      },
+      "id": "pk_consequence_015",
+      "mail_type": "consequence",
+      "role_scope": "subkultur_program_og_koordinering",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Anerkjenn uklarheten, finn dokumentasjonen, avklar hva som faktisk ble mandatert og bygg et tydeligere booking- og bekreftelseskriterium for neste løp. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "sen_konsekvens_og_laring: sporbar beslutning pk_consequence_015",
+            "reply": "Anerkjenn uklarheten, finn dokumentasjonen, avklar hva som faktisk ble mandatert og bygg et tydeligere booking- og bekreftelseskriterium for neste løp. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Avvis kravet som misforståelse uten å undersøke egen statusbruk og fortsett med samme muntlige praksis. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "sen_konsekvens_og_laring: skjult programgjeld pk_consequence_015",
+            "reply": "Avvis kravet som misforståelse uten å undersøke egen statusbruk og fortsett med samme muntlige praksis. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "En representant viser til en tidligere positiv samtale som de oppfattet som booking. Programboken fra den perioden skiller ikke tydelig mellom interesse og avtale, og uklarheten påvirker både tillit og ny programplan.",
+            "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+            "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+          ],
+          "subject": "Et tidligere muntlig løfte kommer tilbake som krav om plass og honorar",
+          "summary": "En representant viser til en tidligere positiv samtale som de oppfattet som booking. Programboken fra den perioden skiller ikke tydelig mellom interesse og avtale, og uklarheten påvirker både tillit og ny programplan. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "pk_consequence_015",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "booking_avtale_honorar_og_mandatsspor",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "pk_consequence_015",
+          "source_path": "data/Civication/mailFamilies/subkultur/consequence/subkultur_program_og_koordinering_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_program_og_koordinering.mail.pk_consequence_015",
+        "version": 1
+      },
+      "source_hash": "cf8f6f24f711882811b3de471eafe9bcd1fecf8c24a2caae8aba51e76fb2b494",
+      "source_path": "data/Civication/mailFamilies/subkultur/consequence/subkultur_program_og_koordinering_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sporbar_kriteriebasert_beslutning_vs_uklart_løfte_og_skjult_programgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "clarity": 2,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Gjenåpne bare berørte program-, budsjett- og publiseringsledd, varsle partnerne, oppdater versjon og bekreftet status og behold resten. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "endring_og_replanlegging: sporbar beslutning pk_event_009",
+            "reply": "Gjenåpne bare berørte program-, budsjett- og publiseringsledd, varsle partnerne, oppdater versjon og bekreftet status og behold resten. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kriterier"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "La materialet gå ut som planlagt og erstatt artisten senere uten å dokumentere beslutningsgrunnlaget. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "endring_og_replanlegging: skjult programgjeld pk_event_009",
+            "reply": "La materialet gå ut som planlagt og erstatt artisten senere uten å dokumentere beslutningsgrunnlaget. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør.",
+            "tags": [
+              "mandatglidning",
+              "programgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "endring_og_replanlegging",
+        "consequence_axis": "robust_program_tillit_og_gjennomforbarhet_vs_avtale_kostnads_partner_og_publiseringsgjeld",
+        "day_phase": "morning",
+        "from": "Thea",
+        "id": "pk_event_009",
+        "mail_family": "subkultur_program_og_koordinering_endring_og_replanlegging",
+        "mail_type": "event",
+        "narrative_arc": "hendelse",
+        "people_ref": "thea_kommunikasjon_og_publisering",
+        "person_id": "thea_kommunikasjon_og_publisering",
+        "phase": "forenoon",
+        "place_id": "publiseringsplan_kapasitet_og_logistikkbord",
+        "pressure": "relasjon_status_og_deadline_vs_transparente_kriterier_mandat_reell_kostnad_og_sann_status",
+        "priority": 142,
+        "role_scope": "subkultur_program_og_koordinering",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/event/subkultur_program_og_koordinering_event.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "kommunikasjon_og_publikum",
+        "situation": [
+          "En artist kan ikke signere på de avtalte vilkårene og posten må tas ut. Thea har allerede ferdige tekster, mens partnerne og programbordet må vite hva som faktisk endres og hva som kan stå.",
+          "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+          "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+        ],
+        "subject": "En programpost faller bort etter at kampanjemateriellet er klargjort",
+        "summary": "En artist kan ikke signere på de avtalte vilkårene og posten må tas ut. Thea har allerede ferdige tekster, mens partnerne og programbordet må vite hva som faktisk endres og hva som kan stå. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes.",
+        "task_domain": "subkultur_program_og_koordinering"
+      },
+      "id": "pk_event_009",
+      "mail_type": "event",
+      "role_scope": "subkultur_program_og_koordinering",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Gjenåpne bare berørte program-, budsjett- og publiseringsledd, varsle partnerne, oppdater versjon og bekreftet status og behold resten. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "endring_og_replanlegging: sporbar beslutning pk_event_009",
+            "reply": "Gjenåpne bare berørte program-, budsjett- og publiseringsledd, varsle partnerne, oppdater versjon og bekreftet status og behold resten. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "La materialet gå ut som planlagt og erstatt artisten senere uten å dokumentere beslutningsgrunnlaget. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "endring_og_replanlegging: skjult programgjeld pk_event_009",
+            "reply": "La materialet gå ut som planlagt og erstatt artisten senere uten å dokumentere beslutningsgrunnlaget. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "En artist kan ikke signere på de avtalte vilkårene og posten må tas ut. Thea har allerede ferdige tekster, mens partnerne og programbordet må vite hva som faktisk endres og hva som kan stå.",
+            "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+            "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+          ],
+          "subject": "En programpost faller bort etter at kampanjemateriellet er klargjort",
+          "summary": "En artist kan ikke signere på de avtalte vilkårene og posten må tas ut. Thea har allerede ferdige tekster, mens partnerne og programbordet må vite hva som faktisk endres og hva som kan stå. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "pk_event_009",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "publiseringsplan_kapasitet_og_logistikkbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "pk_event_009",
+          "source_path": "data/Civication/mailFamilies/subkultur/event/subkultur_program_og_koordinering_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_program_og_koordinering.mail.pk_event_009",
+        "version": 1
+      },
+      "source_hash": "d3792cabc6bd641ca76b2f7688883d6933277c6ad038ef42139e1677aa636eed",
+      "source_path": "data/Civication/mailFamilies/subkultur/event/subkultur_program_og_koordinering_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sporbar_kriteriebasert_beslutning_vs_uklart_løfte_og_skjult_programgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "clarity": 2,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Knytt funnene til kriterier, ressursestimat og partneravtaler og endre bare de kontrollene som faktisk sviktet før neste program. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "ettervurdering_og_bounded_rework: sporbar beslutning pk_follow_013",
+            "reply": "Knytt funnene til kriterier, ressursestimat og partneravtaler og endre bare de kontrollene som faktisk sviktet før neste program. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kriterier"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Registrer arrangementet som vellykket fordi totalbudsjettet holdt og behold samme partneroppsett. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "ettervurdering_og_bounded_rework: skjult programgjeld pk_follow_013",
+            "reply": "Registrer arrangementet som vellykket fordi totalbudsjettet holdt og behold samme partneroppsett. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør.",
+            "tags": [
+              "mandatglidning",
+              "programgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "ettervurdering_og_bounded_rework",
+        "consequence_axis": "robust_program_tillit_og_gjennomforbarhet_vs_avtale_kostnads_partner_og_publiseringsgjeld",
+        "day_phase": "morning",
+        "from": "Amina",
+        "id": "pk_follow_013",
+        "mail_family": "subkultur_program_og_koordinering_ettervurdering_og_bounded_rework",
+        "mail_type": "followup",
+        "narrative_arc": "oppfolging",
+        "people_ref": "amina_lokal_scene_og_partnerkontakt",
+        "person_id": "amina_lokal_scene_og_partnerkontakt",
+        "phase": "forenoon",
+        "place_id": "partner_lokal_scene_og_representasjonsrom",
+        "pressure": "relasjon_status_og_deadline_vs_transparente_kriterier_mandat_reell_kostnad_og_sann_status",
+        "priority": 138,
+        "role_scope": "subkultur_program_og_koordinering",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/followup/subkultur_program_og_koordinering_followup.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "lokal_scene_og_partnere",
+        "situation": [
+          "Etter gjennomføring viser Amina at to små partnere gjorde mer arbeid enn avtalt, mens den lokale delen av programmet fikk mindre synlighet enn kriteriene opprinnelig la opp til. Kostnadstallene ser samtidig gode ut.",
+          "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+          "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+        ],
+        "subject": "Etter programmet viser tallene høy partnerbelastning og lavere lokal deltakelse enn planlagt",
+        "summary": "Etter gjennomføring viser Amina at to små partnere gjorde mer arbeid enn avtalt, mens den lokale delen av programmet fikk mindre synlighet enn kriteriene opprinnelig la opp til. Kostnadstallene ser samtidig gode ut. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes.",
+        "task_domain": "subkultur_program_og_koordinering"
+      },
+      "id": "pk_follow_013",
+      "mail_type": "followup",
+      "role_scope": "subkultur_program_og_koordinering",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Knytt funnene til kriterier, ressursestimat og partneravtaler og endre bare de kontrollene som faktisk sviktet før neste program. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "ettervurdering_og_bounded_rework: sporbar beslutning pk_follow_013",
+            "reply": "Knytt funnene til kriterier, ressursestimat og partneravtaler og endre bare de kontrollene som faktisk sviktet før neste program. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Registrer arrangementet som vellykket fordi totalbudsjettet holdt og behold samme partneroppsett. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "ettervurdering_og_bounded_rework: skjult programgjeld pk_follow_013",
+            "reply": "Registrer arrangementet som vellykket fordi totalbudsjettet holdt og behold samme partneroppsett. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Etter gjennomføring viser Amina at to små partnere gjorde mer arbeid enn avtalt, mens den lokale delen av programmet fikk mindre synlighet enn kriteriene opprinnelig la opp til. Kostnadstallene ser samtidig gode ut.",
+            "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+            "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+          ],
+          "subject": "Etter programmet viser tallene høy partnerbelastning og lavere lokal deltakelse enn planlagt",
+          "summary": "Etter gjennomføring viser Amina at to små partnere gjorde mer arbeid enn avtalt, mens den lokale delen av programmet fikk mindre synlighet enn kriteriene opprinnelig la opp til. Kostnadstallene ser samtidig gode ut. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "pk_follow_013",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "partner_lokal_scene_og_representasjonsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "pk_follow_013",
+          "source_path": "data/Civication/mailFamilies/subkultur/followup/subkultur_program_og_koordinering_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_program_og_koordinering.mail.pk_follow_013",
+        "version": 1
+      },
+      "source_hash": "9c421c8d313f79032287cf81f1552a2105159aee8e66cf883d7c59832f584a79",
+      "source_path": "data/Civication/mailFamilies/subkultur/followup/subkultur_program_og_koordinering_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sporbar_kriteriebasert_beslutning_vs_uklart_løfte_og_skjult_programgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "clarity": 2,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Marker status som forhandling, navngi hvem som kan binde avtalen og avklar pris, forbehold og rettigheter skriftlig før programmet omtales som bekreftet. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "bookingstatus_og_mandat: sporbar beslutning pk_booking_004",
+            "reply": "Marker status som forhandling, navngi hvem som kan binde avtalen og avklar pris, forbehold og rettigheter skriftlig før programmet omtales som bekreftet. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kriterier"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "La intern plan bruke bekreftet-status og rydde kontrakten senere fordi relasjonen virker trygg. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "bookingstatus_og_mandat: skjult programgjeld pk_booking_004",
+            "reply": "La intern plan bruke bekreftet-status og rydde kontrakten senere fordi relasjonen virker trygg. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør.",
+            "tags": [
+              "mandatglidning",
+              "programgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "bookingstatus_og_mandat",
+        "consequence_axis": "robust_program_tillit_og_gjennomforbarhet_vs_avtale_kostnads_partner_og_publiseringsgjeld",
+        "day_phase": "morning",
+        "from": "Ida",
+        "id": "pk_booking_004",
+        "mail_family": "subkultur_program_og_koordinering_programbok_og_beslutningslinje",
+        "mail_type": "job",
+        "narrative_arc": "booking",
+        "people_ref": "ida_booking_og_artistkontakt",
+        "person_id": "ida_booking_og_artistkontakt",
+        "phase": "forenoon",
+        "place_id": "booking_avtale_honorar_og_mandatsspor",
+        "pressure": "relasjon_status_og_deadline_vs_transparente_kriterier_mandat_reell_kostnad_og_sann_status",
+        "priority": 147,
+        "role_scope": "subkultur_program_og_koordinering",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/job/subkultur_program_og_koordinering_job.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "artister_og_representanter",
+        "situation": [
+          "Ida har fått et tydelig signal om interesse, men pris, forbehold og signaturmyndighet er fortsatt uavklart. En kollega har likevel lagt artisten inn i arbeidsplanen som bekreftet for å holde tempoet oppe.",
+          "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+          "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+        ],
+        "subject": "Positiv artistdialog blir omtalt internt som bekreftet booking",
+        "summary": "Ida har fått et tydelig signal om interesse, men pris, forbehold og signaturmyndighet er fortsatt uavklart. En kollega har likevel lagt artisten inn i arbeidsplanen som bekreftet for å holde tempoet oppe. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes.",
+        "task_domain": "subkultur_program_og_koordinering"
+      },
+      "id": "pk_booking_004",
+      "mail_type": "job",
+      "role_scope": "subkultur_program_og_koordinering",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Marker status som forhandling, navngi hvem som kan binde avtalen og avklar pris, forbehold og rettigheter skriftlig før programmet omtales som bekreftet. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "bookingstatus_og_mandat: sporbar beslutning pk_booking_004",
+            "reply": "Marker status som forhandling, navngi hvem som kan binde avtalen og avklar pris, forbehold og rettigheter skriftlig før programmet omtales som bekreftet. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "La intern plan bruke bekreftet-status og rydde kontrakten senere fordi relasjonen virker trygg. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "bookingstatus_og_mandat: skjult programgjeld pk_booking_004",
+            "reply": "La intern plan bruke bekreftet-status og rydde kontrakten senere fordi relasjonen virker trygg. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Ida har fått et tydelig signal om interesse, men pris, forbehold og signaturmyndighet er fortsatt uavklart. En kollega har likevel lagt artisten inn i arbeidsplanen som bekreftet for å holde tempoet oppe.",
+            "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+            "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+          ],
+          "subject": "Positiv artistdialog blir omtalt internt som bekreftet booking",
+          "summary": "Ida har fått et tydelig signal om interesse, men pris, forbehold og signaturmyndighet er fortsatt uavklart. En kollega har likevel lagt artisten inn i arbeidsplanen som bekreftet for å holde tempoet oppe. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "pk_booking_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "booking_avtale_honorar_og_mandatsspor",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "pk_booking_004",
+          "source_path": "data/Civication/mailFamilies/subkultur/job/subkultur_program_og_koordinering_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_program_og_koordinering.mail.pk_booking_004",
+        "version": 1
+      },
+      "source_hash": "225615972a5667908e1e9531ea30b2a60cc5bf66d3514a2b74b328539977a242",
+      "source_path": "data/Civication/mailFamilies/subkultur/job/subkultur_program_og_koordinering_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sporbar_kriteriebasert_beslutning_vs_uklart_løfte_og_skjult_programgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "clarity": 2,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Synliggjør reell arbeidsmengde og kostnad, innhent avklaring om honorar eller redusert omfang og revider alternativet før godkjenning. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "total_kostnad_og_honorar: sporbar beslutning pk_budsjett_007",
+            "reply": "Synliggjør reell arbeidsmengde og kostnad, innhent avklaring om honorar eller redusert omfang og revider alternativet før godkjenning. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kriterier"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Behold gratispostene for å få beslutningen gjennom og avklar eventuelle krav etter lansering. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "total_kostnad_og_honorar: skjult programgjeld pk_budsjett_007",
+            "reply": "Behold gratispostene for å få beslutningen gjennom og avklar eventuelle krav etter lansering. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør.",
+            "tags": [
+              "mandatglidning",
+              "programgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "total_kostnad_og_honorar",
+        "consequence_axis": "robust_program_tillit_og_gjennomforbarhet_vs_avtale_kostnads_partner_og_publiseringsgjeld",
+        "day_phase": "morning",
+        "from": "Jonas",
+        "id": "pk_budsjett_007",
+        "mail_family": "subkultur_program_og_koordinering_programbok_og_beslutningslinje",
+        "mail_type": "job",
+        "narrative_arc": "budsjett",
+        "people_ref": "jonas_okonomi_og_avtale",
+        "person_id": "jonas_okonomi_og_avtale",
+        "phase": "forenoon",
+        "place_id": "booking_avtale_honorar_og_mandatsspor",
+        "pressure": "relasjon_status_og_deadline_vs_transparente_kriterier_mandat_reell_kostnad_og_sann_status",
+        "priority": 144,
+        "role_scope": "subkultur_program_og_koordinering",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/job/subkultur_program_og_koordinering_job.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "okonomi_avtale_og_ledelse",
+        "situation": [
+          "Jonas viser at programalternativet ser innenfor rammen ut fordi riggehjelp, artistvert og lokal koordinering er lagt inn som frivillig innsats uten avklart omfang eller ansvar. Partnerne har ikke akseptert dette premisset.",
+          "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+          "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+        ],
+        "subject": "Budsjettet balanserer bare fordi partnerarbeid står som gratis",
+        "summary": "Jonas viser at programalternativet ser innenfor rammen ut fordi riggehjelp, artistvert og lokal koordinering er lagt inn som frivillig innsats uten avklart omfang eller ansvar. Partnerne har ikke akseptert dette premisset. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes.",
+        "task_domain": "subkultur_program_og_koordinering"
+      },
+      "id": "pk_budsjett_007",
+      "mail_type": "job",
+      "role_scope": "subkultur_program_og_koordinering",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Synliggjør reell arbeidsmengde og kostnad, innhent avklaring om honorar eller redusert omfang og revider alternativet før godkjenning. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "total_kostnad_og_honorar: sporbar beslutning pk_budsjett_007",
+            "reply": "Synliggjør reell arbeidsmengde og kostnad, innhent avklaring om honorar eller redusert omfang og revider alternativet før godkjenning. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Behold gratispostene for å få beslutningen gjennom og avklar eventuelle krav etter lansering. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "total_kostnad_og_honorar: skjult programgjeld pk_budsjett_007",
+            "reply": "Behold gratispostene for å få beslutningen gjennom og avklar eventuelle krav etter lansering. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Jonas viser at programalternativet ser innenfor rammen ut fordi riggehjelp, artistvert og lokal koordinering er lagt inn som frivillig innsats uten avklart omfang eller ansvar. Partnerne har ikke akseptert dette premisset.",
+            "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+            "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+          ],
+          "subject": "Budsjettet balanserer bare fordi partnerarbeid står som gratis",
+          "summary": "Jonas viser at programalternativet ser innenfor rammen ut fordi riggehjelp, artistvert og lokal koordinering er lagt inn som frivillig innsats uten avklart omfang eller ansvar. Partnerne har ikke akseptert dette premisset. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "pk_budsjett_007",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "booking_avtale_honorar_og_mandatsspor",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "pk_budsjett_007",
+          "source_path": "data/Civication/mailFamilies/subkultur/job/subkultur_program_og_koordinering_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_program_og_koordinering.mail.pk_budsjett_007",
+        "version": 1
+      },
+      "source_hash": "abeae81e4fa1e05caa0094bbaaabc7392a659dbc5bf2d6330275e7518981292f",
+      "source_path": "data/Civication/mailFamilies/subkultur/job/subkultur_program_og_koordinering_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sporbar_kriteriebasert_beslutning_vs_uklart_løfte_og_skjult_programgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "clarity": 2,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Bygg minst to sammenlignbare programalternativer med total kostnad, publikumsmål, lokal forankring, kapasitet og hva hvert valg fortrenger før anbefaling. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "programalternativ_og_kriterier: sporbar beslutning pk_program_001",
+            "reply": "Bygg minst to sammenlignbare programalternativer med total kostnad, publikumsmål, lokal forankring, kapasitet og hva hvert valg fortrenger før anbefaling. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kriterier"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Presenter det kjente navnet som eneste realistiske valg og flytt konsekvensene for lokale aktører og budsjett til etter godkjenning. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "programalternativ_og_kriterier: skjult programgjeld pk_program_001",
+            "reply": "Presenter det kjente navnet som eneste realistiske valg og flytt konsekvensene for lokale aktører og budsjett til etter godkjenning. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør.",
+            "tags": [
+              "mandatglidning",
+              "programgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "programalternativ_og_kriterier",
+        "consequence_axis": "robust_program_tillit_og_gjennomforbarhet_vs_avtale_kostnads_partner_og_publiseringsgjeld",
+        "day_phase": "morning",
+        "from": "Amina",
+        "id": "pk_program_001",
+        "mail_family": "subkultur_program_og_koordinering_programbok_og_beslutningslinje",
+        "mail_type": "job",
+        "narrative_arc": "programvalg",
+        "people_ref": "amina_lokal_scene_og_partnerkontakt",
+        "person_id": "amina_lokal_scene_og_partnerkontakt",
+        "phase": "forenoon",
+        "place_id": "partner_lokal_scene_og_representasjonsrom",
+        "pressure": "relasjon_status_og_deadline_vs_transparente_kriterier_mandat_reell_kostnad_og_sann_status",
+        "priority": 150,
+        "role_scope": "subkultur_program_og_koordinering",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/job/subkultur_program_og_koordinering_job.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "lokal_scene_og_partnere",
+        "situation": [
+          "Programbordet viser at det kjente navnet kan trekke publikum, men binder en uforholdsmessig del av rammen og fjerner plass til tre lokale bidrag som tidligere var del av målbildet. Det finnes ennå ikke mandat til å behandle navnet som eneste alternativ.",
+          "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+          "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+        ],
+        "subject": "Et kjent navn fortrenger tre lokale bidrag og nesten hele programrammen",
+        "summary": "Programbordet viser at det kjente navnet kan trekke publikum, men binder en uforholdsmessig del av rammen og fjerner plass til tre lokale bidrag som tidligere var del av målbildet. Det finnes ennå ikke mandat til å behandle navnet som eneste alternativ. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes.",
+        "task_domain": "subkultur_program_og_koordinering"
+      },
+      "id": "pk_program_001",
+      "mail_type": "job",
+      "role_scope": "subkultur_program_og_koordinering",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Bygg minst to sammenlignbare programalternativer med total kostnad, publikumsmål, lokal forankring, kapasitet og hva hvert valg fortrenger før anbefaling. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "programalternativ_og_kriterier: sporbar beslutning pk_program_001",
+            "reply": "Bygg minst to sammenlignbare programalternativer med total kostnad, publikumsmål, lokal forankring, kapasitet og hva hvert valg fortrenger før anbefaling. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Presenter det kjente navnet som eneste realistiske valg og flytt konsekvensene for lokale aktører og budsjett til etter godkjenning. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "programalternativ_og_kriterier: skjult programgjeld pk_program_001",
+            "reply": "Presenter det kjente navnet som eneste realistiske valg og flytt konsekvensene for lokale aktører og budsjett til etter godkjenning. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Programbordet viser at det kjente navnet kan trekke publikum, men binder en uforholdsmessig del av rammen og fjerner plass til tre lokale bidrag som tidligere var del av målbildet. Det finnes ennå ikke mandat til å behandle navnet som eneste alternativ.",
+            "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+            "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+          ],
+          "subject": "Et kjent navn fortrenger tre lokale bidrag og nesten hele programrammen",
+          "summary": "Programbordet viser at det kjente navnet kan trekke publikum, men binder en uforholdsmessig del av rammen og fjerner plass til tre lokale bidrag som tidligere var del av målbildet. Det finnes ennå ikke mandat til å behandle navnet som eneste alternativ. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "pk_program_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "partner_lokal_scene_og_representasjonsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "pk_program_001",
+          "source_path": "data/Civication/mailFamilies/subkultur/job/subkultur_program_og_koordinering_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_program_og_koordinering.mail.pk_program_001",
+        "version": 1
+      },
+      "source_hash": "24a4a263b60f5d080a220dc8c0702138897dc0c3edc3b4d2dfc7ea6a00269097",
+      "source_path": "data/Civication/mailFamilies/subkultur/job/subkultur_program_og_koordinering_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sporbar_kriteriebasert_beslutning_vs_uklart_løfte_og_skjult_programgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "clarity": 2,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Publiser bare det som er bekreftet, merk betingede elementer eksplisitt eller hold dem igjen og koble hver rest til eier og frist i programboken. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "publiseringsstatus_og_forbehold: sporbar beslutning pk_publisering_010",
+            "reply": "Publiser bare det som er bekreftet, merk betingede elementer eksplisitt eller hold dem igjen og koble hver rest til eier og frist i programboken. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kriterier"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Publiser hele programmet som endelig og regn med at booking og kapasitet faller på plass fordi kampanjen ellers mister fart. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "publiseringsstatus_og_forbehold: skjult programgjeld pk_publisering_010",
+            "reply": "Publiser hele programmet som endelig og regn med at booking og kapasitet faller på plass fordi kampanjen ellers mister fart. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør.",
+            "tags": [
+              "mandatglidning",
+              "programgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "publiseringsstatus_og_forbehold",
+        "consequence_axis": "robust_program_tillit_og_gjennomforbarhet_vs_avtale_kostnads_partner_og_publiseringsgjeld",
+        "day_phase": "morning",
+        "from": "Thea",
+        "id": "pk_publisering_010",
+        "mail_family": "subkultur_program_og_koordinering_programbok_og_beslutningslinje",
+        "mail_type": "job",
+        "narrative_arc": "publisering",
+        "people_ref": "thea_kommunikasjon_og_publisering",
+        "person_id": "thea_kommunikasjon_og_publisering",
+        "phase": "forenoon",
+        "place_id": "publiseringsplan_kapasitet_og_logistikkbord",
+        "pressure": "relasjon_status_og_deadline_vs_transparente_kriterier_mandat_reell_kostnad_og_sann_status",
+        "priority": 140,
+        "role_scope": "subkultur_program_og_koordinering",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/job/subkultur_program_og_koordinering_job.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "kommunikasjon_og_publikum",
+        "situation": [
+          "Thea har ferdige kanaltekster og billettløpet venter. To programposter mangler bindende avtale, og arenaens kapasitet for ett format er fortsatt betinget av praktisk avklaring.",
+          "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+          "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+        ],
+        "subject": "Lanseringsfristen kommer før kapasitet og to avtaler er avklart",
+        "summary": "Thea har ferdige kanaltekster og billettløpet venter. To programposter mangler bindende avtale, og arenaens kapasitet for ett format er fortsatt betinget av praktisk avklaring. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes.",
+        "task_domain": "subkultur_program_og_koordinering"
+      },
+      "id": "pk_publisering_010",
+      "mail_type": "job",
+      "role_scope": "subkultur_program_og_koordinering",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Publiser bare det som er bekreftet, merk betingede elementer eksplisitt eller hold dem igjen og koble hver rest til eier og frist i programboken. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "publiseringsstatus_og_forbehold: sporbar beslutning pk_publisering_010",
+            "reply": "Publiser bare det som er bekreftet, merk betingede elementer eksplisitt eller hold dem igjen og koble hver rest til eier og frist i programboken. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Publiser hele programmet som endelig og regn med at booking og kapasitet faller på plass fordi kampanjen ellers mister fart. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "publiseringsstatus_og_forbehold: skjult programgjeld pk_publisering_010",
+            "reply": "Publiser hele programmet som endelig og regn med at booking og kapasitet faller på plass fordi kampanjen ellers mister fart. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Thea har ferdige kanaltekster og billettløpet venter. To programposter mangler bindende avtale, og arenaens kapasitet for ett format er fortsatt betinget av praktisk avklaring.",
+            "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+            "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+          ],
+          "subject": "Lanseringsfristen kommer før kapasitet og to avtaler er avklart",
+          "summary": "Thea har ferdige kanaltekster og billettløpet venter. To programposter mangler bindende avtale, og arenaens kapasitet for ett format er fortsatt betinget av praktisk avklaring. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "pk_publisering_010",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "publiseringsplan_kapasitet_og_logistikkbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "pk_publisering_010",
+          "source_path": "data/Civication/mailFamilies/subkultur/job/subkultur_program_og_koordinering_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_program_og_koordinering.mail.pk_publisering_010",
+        "version": 1
+      },
+      "source_hash": "5d7db52aadfd5612c15dbb6da9613bb0d5ac68d500f57a3ba7b56e2504f9dd8b",
+      "source_path": "data/Civication/mailFamilies/subkultur/job/subkultur_program_og_koordinering_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sporbar_kriteriebasert_beslutning_vs_uklart_løfte_og_skjult_programgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "clarity": 2,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Fullfør History Go-sporet og bruk det til å formulere et bedre spørsmål om dagens programkriterier, miljørelasjoner og rammer, uten å avlede mandat eller rettigheter fra historien. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "historisk_programblikk: sporbar beslutning pk_knowledge_003",
+            "reply": "Fullfør History Go-sporet og bruk det til å formulere et bedre spørsmål om dagens programkriterier, miljørelasjoner og rammer, uten å avlede mandat eller rettigheter fra historien. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kriterier"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Bruk Club 7 som argument for at dagens miljøaktører bør få plass eller særbehandling uten ordinær avtale og kriterievurdering. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "historisk_programblikk: skjult programgjeld pk_knowledge_003",
+            "reply": "Bruk Club 7 som argument for at dagens miljøaktører bør få plass eller særbehandling uten ordinær avtale og kriterievurdering. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør.",
+            "tags": [
+              "mandatglidning",
+              "programgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "historisk_programblikk",
+        "consequence_axis": "robust_program_tillit_og_gjennomforbarhet_vs_avtale_kostnads_partner_og_publiseringsgjeld",
+        "day_phase": "morning",
+        "from": "Amina",
+        "id": "pk_knowledge_003",
+        "interaction_mode": "task",
+        "mail_family": "subkultur_program_og_koordinering_kunnskap_i_bruk",
+        "mail_type": "knowledge",
+        "narrative_arc": "kunnskap",
+        "people_ref": "amina_lokal_scene_og_partnerkontakt",
+        "person_id": "amina_lokal_scene_og_partnerkontakt",
+        "phase": "forenoon",
+        "place_id": "club_7_vika",
+        "pressure": "relasjon_status_og_deadline_vs_transparente_kriterier_mandat_reell_kostnad_og_sann_status",
+        "priority": 148,
+        "role_scope": "subkultur_program_og_koordinering",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/knowledge/subkultur_program_og_koordinering_knowledge.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "lokal_scene_og_partnere",
+        "situation": [
+          "Amina foreslår å bruke Club 7 som historisk inngang til å undersøke hvordan sted, miljø, programbredde og organisatoriske rammer påvirket hverandre. Poenget er å skjerpe dagens spørsmål, ikke å kopiere historiske praksiser.",
+          "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+          "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+        ],
+        "subject": "Club 7 gir et historisk spørsmål om bredde, miljø og programrammer",
+        "summary": "Amina foreslår å bruke Club 7 som historisk inngang til å undersøke hvordan sted, miljø, programbredde og organisatoriske rammer påvirket hverandre. Poenget er å skjerpe dagens spørsmål, ikke å kopiere historiske praksiser. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes.",
+        "task_contract": {
+          "authority_boundary": "Historical evidence may sharpen present-day questions about program breadth, milieu and organization, but cannot grant booking mandate, program entitlement, contract/rights clearance, fee authority, capacity approval or safety authority.",
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/places/subkultur/oslo/places_subkultur/club_7_vika.json",
+            "data/runtime/place-open/club_7_vika.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "subkultur_program_og_koordinering_history_go_club_7"
+        },
+        "task_domain": "subkultur_program_og_koordinering",
+        "task_payload": {
+          "badge_id": "subkultur",
+          "completion_mode": "read_place",
+          "description": "Noter ett spørsmål om hvilke operative avhengigheter som blir synlige når sted, program og miljø endres over tid, uten å gjøre historisk motkultur til fasit for dagens HMS, brann-/kapasitetskrav, bemanning, arbeidstid, kommandolinje eller frigivelse.",
+          "knowledge_dependency_id": "history_go_subkultur_club_7_program_og_miljoblikk",
+          "place_id": "club_7_vika",
+          "return_context": {
+            "mail_id": "pl_club7_003",
+            "role_scope": "subkultur_program_og_koordinering",
+            "source": "civication"
+          },
+          "target_type": "place",
+          "task_kind": "history_go_place",
+          "title": "Les Club 7 som historisk operativ produksjonskontekst"
+        }
+      },
+      "id": "pk_knowledge_003",
+      "mail_type": "knowledge",
+      "role_scope": "subkultur_program_og_koordinering",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Fullfør History Go-sporet og bruk det til å formulere et bedre spørsmål om dagens programkriterier, miljørelasjoner og rammer, uten å avlede mandat eller rettigheter fra historien. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "historisk_programblikk: sporbar beslutning pk_knowledge_003",
+            "reply": "Fullfør History Go-sporet og bruk det til å formulere et bedre spørsmål om dagens programkriterier, miljørelasjoner og rammer, uten å avlede mandat eller rettigheter fra historien. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Bruk Club 7 som argument for at dagens miljøaktører bør få plass eller særbehandling uten ordinær avtale og kriterievurdering. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "historisk_programblikk: skjult programgjeld pk_knowledge_003",
+            "reply": "Bruk Club 7 som argument for at dagens miljøaktører bør få plass eller særbehandling uten ordinær avtale og kriterievurdering. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Amina foreslår å bruke Club 7 som historisk inngang til å undersøke hvordan sted, miljø, programbredde og organisatoriske rammer påvirket hverandre. Poenget er å skjerpe dagens spørsmål, ikke å kopiere historiske praksiser.",
+            "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+            "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+          ],
+          "subject": "Club 7 gir et historisk spørsmål om bredde, miljø og programrammer",
+          "summary": "Amina foreslår å bruke Club 7 som historisk inngang til å undersøke hvordan sted, miljø, programbredde og organisatoriske rammer påvirket hverandre. Poenget er å skjerpe dagens spørsmål, ikke å kopiere historiske praksiser. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "pk_knowledge_003",
+        "interaction_mode": "task",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "club_7_vika",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "pk_knowledge_003",
+          "source_path": "data/Civication/mailFamilies/subkultur/knowledge/subkultur_program_og_koordinering_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/places/subkultur/oslo/places_subkultur/club_7_vika.json",
+            "data/runtime/place-open/club_7_vika.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "subkultur_program_og_koordinering_history_go_club_7"
+        },
+        "thread_id": "subkultur_program_og_koordinering.mail.pk_knowledge_003",
+        "version": 1
+      },
+      "source_hash": "3db2a7e0330b5b3f4b6de27af528cefbb07efaf2d0a4aa582fc5e5a1220c8102",
+      "source_path": "data/Civication/mailFamilies/subkultur/knowledge/subkultur_program_og_koordinering_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sporbar_kriteriebasert_beslutning_vs_uklart_løfte_og_skjult_programgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "clarity": 2,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Bruk én eksplisitt status og navngi neste beslutningseier: interesse, tilbud, anbefalt, økonomisk godkjent, avtalt eller publiserbart. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "statussprak: sporbar beslutning pk_micro_012",
+            "reply": "Bruk én eksplisitt status og navngi neste beslutningseier: interesse, tilbud, anbefalt, økonomisk godkjent, avtalt eller publiserbart. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kriterier"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "La teamene bruke sine egne ord så lenge alle omtrent forstår fremdriften. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "statussprak: skjult programgjeld pk_micro_012",
+            "reply": "La teamene bruke sine egne ord så lenge alle omtrent forstår fremdriften. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør.",
+            "tags": [
+              "mandatglidning",
+              "programgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "statussprak",
+        "consequence_axis": "robust_program_tillit_og_gjennomforbarhet_vs_avtale_kostnads_partner_og_publiseringsgjeld",
+        "day_phase": "morning",
+        "from": "Jonas",
+        "id": "pk_micro_012",
+        "mail_family": "subkultur_program_og_koordinering_statussprak_og_forbehold",
+        "mail_type": "micro",
+        "narrative_arc": "mikro",
+        "people_ref": "jonas_okonomi_og_avtale",
+        "person_id": "jonas_okonomi_og_avtale",
+        "phase": "forenoon",
+        "place_id": "booking_avtale_honorar_og_mandatsspor",
+        "pressure": "relasjon_status_og_deadline_vs_transparente_kriterier_mandat_reell_kostnad_og_sann_status",
+        "priority": 141,
+        "role_scope": "subkultur_program_og_koordinering",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/micro/subkultur_program_og_koordinering_micro.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "okonomi_avtale_og_ledelse",
+        "situation": [
+          "Jonas finner samme artist omtalt som tilbud, reservert og bekreftet i tre ulike flater. Forskjellen avgjør om teamet tror penger og signaturmyndighet allerede er på plass.",
+          "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+          "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+        ],
+        "subject": "Én statuskode avgjør om et tilbud er budsjettmessig reservert eller faktisk godkjent",
+        "summary": "Jonas finner samme artist omtalt som tilbud, reservert og bekreftet i tre ulike flater. Forskjellen avgjør om teamet tror penger og signaturmyndighet allerede er på plass. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes.",
+        "task_domain": "subkultur_program_og_koordinering"
+      },
+      "id": "pk_micro_012",
+      "mail_type": "micro",
+      "role_scope": "subkultur_program_og_koordinering",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Bruk én eksplisitt status og navngi neste beslutningseier: interesse, tilbud, anbefalt, økonomisk godkjent, avtalt eller publiserbart. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "statussprak: sporbar beslutning pk_micro_012",
+            "reply": "Bruk én eksplisitt status og navngi neste beslutningseier: interesse, tilbud, anbefalt, økonomisk godkjent, avtalt eller publiserbart. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "La teamene bruke sine egne ord så lenge alle omtrent forstår fremdriften. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "statussprak: skjult programgjeld pk_micro_012",
+            "reply": "La teamene bruke sine egne ord så lenge alle omtrent forstår fremdriften. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Jonas finner samme artist omtalt som tilbud, reservert og bekreftet i tre ulike flater. Forskjellen avgjør om teamet tror penger og signaturmyndighet allerede er på plass.",
+            "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+            "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+          ],
+          "subject": "Én statuskode avgjør om et tilbud er budsjettmessig reservert eller faktisk godkjent",
+          "summary": "Jonas finner samme artist omtalt som tilbud, reservert og bekreftet i tre ulike flater. Forskjellen avgjør om teamet tror penger og signaturmyndighet allerede er på plass. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "pk_micro_012",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "booking_avtale_honorar_og_mandatsspor",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "pk_micro_012",
+          "source_path": "data/Civication/mailFamilies/subkultur/micro/subkultur_program_og_koordinering_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_program_og_koordinering.mail.pk_micro_012",
+        "version": 1
+      },
+      "source_hash": "9cf9b2a6494dc071febc104ec215909d0305b91763c92c9f2e27d3d59241c3ee",
+      "source_path": "data/Civication/mailFamilies/subkultur/micro/subkultur_program_og_koordinering_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sporbar_kriteriebasert_beslutning_vs_uklart_løfte_og_skjult_programgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "clarity": 2,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Anerkjenn bidraget, vis hvilke kriterier som gjelder og tilby en sporbar vurdering eller alternativ samarbeidsform uten å love plass. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "lokal_scene_og_kriterier: sporbar beslutning pk_rel_amina_005",
+            "reply": "Anerkjenn bidraget, vis hvilke kriterier som gjelder og tilby en sporbar vurdering eller alternativ samarbeidsform uten å love plass. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kriterier"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Gi særplass fordi det vil være sosialt dyrt å si nei og omtale det som lokal forankring. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "lokal_scene_og_kriterier: skjult programgjeld pk_rel_amina_005",
+            "reply": "Gi særplass fordi det vil være sosialt dyrt å si nei og omtale det som lokal forankring. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør.",
+            "tags": [
+              "mandatglidning",
+              "programgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "lokal_scene_og_kriterier",
+        "consequence_axis": "robust_program_tillit_og_gjennomforbarhet_vs_avtale_kostnads_partner_og_publiseringsgjeld",
+        "day_phase": "morning",
+        "from": "Amina",
+        "id": "pk_rel_amina_005",
+        "mail_family": "subkultur_program_og_koordinering_arbeidsrelasjoner_og_grenser",
+        "mail_type": "people",
+        "narrative_arc": "relasjon_lokal_scene",
+        "people_ref": "amina_lokal_scene_og_partnerkontakt",
+        "person_id": "amina_lokal_scene_og_partnerkontakt",
+        "phase": "forenoon",
+        "place_id": "partner_lokal_scene_og_representasjonsrom",
+        "pressure": "relasjon_status_og_deadline_vs_transparente_kriterier_mandat_reell_kostnad_og_sann_status",
+        "priority": 146,
+        "role_scope": "subkultur_program_og_koordinering",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/people/subkultur_program_og_koordinering_people.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "lokal_scene_og_partnere",
+        "situation": [
+          "En lokal aktør viser til mange års innsats og mener dette bør gi automatisk plass. Amina ser både reell lokal verdi og risikoen for at uskrevne statusregler ekskluderer andre.",
+          "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+          "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+        ],
+        "subject": "Amina møter krav om programplass basert på lang tilknytning til miljøet",
+        "summary": "En lokal aktør viser til mange års innsats og mener dette bør gi automatisk plass. Amina ser både reell lokal verdi og risikoen for at uskrevne statusregler ekskluderer andre. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes.",
+        "task_domain": "subkultur_program_og_koordinering"
+      },
+      "id": "pk_rel_amina_005",
+      "mail_type": "people",
+      "role_scope": "subkultur_program_og_koordinering",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Anerkjenn bidraget, vis hvilke kriterier som gjelder og tilby en sporbar vurdering eller alternativ samarbeidsform uten å love plass. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "lokal_scene_og_kriterier: sporbar beslutning pk_rel_amina_005",
+            "reply": "Anerkjenn bidraget, vis hvilke kriterier som gjelder og tilby en sporbar vurdering eller alternativ samarbeidsform uten å love plass. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Gi særplass fordi det vil være sosialt dyrt å si nei og omtale det som lokal forankring. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "lokal_scene_og_kriterier: skjult programgjeld pk_rel_amina_005",
+            "reply": "Gi særplass fordi det vil være sosialt dyrt å si nei og omtale det som lokal forankring. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "En lokal aktør viser til mange års innsats og mener dette bør gi automatisk plass. Amina ser både reell lokal verdi og risikoen for at uskrevne statusregler ekskluderer andre.",
+            "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+            "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+          ],
+          "subject": "Amina møter krav om programplass basert på lang tilknytning til miljøet",
+          "summary": "En lokal aktør viser til mange års innsats og mener dette bør gi automatisk plass. Amina ser både reell lokal verdi og risikoen for at uskrevne statusregler ekskluderer andre. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "pk_rel_amina_005",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "partner_lokal_scene_og_representasjonsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "pk_rel_amina_005",
+          "source_path": "data/Civication/mailFamilies/subkultur/people/subkultur_program_og_koordinering_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_program_og_koordinering.mail.pk_rel_amina_005",
+        "version": 1
+      },
+      "source_hash": "9ecc330f18d17a793229897673cc4f72686cdcde708781477f21632fdeb1e7fe",
+      "source_path": "data/Civication/mailFamilies/subkultur/people/subkultur_program_og_koordinering_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sporbar_kriteriebasert_beslutning_vs_uklart_løfte_og_skjult_programgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "clarity": 2,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Svar varmt og presist: bekreft interesse, hva som fortsatt avklares og når bindende svar kan gis, uten å love programplass eller pris. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "artistrelasjon_og_grense: sporbar beslutning pk_rel_ida_002",
+            "reply": "Svar varmt og presist: bekreft interesse, hva som fortsatt avklares og når bindende svar kan gis, uten å love programplass eller pris. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kriterier"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Gi et uformelt ja for å holde relasjonen god og håp at mandat og økonomi følger etter. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "artistrelasjon_og_grense: skjult programgjeld pk_rel_ida_002",
+            "reply": "Gi et uformelt ja for å holde relasjonen god og håp at mandat og økonomi følger etter. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør.",
+            "tags": [
+              "mandatglidning",
+              "programgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "artistrelasjon_og_grense",
+        "consequence_axis": "robust_program_tillit_og_gjennomforbarhet_vs_avtale_kostnads_partner_og_publiseringsgjeld",
+        "day_phase": "morning",
+        "from": "Ida",
+        "id": "pk_rel_ida_002",
+        "mail_family": "subkultur_program_og_koordinering_arbeidsrelasjoner_og_grenser",
+        "mail_type": "people",
+        "narrative_arc": "relasjon_booking",
+        "people_ref": "ida_booking_og_artistkontakt",
+        "person_id": "ida_booking_og_artistkontakt",
+        "phase": "forenoon",
+        "place_id": "booking_avtale_honorar_og_mandatsspor",
+        "pressure": "relasjon_status_og_deadline_vs_transparente_kriterier_mandat_reell_kostnad_og_sann_status",
+        "priority": 149,
+        "role_scope": "subkultur_program_og_koordinering",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/people/subkultur_program_og_koordinering_people.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "artister_og_representanter",
+        "situation": [
+          "Artistreprensentanten ber Ida om en enkel muntlig bekreftelse i dag. Ida vet at positiv tone kan oppfattes som avtale, samtidig som hun ikke vil skade en viktig relasjon.",
+          "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+          "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+        ],
+        "subject": "Ida vil bevare artistrelasjonen uten å gi et løfte hun ikke kan binde",
+        "summary": "Artistreprensentanten ber Ida om en enkel muntlig bekreftelse i dag. Ida vet at positiv tone kan oppfattes som avtale, samtidig som hun ikke vil skade en viktig relasjon. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes.",
+        "task_domain": "subkultur_program_og_koordinering"
+      },
+      "id": "pk_rel_ida_002",
+      "mail_type": "people",
+      "role_scope": "subkultur_program_og_koordinering",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Svar varmt og presist: bekreft interesse, hva som fortsatt avklares og når bindende svar kan gis, uten å love programplass eller pris. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "artistrelasjon_og_grense: sporbar beslutning pk_rel_ida_002",
+            "reply": "Svar varmt og presist: bekreft interesse, hva som fortsatt avklares og når bindende svar kan gis, uten å love programplass eller pris. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Gi et uformelt ja for å holde relasjonen god og håp at mandat og økonomi følger etter. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "artistrelasjon_og_grense: skjult programgjeld pk_rel_ida_002",
+            "reply": "Gi et uformelt ja for å holde relasjonen god og håp at mandat og økonomi følger etter. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Artistreprensentanten ber Ida om en enkel muntlig bekreftelse i dag. Ida vet at positiv tone kan oppfattes som avtale, samtidig som hun ikke vil skade en viktig relasjon.",
+            "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+            "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+          ],
+          "subject": "Ida vil bevare artistrelasjonen uten å gi et løfte hun ikke kan binde",
+          "summary": "Artistreprensentanten ber Ida om en enkel muntlig bekreftelse i dag. Ida vet at positiv tone kan oppfattes som avtale, samtidig som hun ikke vil skade en viktig relasjon. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "pk_rel_ida_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "booking_avtale_honorar_og_mandatsspor",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "pk_rel_ida_002",
+          "source_path": "data/Civication/mailFamilies/subkultur/people/subkultur_program_og_koordinering_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_program_og_koordinering.mail.pk_rel_ida_002",
+        "version": 1
+      },
+      "source_hash": "c78ccdb6cc1241fdbd401f71746c0bbaf5eddd0b82fc793951c5caff3ed174f9",
+      "source_path": "data/Civication/mailFamilies/subkultur/people/subkultur_program_og_koordinering_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sporbar_kriteriebasert_beslutning_vs_uklart_løfte_og_skjult_programgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "clarity": 2,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Oppdater totalen og vis hva som må tas ut, finansieres eller eksplisitt godkjennes før alternativet beholder status. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "okonomi_og_mandat: sporbar beslutning pk_rel_jonas_008",
+            "reply": "Oppdater totalen og vis hva som må tas ut, finansieres eller eksplisitt godkjennes før alternativet beholder status. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kriterier"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Be Jonas la den gamle kalkylen stå til etter beslutningen fordi programmet ellers kan falle fra hverandre. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "okonomi_og_mandat: skjult programgjeld pk_rel_jonas_008",
+            "reply": "Be Jonas la den gamle kalkylen stå til etter beslutningen fordi programmet ellers kan falle fra hverandre. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør.",
+            "tags": [
+              "mandatglidning",
+              "programgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "okonomi_og_mandat",
+        "consequence_axis": "robust_program_tillit_og_gjennomforbarhet_vs_avtale_kostnads_partner_og_publiseringsgjeld",
+        "day_phase": "morning",
+        "from": "Jonas",
+        "id": "pk_rel_jonas_008",
+        "mail_family": "subkultur_program_og_koordinering_arbeidsrelasjoner_og_grenser",
+        "mail_type": "people",
+        "narrative_arc": "relasjon_okonomi",
+        "people_ref": "jonas_okonomi_og_avtale",
+        "person_id": "jonas_okonomi_og_avtale",
+        "phase": "forenoon",
+        "place_id": "booking_avtale_honorar_og_mandatsspor",
+        "pressure": "relasjon_status_og_deadline_vs_transparente_kriterier_mandat_reell_kostnad_og_sann_status",
+        "priority": 143,
+        "role_scope": "subkultur_program_og_koordinering",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/people/subkultur_program_og_koordinering_people.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "okonomi_avtale_og_ledelse",
+        "situation": [
+          "Et nytt artistforbehold øker reise og teknisk kostnad. Jonas ber om at totalen oppdateres, mens programgruppen mener forskjellen er liten nok til å tas senere.",
+          "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+          "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+        ],
+        "subject": "Jonas ber om ny kalkyle før han kan støtte programalternativet",
+        "summary": "Et nytt artistforbehold øker reise og teknisk kostnad. Jonas ber om at totalen oppdateres, mens programgruppen mener forskjellen er liten nok til å tas senere. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes.",
+        "task_domain": "subkultur_program_og_koordinering"
+      },
+      "id": "pk_rel_jonas_008",
+      "mail_type": "people",
+      "role_scope": "subkultur_program_og_koordinering",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Oppdater totalen og vis hva som må tas ut, finansieres eller eksplisitt godkjennes før alternativet beholder status. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "okonomi_og_mandat: sporbar beslutning pk_rel_jonas_008",
+            "reply": "Oppdater totalen og vis hva som må tas ut, finansieres eller eksplisitt godkjennes før alternativet beholder status. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Be Jonas la den gamle kalkylen stå til etter beslutningen fordi programmet ellers kan falle fra hverandre. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "okonomi_og_mandat: skjult programgjeld pk_rel_jonas_008",
+            "reply": "Be Jonas la den gamle kalkylen stå til etter beslutningen fordi programmet ellers kan falle fra hverandre. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Et nytt artistforbehold øker reise og teknisk kostnad. Jonas ber om at totalen oppdateres, mens programgruppen mener forskjellen er liten nok til å tas senere.",
+            "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+            "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+          ],
+          "subject": "Jonas ber om ny kalkyle før han kan støtte programalternativet",
+          "summary": "Et nytt artistforbehold øker reise og teknisk kostnad. Jonas ber om at totalen oppdateres, mens programgruppen mener forskjellen er liten nok til å tas senere. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "pk_rel_jonas_008",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "booking_avtale_honorar_og_mandatsspor",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "pk_rel_jonas_008",
+          "source_path": "data/Civication/mailFamilies/subkultur/people/subkultur_program_og_koordinering_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_program_og_koordinering.mail.pk_rel_jonas_008",
+        "version": 1
+      },
+      "source_hash": "7257c6aac5dd6c7ac80c699a1aad570cb40f7bb28f9e18a7851cf4f9421a0feb",
+      "source_path": "data/Civication/mailFamilies/subkultur/people/subkultur_program_og_koordinering_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sporbar_kriteriebasert_beslutning_vs_uklart_løfte_og_skjult_programgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "clarity": 2,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Gi en eksplisitt statusliste med bekreftet, betinget og holdt igjen, og knytt hvert åpent punkt til eier og neste kontroll. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "kommunikasjon_og_sann_status: sporbar beslutning pk_rel_thea_011",
+            "reply": "Gi en eksplisitt statusliste med bekreftet, betinget og holdt igjen, og knytt hvert åpent punkt til eier og neste kontroll. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kriterier"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Be Thea bruke endelig språk nå og sende korrigering senere dersom noe faller bort. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "kommunikasjon_og_sann_status: skjult programgjeld pk_rel_thea_011",
+            "reply": "Be Thea bruke endelig språk nå og sende korrigering senere dersom noe faller bort. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør.",
+            "tags": [
+              "mandatglidning",
+              "programgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "kommunikasjon_og_sann_status",
+        "consequence_axis": "robust_program_tillit_og_gjennomforbarhet_vs_avtale_kostnads_partner_og_publiseringsgjeld",
+        "day_phase": "morning",
+        "from": "Thea",
+        "id": "pk_rel_thea_011",
+        "mail_family": "subkultur_program_og_koordinering_arbeidsrelasjoner_og_grenser",
+        "mail_type": "people",
+        "narrative_arc": "relasjon_kommunikasjon",
+        "people_ref": "thea_kommunikasjon_og_publisering",
+        "person_id": "thea_kommunikasjon_og_publisering",
+        "phase": "forenoon",
+        "place_id": "publiseringsplan_kapasitet_og_logistikkbord",
+        "pressure": "relasjon_status_og_deadline_vs_transparente_kriterier_mandat_reell_kostnad_og_sann_status",
+        "priority": 139,
+        "role_scope": "subkultur_program_og_koordinering",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/people/subkultur_program_og_koordinering_people.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "kommunikasjon_og_publikum",
+        "situation": [
+          "Kommunikasjonsteamet har et planlagt publiseringstidspunkt, men én avtale og et kapasitetsforbehold står fortsatt åpne. Thea ber om en status som kan brukes uten å villede publikum.",
+          "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+          "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+        ],
+        "subject": "Thea trenger sann status før hun sender programmet til offentlig publisering",
+        "summary": "Kommunikasjonsteamet har et planlagt publiseringstidspunkt, men én avtale og et kapasitetsforbehold står fortsatt åpne. Thea ber om en status som kan brukes uten å villede publikum. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes.",
+        "task_domain": "subkultur_program_og_koordinering"
+      },
+      "id": "pk_rel_thea_011",
+      "mail_type": "people",
+      "role_scope": "subkultur_program_og_koordinering",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Gi en eksplisitt statusliste med bekreftet, betinget og holdt igjen, og knytt hvert åpent punkt til eier og neste kontroll. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "kommunikasjon_og_sann_status: sporbar beslutning pk_rel_thea_011",
+            "reply": "Gi en eksplisitt statusliste med bekreftet, betinget og holdt igjen, og knytt hvert åpent punkt til eier og neste kontroll. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Be Thea bruke endelig språk nå og sende korrigering senere dersom noe faller bort. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "kommunikasjon_og_sann_status: skjult programgjeld pk_rel_thea_011",
+            "reply": "Be Thea bruke endelig språk nå og sende korrigering senere dersom noe faller bort. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Kommunikasjonsteamet har et planlagt publiseringstidspunkt, men én avtale og et kapasitetsforbehold står fortsatt åpne. Thea ber om en status som kan brukes uten å villede publikum.",
+            "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+            "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+          ],
+          "subject": "Thea trenger sann status før hun sender programmet til offentlig publisering",
+          "summary": "Kommunikasjonsteamet har et planlagt publiseringstidspunkt, men én avtale og et kapasitetsforbehold står fortsatt åpne. Thea ber om en status som kan brukes uten å villede publikum. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "pk_rel_thea_011",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "publiseringsplan_kapasitet_og_logistikkbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "pk_rel_thea_011",
+          "source_path": "data/Civication/mailFamilies/subkultur/people/subkultur_program_og_koordinering_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_program_og_koordinering.mail.pk_rel_thea_011",
+        "version": 1
+      },
+      "source_hash": "160110da342abdcd3661798b899124d6557396c15c92c04b934c8438cb16f7eb",
+      "source_path": "data/Civication/mailFamilies/subkultur/people/subkultur_program_og_koordinering_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "subkultur",
+      "compatibility_projection": {
+        "category": "subkultur",
+        "choice_axis": "sporbar_kriteriebasert_beslutning_vs_uklart_løfte_og_skjult_programgjeld",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "clarity": 2,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Bevar tidligere versjon, gjenåpne bare berørte booking-, budsjett-, partner- og publiseringsledd og distribuer ny sann status før hvert handoff. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "helt_programlop: sporbar beslutning pk_story_014",
+            "reply": "Bevar tidligere versjon, gjenåpne bare berørte booking-, budsjett-, partner- og publiseringsledd og distribuer ny sann status før hvert handoff. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kriterier"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Start programplanen på nytt muntlig hver gang og la teamene selv finne ut hvilken versjon som gjelder. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "helt_programlop: skjult programgjeld pk_story_014",
+            "reply": "Start programplanen på nytt muntlig hver gang og la teamene selv finne ut hvilken versjon som gjelder. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør.",
+            "tags": [
+              "mandatglidning",
+              "programgjeld",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "helt_programlop",
+        "consequence_axis": "robust_program_tillit_og_gjennomforbarhet_vs_avtale_kostnads_partner_og_publiseringsgjeld",
+        "day_phase": "morning",
+        "from": "Ida",
+        "id": "pk_story_014",
+        "mail_family": "subkultur_program_og_koordinering_helt_programlop",
+        "mail_type": "story",
+        "narrative_arc": "helhet",
+        "people_ref": "ida_booking_og_artistkontakt",
+        "person_id": "ida_booking_og_artistkontakt",
+        "phase": "forenoon",
+        "place_id": "booking_avtale_honorar_og_mandatsspor",
+        "pressure": "relasjon_status_og_deadline_vs_transparente_kriterier_mandat_reell_kostnad_og_sann_status",
+        "priority": 137,
+        "role_scope": "subkultur_program_og_koordinering",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/subkultur/story/subkultur_program_og_koordinering_story.json",
+        "scene_catalog_version": 1,
+        "situated_audience_id": "arena_produksjon_og_gjennomforing",
+        "situation": [
+          "Gjennom samme programløp endres artistpris, en lokal partner faller bort og arenaen setter et kapasitetsforbehold. Alle endringene påvirker ulike deler av programmet, men resten kan beholdes dersom versjoner og handoffs er ryddige.",
+          "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+          "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+        ],
+        "subject": "Programmet går fra kandidatliste til publisering med tre endringer underveis",
+        "summary": "Gjennom samme programløp endres artistpris, en lokal partner faller bort og arenaen setter et kapasitetsforbehold. Alle endringene påvirker ulike deler av programmet, men resten kan beholdes dersom versjoner og handoffs er ryddige. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes.",
+        "task_domain": "subkultur_program_og_koordinering"
+      },
+      "id": "pk_story_014",
+      "mail_type": "story",
+      "role_scope": "subkultur_program_og_koordinering",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Bevar tidligere versjon, gjenåpne bare berørte booking-, budsjett-, partner- og publiseringsledd og distribuer ny sann status før hvert handoff. Dette bevarer relasjon og fremdrift samtidig som avtale, økonomi, partnerbelastning og offentlig status kan etterprøves. Dersom premisset endres er det tydelig hva som må gjenåpnes og hvem som faktisk kan bekrefte neste status.",
+            "id": "A",
+            "label": "helt_programlop: sporbar beslutning pk_story_014",
+            "reply": "Bevar tidligere versjon, gjenåpne bare berørte booking-, budsjett-, partner- og publiseringsledd og distribuer ny sann status før hvert handoff. Jeg oppdaterer programbok_booking_budsjett_avtale_og_publiseringslogg med gjeldende programversjon, kriterium, status, berørte ledd, eier og neste kontroll."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Start programplanen på nytt muntlig hver gang og la teamene selv finne ut hvilken versjon som gjelder. Det kan bevare tempo eller sosial ro i øyeblikket, men gjør det uklart hva som faktisk var lovet, godkjent, honorert eller publiserbart og flytter kostnad og tillitsrisiko til artister, partnere, økonomi, produksjon eller publikum.",
+            "id": "B",
+            "label": "helt_programlop: skjult programgjeld pk_story_014",
+            "reply": "Start programplanen på nytt muntlig hver gang og la teamene selv finne ut hvilken versjon som gjelder. Jeg lar sosialt eller tidsmessig press styre nå og rydder kriterier, mandat, kostnad, avtale eller forbehold senere dersom noen spør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Gjennom samme programløp endres artistpris, en lokal partner faller bort og arenaen setter et kapasitetsforbehold. Alle endringene påvirker ulike deler av programmet, men resten kan beholdes dersom versjoner og handoffs er ryddige.",
+            "Programkoordinatoren kan prioritere og koordinere innen delegert mandat, men kan ikke gjøre Badge-status, vennskap, lojalitet, muntlig interesse eller lanseringspress til programrett, signatur, rettighetsklarering, gratisarbeidskrav, kapasitet eller sikkerhetsmyndighet.",
+            "Neste steg må ha eksplisitt status, navngitt eier og et reparerbart handoff slik at ny dokumentert informasjon kan gjenåpne bare berørte program-, booking-, økonomi-, partner- eller publiseringsledd."
+          ],
+          "subject": "Programmet går fra kandidatliste til publisering med tre endringer underveis",
+          "summary": "Gjennom samme programløp endres artistpris, en lokal partner faller bort og arenaen setter et kapasitetsforbehold. Alle endringene påvirker ulike deler av programmet, men resten kan beholdes dersom versjoner og handoffs er ryddige. Arbeidet skal føres i programbok_booking_budsjett_avtale_og_publiseringslogg, som skiller forslag, vurdert, anbefalt, mandatert, økonomisk godkjent, avtalt, logistisk avklart, betinget publiserbart, bekreftet, publisert, endret og lukket status. Når premiss endres gjenåpnes bare berørte ledd, mens tidligere versjon, kriterier, begrunnelse, forbehold, varsling og beslutningseier beholdes."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "pk_story_014",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "booking_avtale_honorar_og_mandatsspor",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "pk_story_014",
+          "source_path": "data/Civication/mailFamilies/subkultur/story/subkultur_program_og_koordinering_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "subkultur_program_og_koordinering.mail.pk_story_014",
+        "version": 1
+      },
+      "source_hash": "9deec1c30f4996176567bcd094d3a0d580d671ea0dc5df3afbc4c34ae43fd4c6",
+      "source_path": "data/Civication/mailFamilies/subkultur/story/subkultur_program_og_koordinering_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
     }
   ],
   "ignored_source_files": [
@@ -225454,7 +227553,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "9f09e8f135e2831893360900532bb6891829f9a8f4b39c4fd83e943ee17dff84",
+  "registry_hash": "c5a88b067868ad2e6c893348ad50685bd8a7dea5ee3160811c9e2a0a74d1b927",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -226991,6 +229090,23 @@
       "pl_debrief_013",
       "pl_club7_003",
       "pl_sen_015"
+    ],
+    "subkultur/subkultur_program_og_koordinering": [
+      "pk_program_001",
+      "pk_booking_004",
+      "pk_budsjett_007",
+      "pk_publisering_010",
+      "pk_rel_ida_002",
+      "pk_rel_amina_005",
+      "pk_rel_jonas_008",
+      "pk_rel_thea_011",
+      "pk_story_014",
+      "pk_konflikt_006",
+      "pk_event_009",
+      "pk_micro_012",
+      "pk_follow_013",
+      "pk_knowledge_003",
+      "pk_consequence_015"
     ]
   },
   "runtime_materialized_sources": [
@@ -227020,11 +229136,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 476,
+    "compiled_source_file_count": 485,
     "ignored_source_file_count": 1,
-    "input_file_count": 477,
-    "role_count": 58,
-    "scene_count": 1420,
+    "input_file_count": 486,
+    "role_count": 59,
+    "scene_count": 1435,
     "shadowed_duplicate_count": 0
   },
   "version": 1
