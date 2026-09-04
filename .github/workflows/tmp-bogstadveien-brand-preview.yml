@@ -27,19 +27,22 @@ jobs:
               open('/tmp/bogstad-preview/'+name,'wb').write(data)
               print(name, r.status, len(data), r.headers.get('Content-Type'))
           PY
-      - name: Build contact sheets
+      - name: Build previews
         run: |
+          python -m pip install --quiet pillow
           python - <<'PY'
-          from PIL import Image,ImageDraw
+          from PIL import Image
           from pathlib import Path
           for name in ['blue-master.jpg','bytimo-identity.jpg']:
             p=Path('/tmp/bogstad-preview')/name
-            im=Image.open(p).convert('RGB')
+            original=Image.open(p)
+            print(name, original.size, original.mode)
+            im=original.convert('RGB')
             im.thumbnail((1200,900))
             im.save(Path('/tmp/bogstad-preview')/(p.stem+'-preview.jpg'),quality=90)
-            print(name, Image.open(p).size)
           PY
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: bogstadveien-brand-preview
           path: /tmp/bogstad-preview/*
