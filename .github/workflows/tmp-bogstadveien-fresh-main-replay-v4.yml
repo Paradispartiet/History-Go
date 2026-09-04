@@ -30,7 +30,13 @@ jobs:
           git checkout -B candidate/bogstadveien-fresh-main-20260904-v4 origin/main
           git cherry-pick 3e26318672763f9c7f598d0c2ac0523185fe7050
           git cherry-pick 630547684c7cb6db96f25a21797734a9d76fd383
-          git cherry-pick 44b693d32bed03f516da8098523e5d08f1d63bfb
+          git checkout origin/work/bogstadveien-production-final-20260904 -- data/quiz/by/bogstadveien_sets.json
+          git add data/quiz/by/bogstadveien_sets.json
+          if git diff --cached --quiet; then
+            echo 'Expected Bogstadveien quiz answer-position delta is missing' >&2
+            exit 1
+          fi
+          git commit -m 'Fix Bogstadveien quiz answer-position governance'
           if git diff --name-only origin/main...HEAD | grep -E '^\.github/workflows/tmp-bogstadveien'; then
             echo 'TEMP Bogstadveien workflow leaked into candidate' >&2
             exit 1
@@ -49,4 +55,4 @@ jobs:
         run: |
           git push --force origin HEAD:candidate/bogstadveien-fresh-main-20260904-v4
 
-# rerun against main 38ce7a8451d9b277f113793e60daea1ab41be29c
+# recover validated quiz payload from current PR head on main 38ce7a8451d9b277f113793e60daea1ab41be29c
