@@ -1,0 +1,115 @@
+name: TEMP Bogstadveien final candidate v3
+on:
+  push:
+    branches: [control/bogstadveien-finalize-20260904-v3]
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Extract validated Brand steps and replay on fresh main
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          lines=Path('.github/workflows/tmp-bogstadveien-final-candidate-v2.yml').read_text().splitlines()
+          def extract(name,out):
+              start=next(i for i,l in enumerate(lines) if l==f'      - name: {name}')
+              run=next(i for i in range(start+1,len(lines)) if lines[i]=='        run: |')
+              body=[]
+              for l in lines[run+1:]:
+                  if l.startswith('      - '): break
+                  if l.startswith('          '): body.append(l[10:])
+                  else: body.append(l)
+              Path(out).write_text('\n'.join(body)+'\n')
+          extract('Fetch authentic Brand assets','/tmp/bogstad-fetch.sh')
+          extract('Materialize Brand assets and canonical audit','/tmp/bogstad-materialize.sh')
+          PY
+          git fetch origin main work/bogstadveien-production-final-20260904
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git switch -C candidate/bogstadveien-final-20260904-v3 origin/main
+          git cherry-pick bd17d6426cb40fd7ab575718d8e6b265e225afbe
+          test ! -e .github/workflows/tmp-bogstadveien-final-candidate-v3.yml
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      - name: Reapply validated Brand materialization
+        run: |
+          set -euo pipefail
+          bash /tmp/bogstad-fetch.sh
+          bash /tmp/bogstad-materialize.sh
+      - name: Rebuild derived payloads and image backlog with schema validation
+        run: |
+          set -euo pipefail
+          npm run places:index:build
+          npm run place-open:build
+          npm run epoker:places:build
+          node scripts/build-fagverk-release-manifest.mjs
+          rm -f reports/place-image-audit.json
+          node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json
+          node <<'NODE'
+          const fs=require('fs');
+          const p='data/places/place_image_backlog_summary.json';
+          const reportPath='reports/place-image-audit.json';
+          const s=JSON.parse(fs.readFileSync(p,'utf8'));
+          const r=JSON.parse(fs.readFileSync(reportPath,'utf8'));
+          console.log('place-image-audit keys:',Object.keys(r));
+          if(!r || typeof r!=='object' || !r.summary || typeof r.summary!=='object'){
+            console.log(JSON.stringify(r,null,2).slice(0,12000));
+            throw new Error('place-image-audit report missing summary');
+          }
+          for(const k of ['local','remote','optional','missing','invalid']){
+            if(!Number.isInteger(r.summary[k])) throw new Error(`place-image-audit invalid summary.${k}: ${r.summary[k]}`);
+          }
+          if(!Number.isInteger(r.totalPlaces)) throw new Error(`place-image-audit invalid totalPlaces: ${r.totalPlaces}`);
+          s.generatedAt='2026-09-04';
+          s.generatedFromCommit='bogstadveien_place_completion_20260904';
+          s.totalPlaces=r.totalPlaces;
+          s.summary={
+            validLocal:r.summary.local,
+            validRemote:r.summary.remote,
+            optionalMissing:r.summary.optional,
+            missing:r.summary.missing,
+            invalidLocalPath:r.summary.invalid,
+            remaining:r.summary.missing+r.summary.invalid
+          };
+          fs.writeFileSync(p,JSON.stringify(s,null,2)+'\n');
+          NODE
+          node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json --verify-summary=data/places/place_image_backlog_summary.json
+      - name: Run Bogstadveien and repository gates
+        run: |
+          set -euo pipefail
+          node --test tests/bogstadveien-completion.test.mjs
+          bash scripts/check-places.sh
+          node scripts/audit-fagverk-place-pages.mjs
+          node --test tests/fagverk-content.test.mjs
+          node --test tests/fagverk-portal.test.mjs
+          node --test tests/fagverk-place-pages.test.mjs
+          node --test tests/fagverk-place-rendering.test.mjs
+          node --test tests/fagverk-place-substance-audit.test.mjs
+          node --test tests/fagverk-place-category-design.test.mjs
+          node --test tests/fagverk-link-audit.test.mjs
+          node --test tests/place-learning-surface.test.js
+          node --test tests/place-image-audit-changed.test.mjs
+          node scripts/audit-place-images.mjs --mode=changed
+          git diff --check
+      - name: Commit and push clean candidate
+        run: |
+          set -euo pipefail
+          test ! -e .github/workflows/tmp-bogstadveien-final-candidate-v3.yml
+          test ! -e .github/workflows/tmp-bogstadveien-final-candidate-v2.yml
+          git add -A
+          git status --short
+          git diff --cached --check
+          git commit -m "Finalize Bogstadveien Brand audit and image backlog"
+          git push --force origin HEAD:candidate/bogstadveien-final-20260904-v3
+          echo "CANDIDATE_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+      - name: Report candidate
+        run: echo "$CANDIDATE_SHA"
