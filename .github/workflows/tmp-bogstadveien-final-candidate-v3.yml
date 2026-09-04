@@ -45,6 +45,20 @@ jobs:
           set -euo pipefail
           bash /tmp/bogstad-fetch.sh
           bash /tmp/bogstad-materialize.sh
+      - name: Normalize Georg A. Nilsen provenance contract
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs=require('fs');
+          const p='data/brands/brands_master.json';
+          const brands=JSON.parse(fs.readFileSync(p,'utf8'));
+          const georg=brands.find(row=>row.id==='georg_a_nilsen');
+          if(!georg?.logoMeta) throw new Error('Georg A. Nilsen logoMeta missing');
+          if(!/ikke rekonstruert|ikke en rekonstruert|ikke rekonstruert eller generert/i.test(georg.logoMeta.disclosure||'')) throw new Error('Georg A. Nilsen disclosure does not support provenance flags');
+          georg.logoMeta.generated=false;
+          georg.logoMeta.reconstructed=false;
+          fs.writeFileSync(p,JSON.stringify(brands,null,2)+'\n');
+          NODE
       - name: Rebuild derived payloads and image backlog with schema validation
         run: |
           set -euo pipefail
