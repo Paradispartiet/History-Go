@@ -1,0 +1,40 @@
+name: Litteratur maintenance integrity
+
+on:
+  pull_request:
+    paths:
+      - 'data/fagverk/litteratur/maintenance/**'
+      - 'scripts/audit-litteratur-maintenance-source-refresh-round1.mjs'
+      - 'tests/litteratur-maintenance-source-refresh-round1.test.mjs'
+      - '.github/workflows/litteratur-maintenance-integrity.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  maintenance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Audit Litteratur source refresh round 1
+        run: |
+          node --check scripts/audit-litteratur-maintenance-source-refresh-round1.mjs
+          node scripts/audit-litteratur-maintenance-source-refresh-round1.mjs
+          node --test tests/litteratur-maintenance-source-refresh-round1.test.mjs
+      - name: Preserve Litteratur assessment and theory integrity
+        run: |
+          node scripts/audit-litteratur-assessment-v1.mjs
+          node tools/audit-litteratur-theory-integrity.mjs
+          node --test tests/litteratur-assessment-v1.test.mjs tests/litteratur-theory-integrity.test.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
