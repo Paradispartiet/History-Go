@@ -8,6 +8,7 @@ on:
       - 'docs/FAGVERK.md'
       - 'docs/SUBJECT_FILE_CONTRACT.md'
       - 'reports/fagverk/fagverk-theory-integrity-audit.json'
+      - 'reports/fagverk/fagverk-expansion-19-plus-1-final-reconciliation-v1.json'
       - 'reports/fagverk/by-theory-integrity-audit.json'
       - 'reports/fagverk/kunst-complete-audit.json'
       - 'reports/fagverk/kunst-theory-integrity-audit.json'
@@ -99,6 +100,7 @@ on:
       - 'tests/teknologi-theory-integrity.test.mjs'
       - 'tests/fagverk-documentation-contract.test.mjs'
       - 'tests/fagverk-theory-integrity.test.mjs'
+      - 'tests/fagverk-expansion-19-plus-1-final-reconciliation.test.mjs'
       - '.github/workflows/fagverk-theory-integrity.yml'
   workflow_dispatch:
 
@@ -188,3 +190,4 @@ jobs:
           node --test tests/teknologi-theory-integrity.test.mjs
           node --test tests/fagverk-theory-integrity.test.mjs
           node --test tests/fagverk-documentation-contract.test.mjs
+          node --test tests/fagverk-expansion-19-plus-1-final-reconciliation.test.mjs
