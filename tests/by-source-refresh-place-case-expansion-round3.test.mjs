@@ -1,0 +1,33 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { auditBySourceRefreshPlaceCaseExpansionRound3 } from '../scripts/audit-by-source-refresh-place-case-expansion-round3.mjs';
+
+test('By maintenance round 3 closes all 17 chapters with disjoint new place cases', () => {
+  const report = auditBySourceRefreshPlaceCaseExpansionRound3();
+  assert.equal(report.status, 'passed');
+  assert.equal(report.round, 3);
+  assert.equal(report.source_refresh_count, 14);
+  assert.ok(report.publisher_count >= 5);
+  assert.equal(report.case_count, 7);
+  assert.equal(report.chapter_count, 7);
+  assert.equal(report.combined_maintenance_chapter_count, 17);
+  assert.equal(report.canonical_chapter_count, 17);
+  assert.equal(report.baseline_unique_place_count, 20);
+  assert.ok(report.round1_unique_place_count >= 6);
+  assert.ok(report.round2_unique_place_count >= 7);
+  assert.ok(report.new_unique_place_count >= 8);
+  assert.ok(report.projected_unique_place_count >= 41);
+  assert.equal(report.gates.source_health, true);
+  assert.equal(report.gates.canonical_chapter_identity, true);
+  assert.equal(report.gates.canonical_place_identity, true);
+  assert.equal(report.gates.full_17_of_17_chapter_reconciliation, true);
+  assert.equal(report.gates.chapter_non_overlap_prior_rounds, true);
+  assert.equal(report.gates.place_non_overlap_prior_rounds, true);
+  assert.equal(report.gates.case_source_trace, true);
+  assert.equal(report.gates.claim_provenance_preserved, true);
+  assert.equal(report.gates.theory_integrity_scope_unchanged, true);
+  assert.equal(report.gates.subject_architecture_unchanged, true);
+  assert.equal(report.gates.completion_status_preserved, true);
+  assert.equal(report.gates.no_strict_subcategory, true);
+  assert.equal(report.gates.no_place_production, true);
+});
