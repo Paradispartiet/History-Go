@@ -1,0 +1,42 @@
+name: Historie maintenance integrity
+
+on:
+  pull_request:
+    paths:
+      - 'data/fagverk/historie/maintenance/**'
+      - 'scripts/audit-historie-source-refresh-place-case-expansion.mjs'
+      - 'tests/historie-source-refresh-place-case-expansion.test.mjs'
+      - '.github/workflows/historie-maintenance-integrity.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  maintenance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Audit Historie source refresh and place-case expansion
+        run: |
+          node --check scripts/audit-historie-source-refresh-place-case-expansion.mjs
+          node scripts/audit-historie-source-refresh-place-case-expansion.mjs
+          node --test tests/historie-source-refresh-place-case-expansion.test.mjs
+      - name: Preserve Historie completion, source authority and theory integrity
+        run: |
+          node tools/validate-historie-curriculum-architecture.mjs
+          node tools/validate-historie-editorial-quality.mjs
+          node tools/audit-historie-source-authority.mjs
+          node tools/audit-historie-completion.mjs
+          node tools/audit-historie-theory-integrity.mjs
+          node scripts/audit-fagverk-historie.mjs
+          node scripts/audit-fagverk-general-engine.mjs
