@@ -1,4 +1,4 @@
-name: TEMP Bogstadveien completion
+name: TEMP Bogstadveien PR repair
 
 on:
   push:
@@ -9,23 +9,26 @@ permissions:
   contents: write
 
 concurrency:
-  group: tmp-bogstadveien-completion-${{ github.ref }}
+  group: tmp-bogstadveien-pr-repair
   cancel-in-progress: true
 
 jobs:
-  materialize:
-    if: github.event.head_commit.message != 'Complete Bogstadveien Place production'
+  repair:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
         with:
+          ref: work/bogstadveien-production-final-20260904
           fetch-depth: 0
-      - name: Replay branch on fresh main
+      - name: Replay final branch on fresh main
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin main
+          git fetch origin main work/bogstadveien-production-final-20260904
+          remote_sha="$(git rev-parse origin/work/bogstadveien-production-final-20260904)"
+          echo "REMOTE_SHA=$remote_sha" >> "$GITHUB_ENV"
+          git checkout -B work/bogstadveien-production-final-20260904 origin/work/bogstadveien-production-final-20260904
           git rebase origin/main
       - uses: actions/setup-node@v5
         with:
@@ -33,121 +36,110 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
-      - name: Prefetch Commons assets with backoff
+      - name: Repair description claims and current READ-FIRST evidence
         run: |
           set -euo pipefail
-          mkdir -p .cache/bogstadveien-completion
-          UA='History-Go-place-production/1.0 (https://github.com/Paradispartiet/History-Go)'
-          fetch_asset() {
-            url="$1"
-            output="$2"
-            curl -fL --retry 8 --retry-delay 5 --retry-max-time 180 --retry-all-errors \
-              -A "$UA" -o "$output" "$url"
-            test "$(stat -c%s "$output")" -gt 1000
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import crypto from 'node:crypto';
+
+          const placePath = 'data/places/by/oslo/places/bogstadveien.json';
+          const packetPath = 'data/places/production/bogstadveien.json';
+          const workcardPath = 'reports/place-production/bogstadveien-workcard-current.json';
+
+          const place = JSON.parse(fs.readFileSync(placePath, 'utf8'));
+          const packet = JSON.parse(fs.readFileSync(packetPath, 'utf8'));
+          const workcard = JSON.parse(fs.readFileSync(workcardPath, 'utf8'));
+
+          const replacements = [
+            [
+              'Bogstadveien fikk navn i 1879 etter Bogstad gård og ble en av vestbyens viktigste handelsgater da den elektriske trikken kom i 1894.',
+              'Bogstadveien fikk navn i 1879 etter Bogstad gård og ble en sentral handelsgate i vestbyen da den elektriske trikken kom i 1894.'
+            ],
+            [
+              'Leiegårdene fra 1890-årene rommer fortsatt butikker i første etasje.',
+              'Leiegårdene fra 1890-årene rommer fortsatt butikker i gateplanet.'
+            ],
+            [
+              'Da den elektriske sporveien nådde Majorstuen gjennom Bogstadveien i 1894, ble gaten en av vestbyens viktigste forbindelser.',
+              'Da den elektriske sporveien nådde Majorstuen gjennom Bogstadveien i 1894, ble gaten en sentral forbindelse i vestbyen.'
+            ],
+            [
+              'Gaten er derfor et sammenhengende stykke transport- og handelshistorie: gammel landevei, trikkelinje fra 1894, leiegårder fra 1890-årene, en nedlagt undergrunnsstasjon og butikker som spenner fra mer enn hundre års drift til stadig nye virksomheter.',
+              'Gaten viser et sammenhengende stykke transport- og handelshistorie: gammel landevei, trikkelinje fra 1894, leiegårder fra 1890-årene, en nedlagt undergrunnsstasjon og butikker som spenner fra mer enn hundre års drift til stadig nye virksomheter.'
+            ]
+          ];
+
+          function replaceExact(text, before, after, label) {
+            const count = text.split(before).length - 1;
+            if (count !== 1) throw new Error(`${label}: expected one exact replacement, found ${count}`);
+            return text.replace(before, after);
           }
-          fetch_asset 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Bogstadveien.jpg' '.cache/bogstadveien-completion/bogstadveien.jpg'
-          sleep 5
-          fetch_asset 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Bogstadveien%2037%20IV.jpg' '.cache/bogstadveien-completion/bogstadveien-37-iv.jpg'
-          sleep 5
-          fetch_asset 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Bogstadveien%2039.jpg' '.cache/bogstadveien-completion/bogstadveien-39.jpg'
-      - name: Align finalizer with canonical contracts
+
+          place.desc = replaceExact(place.desc, ...replacements[0], 'place.desc sentence 1');
+          place.desc = replaceExact(place.desc, ...replacements[1], 'place.desc sentence 2');
+          place.popupDesc = replaceExact(place.popupDesc, ...replacements[2], 'place.popupDesc sentence 3');
+          place.popupDesc = replaceExact(place.popupDesc, ...replacements[3], 'place.popupDesc sentence 19');
+
+          const claimReplacements = new Map([
+            ['claim_bogstadveien_desc_01', replacements[0]],
+            ['claim_bogstadveien_desc_02', replacements[1]],
+            ['claim_bogstadveien_popup_03', replacements[2]],
+            ['claim_bogstadveien_popup_19', replacements[3]]
+          ]);
+          for (const claim of packet.claims ?? []) {
+            const pair = claimReplacements.get(claim.id);
+            if (!pair) continue;
+            if (claim.claim !== pair[0]) throw new Error(`${claim.id}: unexpected pre-repair claim text`);
+            claim.claim = pair[1];
+            claimReplacements.delete(claim.id);
+          }
+          if (claimReplacements.size) throw new Error(`Missing claims: ${[...claimReplacements.keys()].join(', ')}`);
+
+          const sha256 = (text) => crypto.createHash('sha256').update(String(text), 'utf8').digest('hex');
+          packet.textHashes.desc = sha256(place.desc);
+          packet.textHashes.popupDesc = sha256(place.popupDesc);
+
+          workcard.schema = 'history_go_place_workcard_v2';
+          workcard.category = 'by';
+          delete workcard.rule_preflight;
+          workcard.branch_status = 'PR';
+          workcard.live_status = 'not_live_until_merge';
+
+          fs.writeFileSync(placePath, `${JSON.stringify(place, null, 2)}\n`);
+          fs.writeFileSync(packetPath, `${JSON.stringify(packet, null, 2)}\n`);
+          fs.writeFileSync(workcardPath, `${JSON.stringify(workcard, null, 2)}\n`);
+          NODE
+          node scripts/place-production-rule-preflight.mjs record \
+            --workcard reports/place-production/bogstadveien-workcard-current.json \
+            --place-id bogstadveien \
+            --category by
+          node scripts/place-production-rule-preflight.mjs validate \
+            --workcard reports/place-production/bogstadveien-workcard-current.json
+      - name: Rebuild derived state
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          p = Path('tools/finalize-bogstadveien-completion.mjs')
-          s = p.read_text()
-          old_manifest = '''const quizManifest=read("data/quiz/manifest.json"); const rows=(quizManifest.targets||[]).filter(row=>row.targetId===placeId); if(rows.length!==1)throw new Error(`Expected exactly one Bogstadveien quiz manifest row, got ${rows.length}`); rows[0].file=quizFile; write("data/quiz/manifest.json",quizManifest);'''
-          new_manifest = '''const quizManifest=read("data/quiz/manifest.json"); const rows=(quizManifest.sets||[]).filter(row=>row.targetId===placeId); if(rows.length!==1)throw new Error(`Expected exactly one Bogstadveien quiz manifest row, got ${rows.length}`); rows[0].file=quizFile; write("data/quiz/manifest.json",quizManifest);'''
-          old_builder = '''let contextBuilt=false; try{await runBuildQuizProductionContext(["--category","by","--target",placeId,"--output","data/quiz/production_context/by/bogstadveien.json"]);contextBuilt=true;}catch(error){console.error("Quiz context builder failed; leaving source brief for explicit repair:",error?.message||error);} if(!contextBuilt)write("data/quiz/production_context/by/bogstadveien.json",{schema_version:"1.0",categoryId:"by",targetId:placeId,generated_at:verifiedAt,source_brief:briefFile,profile_decision:brief.profile_decision,selected_curriculum:brief.selected_curriculum,existing_quiz_audit:brief.existing_quiz_audit,source_inventory:Object.entries(sourceMap).map(([id,value])=>({id,...value})),status:"materialized_from_reviewed_source_brief"});'''
-          new_builder = '''let contextBuilt=false; try{await runBuildQuizProductionContext({root,categoryId:"by",targetId:placeId,outputPath:"data/quiz/production_context/by/bogstadveien.json"});contextBuilt=true;}catch(error){console.error("Quiz context builder failed; leaving source brief for explicit repair:",error?.message||error);} if(!contextBuilt)write("data/quiz/production_context/by/bogstadveien.json",{schema_version:"1.0",categoryId:"by",targetId:placeId,generated_at:verifiedAt,source_brief:briefFile,profile_decision:brief.profile_decision,selected_curriculum:brief.selected_curriculum,existing_quiz_audit:brief.existing_quiz_audit,source_inventory:Object.entries(sourceMap).map(([id,value])=>({id,...value})),status:"materialized_from_reviewed_source_brief"});'''
-          old_test = '''assert.doesNotMatch(JSON.stringify(quiz.profile_snapshot),/høy kjøpekraft|prisnivå/i);'''
-          new_test = '''const economicProfileText=JSON.stringify({signature_features:quiz.profile_snapshot.signature_features,must_include:quiz.profile_snapshot.must_include,primary_angles:quiz.profile_snapshot.primary_angles,question_families:quiz.profile_snapshot.question_families});assert.doesNotMatch(economicProfileText,/kjøpekraft|prisnivå/i);assert.match(quiz.profile_snapshot.notes,/uten å utlede/i);'''
-          old_score = '''score: { narrative: 4, historical: 3, source: 5, play_value: 3, originality: 3, total: 18 }'''
-          new_score = '''score: { narrative: 3, historical: 2, source: 4, play_value: 3, originality: 3, total: 15 }'''
-          old_story_assert = '''assert.equal(stories[0].score.total,18);'''
-          new_story_assert = '''assert.equal(stories[0].score.total,15);'''
-          for label, old in [('quiz manifest', old_manifest), ('quiz context builder', old_builder), ('quiz regression', old_test), ('story score', old_score), ('story score regression', old_story_assert)]:
-              if s.count(old) != 1:
-                  raise SystemExit(f'{label} patch anchor count: {s.count(old)}')
-          s = s.replace(old_manifest,new_manifest).replace(old_builder,new_builder).replace(old_test,new_test).replace(old_score,new_score).replace(old_story_assert,new_story_assert)
-          p.write_text(s)
-          PY
-      - name: Materialize Bogstadveien
-        run: node tools/finalize-bogstadveien-completion.mjs
-      - name: Build derived state
-        run: |
+          set -euo pipefail
           npm run places:index:build
           npm run place-open:build
           npm run epoker:places:build
           node scripts/build-fagverk-release-manifest.mjs
-      - name: Verify and ratchet epoch coverage
-        run: |
-          node --input-type=module <<'NODE'
-          import assert from 'node:assert/strict';
-          import { buildEpokePlaceIndex } from './scripts/build-epoke-place-index.mjs';
-          const index = buildEpokePlaceIndex();
-          assert.equal(index.stats.canonical_story_milestone_count, 220);
-          assert.equal(index.stats.verified_place_production_milestone_count, 410);
-          assert.equal(index.domains.historie.oslo_coverage.canonical_place_count, 587);
-          assert.equal(index.domains.historie.oslo_coverage.dated_evidence_place_count, 231);
-          assert.equal(index.domains.historie.oslo_coverage.documented_case_place_count, 2);
-          assert.equal(index.domains.historie.oslo_coverage.awaiting_source_backed_history_count, 354);
-          assert.equal(index.domains.historie.oslo_coverage.places.find((row) => row.place_id === 'bogstadveien')?.status, 'dated_evidence');
-          NODE
-          python - <<'PY'
-          from pathlib import Path
-          p = Path('tests/epoke-place-index.test.mjs')
-          s = p.read_text()
-          replacements = {
-              'index.stats.canonical_story_milestone_count, 219': 'index.stats.canonical_story_milestone_count, 220',
-              'index.stats.verified_place_production_milestone_count, 402': 'index.stats.verified_place_production_milestone_count, 410',
-              'coverage.dated_evidence_place_count, 230': 'coverage.dated_evidence_place_count, 231',
-              'coverage.awaiting_source_backed_history_count, 355': 'coverage.awaiting_source_backed_history_count, 354',
-              '["akershus_slott", "gamle_radhus"': '["akershus_slott", "bogstadveien", "gamle_radhus"',
-          }
-          for old, new in replacements.items():
-              if s.count(old) != 1:
-                  raise SystemExit(f'epoch fixture anchor count for {old!r}: {s.count(old)}')
-              s = s.replace(old, new)
-          p.write_text(s)
-          PY
-      - name: Bogstadveien contract
-        run: node --test tests/bogstadveien-completion.test.mjs
-      - name: Epoch runtime
-        run: node --test tests/epoke-place-index.test.mjs tests/epoker-runtime-place-index.test.mjs tests/epoke-viewer.test.mjs
-      - name: Quiz manifest
-        run: npm run audit:quiz-manifest:v2
-      - name: Quiz production context
-        run: npm run audit:quiz-production-context
-      - name: Quiz progression
-        run: npm run audit:quiz-progression
-      - name: Quiz theory binding
-        run: npm run audit:quiz-theory-binding
-      - name: Stories
-        run: npm run check:stories
-      - name: Places index
-        run: npm run places:index:check
-      - name: Place-open
-        run: npm run place-open:check
-      - name: Fagverk release manifest
-        run: node scripts/build-fagverk-release-manifest.mjs --check
-      - name: Diff check
-        run: git diff --check
-      - name: Commit clean permanent Bogstadveien branch
+      - name: Validate Bogstadveien and repository contracts
         run: |
           set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          node scripts/validate-place-description-production-v4_2_policy.mjs --all --report reports/place-description-validation-v4_2.json
+          node --test tests/bogstadveien-completion.test.mjs
+          node scripts/place-production-rule-preflight.mjs validate --workcard reports/place-production/bogstadveien-workcard-current.json
+          npm run places:index:check
+          npm run place-open:check
+          npm run epoker:places:check
+          node --test tests/epoke-place-index.test.mjs tests/epoker-runtime-place-index.test.mjs tests/epoke-viewer.test.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          git diff --check
+      - name: Commit and push repaired exact head
+        run: |
+          set -euo pipefail
           git add -A
           git diff --cached --check
-          git diff --cached --binary origin/main -- . \
-            ':(exclude).github/workflows/tmp-bogstadveien-completion.yml' \
-            ':(exclude)tools/finalize-bogstadveien-completion.mjs' \
-            > /tmp/bogstadveien-production.patch
-          test -s /tmp/bogstadveien-production.patch
-          git reset --hard origin/main
-          git clean -fd
-          git apply --index /tmp/bogstadveien-production.patch
-          git diff --cached --check
-          git commit -m "Complete Bogstadveien Place production"
-          git push origin HEAD:refs/heads/work/bogstadveien-production-final-20260904
+          git commit -m "Satisfy Bogstadveien PR governance gates"
+          git push --force-with-lease=refs/heads/work/bogstadveien-production-final-20260904:${REMOTE_SHA} \
+            origin HEAD:refs/heads/work/bogstadveien-production-final-20260904
