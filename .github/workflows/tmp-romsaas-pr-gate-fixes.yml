@@ -1,0 +1,91 @@
+name: tmp Romsås PR gate fixes
+on:
+  push:
+    branches:
+      - work/romsaas-completion-20260903
+permissions:
+  contents: write
+jobs:
+  fix:
+    if: github.event.head_commit.message != 'Fix Romsås PR integration gates'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/romsaas-completion-20260903
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Restore unrelated people diagnostics
+        run: |
+          git fetch origin main
+          git checkout origin/main -- \
+            reports/people-invalid-place-refs.json \
+            reports/people-invalid-place-refs.md \
+            reports/people-of-places-status.json \
+            reports/people-of-places-status.md \
+            reports/people-place-coverage.json \
+            reports/people-place-coverage.md
+      - name: Patch exact Romsås integration contracts
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+
+          const testFile = 'tests/epoke-place-index.test.mjs';
+          let testText = fs.readFileSync(testFile, 'utf8');
+          const replacements = [
+            ['assert.equal(index.stats.canonical_story_milestone_count, 219);', 'assert.equal(index.stats.canonical_story_milestone_count, 220);'],
+            ['assert.equal(index.stats.verified_place_production_milestone_count, 402);', 'assert.equal(index.stats.verified_place_production_milestone_count, 407);'],
+            ['assert.equal(coverage.dated_evidence_place_count, 230);', 'assert.equal(coverage.dated_evidence_place_count, 231);'],
+            ['assert.equal(coverage.awaiting_source_backed_history_count, 355);', 'assert.equal(coverage.awaiting_source_backed_history_count, 354);']
+          ];
+          for (const [before, after] of replacements) {
+            if (!testText.includes(before)) throw new Error(`Expected epoch baseline not found: ${before}`);
+            testText = testText.replace(before, after);
+          }
+          fs.writeFileSync(testFile, testText);
+
+          const ids = new Set(['lesespor_romsaås_002', 'lesespor_romsaås_003']);
+          const patchQualities = (value, label) => {
+            let changed = 0;
+            const walk = (node) => {
+              if (!node || typeof node !== 'object') return;
+              if (ids.has(node.id)) {
+                if (node.source_quality !== 'official') throw new Error(`${label}:${node.id} expected source_quality official, got ${node.source_quality}`);
+                node.source_quality = 'institutional';
+                changed += 1;
+              }
+              for (const child of Object.values(node)) walk(child);
+            };
+            walk(value);
+            if (changed !== 2) throw new Error(`${label} expected 2 Romsås Lesespor quality changes, got ${changed}`);
+          };
+
+          for (const file of ['data/lesespor/oslo/lesespor_oslo_by.json', 'data/runtime/lesespor-all.json']) {
+            const value = JSON.parse(fs.readFileSync(file, 'utf8'));
+            patchQualities(value, file);
+            fs.writeFileSync(file, JSON.stringify(value, null, 2) + '\n');
+          }
+          NODE
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Verify Lesespor
+        run: |
+          npm run build:tools
+          node dist/tools/validate_lesespor.mjs
+      - name: Verify epoch and Romsås contracts
+        run: |
+          npm run epoker:places:check
+          node --test tests/epoke-place-index.test.mjs tests/romsaas-completion.test.mjs
+      - name: Verify diff
+        run: git diff --check
+      - name: Publish integration fix
+        run: |
+          git config user.name "Paradispartiet"
+          git config user.email "paradispartiet@gmail.com"
+          rm .github/workflows/tmp-romsaas-pr-gate-fixes.yml
+          git add -A
+          git diff --cached --check
+          git commit -m "Fix Romsås PR integration gates"
+          git push origin HEAD:work/romsaas-completion-20260903
