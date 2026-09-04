@@ -32,6 +32,8 @@ jobs:
         run: node .github/TEMP-subkultur-produksjon-prosjekt-role-world-standing-normalizer.mjs
       - name: Regenerate Role World readiness
         run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+      - name: Regenerate career gameplay matrix
+        run: node scripts/audit-civication-career-gameplay.mjs --write
       - name: Focused Role World gate
         run: node tests/civication-subkultur-produksjon-og-prosjekt-role-world-rollout.test.js
       - name: Prerequisite compatibility after Role World completion
@@ -61,6 +63,7 @@ jobs:
             data/Civication/roleWorldAuthoringChecklist.json \
             data/Civication/roleWorldThemeBank.json \
             data/Civication/roleWorldRolloutReadiness.json \
+            data/Civication/careerGameplayMatrix.json \
             reports/CIVICATION_SUBKULTUR_PRODUKSJON_OG_PROSJEKT_ROLE_WORLD_ROLLOUT_SOURCE_FIRST.md \
             tests/civication-subkultur-produksjon-og-prosjekt-role-world-rollout.test.js \
             tests/civication-subkultur-produksjon-og-prosjekt-prerequisites.test.js \
