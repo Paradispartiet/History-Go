@@ -14,6 +14,7 @@ concurrency:
 
 jobs:
   materialize:
+    if: github.event.head_commit.message != 'Complete Bogstadveien Place production'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -134,10 +135,13 @@ jobs:
         run: git diff --check
       - name: Commit permanent Bogstadveien production
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git rm .github/workflows/tmp-bogstadveien-completion.yml tools/finalize-bogstadveien-completion.mjs
+          git rm tools/finalize-bogstadveien-completion.mjs
           git add -A
           git diff --cached --check
           git commit -m "Complete Bogstadveien Place production"
-          git push --force-with-lease origin HEAD:work/bogstadveien-completion-20260903
+          remote_sha="$(git ls-remote origin refs/heads/work/bogstadveien-completion-20260903 | cut -f1)"
+          test -n "$remote_sha"
+          git push --force-with-lease=refs/heads/work/bogstadveien-completion-20260903:${remote_sha} origin HEAD:refs/heads/work/bogstadveien-completion-20260903
