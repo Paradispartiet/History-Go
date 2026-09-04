@@ -29,13 +29,13 @@
   "summary": {
     "canonical_career_roles": 85,
     "classifications": {
-      "rollout_ready": 47,
-      "needs_role_authored_work": 36,
+      "rollout_ready": 51,
+      "needs_role_authored_work": 32,
       "blocked": 2
     },
-    "role_world_complete_or_pilot": 47,
-    "rollout_queue_roles": 38,
-    "first_wave_candidate_count": 0,
+    "role_world_complete_or_pilot": 50,
+    "rollout_queue_roles": 35,
+    "first_wave_candidate_count": 1,
     "role_level_blocked_count": 2,
     "structural_families_in_queue": 5
   },
@@ -51,101 +51,34 @@
     "gate_pass": true,
     "broad_rollout_allowed_now": true,
     "policy_recommendation": "controlled_rollout_open_with_role_level_gates",
-    "next_required_pr": "Select next rollout_ready role",
+    "next_required_pr": "Role World rollout: scenekunst/scenekunst_utoving_og_ensemble",
     "rule": "A green readiness gate proves the program can safely begin controlled rollout. It does not make every role rollout_ready and it does not itself flip broad_rollout_allowed."
   },
-  "first_wave_candidates": [],
+  "first_wave_candidates": [
+    {
+      "rank": 1,
+      "key": "scenekunst/scenekunst_utoving_og_ensemble",
+      "classification": "rollout_ready",
+      "structural_family": "creative_production",
+      "priority_score": 1285,
+      "blockers": [],
+      "authored_work_required": [],
+      "cross_role_need": "not_required_for_rollout"
+    }
+  ],
   "rollout_queue": [
     {
       "rank": 1,
-      "key": "scenekunst/scenekunst_program_og_kuratering",
-      "classification": "needs_role_authored_work",
+      "key": "scenekunst/scenekunst_utoving_og_ensemble",
+      "classification": "rollout_ready",
       "structural_family": "creative_production",
-      "priority_score": 545,
+      "priority_score": 1285,
       "blockers": [],
-      "authored_work_required": [
-        "career:day_one",
-        "career:knowledge",
-        "career:mail",
-        "career:people",
-        "career:places",
-        "career:workday_loop",
-        "history_go_affordance",
-        "people_places_integrity",
-        "persistent_work_object",
-        "rhythm_waiting_handoff_rework",
-        "situated_reputation"
-      ],
+      "authored_work_required": [],
       "cross_role_need": "not_required_for_rollout"
     },
     {
       "rank": 2,
-      "key": "scenekunst/scenekunst_regi_og_koreografi",
-      "classification": "needs_role_authored_work",
-      "structural_family": "creative_production",
-      "priority_score": 545,
-      "blockers": [],
-      "authored_work_required": [
-        "career:day_one",
-        "career:knowledge",
-        "career:mail",
-        "career:people",
-        "career:places",
-        "career:workday_loop",
-        "history_go_affordance",
-        "people_places_integrity",
-        "persistent_work_object",
-        "rhythm_waiting_handoff_rework",
-        "situated_reputation"
-      ],
-      "cross_role_need": "candidate_when_shared_work_is_real"
-    },
-    {
-      "rank": 3,
-      "key": "scenekunst/scenekunst_scene_og_produksjon",
-      "classification": "needs_role_authored_work",
-      "structural_family": "creative_production",
-      "priority_score": 545,
-      "blockers": [],
-      "authored_work_required": [
-        "career:day_one",
-        "career:knowledge",
-        "career:mail",
-        "career:people",
-        "career:places",
-        "career:workday_loop",
-        "history_go_affordance",
-        "people_places_integrity",
-        "persistent_work_object",
-        "rhythm_waiting_handoff_rework",
-        "situated_reputation"
-      ],
-      "cross_role_need": "candidate_when_shared_work_is_real"
-    },
-    {
-      "rank": 4,
-      "key": "scenekunst/scenekunst_utoving_og_ensemble",
-      "classification": "needs_role_authored_work",
-      "structural_family": "creative_production",
-      "priority_score": 545,
-      "blockers": [],
-      "authored_work_required": [
-        "career:day_one",
-        "career:knowledge",
-        "career:mail",
-        "career:people",
-        "career:places",
-        "career:workday_loop",
-        "history_go_affordance",
-        "people_places_integrity",
-        "persistent_work_object",
-        "rhythm_waiting_handoff_rework",
-        "situated_reputation"
-      ],
-      "cross_role_need": "not_required_for_rollout"
-    },
-    {
-      "rank": 5,
       "key": "subkultur/subkultur_kulturarena_ledelse",
       "classification": "needs_role_authored_work",
       "structural_family": "event_operational",
@@ -167,7 +100,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 6,
+      "rank": 3,
       "key": "subkultur/subkultur_produksjon_og_prosjekt",
       "classification": "needs_role_authored_work",
       "structural_family": "creative_production",
@@ -189,7 +122,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 7,
+      "rank": 4,
       "key": "subkultur/subkultur_produksjonsledelse",
       "classification": "needs_role_authored_work",
       "structural_family": "creative_production",
@@ -211,7 +144,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 8,
+      "rank": 5,
       "key": "subkultur/subkultur_program_og_koordinering",
       "classification": "needs_role_authored_work",
       "structural_family": "event_operational",
@@ -233,7 +166,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 9,
+      "rank": 6,
       "key": "historie/historie_fagledelse",
       "classification": "needs_role_authored_work",
       "structural_family": "other",
@@ -255,7 +188,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 10,
+      "rank": 7,
       "key": "historie/historie_forskning_og_akademia",
       "classification": "needs_role_authored_work",
       "structural_family": "research_education",
@@ -277,7 +210,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 11,
+      "rank": 8,
       "key": "historie/historie_forvaltning_og_radgivning",
       "classification": "needs_role_authored_work",
       "structural_family": "public_administration",
@@ -299,7 +232,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 12,
+      "rank": 9,
       "key": "historie/historie_institusjonsledelse",
       "classification": "needs_role_authored_work",
       "structural_family": "other",
@@ -321,7 +254,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 13,
+      "rank": 10,
       "key": "historie/historie_museum_og_samling",
       "classification": "needs_role_authored_work",
       "structural_family": "other",
@@ -343,7 +276,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 14,
+      "rank": 11,
       "key": "kunst/kunst_konservering_og_samling",
       "classification": "needs_role_authored_work",
       "structural_family": "other",
@@ -365,7 +298,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 15,
+      "rank": 12,
       "key": "kunst/kunst_kuratering_og_program",
       "classification": "needs_role_authored_work",
       "structural_family": "other",
@@ -387,7 +320,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 16,
+      "rank": 13,
       "key": "kunst/kunst_museumsledelse",
       "classification": "needs_role_authored_work",
       "structural_family": "other",
@@ -409,7 +342,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 17,
+      "rank": 14,
       "key": "kunst/kunst_publikum_og_formidling",
       "classification": "needs_role_authored_work",
       "structural_family": "other",
@@ -431,7 +364,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 18,
+      "rank": 15,
       "key": "natur/natur_biologi_og_forskning",
       "classification": "needs_role_authored_work",
       "structural_family": "research_education",
@@ -453,7 +386,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 19,
+      "rank": 16,
       "key": "natur/natur_felt_og_formidling",
       "classification": "needs_role_authored_work",
       "structural_family": "other",
@@ -475,7 +408,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 20,
+      "rank": 17,
       "key": "natur/natur_forvaltning_og_radgivning",
       "classification": "needs_role_authored_work",
       "structural_family": "public_administration",
@@ -497,7 +430,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 21,
+      "rank": 18,
       "key": "natur/natur_miljoledelse",
       "classification": "needs_role_authored_work",
       "structural_family": "other",
@@ -519,7 +452,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 22,
+      "rank": 19,
       "key": "natur/natur_politisk_myndighet",
       "classification": "needs_role_authored_work",
       "structural_family": "other",
@@ -541,7 +474,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 23,
+      "rank": 20,
       "key": "politikk/politikk_kommunal_ledelse",
       "classification": "needs_role_authored_work",
       "structural_family": "public_administration",
@@ -563,7 +496,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 24,
+      "rank": 21,
       "key": "politikk/politikk_organisasjonsarbeid",
       "classification": "needs_role_authored_work",
       "structural_family": "public_administration",
@@ -585,7 +518,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 25,
+      "rank": 22,
       "key": "politikk/politikk_parlamentarisk_arbeid",
       "classification": "needs_role_authored_work",
       "structural_family": "public_administration",
@@ -607,7 +540,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 26,
+      "rank": 23,
       "key": "politikk/politikk_politisk_radgivning",
       "classification": "needs_role_authored_work",
       "structural_family": "public_administration",
@@ -629,7 +562,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 27,
+      "rank": 24,
       "key": "politikk/politikk_regjeringsledelse",
       "classification": "needs_role_authored_work",
       "structural_family": "public_administration",
@@ -651,7 +584,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 28,
+      "rank": 25,
       "key": "religion/religion_fagledelse",
       "classification": "needs_role_authored_work",
       "structural_family": "other",
@@ -673,7 +606,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 29,
+      "rank": 26,
       "key": "religion/religion_formidling_og_kulturarv",
       "classification": "needs_role_authored_work",
       "structural_family": "other",
@@ -695,7 +628,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 30,
+      "rank": 27,
       "key": "religion/religion_utredning_og_radgivning",
       "classification": "needs_role_authored_work",
       "structural_family": "public_administration",
@@ -717,7 +650,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 31,
+      "rank": 28,
       "key": "vitenskap/vitenskap_assistent_og_laboratorium",
       "classification": "needs_role_authored_work",
       "structural_family": "research_education",
@@ -739,7 +672,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 32,
+      "rank": 29,
       "key": "vitenskap/vitenskap_doktorlop_og_postdoktor",
       "classification": "needs_role_authored_work",
       "structural_family": "research_education",
@@ -761,7 +694,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 33,
+      "rank": 30,
       "key": "vitenskap/vitenskap_forskning",
       "classification": "needs_role_authored_work",
       "structural_family": "research_education",
@@ -783,7 +716,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 34,
+      "rank": 31,
       "key": "vitenskap/vitenskap_forskningsledelse",
       "classification": "needs_role_authored_work",
       "structural_family": "research_education",
@@ -805,7 +738,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 35,
+      "rank": 32,
       "key": "vitenskap/vitenskap_institusjonsledelse",
       "classification": "needs_role_authored_work",
       "structural_family": "research_education",
@@ -827,7 +760,7 @@
       "cross_role_need": "candidate_when_shared_work_is_real"
     },
     {
-      "rank": 36,
+      "rank": 33,
       "key": "vitenskap/vitenskap_undervisning_og_forskning",
       "classification": "needs_role_authored_work",
       "structural_family": "research_education",
@@ -849,7 +782,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 37,
+      "rank": 34,
       "key": "musikk/musikk_scene_og_produksjon",
       "classification": "blocked",
       "structural_family": "creative_production",
@@ -874,7 +807,7 @@
       "cross_role_need": "not_required_for_rollout"
     },
     {
-      "rank": 38,
+      "rank": 35,
       "key": "musikk/musikk_utoving_og_ensemble",
       "classification": "blocked",
       "structural_family": "other",
@@ -7909,54 +7842,79 @@
       "badge_titles": [
         "Scenekunstkurator"
       ],
-      "career_status": "architecture_only",
-      "runtime_gate": false,
-      "role_world_status": "role_world_not_started",
+      "career_status": "playable",
+      "runtime_gate": true,
+      "role_world_status": "role_world_complete",
       "structural_family": "creative_production",
-      "classification": "needs_role_authored_work",
-      "priority_score": 545,
+      "classification": "rollout_ready",
+      "priority_score": 935,
       "dimensions": {
         "persistent_work_object": {
-          "status": "needs_role_authored_work",
+          "status": "foundation_ready",
           "evidence": [
+            "data/Civication/mailFamilies/scenekunst/job/scenekunst_program_og_kuratering_job.json",
+            "data/Civication/roleWorlds/scenekunst/scenekunst_program_og_kuratering.json",
             "data/Civication/workGrammars/scenekunst/scenekunst_program_og_kuratering.json"
           ],
-          "rationale": "The current career foundation does not yet prove a stable persistent work object across later scenes."
+          "rationale": "Existing work content carries stable object/case/project signals and a complete workday loop; the rollout PR must bind them explicitly to the locked persistent-work contract."
         },
         "institution_authority": {
           "status": "foundation_ready",
           "evidence": [
+            "data/Civication/roleModels/scenekunst/scenekunst_program_og_kuratering.json",
             "data/Civication/workGrammars/scenekunst/scenekunst_program_og_kuratering.json"
           ],
           "rationale": "Existing authored sources already expose institutional/authority language; rollout must preserve direct, approval, escalation and forbidden-action boundaries."
         },
         "rhythm_waiting_handoff_rework": {
-          "status": "needs_role_authored_work",
+          "status": "foundation_ready",
           "evidence": [
+            "data/Civication/mailFamilies/scenekunst/job/scenekunst_program_og_kuratering_job.json",
+            "data/Civication/mailPlans/scenekunst/scenekunst_program_og_kuratering_plan.json",
+            "data/Civication/roleWorlds/scenekunst/scenekunst_program_og_kuratering.json",
             "data/Civication/workGrammars/scenekunst/scenekunst_program_og_kuratering.json"
           ],
-          "rationale": "Waiting, handoff, interruption or rework is not yet explicit enough to prove a distinct role rhythm."
+          "rationale": "The current runtime-authored role already exposes deadline/rework/handoff signals; rollout must make the rhythm role-specific and persistent."
         },
         "history_go_affordance": {
-          "status": "needs_role_authored_work",
-          "evidence": [],
-          "rationale": "Knowledge bridge is missing; a concrete History Go affordance must be authored before this role is considered realism-ready."
+          "status": "foundation_ready",
+          "evidence": [
+            "data/Civication/mailFamilies/scenekunst/knowledge/scenekunst_program_og_kuratering_knowledge.json",
+            "data/Civication/roleModels/scenekunst/scenekunst_program_og_kuratering.json",
+            "data/Civication/roleWorlds/scenekunst/scenekunst_program_og_kuratering.json",
+            "data/Civication/workGrammars/scenekunst/scenekunst_program_og_kuratering.json"
+          ],
+          "rationale": "Career knowledge integration is complete; the rollout PR must author a concrete better-choice affordance while keeping authority independent from knowledge."
         },
         "situated_reputation": {
-          "status": "needs_role_authored_work",
-          "evidence": [],
-          "rationale": "Situated reputation audiences are not yet explicit for this role; do not substitute the legacy/global reputation summary."
+          "status": "foundation_ready",
+          "evidence": [
+            "data/Civication/mailFamilies/scenekunst/job/scenekunst_program_og_kuratering_job.json",
+            "data/Civication/mailPlans/scenekunst/scenekunst_program_og_kuratering_plan.json",
+            "data/Civication/roleWorlds/scenekunst/scenekunst_program_og_kuratering.json"
+          ],
+          "rationale": "Role-authored sources already contain situated audience/standing signals; rollout must bind only bounded authored audience IDs."
         },
         "people_places_integrity": {
-          "status": "needs_role_authored_work",
-          "evidence": [],
-          "rationale": "People=missing, Places=missing; role-authored integration is incomplete."
+          "status": "foundation_ready",
+          "evidence": [
+            "data/Civication/mailFamilies/scenekunst/people/scenekunst_program_og_kuratering_people.json",
+            "data/Civication/roleModels/scenekunst/scenekunst_program_og_kuratering.json",
+            "data/Civication/roleWorlds/scenekunst/scenekunst_program_og_kuratering.json",
+            "data/Civication/workGrammars/scenekunst/scenekunst_program_og_kuratering.json"
+          ],
+          "rationale": "Career People and Places coverage is complete; rollout still must verify factual canonical references and keep invented workplace drama explicitly fictional."
         },
         "provenance": {
           "status": "foundation_ready",
           "evidence": [
+            "data/Civication/mailFamilies/scenekunst/job/scenekunst_program_og_kuratering_job.json",
+            "data/Civication/mailPlans/scenekunst/scenekunst_program_og_kuratering_plan.json",
+            "data/Civication/roleWorlds/scenekunst/scenekunst_program_og_kuratering.json",
             "data/Civication/workGrammars/scenekunst/scenekunst_program_og_kuratering.json",
-            "tests/civication-scenekunst-life-career-split.test.js"
+            "tests/civication-scenekunst-life-career-split.test.js",
+            "tests/civication-scenekunst-program-og-kuratering-prerequisites.test.js",
+            "tests/civication-scenekunst-program-og-kuratering-role-world-rollout.test.js"
           ],
           "rationale": "Role-specific tests and authored source paths exist; rollout must add strict scene-registry parity and source provenance for new realism scenes."
         }
@@ -7967,24 +7925,17 @@
         "rationale": "Cross-role linkage is optional and must only be authored where the work itself is genuinely shared."
       },
       "blockers": [],
-      "authored_work_required": [
-        "career:day_one",
-        "career:knowledge",
-        "career:mail",
-        "career:people",
-        "career:places",
-        "career:workday_loop",
-        "history_go_affordance",
-        "people_places_integrity",
-        "persistent_work_object",
-        "rhythm_waiting_handoff_rework",
-        "situated_reputation"
-      ],
+      "authored_work_required": [],
       "source_refs": [
+        "data/Civication/mailFamilies/scenekunst/job/scenekunst_program_og_kuratering_job.json",
+        "data/Civication/mailPlans/scenekunst/scenekunst_program_og_kuratering_plan.json",
+        "data/Civication/roleWorlds/scenekunst/scenekunst_program_og_kuratering.json",
         "data/Civication/workGrammars/scenekunst/scenekunst_program_og_kuratering.json",
-        "tests/civication-scenekunst-life-career-split.test.js"
+        "tests/civication-scenekunst-life-career-split.test.js",
+        "tests/civication-scenekunst-program-og-kuratering-prerequisites.test.js",
+        "tests/civication-scenekunst-program-og-kuratering-role-world-rollout.test.js"
       ],
-      "already_reference_or_pilot": false
+      "already_reference_or_pilot": true
     },
     {
       "key": "scenekunst/scenekunst_regi_og_koreografi",
@@ -7994,54 +7945,79 @@
         "Koreograf",
         "Regissør"
       ],
-      "career_status": "architecture_only",
-      "runtime_gate": false,
-      "role_world_status": "role_world_not_started",
+      "career_status": "playable",
+      "runtime_gate": true,
+      "role_world_status": "role_world_complete",
       "structural_family": "creative_production",
-      "classification": "needs_role_authored_work",
-      "priority_score": 545,
+      "classification": "rollout_ready",
+      "priority_score": 935,
       "dimensions": {
         "persistent_work_object": {
-          "status": "needs_role_authored_work",
+          "status": "foundation_ready",
           "evidence": [
+            "data/Civication/mailFamilies/scenekunst/job/scenekunst_regi_og_koreografi_job.json",
+            "data/Civication/roleWorlds/scenekunst/scenekunst_regi_og_koreografi.json",
             "data/Civication/workGrammars/scenekunst/scenekunst_regi_og_koreografi.json"
           ],
-          "rationale": "The current career foundation does not yet prove a stable persistent work object across later scenes."
+          "rationale": "Existing work content carries stable object/case/project signals and a complete workday loop; the rollout PR must bind them explicitly to the locked persistent-work contract."
         },
         "institution_authority": {
           "status": "foundation_ready",
           "evidence": [
+            "data/Civication/roleModels/scenekunst/scenekunst_regi_og_koreografi.json",
             "data/Civication/workGrammars/scenekunst/scenekunst_regi_og_koreografi.json"
           ],
           "rationale": "Existing authored sources already expose institutional/authority language; rollout must preserve direct, approval, escalation and forbidden-action boundaries."
         },
         "rhythm_waiting_handoff_rework": {
-          "status": "needs_role_authored_work",
+          "status": "foundation_ready",
           "evidence": [
+            "data/Civication/mailFamilies/scenekunst/job/scenekunst_regi_og_koreografi_job.json",
+            "data/Civication/mailPlans/scenekunst/scenekunst_regi_og_koreografi_plan.json",
+            "data/Civication/roleWorlds/scenekunst/scenekunst_regi_og_koreografi.json",
             "data/Civication/workGrammars/scenekunst/scenekunst_regi_og_koreografi.json"
           ],
-          "rationale": "Waiting, handoff, interruption or rework is not yet explicit enough to prove a distinct role rhythm."
+          "rationale": "The current runtime-authored role already exposes deadline/rework/handoff signals; rollout must make the rhythm role-specific and persistent."
         },
         "history_go_affordance": {
-          "status": "needs_role_authored_work",
-          "evidence": [],
-          "rationale": "Knowledge bridge is missing; a concrete History Go affordance must be authored before this role is considered realism-ready."
+          "status": "foundation_ready",
+          "evidence": [
+            "data/Civication/mailFamilies/scenekunst/knowledge/scenekunst_regi_og_koreografi_knowledge.json",
+            "data/Civication/roleModels/scenekunst/scenekunst_regi_og_koreografi.json",
+            "data/Civication/roleWorlds/scenekunst/scenekunst_regi_og_koreografi.json",
+            "data/Civication/workGrammars/scenekunst/scenekunst_regi_og_koreografi.json"
+          ],
+          "rationale": "Career knowledge integration is complete; the rollout PR must author a concrete better-choice affordance while keeping authority independent from knowledge."
         },
         "situated_reputation": {
-          "status": "needs_role_authored_work",
-          "evidence": [],
-          "rationale": "Situated reputation audiences are not yet explicit for this role; do not substitute the legacy/global reputation summary."
+          "status": "foundation_ready",
+          "evidence": [
+            "data/Civication/mailFamilies/scenekunst/job/scenekunst_regi_og_koreografi_job.json",
+            "data/Civication/mailPlans/scenekunst/scenekunst_regi_og_koreografi_plan.json",
+            "data/Civication/roleWorlds/scenekunst/scenekunst_regi_og_koreografi.json"
+          ],
+          "rationale": "Role-authored sources already contain situated audience/standing signals; rollout must bind only bounded authored audience IDs."
         },
         "people_places_integrity": {
-          "status": "needs_role_authored_work",
-          "evidence": [],
-          "rationale": "People=missing, Places=missing; role-authored integration is incomplete."
+          "status": "foundation_ready",
+          "evidence": [
+            "data/Civication/mailFamilies/scenekunst/people/scenekunst_regi_og_koreografi_people.json",
+            "data/Civication/roleModels/scenekunst/scenekunst_regi_og_koreografi.json",
+            "data/Civication/roleWorlds/scenekunst/scenekunst_regi_og_koreografi.json",
+            "data/Civication/workGrammars/scenekunst/scenekunst_regi_og_koreografi.json"
+          ],
+          "rationale": "Career People and Places coverage is complete; rollout still must verify factual canonical references and keep invented workplace drama explicitly fictional."
         },
         "provenance": {
           "status": "foundation_ready",
           "evidence": [
+            "data/Civication/mailFamilies/scenekunst/job/scenekunst_regi_og_koreografi_job.json",
+            "data/Civication/mailPlans/scenekunst/scenekunst_regi_og_koreografi_plan.json",
+            "data/Civication/roleWorlds/scenekunst/scenekunst_regi_og_koreografi.json",
             "data/Civication/workGrammars/scenekunst/scenekunst_regi_og_koreografi.json",
-            "tests/civication-scenekunst-life-career-split.test.js"
+            "tests/civication-scenekunst-life-career-split.test.js",
+            "tests/civication-scenekunst-regi-og-koreografi-prerequisites.test.js",
+            "tests/civication-scenekunst-regi-og-koreografi-role-world-rollout.test.js"
           ],
           "rationale": "Role-specific tests and authored source paths exist; rollout must add strict scene-registry parity and source provenance for new realism scenes."
         }
@@ -8055,24 +8031,17 @@
         "rationale": "This role has plausible same-domain handoff or leadership counterparts; a shared object is a design candidate, not a mandatory gate."
       },
       "blockers": [],
-      "authored_work_required": [
-        "career:day_one",
-        "career:knowledge",
-        "career:mail",
-        "career:people",
-        "career:places",
-        "career:workday_loop",
-        "history_go_affordance",
-        "people_places_integrity",
-        "persistent_work_object",
-        "rhythm_waiting_handoff_rework",
-        "situated_reputation"
-      ],
+      "authored_work_required": [],
       "source_refs": [
+        "data/Civication/mailFamilies/scenekunst/job/scenekunst_regi_og_koreografi_job.json",
+        "data/Civication/mailPlans/scenekunst/scenekunst_regi_og_koreografi_plan.json",
+        "data/Civication/roleWorlds/scenekunst/scenekunst_regi_og_koreografi.json",
         "data/Civication/workGrammars/scenekunst/scenekunst_regi_og_koreografi.json",
-        "tests/civication-scenekunst-life-career-split.test.js"
+        "tests/civication-scenekunst-life-career-split.test.js",
+        "tests/civication-scenekunst-regi-og-koreografi-prerequisites.test.js",
+        "tests/civication-scenekunst-regi-og-koreografi-role-world-rollout.test.js"
       ],
-      "already_reference_or_pilot": false
+      "already_reference_or_pilot": true
     },
     {
       "key": "scenekunst/scenekunst_scene_og_produksjon",
@@ -8085,54 +8054,79 @@
         "Scenetekniker",
         "Scenevert"
       ],
-      "career_status": "architecture_only",
-      "runtime_gate": false,
-      "role_world_status": "role_world_not_started",
+      "career_status": "playable",
+      "runtime_gate": true,
+      "role_world_status": "role_world_complete",
       "structural_family": "creative_production",
-      "classification": "needs_role_authored_work",
-      "priority_score": 545,
+      "classification": "rollout_ready",
+      "priority_score": 935,
       "dimensions": {
         "persistent_work_object": {
-          "status": "needs_role_authored_work",
+          "status": "foundation_ready",
           "evidence": [
+            "data/Civication/mailFamilies/scenekunst/job/scenekunst_scene_og_produksjon_job.json",
+            "data/Civication/roleWorlds/scenekunst/scenekunst_scene_og_produksjon.json",
             "data/Civication/workGrammars/scenekunst/scenekunst_scene_og_produksjon.json"
           ],
-          "rationale": "The current career foundation does not yet prove a stable persistent work object across later scenes."
+          "rationale": "Existing work content carries stable object/case/project signals and a complete workday loop; the rollout PR must bind them explicitly to the locked persistent-work contract."
         },
         "institution_authority": {
           "status": "foundation_ready",
           "evidence": [
+            "data/Civication/roleModels/scenekunst/scenekunst_scene_og_produksjon.json",
             "data/Civication/workGrammars/scenekunst/scenekunst_scene_og_produksjon.json"
           ],
           "rationale": "Existing authored sources already expose institutional/authority language; rollout must preserve direct, approval, escalation and forbidden-action boundaries."
         },
         "rhythm_waiting_handoff_rework": {
-          "status": "needs_role_authored_work",
+          "status": "foundation_ready",
           "evidence": [
+            "data/Civication/mailFamilies/scenekunst/job/scenekunst_scene_og_produksjon_job.json",
+            "data/Civication/mailPlans/scenekunst/scenekunst_scene_og_produksjon_plan.json",
+            "data/Civication/roleWorlds/scenekunst/scenekunst_scene_og_produksjon.json",
             "data/Civication/workGrammars/scenekunst/scenekunst_scene_og_produksjon.json"
           ],
-          "rationale": "Waiting, handoff, interruption or rework is not yet explicit enough to prove a distinct role rhythm."
+          "rationale": "The current runtime-authored role already exposes deadline/rework/handoff signals; rollout must make the rhythm role-specific and persistent."
         },
         "history_go_affordance": {
-          "status": "needs_role_authored_work",
-          "evidence": [],
-          "rationale": "Knowledge bridge is missing; a concrete History Go affordance must be authored before this role is considered realism-ready."
+          "status": "foundation_ready",
+          "evidence": [
+            "data/Civication/mailFamilies/scenekunst/knowledge/scenekunst_scene_og_produksjon_knowledge.json",
+            "data/Civication/roleModels/scenekunst/scenekunst_scene_og_produksjon.json",
+            "data/Civication/roleWorlds/scenekunst/scenekunst_scene_og_produksjon.json",
+            "data/Civication/workGrammars/scenekunst/scenekunst_scene_og_produksjon.json"
+          ],
+          "rationale": "Career knowledge integration is complete; the rollout PR must author a concrete better-choice affordance while keeping authority independent from knowledge."
         },
         "situated_reputation": {
-          "status": "needs_role_authored_work",
-          "evidence": [],
-          "rationale": "Situated reputation audiences are not yet explicit for this role; do not substitute the legacy/global reputation summary."
+          "status": "foundation_ready",
+          "evidence": [
+            "data/Civication/mailFamilies/scenekunst/job/scenekunst_scene_og_produksjon_job.json",
+            "data/Civication/mailPlans/scenekunst/scenekunst_scene_og_produksjon_plan.json",
+            "data/Civication/roleWorlds/scenekunst/scenekunst_scene_og_produksjon.json"
+          ],
+          "rationale": "Role-authored sources already contain situated audience/standing signals; rollout must bind only bounded authored audience IDs."
         },
         "people_places_integrity": {
-          "status": "needs_role_authored_work",
-          "evidence": [],
-          "rationale": "People=missing, Places=missing; role-authored integration is incomplete."
+          "status": "foundation_ready",
+          "evidence": [
+            "data/Civication/mailFamilies/scenekunst/people/scenekunst_scene_og_produksjon_people.json",
+            "data/Civication/roleModels/scenekunst/scenekunst_scene_og_produksjon.json",
+            "data/Civication/roleWorlds/scenekunst/scenekunst_scene_og_produksjon.json",
+            "data/Civication/workGrammars/scenekunst/scenekunst_scene_og_produksjon.json"
+          ],
+          "rationale": "Career People and Places coverage is complete; rollout still must verify factual canonical references and keep invented workplace drama explicitly fictional."
         },
         "provenance": {
           "status": "foundation_ready",
           "evidence": [
+            "data/Civication/mailFamilies/scenekunst/job/scenekunst_scene_og_produksjon_job.json",
+            "data/Civication/mailPlans/scenekunst/scenekunst_scene_og_produksjon_plan.json",
+            "data/Civication/roleWorlds/scenekunst/scenekunst_scene_og_produksjon.json",
             "data/Civication/workGrammars/scenekunst/scenekunst_scene_og_produksjon.json",
-            "tests/civication-scenekunst-life-career-split.test.js"
+            "tests/civication-scenekunst-life-career-split.test.js",
+            "tests/civication-scenekunst-scene-og-produksjon-prerequisites.test.js",
+            "tests/civication-scenekunst-scene-og-produksjon-role-world-rollout.test.js"
           ],
           "rationale": "Role-specific tests and authored source paths exist; rollout must add strict scene-registry parity and source provenance for new realism scenes."
         }
@@ -8146,24 +8140,17 @@
         "rationale": "This role has plausible same-domain handoff or leadership counterparts; a shared object is a design candidate, not a mandatory gate."
       },
       "blockers": [],
-      "authored_work_required": [
-        "career:day_one",
-        "career:knowledge",
-        "career:mail",
-        "career:people",
-        "career:places",
-        "career:workday_loop",
-        "history_go_affordance",
-        "people_places_integrity",
-        "persistent_work_object",
-        "rhythm_waiting_handoff_rework",
-        "situated_reputation"
-      ],
+      "authored_work_required": [],
       "source_refs": [
+        "data/Civication/mailFamilies/scenekunst/job/scenekunst_scene_og_produksjon_job.json",
+        "data/Civication/mailPlans/scenekunst/scenekunst_scene_og_produksjon_plan.json",
+        "data/Civication/roleWorlds/scenekunst/scenekunst_scene_og_produksjon.json",
         "data/Civication/workGrammars/scenekunst/scenekunst_scene_og_produksjon.json",
-        "tests/civication-scenekunst-life-career-split.test.js"
+        "tests/civication-scenekunst-life-career-split.test.js",
+        "tests/civication-scenekunst-scene-og-produksjon-prerequisites.test.js",
+        "tests/civication-scenekunst-scene-og-produksjon-role-world-rollout.test.js"
       ],
-      "already_reference_or_pilot": false
+      "already_reference_or_pilot": true
     },
     {
       "key": "scenekunst/scenekunst_utoving_og_ensemble",
@@ -8172,54 +8159,72 @@
       "badge_titles": [
         "Skuespiller / danser"
       ],
-      "career_status": "architecture_only",
-      "runtime_gate": false,
+      "career_status": "playable",
+      "runtime_gate": true,
       "role_world_status": "role_world_not_started",
       "structural_family": "creative_production",
-      "classification": "needs_role_authored_work",
-      "priority_score": 545,
+      "classification": "rollout_ready",
+      "priority_score": 1285,
       "dimensions": {
         "persistent_work_object": {
-          "status": "needs_role_authored_work",
+          "status": "foundation_ready",
           "evidence": [
+            "data/Civication/mailFamilies/scenekunst/job/scenekunst_utoving_og_ensemble_job.json",
             "data/Civication/workGrammars/scenekunst/scenekunst_utoving_og_ensemble.json"
           ],
-          "rationale": "The current career foundation does not yet prove a stable persistent work object across later scenes."
+          "rationale": "Existing work content carries stable object/case/project signals and a complete workday loop; the rollout PR must bind them explicitly to the locked persistent-work contract."
         },
         "institution_authority": {
           "status": "foundation_ready",
           "evidence": [
+            "data/Civication/roleModels/scenekunst/scenekunst_utoving_og_ensemble.json",
             "data/Civication/workGrammars/scenekunst/scenekunst_utoving_og_ensemble.json"
           ],
           "rationale": "Existing authored sources already expose institutional/authority language; rollout must preserve direct, approval, escalation and forbidden-action boundaries."
         },
         "rhythm_waiting_handoff_rework": {
-          "status": "needs_role_authored_work",
+          "status": "foundation_ready",
           "evidence": [
+            "data/Civication/mailFamilies/scenekunst/job/scenekunst_utoving_og_ensemble_job.json",
+            "data/Civication/mailPlans/scenekunst/scenekunst_utoving_og_ensemble_plan.json",
             "data/Civication/workGrammars/scenekunst/scenekunst_utoving_og_ensemble.json"
           ],
-          "rationale": "Waiting, handoff, interruption or rework is not yet explicit enough to prove a distinct role rhythm."
+          "rationale": "The current runtime-authored role already exposes deadline/rework/handoff signals; rollout must make the rhythm role-specific and persistent."
         },
         "history_go_affordance": {
-          "status": "needs_role_authored_work",
-          "evidence": [],
-          "rationale": "Knowledge bridge is missing; a concrete History Go affordance must be authored before this role is considered realism-ready."
+          "status": "foundation_ready",
+          "evidence": [
+            "data/Civication/mailFamilies/scenekunst/knowledge/scenekunst_utoving_og_ensemble_knowledge.json",
+            "data/Civication/roleModels/scenekunst/scenekunst_utoving_og_ensemble.json",
+            "data/Civication/workGrammars/scenekunst/scenekunst_utoving_og_ensemble.json"
+          ],
+          "rationale": "Career knowledge integration is complete; the rollout PR must author a concrete better-choice affordance while keeping authority independent from knowledge."
         },
         "situated_reputation": {
-          "status": "needs_role_authored_work",
-          "evidence": [],
-          "rationale": "Situated reputation audiences are not yet explicit for this role; do not substitute the legacy/global reputation summary."
+          "status": "foundation_ready",
+          "evidence": [
+            "data/Civication/mailFamilies/scenekunst/job/scenekunst_utoving_og_ensemble_job.json",
+            "data/Civication/mailPlans/scenekunst/scenekunst_utoving_og_ensemble_plan.json"
+          ],
+          "rationale": "Role-authored sources already contain situated audience/standing signals; rollout must bind only bounded authored audience IDs."
         },
         "people_places_integrity": {
-          "status": "needs_role_authored_work",
-          "evidence": [],
-          "rationale": "People=missing, Places=missing; role-authored integration is incomplete."
+          "status": "foundation_ready",
+          "evidence": [
+            "data/Civication/mailFamilies/scenekunst/people/scenekunst_utoving_og_ensemble_people.json",
+            "data/Civication/roleModels/scenekunst/scenekunst_utoving_og_ensemble.json",
+            "data/Civication/workGrammars/scenekunst/scenekunst_utoving_og_ensemble.json"
+          ],
+          "rationale": "Career People and Places coverage is complete; rollout still must verify factual canonical references and keep invented workplace drama explicitly fictional."
         },
         "provenance": {
           "status": "foundation_ready",
           "evidence": [
+            "data/Civication/mailFamilies/scenekunst/job/scenekunst_utoving_og_ensemble_job.json",
+            "data/Civication/mailPlans/scenekunst/scenekunst_utoving_og_ensemble_plan.json",
             "data/Civication/workGrammars/scenekunst/scenekunst_utoving_og_ensemble.json",
-            "tests/civication-scenekunst-life-career-split.test.js"
+            "tests/civication-scenekunst-life-career-split.test.js",
+            "tests/civication-scenekunst-utoving-og-ensemble-prerequisites.test.js"
           ],
           "rationale": "Role-specific tests and authored source paths exist; rollout must add strict scene-registry parity and source provenance for new realism scenes."
         }
@@ -8230,22 +8235,13 @@
         "rationale": "Cross-role linkage is optional and must only be authored where the work itself is genuinely shared."
       },
       "blockers": [],
-      "authored_work_required": [
-        "career:day_one",
-        "career:knowledge",
-        "career:mail",
-        "career:people",
-        "career:places",
-        "career:workday_loop",
-        "history_go_affordance",
-        "people_places_integrity",
-        "persistent_work_object",
-        "rhythm_waiting_handoff_rework",
-        "situated_reputation"
-      ],
+      "authored_work_required": [],
       "source_refs": [
+        "data/Civication/mailFamilies/scenekunst/job/scenekunst_utoving_og_ensemble_job.json",
+        "data/Civication/mailPlans/scenekunst/scenekunst_utoving_og_ensemble_plan.json",
         "data/Civication/workGrammars/scenekunst/scenekunst_utoving_og_ensemble.json",
-        "tests/civication-scenekunst-life-career-split.test.js"
+        "tests/civication-scenekunst-life-career-split.test.js",
+        "tests/civication-scenekunst-utoving-og-ensemble-prerequisites.test.js"
       ],
       "already_reference_or_pilot": false
     },

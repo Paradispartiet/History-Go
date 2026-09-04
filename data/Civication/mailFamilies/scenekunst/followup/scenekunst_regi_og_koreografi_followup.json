@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_regi_og_koreografi",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "regi_rework",
+      "purpose": "Authored directing/choreography gameplay with persistent rehearsal state and bounded authority.",
+      "learning_focus": [
+        "scenisk_komposisjon",
+        "ensemble_og_bevegelse",
+        "samtykke_og_hms",
+        "teknisk_integrasjon",
+        "versjon_handoff_og_rework"
+      ],
+      "mails": [
+        {
+          "id": "regi_rettighet_013",
+          "mail_type": "followup",
+          "mail_family": "regi_rework",
+          "role_scope": "scenekunst_regi_og_koreografi",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 138,
+          "from": "Nora",
+          "people_ref": "nora_regissor",
+          "person_id": "nora_regissor",
+          "place_id": "proverom_og_sceneplan",
+          "subject": "En musikkrettighet faller bort etter at koreografien er låst til sporet",
+          "summary": "Bevegelsesmaterialet fungerer, men timing og anslag er bundet til musikken som ikke kan brukes. Prøveromsboken skal samtidig skille kunstnerisk observasjon, utøvergrense, teknisk premiss, rettighetsstatus og faktisk låst versjon. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, ansvar eller varsling forsvinner. Hver mail må også gjøre synlig hvilken prøve som faktisk er observert, hvem som må svare før neste versjon kan distribueres, og hva ensemble, inspisient og teknikk skal beholde mens avklaringen pågår.",
+          "situation": [
+            "Bevegelsesmaterialet fungerer, men timing og anslag er bundet til musikken som ikke kan brukes.",
+            "Kunstnerisk retning er ikke i seg selv samtykke, teknisk sikkerhetsgodkjenning, rettighetsavklaring eller distribuert gjeldende versjon.",
+            "Neste steg må ha navngitt eier, tydelig status og kunne gjenåpnes av ny dokumentert informasjon."
+          ],
+          "task_domain": "scenekunst_regi_og_koreografi",
+          "competency": "rettighet_og_bounded_rework",
+          "pressure": "kunstnerisk_intensjon_vs_sporbar_grense_og_versjon",
+          "choice_axis": "prøvbar_og_sporbar_rework_vs_skjult_lasing",
+          "consequence_axis": "baerekraftig_scenisk_utvikling_vs_tillit_sikkerhet_og_versjonsgjeld",
+          "narrative_arc": "rettighet_013",
+          "situated_audience_id": "proverom_ensemble_og_teknikk",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sporbar rettighet og bounded rework før låsing",
+              "reply": "Gjenåpne bare musikkavhengig timing og anslag, behold bevegelseslogikken og test ny lyd. Jeg registrerer gjeldende versjon, beslutningseier, åpne avhengigheter og konkret neste test, slik at en kunstnerisk note ikke blir lest som samtykke, teknisk godkjenning, rettighet eller ferdig handoff.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "samtykke",
+                "scenisk_arbeid"
+              ],
+              "feedback": "Gjenåpne bare musikkavhengig timing og anslag, behold bevegelseslogikken og test ny lyd. Dette holder prøvearbeidet levende samtidig som ensemble, inspisient og teknikk kan se hva som er valgt, betinget og må retestes. Endrede premisser gir avgrenset rework i stedet for skjult versjonskaos.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lås rettighet og bounded rework uten full retest",
+              "reply": "Bygg hele scenen på nytt fordi sporet var del av den opprinnelige ideen. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer samtykke, teknikk eller versjonsstatus senere dersom noen protesterer.",
+              "effect": -1,
+              "tags": [
+                "mandatglidning",
+                "versjonsgjeld",
+                "risiko"
+              ],
+              "feedback": "Bygg hele scenen på nytt fordi sporet var del av den opprinnelige ideen. Dette skaper fart ved å flytte risiko og uklarhet til utøver, inspisient eller teknikk. Når premisset endres blir det uklart hvilken versjon som gjaldt, hvem som samtykket og hvem som godkjente sikkerheten.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,298 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_scene_og_produksjon",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "scene_produksjonsbok",
+      "purpose": "Authored scene/production gameplay with persistent production state, truthful release status, explicit handoffs and bounded authority.",
+      "learning_focus": [
+        "produksjonsplan_og_call",
+        "teknisk_sikkerhet",
+        "cue_og_forestilling",
+        "publikumsflyt_og_tilgjengelighet",
+        "avvik_handoff_og_rework"
+      ],
+      "mails": [
+        {
+          "id": "scene_call_001",
+          "mail_type": "job",
+          "mail_family": "scene_produksjonsbok",
+          "role_scope": "scenekunst_scene_og_produksjon",
+          "phase": "forenoon",
+          "day_phase": "morning",
+          "priority": 150,
+          "from": "Ida",
+          "people_ref": "ida_produksjonsleder",
+          "person_id": "ida_produksjonsleder",
+          "place_id": "produksjonskontor_og_callboard",
+          "subject": "Første call har tider, men tre avhengigheter står fortsatt som antakelser",
+          "summary": "Callen viser bemanning og tider, men scenefrigivelse, én nøkkelressurs og endelig innslippstid er ikke bekreftet. Produksjonsboken skal samtidig skille planlagt, bekreftet, betinget og frigitt status for plan, bemanning, teknikk, cue og publikum. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, eier, sikkerhetsgrense eller varsling forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller bekreftet, hvem som må svare før neste statusendring, og hva resten av teamet skal beholde mens avklaringen pågår.",
+          "situation": [
+            "Callen viser bemanning og tider, men scenefrigivelse, én nøkkelressurs og endelig innslippstid er ikke bekreftet.",
+            "Produksjonskoordinering er ikke i seg selv teknisk sikkerhetsgodkjenning, kunstnerisk mandat, rettighetsavklaring, kontraktsfullmakt eller universell-utforming-fasit.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere versjon slettes."
+          ],
+          "task_domain": "scenekunst_scene_og_produksjon",
+          "competency": "produksjonsplan_og_call",
+          "pressure": "produksjonsfart_vs_sporbar_frigivelse_og_handoff",
+          "choice_axis": "sann_status_og_bounded_rework_vs_antakelse_og_skjult_gjeld",
+          "consequence_axis": "baerekraftig_forestilling_vs_sikkerhets_versjons_og_tillitsgjeld",
+          "narrative_arc": "call_001",
+          "situated_audience_id": "scene_produksjon_og_publikum",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sporbar produksjonsplan og call med eksplisitt eier",
+              "reply": "Merk hver avhengighet med eier og status, og distribuer en versjon som tydelig skiller planlagt, bekreftet og frigitt før noen bygger videre på callen. Jeg oppdaterer produksjonsbok, gjeldende status, beslutningseier, åpne avhengigheter og neste kontroll slik at koordinering ikke blir lest som teknisk frigivelse, kunstnerisk mandat, rettighetsavklaring eller bindende fullmakt.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "sikkerhet",
+                "handoff"
+              ],
+              "feedback": "Merk hver avhengighet med eier og status, og distribuer en versjon som tydelig skiller planlagt, bekreftet og frigitt før noen bygger videre på callen. Dette holder produksjonen i bevegelse samtidig som scene, inspisient, teknikk og vertskap kan se hva som er planlagt, bekreftet, betinget og frigitt. Når premisset endres blir rework avgrenset, og status kan overleveres uten å skjule sikkerhet, arbeidstid, tilgjengelighet eller beslutningseier.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Anta produksjonsplan og call og fyll sporbarhet senere",
+              "reply": "Send callen som endelig for å skape arbeidsro og oppdater avvikene senere. Jeg lar produksjonsfarten være styrende og kompletterer status, eier, sikkerhets- eller handoffdetaljer senere dersom neste funksjon oppdager et problem eller ber om dokumentasjon.",
+              "effect": -1,
+              "tags": [
+                "mandatglidning",
+                "statusgjeld",
+                "risiko"
+              ],
+              "feedback": "Send callen som endelig for å skape arbeidsro og oppdater avvikene senere. Det kan spare minutter nå, men flytter usikkerhet og risiko til scene, inspisient, teknikk, utøvere eller publikum. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som frigav hva, og hvilke deler som faktisk må testes på nytt.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "scene_innslipp_002",
+          "mail_type": "job",
+          "mail_family": "scene_produksjonsbok",
+          "role_scope": "scenekunst_scene_og_produksjon",
+          "phase": "forenoon",
+          "day_phase": "morning",
+          "priority": 149,
+          "from": "Samira",
+          "people_ref": "samira_publikumskoordinator",
+          "person_id": "samira_publikumskoordinator",
+          "place_id": "foaje_og_publikumsflyt",
+          "subject": "Publikum står i kø, men scenen er bare betinget klar",
+          "summary": "Foajeen fylles opp mens teknisk sjekk fortsatt har ett åpent stoppkriterium, og annonsert start nærmer seg. Produksjonsboken skal samtidig skille planlagt, bekreftet, betinget og frigitt status for plan, bemanning, teknikk, cue og publikum. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, eier, sikkerhetsgrense eller varsling forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller bekreftet, hvem som må svare før neste statusendring, og hva resten av teamet skal beholde mens avklaringen pågår.",
+          "situation": [
+            "Foajeen fylles opp mens teknisk sjekk fortsatt har ett åpent stoppkriterium, og annonsert start nærmer seg.",
+            "Produksjonskoordinering er ikke i seg selv teknisk sikkerhetsgodkjenning, kunstnerisk mandat, rettighetsavklaring, kontraktsfullmakt eller universell-utforming-fasit.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere versjon slettes."
+          ],
+          "task_domain": "scenekunst_scene_og_produksjon",
+          "competency": "publikumsflyt_og_sann_status",
+          "pressure": "produksjonsfart_vs_sporbar_frigivelse_og_handoff",
+          "choice_axis": "sann_status_og_bounded_rework_vs_antakelse_og_skjult_gjeld",
+          "consequence_axis": "baerekraftig_forestilling_vs_sikkerhets_versjons_og_tillitsgjeld",
+          "narrative_arc": "innslipp_002",
+          "situated_audience_id": "scene_produksjon_og_publikum",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sporbar publikumsflyt og sann status med eksplisitt eier",
+              "reply": "Gi Samira sann betinget status, nytt informasjonstidspunkt og publikumsalternativ, og åpne først når ansvarlig teknisk funksjon faktisk frigir scenen. Jeg oppdaterer produksjonsbok, gjeldende status, beslutningseier, åpne avhengigheter og neste kontroll slik at koordinering ikke blir lest som teknisk frigivelse, kunstnerisk mandat, rettighetsavklaring eller bindende fullmakt.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "sikkerhet",
+                "handoff"
+              ],
+              "feedback": "Gi Samira sann betinget status, nytt informasjonstidspunkt og publikumsalternativ, og åpne først når ansvarlig teknisk funksjon faktisk frigir scenen. Dette holder produksjonen i bevegelse samtidig som scene, inspisient, teknikk og vertskap kan se hva som er planlagt, bekreftet, betinget og frigitt. Når premisset endres blir rework avgrenset, og status kan overleveres uten å skjule sikkerhet, arbeidstid, tilgjengelighet eller beslutningseier.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Anta publikumsflyt og sann status og fyll sporbarhet senere",
+              "reply": "Åpne salen gradvis for å redusere køen og anta at siste tekniske punkt løses før publikum merker det. Jeg lar produksjonsfarten være styrende og kompletterer status, eier, sikkerhets- eller handoffdetaljer senere dersom neste funksjon oppdager et problem eller ber om dokumentasjon.",
+              "effect": -1,
+              "tags": [
+                "mandatglidning",
+                "statusgjeld",
+                "risiko"
+              ],
+              "feedback": "Åpne salen gradvis for å redusere køen og anta at siste tekniske punkt løses før publikum merker det. Det kan spare minutter nå, men flytter usikkerhet og risiko til scene, inspisient, teknikk, utøvere eller publikum. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som frigav hva, og hvilke deler som faktisk må testes på nytt.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "scene_cue_003",
+          "mail_type": "job",
+          "mail_family": "scene_produksjonsbok",
+          "role_scope": "scenekunst_scene_og_produksjon",
+          "phase": "forenoon",
+          "day_phase": "morning",
+          "priority": 148,
+          "from": "Jonas",
+          "people_ref": "jonas_inspisient",
+          "person_id": "jonas_inspisient",
+          "place_id": "inspisientpult_og_cuebok",
+          "subject": "Nytt lyscue kolliderer med sceneskift og tilgjengelig bemanning",
+          "summary": "Et sent kunstnerisk ønske legger et nytt cue inn i samme overgang som et bemanningskrevende sceneskift. Produksjonsboken skal samtidig skille planlagt, bekreftet, betinget og frigitt status for plan, bemanning, teknikk, cue og publikum. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, eier, sikkerhetsgrense eller varsling forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller bekreftet, hvem som må svare før neste statusendring, og hva resten av teamet skal beholde mens avklaringen pågår.",
+          "situation": [
+            "Et sent kunstnerisk ønske legger et nytt cue inn i samme overgang som et bemanningskrevende sceneskift.",
+            "Produksjonskoordinering er ikke i seg selv teknisk sikkerhetsgodkjenning, kunstnerisk mandat, rettighetsavklaring, kontraktsfullmakt eller universell-utforming-fasit.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere versjon slettes."
+          ],
+          "task_domain": "scenekunst_scene_og_produksjon",
+          "competency": "cue_og_handoff",
+          "pressure": "produksjonsfart_vs_sporbar_frigivelse_og_handoff",
+          "choice_axis": "sann_status_og_bounded_rework_vs_antakelse_og_skjult_gjeld",
+          "consequence_axis": "baerekraftig_forestilling_vs_sikkerhets_versjons_og_tillitsgjeld",
+          "narrative_arc": "cue_003",
+          "situated_audience_id": "scene_produksjon_og_publikum",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sporbar cue og handoff med eksplisitt eier",
+              "reply": "Hold cueet betinget, kartlegg kapasitet og sikkerhetskonsekvens og få kunstnerisk og teknisk eier til å velge en gjennomførbar versjon før cueboken låses. Jeg oppdaterer produksjonsbok, gjeldende status, beslutningseier, åpne avhengigheter og neste kontroll slik at koordinering ikke blir lest som teknisk frigivelse, kunstnerisk mandat, rettighetsavklaring eller bindende fullmakt.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "sikkerhet",
+                "handoff"
+              ],
+              "feedback": "Hold cueet betinget, kartlegg kapasitet og sikkerhetskonsekvens og få kunstnerisk og teknisk eier til å velge en gjennomførbar versjon før cueboken låses. Dette holder produksjonen i bevegelse samtidig som scene, inspisient, teknikk og vertskap kan se hva som er planlagt, bekreftet, betinget og frigitt. Når premisset endres blir rework avgrenset, og status kan overleveres uten å skjule sikkerhet, arbeidstid, tilgjengelighet eller beslutningseier.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Anta cue og handoff og fyll sporbarhet senere",
+              "reply": "Legg cueet inn i cueboken og be teamet finne en praktisk løsning under gjennomløpet. Jeg lar produksjonsfarten være styrende og kompletterer status, eier, sikkerhets- eller handoffdetaljer senere dersom neste funksjon oppdager et problem eller ber om dokumentasjon.",
+              "effect": -1,
+              "tags": [
+                "mandatglidning",
+                "statusgjeld",
+                "risiko"
+              ],
+              "feedback": "Legg cueet inn i cueboken og be teamet finne en praktisk løsning under gjennomløpet. Det kan spare minutter nå, men flytter usikkerhet og risiko til scene, inspisient, teknikk, utøvere eller publikum. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som frigav hva, og hvilke deler som faktisk må testes på nytt.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "scene_turne_004",
+          "mail_type": "job",
+          "mail_family": "scene_produksjonsbok",
+          "role_scope": "scenekunst_scene_og_produksjon",
+          "phase": "forenoon",
+          "day_phase": "morning",
+          "priority": 147,
+          "from": "Marwa",
+          "people_ref": "marwa_sceneteknisk_leder",
+          "person_id": "marwa_sceneteknisk_leder",
+          "place_id": "scene_og_teknisk_sjekkpunkt",
+          "subject": "Turnéareneen har andre laste- og strømrammer enn originalscenen",
+          "summary": "Mottaksarenaen dokumenterer lavere bæreevne og en annen strømfordeling enn produksjonen opprinnelig er rigget for. Produksjonsboken skal samtidig skille planlagt, bekreftet, betinget og frigitt status for plan, bemanning, teknikk, cue og publikum. Dermed kan senere endringer gjenåpne bare berørte ledd uten at tidligere begrunnelse, eier, sikkerhetsgrense eller varsling forsvinner. Hver mail må gjøre synlig hva som faktisk er observert eller bekreftet, hvem som må svare før neste statusendring, og hva resten av teamet skal beholde mens avklaringen pågår.",
+          "situation": [
+            "Mottaksarenaen dokumenterer lavere bæreevne og en annen strømfordeling enn produksjonen opprinnelig er rigget for.",
+            "Produksjonskoordinering er ikke i seg selv teknisk sikkerhetsgodkjenning, kunstnerisk mandat, rettighetsavklaring, kontraktsfullmakt eller universell-utforming-fasit.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere versjon slettes."
+          ],
+          "task_domain": "scenekunst_scene_og_produksjon",
+          "competency": "turne_handoff_og_teknisk_plan",
+          "pressure": "produksjonsfart_vs_sporbar_frigivelse_og_handoff",
+          "choice_axis": "sann_status_og_bounded_rework_vs_antakelse_og_skjult_gjeld",
+          "consequence_axis": "baerekraftig_forestilling_vs_sikkerhets_versjons_og_tillitsgjeld",
+          "narrative_arc": "turne_004",
+          "situated_audience_id": "scene_produksjon_og_publikum",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sporbar turne handoff og teknisk plan med eksplisitt eier",
+              "reply": "Lag en arena-spesifikk teknisk variant med eksplisitte avvik, ny test og eier før handoff, samtidig som kunstnerisk funksjon av endringene beskrives separat. Jeg oppdaterer produksjonsbok, gjeldende status, beslutningseier, åpne avhengigheter og neste kontroll slik at koordinering ikke blir lest som teknisk frigivelse, kunstnerisk mandat, rettighetsavklaring eller bindende fullmakt.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "sikkerhet",
+                "handoff"
+              ],
+              "feedback": "Lag en arena-spesifikk teknisk variant med eksplisitte avvik, ny test og eier før handoff, samtidig som kunstnerisk funksjon av endringene beskrives separat. Dette holder produksjonen i bevegelse samtidig som scene, inspisient, teknikk og vertskap kan se hva som er planlagt, bekreftet, betinget og frigitt. Når premisset endres blir rework avgrenset, og status kan overleveres uten å skjule sikkerhet, arbeidstid, tilgjengelighet eller beslutningseier.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Anta turne handoff og teknisk plan og fyll sporbarhet senere",
+              "reply": "Send original teknisk plan som utgangspunkt og la mottaksarenaen improvisere tilpasningen på riggedagen. Jeg lar produksjonsfarten være styrende og kompletterer status, eier, sikkerhets- eller handoffdetaljer senere dersom neste funksjon oppdager et problem eller ber om dokumentasjon.",
+              "effect": -1,
+              "tags": [
+                "mandatglidning",
+                "statusgjeld",
+                "risiko"
+              ],
+              "feedback": "Send original teknisk plan som utgangspunkt og la mottaksarenaen improvisere tilpasningen på riggedagen. Det kan spare minutter nå, men flytter usikkerhet og risiko til scene, inspisient, teknikk, utøvere eller publikum. Når et premiss endres blir det uklart hvilken versjon som gjaldt, hvem som frigav hva, og hvilke deler som faktisk må testes på nytt.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_program_og_kuratering",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "program_uformelt_lovnad",
+      "purpose": "Role-specific authored program/curation gameplay with persistent portfolio state and bounded authority.",
+      "learning_focus": [
+        "programdramaturgi",
+        "habilitet_og_mandat",
+        "rettigheter_og_avtale",
+        "representasjon_og_feltresearch",
+        "arena_fit_og_rework"
+      ],
+      "mails": [
+        {
+          "id": "program_uformelt_lovnad_001",
+          "mail_type": "consequence",
+          "mail_family": "program_uformelt_lovnad",
+          "role_scope": "scenekunst_program_og_kuratering",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 136,
+          "from": "Leila",
+          "people_ref": "leila_programsjef",
+          "person_id": "leila_programsjef",
+          "place_id": "programbord_og_utvalgskart",
+          "subject": "Det uformelle «vi vil ha dere» blir nå lest som en lovet booking",
+          "summary": "Kunstneren takket nei til annet tilbud etter en kategorisk melding, mens finansiering og programvedtak fortsatt mangler. Porteføljeloggen skal samtidig skille observerbare forhold, kuratorisk vurdering, uavklarte premisser og faktisk beslutningsstatus. Dermed kan senere endringer gjenåpne bare berørte kandidater uten at tidligere begrunnelse, habilitet eller ansvar forsvinner.",
+          "situation": [
+            "Kunstneren takket nei til annet tilbud etter en kategorisk melding, mens finansiering og programvedtak fortsatt mangler.",
+            "Kuratorisk interesse eller tidligere dialog er ikke det samme som formelt programvedtak, rettighet eller produksjonsgodkjenning.",
+            "Neste steg må ha navngitt eier og kunne gjenåpnes av ny dokumentert informasjon."
+          ],
+          "task_domain": "scenekunst_program_og_kuratering",
+          "competency": "konsekvens_og_tillitsreparasjon",
+          "pressure": "kunstnerisk_skjonn_vs_sporbar_mandatgrense",
+          "choice_axis": "sporbar_vurdering_vs_skjult_vedtak",
+          "consequence_axis": "legitimt_program_og_larbar_rework_vs_tillits_og_mandatglidning",
+          "narrative_arc": "uformelt_lovnad_001",
+          "situated_audience_id": "programledelse_og_kunstnerisk_mandat",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør konsekvens og tillitsreparasjon sporbar før neste beslutning",
+              "reply": "Erkjenn uklarheten, dokumenter rimelig forventning og eskaler til Leila og Mina for reell løsning, kompensasjon eller tydelig avslag. Jeg registrerer også beslutningseier, hva som må bekreftes og hvilket avgrenset neste steg som gjelder, slik at anbefaling ikke blir lest som invitasjon, booking eller bindende løfte.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "kuratorisk_skjonn"
+              ],
+              "feedback": "Erkjenn uklarheten, dokumenter rimelig forventning og eskaler til Leila og Mina for reell løsning, kompensasjon eller tydelig avslag. Dette bevarer kunstnerisk risiko samtidig som kriterier, relasjoner og avhengigheter er synlige. Et nytt rettighets-, habilitets- eller arenasvar kan da gi avgrenset rework i stedet for at programhistorien må rekonstrueres.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lås konsekvens og tillitsreparasjon før avklaringen er ferdig",
+              "reply": "Forklar at feltet vet at ingenting er bindende før kontrakt og be kunstneren bare avvente ordinær prosess. Jeg sender retningen videre som om hovedspørsmålet allerede er avgjort og kompletterer avhengigheten senere dersom noen protesterer.",
+              "effect": -1,
+              "tags": [
+                "fasitsprak",
+                "mandatglidning",
+                "risiko"
+              ],
+              "feedback": "Forklar at feltet vet at ingenting er bindende før kontrakt og be kunstneren bare avvente ordinær prosess. Dette skaper fremdrift på bekostning av sporbarhet og flytter risiko til kunstner, avtale eller produksjon. Når premisset endres blir det uklart hvem som lovet hva, hvilke kriterier som gjaldt og hvorfor alternativer ble valgt bort.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
