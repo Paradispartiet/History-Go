@@ -24,9 +24,9 @@ jobs:
       - run: npm ci
       - name: Decode and run Rodeløkka source builder
         run: |
-          base64 -d tools/build-rodelokka-completion.mjs.gz.b64 | gunzip > /tmp/build-rodelokka-completion.mjs
-          node --check /tmp/build-rodelokka-completion.mjs
-          node /tmp/build-rodelokka-completion.mjs
+          base64 -d tools/build-rodelokka-completion.mjs.gz.b64 | gunzip > tools/build-rodelokka-completion.mjs
+          node --check tools/build-rodelokka-completion.mjs
+          node tools/build-rodelokka-completion.mjs
       - name: Materialize canonical derived data
         run: |
           npm run quiz:context -- --category by --target rodelokka --output data/quiz/production_context/by/rodelokka.json
@@ -47,6 +47,7 @@ jobs:
         run: |
           rm .github/workflows/rodelokka-production-bootstrap.yml
           rm tools/build-rodelokka-completion.mjs.gz.b64
+          rm tools/build-rodelokka-completion.mjs
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
