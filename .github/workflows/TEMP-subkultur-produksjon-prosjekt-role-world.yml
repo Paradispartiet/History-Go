@@ -34,6 +34,8 @@ jobs:
         run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
       - name: Regenerate career gameplay matrix
         run: node scripts/audit-civication-career-gameplay.mjs --write
+      - name: Regenerate final Role World readiness
+        run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
       - name: Focused Role World gate
         run: node tests/civication-subkultur-produksjon-og-prosjekt-role-world-rollout.test.js
       - name: Prerequisite compatibility after Role World completion
