@@ -34,7 +34,7 @@ const REQUIRED_SOURCE_IDS = new Set([
   'histmaint4_regjeringen_1814_regjering_departementsdannelse',
   'histmaint4_roseslottet_memory_2026',
   'histmaint4_stortinget_roseslottet_2026',
-  'histmaint4_brannmuseet_1858_history',
+  'histmaint4_oslobyleksikon_brannvakten',
   'histmaint4_oslobyleksikon_bybrannen_1858',
   'histmaint4_nb_camilla_collett_archive',
   'histmaint4_oslo_camilla_collett_memorial_2026'
@@ -43,7 +43,7 @@ const REQUIRED_PLACE_IDS = new Set([
   'mariakirken_ruin_oslo',
   'palehaven_paleet',
   'roseslottet',
-  'brannmuseet_oslo',
+  'kirkeristen_basarene_brannvakten',
   'camilla_collett_statue'
 ]);
 const REQUIRED_GATES = [
@@ -62,7 +62,7 @@ const REQUIRED_GATES = [
   'archaeological_interpretation_bounded',
   'palace_anchor_not_treated_as_total_state_formation',
   'present_day_memorial_meaning_not_retrojected',
-  'museum_location_not_treated_as_event_location',
+  'response_anchor_not_treated_as_entire_fire_area',
   'statue_not_treated_as_direct_life_evidence'
 ];
 
@@ -270,7 +270,7 @@ export function auditHistorieSourceRefreshPlaceCaseExpansionRound4() {
       archaeology_bounded: true,
       state_formation_not_localized_to_palace: true,
       memorial_retrojection_bounded: true,
-      museum_location_bounded: true,
+      fire_response_anchor_bounded: true,
       statue_evidence_bounded: true,
       no_strict_subcategory: true,
       no_place_production: true
