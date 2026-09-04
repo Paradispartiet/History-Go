@@ -1,0 +1,39 @@
+name: By maintenance integrity
+
+on:
+  pull_request:
+    paths:
+      - 'data/fagverk/by/maintenance/**'
+      - 'scripts/audit-by-source-refresh-place-case-expansion.mjs'
+      - 'tests/by-source-refresh-place-case-expansion.test.mjs'
+      - '.github/workflows/by-maintenance-integrity.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  maintenance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Audit By source refresh and place-case expansion
+        run: |
+          node --check scripts/audit-by-source-refresh-place-case-expansion.mjs
+          node scripts/audit-by-source-refresh-place-case-expansion.mjs
+          node --test tests/by-source-refresh-place-case-expansion.test.mjs
+      - name: Preserve By completion, theory and editorial integrity
+        run: |
+          node scripts/audit-fagverk-by-complete.mjs
+          node tools/audit-by-theory-integrity.mjs
+          node scripts/validate-by-editorial-integrity.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check

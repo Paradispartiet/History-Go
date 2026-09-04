@@ -1,0 +1,203 @@
+{
+  "schema": "history_go_by_maintenance_round_v1",
+  "version": "1.0.0",
+  "subject_id": "by",
+  "round_id": "source_refresh_and_place_case_expansion_round1_2026_09_04",
+  "baseline_main_sha": "dad35c9703726e1987ae075d55f91c93b050ec5d",
+  "checked_at": "2026-09-04",
+  "status": "verified",
+  "scope": {
+    "new_strict_subcategory": false,
+    "place_production": false,
+    "canonical_architecture_change": false,
+    "purpose": "Første vedlikeholds- og utvidelsesrunde for By & arkitektur etter full completion: oppfriske samtidige autoritative kilder og legge til nye canonicale stedscase i fem smale eller styringskritiske kapitler uten å endre fagarkitekturen."
+  },
+  "target_chapters": [
+    "boligpolitikk-pris-leie-eie-tilgang",
+    "regional-global-pendling-migrasjon-sammenligning",
+    "data-styring-kart-plan-medvirkning-algoritmer",
+    "klima-helse-varme-vann-tilgjengelighet",
+    "administrasjon-plan-kontroll-beredskap"
+  ],
+  "source_refresh": [
+    {
+      "id": "bymaint1_ssb_rent_2025",
+      "chapter_ids": ["boligpolitikk-pris-leie-eie-tilgang"],
+      "publisher": "Statistisk sentralbyrå",
+      "url": "https://www.ssb.no/priser-og-prisindekser/boligpriser-og-boligprisindekser/statistikk/leiemarkedsundersokelsen",
+      "source_location": "Leiemarkedsundersøkelsen oppdatert 22. desember 2025; årlige leienivåer og prissoner, inkludert Oslo og Bærum.",
+      "health": "verified_live",
+      "action": "current_statistic_refresh"
+    },
+    {
+      "id": "bymaint1_ssb_house_price_q2_2026",
+      "chapter_ids": ["boligpolitikk-pris-leie-eie-tilgang"],
+      "publisher": "Statistisk sentralbyrå",
+      "url": "https://www.ssb.no/priser-og-prisindekser/boligpriser-og-boligprisindekser/statistikk/prisindeks-for-brukte-boliger",
+      "source_location": "Prisindeks for brukte boliger oppdatert 10. juli 2026; regiontall for Oslo med Bærum til og med 2. kvartal 2026.",
+      "health": "verified_live",
+      "action": "current_statistic_refresh"
+    },
+    {
+      "id": "bymaint1_oslo_central_plans_2026",
+      "chapter_ids": ["boligpolitikk-pris-leie-eie-tilgang", "administrasjon-plan-kontroll-beredskap"],
+      "publisher": "Oslo kommune",
+      "url": "https://www.oslo.kommune.no/politikk/sentrale-planer/",
+      "source_location": "Gjeldende sentrale planer, inkludert kommuneplan, kommunal boligbehovsplan 2024–2033 og boligplan for eldre og personer med hjelpebehov 2026–2035.",
+      "health": "verified_live",
+      "action": "current_plan_inventory_refresh"
+    },
+    {
+      "id": "bymaint1_ssb_commuting_oslo_2025",
+      "chapter_ids": ["regional-global-pendling-migrasjon-sammenligning"],
+      "publisher": "Statistisk sentralbyrå",
+      "url": "https://www.ssb.no/kommunefakta/oslo",
+      "source_location": "Kommunefakta Oslo med 2025-tall for inn- og utpendling og kildehenvisning til Statistikkbanken tabell 11616.",
+      "health": "verified_live",
+      "action": "current_commuting_refresh"
+    },
+    {
+      "id": "bymaint1_oslo_planning_process",
+      "chapter_ids": ["regional-global-pendling-migrasjon-sammenligning", "administrasjon-plan-kontroll-beredskap"],
+      "publisher": "Oslo kommune",
+      "url": "https://www.oslo.kommune.no/byutvikling/hvordan-kan-du-medvirke-i-byutviklingen/slik-planlegger-vi-for-utviklingen-av-oslo/",
+      "source_location": "Gjeldende beskrivelse av kommuneplan, områderegulering, detaljregulering, Planinnsyn og hvordan innspill inngår i Oslos planprosesser.",
+      "health": "verified_live",
+      "action": "current_process_refresh"
+    },
+    {
+      "id": "bymaint1_oslo_planinnsyn",
+      "chapter_ids": ["data-styring-kart-plan-medvirkning-algoritmer", "administrasjon-plan-kontroll-beredskap"],
+      "publisher": "Plan- og bygningsetaten, Oslo kommune",
+      "url": "https://od2.pbe.oslo.kommune.no/",
+      "source_location": "Planinnsyn med kommuneplan, reguleringsplaner, plansaker, temakart og metadata for offentlig kontroll av planstatus.",
+      "health": "verified_live",
+      "action": "current_public_data_service_refresh"
+    },
+    {
+      "id": "bymaint1_oslo_medvirkning_2026",
+      "chapter_ids": ["data-styring-kart-plan-medvirkning-algoritmer"],
+      "publisher": "Oslo kommune",
+      "url": "https://medvirkning.oslo.kommune.no/",
+      "source_location": "Aktiv digital medvirkningsplattform med pågående og tidligere prosesser i 2026; deltakelse dokumenteres som innspill, ikke som representativitet eller vedtak.",
+      "health": "verified_live",
+      "action": "current_participation_platform_refresh"
+    },
+    {
+      "id": "bymaint1_oslo_near_nature_plan_2026_2035",
+      "chapter_ids": ["klima-helse-varme-vann-tilgjengelighet"],
+      "publisher": "Bymiljøetaten, Oslo kommune",
+      "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/planer-og-rapporter-om-friluftsliv/behovsplan-for-friluftsliv-park-og-naernatur-2026-2035/",
+      "source_location": "Behovsplan for friluftsliv, park og nærnatur 2026–2035, vedtatt 29. april 2026; investeringsbehov og prioriteringsgrunnlag, ikke garanti for gjennomføring.",
+      "health": "verified_live",
+      "action": "current_plan_refresh"
+    },
+    {
+      "id": "bymaint1_oslo_budget_climate_2026",
+      "chapter_ids": ["klima-helse-varme-vann-tilgjengelighet", "administrasjon-plan-kontroll-beredskap"],
+      "publisher": "Oslo kommune",
+      "url": "https://www.oslo.kommune.no/politikk/budsjett-regnskap-og-rapportering/budsjett-2026/bystyrets-budsjettvedtak-2026/",
+      "source_location": "Vedtatt budsjett 2026 med klimabudsjett og tiltak for overvann, klimatilpasning, flomveier og beredskap ved ekstremnedbør.",
+      "health": "verified_live",
+      "action": "current_budget_and_climate_refresh"
+    },
+    {
+      "id": "bymaint1_dsb_municipal_preparedness",
+      "chapter_ids": ["administrasjon-plan-kontroll-beredskap"],
+      "publisher": "Direktoratet for samfunnssikkerhet og beredskap",
+      "url": "https://www.dsb.no/ros-og-beredskap/kommuner/kommunal-beredskapsplikt/",
+      "source_location": "Gjeldende oversikt over kommunal beredskapsplikt: helhetlig ROS, overordnet beredskapsplan, evaluering og lokal samordning.",
+      "health": "verified_live",
+      "action": "current_regulatory_guidance_refresh"
+    },
+    {
+      "id": "bymaint1_kdd_planning_guidance_2026",
+      "chapter_ids": ["data-styring-kart-plan-medvirkning-algoritmer", "administrasjon-plan-kontroll-beredskap"],
+      "publisher": "Kommunal- og distriktsdepartementet",
+      "url": "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/plan_bygningsloven/planlegging/veiledning/veiledere/id2836208/",
+      "source_location": "Veilederoversikt sist oppdatert 9. mars 2026, inkludert kommunal planstrategi, reguleringsplan, arealplan, digitalt planregister og planprosess.",
+      "health": "verified_live",
+      "action": "current_guidance_refresh"
+    }
+  ],
+  "cases": [
+    {
+      "id": "case_by_housing_cost_access_2026",
+      "title": "Boligpris, leie og faktisk boligtilgang",
+      "chapter_id": "boligpolitikk-pris-leie-eie-tilgang",
+      "place_ids": ["bislett", "carl_berner_plass"],
+      "source_ids": ["bymaint1_ssb_rent_2025", "bymaint1_ssb_house_price_q2_2026", "bymaint1_oslo_central_plans_2026"],
+      "case_claim": "SSBs leie- og boligprisstatistikk sammen med Oslo kommunes boligplaner gir et aktuelt case for å skille markedspris, leienivå, kommunalt boligbehov og faktisk individuell boligtilgang; Bislett og Carl Berners plass brukes som feltinnganger, ikke som grunnlag for å tilordne lokale beboere økonomiske egenskaper.",
+      "analysis_questions": [
+        "Hva må legges til markedspris og gjennomsnittsleie før en kan si noe om faktisk boligbyrde eller boligtilgang for en husholdning?",
+        "Hvordan kan Bislett og Carl Berners plass brukes til å observere boligtyper og tilgjengelighet uten å slutte noe om beboernes inntekt eller gjeld?",
+        "Hva er forskjellen mellom kommunalt dokumentert boligbehov, politiske virkemidler og et dokumentert individuelt boligutfall?"
+      ]
+    },
+    {
+      "id": "case_by_regional_commuting_nodes_2026",
+      "title": "Pendling, knutepunkt og funksjonell byregion",
+      "chapter_id": "regional-global-pendling-migrasjon-sammenligning",
+      "place_ids": ["carl_berner_plass", "akrobaten_gangbro"],
+      "source_ids": ["bymaint1_ssb_commuting_oslo_2025", "bymaint1_oslo_planning_process"],
+      "case_claim": "SSBs 2025-pendlingstall viser Oslo som del av en funksjonell arbeidsmarkedsregion, mens kommunal planlegging viser hvordan transport- og byutviklingsgrep behandles gjennom planprosesser; Carl Berners plass og Akrobaten gangbro gir to ulike feltinnganger til forbindelser og barrierer uten at observert trafikk alene forklarer reiseformål.",
+      "analysis_questions": [
+        "Hvorfor er kommunegrensen utilstrekkelig som avgrensning av en funksjonell arbeidsmarkedsregion når inn- og utpendling analyseres?",
+        "Hvilke observasjoner ved Carl Berners plass og Akrobaten kan si noe om forbindelser, og hvilke påstander krever transport- eller pendlingsdata?",
+        "Hvordan skiller planlagt infrastruktur eller knutepunktutvikling seg fra dokumentert faktisk reisemønster og lokal stedskvalitet?"
+      ]
+    },
+    {
+      "id": "case_by_plan_data_medvirkning_2026",
+      "title": "Fra kartlag og digitale innspill til formelt planvedtak",
+      "chapter_id": "data-styring-kart-plan-medvirkning-algoritmer",
+      "place_ids": ["bankplassen", "akrobaten_gangbro"],
+      "source_ids": ["bymaint1_oslo_planinnsyn", "bymaint1_oslo_medvirkning_2026", "bymaint1_kdd_planning_guidance_2026"],
+      "case_claim": "Planinnsyn, Oslo kommunes medvirkningsplattform og departementets planveiledning gjør det mulig å følge en dokumentkjede fra kart og planstatus via offentlig deltakelse til formell planbehandling; Bankplassen og Akrobaten brukes til å teste hvordan fysisk observasjon kobles til riktig planlag uten å gjøre digitale kart eller antall innspill til bevis for faktisk virkning.",
+      "analysis_questions": [
+        "Hvilke metadata må kontrolleres i Planinnsyn før et kartlag kan brukes som påstand om gjeldende juridisk planstatus?",
+        "Hvorfor er antall deltakere eller digitale innspill ikke det samme som representativitet, beslutningsmakt eller dokumentert innflytelse?",
+        "Hvordan kan et fysisk spor ved Bankplassen eller Akrobaten kobles til riktig plan- eller saksdokument uten å blande observasjon og myndighetsvedtak?"
+      ]
+    },
+    {
+      "id": "case_by_climate_near_nature_2026",
+      "title": "Nærnatur, overvann og klimatilpasning i eksisterende by",
+      "chapter_id": "klima-helse-varme-vann-tilgjengelighet",
+      "place_ids": ["grorudparken", "frognerparken"],
+      "source_ids": ["bymaint1_oslo_near_nature_plan_2026_2035", "bymaint1_oslo_budget_climate_2026"],
+      "case_claim": "Oslo kommunes vedtatte behovsplan for park og nærnatur og klimabudsjettet for 2026 gir et aktuelt styringsgrunnlag for å analysere grønnstruktur, overvann og klimatilpasning; Grorudparken og Frognerparken brukes som feltcase for observerbare blågrønne kvaliteter, men synlig vegetasjon eller vann behandles ikke som bevis for målt kjøling eller flomdemping.",
+      "analysis_questions": [
+        "Hva kan dokumenteres direkte gjennom feltobservasjon i Grorudparken og Frognerparken, og hva krever egne målinger eller kommunale driftsdata?",
+        "Hvordan skiller en vedtatt behovsplan og et budsjettert klimatiltak seg fra dokumentert gjennomføring og målt klimatilpasningseffekt?",
+        "Hvilke data måtte samles inn før en kunne sammenligne parkenes bidrag til overvannshåndtering, tilgjengelighet eller lokal varmebelastning?"
+      ]
+    },
+    {
+      "id": "case_by_plan_ros_preparedness_2026",
+      "title": "Fra planstatus og ROS til kommunal beredskap",
+      "chapter_id": "administrasjon-plan-kontroll-beredskap",
+      "place_ids": ["bankplassen", "carl_berner_plass"],
+      "source_ids": ["bymaint1_oslo_central_plans_2026", "bymaint1_oslo_planning_process", "bymaint1_oslo_planinnsyn", "bymaint1_oslo_budget_climate_2026", "bymaint1_dsb_municipal_preparedness", "bymaint1_kdd_planning_guidance_2026"],
+      "case_claim": "Gjeldende planveiledning, Planinnsyn, Oslo kommunes 2026-budsjett og DSBs beredskapskrav gir en dokumentkjede fra planstatus og risikovurdering til overordnet beredskapsplan og prioriterte tiltak; Bankplassen og Carl Berners plass brukes som kontrollpunkter for dokumentinnhenting, ikke som bevis for lokal lovlighet eller faktisk krisehåndteringsevne.",
+      "analysis_questions": [
+        "Hvordan skiller gjeldende regulerings- eller kommuneplanstatus seg fra en risikoanalyse og fra en overordnet beredskapsplan?",
+        "Hva må dokumenteres før et budsjettert eller planlagt beredskapstiltak kan omtales som gjennomført kapasitet eller dokumentert effekt?",
+        "Hvordan kan Bankplassen og Carl Berners plass brukes til å trene dokument- og aktørsporing uten å utlede hjemmel, tilsyn eller beredskapsevne fra synlige fysiske spor?"
+      ]
+    }
+  ],
+  "quality_gates": {
+    "all_sources_https": true,
+    "all_sources_authoritative_or_institutional": true,
+    "all_cases_source_bound": true,
+    "all_cases_place_bound": true,
+    "all_case_places_canonical": true,
+    "all_case_places_new_to_complete_audit": true,
+    "claim_provenance_preserved": true,
+    "theory_integrity_scope_unchanged": true,
+    "canonical_subject_architecture_unchanged": true,
+    "completion_status_preserved": true,
+    "field_observation_not_treated_as_statistical_or_legal_proof": true
+  }
+}
