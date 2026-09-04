@@ -1,0 +1,32 @@
+r faktisk kostnad, arbeidstid, kontrakt, rettighetsavklaring, teknisk retest, publikumsopplevelse eller sluttoppgjør gir ny evidens. Et valg som beskytter crew og sikkerhet kan derfor koste kortsiktig program- eller miljøstanding, mens et valg som bevarer premiereplanen kan svekke motparts- og arbeidsstanding hvis gjelden skjules. Ingen etterfølgende applaus, ros eller vellykket levering kan retroaktivt gjøre manglende fullmakt, ubetalt belastning, uavklart rettighet eller ikke-frigitt teknisk løsning forsvarlig.`;
+    coverage.push({day:d,phase:ph,beat_type:beatTypes[ph],summary,thread_ids:[thread],materialization_refs:[ref],standing_audience:audience,standing_consequence:standing});
+  }
+}
+if(coverage.length!==56||new Set(coverage.map(x=>`${x.day}/${x.phase}`)).size!==56) throw new Error('coverage shape');
+if(coverage.some(x=>x.summary.length<620||x.standing_consequence.length<500)) throw new Error('coverage depth');
+if(new Set(coverage.map(x=>x.summary)).size!==56||new Set(coverage.map(x=>x.standing_consequence)).size!==56) throw new Error('coverage uniqueness');
+
+const primaryThreads=[
+  {id:'scope_baseline_and_change_control',relationship:'Scope-tråden følger samme bestilling fra første uenighet om baseline gjennom sene endringer, reservevalg og handback, og viser hvordan kreativ ambisjon bare er styrbar når ønsket, vedtatt, bestilt og levert status kan skilles over tid.',beat_refs:['1/morning','1/afternoon','5/morning','5/afternoon','6/afternoon','10/afternoon','14/afternoon']},
+  {id:'budget_procurement_and_forecast',relationship:'Økonomitråden følger gapet mellom estimat, tilbud, godkjent ramme, bestilling, faktisk kostnad og sluttoppgjør, slik at et prosjekt ikke finansierer nye ønsker gjennom uuttalt håp eller flyttet kostnad.',beat_refs:['1/lunch','2/morning','2/afternoon','6/morning','9/lunch','13/morning','14/morning']},
+  {id:'crew_work_environment_and_capacity',relationship:'Crew-tråden følger kompetanse, skift, hviletid, frilans- og frivilliggrenser fra tidlig kapasitetsplan gjennom rework og live press og viser hvem som faktisk bærer konsekvensen når planpremisser endres.',beat_refs:['3/morning','3/afternoon','5/lunch','8/evening','10/morning','12/lunch','13/evening']},
+  {id:'supplier_contract_and_handoff',relationship:'Motpartstråden følger muntlige forventninger, pris, levering, avlysning, fullmakt og aksept gjennom leverandørsvikt og sluttoppgjør, slik at god relasjon ikke brukes som erstatning for lesbare forpliktelser.',beat_refs:['2/lunch','4/morning','4/afternoon','6/lunch','9/morning','13/afternoon','14/lunch']},
+  {id:'rights_crediting_and_publication',relationship:'Rettighetstråden følger musikk, opptak, kreditering og dokumentasjonsbruk fra tidlig avtale gjennom kampanje, live leveranse og arkiv, og viser at ferdig materiell aldri i seg selv er bevis på klarert bruk.',beat_refs:['4/lunch','7/morning','7/afternoon','9/afternoon','11/lunch','12/afternoon','13/lunch']},
+  {id:'technical_safety_and_release',relationship:'Teknikk- og sikkerhetstråden følger riggforutsetninger, integrasjon, test, retest, avvik og frigivelse fra crewplan til live hendelse og gjør det synlig at et delvis fungerende system ikke kan løftes til sikker status av deadline.',beat_refs:['3/lunch','5/afternoon','8/morning','8/afternoon','10/lunch','12/morning','14/morning']},
+  {id:'scene_public_legitimacy_and_private_load',relationship:'Legitimitets- og privat-tråden følger hvordan artister, miljø, publikum og nære relasjoner leser de samme produksjonsvalgene forskjellig, og hvordan produsenten må tåle statuskostnad uten å bruke privatliv eller miljøkapital som skjult autoritet.',beat_refs:['1/evening','7/evening','9/evening','11/morning','11/evening','12/evening','14/evening']}
+];
+
+const privateAftermath=[
+  {id:'scope_no_and_identity',beat_refs:['5/evening','14/evening'],meaning:'Et profesjonelt nei til et sent programønske kan bli lest som lite kreativt. Etterklangen undersøker hvordan spilleren kan tåle den identitetskostnaden uten å love skjult merarbeid eller bruke privat bekreftelse som erstatning for prosjektbeslutning.'},
+  {id:'crew_load_and_guilt',beat_refs:['3/evening','10/evening'],meaning:'Når crew allerede har strukket seg, kan produsenten kjenne skyld både for å stoppe og for å be om mer. Privat bearbeiding må ikke gjøre fortrolige arbeidsforhold til sosialt stoff eller normalisere permanent overbelastning.'},
+  {id:'supplier_relationship_after_change',beat_refs:['6/evening','13/evening'],meaning:'En leverandør kan være både venn og profesjonell motpart. Etterklangen holder skuffelse og relasjonsfrykt adskilt fra pris, ansvar, reklamasjon og riktig kontraktsmessig handoff.'},
+  {id:'public_incident_and_shame',beat_refs:['12/evening','14/evening'],meaning:'Et synlig avvik kan utløse skam selv når responsen er ryddig. Etterklangen skiller personlig statusangst fra plikten til sann kommunikasjon, læring, eventuell rapportering og konkret reparasjon.'},
+  {id:'club7_scene_identity_reflection',beat_refs:['11/evening','14/evening'],meaning:'Den historiske refleksjonen om Club 7 kan styrke miljøidentitet, men privat identifikasjon med en kulturhistorie kan ikke romantisere skjult arbeid, uformelle avtaler, rettighetsrest eller sikkerhetsrisiko i dagens produksjon.'}
+];
+
+const delayed=[
+  {id:'baseline_debt_return',setup_ref:'1/morning',return_ref:'10/afternoon',meaning:'Første uklarhet i baseline returnerer i gjennomløpet og viser om prosjektet bevarte forskjellen mellom ønsket, godkjent og faktisk bestilt leveranse.'},
+  {id:'budget_gap_return',setup_ref:'2/morning',return_ref:'13/morning',meaning:'Prisøkningen returnerer i sluttoppgjøret og viser om prognosen ble korrigert mens det fortsatt fantes reelle valg eller bare skjøvet inn i restbudsjettet.'},
+  {id:'crew_capacity_return',setup_ref:'3/morning',return_ref:'12/lunch',meaning:'Tidlig kapasitetsgjeld returnerer under live press og tester om hviletid, kompetanse og backup faktisk ble planpremiss eller uregistrert individuell velvilje.'},
+  {id:'contract_ambiguity_return',setup_ref:'4/morning',return_ref:'13/afternoon',meaning:'Det muntlige ja-et returnerer som sluttoppgjør og reklamasjon og viser om pris, ansvar, avlysning og aksept ble gjort lesbart før uenigheten fikk økonomisk konsekvens.'},
+  {id:'late_change_return',setup_ref:'5/morning',return_ref:'10/morning',meaning:'Den sene programendringen returnerer som rework i full gjennomkjøring og viser hvilke ledd som ble gjenåpnet korrekt og hvilke kostnader som ble
