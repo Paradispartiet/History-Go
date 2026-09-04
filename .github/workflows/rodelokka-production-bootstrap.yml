@@ -120,16 +120,22 @@ jobs:
           npm run epoker:places:build
           npm run places:index:build
           npm run place-open:build
-      - name: Focused Rodeløkka gates
-        run: |
-          node --test tests/rodelokka-completion.test.mjs
-          npm run places:emner:check
-          npm run check:stories
-          npm run audit:quiz-manifest:v2
-          npm run audit:quiz-content
-          npm run audit:quiz-production-context
-          npm run audit:quiz-progression
-          npm run audit:quiz-theory-binding
+      - name: Rodeløkka completion tests
+        run: node --test tests/rodelokka-completion.test.mjs
+      - name: Place emne check
+        run: npm run places:emner:check
+      - name: Story integrity
+        run: npm run check:stories
+      - name: Quiz manifest audit
+        run: npm run audit:quiz-manifest:v2
+      - name: Quiz content audit
+        run: npm run audit:quiz-content
+      - name: Quiz production context audit
+        run: npm run audit:quiz-production-context
+      - name: Quiz progression audit
+        run: npm run audit:quiz-progression
+      - name: Quiz theory binding audit
+        run: npm run audit:quiz-theory-binding
       - name: Commit permanent production only
         run: |
           rm .github/workflows/rodelokka-production-bootstrap.yml
