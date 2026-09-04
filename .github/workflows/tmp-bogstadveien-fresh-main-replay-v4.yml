@@ -24,6 +24,8 @@ jobs:
       - name: Replay permanent Bogstadveien commits on fresh main
         run: |
           set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git fetch origin main work/bogstadveien-production-final-20260904
           git checkout -B candidate/bogstadveien-fresh-main-20260904-v4 origin/main
           git cherry-pick 3e26318672763f9c7f598d0c2ac0523185fe7050
