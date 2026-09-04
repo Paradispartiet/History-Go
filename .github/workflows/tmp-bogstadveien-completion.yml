@@ -133,15 +133,21 @@ jobs:
         run: node scripts/build-fagverk-release-manifest.mjs --check
       - name: Diff check
         run: git diff --check
-      - name: Commit permanent Bogstadveien production
+      - name: Commit clean permanent Bogstadveien branch
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git rm tools/finalize-bogstadveien-completion.mjs
           git add -A
           git diff --cached --check
+          git diff --cached --binary origin/main -- . \
+            ':(exclude).github/workflows/tmp-bogstadveien-completion.yml' \
+            ':(exclude)tools/finalize-bogstadveien-completion.mjs' \
+            > /tmp/bogstadveien-production.patch
+          test -s /tmp/bogstadveien-production.patch
+          git reset --hard origin/main
+          git clean -fd
+          git apply --index /tmp/bogstadveien-production.patch
+          git diff --cached --check
           git commit -m "Complete Bogstadveien Place production"
-          remote_sha="$(git ls-remote origin refs/heads/work/bogstadveien-completion-20260903 | cut -f1)"
-          test -n "$remote_sha"
-          git push --force-with-lease=refs/heads/work/bogstadveien-completion-20260903:${remote_sha} origin HEAD:refs/heads/work/bogstadveien-completion-20260903
+          git push origin HEAD:refs/heads/work/bogstadveien-production-final-20260904
