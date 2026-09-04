@@ -14,18 +14,29 @@ jobs:
           set -euo pipefail
           mkdir -p /tmp/bogstad-preview
           python - <<'PY'
-          import urllib.request
+          import json, urllib.request, urllib.parse
           ua='History-Go-place-production/1.0 (https://github.com/Paradispartiet/History-Go)'
-          urls={
-            'blue-master.jpg':'https://upload.wikimedia.org/wikipedia/commons/0/03/Bogstadveien_53_OB.%C3%9864_1727.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original',
+          direct={
             'bytimo-identity.jpg':'https://mir-s3-cdn-cf.behance.net/project_modules/fs/1f5b0c25474497.56345da8bd99a.jpg'
           }
-          for name,url in urls.items():
+          for name,url in direct.items():
             req=urllib.request.Request(url,headers={'User-Agent':ua})
             with urllib.request.urlopen(req,timeout=45) as r:
-              data=r.read()
-              open('/tmp/bogstad-preview/'+name,'wb').write(data)
+              data=r.read(); open('/tmp/bogstad-preview/'+name,'wb').write(data)
               print(name, r.status, len(data), r.headers.get('Content-Type'))
+          for title,name in [
+            ('Blue Master Reklame 23 BG.jpg','blue-master-reklame.jpg'),
+            ('Blue Master (tobak).jpg','blue-master-pack.jpg')
+          ]:
+            api='https://commons.wikimedia.org/w/api.php?action=query&format=json&prop=imageinfo&iiprop=url%7Cextmetadata&titles=File:'+urllib.parse.quote(title)
+            req=urllib.request.Request(api,headers={'User-Agent':ua})
+            with urllib.request.urlopen(req,timeout=45) as r: meta=json.load(r)
+            page=next(iter(meta['query']['pages'].values())); info=page['imageinfo'][0]
+            print('COMMONS_META',title,json.dumps(info['extmetadata'],ensure_ascii=False))
+            req=urllib.request.Request(info['url'],headers={'User-Agent':ua})
+            with urllib.request.urlopen(req,timeout=45) as r:
+              data=r.read(); open('/tmp/bogstad-preview/'+name,'wb').write(data)
+              print(name,r.status,len(data),r.headers.get('Content-Type'))
           PY
       - name: Build previews
         run: |
@@ -33,12 +44,10 @@ jobs:
           python - <<'PY'
           from PIL import Image
           from pathlib import Path
-          for name in ['blue-master.jpg','bytimo-identity.jpg']:
-            p=Path('/tmp/bogstad-preview')/name
-            original=Image.open(p)
-            print(name, original.size, original.mode)
-            im=original.convert('RGB')
-            im.thumbnail((1200,900))
+          for p in Path('/tmp/bogstad-preview').glob('*.jpg'):
+            if p.stem.endswith('-preview'): continue
+            original=Image.open(p); print(p.name, original.size, original.mode)
+            im=original.convert('RGB'); im.thumbnail((1200,900))
             im.save(Path('/tmp/bogstad-preview')/(p.stem+'-preview.jpg'),quality=90)
           PY
       - uses: actions/upload-artifact@v4
