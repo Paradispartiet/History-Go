@@ -11,7 +11,7 @@ import {
 const registries = loadRegistries();
 
 test("All strict canonical subcategories use one domain CI registry contract", () => {
-  assert.deepEqual(Object.keys(registries), ["helse", "utdanning", "sosiologi_antropologi", "geografi", "biologi", "geologi_jordvitenskap", "sprak_lingvistikk", "juss_rettsvitenskap", "fysikk", "kjemi", "matematikk"]);
+  assert.deepEqual(Object.keys(registries), ["helse", "utdanning", "sosiologi_antropologi", "geografi", "biologi", "geologi_jordvitenskap", "sprak_lingvistikk", "juss_rettsvitenskap", "fysikk", "kjemi", "matematikk", "okonomi"]);
   for (const [subject, registry] of Object.entries(registries)) {
     const validated = validateRegistry(registry);
     assert.equal(registry.subject, subject);
@@ -33,7 +33,8 @@ test("domain routing selects affected subjects and fans shared changes into one 
   assert.deepEqual(selectSubjects({ registries, changedFiles: ["data/fag/vitenskap/fysikk/production_registry_v1.json"] }), ["fysikk"]);
   assert.deepEqual(selectSubjects({ registries, changedFiles: ["data/fag/vitenskap/kjemi/production_registry_v1.json"] }), ["kjemi"]);
   assert.deepEqual(selectSubjects({ registries, changedFiles: ["data/fag/vitenskap/matematikk/production_registry_v1.json"] }), ["matematikk"]);
-  assert.deepEqual(selectSubjects({ registries, changedFiles: ["data/fagverk/subject_inventory.json"] }), ["helse", "utdanning", "sosiologi_antropologi", "geografi", "biologi", "geologi_jordvitenskap", "sprak_lingvistikk", "juss_rettsvitenskap", "fysikk", "kjemi", "matematikk"]);
+  assert.deepEqual(selectSubjects({ registries, changedFiles: ["data/fag/naeringsliv/okonomi/production_registry_v1.json"] }), ["okonomi"]);
+  assert.deepEqual(selectSubjects({ registries, changedFiles: ["data/fagverk/subject_inventory.json"] }), ["helse", "utdanning", "sosiologi_antropologi", "geografi", "biologi", "geologi_jordvitenskap", "sprak_lingvistikk", "juss_rettsvitenskap", "fysikk", "kjemi", "matematikk", "okonomi"]);
 });
 
 const triggerCases = [
@@ -45,6 +46,7 @@ const triggerCases = [
   ["Fysikk", ["data/fag/vitenskap/fysikk/**","data/fagverk/vitenskap/fysikk/**","reports/fagverk/fysikk-*.json","scripts/*fysikk*","tests/fysikk-*.test.mjs",".github/ci/fagverk-fysikk-domain-registry-v1.json"]],
   ["Kjemi", ["data/fag/vitenskap/kjemi/**","data/fagverk/vitenskap/kjemi/**","reports/fagverk/kjemi-*.json","scripts/*kjemi*","tests/kjemi-*.test.mjs",".github/ci/fagverk-kjemi-domain-registry-v1.json"]],
   ["Matematikk", ["data/fag/vitenskap/matematikk/**","data/fagverk/vitenskap/matematikk/**","reports/fagverk/matematikk-*.json","scripts/*matematikk*","tests/matematikk-*.test.mjs",".github/ci/fagverk-matematikk-domain-registry-v1.json"]],
+  ["Økonomi", ["data/fag/naeringsliv/okonomi/**","data/fagverk/naeringsliv/okonomi/**","reports/fagverk/okonomi-*.json","scripts/*okonomi*","tests/okonomi-*.test.mjs",".github/ci/fagverk-okonomi-domain-registry-v1.json"]],
 ];
 
 for (const [label, paths] of triggerCases) {

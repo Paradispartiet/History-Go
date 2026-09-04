@@ -19,6 +19,7 @@ const REGISTRY_PATHS = Object.freeze({
   fysikk: ".github/ci/fagverk-fysikk-domain-registry-v1.json",
   kjemi: ".github/ci/fagverk-kjemi-domain-registry-v1.json",
   matematikk: ".github/ci/fagverk-matematikk-domain-registry-v1.json",
+  okonomi: ".github/ci/fagverk-okonomi-domain-registry-v1.json",
 });
 const SHARED_CHANGE_PATHS = new Set([
   "data/fagverk/subject_inventory.json",

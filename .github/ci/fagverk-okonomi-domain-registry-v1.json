@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "subject": "okonomi",
+  "ownerSubject": "naeringsliv",
+  "canonicalSubcategoryId": "okonomi",
+  "totalDomains": 12,
+  "ci": {
+    "changeTokens": [
+      "/naeringsliv/okonomi/",
+      "okonomi-strict-",
+      "okonomi-reconciliation-"
+    ],
+    "progress": {
+      "kind": "registered_chapter_count",
+      "source": "data/fag/naeringsliv/okonomi/production_registry_v1.json",
+      "pointer": [
+        "progress",
+        "materializedDomains"
+      ]
+    },
+    "cumulativeAudits": [
+      "scripts/audit-okonomi-reconciliation-v1.mjs"
+    ],
+    "cumulativeTests": [
+      "tests/okonomi-reconciliation-v1.test.mjs"
+    ],
+    "deterministicPaths": [
+      "data/fag/naeringsliv/okonomi",
+      "data/fagverk/naeringsliv/okonomi",
+      "reports/fagverk/okonomi-strict-v1-audit.json",
+      "reports/fagverk/okonomi-reconciliation-v1.json"
+    ]
+  },
+  "strictCompletion": {
+    "bindings": "data/fagverk/naeringsliv/okonomi/empirisk-okonomi-data-kausalitet-og-prognoser.json",
+    "audit": "scripts/audit-okonomi-strict-v1.mjs",
+    "auditTest": "tests/okonomi-strict-v1.test.mjs",
+    "materializer": "scripts/materialize-okonomi-strict-v1.mjs",
+    "completionTest": "tests/okonomi-strict-v1.test.mjs",
+    "auditReport": "reports/fagverk/okonomi-strict-v1-audit.json",
+    "completionReport": "reports/fagverk/okonomi-strict-v1-audit.json"
+  },
+  "domains": [
+    {
+      "ordinal": 1,
+      "domainId": "mikrookonomi_markeder_priser_insentiver",
+      "slug": "mikrookonomi-markeder-priser-og-insentiver",
+      "fulltextMaterializer": "scripts/materialize-okonomi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-okonomi-strict-v1.mjs",
+      "fulltextTest": "tests/okonomi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 2,
+      "domainId": "makrookonomi_vekst_konjunkturer_inflasjon",
+      "slug": "makrookonomi-vekst-konjunkturer-og-inflasjon",
+      "fulltextMaterializer": "scripts/materialize-okonomi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-okonomi-strict-v1.mjs",
+      "fulltextTest": "tests/okonomi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 3,
+      "domainId": "pengepolitikk_finanspolitikk_stabilisering",
+      "slug": "pengepolitikk-finanspolitikk-og-stabilisering",
+      "fulltextMaterializer": "scripts/materialize-okonomi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-okonomi-strict-v1.mjs",
+      "fulltextTest": "tests/okonomi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 4,
+      "domainId": "offentlig_okonomi_skatt_velferd_fordeling",
+      "slug": "offentlig-okonomi-skatt-velferd-og-fordeling",
+      "fulltextMaterializer": "scripts/materialize-okonomi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-okonomi-strict-v1.mjs",
+      "fulltextTest": "tests/okonomi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 5,
+      "domainId": "arbeidsokonomi_lonn_sysselsetting_ulikhet",
+      "slug": "arbeidsokonomi-lonn-sysselsetting-og-ulikhet",
+      "fulltextMaterializer": "scripts/materialize-okonomi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-okonomi-strict-v1.mjs",
+      "fulltextTest": "tests/okonomi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 6,
+      "domainId": "internasjonal_okonomi_handel_valuta_globalisering",
+      "slug": "internasjonal-okonomi-handel-valuta-og-globalisering",
+      "fulltextMaterializer": "scripts/materialize-okonomi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-okonomi-strict-v1.mjs",
+      "fulltextTest": "tests/okonomi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 7,
+      "domainId": "bedriftsokonomi_regnskap_kostnader_styring",
+      "slug": "bedriftsokonomi-regnskap-kostnader-og-styring",
+      "fulltextMaterializer": "scripts/materialize-okonomi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-okonomi-strict-v1.mjs",
+      "fulltextTest": "tests/okonomi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 8,
+      "domainId": "finans_investering_risiko_kapitalmarkeder",
+      "slug": "finans-investering-risiko-og-kapitalmarkeder",
+      "fulltextMaterializer": "scripts/materialize-okonomi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-okonomi-strict-v1.mjs",
+      "fulltextTest": "tests/okonomi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 9,
+      "domainId": "organisasjon_ledelse_strategi_virksomhetsstyring",
+      "slug": "organisasjon-ledelse-strategi-og-virksomhetsstyring",
+      "fulltextMaterializer": "scripts/materialize-okonomi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-okonomi-strict-v1.mjs",
+      "fulltextTest": "tests/okonomi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 10,
+      "domainId": "entreprenorskap_innovasjon_forretningsmodeller",
+      "slug": "entreprenorskap-innovasjon-og-forretningsmodeller",
+      "fulltextMaterializer": "scripts/materialize-okonomi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-okonomi-strict-v1.mjs",
+      "fulltextTest": "tests/okonomi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 11,
+      "domainId": "politisk_okonomi_institusjoner_makt_regulering",
+      "slug": "politisk-okonomi-institusjoner-makt-og-regulering",
+      "fulltextMaterializer": "scripts/materialize-okonomi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-okonomi-strict-v1.mjs",
+      "fulltextTest": "tests/okonomi-strict-v1.test.mjs"
+    },
+    {
+      "ordinal": 12,
+      "domainId": "empirisk_okonomi_data_kausalitet_prognoser",
+      "slug": "empirisk-okonomi-data-kausalitet-og-prognoser",
+      "fulltextMaterializer": "scripts/materialize-okonomi-strict-v1.mjs",
+      "fulltextAudit": "scripts/audit-okonomi-strict-v1.mjs",
+      "fulltextTest": "tests/okonomi-strict-v1.test.mjs"
+    }
+  ]
+}

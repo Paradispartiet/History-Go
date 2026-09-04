@@ -1,0 +1,131 @@
+{
+  "schema": "history_go_canonical_subcategory_production_registry_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-09-04",
+  "owner_subject_id": "naeringsliv",
+  "canonical_subcategory_id": "okonomi",
+  "label": "Økonomi",
+  "status": "strict_completion_proven",
+  "source_registry": "data/fag/naeringsliv/okonomi/source_registry_v1.json",
+  "progress": {
+    "materializedDomains": 12,
+    "totalDomains": 12,
+    "strictCompletionProven": true
+  },
+  "rules": {
+    "subcategory_is_not_top_level_subject": true,
+    "existing_owner_content_is_not_moved_or_deleted": true,
+    "reuse_requires_explicit_strict_upgrade": true,
+    "source_brief_does_not_count_as_materialized": true,
+    "complete_requires_all_domains_and_strict_proof": true,
+    "model_measurement_boundary_required": true,
+    "description_prediction_causality_boundary_required": true,
+    "identification_and_endogeneity_required": true
+  },
+  "reuse": {
+    "legacy_chapters": [
+      "data/fagverk/naeringsliv/arbeid-produksjon-verdiskaping.json",
+      "data/fagverk/naeringsliv/handel-forbruk-marked.json",
+      "data/fagverk/naeringsliv/kapital-eierskap-finans.json",
+      "data/fagverk/naeringsliv/internasjonal-okonomi-operations-prosjekt.json",
+      "data/fagverk/naeringsliv/forretningsjus-skatt-compliance.json"
+    ],
+    "rule": "Eksisterende canonicale Økonomi og næringsliv-kapitler bevares og gjenbrukes; strict-pakken flytter eller sletter dem ikke."
+  },
+  "domains": [
+    {
+      "ordinal": 1,
+      "domain_id": "mikrookonomi_markeder_priser_insentiver",
+      "slug": "mikrookonomi-markeder-priser-og-insentiver",
+      "status": "materialized",
+      "chapter": "data/fagverk/naeringsliv/okonomi/mikrookonomi-markeder-priser-og-insentiver.json"
+    },
+    {
+      "ordinal": 2,
+      "domain_id": "makrookonomi_vekst_konjunkturer_inflasjon",
+      "slug": "makrookonomi-vekst-konjunkturer-og-inflasjon",
+      "status": "materialized",
+      "chapter": "data/fagverk/naeringsliv/okonomi/makrookonomi-vekst-konjunkturer-og-inflasjon.json"
+    },
+    {
+      "ordinal": 3,
+      "domain_id": "pengepolitikk_finanspolitikk_stabilisering",
+      "slug": "pengepolitikk-finanspolitikk-og-stabilisering",
+      "status": "materialized",
+      "chapter": "data/fagverk/naeringsliv/okonomi/pengepolitikk-finanspolitikk-og-stabilisering.json"
+    },
+    {
+      "ordinal": 4,
+      "domain_id": "offentlig_okonomi_skatt_velferd_fordeling",
+      "slug": "offentlig-okonomi-skatt-velferd-og-fordeling",
+      "status": "materialized",
+      "chapter": "data/fagverk/naeringsliv/okonomi/offentlig-okonomi-skatt-velferd-og-fordeling.json"
+    },
+    {
+      "ordinal": 5,
+      "domain_id": "arbeidsokonomi_lonn_sysselsetting_ulikhet",
+      "slug": "arbeidsokonomi-lonn-sysselsetting-og-ulikhet",
+      "status": "materialized",
+      "chapter": "data/fagverk/naeringsliv/okonomi/arbeidsokonomi-lonn-sysselsetting-og-ulikhet.json"
+    },
+    {
+      "ordinal": 6,
+      "domain_id": "internasjonal_okonomi_handel_valuta_globalisering",
+      "slug": "internasjonal-okonomi-handel-valuta-og-globalisering",
+      "status": "materialized",
+      "chapter": "data/fagverk/naeringsliv/okonomi/internasjonal-okonomi-handel-valuta-og-globalisering.json"
+    },
+    {
+      "ordinal": 7,
+      "domain_id": "bedriftsokonomi_regnskap_kostnader_styring",
+      "slug": "bedriftsokonomi-regnskap-kostnader-og-styring",
+      "status": "materialized",
+      "chapter": "data/fagverk/naeringsliv/okonomi/bedriftsokonomi-regnskap-kostnader-og-styring.json"
+    },
+    {
+      "ordinal": 8,
+      "domain_id": "finans_investering_risiko_kapitalmarkeder",
+      "slug": "finans-investering-risiko-og-kapitalmarkeder",
+      "status": "materialized",
+      "chapter": "data/fagverk/naeringsliv/okonomi/finans-investering-risiko-og-kapitalmarkeder.json"
+    },
+    {
+      "ordinal": 9,
+      "domain_id": "organisasjon_ledelse_strategi_virksomhetsstyring",
+      "slug": "organisasjon-ledelse-strategi-og-virksomhetsstyring",
+      "status": "materialized",
+      "chapter": "data/fagverk/naeringsliv/okonomi/organisasjon-ledelse-strategi-og-virksomhetsstyring.json"
+    },
+    {
+      "ordinal": 10,
+      "domain_id": "entreprenorskap_innovasjon_forretningsmodeller",
+      "slug": "entreprenorskap-innovasjon-og-forretningsmodeller",
+      "status": "materialized",
+      "chapter": "data/fagverk/naeringsliv/okonomi/entreprenorskap-innovasjon-og-forretningsmodeller.json"
+    },
+    {
+      "ordinal": 11,
+      "domain_id": "politisk_okonomi_institusjoner_makt_regulering",
+      "slug": "politisk-okonomi-institusjoner-makt-og-regulering",
+      "status": "materialized",
+      "chapter": "data/fagverk/naeringsliv/okonomi/politisk-okonomi-institusjoner-makt-og-regulering.json"
+    },
+    {
+      "ordinal": 12,
+      "domain_id": "empirisk_okonomi_data_kausalitet_prognoser",
+      "slug": "empirisk-okonomi-data-kausalitet-og-prognoser",
+      "status": "materialized",
+      "chapter": "data/fagverk/naeringsliv/okonomi/empirisk-okonomi-data-kausalitet-og-prognoser.json"
+    }
+  ],
+  "totals": {
+    "topic_briefs": 96,
+    "verified_claims": 384,
+    "modules": 48,
+    "sections": 96,
+    "paragraphs": 384,
+    "assessment_questions": 96,
+    "cases": 72
+  },
+  "next_gate": "maintenance_source_refresh_empirical_case_expansion"
+}
