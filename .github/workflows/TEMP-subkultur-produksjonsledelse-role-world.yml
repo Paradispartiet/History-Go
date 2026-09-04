@@ -30,6 +30,8 @@ jobs:
         run: node .github/TEMP-subkultur-produksjonsledelse-role-world-uniqueness-fix.mjs
       - name: Regenerate Role World readiness
         run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+      - name: Regenerate career gameplay matrix
+        run: node scripts/audit-civication-career-gameplay.mjs --write
       - name: Focused Role World gate
         run: node tests/civication-subkultur-produksjonsledelse-role-world-rollout.test.js
       - name: Prerequisite compatibility
@@ -61,8 +63,10 @@ jobs:
             data/Civication/roleWorldAuthoringChecklist.json \
             data/Civication/roleWorldThemeBank.json \
             data/Civication/roleWorldRolloutReadiness.json \
+            data/Civication/careerGameplayMatrix.json \
             reports/CIVICATION_SUBKULTUR_PRODUKSJONSLEDELSE_ROLE_WORLD_ROLLOUT_SOURCE_FIRST.md \
             reports/civication-role-world-rollout-readiness.md \
+            reports/civication-career-gameplay-matrix.md \
             tests/civication-subkultur-produksjonsledelse-role-world-rollout.test.js \
             .github/TEMP-subkultur-produksjonsledelse-role-world-materializer.mjs \
             .github/TEMP-subkultur-produksjonsledelse-role-world-uniqueness-fix.mjs \
