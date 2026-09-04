@@ -1,0 +1,38 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const ROLE='subkultur_produksjon_og_prosjekt';
+const CATEGORY='subkultur';
+const ROLE_ID='subkultur_produsent';
+const MODEL=`data/Civication/roleModels/${CATEGORY}/${ROLE}.json`;
+const GRAMMAR=`data/Civication/workGrammars/${CATEGORY}/${ROLE}.json`;
+const PLAN=`data/Civication/mailPlans/${CATEGORY}/${ROLE}_plan.json`;
+const REPORT='reports/CIVICATION_SUBKULTUR_PRODUKSJON_OG_PROSJEKT_PREREQUISITES_SOURCE_FIRST.md';
+const TEST='tests/civication-subkultur-produksjon-og-prosjekt-prerequisites.test.js';
+const TYPES=['job','people','conflict','story','event','micro','followup','knowledge','consequence'];
+const write=(rel,val)=>{const p=path.join(ROOT,rel);fs.mkdirSync(path.dirname(p),{recursive:true});fs.writeFileSync(p,typeof val==='string'?val:`${JSON.stringify(val,null,2)}\n`,'utf8');};
+const actors=[
+  {id:'nora_program_og_oppdragsgiver',name:'Nora',role:'programansvarlig og oppdragsgiver',place:'prosjektrom_scope_og_milepaeler',function:'Nora bærer bestilling, programintensjon, målgruppe og den kreative ambisjonen inn i prosjektet. Hun gjør scope, prioriteringer og endringsønsker synlige før teamet begynner å behandle dem som vedtatte leveranser, og hun må skille ønsket effekt fra faktisk finansiert og kontraktsfestet omfang slik at produksjonen kan replanlegges uten skjult arbeid eller uformelle løfter.',authority:'Nora kan beskrive behov, prioritere innen sitt bestillermandat og godkjenne leveranser der dette er delegert, men hun kan ikke utvide produsentens fullmakt, love penger som ikke finnes, overstyre sikkerhetsansvarlig, dispensere fra rettigheter eller arbeidsgivergrenser eller gjøre et programønske til bindende leverandør- eller crewforpliktelse. Produsenten må derfor få endringer eksplisitt besluttet og versjonert.'},
+  {id:'samir_teknisk_produksjon',name:'Samir',role:'teknisk produsent og crew-koordinator',place:'produksjonsgulv_rigg_og_crewpunkt',function:'Samir holder tekniske avhengigheter, rigg, strøm, kapasitet, skift, fagkompetanse, reserveplan og reell gjennomførbarhet samlet. Han gjør konsekvensen av tidskutt og sene endringer synlig i crewplan og sikkerhetsstatus, og sørger for at dugnadsånd aldri blir brukt som erstatning for kritisk kompetanse, pauser eller en faktisk frigitt teknisk løsning.',authority:'Samir kan stoppe eller holde igjen teknisk arbeid innen delegert sikkerhets- og fagmyndighet når forutsetninger ikke er oppfylt, og han kan kreve ny test eller bemanning. Han kan ikke inngå økonomiske avtaler på prosjektets vegne, utvide programmet, gjøre personalsanksjoner eller godkjenne rettigheter. Produsenten må behandle teknisk stopp som faktisk premiss og replanlegge berørte leveranser i stedet for å presse crew.'},
+  {id:'liv_okonomi_og_innkjop',name:'Liv',role:'økonomi- og innkjøpskoordinator',place:'budsjett_innkjop_og_kontraktsflate',function:'Liv holder kostnadsramme, bestillinger, tilbud, innkjøpsspor, betalingsplan, fakturaer, tilskuddsbindinger og prognose samlet på samme prosjektversjon. Hun skiller estimert, godkjent, bestilt, levert og fakturert slik at prosjektet ikke kan finansiere nye ønsker med uuttalte antakelser eller skyve økonomiske avvik til sluttoppgjøret.',authority:'Liv kan kreve korrekt bestillingsgrunnlag, synliggjøre avvik, holde igjen innkjøp som mangler fullmakt eller budsjettdekning og eskalere når vilkår endres. Hun kan ikke selv utvide totalrammen, godkjenne kunstnerisk scope, omgå anskaffelses- eller tilskuddsbetingelser eller gjøre et tilbud til avtale uten riktig signatur. Produsenten må skille økonomifakta fra egen disposisjonsrett.'},
+  {id:'jonas_rettigheter_og_leverandor',name:'Jonas',role:'kontrakt-, rettighets- og leverandørkoordinator',place:'leveranse_rettighet_og_avviksbord',function:'Jonas samler kontraktsversjoner, leverandørforpliktelser, forsikring, kreditering, lisens- og rettighetsstatus, underleverandører og avvik i samme leveransespor. Han gjør det synlig når markedsføring, opptak, musikk, foto, kunstnerbidrag eller tekniske leveranser har en annen klareringsstatus enn prosjektplanen antar, slik at offentlig kommunikasjon ikke løper foran faktisk rett.',authority:'Jonas kan markere betingelser, stoppe handoff som mangler dokumentert rettighet eller kontraktsgrunnlag og eskalere tolkning til riktig juridisk eller kontraktsansvarlig. Han kan ikke gi juridiske garantier utover dokumentasjon, signere uten fullmakt, endre honorar eller scope alene eller gjøre sosial tillit til rettighetsklarering. Produsenten må holde forespurt, forhandlet, signert og klarert status adskilt.'}
+];
+const places=[
+  {id:'prosjektrom_scope_og_milepaeler',name:'Prosjektrommet for scope og milepæler',function:'Her ligger gjeldende prosjektmandat, mål, leveranseliste, milepæler, beslutningseiere, avhengigheter og endringslogg. Flaten skiller idé, forespørsel, godkjent endring og ny baseline, slik at et kreativt eller sosialt ønske ikke blir gratis skjult arbeid og slik at senere rework bare åpner de delene som faktisk er berørt.'},
+  {id:'budsjett_innkjop_og_kontraktsflate',name:'Budsjett-, innkjøps- og kontraktsflaten',function:'Her holdes estimat, godkjent ramme, tilbud, bestilling, avtale, betalingsplan, faktura, tilskuddsbinding og økonomisk prognose sammen. Flaten gjør det umulig å kalle en forventet inntekt disponibel eller et pristilbud bindende før riktig fullmakt og dokumentasjon finnes.'},
+  {id:'produksjonsgulv_rigg_og_crewpunkt',name:'Produksjonsgulvet, rigg- og crewpunktet',function:'Her møtes kjøreplan, rigg, tekniske avhengigheter, skift, pauser, fagkompetanse, kapasitet, sikkerhetsstatus og reell fremdrift. Et programønske kan ikke gjøre en uprøvd løsning eller ubemannet kritisk funksjon klar; endringer må inn i plan, ansvar og kontroll før ny frigivelse.'},
+  {id:'leveranse_rettighet_og_avviksbord',name:'Leveranse-, rettighets- og avviksbordet',function:'Her samles leverandørstatus, kontraktsversjon, rettigheter, kreditering, forsikring, avvik, akseptansekriterier, sluttoppgjør og dokumentert overlevering. Flaten skiller levert, godkjent, klarert og lukket, slik at prosjektavslutning ikke skjuler restarbeid, uavklarte krav eller senere konsekvenser.'}
+];
+const placeIds=places.map(x=>x.id),actorIds=actors.map(x=>x.id);
+const objectId='prosjektplan_budsjett_kontrakt_og_avvikslogg';
+const authorityMayNot=[
+  'inngaa_bindende_avtaler_eller_bestillinger_utover_delegert_fullmakt',
+  'skjule_budsjett_kontrakt_rettighets_eller_sikkerhetsavvik_for_a_bevare_fremdrift',
+  'presse_crew_til_usikkert_arbeid_eller_omga_arbeidsrett_arbeidsgiveransvar_og_hviletid',
+  'bruke_frivillighet_som_erstatning_for_kritisk_fagkompetanse_eller_fast_ansvar',
+  'behandle_subkulturell_status_vennskap_eller_programonske_som_rettighetsklarering_signatur_eller_sikkerhetsfrigivelse'
+];
+const roleModel={
+  schema:'civication_role_model_v2',versio

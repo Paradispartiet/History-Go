@@ -1,0 +1,6 @@
+const manifestRel='data/Civication/roleModels/manifest.json';
+const manifest=JSON.parse(fs.readFileSync(path.join(ROOT,manifestRel),'utf8'));
+if(!Array.isArray(manifest.files)) manifest.files=[];
+if(!manifest.files.includes(MODEL)) manifest.files.push(MODEL);
+manifest.files=[...new Set(manifest.files)].sort();
+write(manifestRel,manifest);
