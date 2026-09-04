@@ -1,0 +1,35 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { auditHistorieSourceRefreshPlaceCaseExpansionRound3 } from '../scripts/audit-historie-source-refresh-place-case-expansion-round3.mjs';
+
+test('Historie maintenance round 3 expands five more chapters and remains disjoint', () => {
+  const report = auditHistorieSourceRefreshPlaceCaseExpansionRound3();
+  assert.equal(report.status, 'passed');
+  assert.equal(report.round, 3);
+  assert.equal(report.source_refresh_count, 10);
+  assert.equal(report.case_count, 5);
+  assert.equal(report.chapter_count, 5);
+  assert.equal(report.combined_maintenance_chapter_count, 15);
+  assert.equal(report.canonical_chapter_count, 23);
+  assert.equal(report.baseline_editorial_case_anchor_count, 54);
+  assert.equal(report.round1_new_place_count, 5);
+  assert.equal(report.round2_new_place_count, 5);
+  assert.equal(report.round3_new_place_count, 5);
+  assert.equal(report.projected_case_anchor_count, 69);
+  assert.equal(report.gates.source_health, true);
+  assert.equal(report.gates.canonical_chapter_identity, true);
+  assert.equal(report.gates.canonical_place_identity, true);
+  assert.equal(report.gates.chapter_non_overlap_previous_rounds, true);
+  assert.equal(report.gates.place_non_overlap_editorial_and_previous_rounds, true);
+  assert.equal(report.gates.case_source_trace, true);
+  assert.equal(report.gates.claim_provenance_preserved, true);
+  assert.equal(report.gates.historiography_and_theory_integrity_scope_unchanged, true);
+  assert.equal(report.gates.subject_architecture_unchanged, true);
+  assert.equal(report.gates.completion_status_preserved, true);
+  assert.equal(report.gates.institutional_self_history_bounded, true);
+  assert.equal(report.gates.museum_location_bounded, true);
+  assert.equal(report.gates.market_retrojection_bounded, true);
+  assert.equal(report.gates.systemic_effects_not_localized_to_place_anchor, true);
+  assert.equal(report.gates.no_strict_subcategory, true);
+  assert.equal(report.gates.no_place_production, true);
+});
