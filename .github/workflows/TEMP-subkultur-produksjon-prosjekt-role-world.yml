@@ -23,9 +23,13 @@ jobs:
           cache: npm
       - run: npm ci --no-audit --no-fund
       - name: Syntax check Role World materializer
-        run: node --check .github/TEMP-subkultur-produksjon-prosjekt-role-world-materializer.mjs
+        run: |
+          node --check .github/TEMP-subkultur-produksjon-prosjekt-role-world-materializer.mjs
+          node --check .github/TEMP-subkultur-produksjon-prosjekt-role-world-standing-normalizer.mjs
       - name: Materialize authored Role World
         run: node .github/TEMP-subkultur-produksjon-prosjekt-role-world-materializer.mjs
+      - name: Make standing consequences beat-specific
+        run: node .github/TEMP-subkultur-produksjon-prosjekt-role-world-standing-normalizer.mjs
       - name: Regenerate Role World readiness
         run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
       - name: Focused Role World gate
@@ -47,6 +51,7 @@ jobs:
         run: |
           set -euo pipefail
           rm -f .github/TEMP-subkultur-produksjon-prosjekt-role-world-materializer.mjs
+          rm -f .github/TEMP-subkultur-produksjon-prosjekt-role-world-standing-normalizer.mjs
           rm -f .github/workflows/TEMP-subkultur-produksjon-prosjekt-role-world.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -59,6 +64,7 @@ jobs:
             reports/CIVICATION_SUBKULTUR_PRODUKSJON_OG_PROSJEKT_ROLE_WORLD_ROLLOUT_SOURCE_FIRST.md \
             tests/civication-subkultur-produksjon-og-prosjekt-role-world-rollout.test.js \
             .github/TEMP-subkultur-produksjon-prosjekt-role-world-materializer.mjs \
+            .github/TEMP-subkultur-produksjon-prosjekt-role-world-standing-normalizer.mjs \
             .github/workflows/TEMP-subkultur-produksjon-prosjekt-role-world.yml
           git diff --cached --check
           git commit -m "Complete Subkultur Produksjon og prosjekt Role World [materialized]"
