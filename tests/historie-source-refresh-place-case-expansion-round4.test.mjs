@@ -37,7 +37,7 @@ test('Historie maintenance round 4 expands five more chapters and leaves only th
   assert.equal(report.gates.archaeology_bounded, true);
   assert.equal(report.gates.state_formation_not_localized_to_palace, true);
   assert.equal(report.gates.memorial_retrojection_bounded, true);
-  assert.equal(report.gates.museum_location_bounded, true);
+  assert.equal(report.gates.fire_response_anchor_bounded, true);
   assert.equal(report.gates.statue_evidence_bounded, true);
   assert.equal(report.gates.no_strict_subcategory, true);
   assert.equal(report.gates.no_place_production, true);
