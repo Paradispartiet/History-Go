@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "subkultur",
+  "role_scope": "subkultur_produksjonsledelse",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "subkultur_produksjonsledelse_debrief_og_bounded_rework",
+      "purpose": "Authored Subkultur production-leadership gameplay with one versioned production book, explicit staffing and release states, bounded operational authority, safety/house interfaces, handoffs, bounded rework/retest and clean debrief.",
+      "learning_focus": [
+        "kjoreplan_versjon_og_handoff",
+        "bemanning_kvalifikasjon_skift_og_hvile",
+        "teknisk_sikkerhet_stoppeier_og_frigivelse",
+        "husdrift_publikumsflyt_og_beredskap",
+        "avvik_bounded_rework_retest_og_debrief"
+      ],
+      "mails": [
+        {
+          "id": "pl_debrief_013",
+          "mail_type": "followup",
+          "mail_family": "subkultur_produksjonsledelse_debrief_og_bounded_rework",
+          "role_scope": "subkultur_produksjonsledelse",
+          "phase": "forenoon",
+          "day_phase": "morning",
+          "priority": 138,
+          "from": "Selma",
+          "people_ref": "selma_crew_og_bemanning",
+          "person_id": "selma_crew_og_bemanning",
+          "place_id": "crew_bemanning_skift_og_hvilepunkt",
+          "subject": "Debriefen viser at samme bemanningsgap kom tilbake tre ganger gjennom dagen",
+          "summary": "Dagen ble gjennomført uten skade, men tre handoffs måtte improviseres fordi reservefunksjonen aldri ble formelt løst. Selma viser faktisk arbeidstid, ekstra belastning og hvilke punkter som ble holdt sammen av enkeltpersoners lojalitet. Produksjonsboken skal samtidig skille foreslått, besluttet, bemannet, testet, frigitt, distribuert, utført, avviket og lukket status, med kjøreplanversjon, crew/kvalifikasjon, skift/hvile, teknikk, sikkerhet/husdrift, publikumsflyt, stoppeier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere versjon, begrunnelse, varsling eller ansvar forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av produksjonen kan beholde mens saken venter.",
+          "situation": [
+            "Dagen ble gjennomført uten skade, men tre handoffs måtte improviseres fordi reservefunksjonen aldri ble formelt løst. Selma viser faktisk arbeidstid, ekstra belastning og hvilke punkter som ble holdt sammen av enkeltpersoners lojalitet.",
+            "Produksjonslederen kan koordinere og replanlegge innen delegert mandat, men kan ikke gjøre deadline, artiststatus, vennskap eller lojalitet til sikkerhetsdispensasjon, kvalifikasjon, arbeidsgiverunntak, rettighetsklarering eller universell kommandorett.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere produksjonsversjon slettes."
+          ],
+          "task_domain": "subkultur_produksjonsledelse",
+          "competency": "debrief_bemanning_og_bounded_rework",
+          "pressure": "deadline_og_publikumslovnad_vs_sporbar_operativ_leveranse_arbeidsmiljo_og_sikkerhet",
+          "choice_axis": "sann_status_stoppeier_og_bounded_rework_vs_antakelse_og_skjult_operativ_gjeld",
+          "consequence_axis": "robust_gjennomforing_vs_bemannings_teknisk_sikkerhets_og_tillitsgjeld",
+          "narrative_arc": "debrief",
+          "situated_audience_id": "crew_og_stage_management",
+          "choices": [
+            {
+              "id": "A",
+              "label": "debrief_bemanning_og_bounded_rework: sporbar beslutning pl_debrief_013",
+              "reply": "Logg mønsteret som systemisk restpunkt, skill heldig utfall fra robust løsning og endre reservekriteriet før neste produksjon. Jeg oppdaterer produksjonsbok_kjoreplan_bemanning_sikkerhet_og_avvikslogg med gjeldende versjon, berørte ledd, beslutningseier eller stoppeier og neste kontroll slik at handoff kan etterprøves og bare nødvendig arbeid gjenåpnes.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "sikkerhet"
+              ],
+              "feedback": "Logg mønsteret som systemisk restpunkt, skill heldig utfall fra robust løsning og endre reservekriteriet før neste produksjon. Det beskytter fremdrift uten å skjule arbeidsmiljø, teknisk risiko, sikkerhet eller myndighetsgrense. Når premisset endres er det tydelig hvilken produksjonsversjon som gjaldt, hvem som eier neste kontroll og hvilke ledd som faktisk må retestes før gjenopptakelse.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "debrief_bemanning_og_bounded_rework: skjult gjeld pl_debrief_013",
+              "reply": "Marker dagen som vellykket fordi publikum ikke merket problemet, og takk de mest lojale for at de strakk seg. Jeg lar tempo, status eller sosialt press styre nå og skyver kvalifikasjon, sikkerhet, hvile, versjonskontroll eller stoppeier til etterpå dersom noen ber om dokumentasjon.",
+              "effect": -1,
+              "tags": [
+                "mandatglidning",
+                "operativ_gjeld",
+                "risiko"
+              ],
+              "feedback": "Marker dagen som vellykket fordi publikum ikke merket problemet, og takk de mest lojale for at de strakk seg. Det kan bevare tempo eller sosial ro i øyeblikket, men flytter risiko til crew, fagansvarlige, husdrift eller publikum. Senere blir det uklart hvem som ga ordre, om bemanningen var kvalifisert, hva som var testet eller frigitt og hvem som skulle ha lukket avviket.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

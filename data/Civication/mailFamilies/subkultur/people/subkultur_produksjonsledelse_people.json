@@ -1,0 +1,298 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "subkultur",
+  "role_scope": "subkultur_produksjonsledelse",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "subkultur_produksjonsledelse_arbeidsrelasjoner_og_myndighet",
+      "purpose": "Authored Subkultur production-leadership gameplay with one versioned production book, explicit staffing and release states, bounded operational authority, safety/house interfaces, handoffs, bounded rework/retest and clean debrief.",
+      "learning_focus": [
+        "kjoreplan_versjon_og_handoff",
+        "bemanning_kvalifikasjon_skift_og_hvile",
+        "teknisk_sikkerhet_stoppeier_og_frigivelse",
+        "husdrift_publikumsflyt_og_beredskap",
+        "avvik_bounded_rework_retest_og_debrief"
+      ],
+      "mails": [
+        {
+          "id": "pl_selma_002",
+          "mail_type": "people",
+          "mail_family": "subkultur_produksjonsledelse_arbeidsrelasjoner_og_myndighet",
+          "role_scope": "subkultur_produksjonsledelse",
+          "phase": "forenoon",
+          "day_phase": "morning",
+          "priority": 149,
+          "from": "Selma",
+          "people_ref": "selma_crew_og_bemanning",
+          "person_id": "selma_crew_og_bemanning",
+          "place_id": "crew_bemanning_skift_og_hvilepunkt",
+          "subject": "Reservepersonen er tilgjengelig, men ikke kvalifisert for kritisk funksjon",
+          "summary": "En nøkkelperson er syk. En frivillig kjenner huset og vil gjerne hjelpe, men mangler dokumentert kompetanse for funksjonen som står tom. Selma ber om en beslutning før briefen avsluttes. Produksjonsboken skal samtidig skille foreslått, besluttet, bemannet, testet, frigitt, distribuert, utført, avviket og lukket status, med kjøreplanversjon, crew/kvalifikasjon, skift/hvile, teknikk, sikkerhet/husdrift, publikumsflyt, stoppeier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere versjon, begrunnelse, varsling eller ansvar forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av produksjonen kan beholde mens saken venter.",
+          "situation": [
+            "En nøkkelperson er syk. En frivillig kjenner huset og vil gjerne hjelpe, men mangler dokumentert kompetanse for funksjonen som står tom. Selma ber om en beslutning før briefen avsluttes.",
+            "Produksjonslederen kan koordinere og replanlegge innen delegert mandat, men kan ikke gjøre deadline, artiststatus, vennskap eller lojalitet til sikkerhetsdispensasjon, kvalifikasjon, arbeidsgiverunntak, rettighetsklarering eller universell kommandorett.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere produksjonsversjon slettes."
+          ],
+          "task_domain": "subkultur_produksjonsledelse",
+          "competency": "bemanning_og_kvalifikasjon",
+          "pressure": "deadline_og_publikumslovnad_vs_sporbar_operativ_leveranse_arbeidsmiljo_og_sikkerhet",
+          "choice_axis": "sann_status_stoppeier_og_bounded_rework_vs_antakelse_og_skjult_operativ_gjeld",
+          "consequence_axis": "robust_gjennomforing_vs_bemannings_teknisk_sikkerhets_og_tillitsgjeld",
+          "narrative_arc": "selma",
+          "situated_audience_id": "crew_og_stage_management",
+          "choices": [
+            {
+              "id": "A",
+              "label": "bemanning_og_kvalifikasjon: sporbar beslutning pl_selma_002",
+              "reply": "Behold gapet synlig, finn kvalifisert reserve eller reduser produksjonen, og oppdater skift og handoff. Jeg oppdaterer produksjonsbok_kjoreplan_bemanning_sikkerhet_og_avvikslogg med gjeldende versjon, berørte ledd, beslutningseier eller stoppeier og neste kontroll slik at handoff kan etterprøves og bare nødvendig arbeid gjenåpnes.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "sikkerhet"
+              ],
+              "feedback": "Behold gapet synlig, finn kvalifisert reserve eller reduser produksjonen, og oppdater skift og handoff. Det beskytter fremdrift uten å skjule arbeidsmiljø, teknisk risiko, sikkerhet eller myndighetsgrense. Når premisset endres er det tydelig hvilken produksjonsversjon som gjaldt, hvem som eier neste kontroll og hvilke ledd som faktisk må retestes før gjenopptakelse.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "bemanning_og_kvalifikasjon: skjult gjeld pl_selma_002",
+              "reply": "Sett den frivillige inn fordi personen kjenner miljøet og la fagansvarlig gi en rask muntlig opplæring. Jeg lar tempo, status eller sosialt press styre nå og skyver kvalifikasjon, sikkerhet, hvile, versjonskontroll eller stoppeier til etterpå dersom noen ber om dokumentasjon.",
+              "effect": -1,
+              "tags": [
+                "mandatglidning",
+                "operativ_gjeld",
+                "risiko"
+              ],
+              "feedback": "Sett den frivillige inn fordi personen kjenner miljøet og la fagansvarlig gi en rask muntlig opplæring. Det kan bevare tempo eller sosial ro i øyeblikket, men flytter risiko til crew, fagansvarlige, husdrift eller publikum. Senere blir det uklart hvem som ga ordre, om bemanningen var kvalifisert, hva som var testet eller frigitt og hvem som skulle ha lukket avviket.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "pl_mika_005",
+          "mail_type": "people",
+          "mail_family": "subkultur_produksjonsledelse_arbeidsrelasjoner_og_myndighet",
+          "role_scope": "subkultur_produksjonsledelse",
+          "phase": "forenoon",
+          "day_phase": "morning",
+          "priority": 146,
+          "from": "Mika",
+          "people_ref": "mika_teknisk_sjef",
+          "person_id": "mika_teknisk_sjef",
+          "place_id": "teknisk_sikkerhet_rigg_og_frigivelse",
+          "subject": "Mika opplever at produksjonslinjen omtaler hans stopp som en anbefaling",
+          "summary": "Etter flere tidspressede endringer sier Mika at crewet har begynt å høre «vi prøver bare» når han markerer et faktisk faglig stopp. Relasjonen er god, men myndighetslinjen er blitt utydelig. Produksjonsboken skal samtidig skille foreslått, besluttet, bemannet, testet, frigitt, distribuert, utført, avviket og lukket status, med kjøreplanversjon, crew/kvalifikasjon, skift/hvile, teknikk, sikkerhet/husdrift, publikumsflyt, stoppeier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere versjon, begrunnelse, varsling eller ansvar forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av produksjonen kan beholde mens saken venter.",
+          "situation": [
+            "Etter flere tidspressede endringer sier Mika at crewet har begynt å høre «vi prøver bare» når han markerer et faktisk faglig stopp. Relasjonen er god, men myndighetslinjen er blitt utydelig.",
+            "Produksjonslederen kan koordinere og replanlegge innen delegert mandat, men kan ikke gjøre deadline, artiststatus, vennskap eller lojalitet til sikkerhetsdispensasjon, kvalifikasjon, arbeidsgiverunntak, rettighetsklarering eller universell kommandorett.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere produksjonsversjon slettes."
+          ],
+          "task_domain": "subkultur_produksjonsledelse",
+          "competency": "stoppeier_og_relational_tillit",
+          "pressure": "deadline_og_publikumslovnad_vs_sporbar_operativ_leveranse_arbeidsmiljo_og_sikkerhet",
+          "choice_axis": "sann_status_stoppeier_og_bounded_rework_vs_antakelse_og_skjult_operativ_gjeld",
+          "consequence_axis": "robust_gjennomforing_vs_bemannings_teknisk_sikkerhets_og_tillitsgjeld",
+          "narrative_arc": "mika",
+          "situated_audience_id": "tekniske_fag_og_stoppeiere",
+          "choices": [
+            {
+              "id": "A",
+              "label": "stoppeier_og_relational_tillit: sporbar beslutning pl_mika_005",
+              "reply": "Bekreft stoppeiers mandat i briefen, avklar ordbruk for anbefaling, stopp og frigivelse, og la ny plan vise hvem som kan gjenåpne leddet. Jeg oppdaterer produksjonsbok_kjoreplan_bemanning_sikkerhet_og_avvikslogg med gjeldende versjon, berørte ledd, beslutningseier eller stoppeier og neste kontroll slik at handoff kan etterprøves og bare nødvendig arbeid gjenåpnes.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "sikkerhet"
+              ],
+              "feedback": "Bekreft stoppeiers mandat i briefen, avklar ordbruk for anbefaling, stopp og frigivelse, og la ny plan vise hvem som kan gjenåpne leddet. Det beskytter fremdrift uten å skjule arbeidsmiljø, teknisk risiko, sikkerhet eller myndighetsgrense. Når premisset endres er det tydelig hvilken produksjonsversjon som gjaldt, hvem som eier neste kontroll og hvilke ledd som faktisk må retestes før gjenopptakelse.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "stoppeier_og_relational_tillit: skjult gjeld pl_mika_005",
+              "reply": "Be Mika være mindre kategorisk foran crewet slik at stemningen holder seg konstruktiv, og avklar myndighetsdetaljene privat senere. Jeg lar tempo, status eller sosialt press styre nå og skyver kvalifikasjon, sikkerhet, hvile, versjonskontroll eller stoppeier til etterpå dersom noen ber om dokumentasjon.",
+              "effect": -1,
+              "tags": [
+                "mandatglidning",
+                "operativ_gjeld",
+                "risiko"
+              ],
+              "feedback": "Be Mika være mindre kategorisk foran crewet slik at stemningen holder seg konstruktiv, og avklar myndighetsdetaljene privat senere. Det kan bevare tempo eller sosial ro i øyeblikket, men flytter risiko til crew, fagansvarlige, husdrift eller publikum. Senere blir det uklart hvem som ga ordre, om bemanningen var kvalifisert, hva som var testet eller frigitt og hvem som skulle ha lukket avviket.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "pl_eva_008",
+          "mail_type": "people",
+          "mail_family": "subkultur_produksjonsledelse_arbeidsrelasjoner_og_myndighet",
+          "role_scope": "subkultur_produksjonsledelse",
+          "phase": "forenoon",
+          "day_phase": "morning",
+          "priority": 143,
+          "from": "Eva",
+          "people_ref": "eva_husdrift_sikkerhet_og_publikum",
+          "person_id": "eva_husdrift_sikkerhet_og_publikum",
+          "place_id": "publikumsflyt_husdrift_og_avvikssentral",
+          "subject": "Eva varsler at produksjonen lover mer publikumskapasitet enn huset har frigitt",
+          "summary": "Kommunikasjonen har åpnet for flere gjester etter sterk etterspørsel. Eva viser at kapasitet og køoppsett ikke er kontrollert for den nye planen, mens programmet ønsker å unngå å skuffe miljøet. Produksjonsboken skal samtidig skille foreslått, besluttet, bemannet, testet, frigitt, distribuert, utført, avviket og lukket status, med kjøreplanversjon, crew/kvalifikasjon, skift/hvile, teknikk, sikkerhet/husdrift, publikumsflyt, stoppeier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere versjon, begrunnelse, varsling eller ansvar forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av produksjonen kan beholde mens saken venter.",
+          "situation": [
+            "Kommunikasjonen har åpnet for flere gjester etter sterk etterspørsel. Eva viser at kapasitet og køoppsett ikke er kontrollert for den nye planen, mens programmet ønsker å unngå å skuffe miljøet.",
+            "Produksjonslederen kan koordinere og replanlegge innen delegert mandat, men kan ikke gjøre deadline, artiststatus, vennskap eller lojalitet til sikkerhetsdispensasjon, kvalifikasjon, arbeidsgiverunntak, rettighetsklarering eller universell kommandorett.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere produksjonsversjon slettes."
+          ],
+          "task_domain": "subkultur_produksjonsledelse",
+          "competency": "husdrift_kapasitet_og_relational_tillit",
+          "pressure": "deadline_og_publikumslovnad_vs_sporbar_operativ_leveranse_arbeidsmiljo_og_sikkerhet",
+          "choice_axis": "sann_status_stoppeier_og_bounded_rework_vs_antakelse_og_skjult_operativ_gjeld",
+          "consequence_axis": "robust_gjennomforing_vs_bemannings_teknisk_sikkerhets_og_tillitsgjeld",
+          "narrative_arc": "eva",
+          "situated_audience_id": "husdrift_sikkerhet_og_vakthold",
+          "choices": [
+            {
+              "id": "A",
+              "label": "husdrift_kapasitet_og_relational_tillit: sporbar beslutning pl_eva_008",
+              "reply": "Korriger publikumsløftet, hold kapasiteten på frigitt nivå og legg eventuell utvidelse bak Evas kontroll og ny driftsbeslutning. Jeg oppdaterer produksjonsbok_kjoreplan_bemanning_sikkerhet_og_avvikslogg med gjeldende versjon, berørte ledd, beslutningseier eller stoppeier og neste kontroll slik at handoff kan etterprøves og bare nødvendig arbeid gjenåpnes.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "sikkerhet"
+              ],
+              "feedback": "Korriger publikumsløftet, hold kapasiteten på frigitt nivå og legg eventuell utvidelse bak Evas kontroll og ny driftsbeslutning. Det beskytter fremdrift uten å skjule arbeidsmiljø, teknisk risiko, sikkerhet eller myndighetsgrense. Når premisset endres er det tydelig hvilken produksjonsversjon som gjaldt, hvem som eier neste kontroll og hvilke ledd som faktisk må retestes før gjenopptakelse.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "husdrift_kapasitet_og_relational_tillit: skjult gjeld pl_eva_008",
+              "reply": "Slipp inn litt flere og bruk crewet mer fleksibelt i køen siden lokalet har tålt tett publikum tidligere. Jeg lar tempo, status eller sosialt press styre nå og skyver kvalifikasjon, sikkerhet, hvile, versjonskontroll eller stoppeier til etterpå dersom noen ber om dokumentasjon.",
+              "effect": -1,
+              "tags": [
+                "mandatglidning",
+                "operativ_gjeld",
+                "risiko"
+              ],
+              "feedback": "Slipp inn litt flere og bruk crewet mer fleksibelt i køen siden lokalet har tålt tett publikum tidligere. Det kan bevare tempo eller sosial ro i øyeblikket, men flytter risiko til crew, fagansvarlige, husdrift eller publikum. Senere blir det uklart hvem som ga ordre, om bemanningen var kvalifisert, hva som var testet eller frigitt og hvem som skulle ha lukket avviket.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "pl_adrian_012",
+          "mail_type": "people",
+          "mail_family": "subkultur_produksjonsledelse_arbeidsrelasjoner_og_myndighet",
+          "role_scope": "subkultur_produksjonsledelse",
+          "phase": "forenoon",
+          "day_phase": "morning",
+          "priority": 139,
+          "from": "Adrian",
+          "people_ref": "adrian_stage_management_og_kjoreplan",
+          "person_id": "adrian_stage_management_og_kjoreplan",
+          "place_id": "produksjonskontroll_kjoreplan_og_beslutningslogg",
+          "subject": "Sene muntlige endringer gjør kjøreplaneier til budbringer uten versjonskontroll",
+          "summary": "Tre personer har gitt endringsønsker direkte til crew. Adrian opplever at han får ansvar for en kjøreplan han ikke lenger kan garantere er den samme som alle følger. Produksjonslederen må reparere både arbeidsform og relasjon. Produksjonsboken skal samtidig skille foreslått, besluttet, bemannet, testet, frigitt, distribuert, utført, avviket og lukket status, med kjøreplanversjon, crew/kvalifikasjon, skift/hvile, teknikk, sikkerhet/husdrift, publikumsflyt, stoppeier og neste kontroll. Senere endringer skal gjenåpne bare berørte ledd uten at tidligere versjon, begrunnelse, varsling eller ansvar forsvinner. Hver beslutning må derfor gjøre synlig hva som er observert, hvem som eier neste avklaring og hva resten av produksjonen kan beholde mens saken venter.",
+          "situation": [
+            "Tre personer har gitt endringsønsker direkte til crew. Adrian opplever at han får ansvar for en kjøreplan han ikke lenger kan garantere er den samme som alle følger. Produksjonslederen må reparere både arbeidsform og relasjon.",
+            "Produksjonslederen kan koordinere og replanlegge innen delegert mandat, men kan ikke gjøre deadline, artiststatus, vennskap eller lojalitet til sikkerhetsdispensasjon, kvalifikasjon, arbeidsgiverunntak, rettighetsklarering eller universell kommandorett.",
+            "Neste steg må ha navngitt eier, eksplisitt status og kunne gjenåpnes av ny dokumentert informasjon uten at tidligere produksjonsversjon slettes."
+          ],
+          "task_domain": "subkultur_produksjonsledelse",
+          "competency": "handoff_versjon_og_relational_tillit",
+          "pressure": "deadline_og_publikumslovnad_vs_sporbar_operativ_leveranse_arbeidsmiljo_og_sikkerhet",
+          "choice_axis": "sann_status_stoppeier_og_bounded_rework_vs_antakelse_og_skjult_operativ_gjeld",
+          "consequence_axis": "robust_gjennomforing_vs_bemannings_teknisk_sikkerhets_og_tillitsgjeld",
+          "narrative_arc": "adrian",
+          "situated_audience_id": "crew_og_stage_management",
+          "choices": [
+            {
+              "id": "A",
+              "label": "handoff_versjon_og_relational_tillit: sporbar beslutning pl_adrian_012",
+              "reply": "Samle endringer tilbake i én beslutningslinje, bekreft Adrian som versjonseier innen mandat og krev distribusjon og kvittering. Jeg oppdaterer produksjonsbok_kjoreplan_bemanning_sikkerhet_og_avvikslogg med gjeldende versjon, berørte ledd, beslutningseier eller stoppeier og neste kontroll slik at handoff kan etterprøves og bare nødvendig arbeid gjenåpnes.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "mandat",
+                "sikkerhet"
+              ],
+              "feedback": "Samle endringer tilbake i én beslutningslinje, bekreft Adrian som versjonseier innen mandat og krev distribusjon og kvittering. Det beskytter fremdrift uten å skjule arbeidsmiljø, teknisk risiko, sikkerhet eller myndighetsgrense. Når premisset endres er det tydelig hvilken produksjonsversjon som gjaldt, hvem som eier neste kontroll og hvilke ledd som faktisk må retestes før gjenopptakelse.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "handoff_versjon_og_relational_tillit: skjult gjeld pl_adrian_012",
+              "reply": "Be Adrian være mer fleksibel og fange opp muntlige endringer fortløpende fordi levende kulturarrangement beveger seg raskt. Jeg lar tempo, status eller sosialt press styre nå og skyver kvalifikasjon, sikkerhet, hvile, versjonskontroll eller stoppeier til etterpå dersom noen ber om dokumentasjon.",
+              "effect": -1,
+              "tags": [
+                "mandatglidning",
+                "operativ_gjeld",
+                "risiko"
+              ],
+              "feedback": "Be Adrian være mer fleksibel og fange opp muntlige endringer fortløpende fordi levende kulturarrangement beveger seg raskt. Det kan bevare tempo eller sosial ro i øyeblikket, men flytter risiko til crew, fagansvarlige, husdrift eller publikum. Senere blir det uklart hvem som ga ordre, om bemanningen var kvalifisert, hva som var testet eller frigitt og hvem som skulle ha lukket avviket.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
