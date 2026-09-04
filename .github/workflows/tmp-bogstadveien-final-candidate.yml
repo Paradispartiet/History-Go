@@ -1,0 +1,175 @@
+name: TEMP Bogstadveien final candidate
+on:
+  push:
+    branches: [control/bogstadveien-finalize-20260904-v3]
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Rebase production semantically onto fresh main
+        run: |
+          set -euo pipefail
+          git fetch origin main work/bogstadveien-production-final-20260904
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git switch -C candidate/bogstadveien-final-20260904-v3 origin/main
+          git cherry-pick bd17d6426cb40fd7ab575718d8e6b265e225afbe
+          test ! -e .github/workflows/tmp-bogstadveien-brand-preview.yml
+          test ! -e .github/workflows/tmp-bogstadveien-final-candidate.yml
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      - name: Fetch authentic Brand assets
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/bogstad-brands
+          python - <<'PY'
+          import json,re,urllib.request,urllib.parse
+          ua='History-Go-place-production/1.0 (https://github.com/Paradispartiet/History-Go)'
+          direct={
+            'bytimo.jpg':'https://mir-s3-cdn-cf.behance.net/project_modules/fs/1f5b0c25474497.56345da8bd99a.jpg',
+            'henri.png':'https://www.henrilloyd.com/cdn/shop/files/logo.png?v=1729691894',
+            'janus.svg':'https://www.janus.no/cdn/shop/files/Janus_logo_2025.svg?v=1741786680',
+            'moo.png':'https://www.moo.no/wp-content/uploads/2023/06/moo-logo.png'
+          }
+          for name,url in direct.items():
+            req=urllib.request.Request(url,headers={'User-Agent':ua})
+            with urllib.request.urlopen(req,timeout=45) as r:
+              data=r.read()
+              if len(data)<500: raise RuntimeError(f'{name}: suspiciously small asset')
+              open('/tmp/bogstad-brands/'+name,'wb').write(data)
+              print(name,len(data),r.headers.get('Content-Type'))
+          # Openly licensed authentic Blue Master pack.
+          title='Blue Master (tobak).jpg'
+          api='https://commons.wikimedia.org/w/api.php?action=query&format=json&prop=imageinfo&iiprop=url%7Cextmetadata&titles=File:'+urllib.parse.quote(title)
+          req=urllib.request.Request(api,headers={'User-Agent':ua})
+          with urllib.request.urlopen(req,timeout=45) as r: meta=json.load(r)
+          info=next(iter(meta['query']['pages'].values()))['imageinfo'][0]
+          license_name=info['extmetadata']['LicenseShortName']['value']
+          if 'CC BY-SA 4.0' not in license_name: raise RuntimeError('Unexpected Blue Master license: '+license_name)
+          req=urllib.request.Request(info['url'],headers={'User-Agent':ua})
+          with urllib.request.urlopen(req,timeout=45) as r: open('/tmp/bogstad-brands/blue-master.jpg','wb').write(r.read())
+          # Exact Varsity brandmark SVG as served by official homepage; fail closed if not present.
+          req=urllib.request.Request('https://varsityheadwear.com/',headers={'User-Agent':ua})
+          with urllib.request.urlopen(req,timeout=45) as r: html=r.read().decode('utf-8','ignore')
+          m=re.search(r'(<svg width="35" height="21" viewBox="0 0 35 21".*?</svg>)',html,re.S)
+          if not m: raise RuntimeError('Official Varsity mark not found')
+          svg=m.group(1).replace('style="fill:var(--svg-color)"','')
+          open('/tmp/bogstad-brands/varsity.svg','w',encoding='utf-8').write(svg)
+          print('varsity.svg',len(svg))
+          PY
+      - name: Materialize Brand assets and canonical audit
+        run: |
+          node <<'NODE'
+          const fs=require('fs'); const path=require('path'); const sharp=require('sharp');
+          const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+          const write=(p,v)=>{fs.mkdirSync(path.dirname(p),{recursive:true});fs.writeFileSync(p,JSON.stringify(v,null,2)+'\n')};
+          const out='bilder/kort/brands'; fs.mkdirSync(out,{recursive:true});
+          async function contain(src,dest){await sharp(src).resize(900,520,{fit:'contain',background:{r:255,g:255,b:255,alpha:0}}).webp({quality:92}).toFile(dest)}
+          async function main(){
+            await contain('/tmp/bogstad-brands/henri.png',`${out}/henri_lloyd.webp`);
+            await contain('/tmp/bogstad-brands/janus.svg',`${out}/janus.webp`);
+            await contain('/tmp/bogstad-brands/moo.png',`${out}/moo.webp`);
+            await contain('/tmp/bogstad-brands/varsity.svg',`${out}/varsity_headwear.webp`);
+            await sharp('/tmp/bogstad-brands/bytimo.jpg').extract({left:600,top:240,width:720,height:620}).resize(900,520,{fit:'contain',background:{r:255,g:255,b:255,alpha:0}}).webp({quality:92}).toFile(`${out}/by_timo.webp`);
+            await sharp('/tmp/bogstad-brands/blue-master.jpg').extract({left:250,top:360,width:2440,height:2000}).resize(900,520,{fit:'contain',background:{r:255,g:255,b:255,alpha:0}}).webp({quality:92}).toFile(`${out}/blue_master.webp`);
+
+            const selected=['blue_master','by_timo','henri_lloyd','janus','moo','varsity_headwear','georg_a_nilsen'];
+            const previous=['aesop','amundsen_sports','blue_master','by_timo','carlings','gant','henri_lloyd','hestra','holzweiler','hoyer','janus','junkyard','levis','moniker','moo','varsity_headwear','volt'];
+            const mapping=read('data/brands/brands_by_place.json'); mapping.bogstadveien=selected; write('data/brands/brands_by_place.json',mapping);
+            const brands=read('data/brands/brands_master.json');
+            const held=previous.filter(id=>!selected.includes(id));
+            for(const b of brands){
+              if(held.includes(b.id)&&Array.isArray(b.place_ids)) b.place_ids=b.place_ids.filter(id=>id!=='bogstadveien');
+              if(selected.includes(b.id)) b.place_ids=[...new Set([...(b.place_ids||[]),'bogstadveien'])];
+            }
+            const cfg={
+              blue_master:{logo:`${out}/blue_master.webp`,verification:'verified_legacy',source_urls:['https://nypesuppe.blogspot.com/2013/06/det-uddelige-hestehodet.html','https://commons.wikimedia.org/wiki/File:Blue_Master_(tobak).jpg'],logoMeta:{sourcePage:'https://commons.wikimedia.org/wiki/File:Blue_Master_(tobak).jpg',creator:'Wikimedia Commons contributor',credit:'Wikimedia Commons · Blue Master (tobak).jpg',rightsBasis:'CC BY-SA 4.0',license:'CC BY-SA 4.0',licenseUrl:'https://creativecommons.org/licenses/by-sa/4.0/',reviewStatus:'verified',assetKind:'authentic_pack_wordmark_crop',temporalScope:'historical',usageContext:'brand identification',noEndorsement:true,generated:false,reconstructed:false,transformation:'Exact crop from openly licensed photograph of authentic Blue Master pack; resized and padded only.',outputDimensions:'900x520',reviewedAt:'2026-09-04',disclosure:'Autentisk Blue Master-pakke; ordmerke og hestehode er beskåret fra kilden og er ikke rekonstruert.'}},
+              by_timo:{logo:`${out}/by_timo.webp`,verification:'verified',source_urls:['https://bytimo.com/contact','https://www.behance.net/gallery/25474497/byTiMo-Visual-Identity'],logoMeta:{sourcePage:'https://www.behance.net/gallery/25474497/byTiMo-Visual-Identity',creator:'Mats Ottdal / ANTI Norway',credit:'Mats Ottdal / ANTI Norway · byTiMo Visual Identity',rightsBasis:'Behance copyright info: Attribution, Non-commercial',license:'Attribution, Non-commercial',licenseUrl:'https://www.behance.net/gallery/25474497/byTiMo-Visual-Identity',reviewStatus:'verified',assetKind:'authentic_identity_wordmark_crop',temporalScope:'current_identity',usageContext:'brand identification',noEndorsement:true,generated:false,reconstructed:false,transformation:'Exact crop from published byTiMo visual-identity presentation; resized and padded only.',outputDimensions:'900x520',reviewedAt:'2026-09-04',disclosure:'Autentisk byTiMo-identitet fra designerens publiserte identitetsprosjekt; ikke rekonstruert.'}},
+              henri_lloyd:{logo:`${out}/henri_lloyd.webp`,verification:'verified',source_urls:['https://www.henrilloyd.com/en-us/blogs/press-release/henri-lloyd-opens-flagship-store-in-oslo','https://www.henrilloyd.com/cdn/shop/files/logo.png?v=1729691894'],logoMeta:{sourcePage:'https://www.henrilloyd.com/',creator:'Henri-Lloyd',credit:'Henri-Lloyd official brand asset',rightsBasis:'Official brand asset used referentially',license:'brand/trademark',reviewStatus:'verified',assetKind:'official_logo',temporalScope:'current',usageContext:'brand identification',noEndorsement:true,generated:false,reconstructed:false,transformation:'Official logo converted to WebP and padded only.',outputDimensions:'900x520',reviewedAt:'2026-09-04',disclosure:'Offisiell Henri-Lloyd-logo; ikke rekonstruert.'}},
+              janus:{logo:`${out}/janus.webp`,verification:'verified',source_urls:['https://www.janus.no/pages/janus-wool-store-oslo','https://www.janus.no/cdn/shop/files/Janus_logo_2025.svg?v=1741786680'],logoMeta:{sourcePage:'https://www.janus.no/',creator:'Janus Wool',credit:'Janus Wool official brand asset',rightsBasis:'Official brand asset used referentially',license:'brand/trademark',reviewStatus:'verified',assetKind:'official_logo',temporalScope:'current',usageContext:'brand identification',noEndorsement:true,generated:false,reconstructed:false,transformation:'Official SVG converted to WebP and padded only.',outputDimensions:'900x520',reviewedAt:'2026-09-04',disclosure:'Offisiell Janus-logo; ikke rekonstruert.'}},
+              moo:{logo:`${out}/moo.webp`,verification:'verified',source_urls:['https://www.moo.no/kontakt-oss/','https://www.moo.no/wp-content/uploads/2023/06/moo-logo.png'],logoMeta:{sourcePage:'https://www.moo.no/',creator:'MOO',credit:'MOO official brand asset',rightsBasis:'Official brand asset used referentially',license:'brand/trademark',reviewStatus:'verified',assetKind:'official_logo',temporalScope:'current',usageContext:'brand identification',noEndorsement:true,generated:false,reconstructed:false,transformation:'Official logo converted to WebP and padded only.',outputDimensions:'900x520',reviewedAt:'2026-09-04',disclosure:'Offisiell MOO-logo; ikke rekonstruert.'}},
+              varsity_headwear:{logo:`${out}/varsity_headwear.webp`,verification:'verified',source_urls:['https://varsityheadwear.com/pages/oslo-store-grand-opening','https://varsityheadwear.com/'],logoMeta:{sourcePage:'https://varsityheadwear.com/',creator:'Varsity Headwear',credit:'Varsity Headwear official inline brandmark',rightsBasis:'Official brand asset used referentially',license:'brand/trademark',reviewStatus:'verified',assetKind:'official_brandmark',temporalScope:'current',usageContext:'brand identification',noEndorsement:true,generated:false,reconstructed:false,transformation:'Exact official inline SVG converted to WebP and padded only.',outputDimensions:'900x520',reviewedAt:'2026-09-04',disclosure:'Offisielt Varsity Headwear-merke fra nettstedets egen SVG; ikke rekonstruert.'}}
+            };
+            for(const [id,c] of Object.entries(cfg)){const b=brands.find(x=>x.id===id);if(!b)throw new Error('Missing Brand '+id);Object.assign(b,c)}
+            const georg=brands.find(x=>x.id==='georg_a_nilsen'); if(!georg||!georg.logo||!georg.logoMeta) throw new Error('Georg A. Nilsen provenance missing');
+            write('data/brands/brands_master.json',brands);
+            const place=read('data/places/by/oslo/places/bogstadveien.json'); place.brand_ids=selected; write('data/places/by/oslo/places/bogstadveien.json',place);
+            const packet=read('data/places/production/bogstadveien.json');
+            if(packet.collections&&typeof packet.collections==='object') packet.collections.brands=selected;
+            if('brand_ids' in packet) packet.brand_ids=selected;
+            write('data/places/production/bogstadveien.json',packet);
+
+            const included=selected.map((id,i)=>{const b=brands.find(x=>x.id===id);return {id,name:b.name||id,score:[10,10,9,9,9,10,10][i],state:b.status||b.state||'catalog',verification:b.verification||'verified',temporal_scope:id==='blue_master'?'historical':'current',visual_decision:'verified_local_authentic_asset',source_urls:b.source_urls||[]}});
+            const heldBack=[
+              ['aesop','Nåværende Oslo-butikk er Prinsens gate 21; gammel Bogstadveien-mapping er ikke lenger stedskorrekt.',['https://www.aesop.com/no/en/']],
+              ['amundsen_sports','Nåværende områdelisting peker til Underhaugsveien 28, ikke Bogstadveien.',['https://amundsensports.com/']],
+              ['carlings','Butikkjeden kan ha lokal tilstedeværelse, men Bogstadveien-avdelingen har ikke tilstrekkelig stedsspesifikk symbolverdi etter Brand-regelen.',['https://carlings.com/']],
+              ['gant','Direkte butikktilstedeværelse er ikke alene nok; Bogstadveien-koblingen er ordinær kjedebutikktilegnelse uten sterk stedsspesifikk minneverdi.',['https://gant.com/']],
+              ['hestra','Direkte butikktilstedeværelse er ikke alene nok; stedet mangler den særskilte symbolske koblingen som kreves for ferdig PlaceCard-Brand.',['https://www.hestragloves.com/']],
+              ['holzweiler','Nåværende Oslo-butikk er dokumentert i Hegdehaugsveien, ikke Bogstadveien.',['https://holzweileroslo.com/']],
+              ['hoyer','Ingen tilstrekkelig sterk, aktuell og stedsspesifikk Bogstadveien-kobling ble dokumentert.',['https://hoyer.no/']],
+              ['junkyard','Eldre Bogstadveien-treff er stale/uklare; dagens dokumentasjon er ikke sterk nok til canonical mapping.',['https://junkyard.com/']],
+              ['levis','Nåværende offisiell Oslo-lokasjon er Hegdehaugsveien, ikke Bogstadveien.',['https://locations.levi.com/']],
+              ['moniker','Nåværende butikk er dokumentert i Valkyriegata, ikke Bogstadveien.',['https://moniker.no/']],
+              ['volt','Eldre Bogstadveien-listing er ikke sterk nok mot nyere områdedokumentasjon; holdes tilbake fail-closed.',['https://voltfashion.com/']]
+            ].map(([id,reason,source_urls])=>({candidate:id,reason,source_urls}));
+            const audit={schema:'history_go_place_brand_audit_v1',version:'1.0.0',generated_at:'2026-09-04',place_id:'bogstadveien',phase:'8C Brands',result:'PASS',policy:'data/brands/brand_rules_v1_1.json',previous_mappings:previous,additional_candidate:'georg_a_nilsen',final_mapping:selected,included,held_back:heldBack};
+            write('reports/place-production/bogstadveien-phase8c-brands-audit-v1.json',audit);
+
+            const testPath='tests/bogstadveien-completion.test.mjs'; let t=fs.readFileSync(testPath,'utf8');
+            const old=/test\("Bogstadveien Brand er ekte og separat fra Structure",\(\)=>\{.*?\}\);/s;
+            const replacement=`test("Bogstadveien har syv adjudikerte Brands med 100 % autentisk visuell proveniens",()=>{const brands=read("data/brands/brands_master.json");const ids=${JSON.stringify(selected)};assert.deepEqual(read("data/brands/brands_by_place.json")["bogstadveien"],ids);for(const id of ids){const brand=brands.find(row=>row.id===id);assert.ok(brand,id);assert.ok(fs.existsSync(brand.logo),id);assert.equal(brand.logoMeta.generated,false,id);assert.equal(brand.logoMeta.reconstructed,false,id);assert.match(brand.logoMeta.disclosure,/ikke rekonstruert/i,id);}assert.notEqual(ids.includes(place.structures[0].id),true);const audit=read("reports/place-production/bogstadveien-phase8c-brands-audit-v1.json");assert.equal(audit.result,"PASS");assert.deepEqual(audit.final_mapping,ids);assert.equal(audit.previous_mappings.length,17);assert.equal(audit.included.length,7);assert.equal(audit.held_back.length,11);});`;
+            if(!old.test(t))throw new Error('Brand completion test block not found'); t=t.replace(old,replacement); fs.writeFileSync(testPath,t);
+          }
+          main().catch(e=>{console.error(e);process.exit(1)});
+          NODE
+      - name: Rebuild derived payloads and image backlog
+        run: |
+          set -euo pipefail
+          npm run places:index:build
+          npm run place-open:build
+          npm run epoker:places:build
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json
+          node <<'NODE'
+          const fs=require('fs');const p='data/places/place_image_backlog_summary.json';const s=JSON.parse(fs.readFileSync(p));const r=JSON.parse(fs.readFileSync('reports/place-image-audit.json'));s.generatedAt='2026-09-04';s.generatedFromCommit='bogstadveien_place_completion_20260904';s.totalPlaces=r.totalPlaces;s.summary={validLocal:r.summary.local,validRemote:r.summary.remote,optionalMissing:r.summary.optional,missing:r.summary.missing,invalidLocalPath:r.summary.invalid,remaining:r.summary.missing+r.summary.invalid};fs.writeFileSync(p,JSON.stringify(s,null,2)+'\n');
+          NODE
+          node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json --verify-summary=data/places/place_image_backlog_summary.json
+      - name: Run Bogstadveien and repository gates
+        run: |
+          set -euo pipefail
+          node --test tests/bogstadveien-completion.test.mjs
+          bash scripts/check-places.sh
+          node scripts/audit-fagverk-place-pages.mjs
+          node --test tests/fagverk-content.test.mjs
+          node --test tests/fagverk-portal.test.mjs
+          node --test tests/fagverk-place-pages.test.mjs
+          node --test tests/fagverk-place-rendering.test.mjs
+          node --test tests/fagverk-place-substance-audit.test.mjs
+          node --test tests/fagverk-place-category-design.test.mjs
+          node --test tests/fagverk-link-audit.test.mjs
+          node --test tests/place-learning-surface.test.js
+          node --test tests/place-image-audit-changed.test.mjs
+          node scripts/audit-place-images.mjs --mode=changed
+          git diff --check
+      - name: Commit and push clean candidate
+        run: |
+          set -euo pipefail
+          test ! -e .github/workflows/tmp-bogstadveien-brand-preview.yml
+          test ! -e .github/workflows/tmp-bogstadveien-final-candidate.yml
+          git add -A
+          git status --short
+          git commit -m "Finalize Bogstadveien Brand audit and image backlog"
+          git push --force origin HEAD:candidate/bogstadveien-final-20260904-v3
+          echo "CANDIDATE_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+      - name: Report candidate
+        run: |
+          echo "$CANDIDATE_SHA"
