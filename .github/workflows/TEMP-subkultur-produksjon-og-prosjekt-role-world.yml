@@ -1,0 +1,108 @@
+name: TEMP Subkultur Produksjon og prosjekt Role World
+
+on:
+  push:
+    branches:
+      - agent/civication-subkultur-produksjon-og-prosjekt-role-world-rollout
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: ${{ !contains(github.event.head_commit.message, '[role-world-materialized]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Assemble and verify transient Role World materializer
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "6fe7d67292f5fae7abd3194ab6e96d7fe31443b5f1aaec6d9ae46f6bea148e45  scripts/TEMP-subkultur-produksjon-prosjekt-role-world-parts/part01.txt" | sha256sum -c -
+          echo "606978992862d741edf7e1db59f095a7e4e6c3238312e05079f2180e2ec7babc  scripts/TEMP-subkultur-produksjon-prosjekt-role-world-parts/part02.txt" | sha256sum -c -
+          echo "d07e0f0a9537261954c0436fba6d6c7e8fe4abc7d2967d1182bf9caf26427e18  scripts/TEMP-subkultur-produksjon-prosjekt-role-world-parts/part03.txt" | sha256sum -c -
+          echo "db5797e80e041341ca23d2abbff4064d552a20cd0d331719ed7599916edf5df4  scripts/TEMP-subkultur-produksjon-prosjekt-role-world-parts/part04.txt" | sha256sum -c -
+          echo "fed34c201a6d57050fc3098969c34f5d35e75519240f8459a2158841d251c7ad  scripts/TEMP-subkultur-produksjon-prosjekt-role-world-parts/part05.txt" | sha256sum -c -
+          echo "39c3d1841d086d926e82e2dadf4610337ad9619455e6076dbaefd849917552a4  scripts/TEMP-subkultur-produksjon-prosjekt-role-world-parts/part06.txt" | sha256sum -c -
+          echo "499a82f97ee85cde2acf9d42e63f107b6b7cd779e477adc938739958a4d00c84  scripts/TEMP-subkultur-produksjon-prosjekt-role-world-parts/part07.txt" | sha256sum -c -
+          echo "a8f28f720b5bb7e369215b20bbb7ca37495d51eefeb6b94a6864d016e25fd937  scripts/TEMP-subkultur-produksjon-prosjekt-role-world-parts/part08.txt" | sha256sum -c -
+          cat scripts/TEMP-subkultur-produksjon-prosjekt-role-world-parts/part{01..08}.txt > /tmp/TEMP-subkultur-produksjon-og-prosjekt-role-world-materializer.mjs
+          echo "c75ac1c1ea60fa87451ff4b904ddad0f6dfa5816ffdceef7acb826a5c2ecfd8f  /tmp/TEMP-subkultur-produksjon-og-prosjekt-role-world-materializer.mjs" | sha256sum -c -
+          node --check /tmp/TEMP-subkultur-produksjon-og-prosjekt-role-world-materializer.mjs
+
+      - name: Materialize authored Produksjon og prosjekt Role World
+        run: node /tmp/TEMP-subkultur-produksjon-og-prosjekt-role-world-materializer.mjs
+
+      - name: Regenerate canonical derived state
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audit-civication-role-packs.mjs
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+          node scripts/build-civication-scene-registry.mjs --write
+          npm run build:civication:career-gameplay-matrix
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+
+      - name: Focused Role World gate
+        run: node tests/civication-subkultur-produksjon-og-prosjekt-role-world-rollout.test.js
+
+      - name: Prerequisite compatibility gate
+        run: node tests/civication-subkultur-produksjon-og-prosjekt-prerequisites.test.js
+
+      - name: Subkultur career compatibility gate
+        run: node tests/civication-subkultur-career-architecture.test.js
+
+      - name: Generated-state parity gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audit-civication-role-packs.mjs
+          node scripts/audit-civication-career-gameplay.mjs --check
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
+          node scripts/build-civication-scene-registry.mjs --check
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --check
+
+      - name: Full Civication gate
+        run: npm run test:civication
+
+      - name: Repository diff gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('docs/CIVICATION_ROLE_PACK_INDEX.md')
+          if p.exists():
+              p.write_text(p.read_text().rstrip()+"\n")
+          PY
+          git diff --check
+          git status --short
+
+      - name: Publish permanent Role World state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm -rf scripts/TEMP-subkultur-produksjon-prosjekt-role-world-parts
+          git rm -f .github/workflows/TEMP-subkultur-produksjon-og-prosjekt-role-world.yml
+          git add data/Civication docs/CIVICATION_ROLE_PACK_INDEX.md reports tests/civication-subkultur-produksjon-og-prosjekt-prerequisites.test.js tests/civication-subkultur-produksjon-og-prosjekt-role-world-rollout.test.js
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo "No permanent Role World changes to publish"
+            exit 1
+          fi
+          git commit -m "Materialize Subkultur Produksjon og prosjekt Role World [role-world-materialized]"
+          git push origin HEAD:${GITHUB_REF_NAME}
