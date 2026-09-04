@@ -34,29 +34,19 @@ jobs:
           const file = 'data/quiz/production_briefs/by/rodelokka.json';
           const brief = JSON.parse(fs.readFileSync(file, 'utf8'));
           const quizClaims = (brief.claims || []).filter((item) => /^claim_rodelokka_quiz_\d+$/.test(item.claim_id || ''));
-          if (quizClaims.length !== 35) {
-            throw new Error(`Expected 35 Rodeløkka quiz claims, found ${quizClaims.length}`);
-          }
+          if (quizClaims.length !== 35) throw new Error(`Expected 35 Rodeløkka quiz claims, found ${quizClaims.length}`);
           const allowedFamilies = new Set(['fact', 'context', 'concept_theory']);
           const seen = new Set();
           for (const claim of quizClaims) {
             const match = /^claim_rodelokka_quiz_(\d+)$/.exec(claim.claim_id || '');
             const n = Number(match?.[1]);
-            if (!Number.isInteger(n) || n < 1 || n > 35 || seen.has(n)) {
-              throw new Error(`${claim.claim_id}: invalid or duplicate quiz claim order`);
-            }
+            if (!Number.isInteger(n) || n < 1 || n > 35 || seen.has(n)) throw new Error(`${claim.claim_id}: invalid or duplicate quiz claim order`);
             seen.add(n);
             claim.planned_phase = n <= 7 ? 'opening' : n <= 21 ? 'middle' : n <= 28 ? 'bridge' : 'final';
-            if (claim.claim_id === 'claim_rodelokka_quiz_35' && claim.family === 'synthesis') {
-              claim.family = 'concept_theory';
-            }
-            if (!allowedFamilies.has(claim.family)) {
-              throw new Error(`${claim.claim_id}: unsupported claim family ${claim.family}`);
-            }
+            if (claim.claim_id === 'claim_rodelokka_quiz_35' && claim.family === 'synthesis') claim.family = 'concept_theory';
+            if (!allowedFamilies.has(claim.family)) throw new Error(`${claim.claim_id}: unsupported claim family ${claim.family}`);
           }
-          for (let n = 1; n <= 35; n += 1) {
-            if (!seen.has(n)) throw new Error(`Missing claim_rodelokka_quiz_${String(n).padStart(2, '0')}`);
-          }
+          for (let n = 1; n <= 35; n += 1) if (!seen.has(n)) throw new Error(`Missing claim_rodelokka_quiz_${String(n).padStart(2, '0')}`);
           fs.writeFileSync(file, `${JSON.stringify(brief, null, 2)}\n`);
           NODE
       - name: Normalize Rodeløkka Story manifest registration
@@ -68,18 +58,10 @@ jobs:
           const manifest = JSON.parse(fs.readFileSync(manifestFile, 'utf8'));
           if (!Array.isArray(manifest.files)) throw new Error('stories_manifest.files is not an array');
           if (!fs.existsSync(storyFile)) throw new Error(`${storyFile} missing after source builder`);
-          const otherEntries = manifest.files.filter((entry) => {
-            if (!entry || typeof entry !== 'object') return true;
-            return entry.entity_id !== 'rodelokka' && entry.path !== storyFile;
-          });
-          manifest.files = [
-            ...otherEntries,
-            { category: 'by', entity_id: 'rodelokka', path: storyFile },
-          ];
+          const otherEntries = manifest.files.filter((entry) => !entry || typeof entry !== 'object' || (entry.entity_id !== 'rodelokka' && entry.path !== storyFile));
+          manifest.files = [...otherEntries, { category: 'by', entity_id: 'rodelokka', path: storyFile }];
           const rodelokkaEntries = manifest.files.filter((entry) => entry?.entity_id === 'rodelokka' || entry?.path === storyFile);
-          if (rodelokkaEntries.length !== 1 || rodelokkaEntries[0].path !== storyFile || rodelokkaEntries[0].entity_id !== 'rodelokka') {
-            throw new Error('Rodeløkka Story manifest registration did not normalize to exactly one canonical entry');
-          }
+          if (rodelokkaEntries.length !== 1 || rodelokkaEntries[0].path !== storyFile || rodelokkaEntries[0].entity_id !== 'rodelokka') throw new Error('Rodeløkka Story manifest registration did not normalize to exactly one canonical entry');
           fs.writeFileSync(manifestFile, `${JSON.stringify(manifest, null, 2)}\n`);
           NODE
       - name: Recompute Rodeløkka Story score from canonical rubric
@@ -103,15 +85,12 @@ jobs:
           const originality = Math.min(3 + count(/\buvanlig|unik|første gang|sjelden\b/g) + count(/\bmerkelig|underlig|absurd\b/g), 5);
           const score = { narrative, historical, source, play_value, originality, total: narrative + historical + source + play_value + originality };
           story.score = score;
-          if (score.total !== 16 || score.narrative !== 4 || score.historical !== 2 || score.play_value !== 3) {
-            throw new Error(`Unexpected canonical Rodeløkka Story score: ${JSON.stringify(score)}`);
-          }
+          if (score.total !== 16 || score.narrative !== 4 || score.historical !== 2 || score.play_value !== 3) throw new Error(`Unexpected canonical Rodeløkka Story score: ${JSON.stringify(score)}`);
           fs.writeFileSync(storyFile, `${JSON.stringify(rows, null, 2)}\n`);
           let testText = fs.readFileSync(testFile, 'utf8');
           const oldAssertion = 'assert.equal(stories[0].score.total,15)';
           if (!testText.includes(oldAssertion)) throw new Error('Expected legacy Story score assertion was not found in Rodeløkka completion test');
-          testText = testText.replace(oldAssertion, 'assert.equal(stories[0].score.total,16)');
-          testText = testText.replace('Story 15/15', 'Story canonical 16');
+          testText = testText.replace(oldAssertion, 'assert.equal(stories[0].score.total,16)').replace('Story 15/15', 'Story canonical 16');
           fs.writeFileSync(testFile, testText);
           NODE
       - name: Materialize canonical derived data
@@ -127,7 +106,20 @@ jobs:
       - name: Story integrity
         run: npm run check:stories
       - name: Quiz manifest audit
+        id: quiz_manifest
+        continue-on-error: true
         run: npm run audit:quiz-manifest:v2
+      - name: Upload quiz manifest diagnostic
+        if: steps.quiz_manifest.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: rodelokka-quiz-manifest-diagnostic
+          path: reports/quiz_manifest_v2_audit_report.json
+          if-no-files-found: error
+          retention-days: 1
+      - name: Fail on quiz manifest audit
+        if: steps.quiz_manifest.outcome == 'failure'
+        run: exit 1
       - name: Quiz content audit
         run: npm run audit:quiz-content
       - name: Quiz production context audit
