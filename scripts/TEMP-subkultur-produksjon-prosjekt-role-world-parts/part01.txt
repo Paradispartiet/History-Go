@@ -1,0 +1,98 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
+const ROLE='subkultur_produksjon_og_prosjekt';
+const KEY=`subkultur/${ROLE}`;
+const WORLD=`data/Civication/roleWorlds/subkultur/${ROLE}.json`;
+const MODEL=`data/Civication/roleModels/subkultur/${ROLE}.json`;
+const GRAMMAR=`data/Civication/workGrammars/subkultur/${ROLE}.json`;
+const PLAN=`data/Civication/mailPlans/subkultur/${ROLE}_plan.json`;
+const TYPES=['job','people','conflict','story','event','micro','followup','knowledge','consequence'];
+const writeJson=(p,o)=>{fs.mkdirSync(path.dirname(p),{recursive:true});fs.writeFileSync(p,JSON.stringify(o,null,2)+'\n');};
+const writeText=(p,s)=>{fs.mkdirSync(path.dirname(p),{recursive:true});fs.writeFileSync(p,s.trimEnd()+'\n');};
+const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+
+const grammar=read(GRAMMAR), model=read(MODEL), plan=read(PLAN);
+if(plan.sequence.length!==16) throw new Error('expected 16-step prerequisite plan');
+if(grammar.persistent_work_object_contract?.id!=='prosjektplan_budsjett_kontrakt_og_avvikslogg') throw new Error('persistent work object mismatch');
+if((model.related_people||[]).length!==4) throw new Error('expected four prerequisite work actors');
+
+const sourceRefs=[];
+for(const type of TYPES){
+  const f=`data/Civication/mailFamilies/subkultur/${type}/${ROLE}_${type}.json`;
+  const c=read(f);
+  for(const m of (c.families||[]).flatMap(x=>x.mails||[])) sourceRefs.push(`${f}#${m.id}`);
+}
+if(sourceRefs.length!==15||new Set(sourceRefs).size!==15) throw new Error(`expected 15 unique source refs, got ${sourceRefs.length}`);
+
+const audiences=[
+  {
+    id:'commissioning_and_program',
+    standing_axis:'scope_truth_change_control_and_delivery_trust',
+    cares_about:[
+      'at kreativ bestilling, godkjent scope, endringsønske, konsekvens og aksept holdes adskilt slik at programambisjon ikke blir skjult merarbeid',
+      'at produsenten kan si hva som fortsatt er betinget og gi reelle alternativer når tid, budsjett, rettigheter, crew eller sikkerhet ikke støtter hele ønsket'
+    ],
+    cannot_grant:'God standing hos oppdragsgiver eller program kan ikke gi produsenten større budsjett-, signatur-, arbeidsgiver-, rettighets- eller sikkerhetsmyndighet enn den som faktisk er delegert.'
+  },
+  {
+    id:'technical_crew_and_freelancers',
+    standing_axis:'workload_competence_handoff_and_safety_trust',
+    cares_about:[
+      'at crewplan, fagkompetanse, hviletid, riggforutsetninger, endringer og retest blir synlige før deadlinepress flyttes nedover i produksjonen',
+      'at frilansere, teknikere og frivillige får tydelig bestilling, ansvar, betalings- og sikkerhetsramme og kan melde avvik uten å bli lest som lite løsningsorienterte'
+    ],
+    cannot_grant:'God standing hos crew kan ikke erstatte arbeidsgiveransvar, fagkompetanse, HMS-vurdering, teknisk frigivelse, kontrakt, lønnsavtale eller fullmakt til å pålegge ekstra arbeid.'
+  },
+  {
+    id:'finance_procurement_and_administration',
+    standing_axis:'budget_forecast_procurement_and_auditability',
+    cares_about:[
+      'at estimert, godkjent, bestilt, levert og fakturert kostnad følger samme prosjektversjon og at budsjettgap blir synlige før penger disponeres',
+      'at tilbud, innkjøp, tilskuddsbinding, bestillingsfullmakt og sluttoppgjør kan etterprøves uten at relasjoner eller muntlige forventninger behandles som økonomifakta'
+    ],
+    cannot_grant:'God standing hos økonomi og administrasjon kan ikke utvide totalrammen, gjøre et tilbud til avtale, godkjenne kunstnerisk scope, dispensere fra vilkår eller erstatte riktig signatur.'
+  },
+  {
+    id:'suppliers_partners_and_rightsholders',
+    standing_axis:'counterparty_contract_rights_and_change_reliability',
+    cares_about:[
+      'at pris, levering, ansvar, avlysning, kreditering, bruksomfang og endringer er lesbare før en motpart binder kapasitet eller rettigheter',
+      'at produsenten skiller god relasjon og muntlig intensjon fra signert avtale, klarert rettighet og faktisk akseptert leveranse'
+    ],
+    cannot_grant:'God standing hos leverandør, partner eller rettighetshaver kan ikke erstatte kontrakt, signaturfullmakt, rettighetsklarering, habilitetsavklaring, HMS eller arbeidsgiveransvar.'
+  },
+  {
+    id:'artists_contributors_and_scene',
+    standing_axis:'creative_reliability_credit_and_scene_legitimacy',
+    cares_about:[
+      'at kunstneriske bidrag kan utvikles uten at sene ønsker, status eller vennskap skyver kostnad og risiko usynlig over på andre',
+      'at kreditering, bruk, honorar, rammer og endringer er ærlige og at profesjonalisering ikke brukes som grunn til å lukke miljøet for relevante motstemmer'
+    ],
+    cannot_grant:'God standing i miljøet eller hos en profilert artist kan ikke gi skjult prioritet, gratisarbeid, rettighetsklarering, kontraktsfullmakt, sikkerhetsdispensasjon eller automatisk neste oppdrag.'
+  },
+  {
+    id:'audience_accessibility_and_public',
+    standing_axis:'public_truth_accessibility_safety_and_repair',
+    cares_about:[
+      'at publisert program, tidspunkt, kapasitet, tilgjengelighet og endringer stemmer med det som faktisk kan leveres og er frigitt',
+      'at avvik kommuniseres presist nok til at publikum kan planlegge, og at feil blir reparert uten å skjules bak utsolgt status eller høy sosial prestisje'
+    ],
+    cannot_grant:'Publikums popularitet, salg eller støtte kan ikke klarere rettigheter, utvide kapasitet, oppheve tilgjengelighets- eller HMS-krav eller gjøre en betinget produksjon sikker og frigitt.'
+  },
+  {
+    id:'private_relations',
+    standing_axis:'recovery_identity_boundary_and_confidentiality',
+    cares_about:[
+      'at produksjonspress, skam, konflikt og ansvar kan bearbeides uten at hjemmet blir reservekontor, leverandørforhandling eller uformell personalsaksmappe',
+      'at spilleren kan skille egenverdi og miljøtilhørighet fra prosjektstatus, oppdragsgivers ros, publikumsrespons og profesjonell standing'
+    ],
+    cannot_grant:'Privat tillit kan ikke fungere som budsjettvedtak, kontrakt, arbeidsgiverbeslutning, rettighetsklarering, HMS-frigivelse eller dokumentasjon av fortrolige arbeidsforhold.'
+  }
+];
+
+const archetypes=[
+  {
+    id:'nora_program_og_oppdragsgiver_world',
+    social_function:'Nora bærer programintensjon, målgruppe og endringsønsker inn i prosjektet og gjør det synlig når et kreativt ønske er i ferd med å bli behandlet som vedtatt leveranse uten ny baseline.',
+    class_position:'programansvarlig og oppdragsgiver med mandat til å beskrive og prioritere beh
