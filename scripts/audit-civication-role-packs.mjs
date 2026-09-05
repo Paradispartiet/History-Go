@@ -158,7 +158,8 @@ for (const r of sorted) {
 }
 lines.push('');
 
-const markdown = `${lines.join('\n')}\n`;
+// `lines` already ends with one empty entry, so join() supplies exactly one final newline.
+const markdown = lines.join('\n');
 fs.mkdirSync(path.join(repoRoot, 'docs'), { recursive: true });
 fs.writeFileSync(path.join(repoRoot, 'docs/CIVICATION_ROLE_PACK_INDEX.md'), markdown);
 

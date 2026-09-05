@@ -124,6 +124,15 @@
     "data/Civication/mailFamilies/historie/followup/historie_arkiv_og_dokumentasjon_followup.json",
     "data/Civication/mailFamilies/historie/knowledge/historie_arkiv_og_dokumentasjon_knowledge.json",
     "data/Civication/mailFamilies/historie/consequence/historie_arkiv_og_dokumentasjon_consequence.json",
+    "data/Civication/mailFamilies/historie/job/historie_fagledelse_job.json",
+    "data/Civication/mailFamilies/historie/people/historie_fagledelse_people.json",
+    "data/Civication/mailFamilies/historie/story/historie_fagledelse_story.json",
+    "data/Civication/mailFamilies/historie/conflict/historie_fagledelse_conflict.json",
+    "data/Civication/mailFamilies/historie/event/historie_fagledelse_event.json",
+    "data/Civication/mailFamilies/historie/micro/historie_fagledelse_micro.json",
+    "data/Civication/mailFamilies/historie/followup/historie_fagledelse_followup.json",
+    "data/Civication/mailFamilies/historie/knowledge/historie_fagledelse_knowledge.json",
+    "data/Civication/mailFamilies/historie/consequence/historie_fagledelse_consequence.json",
     "data/Civication/mailFamilies/kunst/job/kunst_kunstnerisk_ledelse_job.json",
     "data/Civication/mailFamilies/kunst/people/kunst_kunstnerisk_ledelse_people.json",
     "data/Civication/mailFamilies/kunst/story/kunst_kunstnerisk_ledelse_story.json",
@@ -48830,6 +48839,2031 @@
       },
       "source_hash": "5601ab2c44747ebe3a4196adc541fc92f9e6e28441911021d6e7e9415c90d8da",
       "source_path": "data/Civication/mailFamilies/historie/story/historie_arkiv_og_dokumentasjon_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "synlig_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar bestilt_konklusjon i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk bestilt_konklusjon gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_prioritering_og_faglig_integritet",
+        "consequence_axis": "faglig_og_organisatorisk_tillit_vs_skjult_risiko",
+        "from": "Ingrid",
+        "id": "historie_fagledelse_conflict_bestilt_konklusjon_001",
+        "mail_family": "historie_fagledelse_konklusjonspress",
+        "mail_type": "conflict",
+        "narrative_arc": "bestilt_konklusjon",
+        "people_ref": "ingrid_avdelingsdirektor_historie_fagledelse",
+        "phase": "forenoon",
+        "place_id": "faglig_metoderom",
+        "pressure": "frist_og_styringspress_vs_kvalitet_og_kapasitet",
+        "priority": 130,
+        "role_scope": "historie_fagledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/conflict/historie_fagledelse_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+          "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+          "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+        ],
+        "subject": "Overordnet ønsker en tydeligere historisk konklusjon enn kildene bærer",
+        "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret conflict-punkt: overordnet ønsker en tydeligere historisk konklusjon enn kildene bærer. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør.",
+        "task_domain": "historiefaglig_ledelse"
+      },
+      "id": "historie_fagledelse_conflict_bestilt_konklusjon_001",
+      "mail_type": "conflict",
+      "role_scope": "historie_fagledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar bestilt_konklusjon i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk bestilt_konklusjon gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+            "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+            "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+          ],
+          "subject": "Overordnet ønsker en tydeligere historisk konklusjon enn kildene bærer",
+          "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret conflict-punkt: overordnet ønsker en tydeligere historisk konklusjon enn kildene bærer. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_fagledelse_conflict_bestilt_konklusjon_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "faglig_metoderom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_fagledelse_conflict_bestilt_konklusjon_001",
+          "source_path": "data/Civication/mailFamilies/historie/conflict/historie_fagledelse_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_fagledelse.mail.historie_fagledelse_conflict_bestilt_konklusjon_001",
+        "version": 1
+      },
+      "source_hash": "df4931e927f93d71179e6956e9b64e0a19377da4dbc2d5603c7c7db6b4562a6c",
+      "source_path": "data/Civication/mailFamilies/historie/conflict/historie_fagledelse_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "synlig_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar etterspill i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk etterspill gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_prioritering_og_faglig_integritet",
+        "consequence_axis": "faglig_og_organisatorisk_tillit_vs_skjult_risiko",
+        "from": "Sander",
+        "id": "historie_fagledelse_consequence_etterspill_001",
+        "mail_family": "historie_fagledelse_leveranse_etterspill",
+        "mail_type": "consequence",
+        "narrative_arc": "etterspill",
+        "people_ref": "sander_kvalitetsradgiver_historie_fagledelse",
+        "phase": "forenoon",
+        "place_id": "kvalitets_og_avvikspunkt",
+        "pressure": "frist_og_styringspress_vs_kvalitet_og_kapasitet",
+        "priority": 130,
+        "role_scope": "historie_fagledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/consequence/historie_fagledelse_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+          "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+          "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+        ],
+        "subject": "En rask leveranse skapte ny korrigering, ekstraarbeid og svekket tillit",
+        "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret consequence-punkt: en rask leveranse skapte ny korrigering, ekstraarbeid og svekket tillit. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør.",
+        "task_domain": "historiefaglig_ledelse"
+      },
+      "id": "historie_fagledelse_consequence_etterspill_001",
+      "mail_type": "consequence",
+      "role_scope": "historie_fagledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar etterspill i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk etterspill gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+            "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+            "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+          ],
+          "subject": "En rask leveranse skapte ny korrigering, ekstraarbeid og svekket tillit",
+          "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret consequence-punkt: en rask leveranse skapte ny korrigering, ekstraarbeid og svekket tillit. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_fagledelse_consequence_etterspill_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kvalitets_og_avvikspunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_fagledelse_consequence_etterspill_001",
+          "source_path": "data/Civication/mailFamilies/historie/consequence/historie_fagledelse_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_fagledelse.mail.historie_fagledelse_consequence_etterspill_001",
+        "version": 1
+      },
+      "source_hash": "c7050a50576a195843a3c692e92c991ffe4f4b5f6453bc82937b506d0d7a5ae6",
+      "source_path": "data/Civication/mailFamilies/historie/consequence/historie_fagledelse_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "synlig_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar ny_kilde i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk ny_kilde gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_prioritering_og_faglig_integritet",
+        "consequence_axis": "faglig_og_organisatorisk_tillit_vs_skjult_risiko",
+        "from": "Sander",
+        "id": "historie_fagledelse_event_ny_kilde_001",
+        "mail_family": "historie_fagledelse_ny_kilde_eller_feil",
+        "mail_type": "event",
+        "narrative_arc": "ny_kilde",
+        "people_ref": "sander_kvalitetsradgiver_historie_fagledelse",
+        "phase": "forenoon",
+        "place_id": "kvalitets_og_avvikspunkt",
+        "pressure": "frist_og_styringspress_vs_kvalitet_og_kapasitet",
+        "priority": 130,
+        "role_scope": "historie_fagledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/event/historie_fagledelse_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+          "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+          "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+        ],
+        "subject": "En ny kilde endrer premisset etter at leveransen ble kalt ferdig",
+        "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret event-punkt: en ny kilde endrer premisset etter at leveransen ble kalt ferdig. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør.",
+        "task_domain": "historiefaglig_ledelse"
+      },
+      "id": "historie_fagledelse_event_ny_kilde_001",
+      "mail_type": "event",
+      "role_scope": "historie_fagledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar ny_kilde i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk ny_kilde gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+            "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+            "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+          ],
+          "subject": "En ny kilde endrer premisset etter at leveransen ble kalt ferdig",
+          "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret event-punkt: en ny kilde endrer premisset etter at leveransen ble kalt ferdig. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_fagledelse_event_ny_kilde_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kvalitets_og_avvikspunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_fagledelse_event_ny_kilde_001",
+          "source_path": "data/Civication/mailFamilies/historie/event/historie_fagledelse_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_fagledelse.mail.historie_fagledelse_event_ny_kilde_001",
+        "version": 1
+      },
+      "source_hash": "d202016f2c11d867b6a018c38d3d1b54cae25426298565276536102a9d506233",
+      "source_path": "data/Civication/mailFamilies/historie/event/historie_fagledelse_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "synlig_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar rework_etter_handoff i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk rework_etter_handoff gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_prioritering_og_faglig_integritet",
+        "consequence_axis": "faglig_og_organisatorisk_tillit_vs_skjult_risiko",
+        "from": "Nora",
+        "id": "historie_fagledelse_followup_rework_etter_handoff_001",
+        "mail_family": "historie_fagledelse_handoff_og_rework",
+        "mail_type": "followup",
+        "narrative_arc": "rework_etter_handoff",
+        "people_ref": "nora_teamkoordinator_historie_fagledelse",
+        "phase": "forenoon",
+        "place_id": "handoff_og_leveranseflate",
+        "pressure": "frist_og_styringspress_vs_kvalitet_og_kapasitet",
+        "priority": 130,
+        "role_scope": "historie_fagledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/followup/historie_fagledelse_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+          "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+          "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+        ],
+        "subject": "Handoff må gjenåpnes etter at mottaker fant et ubesvart metodepunkt",
+        "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret followup-punkt: handoff må gjenåpnes etter at mottaker fant et ubesvart metodepunkt. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør.",
+        "task_domain": "historiefaglig_ledelse"
+      },
+      "id": "historie_fagledelse_followup_rework_etter_handoff_001",
+      "mail_type": "followup",
+      "role_scope": "historie_fagledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar rework_etter_handoff i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk rework_etter_handoff gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+            "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+            "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+          ],
+          "subject": "Handoff må gjenåpnes etter at mottaker fant et ubesvart metodepunkt",
+          "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret followup-punkt: handoff må gjenåpnes etter at mottaker fant et ubesvart metodepunkt. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_fagledelse_followup_rework_etter_handoff_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "handoff_og_leveranseflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_fagledelse_followup_rework_etter_handoff_001",
+          "source_path": "data/Civication/mailFamilies/historie/followup/historie_fagledelse_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_fagledelse.mail.historie_fagledelse_followup_rework_etter_handoff_001",
+        "version": 1
+      },
+      "source_hash": "f86b92e82a802419d0c14ddfc7e019bdc01cc9233d8b9e68db7067918f54daed",
+      "source_path": "data/Civication/mailFamilies/historie/followup/historie_fagledelse_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "synlig_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar handoff i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk handoff gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_prioritering_og_faglig_integritet",
+        "consequence_axis": "faglig_og_organisatorisk_tillit_vs_skjult_risiko",
+        "from": "Nora",
+        "id": "historie_fagledelse_job_handoff_004",
+        "mail_family": "historie_fagledelse_prioritering_job",
+        "mail_type": "job",
+        "narrative_arc": "handoff",
+        "people_ref": "nora_teamkoordinator_historie_fagledelse",
+        "phase": "workday",
+        "place_id": "handoff_og_leveranseflate",
+        "pressure": "frist_og_styringspress_vs_kvalitet_og_kapasitet",
+        "priority": 127,
+        "role_scope": "historie_fagledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/job/historie_fagledelse_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+          "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+          "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+        ],
+        "subject": "Neste team mottar filen uten synlig ventepunkt og eier",
+        "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret job-punkt: neste team mottar filen uten synlig ventepunkt og eier. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør.",
+        "task_domain": "historiefaglig_ledelse"
+      },
+      "id": "historie_fagledelse_job_handoff_004",
+      "mail_type": "job",
+      "role_scope": "historie_fagledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar handoff i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk handoff gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+            "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+            "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+          ],
+          "subject": "Neste team mottar filen uten synlig ventepunkt og eier",
+          "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret job-punkt: neste team mottar filen uten synlig ventepunkt og eier. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_fagledelse_job_handoff_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "handoff_og_leveranseflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_fagledelse_job_handoff_004",
+          "source_path": "data/Civication/mailFamilies/historie/job/historie_fagledelse_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_fagledelse.mail.historie_fagledelse_job_handoff_004",
+        "version": 1
+      },
+      "source_hash": "0dbdbf62ccb60b509ce3022a7505337eea54e4537fb1b566cf43a78b1f2d6439",
+      "source_path": "data/Civication/mailFamilies/historie/job/historie_fagledelse_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "synlig_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar kapasitetsklemme i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk kapasitetsklemme gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_prioritering_og_faglig_integritet",
+        "consequence_axis": "faglig_og_organisatorisk_tillit_vs_skjult_risiko",
+        "from": "Ingrid",
+        "id": "historie_fagledelse_job_kapasitetsklemme_001",
+        "mail_family": "historie_fagledelse_prioritering_job",
+        "mail_type": "job",
+        "narrative_arc": "kapasitetsklemme",
+        "people_ref": "ingrid_avdelingsdirektor_historie_fagledelse",
+        "phase": "forenoon",
+        "place_id": "prioriterings_og_kapasitetsbord",
+        "pressure": "frist_og_styringspress_vs_kvalitet_og_kapasitet",
+        "priority": 130,
+        "role_scope": "historie_fagledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/job/historie_fagledelse_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+          "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+          "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+        ],
+        "subject": "Tre kritiske leveranser deler de samme to spesialistene",
+        "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret job-punkt: tre kritiske leveranser deler de samme to spesialistene. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør.",
+        "task_domain": "historiefaglig_ledelse"
+      },
+      "id": "historie_fagledelse_job_kapasitetsklemme_001",
+      "mail_type": "job",
+      "role_scope": "historie_fagledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar kapasitetsklemme i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk kapasitetsklemme gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+            "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+            "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+          ],
+          "subject": "Tre kritiske leveranser deler de samme to spesialistene",
+          "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret job-punkt: tre kritiske leveranser deler de samme to spesialistene. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_fagledelse_job_kapasitetsklemme_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "prioriterings_og_kapasitetsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_fagledelse_job_kapasitetsklemme_001",
+          "source_path": "data/Civication/mailFamilies/historie/job/historie_fagledelse_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_fagledelse.mail.historie_fagledelse_job_kapasitetsklemme_001",
+        "version": 1
+      },
+      "source_hash": "151f10cec69a01cbbca7cb47d1ebb26fc0b32a01e3a47cfbce4ffaafc23e7bfb",
+      "source_path": "data/Civication/mailFamilies/historie/job/historie_fagledelse_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "synlig_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar metodeuenighet i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk metodeuenighet gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_prioritering_og_faglig_integritet",
+        "consequence_axis": "faglig_og_organisatorisk_tillit_vs_skjult_risiko",
+        "from": "Marius",
+        "id": "historie_fagledelse_job_metodeuenighet_002",
+        "mail_family": "historie_fagledelse_prioritering_job",
+        "mail_type": "job",
+        "narrative_arc": "metodeuenighet",
+        "people_ref": "marius_seniorhistoriker_historie_fagledelse",
+        "phase": "workday",
+        "place_id": "faglig_metoderom",
+        "pressure": "frist_og_styringspress_vs_kvalitet_og_kapasitet",
+        "priority": 129,
+        "role_scope": "historie_fagledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/job/historie_fagledelse_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+          "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+          "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+        ],
+        "subject": "En leveranse er rask, men metodeinnvendingen står fortsatt åpen",
+        "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret job-punkt: en leveranse er rask, men metodeinnvendingen står fortsatt åpen. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør.",
+        "task_domain": "historiefaglig_ledelse"
+      },
+      "id": "historie_fagledelse_job_metodeuenighet_002",
+      "mail_type": "job",
+      "role_scope": "historie_fagledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar metodeuenighet i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk metodeuenighet gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+            "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+            "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+          ],
+          "subject": "En leveranse er rask, men metodeinnvendingen står fortsatt åpen",
+          "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret job-punkt: en leveranse er rask, men metodeinnvendingen står fortsatt åpen. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_fagledelse_job_metodeuenighet_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "faglig_metoderom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_fagledelse_job_metodeuenighet_002",
+          "source_path": "data/Civication/mailFamilies/historie/job/historie_fagledelse_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_fagledelse.mail.historie_fagledelse_job_metodeuenighet_002",
+        "version": 1
+      },
+      "source_hash": "d709e79c5eb4dabe8f17037e05017fbad9af60aa3f638a43abf7d60f852da202",
+      "source_path": "data/Civication/mailFamilies/historie/job/historie_fagledelse_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "synlig_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar sen_feil i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk sen_feil gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_prioritering_og_faglig_integritet",
+        "consequence_axis": "faglig_og_organisatorisk_tillit_vs_skjult_risiko",
+        "from": "Sander",
+        "id": "historie_fagledelse_job_sen_feil_003",
+        "mail_family": "historie_fagledelse_prioritering_job",
+        "mail_type": "job",
+        "narrative_arc": "sen_feil",
+        "people_ref": "sander_kvalitetsradgiver_historie_fagledelse",
+        "phase": "workday",
+        "place_id": "kvalitets_og_avvikspunkt",
+        "pressure": "frist_og_styringspress_vs_kvalitet_og_kapasitet",
+        "priority": 128,
+        "role_scope": "historie_fagledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/job/historie_fagledelse_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+          "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+          "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+        ],
+        "subject": "En alvorlig kildehenvisningsfeil oppdages rett før publisering",
+        "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret job-punkt: en alvorlig kildehenvisningsfeil oppdages rett før publisering. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør.",
+        "task_domain": "historiefaglig_ledelse"
+      },
+      "id": "historie_fagledelse_job_sen_feil_003",
+      "mail_type": "job",
+      "role_scope": "historie_fagledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar sen_feil i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk sen_feil gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+            "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+            "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+          ],
+          "subject": "En alvorlig kildehenvisningsfeil oppdages rett før publisering",
+          "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret job-punkt: en alvorlig kildehenvisningsfeil oppdages rett før publisering. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_fagledelse_job_sen_feil_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kvalitets_og_avvikspunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_fagledelse_job_sen_feil_003",
+          "source_path": "data/Civication/mailFamilies/historie/job/historie_fagledelse_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_fagledelse.mail.historie_fagledelse_job_sen_feil_003",
+        "version": 1
+      },
+      "source_hash": "3908c0d98269dc7be123b2a18ceca42f04d9add88da7a8ffd9146e6ae9b5fee4",
+      "source_path": "data/Civication/mailFamilies/historie/job/historie_fagledelse_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "synlig_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar kildekritikk_og_historiografi i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk kildekritikk_og_historiografi gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_prioritering_og_faglig_integritet",
+        "consequence_axis": "faglig_og_organisatorisk_tillit_vs_skjult_risiko",
+        "from": "Marius",
+        "id": "historie_fagledelse_knowledge_kildekritikk_og_historiografi_001",
+        "mail_family": "historie_fagledelse_history_go_kildekritikk",
+        "mail_type": "knowledge",
+        "narrative_arc": "kildekritikk_og_historiografi",
+        "people_ref": "marius_seniorhistoriker_historie_fagledelse",
+        "phase": "forenoon",
+        "place_id": "faglig_metoderom",
+        "pressure": "frist_og_styringspress_vs_kvalitet_og_kapasitet",
+        "priority": 130,
+        "role_scope": "historie_fagledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/knowledge/historie_fagledelse_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+          "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+          "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+        ],
+        "subject": "History Go-kunnskap skjerper spørsmålet, men avgjør ikke konklusjonen",
+        "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret knowledge-punkt: history go-kunnskap skjerper spørsmålet, men avgjør ikke konklusjonen. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør.",
+        "task_domain": "historiefaglig_ledelse"
+      },
+      "id": "historie_fagledelse_knowledge_kildekritikk_og_historiografi_001",
+      "mail_type": "knowledge",
+      "role_scope": "historie_fagledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar kildekritikk_og_historiografi i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk kildekritikk_og_historiografi gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+            "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+            "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+          ],
+          "subject": "History Go-kunnskap skjerper spørsmålet, men avgjør ikke konklusjonen",
+          "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret knowledge-punkt: history go-kunnskap skjerper spørsmålet, men avgjør ikke konklusjonen. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_fagledelse_knowledge_kildekritikk_og_historiografi_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "faglig_metoderom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_fagledelse_knowledge_kildekritikk_og_historiografi_001",
+          "source_path": "data/Civication/mailFamilies/historie/knowledge/historie_fagledelse_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_fagledelse.mail.historie_fagledelse_knowledge_kildekritikk_og_historiografi_001",
+        "version": 1
+      },
+      "source_hash": "1994989e07db7cd0a5193031dec9df7b9b36efdf6ffeeee4fc5a97b25b422fb4",
+      "source_path": "data/Civication/mailFamilies/historie/knowledge/historie_fagledelse_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "synlig_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar kan_vi_love_fristen i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk kan_vi_love_fristen gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_prioritering_og_faglig_integritet",
+        "consequence_axis": "faglig_og_organisatorisk_tillit_vs_skjult_risiko",
+        "from": "Nora",
+        "id": "historie_fagledelse_micro_kan_vi_love_fristen_001",
+        "mail_family": "historie_fagledelse_rask_mandatavklaring",
+        "mail_type": "micro",
+        "narrative_arc": "kan_vi_love_fristen",
+        "people_ref": "nora_teamkoordinator_historie_fagledelse",
+        "phase": "forenoon",
+        "place_id": "prioriterings_og_kapasitetsbord",
+        "pressure": "frist_og_styringspress_vs_kvalitet_og_kapasitet",
+        "priority": 130,
+        "role_scope": "historie_fagledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/micro/historie_fagledelse_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+          "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+          "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+        ],
+        "subject": "Kan du love fristen uten å ha kompetansen tilgjengelig?",
+        "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret micro-punkt: kan du love fristen uten å ha kompetansen tilgjengelig?. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør.",
+        "task_domain": "historiefaglig_ledelse"
+      },
+      "id": "historie_fagledelse_micro_kan_vi_love_fristen_001",
+      "mail_type": "micro",
+      "role_scope": "historie_fagledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar kan_vi_love_fristen i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk kan_vi_love_fristen gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+            "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+            "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+          ],
+          "subject": "Kan du love fristen uten å ha kompetansen tilgjengelig?",
+          "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret micro-punkt: kan du love fristen uten å ha kompetansen tilgjengelig?. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_fagledelse_micro_kan_vi_love_fristen_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "prioriterings_og_kapasitetsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_fagledelse_micro_kan_vi_love_fristen_001",
+          "source_path": "data/Civication/mailFamilies/historie/micro/historie_fagledelse_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_fagledelse.mail.historie_fagledelse_micro_kan_vi_love_fristen_001",
+        "version": 1
+      },
+      "source_hash": "bfae8053c39d81e2461c03be11e51e30a14b1fc85ad664f058d5f263acd4c1e4",
+      "source_path": "data/Civication/mailFamilies/historie/micro/historie_fagledelse_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "synlig_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar ingrid_mandat i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk ingrid_mandat gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_prioritering_og_faglig_integritet",
+        "consequence_axis": "faglig_og_organisatorisk_tillit_vs_skjult_risiko",
+        "from": "Ingrid",
+        "id": "historie_fagledelse_people_ingrid_mandat_001",
+        "mail_family": "historie_fagledelse_profesjonelle_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "ingrid_mandat",
+        "people_ref": "ingrid_avdelingsdirektor_historie_fagledelse",
+        "phase": "forenoon",
+        "place_id": "prioriterings_og_kapasitetsbord",
+        "pressure": "frist_og_styringspress_vs_kvalitet_og_kapasitet",
+        "priority": 130,
+        "role_scope": "historie_fagledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/people/historie_fagledelse_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+          "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+          "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+        ],
+        "subject": "Hva kan du faktisk prioritere innen delegasjonen?",
+        "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret people-punkt: hva kan du faktisk prioritere innen delegasjonen?. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør.",
+        "task_domain": "historiefaglig_ledelse"
+      },
+      "id": "historie_fagledelse_people_ingrid_mandat_001",
+      "mail_type": "people",
+      "role_scope": "historie_fagledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar ingrid_mandat i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk ingrid_mandat gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+            "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+            "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+          ],
+          "subject": "Hva kan du faktisk prioritere innen delegasjonen?",
+          "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret people-punkt: hva kan du faktisk prioritere innen delegasjonen?. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_fagledelse_people_ingrid_mandat_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "prioriterings_og_kapasitetsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_fagledelse_people_ingrid_mandat_001",
+          "source_path": "data/Civication/mailFamilies/historie/people/historie_fagledelse_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_fagledelse.mail.historie_fagledelse_people_ingrid_mandat_001",
+        "version": 1
+      },
+      "source_hash": "a2c321459a6e7bd3f074a6b57edcdb437cc628fb4fcc0ba02c014d680a8f77d6",
+      "source_path": "data/Civication/mailFamilies/historie/people/historie_fagledelse_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "synlig_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar marius_motstemme i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk marius_motstemme gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_prioritering_og_faglig_integritet",
+        "consequence_axis": "faglig_og_organisatorisk_tillit_vs_skjult_risiko",
+        "from": "Marius",
+        "id": "historie_fagledelse_people_marius_motstemme_002",
+        "mail_family": "historie_fagledelse_profesjonelle_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "marius_motstemme",
+        "people_ref": "marius_seniorhistoriker_historie_fagledelse",
+        "phase": "workday",
+        "place_id": "faglig_metoderom",
+        "pressure": "frist_og_styringspress_vs_kvalitet_og_kapasitet",
+        "priority": 129,
+        "role_scope": "historie_fagledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/people/historie_fagledelse_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+          "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+          "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+        ],
+        "subject": "Den faglige motstemmen må stå igjen etter ledermøtet",
+        "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret people-punkt: den faglige motstemmen må stå igjen etter ledermøtet. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør.",
+        "task_domain": "historiefaglig_ledelse"
+      },
+      "id": "historie_fagledelse_people_marius_motstemme_002",
+      "mail_type": "people",
+      "role_scope": "historie_fagledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar marius_motstemme i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk marius_motstemme gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+            "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+            "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+          ],
+          "subject": "Den faglige motstemmen må stå igjen etter ledermøtet",
+          "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret people-punkt: den faglige motstemmen må stå igjen etter ledermøtet. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_fagledelse_people_marius_motstemme_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "faglig_metoderom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_fagledelse_people_marius_motstemme_002",
+          "source_path": "data/Civication/mailFamilies/historie/people/historie_fagledelse_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_fagledelse.mail.historie_fagledelse_people_marius_motstemme_002",
+        "version": 1
+      },
+      "source_hash": "366d319142f7c0451369974ac4d61710bc458726cc0b2c985f86572fa989a87f",
+      "source_path": "data/Civication/mailFamilies/historie/people/historie_fagledelse_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "synlig_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar nora_kapasitet i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk nora_kapasitet gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_prioritering_og_faglig_integritet",
+        "consequence_axis": "faglig_og_organisatorisk_tillit_vs_skjult_risiko",
+        "from": "Nora",
+        "id": "historie_fagledelse_people_nora_kapasitet_003",
+        "mail_family": "historie_fagledelse_profesjonelle_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "nora_kapasitet",
+        "people_ref": "nora_teamkoordinator_historie_fagledelse",
+        "phase": "workday",
+        "place_id": "handoff_og_leveranseflate",
+        "pressure": "frist_og_styringspress_vs_kvalitet_og_kapasitet",
+        "priority": 128,
+        "role_scope": "historie_fagledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/people/historie_fagledelse_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+          "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+          "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+        ],
+        "subject": "Usynlig overarbeid blir brukt som kapasitetsreserve",
+        "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret people-punkt: usynlig overarbeid blir brukt som kapasitetsreserve. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør.",
+        "task_domain": "historiefaglig_ledelse"
+      },
+      "id": "historie_fagledelse_people_nora_kapasitet_003",
+      "mail_type": "people",
+      "role_scope": "historie_fagledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar nora_kapasitet i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk nora_kapasitet gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+            "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+            "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+          ],
+          "subject": "Usynlig overarbeid blir brukt som kapasitetsreserve",
+          "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret people-punkt: usynlig overarbeid blir brukt som kapasitetsreserve. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_fagledelse_people_nora_kapasitet_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "handoff_og_leveranseflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_fagledelse_people_nora_kapasitet_003",
+          "source_path": "data/Civication/mailFamilies/historie/people/historie_fagledelse_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_fagledelse.mail.historie_fagledelse_people_nora_kapasitet_003",
+        "version": 1
+      },
+      "source_hash": "b2da9fa49c17f40f1c3546cf5705241a25c9ec123f339b2ca9331ad188436114",
+      "source_path": "data/Civication/mailFamilies/historie/people/historie_fagledelse_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "synlig_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar sander_avvik i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk sander_avvik gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_prioritering_og_faglig_integritet",
+        "consequence_axis": "faglig_og_organisatorisk_tillit_vs_skjult_risiko",
+        "from": "Sander",
+        "id": "historie_fagledelse_people_sander_avvik_004",
+        "mail_family": "historie_fagledelse_profesjonelle_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "sander_avvik",
+        "people_ref": "sander_kvalitetsradgiver_historie_fagledelse",
+        "phase": "workday",
+        "place_id": "kvalitets_og_avvikspunkt",
+        "pressure": "frist_og_styringspress_vs_kvalitet_og_kapasitet",
+        "priority": 127,
+        "role_scope": "historie_fagledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/people/historie_fagledelse_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+          "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+          "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+        ],
+        "subject": "Avviket er rettet i teksten, men ikke i læringssporet",
+        "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret people-punkt: avviket er rettet i teksten, men ikke i læringssporet. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør.",
+        "task_domain": "historiefaglig_ledelse"
+      },
+      "id": "historie_fagledelse_people_sander_avvik_004",
+      "mail_type": "people",
+      "role_scope": "historie_fagledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar sander_avvik i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk sander_avvik gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+            "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+            "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+          ],
+          "subject": "Avviket er rettet i teksten, men ikke i læringssporet",
+          "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret people-punkt: avviket er rettet i teksten, men ikke i læringssporet. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_fagledelse_people_sander_avvik_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kvalitets_og_avvikspunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_fagledelse_people_sander_avvik_004",
+          "source_path": "data/Civication/mailFamilies/historie/people/historie_fagledelse_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_fagledelse.mail.historie_fagledelse_people_sander_avvik_004",
+        "version": 1
+      },
+      "source_hash": "104af19f9e786b098620d21ede33ce471680907396eff97235d5f6fbfe6811d3",
+      "source_path": "data/Civication/mailFamilies/historie/people/historie_fagledelse_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "synlig_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar leder_vs_fagperson i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk leder_vs_fagperson gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_prioritering_og_faglig_integritet",
+        "consequence_axis": "faglig_og_organisatorisk_tillit_vs_skjult_risiko",
+        "from": "Marius",
+        "id": "historie_fagledelse_story_leder_vs_fagperson_001",
+        "mail_family": "historie_fagledelse_lederidentitet",
+        "mail_type": "story",
+        "narrative_arc": "leder_vs_fagperson",
+        "people_ref": "marius_seniorhistoriker_historie_fagledelse",
+        "phase": "forenoon",
+        "place_id": "faglig_metoderom",
+        "pressure": "frist_og_styringspress_vs_kvalitet_og_kapasitet",
+        "priority": 130,
+        "role_scope": "historie_fagledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/story/historie_fagledelse_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+          "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+          "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+        ],
+        "subject": "Er du faglig sterk fordi du leder, eller leder du ved å beskytte faglig styrke?",
+        "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret story-punkt: er du faglig sterk fordi du leder, eller leder du ved å beskytte faglig styrke?. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør.",
+        "task_domain": "historiefaglig_ledelse"
+      },
+      "id": "historie_fagledelse_story_leder_vs_fagperson_001",
+      "mail_type": "story",
+      "role_scope": "historie_fagledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut i øyeblikket, men neste aktør ser hva som er vurdert, hva som fortsatt venter, hvilken kompetanse eller myndighet som mangler og hva som må gjenåpnes dersom premissene endrer seg. Det beskytter både medarbeidere og historiefaglig kvalitet mot at lederpress blir skjult i leveransen.",
+            "id": "A",
+            "label": "Avklar leder_vs_fagperson i loggen",
+            "reply": "Jeg beholder den faglige motstemmen og dagens status i loggen, markerer kapasitets- eller evidensgapet og sender bare den avgrensede beslutningen til riktig eier med et eksplisitt nytt kontrollpunkt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen ser bedre ut lokalt, men loggen mister skillet mellom prioritering, evidens og faktisk myndighet. Teamet må absorbere skjult arbeid, mottakeren kan tro at metode- og kvalitetsinnvendinger er lukket, og en senere feil blir dyrere å spore tilbake. Lederstatus har da erstattet nettopp den åpenheten rollen skulle beskytte.",
+            "id": "B",
+            "label": "Lukk leder_vs_fagperson gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdriftsbehovet som tilstrekkelig grunn til å lukke ventepunktet, fordeler restarbeidet uformelt og lar leveransen gå videre uten å vise hele kapasitets- og metodeusikkerheten."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser oppdragets nåværende versjon, prioritet, eier, metode- eller kvalitetskrav og hva som fortsatt ikke er avklart.",
+            "En rask lukking kan gi lokal fremdrift, men vil skjule kapasitet, faglig motstemme, avvik eller hvem som faktisk har myndighet til neste beslutning.",
+            "Du må velge et grep som gjør waiting, handoff og mulig rework synlig for den neste som skal stole på leveransen."
+          ],
+          "subject": "Er du faglig sterk fordi du leder, eller leder du ved å beskytte faglig styrke?",
+          "summary": "Den faglige prioriterings- og kvalitetsloggen står i et konkret story-punkt: er du faglig sterk fordi du leder, eller leder du ved å beskytte faglig styrke?. Kapasitet, delegert mandat, kilde- og metodekrav, dokumentert faglig uenighet, avvik, frist og neste eier peker ikke samme vei. Du må oppdatere det vedvarende arbeidsobjektet slik at beslutningsrom, venting og risiko er synlige, uten å gjøre lederstatus til faglig evidens eller skyve skjult arbeid videre til neste aktør."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_fagledelse_story_leder_vs_fagperson_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "faglig_metoderom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_fagledelse_story_leder_vs_fagperson_001",
+          "source_path": "data/Civication/mailFamilies/historie/story/historie_fagledelse_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_fagledelse.mail.historie_fagledelse_story_leder_vs_fagperson_001",
+        "version": 1
+      },
+      "source_hash": "d8a67389f6e7cfae4df52424fdbe1de1b8ac45f93654e4b09cd2ee93c898d24b",
+      "source_path": "data/Civication/mailFamilies/historie/story/historie_fagledelse_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -227553,7 +229587,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "c5a88b067868ad2e6c893348ad50685bd8a7dea5ee3160811c9e2a0a74d1b927",
+  "registry_hash": "c21b01494b53dedb4823fb2875e1e70565def858d988370fe86c5be62e285612",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -227865,6 +229899,23 @@
       "historie_arkiv_knowledge_akershus_001",
       "historie_arkiv_knowledge_knut_alvsson_001",
       "historie_arkiv_consequence_migrering_001"
+    ],
+    "historie/historie_fagledelse": [
+      "historie_fagledelse_job_kapasitetsklemme_001",
+      "historie_fagledelse_job_metodeuenighet_002",
+      "historie_fagledelse_job_sen_feil_003",
+      "historie_fagledelse_job_handoff_004",
+      "historie_fagledelse_people_ingrid_mandat_001",
+      "historie_fagledelse_people_marius_motstemme_002",
+      "historie_fagledelse_people_nora_kapasitet_003",
+      "historie_fagledelse_people_sander_avvik_004",
+      "historie_fagledelse_story_leder_vs_fagperson_001",
+      "historie_fagledelse_conflict_bestilt_konklusjon_001",
+      "historie_fagledelse_event_ny_kilde_001",
+      "historie_fagledelse_micro_kan_vi_love_fristen_001",
+      "historie_fagledelse_followup_rework_etter_handoff_001",
+      "historie_fagledelse_knowledge_kildekritikk_og_historiografi_001",
+      "historie_fagledelse_consequence_etterspill_001"
     ],
     "kunst/kunst_kunstnerisk_ledelse": [
       "kunstnerisk_ledelse_job_programforslag_001",
@@ -229136,11 +231187,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 485,
+    "compiled_source_file_count": 494,
     "ignored_source_file_count": 1,
-    "input_file_count": 486,
-    "role_count": 59,
-    "scene_count": 1435,
+    "input_file_count": 495,
+    "role_count": 60,
+    "scene_count": 1450,
     "shadowed_duplicate_count": 0
   },
   "version": 1

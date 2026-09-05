@@ -1,18 +1,192 @@
 {
-  "schema":"civication_work_grammar_v2","version":2,
-  "category":"historie","role_scope":"historie_fagledelse","role_id":"historie_fagledelse",
-  "badge_binding":{"badge_id":"historie","badge_titles":["Seksjonsleder","Avdelingsleder"]},
-  "work_world":"Fagledelse der kapasitet, kvalitet, personell og delegasjon må balanseres uten at lederpress erstatter faglig metode.",
-  "task_families":["prioritering","bemanning","kvalitetssikring","ressursstyring","oppfolging","eskalering"],
-  "work_loops":["behov -> kapasitet -> prioritering -> fordeling -> oppfolging -> kvalitet -> justering","avvik -> risiko -> ansvar -> tiltak -> dokumentasjon -> læring"],
-  "pressure_axes":["kapasitet_vs_krav","frist_vs_kvalitet","lederonske_vs_faglig_uavhengighet"],
-  "practice_stories":[
-    {"id":"kapasitetsklemme","setup":"Teamet har flere kritiske leveranser enn det kan håndtere.","decision":"Prioriter eksplisitt, dokumenter hva som utsettes og eskaler rest-risiko.","learning":"ledelse er også å synliggjøre hva som ikke kan gjøres"},
-    {"id":"faglig_uenighet","setup":"To erfarne medarbeidere er uenige om metode.","decision":"Krev begrunnelser, avklar beslutningskriterier og dokumenter valget.","learning":"autoritet erstatter ikke faglig begrunnelse"},
-    {"id":"sen_feil","setup":"En alvorlig feil oppdages rett før publisering.","decision":"Stans eller avgrens leveransen og korriger årsaken før omdømmehensyn.","learning":"kvalitet må tåle ubehagelige stopp"},
-    {"id":"konklusjonspress","setup":"Overordnet ønsker en bestemt faglig konklusjon.","decision":"Beskytt faglig sporbarhet og eskaler dersom presset truer integriteten.","learning":"lederlinjen kan styre oppdrag, ikke evidens"},
-    {"id":"kompetansehull","setup":"En oppgave krever kompetanse teamet ikke har.","decision":"Hent inn kompetanse eller reduser mandatet fremfor å late som kapasiteten finnes.","learning":"myndighet er ikke det samme som kompetanse"}
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "historie",
+  "role_scope": "historie_fagledelse",
+  "role_id": "historie_fagledelse",
+  "badge_binding": {
+    "badge_id": "historie",
+    "badge_titles": [
+      "Seksjonsleder",
+      "Avdelingsleder"
+    ]
+  },
+  "work_world": "Fagledelse der kapasitet, kvalitet, personell og delegasjon må balanseres uten at lederpress erstatter faglig metode.",
+  "task_families": [
+    "prioritering",
+    "bemanning",
+    "kvalitetssikring",
+    "ressursstyring",
+    "oppfolging",
+    "eskalering"
   ],
-  "quality_axes":["prioritering","faglig_integritet","kapasitet","arbeidsmiljo","delegasjon","risikostyring"],
-  "authority_boundary":{"may":["lede og prioritere innen delegert ramme"],"may_not":["overstyre lov eller delegasjon","diktere faglige funn","skjule kapasitetsrisiko","late som lederrolle gir manglende fagkompetanse"]}
+  "work_loops": [
+    "behov -> kapasitet -> prioritering -> fordeling -> oppfolging -> kvalitet -> justering",
+    "avvik -> risiko -> ansvar -> tiltak -> dokumentasjon -> læring"
+  ],
+  "pressure_axes": [
+    "kapasitet_vs_krav",
+    "frist_vs_kvalitet",
+    "lederonske_vs_faglig_uavhengighet"
+  ],
+  "practice_stories": [
+    {
+      "id": "kapasitetsklemme",
+      "setup": "Teamet har flere kritiske leveranser enn det kan håndtere.",
+      "decision": "Prioriter eksplisitt, dokumenter hva som utsettes og eskaler rest-risiko.",
+      "learning": "ledelse er også å synliggjøre hva som ikke kan gjøres"
+    },
+    {
+      "id": "faglig_uenighet",
+      "setup": "To erfarne medarbeidere er uenige om metode.",
+      "decision": "Krev begrunnelser, avklar beslutningskriterier og dokumenter valget.",
+      "learning": "autoritet erstatter ikke faglig begrunnelse"
+    },
+    {
+      "id": "sen_feil",
+      "setup": "En alvorlig feil oppdages rett før publisering.",
+      "decision": "Stans eller avgrens leveransen og korriger årsaken før omdømmehensyn.",
+      "learning": "kvalitet må tåle ubehagelige stopp"
+    },
+    {
+      "id": "konklusjonspress",
+      "setup": "Overordnet ønsker en bestemt faglig konklusjon.",
+      "decision": "Beskytt faglig sporbarhet og eskaler dersom presset truer integriteten.",
+      "learning": "lederlinjen kan styre oppdrag, ikke evidens"
+    },
+    {
+      "id": "kompetansehull",
+      "setup": "En oppgave krever kompetanse teamet ikke har.",
+      "decision": "Hent inn kompetanse eller reduser mandatet fremfor å late som kapasiteten finnes.",
+      "learning": "myndighet er ikke det samme som kompetanse"
+    }
+  ],
+  "quality_axes": [
+    "prioritering",
+    "faglig_integritet",
+    "kapasitet",
+    "arbeidsmiljo",
+    "delegasjon",
+    "risikostyring"
+  ],
+  "authority_boundary": {
+    "may": [
+      "lede og prioritere innen delegert ramme"
+    ],
+    "may_not": [
+      "overstyre lov eller delegasjon",
+      "diktere faglige funn",
+      "skjule kapasitetsrisiko",
+      "late som lederrolle gir manglende fagkompetanse"
+    ]
+  },
+  "actor_grammar": [
+    {
+      "id": "ingrid_avdelingsdirektor_historie_fagledelse",
+      "name": "Ingrid",
+      "role": "avdelingsdirektør",
+      "workplace_ids": [
+        "prioriterings_og_kapasitetsbord"
+      ]
+    },
+    {
+      "id": "marius_seniorhistoriker_historie_fagledelse",
+      "name": "Marius",
+      "role": "seniorhistoriker",
+      "workplace_ids": [
+        "faglig_metoderom"
+      ]
+    },
+    {
+      "id": "nora_teamkoordinator_historie_fagledelse",
+      "name": "Nora",
+      "role": "teamkoordinator",
+      "workplace_ids": [
+        "handoff_og_leveranseflate"
+      ]
+    },
+    {
+      "id": "sander_kvalitetsradgiver_historie_fagledelse",
+      "name": "Sander",
+      "role": "kvalitetsrådgiver",
+      "workplace_ids": [
+        "kvalitets_og_avvikspunkt"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "prioriterings_og_kapasitetsbord",
+      "name": "Prioriterings- og kapasitetsbordet",
+      "function": "Her registreres innkommende oppdrag, frister, delegert mandat, tilgjengelig kompetanse og synlig kapasitetsrisiko før arbeid fordeles eller noe utsettes."
+    },
+    {
+      "id": "faglig_metoderom",
+      "name": "Det faglige metoderommet",
+      "function": "Her prøves problemstilling, kilder, kildekritikk, historiografiske valg, begreper og faglig uenighet før en konklusjon får status som beslutnings- eller publiseringsgrunnlag."
+    },
+    {
+      "id": "kvalitets_og_avvikspunkt",
+      "name": "Kvalitets- og avvikspunktet",
+      "function": "Her blir kritiske feil, usikkerhet, kontrollfunn og korrigerende tiltak stående med eier og nytt kontrollpunkt i stedet for å forsvinne når fristen nærmer seg."
+    },
+    {
+      "id": "handoff_og_leveranseflate",
+      "name": "Handoff- og leveranseflaten",
+      "function": "Her overleveres arbeid med versjon, status, åpne spørsmål, ventepunkt, ansvarlig mottaker og konsekvens for andre leveranser slik at koordineringsgjeld ikke skjules."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "faglig_prioriterings_og_kvalitetslogg",
+    "description": "Et vedvarende, versjonert arbeidsobjekt som beholder oppdrag, prioritet, kapasitet, delegasjon, metode- og evidenskrav, faglige motstemmer, avvik, risiko, ventepunkt, handoff-eier og rework gjennom den samme leveransesyklusen.",
+    "states": [
+      "registrert",
+      "kapasitetsvurdert",
+      "fordelt",
+      "under_faglig_arbeid",
+      "venter_pa_avklaring",
+      "under_kvalitetskontroll",
+      "leveringsklart",
+      "levert",
+      "gjenapnet"
+    ],
+    "handoff_rule": "Neste aktør overtar synlig versjon, status, beslutningsrom, ventepunkt, åpne faglige spørsmål og uløst risiko; en handoff kan aldri slette tidligere metodevalg, avvik eller dokumentert faglig uenighet."
+  },
+  "rhythm_contract": {
+    "loop": "inntak -> kapasitet -> prioritering -> fordeling -> faglig arbeid -> waiting/venting på evidens, mandat eller kompetanse -> handoff -> kvalitetskontroll -> levering -> rework -> læring",
+    "waiting_states": [
+      "kilde_eller_evidensavklaring",
+      "mandatavklaring",
+      "kompetansebehov",
+      "ressursbeslutning"
+    ],
+    "rework_rule": "Nye kilder, korrigert feil, endret mandat eller dokumentert kapasitetsbrudd gjenåpner bare berørt del med ny versjon og eksplisitt eier."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_historie_kildekritikk_og_historiografi",
+      "badge_id": "historie",
+      "use": "Gir historisk kontekst, kildekritisk trening og historiografisk bevissthet som kan forbedre spørsmål og kontroll, men gir verken ansettelse, personalmyndighet, budsjettfullmakt eller rett til å diktere et faglig funn."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "appointment_required",
+    "first_object": "faglig_prioriterings_og_kvalitetslogg",
+    "first_task": "Registrer de aktive leveransene med mandat, kapasitet, kompetansebehov, faglig risiko, eier og eksplisitt hva som ikke kan gjøres innen dagens ramme."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "historie_fagledelse",
+    "no_generic_fallback": true
+  }
 }

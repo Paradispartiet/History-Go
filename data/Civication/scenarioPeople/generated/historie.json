@@ -1685,7 +1685,68 @@
     "existing_other_people": []
   },
   "cross_category_existing_references": [],
-  "missing_people_candidates": [],
+  "missing_people_candidates": [
+    {
+      "id": "ingrid_avdelingsdirektor_historie_fagledelse",
+      "name": "ingrid_avdelingsdirektor_historie_fagledelse",
+      "category": "historie",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/historie/historie_fagledelse.json"
+      ],
+      "scenario_roles": [
+        "historie_fagledelse"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "marius_seniorhistoriker_historie_fagledelse",
+      "name": "marius_seniorhistoriker_historie_fagledelse",
+      "category": "historie",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/historie/historie_fagledelse.json"
+      ],
+      "scenario_roles": [
+        "historie_fagledelse"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "nora_teamkoordinator_historie_fagledelse",
+      "name": "nora_teamkoordinator_historie_fagledelse",
+      "category": "historie",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/historie/historie_fagledelse.json"
+      ],
+      "scenario_roles": [
+        "historie_fagledelse"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "sander_kvalitetsradgiver_historie_fagledelse",
+      "name": "sander_kvalitetsradgiver_historie_fagledelse",
+      "category": "historie",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/historie/historie_fagledelse.json"
+      ],
+      "scenario_roles": [
+        "historie_fagledelse"
+      ],
+      "verification_required": true
+    }
+  ],
   "roles": [
     {
       "role_id": "historie_arkiv_og_dokumentasjon",
@@ -1877,6 +1938,36 @@
       },
       "automatic_match_tokens": [
         "doktorgradsstudent"
+      ],
+      "resolved_counts": {
+        "total": 238,
+        "existing_place_people": 238,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 238,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "historie_fagledelse",
+      "role_scope": "historie_fagledelse",
+      "title": "Historiefaglig ledelse",
+      "source": "data/Civication/roleModels/historie/historie_fagledelse.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "fagledelse",
+        "historiefaglig",
+        "ledelse"
       ],
       "resolved_counts": {
         "total": 238,
