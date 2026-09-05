@@ -41,14 +41,19 @@ jobs:
           p.write_text(s.replace(old, new, 1))
           PY
           node scripts/tmp-materialize-litteratur-maintenance-round3.mjs
-      - name: Commit permanent round 3 tree and remove temporary runner
+      - name: Commit validated non-workflow round 3 tree
         run: |
-          rm scripts/tmp-materialize-litteratur-maintenance-round3.mjs
-          rm .github/workflows/tmp-litteratur-round3-materialize.yml
+          git checkout -- .github/workflows/litteratur-maintenance-integrity.yml
+          git checkout -- scripts/tmp-materialize-litteratur-maintenance-round3.mjs
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
           git diff --cached --check
+          if git diff --cached --name-only | grep -q '^\.github/workflows/'; then
+            echo 'Refusing to push workflow mutation from Actions token'
+            git diff --cached --name-only
+            exit 1
+          fi
           git diff --cached --stat
           git commit -m 'Materialize Litteratur maintenance source refresh round 3'
           git push origin HEAD:${GITHUB_REF_NAME}
