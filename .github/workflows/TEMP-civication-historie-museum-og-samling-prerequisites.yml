@@ -33,7 +33,9 @@ jobs:
       - name: Materialize Historie Museum og samling foundation
         id: materialize
         continue-on-error: true
-        run: node scripts/TEMP_materialize_historie_museum_og_samling_prerequisites.mjs > /tmp/historie-museum-og-samling-materialize.log 2>&1
+        run: |
+          node scripts/TEMP_materialize_historie_museum_og_samling_prerequisites.mjs > /tmp/historie-museum-og-samling-materialize.log 2>&1
+          node --input-type=module -e "import fs from 'node:fs'; const p='data/Civication/roleModels/manifest.json'; const model='data/Civication/roleModels/historie/historie_museum_og_samling.json'; const manifest=JSON.parse(fs.readFileSync(p,'utf8')); if(!manifest.files.includes(model)) manifest.files.push(model); manifest.files=[...new Set(manifest.files)]; fs.writeFileSync(p, JSON.stringify(manifest,null,2)+'\\n');" >> /tmp/historie-museum-og-samling-materialize.log 2>&1
       - name: Persist exact materializer diagnostic only
         if: ${{ steps.materialize.outcome == 'failure' }}
         run: |
