@@ -107,6 +107,13 @@ jobs:
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-politikk-runtime-equivalence.mjs
 
+      - name: Refresh Rodeløkka derived data after canonical source change
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+          npm run epoker:places:build
+          npm run quiz:context -- --category by --target rodelokka --output data/quiz/production_context/by/rodelokka.json
+
       - name: Refresh shared Fagverk release
         run: |
           node scripts/build-fagverk-release-manifest.mjs
