@@ -1,43 +1,51 @@
 row;
-  const [question, rawOptions, rawAnswerIndex, knowledge, emne_id, sourceId] = row;
-  const family = row.at(-1);
-  const [maybeMethod, maybeHook, maybeThinker, maybeWork] = family === "concept" ? row.slice(6, 10) : [null, null, null, null];
+  const qQuestion = question;
+  const qRawOptions = rawOptions;
+  const qRawAnswerIndex = rawAnswerIndex;
+  const qKnowledge = knowledge;
+  const qEmneId = emne_id;
+  const qSourceId = sourceId;
+  const qFamily = row.at(-1);
+  const qMethod = qFamily === "concept" ? maybeMethod : null;
+  const qHook = qFamily === "concept" ? maybeHook : null;
+  const qThinker = qFamily === "concept" ? maybeThinker : null;
+  const qWork = qFamily === "concept" ? maybeWork : null;
   const n = index + 1;
   const phase = ["opening", "middle", "middle", "bridge", "final"][Math.floor(index / 7)];
-  const raw = [...rawOptions];
+  const raw = [...qRawOptions];
   const shift = index % raw.length;
   const options = [...raw.slice(shift), ...raw.slice(0, shift)];
-  const answer = raw[rawAnswerIndex];
+  const answer = raw[qRawAnswerIndex];
   const item = {
     id: `vaalerenga_quiz_${String(n).padStart(2, "0")}`,
     quiz_id: `by_vaalerenga_set_${Math.floor(index / 7) + 1}_q${index % 7 + 1}`,
     categoryId: "by", placeId, personId: "", natureId: "", targetId: placeId,
-    question_scope: "place", question, options, answer, answerIndex: options.indexOf(answer),
-    dimension: family === "fact" ? "sted_og_historie" : family === "context" ? "kontekst_og_kildekritikk" : "metode_og_teori",
-    topic: `vaalerenga_${family}_${String(n).padStart(2, "0")}`,
-    knowledge, trivia: [], difficulty: n <= 7 ? 1 : n <= 21 ? 2 : n <= 28 ? 3 : 4,
-    question_type: family, question_layer: phase,
-    year: null, epoke_id: null, epoke_domain: "by", emne_id, related_emner: [],
+    question_scope: "place", question: qQuestion, options, answer, answerIndex: options.indexOf(answer),
+    dimension: qFamily === "fact" ? "sted_og_historie" : qFamily === "context" ? "kontekst_og_kildekritikk" : "metode_og_teori",
+    topic: `vaalerenga_${qFamily}_${String(n).padStart(2, "0")}`,
+    knowledge: qKnowledge, trivia: [], difficulty: n <= 7 ? 1 : n <= 21 ? 2 : n <= 28 ? 3 : 4,
+    question_type: qFamily, question_layer: phase,
+    year: null, epoke_id: null, epoke_domain: "by", emne_id: qEmneId, related_emner: [],
     core_concepts: [], concept_focus: [], learning_paths: [], tags: [placeId, "oslo", "by"], required_tags: [],
-    source: [sourceId], source_origin: "external", claim_basis: knowledge,
+    source: [qSourceId], source_origin: "external", claim_basis: qKnowledge,
     guidance_basis: ["data/fag/by/pensum_by.json", "data/fag/by/emner_by.json", "data/fag/by/fagkart_by.json", "data/fag/by/methods_by.json"],
     claim_id: `claim_vaalerenga_quiz_${String(n).padStart(2, "0")}`,
     primary_knowledge_unit_id: `ku_by_vaalerenga_${String(n).padStart(2, "0")}`,
     knowledge_unit_ids: [`ku_by_vaalerenga_${String(n).padStart(2, "0")}`], concepts: [], concept_ids: [], term_ids: [],
     knowledge_contract_version: 1, knowledge_link_status: "linked"
   };
-  if (maybeMethod) item.method_id = maybeMethod;
-  if (maybeHook) {
-    item.topic_hook_id = maybeHook;
-    item.thinker_id = maybeThinker;
-    item.work = maybeWork;
+  if (qMethod) item.method_id = qMethod;
+  if (qHook) {
+    item.topic_hook_id = qHook;
+    item.thinker_id = qThinker;
+    item.work = qWork;
     item.theory_ref = {
-      topic_hook_id: maybeHook,
-      thinker_id: maybeThinker,
-      work: maybeWork,
-      why_it_helps: maybeThinker === "aldo_rossi"
+      topic_hook_id: qHook,
+      thinker_id: qThinker,
+      work: qWork,
+      why_it_helps: qThinker === "aldo_rossi"
         ? "Rossi gir et avgrenset grep for å lese varige byformer og historiske lag uten å erstatte lokale kilder."
-        : maybeThinker === "christian_norberg_schulz"
+        : qThinker === "christian_norberg_schulz"
           ? "Norberg-Schulz gir et avgrenset grep for sted, transformasjon og romlig sammenheng; Vålerengas konkrete endringer må fortsatt dokumenteres lokalt."
           : "Whyte gir et avgrenset observasjonsgrep for bruk og romlige mønstre uten å utlede private egenskaper hos beboere eller besøkende."
     };
