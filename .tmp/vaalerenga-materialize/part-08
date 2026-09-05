@@ -1,0 +1,64 @@
+
+// Correct provenance after switching the remaining object/structure images away from throttled Commons assets.
+const finalPlaceForImageMeta = read(placeFile);
+const borderObjectForMeta = (finalPlaceForImageMeta.objects || []).find((row) => row.id === "vaalerenga_grensestein_38");
+if (!borderObjectForMeta) throw new Error("Missing Vålerenga border-stone object for image provenance correction");
+borderObjectForMeta.imageMeta = {
+  source: "lokalhistoriewiki",
+  sourcePage: urls.borderImagePage,
+  creator: "Stig Rune Pedersen",
+  credit: "Stig Rune Pedersen / Lokalhistoriewiki",
+  license: "CC BY-SA (see Lokalhistoriewiki source record)",
+  licenseUrl: "https://lokalhistoriewiki.no/wiki/Hjelp:Bildelisenser_(retningslinjer)",
+  assetType: "documentary_photo",
+  originalDimensions: "3200x2400",
+  outputDimensions: "900x520",
+  transformation: "Proporsjonal beskjæring og WebP-normalisering av dokumentarfotoet av grensesteinen.",
+  representationScope: "Dokumenterer grensestein nr. 38 fra 1878 ved Etterstadgata.",
+  verifiedAt,
+  reviewedAt: verifiedAt
+};
+const churchForMeta = (finalPlaceForImageMeta.structures || []).find((row) => row.id === "vaalerenga_kirke");
+if (!churchForMeta) throw new Error("Missing Vålerenga church structure for image provenance correction");
+churchForMeta.imageMeta = {
+  source: "lokalhistoriewiki",
+  sourcePage: urls.churchImagePage,
+  creator: "Stig Rune Pedersen",
+  credit: "Stig Rune Pedersen / Lokalhistoriewiki",
+  license: "CC BY-SA 3.0",
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+  assetType: "documentary_photo",
+  outputDimensions: "900x520",
+  transformation: "Proporsjonal beskjæring og WebP-normalisering.",
+  representationScope: "Dokumenterer Vålerenga kirke som fysisk Structure.",
+  verifiedAt,
+  reviewedAt: verifiedAt
+};
+const schoolForMeta = (finalPlaceForImageMeta.structures || []).find((row) => row.id === "vaalerenga_skole");
+if (!schoolForMeta) throw new Error("Missing Vålerenga school structure for image provenance correction");
+schoolForMeta.imageMeta = {
+  source: "lokalhistoriewiki",
+  sourcePage: urls.schoolImagePage,
+  creator: "Stig Rune Pedersen",
+  credit: "Stig Rune Pedersen / Lokalhistoriewiki",
+  license: "CC BY-SA (see Lokalhistoriewiki source record)",
+  licenseUrl: "https://lokalhistoriewiki.no/wiki/Hjelp:Bildelisenser_(retningslinjer)",
+  assetType: "documentary_photo",
+  outputDimensions: "900x520",
+  transformation: "Proporsjonal beskjæring og WebP-normalisering.",
+  representationScope: "Dokumenterer Vålerenga skole som fysisk Structure.",
+  verifiedAt,
+  reviewedAt: verifiedAt
+};
+write(placeFile, finalPlaceForImageMeta);
+
+// The transport URL for the Brand packshot is a proxy only; canonical provenance stays on Synnøve Finden's original Prismic asset.
+const finalBrandsForImageMeta = read("data/brands/brands_master.json");
+const synnoveBrandForMeta = finalBrandsForImageMeta.find((row) => row.id === "synnove_finden");
+if (!synnoveBrandForMeta) throw new Error("Missing Synnøve Finden brand for image provenance correction");
+synnoveBrandForMeta.imageMeta.sourceAsset = urls.synnovePackshotSourceAsset;
+write("data/brands/brands_master.json", finalBrandsForImageMeta);
+
+// Keep derived place/runtime artifacts synchronized with the corrected canonical provenance.
+execFileSync("npm", ["run", "places:index:build"], { cwd: root, stdio: "inherit" });
+execFileSync("npm", ["run", "place-open:build"], { cwd: root, stdio: "inherit" });

@@ -1,0 +1,103 @@
+name: Vålerenga temporary materialization
+
+on:
+  push:
+    branches:
+      - agent/vaalerenga-replay-main-20260905
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.event.head_commit.message == 'Run Vålerenga materialization'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/vaalerenga-replay-main-20260905
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Assemble and syntax-check finalizer
+        run: |
+          cat .tmp/vaalerenga-materialize/part-* > tools/finalize-vaalerenga-completion.mjs
+          if ! node --check tools/finalize-vaalerenga-completion.mjs > .tmp/vaalerenga-materialize/syntax-error.txt 2>&1; then
+            cat .tmp/vaalerenga-materialize/syntax-error.txt
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add .tmp/vaalerenga-materialize/syntax-error.txt
+            git commit -m 'Record Vålerenga syntax diagnostic'
+            git push origin HEAD:agent/vaalerenga-replay-main-20260905
+            exit 1
+          fi
+      - name: Materialize Vålerenga
+        run: |
+          if ! node tools/finalize-vaalerenga-completion.mjs > /tmp/vaalerenga-runtime.log 2>&1; then
+            tail -n 160 /tmp/vaalerenga-runtime.log > .tmp/vaalerenga-materialize/runtime-error.txt
+            cat .tmp/vaalerenga-materialize/runtime-error.txt
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add .tmp/vaalerenga-materialize/runtime-error.txt
+            for file in \
+              bilder/places/vaalerenga.webp \
+              bilder/kort/places/vaalerenga.webp \
+              bilder/places/vaalerenga_front_portrait.webp \
+              bilder/kort/people/synnove_finden.webp \
+              bilder/kort/objects/vaalerenga_grensestein_38.webp \
+              bilder/kort/structures/vaalerenga_kirke.webp \
+              bilder/kort/structures/vaalerenga_skole.webp \
+              bilder/kort/brands/synnove_finden.webp; do
+              if [ -f "$file" ]; then git add "$file"; fi
+            done
+            git commit -m 'Cache verified Vålerenga source images'
+            git push origin HEAD:agent/vaalerenga-replay-main-20260905
+            exit 1
+          fi
+          tail -n 80 /tmp/vaalerenga-runtime.log
+      - name: Validate focused production gates
+        run: |
+          set +e
+          : > /tmp/vaalerenga-validation.log
+          run_gate() {
+            label="$1"
+            shift
+            echo "===== $label =====" | tee -a /tmp/vaalerenga-validation.log
+            "$@" >> /tmp/vaalerenga-validation.log 2>&1
+            status=$?
+            if [ $status -ne 0 ]; then
+              echo "FAILED_GATE=$label" | tee -a /tmp/vaalerenga-validation.log
+              tail -n 220 /tmp/vaalerenga-validation.log > .tmp/vaalerenga-materialize/validation-error.txt
+              cat .tmp/vaalerenga-materialize/validation-error.txt
+              git config user.name 'github-actions[bot]'
+              git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+              git add .tmp/vaalerenga-materialize/validation-error.txt
+              git commit -m 'Record Vålerenga validation diagnostic'
+              git push origin HEAD:agent/vaalerenga-replay-main-20260905
+              exit $status
+            fi
+          }
+          run_gate completion node --test tests/vaalerenga-completion.test.mjs
+          run_gate quiz-content npm run audit:quiz-content
+          run_gate quiz-production-context npm run audit:quiz-production-context
+          run_gate quiz-progression npm run audit:quiz-progression
+          run_gate quiz-theory-binding npm run audit:quiz-theory-binding
+          run_gate fagverk node scripts/audit-fagverk-place-pages.mjs
+          run_gate fagverk-release node scripts/build-fagverk-release-manifest.mjs --check
+          run_gate place-images node scripts/audit-place-images.mjs --mode=changed
+          cat /tmp/vaalerenga-validation.log
+      - name: Commit permanent production only
+        run: |
+          rm -f tools/finalize-vaalerenga-completion.mjs
+          rm -rf .tmp/vaalerenga-materialize
+          rm -f .github/workflows/vaalerenga-materialize-temp.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --check
+          git commit -m 'Complete Vålerenga Place production'
+          git push origin HEAD:agent/vaalerenga-replay-main-20260905
