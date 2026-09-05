@@ -11,11 +11,11 @@
     "support_worlds": 1,
     "statuses": {
       "reference_complete": 5,
-      "playable": 54,
+      "playable": 55,
       "partial": 0,
-      "architecture_only": 26
+      "architecture_only": 25
     },
-    "runtime_gate_pass": 59,
+    "runtime_gate_pass": 60,
     "life_story_complete": 13,
     "component_debt": {
       "entry": {
@@ -24,13 +24,13 @@
         "missing": 0
       },
       "day_one": {
-        "complete": 59,
+        "complete": 60,
         "partial": 0,
-        "missing": 26
+        "missing": 25
       },
       "workday_loop": {
-        "complete": 59,
-        "partial": 26,
+        "complete": 60,
+        "partial": 25,
         "missing": 0
       },
       "practice_stories": {
@@ -39,24 +39,24 @@
         "missing": 0
       },
       "people": {
-        "complete": 59,
+        "complete": 60,
         "partial": 0,
-        "missing": 26
+        "missing": 25
       },
       "places": {
-        "complete": 59,
+        "complete": 60,
         "partial": 0,
-        "missing": 26
+        "missing": 25
       },
       "mail": {
-        "complete": 59,
+        "complete": 60,
         "partial": 0,
-        "missing": 26
+        "missing": 25
       },
       "knowledge": {
-        "complete": 59,
+        "complete": 60,
         "partial": 6,
-        "missing": 20
+        "missing": 19
       },
       "quality_axes": {
         "complete": 85,
@@ -69,14 +69,14 @@
         "missing": 0
       },
       "consequences": {
-        "complete": 59,
+        "complete": 60,
         "partial": 0,
-        "missing": 26
+        "missing": 25
       },
       "performance": {
-        "complete": 56,
+        "complete": 57,
         "partial": 3,
-        "missing": 26
+        "missing": 25
       },
       "economy": {
         "complete": 85,
@@ -84,14 +84,14 @@
         "missing": 0
       },
       "progression": {
-        "complete": 56,
+        "complete": 57,
         "partial": 3,
-        "missing": 26
+        "missing": 25
       },
       "exit": {
-        "complete": 56,
+        "complete": 57,
         "partial": 3,
-        "missing": 26
+        "missing": 25
       }
     }
   },
@@ -5154,6 +5154,7 @@
       "category": "historie",
       "role_scope": "historie_museum_og_samling",
       "declared_by": [
+        "mailPlan",
         "workGrammar"
       ],
       "badge_titles": [
@@ -5165,51 +5166,54 @@
       "role_ids": [
         "historie_museum_og_samling"
       ],
-      "status": "architecture_only",
+      "status": "playable",
       "artifacts": {
-        "role_models": [],
+        "role_models": [
+          "data/Civication/roleModels/historie/historie_museum_og_samling.json"
+        ],
         "work_grammar": "data/Civication/workGrammars/historie/historie_museum_og_samling.json",
         "shared_work_grammars": [],
-        "mail_plan": null,
+        "mail_plan": "data/Civication/mailPlans/historie/historie_museum_og_samling_plan.json",
         "mail_families": {
           "job": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/historie/job/historie_museum_og_samling_job.json",
+            "count": 4
           },
           "people": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/historie/people/historie_museum_og_samling_people.json",
+            "count": 4
           },
           "conflict": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/historie/conflict/historie_museum_og_samling_conflict.json",
+            "count": 1
           },
           "story": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/historie/story/historie_museum_og_samling_story.json",
+            "count": 1
           },
           "event": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/historie/event/historie_museum_og_samling_event.json",
+            "count": 1
           },
           "micro": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/historie/micro/historie_museum_og_samling_micro.json",
+            "count": 1
           },
           "followup": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/historie/followup/historie_museum_og_samling_followup.json",
+            "count": 1
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/historie/knowledge/historie_museum_og_samling_knowledge.json",
+            "count": 1
           },
           "consequence": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/historie/consequence/historie_museum_og_samling_consequence.json",
+            "count": 1
           }
         },
         "role_tests": [
+          "tests/civication-historie-museum-og-samling-prerequisites.test.js",
           "tests/civication-history-life-career-split.test.js"
         ],
         "life_story": null
@@ -5226,16 +5230,24 @@
             "note": "4 linked career title(s) have an offer policy and gate."
           },
           "day_one": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No day-one structure."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/historie/historie_museum_og_samling_plan.json",
+              "tests/civication-historie-museum-og-samling-prerequisites.test.js",
+              "tests/civication-history-life-career-split.test.js"
+            ],
+            "note": "Role plan and role-specific test prove a first playable day."
           },
           "workday_loop": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/workGrammars/historie/historie_museum_og_samling.json"
+              "data/Civication/mailFamilies/historie/job/historie_museum_og_samling_job.json",
+              "data/Civication/mailPlans/historie/historie_museum_og_samling_plan.json",
+              "data/Civication/workGrammars/historie/historie_museum_og_samling.json",
+              "tests/civication-historie-museum-og-samling-prerequisites.test.js",
+              "tests/civication-history-life-career-split.test.js"
             ],
-            "note": "Work-loop content exists, but the complete repeatable runtime path is not proven."
+            "note": "Repeatable work content is connected to a tested plan."
           },
           "practice_stories": {
             "level": "partial",
@@ -5246,28 +5258,51 @@
             "note": "5 FWG stories and 0 registered practice week(s)."
           },
           "people": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No work-world people layer."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/historie/people/historie_museum_og_samling_people.json",
+              "data/Civication/roleModels/historie/historie_museum_og_samling.json",
+              "data/Civication/workGrammars/historie/historie_museum_og_samling.json"
+            ],
+            "note": "Named/typed work relationships are used by people mails."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/roleModels/historie/historie_museum_og_samling.json",
+              "data/Civication/workGrammars/historie/historie_museum_og_samling.json"
+            ],
+            "note": "12 place/working-surface declarations."
           },
           "mail": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No role mail/event generation."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/historie/conflict/historie_museum_og_samling_conflict.json",
+              "data/Civication/mailFamilies/historie/consequence/historie_museum_og_samling_consequence.json",
+              "data/Civication/mailFamilies/historie/event/historie_museum_og_samling_event.json",
+              "data/Civication/mailFamilies/historie/followup/historie_museum_og_samling_followup.json",
+              "data/Civication/mailFamilies/historie/job/historie_museum_og_samling_job.json",
+              "data/Civication/mailFamilies/historie/knowledge/historie_museum_og_samling_knowledge.json",
+              "data/Civication/mailFamilies/historie/micro/historie_museum_og_samling_micro.json",
+              "data/Civication/mailFamilies/historie/people/historie_museum_og_samling_people.json",
+              "data/Civication/mailFamilies/historie/story/historie_museum_og_samling_story.json",
+              "data/Civication/mailPlans/historie/historie_museum_og_samling_plan.json"
+            ],
+            "note": "9/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No functional knowledge layer."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/historie/knowledge/historie_museum_og_samling_knowledge.json",
+              "data/Civication/roleModels/historie/historie_museum_og_samling.json",
+              "data/Civication/workGrammars/historie/historie_museum_og_samling.json"
+            ],
+            "note": "Knowledge content is connected to a mail or job-gate surface."
           },
           "quality_axes": {
             "level": "complete",
             "evidence": [
+              "data/Civication/roleModels/historie/historie_museum_og_samling.json",
               "data/Civication/workGrammars/historie/historie_museum_og_samling.json"
             ],
             "note": "Quality/competence axes are declared and connected to choice/consequence fields."
@@ -5275,19 +5310,30 @@
           "authority": {
             "level": "complete",
             "evidence": [
+              "data/Civication/roleModels/historie/historie_museum_og_samling.json",
               "data/Civication/workGrammars/historie/historie_museum_og_samling.json"
             ],
             "note": "Explicit authority boundary exists."
           },
           "consequences": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No consequence model."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/historie/consequence/historie_museum_og_samling_consequence.json",
+              "data/Civication/mailFamilies/historie/followup/historie_museum_og_samling_followup.json",
+              "tests/civication-historie-museum-og-samling-prerequisites.test.js",
+              "tests/civication-history-life-career-split.test.js"
+            ],
+            "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No performance evaluation."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/historie/historie_museum_og_samling_plan.json",
+              "tests/civication-career-outcomes.test.js",
+              "tests/civication-historie-museum-og-samling-prerequisites.test.js",
+              "tests/civication-history-life-career-split.test.js"
+            ],
+            "note": "Positive and negative outcomes are defined and role-tested."
           },
           "economy": {
             "level": "complete",
@@ -5299,33 +5345,42 @@
             "note": "Exact salary exists for all 4 linked career title(s)."
           },
           "progression": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No progression path."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/historie/historie_museum_og_samling_plan.json",
+              "data/Civication/roleModels/historie/historie_museum_og_samling.json",
+              "data/Civication/workGrammars/historie/historie_museum_og_samling.json",
+              "tests/civication-career-outcomes.test.js"
+            ],
+            "note": "Career path and positive runtime outcome are both present."
           },
           "exit": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No exit/job-change path."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/historie/historie_museum_og_samling_plan.json",
+              "data/Civication/roleModels/historie/historie_museum_og_samling.json",
+              "tests/civication-career-outcomes.test.js"
+            ],
+            "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
+        "runtime_gate": true,
+        "missing_components": [],
+        "complete_components": [
+          "entry",
           "day_one",
+          "workday_loop",
           "people",
           "places",
           "mail",
           "knowledge",
-          "consequences",
-          "performance",
-          "progression",
-          "exit"
-        ],
-        "complete_components": [
-          "entry",
           "quality_axes",
           "authority",
-          "economy"
+          "consequences",
+          "performance",
+          "economy",
+          "progression",
+          "exit"
         ],
         "practice_story_count": 5,
         "practice_weeks": [],
