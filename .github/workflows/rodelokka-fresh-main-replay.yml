@@ -1,0 +1,110 @@
+name: Rodeløkka fresh-main replay
+
+on:
+  push:
+    branches:
+      - agent/rodelokka-production-replay-20260905
+
+permissions:
+  contents: write
+
+jobs:
+  replay-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/rodelokka-production-replay-20260905
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Replay permanent Rodeløkka payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin work/rodelokka-production-20260904
+          git diff --binary 49ded6dc2efb8c6822298b45d1bdbc6e904d53dd 69b4684057dfd16355db6d3da2f8f84e25053b74 -- . \
+            ':(exclude).github/workflows/rodelokka-production-bootstrap.yml' \
+            ':(exclude)tools/build-rodelokka-completion.mjs.gz.b64' \
+            ':(exclude)tools/normalize-rodelokka-production.mjs' \
+            ':(exclude).cache/rodelokka-production/**' \
+            ':(exclude)data/epoker/epoke-place-index.json' \
+            ':(exclude)data/places/places_index.json' \
+            ':(exclude)data/quiz/production_context/by/rodelokka.json' \
+            ':(exclude)data/runtime/**' \
+            | git apply -3 --index
+          test ! -d .cache/rodelokka-production
+      - name: Rebuild derived data on fresh main
+        run: |
+          npm run epoker:places:build
+          npm run places:index:build
+          npm run place-open:build
+          npm run quiz:context -- --category by --target rodelokka --output data/quiz/production_context/by/rodelokka.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const quizFile = 'data/quiz/by/rodelokka_sets.json';
+          const briefFile = 'data/quiz/production_briefs/by/rodelokka.json';
+          const artifactFile = 'data/quiz/production_context/by/rodelokka.json';
+          const quiz = JSON.parse(fs.readFileSync(quizFile, 'utf8'));
+          const brief = JSON.parse(fs.readFileSync(briefFile, 'utf8'));
+          const artifact = JSON.parse(fs.readFileSync(artifactFile, 'utf8'));
+          const selected = artifact.selected_curriculum;
+          quiz.sources = Object.fromEntries(Object.entries(brief.sources).map(([id, source]) => [id, source.url]));
+          quiz.production_context = {
+            manifest_category: 'by',
+            profile: artifact.profile,
+            standard_version: '3.4',
+            source_brief: briefFile,
+            context_artifact: artifactFile,
+            resolved_files: Object.fromEntries(Object.entries(artifact.resolved_files).map(([key, metadata]) => [key, metadata.path])),
+            required_inputs_loaded: artifact.required_inputs_loaded,
+            pensum_module_ids: selected.module_ids,
+            emne_ids: selected.emne_ids,
+            topic_hook_ids: selected.topic_hook_ids,
+            method_ids: selected.method_ids,
+            thinker_ids: selected.thinker_ids,
+            works: selected.works,
+            source_review_status: brief.status,
+            theory_start_phase: 'final',
+            method_start_phase: 'final',
+            existing_quiz_audit: brief.existing_quiz_audit,
+            profile_decision: brief.profile_decision,
+            held_back_candidates: brief.held_back_candidates
+          };
+          fs.writeFileSync(quizFile, `${JSON.stringify(quiz, null, 2)}\n`);
+          NODE
+      - name: Rodeløkka completion tests
+        run: node --test tests/rodelokka-completion.test.mjs
+      - name: Place emne check
+        run: npm run places:emner:check
+      - name: Story integrity
+        run: npm run check:stories
+      - name: Quiz manifest audit
+        run: npm run audit:quiz-manifest:v2
+      - name: Quiz content audit
+        run: npm run audit:quiz-content
+      - name: Quiz production context audit
+        run: npm run audit:quiz-production-context
+      - name: Quiz progression audit
+        run: npm run audit:quiz-progression
+      - name: Quiz theory binding audit
+        run: npm run audit:quiz-theory-binding
+      - name: Repository hygiene checks
+        run: |
+          npm run places:index:check
+          npm run place-open:check
+          test ! -d .cache/rodelokka-production
+          test ! -e tools/build-rodelokka-completion.mjs.gz.b64
+          test ! -e tools/normalize-rodelokka-production.mjs
+      - name: Commit clean fresh-main replay
+        run: |
+          git rm .github/workflows/rodelokka-fresh-main-replay.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Complete Rodeløkka Place production"
+          git push origin HEAD:agent/rodelokka-production-replay-20260905
