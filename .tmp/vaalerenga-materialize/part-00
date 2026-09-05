@@ -68,6 +68,7 @@ async function fetchBuffer(url) {
 }
 async function outputImage({ url, file, width, height, fit = "cover", position = "centre", background = "#ffffff" }) {
   const target = path.join(root, file);
+  if (fs.existsSync(target)) return;
   fs.mkdirSync(path.dirname(target), { recursive: true });
   await sharp(await fetchBuffer(url)).rotate().resize(width, height, { fit, position, background }).webp({ quality: 84, effort: 5 }).toFile(target);
 }
