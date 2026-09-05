@@ -55,20 +55,6 @@ jobs:
           p.write_text(s.replace(old, new))
           PY
 
-      - name: Repair known focused-test Career title ordering assertion
-        shell: bash
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          p = Path('tests/civication-kunst-kuratering-og-program-prerequisites.test.js')
-          s = p.read_text()
-          old = "assert.deepEqual(row.audit.salary.rows.map(x=>[x.title,x.offer_policy]),[['Kuratorassistent','qualification_required'],['Kurator','appointment_required'],['Senior kurator','appointment_required']]);"
-          new = "assert.deepEqual(row.audit.salary.rows.map(x=>[x.title,x.offer_policy]).sort((a,b)=>a[0].localeCompare(b[0],'nb')), [['Kurator','appointment_required'],['Kuratorassistent','qualification_required'],['Senior kurator','appointment_required']].sort((a,b)=>a[0].localeCompare(b[0],'nb')));"
-          if s.count(old) != 1:
-              raise SystemExit(f'expected exactly one Career-order assertion, found {s.count(old)}')
-          p.write_text(s.replace(old, new))
-          PY
-
       - name: Syntax-check materializer
         run: node --check scripts/TEMP_materialize_kunst_kuratering_og_program_prerequisites.mjs
 
