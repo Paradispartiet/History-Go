@@ -133,6 +133,15 @@
     "data/Civication/mailFamilies/historie/followup/historie_fagledelse_followup.json",
     "data/Civication/mailFamilies/historie/knowledge/historie_fagledelse_knowledge.json",
     "data/Civication/mailFamilies/historie/consequence/historie_fagledelse_consequence.json",
+    "data/Civication/mailFamilies/historie/job/historie_forskning_og_akademia_job.json",
+    "data/Civication/mailFamilies/historie/people/historie_forskning_og_akademia_people.json",
+    "data/Civication/mailFamilies/historie/story/historie_forskning_og_akademia_story.json",
+    "data/Civication/mailFamilies/historie/conflict/historie_forskning_og_akademia_conflict.json",
+    "data/Civication/mailFamilies/historie/event/historie_forskning_og_akademia_event.json",
+    "data/Civication/mailFamilies/historie/micro/historie_forskning_og_akademia_micro.json",
+    "data/Civication/mailFamilies/historie/followup/historie_forskning_og_akademia_followup.json",
+    "data/Civication/mailFamilies/historie/knowledge/historie_forskning_og_akademia_knowledge.json",
+    "data/Civication/mailFamilies/historie/consequence/historie_forskning_og_akademia_consequence.json",
     "data/Civication/mailFamilies/kunst/job/kunst_kunstnerisk_ledelse_job.json",
     "data/Civication/mailFamilies/kunst/people/kunst_kunstnerisk_ledelse_people.json",
     "data/Civication/mailFamilies/kunst/story/kunst_kunstnerisk_ledelse_story.json",
@@ -50864,6 +50873,2046 @@
       },
       "source_hash": "d8a67389f6e7cfae4df52424fdbe1de1b8ac45f93654e4b09cd2ee93c898d24b",
       "source_path": "data/Civication/mailFamilies/historie/story/historie_fagledelse_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_revisjon_vs_prestisjevennlig_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Bevar kildespor og revider avgrenset",
+            "reply": "Jeg holder motbevis, usikkerhet og nåværende versjon synlig, avklarer hva som faktisk må endres, og sender bare den berørte delen videre med kildegrunnlag, begrunnelse og nytt kontrollpunkt.",
+            "tags": [
+              "kildekritikk",
+              "sporbarhet",
+              "motbevis",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Lukk punktet for å beskytte tese og frist",
+            "reply": "Jeg lar den eksisterende tesen og leveransefristen styre, toner ned motbevis eller usikkerhet og sender teksten videre uten å dokumentere hele grunnlaget for hvorfor punktet egentlig burde vært gjenåpnet.",
+            "tags": [
+              "tese_lasing",
+              "skjult_motbevis",
+              "publiseringspress",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_kildekritikk_metode_og_revisjon",
+        "consequence_axis": "faglig_tillit_og_korrigerbarhet_vs_skjult_metode_og_kilderisiko",
+        "from": "Malin",
+        "id": "historie_forskning_og_akademia_conflict_press_001",
+        "mail_family": "historie_forskning_og_akademia_konklusjons_og_finansieringspress",
+        "mail_type": "conflict",
+        "narrative_arc": "press",
+        "people_ref": "malin_forskningsadministrator_historie_forskning_og_akademia",
+        "phase": "advanced",
+        "place_id": "fagfelle_og_publiseringsflate",
+        "pressure": "tese_publisering_og_status_vs_kilder_metode_og_usikkerhet",
+        "priority": 132,
+        "role_scope": "historie_forskning_og_akademia",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/conflict/historie_forskning_og_akademia_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+          "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+          "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+        ],
+        "subject": "Finansierings- og publiseringspress trekker konklusjonen lenger enn evidensen",
+        "summary": "Forskningsloggen og manussporet står i et konkret conflict-punkt: En institusjonell leveranse ønsker en tydeligere konklusjon enn kildene tåler, og den skarpere formuleringen vil gjøre både rapportering og publisering enklere. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører.",
+        "task_domain": "historisk_forskning_og_akademia"
+      },
+      "id": "historie_forskning_og_akademia_conflict_press_001",
+      "mail_type": "conflict",
+      "role_scope": "historie_forskning_og_akademia",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Bevar kildespor og revider avgrenset",
+            "reply": "Jeg holder motbevis, usikkerhet og nåværende versjon synlig, avklarer hva som faktisk må endres, og sender bare den berørte delen videre med kildegrunnlag, begrunnelse og nytt kontrollpunkt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Lukk punktet for å beskytte tese og frist",
+            "reply": "Jeg lar den eksisterende tesen og leveransefristen styre, toner ned motbevis eller usikkerhet og sender teksten videre uten å dokumentere hele grunnlaget for hvorfor punktet egentlig burde vært gjenåpnet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+            "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+            "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+          ],
+          "subject": "Finansierings- og publiseringspress trekker konklusjonen lenger enn evidensen",
+          "summary": "Forskningsloggen og manussporet står i et konkret conflict-punkt: En institusjonell leveranse ønsker en tydeligere konklusjon enn kildene tåler, og den skarpere formuleringen vil gjøre både rapportering og publisering enklere. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_forskning_og_akademia_conflict_press_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "fagfelle_og_publiseringsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_forskning_og_akademia_conflict_press_001",
+          "source_path": "data/Civication/mailFamilies/historie/conflict/historie_forskning_og_akademia_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_forskning_og_akademia.mail.historie_forskning_og_akademia_conflict_press_001",
+        "version": 1
+      },
+      "source_hash": "56ecf7c1bf99769ed72cabf5fdf94e02cd890ef09a7ae381639e4170bd9fe13c",
+      "source_path": "data/Civication/mailFamilies/historie/conflict/historie_forskning_og_akademia_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_revisjon_vs_prestisjevennlig_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Bevar kildespor og revider avgrenset",
+            "reply": "Jeg holder motbevis, usikkerhet og nåværende versjon synlig, avklarer hva som faktisk må endres, og sender bare den berørte delen videre med kildegrunnlag, begrunnelse og nytt kontrollpunkt.",
+            "tags": [
+              "kildekritikk",
+              "sporbarhet",
+              "motbevis",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Lukk punktet for å beskytte tese og frist",
+            "reply": "Jeg lar den eksisterende tesen og leveransefristen styre, toner ned motbevis eller usikkerhet og sender teksten videre uten å dokumentere hele grunnlaget for hvorfor punktet egentlig burde vært gjenåpnet.",
+            "tags": [
+              "tese_lasing",
+              "skjult_motbevis",
+              "publiseringspress",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_kildekritikk_metode_og_revisjon",
+        "consequence_axis": "faglig_tillit_og_korrigerbarhet_vs_skjult_metode_og_kilderisiko",
+        "from": "Sara",
+        "id": "historie_forskning_og_akademia_consequence_publisering_001",
+        "mail_family": "historie_forskning_og_akademia_publiseringsetterspill",
+        "mail_type": "consequence",
+        "narrative_arc": "publisering",
+        "people_ref": "sara_fagfelle_historie_forskning_og_akademia",
+        "phase": "advanced",
+        "place_id": "fagfelle_og_publiseringsflate",
+        "pressure": "tese_publisering_og_status_vs_kilder_metode_og_usikkerhet",
+        "priority": 126,
+        "role_scope": "historie_forskning_og_akademia",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/consequence/historie_forskning_og_akademia_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+          "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+          "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+        ],
+        "subject": "Publiseringsetterspillet viser hva som faktisk ble bevart",
+        "summary": "Forskningsloggen og manussporet står i et konkret consequence-punkt: Manusets skjebne avhenger ikke bare av tempo, men av om motbevis, usikkerhet, review og korrigering er dokumentert slik at resultatet kan forsvares eller gjenåpnes. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører.",
+        "task_domain": "historisk_forskning_og_akademia"
+      },
+      "id": "historie_forskning_og_akademia_consequence_publisering_001",
+      "mail_type": "consequence",
+      "role_scope": "historie_forskning_og_akademia",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Bevar kildespor og revider avgrenset",
+            "reply": "Jeg holder motbevis, usikkerhet og nåværende versjon synlig, avklarer hva som faktisk må endres, og sender bare den berørte delen videre med kildegrunnlag, begrunnelse og nytt kontrollpunkt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Lukk punktet for å beskytte tese og frist",
+            "reply": "Jeg lar den eksisterende tesen og leveransefristen styre, toner ned motbevis eller usikkerhet og sender teksten videre uten å dokumentere hele grunnlaget for hvorfor punktet egentlig burde vært gjenåpnet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+            "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+            "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+          ],
+          "subject": "Publiseringsetterspillet viser hva som faktisk ble bevart",
+          "summary": "Forskningsloggen og manussporet står i et konkret consequence-punkt: Manusets skjebne avhenger ikke bare av tempo, men av om motbevis, usikkerhet, review og korrigering er dokumentert slik at resultatet kan forsvares eller gjenåpnes. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_forskning_og_akademia_consequence_publisering_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "fagfelle_og_publiseringsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_forskning_og_akademia_consequence_publisering_001",
+          "source_path": "data/Civication/mailFamilies/historie/consequence/historie_forskning_og_akademia_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_forskning_og_akademia.mail.historie_forskning_og_akademia_consequence_publisering_001",
+        "version": 1
+      },
+      "source_hash": "75ff5283997ebe093ef9db22907a9880e75ffcd773a2d8125a5b8915c66322c2",
+      "source_path": "data/Civication/mailFamilies/historie/consequence/historie_forskning_og_akademia_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_revisjon_vs_prestisjevennlig_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Bevar kildespor og revider avgrenset",
+            "reply": "Jeg holder motbevis, usikkerhet og nåværende versjon synlig, avklarer hva som faktisk må endres, og sender bare den berørte delen videre med kildegrunnlag, begrunnelse og nytt kontrollpunkt.",
+            "tags": [
+              "kildekritikk",
+              "sporbarhet",
+              "motbevis",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Lukk punktet for å beskytte tese og frist",
+            "reply": "Jeg lar den eksisterende tesen og leveransefristen styre, toner ned motbevis eller usikkerhet og sender teksten videre uten å dokumentere hele grunnlaget for hvorfor punktet egentlig burde vært gjenåpnet.",
+            "tags": [
+              "tese_lasing",
+              "skjult_motbevis",
+              "publiseringspress",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_kildekritikk_metode_og_revisjon",
+        "consequence_axis": "faglig_tillit_og_korrigerbarhet_vs_skjult_metode_og_kilderisiko",
+        "from": "Joakim",
+        "id": "historie_forskning_og_akademia_event_nytt_arkiv_001",
+        "mail_family": "historie_forskning_og_akademia_ny_kilde",
+        "mail_type": "event",
+        "narrative_arc": "nytt_arkiv",
+        "people_ref": "joakim_arkivar_historie_forskning_og_akademia",
+        "phase": "advanced",
+        "place_id": "arkiv_og_kildespor",
+        "pressure": "tese_publisering_og_status_vs_kilder_metode_og_usikkerhet",
+        "priority": 130,
+        "role_scope": "historie_forskning_og_akademia",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/event/historie_forskning_og_akademia_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+          "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+          "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+        ],
+        "subject": "Et nyåpnet arkiv endrer premisset midt i analysen",
+        "summary": "Forskningsloggen og manussporet står i et konkret event-punkt: Nytt materiale blir tilgjengelig etter at flere kapitler allerede er skrevet og berører en konkret årsaksforklaring i stedet for hele prosjektet. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører.",
+        "task_domain": "historisk_forskning_og_akademia"
+      },
+      "id": "historie_forskning_og_akademia_event_nytt_arkiv_001",
+      "mail_type": "event",
+      "role_scope": "historie_forskning_og_akademia",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Bevar kildespor og revider avgrenset",
+            "reply": "Jeg holder motbevis, usikkerhet og nåværende versjon synlig, avklarer hva som faktisk må endres, og sender bare den berørte delen videre med kildegrunnlag, begrunnelse og nytt kontrollpunkt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Lukk punktet for å beskytte tese og frist",
+            "reply": "Jeg lar den eksisterende tesen og leveransefristen styre, toner ned motbevis eller usikkerhet og sender teksten videre uten å dokumentere hele grunnlaget for hvorfor punktet egentlig burde vært gjenåpnet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+            "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+            "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+          ],
+          "subject": "Et nyåpnet arkiv endrer premisset midt i analysen",
+          "summary": "Forskningsloggen og manussporet står i et konkret event-punkt: Nytt materiale blir tilgjengelig etter at flere kapitler allerede er skrevet og berører en konkret årsaksforklaring i stedet for hele prosjektet. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_forskning_og_akademia_event_nytt_arkiv_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "arkiv_og_kildespor",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_forskning_og_akademia_event_nytt_arkiv_001",
+          "source_path": "data/Civication/mailFamilies/historie/event/historie_forskning_og_akademia_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_forskning_og_akademia.mail.historie_forskning_og_akademia_event_nytt_arkiv_001",
+        "version": 1
+      },
+      "source_hash": "88823d6d325a8b97bcbbe1da006aeb61c2a14bf77bd9bc5ccb9d877c0e5a49e8",
+      "source_path": "data/Civication/mailFamilies/historie/event/historie_forskning_og_akademia_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_revisjon_vs_prestisjevennlig_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Bevar kildespor og revider avgrenset",
+            "reply": "Jeg holder motbevis, usikkerhet og nåværende versjon synlig, avklarer hva som faktisk må endres, og sender bare den berørte delen videre med kildegrunnlag, begrunnelse og nytt kontrollpunkt.",
+            "tags": [
+              "kildekritikk",
+              "sporbarhet",
+              "motbevis",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Lukk punktet for å beskytte tese og frist",
+            "reply": "Jeg lar den eksisterende tesen og leveransefristen styre, toner ned motbevis eller usikkerhet og sender teksten videre uten å dokumentere hele grunnlaget for hvorfor punktet egentlig burde vært gjenåpnet.",
+            "tags": [
+              "tese_lasing",
+              "skjult_motbevis",
+              "publiseringspress",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_kildekritikk_metode_og_revisjon",
+        "consequence_axis": "faglig_tillit_og_korrigerbarhet_vs_skjult_metode_og_kilderisiko",
+        "from": "Sara",
+        "id": "historie_forskning_og_akademia_followup_revisjon_001",
+        "mail_family": "historie_forskning_og_akademia_fagfelle_revisjon",
+        "mail_type": "followup",
+        "narrative_arc": "revisjon",
+        "people_ref": "sara_fagfelle_historie_forskning_og_akademia",
+        "phase": "advanced",
+        "place_id": "fagfelle_og_publiseringsflate",
+        "pressure": "tese_publisering_og_status_vs_kilder_metode_og_usikkerhet",
+        "priority": 128,
+        "role_scope": "historie_forskning_og_akademia",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/followup/historie_forskning_og_akademia_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+          "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+          "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+        ],
+        "subject": "Fagfellekommentarene må bli sporbar, bounded rework",
+        "summary": "Forskningsloggen og manussporet står i et konkret followup-punkt: Reviewrunden er tilbake med én alvorlig metodeinnvending, to mindre kildepunkter og flere forslag som ikke trenger å aksepteres dersom svaret dokumenteres. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører.",
+        "task_domain": "historisk_forskning_og_akademia"
+      },
+      "id": "historie_forskning_og_akademia_followup_revisjon_001",
+      "mail_type": "followup",
+      "role_scope": "historie_forskning_og_akademia",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Bevar kildespor og revider avgrenset",
+            "reply": "Jeg holder motbevis, usikkerhet og nåværende versjon synlig, avklarer hva som faktisk må endres, og sender bare den berørte delen videre med kildegrunnlag, begrunnelse og nytt kontrollpunkt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Lukk punktet for å beskytte tese og frist",
+            "reply": "Jeg lar den eksisterende tesen og leveransefristen styre, toner ned motbevis eller usikkerhet og sender teksten videre uten å dokumentere hele grunnlaget for hvorfor punktet egentlig burde vært gjenåpnet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+            "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+            "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+          ],
+          "subject": "Fagfellekommentarene må bli sporbar, bounded rework",
+          "summary": "Forskningsloggen og manussporet står i et konkret followup-punkt: Reviewrunden er tilbake med én alvorlig metodeinnvending, to mindre kildepunkter og flere forslag som ikke trenger å aksepteres dersom svaret dokumenteres. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_forskning_og_akademia_followup_revisjon_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "fagfelle_og_publiseringsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_forskning_og_akademia_followup_revisjon_001",
+          "source_path": "data/Civication/mailFamilies/historie/followup/historie_forskning_og_akademia_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_forskning_og_akademia.mail.historie_forskning_og_akademia_followup_revisjon_001",
+        "version": 1
+      },
+      "source_hash": "6c00b88b388df033b883cc65803c31953c92c392dbd0279fe63748e7fba6a8df",
+      "source_path": "data/Civication/mailFamilies/historie/followup/historie_forskning_og_akademia_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_revisjon_vs_prestisjevennlig_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Avgrens konklusjonen rundt arkivets skjevhet",
+            "reply": "Jeg dokumenterer hvem arkivet overrepresenterer, lar fraværet stå som kildeproblem og begrenser påstanden til det materialet faktisk kan bære.",
+            "tags": [
+              "kildekritikk",
+              "sporbarhet",
+              "motbevis",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Behandle det bevarte arkivet som representativt",
+            "reply": "Jeg bruker det rikeste materialet som om det dekket hele aktørbildet og lar den manglende dokumentasjonen forsvinne fra argumentets usikkerhet.",
+            "tags": [
+              "tese_lasing",
+              "skjult_motbevis",
+              "publiseringspress",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_kildekritikk_metode_og_revisjon",
+        "consequence_axis": "faglig_tillit_og_korrigerbarhet_vs_skjult_metode_og_kilderisiko",
+        "from": "Joakim",
+        "id": "historie_forskning_og_akademia_job_fragmentert_arkiv_002",
+        "mail_family": "historie_forskning_og_akademia_forskningsarbeid",
+        "mail_type": "job",
+        "narrative_arc": "fragmentert_arkiv",
+        "people_ref": "joakim_arkivar_historie_forskning_og_akademia",
+        "phase": "workday",
+        "place_id": "arkiv_og_kildespor",
+        "pressure": "tese_publisering_og_status_vs_kilder_metode_og_usikkerhet",
+        "priority": 139,
+        "role_scope": "historie_forskning_og_akademia",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/job/historie_forskning_og_akademia_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+          "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+          "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+        ],
+        "subject": "Arkivet overrepresenterer én aktørgruppe",
+        "summary": "Forskningsloggen og manussporet står i et konkret job-punkt: Kildelandskapet er rikt for institusjonens ledelse, men fragmentert for menneskene som ble berørt av beslutningene. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører.",
+        "task_domain": "historisk_forskning_og_akademia"
+      },
+      "id": "historie_forskning_og_akademia_job_fragmentert_arkiv_002",
+      "mail_type": "job",
+      "role_scope": "historie_forskning_og_akademia",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Avgrens konklusjonen rundt arkivets skjevhet",
+            "reply": "Jeg dokumenterer hvem arkivet overrepresenterer, lar fraværet stå som kildeproblem og begrenser påstanden til det materialet faktisk kan bære."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Behandle det bevarte arkivet som representativt",
+            "reply": "Jeg bruker det rikeste materialet som om det dekket hele aktørbildet og lar den manglende dokumentasjonen forsvinne fra argumentets usikkerhet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+            "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+            "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+          ],
+          "subject": "Arkivet overrepresenterer én aktørgruppe",
+          "summary": "Forskningsloggen og manussporet står i et konkret job-punkt: Kildelandskapet er rikt for institusjonens ledelse, men fragmentert for menneskene som ble berørt av beslutningene. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_forskning_og_akademia_job_fragmentert_arkiv_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "arkiv_og_kildespor",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_forskning_og_akademia_job_fragmentert_arkiv_002",
+          "source_path": "data/Civication/mailFamilies/historie/job/historie_forskning_og_akademia_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_forskning_og_akademia.mail.historie_forskning_og_akademia_job_fragmentert_arkiv_002",
+        "version": 1
+      },
+      "source_hash": "ca75a0859748e0c7d6ed23d5c85bfb9fa8661a377fb7f3d20631740dde41df68",
+      "source_path": "data/Civication/mailFamilies/historie/job/historie_forskning_og_akademia_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_revisjon_vs_prestisjevennlig_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Revider hovedtesen mot den nye kilden",
+            "reply": "Jeg lar den nye kilden endre akkurat premisset den faktisk treffer, beholder motbeviset synlig og versjonerer den berørte argumentrekken før neste handoff.",
+            "tags": [
+              "kildekritikk",
+              "sporbarhet",
+              "motbevis",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Tone ned motbeviset for å bevare hovedtesen",
+            "reply": "Jeg beholder hovedtesen uendret, gjør motbeviset mindre synlig og sender manus videre for å beskytte fremdrift og investert argumentasjon.",
+            "tags": [
+              "tese_lasing",
+              "skjult_motbevis",
+              "publiseringspress",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_kildekritikk_metode_og_revisjon",
+        "consequence_axis": "faglig_tillit_og_korrigerbarhet_vs_skjult_metode_og_kilderisiko",
+        "from": "Elin",
+        "id": "historie_forskning_og_akademia_job_motbevis_001",
+        "mail_family": "historie_forskning_og_akademia_forskningsarbeid",
+        "mail_type": "job",
+        "narrative_arc": "motbevis",
+        "people_ref": "elin_hovedveileder_historie_forskning_og_akademia",
+        "phase": "workday",
+        "place_id": "analyse_og_motprovingsflate",
+        "pressure": "tese_publisering_og_status_vs_kilder_metode_og_usikkerhet",
+        "priority": 140,
+        "role_scope": "historie_forskning_og_akademia",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/job/historie_forskning_og_akademia_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+          "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+          "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+        ],
+        "subject": "En ny kilde svekker hovedtesen",
+        "summary": "Forskningsloggen og manussporet står i et konkret job-punkt: En ny kildegruppe motsier premisset som bærer manusets hovedargument. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører.",
+        "task_domain": "historisk_forskning_og_akademia"
+      },
+      "id": "historie_forskning_og_akademia_job_motbevis_001",
+      "mail_type": "job",
+      "role_scope": "historie_forskning_og_akademia",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Revider hovedtesen mot den nye kilden",
+            "reply": "Jeg lar den nye kilden endre akkurat premisset den faktisk treffer, beholder motbeviset synlig og versjonerer den berørte argumentrekken før neste handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Tone ned motbeviset for å bevare hovedtesen",
+            "reply": "Jeg beholder hovedtesen uendret, gjør motbeviset mindre synlig og sender manus videre for å beskytte fremdrift og investert argumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+            "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+            "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+          ],
+          "subject": "En ny kilde svekker hovedtesen",
+          "summary": "Forskningsloggen og manussporet står i et konkret job-punkt: En ny kildegruppe motsier premisset som bærer manusets hovedargument. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_forskning_og_akademia_job_motbevis_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "analyse_og_motprovingsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_forskning_og_akademia_job_motbevis_001",
+          "source_path": "data/Civication/mailFamilies/historie/job/historie_forskning_og_akademia_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_forskning_og_akademia.mail.historie_forskning_og_akademia_job_motbevis_001",
+        "version": 1
+      },
+      "source_hash": "1103eb5d60702fc975916c5add04ca64f30e300f7e12c8143a228c02d2bdf631",
+      "source_path": "data/Civication/mailFamilies/historie/job/historie_forskning_og_akademia_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_revisjon_vs_prestisjevennlig_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Kontroller kildegruppen eller avgrens påstanden før innsending",
+            "reply": "Jeg gjør kildegapet eksplisitt og enten fullfører kontrollen eller snevrer inn påstanden før manus får status som innsendingsklart.",
+            "tags": [
+              "kildekritikk",
+              "sporbarhet",
+              "motbevis",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Send manuset før kildekontrollen er ferdig",
+            "reply": "Jeg lar fristen definere modenhet og sender den sterkere påstanden selv om den sentrale kildegruppen fortsatt kan endre argumentstyrken.",
+            "tags": [
+              "tese_lasing",
+              "skjult_motbevis",
+              "publiseringspress",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_kildekritikk_metode_og_revisjon",
+        "consequence_axis": "faglig_tillit_og_korrigerbarhet_vs_skjult_metode_og_kilderisiko",
+        "from": "Malin",
+        "id": "historie_forskning_og_akademia_job_publiseringsfrist_003",
+        "mail_family": "historie_forskning_og_akademia_forskningsarbeid",
+        "mail_type": "job",
+        "narrative_arc": "publiseringsfrist",
+        "people_ref": "malin_forskningsadministrator_historie_forskning_og_akademia",
+        "phase": "workday",
+        "place_id": "fagfelle_og_publiseringsflate",
+        "pressure": "tese_publisering_og_status_vs_kilder_metode_og_usikkerhet",
+        "priority": 138,
+        "role_scope": "historie_forskning_og_akademia",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/job/historie_forskning_og_akademia_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+          "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+          "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+        ],
+        "subject": "Manusfristen kommer før den sentrale kildegruppen er kontrollert",
+        "summary": "Forskningsloggen og manussporet står i et konkret job-punkt: Prosjektplanen forventer innsending før en kildegruppe som kan endre argumentstyrken er ferdig kontrollert. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører.",
+        "task_domain": "historisk_forskning_og_akademia"
+      },
+      "id": "historie_forskning_og_akademia_job_publiseringsfrist_003",
+      "mail_type": "job",
+      "role_scope": "historie_forskning_og_akademia",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Kontroller kildegruppen eller avgrens påstanden før innsending",
+            "reply": "Jeg gjør kildegapet eksplisitt og enten fullfører kontrollen eller snevrer inn påstanden før manus får status som innsendingsklart."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Send manuset før kildekontrollen er ferdig",
+            "reply": "Jeg lar fristen definere modenhet og sender den sterkere påstanden selv om den sentrale kildegruppen fortsatt kan endre argumentstyrken."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+            "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+            "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+          ],
+          "subject": "Manusfristen kommer før den sentrale kildegruppen er kontrollert",
+          "summary": "Forskningsloggen og manussporet står i et konkret job-punkt: Prosjektplanen forventer innsending før en kildegruppe som kan endre argumentstyrken er ferdig kontrollert. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_forskning_og_akademia_job_publiseringsfrist_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "fagfelle_og_publiseringsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_forskning_og_akademia_job_publiseringsfrist_003",
+          "source_path": "data/Civication/mailFamilies/historie/job/historie_forskning_og_akademia_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_forskning_og_akademia.mail.historie_forskning_og_akademia_job_publiseringsfrist_003",
+        "version": 1
+      },
+      "source_hash": "be4d30c49016e5dc398f4d0d235e096ca66334ba518fb7613e6ed60fc904b218",
+      "source_path": "data/Civication/mailFamilies/historie/job/historie_forskning_og_akademia_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_revisjon_vs_prestisjevennlig_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Gjenåpne bare avsnittene rivalforklaringen faktisk treffer",
+            "reply": "Jeg binder reviewinnvendingen til de to berørte avsnittene, tester rivalforklaringen mot samme kilder og versjonerer avgrenset rework.",
+            "tags": [
+              "kildekritikk",
+              "sporbarhet",
+              "motbevis",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Forsvar manusversjonen uten å prøve rivalforklaringen",
+            "reply": "Jeg behandler fagfelleinnvendingen som et preferansespørsmål og lar de berørte avsnittene stå uten ny motprøving.",
+            "tags": [
+              "tese_lasing",
+              "skjult_motbevis",
+              "publiseringspress",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_kildekritikk_metode_og_revisjon",
+        "consequence_axis": "faglig_tillit_og_korrigerbarhet_vs_skjult_metode_og_kilderisiko",
+        "from": "Sara",
+        "id": "historie_forskning_og_akademia_job_review_rework_004",
+        "mail_family": "historie_forskning_og_akademia_forskningsarbeid",
+        "mail_type": "job",
+        "narrative_arc": "review_rework",
+        "people_ref": "sara_fagfelle_historie_forskning_og_akademia",
+        "phase": "workday",
+        "place_id": "fagfelle_og_publiseringsflate",
+        "pressure": "tese_publisering_og_status_vs_kilder_metode_og_usikkerhet",
+        "priority": 137,
+        "role_scope": "historie_forskning_og_akademia",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/job/historie_forskning_og_akademia_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+          "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+          "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+        ],
+        "subject": "Fagfellen krever en avgrenset revisjon av hovedargumentet",
+        "summary": "Forskningsloggen og manussporet står i et konkret job-punkt: Reviewet peker på en rivalforklaring som ikke krever at alt starter på nytt, men som treffer to sentrale avsnitt og deres kildebruk. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører.",
+        "task_domain": "historisk_forskning_og_akademia"
+      },
+      "id": "historie_forskning_og_akademia_job_review_rework_004",
+      "mail_type": "job",
+      "role_scope": "historie_forskning_og_akademia",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Gjenåpne bare avsnittene rivalforklaringen faktisk treffer",
+            "reply": "Jeg binder reviewinnvendingen til de to berørte avsnittene, tester rivalforklaringen mot samme kilder og versjonerer avgrenset rework."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Forsvar manusversjonen uten å prøve rivalforklaringen",
+            "reply": "Jeg behandler fagfelleinnvendingen som et preferansespørsmål og lar de berørte avsnittene stå uten ny motprøving."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+            "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+            "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+          ],
+          "subject": "Fagfellen krever en avgrenset revisjon av hovedargumentet",
+          "summary": "Forskningsloggen og manussporet står i et konkret job-punkt: Reviewet peker på en rivalforklaring som ikke krever at alt starter på nytt, men som treffer to sentrale avsnitt og deres kildebruk. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_forskning_og_akademia_job_review_rework_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "fagfelle_og_publiseringsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_forskning_og_akademia_job_review_rework_004",
+          "source_path": "data/Civication/mailFamilies/historie/job/historie_forskning_og_akademia_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_forskning_og_akademia.mail.historie_forskning_og_akademia_job_review_rework_004",
+        "version": 1
+      },
+      "source_hash": "bb29ce33a744d90e143f1cbf811fce99d49866db58b285c86548ec52a563a638",
+      "source_path": "data/Civication/mailFamilies/historie/job/historie_forskning_og_akademia_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_revisjon_vs_prestisjevennlig_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Bevar kildespor og revider avgrenset",
+            "reply": "Jeg holder motbevis, usikkerhet og nåværende versjon synlig, avklarer hva som faktisk må endres, og sender bare den berørte delen videre med kildegrunnlag, begrunnelse og nytt kontrollpunkt.",
+            "tags": [
+              "kildekritikk",
+              "sporbarhet",
+              "motbevis",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Lukk punktet for å beskytte tese og frist",
+            "reply": "Jeg lar den eksisterende tesen og leveransefristen styre, toner ned motbevis eller usikkerhet og sender teksten videre uten å dokumentere hele grunnlaget for hvorfor punktet egentlig burde vært gjenåpnet.",
+            "tags": [
+              "tese_lasing",
+              "skjult_motbevis",
+              "publiseringspress",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_kildekritikk_metode_og_revisjon",
+        "consequence_axis": "faglig_tillit_og_korrigerbarhet_vs_skjult_metode_og_kilderisiko",
+        "from": "Elin",
+        "id": "historie_forskning_og_akademia_knowledge_history_go_001",
+        "mail_family": "historie_forskning_og_akademia_history_go_kildekritikk",
+        "mail_type": "knowledge",
+        "narrative_arc": "history_go",
+        "people_ref": "elin_hovedveileder_historie_forskning_og_akademia",
+        "phase": "forenoon",
+        "place_id": "forskningsdesign_og_sporsmalsbord",
+        "pressure": "tese_publisering_og_status_vs_kilder_metode_og_usikkerhet",
+        "priority": 127,
+        "role_scope": "historie_forskning_og_akademia",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/knowledge/historie_forskning_og_akademia_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+          "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+          "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+        ],
+        "subject": "Bruk History Go til bedre kildekritiske spørsmål, ikke som forskerkvalifikasjon",
+        "summary": "Forskningsloggen og manussporet står i et konkret knowledge-punkt: Historie-kunnskap kan skjerpe spørsmål om kontekst, historiografi, arkivets stillhet og rivalforklaringer, men den kan ikke erstatte grad, kvalifikasjon, kildeautentisering eller fagfelleprosess. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. History Go kan brukes til å formulere bedre kildekritiske og historiografiske spørsmål, men `qualification_required` består uendret og ingen kilde, etikkport, ansettelse eller publisering blir godkjent av et badge. History Go kan ikke autentisere kilder, avgjøre historiske funn, gi etikkgodkjenning, gi ansettelse eller sikre publisering; qualification_required gjelder fortsatt.",
+        "task_domain": "historisk_forskning_og_akademia"
+      },
+      "id": "historie_forskning_og_akademia_knowledge_history_go_001",
+      "mail_type": "knowledge",
+      "role_scope": "historie_forskning_og_akademia",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Bevar kildespor og revider avgrenset",
+            "reply": "Jeg holder motbevis, usikkerhet og nåværende versjon synlig, avklarer hva som faktisk må endres, og sender bare den berørte delen videre med kildegrunnlag, begrunnelse og nytt kontrollpunkt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Lukk punktet for å beskytte tese og frist",
+            "reply": "Jeg lar den eksisterende tesen og leveransefristen styre, toner ned motbevis eller usikkerhet og sender teksten videre uten å dokumentere hele grunnlaget for hvorfor punktet egentlig burde vært gjenåpnet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+            "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+            "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+          ],
+          "subject": "Bruk History Go til bedre kildekritiske spørsmål, ikke som forskerkvalifikasjon",
+          "summary": "Forskningsloggen og manussporet står i et konkret knowledge-punkt: Historie-kunnskap kan skjerpe spørsmål om kontekst, historiografi, arkivets stillhet og rivalforklaringer, men den kan ikke erstatte grad, kvalifikasjon, kildeautentisering eller fagfelleprosess. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. History Go kan brukes til å formulere bedre kildekritiske og historiografiske spørsmål, men `qualification_required` består uendret og ingen kilde, etikkport, ansettelse eller publisering blir godkjent av et badge. History Go kan ikke autentisere kilder, avgjøre historiske funn, gi etikkgodkjenning, gi ansettelse eller sikre publisering; qualification_required gjelder fortsatt."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_forskning_og_akademia_knowledge_history_go_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "forskningsdesign_og_sporsmalsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_forskning_og_akademia_knowledge_history_go_001",
+          "source_path": "data/Civication/mailFamilies/historie/knowledge/historie_forskning_og_akademia_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_forskning_og_akademia.mail.historie_forskning_og_akademia_knowledge_history_go_001",
+        "version": 1
+      },
+      "source_hash": "4233fd8cfa6c7ce46efc4fb7aaee300a4bba9328901216f3b9472f07edd25dd9",
+      "source_path": "data/Civication/mailFamilies/historie/knowledge/historie_forskning_og_akademia_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_revisjon_vs_prestisjevennlig_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Bevar kildespor og revider avgrenset",
+            "reply": "Jeg holder motbevis, usikkerhet og nåværende versjon synlig, avklarer hva som faktisk må endres, og sender bare den berørte delen videre med kildegrunnlag, begrunnelse og nytt kontrollpunkt.",
+            "tags": [
+              "kildekritikk",
+              "sporbarhet",
+              "motbevis",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Lukk punktet for å beskytte tese og frist",
+            "reply": "Jeg lar den eksisterende tesen og leveransefristen styre, toner ned motbevis eller usikkerhet og sender teksten videre uten å dokumentere hele grunnlaget for hvorfor punktet egentlig burde vært gjenåpnet.",
+            "tags": [
+              "tese_lasing",
+              "skjult_motbevis",
+              "publiseringspress",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_kildekritikk_metode_og_revisjon",
+        "consequence_axis": "faglig_tillit_og_korrigerbarhet_vs_skjult_metode_og_kilderisiko",
+        "from": "Joakim",
+        "id": "historie_forskning_og_akademia_micro_proveniens_001",
+        "mail_family": "historie_forskning_og_akademia_rask_provenienssjekk",
+        "mail_type": "micro",
+        "narrative_arc": "proveniens",
+        "people_ref": "joakim_arkivar_historie_forskning_og_akademia",
+        "phase": "advanced",
+        "place_id": "arkiv_og_kildespor",
+        "pressure": "tese_publisering_og_status_vs_kilder_metode_og_usikkerhet",
+        "priority": 129,
+        "role_scope": "historie_forskning_og_akademia",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/micro/historie_forskning_og_akademia_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+          "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+          "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+        ],
+        "subject": "En sitert kilde har uklar proveniens før neste handoff",
+        "summary": "Forskningsloggen og manussporet står i et konkret micro-punkt: En fotnote ser korrekt ut, men loggen viser at dokumentets serie, versjon og kontekst ikke er verifisert før teksten sendes videre. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører.",
+        "task_domain": "historisk_forskning_og_akademia"
+      },
+      "id": "historie_forskning_og_akademia_micro_proveniens_001",
+      "mail_type": "micro",
+      "role_scope": "historie_forskning_og_akademia",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Bevar kildespor og revider avgrenset",
+            "reply": "Jeg holder motbevis, usikkerhet og nåværende versjon synlig, avklarer hva som faktisk må endres, og sender bare den berørte delen videre med kildegrunnlag, begrunnelse og nytt kontrollpunkt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Lukk punktet for å beskytte tese og frist",
+            "reply": "Jeg lar den eksisterende tesen og leveransefristen styre, toner ned motbevis eller usikkerhet og sender teksten videre uten å dokumentere hele grunnlaget for hvorfor punktet egentlig burde vært gjenåpnet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+            "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+            "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+          ],
+          "subject": "En sitert kilde har uklar proveniens før neste handoff",
+          "summary": "Forskningsloggen og manussporet står i et konkret micro-punkt: En fotnote ser korrekt ut, men loggen viser at dokumentets serie, versjon og kontekst ikke er verifisert før teksten sendes videre. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_forskning_og_akademia_micro_proveniens_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "arkiv_og_kildespor",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_forskning_og_akademia_micro_proveniens_001",
+          "source_path": "data/Civication/mailFamilies/historie/micro/historie_forskning_og_akademia_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_forskning_og_akademia.mail.historie_forskning_og_akademia_micro_proveniens_001",
+        "version": 1
+      },
+      "source_hash": "c2f47ec7d27cf2da2bc00e927a025f76b636ac89ec6de5c1e625d354cc9c75de",
+      "source_path": "data/Civication/mailFamilies/historie/micro/historie_forskning_og_akademia_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_revisjon_vs_prestisjevennlig_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Skill etikk- og leveransestatus fra det historiske funnet",
+            "reply": "Jeg rapporterer frist, etikk/personvern og ressursbehov presist, men lar ikke prosjektstyringen bestemme hva kildene skal konkludere med.",
+            "tags": [
+              "kildekritikk",
+              "sporbarhet",
+              "motbevis",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "La prosjektfristen skjerpe den faglige konklusjonen",
+            "reply": "Jeg gjør konklusjonen tydeligere enn evidensen tåler for å gi prosjektgrensesnittet en enklere leveranse- og statusrapport.",
+            "tags": [
+              "tese_lasing",
+              "skjult_motbevis",
+              "publiseringspress",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_kildekritikk_metode_og_revisjon",
+        "consequence_axis": "faglig_tillit_og_korrigerbarhet_vs_skjult_metode_og_kilderisiko",
+        "from": "Malin",
+        "id": "historie_forskning_og_akademia_people_administrasjon_004",
+        "mail_family": "historie_forskning_og_akademia_profesjonelle_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "administrasjon",
+        "people_ref": "malin_forskningsadministrator_historie_forskning_og_akademia",
+        "phase": "workday",
+        "place_id": "forskningsdesign_og_sporsmalsbord",
+        "pressure": "tese_publisering_og_status_vs_kilder_metode_og_usikkerhet",
+        "priority": 133,
+        "role_scope": "historie_forskning_og_akademia",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/people/historie_forskning_og_akademia_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+          "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+          "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+        ],
+        "subject": "Prosjektgrensesnittet trenger et ærlig bilde av etikk og leveranse",
+        "summary": "Forskningsloggen og manussporet står i et konkret people-punkt: Malin trenger dokumenterbar status på frist, etikk/personvern og ressursbehov, men skal ikke få en pyntet faglig konklusjon som styringsrapport. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører.",
+        "task_domain": "historisk_forskning_og_akademia"
+      },
+      "id": "historie_forskning_og_akademia_people_administrasjon_004",
+      "mail_type": "people",
+      "role_scope": "historie_forskning_og_akademia",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Skill etikk- og leveransestatus fra det historiske funnet",
+            "reply": "Jeg rapporterer frist, etikk/personvern og ressursbehov presist, men lar ikke prosjektstyringen bestemme hva kildene skal konkludere med."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "La prosjektfristen skjerpe den faglige konklusjonen",
+            "reply": "Jeg gjør konklusjonen tydeligere enn evidensen tåler for å gi prosjektgrensesnittet en enklere leveranse- og statusrapport."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+            "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+            "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+          ],
+          "subject": "Prosjektgrensesnittet trenger et ærlig bilde av etikk og leveranse",
+          "summary": "Forskningsloggen og manussporet står i et konkret people-punkt: Malin trenger dokumenterbar status på frist, etikk/personvern og ressursbehov, men skal ikke få en pyntet faglig konklusjon som styringsrapport. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_forskning_og_akademia_people_administrasjon_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "forskningsdesign_og_sporsmalsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_forskning_og_akademia_people_administrasjon_004",
+          "source_path": "data/Civication/mailFamilies/historie/people/historie_forskning_og_akademia_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_forskning_og_akademia.mail.historie_forskning_og_akademia_people_administrasjon_004",
+        "version": 1
+      },
+      "source_hash": "1f5f7ab4f6ff21686fa3cd2efe970e68dd7446000b38562e4046a3412fdbcd33",
+      "source_path": "data/Civication/mailFamilies/historie/people/historie_forskning_og_akademia_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_revisjon_vs_prestisjevennlig_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Registrer proveniens- og tilgangshullet med arkivaren",
+            "reply": "Jeg fører serie, bevaringslogikk, tilgang og det konkrete hullet inn i forskningssporet og lar usikkerheten begrense videre bruk.",
+            "tags": [
+              "kildekritikk",
+              "sporbarhet",
+              "motbevis",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Fyll arkivhullet med en plausibel antakelse",
+            "reply": "Jeg behandler fraværet som om det kan rekonstrueres fra nabomateriale og lar antakelsen gli inn i analysen uten egen usikkerhetsmarkør.",
+            "tags": [
+              "tese_lasing",
+              "skjult_motbevis",
+              "publiseringspress",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_kildekritikk_metode_og_revisjon",
+        "consequence_axis": "faglig_tillit_og_korrigerbarhet_vs_skjult_metode_og_kilderisiko",
+        "from": "Joakim",
+        "id": "historie_forskning_og_akademia_people_arkivar_002",
+        "mail_family": "historie_forskning_og_akademia_profesjonelle_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "arkivar",
+        "people_ref": "joakim_arkivar_historie_forskning_og_akademia",
+        "phase": "workday",
+        "place_id": "arkiv_og_kildespor",
+        "pressure": "tese_publisering_og_status_vs_kilder_metode_og_usikkerhet",
+        "priority": 135,
+        "role_scope": "historie_forskning_og_akademia",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/people/historie_forskning_og_akademia_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+          "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+          "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+        ],
+        "subject": "Arkivaren varsler et proveniens- og tilgangshull",
+        "summary": "Forskningsloggen og manussporet står i et konkret people-punkt: Joakim viser at materialet kommer fra ulike arkivserier med ulik bevaringslogikk og at ett sentralt hull ikke kan fylles med antakelse. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører.",
+        "task_domain": "historisk_forskning_og_akademia"
+      },
+      "id": "historie_forskning_og_akademia_people_arkivar_002",
+      "mail_type": "people",
+      "role_scope": "historie_forskning_og_akademia",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Registrer proveniens- og tilgangshullet med arkivaren",
+            "reply": "Jeg fører serie, bevaringslogikk, tilgang og det konkrete hullet inn i forskningssporet og lar usikkerheten begrense videre bruk."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Fyll arkivhullet med en plausibel antakelse",
+            "reply": "Jeg behandler fraværet som om det kan rekonstrueres fra nabomateriale og lar antakelsen gli inn i analysen uten egen usikkerhetsmarkør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+            "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+            "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+          ],
+          "subject": "Arkivaren varsler et proveniens- og tilgangshull",
+          "summary": "Forskningsloggen og manussporet står i et konkret people-punkt: Joakim viser at materialet kommer fra ulike arkivserier med ulik bevaringslogikk og at ett sentralt hull ikke kan fylles med antakelse. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_forskning_og_akademia_people_arkivar_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "arkiv_og_kildespor",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_forskning_og_akademia_people_arkivar_002",
+          "source_path": "data/Civication/mailFamilies/historie/people/historie_forskning_og_akademia_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_forskning_og_akademia.mail.historie_forskning_og_akademia_people_arkivar_002",
+        "version": 1
+      },
+      "source_hash": "f1d452bbafd6691900f19bc6db4ac9bc6991067a9a6fd27004bd2f96bf66d868",
+      "source_path": "data/Civication/mailFamilies/historie/people/historie_forskning_og_akademia_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_revisjon_vs_prestisjevennlig_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Prøv rivalforklaringen mot de samme kildene",
+            "reply": "Jeg gjør fagfellens alternativ eksplisitt, tester premissene mot samme kildegrunnlag og viser hvorfor eget argument eventuelt fortsatt står.",
+            "tags": [
+              "kildekritikk",
+              "sporbarhet",
+              "motbevis",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Avvis rivalforklaringen som en forsinkelse",
+            "reply": "Jeg behandler fagfellens alternativ som sidespor fordi hovedargumentet allerede er godt utviklet og fristen nærmer seg.",
+            "tags": [
+              "tese_lasing",
+              "skjult_motbevis",
+              "publiseringspress",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_kildekritikk_metode_og_revisjon",
+        "consequence_axis": "faglig_tillit_og_korrigerbarhet_vs_skjult_metode_og_kilderisiko",
+        "from": "Sara",
+        "id": "historie_forskning_og_akademia_people_fagfelle_003",
+        "mail_family": "historie_forskning_og_akademia_profesjonelle_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "fagfelle",
+        "people_ref": "sara_fagfelle_historie_forskning_og_akademia",
+        "phase": "workday",
+        "place_id": "analyse_og_motprovingsflate",
+        "pressure": "tese_publisering_og_status_vs_kilder_metode_og_usikkerhet",
+        "priority": 134,
+        "role_scope": "historie_forskning_og_akademia",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/people/historie_forskning_og_akademia_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+          "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+          "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+        ],
+        "subject": "En fagfelle løfter en rivalforklaring du ikke har behandlet",
+        "summary": "Forskningsloggen og manussporet står i et konkret people-punkt: Sara mener argumentet kan stå, men bare dersom en plausibel alternativ forklaring testes eksplisitt mot de samme kildene. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører.",
+        "task_domain": "historisk_forskning_og_akademia"
+      },
+      "id": "historie_forskning_og_akademia_people_fagfelle_003",
+      "mail_type": "people",
+      "role_scope": "historie_forskning_og_akademia",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Prøv rivalforklaringen mot de samme kildene",
+            "reply": "Jeg gjør fagfellens alternativ eksplisitt, tester premissene mot samme kildegrunnlag og viser hvorfor eget argument eventuelt fortsatt står."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Avvis rivalforklaringen som en forsinkelse",
+            "reply": "Jeg behandler fagfellens alternativ som sidespor fordi hovedargumentet allerede er godt utviklet og fristen nærmer seg."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+            "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+            "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+          ],
+          "subject": "En fagfelle løfter en rivalforklaring du ikke har behandlet",
+          "summary": "Forskningsloggen og manussporet står i et konkret people-punkt: Sara mener argumentet kan stå, men bare dersom en plausibel alternativ forklaring testes eksplisitt mot de samme kildene. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_forskning_og_akademia_people_fagfelle_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "analyse_og_motprovingsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_forskning_og_akademia_people_fagfelle_003",
+          "source_path": "data/Civication/mailFamilies/historie/people/historie_forskning_og_akademia_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_forskning_og_akademia.mail.historie_forskning_og_akademia_people_fagfelle_003",
+        "version": 1
+      },
+      "source_hash": "59af544bd9b395c4cace17ab91a93998a3960cdc618e038f3ffb849abd42334b",
+      "source_path": "data/Civication/mailFamilies/historie/people/historie_forskning_og_akademia_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_revisjon_vs_prestisjevennlig_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Avgrens forskningsspørsmålet sammen med veilederen",
+            "reply": "Jeg skiller tema fra forskbart spørsmål og gjør kilde-, metode- og avgrensningskrav eksplisitte før arbeidet skaleres opp.",
+            "tags": [
+              "kildekritikk",
+              "sporbarhet",
+              "motbevis",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Behold det brede spørsmålet for å unngå omarbeid",
+            "reply": "Jeg lar prosjektets opprinnelige bredde stå selv om kilde- og metodekravene ikke kan prøves på en ryddig måte.",
+            "tags": [
+              "tese_lasing",
+              "skjult_motbevis",
+              "publiseringspress",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_kildekritikk_metode_og_revisjon",
+        "consequence_axis": "faglig_tillit_og_korrigerbarhet_vs_skjult_metode_og_kilderisiko",
+        "from": "Elin",
+        "id": "historie_forskning_og_akademia_people_veiledning_001",
+        "mail_family": "historie_forskning_og_akademia_profesjonelle_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "veiledning",
+        "people_ref": "elin_hovedveileder_historie_forskning_og_akademia",
+        "phase": "workday",
+        "place_id": "forskningsdesign_og_sporsmalsbord",
+        "pressure": "tese_publisering_og_status_vs_kilder_metode_og_usikkerhet",
+        "priority": 136,
+        "role_scope": "historie_forskning_og_akademia",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/people/historie_forskning_og_akademia_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+          "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+          "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+        ],
+        "subject": "Veilederen utfordrer om forskningsspørsmålet er for bredt",
+        "summary": "Forskningsloggen og manussporet står i et konkret people-punkt: Elin ber deg skille mellom et interessant tema og et forskbart spørsmål med kilde- og metodekrav som faktisk kan prøves. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører.",
+        "task_domain": "historisk_forskning_og_akademia"
+      },
+      "id": "historie_forskning_og_akademia_people_veiledning_001",
+      "mail_type": "people",
+      "role_scope": "historie_forskning_og_akademia",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Avgrens forskningsspørsmålet sammen med veilederen",
+            "reply": "Jeg skiller tema fra forskbart spørsmål og gjør kilde-, metode- og avgrensningskrav eksplisitte før arbeidet skaleres opp."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Behold det brede spørsmålet for å unngå omarbeid",
+            "reply": "Jeg lar prosjektets opprinnelige bredde stå selv om kilde- og metodekravene ikke kan prøves på en ryddig måte."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+            "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+            "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+          ],
+          "subject": "Veilederen utfordrer om forskningsspørsmålet er for bredt",
+          "summary": "Forskningsloggen og manussporet står i et konkret people-punkt: Elin ber deg skille mellom et interessant tema og et forskbart spørsmål med kilde- og metodekrav som faktisk kan prøves. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_forskning_og_akademia_people_veiledning_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "forskningsdesign_og_sporsmalsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_forskning_og_akademia_people_veiledning_001",
+          "source_path": "data/Civication/mailFamilies/historie/people/historie_forskning_og_akademia_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_forskning_og_akademia.mail.historie_forskning_og_akademia_people_veiledning_001",
+        "version": 1
+      },
+      "source_hash": "a27b6d87464e7b88a10dc98bc846dfc5a3a278d96210f7fa127f6e1dab8ecfda",
+      "source_path": "data/Civication/mailFamilies/historie/people/historie_forskning_og_akademia_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_revisjon_vs_prestisjevennlig_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Bevar kildespor og revider avgrenset",
+            "reply": "Jeg holder motbevis, usikkerhet og nåværende versjon synlig, avklarer hva som faktisk må endres, og sender bare den berørte delen videre med kildegrunnlag, begrunnelse og nytt kontrollpunkt.",
+            "tags": [
+              "kildekritikk",
+              "sporbarhet",
+              "motbevis",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Lukk punktet for å beskytte tese og frist",
+            "reply": "Jeg lar den eksisterende tesen og leveransefristen styre, toner ned motbevis eller usikkerhet og sender teksten videre uten å dokumentere hele grunnlaget for hvorfor punktet egentlig burde vært gjenåpnet.",
+            "tags": [
+              "tese_lasing",
+              "skjult_motbevis",
+              "publiseringspress",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_kildekritikk_metode_og_revisjon",
+        "consequence_axis": "faglig_tillit_og_korrigerbarhet_vs_skjult_metode_og_kilderisiko",
+        "from": "Elin",
+        "id": "historie_forskning_og_akademia_story_identitet_001",
+        "mail_family": "historie_forskning_og_akademia_forskeridentitet",
+        "mail_type": "story",
+        "narrative_arc": "identitet",
+        "people_ref": "elin_hovedveileder_historie_forskning_og_akademia",
+        "phase": "advanced",
+        "place_id": "forskningsdesign_og_sporsmalsbord",
+        "pressure": "tese_publisering_og_status_vs_kilder_metode_og_usikkerhet",
+        "priority": 131,
+        "role_scope": "historie_forskning_og_akademia",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/story/historie_forskning_og_akademia_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+          "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+          "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+        ],
+        "subject": "Du har investert så mye i tesen at revisjon kjennes som nederlag",
+        "summary": "Forskningsloggen og manussporet står i et konkret story-punkt: Arbeidet har blitt en del av forskeridentiteten, og en nødvendig avgrensning oppleves sosialt som tap av status selv om den styrker metode og argument. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører.",
+        "task_domain": "historisk_forskning_og_akademia"
+      },
+      "id": "historie_forskning_og_akademia_story_identitet_001",
+      "mail_type": "story",
+      "role_scope": "historie_forskning_og_akademia",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan ta mer tid eller få en svakere overskrift, men neste aktør kan se hvorfor argumentstyrken er valgt, hvilke kilder som bærer den og hva som fortsatt er åpent. Det beskytter både forskningsetikken og muligheten for senere korreksjon.",
+            "id": "A",
+            "label": "Bevar kildespor og revider avgrenset",
+            "reply": "Jeg holder motbevis, usikkerhet og nåværende versjon synlig, avklarer hva som faktisk må endres, og sender bare den berørte delen videre med kildegrunnlag, begrunnelse og nytt kontrollpunkt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Manuset ser mer ferdig ut lokalt, men forskningsloggen mister skillet mellom evidens og prosjektbehov. Review, senere kilder eller en etikk-/siteringskontroll kan da gjøre både argumentet og arbeidsprosessen vanskeligere å forsvare.",
+            "id": "B",
+            "label": "Lukk punktet for å beskytte tese og frist",
+            "reply": "Jeg lar den eksisterende tesen og leveransefristen styre, toner ned motbevis eller usikkerhet og sender teksten videre uten å dokumentere hele grunnlaget for hvorfor punktet egentlig burde vært gjenåpnet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser gjeldende spørsmål/manusversjon, kildegrunnlag, metode, motbevis, usikkerhet og hva som fortsatt venter på kilde, review, etikk eller avklaring.",
+            "En sosialt enkel løsning kan gi raskere fremdrift, men vil gjøre det vanskeligere å se om konklusjonen faktisk følger kildene eller bare prosjektets forventninger.",
+            "Du må velge et grep som bevarer proveniens, kvalifikasjons- og myndighetsgrenser og en tydelig handoff/rework-regel for neste aktør."
+          ],
+          "subject": "Du har investert så mye i tesen at revisjon kjennes som nederlag",
+          "summary": "Forskningsloggen og manussporet står i et konkret story-punkt: Arbeidet har blitt en del av forskeridentiteten, og en nødvendig avgrensning oppleves sosialt som tap av status selv om den styrker metode og argument. Du må oppdatere det vedvarende arbeidsobjektet slik at forskningsspørsmål, kildespor/proveniens, metode, historiografisk posisjon, motbevis, eksplisitt usikkerhet, etikkstatus, venting, review og neste eier fortsatt kan rekonstrueres. En rask eller prestisjevennlig lukking er ikke nok: akademisk status, finansieringsbehov, publiseringstempo og History Go kan ikke produsere evidens eller erstatte kvalifikasjon. Valget må derfor skille det kildene støtter fra institusjonelle ønsker og bare gjenåpne den delen av argumentet som det nye premisset faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_forskning_og_akademia_story_identitet_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "forskningsdesign_og_sporsmalsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_forskning_og_akademia_story_identitet_001",
+          "source_path": "data/Civication/mailFamilies/historie/story/historie_forskning_og_akademia_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_forskning_og_akademia.mail.historie_forskning_og_akademia_story_identitet_001",
+        "version": 1
+      },
+      "source_hash": "f406dc1e5576b3a51db5a9fcc2d41a199b302f3515f91b7be3c8ce35accd2353",
+      "source_path": "data/Civication/mailFamilies/historie/story/historie_forskning_og_akademia_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -229587,7 +231636,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "c21b01494b53dedb4823fb2875e1e70565def858d988370fe86c5be62e285612",
+  "registry_hash": "f92512024cf31d969a706eb84435c1e4280846f1b1e485ce474a3bcd059e102f",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -229916,6 +231965,23 @@
       "historie_fagledelse_followup_rework_etter_handoff_001",
       "historie_fagledelse_knowledge_kildekritikk_og_historiografi_001",
       "historie_fagledelse_consequence_etterspill_001"
+    ],
+    "historie/historie_forskning_og_akademia": [
+      "historie_forskning_og_akademia_job_motbevis_001",
+      "historie_forskning_og_akademia_job_fragmentert_arkiv_002",
+      "historie_forskning_og_akademia_job_publiseringsfrist_003",
+      "historie_forskning_og_akademia_job_review_rework_004",
+      "historie_forskning_og_akademia_people_veiledning_001",
+      "historie_forskning_og_akademia_people_arkivar_002",
+      "historie_forskning_og_akademia_people_fagfelle_003",
+      "historie_forskning_og_akademia_people_administrasjon_004",
+      "historie_forskning_og_akademia_story_identitet_001",
+      "historie_forskning_og_akademia_conflict_press_001",
+      "historie_forskning_og_akademia_event_nytt_arkiv_001",
+      "historie_forskning_og_akademia_micro_proveniens_001",
+      "historie_forskning_og_akademia_followup_revisjon_001",
+      "historie_forskning_og_akademia_knowledge_history_go_001",
+      "historie_forskning_og_akademia_consequence_publisering_001"
     ],
     "kunst/kunst_kunstnerisk_ledelse": [
       "kunstnerisk_ledelse_job_programforslag_001",
@@ -231187,11 +233253,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 494,
+    "compiled_source_file_count": 503,
     "ignored_source_file_count": 1,
-    "input_file_count": 495,
-    "role_count": 60,
-    "scene_count": 1450,
+    "input_file_count": 504,
+    "role_count": 61,
+    "scene_count": 1465,
     "shadowed_duplicate_count": 0
   },
   "version": 1
