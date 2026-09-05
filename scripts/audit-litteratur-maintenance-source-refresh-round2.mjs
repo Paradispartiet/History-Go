@@ -15,6 +15,7 @@ const P = Object.freeze({
 });
 const BASELINE = 'bf3f9982180828da66635221de8058167b415869';
 const AREA = 'poetikk_estetikk_litteraritet';
+const pathwaySourceId = (id) => `src_lit_${AREA}_${id}`;
 const EXPECTED_REPLACEMENTS = Object.freeze({
   spo06: {
     old: 'https://www.cambridge.org/core/books/critique-of-the-power-of-judgment/1B3D8A80D0A7B8C6953A88D7855B90C4',
@@ -68,7 +69,6 @@ export function auditLitteraturMaintenanceSourceRefreshRound2() {
   assert(evidence.scope?.area_id === AREA, 'Round 2 peker på feil canonicalt område');
   assert(evidence.scope?.canonical_source_mutation === true, 'Round 2 skal dokumentere faktiske canonicale URL-erstatninger');
   assert(evidence.scope?.new_strict_subcategory === false && evidence.scope?.place_production === false, 'Round 2 har utvidet scope ulovlig');
-
   assert(round1.scope?.area_id === 'faggrunnlag_metode_forskningspraksis', 'Round 1 reconciliation mangler');
   assert(round1.scope.area_id !== evidence.scope.area_id, 'Round 2 dupliserer round 1-området');
 
@@ -90,15 +90,17 @@ export function auditLitteraturMaintenanceSourceRefreshRound2() {
 
   const claimsById = new Map(claims.sources.map((x) => [x.id, x]));
   const evidenceById = new Map(evidence.source_checks.map((x) => [x.claims_source_id, x]));
+  const pathwayById = new Map(pathway.sources.map((x) => [x.source_id, x]));
   const corpus = `${JSON.stringify(claims)}\n${JSON.stringify(pathway)}\n${materializer}`;
 
   for (const [id, urls] of Object.entries(EXPECTED_REPLACEMENTS)) {
     const c = claimsById.get(id);
     const e = evidenceById.get(id);
+    const p = pathwayById.get(pathwaySourceId(id));
     assert(c?.url === urls.current, `${id}: claims bruker ikke verifisert replacement URL`);
     assert(e?.verification_state === 'verified_authoritative_replacement' && e?.old_url === urls.old && e?.canonical_url === urls.current, `${id}: maintenance-evidensen dokumenterer ikke replacement korrekt`);
     assert(e?.action === 'replace_canonical_url', `${id}: feil maintenance action`);
-    assert(pathway.sources.filter((x) => x.url === urls.current).length === 1, `${id}: pathway-registeret må ha nøyaktig én current URL`);
+    assert(p?.url === urls.current, `${id}: eksakt pathway source_id bruker ikke current URL`);
     assert(materializer.includes(urls.current), `${id}: materializer mangler current URL`);
     assert(!corpus.includes(urls.old), `${id}: gammel URL finnes fortsatt i canonical/materialized flater`);
   }
@@ -106,8 +108,9 @@ export function auditLitteraturMaintenanceSourceRefreshRound2() {
   for (const [id, url] of Object.entries(EXPECTED_RETAINED)) {
     const c = claimsById.get(id);
     const e = evidenceById.get(id);
+    const p = pathwayById.get(pathwaySourceId(id));
     assert(c?.url === url && e?.canonical_url === url, `${id}: retained URL er endret`);
-    assert(pathway.sources.filter((x) => x.url === url).length === 1, `${id}: pathway-registeret må beholde nøyaktig én canonical URL`);
+    assert(p?.url === url, `${id}: eksakt pathway source_id beholder ikke canonical URL`);
     assert(e?.action === 'retain_canonical_url' || e?.action === 'retain_until_authoritative_replacement_is_verified', `${id}: ugyldig retain-action`);
   }
 
