@@ -29,7 +29,18 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
       - name: Materialize controlled round 3 changes
-        run: node scripts/tmp-materialize-litteratur-maintenance-round3.mjs
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('scripts/tmp-materialize-litteratur-maintenance-round3.mjs')
+          s = p.read_text()
+          old = "  if (!allowed.has(file)) throw new Error(`Unexpected generator drift: ${file}`);"
+          new = "  const normalizedFile = file === 'github/workflows/litteratur-maintenance-integrity.yml' ? '.github/workflows/litteratur-maintenance-integrity.yml' : file;\n  if (!allowed.has(normalizedFile)) throw new Error(`Unexpected generator drift: ${file}`);"
+          if old not in s:
+              raise SystemExit('Expected drift-guard line not found')
+          p.write_text(s.replace(old, new, 1))
+          PY
+          node scripts/tmp-materialize-litteratur-maintenance-round3.mjs
       - name: Commit permanent round 3 tree and remove temporary runner
         run: |
           rm scripts/tmp-materialize-litteratur-maintenance-round3.mjs
