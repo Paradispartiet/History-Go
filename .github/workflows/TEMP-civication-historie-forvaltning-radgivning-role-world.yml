@@ -28,6 +28,8 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci --no-audit --no-fund
+      - name: Fix advisory Role World materializer syntax
+        run: node scripts/TEMP_fix_historie_forvaltning_radgivning_role_world_syntax.mjs
       - name: Materialize Historie Forvaltning og rådgivning Role World
         id: materialize
         continue-on-error: true
@@ -85,7 +87,11 @@ jobs:
           npm run audit:job-knowledge-requirements
           tail -n 30 /tmp/civication-core.log
       - name: Remove temporary Role World surfaces
-        run: rm scripts/TEMP_materialize_historie_forvaltning_radgivning_role_world.mjs .github/workflows/TEMP-civication-historie-forvaltning-radgivning-role-world.yml
+        run: |
+          rm scripts/TEMP_materialize_historie_forvaltning_radgivning_role_world.mjs
+          rm scripts/TEMP_fix_historie_forvaltning_radgivning_role_world_syntax.mjs
+          rm .github/workflows/TEMP-civication-historie-forvaltning-radgivning-role-world.yml
+          rm -f reports/TEMP/historie-forvaltning-radgivning-role-world-materializer.log
       - name: Commit exact verified Role World
         run: |
           git diff --check
