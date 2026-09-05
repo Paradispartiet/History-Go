@@ -1,0 +1,100 @@
+#!/usr/bin/env node
+import crypto from "node:crypto";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { execFileSync } from "node:child_process";
+import sharp from "sharp";
+import { runBuildQuizProductionContext } from "../scripts/build-quiz-production-context.mjs";
+
+const root = process.cwd();
+const placeId = "vaalerenga";
+const verifiedAt = "2026-09-05";
+const placeFile = "data/places/by/oslo/places/vaalerenga.json";
+const read = (file) => JSON.parse(fs.readFileSync(path.join(root, file), "utf8"));
+const exists = (file) => fs.existsSync(path.join(root, file));
+const write = (file, value) => {
+  const target = path.join(root, file);
+  fs.mkdirSync(path.dirname(target), { recursive: true });
+  fs.writeFileSync(target, `${JSON.stringify(value, null, 2)}\n`);
+};
+const addOnce = (array, value) => { if (!array.includes(value)) array.push(value); };
+const upsertById = (array, item) => {
+  const index = array.findIndex((entry) => entry?.id === item.id);
+  if (index >= 0) array[index] = item;
+  else array.push(item);
+};
+const sha256 = (value) => crypto.createHash("sha256").update(String(value)).digest("hex");
+const sentences = (value) => [...new Intl.Segmenter("nb", { granularity: "sentence" }).segment(String(value))]
+  .map((item) => item.segment.trim()).filter(Boolean);
+
+const urls = {
+  byleksikon: "https://oslobyleksikon.no/side/V%C3%A5lerenga_(str%C3%B8k)",
+  snlPlace: "https://snl.no/V%C3%A5lerenga_-_sogn",
+  socialHousing: "https://snl.no/sosial_boligbygging_i_Norge_1850%E2%80%931900",
+  tunnel: "https://oslobyleksikon.no/side/V%C3%A5lerengtunnelen",
+  stromsveien: "https://oslobyleksikon.no/side/Str%C3%B8msveien",
+  churchOfficial: "https://www.kirken.no/nn-NO/fellesrad/kirkene-i-gamle-oslo/kirkene-i-gamle-oslo/valerenga/omvaalerengakirke/",
+  school: "https://oslobyleksikon.no/side/V%C3%A5lerenga_skole",
+  border: "https://lokalhistoriewiki.no/wiki/1878-grensesteinene_mellom_Kristiania_og_Aker",
+  synnoveOfficial: "https://www.synnove.no/om-selskapet/",
+  synnoveHistory: "https://www.synnove.no/historien/",
+  synnoveSnl: "https://snl.no/Synn%C3%B8ve_Finden",
+  synnoveLocal: "https://lokalhistoriewiki.no/Synn%C3%B8ve_Finden",
+  placeImagePage: "https://commons.wikimedia.org/wiki/File:Street_in_V%C3%A5lerenga.jpg",
+  placeImageAsset: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Street%20in%20V%C3%A5lerenga.jpg",
+  churchImagePage: "https://commons.wikimedia.org/wiki/File:V%C3%A5lerengen_kirke_2003_(Norway).jpg",
+  churchImageAsset: "https://commons.wikimedia.org/wiki/Special:Redirect/file/V%C3%A5lerengen%20kirke%202003%20(Norway).jpg",
+  schoolImagePage: "https://commons.wikimedia.org/wiki/File:V%C3%A5lerenga_skole_(2._april_2018).jpg",
+  schoolImageAsset: "https://commons.wikimedia.org/wiki/Special:Redirect/file/V%C3%A5lerenga%20skole%20(2.%20april%202018).jpg",
+  borderImagePage: "https://commons.wikimedia.org/wiki/File:Grensestein1.JPG",
+  borderImageAsset: "https://upload.wikimedia.org/wikipedia/commons/5/5b/Grensestein1.JPG",
+  synnovePortraitPage: "https://commons.wikimedia.org/wiki/File:Synn%C3%B8ve_Finden_-_55539_-_Oslo_Museum_(cropped).jpg",
+  synnovePortraitAsset: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Synn%C3%B8ve%20Finden%20-%2055539%20-%20Oslo%20Museum%20(cropped).jpg",
+  synnovePackshotAsset: "https://images.prismic.io/synnove-no/829dc2aa-fba9-43a7-b8f8-875f9d015f51_Synn%C3%B8ve%2BGulost.jpg?auto=compress%2Cformat&w=1200",
+  osm: "https://www.openstreetmap.org/node/366154118"
+};
+
+async function fetchBuffer(url) {
+  let lastStatus = 0;
+  for (let attempt = 0; attempt < 6; attempt += 1) {
+    const response = await fetch(url, { redirect: "follow", headers: { "user-agent": "History-Go-place-production/1.0" } });
+    lastStatus = response.status;
+    if (response.ok) return Buffer.from(await response.arrayBuffer());
+    if (![429, 500, 502, 503, 504].includes(response.status)) break;
+    await new Promise((resolve) => setTimeout(resolve, Math.min(1500 * (2 ** attempt), 20000)));
+  }
+  throw new Error(`Kunne ikke hente bilde (${lastStatus}): ${url}`);
+}
+async function outputImage({ url, file, width, height, fit = "cover", position = "centre", background = "#ffffff" }) {
+  const target = path.join(root, file);
+  fs.mkdirSync(path.dirname(target), { recursive: true });
+  await sharp(await fetchBuffer(url)).rotate().resize(width, height, { fit, position, background }).webp({ quality: 84, effort: 5 }).toFile(target);
+}
+
+await outputImage({ url: urls.placeImageAsset, file: "bilder/places/vaalerenga.webp", width: 1200, height: 675 });
+await outputImage({ url: urls.placeImageAsset, file: "bilder/kort/places/vaalerenga.webp", width: 640, height: 360 });
+await outputImage({ url: urls.placeImageAsset, file: "bilder/places/vaalerenga_front_portrait.webp", width: 900, height: 1200 });
+await outputImage({ url: urls.synnovePortraitAsset, file: "bilder/kort/people/synnove_finden.webp", width: 900, height: 1200, fit: "contain", background: "#f2eee7" });
+await outputImage({ url: urls.borderImageAsset, file: "bilder/kort/objects/vaalerenga_grensestein_38.webp", width: 900, height: 520 });
+await outputImage({ url: urls.churchImageAsset, file: "bilder/kort/structures/vaalerenga_kirke.webp", width: 900, height: 520 });
+await outputImage({ url: urls.schoolImageAsset, file: "bilder/kort/structures/vaalerenga_skole.webp", width: 900, height: 520 });
+await outputImage({ url: urls.synnovePackshotAsset, file: "bilder/kort/brands/synnove_finden.webp", width: 900, height: 520, fit: "contain", background: "#ffffff" });
+
+const desc = "Vålerenga vokste fram som forstad langs Strømsveien fra 1830-årene og ble innlemmet i Christiania i 1878. Trehus, murgårder, skole og kirke viser flere lag av byveksten. Etter at Vålerengtunnelen åpnet i 1987 og 1989, ble Strømsveien stengt for gjennomgangstrafikk i 1992.";
+const popupDesc = [
+  "Vålerenga vokste fram som forstad langs Strømsveien fra 1830-årene, mens området ennå lå utenfor Christianias bygrense. Små trehus kunne oppføres under andre bygningsregler enn inne i den tette byen. Ved byutvidelsen i 1878 ble Vålerenga innlemmet i Christiania, og grensesteinene mot Aker ble stående som fysiske spor etter den gamle kommunegrensen.",
+  "Bebyggelsen ble mer sammensatt etter innlemmelsen. Vålerenga skole i Islands gate ble tatt i bruk i 1895 og var ved åpningen byens største skole. Vålerenga kirke ble vigslet i 1902. Sammen med trehus, murgårder, park og gater gjør de institusjonene det mulig å lese nabolaget som mer enn en samling enkeltbygninger.",
+  "I Danmarks gate 41 bygde Synnøve Finden og Pernille Holmen opp en tidlig ostefabrikk fra slutten av 1920-årene. Synnøve Finden er derfor både en dokumentert person i nabolagets næringshistorie og opphavet til en merkeidentitet som senere ble landsdekkende. Personkortet og Brand-kortet dekker ulike roller.",
+  "Vålerenga kirke ble hardt rammet av brann 18. september 1979. Murene stod igjen, mens blant annet Emanuel Vigelands glassmalerier og fresker gikk tapt. Kirken ble gjenoppbygd og vigslet på nytt 2. desember 1984. Brannen og gjenreisningen gjør kirken til et tydelig lag av brudd og kontinuitet i det lokale bybildet.",
+  "I 1970- og 1980-årene var Strømsveien sterkt trafikkbelastet og del av E6. Vålerengtunnelens to løp åpnet i 1987 og 1989 og flyttet tungtrafikken bort fra boliggatene. I 1992 ble Strømsveien stengt for gjennomgangstrafikk mellom Galgeberg og Etterstad.",
+  "Vålerenga kan derfor leses gjennom flere konkrete spor samtidig: trehusene viser forstadens tidlige boligform, grensesteinen viser byutvidelsen, skolen og kirken viser institusjonsbygging, Danmarks gate 41 viser småskala næringsliv, og endringen av Strømsveien viser hvordan transportpolitikk kan endre et boligområdes hverdagsrom."
+].join("\n\n");
+
+const placeImageMeta = {
+  source: "wikimedia_commons", sourcePage: urls.placeImagePage, creator: "R9363",
+  credit: "R9363 / Wikimedia Commons", license: "CC BY-SA 4.0",
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", assetType: "documentary_photo",
+  originalDimensions: "4284x5712", outputDimensions: "1200x675 and 640x360",
+  transformation: "Proporsjonal beskjæring og WebP-normalisering av Enebakkveien 46–48 på Vålerenga.",
+  representationScope: "Dokumenterer et konkret trehus- og gaterom på Vålerenga, ikke hele strøket fra ett punkt.",
