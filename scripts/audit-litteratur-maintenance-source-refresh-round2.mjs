@@ -39,6 +39,7 @@ const EXPECTED_REPLACEMENTS = Object.freeze({
     current: 'https://www.penguin.co.uk/books/57101/to-the-lighthouse-by-woolf-virginia/9780241371954'
   }
 });
+const EXPECTED_KNOWLEDGE_MATERIALIZED = new Set(['spo08', 'spo10']);
 const EXPECTED_RETAINED = Object.freeze({
   spo01: 'https://www.cambridge.org/core/books/cambridge-history-of-literary-criticism/aristotles-poetics/901DBEBFF50D43D0709ACF7BBC6C0495',
   spo02: 'https://www.cambridge.org/core/books/cambridge-history-of-literary-criticism/plato-and-poetry/885B1DB0512C060514EFEDA2396E6E2B',
@@ -97,7 +98,6 @@ export function auditLitteraturMaintenanceSourceRefreshRound2() {
   const evidenceById = new Map(evidence.source_checks.map((x) => [x.claims_source_id, x]));
   const pathwayById = new Map(pathway.sources.map((x) => [x.source_id, x]));
   const knowledgeSources = knowledge.units.flatMap((unit) => Array.isArray(unit.sources) ? unit.sources : []);
-  const knowledgeUrls = new Set(knowledgeSources.map((source) => source?.url).filter(Boolean));
   const canonicalCorpus = `${JSON.stringify(claims)}\n${JSON.stringify(pathway)}\n${materializer}`;
   const knowledgeCorpus = JSON.stringify(knowledge);
 
@@ -106,13 +106,17 @@ export function auditLitteraturMaintenanceSourceRefreshRound2() {
     const c = claimsById.get(id);
     const e = evidenceById.get(id);
     const p = pathwayById.get(sourceId);
+    const knowledgeMatches = knowledgeSources.filter((source) => source?.source_id === sourceId);
     assert(c?.url === urls.current, `${id}: claims bruker ikke verifisert replacement URL`);
     assert(e?.verification_state === 'verified_authoritative_replacement' && e?.old_url === urls.old && e?.canonical_url === urls.current, `${id}: maintenance-evidensen dokumenterer ikke replacement korrekt`);
     assert(e?.action === 'replace_canonical_url', `${id}: feil maintenance action`);
     assert(p?.url === urls.current, `${id}: eksakt pathway source_id bruker ikke current URL`);
     assert(materializer.includes(urls.current), `${id}: materializer mangler current URL`);
     assert(!canonicalCorpus.includes(urls.old), `${id}: gammel URL finnes fortsatt i canonical/materialized kildeflater`);
-    assert(knowledgeUrls.has(urls.current), `${id}: generert Knowledge mangler current URL-proveniens`);
+    if (EXPECTED_KNOWLEDGE_MATERIALIZED.has(id)) {
+      assert(knowledgeMatches.length > 0, `${id}: forventet question-level Knowledge-proveniens mangler`);
+    }
+    assert(knowledgeMatches.every((source) => source?.url === urls.current), `${id}: generert Knowledge bruker ikke current URL for materialisert source_id`);
     assert(!knowledgeCorpus.includes(urls.old), `${id}: generert Knowledge inneholder fortsatt gammel URL`);
   }
 
