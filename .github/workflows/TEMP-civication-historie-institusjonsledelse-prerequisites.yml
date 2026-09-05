@@ -59,11 +59,16 @@ jobs:
           import fs from 'node:fs';
           const p = 'tests/civication-historie-institusjonsledelse-prerequisites.test.js';
           const before = fs.readFileSync(p, 'utf8');
-          const from = "assert.deepEqual(ready.authored_work_required, []);";
-          const to = "assert.deepEqual(ready.authored_work_required, ['situated_reputation']);";
-          if (!before.includes(from)) throw new Error('Expected prerequisite assertion not found; refusing broad rewrite');
-          const after = before.replace(from, to);
-          if (after === before || after.split(to).length !== 2) throw new Error('Prerequisite assertion replacement was not singular');
+          const lines = before.split('\n');
+          const matches = lines.map((line, index) => ({line, index})).filter(({line}) => line.includes('ready.authored_work_required'));
+          if (matches.length !== 1) throw new Error(`Expected exactly one authored_work_required assertion, found ${matches.length}`);
+          const {line, index} = matches[0];
+          if (!line.includes('assert.deepEqual(')) throw new Error('authored_work_required reference is not the expected deepEqual assertion');
+          const indent = line.match(/^\s*/)?.[0] ?? '';
+          lines[index] = `${indent}assert.deepEqual(ready.authored_work_required, ['situated_reputation']);`;
+          const after = lines.join('\n');
+          if ((after.match(/ready\.authored_work_required/g) || []).length !== 1) throw new Error('authored_work_required assertion count drifted after patch');
+          if (!after.includes("assert.deepEqual(ready.authored_work_required, ['situated_reputation']);")) throw new Error('situated_reputation expectation was not written');
           fs.writeFileSync(p, after);
           NODE
       - name: Regenerate and verify complete prerequisite gate
