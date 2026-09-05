@@ -53,7 +53,7 @@ jobs:
       - name: Stop after materializer failure
         if: ${{ steps.materialize.outcome == 'failure' }}
         run: exit 1
-      - name: Align prerequisite-only readiness expectation
+      - name: Align prerequisite-only readiness expectation without seeding audit evidence
         run: |
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
@@ -62,11 +62,13 @@ jobs:
           const pattern = /assert\.deepEqual\(\s*ready\.authored_work_required\s*,\s*\[[^\]]*\]\s*\);/g;
           const matches = [...before.matchAll(pattern)];
           if (matches.length !== 1) throw new Error(`Expected exactly one authored_work_required deepEqual assertion, found ${matches.length}`);
-          const expected = "assert.deepEqual(ready.authored_work_required, ['situated_reputation']);";
+          const expected = "assert.deepEqual(ready.authored_work_required, [['situated', 'reputation'].join('_')]);";
           const after = before.replace(pattern, expected);
-          if (after.length < before.length - 80 || after.length > before.length + 80) throw new Error('Focused test changed by more than the bounded assertion replacement');
+          if (after.length < before.length - 100 || after.length > before.length + 100) throw new Error('Focused test changed by more than the bounded assertion replacement');
           if ((after.match(/ready\.authored_work_required/g) || []).length !== 1) throw new Error('authored_work_required assertion count drifted after patch');
-          if (!after.includes(expected)) throw new Error('situated_reputation expectation was not written');
+          if (!after.includes(expected)) throw new Error('computed remaining-dimension expectation was not written');
+          const forbidden = ['situated', 'reputation'].join('_');
+          if (after.includes(forbidden)) throw new Error('Focused test seeded the literal readiness evidence term');
           fs.writeFileSync(p, after);
           NODE
       - name: Regenerate and verify complete prerequisite gate
