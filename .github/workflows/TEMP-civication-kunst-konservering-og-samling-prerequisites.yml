@@ -1,0 +1,107 @@
+name: TEMP Materialize Kunst Konservering og samling prerequisites
+
+on:
+  push:
+    branches:
+      - agent/civication-kunst-konservering-og-samling-prerequisites
+  workflow_dispatch:
+
+concurrency:
+  group: civication-kunst-konservering-og-samling-prerequisites-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  materialize-and-verify:
+    if: ${{ !contains(github.event.head_commit.message, 'Complete Kunst Konservering og samling prerequisites') && !contains(github.event.head_commit.message, '[prereq-diag-skip]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/civication-kunst-konservering-og-samling-prerequisites
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Syntax-check prerequisite materializer
+        run: node --check scripts/TEMP_materialize_kunst_konservering_og_samling_prerequisites.mjs
+      - name: Materialize Kunst Konservering og samling foundation
+        id: materialize
+        continue-on-error: true
+        run: node scripts/TEMP_materialize_kunst_konservering_og_samling_prerequisites.mjs > /tmp/kunst-konservering-og-samling-materialize.log 2>&1
+      - name: Persist exact materializer diagnostic only
+        if: ${{ steps.materialize.outcome == 'failure' }}
+        run: |
+          log="$(cat /tmp/kunst-konservering-og-samling-materialize.log)"
+          git reset --hard HEAD
+          git clean -fd
+          mkdir -p reports/TEMP
+          printf '%s\n' "$log" > reports/TEMP/kunst-konservering-og-samling-prerequisites-materializer.log
+          git config user.name "Civication rollout agent"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/TEMP/kunst-konservering-og-samling-prerequisites-materializer.log
+          git diff --cached --check
+          git commit -m "Capture Kunst Konservering og samling prerequisite materializer diagnostic [prereq-diag-skip]"
+          git push origin HEAD:agent/civication-kunst-konservering-og-samling-prerequisites
+      - name: Stop after materializer failure
+        if: ${{ steps.materialize.outcome == 'failure' }}
+        run: exit 1
+      - name: Regenerate and verify complete prerequisite gate
+        id: verify
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          {
+            node scripts/audit-civication-role-packs.mjs
+            node scripts/build-civication-scene-registry.mjs --write
+            node scripts/audit-civication-career-gameplay.mjs --write
+            node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+            node tests/civication-kunst-konservering-og-samling-prerequisites.test.js
+            node tests/civication-career-gameplay-matrix.test.js
+            node tests/civication-role-world-rollout-readiness.test.js
+            node tests/civication-role-pack-depth.test.js
+            node scripts/build-civication-scene-registry.mjs --check
+            node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+            node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
+            node --test tests/civication-scenario-people.test.mjs
+            node tests/run-civication-tests.mjs
+            npm run audit:job-learning-profiles
+            npm run audit:job-knowledge-requirements
+          } > /tmp/kunst-konservering-og-samling-verify.log 2>&1
+      - name: Persist exact verification diagnostic only
+        if: ${{ steps.verify.outcome == 'failure' }}
+        run: |
+          log="$(tail -n 220 /tmp/kunst-konservering-og-samling-verify.log)"
+          git reset --hard HEAD
+          git clean -fd
+          mkdir -p reports/TEMP
+          printf '%s\n' "$log" > reports/TEMP/kunst-konservering-og-samling-prerequisites-verification.log
+          git config user.name "Civication rollout agent"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/TEMP/kunst-konservering-og-samling-prerequisites-verification.log
+          git diff --cached --check
+          git commit -m "Capture Kunst Konservering og samling prerequisite verification diagnostic [prereq-diag-skip]"
+          git push origin HEAD:agent/civication-kunst-konservering-og-samling-prerequisites
+      - name: Stop after verification failure
+        if: ${{ steps.verify.outcome == 'failure' }}
+        run: exit 1
+      - name: Remove temporary prerequisite surfaces
+        run: |
+          rm scripts/TEMP_materialize_kunst_konservering_og_samling_prerequisites.mjs
+          rm .github/workflows/TEMP-civication-kunst-konservering-og-samling-prerequisites.yml
+          rm -f reports/TEMP/kunst-konservering-og-samling-prerequisites-materializer.log reports/TEMP/kunst-konservering-og-samling-prerequisites-verification.log
+      - name: Commit exact verified foundation
+        run: |
+          git diff --check
+          git config user.name "Civication rollout agent"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && { echo "No permanent changes produced"; exit 1; }
+          git diff --cached --check
+          git commit -m "Complete Kunst Konservering og samling prerequisites"
+          git push origin HEAD:agent/civication-kunst-konservering-og-samling-prerequisites
