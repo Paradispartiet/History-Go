@@ -1,0 +1,7 @@
+
+// Canonical quiz package source map must mirror the reviewed source brief exactly.
+const quizWithSources = read(quizFile);
+quizWithSources.sources = Object.fromEntries(
+  Object.entries(sourceRegistry).map(([sourceId, source]) => [sourceId, source.url])
+);
+write(quizFile, quizWithSources);
