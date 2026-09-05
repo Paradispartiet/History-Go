@@ -161,11 +161,11 @@ const poeticsSources=[
  ['spo03','Literature – Oxford Handbook of Aesthetics','https://academic.oup.com/edited-volume/37198/chapter/327329809','Oxford University Press'],
  ['spo04','Mimesis as Make-Believe','https://www.hup.harvard.edu/books/9780674576032','Harvard University Press'],
  ['spo05','Expression and Meaning','https://www.cambridge.org/core/books/expression-and-meaning/C4CBA3EB44908E98410502D821A0D4EB','Cambridge University Press'],
- ['spo06','Critique of the Power of Judgment','https://www.cambridge.org/core/books/critique-of-the-power-of-judgment/1B3D8A80D0A7B8C6953A88D7855B90C4','Cambridge University Press'],
- ['spo07','Art as Experience','https://www.penguinrandomhouse.com/books/294029/art-as-experience-by-john-dewey/','Penguin Random House'],
- ['spo08','Aesthetic Theory','https://www.bloomsbury.com/uk/aesthetic-theory-9781780936590/','Bloomsbury Academic'],
- ['spo09','Arabic Poetics','https://www.cambridge.org/core/books/arabic-poetics/AA5279D26A3B57133DAFEDF8AF6CA6CF','Cambridge University Press'],
- ['spo10','To the Lighthouse','https://www.penguin.co.uk/books/60318/to-the-lighthouse-by-woolf-virginia/9780241371954','Penguin'],
+ ['spo06','Critique of the Power of Judgment','https://www.cambridge.org/core/books/critique-of-the-power-of-judgment/3705CD4E7C5C7B1CE079AFA9B924122E','Cambridge University Press'],
+ ['spo07','Art as Experience','https://www.penguinrandomhouse.com/books/296640/art-as-experience-by-john-dewey/','Penguin Random House'],
+ ['spo08','Aesthetic Theory','https://www.bloomsbury.com/uk/aesthetic-theory-9781780936598/','Bloomsbury Academic'],
+ ['spo09','Arabic Poetics','https://www.cambridge.org/core/books/arabic-poetics/069E5876505AED64A8B3FD53A4A5EB4A','Cambridge University Press'],
+ ['spo10','To the Lighthouse','https://www.penguin.co.uk/books/57101/to-the-lighthouse-by-woolf-virginia/9780241371954','Penguin'],
  ['spo11','The Picture of Dorian Gray','https://www.gutenberg.org/ebooks/174','Project Gutenberg'],
  ['spo12','Robinson Crusoe','https://www.gutenberg.org/ebooks/521','Project Gutenberg']
 ].map(([id,label,url,publisher])=>({id,label,url,publisher,type:'faglig_eller_primar_kilde',source_location:'Verkpresentasjon og relevant hovedargument'}));

@@ -1,0 +1,152 @@
+{
+  "schema": "history_go_litteratur_maintenance_source_refresh_v1",
+  "version": "1.0.0",
+  "subject_id": "litteratur",
+  "round_id": "source_refresh_round2_2026_09_05",
+  "baseline_main_sha": "bf3f9982180828da66635221de8058167b415869",
+  "checked_at": "2026-09-05",
+  "status": "verified",
+  "scope": {
+    "area_id": "poetikk_estetikk_litteraritet",
+    "canonical_source_mutation": true,
+    "new_strict_subcategory": false,
+    "place_production": false,
+    "maintenance_evidence_only": false,
+    "replacement_policy": "replace_only_when_same-resource or authoritative successor URL is verified"
+  },
+  "source_checks": [
+    {
+      "claims_source_id": "spo01",
+      "title": "Aristotle’s Poetics",
+      "publisher": "Cambridge University Press",
+      "verification_state": "verified_live_redirect_same_resource",
+      "canonical_url": "https://www.cambridge.org/core/books/cambridge-history-of-literary-criticism/aristotles-poetics/901DBEBFF50D43D0709ACF7BBC6C0495",
+      "evidence": "The canonical Cambridge URL remains resolvable and redirects within Cambridge Core to the same Aristotle’s Poetics resource with the same stable resource hash.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "spo02",
+      "title": "Plato and Poetry",
+      "publisher": "Cambridge University Press",
+      "verification_state": "verified_live_redirect_same_resource",
+      "canonical_url": "https://www.cambridge.org/core/books/cambridge-history-of-literary-criticism/plato-and-poetry/885B1DB0512C060514EFEDA2396E6E2B",
+      "evidence": "The canonical Cambridge URL remains resolvable and redirects within Cambridge Core to the same Plato and Poetry resource with the same stable resource hash.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "spo03",
+      "title": "Literature – Oxford Handbook of Aesthetics",
+      "publisher": "Oxford University Press",
+      "verification_state": "verified_live_redirect_same_resource",
+      "canonical_url": "https://academic.oup.com/edited-volume/37198/chapter/327329809",
+      "evidence": "The OUP chapter URL remains resolvable in the current Oxford Academic delivery stack; no authoritative replacement identity is required.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "spo04",
+      "title": "Mimesis as Make-Believe",
+      "publisher": "Harvard University Press",
+      "verification_state": "publisher_endpoint_reachable_content_sparse_no_replacement",
+      "canonical_url": "https://www.hup.harvard.edu/books/9780674576032",
+      "evidence": "The publisher endpoint is reachable but exposes sparse crawler-readable content. No authoritative successor URL for the same edition was verified, so replacement is blocked.",
+      "action": "retain_until_authoritative_replacement_is_verified"
+    },
+    {
+      "claims_source_id": "spo05",
+      "title": "Expression and Meaning",
+      "publisher": "Cambridge University Press",
+      "verification_state": "fetch_indeterminate_no_replacement",
+      "canonical_url": "https://www.cambridge.org/core/books/expression-and-meaning/C4CBA3EB44908E98410502D821A0D4EB",
+      "evidence": "The exact canonical book endpoint could not be independently resolved through the current fetch path, while Cambridge still indexes the work and its relevant chapter content. No exact authoritative replacement URL was verified.",
+      "action": "retain_until_authoritative_replacement_is_verified"
+    },
+    {
+      "claims_source_id": "spo06",
+      "title": "Critique of the Power of Judgment",
+      "publisher": "Cambridge University Press",
+      "verification_state": "verified_authoritative_replacement",
+      "old_url": "https://www.cambridge.org/core/books/critique-of-the-power-of-judgment/1B3D8A80D0A7B8C6953A88D7855B90C4",
+      "canonical_url": "https://www.cambridge.org/core/books/critique-of-the-power-of-judgment/3705CD4E7C5C7B1CE079AFA9B924122E",
+      "evidence": "Cambridge Core currently identifies the replacement URL as Critique of the Power of Judgment and exposes the same Cambridge publication identity, including DOI 10.1017/CBO9780511804656.",
+      "action": "replace_canonical_url"
+    },
+    {
+      "claims_source_id": "spo07",
+      "title": "Art as Experience",
+      "publisher": "Penguin Random House",
+      "verification_state": "verified_authoritative_replacement",
+      "old_url": "https://www.penguinrandomhouse.com/books/294029/art-as-experience-by-john-dewey/",
+      "canonical_url": "https://www.penguinrandomhouse.com/books/296640/art-as-experience-by-john-dewey/",
+      "evidence": "Penguin Random House currently publishes the replacement product page for John Dewey’s Art as Experience and identifies ISBN 9780399531972.",
+      "action": "replace_canonical_url"
+    },
+    {
+      "claims_source_id": "spo08",
+      "title": "Aesthetic Theory",
+      "publisher": "Bloomsbury Academic",
+      "verification_state": "verified_authoritative_replacement",
+      "old_url": "https://www.bloomsbury.com/uk/aesthetic-theory-9781780936590/",
+      "canonical_url": "https://www.bloomsbury.com/uk/aesthetic-theory-9781780936598/",
+      "evidence": "Bloomsbury currently identifies the replacement URL as Theodor W. Adorno’s Aesthetic Theory on the publisher’s own platform.",
+      "action": "replace_canonical_url"
+    },
+    {
+      "claims_source_id": "spo09",
+      "title": "Arabic Poetics",
+      "publisher": "Cambridge University Press",
+      "verification_state": "verified_authoritative_replacement",
+      "old_url": "https://www.cambridge.org/core/books/arabic-poetics/AA5279D26A3B57133DAFEDF8AF6CA6CF",
+      "canonical_url": "https://www.cambridge.org/core/books/arabic-poetics/069E5876505AED64A8B3FD53A4A5EB4A",
+      "evidence": "Cambridge Core currently identifies the replacement URL as Lara Harb’s Arabic Poetics and exposes DOI 10.1017/9781108780483.",
+      "action": "replace_canonical_url"
+    },
+    {
+      "claims_source_id": "spo10",
+      "title": "To the Lighthouse",
+      "publisher": "Penguin",
+      "verification_state": "verified_authoritative_replacement",
+      "old_url": "https://www.penguin.co.uk/books/60318/to-the-lighthouse-by-woolf-virginia/9780241371954",
+      "canonical_url": "https://www.penguin.co.uk/books/57101/to-the-lighthouse-by-woolf-virginia/9780241371954",
+      "evidence": "Penguin’s current product page for Virginia Woolf’s To the Lighthouse uses the replacement book identifier while retaining ISBN 9780241371954.",
+      "action": "replace_canonical_url"
+    },
+    {
+      "claims_source_id": "spo11",
+      "title": "The Picture of Dorian Gray",
+      "publisher": "Project Gutenberg",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.gutenberg.org/ebooks/174",
+      "evidence": "Project Gutenberg ebook 174 remains live and identifies The Picture of Dorian Gray.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "spo12",
+      "title": "Robinson Crusoe",
+      "publisher": "Project Gutenberg",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.gutenberg.org/ebooks/521",
+      "evidence": "Project Gutenberg ebook 521 remains live and identifies Robinson Crusoe.",
+      "action": "retain_canonical_url"
+    }
+  ],
+  "summary": {
+    "canonical_sources_checked": 12,
+    "verified_live_or_redirected": 5,
+    "verified_authoritative_replacement": 5,
+    "publisher_endpoint_reachable_content_sparse_no_replacement": 1,
+    "fetch_indeterminate_no_replacement": 1,
+    "canonical_url_replacements": 5
+  },
+  "quality_gates": {
+    "all_12_area_sources_accounted_for": true,
+    "five_authoritative_replacements_materialized": true,
+    "replacement_identity_preserved": true,
+    "uncertain_endpoints_not_auto_replaced": true,
+    "canonical_source_ids_preserved": true,
+    "pathway_source_count_preserved": true,
+    "claim_provenance_scope_unchanged": true,
+    "theory_integrity_scope_unchanged": true,
+    "canonical_subject_architecture_unchanged": true,
+    "completion_status_preserved": true
+  }
+}
