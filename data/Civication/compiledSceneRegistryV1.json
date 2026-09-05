@@ -151,6 +151,15 @@
     "data/Civication/mailFamilies/historie/followup/historie_forvaltning_og_radgivning_followup.json",
     "data/Civication/mailFamilies/historie/knowledge/historie_forvaltning_og_radgivning_knowledge.json",
     "data/Civication/mailFamilies/historie/consequence/historie_forvaltning_og_radgivning_consequence.json",
+    "data/Civication/mailFamilies/historie/job/historie_institusjonsledelse_job.json",
+    "data/Civication/mailFamilies/historie/people/historie_institusjonsledelse_people.json",
+    "data/Civication/mailFamilies/historie/story/historie_institusjonsledelse_story.json",
+    "data/Civication/mailFamilies/historie/conflict/historie_institusjonsledelse_conflict.json",
+    "data/Civication/mailFamilies/historie/event/historie_institusjonsledelse_event.json",
+    "data/Civication/mailFamilies/historie/micro/historie_institusjonsledelse_micro.json",
+    "data/Civication/mailFamilies/historie/followup/historie_institusjonsledelse_followup.json",
+    "data/Civication/mailFamilies/historie/knowledge/historie_institusjonsledelse_knowledge.json",
+    "data/Civication/mailFamilies/historie/consequence/historie_institusjonsledelse_consequence.json",
     "data/Civication/mailFamilies/kunst/job/kunst_kunstnerisk_ledelse_job.json",
     "data/Civication/mailFamilies/kunst/people/kunst_kunstnerisk_ledelse_people.json",
     "data/Civication/mailFamilies/kunst/story/kunst_kunstnerisk_ledelse_story.json",
@@ -54964,6 +54973,2032 @@
       },
       "source_hash": "ce26cc8b97270d2d72b0f2a0704f9084844f225fcee625ebc75c76cddef52906",
       "source_path": "data/Civication/mailFamilies/historie/story/historie_forvaltning_og_radgivning_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_styring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar bestilt_konklusjon i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk bestilt_konklusjon gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "samfunnsoppdrag_ressursstyring_risiko_og_integritet",
+        "consequence_axis": "institusjonell_tillit_vs_skjult_risiko",
+        "from": "Karin",
+        "id": "historie_institusjonsledelse_conflict_bestilt_konklusjon_001",
+        "mail_family": "historie_institusjonsledelse_konklusjonspress",
+        "mail_type": "conflict",
+        "narrative_arc": "bestilt_konklusjon",
+        "people_ref": "ingrid_avdelingsdirektor_historie_institusjonsledelse",
+        "phase": "forenoon",
+        "place_id": "faglig_integritetsforum",
+        "pressure": "kortsiktig_styringspress_vs_langsiktig_samfunnsoppdrag",
+        "priority": 130,
+        "role_scope": "historie_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/conflict/historie_institusjonsledelse_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+          "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+          "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+        ],
+        "subject": "Legitim styring kolliderer med dokumentert faglig motstemme",
+        "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret conflict-punkt: legitim styring kolliderer med dokumentert faglig motstemme. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering.",
+        "task_domain": "historisk_institusjonsledelse"
+      },
+      "id": "historie_institusjonsledelse_conflict_bestilt_konklusjon_001",
+      "mail_type": "conflict",
+      "role_scope": "historie_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar bestilt_konklusjon i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk bestilt_konklusjon gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+            "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+            "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+          ],
+          "subject": "Legitim styring kolliderer med dokumentert faglig motstemme",
+          "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret conflict-punkt: legitim styring kolliderer med dokumentert faglig motstemme. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_institusjonsledelse_conflict_bestilt_konklusjon_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "faglig_integritetsforum",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_institusjonsledelse_conflict_bestilt_konklusjon_001",
+          "source_path": "data/Civication/mailFamilies/historie/conflict/historie_institusjonsledelse_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_institusjonsledelse.mail.historie_institusjonsledelse_conflict_bestilt_konklusjon_001",
+        "version": 1
+      },
+      "source_hash": "98f76e9b5d40ac9977261bd3f280a211fadf8778d19c92c5004a23293e955f50",
+      "source_path": "data/Civication/mailFamilies/historie/conflict/historie_institusjonsledelse_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_styring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar etterspill i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk etterspill gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "samfunnsoppdrag_ressursstyring_risiko_og_integritet",
+        "consequence_axis": "institusjonell_tillit_vs_skjult_risiko",
+        "from": "Selma",
+        "id": "historie_institusjonsledelse_consequence_etterspill_001",
+        "mail_family": "historie_institusjonsledelse_leveranse_etterspill",
+        "mail_type": "consequence",
+        "narrative_arc": "etterspill",
+        "people_ref": "sander_kvalitetsradgiver_historie_institusjonsledelse",
+        "phase": "forenoon",
+        "place_id": "budsjett_og_prioriteringsrom",
+        "pressure": "kortsiktig_styringspress_vs_langsiktig_samfunnsoppdrag",
+        "priority": 130,
+        "role_scope": "historie_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/consequence/historie_institusjonsledelse_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+          "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+          "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+        ],
+        "subject": "Skjult rest-risiko kommer tilbake etter at beslutningen er kommunisert",
+        "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret consequence-punkt: skjult rest-risiko kommer tilbake etter at beslutningen er kommunisert. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering.",
+        "task_domain": "historisk_institusjonsledelse"
+      },
+      "id": "historie_institusjonsledelse_consequence_etterspill_001",
+      "mail_type": "consequence",
+      "role_scope": "historie_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar etterspill i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk etterspill gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+            "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+            "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+          ],
+          "subject": "Skjult rest-risiko kommer tilbake etter at beslutningen er kommunisert",
+          "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret consequence-punkt: skjult rest-risiko kommer tilbake etter at beslutningen er kommunisert. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_institusjonsledelse_consequence_etterspill_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "budsjett_og_prioriteringsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_institusjonsledelse_consequence_etterspill_001",
+          "source_path": "data/Civication/mailFamilies/historie/consequence/historie_institusjonsledelse_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_institusjonsledelse.mail.historie_institusjonsledelse_consequence_etterspill_001",
+        "version": 1
+      },
+      "source_hash": "7170d8f6367c03f0b6a2f7349459ec1657ed144d7c3c21f99f3af876e2bcd6b1",
+      "source_path": "data/Civication/mailFamilies/historie/consequence/historie_institusjonsledelse_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_styring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar ny_kilde i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk ny_kilde gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "samfunnsoppdrag_ressursstyring_risiko_og_integritet",
+        "consequence_axis": "institusjonell_tillit_vs_skjult_risiko",
+        "from": "Selma",
+        "id": "historie_institusjonsledelse_event_ny_kilde_001",
+        "mail_family": "historie_institusjonsledelse_ny_kilde_eller_feil",
+        "mail_type": "event",
+        "narrative_arc": "ny_kilde",
+        "people_ref": "sander_kvalitetsradgiver_historie_institusjonsledelse",
+        "phase": "forenoon",
+        "place_id": "budsjett_og_prioriteringsrom",
+        "pressure": "kortsiktig_styringspress_vs_langsiktig_samfunnsoppdrag",
+        "priority": 130,
+        "role_scope": "historie_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/event/historie_institusjonsledelse_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+          "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+          "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+        ],
+        "subject": "En hendelse endrer både risiko, kommunikasjon og ressursbehov",
+        "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret event-punkt: en hendelse endrer både risiko, kommunikasjon og ressursbehov. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering.",
+        "task_domain": "historisk_institusjonsledelse"
+      },
+      "id": "historie_institusjonsledelse_event_ny_kilde_001",
+      "mail_type": "event",
+      "role_scope": "historie_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar ny_kilde i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk ny_kilde gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+            "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+            "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+          ],
+          "subject": "En hendelse endrer både risiko, kommunikasjon og ressursbehov",
+          "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret event-punkt: en hendelse endrer både risiko, kommunikasjon og ressursbehov. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_institusjonsledelse_event_ny_kilde_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "budsjett_og_prioriteringsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_institusjonsledelse_event_ny_kilde_001",
+          "source_path": "data/Civication/mailFamilies/historie/event/historie_institusjonsledelse_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_institusjonsledelse.mail.historie_institusjonsledelse_event_ny_kilde_001",
+        "version": 1
+      },
+      "source_hash": "a0c18747f6fd3126e0885f9670bb3d12f6fe06223fafe96a76a3909bb00bd8a5",
+      "source_path": "data/Civication/mailFamilies/historie/event/historie_institusjonsledelse_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_styring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar rework_etter_handoff i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk rework_etter_handoff gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "samfunnsoppdrag_ressursstyring_risiko_og_integritet",
+        "consequence_axis": "institusjonell_tillit_vs_skjult_risiko",
+        "from": "Jon",
+        "id": "historie_institusjonsledelse_followup_rework_etter_handoff_001",
+        "mail_family": "historie_institusjonsledelse_handoff_og_rework",
+        "mail_type": "followup",
+        "narrative_arc": "rework_etter_handoff",
+        "people_ref": "nora_teamkoordinator_historie_institusjonsledelse",
+        "phase": "forenoon",
+        "place_id": "risiko_beredskap_og_handoff",
+        "pressure": "kortsiktig_styringspress_vs_langsiktig_samfunnsoppdrag",
+        "priority": 130,
+        "role_scope": "historie_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/followup/historie_institusjonsledelse_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+          "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+          "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+        ],
+        "subject": "Nytt vedtak gjenåpner bare den berørte beslutningen",
+        "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret followup-punkt: nytt vedtak gjenåpner bare den berørte beslutningen. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering.",
+        "task_domain": "historisk_institusjonsledelse"
+      },
+      "id": "historie_institusjonsledelse_followup_rework_etter_handoff_001",
+      "mail_type": "followup",
+      "role_scope": "historie_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar rework_etter_handoff i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk rework_etter_handoff gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+            "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+            "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+          ],
+          "subject": "Nytt vedtak gjenåpner bare den berørte beslutningen",
+          "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret followup-punkt: nytt vedtak gjenåpner bare den berørte beslutningen. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_institusjonsledelse_followup_rework_etter_handoff_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "risiko_beredskap_og_handoff",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_institusjonsledelse_followup_rework_etter_handoff_001",
+          "source_path": "data/Civication/mailFamilies/historie/followup/historie_institusjonsledelse_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_institusjonsledelse.mail.historie_institusjonsledelse_followup_rework_etter_handoff_001",
+        "version": 1
+      },
+      "source_hash": "2f501c48d2832e9d167bdd03a73aea138ce60b2e3d1a784659e0170c4a406627",
+      "source_path": "data/Civication/mailFamilies/historie/followup/historie_institusjonsledelse_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_styring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar handoff i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk handoff gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "samfunnsoppdrag_ressursstyring_risiko_og_integritet",
+        "consequence_axis": "institusjonell_tillit_vs_skjult_risiko",
+        "from": "Jon",
+        "id": "historie_institusjonsledelse_job_handoff_004",
+        "mail_family": "historie_institusjonsledelse_prioritering_job",
+        "mail_type": "job",
+        "narrative_arc": "handoff",
+        "people_ref": "nora_teamkoordinator_historie_institusjonsledelse",
+        "phase": "workday",
+        "place_id": "risiko_beredskap_og_handoff",
+        "pressure": "kortsiktig_styringspress_vs_langsiktig_samfunnsoppdrag",
+        "priority": 127,
+        "role_scope": "historie_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/job/historie_institusjonsledelse_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+          "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+          "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+        ],
+        "subject": "Et synlighetsprosjekt fortrenger ressurser fra kjerneoppdrag og beredskap",
+        "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret job-punkt: et synlighetsprosjekt fortrenger ressurser fra kjerneoppdrag og beredskap. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering.",
+        "task_domain": "historisk_institusjonsledelse"
+      },
+      "id": "historie_institusjonsledelse_job_handoff_004",
+      "mail_type": "job",
+      "role_scope": "historie_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar handoff i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk handoff gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+            "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+            "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+          ],
+          "subject": "Et synlighetsprosjekt fortrenger ressurser fra kjerneoppdrag og beredskap",
+          "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret job-punkt: et synlighetsprosjekt fortrenger ressurser fra kjerneoppdrag og beredskap. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_institusjonsledelse_job_handoff_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "risiko_beredskap_og_handoff",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_institusjonsledelse_job_handoff_004",
+          "source_path": "data/Civication/mailFamilies/historie/job/historie_institusjonsledelse_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_institusjonsledelse.mail.historie_institusjonsledelse_job_handoff_004",
+        "version": 1
+      },
+      "source_hash": "00b861949b638f490b5f64ca785497b2c8fe5a99ad8654567a2c420f570fe48d",
+      "source_path": "data/Civication/mailFamilies/historie/job/historie_institusjonsledelse_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_styring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar kapasitetsklemme i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk kapasitetsklemme gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "samfunnsoppdrag_ressursstyring_risiko_og_integritet",
+        "consequence_axis": "institusjonell_tillit_vs_skjult_risiko",
+        "from": "Karin",
+        "id": "historie_institusjonsledelse_job_kapasitetsklemme_001",
+        "mail_family": "historie_institusjonsledelse_prioritering_job",
+        "mail_type": "job",
+        "narrative_arc": "kapasitetsklemme",
+        "people_ref": "ingrid_avdelingsdirektor_historie_institusjonsledelse",
+        "phase": "forenoon",
+        "place_id": "samfunnsoppdrag_og_styringsbord",
+        "pressure": "kortsiktig_styringspress_vs_langsiktig_samfunnsoppdrag",
+        "priority": 130,
+        "role_scope": "historie_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/job/historie_institusjonsledelse_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+          "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+          "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+        ],
+        "subject": "Budsjettkutt treffer bevaring, faglig kapasitet og publikum samtidig",
+        "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret job-punkt: budsjettkutt treffer bevaring, faglig kapasitet og publikum samtidig. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering.",
+        "task_domain": "historisk_institusjonsledelse"
+      },
+      "id": "historie_institusjonsledelse_job_kapasitetsklemme_001",
+      "mail_type": "job",
+      "role_scope": "historie_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar kapasitetsklemme i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk kapasitetsklemme gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+            "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+            "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+          ],
+          "subject": "Budsjettkutt treffer bevaring, faglig kapasitet og publikum samtidig",
+          "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret job-punkt: budsjettkutt treffer bevaring, faglig kapasitet og publikum samtidig. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_institusjonsledelse_job_kapasitetsklemme_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "samfunnsoppdrag_og_styringsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_institusjonsledelse_job_kapasitetsklemme_001",
+          "source_path": "data/Civication/mailFamilies/historie/job/historie_institusjonsledelse_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_institusjonsledelse.mail.historie_institusjonsledelse_job_kapasitetsklemme_001",
+        "version": 1
+      },
+      "source_hash": "10a2dda94953a545d9cad1111b459e3fc83a1b427df72cf6b88f8adcc37e5c69",
+      "source_path": "data/Civication/mailFamilies/historie/job/historie_institusjonsledelse_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_styring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar metodeuenighet i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk metodeuenighet gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "samfunnsoppdrag_ressursstyring_risiko_og_integritet",
+        "consequence_axis": "institusjonell_tillit_vs_skjult_risiko",
+        "from": "Marius",
+        "id": "historie_institusjonsledelse_job_metodeuenighet_002",
+        "mail_family": "historie_institusjonsledelse_prioritering_job",
+        "mail_type": "job",
+        "narrative_arc": "metodeuenighet",
+        "people_ref": "marius_seniorhistoriker_historie_institusjonsledelse",
+        "phase": "workday",
+        "place_id": "faglig_integritetsforum",
+        "pressure": "kortsiktig_styringspress_vs_langsiktig_samfunnsoppdrag",
+        "priority": 129,
+        "role_scope": "historie_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/job/historie_institusjonsledelse_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+          "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+          "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+        ],
+        "subject": "Et styringssignal ønsker en tydeligere historisk konklusjon enn grunnlaget bærer",
+        "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret job-punkt: et styringssignal ønsker en tydeligere historisk konklusjon enn grunnlaget bærer. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering.",
+        "task_domain": "historisk_institusjonsledelse"
+      },
+      "id": "historie_institusjonsledelse_job_metodeuenighet_002",
+      "mail_type": "job",
+      "role_scope": "historie_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar metodeuenighet i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk metodeuenighet gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+            "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+            "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+          ],
+          "subject": "Et styringssignal ønsker en tydeligere historisk konklusjon enn grunnlaget bærer",
+          "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret job-punkt: et styringssignal ønsker en tydeligere historisk konklusjon enn grunnlaget bærer. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_institusjonsledelse_job_metodeuenighet_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "faglig_integritetsforum",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_institusjonsledelse_job_metodeuenighet_002",
+          "source_path": "data/Civication/mailFamilies/historie/job/historie_institusjonsledelse_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_institusjonsledelse.mail.historie_institusjonsledelse_job_metodeuenighet_002",
+        "version": 1
+      },
+      "source_hash": "5d1790a9a0bdffeb4bebc0924199636712f2c2cfe8c87dbb85e451ed5f0e0a56",
+      "source_path": "data/Civication/mailFamilies/historie/job/historie_institusjonsledelse_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_styring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar sen_feil i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk sen_feil gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "samfunnsoppdrag_ressursstyring_risiko_og_integritet",
+        "consequence_axis": "institusjonell_tillit_vs_skjult_risiko",
+        "from": "Selma",
+        "id": "historie_institusjonsledelse_job_sen_feil_003",
+        "mail_family": "historie_institusjonsledelse_prioritering_job",
+        "mail_type": "job",
+        "narrative_arc": "sen_feil",
+        "people_ref": "sander_kvalitetsradgiver_historie_institusjonsledelse",
+        "phase": "workday",
+        "place_id": "budsjett_og_prioriteringsrom",
+        "pressure": "kortsiktig_styringspress_vs_langsiktig_samfunnsoppdrag",
+        "priority": 128,
+        "role_scope": "historie_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/job/historie_institusjonsledelse_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+          "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+          "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+        ],
+        "subject": "En omdømmekrise presser fram kommunikasjon før situasjonsbildet er komplett",
+        "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret job-punkt: en omdømmekrise presser fram kommunikasjon før situasjonsbildet er komplett. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering.",
+        "task_domain": "historisk_institusjonsledelse"
+      },
+      "id": "historie_institusjonsledelse_job_sen_feil_003",
+      "mail_type": "job",
+      "role_scope": "historie_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar sen_feil i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk sen_feil gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+            "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+            "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+          ],
+          "subject": "En omdømmekrise presser fram kommunikasjon før situasjonsbildet er komplett",
+          "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret job-punkt: en omdømmekrise presser fram kommunikasjon før situasjonsbildet er komplett. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_institusjonsledelse_job_sen_feil_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "budsjett_og_prioriteringsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_institusjonsledelse_job_sen_feil_003",
+          "source_path": "data/Civication/mailFamilies/historie/job/historie_institusjonsledelse_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_institusjonsledelse.mail.historie_institusjonsledelse_job_sen_feil_003",
+        "version": 1
+      },
+      "source_hash": "94fbf6dfc5542b1fe238f447ef9df38a1a94af3840f831ccc00062a2b7ca6089",
+      "source_path": "data/Civication/mailFamilies/historie/job/historie_institusjonsledelse_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_styring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar kildekritikk_og_historiografi i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk kildekritikk_og_historiografi gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "samfunnsoppdrag_ressursstyring_risiko_og_integritet",
+        "consequence_axis": "institusjonell_tillit_vs_skjult_risiko",
+        "from": "Marius",
+        "id": "historie_institusjonsledelse_knowledge_kildekritikk_og_historiografi_001",
+        "mail_family": "historie_institusjonsledelse_history_go_kildekritikk",
+        "mail_type": "knowledge",
+        "narrative_arc": "kildekritikk_og_historiografi",
+        "people_ref": "marius_fagdirektor_historie_institusjonsledelse",
+        "person_id": "marius_fagdirektor_historie_institusjonsledelse",
+        "phase": "forenoon",
+        "place_id": "faglig_integritetsforum",
+        "pressure": "kortsiktig_styringspress_vs_langsiktig_samfunnsoppdrag",
+        "priority": 130,
+        "role_scope": "historie_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/knowledge/historie_institusjonsledelse_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+          "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+          "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+        ],
+        "subject": "History Go skjerper historisk kontekst, men gir ingen ny fullmakt",
+        "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret knowledge-punkt: history go skjerper historisk kontekst, men gir ingen ny fullmakt. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering.",
+        "task_domain": "historisk_institusjonsledelse"
+      },
+      "id": "historie_institusjonsledelse_knowledge_kildekritikk_og_historiografi_001",
+      "mail_type": "knowledge",
+      "role_scope": "historie_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar kildekritikk_og_historiografi i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk kildekritikk_og_historiografi gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+            "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+            "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+          ],
+          "subject": "History Go skjerper historisk kontekst, men gir ingen ny fullmakt",
+          "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret knowledge-punkt: history go skjerper historisk kontekst, men gir ingen ny fullmakt. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_institusjonsledelse_knowledge_kildekritikk_og_historiografi_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "faglig_integritetsforum",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_institusjonsledelse_knowledge_kildekritikk_og_historiografi_001",
+          "source_path": "data/Civication/mailFamilies/historie/knowledge/historie_institusjonsledelse_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_institusjonsledelse.mail.historie_institusjonsledelse_knowledge_kildekritikk_og_historiografi_001",
+        "version": 1
+      },
+      "source_hash": "a34f2bc4ff9fb14388399a01b328720450698238d5d7a1e9871f09336ffe34d2",
+      "source_path": "data/Civication/mailFamilies/historie/knowledge/historie_institusjonsledelse_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_styring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar kan_vi_love_fristen i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk kan_vi_love_fristen gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "samfunnsoppdrag_ressursstyring_risiko_og_integritet",
+        "consequence_axis": "institusjonell_tillit_vs_skjult_risiko",
+        "from": "Jon",
+        "id": "historie_institusjonsledelse_micro_kan_vi_love_fristen_001",
+        "mail_family": "historie_institusjonsledelse_rask_mandatavklaring",
+        "mail_type": "micro",
+        "narrative_arc": "kan_vi_love_fristen",
+        "people_ref": "nora_teamkoordinator_historie_institusjonsledelse",
+        "phase": "forenoon",
+        "place_id": "samfunnsoppdrag_og_styringsbord",
+        "pressure": "kortsiktig_styringspress_vs_langsiktig_samfunnsoppdrag",
+        "priority": 130,
+        "role_scope": "historie_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/micro/historie_institusjonsledelse_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+          "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+          "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+        ],
+        "subject": "Merk vesentlig rest-risiko med eier og neste kontrollpunkt",
+        "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret micro-punkt: merk vesentlig rest-risiko med eier og neste kontrollpunkt. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering.",
+        "task_domain": "historisk_institusjonsledelse"
+      },
+      "id": "historie_institusjonsledelse_micro_kan_vi_love_fristen_001",
+      "mail_type": "micro",
+      "role_scope": "historie_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar kan_vi_love_fristen i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk kan_vi_love_fristen gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+            "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+            "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+          ],
+          "subject": "Merk vesentlig rest-risiko med eier og neste kontrollpunkt",
+          "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret micro-punkt: merk vesentlig rest-risiko med eier og neste kontrollpunkt. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_institusjonsledelse_micro_kan_vi_love_fristen_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "samfunnsoppdrag_og_styringsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_institusjonsledelse_micro_kan_vi_love_fristen_001",
+          "source_path": "data/Civication/mailFamilies/historie/micro/historie_institusjonsledelse_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_institusjonsledelse.mail.historie_institusjonsledelse_micro_kan_vi_love_fristen_001",
+        "version": 1
+      },
+      "source_hash": "5e4f79f44044247ab6106f73123ff5fac0e2e73afa7af85c09ab90d2f2c95d89",
+      "source_path": "data/Civication/mailFamilies/historie/micro/historie_institusjonsledelse_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_styring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar ingrid_mandat i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk ingrid_mandat gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "samfunnsoppdrag_ressursstyring_risiko_og_integritet",
+        "consequence_axis": "institusjonell_tillit_vs_skjult_risiko",
+        "from": "Karin",
+        "id": "historie_institusjonsledelse_people_ingrid_mandat_001",
+        "mail_family": "historie_institusjonsledelse_profesjonelle_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "ingrid_mandat",
+        "people_ref": "ingrid_avdelingsdirektor_historie_institusjonsledelse",
+        "phase": "forenoon",
+        "place_id": "samfunnsoppdrag_og_styringsbord",
+        "pressure": "kortsiktig_styringspress_vs_langsiktig_samfunnsoppdrag",
+        "priority": 130,
+        "role_scope": "historie_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/people/historie_institusjonsledelse_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+          "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+          "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+        ],
+        "subject": "Styreleder trenger et beslutningsgrunnlag med synlig rest-risiko",
+        "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret people-punkt: styreleder trenger et beslutningsgrunnlag med synlig rest-risiko. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering.",
+        "task_domain": "historisk_institusjonsledelse"
+      },
+      "id": "historie_institusjonsledelse_people_ingrid_mandat_001",
+      "mail_type": "people",
+      "role_scope": "historie_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar ingrid_mandat i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk ingrid_mandat gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+            "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+            "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+          ],
+          "subject": "Styreleder trenger et beslutningsgrunnlag med synlig rest-risiko",
+          "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret people-punkt: styreleder trenger et beslutningsgrunnlag med synlig rest-risiko. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_institusjonsledelse_people_ingrid_mandat_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "samfunnsoppdrag_og_styringsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_institusjonsledelse_people_ingrid_mandat_001",
+          "source_path": "data/Civication/mailFamilies/historie/people/historie_institusjonsledelse_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_institusjonsledelse.mail.historie_institusjonsledelse_people_ingrid_mandat_001",
+        "version": 1
+      },
+      "source_hash": "41fb1374c965ff979dcbaec43121861e82dfc92dd4a2b9605472129ffff2b5f5",
+      "source_path": "data/Civication/mailFamilies/historie/people/historie_institusjonsledelse_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_styring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar marius_motstemme i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk marius_motstemme gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "samfunnsoppdrag_ressursstyring_risiko_og_integritet",
+        "consequence_axis": "institusjonell_tillit_vs_skjult_risiko",
+        "from": "Marius",
+        "id": "historie_institusjonsledelse_people_marius_motstemme_002",
+        "mail_family": "historie_institusjonsledelse_profesjonelle_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "marius_motstemme",
+        "people_ref": "marius_seniorhistoriker_historie_institusjonsledelse",
+        "phase": "workday",
+        "place_id": "faglig_integritetsforum",
+        "pressure": "kortsiktig_styringspress_vs_langsiktig_samfunnsoppdrag",
+        "priority": 129,
+        "role_scope": "historie_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/people/historie_institusjonsledelse_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+          "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+          "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+        ],
+        "subject": "Fagdirektøren dokumenterer en motstemme som må følge saken",
+        "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret people-punkt: fagdirektøren dokumenterer en motstemme som må følge saken. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering.",
+        "task_domain": "historisk_institusjonsledelse"
+      },
+      "id": "historie_institusjonsledelse_people_marius_motstemme_002",
+      "mail_type": "people",
+      "role_scope": "historie_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar marius_motstemme i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk marius_motstemme gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+            "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+            "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+          ],
+          "subject": "Fagdirektøren dokumenterer en motstemme som må følge saken",
+          "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret people-punkt: fagdirektøren dokumenterer en motstemme som må følge saken. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_institusjonsledelse_people_marius_motstemme_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "faglig_integritetsforum",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_institusjonsledelse_people_marius_motstemme_002",
+          "source_path": "data/Civication/mailFamilies/historie/people/historie_institusjonsledelse_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_institusjonsledelse.mail.historie_institusjonsledelse_people_marius_motstemme_002",
+        "version": 1
+      },
+      "source_hash": "30580a24b21fb7dbb5577968da832ffca8b76c2903910d267462617901d1cb6f",
+      "source_path": "data/Civication/mailFamilies/historie/people/historie_institusjonsledelse_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_styring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar nora_kapasitet i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk nora_kapasitet gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "samfunnsoppdrag_ressursstyring_risiko_og_integritet",
+        "consequence_axis": "institusjonell_tillit_vs_skjult_risiko",
+        "from": "Jon",
+        "id": "historie_institusjonsledelse_people_nora_kapasitet_003",
+        "mail_family": "historie_institusjonsledelse_profesjonelle_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "nora_kapasitet",
+        "people_ref": "nora_teamkoordinator_historie_institusjonsledelse",
+        "phase": "workday",
+        "place_id": "risiko_beredskap_og_handoff",
+        "pressure": "kortsiktig_styringspress_vs_langsiktig_samfunnsoppdrag",
+        "priority": 128,
+        "role_scope": "historie_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/people/historie_institusjonsledelse_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+          "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+          "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+        ],
+        "subject": "Beredskapslederen har fortsatt ubekreftede forhold i situasjonsbildet",
+        "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret people-punkt: beredskapslederen har fortsatt ubekreftede forhold i situasjonsbildet. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering.",
+        "task_domain": "historisk_institusjonsledelse"
+      },
+      "id": "historie_institusjonsledelse_people_nora_kapasitet_003",
+      "mail_type": "people",
+      "role_scope": "historie_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar nora_kapasitet i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk nora_kapasitet gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+            "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+            "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+          ],
+          "subject": "Beredskapslederen har fortsatt ubekreftede forhold i situasjonsbildet",
+          "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret people-punkt: beredskapslederen har fortsatt ubekreftede forhold i situasjonsbildet. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_institusjonsledelse_people_nora_kapasitet_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "risiko_beredskap_og_handoff",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_institusjonsledelse_people_nora_kapasitet_003",
+          "source_path": "data/Civication/mailFamilies/historie/people/historie_institusjonsledelse_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_institusjonsledelse.mail.historie_institusjonsledelse_people_nora_kapasitet_003",
+        "version": 1
+      },
+      "source_hash": "436dbce0130b903b2c840a76e28c7d432b7b366cd4d81473cadb02dbc51847f3",
+      "source_path": "data/Civication/mailFamilies/historie/people/historie_institusjonsledelse_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_styring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar sander_avvik i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk sander_avvik gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "samfunnsoppdrag_ressursstyring_risiko_og_integritet",
+        "consequence_axis": "institusjonell_tillit_vs_skjult_risiko",
+        "from": "Selma",
+        "id": "historie_institusjonsledelse_people_sander_avvik_004",
+        "mail_family": "historie_institusjonsledelse_profesjonelle_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "sander_avvik",
+        "people_ref": "sander_kvalitetsradgiver_historie_institusjonsledelse",
+        "phase": "workday",
+        "place_id": "budsjett_og_prioriteringsrom",
+        "pressure": "kortsiktig_styringspress_vs_langsiktig_samfunnsoppdrag",
+        "priority": 127,
+        "role_scope": "historie_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/people/historie_institusjonsledelse_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+          "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+          "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+        ],
+        "subject": "Økonomisjefen avdekker en flerårig binding som mangler i prioriteringen",
+        "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret people-punkt: økonomisjefen avdekker en flerårig binding som mangler i prioriteringen. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering.",
+        "task_domain": "historisk_institusjonsledelse"
+      },
+      "id": "historie_institusjonsledelse_people_sander_avvik_004",
+      "mail_type": "people",
+      "role_scope": "historie_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar sander_avvik i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk sander_avvik gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+            "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+            "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+          ],
+          "subject": "Økonomisjefen avdekker en flerårig binding som mangler i prioriteringen",
+          "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret people-punkt: økonomisjefen avdekker en flerårig binding som mangler i prioriteringen. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_institusjonsledelse_people_sander_avvik_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "budsjett_og_prioriteringsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_institusjonsledelse_people_sander_avvik_004",
+          "source_path": "data/Civication/mailFamilies/historie/people/historie_institusjonsledelse_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_institusjonsledelse.mail.historie_institusjonsledelse_people_sander_avvik_004",
+        "version": 1
+      },
+      "source_hash": "8e04fb5744bcb150cf7da742bc9a880091d5ba95f1f63430279c1eb659c8adac",
+      "source_path": "data/Civication/mailFamilies/historie/people/historie_institusjonsledelse_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sporbar_styring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar leder_vs_fagperson i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "kapasitet",
+              "faglig_integritet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk leder_vs_fagperson gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør.",
+            "tags": [
+              "uformell_myndighet",
+              "skjult_kapasitet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "samfunnsoppdrag_ressursstyring_risiko_og_integritet",
+        "consequence_axis": "institusjonell_tillit_vs_skjult_risiko",
+        "from": "Marius",
+        "id": "historie_institusjonsledelse_story_leder_vs_fagperson_001",
+        "mail_family": "historie_institusjonsledelse_lederidentitet",
+        "mail_type": "story",
+        "narrative_arc": "leder_vs_fagperson",
+        "people_ref": "marius_seniorhistoriker_historie_institusjonsledelse",
+        "phase": "forenoon",
+        "place_id": "faglig_integritetsforum",
+        "pressure": "kortsiktig_styringspress_vs_langsiktig_samfunnsoppdrag",
+        "priority": 130,
+        "role_scope": "historie_institusjonsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/story/historie_institusjonsledelse_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+          "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+          "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+        ],
+        "subject": "Direktørrollen er mandat og ansvar, ikke privat eierskap",
+        "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret story-punkt: direktørrollen er mandat og ansvar, ikke privat eierskap. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering.",
+        "task_domain": "historisk_institusjonsledelse"
+      },
+      "id": "historie_institusjonsledelse_story_leder_vs_fagperson_001",
+      "mail_type": "story",
+      "role_scope": "historie_institusjonsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Arbeidet kan se langsommere ut lokalt, men styre, fagmiljø, økonomi og beredskap kan etterprøve hva som var kjent, hvilket mandat som gjaldt, hva som ble prioritert og hvilken risiko som sto åpen. Det beskytter både samfunnsoppdraget og institusjonell tillit når premisser senere endres eller beslutningen må gjenåpnes.",
+            "id": "A",
+            "label": "Avklar leder_vs_fagperson i loggen",
+            "reply": "Jeg beholder dagens versjon og de åpne premissene i loggen, navngir faktisk beslutningseier og rest-risiko, avgrenser bare den delen vi har fullmakt og grunnlag til å beslutte nå, og setter et eksplisitt kontrollpunkt for det som fortsatt venter før neste handoff."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fristen eller synligheten ser bedre ut i øyeblikket, men loggen mister skillet mellom styringsønske, evidens og faktisk myndighet. Skjult risiko og forskjøvet kostnad blir vanskeligere å spore, og neste aktør kan tro at et faglig, økonomisk eller formelt spørsmål er lukket selv om det fortsatt mangler korrekt beslutning eller grunnlag.",
+            "id": "B",
+            "label": "Lukk leder_vs_fagperson gjennom lederbeslutning",
+            "reply": "Jeg behandler fremdrifts- eller omdømmebehovet som tilstrekkelig grunn til å lukke det åpne punktet, toner ned rest-risikoen og lar beslutningen eller kommunikasjonen gå videre uten å vise hele usikkerheten, delegasjonsgrensen eller kostnaden som skyves til neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Loggen viser dagens versjon av samfunnsoppdrag, delegasjon, ressursgrunnlag, faglige premisser, vesentlig risiko og eier av neste avklaring.",
+            "En rask lukking kan gi lokal fremdrift, men kan skjule rest-risiko, flytte kostnad eller ansvar og gjøre en handoff mer endelig enn grunnlaget tåler.",
+            "Valget må gjøre waiting, handoff og mulig bounded rework synlig for neste aktør og bevare skillet mellom styringsbeslutning, faglig evidens og faktisk fullmakt."
+          ],
+          "subject": "Direktørrollen er mandat og ansvar, ikke privat eierskap",
+          "summary": "Samfunnsoppdrags-, ressurs- og risikologgen står i et konkret story-punkt: direktørrollen er mandat og ansvar, ikke privat eierskap. Lov og delegasjon, budsjett og kapasitet, faglige premisser, dokumentert motstemme, vesentlig risiko, waiting, handoff og faktisk beslutningseier må holdes synlige i samme versjon. Du må velge et grep som gir styrbar fremdrift uten å gjøre omdømme, politisk nærhet, direktørstatus eller History Go-kunnskap til erstatning for formell myndighet, etterprøvbart faggrunnlag eller korrekt risikohåndtering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_institusjonsledelse_story_leder_vs_fagperson_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "faglig_integritetsforum",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_institusjonsledelse_story_leder_vs_fagperson_001",
+          "source_path": "data/Civication/mailFamilies/historie/story/historie_institusjonsledelse_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_institusjonsledelse.mail.historie_institusjonsledelse_story_leder_vs_fagperson_001",
+        "version": 1
+      },
+      "source_hash": "ea5e3383f4f38b8a169ff247b7018e1272a4f0130000935c75485624d14a95a4",
+      "source_path": "data/Civication/mailFamilies/historie/story/historie_institusjonsledelse_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -233687,7 +235722,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "216775904252e216c1acdc91fff10a3406d70565134d8fa87fe0a77dfe00c3e8",
+  "registry_hash": "4def6579598fe48e94a3cdb85b280b589a6c282632bd968ca2028f59ed1ab2d6",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -234050,6 +236085,23 @@
       "historie_forvaltning_og_radgivning_followup_bounded_rework_001",
       "historie_forvaltning_og_radgivning_knowledge_history_go_001",
       "historie_forvaltning_og_radgivning_consequence_etterspill_001"
+    ],
+    "historie/historie_institusjonsledelse": [
+      "historie_institusjonsledelse_job_kapasitetsklemme_001",
+      "historie_institusjonsledelse_job_metodeuenighet_002",
+      "historie_institusjonsledelse_job_sen_feil_003",
+      "historie_institusjonsledelse_job_handoff_004",
+      "historie_institusjonsledelse_people_ingrid_mandat_001",
+      "historie_institusjonsledelse_people_marius_motstemme_002",
+      "historie_institusjonsledelse_people_nora_kapasitet_003",
+      "historie_institusjonsledelse_people_sander_avvik_004",
+      "historie_institusjonsledelse_story_leder_vs_fagperson_001",
+      "historie_institusjonsledelse_conflict_bestilt_konklusjon_001",
+      "historie_institusjonsledelse_event_ny_kilde_001",
+      "historie_institusjonsledelse_micro_kan_vi_love_fristen_001",
+      "historie_institusjonsledelse_followup_rework_etter_handoff_001",
+      "historie_institusjonsledelse_knowledge_kildekritikk_og_historiografi_001",
+      "historie_institusjonsledelse_consequence_etterspill_001"
     ],
     "kunst/kunst_kunstnerisk_ledelse": [
       "kunstnerisk_ledelse_job_programforslag_001",
@@ -235321,11 +237373,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 512,
+    "compiled_source_file_count": 521,
     "ignored_source_file_count": 1,
-    "input_file_count": 513,
-    "role_count": 62,
-    "scene_count": 1480,
+    "input_file_count": 522,
+    "role_count": 63,
+    "scene_count": 1495,
     "shadowed_duplicate_count": 0
   },
   "version": 1
