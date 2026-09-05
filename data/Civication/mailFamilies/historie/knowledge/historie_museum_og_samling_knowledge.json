@@ -1,0 +1,89 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "historie",
+  "role_scope": "historie_museum_og_samling",
+  "mail_type": "knowledge",
+  "families": [
+    {
+      "id": "historie_museum_og_samling_history_go_proveniens_og_kildekritikk",
+      "purpose": "Trene knowledge gjennom samlingsobjekt_proveniens_tilstands_og_tiltakslogg med bevarings-, proveniens-, tolknings-, representasjons-, kompetanse- og mandatgrenser.",
+      "learning_focus": [
+        "bevaring",
+        "proveniens",
+        "sporbar_tolkning",
+        "museumsetikk"
+      ],
+      "mails": [
+        {
+          "id": "historie_museum_og_samling_knowledge_history_go_grense_001",
+          "mail_type": "knowledge",
+          "mail_family": "historie_museum_og_samling_history_go_proveniens_og_kildekritikk",
+          "role_scope": "historie_museum_og_samling",
+          "phase": "workday",
+          "priority": 140,
+          "from": "Amal",
+          "people_ref": "amal_kurator_historie_museum_og_samling",
+          "place_id": "kuratering_og_utstillingsbord",
+          "subject": "History Go gir et bedre spørsmål, ikke en museumstillatelse",
+          "summary": "Et History Go-spor synliggjør en historisk kontekst og et proveniensspørsmål teamet ikke hadde stilt, men saken krever fortsatt kildekontroll, kompetanse og formell avklaring. samlingsobjekt_proveniens_tilstands_og_tiltakslogg må oppdateres slik at objektidentitet, proveniens og eierskapshistorikk, tilstand og tidligere inngrep, kompetanse- og behandlingsgrense, kilder og kuratorisk tolkningsstatus, representasjon/rettigheter/tilbakeføringssignal, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, publikumsappell, institusjonsprestisje eller History Go kan ikke autentisere proveniens, gi konserveringskompetanse, autorisere inngrep eller avgjøre eierskap, rettigheter eller tilbakeføring. Valget må derfor bevare skillet mellom dokumentert opplysning, faglig vurdering, kuratorisk tolkning og formell beslutning, og bare gjenåpne den delen av objekt- eller utstillingssporet som ny informasjon faktisk berører.",
+          "situation": [
+            "Den aktive loggversjonen viser proveniens, tilstand, inngrep, kilder/tolkning, rettighets- og representasjonsstatus, venting og neste ansvarlige før beslutningen tas.",
+            "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre bevaring, mandat eller kildegrunnlag vanskeligere å rekonstruere ved senere kontroll.",
+            "Du må velge et grep som bevarer eksisterende myndighetsgrenser, den konkrete Career-offer-policyen og en tydelig handoff/rework-regel uten generisk fallback."
+          ],
+          "task_domain": "museum_samling_og_kulturarv",
+          "competency": "sporbar_bevaring_proveniens_kuratering_og_mandat",
+          "pressure": "utstillingspress_prestisje_vs_bevaring_proveniens_og_etikk",
+          "choice_axis": "sporbar_avgrensning_vs_rask_lukking",
+          "consequence_axis": "langsiktig_samlingstillit_vs_fysisk_etisk_og_kilderisiko",
+          "narrative_arc": "history_go_grense",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bruk sporet til spørsmål og kildekontroll innen grensene",
+              "reply": "Jeg velger å bruk sporet til spørsmål og kildekontroll innen grensene. Jeg oppdaterer bare de berørte feltene i samlingsobjekt_proveniens_tilstands_og_tiltakslogg, beholder tidligere versjon, proveniens, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kompetanse eller formell avklaring som fortsatt mangler før saken kan gå videre.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "proveniens",
+                "bevaring",
+                "revisjon"
+              ],
+              "feedback": "Dette kan forsinke produksjon eller gjøre fortellingen mindre glatt, men neste aktør kan se hva som faktisk er dokumentert, hvilke vurderinger som er gjort, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter objektet, kilde- og tolkningssporbarheten, rettighets- og tilbakeføringsgrensen og muligheten for senere avgrenset korreksjon uten å gi History Go eller faglig status myndighet de ikke har.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Behandle badge og kontekst som autentisering og mandat",
+              "reply": "Jeg velger å behandle badge og kontekst som autentisering og mandat. Jeg lar framdrift eller institusjonell trygghet veie tyngre enn det dokumenterte proveniens-, tilstands-, kompetanse- eller mandatsporet og sender saken videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør.",
+              "effect": -1,
+              "tags": [
+                "lukking",
+                "prestisje",
+                "usikkerhet",
+                "risiko"
+              ],
+              "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom evidens, tolkning, kompetanse og mandat. Senere tilstandskontroll, proveniensfunn, rettighetskrav, tilbakeføringsdialog eller publikumsinnsyn kan da gjøre både objektforvaltningen og institusjonens begrunnelse vanskeligere å forsvare og vanskeligere å korrigere uten større rework.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

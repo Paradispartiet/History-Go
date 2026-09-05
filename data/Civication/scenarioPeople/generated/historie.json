@@ -1687,6 +1687,21 @@
   "cross_category_existing_references": [],
   "missing_people_candidates": [
     {
+      "id": "amal_kurator_historie_museum_og_samling",
+      "name": "amal_kurator_historie_museum_og_samling",
+      "category": "historie",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/historie/historie_museum_og_samling.json"
+      ],
+      "scenario_roles": [
+        "historie_museum_og_samling"
+      ],
+      "verification_required": true
+    },
+    {
       "id": "amina_dokumentasjonskoordinator_historie_forvaltning_og_radgivning",
       "name": "amina_dokumentasjonskoordinator_historie_forvaltning_og_radgivning",
       "category": "historie",
@@ -1732,6 +1747,21 @@
       "verification_required": true
     },
     {
+      "id": "henrik_registrar_proveniens_historie_museum_og_samling",
+      "name": "henrik_registrar_proveniens_historie_museum_og_samling",
+      "category": "historie",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/historie/historie_museum_og_samling.json"
+      ],
+      "scenario_roles": [
+        "historie_museum_og_samling"
+      ],
+      "verification_required": true
+    },
+    {
       "id": "ingrid_avdelingsdirektor_historie_fagledelse",
       "name": "ingrid_avdelingsdirektor_historie_fagledelse",
       "category": "historie",
@@ -1743,6 +1773,21 @@
       ],
       "scenario_roles": [
         "historie_fagledelse"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "ingrid_senior_konservator_historie_museum_og_samling",
+      "name": "ingrid_senior_konservator_historie_museum_og_samling",
+      "category": "historie",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/historie/historie_museum_og_samling.json"
+      ],
+      "scenario_roles": [
+        "historie_museum_og_samling"
       ],
       "verification_required": true
     },
@@ -1818,6 +1863,21 @@
       ],
       "scenario_roles": [
         "historie_institusjonsledelse"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "lea_representasjon_og_restitusjon_historie_museum_og_samling",
+      "name": "lea_representasjon_og_restitusjon_historie_museum_og_samling",
+      "category": "historie",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/historie/historie_museum_og_samling.json"
+      ],
+      "scenario_roles": [
+        "historie_museum_og_samling"
       ],
       "verification_required": true
     },
@@ -2391,6 +2451,44 @@
         "direct": 0,
         "strong": 0,
         "contextual": 238,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "historie_museum_og_samling",
+      "role_scope": "historie_museum_og_samling",
+      "title": "Museum og samling",
+      "source": "data/Civication/roleModels/historie/historie_museum_og_samling.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [
+          "carsten_anker",
+          "christian_frederik",
+          "eirik_blodoks",
+          "grindheim_kross_samlingsmiljoet",
+          "haakon_vii_krigstid",
+          "halvdan_svarte",
+          "magnus_lagabote",
+          "wilhelm_f_k_christie"
+        ],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "museum",
+        "samling"
+      ],
+      "resolved_counts": {
+        "total": 238,
+        "existing_place_people": 238,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 8,
+        "contextual": 230,
         "excluded": 0
       }
     },
