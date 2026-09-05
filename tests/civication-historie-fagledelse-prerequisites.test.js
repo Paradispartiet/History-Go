@@ -150,4 +150,4 @@ const scenarioPeople = read('data/Civication/scenarioPeople/generated/historie.j
 const factualPeople = new Set(Object.values(scenarioPeople.people_pool || {}).flat().map((person) => person.person_id));
 for (const id of ACTORS) assert.ok(!factualPeople.has(id), `${id}: fictional actor entered factual Scenario People`);
 
-console.log('PASS: Historie/Fagledelse foundation is playable and rollout-ready while situated reputation remains dedicated Role World debt.');
+console.log('PASS: Historie/Fagledelse foundation is playable and rollout-ready while the final realism dimension remains dedicated Role World debt.');
