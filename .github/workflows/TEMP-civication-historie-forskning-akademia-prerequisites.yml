@@ -32,6 +32,8 @@ jobs:
         run: node scripts/TEMP_materialize_historie_forskning_akademia_prerequisites.mjs
       - name: Clarify History Go research knowledge boundary
         run: node scripts/TEMP_fix_historie_forskning_knowledge_boundary.mjs
+      - name: Differentiate research mail decisions
+        run: node scripts/TEMP_fix_historie_forskning_choice_uniqueness.mjs
       - name: Regenerate Role Pack index
         run: node scripts/audit-civication-role-packs.mjs
       - name: Regenerate compiled Scene Registry
@@ -70,7 +72,7 @@ jobs:
           npm run audit:job-knowledge-requirements
           tail -n 30 /tmp/civication-core.log
       - name: Remove temporary prerequisite surfaces
-        run: rm scripts/TEMP_materialize_historie_forskning_akademia_prerequisites.mjs scripts/TEMP_fix_historie_forskning_knowledge_boundary.mjs .github/workflows/TEMP-civication-historie-forskning-akademia-prerequisites.yml
+        run: rm scripts/TEMP_materialize_historie_forskning_akademia_prerequisites.mjs scripts/TEMP_fix_historie_forskning_knowledge_boundary.mjs scripts/TEMP_fix_historie_forskning_choice_uniqueness.mjs .github/workflows/TEMP-civication-historie-forskning-akademia-prerequisites.yml
       - name: Commit exact verified foundation
         run: |
           git diff --check
