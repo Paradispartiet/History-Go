@@ -41,6 +41,20 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+      - name: Repair known TEMP materializer parser typo
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('scripts/TEMP_materialize_kunst_kuratering_og_program_prerequisites.mjs')
+          s = p.read_text()
+          old = "places.map(({id,name,function})=>({id,name,function}))"
+          new = "places.map(({id,name,function: fn})=>({id,name,function: fn}))"
+          if s.count(old) != 1:
+              raise SystemExit(f'expected exactly one parser-typo occurrence, found {s.count(old)}')
+          p.write_text(s.replace(old, new))
+          PY
+
       - name: Syntax-check materializer
         run: node --check scripts/TEMP_materialize_kunst_kuratering_og_program_prerequisites.mjs
 
