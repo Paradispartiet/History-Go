@@ -1,0 +1,100 @@
+for (const item of [
+  {
+    id: "vaalerenga_a_endelser", place_id: placeId, title: "A-endelser i østlig Oslo-talemål",
+    form: "gata, trappa, sola", explanation: "A-endelser i bestemte former er dokumentert i tradisjonelle østlige Oslo-varieteter og kan brukes som regionalt språkspor på Vålerenga uten å hevde at formen er unik for bydelen.",
+    source_urls: ["https://www.sprakradet.no/svardatabase/sporsmal-og-svar/oslodialekt/", "https://snl.no/dialekter_og_talem%C3%A5l_i_Oslo"], verifiedAt
+  },
+  {
+    id: "vaalerenga_tjukk_l_utvidet", place_id: placeId, title: "Tjukk l som regionalt spor",
+    form: "tjukk l i tradisjonelt østlig talemål", explanation: "Tjukk l er del av det tradisjonelle østlandske dialektgrunnlaget. På Vålerenga skal det behandles som et regionalt trekk dokumentert i eldre talemål, ikke som en lokal identitetsmarkør alle bruker.",
+    source_urls: ["https://snl.no/dialekter_og_talem%C3%A5l_i_Oslo", "https://www.hf.uio.no/iln/tjenester/kunnskap/sprak/sprakdata/talesprak/taus/"], verifiedAt
+  }
+]) upsertById(languageItems, item);
+if (Array.isArray(language)) write(languageFile, languageItems);
+else if (Array.isArray(language.items)) { language.items = languageItems; write(languageFile, language); }
+else if (Array.isArray(language.entries)) { language.entries = languageItems; write(languageFile, language); }
+else { language.items = languageItems; write(languageFile, language); }
+
+const lesesporFile = "data/lesespor/oslo/lesespor_oslo_by.json";
+const lesesporDoc = read(lesesporFile);
+const lesespor = [
+  ["lesespor_vaalerenga_001", "Vålerenga (strøk)", "Oslo byleksikon", urls.byleksikon, "Oppslagsartikkel om forstad, byutvidelse, boligstruktur og trafikkhistorie.", ["byutvidelse", "trehus", "trafikk"]],
+  ["lesespor_vaalerenga_002", "Vålerengtunnelen", "Oslo byleksikon", urls.tunnel, "Kort faglig lesespor om hvordan tunnelen flyttet E6-trafikk bort fra boligområdet.", ["infrastruktur", "E6", "byrom"]],
+  ["lesespor_vaalerenga_003", "Synnøve Finden", "Store norske leksikon", urls.synnoveSnl, "Biografisk lesespor om meieristen og gründeren med tidlig produksjon i Danmarks gate 41.", ["næringsliv", "matproduksjon", "kvinner"]],
+  ["lesespor_vaalerenga_004", "Om Vålerenga kirke", "Den norske kirke", urls.churchOfficial, "Primærkilde om kirken fra 1902, brannen i 1979 og gjenreisningen fram til 1984.", ["kirke", "brann", "gjenreisning"]]
+].map(([id, title, publication, url, relevance, tags]) => ({
+  id, title, popupDesc: relevance, author: null, publication, date: null, year: null, type: "reference",
+  subjects: [{ type: "place", name: "Vålerenga", id: placeId }], place_ids: [placeId], category_hints: ["by"],
+  summary: { themes: tags }, classification: { tags }, url, access: "open", rights: "link_only",
+  source_quality: publication === "Den norske kirke" ? "primary" : "recognized", curation_status: "strong_candidate", relevance
+}));
+lesesporDoc.items = (lesesporDoc.items || []).filter((item) => !(item.place_ids || []).includes(placeId) || !String(item.id).startsWith("lesespor_vaalerenga_"));
+lesesporDoc.items.push(...lesespor);
+write(lesesporFile, lesesporDoc);
+
+const sourceRegistry = {
+  byleksikon: { url: urls.byleksikon, source_type: "institutional_reference", review_status: "reviewed", review_note: "Forstadsvekst, 1878, boliglag, trafikk og 1992 kontrollert." },
+  snl_place: { url: urls.snlPlace, source_type: "edited_reference", review_status: "reviewed", review_note: "Sted og historisk boligmiljø kontrollert." },
+  social_housing: { url: urls.socialHousing, source_type: "edited_reference", review_status: "reviewed", review_note: "Ramme for trehusforsteder utenfor gammel bygrense kontrollert." },
+  church: { url: urls.churchOfficial, source_type: "primary_institutional", review_status: "reviewed", review_note: "1902, brann 1979 og ny vigsling 1984 kontrollert." },
+  school: { url: urls.school, source_type: "institutional_reference", review_status: "reviewed", review_note: "1895, Paul Due og skolens størrelse ved åpning kontrollert." },
+  border: { url: urls.border, source_type: "local_history_reference", review_status: "reviewed", review_note: "1878-grensesteinene og nr. 38 kontrollert." },
+  synnove: { url: urls.synnoveSnl, source_type: "edited_biographical_reference", review_status: "reviewed", review_note: "1928 og Danmarks gate 41 kontrollert." },
+  synnove_official: { url: urls.synnoveOfficial, source_type: "primary_company_history", review_status: "reviewed", review_note: "Etablering og offisiell bildebank kontrollert." },
+  tunnel: { url: urls.tunnel, source_type: "institutional_reference", review_status: "reviewed", review_note: "1987 og 1989 kontrollert." },
+  stromsveien: { url: urls.stromsveien, source_type: "institutional_reference", review_status: "reviewed", review_note: "E6-rolle og stengning i 1992 kontrollert." }
+};
+
+const factRows = [
+  ["Når begynte Vålerenga å vokse fram som forstad?", ["Fra 1830-årene", "Etter 1950", "Før 1600"], 0, "Vålerenga vokste fram som forstad langs Strømsveien fra 1830-årene.", "em_by_historiske_lag_i_hverdagsrom", "byleksikon"],
+  ["Når ble Vålerenga innlemmet i Christiania?", ["1878", "1902", "1992"], 0, "Vålerenga ble innlemmet i Christiania ved byutvidelsen i 1878.", "em_by_historiske_lag_i_hverdagsrom", "byleksikon"],
+  ["Hva viser grensestein nr. 38?", ["Den tidligere grensen mellom Kristiania og Aker", "En middelaldergrav", "En trikkeholdeplass"], 0, "Grensestein nr. 38 er del av grensesystemet mellom Kristiania og Aker etter 1878.", "em_by_historiske_lag_i_hverdagsrom", "border"],
+  ["Hvilken boligtype er et viktig eldre spor på Vålerenga?", ["Små trehus", "Bare høyhus", "Bare industrihaller"], 0, "Små trehus er et viktig spor etter den tidlige forstadsbebyggelsen.", "em_by_boligstruktur", "byleksikon"],
+  ["Hvorfor kunne trehus vokse fram utenfor den gamle bygrensen?", ["Området lå under andre bygningsrammer enn den tette byen innenfor murtvangen", "Trehus var påbudt overalt", "Byen forbød boliger i mur"], 0, "Trehusforsteder som Vålerenga vokste fram under andre bygningsrammer utenfor den gamle byen.", "em_by_boligstruktur", "social_housing"],
+  ["Når ble Vålerenga skole tatt i bruk?", ["1895", "1848", "1979"], 0, "Vålerenga skole ble tatt i bruk i 1895.", "em_by_bygningstyper_og_typologier", "school"],
+  ["Hvem tegnet Vålerenga skole?", ["Paul Due", "Frode Rinnan", "Sverre Fehn"], 0, "Paul Due tegnet Vålerenga skole.", "em_by_bygningstyper_og_typologier", "school"],
+  ["Når ble Vålerenga kirke vigslet første gang?", ["1902", "1878", "1984"], 0, "Vålerenga kirke ble vigslet 10. oktober 1902.", "em_by_bygningstyper_og_typologier", "church"],
+  ["Hva skjedde med Vålerenga kirke i 1979?", ["Den ble hardt rammet av brann", "Den ble flyttet til Bygdøy", "Den ble bygd for første gang"], 0, "Brannen 18. september 1979 ødela store deler av kirkeinteriøret.", "em_by_historiske_lag_i_hverdagsrom", "church"],
+  ["Når ble den gjenoppbygde kirken vigslet på nytt?", ["1984", "1967", "2002"], 0, "Vålerenga kirke ble vigslet på nytt 2. desember 1984.", "em_by_historiske_lag_i_hverdagsrom", "church"],
+  ["Hvilken kunstner hadde glassmalerier og fresker som gikk tapt i kirkebrannen?", ["Emanuel Vigeland", "Edvard Munch", "Gustav Vigeland"], 0, "Emanuel Vigelands glassmalerier og fresker gikk tapt i brannen.", "em_by_historiske_lag_i_hverdagsrom", "church"],
+  ["Hvem bygde opp Synnøve Finden Ostefabrikk sammen?", ["Synnøve Finden og Pernille Holmen", "Paul Due og Holger Sinding-Larsen", "To kommunale etater"], 0, "Synnøve Finden og Pernille Holmen etablerte ostefabrikk sammen i 1928.", "em_by_historiske_lag_i_hverdagsrom", "synnove_official"],
+  ["Hvilken adresse er knyttet til tidlig Synnøve Finden-produksjon på Vålerenga?", ["Danmarks gate 41", "Karl Johans gate 1", "Akersgata 55"], 0, "Danmarks gate 41 er dokumentert som tidlig produksjonssted.", "em_by_historiske_lag_i_hverdagsrom", "synnove"],
+  ["Hva var Strømsveien i 1980-årene?", ["Del av E6 og sterkt trafikkbelastet", "Ren gågate", "Kun privat gårdsvei"], 0, "Strømsveien var del av E6 og sterkt trafikkbelastet.", "em_by_infrastruktur_mobilitet", "stromsveien"],
+  ["Når åpnet Vålerengtunnelens første løp?", ["1987", "1971", "1999"], 0, "Første løp i Vålerengtunnelen åpnet i 1987.", "em_by_infrastruktur_mobilitet", "tunnel"],
+  ["Når åpnet det andre tunnelløpet?", ["1989", "1981", "2004"], 0, "Andre løp åpnet i 1989.", "em_by_infrastruktur_mobilitet", "tunnel"],
+  ["Når ble Strømsveien stengt for gjennomgangstrafikk mellom Galgeberg og Etterstad?", ["1992", "1900", "2012"], 0, "Strømsveien ble stengt for gjennomgangstrafikk i 1992.", "em_by_infrastruktur_mobilitet", "stromsveien"],
+  ["Hva skiller People-kortet Synnøve Finden fra Brand-kortet?", ["Personkortet gjelder den historiske aktøren, Brand-kortet merkeidentiteten", "De er identiske datasett", "Brand-kortet gjelder kirken"], 0, "Person og merke er separate analyseenheter selv om de deler navn.", "em_by_historiske_lag_i_hverdagsrom", "synnove"],
+  ["Hva viser Vålerenga skole og kirke sammen?", ["At institusjoner ble bygd inn i et voksende boligområde", "At hele området var industri", "At Vålerenga manglet boligbebyggelse"], 0, "Skole og kirke kan leses som institusjonsbygg i den voksende boligveven.", "em_by_bygningstyper_og_typologier", "byleksikon"],
+  ["Hva dokumenterer fotoet av Enebakkveien 46–48 best?", ["Et konkret trehus- og gaterom", "Hele Vålerengas sosiale historie", "Den gamle kommunegrensen i full lengde"], 0, "Fotografiet dokumenterer et konkret trehus- og gaterom, ikke hele strøket.", "em_by_boligstruktur", "byleksikon"],
+  ["Hva gjør grensesteinen analytisk sterk som Object?", ["Den gjør en administrativ grense fysisk lesbar", "Den representerer alle boliger", "Den er et moderne reklameskilt"], 0, "Steinen gjør 1878-grensen fysisk lesbar uten å bli behandlet som en Structure.", "em_by_historiske_lag_i_hverdagsrom", "border"]
+];
+
+const contextRows = [
+  ["Hva er den beste måten å lese trehusene på?", ["Som del av en historisk boligform og reguleringskontekst", "Som bevis på at alle beboere var like", "Som tilfeldig dekor"], 0, "Boligform må kobles til historisk bygrense og regulering uten å utlede beboeregenskaper.", "em_by_boligstruktur", "social_housing"],
+  ["Hva må skilles når kirken analyseres etter 1979?", ["Den opprinnelige bygningen, brannbruddet og gjenreisningen", "Bare navnet", "Bare dagens farge"], 0, "Kirkens historie har både kontinuitet og et dokumentert brudd i 1979.", "em_by_historiske_lag_i_hverdagsrom", "church"],
+  ["Hvorfor er Danmarks gate 41 relevant for et byfaglig blikk?", ["Den viser produksjon inne i en boligpreget byvev", "Den viser at hele Vålerenga var fabrikk", "Den dokumenterer E6-tunnelen"], 0, "Adressen viser et konkret næringslivslag i den eldre boligveven.", "em_by_historiske_lag_i_hverdagsrom", "synnove"],
+  ["Hva kan ikke grensestein nr. 38 alene bevise?", ["Hele den historiske grensens nøyaktige forløp og alle virkninger av byutvidelsen", "At det fantes en grense", "At steinen er fysisk"], 0, "Ett objekt er et spor og må leses sammen med kart og skriftlige kilder.", "em_by_historiske_lag_i_hverdagsrom", "border"],
+  ["Hva er en kildekritisk tolkning av Strømsveien etter 1992?", ["Veien fikk mindre gjennomgangstrafikk, men dette sier ikke alene hvordan alle opplevde endringen", "Alle problemer forsvant samme dag", "Ingen trafikkendring skjedde"], 0, "Dokumentert trafikkendring må skilles fra antakelser om alle beboeres erfaringer.", "em_by_infrastruktur_mobilitet", "stromsveien"],
+  ["Hva gjør skole og kirke til Structures og ikke People?", ["De er fysiske institusjonsbygg", "De har menneskenavn", "De er bare tekster"], 0, "Skolen og kirken er fysiske bygg og behandles derfor som Structures.", "em_by_bygningstyper_og_typologier", "school"],
+  ["Hva er en god før–etter-sammenligning på Vålerenga?", ["Strømsveiens rolle før og etter tunnelen med daterte kilder", "To tilfeldige bilder uten samme tema", "En påstand uten tidsangivelse"], 0, "Før–etter-analyse krever daterte og sammenlignbare forhold.", "em_by_infrastruktur_mobilitet", "tunnel"]
+];
+
+const theoryRows = [
+  ["Hva undersøker morfologisk analyse på Vålerenga?", ["Tomter, gateprofiler, byggtyper og mønstre i byformen", "Personlige meninger uten stedsspor", "Bare kommunegrensens navn"], 0, "Morfologisk analyse gjør trehus, tomter og gater sammenlignbare som byform.", "em_by_boligstruktur", "byleksikon", "met_morfologisk_analyse", "ark_bygningstyper", "aldo_rossi", "The Architecture of the City"],
+  ["Hvordan kan Aldo Rossis perspektiv brukes forsvarlig?", ["Til å undersøke hvordan byformer og varige elementer bærer historiske lag", "Som bevis på hva alle beboere følte", "Til å erstatte lokale kilder"], 0, "Rossi kan strukturere en analyse av varighet og byform, men lokale kilder må fortsatt dokumentere Vålerenga.", "em_by_historiske_lag_i_hverdagsrom", "byleksikon", "met_morfologisk_analyse", "ark_bygningstyper", "aldo_rossi", "The Architecture of the City"],
+  ["Hva er poenget med før–etter-analyse av Strømsveien?", ["Å sammenligne dokumenterte trafikkroller før og etter tunnelen", "Å anta at alle virkninger var positive", "Å ignorere datoer"], 0, "Før–etter-analyse skiller dokumentert endring fra vurdering av virkninger.", "em_by_infrastruktur_mobilitet", "stromsveien", "met_for_etter", "ark_transformasjon", "christian_norberg_schulz", "Genius Loci"],
+  ["Hva kan feltobservasjon bidra med i dag?", ["Systematisk registrering av materialitet, bruk og romlige overganger", "Historiske fakta som ikke er synlige", "Private opplysninger om beboere"], 0, "Feltobservasjon kan dokumentere dagens synlige spor, men ikke erstatte historiske kilder.", "em_by_historiske_lag_i_hverdagsrom", "byleksikon", "met_feltobservasjon", "byliv_aapne_rom", "william_h_whyte", "The Social Life of Small Urban Spaces"],
+  ["Hvorfor bør kirke, skole og trehus leses sammen?", ["De viser ulike typologier og funksjoner i samme nabolagsvev", "De er bygget samme år", "De har samme eier"], 0, "Typologisk sammenligning viser hvordan ulike byggfunksjoner inngår i samme bystruktur.", "em_by_bygningstyper_og_typologier", "school", "met_morfologisk_analyse", "ark_bygningstyper", "aldo_rossi", "The Architecture of the City"],
+  ["Hva er en metodisk grense ved bruk av ett fotografi?", ["Det viser et avgrenset ståsted og tidspunkt, ikke hele strøket", "Det viser alle historiske perioder samtidig", "Det gjør kildekritikk unødvendig"], 0, "Et dokumentarfoto må avgrenses til motiv, ståsted og tidspunkt.", "em_by_historiske_lag_i_hverdagsrom", "byleksikon", "met_feltobservasjon", "byliv_stemning_sansning", "william_h_whyte", "The Social Life of Small Urban Spaces"],
+  ["Hva samler Vålerenga best som byanalyse?", ["Samspillet mellom grense, boligform, institusjoner, produksjon og mobilitet", "Én enkelt bygning", "Bare fotballhistorie"], 0, "Vålerenga blir analytisk sterkest når flere dokumenterte bylag leses sammen uten å blandes semantisk.", "em_by_historiske_lag_i_hverdagsrom", "byleksikon", "met_for_etter", "ark_transformasjon", "christian_norberg_schulz", "Genius Loci"]
+];
+
+const allRows = [
+  ...factRows.map((row) => [...row, "fact"]),
+  ...contextRows.map((row) => [...row, "context"]),
+  ...theoryRows.map((row) => [...row, "concept"])
+];
+if (allRows.length !== 35) throw new Error(`Quiz expected 35 rows, got ${allRows.length}`);
+
+const questions = allRows.map((row, index) => {
+  const [question, rawOptions, rawAnswerIndex, knowledge, emne_id, sourceId, maybeMethod, maybeHook, maybeThinker, maybeWork, family] =
