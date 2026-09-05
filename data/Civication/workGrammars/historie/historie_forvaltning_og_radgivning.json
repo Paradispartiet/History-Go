@@ -1,18 +1,203 @@
 {
-  "schema":"civication_work_grammar_v2","version":2,
-  "category":"historie","role_scope":"historie_forvaltning_og_radgivning","role_id":"historie_forvaltning_og_radgivning",
-  "badge_binding":{"badge_id":"historie","badge_titles":["Saksbehandler","Førstekonsulent","Rådgiver","Seniorrådgiver","Spesialrådgiver"]},
-  "work_world":"Forvaltnings- og rådgivningsarbeid der kilder, regelverk, motargumenter og mandat må bli synlige i beslutningsgrunnlaget.",
-  "task_families":["saksforberedelse","utredning","notat","regelverk","prosjektoppfolging","radgivning"],
-  "work_loops":["problem -> mandat -> kilder -> alternativer -> vurdering -> råd -> dokumentasjon","ny informasjon -> konsekvensanalyse -> revisjon -> kvalitetssikring -> nytt beslutningsgrunnlag"],
-  "pressure_axes":["frist_vs_kvalitet","politisk_onske_vs_faggrunnlag","forenkling_vs_nyanser"],
-  "practice_stories":[
-    {"id":"tynt_grunnlag","setup":"Saken må videre, men dokumentasjonen er tynn.","decision":"Marker kunnskapshull og skill sikre fakta fra antakelser.","learning":"et tydelig hull er bedre enn falsk sikkerhet"},
-    {"id":"kort_frist","setup":"Ledelsen vil ha en anbefaling samme dag.","decision":"Avgrens analysen og gjør eksplisitt hva som ikke er kontrollert.","learning":"frist endrer omfang, ikke sannhetskrav"},
-    {"id":"uenige_fagmiljoer","setup":"To fagmiljøer tolker samme materiale ulikt.","decision":"Presenter premissene og konsekvensene for begge tolkningene.","learning":"uenighet må gjøres lesbar"},
-    {"id":"uklar_hjemmel","setup":"En ønsket løsning har uklar rettslig forankring.","decision":"Skill faglig ønskelighet fra juridisk myndighet og eskaler hjemmelsspørsmålet.","learning":"råd er ikke vedtak"},
-    {"id":"sterk_bestilling","setup":"Bestilleren ønsker en entydig konklusjon.","decision":"Behold motargumenter og usikkerhet i beslutningsgrunnlaget.","learning":"bestilling styrer spørsmålet, ikke svaret"}
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "historie",
+  "role_scope": "historie_forvaltning_og_radgivning",
+  "role_id": "historie_forvaltning_og_radgivning",
+  "badge_binding": {
+    "badge_id": "historie",
+    "badge_titles": [
+      "Saksbehandler",
+      "Førstekonsulent",
+      "Rådgiver",
+      "Seniorrådgiver",
+      "Spesialrådgiver"
+    ]
+  },
+  "work_world": "Forvaltnings- og rådgivningsarbeid der kilder, regelverk, motargumenter og mandat må bli synlige i beslutningsgrunnlaget.",
+  "task_families": [
+    "saksforberedelse",
+    "utredning",
+    "notat",
+    "regelverk",
+    "prosjektoppfolging",
+    "radgivning"
   ],
-  "quality_axes":["etterprovbarhet","kildegrunnlag","mandat","alternativer","regelverk","skriftlig_presisjon"],
-  "authority_boundary":{"may":["utrede og gi råd innen mandat"],"may_not":["fatte vedtak uten myndighet","skjule vesentlige motargumenter","forfalske sikkerhet","erstatte regelverk med preferanse"]}
+  "work_loops": [
+    "problem -> mandat -> kilder -> alternativer -> vurdering -> råd -> dokumentasjon",
+    "ny informasjon -> konsekvensanalyse -> revisjon -> kvalitetssikring -> nytt beslutningsgrunnlag"
+  ],
+  "pressure_axes": [
+    "frist_vs_kvalitet",
+    "politisk_onske_vs_faggrunnlag",
+    "forenkling_vs_nyanser"
+  ],
+  "practice_stories": [
+    {
+      "id": "tynt_grunnlag",
+      "setup": "Saken må videre, men dokumentasjonen er tynn.",
+      "decision": "Marker kunnskapshull og skill sikre fakta fra antakelser.",
+      "learning": "et tydelig hull er bedre enn falsk sikkerhet"
+    },
+    {
+      "id": "kort_frist",
+      "setup": "Ledelsen vil ha en anbefaling samme dag.",
+      "decision": "Avgrens analysen og gjør eksplisitt hva som ikke er kontrollert.",
+      "learning": "frist endrer omfang, ikke sannhetskrav"
+    },
+    {
+      "id": "uenige_fagmiljoer",
+      "setup": "To fagmiljøer tolker samme materiale ulikt.",
+      "decision": "Presenter premissene og konsekvensene for begge tolkningene.",
+      "learning": "uenighet må gjøres lesbar"
+    },
+    {
+      "id": "uklar_hjemmel",
+      "setup": "En ønsket løsning har uklar rettslig forankring.",
+      "decision": "Skill faglig ønskelighet fra juridisk myndighet og eskaler hjemmelsspørsmålet.",
+      "learning": "råd er ikke vedtak"
+    },
+    {
+      "id": "sterk_bestilling",
+      "setup": "Bestilleren ønsker en entydig konklusjon.",
+      "decision": "Behold motargumenter og usikkerhet i beslutningsgrunnlaget.",
+      "learning": "bestilling styrer spørsmålet, ikke svaret"
+    }
+  ],
+  "quality_axes": [
+    "etterprovbarhet",
+    "kildegrunnlag",
+    "mandat",
+    "alternativer",
+    "regelverk",
+    "skriftlig_presisjon"
+  ],
+  "authority_boundary": {
+    "may": [
+      "utrede og gi råd innen mandat"
+    ],
+    "may_not": [
+      "fatte vedtak uten myndighet",
+      "skjule vesentlige motargumenter",
+      "forfalske sikkerhet",
+      "erstatte regelverk med preferanse"
+    ]
+  },
+  "actor_grammar": [
+    {
+      "id": "ingrid_seniorradgiver_historie_forvaltning_og_radgivning",
+      "name": "Ingrid",
+      "role": "seniorrådgiver og faglig kvalitetspartner",
+      "workplace_ids": [
+        "alternativ_og_motargumentflate",
+        "kvalitet_og_beslutningshandoff"
+      ]
+    },
+    {
+      "id": "jonas_hjemmelskontakt_historie_forvaltning_og_radgivning",
+      "name": "Jonas",
+      "role": "regelverks- og hjemmelskontakt",
+      "workplace_ids": [
+        "saksinntak_og_mandatbord",
+        "kvalitet_og_beslutningshandoff"
+      ]
+    },
+    {
+      "id": "amina_dokumentasjonskoordinator_historie_forvaltning_og_radgivning",
+      "name": "Amina",
+      "role": "dokumentasjons- og journalføringskoordinator",
+      "workplace_ids": [
+        "kilde_og_faktagrunnlag",
+        "kvalitet_og_beslutningshandoff"
+      ]
+    },
+    {
+      "id": "eirik_bestillergrensesnitt_historie_forvaltning_og_radgivning",
+      "name": "Eirik",
+      "role": "bestiller- og ledergrensesnitt",
+      "workplace_ids": [
+        "saksinntak_og_mandatbord",
+        "alternativ_og_motargumentflate"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "saksinntak_og_mandatbord",
+      "name": "Saksinntak- og mandatbordet",
+      "function": "Her registreres problem, bestilling, avgrensning, frist, beslutningseier, delegasjonsstatus, spørsmål om hjemmel og hva som må eskaleres før rådgiveren kan behandle oppgaven som et legitimt mandat."
+    },
+    {
+      "id": "kilde_og_faktagrunnlag",
+      "name": "Kilde- og faktagrunnlaget",
+      "function": "Her samles kilder, proveniens, historisk og administrativ kontekst, dokumenterte fakta, berørte perspektiver, kunnskapshull, kildekritiske merknader og hvilke opplysninger som fortsatt venter på kontroll eller innspill."
+    },
+    {
+      "id": "alternativ_og_motargumentflate",
+      "name": "Alternativ- og motargumentflaten",
+      "function": "Her sammenstilles reelle alternativer, motargumenter, faglig uenighet, konsekvenser, antakelser og eksplisitt usikkerhet slik at bestillingen ikke blir en skjult forhåndskonklusjon."
+    },
+    {
+      "id": "kvalitet_og_beslutningshandoff",
+      "name": "Kvalitets- og beslutningshandoffen",
+      "function": "Her følger rådets versjon, kvalitetssikring, åpne risikoer, hjemmel- og myndighetsstatus, eier, korrigering og hva den faktiske beslutningseieren mottar uten at rådgivning blir fremstilt som vedtak."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "saksgrunnlag_og_radgivningsspor",
+    "description": "Et vedvarende, versjonert saks- og rådgivningsobjekt som beholder problem, mandat, beslutningseier, kilder og proveniens, fakta, kunnskapshull, hjemmelsspørsmål, alternativer, motargumenter, vurdering, råd, usikkerhet, ventepunkt, kvalitetssikring, handoff og bounded rework gjennom samme sak.",
+    "states": [
+      "sak_registrert",
+      "mandat_avklart",
+      "faktagrunnlag_under_innhenting",
+      "faktagrunnlag_avgrenset",
+      "alternativer_under_vurdering",
+      "venter_pa_fakta_hjemmel_innspill_eller_mandat",
+      "rad_utkast",
+      "under_kvalitetssikring",
+      "klar_for_handoff",
+      "beslutningsgrunnlag_overlevert",
+      "revisjon",
+      "gjenapnet"
+    ],
+    "handoff_rule": "Neste aktør overtar synlig saksversjon, mandat og beslutningseier, kilder/proveniens, fakta og kunnskapshull, hjemmelsspørsmål, alternativer, vesentlige motargumenter, usikkerhet, åpne risikoer og neste eier. En handoff kan aldri gjøre råd til vedtak, slette motargumenter eller behandle venting som avklart myndighet."
+  },
+  "rhythm_contract": {
+    "loop": "problem -> mandat -> kilder/fakta -> alternativer -> vurdering -> waiting/venting på fakta, hjemmel, innspill eller mandatavklaring -> handoff -> råd -> kvalitetssikring -> revisjon/rework -> beslutningsgrunnlag -> læring",
+    "waiting_states": [
+      "fakta_eller_kildeavklaring",
+      "hjemmel_eller_regelverksavklaring",
+      "horings_eller_faginnspill",
+      "mandat_eller_delegasjonsavklaring",
+      "bestiller_eller_beslutningseieravklaring"
+    ],
+    "rework_rule": "Ny informasjon, korrigert kildeproveniens, avklart hjemmel, vesentlig hørings- eller faginnspill eller dokumentert motargument gjenåpner bare berørt faktapunkt, vurdering eller rådsdel med ny versjon, eksplisitt eier og bevart spor."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_historie_kildekritikk_institusjonell_hukommelse_og_forvaltning",
+      "badge_id": "historie",
+      "use": "History Go kan forbedre spørsmål om kildekritikk, historiografi, historisk kontekst, institusjonell hukommelse, arkivets fravær og hvordan eldre kategorier former dagens problemforståelse. `direct` jobbtilbud består uendret, men History Go og et Badge kan ikke fatte vedtak, kan ikke skape hjemmel, kan ikke gi delegert beslutningsmyndighet, kan ikke avgjøre en sak og kan ikke autentisere en kilde eller erstatte lovpålagt eller styrt kontrollprosess."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "direct",
+    "first_object": "saksgrunnlag_og_radgivningsspor",
+    "first_task": "Registrer problem, bestilling og mandat; navngi faktisk beslutningseier; skill dokumenterte fakta og kilder fra antakelser; noter kunnskapshull, hjemmelsspørsmål, alternativer, motargumenter, usikkerhet og neste kontrollpunkt før første råd formuleres."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "historie_forvaltning_og_radgivning",
+    "no_generic_fallback": true
+  }
 }

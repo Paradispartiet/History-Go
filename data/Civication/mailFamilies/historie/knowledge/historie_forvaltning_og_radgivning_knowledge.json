@@ -1,0 +1,90 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "historie",
+  "role_scope": "historie_forvaltning_og_radgivning",
+  "mail_type": "knowledge",
+  "families": [
+    {
+      "id": "historie_forvaltning_og_radgivning_history_go_forvaltningskontekst",
+      "purpose": "Trene knowledge gjennom saksgrunnlag og rådgivningsspor med eksplisitt mandat, kildegrunnlag, alternativer, motargumenter, myndighetsgrense og handoff.",
+      "learning_focus": [
+        "etterprovbarhet",
+        "mandat",
+        "kildegrunnlag",
+        "beslutningsstotte"
+      ],
+      "mails": [
+        {
+          "id": "historie_forvaltning_og_radgivning_knowledge_history_go_001",
+          "mail_type": "knowledge",
+          "mail_family": "historie_forvaltning_og_radgivning_history_go_forvaltningskontekst",
+          "role_scope": "historie_forvaltning_og_radgivning",
+          "phase": "forenoon",
+          "priority": 140,
+          "from": "Ingrid",
+          "people_ref": "ingrid_seniorradgiver_historie_forvaltning_og_radgivning",
+          "place_id": "kilde_og_faktagrunnlag",
+          "subject": "Bruk History Go til bedre kildekritikk og institusjonell hukommelse, ikke som myndighetsbevis",
+          "summary": "Saksgrunnlaget og rådgivningssporet står i et konkret knowledge-punkt: Historie-kunnskap kan gi bedre spørsmål om kilder, arkivfravær, tidligere kategorier, institusjonell hukommelse og historiografiske rammer, men spillkunnskap kan ikke overta de styrte portene i en virkelig sak. Du må oppdatere det vedvarende arbeidsobjektet slik at mandat, beslutningseier, kilder og proveniens, dokumenterte fakta, kunnskapshull, hjemmelsspørsmål, alternativer, vesentlige motargumenter, vurdering, råd, eksplisitt usikkerhet, ventepunkt og neste eier fortsatt kan rekonstrueres. En rask eller institusjonelt behagelig lukking er ikke nok: frist, hierarki, politisk preferanse og History Go kan ikke produsere fakta, skape hjemmel eller gi delegert vedtaksmyndighet. Valget må derfor beskytte skillet mellom faglig rådgivning og den formelle beslutningen, og bare gjenåpne den delen av saken som ny informasjon faktisk treffer. History Go kan heller ikke avgjøre saken eller erstatte den faktiske beslutningseieren; rådgivning, hjemmel, delegasjon og formelt vedtak må fortsatt ligge i riktig styrt prosess.",
+          "situation": [
+            "Saksgrunnlaget viser gjeldende mandat, beslutningseier, kilder/fakta, kunnskapshull, alternativer, motargumenter, usikkerhet og hvilke avklaringer som fortsatt venter.",
+            "En sosialt eller institusjonelt enklere løsning kan gi raskere fremdrift, men kan skjule om anbefalingen faktisk følger grunnlaget eller bare bestillingen.",
+            "Du må velge et grep som bevarer sporbarhet, korrekt myndighetsgrense, en eksplisitt handoff og bounded rework for neste aktør.",
+            "History Go kan forbedre spørsmål og historisk kontekst, men kan ikke avgjøre saken, skape hjemmel eller overta delegert beslutningsmyndighet."
+          ],
+          "task_domain": "historie_forvaltning_og_radgivning",
+          "competency": "sporbar_utredning_mandat_kildekritikk_og_radgivning",
+          "pressure": "frist_bestilling_og_status_vs_kilder_mandat_motargumenter_og_usikkerhet",
+          "choice_axis": "history_go_001_etterprovbarhet_vs_snarvei",
+          "consequence_axis": "history_go_001_beslutningstillit_vs_skjult_risiko",
+          "narrative_arc": "history_go",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bruk History Go som spørsmålsgenerator og behold myndighetsportene",
+              "reply": "Jeg bruker konteksten til å spørre hvilke kilder, perspektiver og historiske premisser som mangler, men lar `direct` jobbstatus stå adskilt fra hjemmel, delegasjon, vedtak og kildeautentisering.",
+              "effect": 1,
+              "tags": [
+                "mandat",
+                "sporbarhet",
+                "kildekritikk",
+                "beslutningsgrunnlag"
+              ],
+              "feedback": "Neste aktør kan se hva som er dokumentert, hva som er vurdering, hva som fortsatt er åpent og hvem som faktisk har myndighet til å beslutte. Det kan koste tid eller tydelighet på kort sikt, men beskytter etterprøvbarhet og korrigerbarhet.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Bruk Badge-status som tegn på at råd og kilder allerede er tilstrekkelig kvalifisert",
+              "reply": "Jeg lar History Go-kunnskap og høy Badge-status fungere som en snarvei for faglig sikkerhet og behandler hjemmel, delegasjon eller kildeautentisering som mindre nødvendig.",
+              "effect": -1,
+              "tags": [
+                "skjult_usikkerhet",
+                "mandatrisiko",
+                "fristpress",
+                "beslutningsrisiko"
+              ],
+              "feedback": "Dokumentet kan se enklere og mer handlekraftig ut lokalt, men saksgrunnlaget mister skillet mellom fakta, vurdering, råd og myndighet. Senere kontroll, nye innspill eller en utfordret beslutning kan da gjøre både rådet og prosessen vanskeligere å forsvare.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
