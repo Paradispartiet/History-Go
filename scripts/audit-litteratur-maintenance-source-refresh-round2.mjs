@@ -10,6 +10,7 @@ const P = Object.freeze({
   claims: 'data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/poetikk_estetikk_litteraritet/claims.json',
   materializer: 'scripts/materialize-litteratur-poetics-style-v1.mjs',
   pathway: 'data/quiz/litteratur/litteratur_subject_pathways_v1.json',
+  knowledge: 'data/knowledge/subjects/litteratur/knowledge_units.generated.json',
   coverage: 'data/fag/litteratur/litteraturvitenskap_canonical_v1/coverage_contract_v1.json',
   status: 'data/fagverk/subject_status.json'
 });
@@ -58,6 +59,7 @@ export function auditLitteraturMaintenanceSourceRefreshRound2() {
   const round1 = read(P.round1);
   const claims = read(P.claims);
   const pathway = read(P.pathway);
+  const knowledge = read(P.knowledge);
   const coverage = read(P.coverage);
   const materializer = text(P.materializer);
   const status = read(P.status).subjects.find((item) => item.id === 'litteratur');
@@ -88,29 +90,47 @@ export function auditLitteraturMaintenanceSourceRefreshRound2() {
   assert(articleIds.length === 168 && new Set(articleIds).size === 168, 'Pathway må fortsatt dekke 168 artikler nøyaktig én gang');
   assert(coverage.completion_definition?.required_area_count === 28 && coverage.completion_definition?.required_topic_count === 168, 'Coverage contract har flyttet 28/168-baseline');
 
+  assert(knowledge.schema === 'history_go_knowledge_unit_registry_v1' && knowledge.subject_id === 'litteratur', 'Generert Litteratur-Knowledge har feil identitet');
+  assert(Array.isArray(knowledge.units) && knowledge.units.length > 0, 'Generert Litteratur-Knowledge mangler units');
+
   const claimsById = new Map(claims.sources.map((x) => [x.id, x]));
   const evidenceById = new Map(evidence.source_checks.map((x) => [x.claims_source_id, x]));
   const pathwayById = new Map(pathway.sources.map((x) => [x.source_id, x]));
-  const corpus = `${JSON.stringify(claims)}\n${JSON.stringify(pathway)}\n${materializer}`;
+  const knowledgeSources = knowledge.units.flatMap((unit) => Array.isArray(unit.sources) ? unit.sources : []);
+  const knowledgeBySourceId = new Map();
+  for (const source of knowledgeSources) {
+    if (!source?.source_id) continue;
+    const list = knowledgeBySourceId.get(source.source_id) || [];
+    list.push(source);
+    knowledgeBySourceId.set(source.source_id, list);
+  }
+  const corpus = `${JSON.stringify(claims)}\n${JSON.stringify(pathway)}\n${JSON.stringify(knowledge)}\n${materializer}`;
 
   for (const [id, urls] of Object.entries(EXPECTED_REPLACEMENTS)) {
+    const sourceId = pathwaySourceId(id);
     const c = claimsById.get(id);
     const e = evidenceById.get(id);
-    const p = pathwayById.get(pathwaySourceId(id));
+    const p = pathwayById.get(sourceId);
+    const knowledgeMatches = knowledgeBySourceId.get(sourceId) || [];
     assert(c?.url === urls.current, `${id}: claims bruker ikke verifisert replacement URL`);
     assert(e?.verification_state === 'verified_authoritative_replacement' && e?.old_url === urls.old && e?.canonical_url === urls.current, `${id}: maintenance-evidensen dokumenterer ikke replacement korrekt`);
     assert(e?.action === 'replace_canonical_url', `${id}: feil maintenance action`);
     assert(p?.url === urls.current, `${id}: eksakt pathway source_id bruker ikke current URL`);
+    assert(knowledgeMatches.length > 0, `${id}: generert Knowledge mangler source_id ${sourceId}`);
+    assert(knowledgeMatches.every((x) => x.url === urls.current), `${id}: generert Knowledge bruker ikke current URL konsekvent`);
     assert(materializer.includes(urls.current), `${id}: materializer mangler current URL`);
     assert(!corpus.includes(urls.old), `${id}: gammel URL finnes fortsatt i canonical/materialized flater`);
   }
 
   for (const [id, url] of Object.entries(EXPECTED_RETAINED)) {
+    const sourceId = pathwaySourceId(id);
     const c = claimsById.get(id);
     const e = evidenceById.get(id);
-    const p = pathwayById.get(pathwaySourceId(id));
+    const p = pathwayById.get(sourceId);
+    const knowledgeMatches = knowledgeBySourceId.get(sourceId) || [];
     assert(c?.url === url && e?.canonical_url === url, `${id}: retained URL er endret`);
     assert(p?.url === url, `${id}: eksakt pathway source_id beholder ikke canonical URL`);
+    if (knowledgeMatches.length) assert(knowledgeMatches.every((x) => x.url === url), `${id}: generert Knowledge avviker fra retained URL`);
     assert(e?.action === 'retain_canonical_url' || e?.action === 'retain_until_authoritative_replacement_is_verified', `${id}: ugyldig retain-action`);
   }
 
@@ -143,6 +163,7 @@ export function auditLitteraturMaintenanceSourceRefreshRound2() {
     authoritative_replacements: countBy(evidence.source_checks, 'verified_authoritative_replacement'),
     retained_without_guessing: countBy(evidence.source_checks, 'publisher_endpoint_reachable_content_sparse_no_replacement') + countBy(evidence.source_checks, 'fetch_indeterminate_no_replacement'),
     pathway_sources: pathway.sources.length,
+    knowledge_units: knowledge.units.length,
     canonical_areas: pathway.sets.length,
     assessed_articles: new Set(articleIds).size,
     maintained_areas_total: new Set([round1.scope.area_id, evidence.scope.area_id]).size,
@@ -153,7 +174,7 @@ export function auditLitteraturMaintenanceSourceRefreshRound2() {
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
     const r = auditLitteraturMaintenanceSourceRefreshRound2();
-    console.log(`Litteratur maintenance round 2 OK: ${r.sources_checked}/12 kilder, ${r.authoritative_replacements} autoritative URL-erstatninger, ${r.retained_without_guessing} fail-closed retentions, ${r.pathway_sources} pathway-kilder og ${r.maintained_areas_total}/28 områder vedlikeholdt.`);
+    console.log(`Litteratur maintenance round 2 OK: ${r.sources_checked}/12 kilder, ${r.authoritative_replacements} autoritative URL-erstatninger, ${r.retained_without_guessing} fail-closed retentions, ${r.pathway_sources} pathway-kilder, ${r.knowledge_units} Knowledge units og ${r.maintained_areas_total}/28 områder vedlikeholdt.`);
   } catch (error) {
     console.error(`Litteratur maintenance round 2 FEIL: ${error.message}`);
     process.exitCode = 1;
