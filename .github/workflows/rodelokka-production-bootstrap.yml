@@ -165,7 +165,13 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: rodelokka-quiz-production-context-diagnostic
-          path: /tmp/rodelokka-quiz-production-context.log
+          path: |
+            /tmp/rodelokka-quiz-production-context.log
+            data/quiz/production_briefs/by/rodelokka.json
+            data/quiz/by/rodelokka_sets.json
+            data/quiz/production_context/by/rodelokka.json
+            tools/build-rodelokka-completion.mjs
+            data/quiz/manifest.json
           if-no-files-found: error
           retention-days: 1
       - name: Fail on quiz production context audit
