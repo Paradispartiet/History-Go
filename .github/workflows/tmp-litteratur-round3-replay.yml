@@ -1,15 +1,16 @@
 name: TEMP Litteratur round3 replay
 
 on:
-  pull_request:
-    types: [reopened]
+  push:
+    branches:
+      - agent/litteratur-maintenance-source-refresh-round3-20260905
 
 permissions:
   contents: write
 
 jobs:
   replay:
-    if: github.event.pull_request.number == 5708 && github.event.pull_request.head.repo.full_name == github.repository
+    if: github.ref_name == 'agent/litteratur-maintenance-source-refresh-round3-20260905'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
