@@ -1,0 +1,59 @@
+=== Role Pack audit ===
+Wrote 300 role rows to docs/CIVICATION_ROLE_PACK_INDEX.md and data/Civication/rolePackIndex.json
+=== Career gameplay audit ===
+Wrote 85 career-eligible worlds, 3 canonical non-career worlds and 1 support worlds to data/Civication/careerGameplayMatrix.json and reports/civication-career-gameplay-matrix.md.
+=== Role World rollout readiness audit ===
+WROTE: data/Civication/roleWorldRolloutReadiness.json
+WROTE: reports/civication-role-world-rollout-readiness.md
+=== Focused Kunst Kuratering og program prerequisite test ===
+node:assert:150
+  throw new AssertionError(obj);
+  ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
+  [
+    [
++     'Kurator',
++     'appointment_required'
++   ],
++   [
+      'Kuratorassistent',
+      'qualification_required'
+    ],
+    [
+-     'Kurator',
+-     'appointment_required'
+-   ],
+-   [
+      'Senior kurator',
+      'appointment_required'
+    ]
+  ]
+
+    at Object.<anonymous> (/home/runner/work/History-Go/History-Go/tests/civication-kunst-kuratering-og-program-prerequisites.test.js:57:317)
+    at Module._compile (node:internal/modules/cjs/loader:1781:14)
+    at Object..js (node:internal/modules/cjs/loader:1913:10)
+    at Module.load (node:internal/modules/cjs/loader:1505:32)
+    at Function._load (node:internal/modules/cjs/loader:1309:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+    at node:internal/main/run_main_module:36:49 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [
+    [ 'Kurator', 'appointment_required' ],
+    [ 'Kuratorassistent', 'qualification_required' ],
+    [ 'Senior kurator', 'appointment_required' ]
+  ],
+  expected: [
+    [ 'Kuratorassistent', 'qualification_required' ],
+    [ 'Kurator', 'appointment_required' ],
+    [ 'Senior kurator', 'appointment_required' ]
+  ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.2
