@@ -1,10 +1,21 @@
-file:///home/runner/work/History-Go/History-Go/tools/finalize-vaalerenga-completion.mjs:67
-  throw new Error(`Kunne ikke hente bilde (${lastStatus}): ${url}`);
-        ^
+node:internal/deps/undici/undici:15157
+      Error.captureStackTrace(err);
+            ^
 
-Error: Kunne ikke hente bilde (429): https://commons.wikimedia.org/wiki/Special:Redirect/file/Grensestein1.JPG
-    at fetchBuffer (file:///home/runner/work/History-Go/History-Go/tools/finalize-vaalerenga-completion.mjs:67:9)
+TypeError: fetch failed
+    at node:internal/deps/undici/undici:15157:13
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async fetchBuffer (file:///home/runner/work/History-Go/History-Go/tools/finalize-vaalerenga-completion.mjs:61:22)
     at async outputImage (file:///home/runner/work/History-Go/History-Go/tools/finalize-vaalerenga-completion.mjs:73:15)
-    at async file:///home/runner/work/History-Go/History-Go/tools/finalize-vaalerenga-completion.mjs:80:1
+    at async file:///home/runner/work/History-Go/History-Go/tools/finalize-vaalerenga-completion.mjs:80:1 {
+  [cause]: ConnectTimeoutError: Connect Timeout Error (attempted address: lokalhistoriewiki.no:443, timeout: 10000ms)
+      at onConnectTimeout (node:internal/deps/undici/undici:2761:28)
+      at Immediate._onImmediate (node:internal/deps/undici/undici:2742:11)
+      at process.processImmediate (node:internal/timers:484:21) {
+    code: 'UND_ERR_CONNECT_TIMEOUT',
+    [Symbol(undici.error.UND_ERR)]: true,
+    [Symbol(undici.error.UND_ERR_CONNECT_TIMEOUT)]: true
+  }
+}
 
 Node.js v22.23.2
