@@ -1,0 +1,52 @@
+name: Vålerenga temporary materialization
+
+on:
+  push:
+    branches:
+      - agent/vaalerenga-production-20260905
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.event.head_commit.message == 'Run Vålerenga materialization'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/vaalerenga-production-20260905
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Assemble and syntax-check finalizer
+        run: |
+          cat .tmp/vaalerenga-materialize/part-* > tools/finalize-vaalerenga-completion.mjs
+          node --check tools/finalize-vaalerenga-completion.mjs
+      - name: Materialize Vålerenga
+        run: node tools/finalize-vaalerenga-completion.mjs
+      - name: Validate focused production gates
+        run: |
+          node --test tests/vaalerenga-completion.test.mjs
+          npm run audit:quiz-content
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          node scripts/audit-fagverk-place-pages.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node scripts/audit-place-images.mjs --mode=changed
+      - name: Commit permanent production only
+        run: |
+          rm -f tools/finalize-vaalerenga-completion.mjs
+          rm -rf .tmp/vaalerenga-materialize
+          rm -f .github/workflows/vaalerenga-materialize-temp.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --check
+          git commit -m 'Complete Vålerenga Place production'
+          git push origin HEAD:agent/vaalerenga-production-20260905
