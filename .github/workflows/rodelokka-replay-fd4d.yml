@@ -21,20 +21,60 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci --no-audit --no-fund
-      - name: Rebase on exact main
+
+      - name: Rebase on exact main with generated-file resolution
+        shell: bash
         run: |
+          set -euo pipefail
           git fetch origin main
           test "$(git rev-parse origin/main)" = "fd4d36f72044aec588c87cee6ec25001d574e223"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          set +e
           git rebase origin/main
-      - name: Rebuild all Rodeløkka derived surfaces
+          rc=$?
+          set -e
+
+          if [ "$rc" -ne 0 ]; then
+            while [ -d "$(git rev-parse --git-path rebase-merge)" ] || [ -d "$(git rev-parse --git-path rebase-apply)" ]; do
+              conflicts="$(git diff --name-only --diff-filter=U || true)"
+              if [ -n "$conflicts" ]; then
+                bad="$(printf '%s\n' "$conflicts" | grep -v '^data/fagverk/fagverk_release\.json$' || true)"
+                if [ -n "$bad" ]; then
+                  echo "Refusing to auto-resolve non-generated rebase conflicts:"
+                  printf '%s\n' "$bad"
+                  exit 1
+                fi
+                echo "Resolving stale generated Fagverk release from fresh main; it will be regenerated after rebase."
+                git checkout --ours -- data/fagverk/fagverk_release.json
+                git add data/fagverk/fagverk_release.json
+              fi
+
+              set +e
+              GIT_EDITOR=true git rebase --continue
+              rc=$?
+              set -e
+              if [ "$rc" -eq 0 ]; then
+                break
+              fi
+            done
+          fi
+
+          if [ -d "$(git rev-parse --git-path rebase-merge)" ] || [ -d "$(git rev-parse --git-path rebase-apply)" ]; then
+            echo "Rebase did not complete cleanly"
+            exit 1
+          fi
+          test "$(git merge-base HEAD origin/main)" = "fd4d36f72044aec588c87cee6ec25001d574e223"
+
+      - name: Rebuild all Rodeløkka derived surfaces on fresh main
         run: |
           npm run places:index:build
           npm run place-open:build
           npm run epoker:places:build
           npm run quiz:context -- --category by --target rodelokka --output data/quiz/production_context/by/rodelokka.json
           node scripts/build-fagverk-release-manifest.mjs
+
       - name: Verify permanent Rodeløkka contracts
         run: |
           node scripts/validate-place-description-production-v4_2_policy.mjs --all --report reports/place-description-validation-v4_2.json
@@ -53,6 +93,7 @@ jobs:
           npm run audit:quiz-theory-binding
           npm run places:index:check
           npm run place-open:check
+
       - name: Commit clean fresh-main replay
         run: |
           rm .github/workflows/rodelokka-replay-fd4d.yml
