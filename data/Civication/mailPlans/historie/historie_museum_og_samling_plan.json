@@ -1,0 +1,202 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "version": 1,
+  "id": "historie_museum_og_samling_foundation_v1",
+  "category": "historie",
+  "role_scope": "historie_museum_og_samling",
+  "title": "Museum og samling",
+  "description": "Seksten steg fra objektinntak og proveniens til tilstand, tiltak, kuratorisk fortolkning, representasjon, utstilling, publikumsrespons og avgrenset revisjon i samme sporbare samlingsobjekt.",
+  "arc": {
+    "from": "Museum- eller samlingsarbeider som arver objekter med ulik proveniens, tilstand og dokumentasjonsstyrke samtidig som en utstilling eller samlingssak trenger beslutninger.",
+    "to": "Rolleutøver som kan holde bevaring, proveniens, tolkning, representasjon, rettigheter og mandat adskilt og sporbar gjennom venting, handoff og rework uten å gjøre prestisje eller History Go til kompetanse eller myndighet.",
+    "core_questions": [
+      "Hva vet vi om objektet, og hva er fortsatt uavklart proveniens, tilstand eller tolkning?",
+      "Hvilken kompetanse og hvilket mandat kreves før behandling, visning, rettighets- eller tilbakeføringsbeslutning?",
+      "Når skal ny skade, kilde eller berørt stemme gjenåpne bare den berørte delen av saken?"
+    ]
+  },
+  "outcome_rules": {
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 2,
+      "strikes_lte": 0
+    },
+    "fired": {
+      "stability_values": [
+        "FIRED"
+      ],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "stagnated": {
+      "autonomy_delta": -10,
+      "stability": "STAGNATED",
+      "add_branch_flags": [
+        "career_stagnated",
+        "historie_museum_og_samling_sporbarhets_og_mandatsvikt"
+      ]
+    }
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Før samlingsobjekt_proveniens_tilstands_og_tiltakslogg gjennom job med synlig proveniens, tilstand, kompetanse/mandat, kilder/tolkning, ventepunkt, handoff og avgrenset rework.",
+      "allowed_families": [
+        "historie_museum_og_samling_samlingsarbeid"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 2,
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Før samlingsobjekt_proveniens_tilstands_og_tiltakslogg gjennom people med synlig proveniens, tilstand, kompetanse/mandat, kilder/tolkning, ventepunkt, handoff og avgrenset rework.",
+      "allowed_families": [
+        "historie_museum_og_samling_profesjonelle_relasjoner"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 3,
+      "type": "knowledge",
+      "phase": "intro",
+      "step_goal": "Før samlingsobjekt_proveniens_tilstands_og_tiltakslogg gjennom knowledge med synlig proveniens, tilstand, kompetanse/mandat, kilder/tolkning, ventepunkt, handoff og avgrenset rework.",
+      "allowed_families": [
+        "historie_museum_og_samling_history_go_proveniens_og_kildekritikk"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 4,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Før samlingsobjekt_proveniens_tilstands_og_tiltakslogg gjennom job med synlig proveniens, tilstand, kompetanse/mandat, kilder/tolkning, ventepunkt, handoff og avgrenset rework.",
+      "allowed_families": [
+        "historie_museum_og_samling_samlingsarbeid"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 5,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Før samlingsobjekt_proveniens_tilstands_og_tiltakslogg gjennom people med synlig proveniens, tilstand, kompetanse/mandat, kilder/tolkning, ventepunkt, handoff og avgrenset rework.",
+      "allowed_families": [
+        "historie_museum_og_samling_profesjonelle_relasjoner"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 6,
+      "type": "conflict",
+      "phase": "advanced",
+      "step_goal": "Før samlingsobjekt_proveniens_tilstands_og_tiltakslogg gjennom conflict med synlig proveniens, tilstand, kompetanse/mandat, kilder/tolkning, ventepunkt, handoff og avgrenset rework.",
+      "allowed_families": [
+        "historie_museum_og_samling_bevaring_proveniens_og_prestisjepress"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 7,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Før samlingsobjekt_proveniens_tilstands_og_tiltakslogg gjennom job med synlig proveniens, tilstand, kompetanse/mandat, kilder/tolkning, ventepunkt, handoff og avgrenset rework.",
+      "allowed_families": [
+        "historie_museum_og_samling_samlingsarbeid"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 8,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Før samlingsobjekt_proveniens_tilstands_og_tiltakslogg gjennom people med synlig proveniens, tilstand, kompetanse/mandat, kilder/tolkning, ventepunkt, handoff og avgrenset rework.",
+      "allowed_families": [
+        "historie_museum_og_samling_profesjonelle_relasjoner"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 9,
+      "type": "event",
+      "phase": "advanced",
+      "step_goal": "Før samlingsobjekt_proveniens_tilstands_og_tiltakslogg gjennom event med synlig proveniens, tilstand, kompetanse/mandat, kilder/tolkning, ventepunkt, handoff og avgrenset rework.",
+      "allowed_families": [
+        "historie_museum_og_samling_ny_proveniens_eller_tilstand"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 10,
+      "type": "micro",
+      "phase": "advanced",
+      "step_goal": "Før samlingsobjekt_proveniens_tilstands_og_tiltakslogg gjennom micro med synlig proveniens, tilstand, kompetanse/mandat, kilder/tolkning, ventepunkt, handoff og avgrenset rework.",
+      "allowed_families": [
+        "historie_museum_og_samling_rask_sporbarhetssjekk"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 11,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Før samlingsobjekt_proveniens_tilstands_og_tiltakslogg gjennom job med synlig proveniens, tilstand, kompetanse/mandat, kilder/tolkning, ventepunkt, handoff og avgrenset rework.",
+      "allowed_families": [
+        "historie_museum_og_samling_samlingsarbeid"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 12,
+      "type": "people",
+      "phase": "mastery",
+      "step_goal": "Før samlingsobjekt_proveniens_tilstands_og_tiltakslogg gjennom people med synlig proveniens, tilstand, kompetanse/mandat, kilder/tolkning, ventepunkt, handoff og avgrenset rework.",
+      "allowed_families": [
+        "historie_museum_og_samling_profesjonelle_relasjoner"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 13,
+      "type": "followup",
+      "phase": "mastery",
+      "step_goal": "Før samlingsobjekt_proveniens_tilstands_og_tiltakslogg gjennom followup med synlig proveniens, tilstand, kompetanse/mandat, kilder/tolkning, ventepunkt, handoff og avgrenset rework.",
+      "allowed_families": [
+        "historie_museum_og_samling_revisjon_og_handoff"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 14,
+      "type": "story",
+      "phase": "mastery",
+      "step_goal": "Før samlingsobjekt_proveniens_tilstands_og_tiltakslogg gjennom story med synlig proveniens, tilstand, kompetanse/mandat, kilder/tolkning, ventepunkt, handoff og avgrenset rework.",
+      "allowed_families": [
+        "historie_museum_og_samling_museumsetikk_og_identitet"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 15,
+      "type": "consequence",
+      "phase": "mastery",
+      "step_goal": "Før samlingsobjekt_proveniens_tilstands_og_tiltakslogg gjennom consequence med synlig proveniens, tilstand, kompetanse/mandat, kilder/tolkning, ventepunkt, handoff og avgrenset rework.",
+      "allowed_families": [
+        "historie_museum_og_samling_utstillings_og_samlingsefterspill"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 16,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Før samlingsobjekt_proveniens_tilstands_og_tiltakslogg gjennom job med synlig proveniens, tilstand, kompetanse/mandat, kilder/tolkning, ventepunkt, handoff og avgrenset rework.",
+      "allowed_families": [
+        "historie_museum_og_samling_samlingsarbeid"
+      ],
+      "fallback_types": []
+    }
+  ]
+}

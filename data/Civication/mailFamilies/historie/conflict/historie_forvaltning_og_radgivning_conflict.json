@@ -1,0 +1,89 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "historie",
+  "role_scope": "historie_forvaltning_og_radgivning",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "historie_forvaltning_og_radgivning_bestilling_og_faggrunnlag",
+      "purpose": "Trene conflict gjennom saksgrunnlag og rådgivningsspor med eksplisitt mandat, kildegrunnlag, alternativer, motargumenter, myndighetsgrense og handoff.",
+      "learning_focus": [
+        "etterprovbarhet",
+        "mandat",
+        "kildegrunnlag",
+        "beslutningsstotte"
+      ],
+      "mails": [
+        {
+          "id": "historie_forvaltning_og_radgivning_conflict_bestilt_konklusjon_001",
+          "mail_type": "conflict",
+          "mail_family": "historie_forvaltning_og_radgivning_bestilling_og_faggrunnlag",
+          "role_scope": "historie_forvaltning_og_radgivning",
+          "phase": "advanced",
+          "priority": 140,
+          "from": "Eirik",
+          "people_ref": "eirik_bestillergrensesnitt_historie_forvaltning_og_radgivning",
+          "place_id": "alternativ_og_motargumentflate",
+          "subject": "En ønsket konklusjon kolliderer med vesentlige motargumenter",
+          "summary": "Saksgrunnlaget og rådgivningssporet står i et konkret conflict-punkt: Bestilleren signaliserer at bare ett alternativ er politisk eller administrativt realistisk, mens saksgrunnlaget viser motargumenter og konsekvenser som fortsatt må være synlige for beslutningseieren. Du må oppdatere det vedvarende arbeidsobjektet slik at mandat, beslutningseier, kilder og proveniens, dokumenterte fakta, kunnskapshull, hjemmelsspørsmål, alternativer, vesentlige motargumenter, vurdering, råd, eksplisitt usikkerhet, ventepunkt og neste eier fortsatt kan rekonstrueres. En rask eller institusjonelt behagelig lukking er ikke nok: frist, hierarki, politisk preferanse og History Go kan ikke produsere fakta, skape hjemmel eller gi delegert vedtaksmyndighet. Valget må derfor beskytte skillet mellom faglig rådgivning og den formelle beslutningen, og bare gjenåpne den delen av saken som ny informasjon faktisk treffer.",
+          "situation": [
+            "Saksgrunnlaget viser gjeldende mandat, beslutningseier, kilder/fakta, kunnskapshull, alternativer, motargumenter, usikkerhet og hvilke avklaringer som fortsatt venter.",
+            "En sosialt eller institusjonelt enklere løsning kan gi raskere fremdrift, men kan skjule om anbefalingen faktisk følger grunnlaget eller bare bestillingen.",
+            "Du må velge et grep som bevarer sporbarhet, korrekt myndighetsgrense, en eksplisitt handoff og bounded rework for neste aktør."
+          ],
+          "task_domain": "historie_forvaltning_og_radgivning",
+          "competency": "sporbar_utredning_mandat_kildekritikk_og_radgivning",
+          "pressure": "frist_bestilling_og_status_vs_kilder_mandat_motargumenter_og_usikkerhet",
+          "choice_axis": "bestilt_konklusjon_001_etterprovbarhet_vs_snarvei",
+          "consequence_axis": "bestilt_konklusjon_001_beslutningstillit_vs_skjult_risiko",
+          "narrative_arc": "bestilt_konklusjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Presenter det foretrukne alternativet sammen med de vesentlige motargumentene",
+              "reply": "Jeg gjør bestillerens preferanse eksplisitt som ramme, men lar motargumenter, konsekvenser og usikkerhet stå i samme beslutningsgrunnlag slik at valget fortsatt er informert.",
+              "effect": 1,
+              "tags": [
+                "mandat",
+                "sporbarhet",
+                "kildekritikk",
+                "beslutningsgrunnlag"
+              ],
+              "feedback": "Neste aktør kan se hva som er dokumentert, hva som er vurdering, hva som fortsatt er åpent og hvem som faktisk har myndighet til å beslutte. Det kan koste tid eller tydelighet på kort sikt, men beskytter etterprøvbarhet og korrigerbarhet.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Omskriv motargumentene som perifere innvendinger",
+              "reply": "Jeg gjør det foretrukne alternativet til faglig nødvendighet og reduserer motargumentene til randstoff for å unngå konflikt med bestillingen.",
+              "effect": -1,
+              "tags": [
+                "skjult_usikkerhet",
+                "mandatrisiko",
+                "fristpress",
+                "beslutningsrisiko"
+              ],
+              "feedback": "Dokumentet kan se enklere og mer handlekraftig ut lokalt, men saksgrunnlaget mister skillet mellom fakta, vurdering, råd og myndighet. Senere kontroll, nye innspill eller en utfordret beslutning kan da gjøre både rådet og prosessen vanskeligere å forsvare.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

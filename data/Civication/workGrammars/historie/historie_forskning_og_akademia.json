@@ -1,18 +1,199 @@
 {
-  "schema":"civication_work_grammar_v2","version":2,
-  "category":"historie","role_scope":"historie_forskning_og_akademia","role_id":"historie_forskning_og_akademia",
-  "badge_binding":{"badge_id":"historie","badge_titles":["Doktorgradsstudent","Forsker","Seniorforsker"]},
-  "work_world":"Historisk forskning der spørsmål, kilder, metode, historiografi og eksplisitt usikkerhet avgjør hvor sterke fortolkninger som er forsvarlige.",
-  "task_families":["forskningssporsmal","kildesok","kildekritikk","analyse","akademisk_skriving","publisering"],
-  "work_loops":["sporsmal -> kilder -> kontekst -> metode -> analyse -> argument -> motproving -> publisering","ny_kilde -> kildekritikk -> konsekvens_for_tese -> revisjon -> dokumentert_fortolkning"],
-  "pressure_axes":["tese_vs_kilder","fortelling_vs_kompleksitet","publisering_vs_modenhet"],
-  "practice_stories":[
-    {"id":"motbevis","setup":"En ny kilde svekker hovedtesen.","decision":"Revider argumentet og gjør konsekvensen synlig.","learning":"historisk forskning må tåle at gode teser faller"},
-    {"id":"fragmentert_kildegrunnlag","setup":"Materialet er ujevnt bevart og favoriserer én aktørgruppe.","decision":"Analyser fraværet som kildeproblem og begrens konklusjonen.","learning":"arkivets stillhet er ikke nøytral"},
-    {"id":"anakronisme","setup":"Et moderne begrep gjør fortiden lett å forklare, men passer dårlig i samtidens kategorier.","decision":"Bruk begrepet analytisk bare hvis forskjellen til samtidens språk forklares.","learning":"analyse må ikke viske ut historisk forskjell"},
-    {"id":"historiografisk_strid","setup":"Sterke fagtradisjoner tolker samme hendelse ulikt.","decision":"Sammenlign premisser, kilder og forklaringsnivå før egen posisjon tas.","learning":"uenighet er data om fagets begrunnelser"},
-    {"id":"publiseringspress","setup":"Manuset kan sendes nå, men en sentral kildegruppe er ikke kontrollert.","decision":"Avgrens påstanden eller gjør kontrollen før publisering.","learning":"publiseringstempo er ikke evidens"}
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "historie",
+  "role_scope": "historie_forskning_og_akademia",
+  "role_id": "historie_forskning_og_akademia",
+  "badge_binding": {
+    "badge_id": "historie",
+    "badge_titles": [
+      "Doktorgradsstudent",
+      "Forsker",
+      "Seniorforsker"
+    ]
+  },
+  "work_world": "Historisk forskning der spørsmål, kilder, metode, historiografi og eksplisitt usikkerhet avgjør hvor sterke fortolkninger som er forsvarlige.",
+  "task_families": [
+    "forskningssporsmal",
+    "kildesok",
+    "kildekritikk",
+    "analyse",
+    "akademisk_skriving",
+    "publisering"
   ],
-  "quality_axes":["kildekritikk","metode","historiografi","argumentasjon","usikkerhet","forskningsetikk"],
-  "authority_boundary":{"may":["produsere og vurdere historisk kunnskap"],"may_not":["oppfinne kilder","skjule motbevis","late som tolkning er ubestridt fakta","utøve offentlig myndighet uten mandat"]}
+  "work_loops": [
+    "sporsmal -> kilder -> kontekst -> metode -> analyse -> argument -> motproving -> publisering",
+    "ny_kilde -> kildekritikk -> konsekvens_for_tese -> revisjon -> dokumentert_fortolkning"
+  ],
+  "pressure_axes": [
+    "tese_vs_kilder",
+    "fortelling_vs_kompleksitet",
+    "publisering_vs_modenhet"
+  ],
+  "practice_stories": [
+    {
+      "id": "motbevis",
+      "setup": "En ny kilde svekker hovedtesen.",
+      "decision": "Revider argumentet og gjør konsekvensen synlig.",
+      "learning": "historisk forskning må tåle at gode teser faller"
+    },
+    {
+      "id": "fragmentert_kildegrunnlag",
+      "setup": "Materialet er ujevnt bevart og favoriserer én aktørgruppe.",
+      "decision": "Analyser fraværet som kildeproblem og begrens konklusjonen.",
+      "learning": "arkivets stillhet er ikke nøytral"
+    },
+    {
+      "id": "anakronisme",
+      "setup": "Et moderne begrep gjør fortiden lett å forklare, men passer dårlig i samtidens kategorier.",
+      "decision": "Bruk begrepet analytisk bare hvis forskjellen til samtidens språk forklares.",
+      "learning": "analyse må ikke viske ut historisk forskjell"
+    },
+    {
+      "id": "historiografisk_strid",
+      "setup": "Sterke fagtradisjoner tolker samme hendelse ulikt.",
+      "decision": "Sammenlign premisser, kilder og forklaringsnivå før egen posisjon tas.",
+      "learning": "uenighet er data om fagets begrunnelser"
+    },
+    {
+      "id": "publiseringspress",
+      "setup": "Manuset kan sendes nå, men en sentral kildegruppe er ikke kontrollert.",
+      "decision": "Avgrens påstanden eller gjør kontrollen før publisering.",
+      "learning": "publiseringstempo er ikke evidens"
+    }
+  ],
+  "quality_axes": [
+    "kildekritikk",
+    "metode",
+    "historiografi",
+    "argumentasjon",
+    "usikkerhet",
+    "forskningsetikk"
+  ],
+  "authority_boundary": {
+    "may": [
+      "produsere og vurdere historisk kunnskap"
+    ],
+    "may_not": [
+      "oppfinne kilder",
+      "skjule motbevis",
+      "late som tolkning er ubestridt fakta",
+      "utøve offentlig myndighet uten mandat"
+    ]
+  },
+  "actor_grammar": [
+    {
+      "id": "elin_hovedveileder_historie_forskning_og_akademia",
+      "name": "Elin",
+      "role": "hovedveileder og seniorforsker",
+      "workplace_ids": [
+        "forskningsdesign_og_sporsmalsbord"
+      ]
+    },
+    {
+      "id": "joakim_arkivar_historie_forskning_og_akademia",
+      "name": "Joakim",
+      "role": "arkivar og kildeforvalter",
+      "workplace_ids": [
+        "arkiv_og_kildespor"
+      ]
+    },
+    {
+      "id": "sara_fagfelle_historie_forskning_og_akademia",
+      "name": "Sara",
+      "role": "fagfelle og metodekollega",
+      "workplace_ids": [
+        "analyse_og_motprovingsflate",
+        "fagfelle_og_publiseringsflate"
+      ]
+    },
+    {
+      "id": "malin_forskningsadministrator_historie_forskning_og_akademia",
+      "name": "Malin",
+      "role": "forskningsadministrator og prosjektgrensesnitt",
+      "workplace_ids": [
+        "forskningsdesign_og_sporsmalsbord",
+        "fagfelle_og_publiseringsflate"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "forskningsdesign_og_sporsmalsbord",
+      "name": "Forskningsdesign- og spørsmålsbordet",
+      "function": "Her versjoneres forskningsspørsmål, avgrensning, hypotese, kildeplan, metode, etikkstatus, kompetansebehov og eksplisitte kriterier for hva som kan styrke eller svekke argumentet før analysen lukkes."
+    },
+    {
+      "id": "arkiv_og_kildespor",
+      "name": "Arkiv- og kildesporet",
+      "function": "Her registreres proveniens, arkivstruktur, tilgang, representasjon, fravær, kildekritiske merknader og hvilke deler av materialet som fortsatt venter på kontroll eller ikke kan nås."
+    },
+    {
+      "id": "analyse_og_motprovingsflate",
+      "name": "Analyse- og motprøvingsflaten",
+      "function": "Her kobles kildeutdrag, metodevalg, historiografi, rivalforklaringer, motbevis og usikkerhet til konkrete påstander slik at en tese kan revideres uten at tidligere spor forsvinner."
+    },
+    {
+      "id": "fagfelle_og_publiseringsflate",
+      "name": "Fagfelle- og publiseringsflaten",
+      "function": "Her følger manusversjon, review-kommentarer, svar, revisjon, siteringskontroll, etikk- og rettighetsstatus og publiseringsbeslutning den samme arbeidskjeden fram til aksept, avslag eller gjenåpning."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "forskningslogg_og_manusspor",
+    "description": "Et vedvarende, versjonert forskningsobjekt som beholder spørsmål, hypotese, kildeliste og proveniens, arkivhull, metode, historiografi, motbevis, usikkerhet, etikkstatus, veilednings- og fagfellekommentarer, ventepunkt, handoff, manusversjon og avgrenset rework gjennom samme kunnskapsproduksjon.",
+    "states": [
+      "sporsmal_definert",
+      "kildesok",
+      "kildegrunnlag_avgrenset",
+      "under_analyse",
+      "venter_pa_kilde_eller_avklaring",
+      "under_motproving",
+      "manusutkast",
+      "under_fagfellevurdering",
+      "revisjon",
+      "publiseringsklart",
+      "publisert",
+      "gjenapnet"
+    ],
+    "handoff_rule": "Neste aktør overtar synlig manus- og loggversjon, kildeproveniens, metodevalg, motbevis, usikkerhet, etikkstatus, uløste review-kommentarer og neste eier; en handoff kan aldri slette tidligere kildespor eller gjøre venting til godkjenning."
+  },
+  "rhythm_contract": {
+    "loop": "sporsmal -> kildesok -> kildekritikk -> analyse -> motproving -> waiting/venting på kilde, tilgang, veiledning, etikk eller review -> handoff -> skriving -> fagfellevurdering -> revisjon/rework -> publisering -> læring",
+    "waiting_states": [
+      "kildetilgang",
+      "veiledningsavklaring",
+      "etikk_eller_personvern",
+      "fagfellevurdering",
+      "finansiering_eller_ressursavklaring"
+    ],
+    "rework_rule": "Ny kilde, motbevis, fagfellekritikk, etikkproblem eller korrigert sitering gjenåpner bare berørt påstand eller seksjon med ny versjon, eksplisitt eier og bevart endringsspor."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_historie_kildekritikk_historiografi_og_kontekst",
+      "badge_id": "historie",
+      "use": "History Go kan forbedre spørsmål gjennom kildekritikk, historiografi, kontekst, arkivets stillhet og rivalforklaringer. Et Badge er ikke en grad og er ikke kvalifikasjon for `qualification_required`; det kan ikke autentisere en kilde, kan ikke gi etikk- eller personverngodkjenning, kan ikke avgjøre et historisk funn, tildele finansiering, ansettelse, akademisk rang eller publiseringsaksept."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "qualification_required",
+    "first_object": "forskningslogg_og_manusspor",
+    "first_task": "Registrer forskningsspørsmål, avgrensning, foreløpig kildekart og proveniens, metode, historiografisk posisjon, motbevis/alternativ forklaring, usikkerhet, etikkstatus og neste kontrollpunkt; marker eksplisitt hva History Go ikke beviser eller kvalifiserer deg til."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "historie_forskning_og_akademia",
+    "no_generic_fallback": true
+  }
 }
