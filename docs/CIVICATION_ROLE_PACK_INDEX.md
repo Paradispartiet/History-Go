@@ -15,14 +15,14 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 
 ## Sammendrag
 
-- complete_reference_v2: 62
+- complete_reference_v2: 63
 - complete_reference: 0
 - playable_v1: 1
 - partial_pack: 23
 - role_model_only: 182
 - generated_stub: 0
 - broken_mapping: 0
-- missing: 32
+- missing: 31
 
 ## Rolleindeks
 
@@ -91,7 +91,7 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | kunst | gallerimedarbeider | kunst_gallerimedarbeider | Gallerimedarbeider | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | kunst | gallerist | kunst_gallerist | Gallerist | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | kunst | konservator | kunst_konservator | Konservator | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
-| kunst | kunst_konservering_og_samling | kunst_konservering_og_samling | kunst_konservering_og_samling | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
+| kunst | kunst_konservering_og_samling | kunst_konservering_og_samling | Konservering og samlingsbevaring | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | kunst | kunst_kuratering_og_program | kunst_kuratering_og_program | kunst_kuratering_og_program | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | kunst | kunst_museumsledelse | kunst_museumsledelse | kunst_museumsledelse | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | kunst | kunst_publikum_og_formidling | kunst_publikum_og_formidling | kunst_publikum_og_formidling | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |

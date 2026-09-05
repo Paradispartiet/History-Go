@@ -692,6 +692,36 @@
       "verification_required": true
     },
     {
+      "id": "eva_senior_konservator_kunst_konservering_og_samling",
+      "name": "eva_senior_konservator_kunst_konservering_og_samling",
+      "category": "kunst",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/kunst/kunst_konservering_og_samling.json"
+      ],
+      "scenario_roles": [
+        "kunst_konservering_og_samling"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "jonas_registrar_samlingsforvalter_kunst_konservering_og_samling",
+      "name": "jonas_registrar_samlingsforvalter_kunst_konservering_og_samling",
+      "category": "kunst",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/kunst/kunst_konservering_og_samling.json"
+      ],
+      "scenario_roles": [
+        "kunst_konservering_og_samling"
+      ],
+      "verification_required": true
+    },
+    {
       "id": "liv_institusjonsdirektor_kunstledelse",
       "name": "liv_institusjonsdirektor_kunstledelse",
       "category": "kunst",
@@ -707,6 +737,21 @@
       "verification_required": true
     },
     {
+      "id": "mikkel_utstillingsproduksjon_kunst_konservering_og_samling",
+      "name": "mikkel_utstillingsproduksjon_kunst_konservering_og_samling",
+      "category": "kunst",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/kunst/kunst_konservering_og_samling.json"
+      ],
+      "scenario_roles": [
+        "kunst_konservering_og_samling"
+      ],
+      "verification_required": true
+    },
+    {
       "id": "nora_utstillingsprodusent",
       "name": "nora_utstillingsprodusent",
       "category": "kunst",
@@ -718,6 +763,21 @@
       ],
       "scenario_roles": [
         "kunst_utstillingsproduksjon"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "samira_utlan_transport_klima_kunst_konservering_og_samling",
+      "name": "samira_utlan_transport_klima_kunst_konservering_og_samling",
+      "category": "kunst",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/kunst/kunst_konservering_og_samling.json"
+      ],
+      "scenario_roles": [
+        "kunst_konservering_og_samling"
       ],
       "verification_required": true
     },
@@ -862,6 +922,40 @@
         "direct": 0,
         "strong": 0,
         "contextual": 87,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "kunst_konservering_og_samling",
+      "role_scope": "kunst_konservering_og_samling",
+      "title": "Konservering og samlingsbevaring",
+      "source": "data/Civication/roleModels/kunst/kunst_konservering_og_samling.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [
+          "christian_ringnes",
+          "hans_rasmus_astrup",
+          "rolf_stenersen"
+        ],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "konservering",
+        "samling",
+        "samlingsbevaring"
+      ],
+      "resolved_counts": {
+        "total": 87,
+        "existing_place_people": 87,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 3,
+        "contextual": 84,
         "excluded": 0
       }
     },

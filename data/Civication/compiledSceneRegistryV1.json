@@ -169,6 +169,15 @@
     "data/Civication/mailFamilies/historie/followup/historie_museum_og_samling_followup.json",
     "data/Civication/mailFamilies/historie/knowledge/historie_museum_og_samling_knowledge.json",
     "data/Civication/mailFamilies/historie/consequence/historie_museum_og_samling_consequence.json",
+    "data/Civication/mailFamilies/kunst/job/kunst_konservering_og_samling_job.json",
+    "data/Civication/mailFamilies/kunst/people/kunst_konservering_og_samling_people.json",
+    "data/Civication/mailFamilies/kunst/story/kunst_konservering_og_samling_story.json",
+    "data/Civication/mailFamilies/kunst/conflict/kunst_konservering_og_samling_conflict.json",
+    "data/Civication/mailFamilies/kunst/event/kunst_konservering_og_samling_event.json",
+    "data/Civication/mailFamilies/kunst/micro/kunst_konservering_og_samling_micro.json",
+    "data/Civication/mailFamilies/kunst/followup/kunst_konservering_og_samling_followup.json",
+    "data/Civication/mailFamilies/kunst/knowledge/kunst_konservering_og_samling_knowledge.json",
+    "data/Civication/mailFamilies/kunst/consequence/kunst_konservering_og_samling_consequence.json",
     "data/Civication/mailFamilies/kunst/job/kunst_kunstnerisk_ledelse_job.json",
     "data/Civication/mailFamilies/kunst/people/kunst_kunstnerisk_ledelse_people.json",
     "data/Civication/mailFamilies/kunst/story/kunst_kunstnerisk_ledelse_story.json",
@@ -59048,6 +59057,2046 @@
       },
       "source_hash": "5cd5161874169c7041909db457a8f734fc0aad576ab4865466a63f5badecd88c",
       "source_path": "data/Civication/mailFamilies/historie/story/historie_museum_og_samling_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_faglig_grense_vs_rask_risikoaksept",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Skill faglig risiko fra prestisje og eskaler riktig",
+            "reply": "Jeg velger å skill faglig risiko fra prestisje og eskaler riktig. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre.",
+            "tags": [
+              "sporbarhet",
+              "tilstand",
+              "bevaring",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "La prestisjen definere akseptabel risiko",
+            "reply": "Jeg velger å la prestisjen definere akseptabel risiko. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "material_tilstand_behandling_risiko_og_sporbar_handoff",
+        "consequence_axis": "langsiktig_materialintegritet_vs_skade_og_tillitstap",
+        "from": "Mikkel",
+        "id": "kunst_konservering_og_samling_conflict_prestisjeverk_under_press_001",
+        "mail_family": "kunst_konservering_og_samling_bevaring_vs_prestisje_og_frist",
+        "mail_type": "conflict",
+        "narrative_arc": "prestisjeverk_under_press",
+        "people_ref": "mikkel_utstillingsproduksjon_kunst_konservering_og_samling",
+        "phase": "workday",
+        "place_id": "utstilling_og_monteringsflate",
+        "pressure": "prestisje_frist_og_estetikk_vs_bevaring_kompetanse_og_dokumentasjon",
+        "priority": 140,
+        "role_scope": "kunst_konservering_og_samling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/conflict/kunst_konservering_og_samling_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+          "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+          "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+        ],
+        "subject": "Prestisjeverket kolliderer med dokumentert materialrisiko",
+        "summary": "Ledelsen ønsker å beholde et profilert kunstverk i åpningen selv om konservatorfaglig stopp, lysdose og håndteringsgrense krever at planen endres. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører.",
+        "task_domain": "kunstkonservering_og_samlingsbevaring"
+      },
+      "id": "kunst_konservering_og_samling_conflict_prestisjeverk_under_press_001",
+      "mail_type": "conflict",
+      "role_scope": "kunst_konservering_og_samling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Skill faglig risiko fra prestisje og eskaler riktig",
+            "reply": "Jeg velger å skill faglig risiko fra prestisje og eskaler riktig. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "La prestisjen definere akseptabel risiko",
+            "reply": "Jeg velger å la prestisjen definere akseptabel risiko. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+            "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+            "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+          ],
+          "subject": "Prestisjeverket kolliderer med dokumentert materialrisiko",
+          "summary": "Ledelsen ønsker å beholde et profilert kunstverk i åpningen selv om konservatorfaglig stopp, lysdose og håndteringsgrense krever at planen endres. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_konservering_og_samling_conflict_prestisjeverk_under_press_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "utstilling_og_monteringsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_konservering_og_samling_conflict_prestisjeverk_under_press_001",
+          "source_path": "data/Civication/mailFamilies/kunst/conflict/kunst_konservering_og_samling_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_konservering_og_samling.mail.kunst_konservering_og_samling_conflict_prestisjeverk_under_press_001",
+        "version": 1
+      },
+      "source_hash": "2dc285b232134455aad4bdfaaac2f8c83adf7efb2445202d2d45893686dd9d31",
+      "source_path": "data/Civication/mailFamilies/kunst/conflict/kunst_konservering_og_samling_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_faglig_grense_vs_rask_risikoaksept",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Rekonstruer sporet og korriger eksplisitt",
+            "reply": "Jeg velger å rekonstruer sporet og korriger eksplisitt. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre.",
+            "tags": [
+              "sporbarhet",
+              "tilstand",
+              "bevaring",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "Fyll hullene med antakelser for å beskytte tidligere beslutning",
+            "reply": "Jeg velger å fyll hullene med antakelser for å beskytte tidligere beslutning. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "material_tilstand_behandling_risiko_og_sporbar_handoff",
+        "consequence_axis": "langsiktig_materialintegritet_vs_skade_og_tillitstap",
+        "from": "Eva",
+        "id": "kunst_konservering_og_samling_consequence_senere_skade_og_dokumentasjon_001",
+        "mail_family": "kunst_konservering_og_samling_senere_skade_og_sporbarhet",
+        "mail_type": "consequence",
+        "narrative_arc": "senere_skade_og_dokumentasjon",
+        "people_ref": "eva_senior_konservator_kunst_konservering_og_samling",
+        "phase": "workday",
+        "place_id": "tilstands_material_og_behandlingsatelier",
+        "pressure": "prestisje_frist_og_estetikk_vs_bevaring_kompetanse_og_dokumentasjon",
+        "priority": 140,
+        "role_scope": "kunst_konservering_og_samling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/consequence/kunst_konservering_og_samling_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+          "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+          "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+        ],
+        "subject": "En gammel snarvei kommer tilbake i ny skadeanalyse",
+        "summary": "Mangelfull dokumentasjon fra et tidligere inngrep gjør det nå vanskeligere å skille gammel skade, gammel behandling og ny påvirkning når kunstverket vurderes på nytt. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører.",
+        "task_domain": "kunstkonservering_og_samlingsbevaring"
+      },
+      "id": "kunst_konservering_og_samling_consequence_senere_skade_og_dokumentasjon_001",
+      "mail_type": "consequence",
+      "role_scope": "kunst_konservering_og_samling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Rekonstruer sporet og korriger eksplisitt",
+            "reply": "Jeg velger å rekonstruer sporet og korriger eksplisitt. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "Fyll hullene med antakelser for å beskytte tidligere beslutning",
+            "reply": "Jeg velger å fyll hullene med antakelser for å beskytte tidligere beslutning. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+            "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+            "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+          ],
+          "subject": "En gammel snarvei kommer tilbake i ny skadeanalyse",
+          "summary": "Mangelfull dokumentasjon fra et tidligere inngrep gjør det nå vanskeligere å skille gammel skade, gammel behandling og ny påvirkning når kunstverket vurderes på nytt. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_konservering_og_samling_consequence_senere_skade_og_dokumentasjon_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "tilstands_material_og_behandlingsatelier",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_konservering_og_samling_consequence_senere_skade_og_dokumentasjon_001",
+          "source_path": "data/Civication/mailFamilies/kunst/consequence/kunst_konservering_og_samling_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_konservering_og_samling.mail.kunst_konservering_og_samling_consequence_senere_skade_og_dokumentasjon_001",
+        "version": 1
+      },
+      "source_hash": "cdbc6c8e1353de9365f25a35f2b34bb148002a8205ba6a01dbf66cebb422fe9e",
+      "source_path": "data/Civication/mailFamilies/kunst/consequence/kunst_konservering_og_samling_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_faglig_grense_vs_rask_risikoaksept",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Gjenåpne berørt tilstands- og transportspor",
+            "reply": "Jeg velger å gjenåpne berørt tilstands- og transportspor. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre.",
+            "tags": [
+              "sporbarhet",
+              "tilstand",
+              "bevaring",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "La mottaket fortsette fordi kassen ser hel ut",
+            "reply": "Jeg velger å la mottaket fortsette fordi kassen ser hel ut. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "material_tilstand_behandling_risiko_og_sporbar_handoff",
+        "consequence_axis": "langsiktig_materialintegritet_vs_skade_og_tillitstap",
+        "from": "Samira",
+        "id": "kunst_konservering_og_samling_event_transporthendelse_001",
+        "mail_family": "kunst_konservering_og_samling_ny_skade_analyse_eller_transporthendelse",
+        "mail_type": "event",
+        "narrative_arc": "transporthendelse",
+        "people_ref": "samira_utlan_transport_klima_kunst_konservering_og_samling",
+        "phase": "workday",
+        "place_id": "utlan_transport_og_klimabord",
+        "pressure": "prestisje_frist_og_estetikk_vs_bevaring_kompetanse_og_dokumentasjon",
+        "priority": 140,
+        "role_scope": "kunst_konservering_og_samling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/event/kunst_konservering_og_samling_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+          "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+          "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+        ],
+        "subject": "En transporthendelse krever ny tilstandskontroll",
+        "summary": "Et støt registreres under transport, og hendelsen treffer akkurat den delen av objektet som tidligere hadde svak struktur selv om emballasjen ellers ser uskadd ut. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører.",
+        "task_domain": "kunstkonservering_og_samlingsbevaring"
+      },
+      "id": "kunst_konservering_og_samling_event_transporthendelse_001",
+      "mail_type": "event",
+      "role_scope": "kunst_konservering_og_samling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Gjenåpne berørt tilstands- og transportspor",
+            "reply": "Jeg velger å gjenåpne berørt tilstands- og transportspor. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "La mottaket fortsette fordi kassen ser hel ut",
+            "reply": "Jeg velger å la mottaket fortsette fordi kassen ser hel ut. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+            "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+            "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+          ],
+          "subject": "En transporthendelse krever ny tilstandskontroll",
+          "summary": "Et støt registreres under transport, og hendelsen treffer akkurat den delen av objektet som tidligere hadde svak struktur selv om emballasjen ellers ser uskadd ut. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_konservering_og_samling_event_transporthendelse_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "utlan_transport_og_klimabord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_konservering_og_samling_event_transporthendelse_001",
+          "source_path": "data/Civication/mailFamilies/kunst/event/kunst_konservering_og_samling_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_konservering_og_samling.mail.kunst_konservering_og_samling_event_transporthendelse_001",
+        "version": 1
+      },
+      "source_hash": "62cc80b701edff99c1c49c26d25dcd77115695ad157166dccba7ac063af7e9a4",
+      "source_path": "data/Civication/mailFamilies/kunst/event/kunst_konservering_og_samling_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_faglig_grense_vs_rask_risikoaksept",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Gjenåpne bare berørte felt og avhengige vilkår",
+            "reply": "Jeg velger å gjenåpne bare berørte felt og avhengige vilkår. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre.",
+            "tags": [
+              "sporbarhet",
+              "tilstand",
+              "bevaring",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "Start hele saken på nytt eller ignorer funnet",
+            "reply": "Jeg velger å start hele saken på nytt eller ignorer funnet. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "material_tilstand_behandling_risiko_og_sporbar_handoff",
+        "consequence_axis": "langsiktig_materialintegritet_vs_skade_og_tillitstap",
+        "from": "Eva",
+        "id": "kunst_konservering_og_samling_followup_etterkontroll_rework_001",
+        "mail_family": "kunst_konservering_og_samling_etterkontroll_og_rework",
+        "mail_type": "followup",
+        "narrative_arc": "etterkontroll_rework",
+        "people_ref": "eva_senior_konservator_kunst_konservering_og_samling",
+        "phase": "workday",
+        "place_id": "tilstands_material_og_behandlingsatelier",
+        "pressure": "prestisje_frist_og_estetikk_vs_bevaring_kompetanse_og_dokumentasjon",
+        "priority": 140,
+        "role_scope": "kunst_konservering_og_samling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/followup/kunst_konservering_og_samling_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+          "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+          "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+        ],
+        "subject": "Etterkontrollen viser en avgrenset endring",
+        "summary": "Etter behandling viser kontrollfoto og ny måling en endring i ett materiale, mens resten av behandlings- og utlånsgrunnlaget fortsatt står. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører.",
+        "task_domain": "kunstkonservering_og_samlingsbevaring"
+      },
+      "id": "kunst_konservering_og_samling_followup_etterkontroll_rework_001",
+      "mail_type": "followup",
+      "role_scope": "kunst_konservering_og_samling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Gjenåpne bare berørte felt og avhengige vilkår",
+            "reply": "Jeg velger å gjenåpne bare berørte felt og avhengige vilkår. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "Start hele saken på nytt eller ignorer funnet",
+            "reply": "Jeg velger å start hele saken på nytt eller ignorer funnet. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+            "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+            "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+          ],
+          "subject": "Etterkontrollen viser en avgrenset endring",
+          "summary": "Etter behandling viser kontrollfoto og ny måling en endring i ett materiale, mens resten av behandlings- og utlånsgrunnlaget fortsatt står. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_konservering_og_samling_followup_etterkontroll_rework_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "tilstands_material_og_behandlingsatelier",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_konservering_og_samling_followup_etterkontroll_rework_001",
+          "source_path": "data/Civication/mailFamilies/kunst/followup/kunst_konservering_og_samling_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_konservering_og_samling.mail.kunst_konservering_og_samling_followup_etterkontroll_rework_001",
+        "version": 1
+      },
+      "source_hash": "6bb726b715f09a7c56898d30c3e0fd3e28efcc6fae12ac507a1c808b37b57725",
+      "source_path": "data/Civication/mailFamilies/kunst/followup/kunst_konservering_og_samling_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_faglig_grense_vs_rask_risikoaksept",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Skill observasjon, analyse og tidligere inngrep før behandling",
+            "reply": "Jeg velger å skill observasjon, analyse og tidligere inngrep før behandling. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre.",
+            "tags": [
+              "sporbarhet",
+              "tilstand",
+              "bevaring",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "Behandle overflaten som om dagens utseende er originaltilstanden",
+            "reply": "Jeg velger å behandle overflaten som om dagens utseende er originaltilstanden. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "material_tilstand_behandling_risiko_og_sporbar_handoff",
+        "consequence_axis": "langsiktig_materialintegritet_vs_skade_og_tillitstap",
+        "from": "Eva",
+        "id": "kunst_konservering_og_samling_job_eldre_restaurering_002",
+        "mail_family": "kunst_konservering_og_samling_bevaringsarbeid",
+        "mail_type": "job",
+        "narrative_arc": "eldre_restaurering",
+        "people_ref": "eva_senior_konservator_kunst_konservering_og_samling",
+        "phase": "workday",
+        "place_id": "tilstands_material_og_behandlingsatelier",
+        "pressure": "prestisje_frist_og_estetikk_vs_bevaring_kompetanse_og_dokumentasjon",
+        "priority": 139,
+        "role_scope": "kunst_konservering_og_samling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/job/kunst_konservering_og_samling_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+          "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+          "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+        ],
+        "subject": "En eldre restaurering skjuler originalt materiale",
+        "summary": "Undersøkelsen viser flere lag med tidligere behandling, men dokumentasjonen gjør det uklart hvilke partier som er originale, retusjert eller senere overmalt. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører.",
+        "task_domain": "kunstkonservering_og_samlingsbevaring"
+      },
+      "id": "kunst_konservering_og_samling_job_eldre_restaurering_002",
+      "mail_type": "job",
+      "role_scope": "kunst_konservering_og_samling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Skill observasjon, analyse og tidligere inngrep før behandling",
+            "reply": "Jeg velger å skill observasjon, analyse og tidligere inngrep før behandling. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "Behandle overflaten som om dagens utseende er originaltilstanden",
+            "reply": "Jeg velger å behandle overflaten som om dagens utseende er originaltilstanden. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+            "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+            "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+          ],
+          "subject": "En eldre restaurering skjuler originalt materiale",
+          "summary": "Undersøkelsen viser flere lag med tidligere behandling, men dokumentasjonen gjør det uklart hvilke partier som er originale, retusjert eller senere overmalt. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_konservering_og_samling_job_eldre_restaurering_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "tilstands_material_og_behandlingsatelier",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_konservering_og_samling_job_eldre_restaurering_002",
+          "source_path": "data/Civication/mailFamilies/kunst/job/kunst_konservering_og_samling_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_konservering_og_samling.mail.kunst_konservering_og_samling_job_eldre_restaurering_002",
+        "version": 1
+      },
+      "source_hash": "d5ba8dc0a5910f4f2a55ad722bb3e7c4cac453980b6fe1794a62956ccbf73cca",
+      "source_path": "data/Civication/mailFamilies/kunst/job/kunst_konservering_og_samling_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_faglig_grense_vs_rask_risikoaksept",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Endre monteringen etter bevaringsvilkårene",
+            "reply": "Jeg velger å endre monteringen etter bevaringsvilkårene. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre.",
+            "tags": [
+              "sporbarhet",
+              "tilstand",
+              "bevaring",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "Behold løsningen fordi publikumsopplevelsen er bedre",
+            "reply": "Jeg velger å behold løsningen fordi publikumsopplevelsen er bedre. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "material_tilstand_behandling_risiko_og_sporbar_handoff",
+        "consequence_axis": "langsiktig_materialintegritet_vs_skade_og_tillitstap",
+        "from": "Mikkel",
+        "id": "kunst_konservering_og_samling_job_montering_og_lys_004",
+        "mail_family": "kunst_konservering_og_samling_bevaringsarbeid",
+        "mail_type": "job",
+        "narrative_arc": "montering_og_lys",
+        "people_ref": "mikkel_utstillingsproduksjon_kunst_konservering_og_samling",
+        "phase": "workday",
+        "place_id": "utstilling_og_monteringsflate",
+        "pressure": "prestisje_frist_og_estetikk_vs_bevaring_kompetanse_og_dokumentasjon",
+        "priority": 137,
+        "role_scope": "kunst_konservering_og_samling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/job/kunst_konservering_og_samling_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+          "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+          "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+        ],
+        "subject": "Monteringsplanen bryter lys- og håndteringsgrensen",
+        "summary": "Produksjonen har laget en visuelt sterk plassering, men lysdose, avstand og praktisk håndtering er ikke i tråd med dokumenterte bevaringsvilkår. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører.",
+        "task_domain": "kunstkonservering_og_samlingsbevaring"
+      },
+      "id": "kunst_konservering_og_samling_job_montering_og_lys_004",
+      "mail_type": "job",
+      "role_scope": "kunst_konservering_og_samling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Endre monteringen etter bevaringsvilkårene",
+            "reply": "Jeg velger å endre monteringen etter bevaringsvilkårene. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "Behold løsningen fordi publikumsopplevelsen er bedre",
+            "reply": "Jeg velger å behold løsningen fordi publikumsopplevelsen er bedre. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+            "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+            "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+          ],
+          "subject": "Monteringsplanen bryter lys- og håndteringsgrensen",
+          "summary": "Produksjonen har laget en visuelt sterk plassering, men lysdose, avstand og praktisk håndtering er ikke i tråd med dokumenterte bevaringsvilkår. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_konservering_og_samling_job_montering_og_lys_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "utstilling_og_monteringsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_konservering_og_samling_job_montering_og_lys_004",
+          "source_path": "data/Civication/mailFamilies/kunst/job/kunst_konservering_og_samling_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_konservering_og_samling.mail.kunst_konservering_og_samling_job_montering_og_lys_004",
+        "version": 1
+      },
+      "source_hash": "3f3d6672eab9c5184cc4738292b86e7630785e054dd0a0d18aa5fe5f602b691a",
+      "source_path": "data/Civication/mailFamilies/kunst/job/kunst_konservering_og_samling_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_faglig_grense_vs_rask_risikoaksept",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Hold utlånet åpent til kravene er dokumentert",
+            "reply": "Jeg velger å hold utlånet åpent til kravene er dokumentert. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre.",
+            "tags": [
+              "sporbarhet",
+              "tilstand",
+              "bevaring",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "Godkjenn transporten fordi mottakeren er anerkjent",
+            "reply": "Jeg velger å godkjenn transporten fordi mottakeren er anerkjent. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "material_tilstand_behandling_risiko_og_sporbar_handoff",
+        "consequence_axis": "langsiktig_materialintegritet_vs_skade_og_tillitstap",
+        "from": "Samira",
+        "id": "kunst_konservering_og_samling_job_risikofylt_utlan_003",
+        "mail_family": "kunst_konservering_og_samling_bevaringsarbeid",
+        "mail_type": "job",
+        "narrative_arc": "risikofylt_utlan",
+        "people_ref": "samira_utlan_transport_klima_kunst_konservering_og_samling",
+        "phase": "workday",
+        "place_id": "utlan_transport_og_klimabord",
+        "pressure": "prestisje_frist_og_estetikk_vs_bevaring_kompetanse_og_dokumentasjon",
+        "priority": 138,
+        "role_scope": "kunst_konservering_og_samling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/job/kunst_konservering_og_samling_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+          "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+          "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+        ],
+        "subject": "Utlånet mangler dokumentert mottaksklima",
+        "summary": "Långiverplanen er prestisjefylt, men facility report og stabile klimaopplysninger mangler akkurat der transport- og visningsrisikoen må vurderes. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører.",
+        "task_domain": "kunstkonservering_og_samlingsbevaring"
+      },
+      "id": "kunst_konservering_og_samling_job_risikofylt_utlan_003",
+      "mail_type": "job",
+      "role_scope": "kunst_konservering_og_samling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Hold utlånet åpent til kravene er dokumentert",
+            "reply": "Jeg velger å hold utlånet åpent til kravene er dokumentert. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "Godkjenn transporten fordi mottakeren er anerkjent",
+            "reply": "Jeg velger å godkjenn transporten fordi mottakeren er anerkjent. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+            "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+            "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+          ],
+          "subject": "Utlånet mangler dokumentert mottaksklima",
+          "summary": "Långiverplanen er prestisjefylt, men facility report og stabile klimaopplysninger mangler akkurat der transport- og visningsrisikoen må vurderes. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_konservering_og_samling_job_risikofylt_utlan_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "utlan_transport_og_klimabord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_konservering_og_samling_job_risikofylt_utlan_003",
+          "source_path": "data/Civication/mailFamilies/kunst/job/kunst_konservering_og_samling_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_konservering_og_samling.mail.kunst_konservering_og_samling_job_risikofylt_utlan_003",
+        "version": 1
+      },
+      "source_hash": "1b7ee3a1e477c763b29254f757d40851bbb7c48a3734d39404ed5bb9acadc24e",
+      "source_path": "data/Civication/mailFamilies/kunst/job/kunst_konservering_og_samling_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_faglig_grense_vs_rask_risikoaksept",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Stans håndteringen og dokumenter neste kontrollpunkt",
+            "reply": "Jeg velger å stans håndteringen og dokumenter neste kontrollpunkt. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre.",
+            "tags": [
+              "sporbarhet",
+              "tilstand",
+              "bevaring",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "Fortsett monteringen fordi verket må inn i åpningen",
+            "reply": "Jeg velger å fortsett monteringen fordi verket må inn i åpningen. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "material_tilstand_behandling_risiko_og_sporbar_handoff",
+        "consequence_axis": "langsiktig_materialintegritet_vs_skade_og_tillitstap",
+        "from": "Eva",
+        "id": "kunst_konservering_og_samling_job_skjort_hovedverk_001",
+        "mail_family": "kunst_konservering_og_samling_bevaringsarbeid",
+        "mail_type": "job",
+        "narrative_arc": "skjort_hovedverk",
+        "people_ref": "eva_senior_konservator_kunst_konservering_og_samling",
+        "phase": "workday",
+        "place_id": "tilstands_material_og_behandlingsatelier",
+        "pressure": "prestisje_frist_og_estetikk_vs_bevaring_kompetanse_og_dokumentasjon",
+        "priority": 140,
+        "role_scope": "kunst_konservering_og_samling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/job/kunst_konservering_og_samling_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+          "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+          "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+        ],
+        "subject": "Hovedverket tåler ikke planlagt håndtering",
+        "summary": "Baseline-tilstanden viser skjør struktur og aktiv skade som gjør den planlagte monteringen risikabel før ny analyse og behandlingsvurdering. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører.",
+        "task_domain": "kunstkonservering_og_samlingsbevaring"
+      },
+      "id": "kunst_konservering_og_samling_job_skjort_hovedverk_001",
+      "mail_type": "job",
+      "role_scope": "kunst_konservering_og_samling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Stans håndteringen og dokumenter neste kontrollpunkt",
+            "reply": "Jeg velger å stans håndteringen og dokumenter neste kontrollpunkt. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "Fortsett monteringen fordi verket må inn i åpningen",
+            "reply": "Jeg velger å fortsett monteringen fordi verket må inn i åpningen. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+            "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+            "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+          ],
+          "subject": "Hovedverket tåler ikke planlagt håndtering",
+          "summary": "Baseline-tilstanden viser skjør struktur og aktiv skade som gjør den planlagte monteringen risikabel før ny analyse og behandlingsvurdering. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_konservering_og_samling_job_skjort_hovedverk_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "tilstands_material_og_behandlingsatelier",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_konservering_og_samling_job_skjort_hovedverk_001",
+          "source_path": "data/Civication/mailFamilies/kunst/job/kunst_konservering_og_samling_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_konservering_og_samling.mail.kunst_konservering_og_samling_job_skjort_hovedverk_001",
+        "version": 1
+      },
+      "source_hash": "c23d409773f554ef443020df68fb30e4cbc2b2f8277b7aa502edfdb9553f07f1",
+      "source_path": "data/Civication/mailFamilies/kunst/job/kunst_konservering_og_samling_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_faglig_grense_vs_rask_risikoaksept",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Bruk sporet til bedre spørsmål og kildekontroll",
+            "reply": "Jeg velger å bruk sporet til bedre spørsmål og kildekontroll. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre.",
+            "tags": [
+              "sporbarhet",
+              "tilstand",
+              "bevaring",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "Behandle badge og kontekst som diagnose og godkjenning",
+            "reply": "Jeg velger å behandle badge og kontekst som diagnose og godkjenning. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "material_tilstand_behandling_risiko_og_sporbar_handoff",
+        "consequence_axis": "langsiktig_materialintegritet_vs_skade_og_tillitstap",
+        "from": "Jonas",
+        "id": "kunst_konservering_og_samling_knowledge_history_go_grense_001",
+        "mail_family": "kunst_konservering_og_samling_history_go_materialitet_og_kildekritikk",
+        "mail_type": "knowledge",
+        "narrative_arc": "history_go_grense",
+        "people_ref": "jonas_registrar_samlingsforvalter_kunst_konservering_og_samling",
+        "phase": "workday",
+        "place_id": "magasin_og_objektlogg",
+        "pressure": "prestisje_frist_og_estetikk_vs_bevaring_kompetanse_og_dokumentasjon",
+        "priority": 140,
+        "role_scope": "kunst_konservering_og_samling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/knowledge/kunst_konservering_og_samling_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+          "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+          "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+        ],
+        "subject": "History Go gir objektbiografi, ikke tilstandsdiagnose",
+        "summary": "Et History Go-spor synliggjør kunsthistorisk kontekst, teknikk og en mulig tidligere utstillingshistorie, men fysisk tilstand, behandlingskompetanse og utlånsstatus må fortsatt dokumenteres i fag- og avtalesporet. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører.",
+        "task_domain": "kunstkonservering_og_samlingsbevaring"
+      },
+      "id": "kunst_konservering_og_samling_knowledge_history_go_grense_001",
+      "mail_type": "knowledge",
+      "role_scope": "kunst_konservering_og_samling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Bruk sporet til bedre spørsmål og kildekontroll",
+            "reply": "Jeg velger å bruk sporet til bedre spørsmål og kildekontroll. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "Behandle badge og kontekst som diagnose og godkjenning",
+            "reply": "Jeg velger å behandle badge og kontekst som diagnose og godkjenning. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+            "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+            "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+          ],
+          "subject": "History Go gir objektbiografi, ikke tilstandsdiagnose",
+          "summary": "Et History Go-spor synliggjør kunsthistorisk kontekst, teknikk og en mulig tidligere utstillingshistorie, men fysisk tilstand, behandlingskompetanse og utlånsstatus må fortsatt dokumenteres i fag- og avtalesporet. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_konservering_og_samling_knowledge_history_go_grense_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "magasin_og_objektlogg",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_konservering_og_samling_knowledge_history_go_grense_001",
+          "source_path": "data/Civication/mailFamilies/kunst/knowledge/kunst_konservering_og_samling_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_konservering_og_samling.mail.kunst_konservering_og_samling_knowledge_history_go_grense_001",
+        "version": 1
+      },
+      "source_hash": "9347d07b811d608b663ad2ca16e9112fe831a33e0552289ca8a3710149de8eb0",
+      "source_path": "data/Civication/mailFamilies/kunst/knowledge/kunst_konservering_og_samling_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_faglig_grense_vs_rask_risikoaksept",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Marker skillet og neste kontrollpunkt før uttak",
+            "reply": "Jeg velger å marker skillet og neste kontrollpunkt før uttak. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre.",
+            "tags": [
+              "sporbarhet",
+              "tilstand",
+              "bevaring",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "La antakelsen stå som fakta for å spare tid",
+            "reply": "Jeg velger å la antakelsen stå som fakta for å spare tid. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "material_tilstand_behandling_risiko_og_sporbar_handoff",
+        "consequence_axis": "langsiktig_materialintegritet_vs_skade_og_tillitstap",
+        "from": "Jonas",
+        "id": "kunst_konservering_og_samling_micro_tre_minutters_handoff_001",
+        "mail_family": "kunst_konservering_og_samling_rask_tilstands_og_handoff_sjekk",
+        "mail_type": "micro",
+        "narrative_arc": "tre_minutters_handoff",
+        "people_ref": "jonas_registrar_samlingsforvalter_kunst_konservering_og_samling",
+        "phase": "workday",
+        "place_id": "magasin_og_objektlogg",
+        "pressure": "prestisje_frist_og_estetikk_vs_bevaring_kompetanse_og_dokumentasjon",
+        "priority": 140,
+        "role_scope": "kunst_konservering_og_samling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/micro/kunst_konservering_og_samling_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+          "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+          "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+        ],
+        "subject": "Tre minutter før verket tas ut av magasinet",
+        "summary": "Loggen viser siste tilstand og plassering, men mangler eksplisitt om ett eldre inngrep er bekreftet eller bare antatt rett før kunstverket skal overleveres til behandling. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører.",
+        "task_domain": "kunstkonservering_og_samlingsbevaring"
+      },
+      "id": "kunst_konservering_og_samling_micro_tre_minutters_handoff_001",
+      "mail_type": "micro",
+      "role_scope": "kunst_konservering_og_samling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Marker skillet og neste kontrollpunkt før uttak",
+            "reply": "Jeg velger å marker skillet og neste kontrollpunkt før uttak. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "La antakelsen stå som fakta for å spare tid",
+            "reply": "Jeg velger å la antakelsen stå som fakta for å spare tid. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+            "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+            "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+          ],
+          "subject": "Tre minutter før verket tas ut av magasinet",
+          "summary": "Loggen viser siste tilstand og plassering, men mangler eksplisitt om ett eldre inngrep er bekreftet eller bare antatt rett før kunstverket skal overleveres til behandling. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_konservering_og_samling_micro_tre_minutters_handoff_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "magasin_og_objektlogg",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_konservering_og_samling_micro_tre_minutters_handoff_001",
+          "source_path": "data/Civication/mailFamilies/kunst/micro/kunst_konservering_og_samling_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_konservering_og_samling.mail.kunst_konservering_og_samling_micro_tre_minutters_handoff_001",
+        "version": 1
+      },
+      "source_hash": "3418ad4a08c6d266f822ec7590e5b5fcd590c0e3398a2ec711c899025b7a6668",
+      "source_path": "data/Civication/mailFamilies/kunst/micro/kunst_konservering_og_samling_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_faglig_grense_vs_rask_risikoaksept",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Respekter stoppet og gjør venting og eier eksplisitt",
+            "reply": "Jeg velger å respekter stoppet og gjør venting og eier eksplisitt. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre.",
+            "tags": [
+              "sporbarhet",
+              "tilstand",
+              "bevaring",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "Omgå stoppet for å rekke pressevisningen",
+            "reply": "Jeg velger å omgå stoppet for å rekke pressevisningen. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "material_tilstand_behandling_risiko_og_sporbar_handoff",
+        "consequence_axis": "langsiktig_materialintegritet_vs_skade_og_tillitstap",
+        "from": "Eva",
+        "id": "kunst_konservering_og_samling_people_konservatorfaglig_stopp_001",
+        "mail_family": "kunst_konservering_og_samling_faglige_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "konservatorfaglig_stopp",
+        "people_ref": "eva_senior_konservator_kunst_konservering_og_samling",
+        "phase": "workday",
+        "place_id": "tilstands_material_og_behandlingsatelier",
+        "pressure": "prestisje_frist_og_estetikk_vs_bevaring_kompetanse_og_dokumentasjon",
+        "priority": 140,
+        "role_scope": "kunst_konservering_og_samling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/people/kunst_konservering_og_samling_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+          "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+          "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+        ],
+        "subject": "Senior konservator stopper behandlingen",
+        "summary": "Eva ber teamet stoppe videre inngrep til analysegrunnlag og behandlingskompetanse er avklart, mens utstillingsplanen ønsker en kosmetisk forbedring før pressevisning. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører.",
+        "task_domain": "kunstkonservering_og_samlingsbevaring"
+      },
+      "id": "kunst_konservering_og_samling_people_konservatorfaglig_stopp_001",
+      "mail_type": "people",
+      "role_scope": "kunst_konservering_og_samling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Respekter stoppet og gjør venting og eier eksplisitt",
+            "reply": "Jeg velger å respekter stoppet og gjør venting og eier eksplisitt. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "Omgå stoppet for å rekke pressevisningen",
+            "reply": "Jeg velger å omgå stoppet for å rekke pressevisningen. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+            "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+            "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+          ],
+          "subject": "Senior konservator stopper behandlingen",
+          "summary": "Eva ber teamet stoppe videre inngrep til analysegrunnlag og behandlingskompetanse er avklart, mens utstillingsplanen ønsker en kosmetisk forbedring før pressevisning. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_konservering_og_samling_people_konservatorfaglig_stopp_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "tilstands_material_og_behandlingsatelier",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_konservering_og_samling_people_konservatorfaglig_stopp_001",
+          "source_path": "data/Civication/mailFamilies/kunst/people/kunst_konservering_og_samling_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_konservering_og_samling.mail.kunst_konservering_og_samling_people_konservatorfaglig_stopp_001",
+        "version": 1
+      },
+      "source_hash": "14a44f4c808206139a5f32a2b036d4971697758076bbadfd3d086b53d0b9550d",
+      "source_path": "data/Civication/mailFamilies/kunst/people/kunst_konservering_og_samling_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_faglig_grense_vs_rask_risikoaksept",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Gjør stopp, eier og alternativ plan eksplisitt",
+            "reply": "Jeg velger å gjør stopp, eier og alternativ plan eksplisitt. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre.",
+            "tags": [
+              "sporbarhet",
+              "tilstand",
+              "bevaring",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "La laget montere og håp at faglig godkjenning kommer etterpå",
+            "reply": "Jeg velger å la laget montere og håp at faglig godkjenning kommer etterpå. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "material_tilstand_behandling_risiko_og_sporbar_handoff",
+        "consequence_axis": "langsiktig_materialintegritet_vs_skade_og_tillitstap",
+        "from": "Mikkel",
+        "id": "kunst_konservering_og_samling_people_produksjonspress_004",
+        "mail_family": "kunst_konservering_og_samling_faglige_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "produksjonspress",
+        "people_ref": "mikkel_utstillingsproduksjon_kunst_konservering_og_samling",
+        "phase": "workday",
+        "place_id": "utstilling_og_monteringsflate",
+        "pressure": "prestisje_frist_og_estetikk_vs_bevaring_kompetanse_og_dokumentasjon",
+        "priority": 137,
+        "role_scope": "kunst_konservering_og_samling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/people/kunst_konservering_og_samling_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+          "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+          "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+        ],
+        "subject": "Monteringslaget venter på en avgjørelse",
+        "summary": "Mikkel trenger et klart svar før rigging, men behandling og visningsgrense er fortsatt uavklart og en muntlig antakelse vil bli kostbar å reversere senere. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører.",
+        "task_domain": "kunstkonservering_og_samlingsbevaring"
+      },
+      "id": "kunst_konservering_og_samling_people_produksjonspress_004",
+      "mail_type": "people",
+      "role_scope": "kunst_konservering_og_samling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Gjør stopp, eier og alternativ plan eksplisitt",
+            "reply": "Jeg velger å gjør stopp, eier og alternativ plan eksplisitt. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "La laget montere og håp at faglig godkjenning kommer etterpå",
+            "reply": "Jeg velger å la laget montere og håp at faglig godkjenning kommer etterpå. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+            "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+            "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+          ],
+          "subject": "Monteringslaget venter på en avgjørelse",
+          "summary": "Mikkel trenger et klart svar før rigging, men behandling og visningsgrense er fortsatt uavklart og en muntlig antakelse vil bli kostbar å reversere senere. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_konservering_og_samling_people_produksjonspress_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "utstilling_og_monteringsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_konservering_og_samling_people_produksjonspress_004",
+          "source_path": "data/Civication/mailFamilies/kunst/people/kunst_konservering_og_samling_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_konservering_og_samling.mail.kunst_konservering_og_samling_people_produksjonspress_004",
+        "version": 1
+      },
+      "source_hash": "eb75a30ca83a84f8604c3c8f1e469b1cef52a8ec43ef8141a0d6e9961f3417a5",
+      "source_path": "data/Civication/mailFamilies/kunst/people/kunst_konservering_og_samling_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_faglig_grense_vs_rask_risikoaksept",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Korriger loggen og behold tidligere versjoner",
+            "reply": "Jeg velger å korriger loggen og behold tidligere versjoner. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre.",
+            "tags": [
+              "sporbarhet",
+              "tilstand",
+              "bevaring",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "La fysisk verk gå videre mens registreringen tas senere",
+            "reply": "Jeg velger å la fysisk verk gå videre mens registreringen tas senere. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "material_tilstand_behandling_risiko_og_sporbar_handoff",
+        "consequence_axis": "langsiktig_materialintegritet_vs_skade_og_tillitstap",
+        "from": "Jonas",
+        "id": "kunst_konservering_og_samling_people_registrar_handoff_002",
+        "mail_family": "kunst_konservering_og_samling_faglige_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "registrar_handoff",
+        "people_ref": "jonas_registrar_samlingsforvalter_kunst_konservering_og_samling",
+        "phase": "workday",
+        "place_id": "magasin_og_objektlogg",
+        "pressure": "prestisje_frist_og_estetikk_vs_bevaring_kompetanse_og_dokumentasjon",
+        "priority": 139,
+        "role_scope": "kunst_konservering_og_samling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/people/kunst_konservering_og_samling_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+          "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+          "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+        ],
+        "subject": "Objektloggen og fysisk verk er ute av takt",
+        "summary": "Jonas finner at den aktive loggversjonen mangler et tidligere inngrep og en nylig plassering, slik at neste behandler ellers ville arve feil premisser. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører.",
+        "task_domain": "kunstkonservering_og_samlingsbevaring"
+      },
+      "id": "kunst_konservering_og_samling_people_registrar_handoff_002",
+      "mail_type": "people",
+      "role_scope": "kunst_konservering_og_samling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Korriger loggen og behold tidligere versjoner",
+            "reply": "Jeg velger å korriger loggen og behold tidligere versjoner. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "La fysisk verk gå videre mens registreringen tas senere",
+            "reply": "Jeg velger å la fysisk verk gå videre mens registreringen tas senere. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+            "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+            "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+          ],
+          "subject": "Objektloggen og fysisk verk er ute av takt",
+          "summary": "Jonas finner at den aktive loggversjonen mangler et tidligere inngrep og en nylig plassering, slik at neste behandler ellers ville arve feil premisser. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_konservering_og_samling_people_registrar_handoff_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "magasin_og_objektlogg",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_konservering_og_samling_people_registrar_handoff_002",
+          "source_path": "data/Civication/mailFamilies/kunst/people/kunst_konservering_og_samling_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_konservering_og_samling.mail.kunst_konservering_og_samling_people_registrar_handoff_002",
+        "version": 1
+      },
+      "source_hash": "c7ed8ada58a881613627b17f72b91e6721beebfc3449711bfe432e06b62c0de5",
+      "source_path": "data/Civication/mailFamilies/kunst/people/kunst_konservering_og_samling_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_faglig_grense_vs_rask_risikoaksept",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Replanlegg transporten og spor ventingen",
+            "reply": "Jeg velger å replanlegg transporten og spor ventingen. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre.",
+            "tags": [
+              "sporbarhet",
+              "tilstand",
+              "bevaring",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "Senk kravene muntlig for å beholde datoen",
+            "reply": "Jeg velger å senk kravene muntlig for å beholde datoen. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "material_tilstand_behandling_risiko_og_sporbar_handoff",
+        "consequence_axis": "langsiktig_materialintegritet_vs_skade_og_tillitstap",
+        "from": "Samira",
+        "id": "kunst_konservering_og_samling_people_transportkrav_003",
+        "mail_family": "kunst_konservering_og_samling_faglige_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "transportkrav",
+        "people_ref": "samira_utlan_transport_klima_kunst_konservering_og_samling",
+        "phase": "workday",
+        "place_id": "utlan_transport_og_klimabord",
+        "pressure": "prestisje_frist_og_estetikk_vs_bevaring_kompetanse_og_dokumentasjon",
+        "priority": 138,
+        "role_scope": "kunst_konservering_og_samling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/people/kunst_konservering_og_samling_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+          "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+          "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+        ],
+        "subject": "Transportøren kan ikke møte alle kravene",
+        "summary": "Samira får beskjed om at valgt transportopplegg ikke kan dokumentere vibrasjons- og klimakravene som tilstandsvurderingen bygger på. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører.",
+        "task_domain": "kunstkonservering_og_samlingsbevaring"
+      },
+      "id": "kunst_konservering_og_samling_people_transportkrav_003",
+      "mail_type": "people",
+      "role_scope": "kunst_konservering_og_samling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Replanlegg transporten og spor ventingen",
+            "reply": "Jeg velger å replanlegg transporten og spor ventingen. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "Senk kravene muntlig for å beholde datoen",
+            "reply": "Jeg velger å senk kravene muntlig for å beholde datoen. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+            "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+            "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+          ],
+          "subject": "Transportøren kan ikke møte alle kravene",
+          "summary": "Samira får beskjed om at valgt transportopplegg ikke kan dokumentere vibrasjons- og klimakravene som tilstandsvurderingen bygger på. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_konservering_og_samling_people_transportkrav_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "utlan_transport_og_klimabord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_konservering_og_samling_people_transportkrav_003",
+          "source_path": "data/Civication/mailFamilies/kunst/people/kunst_konservering_og_samling_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_konservering_og_samling.mail.kunst_konservering_og_samling_people_transportkrav_003",
+        "version": 1
+      },
+      "source_hash": "b359937b87d07a17316107f395436b9b422a3b9edb50e3d3a0f2662d71fa8330",
+      "source_path": "data/Civication/mailFamilies/kunst/people/kunst_konservering_og_samling_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_faglig_grense_vs_rask_risikoaksept",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Bevar sporbarheten og begrunn hvert nytt inngrep",
+            "reply": "Jeg velger å bevar sporbarheten og begrunn hvert nytt inngrep. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre.",
+            "tags": [
+              "sporbarhet",
+              "tilstand",
+              "bevaring",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "Fjern de synlige sporene fordi de ser feil ut",
+            "reply": "Jeg velger å fjern de synlige sporene fordi de ser feil ut. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "material_tilstand_behandling_risiko_og_sporbar_handoff",
+        "consequence_axis": "langsiktig_materialintegritet_vs_skade_og_tillitstap",
+        "from": "Eva",
+        "id": "kunst_konservering_og_samling_story_inngrep_som_objektbiografi_001",
+        "mail_family": "kunst_konservering_og_samling_inngrep_objektbiografi_og_ansvar",
+        "mail_type": "story",
+        "narrative_arc": "inngrep_som_objektbiografi",
+        "people_ref": "eva_senior_konservator_kunst_konservering_og_samling",
+        "phase": "workday",
+        "place_id": "tilstands_material_og_behandlingsatelier",
+        "pressure": "prestisje_frist_og_estetikk_vs_bevaring_kompetanse_og_dokumentasjon",
+        "priority": 140,
+        "role_scope": "kunst_konservering_og_samling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/story/kunst_konservering_og_samling_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+          "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+          "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+        ],
+        "subject": "Hva forteller de gamle inngrepene om verket?",
+        "summary": "En tidligere restaurering har blitt en del av kunstverkets fysiske historie, men teamet må skille dokumentert behandlingshistorikk fra ønsket om å føre verket tilbake til et antatt originalutseende. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører.",
+        "task_domain": "kunstkonservering_og_samlingsbevaring"
+      },
+      "id": "kunst_konservering_og_samling_story_inngrep_som_objektbiografi_001",
+      "mail_type": "story",
+      "role_scope": "kunst_konservering_og_samling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+            "id": "A",
+            "label": "Bevar sporbarheten og begrunn hvert nytt inngrep",
+            "reply": "Jeg velger å bevar sporbarheten og begrunn hvert nytt inngrep. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+            "id": "B",
+            "label": "Fjern de synlige sporene fordi de ser feil ut",
+            "reply": "Jeg velger å fjern de synlige sporene fordi de ser feil ut. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+            "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+            "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+          ],
+          "subject": "Hva forteller de gamle inngrepene om verket?",
+          "summary": "En tidligere restaurering har blitt en del av kunstverkets fysiske historie, men teamet må skille dokumentert behandlingshistorikk fra ønsket om å føre verket tilbake til et antatt originalutseende. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_konservering_og_samling_story_inngrep_som_objektbiografi_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "tilstands_material_og_behandlingsatelier",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_konservering_og_samling_story_inngrep_som_objektbiografi_001",
+          "source_path": "data/Civication/mailFamilies/kunst/story/kunst_konservering_og_samling_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_konservering_og_samling.mail.kunst_konservering_og_samling_story_inngrep_som_objektbiografi_001",
+        "version": 1
+      },
+      "source_hash": "fe6746392a30fa658e71d61008d32bfcd6a1615c6e2c5e519173aa3d94318209",
+      "source_path": "data/Civication/mailFamilies/kunst/story/kunst_konservering_og_samling_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -237771,7 +239820,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "36c85c6ac6b6c251db563ba388624daf3fb4ef8ed88476bfd8f4e409a9743502",
+  "registry_hash": "aaba9555f0b436d7d5300374ba96181638f80912c9d0d55fb00a7157acee5c77",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -238168,6 +240217,23 @@
       "historie_museum_og_samling_followup_etter_dialog_001",
       "historie_museum_og_samling_knowledge_history_go_grense_001",
       "historie_museum_og_samling_consequence_senere_skade_og_tillit_001"
+    ],
+    "kunst/kunst_konservering_og_samling": [
+      "kunst_konservering_og_samling_job_skjort_hovedverk_001",
+      "kunst_konservering_og_samling_job_eldre_restaurering_002",
+      "kunst_konservering_og_samling_job_risikofylt_utlan_003",
+      "kunst_konservering_og_samling_job_montering_og_lys_004",
+      "kunst_konservering_og_samling_people_konservatorfaglig_stopp_001",
+      "kunst_konservering_og_samling_people_registrar_handoff_002",
+      "kunst_konservering_og_samling_people_transportkrav_003",
+      "kunst_konservering_og_samling_people_produksjonspress_004",
+      "kunst_konservering_og_samling_story_inngrep_som_objektbiografi_001",
+      "kunst_konservering_og_samling_conflict_prestisjeverk_under_press_001",
+      "kunst_konservering_og_samling_event_transporthendelse_001",
+      "kunst_konservering_og_samling_micro_tre_minutters_handoff_001",
+      "kunst_konservering_og_samling_followup_etterkontroll_rework_001",
+      "kunst_konservering_og_samling_knowledge_history_go_grense_001",
+      "kunst_konservering_og_samling_consequence_senere_skade_og_dokumentasjon_001"
     ],
     "kunst/kunst_kunstnerisk_ledelse": [
       "kunstnerisk_ledelse_job_programforslag_001",
@@ -239439,11 +241505,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 530,
+    "compiled_source_file_count": 539,
     "ignored_source_file_count": 1,
-    "input_file_count": 531,
-    "role_count": 64,
-    "scene_count": 1510,
+    "input_file_count": 540,
+    "role_count": 65,
+    "scene_count": 1525,
     "shadowed_duplicate_count": 0
   },
   "version": 1

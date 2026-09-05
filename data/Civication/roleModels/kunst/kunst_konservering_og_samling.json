@@ -1,11 +1,254 @@
 {
-  "schema":"civication_role_model_v2","version":2,
-  "source":{"badge_file":"data/badges/kunst.json","badge_id":"kunst","evidence":"data/Civication/kunstCareerLifeEvidence.json"},
-  "category":"kunst","role_scope":"kunst_konservering_og_samling","role_id":"kunst_konservering_og_samling","title":"Konservering og samlingsbevaring",
-  "badge_titles":["Konservator","Senior konservator"],
-  "core_narrative":["Bevare kunstverk og samlinger gjennom dokumentert materialforståelse, tilstandsvurdering, forebyggende konservering og reversible eller faglig forsvarlige tiltak."],
-  "work_life":{"daily_work":["tilstandsvurdering","materialanalyse","forebyggende konservering","behandlingsplan","utlånsvurdering","dokumentasjon"],"responsibilities":["verkets fysiske integritet","sporbar dokumentasjon","risikovurdering","faglig begrunnede inngrep","langsiktig samlingsbevaring"],"work_environment":["museum","konserveringsatelier","magasin","utstilling","laboratorium","transport- og utlånssituasjoner"]},
-  "authority_boundaries":{"can":["vurdere bevaringsrisiko","foreslå og gjennomføre tiltak innen kompetanse og mandat","stanse håndtering ved uakseptabel risiko","sette faglige vilkår for utlån og visning"],"cannot":["utføre inngrep uten dokumentert faglig grunnlag","endre verkets uttrykk av estetiske preferanser alene","skjule skade eller usikkerhet","overstyre eierskap, forsikring eller juridiske beslutninger uten mandat"]},
-  "competence_axes":["materialkunnskap","tilstandsvurdering","forebyggende konservering","behandlingsetikk","dokumentasjon","risiko og miljøkontroll"],
-  "ideal_type_problems":["verk er for skjørt for planlagt visning","tidligere restaurering skjuler originalt materiale","utlån krever risikofylt transport","klimakrav kolliderer med publikumsplan","leder ønsker kosmetisk inngrep uten faglig grunnlag"]
+  "schema": "civication_role_model_v2",
+  "version": 2,
+  "source": {
+    "badge_file": "data/badges/kunst.json",
+    "badge_id": "kunst",
+    "evidence": "data/Civication/kunstCareerLifeEvidence.json"
+  },
+  "category": "kunst",
+  "role_scope": "kunst_konservering_og_samling",
+  "role_id": "kunst_konservering_og_samling",
+  "title": "Konservering og samlingsbevaring",
+  "badge_titles": [
+    "Konservator",
+    "Senior konservator"
+  ],
+  "core_narrative": [
+    "Bevare kunstverk og samlinger gjennom dokumentert materialforståelse, tilstandsvurdering, forebyggende konservering og reversible eller faglig forsvarlige tiltak.",
+    "Rollen fører hvert kunstverk gjennom et spor der objektidentitet, proveniens, materialtilstand, tidligere inngrep, analysegrunnlag, behandlingsvalg, reversibilitet, klima, utlån, transport, montering, venting og handoff kan rekonstrueres. Frist, prestisje, estetisk preferanse eller History Go kan aldri erstatte dokumentert konservatorfaglig kompetanse, avtale eller mandat."
+  ],
+  "work_life": {
+    "daily_work": [
+      "Dokumenterer objektidentitet, materialer, tilstand og tidligere inngrep før behandling, transport eller visning.",
+      "Skiller observasjon, analysegrunnlag, risikovurdering, behandlingsforslag og faktisk utført inngrep i en versjonert logg.",
+      "Håndterer venting på analyse, kvalifisert behandler, forsikring, utlånsavtale, facility report, transport eller klimakrav med tydelig eier og handoff.",
+      "Gjenåpner bare berørte deler av behandlings-, utlåns- eller visningssporet når ny skade, analyse, transporthendelse eller miljødata endrer grunnlaget."
+    ],
+    "responsibilities": [
+      "kunstverkets fysiske integritet og dokumentert tilstand",
+      "material- og behandlingssporbarhet",
+      "forebyggende konservering, klima og håndtering",
+      "utlåns-, transport- og visningsvilkår innen faglig mandat"
+    ],
+    "work_environment": [
+      "museum, magasin, konserveringsatelier, laboratorium, transport- og utlånssituasjoner, montering og utstilling"
+    ],
+    "status_position": [
+      "Konservatorfaglig standing kan gi større ansvar, men gir aldri mer evidens, juridisk eierskap, forsikringsmyndighet eller kompetanse uten den konkrete kvalifikasjonen og utnevnelsen som tittelen krever."
+    ],
+    "workplaces": [
+      "tilstands_material_og_behandlingsatelier",
+      "magasin_og_objektlogg",
+      "utlan_transport_og_klimabord",
+      "utstilling_og_monteringsflate"
+    ]
+  },
+  "authority_boundaries": {
+    "can": [
+      "vurdere bevaringsrisiko",
+      "foreslå og gjennomføre tiltak innen kompetanse og mandat",
+      "stanse håndtering ved uakseptabel risiko",
+      "sette faglige vilkår for utlån og visning"
+    ],
+    "cannot": [
+      "utføre inngrep uten dokumentert faglig grunnlag",
+      "endre verkets uttrykk av estetiske preferanser alene",
+      "skjule skade eller usikkerhet",
+      "overstyre eierskap, forsikring eller juridiske beslutninger uten mandat"
+    ]
+  },
+  "competence_axes": [
+    "materialkunnskap",
+    "tilstandsvurdering",
+    "forebyggende konservering",
+    "behandlingsetikk",
+    "dokumentasjon",
+    "risiko og miljøkontroll"
+  ],
+  "ideal_type_problems": [
+    "verk er for skjørt for planlagt visning",
+    "tidligere restaurering skjuler originalt materiale",
+    "utlån krever risikofylt transport",
+    "klimakrav kolliderer med publikumsplan",
+    "leder ønsker kosmetisk inngrep uten faglig grunnlag"
+  ],
+  "career_path": {
+    "entry_from": [
+      "Konservator følger canonical `qualification_required` og krever relevant utdanning eller arbeidsgiverkvalifikasjon. Senior konservator følger canonical `appointment_required` og krever både relevant kvalifikasjon og arbeidsgiverutnevnelse. History Go-badge åpner ingen av disse portene."
+    ],
+    "progression_to": [
+      "Videre ansvar følger dokumentert konserveringsarbeid, relevant materialkompetanse, forsvarlig beslutningspraksis og de canonicale title-policyene; senioransvar kan ikke oppnås bare gjennom høy score, popularitet eller lang tjenestetid."
+    ],
+    "possible_promotions": [
+      "Konservator til Senior konservator først når relevant kvalifikasjon fortsatt er dokumentert og arbeidsgiverutnevnelsen faktisk foreligger.",
+      "Utvidet fag- eller prosjektansvar innen samlingsbevaring når mandat, kompetanse, risikonivå og organisasjonsbeslutning er eksplisitt avklart uten å endre title-policyen."
+    ],
+    "possible_exits": [
+      "Samlingsforvaltning, registrering eller dokumentasjonsarbeid der objektsporbarhet beholdes uten at behandlingsfullmakt følger automatisk.",
+      "Utstillings-, utlåns-, forsknings- eller rådgivningsarbeid der material- og risikoforståelse brukes uten at konservatortittelens kompetanse eller mandat automatisk følger med."
+    ],
+    "career_risks": [
+      "Prestisje, utstillingsfrist og estetisk press kan gjøre det sosialt dyrt å stoppe håndtering eller vise fram usikker tilstand.",
+      "Tidligere restaurering, ufullstendig dokumentasjon og transportskade kan bli skjult av ønsket om en enkel objektbiografi eller en rask forsikrings- og utlånsprosess."
+    ]
+  },
+  "required_knowledge": {
+    "education_basis": [
+      "Konservator krever faktisk relevant utdanning eller arbeidsgiverkvalifikasjon etter `qualification_required`; Senior konservator krever i tillegg reell arbeidsgiverutnevnelse etter `appointment_required`. Ingen badge, quiz eller scenarioprestasjon kan erstatte disse inngangskravene."
+    ],
+    "skills": [
+      "materialkunnskap",
+      "tilstandsvurdering",
+      "forebyggende konservering",
+      "behandlingsetikk og reversibilitet",
+      "fotografisk og skriftlig dokumentasjon",
+      "klima- og miljøkontroll",
+      "utlåns- og transportrisiko",
+      "pakking, håndtering og montering",
+      "risikovurdering og stoppgrense",
+      "versjonert handoff og avgrenset rework"
+    ],
+    "category_knowledge": [
+      "Kunstverkets materialitet, teknikk, objektbiografi, tidligere restaurering, proveniens, utstillingshistorikk, forebyggende konservering og skillet mellom dokumentert observasjon, faglig vurdering og formell beslutning."
+    ],
+    "history_go_badges": [
+      "kunst"
+    ],
+    "place_connections": [
+      "tilstands_material_og_behandlingsatelier",
+      "magasin_og_objektlogg",
+      "utlan_transport_og_klimabord",
+      "utstilling_og_monteringsflate"
+    ],
+    "people_connections": [
+      "eva_senior_konservator_kunst_konservering_og_samling",
+      "jonas_registrar_samlingsforvalter_kunst_konservering_og_samling",
+      "samira_utlan_transport_klima_kunst_konservering_og_samling",
+      "mikkel_utstillingsproduksjon_kunst_konservering_og_samling"
+    ],
+    "boundary": "History Go kan skjerpe kunsthistorisk kontekst, objektbiografi, materialspørsmål, teknikkforståelse og kildekritikk, men kan ikke diagnostisere tilstand, gi konserveringskompetanse eller `qualification_required`, gi arbeidsgiverutnevnelse eller `appointment_required`, autorisere behandling, fastsette forsikringsdekning, godkjenne transport eller overstyre juridisk eierskap og lånevilkår."
+  },
+  "authority_boundary": {
+    "may": [
+      "stanse risikofylt håndtering",
+      "sette faglige bevaringsvilkår",
+      "gjennomføre tiltak innen kompetanse og mandat"
+    ],
+    "may_not": [
+      "utføre udokumenterte inngrep",
+      "endre verk av kosmetiske grunner alene",
+      "skjule skade eller usikkerhet",
+      "overstyre juridisk eierskap eller forsikringsbeslutninger"
+    ]
+  },
+  "challenges": [
+    {
+      "id": "bevaring_under_utstillings_og_utlanstrykk",
+      "title": "Bevaring under utstillings- og utlånstrykk",
+      "description": "Konserveringsteamet må holde materialtilstand, tidligere inngrep, kompetanse, klima, transport og dokumentasjon synlig selv når utstillingsfrist, publikumsforventning, låneprestisje eller estetisk press belønner rask framdrift.",
+      "pressure": "prestisje_og_frist_vs_sporbar_bevaringsrisiko",
+      "affects": [
+        "quality",
+        "trust",
+        "risk"
+      ]
+    }
+  ],
+  "dilemmas": [
+    {
+      "id": "hovedverk_taler_ikke_planlagt_visning",
+      "title": "Hovedverk tåler ikke planlagt visning",
+      "setup": "Et sentralt kunstverk har tilstands-, lys-, klima- eller håndteringsgrenser som gjør den planlagte visningen eller transporten uforsvarlig uten ny kontroll og en endret produksjonsplan.",
+      "choice_axis": "sporbar_begrensning_vs_prestisjedrevet_risikoaksept",
+      "consequence_axis": "langsiktig_materialintegritet_vs_skade_og_tillitstap",
+      "mail_hooks": [
+        "job",
+        "people",
+        "conflict",
+        "story",
+        "event",
+        "micro",
+        "followup",
+        "knowledge",
+        "consequence"
+      ]
+    }
+  ],
+  "related_people": [
+    {
+      "id": "eva_senior_konservator_kunst_konservering_og_samling",
+      "name": "Eva",
+      "role": "senior konservator",
+      "workplace_ids": [
+        "tilstands_material_og_behandlingsatelier"
+      ],
+      "function": "Eva gjør materialtilstand, kompetanse og inngrepsetikk til konkrete stoppunkter i arbeidsdagen. Hun leser overflate, bæremateriale, skade, tidligere behandling, analysegrunnlag og reversibilitet før hun aksepterer et nytt tiltak, og hun krever at observasjon, vurdering, behandlingsbeslutning og faktisk utført inngrep kan skilles fra hverandre i ettertid.",
+      "authority_relation": "Eva kan stoppe håndtering eller behandling når tilstand, kompetanse, analysegrunnlag eller dokumentasjon ikke er forsvarlig, og hun kan gjennomføre tiltak innen dokumentert mandat og kvalifikasjon. Hun kan ikke bruke seniorstatus til å overstyre eierskap, forsikring, utlånsavtaler eller andre fagområders beslutninger, og History Go kan aldri erstatte konserveringskompetanse eller behandlingsgodkjenning.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "jonas_registrar_samlingsforvalter_kunst_konservering_og_samling",
+      "name": "Jonas",
+      "role": "registrar og samlingsforvalter",
+      "workplace_ids": [
+        "magasin_og_objektlogg"
+      ],
+      "function": "Jonas holder objektidentitet, plassering, proveniens, registrering, utlånsstatus, forsikring, tidligere inngrep og dokumentversjoner samlet gjennom hele bevaringsløpet. Han gjør et uklart accession- eller proveniensspor synlig før fysisk behandling, transport eller visning bygger videre på en identitet eller eierhistorie som ikke er tilstrekkelig dokumentert.",
+      "authority_relation": "Jonas kan kreve sporbar registrering og stoppe en handoff som mangler objektidentitet, proveniens, eierskaps- eller lånestatus, men han kan ikke diagnostisere materialtilstand uten relevant kompetanse, autorisere konserveringsinngrep, avgjøre juridisk eierskap alene eller la registreringsstatus fungere som forsikrings-, rettighets- eller behandlingsvedtak.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "samira_utlan_transport_klima_kunst_konservering_og_samling",
+      "name": "Samira",
+      "role": "utlåns-, transport- og klimakoordinator",
+      "workplace_ids": [
+        "utlan_transport_og_klimabord"
+      ],
+      "function": "Samira oversetter konservatorens tilstands- og miljøkrav til konkrete låne-, pakke-, transport-, kurér-, klima- og håndteringsbetingelser. Hun følger venting på låneavtale, forsikring, facility report, transportør og mottaksmiljø slik at et kunstverk ikke blir erklært logistisk klart før de målbare bevaringsforutsetningene faktisk er dokumentert.",
+      "authority_relation": "Samira kan holde et utlån eller en transport tilbake når avtalte klima-, håndterings-, forsikrings- eller mottakskrav ikke er oppfylt og kan kreve ny plan før handoff. Hun kan ikke senke konservatorfaglig risikoaksept på egen hånd, gi behandlingskompetanse, endre juridisk eierskap eller bruke en logistisk godkjenning som bevis for materialtilstand eller faglig forsvarlig inngrep.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "mikkel_utstillingsproduksjon_kunst_konservering_og_samling",
+      "name": "Mikkel",
+      "role": "utstillingsprodusent og monteringsansvarlig",
+      "workplace_ids": [
+        "utstilling_og_monteringsflate"
+      ],
+      "function": "Mikkel gjør møtet mellom publikumsplan, monteringsløsning, lys, sikkerhet, klima, adgang og kunstverkets fysiske grenser synlig. Han trenger presise bevaringsvilkår for å kunne planlegge sokkel, ramme, avstand, vakthold og visningsperiode, og han melder tilbake når produksjonsplanen skaper ny risiko eller krever rework.",
+      "authority_relation": "Mikkel kan endre monterings- og produksjonsplan innen sitt mandat og stanse praktisk arbeid når sikkerhets- eller bevaringskrav mangler, men han kan ikke oppheve konservatorens faglige stopp, bestemme behandling, endre forsikringsvilkår eller gjøre publikumsverdi, deadline eller History Go-status til grunnlag for å akseptere materialrisiko.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    }
+  ],
+  "related_places": [
+    {
+      "id": "tilstands_material_og_behandlingsatelier",
+      "name": "Tilstands-, material- og behandlingsatelieret",
+      "function": "Her registreres foto, materialobservasjoner, skade, analysegrunnlag, tidligere inngrep, kompetansegrense, behandlingsalternativer, reversibilitet, utført tiltak og etterkontroll i samme versjonerte spor."
+    },
+    {
+      "id": "magasin_og_objektlogg",
+      "name": "Magasin- og objektloggen",
+      "function": "Her følger objekt-ID, plassering, proveniens, accession, eierskaps- og lånestatus, forsikring, tilstandsversjon og tidligere behandling kunstverket før hvert nytt uttak, inngrep eller handoff."
+    },
+    {
+      "id": "utlan_transport_og_klimabord",
+      "name": "Utlåns-, transport- og klimabordet",
+      "function": "Her kobles facility report, forsikring, pakking, transport, kurérbehov, klima, vibrasjon, lys, håndteringskrav, venting og mottakskontroll til den samme dokumenterte risikovurderingen."
+    },
+    {
+      "id": "utstilling_og_monteringsflate",
+      "name": "Utstillings- og monteringsflaten",
+      "function": "Her testes monteringsløsning, lys, sikkerhet, publikumsavstand, visningsperiode og praktisk produksjon mot dokumenterte bevaringsvilkår før verket kan erklæres klart for visning."
+    }
+  ]
 }
