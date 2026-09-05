@@ -1,0 +1,202 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "version": 1,
+  "id": "historie_forskning_og_akademia_foundation_v1",
+  "category": "historie",
+  "role_scope": "historie_forskning_og_akademia",
+  "title": "Historisk forskning og akademia",
+  "description": "Seksten steg fra forskningsspørsmål og kildekart til motprøving, fagfellevurdering, revisjon, publisering og korrigerbart etterspill i samme forskningslogg og manusspor.",
+  "arc": {
+    "from": "Kvalifisert forsker eller doktorgradsstudent som arver et spørsmål, et ujevnt kildelandskap og press om å gjøre en foreløpig tese publiserbar.",
+    "to": "Forsker som kan føre spørsmål, kilder, metode, motbevis, review, revisjon og publisering sporbar uten å gjøre status, finansiering eller History Go til evidens eller kvalifikasjon.",
+    "core_questions": [
+      "Hva støtter kildene faktisk, og hva er fortsatt tolkning eller usikkerhet?",
+      "Hvilke motbevis, arkivhull og rivalforklaringer må bli stående gjennom manus og review?",
+      "Når skal en ny kilde, fagfellekritikk eller etikkfeil gjenåpne bare den berørte delen av arbeidet?"
+    ]
+  },
+  "outcome_rules": {
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 2,
+      "strikes_lte": 0
+    },
+    "fired": {
+      "stability_values": [
+        "FIRED"
+      ],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "stagnated": {
+      "autonomy_delta": -10,
+      "stability": "STAGNATED",
+      "add_branch_flags": [
+        "career_stagnated",
+        "historie_forskning_og_akademia_metode_og_publiseringssvikt"
+      ]
+    }
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Føre forskningslogg og manusspor gjennom job med synlig kildegrunnlag, metode, usikkerhet, ventepunkt, review-status og neste eier.",
+      "allowed_families": [
+        "historie_forskning_og_akademia_forskningsarbeid"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 2,
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Føre forskningslogg og manusspor gjennom people med synlig kildegrunnlag, metode, usikkerhet, ventepunkt, review-status og neste eier.",
+      "allowed_families": [
+        "historie_forskning_og_akademia_profesjonelle_relasjoner"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 3,
+      "type": "knowledge",
+      "phase": "intro",
+      "step_goal": "Føre forskningslogg og manusspor gjennom knowledge med synlig kildegrunnlag, metode, usikkerhet, ventepunkt, review-status og neste eier.",
+      "allowed_families": [
+        "historie_forskning_og_akademia_history_go_kildekritikk"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 4,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Føre forskningslogg og manusspor gjennom job med synlig kildegrunnlag, metode, usikkerhet, ventepunkt, review-status og neste eier.",
+      "allowed_families": [
+        "historie_forskning_og_akademia_forskningsarbeid"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 5,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Føre forskningslogg og manusspor gjennom people med synlig kildegrunnlag, metode, usikkerhet, ventepunkt, review-status og neste eier.",
+      "allowed_families": [
+        "historie_forskning_og_akademia_profesjonelle_relasjoner"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 6,
+      "type": "conflict",
+      "phase": "advanced",
+      "step_goal": "Føre forskningslogg og manusspor gjennom conflict med synlig kildegrunnlag, metode, usikkerhet, ventepunkt, review-status og neste eier.",
+      "allowed_families": [
+        "historie_forskning_og_akademia_konklusjons_og_finansieringspress"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 7,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Føre forskningslogg og manusspor gjennom job med synlig kildegrunnlag, metode, usikkerhet, ventepunkt, review-status og neste eier.",
+      "allowed_families": [
+        "historie_forskning_og_akademia_forskningsarbeid"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 8,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Føre forskningslogg og manusspor gjennom people med synlig kildegrunnlag, metode, usikkerhet, ventepunkt, review-status og neste eier.",
+      "allowed_families": [
+        "historie_forskning_og_akademia_profesjonelle_relasjoner"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 9,
+      "type": "event",
+      "phase": "advanced",
+      "step_goal": "Føre forskningslogg og manusspor gjennom event med synlig kildegrunnlag, metode, usikkerhet, ventepunkt, review-status og neste eier.",
+      "allowed_families": [
+        "historie_forskning_og_akademia_ny_kilde"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 10,
+      "type": "micro",
+      "phase": "advanced",
+      "step_goal": "Føre forskningslogg og manusspor gjennom micro med synlig kildegrunnlag, metode, usikkerhet, ventepunkt, review-status og neste eier.",
+      "allowed_families": [
+        "historie_forskning_og_akademia_rask_provenienssjekk"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 11,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Føre forskningslogg og manusspor gjennom job med synlig kildegrunnlag, metode, usikkerhet, ventepunkt, review-status og neste eier.",
+      "allowed_families": [
+        "historie_forskning_og_akademia_forskningsarbeid"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 12,
+      "type": "people",
+      "phase": "mastery",
+      "step_goal": "Føre forskningslogg og manusspor gjennom people med synlig kildegrunnlag, metode, usikkerhet, ventepunkt, review-status og neste eier.",
+      "allowed_families": [
+        "historie_forskning_og_akademia_profesjonelle_relasjoner"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 13,
+      "type": "followup",
+      "phase": "mastery",
+      "step_goal": "Føre forskningslogg og manusspor gjennom followup med synlig kildegrunnlag, metode, usikkerhet, ventepunkt, review-status og neste eier.",
+      "allowed_families": [
+        "historie_forskning_og_akademia_fagfelle_revisjon"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 14,
+      "type": "story",
+      "phase": "mastery",
+      "step_goal": "Føre forskningslogg og manusspor gjennom story med synlig kildegrunnlag, metode, usikkerhet, ventepunkt, review-status og neste eier.",
+      "allowed_families": [
+        "historie_forskning_og_akademia_forskeridentitet"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 15,
+      "type": "consequence",
+      "phase": "mastery",
+      "step_goal": "Føre forskningslogg og manusspor gjennom consequence med synlig kildegrunnlag, metode, usikkerhet, ventepunkt, review-status og neste eier.",
+      "allowed_families": [
+        "historie_forskning_og_akademia_publiseringsetterspill"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 16,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Føre forskningslogg og manusspor gjennom job med synlig kildegrunnlag, metode, usikkerhet, ventepunkt, review-status og neste eier.",
+      "allowed_families": [
+        "historie_forskning_og_akademia_forskningsarbeid"
+      ],
+      "fallback_types": []
+    }
+  ]
+}
