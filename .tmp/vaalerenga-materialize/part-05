@@ -1,15 +1,18 @@
 row;
+  const [question, rawOptions, rawAnswerIndex, knowledge, emne_id, sourceId] = row;
+  const family = row.at(-1);
+  const [maybeMethod, maybeHook, maybeThinker, maybeWork] = family === "concept" ? row.slice(6, 10) : [null, null, null, null];
   const n = index + 1;
   const phase = ["opening", "middle", "middle", "bridge", "final"][Math.floor(index / 7)];
   const raw = [...rawOptions];
   const shift = index % raw.length;
   const options = [...raw.slice(shift), ...raw.slice(0, shift)];
+  const answer = raw[rawAnswerIndex];
   const item = {
     id: `vaalerenga_quiz_${String(n).padStart(2, "0")}`,
     quiz_id: `by_vaalerenga_set_${Math.floor(index / 7) + 1}_q${index % 7 + 1}`,
     categoryId: "by", placeId, personId: "", natureId: "", targetId: placeId,
-    question_scope: "place", question, options,
-    answer: options[options.indexOf(raw[rawAnswerIndex])], answerIndex: options.indexOf(raw[rawAnswerIndex]),
+    question_scope: "place", question, options, answer, answerIndex: options.indexOf(answer),
     dimension: family === "fact" ? "sted_og_historie" : family === "context" ? "kontekst_og_kildekritikk" : "metode_og_teori",
     topic: `vaalerenga_${family}_${String(n).padStart(2, "0")}`,
     knowledge, trivia: [], difficulty: n <= 7 ? 1 : n <= 21 ? 2 : n <= 28 ? 3 : 4,
