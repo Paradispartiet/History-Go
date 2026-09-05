@@ -1,18 +1,194 @@
 {
-  "schema":"civication_work_grammar_v2","version":2,
-  "category":"historie","role_scope":"historie_institusjonsledelse","role_id":"historie_institusjonsledelse",
-  "badge_binding":{"badge_id":"historie","badge_titles":["Avdelingsdirektør","Direktør"]},
-  "work_world":"Institusjonsledelse der samfunnsoppdrag, budsjett, faglig integritet, styring og offentlig ansvarlighet må holdes samlet over tid.",
-  "task_families":["strategi","budsjett","styringsdialog","risikostyring","organisasjonsutvikling","ekstern_representasjon"],
-  "work_loops":["samfunnsoppdrag -> risiko -> prioritering -> ressursallokering -> styring -> resultat -> korrigering","hendelse -> situasjonsbilde -> ansvar -> tiltak -> kommunikasjon -> etterkontroll"],
-  "pressure_axes":["kortsiktig_synlighet_vs_langsiktig_oppdrag","politisk_press_vs_faglig_integritet","budsjett_vs_bevaring"],
-  "practice_stories":[
-    {"id":"budsjettkutt","setup":"Budsjettet kuttes samtidig som bevaringsbehovet øker.","decision":"Prioriter etter dokumentert risiko og gjør konsekvensene for samfunnsoppdraget synlige.","learning":"strategi må tåle reelle begrensninger"},
-    {"id":"politisk_press","setup":"En sterk ekstern aktør ønsker en bestemt historisk framstilling.","decision":"Beskytt faglig uavhengighet og dokumenter styringslinjen.","learning":"institusjonsledelse forvalter tillit, ikke ønskede sannheter"},
-    {"id":"omdommekrise","setup":"En alvorlig feil i en utstilling blir offentlig kjent.","decision":"Rett feilen, publiser sporbar korrigering og undersøk systemårsaken.","learning":"tillit bygges gjennom ansvarlighet"},
-    {"id":"beredskap","setup":"En hendelse truer samlinger eller arkivmateriale.","decision":"Aktiver beredskap, prioriter mennesker og uerstattelig materiale og loggfør beslutninger.","learning":"beredskap krever forhåndsavklarte ansvarslinjer"},
-    {"id":"synlighetsprosjekt","setup":"Et prestisjeprosjekt vil binde ressurser fra grunnleggende bevaring.","decision":"Vurder total samfunnsnytte og skjult vedlikeholdsgjeld før beslutning.","learning":"det mest synlige tiltaket er ikke nødvendigvis det viktigste"}
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "historie",
+  "role_scope": "historie_institusjonsledelse",
+  "role_id": "historie_institusjonsledelse",
+  "badge_binding": {
+    "badge_id": "historie",
+    "badge_titles": [
+      "Avdelingsdirektør",
+      "Direktør"
+    ]
+  },
+  "work_world": "Institusjonsledelse der samfunnsoppdrag, budsjett, faglig integritet, styring og offentlig ansvarlighet må holdes samlet over tid.",
+  "task_families": [
+    "strategi",
+    "budsjett",
+    "styringsdialog",
+    "risikostyring",
+    "organisasjonsutvikling",
+    "ekstern_representasjon"
   ],
-  "quality_axes":["samfunnsoppdrag","ansvarlighet","faglig_integritet","ressursstyring","risiko","langsiktighet"],
-  "authority_boundary":{"may":["styre institusjonen innen lov, delegasjon og samfunnsoppdrag"],"may_not":["overstyre lovverk","diktere faglige funn","skjule vesentlig risiko","behandle institusjonens mandat som privat eierskap"]}
+  "work_loops": [
+    "samfunnsoppdrag -> risiko -> prioritering -> ressursallokering -> styring -> resultat -> korrigering",
+    "hendelse -> situasjonsbilde -> ansvar -> tiltak -> kommunikasjon -> etterkontroll"
+  ],
+  "pressure_axes": [
+    "kortsiktig_synlighet_vs_langsiktig_oppdrag",
+    "politisk_press_vs_faglig_integritet",
+    "budsjett_vs_bevaring"
+  ],
+  "practice_stories": [
+    {
+      "id": "budsjettkutt",
+      "setup": "Budsjettet kuttes samtidig som bevaringsbehovet øker.",
+      "decision": "Prioriter etter dokumentert risiko og gjør konsekvensene for samfunnsoppdraget synlige.",
+      "learning": "strategi må tåle reelle begrensninger"
+    },
+    {
+      "id": "politisk_press",
+      "setup": "En sterk ekstern aktør ønsker en bestemt historisk framstilling.",
+      "decision": "Beskytt faglig uavhengighet og dokumenter styringslinjen.",
+      "learning": "institusjonsledelse forvalter tillit, ikke ønskede sannheter"
+    },
+    {
+      "id": "omdommekrise",
+      "setup": "En alvorlig feil i en utstilling blir offentlig kjent.",
+      "decision": "Rett feilen, publiser sporbar korrigering og undersøk systemårsaken.",
+      "learning": "tillit bygges gjennom ansvarlighet"
+    },
+    {
+      "id": "beredskap",
+      "setup": "En hendelse truer samlinger eller arkivmateriale.",
+      "decision": "Aktiver beredskap, prioriter mennesker og uerstattelig materiale og loggfør beslutninger.",
+      "learning": "beredskap krever forhåndsavklarte ansvarslinjer"
+    },
+    {
+      "id": "synlighetsprosjekt",
+      "setup": "Et prestisjeprosjekt vil binde ressurser fra grunnleggende bevaring.",
+      "decision": "Vurder total samfunnsnytte og skjult vedlikeholdsgjeld før beslutning.",
+      "learning": "det mest synlige tiltaket er ikke nødvendigvis det viktigste"
+    }
+  ],
+  "quality_axes": [
+    "samfunnsoppdrag",
+    "ansvarlighet",
+    "faglig_integritet",
+    "ressursstyring",
+    "risiko",
+    "langsiktighet"
+  ],
+  "authority_boundary": {
+    "may": [
+      "styre institusjonen innen lov, delegasjon og samfunnsoppdrag"
+    ],
+    "may_not": [
+      "overstyre lovverk",
+      "diktere faglige funn",
+      "skjule vesentlig risiko",
+      "behandle institusjonens mandat som privat eierskap"
+    ]
+  },
+  "actor_grammar": [
+    {
+      "id": "karin_styreleder_historie_institusjonsledelse",
+      "name": "Karin",
+      "role": "styreleder og mandatgrensesnitt",
+      "workplace_ids": [
+        "samfunnsoppdrag_og_styringsbord"
+      ]
+    },
+    {
+      "id": "marius_fagdirektor_historie_institusjonsledelse",
+      "name": "Marius",
+      "role": "fagdirektør og integritetsgrensesnitt",
+      "workplace_ids": [
+        "faglig_integritetsforum"
+      ]
+    },
+    {
+      "id": "selma_okonomisjef_historie_institusjonsledelse",
+      "name": "Selma",
+      "role": "økonomisjef og ressursgrensesnitt",
+      "workplace_ids": [
+        "budsjett_og_prioriteringsrom"
+      ]
+    },
+    {
+      "id": "jon_beredskapsleder_historie_institusjonsledelse",
+      "name": "Jon",
+      "role": "beredskaps- og kommunikasjonsleder",
+      "workplace_ids": [
+        "risiko_beredskap_og_handoff"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "samfunnsoppdrag_og_styringsbord",
+      "name": "Samfunnsoppdrags- og styringsbordet",
+      "function": "Her holdes lov, vedtekter, styringssignaler, delegerte fullmakter, flerårige mål og åpne interessekonflikter samlet før ledelsen gjør en prioritering eller lover et resultat."
+    },
+    {
+      "id": "faglig_integritetsforum",
+      "name": "Det faglige integritetsforumet",
+      "function": "Her prøves kildegrunnlag, metode, bevaringshensyn, faglige motstemmer og publiseringspremisser slik at styringsønsker aldri blir omskrevet til historiefaglig evidens."
+    },
+    {
+      "id": "budsjett_og_prioriteringsrom",
+      "name": "Budsjett- og prioriteringsrommet",
+      "function": "Her sammenholdes vedtatt ramme, bemanning, forpliktelser, bevaring, investering, publikumstiltak og rest-risiko før ressurser omtales som disponible eller nye initiativ godkjennes."
+    },
+    {
+      "id": "risiko_beredskap_og_handoff",
+      "name": "Risiko-, beredskaps- og handoffflaten",
+      "function": "Her føres situasjonsbilde, vesentlig risiko, tiltak, kommunikasjonsansvar, faktisk beslutningseier, ventepunkt og etterkontroll gjennom samme versjonerte styringsspor."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "samfunnsoppdrag_ressurs_og_risikologg",
+    "description": "Et vedvarende, versjonert styringsobjekt som binder samfunnsoppdrag, lov og delegasjon, flerårige mål, budsjett og kapasitet, faglige premisser, vesentlig risiko, beslutningseier, waiting, handoff, resultat og bounded rework gjennom samme institusjonelle sak.",
+    "states": [
+      "oppdrag_og_mandat_registrert",
+      "risiko_kartlagt",
+      "prioritering_under_arbeid",
+      "ressurser_fordelt",
+      "venter_pa_vedtak_faggrunnlag_budsjett_eller_situasjonsbilde",
+      "styring_iverksatt",
+      "resultat_under_oppfolging",
+      "klar_for_handoff",
+      "korrigering",
+      "gjenapnet"
+    ],
+    "handoff_rule": "Neste aktør overtar synlig versjon, samfunnsoppdrag, faktisk delegasjon, ressursforutsetninger, faglige motstemmer, vesentlig rest-risiko, ventepunkt, eier og neste kontrollpunkt. Handoff kan aldri gjøre et styringsønske til ny hjemmel eller et ønsket historisk funn."
+  },
+  "rhythm_contract": {
+    "loop": "samfunnsoppdrag -> risiko -> prioritering -> ressursallokering -> waiting/venting på vedtak, faggrunnlag, budsjett eller situasjonsbilde -> handoff -> styring -> resultat -> bounded rework/korrigering -> læring",
+    "waiting_states": [
+      "styre_eller_eiervedtak",
+      "faglig_eller_kildeavklaring",
+      "budsjett_eller_forpliktelsesavklaring",
+      "beredskap_eller_situasjonsbilde",
+      "ekstern_myndighetsavklaring"
+    ],
+    "rework_rule": "Nytt formelt vedtak, endret delegasjon, dokumentert faglig premiss, budsjettavvik eller vesentlig hendelsesinformasjon gjenåpner bare berørt beslutning med ny versjon, eksplisitt eier og bevart begrunnelses- og risikospor."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_historie_institusjonell_hukommelse_og_kildekritikk",
+      "badge_id": "historie",
+      "use": "History Go kan styrke historisk kontekst, kildekritikk og institusjonell hukommelse som grunnlag for bedre spørsmål. Det kan ikke gi arbeidsgiverutnevnelse, budsjett- eller personalfullmakt, utvide delegasjon, diktere et faglig funn, skjule vesentlig risiko eller erstatte lov, vedtekter og formelle vedtak."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "appointment_required",
+    "first_object": "samfunnsoppdrag_ressurs_og_risikologg",
+    "first_task": "Registrer samfunnsoppdrag, lov- og delegasjonsramme, flerårige mål, budsjett og kapasitet, faglige premisser, vesentlig risiko og faktisk eier av hver åpen avklaring før første nye prioritering."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "historie_institusjonsledelse",
+    "no_generic_fallback": true
+  }
 }
