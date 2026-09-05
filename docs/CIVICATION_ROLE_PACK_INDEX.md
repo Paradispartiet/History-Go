@@ -15,14 +15,14 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 
 ## Sammendrag
 
-- complete_reference_v2: 59
+- complete_reference_v2: 60
 - complete_reference: 0
 - playable_v1: 1
 - partial_pack: 23
 - role_model_only: 182
 - generated_stub: 0
 - broken_mapping: 0
-- missing: 35
+- missing: 34
 
 ## Rolleindeks
 
@@ -69,8 +69,8 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | historie | direktor | historie_direktor | Direktør | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | historie | doktorgradsstudent | historie_doktorgradsstudent | Doktorgradsstudent | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | historie | forsker | historie_forsker | Forsker | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
+| historie | historie_forvaltning_og_radgivning | historie_forvaltning_og_radgivning | Forvaltning og rådgivning | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | historie | forstekonsulent | historie_forstekonsulent | Førstekonsulent | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
-| historie | historie_forvaltning_og_radgivning | historie_forvaltning_og_radgivning | historie_forvaltning_og_radgivning | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | historie | historie_institusjonsledelse | historie_institusjonsledelse | historie_institusjonsledelse | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | historie | historie_museum_og_samling | historie_museum_og_samling | historie_museum_og_samling | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | historie | historie_fagledelse | historie_fagledelse | Historiefaglig ledelse | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
