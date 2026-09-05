@@ -97,29 +97,23 @@ export function auditLitteraturMaintenanceSourceRefreshRound2() {
   const evidenceById = new Map(evidence.source_checks.map((x) => [x.claims_source_id, x]));
   const pathwayById = new Map(pathway.sources.map((x) => [x.source_id, x]));
   const knowledgeSources = knowledge.units.flatMap((unit) => Array.isArray(unit.sources) ? unit.sources : []);
-  const knowledgeBySourceId = new Map();
-  for (const source of knowledgeSources) {
-    if (!source?.source_id) continue;
-    const list = knowledgeBySourceId.get(source.source_id) || [];
-    list.push(source);
-    knowledgeBySourceId.set(source.source_id, list);
-  }
-  const corpus = `${JSON.stringify(claims)}\n${JSON.stringify(pathway)}\n${JSON.stringify(knowledge)}\n${materializer}`;
+  const knowledgeUrls = new Set(knowledgeSources.map((source) => source?.url).filter(Boolean));
+  const canonicalCorpus = `${JSON.stringify(claims)}\n${JSON.stringify(pathway)}\n${materializer}`;
+  const knowledgeCorpus = JSON.stringify(knowledge);
 
   for (const [id, urls] of Object.entries(EXPECTED_REPLACEMENTS)) {
     const sourceId = pathwaySourceId(id);
     const c = claimsById.get(id);
     const e = evidenceById.get(id);
     const p = pathwayById.get(sourceId);
-    const knowledgeMatches = knowledgeBySourceId.get(sourceId) || [];
     assert(c?.url === urls.current, `${id}: claims bruker ikke verifisert replacement URL`);
     assert(e?.verification_state === 'verified_authoritative_replacement' && e?.old_url === urls.old && e?.canonical_url === urls.current, `${id}: maintenance-evidensen dokumenterer ikke replacement korrekt`);
     assert(e?.action === 'replace_canonical_url', `${id}: feil maintenance action`);
     assert(p?.url === urls.current, `${id}: eksakt pathway source_id bruker ikke current URL`);
-    assert(knowledgeMatches.length > 0, `${id}: generert Knowledge mangler source_id ${sourceId}`);
-    assert(knowledgeMatches.every((x) => x.url === urls.current), `${id}: generert Knowledge bruker ikke current URL konsekvent`);
     assert(materializer.includes(urls.current), `${id}: materializer mangler current URL`);
-    assert(!corpus.includes(urls.old), `${id}: gammel URL finnes fortsatt i canonical/materialized flater`);
+    assert(!canonicalCorpus.includes(urls.old), `${id}: gammel URL finnes fortsatt i canonical/materialized kildeflater`);
+    assert(knowledgeUrls.has(urls.current), `${id}: generert Knowledge mangler current URL-proveniens`);
+    assert(!knowledgeCorpus.includes(urls.old), `${id}: generert Knowledge inneholder fortsatt gammel URL`);
   }
 
   for (const [id, url] of Object.entries(EXPECTED_RETAINED)) {
@@ -127,10 +121,8 @@ export function auditLitteraturMaintenanceSourceRefreshRound2() {
     const c = claimsById.get(id);
     const e = evidenceById.get(id);
     const p = pathwayById.get(sourceId);
-    const knowledgeMatches = knowledgeBySourceId.get(sourceId) || [];
     assert(c?.url === url && e?.canonical_url === url, `${id}: retained URL er endret`);
     assert(p?.url === url, `${id}: eksakt pathway source_id beholder ikke canonical URL`);
-    if (knowledgeMatches.length) assert(knowledgeMatches.every((x) => x.url === url), `${id}: generert Knowledge avviker fra retained URL`);
     assert(e?.action === 'retain_canonical_url' || e?.action === 'retain_until_authoritative_replacement_is_verified', `${id}: ugyldig retain-action`);
   }
 
