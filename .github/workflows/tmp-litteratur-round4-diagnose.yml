@@ -16,32 +16,43 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
-      - name: Verify round 4 baseline strings
+      - name: Extract exact materialization JS from original helper
         run: |
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-          const paths=['data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/narratologi_prosa/claims.json','scripts/materialize-litteratur-narrative-poetry-v1.mjs','data/quiz/litteratur/litteratur_subject_pathways_v1.json','data/knowledge/subjects/litteratur/knowledge_units.generated.json'];
-          const old=['https://ohiostatepress.org/books/titles/9780814251845.html','https://www.cambridge.org/core/books/cambridge-companion-to-narrative/8D052A27BEAFAA776DAC889CF5A910E2','https://press.uchicago.edu/ucp/books/book/chicago/R/bo3634372.html','https://www.cambridge.org/highereducation/books/the-cambridge-introduction-to-narrative/33F40DD4272A7925A9B227BC4E11D85C','https://www.gutenberg.org/ebooks/2147'];
-          for (const u of old) { const counts=paths.map(p=>[p,fs.readFileSync(p,'utf8').split(u).length-1]); console.log(u,counts); if(counts[0][1]!==1||counts[1][1]<1||counts[2][1]<1) throw new Error('Required baseline occurrence missing: '+u); }
-          NODE
-      - name: Simulate exact URL replacements
+          python - <<'PY'
+          from pathlib import Path
+          src=Path('.github/workflows/tmp-litteratur-round4-materialize.yml').read_text().splitlines()
+          start=next(i for i,l in enumerate(src) if "node --input-type=module <<'NODE'" in l)+1
+          end=next(i for i in range(start,len(src)) if src[i].strip()=='NODE')
+          out=[]
+          for line in src[start:end]:
+              out.append(line[10:] if line.startswith('          ') else line)
+          Path('/tmp/round4-materialize.mjs').write_text('\n'.join(out)+'\n')
+          print(f'extracted {len(out)} lines')
+          PY
+          node --check /tmp/round4-materialize.mjs
+      - name: Execute exact round 4 artifact block
+        run: node /tmp/round4-materialize.mjs
+      - name: Syntax check generated round 4 artifacts
         run: |
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-          const paths=['data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/narratologi_prosa/claims.json','scripts/materialize-litteratur-narrative-poetry-v1.mjs','data/quiz/litteratur/litteratur_subject_pathways_v1.json','data/knowledge/subjects/litteratur/knowledge_units.generated.json'];
-          const repl=[['https://ohiostatepress.org/books/titles/9780814251845.html','https://ohiostatepress.org/books/BookPages/HermanNarrative.html'],['https://www.cambridge.org/core/books/cambridge-companion-to-narrative/8D052A27BEAFAA776DAC889CF5A910E2','https://www.cambridge.org/core/books/cambridge-companion-to-narrative/45E41A6D74F9CB697D9668AC46D88397'],['https://press.uchicago.edu/ucp/books/book/chicago/R/bo3634372.html','https://press.uchicago.edu/ucp/books/book/chicago/R/bo5965941.html'],['https://www.cambridge.org/highereducation/books/the-cambridge-introduction-to-narrative/33F40DD4272A7925A9B227BC4E11D85C','https://www.cambridge.org/highereducation/books/the-cambridge-introduction-to-narrative/CFD3B91DD86BE8A9F3F228D07A801FEA'],['https://www.gutenberg.org/ebooks/2147','https://www.gutenberg.org/ebooks/2148']];
-          for(const p of paths){let t=fs.readFileSync(p,'utf8'); for(const [a,b] of repl)t=t.split(a).join(b); fs.writeFileSync(p,t);}
-          NODE
-      - name: Generate release manifest
-        run: node scripts/build-fagverk-release-manifest.mjs
-      - name: Generate legacy theory report
-        run: node scripts/audit-fagverk-litteratur-legacy-theory.mjs --write-report
-      - name: Verify existing Literature theory gates after substitutions
+          node --check scripts/audit-litteratur-maintenance-source-refresh-round4.mjs
+          node --check tests/litteratur-maintenance-source-refresh-round4.test.mjs
+          test -s data/fagverk/litteratur/maintenance/source-refresh-round4-2026-09-05.json
+          grep -q 'Audit Litteratur source refresh round 4' .github/workflows/litteratur-maintenance-integrity.yml
+      - name: Generate release and legacy report
         run: |
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/audit-fagverk-litteratur-legacy-theory.mjs --write-report
+      - name: Run round 4 audit
+        run: node scripts/audit-litteratur-maintenance-source-refresh-round4.mjs
+      - name: Run round 4 regression test
+        run: node --test tests/litteratur-maintenance-source-refresh-round4.test.mjs
+      - name: Run full focused Literature gates
+        run: |
+          node scripts/audit-litteratur-maintenance-source-refresh-round1.mjs
+          node scripts/audit-litteratur-maintenance-source-refresh-round2.mjs
+          node scripts/audit-litteratur-maintenance-source-refresh-round3.mjs
           node scripts/audit-litteratur-assessment-v1.mjs
           node tools/audit-litteratur-theory-integrity.mjs
           node --test tests/litteratur-assessment-v1.test.mjs tests/litteratur-theory-integrity.test.mjs tests/fagverk-litteratur-legacy-theory-audit.test.mjs
-      - name: Verify general engine and release
-        run: |
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
