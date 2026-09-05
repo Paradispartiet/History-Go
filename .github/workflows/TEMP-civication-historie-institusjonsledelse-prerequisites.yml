@@ -59,16 +59,14 @@ jobs:
           import fs from 'node:fs';
           const p = 'tests/civication-historie-institusjonsledelse-prerequisites.test.js';
           const before = fs.readFileSync(p, 'utf8');
-          const lines = before.split('\n');
-          const matches = lines.map((line, index) => ({line, index})).filter(({line}) => line.includes('ready.authored_work_required'));
-          if (matches.length !== 1) throw new Error(`Expected exactly one authored_work_required assertion, found ${matches.length}`);
-          const {line, index} = matches[0];
-          if (!line.includes('assert.deepEqual(')) throw new Error('authored_work_required reference is not the expected deepEqual assertion');
-          const indent = line.match(/^\s*/)?.[0] ?? '';
-          lines[index] = `${indent}assert.deepEqual(ready.authored_work_required, ['situated_reputation']);`;
-          const after = lines.join('\n');
+          const pattern = /assert\.deepEqual\(\s*ready\.authored_work_required\s*,\s*\[[^\]]*\]\s*\);/g;
+          const matches = [...before.matchAll(pattern)];
+          if (matches.length !== 1) throw new Error(`Expected exactly one authored_work_required deepEqual assertion, found ${matches.length}`);
+          const expected = "assert.deepEqual(ready.authored_work_required, ['situated_reputation']);";
+          const after = before.replace(pattern, expected);
+          if (after.length < before.length - 80 || after.length > before.length + 80) throw new Error('Focused test changed by more than the bounded assertion replacement');
           if ((after.match(/ready\.authored_work_required/g) || []).length !== 1) throw new Error('authored_work_required assertion count drifted after patch');
-          if (!after.includes("assert.deepEqual(ready.authored_work_required, ['situated_reputation']);")) throw new Error('situated_reputation expectation was not written');
+          if (!after.includes(expected)) throw new Error('situated_reputation expectation was not written');
           fs.writeFileSync(p, after);
           NODE
       - name: Regenerate and verify complete prerequisite gate
