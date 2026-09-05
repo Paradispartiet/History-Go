@@ -1,0 +1,192 @@
+name: TEMP Helsfyr fail-closed completion
+
+on:
+  push:
+    branches:
+      - work/helsfyr-completion-20260904
+    paths:
+      - 'tools/build-helsfyr-completion.mjs'
+      - 'scripts/audit-helsfyr-completion.mjs'
+      - '.github/workflows/tmp-helsfyr-completion.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tmp-helsfyr-completion
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: work/helsfyr-completion-20260904
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - name: Install dependencies
+        run: npm ci
+      - name: Repair builder and prepare rights-clear media
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p = Path('tools/build-helsfyr-completion.mjs')
+          s = p.read_text()
+
+          old = '''    const [questionType, question, options, answer, knowledge, sourceIds, emneId, methodId] = spec;
+              const [concept, conceptId] = conceptFor(emneId);
+              const q = {'''.replace('              ', '    ')
+          new = '''    const [questionType, question, options, answer, knowledge, sourceIds, emneId, methodId] = spec;
+              const desiredAnswerIndex = globalIndex % 3;
+              const balancedOptions = options.filter(option => option !== answer);
+              balancedOptions.splice(desiredAnswerIndex, 0, answer);
+              const [concept, conceptId] = conceptFor(emneId);
+              const q = {'''.replace('              ', '    ')
+          if old in s:
+              s = s.replace(old, new, 1)
+          elif 'const desiredAnswerIndex = globalIndex % 3;' not in s:
+              raise SystemExit('Expected Helsfyr quiz builder block not found')
+
+          old2 = 'categoryId: "by", placeId, targetId: placeId, question_scope: "place", question, options, answer, answerIndex: options.indexOf(answer),'
+          new2 = 'categoryId: "by", placeId, targetId: placeId, question_scope: "place", question, options: balancedOptions, answer, answerIndex: desiredAnswerIndex,'
+          if old2 in s:
+              s = s.replace(old2, new2, 1)
+          elif new2 not in s:
+              raise SystemExit('Expected Helsfyr answerIndex block not found')
+
+          old_brief_sources = 'sources: sourceRegistry, selected_curriculum: curriculum, existing_quiz_audit: existingQuizAudit, profile_decision: profileDecision, held_back_candidates: heldBackCandidates,'
+          new_brief_sources = 'sources: Object.fromEntries(sourceRegistry.map(source => [source.id, source])), selected_curriculum: curriculum, existing_quiz_audit: existingQuizAudit, profile_decision: profileDecision, held_back_candidates: heldBackCandidates,'
+          if old_brief_sources in s:
+              s = s.replace(old_brief_sources, new_brief_sources, 1)
+          elif new_brief_sources not in s:
+              raise SystemExit('Expected Helsfyr quiz brief source registry block not found')
+
+          old_claim_family = 'planned_phase: sets[Math.floor(i / 7)].phase, family: q.question_type, statement: q.knowledge,'
+          new_claim_family = 'planned_phase: sets[Math.floor(i / 7)].phase, family: q.question_type === "fact" ? "fact" : q.question_type === "context" ? "context" : "concept_theory", statement: q.knowledge,'
+          if old_claim_family in s:
+              s = s.replace(old_claim_family, new_claim_family, 1)
+          elif new_claim_family not in s:
+              raise SystemExit('Expected Helsfyr claim family block not found')
+
+          old_logo_url = 'https://www.sporveien.no/globalassets/skjema-gjenbruk/hovedlogo.jpg?quality=80&width=1680'
+          zip_url = 'https://www.sporveien.no/contentassets/d3761554e74a43d4b05a8742038b8ff7/logoer_web_rgb.zip'
+          s = s.replace(old_logo_url, zip_url)
+          logo_line = 'await outputImage({ url: urls.sporveienLogoAsset, file: "bilder/kort/brands/sporveien.webp", width: 900, height: 520, fit: "contain", background: "#ffffff" });\n'
+          if logo_line in s:
+              s = s.replace(logo_line, '', 1)
+          s = s.replace('Offisiell hovedlogo er proporsjonalt innpasset på 900 × 520 uten rekonstruksjon.', 'Offisiell sort/hvit web-logo fra Sporveiens RGB-pakke er proporsjonalt innpasset på 900 × 520 uten rekonstruksjon.')
+
+          portrait_line = '  bruskelandPortrait: "https://lokalhistoriewiki.no/images/Guttorm_Bruskeland_arkitekt.jpg",\n'
+          context_urls = portrait_line + '  commonsBruskelandWorkPage: "https://commons.wikimedia.org/wiki/File:Buehallen_Norsk_Elektrisk_Kabelfabrikk.jpg",\n  commonsBruskelandWorkAsset: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Buehallen_Norsk_Elektrisk_Kabelfabrikk.jpg",\n'
+          if 'commonsBruskelandWorkPage' not in s:
+              if portrait_line not in s:
+                  raise SystemExit('Expected Bruskeland portrait URL block not found')
+              s = s.replace(portrait_line, context_urls, 1)
+
+          person_line = 'await outputImage({ url: urls.bruskelandPortrait, file: "bilder/kort/people/guttorm_bruskeland.webp", width: 900, height: 1200, fit: "contain" });'
+          context_line = 'await outputImage({ url: urls.commonsBruskelandWorkAsset, file: "bilder/kort/people/guttorm_bruskeland.webp", width: 900, height: 1200, fit: "contain" });'
+          if person_line in s:
+              s = s.replace(person_line, context_line, 1)
+          elif context_line not in s:
+              raise SystemExit('Expected Bruskeland image materialization line not found')
+
+          pattern = re.compile(r'bruskeland\.imageMeta = \{\n.*?\n\};', re.S)
+          replacement = 'bruskeland.imageMeta = {\n  source: "wikimedia_commons", sourcePage: urls.commonsBruskelandWorkPage, sourceAsset: urls.commonsBruskelandWorkAsset,\n  creator: "Vidar Berget", credit: "Vidar Berget / Wikimedia Commons",\n  license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",\n  rightsBasis: "open_license_contextual_work_image", reviewStatus: "manually_approved_source_bounded", generated: false,\n  depictsPerson: false, contextRole: "photograph_of_documented_design_work", subjectRelation: "Norsk Elektrisk Kabelfabrikks buehall was designed by Guttorm Bruskeland and is used only as a contextual work image, not as a portrait.",\n  transformation: "Kontekstbildet av Bruskelands verk er proporsjonalt innpasset og normalisert til 900 × 1200 WebP.", outputDimensions: "900x1200", reviewedAt: verifiedAt\n};'
+          s2, count = pattern.subn(replacement, s, count=1)
+          if count != 1:
+              raise SystemExit(f'Expected exactly one Bruskeland imageMeta block, got {count}')
+          s = s2
+          old_sources = 'bruskeland.source_urls = [...new Set([...(bruskeland.source_urls || []), urls.lokalwikiBruskeland])];'
+          new_sources = 'bruskeland.source_urls = [...new Set([...(bruskeland.source_urls || []), urls.lokalwikiBruskeland, urls.commonsBruskelandWorkPage])];'
+          if old_sources in s:
+              s = s.replace(old_sources, new_sources, 1)
+          elif new_sources not in s:
+              raise SystemExit('Expected Bruskeland source_urls block not found')
+          p.write_text(s)
+          PY
+
+          rm -rf /tmp/sporveien-logo /tmp/sporveien-logo.zip
+          mkdir -p /tmp/sporveien-logo bilder/kort/brands
+          ZIP_URL='https://www.sporveien.no/contentassets/d3761554e74a43d4b05a8742038b8ff7/logoer_web_rgb.zip'
+          DIRECT_URL='https://www.sporveien.no/globalassets/skjema-gjenbruk/hovedlogo.jpg?quality=80&width=1680'
+          PROFILE_URL='https://www.sporveien.no/om-sporveien/profilhandbok/'
+          candidate=''
+          if curl --fail --location --retry 4 --retry-all-errors --connect-timeout 20 --user-agent 'Mozilla/5.0 History-Go asset verification' --referer "$PROFILE_URL" "$ZIP_URL" --output /tmp/sporveien-logo.zip; then
+            unzip -q /tmp/sporveien-logo.zip -d /tmp/sporveien-logo
+            candidate="$(find /tmp/sporveien-logo -type f | grep -Ei '\.(png|jpe?g|svg)$' | grep -Ei '(sort|svart|black)' | sort | head -n 1 || true)"
+            if [[ -z "$candidate" ]]; then
+              candidate="$(find /tmp/sporveien-logo -type f | grep -Ei '\.(png|jpe?g|svg)$' | sort | head -n 1 || true)"
+            fi
+          fi
+          if [[ -z "$candidate" ]]; then
+            echo 'RGB archive unavailable or without candidate; trying official profile image with browser headers.'
+            curl --fail --location --retry 4 --retry-all-errors --connect-timeout 20 --user-agent 'Mozilla/5.0 History-Go asset verification' --referer "$PROFILE_URL" "$DIRECT_URL" --output /tmp/sporveien-logo.jpg
+            candidate='/tmp/sporveien-logo.jpg'
+          fi
+          echo "Using Sporveien logo source: $candidate"
+          node - "$candidate" <<'NODE'
+          const sharp = require('sharp');
+          const input = process.argv[2];
+          const output = 'bilder/kort/brands/sporveien.webp';
+          let pipeline = sharp(input).rotate();
+          if (input.endsWith('sporveien-logo.jpg')) pipeline = pipeline.grayscale().threshold(190);
+          pipeline.resize(900, 520, { fit: 'contain', background: '#ffffff', withoutEnlargement: false })
+            .webp({ quality: 90, effort: 5 }).toFile(output)
+            .then(info => console.log(JSON.stringify({ output, width: info.width, height: info.height, format: info.format })))
+            .catch(error => { console.error(error); process.exit(1); });
+          NODE
+      - name: Materialize Helsfyr source-first package
+        env:
+          HELSFYR_BASE_SHA: bf3f9982180828da66635221de8058167b415869
+        run: node tools/build-helsfyr-completion.mjs
+      - name: Rebuild deterministic architecture derivatives
+        run: |
+          node scripts/materialize-natur-final-registry.mjs
+          npm run places:index:build
+          npm run knowledge:canonical:write
+          npm run place-open:build
+          npm run epoker:places:build
+          node scripts/build-quiz-production-context.mjs --category by --target helsfyr --output data/quiz/production_context/by/helsfyr.json
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Strict Helsfyr completion proof
+        run: node scripts/audit-helsfyr-completion.mjs
+      - name: READ-FIRST and deterministic checks
+        env:
+          HELSFYR_BASE_SHA: bf3f9982180828da66635221de8058167b415869
+        run: |
+          node scripts/place-production-rule-preflight.mjs check --base "$HELSFYR_BASE_SHA"
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run places:index:check
+          npm run knowledge:canonical:check
+          npm run place-open:check
+          npm run epoker:places:check
+      - name: Quiz and content gates
+        run: |
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-content
+          npm run audit:quiz-templates
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run test:quiz-production
+          npm run test:quiz-content-audit
+          node --test tests/quiz-answer-shuffle-runtime.test.mjs tests/quiz-answer-position-governance.test.mjs
+          npm run check:stories
+          npm run leksikon:ids:check
+      - name: Remove temporary workflow and commit only proven outputs
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/tmp-helsfyr-completion.yml
+          git add -A
+          git status --short
+          git diff --cached --quiet && { echo 'No materialized changes to commit'; exit 1; }
+          git commit -m 'Materialize verified Helsfyr Place completion'
+          git push origin HEAD:work/helsfyr-completion-20260904
