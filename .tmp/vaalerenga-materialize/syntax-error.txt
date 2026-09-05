@@ -1,8 +1,8 @@
-/home/runner/work/History-Go/History-Go/tools/finalize-vaalerenga-completion.mjs:725
-  'test("Vålerenga quiz er canonical rich 5x7 med 21/7/7 og eget QuizCard",()=>{const quiz=read("data/quiz/by/vaalerenga_sets.json");const qs=quiz.sets.flatMap(set=>set.questions);assert.equal(quiz.sets.length,5);assert.ok(quiz.sets.every(set=>set.questions.length===7));assert.equal(qs.length,35);assert.equal(qs.filter(q=>q.question_type==="fact").length,21);assert.equal(qs.filter(q=>q.question_type==="context").length,7);assert.equal(qs.filter(q=>q.question_type==="concept").length,7);assert.deepEqual(quiz.profile_snapshot,place.quiz_profile);assert.ok(fs.existsSync("bilder/QuizCards/Vaalerenga.PNG"));const ui=fs.readFileSync("js/ui/place-card.js","utf8");assert.match(ui,/vaalerenga:\\s*["\\']bilder\\/QuizCards\\/Vaalerenga\\.PNG["\\']/);});',
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ^^^^^^^
+/home/runner/work/History-Go/History-Go/tools/finalize-vaalerenga-completion.mjs:103
+urls.borderImageAsset = "https://images.weserv.nl/?url=lokalhistoriewiki.no/wiki/Special:Redirect/file/1878_grensestein_Aker_Kristiania_ved_Etterstadgata.jpg&w=1400";
+    ^
 
-SyntaxError: Invalid or unexpected token
+SyntaxError: Unexpected token '.'
     at checkSyntax (node:internal/main/check_syntax:74:5)
 
 Node.js v22.23.2
