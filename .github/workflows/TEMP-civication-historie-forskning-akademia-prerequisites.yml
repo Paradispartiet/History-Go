@@ -58,14 +58,17 @@ jobs:
       - name: Run full Civication suite
         run: |
           set +e
-          npm run test:civication > /tmp/civication.log 2>&1
-          status=$?
+          node tests/run-civication-tests.mjs > /tmp/civication-core.log 2>&1
+          core_status=$?
           set -e
-          if [ "$status" -ne 0 ]; then
-            grep -E -B 8 -A 24 'AssertionError|ERR_ASSERTION|not ok|FAIL|Error:|error:' /tmp/civication.log | tail -n 220 || tail -n 220 /tmp/civication.log
-            exit "$status"
+          if [ "$core_status" -ne 0 ]; then
+            echo '=== Civication core failure summary ==='
+            tail -n 120 /tmp/civication-core.log
+            exit "$core_status"
           fi
-          tail -n 50 /tmp/civication.log
+          npm run audit:job-learning-profiles
+          npm run audit:job-knowledge-requirements
+          tail -n 30 /tmp/civication-core.log
       - name: Remove temporary prerequisite surfaces
         run: rm scripts/TEMP_materialize_historie_forskning_akademia_prerequisites.mjs scripts/TEMP_fix_historie_forskning_knowledge_boundary.mjs .github/workflows/TEMP-civication-historie-forskning-akademia-prerequisites.yml
       - name: Commit exact verified foundation
