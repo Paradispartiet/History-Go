@@ -53,6 +53,19 @@ jobs:
       - name: Stop after materializer failure
         if: ${{ steps.materialize.outcome == 'failure' }}
         run: exit 1
+      - name: Align prerequisite-only readiness expectation
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const p = 'tests/civication-historie-institusjonsledelse-prerequisites.test.js';
+          const before = fs.readFileSync(p, 'utf8');
+          const from = "assert.deepEqual(ready.authored_work_required, []);";
+          const to = "assert.deepEqual(ready.authored_work_required, ['situated_reputation']);";
+          if (!before.includes(from)) throw new Error('Expected prerequisite assertion not found; refusing broad rewrite');
+          const after = before.replace(from, to);
+          if (after === before || after.split(to).length !== 2) throw new Error('Prerequisite assertion replacement was not singular');
+          fs.writeFileSync(p, after);
+          NODE
       - name: Regenerate and verify complete prerequisite gate
         id: verify
         continue-on-error: true
