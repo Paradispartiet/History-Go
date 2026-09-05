@@ -1,11 +1,38 @@
-file:///home/runner/work/History-Go/History-Go/tools/finalize-vaalerenga-completion.mjs:67
-  throw new Error(`Kunne ikke hente bilde (${lastStatus}): ${url}`);
-        ^
 
-Error: Kunne ikke hente bilde (403): https://images.prismic.io/synnove-no/829dc2aa-fba9-43a7-b8f8-875f9d015f51_Synn%C3%B8ve%2BGulost.jpg?auto=compress%2Cformat&w=1200
-    at fetchBuffer (file:///home/runner/work/History-Go/History-Go/tools/finalize-vaalerenga-completion.mjs:67:9)
-    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
-    at async outputImage (file:///home/runner/work/History-Go/History-Go/tools/finalize-vaalerenga-completion.mjs:73:15)
-    at async file:///home/runner/work/History-Go/History-Go/tools/finalize-vaalerenga-completion.mjs:83:1
+> history-go@0.0.0 places:index:build
+> npm run build:tools && node dist/tools/build_places_index.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Wrote 1534 places -> data/places/places_index.json; skipped 13 disabled place(s); applied 211 category override(s)
+vaalerenga: inneholder plassholder- eller generisk språk
+vaalerenga: fagverkskilden mangler navngitt operativ externalLinks-oppføring: https://snl.no/sosial_boligbygging_i_Norge_1850%E2%80%931900
+vaalerenga: fagverkskilden mangler navngitt operativ externalLinks-oppføring: https://oslobyleksikon.no/side/Str%C3%B8msveien
+vaalerenga: fagverkskilden mangler navngitt operativ externalLinks-oppføring: https://oslobyleksikon.no/side/V%C3%A5lerenga_skole
+vaalerenga: fagverkskilden mangler navngitt operativ externalLinks-oppføring: https://snl.no/Synn%C3%B8ve_Finden
+vaalerenga: Place-eid fagverk mangler registry-indeks
+vaalerenga: fagartikkelen mangler substans
+vaalerenga: spor-kilde er ikke kontrollert på toppnivå: https://lokalhistoriewiki.no/wiki/Fil:1878_grensestein_Aker_Kristiania_ved_Etterstadgata.jpg
+vaalerenga: spor-kilde er ikke kontrollert på toppnivå: https://lokalhistoriewiki.no/wiki/Fil:V%C3%A5lerenga_skole_Oslo_2012.jpg
+vaalerenga: spor-kilde er ikke kontrollert på toppnivå: https://lokalhistoriewiki.no/wiki/Fil:V%C3%A5lerenga_kirke_Oslo_2012.jpg
+node:internal/errors:983
+  const err = new Error(message);
+              ^
+
+Error: Command failed: /opt/hostedtoolcache/node/22.23.2/x64/bin/node scripts/audit-fagverk-place-pages.mjs --write
+    at genericNodeError (node:internal/errors:983:15)
+    at wrappedFn (node:internal/errors:537:14)
+    at checkExecSyncError (node:child_process:916:11)
+    at execFileSync (node:child_process:952:15)
+    at file:///home/runner/work/History-Go/History-Go/tools/finalize-vaalerenga-completion.mjs:735:1 {
+  status: 1,
+  signal: null,
+  output: [ null, null, null ],
+  pid: 2421,
+  stdout: null,
+  stderr: null
+}
 
 Node.js v22.23.2
