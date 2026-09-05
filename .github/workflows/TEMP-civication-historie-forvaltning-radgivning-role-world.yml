@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   materialize-and-verify:
-    if: ${{ !contains(github.event.head_commit.message, 'Complete Historie Forvaltning og rådgivning Role World') }}
+    if: ${{ !contains(github.event.head_commit.message, 'Complete Historie Forvaltning og rådgivning Role World') && !contains(github.event.head_commit.message, '[role-world-diag-skip]') }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -29,7 +29,26 @@ jobs:
           cache: npm
       - run: npm ci --no-audit --no-fund
       - name: Materialize Historie Forvaltning og rådgivning Role World
-        run: node scripts/TEMP_materialize_historie_forvaltning_radgivning_role_world.mjs
+        id: materialize
+        continue-on-error: true
+        run: node scripts/TEMP_materialize_historie_forvaltning_radgivning_role_world.mjs > /tmp/advisory-role-world-materializer.log 2>&1
+      - name: Persist exact materializer diagnostic only
+        if: ${{ steps.materialize.outcome == 'failure' }}
+        run: |
+          log="$(cat /tmp/advisory-role-world-materializer.log)"
+          git reset --hard HEAD
+          git clean -fd
+          mkdir -p reports/TEMP
+          printf '%s\n' "$log" > reports/TEMP/historie-forvaltning-radgivning-role-world-materializer.log
+          git config user.name "Civication rollout agent"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/TEMP/historie-forvaltning-radgivning-role-world-materializer.log
+          git diff --cached --check
+          git commit -m "Capture advisory Role World materializer diagnostic [role-world-diag-skip]"
+          git push origin HEAD:agent/civication-historie-forvaltning-radgivning-role-world
+      - name: Stop after materializer failure
+        if: ${{ steps.materialize.outcome == 'failure' }}
+        run: exit 1
       - name: Regenerate career gameplay matrix
         run: node scripts/audit-civication-career-gameplay.mjs --write
       - name: Regenerate Role World readiness
