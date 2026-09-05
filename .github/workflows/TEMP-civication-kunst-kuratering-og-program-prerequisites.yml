@@ -91,6 +91,8 @@ jobs:
           {
             echo '=== Role Pack audit ==='
             node scripts/audit-civication-role-packs.mjs
+            echo '=== Scene Registry build ==='
+            node scripts/build-civication-scene-registry.mjs --write
             echo '=== Career gameplay audit ==='
             node scripts/audit-civication-career-gameplay.mjs --write
             echo '=== Role World rollout readiness audit ==='
