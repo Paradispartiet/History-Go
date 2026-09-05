@@ -177,10 +177,10 @@ jobs:
           NODE
       - name: Materialize canonical derived data
         run: |
-          npm run quiz:context -- --category by --target rodelokka --output data/quiz/production_context/by/rodelokka.json
           npm run epoker:places:build
           npm run places:index:build
           npm run place-open:build
+          npm run quiz:context -- --category by --target rodelokka --output data/quiz/production_context/by/rodelokka.json
       - name: Align Rodeløkka quiz with deterministic production context
         run: |
           node --input-type=module <<'NODE'
@@ -227,23 +227,7 @@ jobs:
       - name: Quiz content audit
         run: npm run audit:quiz-content
       - name: Quiz production context audit
-        id: quiz_context
-        continue-on-error: true
-        shell: bash
-        run: |
-          set -o pipefail
-          npm run audit:quiz-production-context 2>&1 | tee /tmp/rodelokka-quiz-production-context.log
-      - name: Upload quiz production context diagnostic
-        if: steps.quiz_context.outcome == 'failure'
-        uses: actions/upload-artifact@v4
-        with:
-          name: rodelokka-quiz-production-context-residual
-          path: /tmp/rodelokka-quiz-production-context.log
-          if-no-files-found: error
-          retention-days: 1
-      - name: Fail on quiz production context audit
-        if: steps.quiz_context.outcome == 'failure'
-        run: exit 1
+        run: npm run audit:quiz-production-context
       - name: Quiz progression audit
         run: npm run audit:quiz-progression
       - name: Quiz theory binding audit
