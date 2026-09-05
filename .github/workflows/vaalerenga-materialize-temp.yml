@@ -36,7 +36,18 @@ jobs:
             exit 1
           fi
       - name: Materialize Vålerenga
-        run: node tools/finalize-vaalerenga-completion.mjs
+        run: |
+          if ! node tools/finalize-vaalerenga-completion.mjs > /tmp/vaalerenga-runtime.log 2>&1; then
+            tail -n 160 /tmp/vaalerenga-runtime.log > .tmp/vaalerenga-materialize/runtime-error.txt
+            cat .tmp/vaalerenga-materialize/runtime-error.txt
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add .tmp/vaalerenga-materialize/runtime-error.txt
+            git commit -m 'Record Vålerenga runtime diagnostic'
+            git push origin HEAD:agent/vaalerenga-production-20260905
+            exit 1
+          fi
+          tail -n 80 /tmp/vaalerenga-runtime.log
       - name: Validate focused production gates
         run: |
           node --test tests/vaalerenga-completion.test.mjs
