@@ -1,0 +1,5 @@
+
+// Final derived refresh after every canonical Place/Fagverk mutation has settled.
+execFileSync(process.execPath, ["scripts/build-fagverk-release-manifest.mjs"], { cwd: root, stdio: "inherit" });
+// Keep quiz production context last so its resolver fingerprints the final composed inputs.
+await runBuildQuizProductionContext({ root, categoryId: "by", targetId: placeId, outputPath: contextFile });
