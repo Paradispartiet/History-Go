@@ -5,13 +5,16 @@ on:
     paths:
       - 'data/fagverk/litteratur/maintenance/**'
       - 'data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/poetikk_estetikk_litteraritet/claims.json'
+      - 'data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/sprak_stil_retorikk/claims.json'
       - 'data/quiz/litteratur/litteratur_subject_pathways_v1.json'
       - 'data/knowledge/subjects/litteratur/knowledge_units.generated.json'
       - 'scripts/materialize-litteratur-poetics-style-v1.mjs'
       - 'scripts/audit-litteratur-maintenance-source-refresh-round1.mjs'
       - 'scripts/audit-litteratur-maintenance-source-refresh-round2.mjs'
+      - 'scripts/audit-litteratur-maintenance-source-refresh-round3.mjs'
       - 'tests/litteratur-maintenance-source-refresh-round1.test.mjs'
       - 'tests/litteratur-maintenance-source-refresh-round2.test.mjs'
+      - 'tests/litteratur-maintenance-source-refresh-round3.test.mjs'
       - '.github/workflows/litteratur-maintenance-integrity.yml'
 
 permissions:
@@ -42,6 +45,11 @@ jobs:
           node --check scripts/audit-litteratur-maintenance-source-refresh-round2.mjs
           node scripts/audit-litteratur-maintenance-source-refresh-round2.mjs
           node --test tests/litteratur-maintenance-source-refresh-round2.test.mjs
+      - name: Audit Litteratur source refresh round 3
+        run: |
+          node --check scripts/audit-litteratur-maintenance-source-refresh-round3.mjs
+          node scripts/audit-litteratur-maintenance-source-refresh-round3.mjs
+          node --test tests/litteratur-maintenance-source-refresh-round3.test.mjs
       - name: Preserve Litteratur assessment and theory integrity
         run: |
           node scripts/audit-litteratur-assessment-v1.mjs
