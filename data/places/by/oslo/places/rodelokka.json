@@ -236,9 +236,11 @@
     ],
     "emne_ids": [
       "em_by_historiske_lag_i_hverdagsrom",
-      "em_by_boligstruktur"
+      "em_by_boligstruktur",
+      "em_by_bygningstyper_og_typologier"
     ],
     "chapter_ids": [
+      "arkitektur-type-skala-byform",
       "bolig-nabolag-tilgang-endring"
     ],
     "lenses": [
@@ -255,7 +257,7 @@
         "title": "Tre og murtvang",
         "prompt": "Hvorfor ble trehus et så tydelig materiallag akkurat her?",
         "subject_id": "by",
-        "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+        "emne_id": "em_by_bygningstyper_og_typologier",
         "evidence": "Koble observerbart materiale til dokumentert plassering utenfor bygrensen; utseende alene beviser ikke byggeår."
       },
       {
@@ -275,7 +277,54 @@
         "evidence": "Beskriv høyder, gatebredder og materialskifter uten å gjøre sosial status til en visuell antakelse."
       }
     ],
-    "questions": [
+    "concepts": [
+      "utparsellering",
+      "murtvang",
+      "bygrense",
+      "trehusmiljø",
+      "tomtestruktur",
+      "bakgård",
+      "sanering",
+      "bevaring",
+      "områdevern",
+      "bygningsflytting",
+      "småskala",
+      "historiske lag"
+    ],
+    "observable_traces": [
+      {
+        "title": "Tre, høyde og gatebredde",
+        "observation": "Langs Rodeløkkas små gater kan lave trehus, korte fasadeløp og smal gateprofil registreres direkte fra offentlig rom.",
+        "interpretation_boundary": "Synlig materiale og skala kan beskrives i felt, men byggeår, murtvang og historisk funksjon må dokumenteres i kilder.",
+        "source_urls": [
+          "https://oslobyleksikon.no/side/Rodel%C3%B8kka_(str%C3%B8k)",
+          "https://snl.no/Rodel%C3%B8kka",
+          "https://commons.wikimedia.org/wiki/File:Langgata,_Rodel%C3%B8kka_(7._september_2018).jpg"
+        ]
+      },
+      {
+        "title": "Porter og bakgårdsgrenser",
+        "observation": "Porter, passasjer og overganger mellom gate, hus og gårdsrom viser den finmaskede tomtestrukturen flere steder i strøket.",
+        "interpretation_boundary": "Feltobservasjonen viser dagens fysiske grenser; koblingen til utparselleringen fra 1859 krever historisk kildebelegg.",
+        "source_urls": [
+          "https://oslobyleksikon.no/side/Rodel%C3%B8kka_(str%C3%B8k)",
+          "https://lokalhistoriewiki.no/wiki/Rodel%C3%B8kka",
+          "https://commons.wikimedia.org/wiki/File:Langgata,_Rodel%C3%B8kka_(7._september_2018).jpg"
+        ]
+      },
+      {
+        "title": "Rodes hus i Langgata",
+        "observation": "Rodes hus kan observeres ved Langgata 30 som et konkret eldre trehus i dagens Rodeløkka.",
+        "interpretation_boundary": "Plasseringen alene viser ikke bygningens flyttehistorie; flyttingen fra Tromsøgata 7 i 1984 må leses fra dokumenterte kilder.",
+        "source_urls": [
+          "https://oslobyleksikon.no/side/Langgata",
+          "https://oslobyleksikon.no/side/Rodel%C3%B8kka_(str%C3%B8k)",
+          "https://commons.wikimedia.org/wiki/File:Langgata_30_Oslo.jpg"
+        ]
+      }
+    ],
+    "verified_at": "2026-09-04",
+    "guiding_questions": [
       "Hvordan påvirket utparselleringen fra 1859 Rodeløkkas senere romlige struktur?",
       "Hva kan trehusmaterialet fortelle når det kombineres med kunnskap om bygrense og murtvang?",
       "Hva endret innlemmelsen i Christiania i 1878, og hva ble stående fysisk?",
@@ -283,99 +332,14 @@
       "Hva betyr det faglig at bevaringsvedtaket i 1988 omfattet 137 eiendommer?",
       "Hvilke påstander om dagens beboere eller boligmarked kan ikke trekkes fra gatebildet alene?"
     ],
-    "concepts": [
-      {
-        "id": "utparsellering",
-        "term": "utparsellering"
-      },
-      {
-        "id": "murtvang",
-        "term": "murtvang"
-      },
-      {
-        "id": "bygrense",
-        "term": "bygrense"
-      },
-      {
-        "id": "trehusmiljo",
-        "term": "trehusmiljø"
-      },
-      {
-        "id": "tomtestruktur",
-        "term": "tomtestruktur"
-      },
-      {
-        "id": "bakgard",
-        "term": "bakgård"
-      },
-      {
-        "id": "sanering",
-        "term": "sanering"
-      },
-      {
-        "id": "bevaring",
-        "term": "bevaring"
-      },
-      {
-        "id": "omradevern",
-        "term": "områdevern"
-      },
-      {
-        "id": "flytting",
-        "term": "bygningsflytting"
-      },
-      {
-        "id": "smaskala",
-        "term": "småskala"
-      },
-      {
-        "id": "historiske_lag",
-        "term": "historiske lag"
-      }
-    ],
-    "observable_traces": [
-      {
-        "id": "rodelokka-spor-1",
-        "title": "Tre, høyde og gatebredde",
-        "instruction": "Velg én kort gate og registrer materiale, etasjehøyde og gatebredde som observerbare trekk."
-      },
-      {
-        "id": "rodelokka-spor-2",
-        "title": "Porter og bakgårder",
-        "instruction": "Finn tre forskjellige overganger mellom offentlig gate og privat tomt og beskriv hvordan grensene er bygget."
-      },
-      {
-        "id": "rodelokka-spor-3",
-        "title": "Rodes hus og flyttet historie",
-        "instruction": "Observer Langgata 30 fra offentlig område og skill mellom det som er synlig nå og det kildene dokumenterer om flyttingen i 1984."
-      }
-    ],
-    "sources": [
-      {
-        "label": "Oslo byleksikon – Rodeløkka",
-        "url": "https://oslobyleksikon.no/side/Rodel%C3%B8kka_(str%C3%B8k)",
-        "verifiedAt": "2026-09-04"
-      },
-      {
-        "label": "Oslo byleksikon – Langgata",
-        "url": "https://oslobyleksikon.no/side/Langgata",
-        "verifiedAt": "2026-09-04"
-      },
-      {
-        "label": "Store norske leksikon – Rodeløkka",
-        "url": "https://snl.no/Rodel%C3%B8kka",
-        "verifiedAt": "2026-09-04"
-      },
-      {
-        "label": "Lokalhistoriewiki – Rodeløkka",
-        "url": "https://lokalhistoriewiki.no/wiki/Rodel%C3%B8kka",
-        "verifiedAt": "2026-09-04"
-      },
-      {
-        "label": "Oslo byleksikon – Freia",
-        "url": "https://oslobyleksikon.no/side/Freia",
-        "verifiedAt": "2026-09-04"
-      }
+    "source_urls": [
+      "https://oslobyleksikon.no/side/Rodel%C3%B8kka_(str%C3%B8k)",
+      "https://oslobyleksikon.no/side/Langgata",
+      "https://snl.no/Rodel%C3%B8kka",
+      "https://lokalhistoriewiki.no/wiki/Rodel%C3%B8kka",
+      "https://oslobyleksikon.no/side/Freia",
+      "https://commons.wikimedia.org/wiki/File:Langgata,_Rodel%C3%B8kka_(7._september_2018).jpg",
+      "https://commons.wikimedia.org/wiki/File:Langgata_30_Oslo.jpg"
     ]
   }
 }
