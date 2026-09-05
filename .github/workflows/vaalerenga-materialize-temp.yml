@@ -26,7 +26,15 @@ jobs:
       - name: Assemble and syntax-check finalizer
         run: |
           cat .tmp/vaalerenga-materialize/part-* > tools/finalize-vaalerenga-completion.mjs
-          node --check tools/finalize-vaalerenga-completion.mjs
+          if ! node --check tools/finalize-vaalerenga-completion.mjs > .tmp/vaalerenga-materialize/syntax-error.txt 2>&1; then
+            cat .tmp/vaalerenga-materialize/syntax-error.txt
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add .tmp/vaalerenga-materialize/syntax-error.txt
+            git commit -m 'Record Vålerenga syntax diagnostic'
+            git push origin HEAD:agent/vaalerenga-production-20260905
+            exit 1
+          fi
       - name: Materialize Vålerenga
         run: node tools/finalize-vaalerenga-completion.mjs
       - name: Validate focused production gates
