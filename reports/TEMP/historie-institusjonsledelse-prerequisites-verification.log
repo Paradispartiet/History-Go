@@ -3,18 +3,32 @@ Wrote 300 role rows to docs/CIVICATION_ROLE_PACK_INDEX.md and data/Civication/ro
 Wrote 85 career-eligible worlds, 3 canonical non-career worlds and 1 support worlds to data/Civication/careerGameplayMatrix.json and reports/civication-career-gameplay-matrix.md.
 WROTE: data/Civication/roleWorldRolloutReadiness.json
 WROTE: reports/civication-role-world-rollout-readiness.md
-/home/runner/work/History-Go/History-Go/tests/civication-historie-institusjonsledelse-prerequisites.test.js:1
-assert.deepEqual(ready.authored_work_required, ['situated_reputation']);
-^
+node:assert:150
+  throw new AssertionError(obj);
+  ^
 
-ReferenceError: assert is not defined
-    at Object.<anonymous> (/home/runner/work/History-Go/History-Go/tests/civication-historie-institusjonsledelse-prerequisites.test.js:1:1)
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
++ []
+- [
+-   'situated_reputation'
+- ]
+
+    at Object.<anonymous> (/home/runner/work/History-Go/History-Go/tests/civication-historie-institusjonsledelse-prerequisites.test.js:1:3890)
     at Module._compile (node:internal/modules/cjs/loader:1781:14)
     at Object..js (node:internal/modules/cjs/loader:1913:10)
     at Module.load (node:internal/modules/cjs/loader:1505:32)
     at Function._load (node:internal/modules/cjs/loader:1309:12)
     at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
-    at node:internal/main/run_main_module:36:49
+    at node:internal/main/run_main_module:36:49 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [],
+  expected: [ 'situated_reputation' ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
 
 Node.js v22.23.2
