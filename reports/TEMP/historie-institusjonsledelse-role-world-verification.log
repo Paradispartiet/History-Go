@@ -5,33 +5,23 @@ WROTE: data/Civication/roleWorldRolloutReadiness.json
 WROTE: reports/civication-role-world-rollout-readiness.md
 === Focused Institusjonsledelse Role World test ===
 Civication Historie Institusjonsledelse Role World rollout: OK
-=== Institusjonsledelse prerequisite compatibility ===
-node:assert:150
-  throw new AssertionError(obj);
+=== Global Role World contract ===
+Civication Role World contract: OK
+=== Career gameplay test ===
+node:internal/modules/cjs/loader:1433
+  throw err;
   ^
 
-AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
-+ actual - expected
-
-+ []
-- [
--   'situated_reputation'
-- ]
-
-    at Object.<anonymous> (/home/runner/work/History-Go/History-Go/tests/civication-historie-institusjonsledelse-prerequisites.test.js:1:3890)
-    at Module._compile (node:internal/modules/cjs/loader:1781:14)
-    at Object..js (node:internal/modules/cjs/loader:1913:10)
-    at Module.load (node:internal/modules/cjs/loader:1505:32)
-    at Function._load (node:internal/modules/cjs/loader:1309:12)
+Error: Cannot find module '/home/runner/work/History-Go/History-Go/tests/civication-career-gameplay.test.js'
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1430:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1040:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1045:22)
+    at Function._load (node:internal/modules/cjs/loader:1216:25)
     at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
     at node:internal/main/run_main_module:36:49 {
-  generatedMessage: true,
-  code: 'ERR_ASSERTION',
-  actual: [],
-  expected: [ 'situated_reputation' ],
-  operator: 'deepStrictEqual',
-  diff: 'simple'
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
 }
 
 Node.js v22.23.2
