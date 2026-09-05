@@ -1,0 +1,100 @@
+  verifiedAt
+};
+const frontImageMeta = {
+  ...placeImageMeta, assetType: "documentary_photo_crop", orientation: "portrait", outputDimensions: "900x1200",
+  transformation: "Stående 3:4-utnitt fra samme dokumentarfoto; ingen generativ endring."
+};
+
+const place = {
+  ...read(placeFile),
+  desc,
+  popupDesc,
+  image: "bilder/places/vaalerenga.webp",
+  cardImage: "bilder/kort/places/vaalerenga.webp",
+  frontImage: "bilder/places/vaalerenga_front_portrait.webp",
+  imageMeta: placeImageMeta,
+  frontImageMeta,
+  production_profile: "standard",
+  profile_status: "confirmed",
+  production_status: "complete",
+  production_verified_at: verifiedAt,
+  underbadge_ids: ["bolig_og_bomiljo", "byplanlegging"],
+  related_people_ids: ["synnove_finden"],
+  place_card_profile: {
+    schema: "history_go_place_card_profile_v2",
+    collection_ids: ["people", "objects", "brands", "structures"],
+    reason: "Vålerenga bæres av fire separate, stedsspesifikke spor: Synnøve Finden som dokumentert næringslivsperson, grensestein nr. 38 som fysisk spor etter 1878-grensen, Synnøve Finden som selvstendig Brand-identitet med opphav i Danmarks gate 41 og kirken/skolen som varige Structures.",
+    verifiedAt
+  },
+  objects: [{
+    id: "vaalerenga_grensestein_38",
+    title: "Grensestein nr. 38",
+    name: "Grensestein nr. 38",
+    type: "grensestein",
+    kind: "physical_object",
+    physicalObject: true,
+    placeSpecific: true,
+    collectable: true,
+    collection: "vaalerenga_fysiske_spor",
+    desc: "Grensestein nr. 38 markerer den tidligere kommunegrensen mellom Kristiania og Aker ved Vålerenga/Etterstad. Steinen er et direkte fysisk spor etter byutvidelsen i 1878.",
+    historicalFunction: "Nummerert grensemerke mellom Kristiania og Aker etter grensejusteringen i 1878.",
+    image: "bilder/kort/objects/vaalerenga_grensestein_38.webp",
+    imageMeta: {
+      sourcePage: urls.borderImagePage, creator: "PaulVIF", credit: "PaulVIF / Wikimedia Commons",
+      license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+      transformation: "Proporsjonal beskjæring og WebP-normalisering av dokumentarfoto av selve grensesteinen.", verifiedAt
+    },
+    source_urls: [urls.border, urls.borderImagePage, urls.byleksikon],
+    why_here: "Steinen står ved Etterstadgata på grensen mellom Vålerenga og Etterstad og gjør 1878-utvidelsen fysisk lesbar.",
+    unlock: "Finn nummereringen og A/K-merkingen uten å krysse private arealer.",
+    storePrice: 30,
+    currency: "PC"
+  }],
+  object_collection_exception: {
+    status: "single_signature_object",
+    rationale: "Grensestein nr. 38 er ett dokumentert signaturobjekt som direkte materialiserer byutvidelsen i 1878. Andre vurderte objekter ble holdt tilbake fordi gjenbrukbar bildeproveniens eller semantisk avgrensning ikke var sterk nok.",
+    verifiedAt
+  },
+  structures: [
+    {
+      id: "vaalerenga_kirke", name: "Vålerenga kirke", type: "kirke", kind: "church", year: 1902,
+      desc: "Vålerenga kirke ble vigslet i 1902, brant i 1979 og ble gjenoppbygd og vigslet på nytt i 1984. Den er et sentralt institusjons- og identitetsspor i nabolaget.",
+      image: "bilder/kort/structures/vaalerenga_kirke.webp",
+      imageMeta: { sourcePage: urls.churchImagePage, creator: "Frode Evensen", credit: "Frode Evensen / Wikimedia Commons", license: "Attribution only", transformation: "Proporsjonal beskjæring og WebP-normalisering.", verifiedAt },
+      source_urls: [urls.churchOfficial, urls.byleksikon, urls.churchImagePage], verifiedAt
+    },
+    {
+      id: "vaalerenga_skole", name: "Vålerenga skole", type: "skole", kind: "school", year: 1895,
+      desc: "Vålerenga skole i Islands gate ble tatt i bruk i 1895. Den røde teglskolen, tegnet av Paul Due, var ved åpningen byens største skole.",
+      image: "bilder/kort/structures/vaalerenga_skole.webp",
+      imageMeta: { sourcePage: urls.schoolImagePage, creator: "Kjetil Ree", credit: "Kjetil Ree / Wikimedia Commons", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", transformation: "Proporsjonal beskjæring og WebP-normalisering.", verifiedAt },
+      source_urls: [urls.school, urls.schoolImagePage], verifiedAt
+    }
+  ],
+  externalLinks: [
+    { type: "local_history", label: "Oslo byleksikon – Vålerenga", url: urls.byleksikon, verifiedAt },
+    { type: "reference", label: "Store norske leksikon – Vålerenga", url: urls.snlPlace, verifiedAt },
+    { type: "official", label: "Vålerenga kirke – historikk", url: urls.churchOfficial, verifiedAt },
+    { type: "local_history", label: "Oslo byleksikon – Vålerengtunnelen", url: urls.tunnel, verifiedAt },
+    { type: "local_history", label: "Lokalhistoriewiki – 1878-grensesteinene", url: urls.border, verifiedAt },
+    { type: "business_history", label: "Synnøve Finden – selskapets historie", url: urls.synnoveOfficial, verifiedAt },
+    { type: "image_source", label: "Wikimedia Commons – Street in Vålerenga", url: urls.placeImagePage, verifiedAt }
+  ],
+  fagverk: {
+    schema: "history_go_place_fagverk_v2",
+    level: "full",
+    status: "curated",
+    intro: "Vålerenga viser hvordan en forstad blir en del av storbyen uten å miste alle spor av tidligere grenser og boligformer. Trehus, grensestein, skole, kirke, småindustri og trafikkhistorie gjør stedet egnet til å undersøke byutvidelse, morfologi, institusjoner og mobilitet i samme nabolag.",
+    article: [
+      "Vålerenga vokste fram langs Strømsveien fra 1830-årene utenfor Christianias daværende bygrense. Den tidlige trehusbebyggelsen må derfor leses sammen med regulering og jurisdiksjon: boligformen var ikke bare et stilvalg, men oppstod under andre rammer enn i den tette byen innenfor murtvangen.",
+      "Byutvidelsen i 1878 gjorde Vålerenga til del av Christiania. Grensestein nr. 38 er særlig verdifull fordi den lar en administrativ beslutning leses som et fysisk spor. Skolen fra 1895 og kirken fra 1902 viser samtidig hvordan kommunale og religiøse institusjoner ble bygget inn i et raskt voksende boligområde.",
+      "Danmarks gate 41 tilfører et næringslivslag. Synnøve Finden og Pernille Holmen bygde opp ostefabrikken her fra slutten av 1920-årene. Sporet viser hvordan produksjon og bolig kunne ligge tett i den eldre byveven før virksomheten senere fikk en nasjonal merkeidentitet.",
+      "Strømsveien viser et senere konfliktlag. I 1970- og 1980-årene var veien del av E6 og førte tungtrafikk gjennom boligområdet. Vålerengtunnelen flyttet trafikken under bakken, og stengningen for gjennomgangstrafikk i 1992 endret gatens rolle. Før–etter-analysen må skille dokumentert trafikkendring fra bredere påstander om alle beboeres erfaringer.",
+      "Stedet bør derfor ikke reduseres til et generisk trehusstrøk. Det analytiske poenget ligger i samspillet mellom grense, boligform, institusjoner, produksjon og transport. Hvert lag har egne kilder og ulike grader av fysisk synlighet i dagens byrom."
+    ],
+    subject_ids: ["by"],
+    emne_ids: ["em_by_historiske_lag_i_hverdagsrom", "em_by_boligstruktur", "em_by_infrastruktur_mobilitet", "em_by_bygningstyper_og_typologier"],
+    chapter_ids: ["arkitektur-type-skala-byform", "bolig-nabolag-tilgang-endring", "urbanisme-idealer-forbindelser-fortetting"],
+    lenses: [
+      { id: "vaalerenga_grense", title: "Fra Aker-rand til Christiania", prompt: "Hva blir synlig når byutvidelsen i 1878 leses gjennom både kart, trehus og grensestein?", subject_id: "by", emne_id: "em_by_historiske_lag_i_hverdagsrom", evidence: "Kombiner byhistoriske kilder med grensesteinens dokumenterte plassering; ikke la ett objekt representere hele grensen alene." },
+      { id: "vaalerenga_morfologi", title: "Trehus og byform", prompt: "Hvordan skiller små trehus, tomter og gater seg fra senere murgårder og større veianlegg?", subject_id: "by", emne_id: "em_by_boligstruktur", evidence: "Beskriv synlig form før sosiale eller kausale tolkninger." },
