@@ -1,3 +1,31 @@
+      "theoryQuestions": 1,
+      "methodQuestions": 1
+    },
+    {
+      "file": "data/quiz/historie/norges_hjemmefrontmuseum_sets.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 1
+    },
+    {
+      "file": "data/quiz/historie/akershus_slott_sets.json",
+      "questions": 49,
+      "theoryQuestions": 1,
+      "methodQuestions": 3
+    },
+    {
+      "file": "data/quiz/historie/myntgatakvartalet_sets.json",
+      "questions": 28,
+      "theoryQuestions": 1,
+      "methodQuestions": 1
+    },
+    {
+      "file": "data/quiz/historie/waisenhuset_kongens_gate_sets.json",
+      "questions": 28,
+      "theoryQuestions": 1,
+      "methodQuestions": 1
+    },
+    {
       "file": "data/quiz/historie/mollergata_19_sets.json",
       "questions": 28,
       "theoryQuestions": 1,
@@ -172,49 +200,21 @@
       "methodQuestions": 7
     }
   ],
-  "failures": [
-    {
-      "file": "data/quiz/by/vaalerenga_sets.json",
-      "questionId": "vaalerenga_quiz_31",
-      "reason": "hook er ikke bundet til spørsmålets emne",
-      "hookId": "ark_transformasjon",
-      "emneId": "em_by_infrastruktur_mobilitet"
-    },
-    {
-      "file": "data/quiz/by/vaalerenga_sets.json",
-      "questionId": "vaalerenga_quiz_32",
-      "reason": "hook er ikke bundet til spørsmålets emne",
-      "hookId": "byliv_aapne_rom",
-      "emneId": "em_by_historiske_lag_i_hverdagsrom"
-    },
-    {
-      "file": "data/quiz/by/vaalerenga_sets.json",
-      "questionId": "vaalerenga_quiz_34",
-      "reason": "hook er ikke bundet til spørsmålets emne",
-      "hookId": "byliv_stemning_sansning",
-      "emneId": "em_by_historiske_lag_i_hverdagsrom"
-    },
-    {
-      "file": "data/quiz/by/vaalerenga_sets.json",
-      "questionId": "vaalerenga_quiz_34",
-      "reason": "teoretiker finnes ikke i valgt hook",
-      "hookId": "byliv_stemning_sansning",
-      "thinkerId": "william_h_whyte"
-    },
-    {
-      "file": "data/quiz/by/vaalerenga_sets.json",
-      "questionId": "vaalerenga_quiz_34",
-      "reason": "verk finnes ikke hos valgt teoretiker",
-      "thinkerId": "william_h_whyte",
-      "work": "The Social Life of Small Urban Spaces"
-    },
-    {
-      "file": "data/quiz/by/vaalerenga_sets.json",
-      "questionId": "vaalerenga_quiz_35",
-      "reason": "hook er ikke bundet til spørsmålets emne",
-      "hookId": "ark_transformasjon",
-      "emneId": "em_by_historiske_lag_i_hverdagsrom"
-    }
-  ]
+  "failures": []
 }
-FAILED_GATE=quiz-theory-binding
+===== fagverk =====
+Fagverk-sted v2: 80 curated, 0 in production, 524 linked unfinished, 930 category-only unfinished.
+===== fagverk-release =====
+file:///home/runner/work/History-Go/History-Go/scripts/build-fagverk-release-manifest.mjs:413
+    if (fs.readFileSync(outputPath, "utf8") !== serialized) throw new Error(`Stale Fagverk release manifest: ${args.output}`);
+                                                                  ^
+
+Error: Stale Fagverk release manifest: data/fagverk/fagverk_release.json
+    at main (file:///home/runner/work/History-Go/History-Go/scripts/build-fagverk-release-manifest.mjs:413:67)
+    at file:///home/runner/work/History-Go/History-Go/scripts/build-fagverk-release-manifest.mjs:422:71
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.23.2
+FAILED_GATE=fagverk-release
