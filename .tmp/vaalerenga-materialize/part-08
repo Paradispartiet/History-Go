@@ -52,6 +52,13 @@ schoolForMeta.imageMeta = {
 };
 write(placeFile, finalPlaceForImageMeta);
 
+// The transport URL for the Brand packshot is a proxy only; canonical provenance stays on Synnøve Finden's original Prismic asset.
+const finalBrandsForImageMeta = read("data/brands/brands_master.json");
+const synnoveBrandForMeta = finalBrandsForImageMeta.find((row) => row.id === "synnove_finden");
+if (!synnoveBrandForMeta) throw new Error("Missing Synnøve Finden brand for image provenance correction");
+synnoveBrandForMeta.imageMeta.sourceAsset = urls.synnovePackshotSourceAsset;
+write("data/brands/brands_master.json", finalBrandsForImageMeta);
+
 // Keep derived place/runtime artifacts synchronized with the corrected canonical provenance.
 execFileSync("npm", ["run", "places:index:build"], { cwd: root, stdio: "inherit" });
 execFileSync("npm", ["run", "place-open:build"], { cwd: root, stdio: "inherit" });
