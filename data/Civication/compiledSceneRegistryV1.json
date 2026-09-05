@@ -187,6 +187,15 @@
     "data/Civication/mailFamilies/kunst/followup/kunst_kunstnerisk_ledelse_followup.json",
     "data/Civication/mailFamilies/kunst/knowledge/kunst_kunstnerisk_ledelse_knowledge.json",
     "data/Civication/mailFamilies/kunst/consequence/kunst_kunstnerisk_ledelse_consequence.json",
+    "data/Civication/mailFamilies/kunst/job/kunst_kuratering_og_program_job.json",
+    "data/Civication/mailFamilies/kunst/people/kunst_kuratering_og_program_people.json",
+    "data/Civication/mailFamilies/kunst/story/kunst_kuratering_og_program_story.json",
+    "data/Civication/mailFamilies/kunst/conflict/kunst_kuratering_og_program_conflict.json",
+    "data/Civication/mailFamilies/kunst/event/kunst_kuratering_og_program_event.json",
+    "data/Civication/mailFamilies/kunst/micro/kunst_kuratering_og_program_micro.json",
+    "data/Civication/mailFamilies/kunst/followup/kunst_kuratering_og_program_followup.json",
+    "data/Civication/mailFamilies/kunst/knowledge/kunst_kuratering_og_program_knowledge.json",
+    "data/Civication/mailFamilies/kunst/consequence/kunst_kuratering_og_program_consequence.json",
     "data/Civication/mailFamilies/kunst/job/kunst_utstillingsproduksjon_job.json",
     "data/Civication/mailFamilies/kunst/people/kunst_utstillingsproduksjon_people.json",
     "data/Civication/mailFamilies/kunst/story/kunst_utstillingsproduksjon_story.json",
@@ -63107,6 +63116,2046 @@
       },
       "source_hash": "6d41c5c8eef4158c2992dc44194483d97760cb3d1178586a1511474df3a06a6a",
       "source_path": "data/Civication/mailFamilies/kunst/story/kunst_kunstnerisk_ledelse_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_begrunnelse_vs_rask_narrativ_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Deklarer relasjonen og krev sporbar utvalgsbegrunnelse",
+            "reply": "Jeg velger å deklarer relasjonen og krev sporbar utvalgsbegrunnelse. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler.",
+            "tags": [
+              "sporbarhet",
+              "kildekritikk",
+              "habilitet",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Hold relasjonen uformell og gå videre med utvalget",
+            "reply": "Jeg velger å hold relasjonen uformell og gå videre med utvalget. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "research_utvalg_kildekritikk_habilitet_rettighet_og_sporbar_beslutning",
+        "consequence_axis": "etterprovbar_legitimitet_vs_senere_korreksjon_og_tillitstap",
+        "from": "Ingrid",
+        "id": "kunst_kuratering_og_program_conflict_habilitet_og_eierpress_001",
+        "mail_family": "kunst_kuratering_og_program_habilitet_utvalg_og_institusjonelt_press",
+        "mail_type": "conflict",
+        "narrative_arc": "habilitet_og_eierpress",
+        "people_ref": "ingrid_senior_kurator_kunst_kuratering_og_program",
+        "phase": "advanced",
+        "place_id": "research_og_kuratorisk_beslutningsrom",
+        "pressure": "prestisje_nettverk_og_frist_vs_kilde_habilitet_rettighet_og_sporbar_begrunnelse",
+        "priority": 140,
+        "role_scope": "kunst_kuratering_og_program",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/conflict/kunst_kuratering_og_program_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+          "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+          "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+        ],
+        "subject": "En nær relasjon skaper habilitetspress",
+        "summary": "En aktør med nær relasjon til beslutningsmiljøet presser på for en kunstner som ikke kan begrunnes uten at interessekonflikten og utvalgskriteriene synliggjøres. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører.",
+        "task_domain": "kunstkuratering_og_utstillingsprogram"
+      },
+      "id": "kunst_kuratering_og_program_conflict_habilitet_og_eierpress_001",
+      "mail_type": "conflict",
+      "role_scope": "kunst_kuratering_og_program",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Deklarer relasjonen og krev sporbar utvalgsbegrunnelse",
+            "reply": "Jeg velger å deklarer relasjonen og krev sporbar utvalgsbegrunnelse. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Hold relasjonen uformell og gå videre med utvalget",
+            "reply": "Jeg velger å hold relasjonen uformell og gå videre med utvalget. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+            "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+            "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+          ],
+          "subject": "En nær relasjon skaper habilitetspress",
+          "summary": "En aktør med nær relasjon til beslutningsmiljøet presser på for en kunstner som ikke kan begrunnes uten at interessekonflikten og utvalgskriteriene synliggjøres. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_kuratering_og_program_conflict_habilitet_og_eierpress_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "research_og_kuratorisk_beslutningsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_kuratering_og_program_conflict_habilitet_og_eierpress_001",
+          "source_path": "data/Civication/mailFamilies/kunst/conflict/kunst_kuratering_og_program_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kuratering_og_program.mail.kunst_kuratering_og_program_conflict_habilitet_og_eierpress_001",
+        "version": 1
+      },
+      "source_hash": "19e38d3bff22877680b7494d6c8a11a0ab7be390642d53d96d4bc0b3990c1e49",
+      "source_path": "data/Civication/mailFamilies/kunst/conflict/kunst_kuratering_og_program_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_begrunnelse_vs_rask_narrativ_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Rekonstruer beslutningen fra den versjonerte loggen",
+            "reply": "Jeg velger å rekonstruer beslutningen fra den versjonerte loggen. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler.",
+            "tags": [
+              "sporbarhet",
+              "kildekritikk",
+              "habilitet",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Forklar i ettertid fra hukommelse og sosial standing",
+            "reply": "Jeg velger å forklar i ettertid fra hukommelse og sosial standing. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "research_utvalg_kildekritikk_habilitet_rettighet_og_sporbar_beslutning",
+        "consequence_axis": "etterprovbar_legitimitet_vs_senere_korreksjon_og_tillitstap",
+        "from": "Malik",
+        "id": "kunst_kuratering_og_program_consequence_senere_sporbarhet_001",
+        "mail_family": "kunst_kuratering_og_program_senere_kritikk_og_sporbarhet",
+        "mail_type": "consequence",
+        "narrative_arc": "senere_sporbarhet",
+        "people_ref": "malik_proveniens_rettighet_kunst_kuratering_og_program",
+        "phase": "mastery",
+        "place_id": "proveniens_rettighet_og_lanekontroll",
+        "pressure": "prestisje_nettverk_og_frist_vs_kilde_habilitet_rettighet_og_sporbar_begrunnelse",
+        "priority": 140,
+        "role_scope": "kunst_kuratering_og_program",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/consequence/kunst_kuratering_og_program_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+          "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+          "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+        ],
+        "subject": "Et gammelt utvalg blir etterprøvd",
+        "summary": "Måneder senere blir institusjonen bedt om å forklare hvorfor et verk ble valgt, hva man visste om proveniens og rettighet, hvilke interesser som var deklarert og hvem som faktisk fattet beslutningen. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører.",
+        "task_domain": "kunstkuratering_og_utstillingsprogram"
+      },
+      "id": "kunst_kuratering_og_program_consequence_senere_sporbarhet_001",
+      "mail_type": "consequence",
+      "role_scope": "kunst_kuratering_og_program",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Rekonstruer beslutningen fra den versjonerte loggen",
+            "reply": "Jeg velger å rekonstruer beslutningen fra den versjonerte loggen. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Forklar i ettertid fra hukommelse og sosial standing",
+            "reply": "Jeg velger å forklar i ettertid fra hukommelse og sosial standing. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+            "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+            "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+          ],
+          "subject": "Et gammelt utvalg blir etterprøvd",
+          "summary": "Måneder senere blir institusjonen bedt om å forklare hvorfor et verk ble valgt, hva man visste om proveniens og rettighet, hvilke interesser som var deklarert og hvem som faktisk fattet beslutningen. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_kuratering_og_program_consequence_senere_sporbarhet_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "proveniens_rettighet_og_lanekontroll",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_kuratering_og_program_consequence_senere_sporbarhet_001",
+          "source_path": "data/Civication/mailFamilies/kunst/consequence/kunst_kuratering_og_program_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kuratering_og_program.mail.kunst_kuratering_og_program_consequence_senere_sporbarhet_001",
+        "version": 1
+      },
+      "source_hash": "0382bb907a862b41c536cbcf2c8ef63b329a875df3cbd552409bf3a62395a3ad",
+      "source_path": "data/Civication/mailFamilies/kunst/consequence/kunst_kuratering_og_program_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_begrunnelse_vs_rask_narrativ_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Gjenåpne attribusjonsavhengige felt og behold historikken",
+            "reply": "Jeg velger å gjenåpne attribusjonsavhengige felt og behold historikken. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler.",
+            "tags": [
+              "sporbarhet",
+              "kildekritikk",
+              "habilitet",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Endre attribusjonen i sluttproduktet uten å bevare avhengigheter",
+            "reply": "Jeg velger å endre attribusjonen i sluttproduktet uten å bevare avhengigheter. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "research_utvalg_kildekritikk_habilitet_rettighet_og_sporbar_beslutning",
+        "consequence_axis": "etterprovbar_legitimitet_vs_senere_korreksjon_og_tillitstap",
+        "from": "Malik",
+        "id": "kunst_kuratering_og_program_event_ny_kilde_endrer_attribusjon_001",
+        "mail_family": "kunst_kuratering_og_program_ny_kilde_proveniens_eller_rettighetsendring",
+        "mail_type": "event",
+        "narrative_arc": "ny_kilde_endrer_attribusjon",
+        "people_ref": "malik_proveniens_rettighet_kunst_kuratering_og_program",
+        "phase": "advanced",
+        "place_id": "proveniens_rettighet_og_lanekontroll",
+        "pressure": "prestisje_nettverk_og_frist_vs_kilde_habilitet_rettighet_og_sporbar_begrunnelse",
+        "priority": 140,
+        "role_scope": "kunst_kuratering_og_program",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/event/kunst_kuratering_og_program_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+          "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+          "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+        ],
+        "subject": "En ny kilde endrer attribusjonsgrunnlaget",
+        "summary": "En ny dokumentkilde svekker et premiss i attribusjonen etter at utvalg og tekst er langt kommet, slik at bare de avhengige feltene må gjenåpnes og tidligere versjon beholdes. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører.",
+        "task_domain": "kunstkuratering_og_utstillingsprogram"
+      },
+      "id": "kunst_kuratering_og_program_event_ny_kilde_endrer_attribusjon_001",
+      "mail_type": "event",
+      "role_scope": "kunst_kuratering_og_program",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Gjenåpne attribusjonsavhengige felt og behold historikken",
+            "reply": "Jeg velger å gjenåpne attribusjonsavhengige felt og behold historikken. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Endre attribusjonen i sluttproduktet uten å bevare avhengigheter",
+            "reply": "Jeg velger å endre attribusjonen i sluttproduktet uten å bevare avhengigheter. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+            "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+            "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+          ],
+          "subject": "En ny kilde endrer attribusjonsgrunnlaget",
+          "summary": "En ny dokumentkilde svekker et premiss i attribusjonen etter at utvalg og tekst er langt kommet, slik at bare de avhengige feltene må gjenåpnes og tidligere versjon beholdes. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_kuratering_og_program_event_ny_kilde_endrer_attribusjon_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "proveniens_rettighet_og_lanekontroll",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_kuratering_og_program_event_ny_kilde_endrer_attribusjon_001",
+          "source_path": "data/Civication/mailFamilies/kunst/event/kunst_kuratering_og_program_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kuratering_og_program.mail.kunst_kuratering_og_program_event_ny_kilde_endrer_attribusjon_001",
+        "version": 1
+      },
+      "source_hash": "b94609eeb0b4e80706a053f42f65905835b0e02df4d0d00ef1fe14525178b06b",
+      "source_path": "data/Civication/mailFamilies/kunst/event/kunst_kuratering_og_program_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_begrunnelse_vs_rask_narrativ_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Publiser en sporbar korreksjon med tidligere versjon bevart",
+            "reply": "Jeg velger å publiser en sporbar korreksjon med tidligere versjon bevart. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler.",
+            "tags": [
+              "sporbarhet",
+              "kildekritikk",
+              "habilitet",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Rett feilen stille uten å bevare tidligere versjon",
+            "reply": "Jeg velger å rett feilen stille uten å bevare tidligere versjon. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "research_utvalg_kildekritikk_habilitet_rettighet_og_sporbar_beslutning",
+        "consequence_axis": "etterprovbar_legitimitet_vs_senere_korreksjon_og_tillitstap",
+        "from": "Henrik",
+        "id": "kunst_kuratering_og_program_followup_korrigering_etter_kritikk_001",
+        "mail_family": "kunst_kuratering_og_program_korrigering_og_rework",
+        "mail_type": "followup",
+        "narrative_arc": "korrigering_etter_kritikk",
+        "people_ref": "henrik_tekst_formidling_produksjon_kunst_kuratering_og_program",
+        "phase": "mastery",
+        "place_id": "tekst_formidling_og_produksjonshandoff",
+        "pressure": "prestisje_nettverk_og_frist_vs_kilde_habilitet_rettighet_og_sporbar_begrunnelse",
+        "priority": 140,
+        "role_scope": "kunst_kuratering_og_program",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/followup/kunst_kuratering_og_program_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+          "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+          "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+        ],
+        "subject": "Kritikken avdekker en dokumenterbar feil",
+        "summary": "Etter publisering peker kritikk på en faktisk feil i en kildehenvisning; korreksjonen må være synlig uten å omskrive hele den kuratoriske historien eller skjule den tidligere versjonen. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører.",
+        "task_domain": "kunstkuratering_og_utstillingsprogram"
+      },
+      "id": "kunst_kuratering_og_program_followup_korrigering_etter_kritikk_001",
+      "mail_type": "followup",
+      "role_scope": "kunst_kuratering_og_program",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Publiser en sporbar korreksjon med tidligere versjon bevart",
+            "reply": "Jeg velger å publiser en sporbar korreksjon med tidligere versjon bevart. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Rett feilen stille uten å bevare tidligere versjon",
+            "reply": "Jeg velger å rett feilen stille uten å bevare tidligere versjon. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+            "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+            "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+          ],
+          "subject": "Kritikken avdekker en dokumenterbar feil",
+          "summary": "Etter publisering peker kritikk på en faktisk feil i en kildehenvisning; korreksjonen må være synlig uten å omskrive hele den kuratoriske historien eller skjule den tidligere versjonen. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_kuratering_og_program_followup_korrigering_etter_kritikk_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "tekst_formidling_og_produksjonshandoff",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_kuratering_og_program_followup_korrigering_etter_kritikk_001",
+          "source_path": "data/Civication/mailFamilies/kunst/followup/kunst_kuratering_og_program_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kuratering_og_program.mail.kunst_kuratering_og_program_followup_korrigering_etter_kritikk_001",
+        "version": 1
+      },
+      "source_hash": "c9b9d4620732249ee9fb2b8b5e4e0290be11a652fe02902000f7e2e8209aecb2",
+      "source_path": "data/Civication/mailFamilies/kunst/followup/kunst_kuratering_og_program_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_begrunnelse_vs_rask_narrativ_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Deklarer presset og bruk de åpne utvalgskriteriene",
+            "reply": "Jeg velger å deklarer presset og bruk de åpne utvalgskriteriene. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler.",
+            "tags": [
+              "sporbarhet",
+              "kildekritikk",
+              "habilitet",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "La støttespillerens forventning avgjøre",
+            "reply": "Jeg velger å la støttespillerens forventning avgjøre. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "research_utvalg_kildekritikk_habilitet_rettighet_og_sporbar_beslutning",
+        "consequence_axis": "etterprovbar_legitimitet_vs_senere_korreksjon_og_tillitstap",
+        "from": "Ingrid",
+        "id": "kunst_kuratering_og_program_job_donoronske_utvalg_002",
+        "mail_family": "kunst_kuratering_og_program_kuratorisk_saksarbeid",
+        "mail_type": "job",
+        "narrative_arc": "donoronske_utvalg",
+        "people_ref": "ingrid_senior_kurator_kunst_kuratering_og_program",
+        "phase": "advanced",
+        "place_id": "research_og_kuratorisk_beslutningsrom",
+        "pressure": "prestisje_nettverk_og_frist_vs_kilde_habilitet_rettighet_og_sporbar_begrunnelse",
+        "priority": 139,
+        "role_scope": "kunst_kuratering_og_program",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/job/kunst_kuratering_og_program_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+          "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+          "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+        ],
+        "subject": "En støttespiller forventer et bestemt verk",
+        "summary": "En sentral støttespiller forventer at et verk inkluderes, men den aktive begrunnelsen viser at ønsket ikke følger de dokumenterte utvalgskriteriene. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører.",
+        "task_domain": "kunstkuratering_og_utstillingsprogram"
+      },
+      "id": "kunst_kuratering_og_program_job_donoronske_utvalg_002",
+      "mail_type": "job",
+      "role_scope": "kunst_kuratering_og_program",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Deklarer presset og bruk de åpne utvalgskriteriene",
+            "reply": "Jeg velger å deklarer presset og bruk de åpne utvalgskriteriene. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "La støttespillerens forventning avgjøre",
+            "reply": "Jeg velger å la støttespillerens forventning avgjøre. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+            "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+            "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+          ],
+          "subject": "En støttespiller forventer et bestemt verk",
+          "summary": "En sentral støttespiller forventer at et verk inkluderes, men den aktive begrunnelsen viser at ønsket ikke følger de dokumenterte utvalgskriteriene. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_kuratering_og_program_job_donoronske_utvalg_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "research_og_kuratorisk_beslutningsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_kuratering_og_program_job_donoronske_utvalg_002",
+          "source_path": "data/Civication/mailFamilies/kunst/job/kunst_kuratering_og_program_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kuratering_og_program.mail.kunst_kuratering_og_program_job_donoronske_utvalg_002",
+        "version": 1
+      },
+      "source_hash": "36ea50b03e73325778b33299f4d70b0a29d4e9c47e0183ed573d7e64d49863dc",
+      "source_path": "data/Civication/mailFamilies/kunst/job/kunst_kuratering_og_program_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_begrunnelse_vs_rask_narrativ_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Skill kunstnerposisjon fra kuratorisk tolkning",
+            "reply": "Jeg velger å skill kunstnerposisjon fra kuratorisk tolkning. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler.",
+            "tags": [
+              "sporbarhet",
+              "kildekritikk",
+              "habilitet",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Glatt over uenigheten i én institusjonell stemme",
+            "reply": "Jeg velger å glatt over uenigheten i én institusjonell stemme. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "research_utvalg_kildekritikk_habilitet_rettighet_og_sporbar_beslutning",
+        "consequence_axis": "etterprovbar_legitimitet_vs_senere_korreksjon_og_tillitstap",
+        "from": "Sofia",
+        "id": "kunst_kuratering_og_program_job_kunstneruenighet_tekst_003",
+        "mail_family": "kunst_kuratering_og_program_kuratorisk_saksarbeid",
+        "mail_type": "job",
+        "narrative_arc": "kunstneruenighet_tekst",
+        "people_ref": "sofia_kunstner_programdialog_kunst_kuratering_og_program",
+        "phase": "advanced",
+        "place_id": "kunstnerdialog_og_programbord",
+        "pressure": "prestisje_nettverk_og_frist_vs_kilde_habilitet_rettighet_og_sporbar_begrunnelse",
+        "priority": 138,
+        "role_scope": "kunst_kuratering_og_program",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/job/kunst_kuratering_og_program_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+          "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+          "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+        ],
+        "subject": "Kunstneren bestrider kontekstualiseringen",
+        "summary": "Kunstneren mener veggteksten blander deres egen posisjon med institusjonens tolkning og krever at skillet blir synlig før publisering. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører.",
+        "task_domain": "kunstkuratering_og_utstillingsprogram"
+      },
+      "id": "kunst_kuratering_og_program_job_kunstneruenighet_tekst_003",
+      "mail_type": "job",
+      "role_scope": "kunst_kuratering_og_program",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Skill kunstnerposisjon fra kuratorisk tolkning",
+            "reply": "Jeg velger å skill kunstnerposisjon fra kuratorisk tolkning. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Glatt over uenigheten i én institusjonell stemme",
+            "reply": "Jeg velger å glatt over uenigheten i én institusjonell stemme. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+            "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+            "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+          ],
+          "subject": "Kunstneren bestrider kontekstualiseringen",
+          "summary": "Kunstneren mener veggteksten blander deres egen posisjon med institusjonens tolkning og krever at skillet blir synlig før publisering. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_kuratering_og_program_job_kunstneruenighet_tekst_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kunstnerdialog_og_programbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_kuratering_og_program_job_kunstneruenighet_tekst_003",
+          "source_path": "data/Civication/mailFamilies/kunst/job/kunst_kuratering_og_program_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kuratering_og_program.mail.kunst_kuratering_og_program_job_kunstneruenighet_tekst_003",
+        "version": 1
+      },
+      "source_hash": "0a5d0d176921f468762465077ec73f0d59e0b6d53f4ec441a5aa5e838a360b9e",
+      "source_path": "data/Civication/mailFamilies/kunst/job/kunst_kuratering_og_program_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_begrunnelse_vs_rask_narrativ_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Undersøk strukturene bak shortlisten før den låses",
+            "reply": "Jeg velger å undersøk strukturene bak shortlisten før den låses. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler.",
+            "tags": [
+              "sporbarhet",
+              "kildekritikk",
+              "habilitet",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Lås shortlisten uten å undersøke nettverkseffekten",
+            "reply": "Jeg velger å lås shortlisten uten å undersøke nettverkseffekten. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "research_utvalg_kildekritikk_habilitet_rettighet_og_sporbar_beslutning",
+        "consequence_axis": "etterprovbar_legitimitet_vs_senere_korreksjon_og_tillitstap",
+        "from": "Ingrid",
+        "id": "kunst_kuratering_og_program_job_smalt_nettverk_program_004",
+        "mail_family": "kunst_kuratering_og_program_kuratorisk_saksarbeid",
+        "mail_type": "job",
+        "narrative_arc": "smalt_nettverk_program",
+        "people_ref": "ingrid_senior_kurator_kunst_kuratering_og_program",
+        "phase": "advanced",
+        "place_id": "research_og_kuratorisk_beslutningsrom",
+        "pressure": "prestisje_nettverk_og_frist_vs_kilde_habilitet_rettighet_og_sporbar_begrunnelse",
+        "priority": 137,
+        "role_scope": "kunst_kuratering_og_program",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/job/kunst_kuratering_og_program_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+          "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+          "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+        ],
+        "subject": "Shortlisten gjentar det samme nettverket",
+        "summary": "Researchloggen viser høy faglig kvalitet i enkeltsakene, men også at kandidater og kilder over tid rekrutteres fra et svært smalt nettverk som påvirker programprofilen. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører.",
+        "task_domain": "kunstkuratering_og_utstillingsprogram"
+      },
+      "id": "kunst_kuratering_og_program_job_smalt_nettverk_program_004",
+      "mail_type": "job",
+      "role_scope": "kunst_kuratering_og_program",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Undersøk strukturene bak shortlisten før den låses",
+            "reply": "Jeg velger å undersøk strukturene bak shortlisten før den låses. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Lås shortlisten uten å undersøke nettverkseffekten",
+            "reply": "Jeg velger å lås shortlisten uten å undersøke nettverkseffekten. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+            "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+            "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+          ],
+          "subject": "Shortlisten gjentar det samme nettverket",
+          "summary": "Researchloggen viser høy faglig kvalitet i enkeltsakene, men også at kandidater og kilder over tid rekrutteres fra et svært smalt nettverk som påvirker programprofilen. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_kuratering_og_program_job_smalt_nettverk_program_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "research_og_kuratorisk_beslutningsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_kuratering_og_program_job_smalt_nettverk_program_004",
+          "source_path": "data/Civication/mailFamilies/kunst/job/kunst_kuratering_og_program_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kuratering_og_program.mail.kunst_kuratering_og_program_job_smalt_nettverk_program_004",
+        "version": 1
+      },
+      "source_hash": "e7a4a40486edf2d6bb5e1c56d4223cb03f5984a34c7cd4b6a0f046ab3a264caf",
+      "source_path": "data/Civication/mailFamilies/kunst/job/kunst_kuratering_og_program_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_begrunnelse_vs_rask_narrativ_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Hold usikkerheten åpen og dokumenter neste kontrollpunkt",
+            "reply": "Jeg velger å hold usikkerheten åpen og dokumenter neste kontrollpunkt. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler.",
+            "tags": [
+              "sporbarhet",
+              "kildekritikk",
+              "habilitet",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Ta verket inn fordi konseptet trenger det",
+            "reply": "Jeg velger å ta verket inn fordi konseptet trenger det. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "research_utvalg_kildekritikk_habilitet_rettighet_og_sporbar_beslutning",
+        "consequence_axis": "etterprovbar_legitimitet_vs_senere_korreksjon_og_tillitstap",
+        "from": "Malik",
+        "id": "kunst_kuratering_og_program_job_uavklart_proveniens_hovedverk_001",
+        "mail_family": "kunst_kuratering_og_program_kuratorisk_saksarbeid",
+        "mail_type": "job",
+        "narrative_arc": "uavklart_proveniens_hovedverk",
+        "people_ref": "malik_proveniens_rettighet_kunst_kuratering_og_program",
+        "phase": "intro",
+        "place_id": "proveniens_rettighet_og_lanekontroll",
+        "pressure": "prestisje_nettverk_og_frist_vs_kilde_habilitet_rettighet_og_sporbar_begrunnelse",
+        "priority": 140,
+        "role_scope": "kunst_kuratering_og_program",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/job/kunst_kuratering_og_program_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+          "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+          "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+        ],
+        "subject": "Hovedverket har et uavklart proveniensledd",
+        "summary": "Et sentralt verk styrker konseptet, men et viktig proveniensledd og attribusjonsgrunnlag er fortsatt uavklart før utvalget kan låses. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører.",
+        "task_domain": "kunstkuratering_og_utstillingsprogram"
+      },
+      "id": "kunst_kuratering_og_program_job_uavklart_proveniens_hovedverk_001",
+      "mail_type": "job",
+      "role_scope": "kunst_kuratering_og_program",
+      "scene": {
+        "arc_stage": "intro",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Hold usikkerheten åpen og dokumenter neste kontrollpunkt",
+            "reply": "Jeg velger å hold usikkerheten åpen og dokumenter neste kontrollpunkt. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Ta verket inn fordi konseptet trenger det",
+            "reply": "Jeg velger å ta verket inn fordi konseptet trenger det. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+            "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+            "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+          ],
+          "subject": "Hovedverket har et uavklart proveniensledd",
+          "summary": "Et sentralt verk styrker konseptet, men et viktig proveniensledd og attribusjonsgrunnlag er fortsatt uavklart før utvalget kan låses. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_kuratering_og_program_job_uavklart_proveniens_hovedverk_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "proveniens_rettighet_og_lanekontroll",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_kuratering_og_program_job_uavklart_proveniens_hovedverk_001",
+          "source_path": "data/Civication/mailFamilies/kunst/job/kunst_kuratering_og_program_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kuratering_og_program.mail.kunst_kuratering_og_program_job_uavklart_proveniens_hovedverk_001",
+        "version": 1
+      },
+      "source_hash": "ea5278651e1c20e9b77b914b0257d5103105a9eb06e86a0c1d97f1c76c6e3ef9",
+      "source_path": "data/Civication/mailFamilies/kunst/job/kunst_kuratering_og_program_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_begrunnelse_vs_rask_narrativ_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Bruk History Go til kildekritikk og behold myndighetsgrensen",
+            "reply": "Jeg velger å bruk history go til kildekritikk og behold myndighetsgrensen. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler.",
+            "tags": [
+              "sporbarhet",
+              "kildekritikk",
+              "habilitet",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Bruk badgekunnskap som om den klarerte proveniens og rolle",
+            "reply": "Jeg velger å bruk badgekunnskap som om den klarerte proveniens og rolle. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "research_utvalg_kildekritikk_habilitet_rettighet_og_sporbar_beslutning",
+        "consequence_axis": "etterprovbar_legitimitet_vs_senere_korreksjon_og_tillitstap",
+        "from": "Ingrid",
+        "id": "kunst_kuratering_og_program_knowledge_history_go_grense_001",
+        "mail_family": "kunst_kuratering_og_program_history_go_kunsthistorie_og_kildekritikk",
+        "mail_type": "knowledge",
+        "narrative_arc": "history_go_grense",
+        "people_ref": "ingrid_senior_kurator_kunst_kuratering_og_program",
+        "phase": "intro",
+        "place_id": "research_og_kuratorisk_beslutningsrom",
+        "pressure": "prestisje_nettverk_og_frist_vs_kilde_habilitet_rettighet_og_sporbar_begrunnelse",
+        "priority": 140,
+        "role_scope": "kunst_kuratering_og_program",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/knowledge/kunst_kuratering_og_program_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+          "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+          "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+        ],
+        "subject": "History Go skjerper spørsmålet, ikke myndigheten",
+        "summary": "History Go gir relevant kunsthistorisk kontekst og utstillingshistorikk, men teamet må vise eksplisitt at dette ikke sertifiserer proveniens, klarerer rettigheter eller skaper employer_appointment. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører.",
+        "task_domain": "kunstkuratering_og_utstillingsprogram"
+      },
+      "id": "kunst_kuratering_og_program_knowledge_history_go_grense_001",
+      "mail_type": "knowledge",
+      "role_scope": "kunst_kuratering_og_program",
+      "scene": {
+        "arc_stage": "intro",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Bruk History Go til kildekritikk og behold myndighetsgrensen",
+            "reply": "Jeg velger å bruk history go til kildekritikk og behold myndighetsgrensen. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Bruk badgekunnskap som om den klarerte proveniens og rolle",
+            "reply": "Jeg velger å bruk badgekunnskap som om den klarerte proveniens og rolle. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+            "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+            "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+          ],
+          "subject": "History Go skjerper spørsmålet, ikke myndigheten",
+          "summary": "History Go gir relevant kunsthistorisk kontekst og utstillingshistorikk, men teamet må vise eksplisitt at dette ikke sertifiserer proveniens, klarerer rettigheter eller skaper employer_appointment. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_kuratering_og_program_knowledge_history_go_grense_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "research_og_kuratorisk_beslutningsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_kuratering_og_program_knowledge_history_go_grense_001",
+          "source_path": "data/Civication/mailFamilies/kunst/knowledge/kunst_kuratering_og_program_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kuratering_og_program.mail.kunst_kuratering_og_program_knowledge_history_go_grense_001",
+        "version": 1
+      },
+      "source_hash": "49f73b7440fdd1608cc0b5fc766997eb2b89bd2bb3d3b419815276ff256afbee",
+      "source_path": "data/Civication/mailFamilies/kunst/knowledge/kunst_kuratering_og_program_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_begrunnelse_vs_rask_narrativ_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Kontroller de fem handoff-feltene før publisering",
+            "reply": "Jeg velger å kontroller de fem handoff-feltene før publisering. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler.",
+            "tags": [
+              "sporbarhet",
+              "kildekritikk",
+              "habilitet",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Send videre fordi produksjonen kjenner saken muntlig",
+            "reply": "Jeg velger å send videre fordi produksjonen kjenner saken muntlig. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "research_utvalg_kildekritikk_habilitet_rettighet_og_sporbar_beslutning",
+        "consequence_axis": "etterprovbar_legitimitet_vs_senere_korreksjon_og_tillitstap",
+        "from": "Henrik",
+        "id": "kunst_kuratering_og_program_micro_hurtigsjekk_for_handoff_001",
+        "mail_family": "kunst_kuratering_og_program_rask_kilde_og_handoff_sjekk",
+        "mail_type": "micro",
+        "narrative_arc": "hurtigsjekk_for_handoff",
+        "people_ref": "henrik_tekst_formidling_produksjon_kunst_kuratering_og_program",
+        "phase": "advanced",
+        "place_id": "tekst_formidling_og_produksjonshandoff",
+        "pressure": "prestisje_nettverk_og_frist_vs_kilde_habilitet_rettighet_og_sporbar_begrunnelse",
+        "priority": 140,
+        "role_scope": "kunst_kuratering_og_program",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/micro/kunst_kuratering_og_program_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+          "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+          "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+        ],
+        "subject": "Fem felt før produksjonshandoff",
+        "summary": "Før tekst og program sendes videre må du raskt kontrollere kilde, tolkningsmarkør, proveniens/rettighet, beslutningseier og eksplisitt ventepunkt i den aktive versjonen. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører.",
+        "task_domain": "kunstkuratering_og_utstillingsprogram"
+      },
+      "id": "kunst_kuratering_og_program_micro_hurtigsjekk_for_handoff_001",
+      "mail_type": "micro",
+      "role_scope": "kunst_kuratering_og_program",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Kontroller de fem handoff-feltene før publisering",
+            "reply": "Jeg velger å kontroller de fem handoff-feltene før publisering. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Send videre fordi produksjonen kjenner saken muntlig",
+            "reply": "Jeg velger å send videre fordi produksjonen kjenner saken muntlig. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+            "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+            "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+          ],
+          "subject": "Fem felt før produksjonshandoff",
+          "summary": "Før tekst og program sendes videre må du raskt kontrollere kilde, tolkningsmarkør, proveniens/rettighet, beslutningseier og eksplisitt ventepunkt i den aktive versjonen. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_kuratering_og_program_micro_hurtigsjekk_for_handoff_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "tekst_formidling_og_produksjonshandoff",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_kuratering_og_program_micro_hurtigsjekk_for_handoff_001",
+          "source_path": "data/Civication/mailFamilies/kunst/micro/kunst_kuratering_og_program_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kuratering_og_program.mail.kunst_kuratering_og_program_micro_hurtigsjekk_for_handoff_001",
+        "version": 1
+      },
+      "source_hash": "0809bb4fb7a1113c5197df7da5aec2408602466bb40be200c650fdcf6128f022",
+      "source_path": "data/Civication/mailFamilies/kunst/micro/kunst_kuratering_og_program_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_begrunnelse_vs_rask_narrativ_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Dokumenter hva som faktisk er samtykket til",
+            "reply": "Jeg velger å dokumenter hva som faktisk er samtykket til. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler.",
+            "tags": [
+              "sporbarhet",
+              "kildekritikk",
+              "habilitet",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Tolk god relasjon som generelt samtykke",
+            "reply": "Jeg velger å tolk god relasjon som generelt samtykke. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "research_utvalg_kildekritikk_habilitet_rettighet_og_sporbar_beslutning",
+        "consequence_axis": "etterprovbar_legitimitet_vs_senere_korreksjon_og_tillitstap",
+        "from": "Sofia",
+        "id": "kunst_kuratering_og_program_people_kunstnerdialog_og_samtykke_003",
+        "mail_family": "kunst_kuratering_og_program_faglige_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "kunstnerdialog_og_samtykke",
+        "people_ref": "sofia_kunstner_programdialog_kunst_kuratering_og_program",
+        "phase": "advanced",
+        "place_id": "kunstnerdialog_og_programbord",
+        "pressure": "prestisje_nettverk_og_frist_vs_kilde_habilitet_rettighet_og_sporbar_begrunnelse",
+        "priority": 138,
+        "role_scope": "kunst_kuratering_og_program",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/people/kunst_kuratering_og_program_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+          "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+          "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+        ],
+        "subject": "God relasjon er ikke samtykke",
+        "summary": "Sofia minner om at en varm kunstnerdialog ikke automatisk betyr samtykke til ny bruk, ny tekst eller alle rettigheter programmet ønsker. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører.",
+        "task_domain": "kunstkuratering_og_utstillingsprogram"
+      },
+      "id": "kunst_kuratering_og_program_people_kunstnerdialog_og_samtykke_003",
+      "mail_type": "people",
+      "role_scope": "kunst_kuratering_og_program",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Dokumenter hva som faktisk er samtykket til",
+            "reply": "Jeg velger å dokumenter hva som faktisk er samtykket til. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Tolk god relasjon som generelt samtykke",
+            "reply": "Jeg velger å tolk god relasjon som generelt samtykke. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+            "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+            "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+          ],
+          "subject": "God relasjon er ikke samtykke",
+          "summary": "Sofia minner om at en varm kunstnerdialog ikke automatisk betyr samtykke til ny bruk, ny tekst eller alle rettigheter programmet ønsker. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_kuratering_og_program_people_kunstnerdialog_og_samtykke_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kunstnerdialog_og_programbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_kuratering_og_program_people_kunstnerdialog_og_samtykke_003",
+          "source_path": "data/Civication/mailFamilies/kunst/people/kunst_kuratering_og_program_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kuratering_og_program.mail.kunst_kuratering_og_program_people_kunstnerdialog_og_samtykke_003",
+        "version": 1
+      },
+      "source_hash": "1dd51386ee2e5acb3534fce14d0090eb17f563ccc90d2186dbe0148a02f82b55",
+      "source_path": "data/Civication/mailFamilies/kunst/people/kunst_kuratering_og_program_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_begrunnelse_vs_rask_narrativ_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Korriger bare berørte tekst- og programfelt",
+            "reply": "Jeg velger å korriger bare berørte tekst- og programfelt. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler.",
+            "tags": [
+              "sporbarhet",
+              "kildekritikk",
+              "habilitet",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Overskriv den gamle teksten uten versjonsspor",
+            "reply": "Jeg velger å overskriv den gamle teksten uten versjonsspor. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "research_utvalg_kildekritikk_habilitet_rettighet_og_sporbar_beslutning",
+        "consequence_axis": "etterprovbar_legitimitet_vs_senere_korreksjon_og_tillitstap",
+        "from": "Henrik",
+        "id": "kunst_kuratering_og_program_people_redaktor_og_korreksjon_004",
+        "mail_family": "kunst_kuratering_og_program_faglige_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "redaktor_og_korreksjon",
+        "people_ref": "henrik_tekst_formidling_produksjon_kunst_kuratering_og_program",
+        "phase": "advanced",
+        "place_id": "tekst_formidling_og_produksjonshandoff",
+        "pressure": "prestisje_nettverk_og_frist_vs_kilde_habilitet_rettighet_og_sporbar_begrunnelse",
+        "priority": 137,
+        "role_scope": "kunst_kuratering_og_program",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/people/kunst_kuratering_og_program_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+          "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+          "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+        ],
+        "subject": "Redaktøren vil bevare den gamle tekstversjonen",
+        "summary": "Henrik oppdager at en kilde er feilsitert og krever en korrigert tekstversjon som bevarer hva som tidligere sto og hvilke programfelt endringen faktisk påvirker. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører.",
+        "task_domain": "kunstkuratering_og_utstillingsprogram"
+      },
+      "id": "kunst_kuratering_og_program_people_redaktor_og_korreksjon_004",
+      "mail_type": "people",
+      "role_scope": "kunst_kuratering_og_program",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Korriger bare berørte tekst- og programfelt",
+            "reply": "Jeg velger å korriger bare berørte tekst- og programfelt. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Overskriv den gamle teksten uten versjonsspor",
+            "reply": "Jeg velger å overskriv den gamle teksten uten versjonsspor. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+            "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+            "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+          ],
+          "subject": "Redaktøren vil bevare den gamle tekstversjonen",
+          "summary": "Henrik oppdager at en kilde er feilsitert og krever en korrigert tekstversjon som bevarer hva som tidligere sto og hvilke programfelt endringen faktisk påvirker. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_kuratering_og_program_people_redaktor_og_korreksjon_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "tekst_formidling_og_produksjonshandoff",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_kuratering_og_program_people_redaktor_og_korreksjon_004",
+          "source_path": "data/Civication/mailFamilies/kunst/people/kunst_kuratering_og_program_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kuratering_og_program.mail.kunst_kuratering_og_program_people_redaktor_og_korreksjon_004",
+        "version": 1
+      },
+      "source_hash": "dedd3d8d5e2c1d26fe319ea1f0d32fa1090ffebc2767404c5ca7dc1c272bbad3",
+      "source_path": "data/Civication/mailFamilies/kunst/people/kunst_kuratering_og_program_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_begrunnelse_vs_rask_narrativ_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Behold proveniensusikkerheten i handoffen",
+            "reply": "Jeg velger å behold proveniensusikkerheten i handoffen. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler.",
+            "tags": [
+              "sporbarhet",
+              "kildekritikk",
+              "habilitet",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Gjør registreringen sikrere enn kildene tillater",
+            "reply": "Jeg velger å gjør registreringen sikrere enn kildene tillater. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "research_utvalg_kildekritikk_habilitet_rettighet_og_sporbar_beslutning",
+        "consequence_axis": "etterprovbar_legitimitet_vs_senere_korreksjon_og_tillitstap",
+        "from": "Malik",
+        "id": "kunst_kuratering_og_program_people_registrar_og_kuratorisk_press_002",
+        "mail_family": "kunst_kuratering_og_program_faglige_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "registrar_og_kuratorisk_press",
+        "people_ref": "malik_proveniens_rettighet_kunst_kuratering_og_program",
+        "phase": "advanced",
+        "place_id": "proveniens_rettighet_og_lanekontroll",
+        "pressure": "prestisje_nettverk_og_frist_vs_kilde_habilitet_rettighet_og_sporbar_begrunnelse",
+        "priority": 139,
+        "role_scope": "kunst_kuratering_og_program",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/people/kunst_kuratering_og_program_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+          "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+          "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+        ],
+        "subject": "Registraren holder usikkerheten åpen",
+        "summary": "Malik nekter å gjøre en foreløpig proveniensoppføring mer sikker bare fordi verket er kuratorisk attraktivt og produksjonen trenger et ja. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører.",
+        "task_domain": "kunstkuratering_og_utstillingsprogram"
+      },
+      "id": "kunst_kuratering_og_program_people_registrar_og_kuratorisk_press_002",
+      "mail_type": "people",
+      "role_scope": "kunst_kuratering_og_program",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Behold proveniensusikkerheten i handoffen",
+            "reply": "Jeg velger å behold proveniensusikkerheten i handoffen. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Gjør registreringen sikrere enn kildene tillater",
+            "reply": "Jeg velger å gjør registreringen sikrere enn kildene tillater. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+            "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+            "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+          ],
+          "subject": "Registraren holder usikkerheten åpen",
+          "summary": "Malik nekter å gjøre en foreløpig proveniensoppføring mer sikker bare fordi verket er kuratorisk attraktivt og produksjonen trenger et ja. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_kuratering_og_program_people_registrar_og_kuratorisk_press_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "proveniens_rettighet_og_lanekontroll",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_kuratering_og_program_people_registrar_og_kuratorisk_press_002",
+          "source_path": "data/Civication/mailFamilies/kunst/people/kunst_kuratering_og_program_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kuratering_og_program.mail.kunst_kuratering_og_program_people_registrar_og_kuratorisk_press_002",
+        "version": 1
+      },
+      "source_hash": "1297ad1f13d89cd438798f527f291870b4143db46d44ac430bfa4b77b8ece7f3",
+      "source_path": "data/Civication/mailFamilies/kunst/people/kunst_kuratering_og_program_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_begrunnelse_vs_rask_narrativ_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Skill standing fra faktisk employer_appointment",
+            "reply": "Jeg velger å skill standing fra faktisk employer_appointment. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler.",
+            "tags": [
+              "sporbarhet",
+              "kildekritikk",
+              "habilitet",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Behandle senior standing som om den ga utnevnelse",
+            "reply": "Jeg velger å behandle senior standing som om den ga utnevnelse. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "research_utvalg_kildekritikk_habilitet_rettighet_og_sporbar_beslutning",
+        "consequence_axis": "etterprovbar_legitimitet_vs_senere_korreksjon_og_tillitstap",
+        "from": "Ingrid",
+        "id": "kunst_kuratering_og_program_people_seniorstatus_og_utnevnelse_001",
+        "mail_family": "kunst_kuratering_og_program_faglige_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "seniorstatus_og_utnevnelse",
+        "people_ref": "ingrid_senior_kurator_kunst_kuratering_og_program",
+        "phase": "intro",
+        "place_id": "research_og_kuratorisk_beslutningsrom",
+        "pressure": "prestisje_nettverk_og_frist_vs_kilde_habilitet_rettighet_og_sporbar_begrunnelse",
+        "priority": 140,
+        "role_scope": "kunst_kuratering_og_program",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/people/kunst_kuratering_og_program_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+          "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+          "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+        ],
+        "subject": "Seniorstatus er ikke en ansettelsesgate",
+        "summary": "Teamet må skille faglig standing og senior veiledning fra den faktiske arbeidsgiverutnevnelsen som Kurator- og Senior kurator-titlene krever. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører.",
+        "task_domain": "kunstkuratering_og_utstillingsprogram"
+      },
+      "id": "kunst_kuratering_og_program_people_seniorstatus_og_utnevnelse_001",
+      "mail_type": "people",
+      "role_scope": "kunst_kuratering_og_program",
+      "scene": {
+        "arc_stage": "intro",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "Skill standing fra faktisk employer_appointment",
+            "reply": "Jeg velger å skill standing fra faktisk employer_appointment. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Behandle senior standing som om den ga utnevnelse",
+            "reply": "Jeg velger å behandle senior standing som om den ga utnevnelse. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+            "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+            "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+          ],
+          "subject": "Seniorstatus er ikke en ansettelsesgate",
+          "summary": "Teamet må skille faglig standing og senior veiledning fra den faktiske arbeidsgiverutnevnelsen som Kurator- og Senior kurator-titlene krever. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_kuratering_og_program_people_seniorstatus_og_utnevnelse_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "research_og_kuratorisk_beslutningsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_kuratering_og_program_people_seniorstatus_og_utnevnelse_001",
+          "source_path": "data/Civication/mailFamilies/kunst/people/kunst_kuratering_og_program_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kuratering_og_program.mail.kunst_kuratering_og_program_people_seniorstatus_og_utnevnelse_001",
+        "version": 1
+      },
+      "source_hash": "bc494379f251dba022009a44bdf30a6f3120449318c13faf9af4225c83112dbf",
+      "source_path": "data/Civication/mailFamilies/kunst/people/kunst_kuratering_og_program_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_begrunnelse_vs_rask_narrativ_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "La posisjonene stå tydelig attribuert side om side",
+            "reply": "Jeg velger å la posisjonene stå tydelig attribuert side om side. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler.",
+            "tags": [
+              "sporbarhet",
+              "kildekritikk",
+              "habilitet",
+              "revisjon"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Skriv institusjonens tolkning som om kunstneren delte den",
+            "reply": "Jeg velger å skriv institusjonens tolkning som om kunstneren delte den. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør.",
+            "tags": [
+              "lukking",
+              "prestisje",
+              "usikkerhet",
+              "risiko"
+            ]
+          }
+        ],
+        "competency": "research_utvalg_kildekritikk_habilitet_rettighet_og_sporbar_beslutning",
+        "consequence_axis": "etterprovbar_legitimitet_vs_senere_korreksjon_og_tillitstap",
+        "from": "Sofia",
+        "id": "kunst_kuratering_og_program_story_kunstnerposisjon_vs_tolkning_001",
+        "mail_family": "kunst_kuratering_og_program_tolkning_kunstnerdialog_og_ansvar",
+        "mail_type": "story",
+        "narrative_arc": "kunstnerposisjon_vs_tolkning",
+        "people_ref": "sofia_kunstner_programdialog_kunst_kuratering_og_program",
+        "phase": "mastery",
+        "place_id": "kunstnerdialog_og_programbord",
+        "pressure": "prestisje_nettverk_og_frist_vs_kilde_habilitet_rettighet_og_sporbar_begrunnelse",
+        "priority": 140,
+        "role_scope": "kunst_kuratering_og_program",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/story/kunst_kuratering_og_program_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+          "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+          "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+        ],
+        "subject": "To ulike fortellinger må få stå side om side",
+        "summary": "Kunstnerens egen lesning og institusjonens kuratoriske tolkning trekker i ulike retninger, og saken må vise hvem som hevder hva uten å gjøre uenigheten til en faktakonflikt som kan slettes. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører.",
+        "task_domain": "kunstkuratering_og_utstillingsprogram"
+      },
+      "id": "kunst_kuratering_og_program_story_kunstnerposisjon_vs_tolkning_001",
+      "mail_type": "story",
+      "role_scope": "kunst_kuratering_og_program",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Dette kan forsinke utvalg, avtale, tekst eller produksjon, men neste aktør kan se hva som faktisk er dokumentert, hva som bare er tolkning, hvilke interesser og rettigheter som fortsatt er åpne, hvem som eier beslutningen og hva som må skje før handoff. Det beskytter etterprøvbarhet og korrigerbarhet uten å gi History Go, Kunst-Badge, sosial standing eller Kurator-livspraksis en arbeidsgiver-, rettighets-, proveniens- eller innkjøpsmyndighet de ikke har.",
+            "id": "A",
+            "label": "La posisjonene stå tydelig attribuert side om side",
+            "reply": "Jeg velger å la posisjonene stå tydelig attribuert side om side. Jeg oppdaterer bare berørte felt i utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg, beholder tidligere versjon og uavklart informasjon synlig, skiller dokumentert kildefakta fra kunstnerposisjon og kuratorisk tolkning, og setter eksplisitt neste eier, ventepunkt og hvilken kilde, proveniens-/rettighetsavklaring, habilitetsvurdering, formell beslutning eller arbeidsgiverutnevnelse som fortsatt mangler."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom kilde, tolkning, kunstnerposisjon, proveniens, rettighet, habilitet og formelt vedtak. Senere kritikk, ny kilde, kunstnerprotest, rettighetskrav eller intern kontroll kan da gjøre både utvalgsbegrunnelsen og institusjonens ansvar vanskeligere å rekonstruere og korrigere uten større rework.",
+            "id": "B",
+            "label": "Skriv institusjonens tolkning som om kunstneren delte den",
+            "reply": "Jeg velger å skriv institusjonens tolkning som om kunstneren delte den. Jeg lar prestisje, nettverk, fortellingskraft eller produksjonsfrist veie tyngre enn det versjonerte kilde-, proveniens-, rettighets-, habilitets- og beslutningssporet og sender saken videre uten å gjøre usikkerhet, tolkning, formell eier eller canonical Career-gate tydelig nok for neste aktør."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den aktive versjonen av utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg viser kilder, kandidater, utvalgskriterier, fakta/tolkning, proveniens/attribusjon, rettighet/samtykke, habilitet, kunstnerdialog, beslutning, tekst, venting og neste ansvarlige før valget tas.",
+            "En sosialt, kunstnerisk eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre begrunnelse, rettighetsgrunnlag, beslutningseier eller senere korreksjon vanskeligere å rekonstruere.",
+            "Du må bevare de canonicale Career-gatene og myndighetsgrensen: Kurator-livspraksis er ikke ansettelse, og ingen badge, relasjon eller prosjektprestasjon kan erstatte qualification_required eller employer_appointment."
+          ],
+          "subject": "To ulike fortellinger må få stå side om side",
+          "summary": "Kunstnerens egen lesning og institusjonens kuratoriske tolkning trekker i ulike retninger, og saken må vise hvem som hevder hva uten å gjøre uenigheten til en faktakonflikt som kan slettes. utstillingsprogram_research_utvalg_proveniens_rettighet_og_beslutningslogg må oppdateres slik at researchspørsmål og kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver, dokumentert fakta versus kuratorisk tolkning, proveniens og attribusjonsstatus, rettigheter og samtykker, habilitet og interesser, kunstnerdialog, låne- og gjennomførbarhetsinput, institusjonell beslutning og beslutningseier, tekstversjon, produksjonshandoff, publikumsrespons, ventepunkt og neste ansvarlige fortsatt kan rekonstrueres. Kuratorisk prestisje, donorpress, kunstnernærhet, History Go, Kunst-Badge eller den arbeidsuavhengige Kurator-livspraksisen kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter, love innkjøp eller salg, gjøre en anbefaling til institusjonelt vedtak eller skape employer_appointment. Valget må bevare skillet mellom kildefakta, kunstnerens posisjon, kuratorisk tolkning og formell beslutning, og bare gjenåpne de delene av utvalgs-, tekst-, rettighets- eller produksjonssporet som ny informasjon faktisk berører."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "kunst_kuratering_og_program_story_kunstnerposisjon_vs_tolkning_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kunstnerdialog_og_programbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "kunst_kuratering_og_program_story_kunstnerposisjon_vs_tolkning_001",
+          "source_path": "data/Civication/mailFamilies/kunst/story/kunst_kuratering_og_program_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_kuratering_og_program.mail.kunst_kuratering_og_program_story_kunstnerposisjon_vs_tolkning_001",
+        "version": 1
+      },
+      "source_hash": "6d5c8d2277eb95b6c27468b4a75f4ab38228b687ead942f7e26811d6923d7fb0",
+      "source_path": "data/Civication/mailFamilies/kunst/story/kunst_kuratering_og_program_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -239820,7 +241869,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "aaba9555f0b436d7d5300374ba96181638f80912c9d0d55fb00a7157acee5c77",
+  "registry_hash": "27a6675e5b083a045d4bb06859b693daa0064a75183c4e41cf0dd71abcd5de00",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -240251,6 +242300,23 @@
       "kunstnerisk_ledelse_followup_rework_etter_estimat_001",
       "kunstnerisk_ledelse_knowledge_institusjon_og_kanon_001",
       "kunstnerisk_ledelse_consequence_offentlig_etterspill_001"
+    ],
+    "kunst/kunst_kuratering_og_program": [
+      "kunst_kuratering_og_program_job_uavklart_proveniens_hovedverk_001",
+      "kunst_kuratering_og_program_job_donoronske_utvalg_002",
+      "kunst_kuratering_og_program_job_kunstneruenighet_tekst_003",
+      "kunst_kuratering_og_program_job_smalt_nettverk_program_004",
+      "kunst_kuratering_og_program_people_seniorstatus_og_utnevnelse_001",
+      "kunst_kuratering_og_program_people_registrar_og_kuratorisk_press_002",
+      "kunst_kuratering_og_program_people_kunstnerdialog_og_samtykke_003",
+      "kunst_kuratering_og_program_people_redaktor_og_korreksjon_004",
+      "kunst_kuratering_og_program_story_kunstnerposisjon_vs_tolkning_001",
+      "kunst_kuratering_og_program_conflict_habilitet_og_eierpress_001",
+      "kunst_kuratering_og_program_event_ny_kilde_endrer_attribusjon_001",
+      "kunst_kuratering_og_program_micro_hurtigsjekk_for_handoff_001",
+      "kunst_kuratering_og_program_followup_korrigering_etter_kritikk_001",
+      "kunst_kuratering_og_program_knowledge_history_go_grense_001",
+      "kunst_kuratering_og_program_consequence_senere_sporbarhet_001"
     ],
     "kunst/kunst_utstillingsproduksjon": [
       "utstillingsproduksjon_job_brief_001",
@@ -241505,11 +243571,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 539,
+    "compiled_source_file_count": 548,
     "ignored_source_file_count": 1,
-    "input_file_count": 540,
-    "role_count": 65,
-    "scene_count": 1525,
+    "input_file_count": 549,
+    "role_count": 66,
+    "scene_count": 1540,
     "shadowed_duplicate_count": 0
   },
   "version": 1

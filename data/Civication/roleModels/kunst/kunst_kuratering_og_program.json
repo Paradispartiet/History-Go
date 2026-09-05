@@ -1,11 +1,259 @@
 {
-  "schema":"civication_role_model_v2","version":2,
-  "source":{"badge_file":"data/badges/kunst.json","badge_id":"kunst","evidence":"data/Civication/kunstCareerLifeEvidence.json"},
-  "category":"kunst","role_scope":"kunst_kuratering_og_program","role_id":"kunst_kuratering_og_program","title":"Kuratering og utstillingsprogram",
-  "badge_titles":["Kuratorassistent","Kurator","Senior kurator"],
-  "core_narrative":["Utvikle utstillinger og programmer gjennom begrunnet utvalg, forskning, kunstnerdialog, kontekstualisering og tydelig skille mellom dokumentasjon, tolkning og institusjonelt valg."],
-  "work_life":{"daily_work":["kunstner- og verksresearch","utstillingskonsept","kunstnerdialog","samling- og lånevurdering","tekst og formidling","programutvikling"],"responsibilities":["faglig begrunnelse","transparent utvalg","kildekritikk","kunstner- og rettighetshensyn","publikumsrelevans"],"work_environment":["museum","galleri","kunsthall","atelierbesøk","arkiv","faglige nettverk"]},
-  "authority_boundaries":{"can":["foreslå og begrunne kunstneriske utvalg","utvikle kuratoriske konsepter","forhandle faglige premisser innen mandat","bestille research innen ramme"],"cannot":["garantere innkjøp eller salg uten fullmakt","endre proveniens eller attribusjon uten dokumentasjon","skjule interessekonflikter","framstille kuratorisk tolkning som objektivt faktum"]},
-  "competence_axes":["kunsthistorie og samtidskunst","kuratorisk metode","research og kildekritikk","kunstnerdialog","tekst og kontekstualisering","etikk og interessekonflikt"],
-  "ideal_type_problems":["kunstner protesterer mot kontekstualisering","donor eller eier presser utvalget","proveniens er uavklart","programmet mangler representativ bredde","kritikk utfordrer institusjonens kuratoriske premiss"]
+  "schema": "civication_role_model_v2",
+  "version": 2,
+  "source": {
+    "badge_file": "data/badges/kunst.json",
+    "badge_id": "kunst",
+    "evidence": "data/Civication/kunstCareerLifeEvidence.json"
+  },
+  "category": "kunst",
+  "role_scope": "kunst_kuratering_og_program",
+  "role_id": "kunst_kuratering_og_program",
+  "title": "Kuratering og utstillingsprogram",
+  "badge_titles": [
+    "Kuratorassistent",
+    "Kurator",
+    "Senior kurator"
+  ],
+  "core_narrative": [
+    "Utvikle utstillinger og programmer gjennom begrunnet utvalg, forskning, kunstnerdialog, kontekstualisering og tydelig skille mellom dokumentasjon, tolkning og institusjonelt valg.",
+    "Rollen fører hvert utstillings- og programvalg gjennom en versjonert logg der researchspørsmål, kilder, kandidater, utvalgskriterier, proveniens og attribusjon, rettigheter og samtykker, habilitet, kunstnerdialog, institusjonell beslutning, tekstversjon, produksjonshandoff, publikumsrespons og korreksjon kan rekonstrueres. Kuratorisk standing, History Go eller en arbeidsuavhengig Kurator-livspraksis kan aldri erstatte dokumentasjon eller employer_appointment."
+  ],
+  "work_life": {
+    "daily_work": [
+      "Formulerer researchspørsmål og registrerer kilder, kunstner- og verkskandidater, utvalgskriterier og motperspektiver før programutvalg låses.",
+      "Skiller dokumentert fakta, uavklart proveniens eller attribusjon, kunstnerens egen posisjon og kuratorisk tolkning gjennom alle tekst- og beslutningsversjoner.",
+      "Håndterer venting på kildekontroll, proveniens-/rettighetsavklaring, kunstnerrespons, låne- eller gjennomførbarhetsinput, habilitetsvurdering og formell beslutning med tydelig eier og handoff.",
+      "Gjenåpner bare berørte utvalgs-, tekst-, rettighets- eller produksjonsfelt når ny kilde, konflikt, protest, rettighetsendring eller offentlig korreksjon endrer grunnlaget."
+    ],
+    "responsibilities": [
+      "sporbar research og kuratorisk begrunnelse",
+      "transparent utvalg, habilitet og representasjonsbevissthet",
+      "proveniens-, attribusjons- og rettighetsusikkerhet som eksplisitte premisser",
+      "kunstnerdialog, tekstlig etterprøvbarhet og korrigerbar produksjonshandoff"
+    ],
+    "work_environment": [
+      "museum, galleri, kunsthall, arkiv, atelierbesøk, låne- og rettighetsdialog, redaksjons- og produksjonsmøter"
+    ],
+    "status_position": [
+      "Kuratorisk standing kan gi tillit og større prosjektansvar, men kan aldri skape employer_appointment, juridisk rettighetsavklaring, proveniensbevis eller institusjonell fullmakt. Kurator som livspraksis er uttrykkelig separat fra Kurator som ansettelse."
+    ],
+    "workplaces": [
+      "research_og_kuratorisk_beslutningsrom",
+      "proveniens_rettighet_og_lanekontroll",
+      "kunstnerdialog_og_programbord",
+      "tekst_formidling_og_produksjonshandoff"
+    ]
+  },
+  "authority_boundaries": {
+    "can": [
+      "foreslå og begrunne kunstneriske utvalg",
+      "utvikle kuratoriske konsepter",
+      "forhandle faglige premisser innen mandat",
+      "bestille og syntetisere research innen ramme"
+    ],
+    "cannot": [
+      "garantere innkjøp eller salg uten fullmakt",
+      "endre proveniens eller attribusjon uten dokumentasjon",
+      "skjule interessekonflikter eller uavklarte rettigheter",
+      "framstille kuratorisk tolkning som objektivt eller ubestridt faktum"
+    ]
+  },
+  "competence_axes": [
+    "kunsthistorie og samtidskunst",
+    "kuratorisk metode",
+    "research og kildekritikk",
+    "kunstnerdialog",
+    "tekst og kontekstualisering",
+    "etikk og interessekonflikt"
+  ],
+  "ideal_type_problems": [
+    "kunstner protesterer mot kontekstualisering",
+    "donor eller eier presser utvalget",
+    "proveniens er uavklart",
+    "programmet mangler representativ bredde",
+    "kritikk utfordrer institusjonens kuratoriske premiss"
+  ],
+  "career_path": {
+    "entry_from": [
+      "Kuratorassistent følger canonical `qualification_required` med relevant utdanning eller arbeidsgiverkvalifikasjon. Kurator og Senior kurator følger canonical `appointment_required` med `employer_appointment`. Den separate Kurator-livspraksisen er employment_independent og gir ingen ansettelsesrett."
+    ],
+    "progression_to": [
+      "Videre kuratorisk ansvar følger dokumentert research, transparent utvalg, etisk og kildekritisk praksis og faktisk arbeidsgiverutnevnelse der tittelen krever det; badge, popularitet, nettverk eller livspraksis kan ikke erstatte canonical gate."
+    ],
+    "possible_promotions": [
+      "Kuratorassistent kan gå mot Kurator først når faktisk `employer_appointment` foreligger; relevant praksis eller kvalifikasjon alene endrer ikke appointment-gaten.",
+      "Kurator kan få Senior kurator-ansvar først gjennom reell arbeidsgiverutnevnelse og dokumentert prosjekt-/fagansvar; standing eller vellykket program alene er ikke utnevnelse."
+    ],
+    "possible_exits": [
+      "Research, redaksjon, kunstformidling eller programkoordinering der kildekritikk og kunstnerdialog beholdes uten at Kurator-tittel følger automatisk.",
+      "Samlings-, rettighets-, arkiv- eller produksjonsarbeid der deler av det kuratoriske kunnskapsgrunnlaget brukes uten at utvalgs- eller ansettelsesmyndighet følger med."
+    ],
+    "career_risks": [
+      "Donor-, eier-, nettverks- eller prestisjepress kan gjøre det sosialt dyrt å holde habilitet, proveniensusikkerhet eller et upopulært motperspektiv synlig.",
+      "Sterk publikumsrespons eller kunstnerisk nærhet kan friste rollen til å behandle tolkning, samtykke, rettighet eller ansettelsesstatus som mer avklart enn dokumentasjonen viser."
+    ]
+  },
+  "required_knowledge": {
+    "education_basis": [
+      "Kuratorassistent krever den canonicale relevante kvalifikasjonen. Kurator og Senior kurator krever faktisk `employer_appointment`. Kurator-livspraksis, History Go, Kunst-Badge, scenarioresultat eller sosial standing kan ikke oppfylle en employment gate."
+    ],
+    "skills": [
+      "kunsthistorisk og samtidskunstfaglig research",
+      "kildekritikk og kildeproveniens",
+      "kuratorisk metode og utvalgskriterier",
+      "proveniens- og attribusjonsusikkerhet",
+      "rettigheter, samtykke og kunstnerdialog",
+      "habilitet og interessekonflikt",
+      "representasjonsanalyse og programprofil",
+      "tekst, kontekstualisering og tolkningsmarkering",
+      "låne- og gjennomførbarhetsinput uten myndighetsovertakelse",
+      "versjonert handoff, korrigering og avgrenset rework"
+    ],
+    "category_knowledge": [
+      "Kunsthistorie, samtidskunst, kunstner- og verkbiografi, utstillingshistorikk, institusjonshistorie, dokumentert proveniens og attribusjon, rettighets- og samtykkespørsmål, kuratoriske metoder og skillet mellom kildefakta, kunstnerposisjon, fortolkning og institusjonelt valg."
+    ],
+    "history_go_badges": [
+      "kunst"
+    ],
+    "place_connections": [
+      "research_og_kuratorisk_beslutningsrom",
+      "proveniens_rettighet_og_lanekontroll",
+      "kunstnerdialog_og_programbord",
+      "tekst_formidling_og_produksjonshandoff"
+    ],
+    "people_connections": [
+      "ingrid_senior_kurator_kunst_kuratering_og_program",
+      "malik_proveniens_rettighet_kunst_kuratering_og_program",
+      "sofia_kunstner_programdialog_kunst_kuratering_og_program",
+      "henrik_tekst_formidling_produksjon_kunst_kuratering_og_program"
+    ],
+    "boundary": "History Go kan skjerpe kunsthistoriske spørsmål, verk- og kunstnerbiografi, utstillingshistorikk, kildekritikk og spørsmål om proveniens eller mottakelse, men kan ikke sertifisere proveniens eller attribusjon, klarere rettigheter eller samtykke, godkjenne innkjøp, salg eller utlån, fatte institusjonelt utvalgsvedtak, løse habilitet, gi budsjett eller delegasjon eller gjøre Kurator-livspraksis eller Kunst-Badge til `employer_appointment`."
+  },
+  "authority_boundary": {
+    "may": [
+      "foreslå og begrunne utvalg",
+      "utvikle konsepter",
+      "forhandle faglige premisser innen mandat"
+    ],
+    "may_not": [
+      "skjule interessekonflikter",
+      "garantere innkjøp eller salg uten fullmakt",
+      "endre proveniens uten dokumentasjon",
+      "framstille tolkning som ubestridt faktum"
+    ]
+  },
+  "challenges": [
+    {
+      "id": "sporbar_kuratering_under_prestisje_og_nettverkspress",
+      "title": "Sporbar kuratering under prestisje- og nettverkspress",
+      "description": "Kurateringsteamet må holde kilder, utvalgskriterier, proveniens- og attribusjonsusikkerhet, rettigheter, habilitet, kunstnerdialog, representasjon og beslutningseier synlig selv når donor, eier, nettverk, pressefrist eller en sterk kuratorisk fortelling belønner rask lukking.",
+      "pressure": "prestisje_nettverk_og_frist_vs_sporbar_begrunnelse",
+      "affects": [
+        "quality",
+        "trust",
+        "risk"
+      ]
+    }
+  ],
+  "dilemmas": [
+    {
+      "id": "hovedverk_med_uavklart_proveniens_og_press",
+      "title": "Hovedverk med uavklart proveniens og press",
+      "setup": "Et verk passer svært godt i utstillingsfortellingen, men et viktig proveniensledd og deler av rettighetsgrunnlaget er uavklart samtidig som en støttespiller forventer at verket inkluderes.",
+      "choice_axis": "sporbar_usikkerhet_og_habilitet_vs_narrativ_og_prestisje",
+      "consequence_axis": "etterprovbar_legitimitet_vs_senere_korrigering_og_tillitstap",
+      "mail_hooks": [
+        "job",
+        "people",
+        "conflict",
+        "story",
+        "event",
+        "micro",
+        "followup",
+        "knowledge",
+        "consequence"
+      ]
+    }
+  ],
+  "related_people": [
+    {
+      "id": "ingrid_senior_kurator_kunst_kuratering_og_program",
+      "name": "Ingrid",
+      "role": "senior kurator",
+      "workplace_ids": [
+        "research_og_kuratorisk_beslutningsrom"
+      ],
+      "function": "Ingrid gjør researchspørsmål, utvalgskriterier, kunsthistoriske kilder, motperspektiver og institusjonell beslutning til et synlig kuratorisk spor. Hun krever at det framgår hvilke verk og kunstnere som var kandidater, hvorfor noen ble valgt eller valgt bort, hva som er dokumentert fakta, hva som er kuratorisk tolkning, hvilke interesser som er deklarert og hvilken formell beslutning som fortsatt mangler før programmet kan presenteres som vedtatt.",
+      "authority_relation": "Ingrid kan foreslå og begrunne utvalg, utvikle konsepter og forhandle faglige premisser innen mandat, men kan ikke bruke seniorstatus til å garantere innkjøp eller salg, skjule interessekonflikter, omskrive proveniens eller attribusjon uten dokumentasjon eller gjøre sin tolkning til ubestridt faktum. Hun kan heller ikke gjøre Kurator-livspraksis, History Go eller et Kunst-Badge til employer_appointment.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "malik_proveniens_rettighet_kunst_kuratering_og_program",
+      "name": "Malik",
+      "role": "registrar og proveniens-/rettighetskontakt",
+      "workplace_ids": [
+        "proveniens_rettighet_og_lanekontroll"
+      ],
+      "function": "Malik holder objektidentitet, proveniens, attribusjonsstatus, eierskapsspor, lånestatus, billed- og visningsrettigheter, samtykker og kildegrunnlag adskilt fra den kuratoriske lysten til å få et verk inn i fortellingen. Han markerer hva som er bekreftet, omstridt, uavklart eller under ekstern vurdering og gjør ventepunktet eksplisitt før tekst, avtale eller produksjon låser et usikkert premiss.",
+      "authority_relation": "Malik kan kreve dokumentasjon, flagge proveniens- og rettighetsusikkerhet og holde en handoff åpen, men kan ikke alene avgjøre juridisk eierskap, autentisere attribusjon, klarere alle rettigheter, godkjenne innkjøp eller salg eller gi kuratorisk ansettelsesmyndighet. Registreringsstatus, ekstern interesse og History Go er informasjonsgrunnlag, ikke juridisk eller kuratorisk vedtak.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "sofia_kunstner_programdialog_kunst_kuratering_og_program",
+      "name": "Sofia",
+      "role": "kunstner- og programkoordinator",
+      "workplace_ids": [
+        "kunstnerdialog_og_programbord"
+      ],
+      "function": "Sofia gjør kunstnerdialog, invitasjoner, samtykker, praktiske premisser, programrytme og uenighet om kontekstualisering til et versjonert samarbeidsspor. Hun sørger for at kunstnerens egen posisjon siteres som kunstnerens posisjon, at kuratorisk tolkning merkes som tolkning, og at endringer i verk, tekst, rettighet eller tilgjengelighet får en eksplisitt eier og ikke forsvinner i muntlig koordinering.",
+      "authority_relation": "Sofia kan koordinere dialog og dokumentere hva partene faktisk har sagt eller avtalt innen sitt mandat, men kan ikke presse fram samtykke, love innkjøp, salg eller visning, avgjøre proveniens, overstyre rettighetshaver eller gjøre kunstnerens ønske til ubestridt kildefakta. Hun kan heller ikke ansette eller utnevne Kurator eller Senior kurator gjennom sosial standing eller prosjektansvar.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    },
+    {
+      "id": "henrik_tekst_formidling_produksjon_kunst_kuratering_og_program",
+      "name": "Henrik",
+      "role": "redaktør og produksjonshandoff",
+      "workplace_ids": [
+        "tekst_formidling_og_produksjonshandoff"
+      ],
+      "function": "Henrik gjør veggtekst, katalogtekst, formidlingspremiss, produksjonsbehov, korrektur og publikumsrespons til et kontrollert handoff-spor. Han tester om påstander faktisk støttes av kildene, om tolkning er merket, om uavklart proveniens eller rettighet er synlig på riktig nivå, og om en sen korreksjon gjenåpner bare de berørte tekst-, utvalgs- og produksjonsfeltene.",
+      "authority_relation": "Henrik kan kreve kildehenvisning, skille fakta fra tolkning og stoppe publisering av en uunderbygd påstand, men kan ikke fatte det kuratoriske utvalgsvedtaket, avgjøre rettigheter eller proveniens, love kjøp eller salg, tildele budsjett eller delegasjon eller gjøre en vellykket publikumsrespons til employer_appointment eller faglig sannhetsbevis.",
+      "fictional": true,
+      "fictional_scenario_actor": true,
+      "canonical_person_ref": null
+    }
+  ],
+  "related_places": [
+    {
+      "id": "research_og_kuratorisk_beslutningsrom",
+      "name": "Research- og kuratorisk beslutningsrom",
+      "workplace_type": "curatorial_research",
+      "function": "Her holdes researchspørsmål, kilder, kandidater, utvalgskriterier, motperspektiver, habilitet, programprofil, begrunnelse og formell beslutning i samme versjonerte spor uten at arbeidshypotese blir vedtak eller tolkning blir fakta."
+    },
+    {
+      "id": "proveniens_rettighet_og_lanekontroll",
+      "name": "Proveniens-, rettighets- og lånekontroll",
+      "workplace_type": "provenance_rights_loans",
+      "function": "Her skilles dokumentert proveniens og attribusjon fra uavklarte ledd, og eierskapsspor, lånepremisser, samtykker og rettigheter registreres som egne avhengigheter før programmet lover mer enn grunnlaget tillater."
+    },
+    {
+      "id": "kunstnerdialog_og_programbord",
+      "name": "Kunstnerdialog- og programbord",
+      "workplace_type": "artist_program_dialogue",
+      "function": "Her versjoneres kunstnerens posisjon, kuratorisk respons, invitasjon, programplassering, praktiske premisser, samtykke, uenighet og neste ansvarlige slik at relasjonelt press ikke kan omskrive hva som faktisk ble sagt eller besluttet."
+    },
+    {
+      "id": "tekst_formidling_og_produksjonshandoff",
+      "name": "Tekst-, formidlings- og produksjonshandoff",
+      "workplace_type": "editorial_production_handoff",
+      "function": "Her kontrolleres påstander, kilder, tolkningsmarkører, representasjon, rettighetsstatus, korrektur, produksjonsbehov og publikumsrespons før tekst og program sendes videre, og senere korreksjoner kan gjenåpnes avgrenset."
+    }
+  ]
 }
