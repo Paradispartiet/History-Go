@@ -32,7 +32,25 @@ jobs:
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
           const file = 'data/quiz/production_briefs/by/rodelokka.json';
+          const quizFile = 'data/quiz/by/rodelokka_sets.json';
           const brief = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const quiz = JSON.parse(fs.readFileSync(quizFile, 'utf8'));
+          const canonicalFallbackEmne = 'em_by_historiske_lag_i_hverdagsrom';
+          const retiredEmnes = new Set([
+            'em_by_vegetasjon_parker_grontdrag',
+            'em_by_lyd_stoy_akustikk',
+            'em_by_institusjoner_kulturformidling'
+          ]);
+          const phases = ['opening', 'middle', 'middle', 'bridge', 'final'];
+          for (let si = 0; si < quiz.sets.length; si += 1) {
+            quiz.sets[si].phase = phases[si];
+            for (const question of quiz.sets[si].questions || []) {
+              if (retiredEmnes.has(question.emne_id)) question.emne_id = canonicalFallbackEmne;
+            }
+          }
+          const questionByClaim = new Map(
+            quiz.sets.flatMap((set) => set.questions || []).map((question) => [question.claim_id, question])
+          );
           const quizClaims = (brief.claims || []).filter((item) => /^claim_rodelokka_quiz_\d+$/.test(item.claim_id || ''));
           if (quizClaims.length !== 35) throw new Error(`Expected 35 Rodeløkka quiz claims, found ${quizClaims.length}`);
           const allowedFamilies = new Set(['fact', 'context', 'concept_theory']);
@@ -45,6 +63,9 @@ jobs:
             claim.planned_phase = n <= 7 ? 'opening' : n <= 21 ? 'middle' : n <= 28 ? 'bridge' : 'final';
             if (claim.claim_id === 'claim_rodelokka_quiz_35' && claim.family === 'synthesis') claim.family = 'concept_theory';
             if (!allowedFamilies.has(claim.family)) throw new Error(`${claim.claim_id}: unsupported claim family ${claim.family}`);
+            const question = questionByClaim.get(claim.claim_id);
+            if (!question) throw new Error(`${claim.claim_id}: matching quiz question missing`);
+            claim.emne_id = question.emne_id;
           }
           for (let n = 1; n <= 35; n += 1) if (!seen.has(n)) throw new Error(`Missing claim_rodelokka_quiz_${String(n).padStart(2, '0')}`);
           brief.existing_quiz_audit = {
@@ -78,7 +99,37 @@ jobs:
             'Named people, brands or neighboring institutions whose connection is only geographic proximity rather than documented Rodeløkka relevance.',
             'Exact causal claims about gentrification or preservation effects that are not directly supported by the reviewed source set.'
           ];
+          brief.selected_curriculum = {
+            module_ids: [
+              'kur_by_02_nabolag_ulikhet_segregering',
+              'kur_by_03_infrastruktur_og_bevegelse',
+              'kur_by_04_historiske_lag_og_transformasjon'
+            ],
+            emne_ids: [
+              'em_by_historiske_lag_i_hverdagsrom',
+              'em_by_boligstruktur',
+              'em_by_bydelsforskjeller_segregering',
+              'em_by_gangstrommer_snarveier',
+              'em_by_transformasjon_ombruk',
+              'em_by_infrastruktur_mobilitet'
+            ],
+            topic_hook_ids: [
+              'ark_bygningstyper',
+              'bolig_boligtyper',
+              'bolig_endring_tid',
+              'his_bevaring'
+            ],
+            method_ids: [
+              'met_feltobservasjon',
+              'met_gis_romlig_analyse',
+              'met_morfologisk_analyse',
+              'met_for_etter'
+            ],
+            thinker_ids: [],
+            works: []
+          };
           fs.writeFileSync(file, `${JSON.stringify(brief, null, 2)}\n`);
+          fs.writeFileSync(quizFile, `${JSON.stringify(quiz, null, 2)}\n`);
           NODE
       - name: Normalize Rodeløkka Story manifest registration
         run: |
@@ -130,6 +181,41 @@ jobs:
           npm run epoker:places:build
           npm run places:index:build
           npm run place-open:build
+      - name: Align Rodeløkka quiz with deterministic production context
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const quizFile = 'data/quiz/by/rodelokka_sets.json';
+          const briefFile = 'data/quiz/production_briefs/by/rodelokka.json';
+          const artifactFile = 'data/quiz/production_context/by/rodelokka.json';
+          const quiz = JSON.parse(fs.readFileSync(quizFile, 'utf8'));
+          const brief = JSON.parse(fs.readFileSync(briefFile, 'utf8'));
+          const artifact = JSON.parse(fs.readFileSync(artifactFile, 'utf8'));
+          const selected = artifact.selected_curriculum;
+          quiz.sources = Object.fromEntries(Object.entries(brief.sources).map(([id, source]) => [id, source.url]));
+          quiz.production_context = {
+            manifest_category: 'by',
+            profile: artifact.profile,
+            standard_version: '3.4',
+            source_brief: briefFile,
+            context_artifact: artifactFile,
+            resolved_files: Object.fromEntries(Object.entries(artifact.resolved_files).map(([key, metadata]) => [key, metadata.path])),
+            required_inputs_loaded: artifact.required_inputs_loaded,
+            pensum_module_ids: selected.module_ids,
+            emne_ids: selected.emne_ids,
+            topic_hook_ids: selected.topic_hook_ids,
+            method_ids: selected.method_ids,
+            thinker_ids: selected.thinker_ids,
+            works: selected.works,
+            source_review_status: brief.status,
+            theory_start_phase: 'final',
+            method_start_phase: 'final',
+            existing_quiz_audit: brief.existing_quiz_audit,
+            profile_decision: brief.profile_decision,
+            held_back_candidates: brief.held_back_candidates
+          };
+          fs.writeFileSync(quizFile, `${JSON.stringify(quiz, null, 2)}\n`);
+          NODE
       - name: Rodeløkka completion tests
         run: node --test tests/rodelokka-completion.test.mjs
       - name: Place emne check
@@ -137,46 +223,11 @@ jobs:
       - name: Story integrity
         run: npm run check:stories
       - name: Quiz manifest audit
-        id: quiz_manifest
-        continue-on-error: true
         run: npm run audit:quiz-manifest:v2
-      - name: Upload quiz manifest diagnostic
-        if: steps.quiz_manifest.outcome == 'failure'
-        uses: actions/upload-artifact@v4
-        with:
-          name: rodelokka-quiz-manifest-diagnostic
-          path: reports/quiz_manifest_v2_audit_report.json
-          if-no-files-found: error
-          retention-days: 1
-      - name: Fail on quiz manifest audit
-        if: steps.quiz_manifest.outcome == 'failure'
-        run: exit 1
       - name: Quiz content audit
         run: npm run audit:quiz-content
       - name: Quiz production context audit
-        id: quiz_context
-        continue-on-error: true
-        shell: bash
-        run: |
-          set -o pipefail
-          npm run audit:quiz-production-context 2>&1 | tee /tmp/rodelokka-quiz-production-context.log
-      - name: Upload quiz production context diagnostic
-        if: steps.quiz_context.outcome == 'failure'
-        uses: actions/upload-artifact@v4
-        with:
-          name: rodelokka-quiz-production-context-diagnostic
-          path: |
-            /tmp/rodelokka-quiz-production-context.log
-            data/quiz/production_briefs/by/rodelokka.json
-            data/quiz/by/rodelokka_sets.json
-            data/quiz/production_context/by/rodelokka.json
-            tools/build-rodelokka-completion.mjs
-            data/quiz/manifest.json
-          if-no-files-found: error
-          retention-days: 1
-      - name: Fail on quiz production context audit
-        if: steps.quiz_context.outcome == 'failure'
-        run: exit 1
+        run: npm run audit:quiz-production-context
       - name: Quiz progression audit
         run: npm run audit:quiz-progression
       - name: Quiz theory binding audit
