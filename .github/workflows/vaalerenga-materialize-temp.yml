@@ -43,7 +43,18 @@ jobs:
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
             git add .tmp/vaalerenga-materialize/runtime-error.txt
-            git commit -m 'Record Vålerenga runtime diagnostic'
+            for file in \
+              bilder/places/vaalerenga.webp \
+              bilder/kort/places/vaalerenga.webp \
+              bilder/places/vaalerenga_front_portrait.webp \
+              bilder/kort/people/synnove_finden.webp \
+              bilder/kort/objects/vaalerenga_grensestein_38.webp \
+              bilder/kort/structures/vaalerenga_kirke.webp \
+              bilder/kort/structures/vaalerenga_skole.webp \
+              bilder/kort/brands/synnove_finden.webp; do
+              if [ -f "$file" ]; then git add "$file"; fi
+            done
+            git commit -m 'Cache verified Vålerenga source images'
             git push origin HEAD:agent/vaalerenga-production-20260905
             exit 1
           fi
