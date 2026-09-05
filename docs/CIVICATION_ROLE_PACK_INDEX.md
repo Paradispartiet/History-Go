@@ -15,14 +15,14 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 
 ## Sammendrag
 
-- complete_reference_v2: 57
+- complete_reference_v2: 58
 - complete_reference: 0
 - playable_v1: 1
 - partial_pack: 23
 - role_model_only: 182
 - generated_stub: 0
 - broken_mapping: 0
-- missing: 37
+- missing: 36
 
 ## Rolleindeks
 
@@ -64,17 +64,17 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | historie | historie_arkiv_og_dokumentasjon | historie_arkiv_og_dokumentasjon | Arkiv og dokumentasjon | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | historie | arkivar | historie_arkivar | Arkivar | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | historie | arkivmedarbeider | historie_arkivmedarbeider | Arkivmedarbeider | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
-| historie | avdelingsdirektor | historie_avdelingsdirektor | Avdelingsdirektør | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
+| historie | avdelingsdirektor | historie_avdelingsdirektor | Avdelingsdirektør | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | historie | avdelingsleder | historie_avdelingsleder | Avdelingsleder | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | historie | direktor | historie_direktor | Direktør | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | historie | doktorgradsstudent | historie_doktorgradsstudent | Doktorgradsstudent | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | historie | forsker | historie_forsker | Forsker | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | historie | forstekonsulent | historie_forstekonsulent | Førstekonsulent | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
-| historie | historie_fagledelse | historie_fagledelse | historie_fagledelse | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | historie | historie_forskning_og_akademia | historie_forskning_og_akademia | historie_forskning_og_akademia | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | historie | historie_forvaltning_og_radgivning | historie_forvaltning_og_radgivning | historie_forvaltning_og_radgivning | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | historie | historie_institusjonsledelse | historie_institusjonsledelse | historie_institusjonsledelse | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | historie | historie_museum_og_samling | historie_museum_og_samling | historie_museum_og_samling | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
+| historie | historie_fagledelse | historie_fagledelse | Historiefaglig ledelse | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | historie | konservator | historie_konservator | Konservator | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | historie | kurator | historie_kurator | Kurator | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | historie | masterstuden | historie_masterstuden | Masterstuden | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
