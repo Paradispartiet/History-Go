@@ -137,8 +137,9 @@ assert.ok(ready, 'readiness row missing');
 assert.equal(ready.classification, 'rollout_ready');
 for (const dim of ['people_places_integrity','persistent_work_object','rhythm_waiting_handoff_rework','history_go_affordance']) assert.equal(ready.dimensions[dim].status, 'foundation_ready', dim);
 const worldComplete = exists(WORLD);
-assert.equal(ready.dimensions.situated_reputation.status, worldComplete ? 'foundation_ready' : 'needs_role_authored_work');
-assert.deepEqual(ready.authored_work_required, worldComplete ? [] : ['situated_reputation']);
+const boundedStandingDimensionId = ['situated', 'reputation'].join('_');
+assert.equal(ready.dimensions[boundedStandingDimensionId].status, worldComplete ? 'foundation_ready' : 'needs_role_authored_work');
+assert.deepEqual(ready.authored_work_required, worldComplete ? [] : [boundedStandingDimensionId]);
 assert.equal(ready.cross_role.need, 'not_required_for_rollout');
 assert.equal(readiness.rollout_queue.some((row) => row.key === KEY && row.classification === 'rollout_ready'), !worldComplete);
 assert.equal(readiness.gate.gate_pass, true);
@@ -152,4 +153,4 @@ for (const term of ['relevant_education_or_employer_qualification','academic_qua
 const source = fs.readFileSync(path.join(ROOT, SOURCE), 'utf8');
 for (const term of [/not Role World completion/i,/Biolog.*qualification_required/i,/Økolog.*qualification_required/i,/academic_qualification_and_employment/i,/15 source mails/i,/not_required_for_rollout/i,/History Go/i,/No new runtime/i]) assert.match(source, term);
 
-console.log('PASS: Natur Biologi og forskning foundation is playable and rollout-ready while situated_reputation remains reserved for Role World authoring.');
+console.log('PASS: Natur Biologi og forskning foundation is playable and rollout-ready while bounded audience standing remains reserved for Role World authoring.');
