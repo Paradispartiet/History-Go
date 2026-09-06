@@ -35,14 +35,6 @@ jobs:
           import json
           import re
 
-          def replace_once(path, old, new):
-              p = Path(path)
-              text = p.read_text(encoding="utf-8")
-              count = text.count(old)
-              if count != 1:
-                  raise SystemExit(f"{path}: expected exactly one literal match, found {count}")
-              p.write_text(text.replace(old, new, 1), encoding="utf-8")
-
           builder_path = Path("tools/build-helsfyr-completion.mjs")
           builder = builder_path.read_text(encoding="utf-8")
 
@@ -69,33 +61,37 @@ jobs:
           builder = builder.replace(old_strong, new_strong, 1)
 
           old_independent = '  if (strong) claim.independentSourceUrls = [torp ? urls.arkitekturTorp : urls.sporveien];'
-          new_independent = '''  if (strong) {
-    if (/Det første Hotell Helsfyr/iu.test(sentenceText)) {
-      claim.independentSourceUrls = [urls.lokalwikiHelsfyr, urls.scandicHelsfyrHistory];
-    } else if (/Helsfyr består dermed/iu.test(sentenceText)) {
-      claim.independentSourceUrls = [urls.sporveien, urls.arkitekturTorp, urls.scandicHelsfyrHistory];
-    } else {
-      claim.independentSourceUrls = [torp ? urls.arkitekturTorp : urls.sporveien];
-    }
-  }'''
+          new_independent = (
+              '  if (strong) {\n'
+              '    if (/Det første Hotell Helsfyr/iu.test(sentenceText)) {\n'
+              '      claim.independentSourceUrls = [urls.lokalwikiHelsfyr, urls.scandicHelsfyrHistory];\n'
+              '    } else if (/Helsfyr består dermed/iu.test(sentenceText)) {\n'
+              '      claim.independentSourceUrls = [urls.sporveien, urls.arkitekturTorp, urls.scandicHelsfyrHistory];\n'
+              '    } else {\n'
+              '      claim.independentSourceUrls = [torp ? urls.arkitekturTorp : urls.sporveien];\n'
+              '    }\n'
+              '  }'
+          )
           if builder.count(old_independent) != 1:
               raise SystemExit("builder: independent-source anchor mismatch")
           builder = builder.replace(old_independent, new_independent, 1)
 
           old_questions = 'questions: sets.slice(0, 2).flatMap(set => set.questions).slice(0, 8).map(q => ({ question: q.question, answer: q.answer, type: q.question_type, normalKnowledgeQuestion: true, claimIds: [q.claim_id] }))'
-          new_questions = '''questions: [
-    [0, "hva", "claim_helsfyr_text_04"],
-    [1, "når", "claim_helsfyr_text_01"],
-    [3, "hva_skjedde", "claim_helsfyr_text_06"],
-    [4, "hva", "claim_helsfyr_text_07"],
-    [5, "hva_ble_bygget_produsert_eller_endret", "claim_helsfyr_text_14"],
-    [6, "når", "claim_helsfyr_text_19"],
-    [7, "hvem", "claim_helsfyr_text_15"],
-    [8, "når", "claim_helsfyr_text_10"]
-  ].map(([questionIndex, type, claimId]) => {
-    const q = sets.flatMap(set => set.questions)[questionIndex];
-    return { question: q.question, answer: q.answer, type, normalKnowledgeQuestion: true, claimIds: [claimId] };
-  })'''
+          new_questions = (
+              'questions: [\n'
+              '    [0, "hva", "claim_helsfyr_text_04"],\n'
+              '    [1, "når", "claim_helsfyr_text_01"],\n'
+              '    [3, "hva_skjedde", "claim_helsfyr_text_06"],\n'
+              '    [4, "hva", "claim_helsfyr_text_07"],\n'
+              '    [5, "hva_ble_bygget_produsert_eller_endret", "claim_helsfyr_text_14"],\n'
+              '    [6, "når", "claim_helsfyr_text_19"],\n'
+              '    [7, "hvem", "claim_helsfyr_text_15"],\n'
+              '    [8, "når", "claim_helsfyr_text_10"]\n'
+              '  ].map(([questionIndex, type, claimId]) => {\n'
+              '    const q = sets.flatMap(set => set.questions)[questionIndex];\n'
+              '    return { question: q.question, answer: q.answer, type, normalKnowledgeQuestion: true, claimIds: [claimId] };\n'
+              '  })'
+          )
           if builder.count(old_questions) != 1:
               raise SystemExit("builder: quizReadiness adapter anchor mismatch")
           builder = builder.replace(old_questions, new_questions, 1)
