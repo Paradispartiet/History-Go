@@ -364,6 +364,15 @@
     "data/Civication/mailFamilies/natur/followup/natur_biologi_og_forskning_followup.json",
     "data/Civication/mailFamilies/natur/knowledge/natur_biologi_og_forskning_knowledge.json",
     "data/Civication/mailFamilies/natur/consequence/natur_biologi_og_forskning_consequence.json",
+    "data/Civication/mailFamilies/natur/job/natur_felt_og_formidling_job.json",
+    "data/Civication/mailFamilies/natur/people/natur_felt_og_formidling_people.json",
+    "data/Civication/mailFamilies/natur/story/natur_felt_og_formidling_story.json",
+    "data/Civication/mailFamilies/natur/conflict/natur_felt_og_formidling_conflict.json",
+    "data/Civication/mailFamilies/natur/event/natur_felt_og_formidling_event.json",
+    "data/Civication/mailFamilies/natur/micro/natur_felt_og_formidling_micro.json",
+    "data/Civication/mailFamilies/natur/followup/natur_felt_og_formidling_followup.json",
+    "data/Civication/mailFamilies/natur/knowledge/natur_felt_og_formidling_knowledge.json",
+    "data/Civication/mailFamilies/natur/consequence/natur_felt_og_formidling_consequence.json",
     "data/Civication/mailFamilies/psykologi/job/fagansvarlig_job.json",
     "data/Civication/mailFamilies/psykologi/people/fagansvarlig_people.json",
     "data/Civication/mailFamilies/psykologi/story/fagansvarlig_story.json",
@@ -187067,6 +187076,2016 @@
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar publikumspress ved sårbar natur i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "HMS",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk publikumspress ved sårbar natur gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "svak_sporbarhet"
+            ]
+          }
+        ],
+        "competency": "sporbar_sikker_og_faglig_avgrenset_feltpraksis",
+        "consequence_axis": "trygg_faglig_tillit_vs_skjult_usikkerhet",
+        "from": "Nora",
+        "id": "felt_formidling_conflict_001",
+        "mail_family": "felt_formidling_presisjon_sikkerhet_og_publikumspress",
+        "mail_type": "conflict",
+        "narrative_arc": "conflict",
+        "people_ref": "nora_naturveileder_besoksansvarlig_natur_felt_og_formidling",
+        "phase": "forenoon",
+        "place_id": "besokssenter_og_formidlingspunkt_natur",
+        "pressure": "tempo_publikum_vaer_saarbarhet_og_presisjon",
+        "priority": 120,
+        "role_scope": "natur_felt_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/conflict/natur_felt_og_formidling_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+        ],
+        "subject": "Publikumspress ved sårbar natur",
+        "summary": "Publikumspress ved sårbar natur. En gruppe ønsker å gå tettere på en sårbar lokalitet for bedre bilder, mens fag- og sikkerhetsgrunnlaget tilsier større avstand og en annen rute. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde.",
+        "task_domain": "feltarbeid_og_naturformidling"
+      },
+      "id": "felt_formidling_conflict_001",
+      "mail_type": "conflict",
+      "role_scope": "natur_felt_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar publikumspress ved sårbar natur i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk publikumspress ved sårbar natur gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+          ],
+          "subject": "Publikumspress ved sårbar natur",
+          "summary": "Publikumspress ved sårbar natur. En gruppe ønsker å gå tettere på en sårbar lokalitet for bedre bilder, mens fag- og sikkerhetsgrunnlaget tilsier større avstand og en annen rute. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "felt_formidling_conflict_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "besokssenter_og_formidlingspunkt_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "felt_formidling_conflict_001",
+          "source_path": "data/Civication/mailFamilies/natur/conflict/natur_felt_og_formidling_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_felt_og_formidling.mail.felt_formidling_conflict_001",
+        "version": 1
+      },
+      "source_hash": "19d4ac59cb0db3025f179244b01d3362a2fadccf405cdc7b3fa4908e82af8b6e",
+      "source_path": "data/Civication/mailFamilies/natur/conflict/natur_felt_og_formidling_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar dagens feltspor skal tåle etterkontroll i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "HMS",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk dagens feltspor skal tåle etterkontroll gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "svak_sporbarhet"
+            ]
+          }
+        ],
+        "competency": "sporbar_sikker_og_faglig_avgrenset_feltpraksis",
+        "consequence_axis": "trygg_faglig_tillit_vs_skjult_usikkerhet",
+        "from": "Jonas",
+        "id": "felt_formidling_consequence_001",
+        "mail_family": "felt_formidling_sporbarhet_vern_og_etterspill",
+        "mail_type": "consequence",
+        "narrative_arc": "consequence",
+        "people_ref": "jonas_hms_logistikk_natur_felt_og_formidling",
+        "phase": "forenoon",
+        "place_id": "kvalitetssjekk_og_handoffbord_natur",
+        "pressure": "tempo_publikum_vaer_saarbarhet_og_presisjon",
+        "priority": 120,
+        "role_scope": "natur_felt_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/consequence/natur_felt_og_formidling_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+        ],
+        "subject": "Dagens feltspor skal tåle etterkontroll",
+        "summary": "Dagens feltspor skal tåle etterkontroll. Før rapportering må observasjoner, prøver, HMS, artsusikkerhet og formidlingsvalg kunne leses av en ny aktør uten muntlig tilleggsinformasjon eller skjult rekonstruksjon. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde.",
+        "task_domain": "feltarbeid_og_naturformidling"
+      },
+      "id": "felt_formidling_consequence_001",
+      "mail_type": "consequence",
+      "role_scope": "natur_felt_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar dagens feltspor skal tåle etterkontroll i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk dagens feltspor skal tåle etterkontroll gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+          ],
+          "subject": "Dagens feltspor skal tåle etterkontroll",
+          "summary": "Dagens feltspor skal tåle etterkontroll. Før rapportering må observasjoner, prøver, HMS, artsusikkerhet og formidlingsvalg kunne leses av en ny aktør uten muntlig tilleggsinformasjon eller skjult rekonstruksjon. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "felt_formidling_consequence_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kvalitetssjekk_og_handoffbord_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "felt_formidling_consequence_001",
+          "source_path": "data/Civication/mailFamilies/natur/consequence/natur_felt_og_formidling_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_felt_og_formidling.mail.felt_formidling_consequence_001",
+        "version": 1
+      },
+      "source_hash": "5e09ad50ffee2f91e717361a789615210264b05d6570612c6d3370f303394f9c",
+      "source_path": "data/Civication/mailFamilies/natur/consequence/natur_felt_og_formidling_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar værskifte avbryter prøvetakingen i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "HMS",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk værskifte avbryter prøvetakingen gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "svak_sporbarhet"
+            ]
+          }
+        ],
+        "competency": "sporbar_sikker_og_faglig_avgrenset_feltpraksis",
+        "consequence_axis": "trygg_faglig_tillit_vs_skjult_usikkerhet",
+        "from": "Solveig",
+        "id": "felt_formidling_event_001",
+        "mail_family": "felt_formidling_vaer_avvik_og_saarbar_natur",
+        "mail_type": "event",
+        "narrative_arc": "event",
+        "people_ref": "solveig_feltleder_natur_felt_og_formidling",
+        "phase": "forenoon",
+        "place_id": "feltbrief_og_utstyrsbase_natur",
+        "pressure": "tempo_publikum_vaer_saarbarhet_og_presisjon",
+        "priority": 120,
+        "role_scope": "natur_felt_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/event/natur_felt_og_formidling_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+        ],
+        "subject": "Værskifte avbryter prøvetakingen",
+        "summary": "Værskifte avbryter prøvetakingen. Et raskt værskifte gjør den planlagte prøvetakingen utrygg, og laget må stoppe, sikre materiale, dokumentere avbruddet og planlegge ny kontrollert økt. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde.",
+        "task_domain": "feltarbeid_og_naturformidling"
+      },
+      "id": "felt_formidling_event_001",
+      "mail_type": "event",
+      "role_scope": "natur_felt_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar værskifte avbryter prøvetakingen i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk værskifte avbryter prøvetakingen gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+          ],
+          "subject": "Værskifte avbryter prøvetakingen",
+          "summary": "Værskifte avbryter prøvetakingen. Et raskt værskifte gjør den planlagte prøvetakingen utrygg, og laget må stoppe, sikre materiale, dokumentere avbruddet og planlegge ny kontrollert økt. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "felt_formidling_event_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "feltbrief_og_utstyrsbase_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "felt_formidling_event_001",
+          "source_path": "data/Civication/mailFamilies/natur/event/natur_felt_og_formidling_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_felt_og_formidling.mail.felt_formidling_event_001",
+        "version": 1
+      },
+      "source_hash": "7a9ed4ad85280af8446bcd44194c759b8877c92c91d1aef653b79c2bdfc87a79",
+      "source_path": "data/Civication/mailFamilies/natur/event/natur_felt_og_formidling_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar artsavklaring krever ny observasjon i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "HMS",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk artsavklaring krever ny observasjon gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "svak_sporbarhet"
+            ]
+          }
+        ],
+        "competency": "sporbar_sikker_og_faglig_avgrenset_feltpraksis",
+        "consequence_axis": "trygg_faglig_tillit_vs_skjult_usikkerhet",
+        "from": "Amir",
+        "id": "felt_formidling_followup_001",
+        "mail_family": "felt_formidling_artsavklaring_og_etterkontroll",
+        "mail_type": "followup",
+        "narrative_arc": "followup",
+        "people_ref": "amir_artsfaglig_kvalitetssikrer_natur_felt_og_formidling",
+        "phase": "forenoon",
+        "place_id": "observasjonsflate_og_provetakingspunkt_natur",
+        "pressure": "tempo_publikum_vaer_saarbarhet_og_presisjon",
+        "priority": 120,
+        "role_scope": "natur_felt_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/followup/natur_felt_og_formidling_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+        ],
+        "subject": "Artsavklaring krever ny observasjon",
+        "summary": "Artsavklaring krever ny observasjon. Kvalitetssjekken kan ikke avgjøre funnet fra første dokumentasjon, og en ny feltobservasjon må planlegges som oppfølging i samme logg. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde.",
+        "task_domain": "feltarbeid_og_naturformidling"
+      },
+      "id": "felt_formidling_followup_001",
+      "mail_type": "followup",
+      "role_scope": "natur_felt_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar artsavklaring krever ny observasjon i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk artsavklaring krever ny observasjon gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+          ],
+          "subject": "Artsavklaring krever ny observasjon",
+          "summary": "Artsavklaring krever ny observasjon. Kvalitetssjekken kan ikke avgjøre funnet fra første dokumentasjon, og en ny feltobservasjon må planlegges som oppfølging i samme logg. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "felt_formidling_followup_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "observasjonsflate_og_provetakingspunkt_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "felt_formidling_followup_001",
+          "source_path": "data/Civication/mailFamilies/natur/followup/natur_felt_og_formidling_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_felt_og_formidling.mail.felt_formidling_followup_001",
+        "version": 1
+      },
+      "source_hash": "e3838c8d582213725727e815b91b9a4ceffa96318167889948a14bb471cb5369",
+      "source_path": "data/Civication/mailFamilies/natur/followup/natur_felt_og_formidling_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar feltbrief før første rute i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "HMS",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk feltbrief før første rute gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "svak_sporbarhet"
+            ]
+          }
+        ],
+        "competency": "sporbar_sikker_og_faglig_avgrenset_feltpraksis",
+        "consequence_axis": "trygg_faglig_tillit_vs_skjult_usikkerhet",
+        "from": "Solveig",
+        "id": "felt_formidling_job_001",
+        "mail_family": "felt_formidling_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "solveig_feltleder_natur_felt_og_formidling",
+        "phase": "forenoon",
+        "place_id": "feltbrief_og_utstyrsbase_natur",
+        "pressure": "tempo_publikum_vaer_saarbarhet_og_presisjon",
+        "priority": 120,
+        "role_scope": "natur_felt_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/job/natur_felt_og_formidling_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+        ],
+        "subject": "Feltbrief før første rute",
+        "summary": "Feltbrief før første rute. Dagens oppdrag kombinerer observasjon og besøksveiledning, men vær, sårbarhetsnivå, utstyr og stoppkriterier må være eksplisitt dokumentert før laget går ut. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde.",
+        "task_domain": "feltarbeid_og_naturformidling"
+      },
+      "id": "felt_formidling_job_001",
+      "mail_type": "job",
+      "role_scope": "natur_felt_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar feltbrief før første rute i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk feltbrief før første rute gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+          ],
+          "subject": "Feltbrief før første rute",
+          "summary": "Feltbrief før første rute. Dagens oppdrag kombinerer observasjon og besøksveiledning, men vær, sårbarhetsnivå, utstyr og stoppkriterier må være eksplisitt dokumentert før laget går ut. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "felt_formidling_job_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "feltbrief_og_utstyrsbase_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "felt_formidling_job_001",
+          "source_path": "data/Civication/mailFamilies/natur/job/natur_felt_og_formidling_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_felt_og_formidling.mail.felt_formidling_job_001",
+        "version": 1
+      },
+      "source_hash": "db8d91b437fd7d427abb11d9d91253b0c0512e71f546363d3cb48e323959f56f",
+      "source_path": "data/Civication/mailFamilies/natur/job/natur_felt_og_formidling_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar observasjon med komplett metadata i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "HMS",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk observasjon med komplett metadata gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "svak_sporbarhet"
+            ]
+          }
+        ],
+        "competency": "sporbar_sikker_og_faglig_avgrenset_feltpraksis",
+        "consequence_axis": "trygg_faglig_tillit_vs_skjult_usikkerhet",
+        "from": "Amir",
+        "id": "felt_formidling_job_002",
+        "mail_family": "felt_formidling_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "amir_artsfaglig_kvalitetssikrer_natur_felt_og_formidling",
+        "phase": "afternoon",
+        "place_id": "observasjonsflate_og_provetakingspunkt_natur",
+        "pressure": "tempo_publikum_vaer_saarbarhet_og_presisjon",
+        "priority": 121,
+        "role_scope": "natur_felt_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/job/natur_felt_og_formidling_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+        ],
+        "subject": "Observasjon med komplett metadata",
+        "summary": "Observasjon med komplett metadata. Et interessant artsfunn dukker opp i felt og må få lokalitet, tidspunkt, habitat, observatør, foto eller prøve-ID og eksplisitt artsusikkerhet før noe rapporteres som sikkert. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde.",
+        "task_domain": "feltarbeid_og_naturformidling"
+      },
+      "id": "felt_formidling_job_002",
+      "mail_type": "job",
+      "role_scope": "natur_felt_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar observasjon med komplett metadata i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk observasjon med komplett metadata gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+          ],
+          "subject": "Observasjon med komplett metadata",
+          "summary": "Observasjon med komplett metadata. Et interessant artsfunn dukker opp i felt og må få lokalitet, tidspunkt, habitat, observatør, foto eller prøve-ID og eksplisitt artsusikkerhet før noe rapporteres som sikkert. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "felt_formidling_job_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "observasjonsflate_og_provetakingspunkt_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "felt_formidling_job_002",
+          "source_path": "data/Civication/mailFamilies/natur/job/natur_felt_og_formidling_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_felt_og_formidling.mail.felt_formidling_job_002",
+        "version": 1
+      },
+      "source_hash": "99a53c678eb2d1491be4e67b54e3ed691b6e0d18e2e0ca5efa6f10f46ebe2ec2",
+      "source_path": "data/Civication/mailFamilies/natur/job/natur_felt_og_formidling_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar formidling uten å røpe sårbar lokalitet i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "HMS",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk formidling uten å røpe sårbar lokalitet gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "svak_sporbarhet"
+            ]
+          }
+        ],
+        "competency": "sporbar_sikker_og_faglig_avgrenset_feltpraksis",
+        "consequence_axis": "trygg_faglig_tillit_vs_skjult_usikkerhet",
+        "from": "Nora",
+        "id": "felt_formidling_job_003",
+        "mail_family": "felt_formidling_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "nora_naturveileder_besoksansvarlig_natur_felt_og_formidling",
+        "phase": "forenoon",
+        "place_id": "besokssenter_og_formidlingspunkt_natur",
+        "pressure": "tempo_publikum_vaer_saarbarhet_og_presisjon",
+        "priority": 122,
+        "role_scope": "natur_felt_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/job/natur_felt_og_formidling_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+        ],
+        "subject": "Formidling uten å røpe sårbar lokalitet",
+        "summary": "Formidling uten å røpe sårbar lokalitet. Publikum vil vite nøyaktig hvor et sårbart funn er gjort, og budskapet må være lærerikt uten å gjøre lokaliteten mer utsatt eller fremstille usikker kunnskap som sikker. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde.",
+        "task_domain": "feltarbeid_og_naturformidling"
+      },
+      "id": "felt_formidling_job_003",
+      "mail_type": "job",
+      "role_scope": "natur_felt_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar formidling uten å røpe sårbar lokalitet i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk formidling uten å røpe sårbar lokalitet gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+          ],
+          "subject": "Formidling uten å røpe sårbar lokalitet",
+          "summary": "Formidling uten å røpe sårbar lokalitet. Publikum vil vite nøyaktig hvor et sårbart funn er gjort, og budskapet må være lærerikt uten å gjøre lokaliteten mer utsatt eller fremstille usikker kunnskap som sikker. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "felt_formidling_job_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "besokssenter_og_formidlingspunkt_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "felt_formidling_job_003",
+          "source_path": "data/Civication/mailFamilies/natur/job/natur_felt_og_formidling_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_felt_og_formidling.mail.felt_formidling_job_003",
+        "version": 1
+      },
+      "source_hash": "fb6d2fe087fa07dc7929b08d176dc36952b2bca3f44bf95f9d6e77cbda17b07d",
+      "source_path": "data/Civication/mailFamilies/natur/job/natur_felt_og_formidling_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar handoff etter feltøkt i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "HMS",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk handoff etter feltøkt gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "svak_sporbarhet"
+            ]
+          }
+        ],
+        "competency": "sporbar_sikker_og_faglig_avgrenset_feltpraksis",
+        "consequence_axis": "trygg_faglig_tillit_vs_skjult_usikkerhet",
+        "from": "Jonas",
+        "id": "felt_formidling_job_004",
+        "mail_family": "felt_formidling_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "jonas_hms_logistikk_natur_felt_og_formidling",
+        "phase": "afternoon",
+        "place_id": "kvalitetssjekk_og_handoffbord_natur",
+        "pressure": "tempo_publikum_vaer_saarbarhet_og_presisjon",
+        "priority": 123,
+        "role_scope": "natur_felt_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/job/natur_felt_og_formidling_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+        ],
+        "subject": "Handoff etter feltøkt",
+        "summary": "Handoff etter feltøkt. Feltlaget kommer tilbake med observasjoner, prøver, et væravvik og ett åpent artsspørsmål som må skilles og få riktig neste eier før dagen lukkes. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde.",
+        "task_domain": "feltarbeid_og_naturformidling"
+      },
+      "id": "felt_formidling_job_004",
+      "mail_type": "job",
+      "role_scope": "natur_felt_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar handoff etter feltøkt i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk handoff etter feltøkt gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+          ],
+          "subject": "Handoff etter feltøkt",
+          "summary": "Handoff etter feltøkt. Feltlaget kommer tilbake med observasjoner, prøver, et væravvik og ett åpent artsspørsmål som må skilles og få riktig neste eier før dagen lukkes. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "felt_formidling_job_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kvalitetssjekk_og_handoffbord_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "felt_formidling_job_004",
+          "source_path": "data/Civication/mailFamilies/natur/job/natur_felt_og_formidling_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_felt_og_formidling.mail.felt_formidling_job_004",
+        "version": 1
+      },
+      "source_hash": "d9dd4bdf20c5bb16a4aafc03b650571f086ddc172ac6d96634813dbf32db15a3",
+      "source_path": "data/Civication/mailFamilies/natur/job/natur_felt_og_formidling_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar history go gir spørsmål, ikke feltbevis i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "HMS",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk history go gir spørsmål, ikke feltbevis gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "svak_sporbarhet"
+            ]
+          }
+        ],
+        "competency": "sporbar_sikker_og_faglig_avgrenset_feltpraksis",
+        "consequence_axis": "trygg_faglig_tillit_vs_skjult_usikkerhet",
+        "from": "Nora",
+        "id": "felt_formidling_knowledge_001",
+        "mail_family": "felt_formidling_history_go_naturkontekst",
+        "mail_type": "knowledge",
+        "narrative_arc": "knowledge",
+        "people_ref": "nora_naturveileder_besoksansvarlig_natur_felt_og_formidling",
+        "phase": "forenoon",
+        "place_id": "besokssenter_og_formidlingspunkt_natur",
+        "pressure": "tempo_publikum_vaer_saarbarhet_og_presisjon",
+        "priority": 120,
+        "role_scope": "natur_felt_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/knowledge/natur_felt_og_formidling_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+        ],
+        "subject": "History Go gir spørsmål, ikke feltbevis",
+        "summary": "History Go gir spørsmål, ikke feltbevis. Natur-kunnskap fra History Go peker mot en mulig art, naturtype eller historisk lokalitet, men må brukes til å stille bedre spørsmål og velge relevante kjennetegn uten å bli behandlet som faktisk observasjon eller yrkeskvalifikasjon. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde.",
+        "task_domain": "feltarbeid_og_naturformidling"
+      },
+      "id": "felt_formidling_knowledge_001",
+      "mail_type": "knowledge",
+      "role_scope": "natur_felt_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar history go gir spørsmål, ikke feltbevis i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk history go gir spørsmål, ikke feltbevis gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+          ],
+          "subject": "History Go gir spørsmål, ikke feltbevis",
+          "summary": "History Go gir spørsmål, ikke feltbevis. Natur-kunnskap fra History Go peker mot en mulig art, naturtype eller historisk lokalitet, men må brukes til å stille bedre spørsmål og velge relevante kjennetegn uten å bli behandlet som faktisk observasjon eller yrkeskvalifikasjon. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "felt_formidling_knowledge_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "besokssenter_og_formidlingspunkt_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "felt_formidling_knowledge_001",
+          "source_path": "data/Civication/mailFamilies/natur/knowledge/natur_felt_og_formidling_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_felt_og_formidling.mail.felt_formidling_knowledge_001",
+        "version": 1
+      },
+      "source_hash": "ef4ca53c9bd1d90d267d0b32db7aaeed1590c20f70ae0a89d0809d7e78cd56b8",
+      "source_path": "data/Civication/mailFamilies/natur/knowledge/natur_felt_og_formidling_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar manglende tidspunkt på feltfoto i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "HMS",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk manglende tidspunkt på feltfoto gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "svak_sporbarhet"
+            ]
+          }
+        ],
+        "competency": "sporbar_sikker_og_faglig_avgrenset_feltpraksis",
+        "consequence_axis": "trygg_faglig_tillit_vs_skjult_usikkerhet",
+        "from": "Jonas",
+        "id": "felt_formidling_micro_001",
+        "mail_family": "felt_formidling_rask_metadata_og_budskapskorrigering",
+        "mail_type": "micro",
+        "narrative_arc": "micro",
+        "people_ref": "jonas_hms_logistikk_natur_felt_og_formidling",
+        "phase": "forenoon",
+        "place_id": "kvalitetssjekk_og_handoffbord_natur",
+        "pressure": "tempo_publikum_vaer_saarbarhet_og_presisjon",
+        "priority": 120,
+        "role_scope": "natur_felt_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/micro/natur_felt_og_formidling_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+        ],
+        "subject": "Manglende tidspunkt på feltfoto",
+        "summary": "Manglende tidspunkt på feltfoto. Et ellers godt artsfoto mangler et sikkert tidspunkt og må kobles til det som faktisk kan dokumenteres uten at noen fyller inn et antatt klokkeslett som fakta. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde.",
+        "task_domain": "feltarbeid_og_naturformidling"
+      },
+      "id": "felt_formidling_micro_001",
+      "mail_type": "micro",
+      "role_scope": "natur_felt_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar manglende tidspunkt på feltfoto i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk manglende tidspunkt på feltfoto gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+          ],
+          "subject": "Manglende tidspunkt på feltfoto",
+          "summary": "Manglende tidspunkt på feltfoto. Et ellers godt artsfoto mangler et sikkert tidspunkt og må kobles til det som faktisk kan dokumenteres uten at noen fyller inn et antatt klokkeslett som fakta. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "felt_formidling_micro_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kvalitetssjekk_og_handoffbord_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "felt_formidling_micro_001",
+          "source_path": "data/Civication/mailFamilies/natur/micro/natur_felt_og_formidling_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_felt_og_formidling.mail.felt_formidling_micro_001",
+        "version": 1
+      },
+      "source_hash": "01d8f3aa0a57a066e647d95bf45e9105da5e6f9e48cd00310c88633b09529f2f",
+      "source_path": "data/Civication/mailFamilies/natur/micro/natur_felt_og_formidling_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar feltleder endrer planen ved værskifte i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "HMS",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk feltleder endrer planen ved værskifte gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "svak_sporbarhet"
+            ]
+          }
+        ],
+        "competency": "sporbar_sikker_og_faglig_avgrenset_feltpraksis",
+        "consequence_axis": "trygg_faglig_tillit_vs_skjult_usikkerhet",
+        "from": "Solveig",
+        "id": "felt_formidling_people_001",
+        "mail_family": "felt_formidling_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "solveig_feltleder_natur_felt_og_formidling",
+        "phase": "forenoon",
+        "place_id": "feltbrief_og_utstyrsbase_natur",
+        "pressure": "tempo_publikum_vaer_saarbarhet_og_presisjon",
+        "priority": 120,
+        "role_scope": "natur_felt_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/people/natur_felt_og_formidling_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+        ],
+        "subject": "Feltleder endrer planen ved værskifte",
+        "summary": "Feltleder endrer planen ved værskifte. Solveig ser at vind og nedbør gjør planlagt trase eller prøvetaking mindre trygg og krever at rute og stoppkriterier oppdateres før arbeidet fortsetter. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde.",
+        "task_domain": "feltarbeid_og_naturformidling"
+      },
+      "id": "felt_formidling_people_001",
+      "mail_type": "people",
+      "role_scope": "natur_felt_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar feltleder endrer planen ved værskifte i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk feltleder endrer planen ved værskifte gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+          ],
+          "subject": "Feltleder endrer planen ved værskifte",
+          "summary": "Feltleder endrer planen ved værskifte. Solveig ser at vind og nedbør gjør planlagt trase eller prøvetaking mindre trygg og krever at rute og stoppkriterier oppdateres før arbeidet fortsetter. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "felt_formidling_people_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "feltbrief_og_utstyrsbase_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "felt_formidling_people_001",
+          "source_path": "data/Civication/mailFamilies/natur/people/natur_felt_og_formidling_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_felt_og_formidling.mail.felt_formidling_people_001",
+        "version": 1
+      },
+      "source_hash": "ff5991a6fef2a14b27bd1ccc4ff98545fcf2997551cd8687343bd704dc0d0e95",
+      "source_path": "data/Civication/mailFamilies/natur/people/natur_felt_og_formidling_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar artsfaglig kvalitetssikrer holder funnet åpent i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "HMS",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk artsfaglig kvalitetssikrer holder funnet åpent gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "svak_sporbarhet"
+            ]
+          }
+        ],
+        "competency": "sporbar_sikker_og_faglig_avgrenset_feltpraksis",
+        "consequence_axis": "trygg_faglig_tillit_vs_skjult_usikkerhet",
+        "from": "Amir",
+        "id": "felt_formidling_people_002",
+        "mail_family": "felt_formidling_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "amir_artsfaglig_kvalitetssikrer_natur_felt_og_formidling",
+        "phase": "afternoon",
+        "place_id": "observasjonsflate_og_provetakingspunkt_natur",
+        "pressure": "tempo_publikum_vaer_saarbarhet_og_presisjon",
+        "priority": 121,
+        "role_scope": "natur_felt_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/people/natur_felt_og_formidling_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+        ],
+        "subject": "Artsfaglig kvalitetssikrer holder funnet åpent",
+        "summary": "Artsfaglig kvalitetssikrer holder funnet åpent. Amir mener bildet peker mot en bestemt art, men kjennetegnene er ikke tilstrekkelige og krever at funnet beholdes som usikkert til ny dokumentasjon finnes. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde.",
+        "task_domain": "feltarbeid_og_naturformidling"
+      },
+      "id": "felt_formidling_people_002",
+      "mail_type": "people",
+      "role_scope": "natur_felt_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar artsfaglig kvalitetssikrer holder funnet åpent i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk artsfaglig kvalitetssikrer holder funnet åpent gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+          ],
+          "subject": "Artsfaglig kvalitetssikrer holder funnet åpent",
+          "summary": "Artsfaglig kvalitetssikrer holder funnet åpent. Amir mener bildet peker mot en bestemt art, men kjennetegnene er ikke tilstrekkelige og krever at funnet beholdes som usikkert til ny dokumentasjon finnes. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "felt_formidling_people_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "observasjonsflate_og_provetakingspunkt_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "felt_formidling_people_002",
+          "source_path": "data/Civication/mailFamilies/natur/people/natur_felt_og_formidling_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_felt_og_formidling.mail.felt_formidling_people_002",
+        "version": 1
+      },
+      "source_hash": "0aad34d7aad208f93359aa2fe38c2d38ef78ee4b82c011f6d9fdf2457dc9fc15",
+      "source_path": "data/Civication/mailFamilies/natur/people/natur_felt_og_formidling_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar naturveileder korrigerer en for enkel forklaring i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "HMS",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk naturveileder korrigerer en for enkel forklaring gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "svak_sporbarhet"
+            ]
+          }
+        ],
+        "competency": "sporbar_sikker_og_faglig_avgrenset_feltpraksis",
+        "consequence_axis": "trygg_faglig_tillit_vs_skjult_usikkerhet",
+        "from": "Nora",
+        "id": "felt_formidling_people_003",
+        "mail_family": "felt_formidling_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "nora_naturveileder_besoksansvarlig_natur_felt_og_formidling",
+        "phase": "forenoon",
+        "place_id": "besokssenter_og_formidlingspunkt_natur",
+        "pressure": "tempo_publikum_vaer_saarbarhet_og_presisjon",
+        "priority": 122,
+        "role_scope": "natur_felt_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/people/natur_felt_og_formidling_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+        ],
+        "subject": "Naturveileder korrigerer en for enkel forklaring",
+        "summary": "Naturveileder korrigerer en for enkel forklaring. Nora oppdager at en publikumsvennlig formulering har fjernet en avgjørende faglig nyanse og ber om at budskapet rettes uten å bli utilgjengelig. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde.",
+        "task_domain": "feltarbeid_og_naturformidling"
+      },
+      "id": "felt_formidling_people_003",
+      "mail_type": "people",
+      "role_scope": "natur_felt_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar naturveileder korrigerer en for enkel forklaring i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk naturveileder korrigerer en for enkel forklaring gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+          ],
+          "subject": "Naturveileder korrigerer en for enkel forklaring",
+          "summary": "Naturveileder korrigerer en for enkel forklaring. Nora oppdager at en publikumsvennlig formulering har fjernet en avgjørende faglig nyanse og ber om at budskapet rettes uten å bli utilgjengelig. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "felt_formidling_people_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "besokssenter_og_formidlingspunkt_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "felt_formidling_people_003",
+          "source_path": "data/Civication/mailFamilies/natur/people/natur_felt_og_formidling_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_felt_og_formidling.mail.felt_formidling_people_003",
+        "version": 1
+      },
+      "source_hash": "957de32851f0115cb24daee7c267ca18c51dd837abcb97500526dcf248935430",
+      "source_path": "data/Civication/mailFamilies/natur/people/natur_felt_og_formidling_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar hms-ansvarlig krever tydelig neste eier i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "HMS",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk hms-ansvarlig krever tydelig neste eier gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "svak_sporbarhet"
+            ]
+          }
+        ],
+        "competency": "sporbar_sikker_og_faglig_avgrenset_feltpraksis",
+        "consequence_axis": "trygg_faglig_tillit_vs_skjult_usikkerhet",
+        "from": "Jonas",
+        "id": "felt_formidling_people_004",
+        "mail_family": "felt_formidling_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "jonas_hms_logistikk_natur_felt_og_formidling",
+        "phase": "afternoon",
+        "place_id": "kvalitetssjekk_og_handoffbord_natur",
+        "pressure": "tempo_publikum_vaer_saarbarhet_og_presisjon",
+        "priority": 123,
+        "role_scope": "natur_felt_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/people/natur_felt_og_formidling_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+        ],
+        "subject": "HMS-ansvarlig krever tydelig neste eier",
+        "summary": "HMS-ansvarlig krever tydelig neste eier. Jonas finner en prøve og et avvik uten komplett handoff og krever at ansvar, lagring, oppfølging og sikkerhetsstatus blir synlig før materialet forlater bordet. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde.",
+        "task_domain": "feltarbeid_og_naturformidling"
+      },
+      "id": "felt_formidling_people_004",
+      "mail_type": "people",
+      "role_scope": "natur_felt_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar hms-ansvarlig krever tydelig neste eier i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk hms-ansvarlig krever tydelig neste eier gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+          ],
+          "subject": "HMS-ansvarlig krever tydelig neste eier",
+          "summary": "HMS-ansvarlig krever tydelig neste eier. Jonas finner en prøve og et avvik uten komplett handoff og krever at ansvar, lagring, oppfølging og sikkerhetsstatus blir synlig før materialet forlater bordet. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "felt_formidling_people_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kvalitetssjekk_og_handoffbord_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "felt_formidling_people_004",
+          "source_path": "data/Civication/mailFamilies/natur/people/natur_felt_og_formidling_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_felt_og_formidling.mail.felt_formidling_people_004",
+        "version": 1
+      },
+      "source_hash": "11f691ae8e0b45cd68b36afe53630d09f4e45f44d731b0d145c6b360feb131fe",
+      "source_path": "data/Civication/mailFamilies/natur/people/natur_felt_og_formidling_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar det spennende artsfunnet blir nedjustert i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "HMS",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk det spennende artsfunnet blir nedjustert gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "svak_sporbarhet"
+            ]
+          }
+        ],
+        "competency": "sporbar_sikker_og_faglig_avgrenset_feltpraksis",
+        "consequence_axis": "trygg_faglig_tillit_vs_skjult_usikkerhet",
+        "from": "Amir",
+        "id": "felt_formidling_story_001",
+        "mail_family": "felt_formidling_faglig_integritet_og_tillit",
+        "mail_type": "story",
+        "narrative_arc": "story",
+        "people_ref": "amir_artsfaglig_kvalitetssikrer_natur_felt_og_formidling",
+        "phase": "forenoon",
+        "place_id": "observasjonsflate_og_provetakingspunkt_natur",
+        "pressure": "tempo_publikum_vaer_saarbarhet_og_presisjon",
+        "priority": 120,
+        "role_scope": "natur_felt_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/story/natur_felt_og_formidling_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+        ],
+        "subject": "Det spennende artsfunnet blir nedjustert",
+        "summary": "Det spennende artsfunnet blir nedjustert. Et funn som skapte entusiasme viser seg etter kvalitetssjekk å være mindre sikkert enn først antatt, og spilleren må korrigere logg og formidling uten å skjule den tidligere vurderingen. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde.",
+        "task_domain": "feltarbeid_og_naturformidling"
+      },
+      "id": "felt_formidling_story_001",
+      "mail_type": "story",
+      "role_scope": "natur_felt_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør feltarbeidet og formidlingen litt langsommere, men holder observasjon, prøve, sikkerhet, artsavklaring og budskap etterprøvbart. Neste aktør kan se hva som er dokumentert, hva som venter, hvilke grenser som gjelder og hvorfor et budskap eventuelt ble korrigert. Dermed kan ny artskunnskap, endret vær, HMS-avvik eller sårbarhetsinformasjon faktisk endre rute eller formidling uten at tidligere feltspor slettes.",
+            "id": "A",
+            "label": "Avklar det spennende artsfunnet blir nedjustert i feltloggen",
+            "reply": "Jeg beholder siste dokumenterte feltversjon, markerer hva som faktisk er observert og hva som fortsatt er usikkert, og lar HMS, sårbar natur og avtalt metode begrense tempoet. Jeg registrerer foto- eller prøve-ID og nødvendige metadata, sender arts- eller metodeavklaring til riktig faglig eier og lar formidlingen bruke et forståelig språk uten å fjerne det avgjørende forbeholdet. Dersom ny informasjon kommer, gjenåpner jeg bare den berørte delen og beholder tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Dagen kan se mer effektiv og publikumsvennlig ut på kort sikt, men feltsporet mister skillet mellom observasjon, antakelse og bekreftet kunnskap. Et senere artsavvik, sikkerhetsspørsmål eller behov for å beskytte en lokalitet blir vanskeligere å rekonstruere, og tempo eller forventning får funksjon som skjult faglig bevis. Resultatet kan derfor bli mindre trygt, mindre sporbart og mer misvisende.",
+            "id": "B",
+            "label": "Lukk det spennende artsfunnet blir nedjustert gjennom tempo og antakelse",
+            "reply": "Jeg prioriterer flyt og en enkel forklaring, fyller inn manglende metadata etter beste skjønn og lar det mest sannsynlige artsnavnet stå uten eksplisitt usikkerhet. Hvis været, publikum eller ruten presser planen, fortsetter jeg så lenge det virker praktisk, og lar neste aktør overta uten full oversikt over prøve-ID, avvik, sårbarhetsgrense eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Felt- og formidlingsloggen viser siste plan, observasjoner, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, åpne avvik og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde rute eller publikumsflyt oppe, men kan samtidig skjule mangelfulle metadata, sikkerhetsrisiko, artsusikkerhet eller et budskap som er sikrere enn kunnskapsgrunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, grenser eller formidlingsvalg som faktisk gjaldt."
+          ],
+          "subject": "Det spennende artsfunnet blir nedjustert",
+          "summary": "Det spennende artsfunnet blir nedjustert. Et funn som skapte entusiasme viser seg etter kvalitetssjekk å være mindre sikkert enn først antatt, og spilleren må korrigere logg og formidling uten å skjule den tidligere vurderingen. Saken skal føres i feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg, der feltmål, rute, metode, lokalitet, tidspunkt, observatør, habitat, vær, HMS, foto- eller prøve-ID, artsusikkerhet, datakvalitet, formidlingsgrunnlag, målgruppe, sårbarhetsgrense, avvik, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan registrere dokumenterte observasjoner, samle prøver innen avtalt metode og sikkerhetsramme, formidle kvalitetssikret naturkunnskap og eskalere usikre funn eller sikkerhetsavvik, men kan ikke fatte forvaltningsvedtak, skjule usikkerhet, utøve politisk myndighet eller gjøre et foreløpig artsfunn til forskningskonklusjon uten faglig grunnlag. History Go og Natur-badge kan gi arts-, steds- og begrepskontekst, men er verken feltdata, prøvebevis, arbeidsgiverkvalifikasjon eller tillatelse til å gå nærmere sårbar natur. En god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt observasjon, prøve, rute eller formidlingsbudskap uten å omskrive hva som faktisk skjedde."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "felt_formidling_story_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "observasjonsflate_og_provetakingspunkt_natur",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "felt_formidling_story_001",
+          "source_path": "data/Civication/mailFamilies/natur/story/natur_felt_og_formidling_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_felt_og_formidling.mail.felt_formidling_story_001",
+        "version": 1
+      },
+      "source_hash": "477ae31267b256f2b7ff4fcf11a41ae7a42c37c5528b2bcf704c2ad64dac7402",
+      "source_path": "data/Civication/mailFamilies/natur/story/natur_felt_og_formidling_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
       "category": "psykologi",
       "compatibility_projection": {
         "category": "psykologi",
@@ -247926,7 +249945,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "42c76664eb6ecb84c7d1c4fe48e287d9d86568b2d3ee52c04a19eb1a267a37ba",
+  "registry_hash": "2a7b447c330976b03c403dd26027f2f12e85e83138479b14da6d627f08e4b662",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -249170,6 +251189,23 @@
       "biologi_forskning_knowledge_001",
       "biologi_forskning_consequence_001"
     ],
+    "natur/natur_felt_og_formidling": [
+      "felt_formidling_job_001",
+      "felt_formidling_job_002",
+      "felt_formidling_job_003",
+      "felt_formidling_job_004",
+      "felt_formidling_people_001",
+      "felt_formidling_people_002",
+      "felt_formidling_people_003",
+      "felt_formidling_people_004",
+      "felt_formidling_story_001",
+      "felt_formidling_conflict_001",
+      "felt_formidling_event_001",
+      "felt_formidling_micro_001",
+      "felt_formidling_followup_001",
+      "felt_formidling_knowledge_001",
+      "felt_formidling_consequence_001"
+    ],
     "psykologi/fagansvarlig": [
       "psykologi_fagansvarlig_job_avvik_001",
       "psykologi_fagansvarlig_people_skjonn_001",
@@ -249679,11 +251715,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 575,
+    "compiled_source_file_count": 584,
     "ignored_source_file_count": 1,
-    "input_file_count": 576,
-    "role_count": 69,
-    "scene_count": 1585,
+    "input_file_count": 585,
+    "role_count": 70,
+    "scene_count": 1600,
     "shadowed_duplicate_count": 0
   },
   "version": 1

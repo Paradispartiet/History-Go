@@ -1,18 +1,219 @@
 {
-  "schema":"civication_work_grammar_v2","version":2,
-  "category":"natur","role_scope":"natur_felt_og_formidling","role_id":"natur_felt_og_formidling",
-  "badge_binding":{"badge_id":"natur","badge_titles":["Feltassistent","Naturveileder"]},
-  "work_world":"Feltlokaliteter og naturformidling der presis observasjon, sikkerhet og forståelig kommunikasjon må fungere samtidig.",
-  "task_families":["feltregistrering","prøvetaking","observasjonslogg","naturformidling","besøksveiledning"],
-  "work_loops":["brief -> feltplan -> observasjon -> dokumentasjon -> kvalitetssjekk -> rapportering","målgruppe -> faggrunnlag -> formidling -> spørsmål -> korrigering -> læring"],
-  "pressure_axes":["tempo_vs_presisjon","tilgjengelighet_vs_sårbar_natur","formidling_vs_forenkling"],
-  "practice_stories":[
-    {"id":"usikkert_artsfunn","setup":"Et artsfunn kan være sjeldent, men observasjonen er ufullstendig.","decision":"Dokumenter usikkerheten og innhent bekreftelse før sterk konklusjon.","learning":"et usikkert funn skal ikke bli sikkert fordi det er spennende"},
-    {"id":"feltvaer","setup":"Været gjør den planlagte prøvetakingen risikabel.","decision":"Endre eller avbryt planen i tråd med HMS.","learning":"databehov trumfer ikke sikkerhet"},
-    {"id":"publikum_saarbar_natur","setup":"En gruppe vil tett på en sårbar lokalitet.","decision":"Tilpass ruten og forklar hvorfor avstand er nødvendig.","learning":"god formidling beskytter også naturen"},
-    {"id":"mangelfull_logg","setup":"Et feltlag har glemt viktige metadata.","decision":"Marker datagapet og rekonstruer bare det som kan dokumenteres.","learning":"sporbarhet er viktigere enn en pen dataserie"},
-    {"id":"forenklet_budskap","setup":"En enkel forklaring blir faglig misvisende.","decision":"Behold et forståelig språk, men legg tilbake den avgjørende nyansen.","learning":"tilgjengelighet krever ikke feil sikkerhet"}
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "natur",
+  "role_scope": "natur_felt_og_formidling",
+  "role_id": "natur_felt_og_formidling",
+  "badge_binding": {
+    "badge_id": "natur",
+    "badge_titles": [
+      "Feltassistent",
+      "Naturveileder"
+    ]
+  },
+  "work_world": "Feltlokaliteter og naturformidling der presis observasjon, sikkerhet og forståelig kommunikasjon må fungere samtidig.",
+  "task_families": [
+    "feltregistrering",
+    "prøvetaking",
+    "observasjonslogg",
+    "naturformidling",
+    "besøksveiledning"
   ],
-  "quality_axes":["feltpresisjon","HMS","sporbarhet","artsforståelse","formidling","usikkerhetshåndtering"],
-  "authority_boundary":{"may":["samle og formidle dokumenterte data"],"may_not":["fatte forvaltningsvedtak","utøve politisk myndighet","skjule usikkerhet"]}
+  "work_loops": [
+    "brief -> feltplan -> observasjon -> dokumentasjon -> kvalitetssjekk -> rapportering",
+    "målgruppe -> faggrunnlag -> formidling -> spørsmål -> korrigering -> læring"
+  ],
+  "pressure_axes": [
+    "tempo_vs_presisjon",
+    "tilgjengelighet_vs_sårbar_natur",
+    "formidling_vs_forenkling"
+  ],
+  "practice_stories": [
+    {
+      "id": "usikkert_artsfunn",
+      "setup": "Et artsfunn kan være sjeldent, men observasjonen er ufullstendig.",
+      "decision": "Dokumenter usikkerheten og innhent bekreftelse før sterk konklusjon.",
+      "learning": "et usikkert funn skal ikke bli sikkert fordi det er spennende"
+    },
+    {
+      "id": "feltvaer",
+      "setup": "Været gjør den planlagte prøvetakingen risikabel.",
+      "decision": "Endre eller avbryt planen i tråd med HMS.",
+      "learning": "databehov trumfer ikke sikkerhet"
+    },
+    {
+      "id": "publikum_saarbar_natur",
+      "setup": "En gruppe vil tett på en sårbar lokalitet.",
+      "decision": "Tilpass ruten og forklar hvorfor avstand er nødvendig.",
+      "learning": "god formidling beskytter også naturen"
+    },
+    {
+      "id": "mangelfull_logg",
+      "setup": "Et feltlag har glemt viktige metadata.",
+      "decision": "Marker datagapet og rekonstruer bare det som kan dokumenteres.",
+      "learning": "sporbarhet er viktigere enn en pen dataserie"
+    },
+    {
+      "id": "forenklet_budskap",
+      "setup": "En enkel forklaring blir faglig misvisende.",
+      "decision": "Behold et forståelig språk, men legg tilbake den avgjørende nyansen.",
+      "learning": "tilgjengelighet krever ikke feil sikkerhet"
+    }
+  ],
+  "quality_axes": [
+    "feltpresisjon",
+    "HMS",
+    "sporbarhet",
+    "artsforståelse",
+    "formidling",
+    "usikkerhetshåndtering"
+  ],
+  "authority_boundary": {
+    "may": [
+      "registrere dokumenterte observasjoner",
+      "samle prøver innen avtalt metode og sikkerhetsramme",
+      "formidle kvalitetssikret naturkunnskap",
+      "eskalere usikre funn og sikkerhetsavvik"
+    ],
+    "may_not": [
+      "fatte forvaltningsvedtak",
+      "utstede forskningskonklusjoner uten faglig grunnlag",
+      "utøve politisk myndighet",
+      "skjule usikkerhet i observasjonsdata",
+      "behandle History Go eller Natur-badge som feltbevis eller yrkeskvalifikasjon"
+    ]
+  },
+  "actor_grammar": [
+    {
+      "id": "solveig_feltleder_natur_felt_og_formidling",
+      "name": "Solveig",
+      "role": "feltleder og metodeansvarlig",
+      "workplace_ids": [
+        "feltbrief_og_utstyrsbase_natur"
+      ]
+    },
+    {
+      "id": "amir_artsfaglig_kvalitetssikrer_natur_felt_og_formidling",
+      "name": "Amir",
+      "role": "artsfaglig kvalitetssikrer",
+      "workplace_ids": [
+        "observasjonsflate_og_provetakingspunkt_natur"
+      ]
+    },
+    {
+      "id": "nora_naturveileder_besoksansvarlig_natur_felt_og_formidling",
+      "name": "Nora",
+      "role": "naturveileder og besøksansvarlig",
+      "workplace_ids": [
+        "besokssenter_og_formidlingspunkt_natur"
+      ]
+    },
+    {
+      "id": "jonas_hms_logistikk_natur_felt_og_formidling",
+      "name": "Jonas",
+      "role": "HMS- og logistikkansvarlig",
+      "workplace_ids": [
+        "kvalitetssjekk_og_handoffbord_natur"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "feltbrief_og_utstyrsbase_natur",
+      "name": "Feltbrief og utstyrsbase",
+      "function": "Her låses dagens feltmål, vær- og risikobilde, rute, utstyr, tillatelser, prøvetakingsramme, stoppkriterier og hvem som eier neste beslutning før laget går ut."
+    },
+    {
+      "id": "observasjonsflate_og_provetakingspunkt_natur",
+      "name": "Observasjonsflate og prøvetakingspunkt",
+      "function": "Her føres sted, tid, observatør, habitat, metode, artsusikkerhet, foto eller prøve-ID, feltavvik og hva som faktisk ble observert uten at en foreløpig tolkning blir gjort om til sikkert funn."
+    },
+    {
+      "id": "besokssenter_og_formidlingspunkt_natur",
+      "name": "Besøkssenter og formidlingspunkt",
+      "function": "Her tilpasses kvalitetssikret naturkunnskap til målgruppe, språk og tilgjengelighet samtidig som sårbare lokaliteter, usikre artsfunn og faglige forbehold beskyttes mot overforenkling eller publikumspress."
+    },
+    {
+      "id": "kvalitetssjekk_og_handoffbord_natur",
+      "name": "Kvalitetssjekk og handoffbord",
+      "function": "Her sammenholdes feltlogg, prøve- og fotometadata, HMS-avvik, artsavklaring, formidlingsgrunnlag, åpne spørsmål, ventepunkter og neste eier før data, prøve eller budskap sendes videre."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg",
+    "description": "Et vedvarende, versjonert felt- og formidlingsobjekt som beholder brief, rute, metode, observasjon, prøve- og fotometadata, HMS, artsusikkerhet, sårbarhetsgrense, målgruppe, formidlingsbudskap, avvik, ventepunkt, handoff og avgrenset rework gjennom samme arbeidsdag og oppfølging.",
+    "states": [
+      "brief_mottatt",
+      "risiko_vurdert",
+      "feltplan_lagt",
+      "utstyr_kontrollert",
+      "rute_aktiv",
+      "observasjon_apen",
+      "prove_eller_foto_registrert",
+      "metadata_kontrollert",
+      "artsavklaring_venter",
+      "hms_avvik_apent",
+      "formidlingsgrunnlag_klart",
+      "malgruppe_tilpasset",
+      "venter_pa_faglig_svar",
+      "handoff_klar",
+      "rework",
+      "korrigert",
+      "rapportert",
+      "arkivert",
+      "gjenapnet"
+    ],
+    "handoff_rule": "Neste aktør overtar synlig feltplan, metode, observasjon, prøve- og fotometadata, HMS-status, artsusikkerhet, sårbarhetsgrense, ventepunkt og neste eier; en handoff kan aldri gjøre manglende metadata, venting eller publikumspress til faglig godkjenning."
+  },
+  "rhythm_contract": {
+    "loop": "brief -> feltplan -> observasjon/prøve -> dokumentasjon -> waiting/venting på artsavklaring, værvindu, sikkerhetsklarering eller faglig svar -> handoff -> formidling -> spørsmål -> korrigering/rework -> rapportering -> læring",
+    "waiting_states": [
+      "vaervindu",
+      "artsavklaring",
+      "prove_eller_fotometadata",
+      "hms_avklaring",
+      "saarbarhetsvurdering",
+      "faglig_kvalitetssjekk",
+      "malgruppe_eller_tilgjengelighet"
+    ],
+    "rework_rule": "Nytt artsgrunnlag, korrigert metadata, HMS-avvik, endret vær, sårbarhetsinformasjon eller misvisende publikumsrespons gjenåpner bare berørt observasjon, prøve, rute eller formidlingsbudskap med ny versjon og bevart endringsspor."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_natur_felt_og_stedskontekst",
+      "badge_id": "natur",
+      "use": "History Go kan forbedre feltspørsmål og formidling gjennom arter, steder, økologi og naturhistorie. Natur-badge er ikke feltobservasjon, arbeidsgiverkvalifikasjon, adgangstillatelse eller forvaltningsmyndighet og kan ikke gjøre et usikkert artsfunn sikkert."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "career_offer_policy_by_title",
+    "entry_policy_by_title": {
+      "Feltassistent": {
+        "policy": "direct"
+      },
+      "Naturveileder": {
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "relevant_education_or_employer_qualification"
+        ]
+      }
+    },
+    "first_object": "feltplan_observasjon_prove_metadata_hms_formidling_og_handofflogg",
+    "first_task": "Ta imot feltbriefen, registrer rute, metode, vær, HMS, utstyr, stoppkriterier, dagens observasjons- eller formidlingsmål og hvem som eier første åpne avklaring; bruk History Go som kontekst, aldri som feltbevis eller kvalifikasjon."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "natur_felt_og_formidling",
+    "no_generic_fallback": true
+  }
 }
