@@ -1,10 +1,15 @@
 === Focused Natur prerequisite test ===
-node:internal/assert/utils:77
-    throw err;
-    ^
+node:assert:150
+  throw new AssertionError(obj);
+  ^
 
-AssertionError [ERR_ASSERTION]: ingrid_seniorforsker_natur_biologi_og_forskning
-    at Object.<anonymous> (/home/runner/work/History-Go/History-Go/tests/civication-natur-biologi-og-forskning-prerequisites.test.js:50:10)
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'foundation_ready'
+- 'needs_role_authored_work'
+
+    at Object.<anonymous> (/home/runner/work/History-Go/History-Go/tests/civication-natur-biologi-og-forskning-prerequisites.test.js:140:8)
     at Module._compile (node:internal/modules/cjs/loader:1781:14)
     at Object..js (node:internal/modules/cjs/loader:1913:10)
     at Module.load (node:internal/modules/cjs/loader:1505:32)
@@ -12,11 +17,11 @@ AssertionError [ERR_ASSERTION]: ingrid_seniorforsker_natur_biologi_og_forskning
     at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
     at node:internal/main/run_main_module:36:49 {
-  generatedMessage: false,
+  generatedMessage: true,
   code: 'ERR_ASSERTION',
-  actual: false,
-  expected: true,
-  operator: '==',
+  actual: 'foundation_ready',
+  expected: 'needs_role_authored_work',
+  operator: 'strictEqual',
   diff: 'simple'
 }
 
