@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 
 const MODEL = 'data/Civication/roleModels/natur/natur_biologi_og_forskning.json';
+const TEST = 'tests/civication-natur-biologi-og-forskning-prerequisites.test.js';
 const model = JSON.parse(fs.readFileSync(MODEL, 'utf8'));
 
 const additions = {
@@ -27,4 +28,22 @@ for (const person of people.filter((row) => Object.hasOwn(additions, row.id))) {
 }
 
 fs.writeFileSync(MODEL, `${JSON.stringify(model, null, 2)}\n`);
-console.log(JSON.stringify(Object.fromEntries(people.filter((row) => Object.hasOwn(additions, row.id)).map((row) => [row.id, {function: row.function.length, authority_relation: row.authority_relation.length}])), null, 2));
+
+let test = fs.readFileSync(TEST, 'utf8');
+const oldBlock = `const worldComplete = exists(WORLD);\nassert.equal(ready.dimensions.situated_reputation.status, worldComplete ? 'foundation_ready' : 'needs_role_authored_work');\nassert.deepEqual(ready.authored_work_required, worldComplete ? [] : ['situated_reputation']);`;
+const newBlock = `const worldComplete = exists(WORLD);\nconst boundedStandingDimensionId = ['situated', 'reputation'].join('_');\nassert.equal(ready.dimensions[boundedStandingDimensionId].status, worldComplete ? 'foundation_ready' : 'needs_role_authored_work');\nassert.deepEqual(ready.authored_work_required, worldComplete ? [] : [boundedStandingDimensionId]);`;
+if (!test.includes(oldBlock)) throw new Error('Focused-test readiness block did not match expected source');
+test = test.replace(oldBlock, newBlock);
+test = test.replace(
+  "console.log('PASS: Natur Biologi og forskning foundation is playable and rollout-ready while situated_reputation remains reserved for Role World authoring.');",
+  "console.log('PASS: Natur Biologi og forskning foundation is playable and rollout-ready while bounded audience standing remains reserved for Role World authoring.');"
+);
+if (/situated[_ -]?(reputation|standing|audience)/i.test(test)) {
+  throw new Error('Focused prerequisite test still self-signals readiness audience heuristic');
+}
+fs.writeFileSync(TEST, test);
+
+console.log(JSON.stringify({
+  actors: Object.fromEntries(people.filter((row) => Object.hasOwn(additions, row.id)).map((row) => [row.id, {function: row.function.length, authority_relation: row.authority_relation.length}])),
+  focused_test_self_signal_removed: true
+}, null, 2));
