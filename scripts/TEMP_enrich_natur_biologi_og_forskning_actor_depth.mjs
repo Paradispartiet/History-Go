@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { execFileSync } from 'node:child_process';
 
 const MODEL = 'data/Civication/roleModels/natur/natur_biologi_og_forskning.json';
 const TEST = 'tests/civication-natur-biologi-og-forskning-prerequisites.test.js';
@@ -43,7 +44,13 @@ if (/situated[_ -]?(reputation|standing|audience)/i.test(test)) {
 }
 fs.writeFileSync(TEST, test);
 
+execFileSync(process.execPath, ['scripts/build-civication-scene-registry.mjs', '--write'], {
+  cwd: process.cwd(),
+  stdio: 'inherit'
+});
+
 console.log(JSON.stringify({
   actors: Object.fromEntries(people.filter((row) => Object.hasOwn(additions, row.id)).map((row) => [row.id, {function: row.function.length, authority_relation: row.authority_relation.length}])),
-  focused_test_self_signal_removed: true
+  focused_test_self_signal_removed: true,
+  compiled_scene_registry_written: true
 }, null, 2));
