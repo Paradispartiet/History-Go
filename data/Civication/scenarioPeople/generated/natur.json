@@ -175,7 +175,68 @@
     "existing_other_people": []
   },
   "cross_category_existing_references": [],
-  "missing_people_candidates": [],
+  "missing_people_candidates": [
+    {
+      "id": "ingrid_seniorforsker_natur_biologi_og_forskning",
+      "name": "ingrid_seniorforsker_natur_biologi_og_forskning",
+      "category": "natur",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/natur/natur_biologi_og_forskning.json"
+      ],
+      "scenario_roles": [
+        "natur_biologi_og_forskning"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "leila_laboratorieansvarlig_natur_biologi_og_forskning",
+      "name": "leila_laboratorieansvarlig_natur_biologi_og_forskning",
+      "category": "natur",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/natur/natur_biologi_og_forskning.json"
+      ],
+      "scenario_roles": [
+        "natur_biologi_og_forskning"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "marius_feltkoordinator_natur_biologi_og_forskning",
+      "name": "marius_feltkoordinator_natur_biologi_og_forskning",
+      "category": "natur",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/natur/natur_biologi_og_forskning.json"
+      ],
+      "scenario_roles": [
+        "natur_biologi_og_forskning"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "noah_statistiker_dataforvalter_natur_biologi_og_forskning",
+      "name": "noah_statistiker_dataforvalter_natur_biologi_og_forskning",
+      "category": "natur",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/natur/natur_biologi_og_forskning.json"
+      ],
+      "scenario_roles": [
+        "natur_biologi_og_forskning"
+      ],
+      "verification_required": true
+    }
+  ],
   "roles": [
     {
       "role_id": "natur_artsobservator",
@@ -227,6 +288,40 @@
       },
       "automatic_match_tokens": [
         "biolog"
+      ],
+      "resolved_counts": {
+        "total": 22,
+        "existing_place_people": 22,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 3,
+        "contextual": 19,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "natur_biologi_og_forskning",
+      "role_scope": "natur_biologi_og_forskning",
+      "title": "Biologi, økologi og forskning",
+      "source": "data/Civication/roleModels/natur/natur_biologi_og_forskning.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [
+          "arne_naess",
+          "goncalo_ribeiro_telles",
+          "michael_sars"
+        ],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "biologi",
+        "forskning",
+        "økologi"
       ],
       "resolved_counts": {
         "total": 22,

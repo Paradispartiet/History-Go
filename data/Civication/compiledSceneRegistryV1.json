@@ -355,6 +355,15 @@
     "data/Civication/mailFamilies/naeringsliv/followup/renholder_followup.json",
     "data/Civication/mailFamilies/naeringsliv/knowledge/renholder_knowledge.json",
     "data/Civication/mailFamilies/naeringsliv/consequence/renholder_consequence.json",
+    "data/Civication/mailFamilies/natur/job/natur_biologi_og_forskning_job.json",
+    "data/Civication/mailFamilies/natur/people/natur_biologi_og_forskning_people.json",
+    "data/Civication/mailFamilies/natur/story/natur_biologi_og_forskning_story.json",
+    "data/Civication/mailFamilies/natur/conflict/natur_biologi_og_forskning_conflict.json",
+    "data/Civication/mailFamilies/natur/event/natur_biologi_og_forskning_event.json",
+    "data/Civication/mailFamilies/natur/micro/natur_biologi_og_forskning_micro.json",
+    "data/Civication/mailFamilies/natur/followup/natur_biologi_og_forskning_followup.json",
+    "data/Civication/mailFamilies/natur/knowledge/natur_biologi_og_forskning_knowledge.json",
+    "data/Civication/mailFamilies/natur/consequence/natur_biologi_og_forskning_consequence.json",
     "data/Civication/mailFamilies/psykologi/job/fagansvarlig_job.json",
     "data/Civication/mailFamilies/psykologi/people/fagansvarlig_people.json",
     "data/Civication/mailFamilies/psykologi/story/fagansvarlig_story.json",
@@ -185048,6 +185057,2016 @@
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar bestiller ønsker sterkere konklusjon i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "reproduserbarhet",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk bestiller ønsker sterkere konklusjon gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "overkonklusjon"
+            ]
+          }
+        ],
+        "competency": "metodisk_sporbar_og_reproduserbar_kunnskapsproduksjon",
+        "consequence_axis": "reproduserbar_tillit_vs_skjult_usikkerhet",
+        "from": "Ingrid",
+        "id": "biologi_forskning_conflict_001",
+        "mail_family": "biologi_forskning_evidens_og_bestillerpress",
+        "mail_type": "conflict",
+        "narrative_arc": "conflict",
+        "people_ref": "ingrid_seniorforsker_natur_biologi_og_forskning",
+        "phase": "forenoon",
+        "place_id": "metodemote_og_faglig_kvalitetssikring",
+        "pressure": "evidens_usikkerhet_frist_og_bestillerbehov",
+        "priority": 120,
+        "role_scope": "natur_biologi_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/conflict/natur_biologi_og_forskning_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+        ],
+        "subject": "Bestiller ønsker sterkere konklusjon",
+        "summary": "Bestiller ønsker sterkere konklusjon. En oppdragsgiver ønsker at en usikker sammenheng omtales som sikker effekt fordi beslutningsbehovet er stort, mens data og design bare støtter en avgrenset konklusjon. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner.",
+        "task_domain": "biologi_okologi_og_forskning"
+      },
+      "id": "biologi_forskning_conflict_001",
+      "mail_type": "conflict",
+      "role_scope": "natur_biologi_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar bestiller ønsker sterkere konklusjon i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk bestiller ønsker sterkere konklusjon gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+          ],
+          "subject": "Bestiller ønsker sterkere konklusjon",
+          "summary": "Bestiller ønsker sterkere konklusjon. En oppdragsgiver ønsker at en usikker sammenheng omtales som sikker effekt fordi beslutningsbehovet er stort, mens data og design bare støtter en avgrenset konklusjon. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "biologi_forskning_conflict_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "metodemote_og_faglig_kvalitetssikring",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "biologi_forskning_conflict_001",
+          "source_path": "data/Civication/mailFamilies/natur/conflict/natur_biologi_og_forskning_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_biologi_og_forskning.mail.biologi_forskning_conflict_001",
+        "version": 1
+      },
+      "source_hash": "c9545b5d707a906c87f0526833bd8451d0c0bb68b9531ee99f747d6920549dfe",
+      "source_path": "data/Civication/mailFamilies/natur/conflict/natur_biologi_og_forskning_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar rapporten må tåle etterprøving i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "reproduserbarhet",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk rapporten må tåle etterprøving gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "overkonklusjon"
+            ]
+          }
+        ],
+        "competency": "metodisk_sporbar_og_reproduserbar_kunnskapsproduksjon",
+        "consequence_axis": "reproduserbar_tillit_vs_skjult_usikkerhet",
+        "from": "Ingrid",
+        "id": "biologi_forskning_consequence_001",
+        "mail_family": "biologi_forskning_konklusjon_og_etterspill",
+        "mail_type": "consequence",
+        "narrative_arc": "consequence",
+        "people_ref": "ingrid_seniorforsker_natur_biologi_og_forskning",
+        "phase": "forenoon",
+        "place_id": "metodemote_og_faglig_kvalitetssikring",
+        "pressure": "evidens_usikkerhet_frist_og_bestillerbehov",
+        "priority": 120,
+        "role_scope": "natur_biologi_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/consequence/natur_biologi_og_forskning_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+        ],
+        "subject": "Rapporten må tåle etterprøving",
+        "summary": "Rapporten må tåle etterprøving. Prosjektet skal levere rapport eller manus, og siste beslutning er om konklusjonen faktisk er avgrenset av metode, datakvalitet, replikasjon og usikkerhet eller om press har gjort språket sterkere enn evidensen. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner.",
+        "task_domain": "biologi_okologi_og_forskning"
+      },
+      "id": "biologi_forskning_consequence_001",
+      "mail_type": "consequence",
+      "role_scope": "natur_biologi_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar rapporten må tåle etterprøving i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk rapporten må tåle etterprøving gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+          ],
+          "subject": "Rapporten må tåle etterprøving",
+          "summary": "Rapporten må tåle etterprøving. Prosjektet skal levere rapport eller manus, og siste beslutning er om konklusjonen faktisk er avgrenset av metode, datakvalitet, replikasjon og usikkerhet eller om press har gjort språket sterkere enn evidensen. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "biologi_forskning_consequence_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "metodemote_og_faglig_kvalitetssikring",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "biologi_forskning_consequence_001",
+          "source_path": "data/Civication/mailFamilies/natur/consequence/natur_biologi_og_forskning_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_biologi_og_forskning.mail.biologi_forskning_consequence_001",
+        "version": 1
+      },
+      "source_hash": "de87d1505ab1b4a48ef06ced72ca75158db92d0b5a2bfb10125165086a38693f",
+      "source_path": "data/Civication/mailFamilies/natur/consequence/natur_biologi_og_forskning_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar kalibreringsdrift oppdages sent i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "reproduserbarhet",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk kalibreringsdrift oppdages sent gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "overkonklusjon"
+            ]
+          }
+        ],
+        "competency": "metodisk_sporbar_og_reproduserbar_kunnskapsproduksjon",
+        "consequence_axis": "reproduserbar_tillit_vs_skjult_usikkerhet",
+        "from": "Leila",
+        "id": "biologi_forskning_event_001",
+        "mail_family": "biologi_forskning_avvik_og_ny_evidens",
+        "mail_type": "event",
+        "narrative_arc": "event",
+        "people_ref": "leila_laboratorieansvarlig_natur_biologi_og_forskning",
+        "phase": "forenoon",
+        "place_id": "provemottak_og_laboratorieflate",
+        "pressure": "evidens_usikkerhet_frist_og_bestillerbehov",
+        "priority": 120,
+        "role_scope": "natur_biologi_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/event/natur_biologi_og_forskning_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+        ],
+        "subject": "Kalibreringsdrift oppdages sent",
+        "summary": "Kalibreringsdrift oppdages sent. En instrumentkontroll viser at en del av laboratorieperioden kan være påvirket av kalibreringsdrift, og berørte prøver må spores, avgrenses og eventuelt analyseres på nytt. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner.",
+        "task_domain": "biologi_okologi_og_forskning"
+      },
+      "id": "biologi_forskning_event_001",
+      "mail_type": "event",
+      "role_scope": "natur_biologi_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar kalibreringsdrift oppdages sent i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk kalibreringsdrift oppdages sent gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+          ],
+          "subject": "Kalibreringsdrift oppdages sent",
+          "summary": "Kalibreringsdrift oppdages sent. En instrumentkontroll viser at en del av laboratorieperioden kan være påvirket av kalibreringsdrift, og berørte prøver må spores, avgrenses og eventuelt analyseres på nytt. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "biologi_forskning_event_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "provemottak_og_laboratorieflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "biologi_forskning_event_001",
+          "source_path": "data/Civication/mailFamilies/natur/event/natur_biologi_og_forskning_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_biologi_og_forskning.mail.biologi_forskning_event_001",
+        "version": 1
+      },
+      "source_hash": "9e6ebc134c5cb0f7ae21b99ee796ff15b12fca19218b7ee806e53ec745c546c4",
+      "source_path": "data/Civication/mailFamilies/natur/event/natur_biologi_og_forskning_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar replikasjon gir svakere effekt i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "reproduserbarhet",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk replikasjon gir svakere effekt gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "overkonklusjon"
+            ]
+          }
+        ],
+        "competency": "metodisk_sporbar_og_reproduserbar_kunnskapsproduksjon",
+        "consequence_axis": "reproduserbar_tillit_vs_skjult_usikkerhet",
+        "from": "Noah",
+        "id": "biologi_forskning_followup_001",
+        "mail_family": "biologi_forskning_replikasjon_og_etterkontroll",
+        "mail_type": "followup",
+        "narrative_arc": "followup",
+        "people_ref": "noah_statistiker_dataforvalter_natur_biologi_og_forskning",
+        "phase": "forenoon",
+        "place_id": "analyse_reproduserbarhet_og_databord",
+        "pressure": "evidens_usikkerhet_frist_og_bestillerbehov",
+        "priority": 120,
+        "role_scope": "natur_biologi_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/followup/natur_biologi_og_forskning_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+        ],
+        "subject": "Replikasjon gir svakere effekt",
+        "summary": "Replikasjon gir svakere effekt. Et nytt uttak eller en uavhengig analyse gir svakere effekt enn første runde og må kobles til samme forskningslogg som kontroll, ikke behandles som et separat problem. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner.",
+        "task_domain": "biologi_okologi_og_forskning"
+      },
+      "id": "biologi_forskning_followup_001",
+      "mail_type": "followup",
+      "role_scope": "natur_biologi_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar replikasjon gir svakere effekt i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk replikasjon gir svakere effekt gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+          ],
+          "subject": "Replikasjon gir svakere effekt",
+          "summary": "Replikasjon gir svakere effekt. Et nytt uttak eller en uavhengig analyse gir svakere effekt enn første runde og må kobles til samme forskningslogg som kontroll, ikke behandles som et separat problem. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "biologi_forskning_followup_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "analyse_reproduserbarhet_og_databord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "biologi_forskning_followup_001",
+          "source_path": "data/Civication/mailFamilies/natur/followup/natur_biologi_og_forskning_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_biologi_og_forskning.mail.biologi_forskning_followup_001",
+        "version": 1
+      },
+      "source_hash": "3c75fb74b81a1d48c061df6ca573ae667025fb6557ed6abffe709ace1e5f948e",
+      "source_path": "data/Civication/mailFamilies/natur/followup/natur_biologi_og_forskning_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar design før første feltuttak i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "reproduserbarhet",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk design før første feltuttak gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "overkonklusjon"
+            ]
+          }
+        ],
+        "competency": "metodisk_sporbar_og_reproduserbar_kunnskapsproduksjon",
+        "consequence_axis": "reproduserbar_tillit_vs_skjult_usikkerhet",
+        "from": "Ingrid",
+        "id": "biologi_forskning_job_001",
+        "mail_family": "biologi_forskning_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "ingrid_seniorforsker_natur_biologi_og_forskning",
+        "phase": "forenoon",
+        "place_id": "metodemote_og_faglig_kvalitetssikring",
+        "pressure": "evidens_usikkerhet_frist_og_bestillerbehov",
+        "priority": 120,
+        "role_scope": "natur_biologi_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/job/natur_biologi_og_forskning_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+        ],
+        "subject": "Design før første feltuttak",
+        "summary": "Design før første feltuttak. Et feltprosjekt skal starte, men hypotesen må kunne falle og prøvetakingsdesignet må beskrive kontroller, eksklusjonskriterier og forventede feilkilder før første prøve tas. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner.",
+        "task_domain": "biologi_okologi_og_forskning"
+      },
+      "id": "biologi_forskning_job_001",
+      "mail_type": "job",
+      "role_scope": "natur_biologi_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar design før første feltuttak i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk design før første feltuttak gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+          ],
+          "subject": "Design før første feltuttak",
+          "summary": "Design før første feltuttak. Et feltprosjekt skal starte, men hypotesen må kunne falle og prøvetakingsdesignet må beskrive kontroller, eksklusjonskriterier og forventede feilkilder før første prøve tas. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "biologi_forskning_job_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "metodemote_og_faglig_kvalitetssikring",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "biologi_forskning_job_001",
+          "source_path": "data/Civication/mailFamilies/natur/job/natur_biologi_og_forskning_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_biologi_og_forskning.mail.biologi_forskning_job_001",
+        "version": 1
+      },
+      "source_hash": "193f9f47da9ce7a0b4787069caf891d7a58c54ded2c4f41a111534ef65443fe5",
+      "source_path": "data/Civication/mailFamilies/natur/job/natur_biologi_og_forskning_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar prøvespor gjennom feltarbeidet i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "reproduserbarhet",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk prøvespor gjennom feltarbeidet gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "overkonklusjon"
+            ]
+          }
+        ],
+        "competency": "metodisk_sporbar_og_reproduserbar_kunnskapsproduksjon",
+        "consequence_axis": "reproduserbar_tillit_vs_skjult_usikkerhet",
+        "from": "Marius",
+        "id": "biologi_forskning_job_002",
+        "mail_family": "biologi_forskning_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "marius_feltkoordinator_natur_biologi_og_forskning",
+        "phase": "afternoon",
+        "place_id": "feltstasjon_og_provetakingspunkt",
+        "pressure": "evidens_usikkerhet_frist_og_bestillerbehov",
+        "priority": 121,
+        "role_scope": "natur_biologi_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/job/natur_biologi_og_forskning_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+        ],
+        "subject": "Prøvespor gjennom feltarbeidet",
+        "summary": "Prøvespor gjennom feltarbeidet. Feltteamet får skiftende forhold og må beholde lokalitet, tidspunkt, habitat, målemetode og avvik som et lesbart spor i stedet for å glatte ut variasjon i ettertid. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner.",
+        "task_domain": "biologi_okologi_og_forskning"
+      },
+      "id": "biologi_forskning_job_002",
+      "mail_type": "job",
+      "role_scope": "natur_biologi_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar prøvespor gjennom feltarbeidet i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk prøvespor gjennom feltarbeidet gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+          ],
+          "subject": "Prøvespor gjennom feltarbeidet",
+          "summary": "Prøvespor gjennom feltarbeidet. Feltteamet får skiftende forhold og må beholde lokalitet, tidspunkt, habitat, målemetode og avvik som et lesbart spor i stedet for å glatte ut variasjon i ettertid. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "biologi_forskning_job_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "feltstasjon_og_provetakingspunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "biologi_forskning_job_002",
+          "source_path": "data/Civication/mailFamilies/natur/job/natur_biologi_og_forskning_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_biologi_og_forskning.mail.biologi_forskning_job_002",
+        "version": 1
+      },
+      "source_hash": "cfa35f53628d3efe249a082a57eefba19cd3a7ea914fd41f8dfabb0e0066258d",
+      "source_path": "data/Civication/mailFamilies/natur/job/natur_biologi_og_forskning_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar laboratoriekontroll før analyse i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "reproduserbarhet",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk laboratoriekontroll før analyse gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "overkonklusjon"
+            ]
+          }
+        ],
+        "competency": "metodisk_sporbar_og_reproduserbar_kunnskapsproduksjon",
+        "consequence_axis": "reproduserbar_tillit_vs_skjult_usikkerhet",
+        "from": "Leila",
+        "id": "biologi_forskning_job_003",
+        "mail_family": "biologi_forskning_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "leila_laboratorieansvarlig_natur_biologi_og_forskning",
+        "phase": "forenoon",
+        "place_id": "provemottak_og_laboratorieflate",
+        "pressure": "evidens_usikkerhet_frist_og_bestillerbehov",
+        "priority": 122,
+        "role_scope": "natur_biologi_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/job/natur_biologi_og_forskning_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+        ],
+        "subject": "Laboratoriekontroll før analyse",
+        "summary": "Laboratoriekontroll før analyse. Prøver er mottatt, men en kontrollserie viser mulig avvik og krever at berørte prøver skilles fra resten før analysen fortsetter. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner.",
+        "task_domain": "biologi_okologi_og_forskning"
+      },
+      "id": "biologi_forskning_job_003",
+      "mail_type": "job",
+      "role_scope": "natur_biologi_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar laboratoriekontroll før analyse i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk laboratoriekontroll før analyse gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+          ],
+          "subject": "Laboratoriekontroll før analyse",
+          "summary": "Laboratoriekontroll før analyse. Prøver er mottatt, men en kontrollserie viser mulig avvik og krever at berørte prøver skilles fra resten før analysen fortsetter. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "biologi_forskning_job_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "provemottak_og_laboratorieflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "biologi_forskning_job_003",
+          "source_path": "data/Civication/mailFamilies/natur/job/natur_biologi_og_forskning_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_biologi_og_forskning.mail.biologi_forskning_job_003",
+        "version": 1
+      },
+      "source_hash": "101fe9eab1d9e4126a130be7b1f693cbc7ffe1f49f331cd69227118a8252b2d1",
+      "source_path": "data/Civication/mailFamilies/natur/job/natur_biologi_og_forskning_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar analyse med eksplisitt usikkerhet i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "reproduserbarhet",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk analyse med eksplisitt usikkerhet gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "overkonklusjon"
+            ]
+          }
+        ],
+        "competency": "metodisk_sporbar_og_reproduserbar_kunnskapsproduksjon",
+        "consequence_axis": "reproduserbar_tillit_vs_skjult_usikkerhet",
+        "from": "Noah",
+        "id": "biologi_forskning_job_004",
+        "mail_family": "biologi_forskning_job",
+        "mail_type": "job",
+        "narrative_arc": "job",
+        "people_ref": "noah_statistiker_dataforvalter_natur_biologi_og_forskning",
+        "phase": "afternoon",
+        "place_id": "analyse_reproduserbarhet_og_databord",
+        "pressure": "evidens_usikkerhet_frist_og_bestillerbehov",
+        "priority": 123,
+        "role_scope": "natur_biologi_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/job/natur_biologi_og_forskning_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+        ],
+        "subject": "Analyse med eksplisitt usikkerhet",
+        "summary": "Analyse med eksplisitt usikkerhet. Datasettet er komplett nok til analyse, men effektstørrelse, manglende data og alternative modeller gjør at konklusjonsstyrken må begrenses eksplisitt. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner.",
+        "task_domain": "biologi_okologi_og_forskning"
+      },
+      "id": "biologi_forskning_job_004",
+      "mail_type": "job",
+      "role_scope": "natur_biologi_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar analyse med eksplisitt usikkerhet i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk analyse med eksplisitt usikkerhet gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+          ],
+          "subject": "Analyse med eksplisitt usikkerhet",
+          "summary": "Analyse med eksplisitt usikkerhet. Datasettet er komplett nok til analyse, men effektstørrelse, manglende data og alternative modeller gjør at konklusjonsstyrken må begrenses eksplisitt. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "biologi_forskning_job_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "analyse_reproduserbarhet_og_databord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "biologi_forskning_job_004",
+          "source_path": "data/Civication/mailFamilies/natur/job/natur_biologi_og_forskning_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_biologi_og_forskning.mail.biologi_forskning_job_004",
+        "version": 1
+      },
+      "source_hash": "84982beeb93f3d6b6f34884e81d58730a23dadb6cf7707bab62db149bd070930",
+      "source_path": "data/Civication/mailFamilies/natur/job/natur_biologi_og_forskning_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar history go-kontekst blir forskningsspørsmål, ikke evidens i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "reproduserbarhet",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk history go-kontekst blir forskningsspørsmål, ikke evidens gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "overkonklusjon"
+            ]
+          }
+        ],
+        "competency": "metodisk_sporbar_og_reproduserbar_kunnskapsproduksjon",
+        "consequence_axis": "reproduserbar_tillit_vs_skjult_usikkerhet",
+        "from": "Marius",
+        "id": "biologi_forskning_knowledge_001",
+        "mail_family": "biologi_forskning_history_go_naturkontekst",
+        "mail_type": "knowledge",
+        "narrative_arc": "knowledge",
+        "people_ref": "marius_feltkoordinator_natur_biologi_og_forskning",
+        "phase": "forenoon",
+        "place_id": "feltstasjon_og_provetakingspunkt",
+        "pressure": "evidens_usikkerhet_frist_og_bestillerbehov",
+        "priority": 120,
+        "role_scope": "natur_biologi_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/knowledge/natur_biologi_og_forskning_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+        ],
+        "subject": "History Go-kontekst blir forskningsspørsmål, ikke evidens",
+        "summary": "History Go-kontekst blir forskningsspørsmål, ikke evidens. Natur-kunnskap fra History Go peker mot en relevant art, lokalitet eller økologisk sammenheng, men må brukes til å formulere bedre spørsmål og kontrollpunkter uten å bli behandlet som feltdata eller forskningskvalifikasjon. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner.",
+        "task_domain": "biologi_okologi_og_forskning"
+      },
+      "id": "biologi_forskning_knowledge_001",
+      "mail_type": "knowledge",
+      "role_scope": "natur_biologi_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar history go-kontekst blir forskningsspørsmål, ikke evidens i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk history go-kontekst blir forskningsspørsmål, ikke evidens gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+          ],
+          "subject": "History Go-kontekst blir forskningsspørsmål, ikke evidens",
+          "summary": "History Go-kontekst blir forskningsspørsmål, ikke evidens. Natur-kunnskap fra History Go peker mot en relevant art, lokalitet eller økologisk sammenheng, men må brukes til å formulere bedre spørsmål og kontrollpunkter uten å bli behandlet som feltdata eller forskningskvalifikasjon. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "biologi_forskning_knowledge_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "feltstasjon_og_provetakingspunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "biologi_forskning_knowledge_001",
+          "source_path": "data/Civication/mailFamilies/natur/knowledge/natur_biologi_og_forskning_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_biologi_og_forskning.mail.biologi_forskning_knowledge_001",
+        "version": 1
+      },
+      "source_hash": "de8891ee432357e912318c0dd28e744b0651bef582d7a9a747292a0625fb119d",
+      "source_path": "data/Civication/mailFamilies/natur/knowledge/natur_biologi_og_forskning_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar enhetsmismatch før modellkjøring i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "reproduserbarhet",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk enhetsmismatch før modellkjøring gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "overkonklusjon"
+            ]
+          }
+        ],
+        "competency": "metodisk_sporbar_og_reproduserbar_kunnskapsproduksjon",
+        "consequence_axis": "reproduserbar_tillit_vs_skjult_usikkerhet",
+        "from": "Noah",
+        "id": "biologi_forskning_micro_001",
+        "mail_family": "biologi_forskning_rask_metodeavklaring",
+        "mail_type": "micro",
+        "narrative_arc": "micro",
+        "people_ref": "noah_statistiker_dataforvalter_natur_biologi_og_forskning",
+        "phase": "forenoon",
+        "place_id": "analyse_reproduserbarhet_og_databord",
+        "pressure": "evidens_usikkerhet_frist_og_bestillerbehov",
+        "priority": 120,
+        "role_scope": "natur_biologi_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/micro/natur_biologi_og_forskning_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+        ],
+        "subject": "Enhetsmismatch før modellkjøring",
+        "summary": "Enhetsmismatch før modellkjøring. Et datasett blander to enheter i samme variabel og krever en liten, men eksplisitt korreksjon før analysen kan kjøres på nytt. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner.",
+        "task_domain": "biologi_okologi_og_forskning"
+      },
+      "id": "biologi_forskning_micro_001",
+      "mail_type": "micro",
+      "role_scope": "natur_biologi_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar enhetsmismatch før modellkjøring i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk enhetsmismatch før modellkjøring gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+          ],
+          "subject": "Enhetsmismatch før modellkjøring",
+          "summary": "Enhetsmismatch før modellkjøring. Et datasett blander to enheter i samme variabel og krever en liten, men eksplisitt korreksjon før analysen kan kjøres på nytt. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "biologi_forskning_micro_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "analyse_reproduserbarhet_og_databord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "biologi_forskning_micro_001",
+          "source_path": "data/Civication/mailFamilies/natur/micro/natur_biologi_og_forskning_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_biologi_og_forskning.mail.biologi_forskning_micro_001",
+        "version": 1
+      },
+      "source_hash": "c45739cdd20f68857bf2c7faa088d46e7f126a92c6ec23f99eb0b3030799efa1",
+      "source_path": "data/Civication/mailFamilies/natur/micro/natur_biologi_og_forskning_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar metodekollega utfordrer hypotesen i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "reproduserbarhet",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk metodekollega utfordrer hypotesen gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "overkonklusjon"
+            ]
+          }
+        ],
+        "competency": "metodisk_sporbar_og_reproduserbar_kunnskapsproduksjon",
+        "consequence_axis": "reproduserbar_tillit_vs_skjult_usikkerhet",
+        "from": "Ingrid",
+        "id": "biologi_forskning_people_001",
+        "mail_family": "biologi_forskning_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "ingrid_seniorforsker_natur_biologi_og_forskning",
+        "phase": "forenoon",
+        "place_id": "metodemote_og_faglig_kvalitetssikring",
+        "pressure": "evidens_usikkerhet_frist_og_bestillerbehov",
+        "priority": 120,
+        "role_scope": "natur_biologi_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/people/natur_biologi_og_forskning_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+        ],
+        "subject": "Metodekollega utfordrer hypotesen",
+        "summary": "Metodekollega utfordrer hypotesen. Ingrid ber om et design som faktisk kan svekke hovedhypotesen og om at alternative forklaringer dokumenteres før resultattolkningen låses. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner.",
+        "task_domain": "biologi_okologi_og_forskning"
+      },
+      "id": "biologi_forskning_people_001",
+      "mail_type": "people",
+      "role_scope": "natur_biologi_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar metodekollega utfordrer hypotesen i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk metodekollega utfordrer hypotesen gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+          ],
+          "subject": "Metodekollega utfordrer hypotesen",
+          "summary": "Metodekollega utfordrer hypotesen. Ingrid ber om et design som faktisk kan svekke hovedhypotesen og om at alternative forklaringer dokumenteres før resultattolkningen låses. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "biologi_forskning_people_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "metodemote_og_faglig_kvalitetssikring",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "biologi_forskning_people_001",
+          "source_path": "data/Civication/mailFamilies/natur/people/natur_biologi_og_forskning_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_biologi_og_forskning.mail.biologi_forskning_people_001",
+        "version": 1
+      },
+      "source_hash": "8461ac9020891f6460efadebd8d4cc333ab31b2f454136221f0b95d697c9f5c1",
+      "source_path": "data/Civication/mailFamilies/natur/people/natur_biologi_og_forskning_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar feltkoordinator melder systematisk avvik i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "reproduserbarhet",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk feltkoordinator melder systematisk avvik gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "overkonklusjon"
+            ]
+          }
+        ],
+        "competency": "metodisk_sporbar_og_reproduserbar_kunnskapsproduksjon",
+        "consequence_axis": "reproduserbar_tillit_vs_skjult_usikkerhet",
+        "from": "Marius",
+        "id": "biologi_forskning_people_002",
+        "mail_family": "biologi_forskning_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "marius_feltkoordinator_natur_biologi_og_forskning",
+        "phase": "afternoon",
+        "place_id": "feltstasjon_og_provetakingspunkt",
+        "pressure": "evidens_usikkerhet_frist_og_bestillerbehov",
+        "priority": 121,
+        "role_scope": "natur_biologi_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/people/natur_biologi_og_forskning_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+        ],
+        "subject": "Feltkoordinator melder systematisk avvik",
+        "summary": "Feltkoordinator melder systematisk avvik. Marius ser at et feltforhold kan påvirke flere prøver og krever at avviket blir del av datasettet, ikke bare en muntlig merknad. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner.",
+        "task_domain": "biologi_okologi_og_forskning"
+      },
+      "id": "biologi_forskning_people_002",
+      "mail_type": "people",
+      "role_scope": "natur_biologi_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar feltkoordinator melder systematisk avvik i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk feltkoordinator melder systematisk avvik gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+          ],
+          "subject": "Feltkoordinator melder systematisk avvik",
+          "summary": "Feltkoordinator melder systematisk avvik. Marius ser at et feltforhold kan påvirke flere prøver og krever at avviket blir del av datasettet, ikke bare en muntlig merknad. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "biologi_forskning_people_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "feltstasjon_og_provetakingspunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "biologi_forskning_people_002",
+          "source_path": "data/Civication/mailFamilies/natur/people/natur_biologi_og_forskning_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_biologi_og_forskning.mail.biologi_forskning_people_002",
+        "version": 1
+      },
+      "source_hash": "f59b1f7eeedcc5da5ab00fc35b11821b18b6694ae15959e666a006c20d52dc62",
+      "source_path": "data/Civication/mailFamilies/natur/people/natur_biologi_og_forskning_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar laboratorieansvarlig stopper prøveflyten i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "reproduserbarhet",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk laboratorieansvarlig stopper prøveflyten gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "overkonklusjon"
+            ]
+          }
+        ],
+        "competency": "metodisk_sporbar_og_reproduserbar_kunnskapsproduksjon",
+        "consequence_axis": "reproduserbar_tillit_vs_skjult_usikkerhet",
+        "from": "Leila",
+        "id": "biologi_forskning_people_003",
+        "mail_family": "biologi_forskning_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "leila_laboratorieansvarlig_natur_biologi_og_forskning",
+        "phase": "forenoon",
+        "place_id": "provemottak_og_laboratorieflate",
+        "pressure": "evidens_usikkerhet_frist_og_bestillerbehov",
+        "priority": 122,
+        "role_scope": "natur_biologi_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/people/natur_biologi_og_forskning_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+        ],
+        "subject": "Laboratorieansvarlig stopper prøveflyten",
+        "summary": "Laboratorieansvarlig stopper prøveflyten. Leila finner et kalibrerings- eller kontaminasjonssignal og må kunne stoppe berørte prøver uten at fremdriftspress gjør avviket usynlig. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner.",
+        "task_domain": "biologi_okologi_og_forskning"
+      },
+      "id": "biologi_forskning_people_003",
+      "mail_type": "people",
+      "role_scope": "natur_biologi_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar laboratorieansvarlig stopper prøveflyten i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk laboratorieansvarlig stopper prøveflyten gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+          ],
+          "subject": "Laboratorieansvarlig stopper prøveflyten",
+          "summary": "Laboratorieansvarlig stopper prøveflyten. Leila finner et kalibrerings- eller kontaminasjonssignal og må kunne stoppe berørte prøver uten at fremdriftspress gjør avviket usynlig. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "biologi_forskning_people_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "provemottak_og_laboratorieflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "biologi_forskning_people_003",
+          "source_path": "data/Civication/mailFamilies/natur/people/natur_biologi_og_forskning_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_biologi_og_forskning.mail.biologi_forskning_people_003",
+        "version": 1
+      },
+      "source_hash": "f8e55c02452067ff70dcce48ae403d24ef7734209861ed2037e4b6b4ba825474",
+      "source_path": "data/Civication/mailFamilies/natur/people/natur_biologi_og_forskning_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar dataforvalter krever reproduserbart analysegrunnlag i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "reproduserbarhet",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk dataforvalter krever reproduserbart analysegrunnlag gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "overkonklusjon"
+            ]
+          }
+        ],
+        "competency": "metodisk_sporbar_og_reproduserbar_kunnskapsproduksjon",
+        "consequence_axis": "reproduserbar_tillit_vs_skjult_usikkerhet",
+        "from": "Noah",
+        "id": "biologi_forskning_people_004",
+        "mail_family": "biologi_forskning_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "people",
+        "people_ref": "noah_statistiker_dataforvalter_natur_biologi_og_forskning",
+        "phase": "afternoon",
+        "place_id": "analyse_reproduserbarhet_og_databord",
+        "pressure": "evidens_usikkerhet_frist_og_bestillerbehov",
+        "priority": 123,
+        "role_scope": "natur_biologi_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/people/natur_biologi_og_forskning_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+        ],
+        "subject": "Dataforvalter krever reproduserbart analysegrunnlag",
+        "summary": "Dataforvalter krever reproduserbart analysegrunnlag. Noah finner uklare transformasjoner og manglende versjonskobling mellom rådata og analyse, og krever at sporet repareres før rapportering. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner.",
+        "task_domain": "biologi_okologi_og_forskning"
+      },
+      "id": "biologi_forskning_people_004",
+      "mail_type": "people",
+      "role_scope": "natur_biologi_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar dataforvalter krever reproduserbart analysegrunnlag i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk dataforvalter krever reproduserbart analysegrunnlag gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+          ],
+          "subject": "Dataforvalter krever reproduserbart analysegrunnlag",
+          "summary": "Dataforvalter krever reproduserbart analysegrunnlag. Noah finner uklare transformasjoner og manglende versjonskobling mellom rådata og analyse, og krever at sporet repareres før rapportering. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "biologi_forskning_people_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "analyse_reproduserbarhet_og_databord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "biologi_forskning_people_004",
+          "source_path": "data/Civication/mailFamilies/natur/people/natur_biologi_og_forskning_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_biologi_og_forskning.mail.biologi_forskning_people_004",
+        "version": 1
+      },
+      "source_hash": "65c83fb105535dcb3ea12f3a99bd46ca51f1254cef5244bdfda39c1d9a424d35",
+      "source_path": "data/Civication/mailFamilies/natur/people/natur_biologi_og_forskning_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "natur",
+      "compatibility_projection": {
+        "category": "natur",
+        "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar hypotesen faller uten at prosjektet mister verdi i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor.",
+            "tags": [
+              "sporbarhet",
+              "reproduserbarhet",
+              "usikkerhet"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk hypotesen faller uten at prosjektet mister verdi gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen.",
+            "tags": [
+              "tempo",
+              "skjult_usikkerhet",
+              "overkonklusjon"
+            ]
+          }
+        ],
+        "competency": "metodisk_sporbar_og_reproduserbar_kunnskapsproduksjon",
+        "consequence_axis": "reproduserbar_tillit_vs_skjult_usikkerhet",
+        "from": "Ingrid",
+        "id": "biologi_forskning_story_001",
+        "mail_family": "biologi_forskning_forskeridentitet_og_integritet",
+        "mail_type": "story",
+        "narrative_arc": "story",
+        "people_ref": "ingrid_seniorforsker_natur_biologi_og_forskning",
+        "phase": "forenoon",
+        "place_id": "metodemote_og_faglig_kvalitetssikring",
+        "pressure": "evidens_usikkerhet_frist_og_bestillerbehov",
+        "priority": 120,
+        "role_scope": "natur_biologi_og_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/natur/story/natur_biologi_og_forskning_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+          "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+        ],
+        "subject": "Hypotesen faller uten at prosjektet mister verdi",
+        "summary": "Hypotesen faller uten at prosjektet mister verdi. Data støtter ikke hypotesen prosjektet var bygget rundt, og spilleren må bevare negative funn, undersøke alternative forklaringer og skille faglig læring fra personlig status. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner.",
+        "task_domain": "biologi_okologi_og_forskning"
+      },
+      "id": "biologi_forskning_story_001",
+      "mail_type": "story",
+      "role_scope": "natur_biologi_og_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+            "id": "A",
+            "label": "Avklar hypotesen faller uten at prosjektet mister verdi i forskningsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+            "id": "B",
+            "label": "Lukk hypotesen faller uten at prosjektet mister verdi gjennom tempo og antatt sikkerhet",
+            "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+          ],
+          "subject": "Hypotesen faller uten at prosjektet mister verdi",
+          "summary": "Hypotesen faller uten at prosjektet mister verdi. Data støtter ikke hypotesen prosjektet var bygget rundt, og spilleren må bevare negative funn, undersøke alternative forklaringer og skille faglig læring fra personlig status. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "biologi_forskning_story_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "metodemote_og_faglig_kvalitetssikring",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "biologi_forskning_story_001",
+          "source_path": "data/Civication/mailFamilies/natur/story/natur_biologi_og_forskning_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "natur_biologi_og_forskning.mail.biologi_forskning_story_001",
+        "version": 1
+      },
+      "source_hash": "f638145656a6becc37d747ddb4096870132dbe7c55adb20a5c161f96ba5ca59b",
+      "source_path": "data/Civication/mailFamilies/natur/story/natur_biologi_og_forskning_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
       "category": "psykologi",
       "compatibility_projection": {
         "category": "psykologi",
@@ -245907,7 +247926,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "2baece493dba65d3b9d345e5a7537bd442a2b03a6823623cf8dd35b5041399ce",
+  "registry_hash": "42c76664eb6ecb84c7d1c4fe48e287d9d86568b2d3ee52c04a19eb1a267a37ba",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -247134,6 +249153,23 @@
       "renholder_consequence_007",
       "renholder_consequence_008"
     ],
+    "natur/natur_biologi_og_forskning": [
+      "biologi_forskning_job_001",
+      "biologi_forskning_job_002",
+      "biologi_forskning_job_003",
+      "biologi_forskning_job_004",
+      "biologi_forskning_people_001",
+      "biologi_forskning_people_002",
+      "biologi_forskning_people_003",
+      "biologi_forskning_people_004",
+      "biologi_forskning_story_001",
+      "biologi_forskning_conflict_001",
+      "biologi_forskning_event_001",
+      "biologi_forskning_micro_001",
+      "biologi_forskning_followup_001",
+      "biologi_forskning_knowledge_001",
+      "biologi_forskning_consequence_001"
+    ],
     "psykologi/fagansvarlig": [
       "psykologi_fagansvarlig_job_avvik_001",
       "psykologi_fagansvarlig_people_skjonn_001",
@@ -247643,11 +249679,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 566,
+    "compiled_source_file_count": 575,
     "ignored_source_file_count": 1,
-    "input_file_count": 567,
-    "role_count": 68,
-    "scene_count": 1570,
+    "input_file_count": 576,
+    "role_count": 69,
+    "scene_count": 1585,
     "shadowed_duplicate_count": 0
   },
   "version": 1

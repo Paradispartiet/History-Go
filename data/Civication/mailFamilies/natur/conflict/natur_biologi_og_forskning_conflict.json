@@ -1,0 +1,87 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "natur",
+  "role_scope": "natur_biologi_og_forskning",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "biologi_forskning_evidens_og_bestillerpress",
+      "purpose": "Trene conflict gjennom det versjonerte forskningssporet uten å blande metode, data, tolkning, kvalifikasjon og myndighet.",
+      "learning_focus": [
+        "metode",
+        "dataintegritet",
+        "reproduserbarhet",
+        "usikkerhet"
+      ],
+      "mails": [
+        {
+          "id": "biologi_forskning_conflict_001",
+          "mail_type": "conflict",
+          "mail_family": "biologi_forskning_evidens_og_bestillerpress",
+          "role_scope": "natur_biologi_og_forskning",
+          "phase": "forenoon",
+          "priority": 120,
+          "from": "Ingrid",
+          "people_ref": "ingrid_seniorforsker_natur_biologi_og_forskning",
+          "place_id": "metodemote_og_faglig_kvalitetssikring",
+          "subject": "Bestiller ønsker sterkere konklusjon",
+          "summary": "Bestiller ønsker sterkere konklusjon. En oppdragsgiver ønsker at en usikker sammenheng omtales som sikker effekt fordi beslutningsbehovet er stort, mens data og design bare støtter en avgrenset konklusjon. Saken skal føres i forskningssporsmal_metode_prove_data_analyse_og_replikasjonslogg, der forskningsspørsmål, hypotese, metodeversjon, prøvetakings- eller laboratoriegrunnlag, rådata, datakvalitet, analysevalg, alternative forklaringer, usikkerhet, etikkstatus, avvik, replikasjonsstatus, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan analysere data, utforme faglige konklusjoner innen kompetanse og mandat og rapportere usikkerhet og metodebegrensninger, men kan ikke forfalske kvalifikasjon eller data, skjule negative eller usikre funn, bruke forskerrollen som automatisk forvaltningsmyndighet eller fatte politiske vedtak. History Go og Natur-badge kan gi kontekst, begreper og bedre spørsmål, men er verken grad, forskeransettelse, laboratoriebevis, etikkgodkjenning eller evidens for at hypotesen er sann. En faglig god løsning må derfor bevare sporbarhet og gjøre det mulig å gjenåpne berørt metode, prøve eller analyse uten å omskrive tidligere observasjoner.",
+          "situation": [
+            "Forskningsloggen viser siste metode- og dataversjon, åpne avvik, usikkerhet, replikasjonsstatus og hvem som eier neste kontrollpunkt.",
+            "En raskere løsning kan holde felt-, lab- eller leveranseflyten oppe, men kan samtidig skjule svak datakvalitet, manglende kontroll eller en konklusjon som er sterkere enn grunnlaget.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke observasjoner, prøver, analyser eller mandatgrenser som faktisk gjaldt."
+          ],
+          "task_domain": "biologi_okologi_og_forskning",
+          "competency": "metodisk_sporbar_og_reproduserbar_kunnskapsproduksjon",
+          "pressure": "evidens_usikkerhet_frist_og_bestillerbehov",
+          "choice_axis": "sporbar_avgrensning_vs_improvisert_sikkerhet",
+          "consequence_axis": "reproduserbar_tillit_vs_skjult_usikkerhet",
+          "narrative_arc": "conflict",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avklar bestiller ønsker sterkere konklusjon i forskningsloggen",
+              "reply": "Jeg beholder siste dokumenterte versjon, markerer hvilket ledd som faktisk er kontrollert og hvilket som fortsatt venter, skiller rådata fra analyse og tolkning, og avgrenser konklusjonen til det metoden og datakvaliteten tåler. Jeg registrerer avvik, usikkerhet og alternativ forklaring, sender bare det uavklarte spørsmålet til riktig faglig eier og lar replikasjon eller ny kontroll gjenåpne den berørte delen uten å slette tidligere spor.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "reproduserbarhet",
+                "usikkerhet"
+              ],
+              "feedback": "Grepet gjør forskningen litt langsommere, men holder metode, data og konklusjon etterprøvbare. Neste felt-, laboratorie-, data- eller metodeaktør kan se hva som er observert, hva som er analysert, hva som er usikkert, hvilke kontroller som mangler og hvilket mandat som gjelder. Dermed kan negative funn, avvik eller replikasjonsproblemer faktisk endre konklusjonen i stedet for å bli sosialt eller administrativt presset ut av sporet.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukk bestiller ønsker sterkere konklusjon gjennom tempo og antatt sikkerhet",
+              "reply": "Jeg prioriterer en rask og tydelig konklusjon, fyller inn det uavklarte selv, behandler frist eller forventning som viktigere enn eksplisitt venting og lar den mest plausible forklaringen stå som om den var kontrollert. Jeg unngår ekstra replikasjon eller metodegjennomgang dersom den kan forsinke leveransen, og lar neste aktør overta uten full oversikt over avvik, usikkerhet, datasettversjon eller hvem som faktisk eier den faglige avklaringen.",
+              "effect": -1,
+              "tags": [
+                "tempo",
+                "skjult_usikkerhet",
+                "overkonklusjon"
+              ],
+              "feedback": "Leveransen kan se mer beslutningsklar ut på kort sikt, men forskningssporet mister skillet mellom observasjon, analyse, tolkning og mandat. Et senere avvik eller replikasjonsforsøk blir vanskeligere å forstå, og bestiller-, status- eller tidspress får funksjon som skjult evidens. Resultatet kan derfor bli mindre reproduserbart, mindre etisk robust og mer sårbart for at en for sterk konklusjon må trekkes tilbake.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
