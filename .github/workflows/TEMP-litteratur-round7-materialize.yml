@@ -58,8 +58,27 @@ jobs:
             current = row.get('url')
             if current not in (old, new):
               raise SystemExit(f'Fail closed: {source_id} has unexpected pathway URL: {current!r}')
-            row['url'] = new
-            print(f'{sid}: pathway {current!r} -> {new!r}')
+
+          counts = {sid: 0 for sid in replacements}
+          def replace_exact(value):
+            if isinstance(value, dict):
+              return {k: replace_exact(v) for k, v in value.items()}
+            if isinstance(value, list):
+              return [replace_exact(v) for v in value]
+            if isinstance(value, str):
+              for sid, (old, new) in replacements.items():
+                if value == old:
+                  counts[sid] += 1
+                  return new
+            return value
+
+          data = replace_exact(data)
+          by_id = {row.get('source_id'): row for row in data.get('sources', [])}
+          for sid, (_, new) in replacements.items():
+            source_id = f'src_lit_sjanger_modus_form_{sid}'
+            if by_id[source_id].get('url') != new:
+              raise SystemExit(f'Fail closed: pathway root URL not current after replacement: {source_id}')
+            print(f'{sid}: replaced {counts[sid]} exact nested/root pathway URL value(s)')
           pathway.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
           PY
       - name: Install dependencies
