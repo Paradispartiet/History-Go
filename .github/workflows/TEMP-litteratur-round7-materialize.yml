@@ -24,33 +24,43 @@ jobs:
       - name: Apply controlled round 7 substitutions
         run: |
           python3 - <<'PY'
+          import json
           from pathlib import Path
 
           replacements = {
-            'https://www.cambridge.org/highereducation/books/the-cambridge-introduction-to-narrative/33F40DD4272A7925A9B227BC4E11D85C': 'https://www.cambridge.org/highereducation/books/the-cambridge-introduction-to-narrative/CFD3B91DD86BE8A9F3F228D07A801FEA',
-            'https://www.versobooks.com/products/2327-archaeologies-of-the-future': 'https://www.versobooks.com/products/1945-archaeologies-of-the-future',
-            'https://www.routledge.com/Popular-Fiction-The-Logics-and-Practices-of-a-Literary-Field/Gelder/p/book/9780415356475': 'https://www.routledge.com/Popular-Fiction-The-Logics-and-Practices-of-a-Literary-Field/Gelder/p/book/9780415356473',
-            'https://www.penguin.co.uk/books/60308/a-room-of-ones-own-by-woolf-virginia/9780241371978': 'https://www.penguin.co.uk/books/57208/a-room-of-ones-ownthree-guineas-by-woolf-virginia/9780241371978',
+            'sge01': ('https://www.cambridge.org/highereducation/books/the-cambridge-introduction-to-narrative/33F40DD4272A7925A9B227BC4E11D85C', 'https://www.cambridge.org/highereducation/books/the-cambridge-introduction-to-narrative/CFD3B91DD86BE8A9F3F228D07A801FEA'),
+            'sge04': ('https://www.versobooks.com/products/2327-archaeologies-of-the-future', 'https://www.versobooks.com/products/1945-archaeologies-of-the-future'),
+            'sge06': ('https://www.routledge.com/Popular-Fiction-The-Logics-and-Practices-of-a-Literary-Field/Gelder/p/book/9780415356475', 'https://www.routledge.com/Popular-Fiction-The-Logics-and-Practices-of-a-Literary-Field/Gelder/p/book/9780415356473'),
+            'sge12': ('https://www.penguin.co.uk/books/60308/a-room-of-ones-own-by-woolf-virginia/9780241371978', 'https://www.penguin.co.uk/books/57208/a-room-of-ones-ownthree-guineas-by-woolf-virginia/9780241371978'),
           }
-          targets = [
-            Path('data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/sjanger_modus_form/claims.json'),
-            Path('scripts/materialize-litteratur-drama-genre-v1.mjs'),
-            Path('data/quiz/litteratur/litteratur_subject_pathways_v1.json'),
-          ]
-          for old, new in replacements.items():
-            counts = {}
-            for target in targets:
+          claims = Path('data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/sjanger_modus_form/claims.json')
+          materializer = Path('scripts/materialize-litteratur-drama-genre-v1.mjs')
+          pathway = Path('data/quiz/litteratur/litteratur_subject_pathways_v1.json')
+
+          for sid, (old, new) in replacements.items():
+            for target in (claims, materializer):
               text = target.read_text()
               count = text.count(old)
-              counts[str(target)] = count
-              if count:
-                target.write_text(text.replace(old, new))
-            if any(counts[str(target)] == 0 for target in targets):
-              raise SystemExit(f'Fail closed: expected {old} in every target; counts={counts}')
-            for target in targets:
+              if count == 0:
+                raise SystemExit(f'Fail closed: {sid} old URL missing from owner target {target}: {old}')
+              target.write_text(text.replace(old, new))
               if old in target.read_text():
-                raise SystemExit(f'Fail closed: old URL remains in {target}: {old}')
-            print(f'replaced {sum(counts.values())} occurrences: {old} -> {new}')
+                raise SystemExit(f'Fail closed: {sid} stale URL remains in {target}')
+              print(f'{sid}: replaced {count} occurrence(s) in {target}')
+
+          data = json.loads(pathway.read_text())
+          by_id = {row.get('source_id'): row for row in data.get('sources', [])}
+          for sid, (old, new) in replacements.items():
+            source_id = f'src_lit_sjanger_modus_form_{sid}'
+            row = by_id.get(source_id)
+            if row is None:
+              raise SystemExit(f'Fail closed: pathway source_id missing: {source_id}')
+            current = row.get('url')
+            if current not in (old, new):
+              raise SystemExit(f'Fail closed: {source_id} has unexpected pathway URL: {current!r}')
+            row['url'] = new
+            print(f'{sid}: pathway {current!r} -> {new!r}')
+          pathway.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
           PY
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
