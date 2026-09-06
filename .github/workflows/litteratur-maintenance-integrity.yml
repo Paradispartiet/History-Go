@@ -9,6 +9,7 @@ on:
       - 'data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/narratologi_prosa/claims.json'
       - 'data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/lyrikk_poetiske_former/claims.json'
       - 'data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/drama_teatertekst_framforing/claims.json'
+      - 'data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/sjanger_modus_form/claims.json'
       - 'data/quiz/litteratur/litteratur_subject_pathways_v1.json'
       - 'data/knowledge/subjects/litteratur/knowledge_units.generated.json'
       - 'scripts/materialize-litteratur-poetics-style-v1.mjs'
@@ -21,12 +22,14 @@ on:
       - 'scripts/audit-litteratur-maintenance-source-refresh-round4.mjs'
       - 'scripts/audit-litteratur-maintenance-source-refresh-round5.mjs'
       - 'scripts/audit-litteratur-maintenance-source-refresh-round6.mjs'
+      - 'scripts/audit-litteratur-maintenance-source-refresh-round7.mjs'
       - 'tests/litteratur-maintenance-source-refresh-round1.test.mjs'
       - 'tests/litteratur-maintenance-source-refresh-round2.test.mjs'
       - 'tests/litteratur-maintenance-source-refresh-round3.test.mjs'
       - 'tests/litteratur-maintenance-source-refresh-round4.test.mjs'
       - 'tests/litteratur-maintenance-source-refresh-round5.test.mjs'
       - 'tests/litteratur-maintenance-source-refresh-round6.test.mjs'
+      - 'tests/litteratur-maintenance-source-refresh-round7.test.mjs'
       - '.github/workflows/litteratur-maintenance-integrity.yml'
 
 permissions:
@@ -77,6 +80,11 @@ jobs:
           node --check scripts/audit-litteratur-maintenance-source-refresh-round6.mjs
           node scripts/audit-litteratur-maintenance-source-refresh-round6.mjs
           node --test tests/litteratur-maintenance-source-refresh-round6.test.mjs
+      - name: Audit Litteratur source refresh round 7
+        run: |
+          node --check scripts/audit-litteratur-maintenance-source-refresh-round7.mjs
+          node scripts/audit-litteratur-maintenance-source-refresh-round7.mjs
+          node --test tests/litteratur-maintenance-source-refresh-round7.test.mjs
       - name: Preserve Litteratur assessment and theory integrity
         run: |
           node scripts/audit-litteratur-assessment-v1.mjs

@@ -154,18 +154,18 @@ const sourceSets = {
     ['sdr12', 'Theatre Histories', 'https://www.routledge.com/Theatre-Histories-An-Introduction/Zarrilli-McConachie-Williams-Sorgenfrei/p/book/9780415837967', 'Routledge']
   ],
   genre: [
-    ['sge01', 'The Cambridge Introduction to Narrative', 'https://www.cambridge.org/highereducation/books/the-cambridge-introduction-to-narrative/33F40DD4272A7925A9B227BC4E11D85C', 'Cambridge University Press'],
+    ['sge01', 'The Cambridge Introduction to Narrative', 'https://www.cambridge.org/highereducation/books/the-cambridge-introduction-to-narrative/CFD3B91DD86BE8A9F3F228D07A801FEA', 'Cambridge University Press'],
     ['sge02', 'Genre', 'https://www.routledge.com/Genre/Frow/p/book/9780415280633', 'Routledge'],
     ['sge03', 'The Political Unconscious', 'https://www.cornellpress.cornell.edu/book/9780801492228/the-political-unconscious/', 'Cornell University Press'],
-    ['sge04', 'Archaeologies of the Future', 'https://www.versobooks.com/products/2327-archaeologies-of-the-future', 'Verso'],
+    ['sge04', 'Archaeologies of the Future', 'https://www.versobooks.com/products/1945-archaeologies-of-the-future', 'Verso'],
     ['sge05', 'Metamorphoses of Science Fiction', 'https://yalebooks.yale.edu/book/9780300023752/metamorphoses-of-science-fiction/', 'Yale University Press'],
-    ['sge06', 'Popular Fiction: The Logics and Practices of a Literary Field', 'https://www.routledge.com/Popular-Fiction-The-Logics-and-Practices-of-a-Literary-Field/Gelder/p/book/9780415356475', 'Routledge'],
+    ['sge06', 'Popular Fiction: The Logics and Practices of a Literary Field', 'https://www.routledge.com/Popular-Fiction-The-Logics-and-Practices-of-a-Literary-Field/Gelder/p/book/9780415356473', 'Routledge'],
     ['sge07', 'Robinson Crusoe', 'https://www.gutenberg.org/ebooks/521', 'Project Gutenberg'],
     ['sge08', 'Divine Comedy', 'https://www.gutenberg.org/ebooks/8800', 'Project Gutenberg'],
     ['sge09', 'Madame Bovary', 'https://www.gutenberg.org/ebooks/2413', 'Project Gutenberg'],
     ['sge10', 'Frankenstein', 'https://www.gutenberg.org/ebooks/84', 'Project Gutenberg'],
     ['sge11', 'The Murder of Roger Ackroyd', 'https://www.harpercollins.com/products/the-murder-of-roger-ackroyd-agatha-christie', 'HarperCollins'],
-    ['sge12', 'A Room of One’s Own', 'https://www.penguin.co.uk/books/60308/a-room-of-ones-own-by-woolf-virginia/9780241371978', 'Penguin']
+    ['sge12', 'A Room of One’s Own', 'https://www.penguin.co.uk/books/57208/a-room-of-ones-ownthree-guineas-by-woolf-virginia/9780241371978', 'Penguin']
   ]
 };
 const toSources = (rows) => rows.map(([id, label, url, publisher]) => ({ id, label, url, publisher, type: 'faglig_eller_primar_kilde', source_location: 'Verkpresentasjon og relevant hovedargument' }));
