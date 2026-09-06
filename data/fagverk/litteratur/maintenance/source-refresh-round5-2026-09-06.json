@@ -1,0 +1,160 @@
+{
+  "schema": "history_go_litteratur_maintenance_source_refresh_v1",
+  "version": "1.0.0",
+  "subject_id": "litteratur",
+  "round_id": "source_refresh_round5_2026_09_06",
+  "baseline_main_sha": "6ee98c992eb4d61f5f2deadc3d687b3787044a40",
+  "checked_at": "2026-09-06",
+  "status": "verified",
+  "scope": {
+    "area_id": "lyrikk_poetiske_former",
+    "canonical_source_mutation": true,
+    "new_strict_subcategory": false,
+    "place_production": false,
+    "maintenance_evidence_only": false,
+    "replacement_policy": "replace_only_when_same-resource_or_authoritative_successor_url_is_verified"
+  },
+  "source_checks": [
+    {
+      "claims_source_id": "sly01",
+      "title": "The Princeton Encyclopedia of Poetry and Poetics",
+      "publisher": "Princeton University Press",
+      "verification_state": "verified_authoritative_replacement",
+      "old_url": "https://press.princeton.edu/books/hardcover/9780691154916/the-princeton-encyclopedia-of-poetry-and-poetics",
+      "canonical_url": "https://press.princeton.edu/books/paperback/9780691154916/the-princeton-encyclopedia-of-poetry-and-poetics",
+      "evidence": "ISBN 9780691154916 is the fourth-edition paperback, and the exact Princeton University Press paperback URL is independently cited as the publisher endpoint for that same ISBN/title. The old canonical path incorrectly classified the same ISBN as hardcover.",
+      "action": "replace_canonical_url"
+    },
+    {
+      "claims_source_id": "sly02",
+      "title": "The Cambridge Introduction to Poetic Form",
+      "publisher": "Cambridge University Press",
+      "verification_state": "verified_authoritative_replacement",
+      "old_url": "https://www.cambridge.org/core/books/cambridge-introduction-to-poetic-form/0A04EE46C70E915A6D4ED11E49969A3E",
+      "canonical_url": "https://www.cambridge.org/core/books/poetic-form/47F6649E2ADE98679DC4BE16E1AAE58A",
+      "evidence": "Cambridge Core currently serves the same Michael D. Hurley and Michael O'Neill volume under the Poetic Form identity, with DOI 10.1017/CBO9780511982224 and Cambridge frontmatter identifying The Cambridge Introduction to Poetic Form.",
+      "action": "replace_canonical_url"
+    },
+    {
+      "claims_source_id": "sly03",
+      "title": "Meter and Meaning",
+      "publisher": "Routledge",
+      "verification_state": "verified_authoritative_replacement",
+      "old_url": "https://www.routledge.com/Meter-and-Meaning-An-Introduction-to-Rhythm-in-Poetry/Attridge/p/book/9780415311764",
+      "canonical_url": "https://www.routledge.com/Meter-and-Meaning-An-Introduction-to-Rhythm-in-Poetry/Carper-Attridge/p/book/9780415311748",
+      "evidence": "Routledge currently identifies Meter and Meaning: An Introduction to Rhythm in Poetry as the 2003 first edition by Thomas Carper and Derek Attridge at the Carper-Attridge product endpoint, ISBN 9780415311748.",
+      "action": "replace_canonical_url"
+    },
+    {
+      "claims_source_id": "sly04",
+      "title": "Poetry and Language",
+      "publisher": "Cambridge University Press",
+      "verification_state": "retained_fail_closed_no_authoritative_replacement",
+      "canonical_url": "https://www.cambridge.org/core/books/cambridge-companion-to-twentiethcentury-english-poetry/poetry-and-language/8F96757CA7769560181774B77FD137A6",
+      "evidence": "Cambridge still exposes the parent Companion, but this maintenance pass did not verify an exact successor endpoint for the same Poetry and Language chapter. A different current Cambridge book with a similar title is not treated as the same source.",
+      "action": "retain_until_authoritative_replacement_is_verified"
+    },
+    {
+      "claims_source_id": "sly05",
+      "title": "The Princeton Handbook of Poetic Terms",
+      "publisher": "Princeton University Press",
+      "verification_state": "retained_fail_closed_no_authoritative_replacement",
+      "canonical_url": "https://press.princeton.edu/books/hardcover/9780691172835/the-princeton-handbook-of-poetic-terms",
+      "evidence": "Authoritative bibliographic evidence confirms the third edition and its hardback/paperback ISBNs, but this pass could not verify an exact current Princeton product endpoint strongly enough to replace the existing canonical URL. The uncertain endpoint is therefore retained fail-closed rather than guessed.",
+      "action": "retain_until_authoritative_replacement_is_verified"
+    },
+    {
+      "claims_source_id": "sly06",
+      "title": "Electronic Literature Organization Collections",
+      "publisher": "Electronic Literature Organization",
+      "verification_state": "verified_live",
+      "canonical_url": "https://collection.eliterature.org/",
+      "evidence": "The Electronic Literature Collection index remained live and exposed volumes 1 through 4 during the round-5 source check.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "sly07",
+      "title": "Ode to the West Wind",
+      "publisher": "Poetry Foundation",
+      "verification_state": "retained_fail_closed_no_authoritative_replacement",
+      "canonical_url": "https://www.poetryfoundation.org/poems/45134/ode-to-the-west-wind",
+      "evidence": "The canonical Poetry Foundation endpoint returned crawler-restricted HTTP 403 during this pass. A 403 is not treated as source death, and no exact authoritative successor was proven.",
+      "action": "retain_until_authoritative_replacement_is_verified"
+    },
+    {
+      "claims_source_id": "sly08",
+      "title": "Paradise Lost",
+      "publisher": "Project Gutenberg",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.gutenberg.org/ebooks/20",
+      "evidence": "Project Gutenberg ebook 20 remained live and identified Paradise Lost by John Milton during the round-5 source check.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "sly09",
+      "title": "Because I could not stop for Death",
+      "publisher": "Poetry Foundation",
+      "verification_state": "retained_fail_closed_no_authoritative_replacement",
+      "canonical_url": "https://www.poetryfoundation.org/poems/47652/because-i-could-not-stop-for-death-479",
+      "evidence": "The canonical Poetry Foundation endpoint returned crawler-restricted HTTP 403 during this pass. A 403 is not treated as source death, and no exact authoritative successor was proven.",
+      "action": "retain_until_authoritative_replacement_is_verified"
+    },
+    {
+      "claims_source_id": "sly10",
+      "title": "Shakespeare’s Sonnets",
+      "publisher": "Project Gutenberg",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.gutenberg.org/ebooks/1041",
+      "evidence": "Project Gutenberg ebook 1041 remained live and identified Shakespeare's Sonnets by William Shakespeare during the round-5 source check.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "sly11",
+      "title": "The Waste Land",
+      "publisher": "Poetry Foundation",
+      "verification_state": "retained_fail_closed_no_authoritative_replacement",
+      "canonical_url": "https://www.poetryfoundation.org/poems/47311/the-waste-land",
+      "evidence": "The canonical Poetry Foundation endpoint returned crawler-restricted HTTP 403 during this pass. A 403 is not treated as source death, and no exact authoritative successor was proven.",
+      "action": "retain_until_authoritative_replacement_is_verified"
+    },
+    {
+      "claims_source_id": "sly12",
+      "title": "Howl and Other Poems",
+      "publisher": "City Lights Books",
+      "verification_state": "verified_authoritative_replacement",
+      "old_url": "https://www.citylights.com/city-lights-published/howl-and-other-poems/",
+      "canonical_url": "https://citylights.com/pocket-poets-series/howl-other-poems-pocket-poets-4/",
+      "evidence": "City Lights currently serves the same Allen Ginsberg title in the Pocket Poets Series at the replacement product page, identifying City Lights Books, ISBN 9780872860179 and the original 1956 publication.",
+      "action": "replace_canonical_url"
+    }
+  ],
+  "materialization": {
+    "replacement_targets": [
+      "data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/lyrikk_poetiske_former/claims.json",
+      "scripts/materialize-litteratur-narrative-poetry-v1.mjs",
+      "data/quiz/litteratur/litteratur_subject_pathways_v1.json",
+      "data/knowledge/subjects/litteratur/knowledge_units.generated.json"
+    ]
+  },
+  "summary": {
+    "canonical_sources_checked": 12,
+    "verified_live": 3,
+    "verified_live_redirected_same_resource": 0,
+    "verified_authoritative_replacement": 4,
+    "retained_fail_closed_no_authoritative_replacement": 5,
+    "canonical_url_replacements": 4
+  },
+  "quality_gates": {
+    "all_12_area_sources_accounted_for": true,
+    "four_authoritative_replacements_materialized": true,
+    "replacement_identity_preserved": true,
+    "uncertain_endpoints_not_auto_replaced": true,
+    "canonical_source_ids_preserved": true,
+    "pathway_source_count_preserved": true,
+    "claim_provenance_scope_unchanged": true,
+    "theory_integrity_scope_unchanged": true,
+    "canonical_subject_architecture_unchanged": true,
+    "completion_status_preserved": true,
+    "knowledge_provenance_checked_source_id_aware": true
+  }
+}

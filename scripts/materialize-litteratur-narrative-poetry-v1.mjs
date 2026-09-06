@@ -196,9 +196,9 @@ const sourceRows = {
     ['sna12', 'In Search of Lost Time', 'https://www.penguinrandomhouse.com/series/SLT/in-search-of-lost-time/', 'Penguin Random House']
   ],
   poetry: [
-    ['sly01', 'The Princeton Encyclopedia of Poetry and Poetics', 'https://press.princeton.edu/books/hardcover/9780691154916/the-princeton-encyclopedia-of-poetry-and-poetics', 'Princeton University Press'],
-    ['sly02', 'The Cambridge Introduction to Poetic Form', 'https://www.cambridge.org/core/books/cambridge-introduction-to-poetic-form/0A04EE46C70E915A6D4ED11E49969A3E', 'Cambridge University Press'],
-    ['sly03', 'Meter and Meaning', 'https://www.routledge.com/Meter-and-Meaning-An-Introduction-to-Rhythm-in-Poetry/Attridge/p/book/9780415311764', 'Routledge'],
+    ['sly01', 'The Princeton Encyclopedia of Poetry and Poetics', 'https://press.princeton.edu/books/paperback/9780691154916/the-princeton-encyclopedia-of-poetry-and-poetics', 'Princeton University Press'],
+    ['sly02', 'The Cambridge Introduction to Poetic Form', 'https://www.cambridge.org/core/books/poetic-form/47F6649E2ADE98679DC4BE16E1AAE58A', 'Cambridge University Press'],
+    ['sly03', 'Meter and Meaning', 'https://www.routledge.com/Meter-and-Meaning-An-Introduction-to-Rhythm-in-Poetry/Carper-Attridge/p/book/9780415311748', 'Routledge'],
     ['sly04', 'Poetry and Language', 'https://www.cambridge.org/core/books/cambridge-companion-to-twentiethcentury-english-poetry/poetry-and-language/8F96757CA7769560181774B77FD137A6', 'Cambridge University Press'],
     ['sly05', 'The Princeton Handbook of Poetic Terms', 'https://press.princeton.edu/books/hardcover/9780691172835/the-princeton-handbook-of-poetic-terms', 'Princeton University Press'],
     ['sly06', 'Electronic Literature Organization Collections', 'https://collection.eliterature.org/', 'Electronic Literature Organization'],
@@ -207,7 +207,7 @@ const sourceRows = {
     ['sly09', 'Because I could not stop for Death', 'https://www.poetryfoundation.org/poems/47652/because-i-could-not-stop-for-death-479', 'Poetry Foundation'],
     ['sly10', 'Shakespeare’s Sonnets', 'https://www.gutenberg.org/ebooks/1041', 'Project Gutenberg'],
     ['sly11', 'The Waste Land', 'https://www.poetryfoundation.org/poems/47311/the-waste-land', 'Poetry Foundation'],
-    ['sly12', 'Howl and Other Poems', 'https://www.citylights.com/city-lights-published/howl-and-other-poems/', 'City Lights Books']
+    ['sly12', 'Howl and Other Poems', 'https://citylights.com/pocket-poets-series/howl-other-poems-pocket-poets-4/', 'City Lights Books']
   ]
 };
 const sources = (rows) => rows.map(([id, label, url, publisher]) => ({ id, label, url, publisher, type: 'faglig_eller_primar_kilde', source_location: 'Verkpresentasjon og relevant hovedargument' }));
