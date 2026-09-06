@@ -6,6 +6,7 @@ on:
       - agent/civication-natur-biologi-og-forskning-role-world
     paths:
       - 'scripts/TEMP_materialize_natur_biologi_og_forskning_role_world.mjs'
+      - 'scripts/TEMP_enrich_natur_biologi_og_forskning_role_world.mjs'
       - '.github/workflows/TEMP-civication-natur-biologi-og-forskning-role-world.yml'
 
 permissions:
@@ -42,8 +43,14 @@ jobs:
       - name: Syntax-check TEMP materializer
         run: node --check scripts/TEMP_materialize_natur_biologi_og_forskning_role_world.mjs
 
+      - name: Syntax-check TEMP boundary enrichment
+        run: node --check scripts/TEMP_enrich_natur_biologi_og_forskning_role_world.mjs
+
       - name: Materialize Role World candidate
         run: node scripts/TEMP_materialize_natur_biologi_og_forskning_role_world.mjs
+
+      - name: Enrich explicit field-data authority boundary
+        run: node scripts/TEMP_enrich_natur_biologi_og_forskning_role_world.mjs
 
       - name: Regenerate Career Gameplay Matrix
         run: node scripts/audit-civication-career-gameplay.mjs --write
@@ -87,6 +94,7 @@ jobs:
       - name: Commit verified permanent Role World
         run: |
           rm -f scripts/TEMP_materialize_natur_biologi_og_forskning_role_world.mjs
+          rm -f scripts/TEMP_enrich_natur_biologi_og_forskning_role_world.mjs
           rm -f .github/workflows/TEMP-civication-natur-biologi-og-forskning-role-world.yml
           git add -A
           if git diff --cached --quiet; then
