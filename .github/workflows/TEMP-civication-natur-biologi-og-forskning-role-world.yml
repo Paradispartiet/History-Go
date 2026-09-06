@@ -101,8 +101,8 @@ jobs:
             echo "No permanent Role World diff produced"
             exit 1
           fi
-          if git diff --cached --name-only | grep -E '(^|/)TEMP|reports/TEMP'; then
-            echo "TEMP artifact leaked into permanent candidate"
+          if git diff --cached --name-status | awk '$1 !~ /^D/ {print $2}' | grep -E '(^|/)TEMP|reports/TEMP'; then
+            echo "Non-deleted TEMP artifact leaked into permanent candidate"
             exit 1
           fi
           git commit -m "Complete Natur Biologi og forskning Role World"
