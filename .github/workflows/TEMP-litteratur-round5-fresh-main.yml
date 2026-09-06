@@ -1,0 +1,110 @@
+name: TEMP Litteratur round 5 fresh-main replay
+
+on:
+  push:
+    branches:
+      - agent/litteratur-maintenance-round5-lyrikk-20260906
+    paths:
+      - '.github/workflows/TEMP-litteratur-round5-fresh-main.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/litteratur-maintenance-round5-lyrikk-20260906
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Apply round 5 substitutions to fresh-main pathway
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          replacements = {
+            'https://press.princeton.edu/books/hardcover/9780691154916/the-princeton-encyclopedia-of-poetry-and-poetics': 'https://press.princeton.edu/books/paperback/9780691154916/the-princeton-encyclopedia-of-poetry-and-poetics',
+            'https://www.cambridge.org/core/books/cambridge-introduction-to-poetic-form/0A04EE46C70E915A6D4ED11E49969A3E': 'https://www.cambridge.org/core/books/poetic-form/47F6649E2ADE98679DC4BE16E1AAE58A',
+            'https://www.routledge.com/Meter-and-Meaning-An-Introduction-to-Rhythm-in-Poetry/Attridge/p/book/9780415311764': 'https://www.routledge.com/Meter-and-Meaning-An-Introduction-to-Rhythm-in-Poetry/Carper-Attridge/p/book/9780415311748',
+            'https://www.citylights.com/city-lights-published/howl-and-other-poems/': 'https://citylights.com/pocket-poets-series/howl-other-poems-pocket-poets-4/',
+          }
+          pathway = Path('data/quiz/litteratur/litteratur_subject_pathways_v1.json')
+          text = pathway.read_text()
+          for old, new in replacements.items():
+            count = text.count(old)
+            if count == 0:
+              raise SystemExit(f'Fail closed: expected old URL in fresh-main pathway: {old}')
+            text = text.replace(old, new)
+            print(f'pathway replacements: {count}: {old} -> {new}')
+          pathway.write_text(text)
+
+          for target_name in [
+            'data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/lyrikk_poetiske_former/claims.json',
+            'scripts/materialize-litteratur-narrative-poetry-v1.mjs',
+          ]:
+            target = Path(target_name)
+            current = target.read_text()
+            for old, new in replacements.items():
+              if old in current:
+                raise SystemExit(f'Fail closed: stale URL remains in replay source {target}: {old}')
+              if new not in current:
+                raise SystemExit(f'Fail closed: current URL missing from replay source {target}: {new}')
+          PY
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Regenerate fresh-main derived outputs
+        run: |
+          node --experimental-strip-types scripts/knowledge-canonical-data.mts --write
+          node scripts/audit-fagverk-litteratur-legacy-theory.mjs --write-report > /tmp/litteratur-legacy-theory-round5-fresh-main.json
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Validate round 5 focused gates on fresh main
+        run: |
+          node --check scripts/audit-litteratur-maintenance-source-refresh-round5.mjs
+          node scripts/audit-litteratur-maintenance-source-refresh-round5.mjs
+          node --test tests/litteratur-maintenance-source-refresh-round5.test.mjs
+          node scripts/audit-litteratur-assessment-v1.mjs
+          node tools/audit-litteratur-theory-integrity.mjs
+          node --test tests/litteratur-assessment-v1.test.mjs tests/litteratur-theory-integrity.test.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node scripts/audit-fagverk-litteratur-legacy-theory.mjs > /tmp/litteratur-legacy-theory-round5-fresh-main-check.json
+      - name: Reject unrelated fresh-main generator drift
+        run: |
+          python3 - <<'PY'
+          import subprocess
+          allowed = {
+            'data/fagverk/fagverk_release.json',
+            'data/knowledge/subjects/litteratur/knowledge_units.generated.json',
+            'data/quiz/litteratur/litteratur_subject_pathways_v1.json',
+            'reports/fagverk/litteratur-legacy-theory-audit.json',
+          }
+          out = subprocess.check_output(['git','status','--porcelain'], text=True)
+          changed = set()
+          for line in out.splitlines():
+            path = line[3:]
+            if ' -> ' in path:
+              path = path.split(' -> ',1)[1]
+            changed.add(path)
+          unexpected = sorted(changed - allowed)
+          print('changed files:', *sorted(changed), sep='\n  ')
+          if unexpected:
+            raise SystemExit('Fail closed: unrelated fresh-main generator drift: ' + ', '.join(unexpected))
+          if 'data/quiz/litteratur/litteratur_subject_pathways_v1.json' not in changed:
+            raise SystemExit('Fail closed: pathway was not materialized')
+          PY
+      - name: Commit fresh-main derived outputs
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/fagverk/fagverk_release.json \
+            data/knowledge/subjects/litteratur/knowledge_units.generated.json \
+            data/quiz/litteratur/litteratur_subject_pathways_v1.json \
+            reports/fagverk/litteratur-legacy-theory-audit.json
+          git diff --cached --check
+          git commit -m 'Regenerate Litteratur round 5 on fresh main'
+          git push origin HEAD:agent/litteratur-maintenance-round5-lyrikk-20260906
