@@ -35,6 +35,8 @@ const urls = {
   sporveienAnnual2018: "https://www.sporveien.no/contentassets/868d1015af4244d0805e6afde03046ce/sporveien-arsrapport-2018-pdf.pdf",
   arkitekturTorp: "https://www.arkitektur.no/aktuelt/arkitektur/han-hadde-et-bankende-arkitekthjerte/",
   lokalwikiBruskeland: "https://lokalhistoriewiki.no/wiki/Guttorm_Bruskeland",
+  lokalwikiHelsfyr: "https://lokalhistoriewiki.no/wiki/Helsfyr_%28str%C3%B8k%29",
+  scandicHelsfyrHistory: "https://stories.scandichotels.no/scandic-helsfyr/",
   bruskelandPortrait: "https://lokalhistoriewiki.no/images/Guttorm_Bruskeland_arkitekt.jpg",
   commonsBruskelandWorkPage: "https://commons.wikimedia.org/wiki/File:Buehallen_Norsk_Elektrisk_Kabelfabrikk.jpg",
   commonsBruskelandWorkAsset: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Buehallen_Norsk_Elektrisk_Kabelfabrikk.jpg",
@@ -286,7 +288,7 @@ const readingPack = read(readingFile);
 const readings = [
   { id: "lesespor_helsfyr_byleksikon", title: "Helsfyr (strøk)", author: null, publication: "Oslo byleksikon", date: null, year: null, type: "reference_article", subjects: ["Helsfyr", "T-bane", "Strømsveien", "kontorutbygging"], place_ids: [placeId], person_ids: [], category_hints: ["by", "historie"], url: urls.byleksikon, access: "open", rights: "link_only", source_quality: "institutional", curation_status: "strong_candidate", relevance: "Stedsspesifikk hovedkilde for transport-, hotell- og arbeidsplasshistorien." },
   { id: "lesespor_helsfyr_sporveien", title: "Helsfyr T-banestasjon", author: null, publication: "Sporveien", date: null, year: 2026, type: "official_station_page", subjects: ["Helsfyr", "T-bane", "adkomst", "tilgjengelighet"], place_ids: [placeId], person_ids: ["guttorm_bruskeland", "katrine_giaever"], category_hints: ["by"], url: urls.sporveien, access: "open", rights: "link_only", source_quality: "institutional", curation_status: "strong_candidate", relevance: "Offisiell kilde for stasjonen, dagens linjer, adkomster og oppgradering." },
-  { id: "lesespor_helsfyr_torp", title: "Han hadde et bankende arkitekthjerte", author: null, publication: "Arkitektur", date: null, year: null, type: "professional_feature", subjects: ["Helsfyr", "arkitektur", "kollektivterminal", "Fredrik Torp"], place_ids: [placeId], person_ids: ["fredrik_a_s_torp"], category_hints: ["by"], url: urls.arkitekturTorp, access: "open", rights: "link_only", source_quality: "professional_press", curation_status: "strong_candidate", relevance: "Faglig sekundærkilde for Torps rolle og prosjektets utvikling." },
+  { id: "lesespor_helsfyr_torp", title: "Han hadde et bankende arkitekthjerte", author: null, publication: "Arkitektur", date: null, year: null, type: "professional_feature", subjects: ["Helsfyr", "arkitektur", "kollektivterminal", "Fredrik Torp"], place_ids: [placeId], person_ids: ["fredrik_a_s_torp"], category_hints: ["by"], url: urls.arkitekturTorp, access: "open", rights: "link_only", source_quality: "recognized", curation_status: "strong_candidate", relevance: "Faglig sekundærkilde for Torps rolle og prosjektets utvikling." },
   { id: "lesespor_helsfyr_sporveien_2018", title: "Sporveien årsrapport 2018", author: null, publication: "Sporveien", date: "2018", year: 2018, type: "official_report", subjects: ["Helsfyr", "stasjonsoppgradering", "infrastruktur"], place_ids: [placeId], person_ids: [], category_hints: ["by"], url: urls.sporveienAnnual2018, access: "open", rights: "link_only", source_quality: "institutional", curation_status: "strong_candidate", relevance: "Primær dokumentasjon av oppgraderingsarbeidet før gjenåpningen i 2019." }
 ];
 readingPack.items ||= [];
@@ -424,9 +426,17 @@ for (let i = 0; i < allTextSentences.length; i += 1) {
   const transport = /T-bane|terminal|Strømsveien|Grenseveien|bro|stasjon|støyskjerm|adkomst|rampe/iu.test(sentenceText);
   const torp = /Telje|Torp|Aasen|1993/iu.test(sentenceText);
   const sourceUrl = transport ? urls.byleksikon : urls.byleksikon;
-  const strong = /viktig|grunnleggende|særlig|derfor|samtidig|ikke bare|mindre av|karakteristiske/iu.test(sentenceText);
+  const strong = /viktig|grunnleggende|særlig|derfor|dermed|første|samtidig|ikke bare|mindre av|karakteristiske/iu.test(sentenceText);
   const claim = { id, claim: sentenceText, sourceUrl, sourceLocation: "Helsfyr-oppslaget og kontrollert stedsgrunnlag", sourceType: "institutional", verifiedAt, status: "verified", claimKind: strong ? "strong" : "ordinary", evidenceMode: strong ? "explicit" : "direct", temporalStatus: /2019|nyere|i dag|fortsatt|nå/iu.test(sentenceText) ? "current" : "historical" };
-  if (strong) claim.independentSourceUrls = [torp ? urls.arkitekturTorp : urls.sporveien];
+  if (strong) {
+    if (/Det første Hotell Helsfyr/iu.test(sentenceText)) {
+      claim.independentSourceUrls = [urls.lokalwikiHelsfyr, urls.scandicHelsfyrHistory];
+    } else if (/Helsfyr består dermed/iu.test(sentenceText)) {
+      claim.independentSourceUrls = [urls.sporveien, urls.arkitekturTorp, urls.scandicHelsfyrHistory];
+    } else {
+      claim.independentSourceUrls = [torp ? urls.arkitekturTorp : urls.sporveien];
+    }
+  }
   productionClaims.push(claim);
   claimIdForText.set(sentenceText, id);
 }
@@ -439,7 +449,19 @@ write(`data/places/production/${placeId}.json`, {
   claims: productionClaims, sentenceCoverage: { desc: coverage(descSentences), popupDesc: coverage(popupSentences) },
   collections: { people: ["guttorm_bruskeland"], objects: place.objects.map(item => item.id), brands: ["sporveien"], structures: place.structures.map(item => item.id), status: "complete", image_coverage_percent: 100 },
   roundsReadiness: { people: "ready_reused_guttorm_bruskeland_with_source_bounded_portrait", objects: "ready_two_documented_physical_transport_objects", brands: "ready_one_official_transport_operator_mark", structures: "ready_one_documented_station_structure", badges: "ready_two_by_underbadges", quiz: "ready_normal_4x7_by", leksikon: "ready_dedicated_source_bound_article", sprak: "ready_five_entries", stories: "ready_one_episode_v1", readings: "ready_four_link_only", fagverk: "preserved_curated_full", frontImage: "ready_real_portrait_3x4", beforeAfter: "ready_2009_2023_with_viewpoint_caveat" },
-  quizReadiness: { status: "canonical_normal_4x7", quizTargetId: placeId, sourceBrief: briefFile, productionContext: "data/quiz/production_context/by/helsfyr.json", normalOpeningQuestions: 14, totalQuestions: 28, reuseDecision: "Legacy 3×5-pakken ble audittert og erstattet fordi den ikke oppfylte dagens 2×7-normalåpning.", questions: sets.slice(0, 2).flatMap(set => set.questions).slice(0, 8).map(q => ({ question: q.question, answer: q.answer, type: q.question_type, normalKnowledgeQuestion: true, claimIds: [q.claim_id] })) },
+  quizReadiness: { status: "canonical_normal_4x7", quizTargetId: placeId, sourceBrief: briefFile, productionContext: "data/quiz/production_context/by/helsfyr.json", normalOpeningQuestions: 14, totalQuestions: 28, reuseDecision: "Legacy 3×5-pakken ble audittert og erstattet fordi den ikke oppfylte dagens 2×7-normalåpning.", questions: [
+    [0, "hva", "claim_helsfyr_text_04"],
+    [1, "når", "claim_helsfyr_text_01"],
+    [3, "hva_skjedde", "claim_helsfyr_text_06"],
+    [4, "hva", "claim_helsfyr_text_07"],
+    [5, "hva_ble_bygget_produsert_eller_endret", "claim_helsfyr_text_14"],
+    [6, "når", "claim_helsfyr_text_19"],
+    [7, "hvem", "claim_helsfyr_text_15"],
+    [8, "når", "claim_helsfyr_text_10"]
+  ].map(([questionIndex, type, claimId]) => {
+    const q = sets.flatMap(set => set.questions)[questionIndex];
+    return { question: q.question, answer: q.answer, type, normalKnowledgeQuestion: true, claimIds: [claimId] };
+  }) },
   storyReadiness: { status: "episode_v1", file: storiesFile, episodeCount: 1 },
   source_conflicts: [{ claim: "Et observert bevegelsesmønster viser hvor enkeltpersoner arbeider eller bor.", status: "rejected", reason: "Fysisk observasjon dokumenterer rute og rombruk, ikke privat identitet eller motiv." }, { claim: "2009- og 2023-bildene er et eksakt før/etter-par.", status: "qualified", reason: "De viser samme stasjon fra ulike ståsteder og brukes bare til overordnet, eksplisitt begrenset sammenligning." }],
   reviews: { factual: { status: "passed", reviewedAt: verifiedAt, reviewer: "Helsfyr full completion source review", notes: "Stedsidentitet, kronologi, transportgrep, personrolle, bilder og quizpåstander er kildeseparert." }, editorial: { status: "passed", reviewedAt: verifiedAt, reviewer: "Helsfyr full completion editorial review", introducedNewFacts: false, notes: "Transport, arbeid og observerbar bevegelse holdes atskilt fra antakelser om individers motiver." } },
