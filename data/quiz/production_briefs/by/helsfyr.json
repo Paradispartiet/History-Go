@@ -1,0 +1,472 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "by",
+  "targetId": "helsfyr",
+  "profile_hint": "normal",
+  "reviewed_at": "2026-09-04",
+  "review_note": "Kildene dekker fire separate læringsjobber uten å bruke observasjon som persondata eller gjøre et bilde til årsaksbevis.",
+  "scope": {
+    "place": "Helsfyr",
+    "production_profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "total_questions": 28,
+    "normal_opening_questions": 14
+  },
+  "sources": {
+    "byleksikon_helsfyr": {
+      "id": "byleksikon_helsfyr",
+      "title": "Oslo byleksikon – Helsfyr",
+      "url": "https://oslobyleksikon.no/side/Helsfyr_%28str%C3%B8k%29",
+      "source_type": "local_history_encyclopedia",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for navn, 1952-hotell, 1966-stasjon, 1968-motorvei, 1970-bro, 1976-overtakelse, 1993-terminal og 2019-oppgradering."
+    },
+    "sporveien_helsfyr": {
+      "id": "sporveien_helsfyr",
+      "title": "Sporveien – Helsfyr",
+      "url": "https://www.sporveien.no/vare-tjenester/t-banen/t-banestasjoner/f/helsfyr/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for stasjonsfunksjon, linjer, adkomster, oppgradering og stasjonskunst."
+    },
+    "arkitektur_torp": {
+      "id": "arkitektur_torp",
+      "title": "Arkitektur – Fredrik Torp",
+      "url": "https://www.arkitektur.no/aktuelt/arkitektur/han-hadde-et-bankende-arkitekthjerte/",
+      "source_type": "professional_press",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for Torps dokumenterte prosjektrolle og terminal-/støyskjermutviklingen."
+    },
+    "sporveien_2018": {
+      "id": "sporveien_2018",
+      "title": "Sporveien årsrapport 2018",
+      "url": "https://www.sporveien.no/contentassets/868d1015af4244d0805e6afde03046ce/sporveien-arsrapport-2018-pdf.pdf",
+      "source_type": "official_report",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert som primærkilde for stasjonsoppgraderingen."
+    },
+    "commons_station_2009": {
+      "id": "commons_station_2009",
+      "title": "Wikimedia Commons – Helsfyr stasjon 2009",
+      "url": "https://commons.wikimedia.org/wiki/File:Helsfyr_stasjon.JPG",
+      "source_type": "catalogue",
+      "review_status": "reviewed",
+      "review_note": "Maxxiis public-domain-foto dokumenterer stasjonen i 2009."
+    },
+    "commons_mx_2023": {
+      "id": "commons_mx_2023",
+      "title": "Wikimedia Commons – MX på Helsfyr 2023",
+      "url": "https://commons.wikimedia.org/wiki/File:20231207_Helsfyr_Mx.jpg",
+      "source_type": "catalogue",
+      "review_status": "reviewed",
+      "review_note": "Kolbkorrs CC BY-SA 4.0-foto dokumenterer MX-togsett ved Helsfyr 7. desember 2023."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "kur_by_03_infrastruktur_og_bevegelse"
+    ],
+    "emne_ids": [
+      "em_by_infrastruktur_mobilitet",
+      "em_by_gangstrommer_snarveier"
+    ],
+    "topic_hook_ids": [
+      "byliv_opphold_vs_gjennomgang"
+    ],
+    "method_ids": [
+      "met_feltobservasjon",
+      "met_gaanalyse",
+      "met_for_etter"
+    ],
+    "thinker_ids": [
+      "michel_de_certeau"
+    ],
+    "works": [
+      "The Practice of Everyday Life"
+    ]
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/by/helsfyr_sets_merged.json",
+      "data/quiz/by/helsfyr_sets.json",
+      "data/quiz/manifest.json"
+    ],
+    "active_before": {
+      "file": "data/quiz/by/helsfyr_sets_merged.json",
+      "set_count": 3,
+      "question_count": 15,
+      "finding": "Legacy-pakken hadde tre sett med fem spørsmål og tilfredsstilte ikke dagens absolutte 2×7-normalåpning."
+    },
+    "decisions": [
+      "Erstatt 3×5-pakken med canonical normalprofil 4×7.",
+      "Bevar de sterke direkte faktaene, men skriv dem inn i ny kildeledet progresjon.",
+      "Hold de første 14 spørsmålene teori- og metodefrie.",
+      "Flytt metode og eksplisitt teoretisk linse til sluttfasen."
+    ],
+    "knowledge_migration": "Alle 28 spørsmål får stabile Helsfyr claim- og Knowledge-ID-er."
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Helsfyr har fire selvstendige læringsjobber: sted/tidslinje, terminal/arbeidsby, overgang/kildekritikk og metode/syntese. Kildene bærer 28 spørsmål uten å kreve rich-filler."
+  },
+  "held_back_candidates": [
+    "Passasjertall uten eksplisitt driftsdatasett.",
+    "Påstander om hvor enkeltreisende bor eller arbeider basert på gangretning.",
+    "2009-fotografiet som bildebevis for 2019-oppgraderingen.",
+    "Scandic som ekstra Brand når én direkte transportidentitet allerede bærer samlingen."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_helsfyr_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon oppgir at strøket har navn etter Helsfyr gård.",
+      "source_ids": [
+        "byleksikon_helsfyr"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Helsfyr T-banestasjon åpnet i 1966.",
+      "source_ids": [
+        "byleksikon_helsfyr",
+        "sporveien_helsfyr"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Sporveiens stasjonsside oppgir linjene 1, 2, 3 og 4.",
+      "source_ids": [
+        "sporveien_helsfyr"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Strømsveien var i 1968 bygget ut til motorvei fra Helsfyr.",
+      "source_ids": [
+        "byleksikon_helsfyr"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon oppgir et 115 meter langt broanlegg.",
+      "source_ids": [
+        "byleksikon_helsfyr"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Det Norske Veritas oppførte et administrasjonsbygg på Helsfyr i 1966.",
+      "source_ids": [
+        "byleksikon_helsfyr"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Det første Hotell Helsfyr og campingplassen ble anlagt i 1952.",
+      "source_ids": [
+        "byleksikon_helsfyr"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Vegdirektoratet overtok DNV-administrasjonsbygget i 1976.",
+      "source_ids": [
+        "byleksikon_helsfyr"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Terminalen ble omformet i 1993.",
+      "source_ids": [
+        "byleksikon_helsfyr",
+        "sporveien_helsfyr"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "1993-utformingen omfattet en 200 meter lang støyskjerm mot Strømsveien.",
+      "source_ids": [
+        "byleksikon_helsfyr"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Sporveiens stasjonshistorikk dokumenterer vestre adkomst mot Fyrstikktorget.",
+      "source_ids": [
+        "sporveien_helsfyr"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Helsfyr stasjon ble oppgradert og gjenåpnet i 2019.",
+      "source_ids": [
+        "byleksikon_helsfyr",
+        "sporveien_helsfyr",
+        "sporveien_2018"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Katrine Giæver fikk ansvar for den integrerte stasjonskunsten.",
+      "source_ids": [
+        "sporveien_helsfyr"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "«Å samle på farger» er integrert i stasjonsmiljøet på Helsfyr.",
+      "source_ids": [
+        "sporveien_helsfyr"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Helsfyr samler flere transportsystemer innenfor et lite område.",
+      "source_ids": [
+        "byleksikon_helsfyr",
+        "sporveien_helsfyr"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Fysisk observasjon kan beskrive ruten, men ikke personens private reiseformål.",
+      "source_ids": [
+        "sporveien_helsfyr"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_gangstrommer_snarveier"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kontorutbyggingen gjør forholdet mellom mobilitet og arbeidslokalisering synlig uten å bestemme enkeltreisendes formål.",
+      "source_ids": [
+        "byleksikon_helsfyr"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Terminalomformingen knyttet flere fysiske problemer sammen.",
+      "source_ids": [
+        "byleksikon_helsfyr",
+        "arkitektur_torp"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Feltarbeid skal rette seg mot rom og forbindelser, ikke identifiserbare personers privatliv.",
+      "source_ids": [
+        "sporveien_helsfyr"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_gangstrommer_snarveier"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Commons-filen dokumenterer et MX-togsett på Helsfyr 7. desember 2023.",
+      "source_ids": [
+        "commons_mx_2023"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Et bilde fra 2009 kan ikke være direkte bildebevis for en senere oppgradering.",
+      "source_ids": [
+        "commons_station_2009",
+        "sporveien_2018"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Infrastruktur omfatter her bane, veier, broer, terminal, adkomster og tekniske systemer.",
+      "source_ids": [
+        "byleksikon_helsfyr",
+        "sporveien_helsfyr"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Gåanalyse undersøker den romlige sekvensen og barrierene uten å kartlegge private personer.",
+      "source_ids": [
+        "sporveien_helsfyr"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_gangstrommer_snarveier"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Observasjon av bevegelse gir ikke i seg selv private bakgrunnsdata eller motiver.",
+      "source_ids": [
+        "sporveien_helsfyr"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_gangstrommer_snarveier"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Før–etter-lesning må skille synlig forskjell fra årsaksforklaring.",
+      "source_ids": [
+        "commons_station_2009",
+        "commons_mx_2023"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "1952, 1966, 1968, 1970, 1993 og 2019 er ulike dokumenterte faser i Helsfyrs utvikling.",
+      "source_ids": [
+        "byleksikon_helsfyr",
+        "sporveien_helsfyr"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Komparasjon må holde stedstype og skala synlig.",
+      "source_ids": [
+        "sporveien_helsfyr"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_helsfyr_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "En kildebasert syntese skiller dokumentert fysisk samlokalisering fra påstander om hvorfor enkeltpersoner bruker stedet.",
+      "source_ids": [
+        "byleksikon_helsfyr",
+        "sporveien_helsfyr",
+        "arkitektur_torp"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_gangstrommer_snarveier"
+    }
+  ]
+}
