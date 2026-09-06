@@ -1,0 +1,173 @@
+name: TEMP Civication Natur Biologi og forskning prerequisites
+
+on:
+  push:
+    branches:
+      - agent/civication-natur-biologi-og-forskning-prerequisites
+  workflow_dispatch:
+
+concurrency:
+  group: temp-civication-natur-biologi-og-forskning-prerequisites
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  materialize-and-verify:
+    if: >-
+      !contains(github.event.head_commit.message, '[prereq-diag-skip]') &&
+      !contains(github.event.head_commit.message, 'Complete Natur Biologi og forskning prerequisites')
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout exact branch head
+        uses: actions/checkout@v4
+        with:
+          ref: agent/civication-natur-biologi-og-forskning-prerequisites
+          fetch-depth: 0
+
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Syntax-check TEMP materializer and focused test
+        run: |
+          node --check scripts/TEMP_materialize_natur_biologi_og_forskning_prerequisites.mjs
+          node --check tests/civication-natur-biologi-og-forskning-prerequisites.test.js
+
+      - name: Materialize prerequisite candidate
+        id: materialize
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          node scripts/TEMP_materialize_natur_biologi_og_forskning_prerequisites.mjs 2>&1 | tee /tmp/natur-biologi-og-forskning-prerequisite-materializer.log
+
+      - name: Persist materializer diagnostic fail-closed
+        if: steps.materialize.outcome != 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp /tmp/natur-biologi-og-forskning-prerequisite-materializer.log /tmp/materializer.log
+          git reset --hard HEAD
+          git clean -fd
+          mkdir -p reports/TEMP
+          cp /tmp/materializer.log reports/TEMP/natur-biologi-og-forskning-prerequisite-materializer.log
+          git add reports/TEMP/natur-biologi-og-forskning-prerequisite-materializer.log
+          git diff --cached --check
+          git commit -m "Record Natur Biologi og forskning prerequisite materializer diagnostic [prereq-diag-skip]"
+          git push origin HEAD:agent/civication-natur-biologi-og-forskning-prerequisites
+          exit 1
+
+      - name: Build generated prerequisite surfaces
+        id: build
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          {
+            echo '=== Role Pack audit ==='
+            node scripts/audit-civication-role-packs.mjs
+            echo '=== Career gameplay audit ==='
+            node scripts/audit-civication-career-gameplay.mjs --write
+            echo '=== Role World readiness audit ==='
+            node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+            echo '=== Scene Registry build ==='
+            node scripts/build-civication-scene-registry.mjs
+            echo '=== Scenario People build ==='
+            node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+          } 2>&1 | tee /tmp/natur-biologi-og-forskning-prerequisite-build.log
+
+      - name: Persist generated-surface diagnostic fail-closed
+        if: steps.build.outcome != 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp /tmp/natur-biologi-og-forskning-prerequisite-build.log /tmp/build.log
+          git reset --hard HEAD
+          git clean -fd
+          mkdir -p reports/TEMP
+          cp /tmp/build.log reports/TEMP/natur-biologi-og-forskning-prerequisite-build.log
+          git add reports/TEMP/natur-biologi-og-forskning-prerequisite-build.log
+          git diff --cached --check
+          git commit -m "Record Natur Biologi og forskning prerequisite build diagnostic [prereq-diag-skip]"
+          git push origin HEAD:agent/civication-natur-biologi-og-forskning-prerequisites
+          exit 1
+
+      - name: Verify complete prerequisite candidate
+        id: verify
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          {
+            echo '=== Focused Natur prerequisite test ==='
+            node tests/civication-natur-biologi-og-forskning-prerequisites.test.js
+            echo '=== Scene Registry check ==='
+            node scripts/build-civication-scene-registry.mjs --check
+            echo '=== Scenario People check ==='
+            node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
+            echo '=== Scenario People test ==='
+            node --test tests/civication-scenario-people.test.mjs
+            echo '=== Career gameplay matrix test ==='
+            node tests/civication-career-gameplay-matrix.test.js
+            echo '=== Role World rollout readiness test ==='
+            node tests/civication-role-world-rollout-readiness.test.js
+            echo '=== Role Pack depth ==='
+            node tests/civication-role-pack-depth.test.js
+            echo '=== Full Civication suite ==='
+            node tests/run-civication-tests.mjs
+            echo '=== Job learning profiles ==='
+            npm run audit:job-learning-profiles
+            echo '=== Job knowledge requirements ==='
+            npm run audit:job-knowledge-requirements
+          } 2>&1 | tee /tmp/natur-biologi-og-forskning-prerequisite-verification.log
+
+      - name: Persist verification diagnostic fail-closed
+        if: steps.verify.outcome != 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          tail -n 420 /tmp/natur-biologi-og-forskning-prerequisite-verification.log > /tmp/verification-tail.log
+          git reset --hard HEAD
+          git clean -fd
+          mkdir -p reports/TEMP
+          cp /tmp/verification-tail.log reports/TEMP/natur-biologi-og-forskning-prerequisite-verification.log
+          git add reports/TEMP/natur-biologi-og-forskning-prerequisite-verification.log
+          git diff --cached --check
+          git commit -m "Record Natur Biologi og forskning prerequisite verification diagnostic [prereq-diag-skip]"
+          git push origin HEAD:agent/civication-natur-biologi-og-forskning-prerequisites
+          exit 1
+
+      - name: Commit verified permanent prerequisites
+        if: steps.materialize.outcome == 'success' && steps.build.outcome == 'success' && steps.verify.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f scripts/TEMP_materialize_natur_biologi_og_forskning_prerequisites.mjs
+          rm -f .github/workflows/TEMP-civication-natur-biologi-og-forskning-prerequisites.yml
+          rm -f reports/TEMP/natur-biologi-og-forskning-prerequisite-materializer.log
+          rm -f reports/TEMP/natur-biologi-og-forskning-prerequisite-build.log
+          rm -f reports/TEMP/natur-biologi-og-forskning-prerequisite-verification.log
+          rmdir reports/TEMP 2>/dev/null || true
+          git diff --check
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No permanent changes to commit.' >&2
+            exit 1
+          fi
+          git diff --cached --check
+          git status --short
+          git commit -m "Complete Natur Biologi og forskning prerequisites"
+          git push origin HEAD:agent/civication-natur-biologi-og-forskning-prerequisites
