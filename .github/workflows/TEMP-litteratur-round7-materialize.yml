@@ -1,0 +1,110 @@
+name: TEMP Litteratur round 7 materialize
+
+on:
+  push:
+    branches:
+      - agent/litteratur-maintenance-round7-sjanger-20260906
+    paths:
+      - '.github/workflows/TEMP-litteratur-round7-materialize.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/litteratur-maintenance-round7-sjanger-20260906
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Apply controlled round 7 substitutions
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          replacements = {
+            'https://www.cambridge.org/highereducation/books/the-cambridge-introduction-to-narrative/33F40DD4272A7925A9B227BC4E11D85C': 'https://www.cambridge.org/highereducation/books/the-cambridge-introduction-to-narrative/CFD3B91DD86BE8A9F3F228D07A801FEA',
+            'https://www.versobooks.com/products/2327-archaeologies-of-the-future': 'https://www.versobooks.com/products/1945-archaeologies-of-the-future',
+            'https://www.routledge.com/Popular-Fiction-The-Logics-and-Practices-of-a-Literary-Field/Gelder/p/book/9780415356475': 'https://www.routledge.com/Popular-Fiction-The-Logics-and-Practices-of-a-Literary-Field/Gelder/p/book/9780415356473',
+            'https://www.penguin.co.uk/books/60308/a-room-of-ones-own-by-woolf-virginia/9780241371978': 'https://www.penguin.co.uk/books/57208/a-room-of-ones-ownthree-guineas-by-woolf-virginia/9780241371978',
+          }
+          targets = [
+            Path('data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/sjanger_modus_form/claims.json'),
+            Path('scripts/materialize-litteratur-drama-genre-v1.mjs'),
+            Path('data/quiz/litteratur/litteratur_subject_pathways_v1.json'),
+          ]
+          for old, new in replacements.items():
+            counts = {}
+            for target in targets:
+              text = target.read_text()
+              count = text.count(old)
+              counts[str(target)] = count
+              if count:
+                target.write_text(text.replace(old, new))
+            if any(counts[str(target)] == 0 for target in targets):
+              raise SystemExit(f'Fail closed: expected {old} in every target; counts={counts}')
+            for target in targets:
+              if old in target.read_text():
+                raise SystemExit(f'Fail closed: old URL remains in {target}: {old}')
+            print(f'replaced {sum(counts.values())} occurrences: {old} -> {new}')
+          PY
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Regenerate derived Litteratur outputs
+        run: |
+          node --experimental-strip-types scripts/knowledge-canonical-data.mts --write
+          node scripts/audit-fagverk-litteratur-legacy-theory.mjs --write-report > /tmp/litteratur-legacy-theory-round7.json
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Validate round 7 focused gates
+        run: |
+          node --check scripts/audit-litteratur-maintenance-source-refresh-round7.mjs
+          node scripts/audit-litteratur-maintenance-source-refresh-round7.mjs
+          node --test tests/litteratur-maintenance-source-refresh-round7.test.mjs
+          node scripts/audit-litteratur-assessment-v1.mjs
+          node tools/audit-litteratur-theory-integrity.mjs
+          node --test tests/litteratur-assessment-v1.test.mjs tests/litteratur-theory-integrity.test.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node scripts/audit-fagverk-litteratur-legacy-theory.mjs > /tmp/litteratur-legacy-theory-round7-check.json
+      - name: Reject unrelated generator drift
+        run: |
+          python3 - <<'PY'
+          import subprocess
+          allowed = {
+            'data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/sjanger_modus_form/claims.json',
+            'data/fagverk/fagverk_release.json',
+            'data/knowledge/subjects/litteratur/knowledge_units.generated.json',
+            'data/quiz/litteratur/litteratur_subject_pathways_v1.json',
+            'reports/fagverk/litteratur-legacy-theory-audit.json',
+            'scripts/materialize-litteratur-drama-genre-v1.mjs',
+          }
+          out = subprocess.check_output(['git','status','--porcelain'], text=True)
+          changed = set()
+          for line in out.splitlines():
+            path = line[3:]
+            if ' -> ' in path:
+              path = path.split(' -> ',1)[1]
+            changed.add(path)
+          unexpected = sorted(changed - allowed)
+          print('changed files:', *sorted(changed), sep='\n  ')
+          if unexpected:
+            raise SystemExit('Fail closed: unrelated generator drift: ' + ', '.join(unexpected))
+          PY
+      - name: Commit permanent data materialization
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/sjanger_modus_form/claims.json \
+            data/fagverk/fagverk_release.json \
+            data/knowledge/subjects/litteratur/knowledge_units.generated.json \
+            data/quiz/litteratur/litteratur_subject_pathways_v1.json \
+            reports/fagverk/litteratur-legacy-theory-audit.json \
+            scripts/materialize-litteratur-drama-genre-v1.mjs
+          git diff --cached --check
+          git commit -m 'Materialize Litteratur source refresh round 7'
+          git push origin HEAD:agent/litteratur-maintenance-round7-sjanger-20260906
