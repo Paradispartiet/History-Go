@@ -26,6 +26,7 @@ const PLACES = [
   'budsjett_arbeidsgiver_og_prioriteringsrom',
   'samlingsrisiko_beredskap_og_offentlighetsrom'
 ];
+const ACTOR_PLACES = [PLACES[1],PLACES[2],PLACES[3],PLACES[0]];
 const PERSISTENT = 'institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg';
 const LOOPS = [
   'mandat -> strategi -> budsjett -> gjennomforing -> rapportering -> evaluering',
@@ -75,7 +76,7 @@ for (const [index, person] of model.related_people.entries()) {
   assert.equal(person.fictional, true);
   assert.equal(person.fictional_scenario_actor, true);
   assert.equal(person.canonical_person_ref, null);
-  assert.deepEqual(person.workplace_ids, [PLACES[index]]);
+  assert.deepEqual(person.workplace_ids, [ACTOR_PLACES[index]]);
   assert.ok(person.function.length >= 220, person.id);
   assert.ok(person.authority_relation.length >= 220, person.id);
 }
