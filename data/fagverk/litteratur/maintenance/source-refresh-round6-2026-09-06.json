@@ -1,0 +1,218 @@
+{
+  "schema": "history_go_litteratur_maintenance_source_refresh_v1",
+  "version": "1.0.0",
+  "subject_id": "litteratur",
+  "round_id": "source_refresh_round6_2026_09_06",
+  "baseline_main_sha": "019bdb16b94331a90b22cf90785f1adf0d085a65",
+  "checked_at": "2026-09-06",
+  "status": "verified",
+  "scope": {
+    "area_id": "drama_teatertekst_framforing",
+    "canonical_source_mutation": true,
+    "new_strict_subcategory": false,
+    "place_production": false,
+    "maintenance_evidence_only": false,
+    "replacement_policy": "replace_only_when_same-resource-or-authoritative-successor-url-is-verified"
+  },
+  "source_checks": [
+    {
+      "claims_source_id": "sdr01",
+      "title": "The Semiotics of Theatre and Drama",
+      "publisher": "Routledge",
+      "verification_state": "verified_authoritative_replacement",
+      "old_url": "https://www.routledge.com/The-Semiotics-of-Theatre-and-Drama/Elam/p/book/9780415280183",
+      "canonical_url": "https://www.routledge.com/The-Semiotics-of-Theatre-and-Drama-2nd-Edition/Elam/p/book/9780415280181",
+      "evidence": "Routledge currently serves Keir Elam's second edition at the exact title/author product page and identifies the 2002 second edition. The previous endpoint used a non-current product ISBN path.",
+      "action": "replace_canonical_url"
+    },
+    {
+      "claims_source_id": "sdr02",
+      "title": "The Cambridge Introduction to Theatre Studies",
+      "publisher": "Cambridge University Press",
+      "verification_state": "verified_authoritative_replacement",
+      "old_url": "https://www.cambridge.org/core/books/cambridge-introduction-to-theatre-studies/60D3D7261C85D0CF77EA38FB6591653A",
+      "canonical_url": "https://www.cambridge.org/core/books/cambridge-introduction-to-theatre-studies/3CAA6E67577F418E6EC2D507F27C8ABB",
+      "evidence": "Cambridge Core currently serves Christopher B. Balme's The Cambridge Introduction to Theatre Studies under this book identity and DOI 10.1017/CBO9780511817021.",
+      "action": "replace_canonical_url"
+    },
+    {
+      "claims_source_id": "sdr03",
+      "title": "Postdramatic Theatre",
+      "publisher": "Routledge",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.routledge.com/Postdramatic-Theatre/Lehmann/p/book/9780415268134",
+      "evidence": "Routledge currently serves the same Hans-Thies Lehmann title at the canonical endpoint and identifies the 2006 first English edition.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "sdr04",
+      "title": "Performance Studies: An Introduction",
+      "publisher": "Routledge",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.routledge.com/Performance-Studies-An-Introduction/Schechner/p/book/9781138284562",
+      "evidence": "Routledge currently serves Richard Schechner's fourth edition at the same canonical product endpoint, ISBN 9781138284562.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "sdr05",
+      "title": "Aristotle’s Poetics",
+      "publisher": "Cambridge University Press",
+      "verification_state": "verified_live_redirect_same_resource",
+      "canonical_url": "https://www.cambridge.org/core/books/cambridge-history-of-literary-criticism/aristotles-poetics/901DBEBFF50D43D0709ACF7BBC6C0495",
+      "resolved_url": "https://www.cambridge.org/core/books/abs/cambridge-history-of-literary-criticism/aristotles-poetics/901DBEBFF50D43D0709ACF7BBC6C0495",
+      "evidence": "Cambridge currently exposes Stephen Halliwell's chapter with the same stable content hash and DOI 10.1017/CHOL9780521300063.005 under the /abs/ route. The canonical identity is unchanged.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "sdr06",
+      "title": "The Routledge Companion to Dramaturgy",
+      "publisher": "Routledge",
+      "verification_state": "verified_authoritative_replacement",
+      "old_url": "https://www.routledge.com/The-Routledge-Companion-to-Dramaturgy/Romanska/p/book/9780415658494",
+      "canonical_url": "https://www.routledge.com/The-Routledge-Companion-to-Dramaturgy/Romanska/p/book/9780415658492",
+      "evidence": "Routledge currently serves the same Magda Romanska edited 2015 first edition at the exact title/editor product endpoint, ISBN 9780415658492.",
+      "action": "replace_canonical_url"
+    },
+    {
+      "claims_source_id": "sdr07",
+      "title": "Waiting for Godot",
+      "publisher": "Faber",
+      "verification_state": "retained_fail_closed_no_authoritative_replacement",
+      "canonical_url": "https://www.faber.co.uk/product/9780571229116-waiting-for-godot/",
+      "evidence": "Independent current bibliographic evidence confirms Faber & Faber ISBN 9780571229116, but this pass did not verify an exact current Faber product successor endpoint strongly enough to replace the canonical URL.",
+      "action": "retain_until_authoritative_replacement_is_verified"
+    },
+    {
+      "claims_source_id": "sdr08",
+      "title": "Oedipus the King",
+      "publisher": "Project Gutenberg",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.gutenberg.org/ebooks/27673",
+      "evidence": "Project Gutenberg continues to expose ebook 27673 as Sophocles' Oedipus King of Thebes.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "sdr09",
+      "title": "The Merchant of Venice",
+      "publisher": "Project Gutenberg",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.gutenberg.org/ebooks/1515",
+      "evidence": "Project Gutenberg continues to expose ebook 1515 as The Merchant of Venice and identifies it as the improved edition.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "sdr10",
+      "title": "A Doll’s House",
+      "publisher": "Project Gutenberg",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.gutenberg.org/ebooks/2542",
+      "evidence": "Project Gutenberg continues to expose ebook 2542 as A Doll's House; the record was updated in 2026 without changing ebook identity.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "sdr11",
+      "title": "4.48 Psychosis",
+      "publisher": "Bloomsbury",
+      "verification_state": "retained_fail_closed_no_authoritative_replacement",
+      "canonical_url": "https://www.bloomsbury.com/uk/448-psychosis-9781350148903/",
+      "evidence": "Bloomsbury currently exposes several editions of Sarah Kane's 4.48 Psychosis, including the first-edition and newer edition product pages. This pass did not prove which exact current endpoint is the authoritative successor to ISBN-path 9781350148903, so no substitution is made.",
+      "action": "retain_until_authoritative_replacement_is_verified"
+    },
+    {
+      "claims_source_id": "sdr12",
+      "title": "Theatre Histories",
+      "publisher": "Routledge",
+      "verification_state": "retained_fail_closed_no_authoritative_replacement",
+      "canonical_url": "https://www.routledge.com/Theatre-Histories-An-Introduction/Zarrilli-McConachie-Williams-Sorgenfrei/p/book/9780415837967",
+      "evidence": "Routledge now prominently serves a 2024 fourth edition with a changed author team. Because that is not identity-equivalent to the older Zarrilli/McConachie/Williams/Sorgenfrei source used by the claims, the old canonical endpoint is retained rather than silently switching editions.",
+      "action": "retain_until_authoritative_replacement_is_verified"
+    },
+    {
+      "claims_source_id": "sdr13",
+      "title": "Atsumori – Noh Plays DataBase",
+      "publisher": "The Noh.com",
+      "verification_state": "verified_authoritative_replacement",
+      "old_url": "https://www.the-noh.com/en/plays/data/program_008.html",
+      "canonical_url": "https://www.the-noh.com/en/plays/data/detail_008.html",
+      "evidence": "The Noh Plays Database currently serves Atsumori details at detail_008.html with the same play identity, author, characters and scene structure; the former program_008 route is superseded.",
+      "action": "replace_canonical_url"
+    },
+    {
+      "claims_source_id": "sdr14",
+      "title": "Dramaturgy: An Introduction",
+      "publisher": "Routledge",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.routledge.com/Dramaturgy-An-Introduction/Dieleman-Franzen-Zangl-Danner/p/book/9789463724968",
+      "evidence": "Routledge currently serves the same 2021 first edition by Dieleman, Franzen, Zangl and Danner at the canonical endpoint.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "sdr15",
+      "title": "Contemporary Mise en Scène",
+      "publisher": "Routledge",
+      "verification_state": "retained_fail_closed_no_authoritative_replacement",
+      "canonical_url": "https://www.routledge.com/Contemporary-Mise-en-Scene-Staging-Theatre-Today/Pavis/p/book/9780415553445",
+      "evidence": "Current Routledge search resolves the same title through a different format ISBN while authoritative bibliographic evidence confirms paperback ISBN 9780415553445. Because the current product routing is format-dependent, the canonical paperback endpoint is retained fail-closed.",
+      "action": "retain_until_authoritative_replacement_is_verified"
+    },
+    {
+      "claims_source_id": "sdr16",
+      "title": "Hamlet – The Wooster Group",
+      "publisher": "The Wooster Group",
+      "verification_state": "verified_live_redirect_same_resource",
+      "canonical_url": "https://thewoostergroup.org/work/hamlet/",
+      "resolved_url": "https://thewoostergroup.org/work/hamlet",
+      "evidence": "The Wooster Group currently serves the same Hamlet production page; only trailing-slash normalization differs.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "sdr17",
+      "title": "Sleep No More",
+      "publisher": "Punchdrunk",
+      "verification_state": "verified_authoritative_replacement",
+      "old_url": "https://www.punchdrunk.com/project/sleep-no-more/",
+      "canonical_url": "https://www.punchdrunk.com/work/sleep-no-more/",
+      "evidence": "Punchdrunk currently serves the original London 2003 Sleep No More production under /work/sleep-no-more/, preserving the same work identity while the old /project/ route has been superseded.",
+      "action": "replace_canonical_url"
+    },
+    {
+      "claims_source_id": "sdr18",
+      "title": "100% City",
+      "publisher": "Rimini Protokoll",
+      "verification_state": "retained_fail_closed_no_authoritative_replacement",
+      "canonical_url": "https://www.rimini-protokoll.de/website/en/project/100-stadt",
+      "evidence": "Rimini Protokoll continues to document 100% City in current publications and site text, but this pass did not verify a single exact successor project endpoint for the canonical English URL. The endpoint is retained rather than guessed from variant project paths.",
+      "action": "retain_until_authoritative_replacement_is_verified"
+    }
+  ],
+  "materialization": {
+    "replacement_targets": [
+      "data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/drama_teatertekst_framforing/claims.json",
+      "scripts/materialize-litteratur-drama-genre-v1.mjs",
+      "scripts/materialize-litteratur-drama-full-field-v1.mjs",
+      "data/quiz/litteratur/litteratur_subject_pathways_v1.json",
+      "data/knowledge/subjects/litteratur/knowledge_units.generated.json"
+    ]
+  },
+  "summary": {
+    "canonical_sources_checked": 18,
+    "verified_live": 6,
+    "verified_live_redirect_same_resource": 2,
+    "verified_authoritative_replacement": 5,
+    "retained_fail_closed_no_authoritative_replacement": 5,
+    "canonical_url_replacements": 5
+  },
+  "quality_gates": {
+    "all_18_area_sources_accounted_for": true,
+    "five_authoritative_replacements_materialized": true,
+    "replacement_identity_preserved": true,
+    "uncertain_endpoints_not_auto_replaced": true,
+    "canonical_source_ids_preserved": true,
+    "pathway_source_count_preserved": true,
+    "claim_provenance_scope_unchanged": true,
+    "theory_integrity_scope_unchanged": true,
+    "canonical_subject_architecture_unchanged": true,
+    "completion_status_preserved": true,
+    "knowledge_provenance_checked_source_id_aware": true
+  }
+}
