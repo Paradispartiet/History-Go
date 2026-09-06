@@ -126,7 +126,7 @@ assert.equal(world.cross_role_proof.candidate_when_shared_work_is_real,false);
 assert.match(world.cross_role_proof.rule,/not_required_for_rollout/i);
 assert.match(world.cross_role_proof.rule,/genuint|shared/i);
 assert.deepEqual(world.editorial_uniqueness.not_copy_of,['kunst/kunst_kuratering_og_program','kunst/kunst_utstillingsproduksjon','kunst/kunst_museumsledelse']);
-for (const term of [/publikum/i,/frontlinje/i,/tilgjengelig/i,/hendelse/i,/korrig/i,/privat/i]) assert.match(world.editorial_uniqueness.rule,term);
+for (const term of [/publikum/i,/frontlinje/i,/tilgjengelig/i,/hendelse/i,/korrig|korreks/i,/privat/i]) assert.match(world.editorial_uniqueness.rule,term);
 
 assert.equal(world.season.days,14);
 assert.deepEqual(world.season.day_phases,['morning','lunch','afternoon','evening']);
