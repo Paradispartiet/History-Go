@@ -1,28 +1,6 @@
 === Focused Natur prerequisite test ===
-node:assert:150
-  throw new AssertionError(obj);
-  ^
-
-AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
-+ actual - expected
-
-+ 'foundation_ready'
-- 'needs_role_authored_work'
-
-    at Object.<anonymous> (/home/runner/work/History-Go/History-Go/tests/civication-natur-biologi-og-forskning-prerequisites.test.js:140:8)
-    at Module._compile (node:internal/modules/cjs/loader:1781:14)
-    at Object..js (node:internal/modules/cjs/loader:1913:10)
-    at Module.load (node:internal/modules/cjs/loader:1505:32)
-    at Function._load (node:internal/modules/cjs/loader:1309:12)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
-    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
-    at node:internal/main/run_main_module:36:49 {
-  generatedMessage: true,
-  code: 'ERR_ASSERTION',
-  actual: 'foundation_ready',
-  expected: 'needs_role_authored_work',
-  operator: 'strictEqual',
-  diff: 'simple'
-}
-
-Node.js v22.23.2
+PASS: Natur Biologi og forskning foundation is playable and rollout-ready while bounded audience standing remains reserved for Role World authoring.
+=== Scene Registry check ===
+[CivicationSceneRegistry] Error: data/Civication/compiledSceneRegistryV1.json er ute av sync med kildene
+    at checkRegistry (file:///home/runner/work/History-Go/History-Go/scripts/build-civication-scene-registry.mjs:1165:35)
+    at async main (file:///home/runner/work/History-Go/History-Go/scripts/build-civication-scene-registry.mjs:1185:34)
