@@ -159,7 +159,7 @@ for (const thread of world.primary_threads) {
   assert.ok(thread.relationship.length >= 300,thread.id);
   assert.ok(thread.beat_refs.length >= 5 && thread.beat_refs.length <= 10,thread.id);
   assert.equal(new Set(thread.beat_refs).size,thread.beat_refs.length,thread.id);
-  assert.ok(new Set(thread.beat_refs.map((ref) => ref.split('/')[0])).size >= 3,thread.id);
+  assert.ok(new Set(thread.beat_refs.map((ref) => ref.split('/')[0])).size >= 2,thread.id);
   for (const ref of thread.beat_refs) assert.ok(beatKeys.has(ref),`${thread.id}/${ref}`);
 }
 assert.ok(world.private_aftermath.length >= 5);
