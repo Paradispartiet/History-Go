@@ -183,15 +183,15 @@ const poetrySections = [
 const sourceRows = {
   narrative: [
     ['sna01', 'Narrative Discourse', 'https://www.cornellpress.cornell.edu/book/9780801492594/narrative-discourse/', 'Cornell University Press'],
-    ['sna02', 'Narrative Theory: Core Concepts and Critical Debates', 'https://ohiostatepress.org/books/titles/9780814251845.html', 'The Ohio State University Press'],
-    ['sna03', 'The Cambridge Companion to Narrative', 'https://www.cambridge.org/core/books/cambridge-companion-to-narrative/8D052A27BEAFAA776DAC889CF5A910E2', 'Cambridge University Press'],
-    ['sna04', 'The Rhetoric of Fiction', 'https://press.uchicago.edu/ucp/books/book/chicago/R/bo3634372.html', 'University of Chicago Press'],
+    ['sna02', 'Narrative Theory: Core Concepts and Critical Debates', 'https://ohiostatepress.org/books/BookPages/HermanNarrative.html', 'The Ohio State University Press'],
+    ['sna03', 'The Cambridge Companion to Narrative', 'https://www.cambridge.org/core/books/cambridge-companion-to-narrative/45E41A6D74F9CB697D9668AC46D88397', 'Cambridge University Press'],
+    ['sna04', 'The Rhetoric of Fiction', 'https://press.uchicago.edu/ucp/books/book/chicago/R/bo5965941.html', 'University of Chicago Press'],
     ['sna05', 'Story and Discourse', 'https://www.cornellpress.cornell.edu/book/9780801491863/story-and-discourse/', 'Cornell University Press'],
-    ['sna06', 'The Cambridge Introduction to Narrative', 'https://www.cambridge.org/highereducation/books/the-cambridge-introduction-to-narrative/33F40DD4272A7925A9B227BC4E11D85C', 'Cambridge University Press'],
+    ['sna06', 'The Cambridge Introduction to Narrative', 'https://www.cambridge.org/highereducation/books/the-cambridge-introduction-to-narrative/CFD3B91DD86BE8A9F3F228D07A801FEA', 'Cambridge University Press'],
     ['sna07', 'Emma', 'https://www.gutenberg.org/ebooks/158', 'Project Gutenberg'],
     ['sna08', 'Pride and Prejudice', 'https://www.gutenberg.org/ebooks/1342', 'Project Gutenberg'],
     ['sna09', 'Le Père Goriot', 'https://www.gutenberg.org/ebooks/1237', 'Project Gutenberg'],
-    ['sna10', 'The Tell-Tale Heart', 'https://www.gutenberg.org/ebooks/2147', 'Project Gutenberg'],
+    ['sna10', 'The Tell-Tale Heart', 'https://www.gutenberg.org/ebooks/2148', 'Project Gutenberg'],
     ['sna11', 'The Garden Party and Other Stories', 'https://www.gutenberg.org/ebooks/1429', 'Project Gutenberg'],
     ['sna12', 'In Search of Lost Time', 'https://www.penguinrandomhouse.com/series/SLT/in-search-of-lost-time/', 'Penguin Random House']
   ],
