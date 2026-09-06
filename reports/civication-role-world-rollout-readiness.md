@@ -2,7 +2,7 @@
 
 **Status:** GREEN — controlled role-by-role rollout open
 **Canonical career roles audited:** 85
-**Classification:** 62 rollout_ready / 21 needs_role_authored_work / 2 blocked
+**Classification:** 63 rollout_ready / 20 needs_role_authored_work / 2 blocked
 **Current broad_rollout_allowed:** true (controlled rollout open)
 
 ## Gate decision
@@ -27,7 +27,7 @@ A PASS with policy open means controlled role-by-role rollout may proceed. It do
 
 ## First structurally varied wave candidates
 
-_No safe first-wave set is available yet._
+- **kunst/kunst_museumsledelse** — other; rollout_ready; queue #1
 
 The first wave is a recommendation, not a batch PR: every role still gets its own PR. Cross-role linkage is optional and only used when the work object is genuinely shared.
 
@@ -35,7 +35,7 @@ The first wave is a recommendation, not a batch PR: every role still gets its ow
 
 | Rank | Role | Class | Structural family | Cross-role | Main authored debt |
 | ---: | --- | --- | --- | --- | --- |
-| 1 | `kunst/kunst_museumsledelse` | needs_role_authored_work | other | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
+| 1 | `kunst/kunst_museumsledelse` | rollout_ready | other | not_required_for_rollout | situated_reputation |
 | 2 | `kunst/kunst_publikum_og_formidling` | needs_role_authored_work | other | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
 | 3 | `natur/natur_biologi_og_forskning` | needs_role_authored_work | research_education | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
 | 4 | `natur/natur_felt_og_formidling` | needs_role_authored_work | other | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |

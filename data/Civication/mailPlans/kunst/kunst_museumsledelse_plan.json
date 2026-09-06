@@ -1,0 +1,202 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "version": 1,
+  "id": "kunst_museumsledelse_foundation_v1",
+  "category": "kunst",
+  "role_scope": "kunst_museumsledelse",
+  "title": "Museumsledelse",
+  "description": "Seksten steg fra første styre- og risikosak til etterprøvbar evaluering av samme institusjonelle styringsspor.",
+  "arc": {
+    "from": "Formelt utnevnt museumsdirektør som arver et uavklart styrings- og risikobilde.",
+    "to": "Direktør som kan holde samfunnsoppdrag, styremandat, faggrenser, budsjett, arbeidsgiveransvar, samling og offentlighet sammen uten å gjøre tittel til ubegrenset myndighet.",
+    "core_questions": [
+      "Hvem kan faktisk beslutte denne saken?",
+      "Hva må stå igjen som vesentlig risiko eller faglig grense?",
+      "Når må ny informasjon gjenåpne beslutningen?"
+    ]
+  },
+  "outcome_rules": {
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 2,
+      "strikes_lte": 0
+    },
+    "fired": {
+      "stability_values": [
+        "FIRED"
+      ],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "stagnated": {
+      "autonomy_delta": -10,
+      "stability": "STAGNATED",
+      "add_branch_flags": [
+        "career_stagnated",
+        "museumsledelse_mandatssvikt"
+      ]
+    }
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Før institusjonsloggen gjennom job med synlig mandat, vesentlig risiko, ventepunkt, beslutningsnivå og neste eier.",
+      "allowed_families": [
+        "museumsledelse_institusjonsstyring_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 2,
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Før institusjonsloggen gjennom people med synlig mandat, vesentlig risiko, ventepunkt, beslutningsnivå og neste eier.",
+      "allowed_families": [
+        "museumsledelse_profesjonelle_relations"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 3,
+      "type": "knowledge",
+      "phase": "intro",
+      "step_goal": "Før institusjonsloggen gjennom knowledge med synlig mandat, vesentlig risiko, ventepunkt, beslutningsnivå og neste eier.",
+      "allowed_families": [
+        "museumsledelse_history_go_kunstinstitusjon"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 4,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Før institusjonsloggen gjennom job med synlig mandat, vesentlig risiko, ventepunkt, beslutningsnivå og neste eier.",
+      "allowed_families": [
+        "museumsledelse_institusjonsstyring_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 5,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Før institusjonsloggen gjennom people med synlig mandat, vesentlig risiko, ventepunkt, beslutningsnivå og neste eier.",
+      "allowed_families": [
+        "museumsledelse_profesjonelle_relations"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 6,
+      "type": "conflict",
+      "phase": "advanced",
+      "step_goal": "Før institusjonsloggen gjennom conflict med synlig mandat, vesentlig risiko, ventepunkt, beslutningsnivå og neste eier.",
+      "allowed_families": [
+        "museumsledelse_styre_fag_og_arbeidsgiverkonflikt"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 7,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Før institusjonsloggen gjennom job med synlig mandat, vesentlig risiko, ventepunkt, beslutningsnivå og neste eier.",
+      "allowed_families": [
+        "museumsledelse_institusjonsstyring_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 8,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Før institusjonsloggen gjennom people med synlig mandat, vesentlig risiko, ventepunkt, beslutningsnivå og neste eier.",
+      "allowed_families": [
+        "museumsledelse_profesjonelle_relations"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 9,
+      "type": "event",
+      "phase": "advanced",
+      "step_goal": "Før institusjonsloggen gjennom event med synlig mandat, vesentlig risiko, ventepunkt, beslutningsnivå og neste eier.",
+      "allowed_families": [
+        "museumsledelse_beredskap_og_endret_risiko"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 10,
+      "type": "micro",
+      "phase": "advanced",
+      "step_goal": "Før institusjonsloggen gjennom micro med synlig mandat, vesentlig risiko, ventepunkt, beslutningsnivå og neste eier.",
+      "allowed_families": [
+        "museumsledelse_rask_mandatavklaring"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 11,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Før institusjonsloggen gjennom job med synlig mandat, vesentlig risiko, ventepunkt, beslutningsnivå og neste eier.",
+      "allowed_families": [
+        "museumsledelse_institusjonsstyring_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 12,
+      "type": "people",
+      "phase": "mastery",
+      "step_goal": "Før institusjonsloggen gjennom people med synlig mandat, vesentlig risiko, ventepunkt, beslutningsnivå og neste eier.",
+      "allowed_families": [
+        "museumsledelse_profesjonelle_relations"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 13,
+      "type": "followup",
+      "phase": "mastery",
+      "step_goal": "Før institusjonsloggen gjennom followup med synlig mandat, vesentlig risiko, ventepunkt, beslutningsnivå og neste eier.",
+      "allowed_families": [
+        "museumsledelse_rapportering_og_etterkontroll"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 14,
+      "type": "story",
+      "phase": "mastery",
+      "step_goal": "Før institusjonsloggen gjennom story med synlig mandat, vesentlig risiko, ventepunkt, beslutningsnivå og neste eier.",
+      "allowed_families": [
+        "museumsledelse_lederidentitet_og_samfunnsoppdrag"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 15,
+      "type": "consequence",
+      "phase": "mastery",
+      "step_goal": "Før institusjonsloggen gjennom consequence med synlig mandat, vesentlig risiko, ventepunkt, beslutningsnivå og neste eier.",
+      "allowed_families": [
+        "museumsledelse_beslutning_og_etterspill"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 16,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Før institusjonsloggen gjennom job med synlig mandat, vesentlig risiko, ventepunkt, beslutningsnivå og neste eier.",
+      "allowed_families": [
+        "museumsledelse_institusjonsstyring_job"
+      ],
+      "fallback_types": []
+    }
+  ]
+}
