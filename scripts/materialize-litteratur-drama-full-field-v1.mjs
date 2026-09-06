@@ -51,11 +51,11 @@ const addedConcepts = [
 ];
 
 const addedSources = [
-  ['sdr13', 'Atsumori – Noh Plays DataBase', 'https://www.the-noh.com/en/plays/data/program_008.html', 'The Noh.com'],
+  ['sdr13', 'Atsumori – Noh Plays DataBase', 'https://www.the-noh.com/en/plays/data/detail_008.html', 'The Noh.com'],
   ['sdr14', 'Dramaturgy: An Introduction', 'https://www.routledge.com/Dramaturgy-An-Introduction/Dieleman-Franzen-Zangl-Danner/p/book/9789463724968', 'Routledge'],
   ['sdr15', 'Contemporary Mise en Scène', 'https://www.routledge.com/Contemporary-Mise-en-Scene-Staging-Theatre-Today/Pavis/p/book/9780415553445', 'Routledge'],
   ['sdr16', 'Hamlet – The Wooster Group', 'https://thewoostergroup.org/work/hamlet/', 'The Wooster Group'],
-  ['sdr17', 'Sleep No More', 'https://www.punchdrunk.com/project/sleep-no-more/', 'Punchdrunk'],
+  ['sdr17', 'Sleep No More', 'https://www.punchdrunk.com/work/sleep-no-more/', 'Punchdrunk'],
   ['sdr18', '100% City', 'https://www.rimini-protokoll.de/website/en/project/100-stadt', 'Rimini Protokoll']
 ].map(([id, label, url, publisher]) => ({ id, label, url, publisher, type: 'faglig_eller_primar_kilde', source_location: 'Verk-, produksjons- eller metodepresentasjon' }));
 

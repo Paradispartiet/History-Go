@@ -140,12 +140,12 @@ const genreSections = [
 
 const sourceSets = {
   drama: [
-    ['sdr01', 'The Semiotics of Theatre and Drama', 'https://www.routledge.com/The-Semiotics-of-Theatre-and-Drama/Elam/p/book/9780415280183', 'Routledge'],
-    ['sdr02', 'The Cambridge Introduction to Theatre Studies', 'https://www.cambridge.org/core/books/cambridge-introduction-to-theatre-studies/60D3D7261C85D0CF77EA38FB6591653A', 'Cambridge University Press'],
+    ['sdr01', 'The Semiotics of Theatre and Drama', 'https://www.routledge.com/The-Semiotics-of-Theatre-and-Drama-2nd-Edition/Elam/p/book/9780415280181', 'Routledge'],
+    ['sdr02', 'The Cambridge Introduction to Theatre Studies', 'https://www.cambridge.org/core/books/cambridge-introduction-to-theatre-studies/3CAA6E67577F418E6EC2D507F27C8ABB', 'Cambridge University Press'],
     ['sdr03', 'Postdramatic Theatre', 'https://www.routledge.com/Postdramatic-Theatre/Lehmann/p/book/9780415268134', 'Routledge'],
     ['sdr04', 'Performance Studies: An Introduction', 'https://www.routledge.com/Performance-Studies-An-Introduction/Schechner/p/book/9781138284562', 'Routledge'],
     ['sdr05', 'Aristotle’s Poetics', 'https://www.cambridge.org/core/books/cambridge-history-of-literary-criticism/aristotles-poetics/901DBEBFF50D43D0709ACF7BBC6C0495', 'Cambridge University Press'],
-    ['sdr06', 'The Routledge Companion to Dramaturgy', 'https://www.routledge.com/The-Routledge-Companion-to-Dramaturgy/Romanska/p/book/9780415658494', 'Routledge'],
+    ['sdr06', 'The Routledge Companion to Dramaturgy', 'https://www.routledge.com/The-Routledge-Companion-to-Dramaturgy/Romanska/p/book/9780415658492', 'Routledge'],
     ['sdr07', 'Waiting for Godot', 'https://www.faber.co.uk/product/9780571229116-waiting-for-godot/', 'Faber'],
     ['sdr08', 'Oedipus the King', 'https://www.gutenberg.org/ebooks/27673', 'Project Gutenberg'],
     ['sdr09', 'The Merchant of Venice', 'https://www.gutenberg.org/ebooks/1515', 'Project Gutenberg'],
