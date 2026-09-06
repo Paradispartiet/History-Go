@@ -121,14 +121,14 @@ jobs:
           done
           git diff --check
 
-      - name: Commit permanent round 4
+      - name: Commit permanent round 4 payload
         if: steps.materialize.outputs.rc == '0'
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .github/workflows/litteratur-maintenance-integrity.yml \
+          git add \
             data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/narratologi_prosa/claims.json \
             data/fagverk/fagverk_release.json \
             data/fagverk/litteratur/maintenance/source-refresh-round4-2026-09-05.json \
