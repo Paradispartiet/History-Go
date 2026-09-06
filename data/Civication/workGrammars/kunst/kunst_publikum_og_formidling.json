@@ -1,18 +1,218 @@
 {
-  "schema":"civication_work_grammar_v2","version":2,
-  "category":"kunst","role_scope":"kunst_publikum_og_formidling","role_id":"kunst_publikum_og_formidling",
-  "badge_binding":{"badge_id":"kunst","badge_titles":["Vertskap (museum/galleri)","Gallerimedarbeider","Formidler"]},
-  "work_world":"Publikumsrettet kunstinstitusjonsarbeid der tilgjengelighet, presisjon, trygghet og åpen fortolkning må balanseres i sanntid.",
-  "task_families":["publikumsmottak","omvisning_og_formidling","praktisk_galleridrift","tilgjengelighet","hendelseshandtering","faglig_forberedelse"],
-  "work_loops":["forbered -> motta -> avklare behov -> formidle -> observer -> dokumenter","hendelse -> sikre situasjon -> eskaler -> informer -> dokumenter -> lær"],
-  "pressure_axes":["åpen_fortolkning_vs_faglig_presisjon","service_vs_sikkerhet","tilgjengelighet_vs_tidspress"],
-  "practice_stories":[
-    {"id":"uenig_publikum","setup":"En gjest mener omvisningen presenterer én omstridt tolkning som sannhet.","decision":"Skill verkdata, faglig tolkning og åpne spørsmål tydelig.","learning":"god kunstformidling tåler flere begrunnede perspektiver"},
-    {"id":"beroring_av_verk","setup":"En besøkende berører et verk til tross for skilting.","decision":"Stopp handlingen rolig, sikre verket og følg institusjonens hendelsesrutine.","learning":"service opphever ikke bevaringsansvar"},
-    {"id":"tilgjengelig_omvisning","setup":"En gruppe trenger en annen formidlingsform enn planlagt.","decision":"Tilpass språk, tempo og format uten å redusere faglig presisjon.","learning":"tilgjengelighet er en del av kvaliteten"},
-    {"id":"ukjent_sporsmal","setup":"Du får et detaljert proveniensspørsmål du ikke kan dokumentere.","decision":"Si hva du vet, marker usikkerheten og hent riktig fagperson.","learning":"troverdighet styrkes av korrekt usikkerhet"},
-    {"id":"publikumstopp","setup":"Mange grupper ankommer samtidig og sikkerheten blir presset.","decision":"Prioriter kapasitet og sikkerhet, kommuniser ventetid og fordel grupper.","learning":"tempo skal ikke gjøre publikum eller verk utrygge"}
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "kunst",
+  "role_scope": "kunst_publikum_og_formidling",
+  "role_id": "kunst_publikum_og_formidling",
+  "badge_binding": {
+    "badge_id": "kunst",
+    "badge_titles": [
+      "Vertskap (museum/galleri)",
+      "Gallerimedarbeider",
+      "Formidler"
+    ]
+  },
+  "work_world": "Publikumsrettet kunstinstitusjonsarbeid der tilgjengelighet, presisjon, trygghet og åpen fortolkning må balanseres i sanntid.",
+  "task_families": [
+    "publikumsmottak",
+    "omvisning_og_formidling",
+    "praktisk_galleridrift",
+    "tilgjengelighet",
+    "hendelseshandtering",
+    "faglig_forberedelse"
   ],
-  "quality_axes":["faglig_presisjon","publikumstrygghet","tilgjengelighet","kommunikasjon","eskaleringskvalitet","respekt_for_fortolkningsrom"],
-  "authority_boundary":{"may":["formidle godkjent fagstoff","veilede publikum","håndtere ordinære publikumsbehov"],"may_not":["endre proveniens eller katalogdata","love utlån eller salg uten fullmakt","omdefinere institusjonens faglige standpunkt","ignorere sikkerhets- eller bevaringsrutiner"]}
+  "work_loops": [
+    "forbered -> motta -> avklare behov -> formidle -> observer -> dokumenter",
+    "hendelse -> sikre situasjon -> eskaler -> informer -> dokumenter -> lær"
+  ],
+  "pressure_axes": [
+    "åpen_fortolkning_vs_faglig_presisjon",
+    "service_vs_sikkerhet",
+    "tilgjengelighet_vs_tidspress"
+  ],
+  "practice_stories": [
+    {
+      "id": "uenig_publikum",
+      "setup": "En gjest mener omvisningen presenterer én omstridt tolkning som sannhet.",
+      "decision": "Skill verkdata, faglig tolkning og åpne spørsmål tydelig.",
+      "learning": "god kunstformidling tåler flere begrunnede perspektiver"
+    },
+    {
+      "id": "beroring_av_verk",
+      "setup": "En besøkende berører et verk til tross for skilting.",
+      "decision": "Stopp handlingen rolig, sikre verket og følg institusjonens hendelsesrutine.",
+      "learning": "service opphever ikke bevaringsansvar"
+    },
+    {
+      "id": "tilgjengelig_omvisning",
+      "setup": "En gruppe trenger en annen formidlingsform enn planlagt.",
+      "decision": "Tilpass språk, tempo og format uten å redusere faglig presisjon.",
+      "learning": "tilgjengelighet er en del av kvaliteten"
+    },
+    {
+      "id": "ukjent_sporsmal",
+      "setup": "Du får et detaljert proveniensspørsmål du ikke kan dokumentere.",
+      "decision": "Si hva du vet, marker usikkerheten og hent riktig fagperson.",
+      "learning": "troverdighet styrkes av korrekt usikkerhet"
+    },
+    {
+      "id": "publikumstopp",
+      "setup": "Mange grupper ankommer samtidig og sikkerheten blir presset.",
+      "decision": "Prioriter kapasitet og sikkerhet, kommuniser ventetid og fordel grupper.",
+      "learning": "tempo skal ikke gjøre publikum eller verk utrygge"
+    }
+  ],
+  "quality_axes": [
+    "faglig_presisjon",
+    "publikumstrygghet",
+    "tilgjengelighet",
+    "kommunikasjon",
+    "eskaleringskvalitet",
+    "respekt_for_fortolkningsrom"
+  ],
+  "authority_boundary": {
+    "may": [
+      "formidle godkjent fagstoff",
+      "veilede publikum",
+      "håndtere ordinære publikumsbehov"
+    ],
+    "may_not": [
+      "endre proveniens eller katalogdata",
+      "love utlån eller salg uten fullmakt",
+      "omdefinere institusjonens faglige standpunkt",
+      "ignorere sikkerhets- eller bevaringsrutiner"
+    ]
+  },
+  "actor_grammar": [
+    {
+      "id": "sara_senior_formidler_kunst_publikum_og_formidling",
+      "name": "Sara",
+      "role": "senior formidler",
+      "workplace_ids": [
+        "omvisning_og_formidlingsflate"
+      ]
+    },
+    {
+      "id": "jon_publikumsvert_kunst_publikum_og_formidling",
+      "name": "Jon",
+      "role": "publikumsvert",
+      "workplace_ids": [
+        "publikumsinngang_og_vertskapspunkt"
+      ]
+    },
+    {
+      "id": "amal_tilgjengelighetskoordinator_kunst_publikum_og_formidling",
+      "name": "Amal",
+      "role": "tilgjengelighetskoordinator",
+      "workplace_ids": [
+        "tilgjengelighet_og_gruppetilpasningsbord"
+      ]
+    },
+    {
+      "id": "erik_galleridrift_sikkerhet_kunst_publikum_og_formidling",
+      "name": "Erik",
+      "role": "galleridrift- og sikkerhetsansvarlig",
+      "workplace_ids": [
+        "galleridrift_hendelse_og_eskaleringspunkt"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "publikumsinngang_og_vertskapspunkt",
+      "name": "Publikumsinngang og vertskapspunkt",
+      "function": "Her starter publikumsmøtet med mottak, orientering, kø- og kapasitetsavklaring, praktiske behov, trygghetsinformasjon og tydelig skille mellom vanlig service og spørsmål som må eskaleres."
+    },
+    {
+      "id": "omvisning_og_formidlingsflate",
+      "name": "Omvisning og formidlingsflate",
+      "function": "Her forberedes og gjennomføres verk- og utstillingsformidling med eksplisitt skille mellom katalogdata, godkjent fagstoff, begrunnede tolkninger, åpne spørsmål og publikums egne perspektiver."
+    },
+    {
+      "id": "tilgjengelighet_og_gruppetilpasningsbord",
+      "name": "Tilgjengelighet og gruppetilpasningsbord",
+      "function": "Her planlegges språk, tempo, sensoriske hensyn, alternative formater, pauser, gruppestørrelse og ledsagerbehov slik at tilgjengelighet blir en kvalitetsdimensjon uten å redusere faglig presisjon."
+    },
+    {
+      "id": "galleridrift_hendelse_og_eskaleringspunkt",
+      "name": "Galleridrift, hendelse og eskaleringspunkt",
+      "function": "Her dokumenteres berøring av verk, utrygge situasjoner, kapasitetsavvik, uavklarte fagspørsmål og andre hendelser med sikring, riktig eskalering, informasjon, etterkontroll og læring."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg",
+    "description": "Et vedvarende, versjonert publikumsspor som holder målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhet, hendelser, eskalering, informasjon, dokumentasjon og læring i samme arbeidsobjekt.",
+    "states": [
+      "forberedt",
+      "klar_for_mottak",
+      "publikum_mottatt",
+      "behov_avklart",
+      "under_formidling",
+      "venter_pa_faglig_avklaring",
+      "venter_pa_tilgjengelighetstilpasning",
+      "venter_pa_sikkerhet_eller_bevaring",
+      "hendelse_registrert",
+      "sikret_og_eskalert",
+      "informert",
+      "dokumentert",
+      "evaluert",
+      "gjenapnet_for_rework"
+    ],
+    "handoff_rule": "Neste eier overtar eksplisitt versjon, gruppe-/publikumsbehov, hvilke verkdata og fagkilder som er godkjent, hva som fortsatt er tolkning eller uavklart, tilgjengelighetsbehov, eventuell hendelse, sikkerhets-/bevaringsgrense, hva som er kommunisert og hvilket kontrollpunkt som gjenstår; handoff kan ikke slette tidligere usikkerhet eller avvik."
+  },
+  "rhythm_contract": {
+    "loop": "forberedelse -> mottak -> behovsavklaring -> waiting/venting på faglig, tilgjengelighets- eller sikkerhetsavklaring -> formidling/vertskap -> observasjon -> handoff eller eskalering -> dokumentasjon -> læring -> rework",
+    "waiting_states": [
+      "faglig_kilde_eller_proveniensavklaring",
+      "tilgjengelighetsavklaring",
+      "sikkerhets_eller_bevaringsavklaring",
+      "kapasitets_og_gruppeflyt",
+      "ansvarlig_fagperson",
+      "hendelsesetterkontroll"
+    ],
+    "rework_rule": "Nytt faglig grunnlag, endret gruppebehov, tilgjengelighetsfunn, publikumsrespons eller sikkerhets-/bevaringshendelse gjenåpner bare berørte deler av publikumsmøteloggen med ny versjon og ny eier; tidligere kommunisert informasjon og registrerte avvik blir stående."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_kunst_verk_utstilling_og_institusjon",
+      "badge_id": "kunst",
+      "use": "Gir kunsthistorisk, verk-, utstillings- og institusjonskontekst som kan forbedre spørsmål og formidling, men kan ikke gi Formidler-kvalifikasjon, endre proveniens eller katalogdata, autorisere salg/utlån, omdefinere institusjonens faglige standpunkt eller overstyre sikkerhets- og bevaringsrutiner."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "career_offer_policy_by_title",
+    "entry_policy_by_title": {
+      "Vertskap (museum/galleri)": {
+        "policy": "direct",
+        "qualification_ids": []
+      },
+      "Gallerimedarbeider": {
+        "policy": "direct",
+        "qualification_ids": []
+      },
+      "Formidler": {
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "relevant_education_or_employer_qualification"
+        ]
+      }
+    },
+    "first_object": "publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg",
+    "first_task": "Registrer én konkret publikumssituasjon med målgruppe, verk-/utstillingsgrunnlag, tilgjengelighetsbehov, faglig usikkerhet, sikkerhetsgrense, riktig eskaleringspunkt og neste eier før du starter formidling."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "kunst_publikum_og_formidling",
+    "no_generic_fallback": true
+  }
 }
