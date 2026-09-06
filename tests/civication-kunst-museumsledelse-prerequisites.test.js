@@ -169,4 +169,4 @@ for (const id of ACTORS) assert.ok(!factualPeople.has(id), `${id}: fictional act
 const source = fs.readFileSync(path.join(ROOT, SOURCE), 'utf8');
 for (const term of [/not Role World completion/i,/appointment_required/i,/employer_appointment/i,/persistent editorial object/i,/not_required_for_rollout/i,/History Go/i,/no new runtime/i,/15 source mails/i]) assert.match(source, term);
 
-console.log('PASS: Kunst Museumsledelse foundation is playable and rollout-ready while situated reputation remains dedicated to Role World authoring.');
+console.log('PASS: Kunst Museumsledelse foundation is playable and rollout-ready while the final realism dimension remains dedicated to Role World authoring.');
