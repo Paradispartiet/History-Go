@@ -1,0 +1,1276 @@
+{
+  "targetId": "helsfyr",
+  "categoryId": "by",
+  "generator_version": "v5_1_external_priority_normal_4x7",
+  "size_class": "normal",
+  "sources": {
+    "byleksikon_helsfyr": "https://oslobyleksikon.no/side/Helsfyr_%28str%C3%B8k%29",
+    "sporveien_helsfyr": "https://www.sporveien.no/vare-tjenester/t-banen/t-banestasjoner/f/helsfyr/",
+    "arkitektur_torp": "https://www.arkitektur.no/aktuelt/arkitektur/han-hadde-et-bankende-arkitekthjerte/",
+    "sporveien_2018": "https://www.sporveien.no/contentassets/868d1015af4244d0805e6afde03046ce/sporveien-arsrapport-2018-pdf.pdf",
+    "commons_station_2009": "https://commons.wikimedia.org/wiki/File:Helsfyr_stasjon.JPG",
+    "commons_mx_2023": "https://commons.wikimedia.org/wiki/File:20231207_Helsfyr_Mx.jpg"
+  },
+  "production_context": {
+    "manifest_category": "by",
+    "profile": "normal_4x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/by/helsfyr.json",
+    "context_artifact": "data/quiz/production_context/by/helsfyr.json",
+    "resolved_files": {
+      "pensum": "data/fag/by/pensum_by.json",
+      "emner": "data/fag/by/emner_by.json",
+      "fagkart": "data/fag/by/fagkart_by.json",
+      "methods": "data/fag/by/methods_by.json",
+      "supersetQuizMal": "data/fag/by/supersetQUIZMAL_by.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "kur_by_03_infrastruktur_og_bevegelse"
+    ],
+    "emne_ids": [
+      "em_by_infrastruktur_mobilitet",
+      "em_by_gangstrommer_snarveier"
+    ],
+    "topic_hook_ids": [
+      "byliv_opphold_vs_gjennomgang"
+    ],
+    "method_ids": [
+      "met_feltobservasjon",
+      "met_gaanalyse",
+      "met_for_etter"
+    ],
+    "thinker_ids": [
+      "michel_de_certeau"
+    ],
+    "works": [
+      "The Practice of Everyday Life"
+    ],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/by/helsfyr_sets_merged.json",
+        "data/quiz/by/helsfyr_sets.json",
+        "data/quiz/manifest.json"
+      ],
+      "active_before": {
+        "file": "data/quiz/by/helsfyr_sets_merged.json",
+        "set_count": 3,
+        "question_count": 15,
+        "finding": "Legacy-pakken hadde tre sett med fem spørsmål og tilfredsstilte ikke dagens absolutte 2×7-normalåpning."
+      },
+      "decisions": [
+        "Erstatt 3×5-pakken med canonical normalprofil 4×7.",
+        "Bevar de sterke direkte faktaene, men skriv dem inn i ny kildeledet progresjon.",
+        "Hold de første 14 spørsmålene teori- og metodefrie.",
+        "Flytt metode og eksplisitt teoretisk linse til sluttfasen."
+      ],
+      "knowledge_migration": "Alle 28 spørsmål får stabile Helsfyr claim- og Knowledge-ID-er."
+    },
+    "profile_decision": {
+      "profile": "normal",
+      "set_count": 4,
+      "questions_per_set": 7,
+      "justification": "Helsfyr har fire selvstendige læringsjobber: sted/tidslinje, terminal/arbeidsby, overgang/kildekritikk og metode/syntese. Kildene bærer 28 spørsmål uten å kreve rich-filler."
+    },
+    "held_back_candidates": [
+      "Passasjertall uten eksplisitt driftsdatasett.",
+      "Påstander om hvor enkeltreisende bor eller arbeider basert på gangretning.",
+      "2009-fotografiet som bildebevis for 2019-oppgraderingen.",
+      "Scandic som ekstra Brand når én direkte transportidentitet allerede bærer samlingen."
+    ],
+    "normal_opening_questions": 14,
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  },
+  "sets": [
+    {
+      "set_id": "by_helsfyr_set_1",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "title": "Stedet og tidslinjen",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "helsfyr_quiz_01",
+          "quiz_id": "by_helsfyr_q01",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Hva har strøket Helsfyr navn etter?",
+          "options": [
+            "Helsfyr gård",
+            "Helsfyr stasjon",
+            "Helsfyr hotell"
+          ],
+          "answer": "Helsfyr gård",
+          "answerIndex": 0,
+          "knowledge": "Oslo byleksikon oppgir at strøket har navn etter Helsfyr gård.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "byleksikon_helsfyr"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oslo byleksikon oppgir at strøket har navn etter Helsfyr gård.",
+          "claim_id": "claim_helsfyr_quiz_01",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_01",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_01"
+          ],
+          "concepts": [
+            "infrastruktur"
+          ],
+          "concept_ids": [
+            "co_by_infrastruktur_c4dd7aa18f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "helsfyr_quiz_02",
+          "quiz_id": "by_helsfyr_q02",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Når åpnet Helsfyr T-banestasjon?",
+          "options": [
+            "1952",
+            "1966",
+            "1993"
+          ],
+          "answer": "1966",
+          "answerIndex": 1,
+          "knowledge": "Helsfyr T-banestasjon åpnet i 1966.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "byleksikon_helsfyr",
+            "sporveien_helsfyr"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Helsfyr T-banestasjon åpnet i 1966.",
+          "claim_id": "claim_helsfyr_quiz_02",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_02",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_02"
+          ],
+          "concepts": [
+            "infrastruktur"
+          ],
+          "concept_ids": [
+            "co_by_infrastruktur_c4dd7aa18f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "helsfyr_quiz_03",
+          "quiz_id": "by_helsfyr_q03",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Hvilke T-banelinjer betjener Helsfyr på Sporveiens stasjonsside?",
+          "options": [
+            "Bare 5",
+            "1 og 5",
+            "1, 2, 3 og 4"
+          ],
+          "answer": "1, 2, 3 og 4",
+          "answerIndex": 2,
+          "knowledge": "Sporveiens stasjonsside oppgir linjene 1, 2, 3 og 4.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "sporveien_helsfyr"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Sporveiens stasjonsside oppgir linjene 1, 2, 3 og 4.",
+          "claim_id": "claim_helsfyr_quiz_03",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_03",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_03"
+          ],
+          "concepts": [
+            "infrastruktur"
+          ],
+          "concept_ids": [
+            "co_by_infrastruktur_c4dd7aa18f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "helsfyr_quiz_04",
+          "quiz_id": "by_helsfyr_q04",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Hva skjedde med Strømsveien fra Helsfyr i 1968?",
+          "options": [
+            "Den ble bygget ut til motorvei",
+            "Den ble gågate",
+            "Den ble lagt ned"
+          ],
+          "answer": "Den ble bygget ut til motorvei",
+          "answerIndex": 0,
+          "knowledge": "Strømsveien var i 1968 bygget ut til motorvei fra Helsfyr.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "byleksikon_helsfyr"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Strømsveien var i 1968 bygget ut til motorvei fra Helsfyr.",
+          "claim_id": "claim_helsfyr_quiz_04",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_04",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_04"
+          ],
+          "concepts": [
+            "infrastruktur"
+          ],
+          "concept_ids": [
+            "co_by_infrastruktur_c4dd7aa18f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "helsfyr_quiz_05",
+          "quiz_id": "by_helsfyr_q05",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Hvor langt er broanlegget som førte Grenseveien over Strømsveien i 1970?",
+          "options": [
+            "20 meter",
+            "115 meter",
+            "500 meter"
+          ],
+          "answer": "115 meter",
+          "answerIndex": 1,
+          "knowledge": "Oslo byleksikon oppgir et 115 meter langt broanlegg.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "byleksikon_helsfyr"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oslo byleksikon oppgir et 115 meter langt broanlegg.",
+          "claim_id": "claim_helsfyr_quiz_05",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_05",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_05"
+          ],
+          "concepts": [
+            "infrastruktur"
+          ],
+          "concept_ids": [
+            "co_by_infrastruktur_c4dd7aa18f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "helsfyr_quiz_06",
+          "quiz_id": "by_helsfyr_q06",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Hvilket administrasjonsbygg ble oppført på Helsfyr i 1966?",
+          "options": [
+            "Oslo rådhus",
+            "Stortinget",
+            "Det Norske Veritas' administrasjonsbygg"
+          ],
+          "answer": "Det Norske Veritas' administrasjonsbygg",
+          "answerIndex": 2,
+          "knowledge": "Det Norske Veritas oppførte et administrasjonsbygg på Helsfyr i 1966.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "byleksikon_helsfyr"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Det Norske Veritas oppførte et administrasjonsbygg på Helsfyr i 1966.",
+          "claim_id": "claim_helsfyr_quiz_06",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_06",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_06"
+          ],
+          "concepts": [
+            "infrastruktur"
+          ],
+          "concept_ids": [
+            "co_by_infrastruktur_c4dd7aa18f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "helsfyr_quiz_07",
+          "quiz_id": "by_helsfyr_q07",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Når åpnet det første Hotell Helsfyr med campingplass?",
+          "options": [
+            "1952",
+            "1978",
+            "2008"
+          ],
+          "answer": "1952",
+          "answerIndex": 0,
+          "knowledge": "Det første Hotell Helsfyr og campingplassen ble anlagt i 1952.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "byleksikon_helsfyr"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Det første Hotell Helsfyr og campingplassen ble anlagt i 1952.",
+          "claim_id": "claim_helsfyr_quiz_07",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_07",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_07"
+          ],
+          "concepts": [
+            "infrastruktur"
+          ],
+          "concept_ids": [
+            "co_by_infrastruktur_c4dd7aa18f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_helsfyr_set_2",
+      "level": 2,
+      "order": 2,
+      "phase": "middle",
+      "title": "Terminalen og arbeidsbyen",
+      "xp": 60,
+      "questions": [
+        {
+          "id": "helsfyr_quiz_08",
+          "quiz_id": "by_helsfyr_q08",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Hvem overtok det tidligere DNV-bygget i 1976?",
+          "options": [
+            "Universitetet i Oslo",
+            "Vegdirektoratet",
+            "Nasjonalmuseet"
+          ],
+          "answer": "Vegdirektoratet",
+          "answerIndex": 1,
+          "knowledge": "Vegdirektoratet overtok DNV-administrasjonsbygget i 1976.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "byleksikon_helsfyr"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Vegdirektoratet overtok DNV-administrasjonsbygget i 1976.",
+          "claim_id": "claim_helsfyr_quiz_08",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_08",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_08"
+          ],
+          "concepts": [
+            "infrastruktur"
+          ],
+          "concept_ids": [
+            "co_by_infrastruktur_c4dd7aa18f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "helsfyr_quiz_09",
+          "quiz_id": "by_helsfyr_q09",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Når fikk den kombinerte buss- og T-baneterminalen ny utforming?",
+          "options": [
+            "1966",
+            "2019",
+            "1993"
+          ],
+          "answer": "1993",
+          "answerIndex": 2,
+          "knowledge": "Terminalen ble omformet i 1993.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "byleksikon_helsfyr",
+            "sporveien_helsfyr"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Terminalen ble omformet i 1993.",
+          "claim_id": "claim_helsfyr_quiz_09",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_09",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_09"
+          ],
+          "concepts": [
+            "infrastruktur"
+          ],
+          "concept_ids": [
+            "co_by_infrastruktur_c4dd7aa18f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "helsfyr_quiz_10",
+          "quiz_id": "by_helsfyr_q10",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Hvilket tiltak mot Strømsveien inngikk i 1993-utformingen?",
+          "options": [
+            "En 200 meter lang støyskjerm",
+            "En havneterminal",
+            "En taubane"
+          ],
+          "answer": "En 200 meter lang støyskjerm",
+          "answerIndex": 0,
+          "knowledge": "1993-utformingen omfattet en 200 meter lang støyskjerm mot Strømsveien.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "byleksikon_helsfyr"
+          ],
+          "source_origin": "external",
+          "claim_basis": "1993-utformingen omfattet en 200 meter lang støyskjerm mot Strømsveien.",
+          "claim_id": "claim_helsfyr_quiz_10",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_10",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_10"
+          ],
+          "concepts": [
+            "infrastruktur"
+          ],
+          "concept_ids": [
+            "co_by_infrastruktur_c4dd7aa18f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "helsfyr_quiz_11",
+          "quiz_id": "by_helsfyr_q11",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Hvilken retning fikk en ny vestre stasjonsadkomst i 1990-årene?",
+          "options": [
+            "Mot Bygdøy",
+            "Mot Fyrstikktorget",
+            "Mot Holmenkollen"
+          ],
+          "answer": "Mot Fyrstikktorget",
+          "answerIndex": 1,
+          "knowledge": "Sporveiens stasjonshistorikk dokumenterer vestre adkomst mot Fyrstikktorget.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "sporveien_helsfyr"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Sporveiens stasjonshistorikk dokumenterer vestre adkomst mot Fyrstikktorget.",
+          "claim_id": "claim_helsfyr_quiz_11",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_11",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_11"
+          ],
+          "concepts": [
+            "infrastruktur"
+          ],
+          "concept_ids": [
+            "co_by_infrastruktur_c4dd7aa18f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "helsfyr_quiz_12",
+          "quiz_id": "by_helsfyr_q12",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Når ble den omfattende nyere stasjonsoppgraderingen ferdigstilt?",
+          "options": [
+            "1993",
+            "1970",
+            "2019"
+          ],
+          "answer": "2019",
+          "answerIndex": 2,
+          "knowledge": "Helsfyr stasjon ble oppgradert og gjenåpnet i 2019.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "byleksikon_helsfyr",
+            "sporveien_helsfyr",
+            "sporveien_2018"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Helsfyr stasjon ble oppgradert og gjenåpnet i 2019.",
+          "claim_id": "claim_helsfyr_quiz_12",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_12",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_12"
+          ],
+          "concepts": [
+            "infrastruktur"
+          ],
+          "concept_ids": [
+            "co_by_infrastruktur_c4dd7aa18f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "helsfyr_quiz_13",
+          "quiz_id": "by_helsfyr_q13",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Hvem laget den integrerte kunsten i den oppgraderte stasjonen?",
+          "options": [
+            "Katrine Giæver",
+            "Edvard Munch",
+            "Gustav Vigeland"
+          ],
+          "answer": "Katrine Giæver",
+          "answerIndex": 0,
+          "knowledge": "Katrine Giæver fikk ansvar for den integrerte stasjonskunsten.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "sporveien_helsfyr"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Katrine Giæver fikk ansvar for den integrerte stasjonskunsten.",
+          "claim_id": "claim_helsfyr_quiz_13",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_13",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_13"
+          ],
+          "concepts": [
+            "infrastruktur"
+          ],
+          "concept_ids": [
+            "co_by_infrastruktur_c4dd7aa18f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "helsfyr_quiz_14",
+          "quiz_id": "by_helsfyr_q14",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Hva heter Katrine Giævers verk på Helsfyr?",
+          "options": [
+            "Monolitten",
+            "Å samle på farger",
+            "She Lies"
+          ],
+          "answer": "Å samle på farger",
+          "answerIndex": 1,
+          "knowledge": "«Å samle på farger» er integrert i stasjonsmiljøet på Helsfyr.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "sporveien_helsfyr"
+          ],
+          "source_origin": "external",
+          "claim_basis": "«Å samle på farger» er integrert i stasjonsmiljøet på Helsfyr.",
+          "claim_id": "claim_helsfyr_quiz_14",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_14",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_14"
+          ],
+          "concepts": [
+            "infrastruktur"
+          ],
+          "concept_ids": [
+            "co_by_infrastruktur_c4dd7aa18f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_helsfyr_set_3",
+      "level": 3,
+      "order": 3,
+      "phase": "bridge",
+      "title": "Overganger og kildegrenser",
+      "xp": 70,
+      "questions": [
+        {
+          "id": "helsfyr_quiz_15",
+          "quiz_id": "by_helsfyr_q15",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Hva menes med at Helsfyr har lagdelt infrastruktur?",
+          "options": [
+            "Alle transportmidler går i samme tunnel",
+            "Området mangler veiforbindelser",
+            "Bane, buss, lokalvei, hovedvei og broer ligger tett i flere nivåer"
+          ],
+          "answer": "Bane, buss, lokalvei, hovedvei og broer ligger tett i flere nivåer",
+          "answerIndex": 2,
+          "knowledge": "Helsfyr samler flere transportsystemer innenfor et lite område.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "byleksikon_helsfyr",
+            "sporveien_helsfyr"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Helsfyr samler flere transportsystemer innenfor et lite område.",
+          "claim_id": "claim_helsfyr_quiz_15",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_15",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_15"
+          ],
+          "concepts": [
+            "infrastruktur"
+          ],
+          "concept_ids": [
+            "co_by_infrastruktur_c4dd7aa18f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "helsfyr_quiz_16",
+          "quiz_id": "by_helsfyr_q16",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Hva kan du dokumentere ved å følge en ganglinje fra plattformen?",
+          "options": [
+            "Hvilke ramper, innganger og kryss forbindelsen bruker",
+            "Hvor den reisende bor",
+            "Hvorfor hver person reiser"
+          ],
+          "answer": "Hvilke ramper, innganger og kryss forbindelsen bruker",
+          "answerIndex": 0,
+          "knowledge": "Fysisk observasjon kan beskrive ruten, men ikke personens private reiseformål.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_by_gangstrommer_snarveier",
+          "source": [
+            "sporveien_helsfyr"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Fysisk observasjon kan beskrive ruten, men ikke personens private reiseformål.",
+          "claim_id": "claim_helsfyr_quiz_16",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_16",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_16"
+          ],
+          "concepts": [
+            "gåanalyse"
+          ],
+          "concept_ids": [
+            "co_by_gaanalyse_947dc36ba6"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "helsfyr_quiz_17",
+          "quiz_id": "by_helsfyr_q17",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Hvorfor er kontorene relevante for å forstå Helsfyr?",
+          "options": [
+            "De beviser at alle reisende arbeider på Helsfyr",
+            "De viser hvordan arbeidsplasser og transport er lokalisert tett sammen",
+            "De gjør T-banen overflødig"
+          ],
+          "answer": "De viser hvordan arbeidsplasser og transport er lokalisert tett sammen",
+          "answerIndex": 1,
+          "knowledge": "Kontorutbyggingen gjør forholdet mellom mobilitet og arbeidslokalisering synlig uten å bestemme enkeltreisendes formål.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "byleksikon_helsfyr"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kontorutbyggingen gjør forholdet mellom mobilitet og arbeidslokalisering synlig uten å bestemme enkeltreisendes formål.",
+          "claim_id": "claim_helsfyr_quiz_17",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_17",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_17"
+          ],
+          "concepts": [
+            "infrastruktur"
+          ],
+          "concept_ids": [
+            "co_by_infrastruktur_c4dd7aa18f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "helsfyr_quiz_18",
+          "quiz_id": "by_helsfyr_q18",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Hva viser 1993-prosjektet best?",
+          "options": [
+            "At én støyskjerm løste alle transportproblemer",
+            "At motorveien ble fjernet",
+            "At støy, terminal og adkomst måtte løses i sammenheng"
+          ],
+          "answer": "At støy, terminal og adkomst måtte løses i sammenheng",
+          "answerIndex": 2,
+          "knowledge": "Terminalomformingen knyttet flere fysiske problemer sammen.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "byleksikon_helsfyr",
+            "arkitektur_torp"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Terminalomformingen knyttet flere fysiske problemer sammen.",
+          "claim_id": "claim_helsfyr_quiz_18",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_18",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_18"
+          ],
+          "concepts": [
+            "infrastruktur"
+          ],
+          "concept_ids": [
+            "co_by_infrastruktur_c4dd7aa18f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "helsfyr_quiz_19",
+          "quiz_id": "by_helsfyr_q19",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Hva er en trygg feltobservasjon på Helsfyr?",
+          "options": [
+            "Å registrere trapper, ramper, innganger og overgangspunkter",
+            "Å følge en navngitt reisende til arbeidsplassen",
+            "Å fotografere ansikter for å telle brukere"
+          ],
+          "answer": "Å registrere trapper, ramper, innganger og overgangspunkter",
+          "answerIndex": 0,
+          "knowledge": "Feltarbeid skal rette seg mot rom og forbindelser, ikke identifiserbare personers privatliv.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_by_gangstrommer_snarveier",
+          "source": [
+            "sporveien_helsfyr"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Feltarbeid skal rette seg mot rom og forbindelser, ikke identifiserbare personers privatliv.",
+          "claim_id": "claim_helsfyr_quiz_19",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_19",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_19"
+          ],
+          "concepts": [
+            "gåanalyse"
+          ],
+          "concept_ids": [
+            "co_by_gaanalyse_947dc36ba6"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "helsfyr_quiz_20",
+          "quiz_id": "by_helsfyr_q20",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Hva dokumenterer MX-fotografiet fra 2023?",
+          "options": [
+            "Hvilket tog som åpnet stasjonen i 1966",
+            "Et MX-togsett ved Helsfyr i 2023",
+            "Passasjertallet i 2023"
+          ],
+          "answer": "Et MX-togsett ved Helsfyr i 2023",
+          "answerIndex": 1,
+          "knowledge": "Commons-filen dokumenterer et MX-togsett på Helsfyr 7. desember 2023.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "commons_mx_2023"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Commons-filen dokumenterer et MX-togsett på Helsfyr 7. desember 2023.",
+          "claim_id": "claim_helsfyr_quiz_20",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_20",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_20"
+          ],
+          "concepts": [
+            "infrastruktur"
+          ],
+          "concept_ids": [
+            "co_by_infrastruktur_c4dd7aa18f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "helsfyr_quiz_21",
+          "quiz_id": "by_helsfyr_q21",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Hva kan fotografiet av Helsfyr fra 2009 ikke dokumentere?",
+          "options": [
+            "At stasjonen eksisterte i 2009",
+            "At fotografiet viser Helsfyr",
+            "Resultatet av oppgraderingen som ble ferdigstilt i 2019"
+          ],
+          "answer": "Resultatet av oppgraderingen som ble ferdigstilt i 2019",
+          "answerIndex": 2,
+          "knowledge": "Et bilde fra 2009 kan ikke være direkte bildebevis for en senere oppgradering.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "commons_station_2009",
+            "sporveien_2018"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Et bilde fra 2009 kan ikke være direkte bildebevis for en senere oppgradering.",
+          "claim_id": "claim_helsfyr_quiz_21",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_21",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_21"
+          ],
+          "concepts": [
+            "infrastruktur"
+          ],
+          "concept_ids": [
+            "co_by_infrastruktur_c4dd7aa18f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_helsfyr_set_4",
+      "level": 4,
+      "order": 4,
+      "phase": "final",
+      "title": "Metode og helhetslesning",
+      "xp": 80,
+      "questions": [
+        {
+          "id": "helsfyr_quiz_22",
+          "quiz_id": "by_helsfyr_q22",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Hva betyr «infrastruktur» best på Helsfyr?",
+          "options": [
+            "De fysiske systemene som muliggjør transport og forbindelser",
+            "Bare dekorasjonen i stasjonen",
+            "Bare bygningene med kontorer"
+          ],
+          "answer": "De fysiske systemene som muliggjør transport og forbindelser",
+          "answerIndex": 0,
+          "knowledge": "Infrastruktur omfatter her bane, veier, broer, terminal, adkomster og tekniske systemer.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "byleksikon_helsfyr",
+            "sporveien_helsfyr"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Infrastruktur omfatter her bane, veier, broer, terminal, adkomster og tekniske systemer.",
+          "claim_id": "claim_helsfyr_quiz_22",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_22",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_22"
+          ],
+          "concepts": [
+            "infrastruktur"
+          ],
+          "concept_ids": [
+            "co_by_infrastruktur_c4dd7aa18f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_feltobservasjon",
+          "guidance_basis": [
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
+          ]
+        },
+        {
+          "id": "helsfyr_quiz_23",
+          "quiz_id": "by_helsfyr_q23",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Hva bør en gåanalyse registrere mellom stasjonen og terminalen?",
+          "options": [
+            "Navn og arbeidssted til alle som passerer",
+            "Sekvens, terskler, ramper, kryss og hindringer",
+            "Bare hvor fort den raskeste personen går"
+          ],
+          "answer": "Sekvens, terskler, ramper, kryss og hindringer",
+          "answerIndex": 1,
+          "knowledge": "Gåanalyse undersøker den romlige sekvensen og barrierene uten å kartlegge private personer.",
+          "difficulty": 4,
+          "question_type": "method",
+          "emne_id": "em_by_gangstrommer_snarveier",
+          "source": [
+            "sporveien_helsfyr"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Gåanalyse undersøker den romlige sekvensen og barrierene uten å kartlegge private personer.",
+          "claim_id": "claim_helsfyr_quiz_23",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_23",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_23"
+          ],
+          "concepts": [
+            "gåanalyse"
+          ],
+          "concept_ids": [
+            "co_by_gaanalyse_947dc36ba6"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_gaanalyse",
+          "guidance_basis": [
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
+          ]
+        },
+        {
+          "id": "helsfyr_quiz_24",
+          "quiz_id": "by_helsfyr_q24",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Hva er den viktigste begrensningen ved å observere gangstrømmer?",
+          "options": [
+            "Du kan ikke se ramper eller trapper",
+            "Du kan ikke registrere et kryss",
+            "Du kan ikke utlede bosted, arbeidssted eller reiseformål fra retning alene"
+          ],
+          "answer": "Du kan ikke utlede bosted, arbeidssted eller reiseformål fra retning alene",
+          "answerIndex": 2,
+          "knowledge": "Observasjon av bevegelse gir ikke i seg selv private bakgrunnsdata eller motiver.",
+          "difficulty": 4,
+          "question_type": "method",
+          "emne_id": "em_by_gangstrommer_snarveier",
+          "source": [
+            "sporveien_helsfyr"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Observasjon av bevegelse gir ikke i seg selv private bakgrunnsdata eller motiver.",
+          "claim_id": "claim_helsfyr_quiz_24",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_24",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_24"
+          ],
+          "concepts": [
+            "gåanalyse"
+          ],
+          "concept_ids": [
+            "co_by_gaanalyse_947dc36ba6"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_gaanalyse",
+          "guidance_basis": [
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
+          ]
+        },
+        {
+          "id": "helsfyr_quiz_25",
+          "quiz_id": "by_helsfyr_q25",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Hva krever en forsvarlig sammenligning av 2009- og 2023-bildene?",
+          "options": [
+            "At ulike kameraståsteder og datoer oppgis som begrensning",
+            "At alle forskjeller tilskrives 2019-oppgraderingen",
+            "At 2009-bildet behandles som dagens situasjon"
+          ],
+          "answer": "At ulike kameraståsteder og datoer oppgis som begrensning",
+          "answerIndex": 0,
+          "knowledge": "Før–etter-lesning må skille synlig forskjell fra årsaksforklaring.",
+          "difficulty": 4,
+          "question_type": "method",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "commons_station_2009",
+            "commons_mx_2023"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Før–etter-lesning må skille synlig forskjell fra årsaksforklaring.",
+          "claim_id": "claim_helsfyr_quiz_25",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_25",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_25"
+          ],
+          "concepts": [
+            "infrastruktur"
+          ],
+          "concept_ids": [
+            "co_by_infrastruktur_c4dd7aa18f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_for_etter",
+          "guidance_basis": [
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
+          ]
+        },
+        {
+          "id": "helsfyr_quiz_26",
+          "quiz_id": "by_helsfyr_q26",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Hva er et «historisk lag» på Helsfyr?",
+          "options": [
+            "Et rykte uten kilde",
+            "En dokumentert fase som fortsatt kan forstås gjennom stedets fysiske eller arkivbaserte spor",
+            "En tilfeldig bygning uten tidskobling"
+          ],
+          "answer": "En dokumentert fase som fortsatt kan forstås gjennom stedets fysiske eller arkivbaserte spor",
+          "answerIndex": 1,
+          "knowledge": "1952, 1966, 1968, 1970, 1993 og 2019 er ulike dokumenterte faser i Helsfyrs utvikling.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "byleksikon_helsfyr",
+            "sporveien_helsfyr"
+          ],
+          "source_origin": "external",
+          "claim_basis": "1952, 1966, 1968, 1970, 1993 og 2019 er ulike dokumenterte faser i Helsfyrs utvikling.",
+          "claim_id": "claim_helsfyr_quiz_26",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_26",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_26"
+          ],
+          "concepts": [
+            "infrastruktur"
+          ],
+          "concept_ids": [
+            "co_by_infrastruktur_c4dd7aa18f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_for_etter",
+          "guidance_basis": [
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/methods_by.json"
+          ]
+        },
+        {
+          "id": "helsfyr_quiz_27",
+          "quiz_id": "by_helsfyr_q27",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Hva er en god sammenligning mellom Helsfyr og Oslo S?",
+          "options": [
+            "Å behandle dem som identiske knutepunkter",
+            "Å bruke Helsfyr som bevis for all trafikk ved Oslo S",
+            "Å sammenligne overgangsfunksjoner uten å anta at stedene har samme skala eller sentrumsrolle"
+          ],
+          "answer": "Å sammenligne overgangsfunksjoner uten å anta at stedene har samme skala eller sentrumsrolle",
+          "answerIndex": 2,
+          "knowledge": "Komparasjon må holde stedstype og skala synlig.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "sporveien_helsfyr"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Komparasjon må holde stedstype og skala synlig.",
+          "claim_id": "claim_helsfyr_quiz_27",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_27",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_27"
+          ],
+          "concepts": [
+            "infrastruktur"
+          ],
+          "concept_ids": [
+            "co_by_infrastruktur_c4dd7aa18f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "helsfyr_quiz_28",
+          "quiz_id": "by_helsfyr_q28",
+          "categoryId": "by",
+          "placeId": "helsfyr",
+          "targetId": "helsfyr",
+          "question_scope": "place",
+          "question": "Hva er den mest presise helhetslesningen av Helsfyr?",
+          "options": [
+            "Transport og arbeidslokalisering er tett koblet fysisk, men observasjon alene beviser ikke individuelle årsaker eller reiseformål",
+            "Alle på stasjonen arbeider i kontorene rundt",
+            "Motorveien alene forklarer hele området"
+          ],
+          "answer": "Transport og arbeidslokalisering er tett koblet fysisk, men observasjon alene beviser ikke individuelle årsaker eller reiseformål",
+          "answerIndex": 0,
+          "knowledge": "En kildebasert syntese skiller dokumentert fysisk samlokalisering fra påstander om hvorfor enkeltpersoner bruker stedet.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_by_gangstrommer_snarveier",
+          "source": [
+            "byleksikon_helsfyr",
+            "sporveien_helsfyr",
+            "arkitektur_torp"
+          ],
+          "source_origin": "external",
+          "claim_basis": "En kildebasert syntese skiller dokumentert fysisk samlokalisering fra påstander om hvorfor enkeltpersoner bruker stedet.",
+          "claim_id": "claim_helsfyr_quiz_28",
+          "primary_knowledge_unit_id": "ku_by_helsfyr_28",
+          "knowledge_unit_ids": [
+            "ku_by_helsfyr_28"
+          ],
+          "concepts": [
+            "gåanalyse"
+          ],
+          "concept_ids": [
+            "co_by_gaanalyse_947dc36ba6"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "topic_hook_id": "byliv_opphold_vs_gjennomgang",
+          "thinker_id": "michel_de_certeau",
+          "work": "The Practice of Everyday Life",
+          "theory_ref": {
+            "topic_hook_id": "byliv_opphold_vs_gjennomgang",
+            "thinker_id": "michel_de_certeau",
+            "work": "The Practice of Everyday Life",
+            "why_it_helps": "De Certeaus perspektiv på hverdagspraksis hjelper å lese observerbare ruter og bevegelsesmønstre uten å tilskrive enkeltpersoner udokumenterte motiver."
+          }
+        }
+      ]
+    }
+  ]
+}
