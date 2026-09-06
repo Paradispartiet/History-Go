@@ -41,8 +41,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Syntax-check materializer
-        run: node --check scripts/TEMP_materialize_kunst_publikum_og_formidling_role_world.mjs
+      - name: Syntax-check TEMP materializers
+        run: |
+          node --check scripts/TEMP_materialize_kunst_publikum_og_formidling_role_world.mjs
+          node --check scripts/TEMP_enrich_kunst_publikum_og_formidling_role_world_relationships.mjs
 
       - name: Verify prerequisite baseline before Role World materialization
         run: node tests/civication-kunst-publikum-og-formidling-prerequisites.test.js
@@ -53,7 +55,10 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          node scripts/TEMP_materialize_kunst_publikum_og_formidling_role_world.mjs 2>&1 | tee /tmp/kunst-publikum-og-formidling-role-world-materializer.log
+          {
+            node scripts/TEMP_materialize_kunst_publikum_og_formidling_role_world.mjs
+            node scripts/TEMP_enrich_kunst_publikum_og_formidling_role_world_relationships.mjs
+          } 2>&1 | tee /tmp/kunst-publikum-og-formidling-role-world-materializer.log
 
       - name: Persist materializer diagnostic fail-closed
         if: steps.materialize.outcome != 'success'
@@ -130,6 +135,7 @@ jobs:
         run: |
           set -euo pipefail
           rm -f scripts/TEMP_materialize_kunst_publikum_og_formidling_role_world.mjs
+          rm -f scripts/TEMP_enrich_kunst_publikum_og_formidling_role_world_relationships.mjs
           rm -f .github/workflows/TEMP-civication-kunst-publikum-og-formidling-role-world.yml
           rm -f reports/TEMP/kunst-publikum-og-formidling-role-world-materializer.log
           rm -f reports/TEMP/kunst-publikum-og-formidling-role-world-verification.log
