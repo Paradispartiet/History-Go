@@ -41,9 +41,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Syntax-check TEMP materializer and focused test
+      - name: Syntax-check TEMP materializers and focused test
         run: |
           node --check scripts/TEMP_materialize_natur_biologi_og_forskning_prerequisites.mjs
+          node --check scripts/TEMP_enrich_natur_biologi_og_forskning_actor_depth.mjs
           node --check tests/civication-natur-biologi-og-forskning-prerequisites.test.js
 
       - name: Materialize prerequisite candidate
@@ -52,7 +53,10 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          node scripts/TEMP_materialize_natur_biologi_og_forskning_prerequisites.mjs 2>&1 | tee /tmp/natur-biologi-og-forskning-prerequisite-materializer.log
+          {
+            node scripts/TEMP_materialize_natur_biologi_og_forskning_prerequisites.mjs
+            node scripts/TEMP_enrich_natur_biologi_og_forskning_actor_depth.mjs
+          } 2>&1 | tee /tmp/natur-biologi-og-forskning-prerequisite-materializer.log
 
       - name: Persist materializer diagnostic fail-closed
         if: steps.materialize.outcome != 'success'
@@ -156,6 +160,7 @@ jobs:
         run: |
           set -euo pipefail
           rm -f scripts/TEMP_materialize_natur_biologi_og_forskning_prerequisites.mjs
+          rm -f scripts/TEMP_enrich_natur_biologi_og_forskning_actor_depth.mjs
           rm -f .github/workflows/TEMP-civication-natur-biologi-og-forskning-prerequisites.yml
           rm -f reports/TEMP/natur-biologi-og-forskning-prerequisite-materializer.log
           rm -f reports/TEMP/natur-biologi-og-forskning-prerequisite-build.log
