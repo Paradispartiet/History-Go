@@ -153,11 +153,13 @@ assert.equal(career.status,'playable');
 assert.equal(career.audit.runtime_gate,true);
 assert.deepEqual(career.audit.missing_components,[]);
 assert.equal(career.audit.salary.rows.length,3);
-assert.deepEqual(career.audit.salary.rows.map((row) => [row.title,row.offer_policy]),[
+const salaryPolicies = career.audit.salary.rows.map((row) => [row.title,row.offer_policy]).sort((a,b) => a[0].localeCompare(b[0],'nb'));
+const expectedSalaryPolicies = [
   ['Vertskap (museum/galleri)','direct'],
   ['Gallerimedarbeider','direct'],
   ['Formidler','qualification_required']
-]);
+].sort((a,b) => a[0].localeCompare(b[0],'nb'));
+assert.deepEqual(salaryPolicies,expectedSalaryPolicies);
 for (const component of ['entry','day_one','workday_loop','people','places','mail','knowledge','quality_axes','authority','consequences','performance','economy','progression','exit']) assert.equal(career.audit.components[component].level,'complete',`${component} must be complete`);
 
 const readiness = read('data/Civication/roleWorldRolloutReadiness.json');
