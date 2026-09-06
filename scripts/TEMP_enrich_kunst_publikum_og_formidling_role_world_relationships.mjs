@@ -8,11 +8,11 @@ if (!fs.existsSync(worldPath)) throw new Error(`Role World candidate missing: ${
 const world = JSON.parse(fs.readFileSync(worldPath, 'utf8'));
 const additions = {
   jon_frontlinje_handoff_og_kapasitet: ' Over tid blir det synlig om spilleren faktisk deler belastning, følger opp det som ble meldt og gir Jon kreditt for observasjoner som forbedrer arbeidet, også når ingen publikummer ser denne delen av kvaliteten.',
-  amal_tilgjengelighet_og_rework: ' Relasjonen får tyngde når tidligere tilpasninger blir hentet fram igjen, kontrollert mot nye behov og revidert uten at spilleren gjør Amal til en symbolsk godkjenner av løsninger hun ikke eier.',
-  erik_sikkerhet_og_tydelig_handoff: ' Tillit bygges først når spilleren senere kan vise hva som faktisk ble meldt, hva som ble avklart av riktig fagperson og hvilke formuleringer som måtte endres etter hendelsen.',
-  leila_partnerforventning_og_gjenbesok: ' Det avgjørende blir om spilleren husker tidligere friksjon ved neste møte, kan forklare hva institusjonen faktisk har endret og samtidig tåler at Leila mener endringen fortsatt ikke er god nok.',
-  noah_offentlig_press_og_kildegrense: ' Når oppmerksomheten kommer tilbake flere dager senere, må spilleren kunne skille mellom hva som ble sagt, hva som senere ble dokumentert og hva som fortsatt er en legitim uenighet om tolkning.',
-  privat_dekompresjon_og_rollegrense: ' Tråden blir derfor også en prøve på om spilleren kan være nær og tilstede etter krevende dager uten å gjøre partner eller venn til uformell kollega, kriseberedskap eller kilde til profesjonell bekreftelse.'
+  amal_tilgjengelighet_og_erfaringsdata: ' Relasjonen får tyngde når tidligere tilpasninger blir hentet fram igjen, kontrollert mot nye behov og revidert uten at spilleren gjør Amal til en symbolsk godkjenner av løsninger hun ikke eier.',
+  erik_sikkerhet_hendelse_og_laring: ' Tillit bygges først når spilleren senere kan vise hva som faktisk ble meldt, hva som ble avklart av riktig fagperson og hvilke formuleringer som måtte endres etter hendelsen.',
+  leila_partnerforberedelse_og_gruppeminne: ' Det avgjørende blir om spilleren husker tidligere friksjon ved neste møte, kan forklare hva institusjonen faktisk har endret og samtidig tåler at Leila mener endringen fortsatt ikke er god nok.',
+  noah_kritikk_og_offentlig_korrigering: ' Når oppmerksomheten kommer tilbake flere dager senere, må spilleren kunne skille mellom hva som ble sagt, hva som senere ble dokumentert og hva som fortsatt er en legitim uenighet om tolkning.',
+  privat_grense_og_sosial_energi: ' Tråden blir derfor også en prøve på om spilleren kan være nær og tilstede etter krevende dager uten å gjøre partner eller venn til uformell kollega, kriseberedskap eller kilde til profesjonell bekreftelse.'
 };
 
 const seen = new Set();
