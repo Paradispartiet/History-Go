@@ -4,15 +4,12 @@ Wrote 85 career-eligible worlds, 3 canonical non-career worlds and 1 support wor
 WROTE: data/Civication/roleWorldRolloutReadiness.json
 WROTE: reports/civication-role-world-rollout-readiness.md
 === Focused Kunst Publikum og formidling Role World test ===
-node:assert:883
+node:internal/assert/utils:77
     throw err;
     ^
 
-AssertionError [ERR_ASSERTION]: The input did not match the regular expression /korrig/i. Input:
-
-'Denne verdenen er publikums- og frontlinjesentrert: sosial eksponering, tolkning i rommet, konkret tilgjengelighet, kø/kapasitet, handoff, hendelseseskalering, offentlig korreksjon og privat dekompresjon. Den er ikke en kuratorisk programportefølje, produksjonsplan eller institusjonsdirektørverden.'
-
-    at Object.<anonymous> (/home/runner/work/History-Go/History-Go/tests/civication-kunst-publikum-og-formidling-role-world-rollout.test.js:129:104)
+AssertionError [ERR_ASSERTION]: jon_frontlinje_handoff_og_kapasitet
+    at Object.<anonymous> (/home/runner/work/History-Go/History-Go/tests/civication-kunst-publikum-og-formidling-role-world-rollout.test.js:159:10)
     at Module._compile (node:internal/modules/cjs/loader:1781:14)
     at Object..js (node:internal/modules/cjs/loader:1913:10)
     at Module.load (node:internal/modules/cjs/loader:1505:32)
@@ -20,11 +17,11 @@ AssertionError [ERR_ASSERTION]: The input did not match the regular expression /
     at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
     at node:internal/main/run_main_module:36:49 {
-  generatedMessage: true,
+  generatedMessage: false,
   code: 'ERR_ASSERTION',
-  actual: 'Denne verdenen er publikums- og frontlinjesentrert: sosial eksponering, tolkning i rommet, konkret tilgjengelighet, kø/kapasitet, handoff, hendelseseskalering, offentlig korreksjon og privat dekompresjon. Den er ikke en kuratorisk programportefølje, produksjonsplan eller institusjonsdirektørverden.',
-  expected: /korrig/i,
-  operator: 'match',
+  actual: false,
+  expected: true,
+  operator: '==',
   diff: 'simple'
 }
 
