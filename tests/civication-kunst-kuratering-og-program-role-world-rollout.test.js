@@ -167,7 +167,7 @@ assert.equal(world.materialization.cross_role_link_materialized, false);
 assert.deepEqual(world.editorial_uniqueness.not_copy_of, [
   'kunst/kunst_kunstnerisk_ledelse','kunst/kunst_utstillingsproduksjon','kunst/kunst_konservering_og_samling'
 ]);
-for (const term of [/research/i,/utvalg/i,/proveniens/i,/attribusjon/i,/rettighet/i,/habilitet/i,/kunstnerdialog/i,/korrigering/i]) {
+for (const term of [/research/i,/utvalg/i,/proveniens/i,/attribusjon/i,/rettighet/i,/habilitet/i,/kunstnerdialog/i,/korreksjon|korrigering/i]) {
   assert.match(world.editorial_uniqueness.rule, term);
 }
 
