@@ -24,21 +24,25 @@ jobs:
       - name: Apply controlled round 6 substitutions
         run: |
           python3 - <<'PY'
+          import json
           from pathlib import Path
 
+          claims = Path('data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/drama_teatertekst_framforing/claims.json')
+          pathway = Path('data/quiz/litteratur/litteratur_subject_pathways_v1.json')
+          genre = Path('scripts/materialize-litteratur-drama-genre-v1.mjs')
+          full = Path('scripts/materialize-litteratur-drama-full-field-v1.mjs')
+          evidence_path = Path('data/fagverk/litteratur/maintenance/source-refresh-round6-2026-09-06.json')
+
           replacements = {
-            'https://www.routledge.com/The-Semiotics-of-Theatre-and-Drama/Elam/p/book/9780415280183': 'https://www.routledge.com/The-Semiotics-of-Theatre-and-Drama-2nd-Edition/Elam/p/book/9780415280181',
-            'https://www.cambridge.org/core/books/cambridge-introduction-to-theatre-studies/60D3D7261C85D0CF77EA38FB6591653A': 'https://www.cambridge.org/core/books/cambridge-introduction-to-theatre-studies/3CAA6E67577F418E6EC2D507F27C8ABB',
-            'https://www.routledge.com/The-Routledge-Companion-to-Dramaturgy/Romanska/p/book/9780415658494': 'https://www.routledge.com/The-Routledge-Companion-to-Dramaturgy/Romanska/p/book/9780415658492',
-            'https://www.the-noh.com/en/plays/data/program_008.html': 'https://www.the-noh.com/en/plays/data/detail_008.html',
-            'https://www.punchdrunk.com/project/sleep-no-more/': 'https://www.punchdrunk.com/work/sleep-no-more/',
+            'https://www.routledge.com/The-Semiotics-of-Theatre-and-Drama/Elam/p/book/9780415280183': ('https://www.routledge.com/The-Semiotics-of-Theatre-and-Drama-2nd-Edition/Elam/p/book/9780415280181', genre),
+            'https://www.cambridge.org/core/books/cambridge-introduction-to-theatre-studies/60D3D7261C85D0CF77EA38FB6591653A': ('https://www.cambridge.org/core/books/cambridge-introduction-to-theatre-studies/3CAA6E67577F418E6EC2D507F27C8ABB', genre),
+            'https://www.routledge.com/The-Routledge-Companion-to-Dramaturgy/Romanska/p/book/9780415658494': ('https://www.routledge.com/The-Routledge-Companion-to-Dramaturgy/Romanska/p/book/9780415658492', genre),
+            'https://www.the-noh.com/en/plays/data/program_008.html': ('https://www.the-noh.com/en/plays/data/detail_008.html', full),
+            'https://www.punchdrunk.com/project/sleep-no-more/': ('https://www.punchdrunk.com/work/sleep-no-more/', full),
           }
-          targets = [
-            Path('data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/drama_teatertekst_framforing/claims.json'),
-            Path('scripts/materialize-litteratur-drama-genre-v1.mjs'),
-            Path('data/quiz/litteratur/litteratur_subject_pathways_v1.json'),
-          ]
-          for old, new in replacements.items():
+
+          for old, (new, owner) in replacements.items():
+            targets = [claims, pathway, owner]
             counts = {}
             for target in targets:
               text = target.read_text()
@@ -47,11 +51,22 @@ jobs:
               if count:
                 target.write_text(text.replace(old, new))
             if any(counts[str(target)] == 0 for target in targets):
-              raise SystemExit(f'Fail closed: expected {old} in every target; counts={counts}')
-            for target in targets:
+              raise SystemExit(f'Fail closed: expected {old} in claims, pathway and owner {owner}; counts={counts}')
+            for target in [claims, pathway, genre, full]:
               if old in target.read_text():
-                raise SystemExit(f'Fail closed: old URL remains in {target}: {old}')
-            print(f'replaced {sum(counts.values())} occurrences: {old} -> {new}')
+                raise SystemExit(f'Fail closed: stale URL remains in canonical/materializer surface {target}: {old}')
+            print(f'replaced {sum(counts.values())} owned occurrences: {old} -> {new}')
+
+          evidence = json.loads(evidence_path.read_text())
+          required_targets = [
+            str(claims),
+            str(genre),
+            str(full),
+            str(pathway),
+            'data/knowledge/subjects/litteratur/knowledge_units.generated.json',
+          ]
+          evidence.setdefault('materialization', {})['replacement_targets'] = required_targets
+          evidence_path.write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + '\n')
           PY
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
@@ -78,10 +93,12 @@ jobs:
           allowed = {
             'data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/drama_teatertekst_framforing/claims.json',
             'data/fagverk/fagverk_release.json',
+            'data/fagverk/litteratur/maintenance/source-refresh-round6-2026-09-06.json',
             'data/knowledge/subjects/litteratur/knowledge_units.generated.json',
             'data/quiz/litteratur/litteratur_subject_pathways_v1.json',
             'reports/fagverk/litteratur-legacy-theory-audit.json',
             'scripts/materialize-litteratur-drama-genre-v1.mjs',
+            'scripts/materialize-litteratur-drama-full-field-v1.mjs',
           }
           out = subprocess.check_output(['git','status','--porcelain'], text=True)
           changed = set()
@@ -94,6 +111,16 @@ jobs:
           print('changed files:', *sorted(changed), sep='\n  ')
           if unexpected:
             raise SystemExit('Fail closed: unrelated generator drift: ' + ', '.join(unexpected))
+          required = {
+            'data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/drama_teatertekst_framforing/claims.json',
+            'data/fagverk/litteratur/maintenance/source-refresh-round6-2026-09-06.json',
+            'data/quiz/litteratur/litteratur_subject_pathways_v1.json',
+            'scripts/materialize-litteratur-drama-genre-v1.mjs',
+            'scripts/materialize-litteratur-drama-full-field-v1.mjs',
+          }
+          missing = sorted(required - changed)
+          if missing:
+            raise SystemExit('Fail closed: expected round-6 materialized files unchanged: ' + ', '.join(missing))
           PY
       - name: Commit permanent data materialization
         run: |
@@ -102,10 +129,12 @@ jobs:
           git add \
             data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/drama_teatertekst_framforing/claims.json \
             data/fagverk/fagverk_release.json \
+            data/fagverk/litteratur/maintenance/source-refresh-round6-2026-09-06.json \
             data/knowledge/subjects/litteratur/knowledge_units.generated.json \
             data/quiz/litteratur/litteratur_subject_pathways_v1.json \
             reports/fagverk/litteratur-legacy-theory-audit.json \
-            scripts/materialize-litteratur-drama-genre-v1.mjs
+            scripts/materialize-litteratur-drama-genre-v1.mjs \
+            scripts/materialize-litteratur-drama-full-field-v1.mjs
           git diff --cached --check
           git commit -m 'Materialize Litteratur source refresh round 6'
           git push origin HEAD:agent/litteratur-maintenance-round6-drama-20260906
