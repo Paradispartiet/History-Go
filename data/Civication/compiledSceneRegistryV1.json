@@ -196,6 +196,15 @@
     "data/Civication/mailFamilies/kunst/followup/kunst_kuratering_og_program_followup.json",
     "data/Civication/mailFamilies/kunst/knowledge/kunst_kuratering_og_program_knowledge.json",
     "data/Civication/mailFamilies/kunst/consequence/kunst_kuratering_og_program_consequence.json",
+    "data/Civication/mailFamilies/kunst/job/kunst_museumsledelse_job.json",
+    "data/Civication/mailFamilies/kunst/people/kunst_museumsledelse_people.json",
+    "data/Civication/mailFamilies/kunst/story/kunst_museumsledelse_story.json",
+    "data/Civication/mailFamilies/kunst/conflict/kunst_museumsledelse_conflict.json",
+    "data/Civication/mailFamilies/kunst/event/kunst_museumsledelse_event.json",
+    "data/Civication/mailFamilies/kunst/micro/kunst_museumsledelse_micro.json",
+    "data/Civication/mailFamilies/kunst/followup/kunst_museumsledelse_followup.json",
+    "data/Civication/mailFamilies/kunst/knowledge/kunst_museumsledelse_knowledge.json",
+    "data/Civication/mailFamilies/kunst/consequence/kunst_museumsledelse_consequence.json",
     "data/Civication/mailFamilies/kunst/job/kunst_utstillingsproduksjon_job.json",
     "data/Civication/mailFamilies/kunst/people/kunst_utstillingsproduksjon_people.json",
     "data/Civication/mailFamilies/kunst/story/kunst_utstillingsproduksjon_story.json",
@@ -65156,6 +65165,2016 @@
       },
       "source_hash": "6d5c8d2277eb95b6c27468b4a75f4ab38228b687ead942f7e26811d6923d7fb0",
       "source_path": "data/Civication/mailFamilies/kunst/story/kunst_kuratering_og_program_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar styret og fagledelsen trekker institusjonen i ulike retninger i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "risiko"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk styret og fagledelsen trekker institusjonen i ulike retninger gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "skjult_risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_mandat_risiko_og_beslutningsledelse",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Anne",
+        "id": "museumsledelse_conflict_styre_fag_press_001",
+        "mail_family": "museumsledelse_styre_fag_og_arbeidsgiverkonflikt",
+        "mail_type": "conflict",
+        "narrative_arc": "styre_fag_press",
+        "people_ref": "anne_styreleder_kunst_museumsledelse",
+        "phase": "forenoon",
+        "place_id": "styre_eier_og_mandatspunkt",
+        "pressure": "samfunnsoppdrag_vs_okonomi_faggrenser_og_offentlighet",
+        "priority": 130,
+        "role_scope": "kunst_museumsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/conflict/kunst_museumsledelse_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+          "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+        ],
+        "subject": "Styret og fagledelsen trekker institusjonen i ulike retninger",
+        "summary": "Styret etterspør lavere risiko etter offentlig kritikk, mens fagledelsen mener styringssignalet er i ferd med å bli skjult faglig overtakelse; direktøren må bevare både mandat, faglig uenighet og faktisk beslutningsnivå. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag.",
+        "task_domain": "museumsledelse_og_institusjonsstyring"
+      },
+      "id": "museumsledelse_conflict_styre_fag_press_001",
+      "mail_type": "conflict",
+      "role_scope": "kunst_museumsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar styret og fagledelsen trekker institusjonen i ulike retninger i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk styret og fagledelsen trekker institusjonen i ulike retninger gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+            "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+          ],
+          "subject": "Styret og fagledelsen trekker institusjonen i ulike retninger",
+          "summary": "Styret etterspør lavere risiko etter offentlig kritikk, mens fagledelsen mener styringssignalet er i ferd med å bli skjult faglig overtakelse; direktøren må bevare både mandat, faglig uenighet og faktisk beslutningsnivå. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "museumsledelse_conflict_styre_fag_press_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "styre_eier_og_mandatspunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "museumsledelse_conflict_styre_fag_press_001",
+          "source_path": "data/Civication/mailFamilies/kunst/conflict/kunst_museumsledelse_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_museumsledelse.mail.museumsledelse_conflict_styre_fag_press_001",
+        "version": 1
+      },
+      "source_hash": "afda1b01cadd43755765a063161c0c7a00d99a9d788021dc6f9184d2265124ed",
+      "source_path": "data/Civication/mailFamilies/kunst/conflict/kunst_museumsledelse_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar sponsoravtalen får et styringsmessig etterspill i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "risiko"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk sponsoravtalen får et styringsmessig etterspill gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "skjult_risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_mandat_risiko_og_beslutningsledelse",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Anne",
+        "id": "museumsledelse_consequence_sponsor_etterspill_001",
+        "mail_family": "museumsledelse_beslutning_og_etterspill",
+        "mail_type": "consequence",
+        "narrative_arc": "sponsor_etterspill",
+        "people_ref": "anne_styreleder_kunst_museumsledelse",
+        "phase": "forenoon",
+        "place_id": "styre_eier_og_mandatspunkt",
+        "pressure": "samfunnsoppdrag_vs_okonomi_faggrenser_og_offentlighet",
+        "priority": 130,
+        "role_scope": "kunst_museumsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/consequence/kunst_museumsledelse_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+          "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+        ],
+        "subject": "Sponsoravtalen får et styringsmessig etterspill",
+        "summary": "En tidligere finansieringsavklaring tolkes nå offentlig som løfte om programinnflytelse, og institusjonen må rekonstruere hva som faktisk ble avtalt, hvem som hadde fullmakt og hvilke grenser som ble kommunisert. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag.",
+        "task_domain": "museumsledelse_og_institusjonsstyring"
+      },
+      "id": "museumsledelse_consequence_sponsor_etterspill_001",
+      "mail_type": "consequence",
+      "role_scope": "kunst_museumsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar sponsoravtalen får et styringsmessig etterspill i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk sponsoravtalen får et styringsmessig etterspill gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+            "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+          ],
+          "subject": "Sponsoravtalen får et styringsmessig etterspill",
+          "summary": "En tidligere finansieringsavklaring tolkes nå offentlig som løfte om programinnflytelse, og institusjonen må rekonstruere hva som faktisk ble avtalt, hvem som hadde fullmakt og hvilke grenser som ble kommunisert. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "museumsledelse_consequence_sponsor_etterspill_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "styre_eier_og_mandatspunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "museumsledelse_consequence_sponsor_etterspill_001",
+          "source_path": "data/Civication/mailFamilies/kunst/consequence/kunst_museumsledelse_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_museumsledelse.mail.museumsledelse_consequence_sponsor_etterspill_001",
+        "version": 1
+      },
+      "source_hash": "41a1a553cc07318d7324c0a759c957cc3877c6d35155f2d75e426421698eed1e",
+      "source_path": "data/Civication/mailFamilies/kunst/consequence/kunst_museumsledelse_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar ny skadeinformasjon endrer beredskapsbildet i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "risiko"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk ny skadeinformasjon endrer beredskapsbildet gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "skjult_risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_mandat_risiko_og_beslutningsledelse",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Ida",
+        "id": "museumsledelse_event_hendelse_001",
+        "mail_family": "museumsledelse_beredskap_og_endret_risiko",
+        "mail_type": "event",
+        "narrative_arc": "hendelse",
+        "people_ref": "ida_samlings_beredskapsleder_kunst_museumsledelse",
+        "phase": "forenoon",
+        "place_id": "samlingsrisiko_beredskap_og_offentlighetsrom",
+        "pressure": "samfunnsoppdrag_vs_okonomi_faggrenser_og_offentlighet",
+        "priority": 130,
+        "role_scope": "kunst_museumsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/event/kunst_museumsledelse_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+          "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+        ],
+        "subject": "Ny skadeinformasjon endrer beredskapsbildet",
+        "summary": "Etter den første sikringen kommer nye måledata som endrer både samlingsrisiko, evakueringsbehov og hva institusjonen trygt kan kommunisere offentlig. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag.",
+        "task_domain": "museumsledelse_og_institusjonsstyring"
+      },
+      "id": "museumsledelse_event_hendelse_001",
+      "mail_type": "event",
+      "role_scope": "kunst_museumsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar ny skadeinformasjon endrer beredskapsbildet i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk ny skadeinformasjon endrer beredskapsbildet gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+            "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+          ],
+          "subject": "Ny skadeinformasjon endrer beredskapsbildet",
+          "summary": "Etter den første sikringen kommer nye måledata som endrer både samlingsrisiko, evakueringsbehov og hva institusjonen trygt kan kommunisere offentlig. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "museumsledelse_event_hendelse_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "samlingsrisiko_beredskap_og_offentlighetsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "museumsledelse_event_hendelse_001",
+          "source_path": "data/Civication/mailFamilies/kunst/event/kunst_museumsledelse_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_museumsledelse.mail.museumsledelse_event_hendelse_001",
+        "version": 1
+      },
+      "source_hash": "b9634049fd70e87e64328618f8681b13728c636d9dee1a07f627f940885c0bab",
+      "source_path": "data/Civication/mailFamilies/kunst/event/kunst_museumsledelse_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar tiltaket er gjennomført, men effekten må dokumenteres i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "risiko"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk tiltaket er gjennomført, men effekten må dokumenteres gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "skjult_risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_mandat_risiko_og_beslutningsledelse",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Omar",
+        "id": "museumsledelse_followup_etterkontroll_001",
+        "mail_family": "museumsledelse_rapportering_og_etterkontroll",
+        "mail_type": "followup",
+        "narrative_arc": "etterkontroll",
+        "people_ref": "omar_okonomi_hr_kunst_museumsledelse",
+        "phase": "forenoon",
+        "place_id": "budsjett_arbeidsgiver_og_prioriteringsrom",
+        "pressure": "samfunnsoppdrag_vs_okonomi_faggrenser_og_offentlighet",
+        "priority": 130,
+        "role_scope": "kunst_museumsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/followup/kunst_museumsledelse_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+          "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+        ],
+        "subject": "Tiltaket er gjennomført, men effekten må dokumenteres",
+        "summary": "Et krevende spare- og bemanningstiltak er gjennomført; nå må faktisk økonomisk effekt, arbeidsmiljøkonsekvens, samlingsrisiko og restgjeld føres tilbake til institusjonsloggen. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag.",
+        "task_domain": "museumsledelse_og_institusjonsstyring"
+      },
+      "id": "museumsledelse_followup_etterkontroll_001",
+      "mail_type": "followup",
+      "role_scope": "kunst_museumsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar tiltaket er gjennomført, men effekten må dokumenteres i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk tiltaket er gjennomført, men effekten må dokumenteres gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+            "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+          ],
+          "subject": "Tiltaket er gjennomført, men effekten må dokumenteres",
+          "summary": "Et krevende spare- og bemanningstiltak er gjennomført; nå må faktisk økonomisk effekt, arbeidsmiljøkonsekvens, samlingsrisiko og restgjeld føres tilbake til institusjonsloggen. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "museumsledelse_followup_etterkontroll_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "budsjett_arbeidsgiver_og_prioriteringsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "museumsledelse_followup_etterkontroll_001",
+          "source_path": "data/Civication/mailFamilies/kunst/followup/kunst_museumsledelse_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_museumsledelse.mail.museumsledelse_followup_etterkontroll_001",
+        "version": 1
+      },
+      "source_hash": "78801d3c7dcbe458679a57381731a677124ccd8c2bcc94a8b4f9eedde51def0e",
+      "source_path": "data/Civication/mailFamilies/kunst/followup/kunst_museumsledelse_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar prestisjeprosjektet har fått et alvorlig arbeidsmiljøvarsel i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "risiko"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk prestisjeprosjektet har fått et alvorlig arbeidsmiljøvarsel gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "skjult_risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_mandat_risiko_og_beslutningsledelse",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Omar",
+        "id": "museumsledelse_job_arbeidsmiljo_003",
+        "mail_family": "museumsledelse_institusjonsstyring_job",
+        "mail_type": "job",
+        "narrative_arc": "arbeidsmiljo",
+        "people_ref": "omar_okonomi_hr_kunst_museumsledelse",
+        "phase": "workday",
+        "place_id": "budsjett_arbeidsgiver_og_prioriteringsrom",
+        "pressure": "samfunnsoppdrag_vs_okonomi_faggrenser_og_offentlighet",
+        "priority": 128,
+        "role_scope": "kunst_museumsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/job/kunst_museumsledelse_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+          "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+        ],
+        "subject": "Prestisjeprosjektet har fått et alvorlig arbeidsmiljøvarsel",
+        "summary": "Et profilert prosjekt har høy offentlig verdi, men nye opplysninger viser vedvarende belastning, rolleuklarhet og arbeidsgiverrisiko som må behandles i egen prosess. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag.",
+        "task_domain": "museumsledelse_og_institusjonsstyring"
+      },
+      "id": "museumsledelse_job_arbeidsmiljo_003",
+      "mail_type": "job",
+      "role_scope": "kunst_museumsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar prestisjeprosjektet har fått et alvorlig arbeidsmiljøvarsel i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk prestisjeprosjektet har fått et alvorlig arbeidsmiljøvarsel gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+            "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+          ],
+          "subject": "Prestisjeprosjektet har fått et alvorlig arbeidsmiljøvarsel",
+          "summary": "Et profilert prosjekt har høy offentlig verdi, men nye opplysninger viser vedvarende belastning, rolleuklarhet og arbeidsgiverrisiko som må behandles i egen prosess. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "museumsledelse_job_arbeidsmiljo_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "budsjett_arbeidsgiver_og_prioriteringsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "museumsledelse_job_arbeidsmiljo_003",
+          "source_path": "data/Civication/mailFamilies/kunst/job/kunst_museumsledelse_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_museumsledelse.mail.museumsledelse_job_arbeidsmiljo_003",
+        "version": 1
+      },
+      "source_hash": "b01f3fd75843e755159c739c161e674978a7438f15a75317c2308cf767c9ba6c",
+      "source_path": "data/Civication/mailFamilies/kunst/job/kunst_museumsledelse_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar teknisk hendelse setter deler av samlingen i fare i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "risiko"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk teknisk hendelse setter deler av samlingen i fare gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "skjult_risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_mandat_risiko_og_beslutningsledelse",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Ida",
+        "id": "museumsledelse_job_beredskap_004",
+        "mail_family": "museumsledelse_institusjonsstyring_job",
+        "mail_type": "job",
+        "narrative_arc": "beredskap",
+        "people_ref": "ida_samlings_beredskapsleder_kunst_museumsledelse",
+        "phase": "workday",
+        "place_id": "samlingsrisiko_beredskap_og_offentlighetsrom",
+        "pressure": "samfunnsoppdrag_vs_okonomi_faggrenser_og_offentlighet",
+        "priority": 127,
+        "role_scope": "kunst_museumsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/job/kunst_museumsledelse_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+          "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+        ],
+        "subject": "Teknisk hendelse setter deler av samlingen i fare",
+        "summary": "En bygg- og klimahendelse har satt mennesker, verk og drift under press, og det er fortsatt forskjell mellom verifiserte fakta, faglige sikkerhetsgrenser og direktørens institusjonelle prioritering. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag.",
+        "task_domain": "museumsledelse_og_institusjonsstyring"
+      },
+      "id": "museumsledelse_job_beredskap_004",
+      "mail_type": "job",
+      "role_scope": "kunst_museumsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar teknisk hendelse setter deler av samlingen i fare i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk teknisk hendelse setter deler av samlingen i fare gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+            "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+          ],
+          "subject": "Teknisk hendelse setter deler av samlingen i fare",
+          "summary": "En bygg- og klimahendelse har satt mennesker, verk og drift under press, og det er fortsatt forskjell mellom verifiserte fakta, faglige sikkerhetsgrenser og direktørens institusjonelle prioritering. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "museumsledelse_job_beredskap_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "samlingsrisiko_beredskap_og_offentlighetsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "museumsledelse_job_beredskap_004",
+          "source_path": "data/Civication/mailFamilies/kunst/job/kunst_museumsledelse_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_museumsledelse.mail.museumsledelse_job_beredskap_004",
+        "version": 1
+      },
+      "source_hash": "bdf2774acfb4747393795c92da457f6a6aede6ecbb0d30d5b8367f64b3bf4d03",
+      "source_path": "data/Civication/mailFamilies/kunst/job/kunst_museumsledelse_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar kuttet rammer både bemanning og samlingsarbeid i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "risiko"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk kuttet rammer både bemanning og samlingsarbeid gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "skjult_risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_mandat_risiko_og_beslutningsledelse",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Omar",
+        "id": "museumsledelse_job_budsjettkutt_001",
+        "mail_family": "museumsledelse_institusjonsstyring_job",
+        "mail_type": "job",
+        "narrative_arc": "budsjettkutt",
+        "people_ref": "omar_okonomi_hr_kunst_museumsledelse",
+        "phase": "forenoon",
+        "place_id": "budsjett_arbeidsgiver_og_prioriteringsrom",
+        "pressure": "samfunnsoppdrag_vs_okonomi_faggrenser_og_offentlighet",
+        "priority": 130,
+        "role_scope": "kunst_museumsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/job/kunst_museumsledelse_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+          "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+        ],
+        "subject": "Kuttet rammer både bemanning og samlingsarbeid",
+        "summary": "Budsjettkuttet kan ikke reduseres til én prosentlinje: prognosen viser samtidige konsekvenser for bemanning, samlingsarbeid, publikumsprogram og vedlikehold. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag.",
+        "task_domain": "museumsledelse_og_institusjonsstyring"
+      },
+      "id": "museumsledelse_job_budsjettkutt_001",
+      "mail_type": "job",
+      "role_scope": "kunst_museumsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar kuttet rammer både bemanning og samlingsarbeid i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk kuttet rammer både bemanning og samlingsarbeid gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+            "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+          ],
+          "subject": "Kuttet rammer både bemanning og samlingsarbeid",
+          "summary": "Budsjettkuttet kan ikke reduseres til én prosentlinje: prognosen viser samtidige konsekvenser for bemanning, samlingsarbeid, publikumsprogram og vedlikehold. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "museumsledelse_job_budsjettkutt_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "budsjett_arbeidsgiver_og_prioriteringsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "museumsledelse_job_budsjettkutt_001",
+          "source_path": "data/Civication/mailFamilies/kunst/job/kunst_museumsledelse_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_museumsledelse.mail.museumsledelse_job_budsjettkutt_001",
+        "version": 1
+      },
+      "source_hash": "2a58b467d7fedba33b010aedb1fac986399067288ed81fbc8758735055fe68b1",
+      "source_path": "data/Civication/mailFamilies/kunst/job/kunst_museumsledelse_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar styresaken mangler beslutningsklart risikobilde i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "risiko"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk styresaken mangler beslutningsklart risikobilde gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "skjult_risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_mandat_risiko_og_beslutningsledelse",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Anne",
+        "id": "museumsledelse_job_styresak_002",
+        "mail_family": "museumsledelse_institusjonsstyring_job",
+        "mail_type": "job",
+        "narrative_arc": "styresak",
+        "people_ref": "anne_styreleder_kunst_museumsledelse",
+        "phase": "workday",
+        "place_id": "styre_eier_og_mandatspunkt",
+        "pressure": "samfunnsoppdrag_vs_okonomi_faggrenser_og_offentlighet",
+        "priority": 129,
+        "role_scope": "kunst_museumsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/job/kunst_museumsledelse_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+          "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+        ],
+        "subject": "Styresaken mangler beslutningsklart risikobilde",
+        "summary": "Et strategisk prosjekt er på vei til styret, men grunnlaget blander direktørens anbefaling, faglige motstemmer, økonomisk risiko og selve styrebeslutningen. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag.",
+        "task_domain": "museumsledelse_og_institusjonsstyring"
+      },
+      "id": "museumsledelse_job_styresak_002",
+      "mail_type": "job",
+      "role_scope": "kunst_museumsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar styresaken mangler beslutningsklart risikobilde i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk styresaken mangler beslutningsklart risikobilde gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+            "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+          ],
+          "subject": "Styresaken mangler beslutningsklart risikobilde",
+          "summary": "Et strategisk prosjekt er på vei til styret, men grunnlaget blander direktørens anbefaling, faglige motstemmer, økonomisk risiko og selve styrebeslutningen. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "museumsledelse_job_styresak_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "styre_eier_og_mandatspunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "museumsledelse_job_styresak_002",
+          "source_path": "data/Civication/mailFamilies/kunst/job/kunst_museumsledelse_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_museumsledelse.mail.museumsledelse_job_styresak_002",
+        "version": 1
+      },
+      "source_hash": "89541500db44059e2427320ad8f0b72be22c2185ca0bf7978e46154af2d45667",
+      "source_path": "data/Civication/mailFamilies/kunst/job/kunst_museumsledelse_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar bruk institusjonshistorien uten å gjøre den til styringsfullmakt i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "risiko"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk bruk institusjonshistorien uten å gjøre den til styringsfullmakt gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "skjult_risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_mandat_risiko_og_beslutningsledelse",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Marius",
+        "id": "museumsledelse_knowledge_history_go_001",
+        "mail_family": "museumsledelse_history_go_kunstinstitusjon",
+        "mail_type": "knowledge",
+        "narrative_arc": "history_go",
+        "people_ref": "marius_kunstnerisk_leder_kunst_museumsledelse",
+        "phase": "forenoon",
+        "place_id": "direktor_og_ledergruppebord",
+        "pressure": "samfunnsoppdrag_vs_okonomi_faggrenser_og_offentlighet",
+        "priority": 130,
+        "role_scope": "kunst_museumsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/knowledge/kunst_museumsledelse_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+          "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+        ],
+        "subject": "Bruk institusjonshistorien uten å gjøre den til styringsfullmakt",
+        "summary": "Et strateginotat trenger historisk kontekst om museets samfunnsoppdrag, kanon, samling og offentlig rolle, men kunnskapen må holdes adskilt fra dagens styremandat, arbeidsgiveransvar og faglige sikkerhetsgrenser. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. History Go kan bidra med kunst- og institusjonshistorisk kontekst, men kan ikke gi employer_appointment, budsjettfullmakt, styremyndighet eller faglig sikkerhetskompetanse.",
+        "task_domain": "museumsledelse_og_institusjonsstyring"
+      },
+      "id": "museumsledelse_knowledge_history_go_001",
+      "mail_type": "knowledge",
+      "role_scope": "kunst_museumsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar bruk institusjonshistorien uten å gjøre den til styringsfullmakt i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk bruk institusjonshistorien uten å gjøre den til styringsfullmakt gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+            "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+          ],
+          "subject": "Bruk institusjonshistorien uten å gjøre den til styringsfullmakt",
+          "summary": "Et strateginotat trenger historisk kontekst om museets samfunnsoppdrag, kanon, samling og offentlig rolle, men kunnskapen må holdes adskilt fra dagens styremandat, arbeidsgiveransvar og faglige sikkerhetsgrenser. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. History Go kan bidra med kunst- og institusjonshistorisk kontekst, men kan ikke gi employer_appointment, budsjettfullmakt, styremyndighet eller faglig sikkerhetskompetanse."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "museumsledelse_knowledge_history_go_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "direktor_og_ledergruppebord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "museumsledelse_knowledge_history_go_001",
+          "source_path": "data/Civication/mailFamilies/kunst/knowledge/kunst_museumsledelse_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_museumsledelse.mail.museumsledelse_knowledge_history_go_001",
+        "version": 1
+      },
+      "source_hash": "4d7803821034e819bca191c95074a7ac0e88a9bd9518a3e6599273f1b658c204",
+      "source_path": "data/Civication/mailFamilies/kunst/knowledge/kunst_museumsledelse_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar hvem eier beslutningen akkurat nå? i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "risiko"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk hvem eier beslutningen akkurat nå? gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "skjult_risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_mandat_risiko_og_beslutningsledelse",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Anne",
+        "id": "museumsledelse_micro_mandat_001",
+        "mail_family": "museumsledelse_rask_mandatavklaring",
+        "mail_type": "micro",
+        "narrative_arc": "mandat",
+        "people_ref": "anne_styreleder_kunst_museumsledelse",
+        "phase": "forenoon",
+        "place_id": "styre_eier_og_mandatspunkt",
+        "pressure": "samfunnsoppdrag_vs_okonomi_faggrenser_og_offentlighet",
+        "priority": 130,
+        "role_scope": "kunst_museumsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/micro/kunst_museumsledelse_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+          "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+        ],
+        "subject": "Hvem eier beslutningen akkurat nå?",
+        "summary": "En kort forespørsel kommer midt i høyt tempo: saken er faglig vurdert, men det er uklart om neste steg ligger hos direktøren, styret eller en annen fag-/arbeidsgiverprosess. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag.",
+        "task_domain": "museumsledelse_og_institusjonsstyring"
+      },
+      "id": "museumsledelse_micro_mandat_001",
+      "mail_type": "micro",
+      "role_scope": "kunst_museumsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar hvem eier beslutningen akkurat nå? i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk hvem eier beslutningen akkurat nå? gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+            "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+          ],
+          "subject": "Hvem eier beslutningen akkurat nå?",
+          "summary": "En kort forespørsel kommer midt i høyt tempo: saken er faglig vurdert, men det er uklart om neste steg ligger hos direktøren, styret eller en annen fag-/arbeidsgiverprosess. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "museumsledelse_micro_mandat_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "styre_eier_og_mandatspunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "museumsledelse_micro_mandat_001",
+          "source_path": "data/Civication/mailFamilies/kunst/micro/kunst_museumsledelse_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_museumsledelse.mail.museumsledelse_micro_mandat_001",
+        "version": 1
+      },
+      "source_hash": "3209e6fc20b7f9a54daedfead6dfe72e2a78d7c648f821f75def984f791c9ce2",
+      "source_path": "data/Civication/mailFamilies/kunst/micro/kunst_museumsledelse_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar kunstnerisk leder ber om dokumentert vern mot sponsorinnflytelse i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "risiko"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk kunstnerisk leder ber om dokumentert vern mot sponsorinnflytelse gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "skjult_risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_mandat_risiko_og_beslutningsledelse",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Marius",
+        "id": "museumsledelse_people_kunstnerisk_leder_004",
+        "mail_family": "museumsledelse_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "kunstnerisk_leder",
+        "people_ref": "marius_kunstnerisk_leder_kunst_museumsledelse",
+        "phase": "workday",
+        "place_id": "direktor_og_ledergruppebord",
+        "pressure": "samfunnsoppdrag_vs_okonomi_faggrenser_og_offentlighet",
+        "priority": 127,
+        "role_scope": "kunst_museumsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/people/kunst_museumsledelse_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+          "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+        ],
+        "subject": "Kunstnerisk leder ber om dokumentert vern mot sponsorinnflytelse",
+        "summary": "Marius ber om at finansieringsdialogen og programmyndigheten skilles eksplisitt før en sponsorforhandling skaper forventninger om kunstnerisk innflytelse. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag.",
+        "task_domain": "museumsledelse_og_institusjonsstyring"
+      },
+      "id": "museumsledelse_people_kunstnerisk_leder_004",
+      "mail_type": "people",
+      "role_scope": "kunst_museumsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar kunstnerisk leder ber om dokumentert vern mot sponsorinnflytelse i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk kunstnerisk leder ber om dokumentert vern mot sponsorinnflytelse gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+            "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+          ],
+          "subject": "Kunstnerisk leder ber om dokumentert vern mot sponsorinnflytelse",
+          "summary": "Marius ber om at finansieringsdialogen og programmyndigheten skilles eksplisitt før en sponsorforhandling skaper forventninger om kunstnerisk innflytelse. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "museumsledelse_people_kunstnerisk_leder_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "direktor_og_ledergruppebord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "museumsledelse_people_kunstnerisk_leder_004",
+          "source_path": "data/Civication/mailFamilies/kunst/people/kunst_museumsledelse_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_museumsledelse.mail.museumsledelse_people_kunstnerisk_leder_004",
+        "version": 1
+      },
+      "source_hash": "2437b14cbe7d5667bcc644037fa49609d04602395086ffbb4b8ccedb627f826a",
+      "source_path": "data/Civication/mailFamilies/kunst/people/kunst_museumsledelse_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar økonomi- og hr-leder nekter å pakke personalsak inn i omdømmearbeid i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "risiko"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk økonomi- og hr-leder nekter å pakke personalsak inn i omdømmearbeid gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "skjult_risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_mandat_risiko_og_beslutningsledelse",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Omar",
+        "id": "museumsledelse_people_okonomi_hr_002",
+        "mail_family": "museumsledelse_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "okonomi_hr",
+        "people_ref": "omar_okonomi_hr_kunst_museumsledelse",
+        "phase": "workday",
+        "place_id": "budsjett_arbeidsgiver_og_prioriteringsrom",
+        "pressure": "samfunnsoppdrag_vs_okonomi_faggrenser_og_offentlighet",
+        "priority": 129,
+        "role_scope": "kunst_museumsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/people/kunst_museumsledelse_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+          "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+        ],
+        "subject": "Økonomi- og HR-leder nekter å pakke personalsak inn i omdømmearbeid",
+        "summary": "Omar påpeker at en sensitiv sak både har arbeidsmiljø-, personvern- og ressurskonsekvenser, og at kommunikasjon ikke kan erstatte arbeidsgiverprosessen. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag.",
+        "task_domain": "museumsledelse_og_institusjonsstyring"
+      },
+      "id": "museumsledelse_people_okonomi_hr_002",
+      "mail_type": "people",
+      "role_scope": "kunst_museumsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar økonomi- og hr-leder nekter å pakke personalsak inn i omdømmearbeid i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk økonomi- og hr-leder nekter å pakke personalsak inn i omdømmearbeid gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+            "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+          ],
+          "subject": "Økonomi- og HR-leder nekter å pakke personalsak inn i omdømmearbeid",
+          "summary": "Omar påpeker at en sensitiv sak både har arbeidsmiljø-, personvern- og ressurskonsekvenser, og at kommunikasjon ikke kan erstatte arbeidsgiverprosessen. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "museumsledelse_people_okonomi_hr_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "budsjett_arbeidsgiver_og_prioriteringsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "museumsledelse_people_okonomi_hr_002",
+          "source_path": "data/Civication/mailFamilies/kunst/people/kunst_museumsledelse_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_museumsledelse.mail.museumsledelse_people_okonomi_hr_002",
+        "version": 1
+      },
+      "source_hash": "58814c5ec97d0c1f72da5b25a610aebdb9fc783dde2e254038080a1fd48f06c8",
+      "source_path": "data/Civication/mailFamilies/kunst/people/kunst_museumsledelse_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar samlingsleder krever at sikkerhetsgrensen blir stående i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "risiko"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk samlingsleder krever at sikkerhetsgrensen blir stående gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "skjult_risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_mandat_risiko_og_beslutningsledelse",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Ida",
+        "id": "museumsledelse_people_samlingsberedskap_003",
+        "mail_family": "museumsledelse_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "samlingsberedskap",
+        "people_ref": "ida_samlings_beredskapsleder_kunst_museumsledelse",
+        "phase": "workday",
+        "place_id": "samlingsrisiko_beredskap_og_offentlighetsrom",
+        "pressure": "samfunnsoppdrag_vs_okonomi_faggrenser_og_offentlighet",
+        "priority": 128,
+        "role_scope": "kunst_museumsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/people/kunst_museumsledelse_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+          "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+        ],
+        "subject": "Samlingsleder krever at sikkerhetsgrensen blir stående",
+        "summary": "Ida har dokumentert en faglig sikkerhetsgrense som forsinker en synlig åpning, og direktøren må velge mellom å støtte korrekt fagmyndighet eller presse fram en ubegrunnet omgåelse. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag.",
+        "task_domain": "museumsledelse_og_institusjonsstyring"
+      },
+      "id": "museumsledelse_people_samlingsberedskap_003",
+      "mail_type": "people",
+      "role_scope": "kunst_museumsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar samlingsleder krever at sikkerhetsgrensen blir stående i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk samlingsleder krever at sikkerhetsgrensen blir stående gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+            "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+          ],
+          "subject": "Samlingsleder krever at sikkerhetsgrensen blir stående",
+          "summary": "Ida har dokumentert en faglig sikkerhetsgrense som forsinker en synlig åpning, og direktøren må velge mellom å støtte korrekt fagmyndighet eller presse fram en ubegrunnet omgåelse. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "museumsledelse_people_samlingsberedskap_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "samlingsrisiko_beredskap_og_offentlighetsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "museumsledelse_people_samlingsberedskap_003",
+          "source_path": "data/Civication/mailFamilies/kunst/people/kunst_museumsledelse_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_museumsledelse.mail.museumsledelse_people_samlingsberedskap_003",
+        "version": 1
+      },
+      "source_hash": "54f95b3a2d8c169cabaee57f4f9e76258772eacb74b8cad84024393d52223608",
+      "source_path": "data/Civication/mailFamilies/kunst/people/kunst_museumsledelse_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar styreleder ber om klarere skille mellom orientering og vedtak i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "risiko"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk styreleder ber om klarere skille mellom orientering og vedtak gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "skjult_risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_mandat_risiko_og_beslutningsledelse",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Anne",
+        "id": "museumsledelse_people_styreleder_001",
+        "mail_family": "museumsledelse_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "styreleder",
+        "people_ref": "anne_styreleder_kunst_museumsledelse",
+        "phase": "forenoon",
+        "place_id": "styre_eier_og_mandatspunkt",
+        "pressure": "samfunnsoppdrag_vs_okonomi_faggrenser_og_offentlighet",
+        "priority": 130,
+        "role_scope": "kunst_museumsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/people/kunst_museumsledelse_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+          "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+        ],
+        "subject": "Styreleder ber om klarere skille mellom orientering og vedtak",
+        "summary": "Anne trenger et grunnlag der det framgår hva direktøren allerede kan gjøre, hva styret bare skal orienteres om, og hva som faktisk krever styrevedtak. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag.",
+        "task_domain": "museumsledelse_og_institusjonsstyring"
+      },
+      "id": "museumsledelse_people_styreleder_001",
+      "mail_type": "people",
+      "role_scope": "kunst_museumsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar styreleder ber om klarere skille mellom orientering og vedtak i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk styreleder ber om klarere skille mellom orientering og vedtak gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+            "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+          ],
+          "subject": "Styreleder ber om klarere skille mellom orientering og vedtak",
+          "summary": "Anne trenger et grunnlag der det framgår hva direktøren allerede kan gjøre, hva styret bare skal orienteres om, og hva som faktisk krever styrevedtak. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "museumsledelse_people_styreleder_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "styre_eier_og_mandatspunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "museumsledelse_people_styreleder_001",
+          "source_path": "data/Civication/mailFamilies/kunst/people/kunst_museumsledelse_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_museumsledelse.mail.museumsledelse_people_styreleder_001",
+        "version": 1
+      },
+      "source_hash": "4978f1ebdf4456949dbc23dcdaabf113b128bfb97abd396dae96fb0c2dae8612",
+      "source_path": "data/Civication/mailFamilies/kunst/people/kunst_museumsledelse_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_uformell_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar når direktørtittelen begynner å ligne personlig eierskap i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "mandat",
+              "risiko"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk når direktørtittelen begynner å ligne personlig eierskap gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon.",
+            "tags": [
+              "uformell_myndighet",
+              "tempo",
+              "skjult_risiko"
+            ]
+          }
+        ],
+        "competency": "sporbar_mandat_risiko_og_beslutningsledelse",
+        "consequence_axis": "institusjonell_legitimitet_vs_skjult_risiko",
+        "from": "Marius",
+        "id": "museumsledelse_story_lederidentitet_001",
+        "mail_family": "museumsledelse_lederidentitet_og_samfunnsoppdrag",
+        "mail_type": "story",
+        "narrative_arc": "lederidentitet",
+        "people_ref": "marius_kunstnerisk_leder_kunst_museumsledelse",
+        "phase": "forenoon",
+        "place_id": "direktor_og_ledergruppebord",
+        "pressure": "samfunnsoppdrag_vs_okonomi_faggrenser_og_offentlighet",
+        "priority": 130,
+        "role_scope": "kunst_museumsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/story/kunst_museumsledelse_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+          "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+          "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+        ],
+        "subject": "Når direktørtittelen begynner å ligne personlig eierskap",
+        "summary": "Flere vellykkede år har gjort omdømme og institusjonens profil tett knyttet til direktøren, og en ny uenighet tester om samfunnsoppdraget og styringssporet tåler at personlig status faller. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag.",
+        "task_domain": "museumsledelse_og_institusjonsstyring"
+      },
+      "id": "museumsledelse_story_lederidentitet_001",
+      "mail_type": "story",
+      "role_scope": "kunst_museumsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet gjør ikke nødvendigvis saken raskere eller enklere å kommunisere, men det bevarer hvem som visste hva, hvilken faglig eller økonomisk grense som gjaldt, hvem som hadde beslutningsmyndighet og hva som fortsatt ventet. Neste eier kan derfor handle uten å arve skjulte løfter, uformelle fullmakter eller en omskrevet risikohistorie, og institusjonen kan senere forklare hvorfor beslutningen ble tatt og hva som faktisk endret seg.",
+            "id": "A",
+            "label": "Avklar når direktørtittelen begynner å ligne personlig eierskap i institusjonsloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller verifiserte fakta fra vurdering og beslutning, markerer styre-, fag-, HR/juridisk- eller budsjettventing eksplisitt og sender bare den avgrensede saken til den aktøren som faktisk har myndighet. Jeg dokumenterer også hva som fortsatt er vesentlig risiko og hvilket kontrollpunkt som må passeres før status kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den lokale flyten ser bedre ut, men institusjonsloggen mister skillet mellom anbefaling, fullmakt og vedtak. Styret, fagmiljøet, ansatte og offentligheten kan sitte med ulike versjoner av hva som var kjent og lovet, og direktørstatus brukes som substitutt for grunnlag. Det øker risikoen for økonomisk feil, arbeidsmiljøsvikt, faglig overstyring og omdømmetap nettopp fordi den vesentlige usikkerheten ble gjort usynlig.",
+            "id": "B",
+            "label": "Lukk når direktørtittelen begynner å ligne personlig eierskap gjennom direktørstatus og tempo",
+            "reply": "Jeg bruker direktørtittel, relasjonell tillit og behovet for framdrift som tilstrekkelig grunnlag, rydder bort ventepunktet og kommuniserer saken som avklart selv om styre-, fag-, budsjett- eller arbeidsgiverpremiss fortsatt mangler. Dermed kan prosjektet gå videre uten en ny runde med eksplisitt eierskap og dokumentasjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Institusjonsloggen viser siste versjon, beslutningseier, økonomisk status, faglige grenser og alle åpne ventepunkter.",
+            "En rask lukking vil gi fremdrift eller bedre omdømme på kort sikt, men kan skjule styrekrav, arbeidsmiljøansvar, faglig risiko eller faktisk fullmakt.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart for neste aktør uten å omskrive tidligere varsler eller beslutningsgrunnlag."
+          ],
+          "subject": "Når direktørtittelen begynner å ligne personlig eierskap",
+          "summary": "Flere vellykkede år har gjort omdømme og institusjonens profil tett knyttet til direktøren, og en ny uenighet tester om samfunnsoppdraget og styringssporet tåler at personlig status faller. Saken skal føres i institusjonsstrategi_budsjett_styre_risiko_arbeidsmiljo_og_beredskapslogg, der styremandat, delegasjon, strategi, budsjett/prognose, arbeidsgiver- og arbeidsmiljøansvar, samlings- og sikkerhetsrisiko, faglige motstemmer, verifiserte fakta, beslutning, kommunikasjon, ventepunkt og neste eier er separate felt. Museumsdirektøren kan lede institusjonen innen mandat, fordele ressurser innen fullmakt og utøve arbeidsgiveransvar, men kan ikke sette styrets myndighet til side, bruke samling eller midler privat, overstyre dokumenterte faglige sikkerhetsgrenser uten grunnlag eller skjule vesentlig risiko. Tempo, omdømme og sterke relasjoner må derfor ikke brukes som erstatning for riktig beslutningsnivå eller dokumentert grunnlag."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "museumsledelse_story_lederidentitet_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "direktor_og_ledergruppebord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "museumsledelse_story_lederidentitet_001",
+          "source_path": "data/Civication/mailFamilies/kunst/story/kunst_museumsledelse_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_museumsledelse.mail.museumsledelse_story_lederidentitet_001",
+        "version": 1
+      },
+      "source_hash": "97bf3fbc53619732f86ece1447ad0cbd1c7fdcfcfbba7cd7a6079395bf280ce3",
+      "source_path": "data/Civication/mailFamilies/kunst/story/kunst_museumsledelse_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -241869,7 +243888,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "27a6675e5b083a045d4bb06859b693daa0064a75183c4e41cf0dd71abcd5de00",
+  "registry_hash": "057425782ea839a50a775812b592802123da737dc6e16aea035f15bb1ab21aa2",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -242317,6 +244336,23 @@
       "kunst_kuratering_og_program_followup_korrigering_etter_kritikk_001",
       "kunst_kuratering_og_program_knowledge_history_go_grense_001",
       "kunst_kuratering_og_program_consequence_senere_sporbarhet_001"
+    ],
+    "kunst/kunst_museumsledelse": [
+      "museumsledelse_job_budsjettkutt_001",
+      "museumsledelse_job_styresak_002",
+      "museumsledelse_job_arbeidsmiljo_003",
+      "museumsledelse_job_beredskap_004",
+      "museumsledelse_people_styreleder_001",
+      "museumsledelse_people_okonomi_hr_002",
+      "museumsledelse_people_samlingsberedskap_003",
+      "museumsledelse_people_kunstnerisk_leder_004",
+      "museumsledelse_story_lederidentitet_001",
+      "museumsledelse_conflict_styre_fag_press_001",
+      "museumsledelse_event_hendelse_001",
+      "museumsledelse_micro_mandat_001",
+      "museumsledelse_followup_etterkontroll_001",
+      "museumsledelse_knowledge_history_go_001",
+      "museumsledelse_consequence_sponsor_etterspill_001"
     ],
     "kunst/kunst_utstillingsproduksjon": [
       "utstillingsproduksjon_job_brief_001",
@@ -243571,11 +245607,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 548,
+    "compiled_source_file_count": 557,
     "ignored_source_file_count": 1,
-    "input_file_count": 549,
-    "role_count": 66,
-    "scene_count": 1540,
+    "input_file_count": 558,
+    "role_count": 67,
+    "scene_count": 1555,
     "shadowed_duplicate_count": 0
   },
   "version": 1
