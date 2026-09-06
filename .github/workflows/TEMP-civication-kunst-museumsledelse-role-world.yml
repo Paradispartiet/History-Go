@@ -41,6 +41,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+      - name: Correct TEMP materializer authority binding
+        run: |
+          sed -i 's/global_score_allowed:false,authority_separation,audiences/global_score_allowed:false,authority_separation:authoritySeparation,audiences/' scripts/TEMP_materialize_kunst_museumsledelse_role_world.mjs
+          grep -F 'authority_separation:authoritySeparation' scripts/TEMP_materialize_kunst_museumsledelse_role_world.mjs
+
       - name: Syntax-check materializer
         run: node --check scripts/TEMP_materialize_kunst_museumsledelse_role_world.mjs
 
