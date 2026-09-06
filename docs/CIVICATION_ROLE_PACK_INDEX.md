@@ -15,14 +15,14 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 
 ## Sammendrag
 
-- complete_reference_v2: 67
+- complete_reference_v2: 68
 - complete_reference: 0
 - playable_v1: 1
 - partial_pack: 23
 - role_model_only: 182
 - generated_stub: 0
 - broken_mapping: 0
-- missing: 27
+- missing: 26
 
 ## Rolleindeks
 
@@ -202,12 +202,12 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | natur | artsobservator | natur_artsobservator | Artsobservatør | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | natur | biolog | natur_biolog | Biolog | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | natur | natur_biologi_og_forskning | natur_biologi_og_forskning | Biologi, økologi og forskning | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
+| natur | natur_felt_og_formidling | natur_felt_og_formidling | Felt og naturformidling | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | natur | feltassistent | natur_feltassistent | Feltassistent | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | natur | feltobservator | natur_feltobservator | Feltobservatør | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | natur | forsker_miljo_natur | natur_forsker_miljo_natur | Forsker (miljø/natur) | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | natur | miljodirektor | natur_miljodirektor | Miljødirektør | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | natur | miljosjef | natur_miljosjef | Miljøsjef | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
-| natur | natur_felt_og_formidling | natur_felt_og_formidling | natur_felt_og_formidling | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | natur | natur_forvaltning_og_radgivning | natur_forvaltning_og_radgivning | natur_forvaltning_og_radgivning | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | natur | natur_miljoledelse | natur_miljoledelse | natur_miljoledelse | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | natur | natur_politisk_myndighet | natur_politisk_myndighet | natur_politisk_myndighet | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
