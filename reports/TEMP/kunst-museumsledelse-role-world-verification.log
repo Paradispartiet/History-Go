@@ -1,0 +1,31 @@
+=== Career gameplay audit ===
+Wrote 85 career-eligible worlds, 3 canonical non-career worlds and 1 support worlds to data/Civication/careerGameplayMatrix.json and reports/civication-career-gameplay-matrix.md.
+=== Role World rollout readiness audit ===
+WROTE: data/Civication/roleWorldRolloutReadiness.json
+WROTE: reports/civication-role-world-rollout-readiness.md
+=== Focused Kunst Museumsledelse Role World test ===
+node:assert:150
+  throw new AssertionError(obj);
+  ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+8 !== 56
+
+    at Object.<anonymous> (/home/runner/work/History-Go/History-Go/tests/civication-kunst-museumsledelse-role-world-rollout.test.js:135:8)
+    at Module._compile (node:internal/modules/cjs/loader:1781:14)
+    at Object..js (node:internal/modules/cjs/loader:1913:10)
+    at Module.load (node:internal/modules/cjs/loader:1505:32)
+    at Function._load (node:internal/modules/cjs/loader:1309:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+    at node:internal/main/run_main_module:36:49 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 8,
+  expected: 56,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.2
