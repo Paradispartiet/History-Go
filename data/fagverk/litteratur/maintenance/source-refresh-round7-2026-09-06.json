@@ -1,0 +1,179 @@
+{
+  "schema": "history_go_litteratur_maintenance_source_refresh_v1",
+  "version": "1.0.0",
+  "subject_id": "litteratur",
+  "round_id": "source_refresh_round7_2026_09_06",
+  "baseline_main_sha": "9bd6b1b897878d345a9eb87a2cbb09117e2e23d8",
+  "checked_at": "2026-09-06",
+  "status": "verified",
+  "scope": {
+    "area_id": "sjanger_modus_form",
+    "canonical_source_mutation": true,
+    "new_strict_subcategory": false,
+    "place_production": false,
+    "maintenance_evidence_only": false,
+    "replacement_policy": "replace_only_when_same-resource-or-authoritative-successor-url-is-verified"
+  },
+  "source_checks": [
+    {
+      "claims_source_id": "sge01",
+      "title": "The Cambridge Introduction to Narrative",
+      "publisher": "Cambridge University Press",
+      "verification_state": "verified_authoritative_replacement",
+      "old_url": "https://www.cambridge.org/highereducation/books/the-cambridge-introduction-to-narrative/33F40DD4272A7925A9B227BC4E11D85C",
+      "canonical_url": "https://www.cambridge.org/highereducation/books/the-cambridge-introduction-to-narrative/CFD3B91DD86BE8A9F3F228D07A801FEA",
+      "evidence": "Cambridge Aspire currently serves H. Porter Abbott's The Cambridge Introduction to Narrative, third edition, at the replacement book identity with DOI 10.1017/9781108913928; the former highereducation hash is no longer the current book identity.",
+      "action": "replace_canonical_url"
+    },
+    {
+      "claims_source_id": "sge02",
+      "title": "Genre",
+      "publisher": "Routledge",
+      "verification_state": "retained_fail_closed_no_authoritative_replacement",
+      "canonical_url": "https://www.routledge.com/Genre/Frow/p/book/9780415280633",
+      "evidence": "Routledge currently foregrounds the 2015 second edition at ISBN 9781138020580. Because the canonical source points to the earlier edition and the pass does not prove edition-equivalence for every claim, the existing endpoint is retained fail-closed rather than silently switching editions.",
+      "action": "retain_until_authoritative_replacement_is_verified"
+    },
+    {
+      "claims_source_id": "sge03",
+      "title": "The Political Unconscious",
+      "publisher": "Cornell University Press",
+      "verification_state": "verified_live_redirect_same_resource",
+      "canonical_url": "https://www.cornellpress.cornell.edu/book/9780801492228/the-political-unconscious/",
+      "resolved_url": "https://cornellpress.cornell.edu/book/9780801492228/the-political-unconscious/",
+      "evidence": "Cornell University Press redirects the www hostname to the same ISBN 9780801492228 title identity without changing the resource.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "sge04",
+      "title": "Archaeologies of the Future",
+      "publisher": "Verso",
+      "verification_state": "verified_authoritative_replacement",
+      "old_url": "https://www.versobooks.com/products/2327-archaeologies-of-the-future",
+      "canonical_url": "https://www.versobooks.com/products/1945-archaeologies-of-the-future",
+      "evidence": "Verso currently serves Fredric Jameson's Archaeologies of the Future: The Desire Called Utopia and Other Science Fictions at product 1945, preserving the same title and author identity.",
+      "action": "replace_canonical_url"
+    },
+    {
+      "claims_source_id": "sge05",
+      "title": "Metamorphoses of Science Fiction",
+      "publisher": "Yale University Press",
+      "verification_state": "retained_fail_closed_no_authoritative_replacement",
+      "canonical_url": "https://yalebooks.yale.edu/book/9780300023752/metamorphoses-of-science-fiction/",
+      "evidence": "The pass did not verify a current exact Yale successor endpoint for ISBN 9780300023752 strongly enough to replace the canonical URL. No alternate edition or third-party endpoint is substituted.",
+      "action": "retain_until_authoritative_replacement_is_verified"
+    },
+    {
+      "claims_source_id": "sge06",
+      "title": "Popular Fiction: The Logics and Practices of a Literary Field",
+      "publisher": "Routledge",
+      "verification_state": "verified_authoritative_replacement",
+      "old_url": "https://www.routledge.com/Popular-Fiction-The-Logics-and-Practices-of-a-Literary-Field/Gelder/p/book/9780415356475",
+      "canonical_url": "https://www.routledge.com/Popular-Fiction-The-Logics-and-Practices-of-a-Literary-Field/Gelder/p/book/9780415356473",
+      "evidence": "Routledge currently serves Ken Gelder's 2004 first edition at the exact title/author product endpoint using ISBN 9780415356473.",
+      "action": "replace_canonical_url"
+    },
+    {
+      "claims_source_id": "sge07",
+      "title": "Robinson Crusoe",
+      "publisher": "Project Gutenberg",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.gutenberg.org/ebooks/521",
+      "evidence": "Project Gutenberg ebook 521 remains live as The Life and Adventures of Robinson Crusoe by Daniel Defoe.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "sge08",
+      "title": "Divine Comedy",
+      "publisher": "Project Gutenberg",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.gutenberg.org/ebooks/8800",
+      "evidence": "Project Gutenberg ebook 8800 remains live as The Divine Comedy by Dante Alighieri.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "sge09",
+      "title": "Madame Bovary",
+      "publisher": "Project Gutenberg",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.gutenberg.org/ebooks/2413",
+      "evidence": "Project Gutenberg ebook 2413 remains live as Madame Bovary by Gustave Flaubert.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "sge10",
+      "title": "Frankenstein",
+      "publisher": "Project Gutenberg",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.gutenberg.org/ebooks/84",
+      "evidence": "Project Gutenberg ebook 84 remains live as Frankenstein; or, the Modern Prometheus by Mary Wollstonecraft Shelley.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "sge11",
+      "title": "The Murder of Roger Ackroyd",
+      "publisher": "HarperCollins",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.harpercollins.com/products/the-murder-of-roger-ackroyd-agatha-christie",
+      "evidence": "HarperCollins currently serves the same Agatha Christie title at the canonical product endpoint.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "sge12",
+      "title": "A Room of One’s Own",
+      "publisher": "Penguin",
+      "verification_state": "verified_authoritative_replacement",
+      "old_url": "https://www.penguin.co.uk/books/60308/a-room-of-ones-own-by-woolf-virginia/9780241371978",
+      "canonical_url": "https://www.penguin.co.uk/books/57208/a-room-of-ones-ownthree-guineas-by-woolf-virginia/9780241371978",
+      "evidence": "Penguin currently resolves the same ISBN 9780241371978 to A Room of One's Own/Three Guineas. The source claim uses the A Room of One's Own portion contained in that same ISBN volume, so only the publisher URL is corrected.",
+      "action": "replace_canonical_url"
+    },
+    {
+      "claims_source_id": "sge13",
+      "title": "Binti",
+      "publisher": "Macmillan",
+      "verification_state": "verified_live",
+      "canonical_url": "https://us.macmillan.com/books/9780765385253/binti/",
+      "evidence": "Macmillan currently serves Nnedi Okorafor's Binti at the canonical ISBN 9780765385253 endpoint.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "sge14",
+      "title": "Citizen: An American Lyric",
+      "publisher": "Graywolf Press",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.graywolfpress.org/books/citizen",
+      "evidence": "Graywolf Press currently serves Claudia Rankine's Citizen: An American Lyric at the canonical endpoint and identifies ISBN 978-1-55597-690-3.",
+      "action": "retain_canonical_url"
+    }
+  ],
+  "materialization": {
+    "replacement_targets": [
+      "data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/sjanger_modus_form/claims.json",
+      "scripts/materialize-litteratur-drama-genre-v1.mjs",
+      "data/quiz/litteratur/litteratur_subject_pathways_v1.json",
+      "data/knowledge/subjects/litteratur/knowledge_units.generated.json"
+    ]
+  },
+  "summary": {
+    "canonical_sources_checked": 14,
+    "verified_live": 7,
+    "verified_live_redirect_same_resource": 1,
+    "verified_authoritative_replacement": 4,
+    "retained_fail_closed_no_authoritative_replacement": 2,
+    "canonical_url_replacements": 4
+  },
+  "quality_gates": {
+    "all_14_area_sources_accounted_for": true,
+    "four_authoritative_replacements_materialized": true,
+    "replacement_identity_preserved": true,
+    "uncertain_endpoints_not_auto_replaced": true,
+    "canonical_source_ids_preserved": true,
+    "pathway_source_count_preserved": true,
+    "claim_provenance_scope_unchanged": true,
+    "theory_integrity_scope_unchanged": true,
+    "canonical_subject_architecture_unchanged": true,
+    "completion_status_preserved": true,
+    "knowledge_provenance_checked_source_id_aware": true
+  }
+}
