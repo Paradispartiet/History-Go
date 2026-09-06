@@ -1,18 +1,224 @@
 {
-  "schema":"civication_work_grammar_v2","version":2,
-  "category":"kunst","role_scope":"kunst_konservering_og_samling","role_id":"kunst_konservering_og_samling",
-  "badge_binding":{"badge_id":"kunst","badge_titles":["Konservator","Senior konservator"]},
-  "work_world":"Konserveringsarbeid der hvert inngrep må begrunnes gjennom materiale, tilstand, risiko, reversibilitet og langsiktig bevaringsansvar.",
-  "task_families":["tilstandsvurdering","materialanalyse","forebyggende_konservering","behandlingsplan","utlan_og_transport","dokumentasjon"],
-  "work_loops":["undersøk -> dokumenter -> risikovurder -> tiltak -> kontroll -> dokumenter resultat","forespørsel -> tilstand -> miljøkrav -> transportkrav -> faglig anbefaling -> oppfølging"],
-  "pressure_axes":["bevaring_vs_visning","inngrep_vs_reversibilitet","frist_vs_faglig_grunnlag"],
-  "practice_stories":[
-    {"id":"skjort_verk","setup":"Et hovedverk er ønsket i en stor utstilling, men tilstanden gjør håndtering risikabel.","decision":"Dokumenter risikoen og sett faglige vilkår eller anbefal at verket ikke vises.","learning":"programverdi opphever ikke bevaringsansvar"},
-    {"id":"gammel_restaurering","setup":"En eldre behandling skjuler deler av originalmaterialet.","decision":"Kartlegg lag, historikk og konsekvenser før eventuell behandling foreslås.","learning":"konservering begynner med kunnskap, ikke kosmetikk"},
-    {"id":"risikofylt_utlan","setup":"Et utlån krever lang transport og ustabilt klima.","decision":"Sett målbare transport- og klimakrav og avslå hvis risikoen ikke kan reduseres forsvarlig.","learning":"utlån er en bevaringsbeslutning, ikke bare logistikk"},
-    {"id":"klimakonflikt","setup":"Publikumsopplegget krever åpne dører og høy trafikk rundt et klimafølsomt verk.","decision":"Foreslå rom-, tids- eller adgangstiltak som beskytter verket.","learning":"publikumsadgang må designes rundt reell materialrisiko"},
-    {"id":"kosmetisk_press","setup":"Ledelsen ønsker et inngrep primært fordi verket skal se bedre ut på pressebilder.","decision":"Krev faglig formål, dokumentasjon og etisk vurdering før behandling.","learning":"estetisk press er ikke i seg selv konserveringsgrunnlag"}
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "kunst",
+  "role_scope": "kunst_konservering_og_samling",
+  "role_id": "kunst_konservering_og_samling",
+  "badge_binding": {
+    "badge_id": "kunst",
+    "badge_titles": [
+      "Konservator",
+      "Senior konservator"
+    ]
+  },
+  "work_world": "Konserveringsarbeid der hvert inngrep må begrunnes gjennom materiale, tilstand, risiko, reversibilitet og langsiktig bevaringsansvar.",
+  "task_families": [
+    "tilstandsvurdering",
+    "materialanalyse",
+    "forebyggende_konservering",
+    "behandlingsplan",
+    "utlan_og_transport",
+    "dokumentasjon"
   ],
-  "quality_axes":["materialforståelse","risikovurdering","reversibilitet","dokumentasjon","behandlingsetikk","langsiktig_bevaring"],
-  "authority_boundary":{"may":["stanse risikofylt håndtering","sette faglige bevaringsvilkår","gjennomføre tiltak innen kompetanse og mandat"],"may_not":["utføre udokumenterte inngrep","endre verk av kosmetiske grunner alene","skjule skade eller usikkerhet","overstyre juridisk eierskap eller forsikringsbeslutninger"]}
+  "work_loops": [
+    "undersøk -> dokumenter -> risikovurder -> tiltak -> kontroll -> dokumenter resultat",
+    "forespørsel -> tilstand -> miljøkrav -> transportkrav -> faglig anbefaling -> oppfølging"
+  ],
+  "pressure_axes": [
+    "bevaring_vs_visning",
+    "inngrep_vs_reversibilitet",
+    "frist_vs_faglig_grunnlag"
+  ],
+  "practice_stories": [
+    {
+      "id": "skjort_verk",
+      "setup": "Et hovedverk er ønsket i en stor utstilling, men tilstanden gjør håndtering risikabel.",
+      "decision": "Dokumenter risikoen og sett faglige vilkår eller anbefal at verket ikke vises.",
+      "learning": "programverdi opphever ikke bevaringsansvar"
+    },
+    {
+      "id": "gammel_restaurering",
+      "setup": "En eldre behandling skjuler deler av originalmaterialet.",
+      "decision": "Kartlegg lag, historikk og konsekvenser før eventuell behandling foreslås.",
+      "learning": "konservering begynner med kunnskap, ikke kosmetikk"
+    },
+    {
+      "id": "risikofylt_utlan",
+      "setup": "Et utlån krever lang transport og ustabilt klima.",
+      "decision": "Sett målbare transport- og klimakrav og avslå hvis risikoen ikke kan reduseres forsvarlig.",
+      "learning": "utlån er en bevaringsbeslutning, ikke bare logistikk"
+    },
+    {
+      "id": "klimakonflikt",
+      "setup": "Publikumsopplegget krever åpne dører og høy trafikk rundt et klimafølsomt verk.",
+      "decision": "Foreslå rom-, tids- eller adgangstiltak som beskytter verket.",
+      "learning": "publikumsadgang må designes rundt reell materialrisiko"
+    },
+    {
+      "id": "kosmetisk_press",
+      "setup": "Ledelsen ønsker et inngrep primært fordi verket skal se bedre ut på pressebilder.",
+      "decision": "Krev faglig formål, dokumentasjon og etisk vurdering før behandling.",
+      "learning": "estetisk press er ikke i seg selv konserveringsgrunnlag"
+    }
+  ],
+  "quality_axes": [
+    "materialforståelse",
+    "risikovurdering",
+    "reversibilitet",
+    "dokumentasjon",
+    "behandlingsetikk",
+    "langsiktig_bevaring"
+  ],
+  "authority_boundary": {
+    "may": [
+      "stanse risikofylt håndtering",
+      "sette faglige bevaringsvilkår",
+      "gjennomføre tiltak innen kompetanse og mandat"
+    ],
+    "may_not": [
+      "utføre udokumenterte inngrep",
+      "endre verk av kosmetiske grunner alene",
+      "skjule skade eller usikkerhet",
+      "overstyre juridisk eierskap eller forsikringsbeslutninger"
+    ]
+  },
+  "actor_grammar": [
+    {
+      "id": "eva_senior_konservator_kunst_konservering_og_samling",
+      "name": "Eva",
+      "role": "senior konservator",
+      "workplace_ids": [
+        "tilstands_material_og_behandlingsatelier"
+      ]
+    },
+    {
+      "id": "jonas_registrar_samlingsforvalter_kunst_konservering_og_samling",
+      "name": "Jonas",
+      "role": "registrar og samlingsforvalter",
+      "workplace_ids": [
+        "magasin_og_objektlogg"
+      ]
+    },
+    {
+      "id": "samira_utlan_transport_klima_kunst_konservering_og_samling",
+      "name": "Samira",
+      "role": "utlåns-, transport- og klimakoordinator",
+      "workplace_ids": [
+        "utlan_transport_og_klimabord"
+      ]
+    },
+    {
+      "id": "mikkel_utstillingsproduksjon_kunst_konservering_og_samling",
+      "name": "Mikkel",
+      "role": "utstillingsprodusent og monteringsansvarlig",
+      "workplace_ids": [
+        "utstilling_og_monteringsflate"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "tilstands_material_og_behandlingsatelier",
+      "name": "Tilstands-, material- og behandlingsatelieret",
+      "function": "Her registreres foto, materialobservasjoner, skade, analysegrunnlag, tidligere inngrep, kompetansegrense, behandlingsalternativer, reversibilitet, utført tiltak og etterkontroll i samme versjonerte spor."
+    },
+    {
+      "id": "magasin_og_objektlogg",
+      "name": "Magasin- og objektloggen",
+      "function": "Her følger objekt-ID, plassering, proveniens, accession, eierskaps- og lånestatus, forsikring, tilstandsversjon og tidligere behandling kunstverket før hvert nytt uttak, inngrep eller handoff."
+    },
+    {
+      "id": "utlan_transport_og_klimabord",
+      "name": "Utlåns-, transport- og klimabordet",
+      "function": "Her kobles facility report, forsikring, pakking, transport, kurérbehov, klima, vibrasjon, lys, håndteringskrav, venting og mottakskontroll til den samme dokumenterte risikovurderingen."
+    },
+    {
+      "id": "utstilling_og_monteringsflate",
+      "name": "Utstillings- og monteringsflaten",
+      "function": "Her testes monteringsløsning, lys, sikkerhet, publikumsavstand, visningsperiode og praktisk produksjon mot dokumenterte bevaringsvilkår før verket kan erklæres klart for visning."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "kunstverk_tilstands_material_behandlings_og_utlanslogg",
+    "description": "Et vedvarende, versjonert kunstverksobjekt som beholder objekt-ID, proveniens og plassering, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetansegrense, behandlingsforslag og utført tiltak, reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff, beslutning og avgrenset rework gjennom samme sak.",
+    "states": [
+      "inntak_og_objektidentitet",
+      "baseline_tilstand",
+      "material_og_analysegrunnlag",
+      "venter_pa_kvalifisert_vurdering",
+      "behandlingsplan",
+      "behandling_og_dokumentasjon",
+      "utlans_og_forsikringskontroll",
+      "transport_og_klimaplan",
+      "venter_pa_mottak_eller_facility_report",
+      "montering_og_visningsvilkar",
+      "under_visning",
+      "etterkontroll",
+      "revisjon",
+      "gjenapnet"
+    ],
+    "handoff_rule": "Neste aktør overtar synlig siste godkjente versjon med objekt-ID, tilstand, material- og inngrepsspor, kompetansegrense, risiko, klima, utlåns-/forsikringsstatus, ventepunkt og eksplisitt neste eier. Ingen muntlig eller prestisjedrevet overlevering får skjule et konservatorfaglig stopp eller gjøre en uavklart risiko til godkjent tilstand.",
+    "rework_rule": "Ny skade, ny materialanalyse, oppdaget tidligere inngrep, transporthendelse, endret klima- eller mottaksforhold eller korrigert objektidentitet gjenåpner bare de berørte feltene og deres avhengige behandling, transport eller visningsvilkår. Tidligere versjon beholdes slik at hva som var kjent, besluttet og utført kan rekonstrueres."
+  },
+  "rhythm_contract": {
+    "loop": "assessment -> documented decision -> waiting/handoff -> treatment or preventive action -> control -> bounded rework",
+    "waiting_states": [
+      "venter_pa_materialanalyse",
+      "venter_pa_kvalifisert_behandler_eller_utnevnelse",
+      "venter_pa_forsikring_eller_utlansavtale",
+      "venter_pa_facility_report_eller_mottaksklima",
+      "venter_pa_transport_eller_kurer",
+      "venter_pa_monteringsendring"
+    ],
+    "handoff_points": [
+      "tilstand_til_behandlingsplan",
+      "behandling_til_registrering",
+      "registrering_til_utlan_transport",
+      "transport_til_mottakskontroll",
+      "mottak_til_montering_og_visning"
+    ],
+    "rework_rule": "Rework skal være avgrenset til feltene som faktisk rammes av ny skade, tilstandsdata, materialanalyse, transporthendelse, klimaavvik eller korrigert dokumentasjon; det skal aldri slette tidligere inngreps- eller beslutningshistorikk."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_kunst_objektbiografi_materialitet_og_kildekritikk",
+      "badge_id": "kunst",
+      "use": "History Go kan styrke kunsthistorisk kontekst, objektbiografi, teknikk- og materialspørsmål og kildekritikk. Et Badge kan ikke diagnostisere tilstand, gi konserveringskompetanse eller `qualification_required`, gi arbeidsgiverutnevnelse eller `appointment_required`, autorisere behandling, fastsette forsikring, godkjenne transport eller overstyre eierskap og lånevilkår."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "career_offer_policy_by_title",
+    "entry_policy_by_title": {
+      "Konservator": {
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "relevant_education_or_employer_qualification"
+        ]
+      },
+      "Senior konservator": {
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "relevant_education_or_employer_qualification",
+          "employer_appointment"
+        ]
+      }
+    },
+    "first_object": "kunstverk_tilstands_material_behandlings_og_utlanslogg",
+    "first_task": "Registrer objekt-ID og proveniens, materialer og teknikk, baseline-tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og behandlingsgrense, klima, utlåns-/forsikrings-/transportstatus, ventepunkt og neste eier; marker eksplisitt hva History Go, stillingstittel og produksjonsfrist ikke kan diagnostisere, kvalifisere eller godkjenne."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "kunst_konservering_og_samling",
+    "no_generic_fallback": true
+  }
 }

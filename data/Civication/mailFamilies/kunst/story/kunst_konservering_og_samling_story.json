@@ -1,0 +1,89 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "kunst",
+  "role_scope": "kunst_konservering_og_samling",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "kunst_konservering_og_samling_inngrep_objektbiografi_og_ansvar",
+      "purpose": "Trene story gjennom kunstverk_tilstands_material_behandlings_og_utlanslogg med material-, tilstands-, behandlings-, klima-, transport-, kompetanse- og mandatgrenser.",
+      "learning_focus": [
+        "materialforstaelse",
+        "tilstand",
+        "behandlingsetikk",
+        "sporbar_handoff"
+      ],
+      "mails": [
+        {
+          "id": "kunst_konservering_og_samling_story_inngrep_som_objektbiografi_001",
+          "mail_type": "story",
+          "mail_family": "kunst_konservering_og_samling_inngrep_objektbiografi_og_ansvar",
+          "role_scope": "kunst_konservering_og_samling",
+          "phase": "workday",
+          "priority": 140,
+          "from": "Eva",
+          "people_ref": "eva_senior_konservator_kunst_konservering_og_samling",
+          "place_id": "tilstands_material_og_behandlingsatelier",
+          "subject": "Hva forteller de gamle inngrepene om verket?",
+          "summary": "En tidligere restaurering har blitt en del av kunstverkets fysiske historie, men teamet må skille dokumentert behandlingshistorikk fra ønsket om å føre verket tilbake til et antatt originalutseende. kunstverk_tilstands_material_behandlings_og_utlanslogg må oppdateres slik at objektidentitet og proveniens, materialer og teknikk, tilstand og skade, tidligere inngrep, analysegrunnlag, kompetanse- og utnevnelsesgrense, behandlingsvalg og reversibilitet, klima, utlån, forsikring, pakking, transport, montering, visningsvilkår, ventepunkt, handoff og neste eier fortsatt kan rekonstrueres. Frist, estetisk press, utstillingsprestisje eller History Go kan ikke diagnostisere tilstand, gi konservatorfaglig kvalifikasjon eller utnevnelse, autorisere behandling, fastsette forsikring eller gjøre en risikofylt transport faglig forsvarlig. Valget må derfor bevare skillet mellom dokumentert observasjon, faglig vurdering, formell avtale og faktisk utført inngrep, og bare gjenåpne den delen av kunstverkets behandlings-, utlåns- eller visningsspor som ny informasjon faktisk berører.",
+          "situation": [
+            "Den aktive loggversjonen viser objekt-ID, proveniens, materialer, tilstand, tidligere inngrep, analysegrunnlag, kompetanse, behandling, klima/transport, avtale- og forsikringsstatus, venting og neste ansvarlige før beslutningen tas.",
+            "En sosialt eller produksjonsmessig enklere løsning kan gi rask framdrift, men vil gjøre materialrisiko, behandlingshistorikk, ansvar eller senere skadeanalyse vanskeligere å rekonstruere ved kontroll.",
+            "Du må velge et grep som bevarer eksisterende myndighetsgrense, den konkrete Career-offer-policyen for tittelen og en tydelig waiting/handoff/rework-regel uten generisk fallback."
+          ],
+          "task_domain": "kunstkonservering_og_samlingsbevaring",
+          "competency": "material_tilstand_behandling_risiko_og_sporbar_handoff",
+          "pressure": "prestisje_frist_og_estetikk_vs_bevaring_kompetanse_og_dokumentasjon",
+          "choice_axis": "sporbar_faglig_grense_vs_rask_risikoaksept",
+          "consequence_axis": "langsiktig_materialintegritet_vs_skade_og_tillitstap",
+          "narrative_arc": "inngrep_som_objektbiografi",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bevar sporbarheten og begrunn hvert nytt inngrep",
+              "reply": "Jeg velger å bevar sporbarheten og begrunn hvert nytt inngrep. Jeg oppdaterer bare de berørte feltene i kunstverk_tilstands_material_behandlings_og_utlanslogg, beholder tidligere versjon, materialobservasjon, tilstand, usikkerhet og inngrepsspor synlig, og setter eksplisitt neste eier, ventepunkt og hvilken kvalifikasjon, utnevnelse, analyse, avtale eller kontroll som fortsatt mangler før saken kan gå videre.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "tilstand",
+                "bevaring",
+                "revisjon"
+              ],
+              "feedback": "Dette kan forsinke behandling, transport eller montering, men neste aktør kan se hva som faktisk er observert, hvilke analyser og vurderinger som er gjort, hvilke inngrep som er utført, hva som fortsatt venter, og hvem som eier neste steg. Det beskytter kunstverkets fysiske integritet, behandlingshistorikk, klima- og transportgrense og muligheten for senere avgrenset korreksjon uten å gi History Go, stillingstittel eller prestisje kompetanse og myndighet de ikke har.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Fjern de synlige sporene fordi de ser feil ut",
+              "reply": "Jeg velger å fjern de synlige sporene fordi de ser feil ut. Jeg lar framdrift, estetikk eller institusjonell trygghet veie tyngre enn det dokumenterte material-, tilstands-, kompetanse-, forsikrings- eller transportsporet og sender kunstverket videre uten å gjøre usikkerhet, tidligere inngrep og neste kontrollpunkt tydelig nok for neste aktør.",
+              "effect": -1,
+              "tags": [
+                "lukking",
+                "prestisje",
+                "usikkerhet",
+                "risiko"
+              ],
+              "feedback": "Saken ser enklere og mer ferdig ut lokalt, men arbeidsobjektet mister et vesentlig skille mellom observasjon, materialanalyse, kompetanse, behandling og formell avtale. Senere skade, klimaavvik, forsikringssak, transporthendelse, utlånsvurdering eller ny undersøkelse kan da gjøre både kunstverkets tilstandshistorikk og institusjonens begrunnelse vanskeligere å rekonstruere og vanskeligere å korrigere uten større rework.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

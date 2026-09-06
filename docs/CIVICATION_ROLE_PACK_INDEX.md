@@ -15,14 +15,14 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 
 ## Sammendrag
 
-- complete_reference_v2: 62
+- complete_reference_v2: 66
 - complete_reference: 0
 - playable_v1: 1
 - partial_pack: 23
 - role_model_only: 182
 - generated_stub: 0
 - broken_mapping: 0
-- missing: 32
+- missing: 28
 
 ## Rolleindeks
 
@@ -81,8 +81,8 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | historie | radgiver | historie_radgiver | Rådgiver | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | historie | saksbehandler | historie_saksbehandler | Saksbehandler | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | historie | seksjonsleder | historie_seksjonsleder | Seksjonsleder | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
-| historie | senior_konservator | historie_senior_konservator | Senior konservator | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
-| historie | senior_kurator | historie_senior_kurator | Senior kurator | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
+| historie | senior_konservator | historie_senior_konservator | Senior konservator | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
+| historie | senior_kurator | historie_senior_kurator | Senior kurator | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | historie | seniorforsker | historie_seniorforsker | Seniorforsker | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | historie | seniorradgiver | historie_seniorradgiver | Seniorrådgiver | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | historie | spesialradgiver | historie_spesialradgiver | Spesialrådgiver | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
@@ -91,18 +91,18 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | kunst | gallerimedarbeider | kunst_gallerimedarbeider | Gallerimedarbeider | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | kunst | gallerist | kunst_gallerist | Gallerist | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | kunst | konservator | kunst_konservator | Konservator | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
-| kunst | kunst_konservering_og_samling | kunst_konservering_og_samling | kunst_konservering_og_samling | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
-| kunst | kunst_kuratering_og_program | kunst_kuratering_og_program | kunst_kuratering_og_program | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
-| kunst | kunst_museumsledelse | kunst_museumsledelse | kunst_museumsledelse | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
-| kunst | kunst_publikum_og_formidling | kunst_publikum_og_formidling | kunst_publikum_og_formidling | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
+| kunst | kunst_konservering_og_samling | kunst_konservering_og_samling | Konservering og samlingsbevaring | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | kunst | kunst_kunstnerisk_ledelse | kunst_kunstnerisk_ledelse | Kunstnerisk ledelse | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
-| kunst | kunstnerisk_leder | kunst_kunstnerisk_leder | Kunstnerisk leder | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
+| kunst | kunstnerisk_leder | kunst_kunstnerisk_leder | Kunstnerisk leder | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
+| kunst | kunst_kuratering_og_program | kunst_kuratering_og_program | Kuratering og utstillingsprogram | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | kunst | kurator | kunst_kurator | Kurator | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | kunst | kuratorassistent | kunst_kuratorassistent | Kuratorassistent | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | kunst | museumsdirektor | kunst_museumsdirektor | Museumsdirektør | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
+| kunst | kunst_museumsledelse | kunst_museumsledelse | Museumsledelse | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | kunst | produksjonsassistent | kunst_produksjonsassistent | Produksjonsassistent | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
-| kunst | senior_konservator | kunst_senior_konservator | Senior konservator | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
-| kunst | senior_kurator | kunst_senior_kurator | Senior kurator | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
+| kunst | kunst_publikum_og_formidling | kunst_publikum_og_formidling | Publikum, galleri og kunstformidling | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
+| kunst | senior_konservator | kunst_senior_konservator | Senior konservator | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
+| kunst | senior_kurator | kunst_senior_kurator | Senior kurator | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | kunst | utstillingskoordinator | kunst_utstillingskoordinator | Utstillingskoordinator | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | kunst | kunst_utstillingsproduksjon | kunst_utstillingsproduksjon | Utstillingsproduksjon og koordinering | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | kunst | utstillingsprodusent | kunst_utstillingsprodusent | Utstillingsprodusent | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
