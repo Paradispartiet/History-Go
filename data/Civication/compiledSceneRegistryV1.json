@@ -205,6 +205,15 @@
     "data/Civication/mailFamilies/kunst/followup/kunst_museumsledelse_followup.json",
     "data/Civication/mailFamilies/kunst/knowledge/kunst_museumsledelse_knowledge.json",
     "data/Civication/mailFamilies/kunst/consequence/kunst_museumsledelse_consequence.json",
+    "data/Civication/mailFamilies/kunst/job/kunst_publikum_og_formidling_job.json",
+    "data/Civication/mailFamilies/kunst/people/kunst_publikum_og_formidling_people.json",
+    "data/Civication/mailFamilies/kunst/story/kunst_publikum_og_formidling_story.json",
+    "data/Civication/mailFamilies/kunst/conflict/kunst_publikum_og_formidling_conflict.json",
+    "data/Civication/mailFamilies/kunst/event/kunst_publikum_og_formidling_event.json",
+    "data/Civication/mailFamilies/kunst/micro/kunst_publikum_og_formidling_micro.json",
+    "data/Civication/mailFamilies/kunst/followup/kunst_publikum_og_formidling_followup.json",
+    "data/Civication/mailFamilies/kunst/knowledge/kunst_publikum_og_formidling_knowledge.json",
+    "data/Civication/mailFamilies/kunst/consequence/kunst_publikum_og_formidling_consequence.json",
     "data/Civication/mailFamilies/kunst/job/kunst_utstillingsproduksjon_job.json",
     "data/Civication/mailFamilies/kunst/people/kunst_utstillingsproduksjon_people.json",
     "data/Civication/mailFamilies/kunst/story/kunst_utstillingsproduksjon_story.json",
@@ -67175,6 +67184,2016 @@
       },
       "source_hash": "97bf3fbc53619732f86ece1447ad0cbd1c7fdcfcfbba7cd7a6079395bf280ce3",
       "source_path": "data/Civication/mailFamilies/kunst/story/kunst_museumsledelse_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_improvisert_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar en engasjerende fortelling kolliderer med kildegrensen i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "tilgjengelighet",
+              "eskalering"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk en engasjerende fortelling kolliderer med kildegrensen gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar.",
+            "tags": [
+              "improvisert_autoritet",
+              "tempo",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "presis_tilgjengelig_og_sporbar_formidling",
+        "consequence_axis": "faglig_tillit_og_trygghet_vs_skjult_usikkerhet",
+        "from": "Sara",
+        "id": "publikum_formidling_conflict_fasit_vs_apenhet_001",
+        "mail_family": "publikum_formidling_presisjon_service_og_grensekonflikt",
+        "mail_type": "conflict",
+        "narrative_arc": "fasit_vs_apenhet",
+        "people_ref": "sara_senior_formidler_kunst_publikum_og_formidling",
+        "phase": "forenoon",
+        "place_id": "omvisning_og_formidlingsflate",
+        "pressure": "presisjon_tilgjengelighet_service_og_sikkerhet",
+        "priority": 130,
+        "role_scope": "kunst_publikum_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/conflict/kunst_publikum_og_formidling_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+          "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+          "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+        ],
+        "subject": "En engasjerende fortelling kolliderer med kildegrensen",
+        "summary": "Et populært omvisningsgrep får sterke publikumsreaksjoner, men gjør en tolkning til tilsynelatende institusjonell fasit og skaper konflikt mellom dramaturgisk flyt og faglig redelighet. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering.",
+        "task_domain": "publikum_formidling_og_galleridrift"
+      },
+      "id": "publikum_formidling_conflict_fasit_vs_apenhet_001",
+      "mail_type": "conflict",
+      "role_scope": "kunst_publikum_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar en engasjerende fortelling kolliderer med kildegrensen i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk en engasjerende fortelling kolliderer med kildegrensen gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+            "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+            "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+          ],
+          "subject": "En engasjerende fortelling kolliderer med kildegrensen",
+          "summary": "Et populært omvisningsgrep får sterke publikumsreaksjoner, men gjør en tolkning til tilsynelatende institusjonell fasit og skaper konflikt mellom dramaturgisk flyt og faglig redelighet. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "publikum_formidling_conflict_fasit_vs_apenhet_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "omvisning_og_formidlingsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "publikum_formidling_conflict_fasit_vs_apenhet_001",
+          "source_path": "data/Civication/mailFamilies/kunst/conflict/kunst_publikum_og_formidling_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_publikum_og_formidling.mail.publikum_formidling_conflict_fasit_vs_apenhet_001",
+        "version": 1
+      },
+      "source_hash": "aa8485d26f3ef46e3edff5858432a94421a865cda5f11b45cbc61d958a88b78b",
+      "source_path": "data/Civication/mailFamilies/kunst/conflict/kunst_publikum_og_formidling_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_improvisert_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar en liten hendelse viser at handoffen var for svak i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "tilgjengelighet",
+              "eskalering"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk en liten hendelse viser at handoffen var for svak gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar.",
+            "tags": [
+              "improvisert_autoritet",
+              "tempo",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "presis_tilgjengelig_og_sporbar_formidling",
+        "consequence_axis": "faglig_tillit_og_trygghet_vs_skjult_usikkerhet",
+        "from": "Erik",
+        "id": "publikum_formidling_consequence_hendelse_etterspill_001",
+        "mail_family": "publikum_formidling_beslutning_og_etterspill",
+        "mail_type": "consequence",
+        "narrative_arc": "hendelse_etterspill",
+        "people_ref": "erik_galleridrift_sikkerhet_kunst_publikum_og_formidling",
+        "phase": "forenoon",
+        "place_id": "galleridrift_hendelse_og_eskaleringspunkt",
+        "pressure": "presisjon_tilgjengelighet_service_og_sikkerhet",
+        "priority": 130,
+        "role_scope": "kunst_publikum_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/consequence/kunst_publikum_og_formidling_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+          "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+          "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+        ],
+        "subject": "En liten hendelse viser at handoffen var for svak",
+        "summary": "Et tidligere avvik ble håndtert rolig, men oppfølgingen viser at publikum, vertskap og drift satt igjen med ulike versjoner av hva som var kommunisert og hvem som eide neste kontroll. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering.",
+        "task_domain": "publikum_formidling_og_galleridrift"
+      },
+      "id": "publikum_formidling_consequence_hendelse_etterspill_001",
+      "mail_type": "consequence",
+      "role_scope": "kunst_publikum_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar en liten hendelse viser at handoffen var for svak i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk en liten hendelse viser at handoffen var for svak gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+            "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+            "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+          ],
+          "subject": "En liten hendelse viser at handoffen var for svak",
+          "summary": "Et tidligere avvik ble håndtert rolig, men oppfølgingen viser at publikum, vertskap og drift satt igjen med ulike versjoner av hva som var kommunisert og hvem som eide neste kontroll. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "publikum_formidling_consequence_hendelse_etterspill_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "galleridrift_hendelse_og_eskaleringspunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "publikum_formidling_consequence_hendelse_etterspill_001",
+          "source_path": "data/Civication/mailFamilies/kunst/consequence/kunst_publikum_og_formidling_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_publikum_og_formidling.mail.publikum_formidling_consequence_hendelse_etterspill_001",
+        "version": 1
+      },
+      "source_hash": "b387cf8a2ad47969537595844bb39a6fa22211a4c12f17de5fa5fcc45547a1d1",
+      "source_path": "data/Civication/mailFamilies/kunst/consequence/kunst_publikum_og_formidling_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_improvisert_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar et teknisk avvik endrer publikumsflyten midt i dagen i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "tilgjengelighet",
+              "eskalering"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk et teknisk avvik endrer publikumsflyten midt i dagen gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar.",
+            "tags": [
+              "improvisert_autoritet",
+              "tempo",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "presis_tilgjengelig_og_sporbar_formidling",
+        "consequence_axis": "faglig_tillit_og_trygghet_vs_skjult_usikkerhet",
+        "from": "Erik",
+        "id": "publikum_formidling_event_ny_hendelse_001",
+        "mail_family": "publikum_formidling_hendelse_og_endret_situasjon",
+        "mail_type": "event",
+        "narrative_arc": "ny_hendelse",
+        "people_ref": "erik_galleridrift_sikkerhet_kunst_publikum_og_formidling",
+        "phase": "forenoon",
+        "place_id": "galleridrift_hendelse_og_eskaleringspunkt",
+        "pressure": "presisjon_tilgjengelighet_service_og_sikkerhet",
+        "priority": 130,
+        "role_scope": "kunst_publikum_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/event/kunst_publikum_og_formidling_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+          "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+          "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+        ],
+        "subject": "Et teknisk avvik endrer publikumsflyten midt i dagen",
+        "summary": "En installasjon må midlertidig avsperres, og plutselig endres rute, kapasitet, tilgjengelighet og hvilke opplysninger publikum må få uten at formidleren spekulerer i årsak. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering.",
+        "task_domain": "publikum_formidling_og_galleridrift"
+      },
+      "id": "publikum_formidling_event_ny_hendelse_001",
+      "mail_type": "event",
+      "role_scope": "kunst_publikum_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar et teknisk avvik endrer publikumsflyten midt i dagen i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk et teknisk avvik endrer publikumsflyten midt i dagen gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+            "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+            "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+          ],
+          "subject": "Et teknisk avvik endrer publikumsflyten midt i dagen",
+          "summary": "En installasjon må midlertidig avsperres, og plutselig endres rute, kapasitet, tilgjengelighet og hvilke opplysninger publikum må få uten at formidleren spekulerer i årsak. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "publikum_formidling_event_ny_hendelse_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "galleridrift_hendelse_og_eskaleringspunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "publikum_formidling_event_ny_hendelse_001",
+          "source_path": "data/Civication/mailFamilies/kunst/event/kunst_publikum_og_formidling_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_publikum_og_formidling.mail.publikum_formidling_event_ny_hendelse_001",
+        "version": 1
+      },
+      "source_hash": "409bc1bb85395e6f921336369861c8b649cd23b4135e4d1b49e0c1c6c800a6cd",
+      "source_path": "data/Civication/mailFamilies/kunst/event/kunst_publikum_og_formidling_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_improvisert_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar tilpasningen er gjennomført, men læringen må tilbake i loggen i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "tilgjengelighet",
+              "eskalering"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk tilpasningen er gjennomført, men læringen må tilbake i loggen gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar.",
+            "tags": [
+              "improvisert_autoritet",
+              "tempo",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "presis_tilgjengelig_og_sporbar_formidling",
+        "consequence_axis": "faglig_tillit_og_trygghet_vs_skjult_usikkerhet",
+        "from": "Amal",
+        "id": "publikum_formidling_followup_etterkontroll_001",
+        "mail_family": "publikum_formidling_etterkontroll_og_laring",
+        "mail_type": "followup",
+        "narrative_arc": "etterkontroll",
+        "people_ref": "amal_tilgjengelighetskoordinator_kunst_publikum_og_formidling",
+        "phase": "forenoon",
+        "place_id": "tilgjengelighet_og_gruppetilpasningsbord",
+        "pressure": "presisjon_tilgjengelighet_service_og_sikkerhet",
+        "priority": 130,
+        "role_scope": "kunst_publikum_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/followup/kunst_publikum_og_formidling_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+          "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+          "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+        ],
+        "subject": "Tilpasningen er gjennomført, men læringen må tilbake i loggen",
+        "summary": "Et alternativt formidlingsopplegg fungerte bedre for gruppen enn standardformatet, og erfaringene må dokumenteres slik at neste team kan vite hva som var behov, tiltak og faktisk effekt. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering.",
+        "task_domain": "publikum_formidling_og_galleridrift"
+      },
+      "id": "publikum_formidling_followup_etterkontroll_001",
+      "mail_type": "followup",
+      "role_scope": "kunst_publikum_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar tilpasningen er gjennomført, men læringen må tilbake i loggen i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk tilpasningen er gjennomført, men læringen må tilbake i loggen gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+            "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+            "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+          ],
+          "subject": "Tilpasningen er gjennomført, men læringen må tilbake i loggen",
+          "summary": "Et alternativt formidlingsopplegg fungerte bedre for gruppen enn standardformatet, og erfaringene må dokumenteres slik at neste team kan vite hva som var behov, tiltak og faktisk effekt. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "publikum_formidling_followup_etterkontroll_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "tilgjengelighet_og_gruppetilpasningsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "publikum_formidling_followup_etterkontroll_001",
+          "source_path": "data/Civication/mailFamilies/kunst/followup/kunst_publikum_og_formidling_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_publikum_og_formidling.mail.publikum_formidling_followup_etterkontroll_001",
+        "version": 1
+      },
+      "source_hash": "613f63bfb5584573e6b9906d51d0d7965dcdece2168a60249f51dfae17e9299b",
+      "source_path": "data/Civication/mailFamilies/kunst/followup/kunst_publikum_og_formidling_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_improvisert_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar en besøkende berører et verk til tross for reglene i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "tilgjengelighet",
+              "eskalering"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk en besøkende berører et verk til tross for reglene gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar.",
+            "tags": [
+              "improvisert_autoritet",
+              "tempo",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "presis_tilgjengelig_og_sporbar_formidling",
+        "consequence_axis": "faglig_tillit_og_trygghet_vs_skjult_usikkerhet",
+        "from": "Erik",
+        "id": "publikum_formidling_job_beroring_verk_004",
+        "mail_family": "publikum_formidling_job",
+        "mail_type": "job",
+        "narrative_arc": "beroring_verk",
+        "people_ref": "erik_galleridrift_sikkerhet_kunst_publikum_og_formidling",
+        "phase": "workday",
+        "place_id": "galleridrift_hendelse_og_eskaleringspunkt",
+        "pressure": "presisjon_tilgjengelighet_service_og_sikkerhet",
+        "priority": 127,
+        "role_scope": "kunst_publikum_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/job/kunst_publikum_og_formidling_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+          "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+          "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+        ],
+        "subject": "En besøkende berører et verk til tross for reglene",
+        "summary": "En gjest berører et verk under en travel periode, og hendelsen må både stoppes rolig, sikres, eskaleres og dokumenteres uten å spekulere i skadeomfang. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering.",
+        "task_domain": "publikum_formidling_og_galleridrift"
+      },
+      "id": "publikum_formidling_job_beroring_verk_004",
+      "mail_type": "job",
+      "role_scope": "kunst_publikum_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar en besøkende berører et verk til tross for reglene i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk en besøkende berører et verk til tross for reglene gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+            "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+            "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+          ],
+          "subject": "En besøkende berører et verk til tross for reglene",
+          "summary": "En gjest berører et verk under en travel periode, og hendelsen må både stoppes rolig, sikres, eskaleres og dokumenteres uten å spekulere i skadeomfang. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "publikum_formidling_job_beroring_verk_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "galleridrift_hendelse_og_eskaleringspunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "publikum_formidling_job_beroring_verk_004",
+          "source_path": "data/Civication/mailFamilies/kunst/job/kunst_publikum_og_formidling_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_publikum_og_formidling.mail.publikum_formidling_job_beroring_verk_004",
+        "version": 1
+      },
+      "source_hash": "7ca8f00aaa937e9d7d7b1dc085253c2644e132c2e72846b774c5f5c75d421143",
+      "source_path": "data/Civication/mailFamilies/kunst/job/kunst_publikum_og_formidling_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_improvisert_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar tre grupper ankommer samtidig og kapasiteten presses i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "tilgjengelighet",
+              "eskalering"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk tre grupper ankommer samtidig og kapasiteten presses gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar.",
+            "tags": [
+              "improvisert_autoritet",
+              "tempo",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "presis_tilgjengelig_og_sporbar_formidling",
+        "consequence_axis": "faglig_tillit_og_trygghet_vs_skjult_usikkerhet",
+        "from": "Jon",
+        "id": "publikum_formidling_job_publikumstopp_003",
+        "mail_family": "publikum_formidling_job",
+        "mail_type": "job",
+        "narrative_arc": "publikumstopp",
+        "people_ref": "jon_publikumsvert_kunst_publikum_og_formidling",
+        "phase": "workday",
+        "place_id": "publikumsinngang_og_vertskapspunkt",
+        "pressure": "presisjon_tilgjengelighet_service_og_sikkerhet",
+        "priority": 128,
+        "role_scope": "kunst_publikum_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/job/kunst_publikum_og_formidling_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+          "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+          "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+        ],
+        "subject": "Tre grupper ankommer samtidig og kapasiteten presses",
+        "summary": "Publikumsinngangen fylles raskt, flere grupper vil starte samtidig, og presset på service, ro, verkavstand og tydelig informasjon øker. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering.",
+        "task_domain": "publikum_formidling_og_galleridrift"
+      },
+      "id": "publikum_formidling_job_publikumstopp_003",
+      "mail_type": "job",
+      "role_scope": "kunst_publikum_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar tre grupper ankommer samtidig og kapasiteten presses i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk tre grupper ankommer samtidig og kapasiteten presses gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+            "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+            "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+          ],
+          "subject": "Tre grupper ankommer samtidig og kapasiteten presses",
+          "summary": "Publikumsinngangen fylles raskt, flere grupper vil starte samtidig, og presset på service, ro, verkavstand og tydelig informasjon øker. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "publikum_formidling_job_publikumstopp_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "publikumsinngang_og_vertskapspunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "publikum_formidling_job_publikumstopp_003",
+          "source_path": "data/Civication/mailFamilies/kunst/job/kunst_publikum_og_formidling_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_publikum_og_formidling.mail.publikum_formidling_job_publikumstopp_003",
+        "version": 1
+      },
+      "source_hash": "1058117c5d2ee812b693c09bd3a1e3ffa4038c94085e6f56a3151ca0336f271a",
+      "source_path": "data/Civication/mailFamilies/kunst/job/kunst_publikum_og_formidling_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_improvisert_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar gruppen trenger en annen formidlingsform enn planlagt i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "tilgjengelighet",
+              "eskalering"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk gruppen trenger en annen formidlingsform enn planlagt gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar.",
+            "tags": [
+              "improvisert_autoritet",
+              "tempo",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "presis_tilgjengelig_og_sporbar_formidling",
+        "consequence_axis": "faglig_tillit_og_trygghet_vs_skjult_usikkerhet",
+        "from": "Amal",
+        "id": "publikum_formidling_job_tilgjengelig_gruppe_002",
+        "mail_family": "publikum_formidling_job",
+        "mail_type": "job",
+        "narrative_arc": "tilgjengelig_gruppe",
+        "people_ref": "amal_tilgjengelighetskoordinator_kunst_publikum_og_formidling",
+        "phase": "workday",
+        "place_id": "tilgjengelighet_og_gruppetilpasningsbord",
+        "pressure": "presisjon_tilgjengelighet_service_og_sikkerhet",
+        "priority": 129,
+        "role_scope": "kunst_publikum_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/job/kunst_publikum_og_formidling_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+          "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+          "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+        ],
+        "subject": "Gruppen trenger en annen formidlingsform enn planlagt",
+        "summary": "En forhåndsbooket gruppe har konkrete språk-, tempo- og sensoriske behov som gjør standardopplegget lite tilgjengelig uten at det faglige må forenkles bort. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering.",
+        "task_domain": "publikum_formidling_og_galleridrift"
+      },
+      "id": "publikum_formidling_job_tilgjengelig_gruppe_002",
+      "mail_type": "job",
+      "role_scope": "kunst_publikum_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar gruppen trenger en annen formidlingsform enn planlagt i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk gruppen trenger en annen formidlingsform enn planlagt gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+            "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+            "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+          ],
+          "subject": "Gruppen trenger en annen formidlingsform enn planlagt",
+          "summary": "En forhåndsbooket gruppe har konkrete språk-, tempo- og sensoriske behov som gjør standardopplegget lite tilgjengelig uten at det faglige må forenkles bort. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "publikum_formidling_job_tilgjengelig_gruppe_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "tilgjengelighet_og_gruppetilpasningsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "publikum_formidling_job_tilgjengelig_gruppe_002",
+          "source_path": "data/Civication/mailFamilies/kunst/job/kunst_publikum_og_formidling_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_publikum_og_formidling.mail.publikum_formidling_job_tilgjengelig_gruppe_002",
+        "version": 1
+      },
+      "source_hash": "6544892a5c555b7e610e0251012dea01a23540f59ef7610f679799450c8b62f6",
+      "source_path": "data/Civication/mailFamilies/kunst/job/kunst_publikum_og_formidling_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_improvisert_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar gruppen spør om proveniens du ikke kan dokumentere i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "tilgjengelighet",
+              "eskalering"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk gruppen spør om proveniens du ikke kan dokumentere gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar.",
+            "tags": [
+              "improvisert_autoritet",
+              "tempo",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "presis_tilgjengelig_og_sporbar_formidling",
+        "consequence_axis": "faglig_tillit_og_trygghet_vs_skjult_usikkerhet",
+        "from": "Sara",
+        "id": "publikum_formidling_job_ukjent_proveniens_001",
+        "mail_family": "publikum_formidling_job",
+        "mail_type": "job",
+        "narrative_arc": "ukjent_proveniens",
+        "people_ref": "sara_senior_formidler_kunst_publikum_og_formidling",
+        "phase": "forenoon",
+        "place_id": "omvisning_og_formidlingsflate",
+        "pressure": "presisjon_tilgjengelighet_service_og_sikkerhet",
+        "priority": 130,
+        "role_scope": "kunst_publikum_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/job/kunst_publikum_og_formidling_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+          "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+          "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+        ],
+        "subject": "Gruppen spør om proveniens du ikke kan dokumentere",
+        "summary": "En gjest stiller et detaljert proveniensspørsmål midt i omvisningen, og publikum forventer et raskt svar selv om underlaget bare dokumenterer deler av historikken. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering.",
+        "task_domain": "publikum_formidling_og_galleridrift"
+      },
+      "id": "publikum_formidling_job_ukjent_proveniens_001",
+      "mail_type": "job",
+      "role_scope": "kunst_publikum_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar gruppen spør om proveniens du ikke kan dokumentere i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk gruppen spør om proveniens du ikke kan dokumentere gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+            "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+            "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+          ],
+          "subject": "Gruppen spør om proveniens du ikke kan dokumentere",
+          "summary": "En gjest stiller et detaljert proveniensspørsmål midt i omvisningen, og publikum forventer et raskt svar selv om underlaget bare dokumenterer deler av historikken. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "publikum_formidling_job_ukjent_proveniens_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "omvisning_og_formidlingsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "publikum_formidling_job_ukjent_proveniens_001",
+          "source_path": "data/Civication/mailFamilies/kunst/job/kunst_publikum_og_formidling_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_publikum_og_formidling.mail.publikum_formidling_job_ukjent_proveniens_001",
+        "version": 1
+      },
+      "source_hash": "680f2773c9b6eaa56aae31f4fac8029d32a0b807ff7fc98b04bef7aa6d656302",
+      "source_path": "data/Civication/mailFamilies/kunst/job/kunst_publikum_og_formidling_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_improvisert_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar bruk kunsthistorien til bedre spørsmål, ikke til skjult fagmyndighet i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "tilgjengelighet",
+              "eskalering"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk bruk kunsthistorien til bedre spørsmål, ikke til skjult fagmyndighet gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar.",
+            "tags": [
+              "improvisert_autoritet",
+              "tempo",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "presis_tilgjengelig_og_sporbar_formidling",
+        "consequence_axis": "faglig_tillit_og_trygghet_vs_skjult_usikkerhet",
+        "from": "Sara",
+        "id": "publikum_formidling_knowledge_history_go_001",
+        "mail_family": "publikum_formidling_history_go_kunstkontekst",
+        "mail_type": "knowledge",
+        "narrative_arc": "history_go",
+        "people_ref": "sara_senior_formidler_kunst_publikum_og_formidling",
+        "phase": "forenoon",
+        "place_id": "omvisning_og_formidlingsflate",
+        "pressure": "presisjon_tilgjengelighet_service_og_sikkerhet",
+        "priority": 130,
+        "role_scope": "kunst_publikum_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/knowledge/kunst_publikum_og_formidling_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+          "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+          "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+        ],
+        "subject": "Bruk kunsthistorien til bedre spørsmål, ikke til skjult fagmyndighet",
+        "summary": "En omvisning trenger rikere kontekst om verk, epoke og institusjon, men History Go-kunnskap må brukes til kildebevisste spørsmål og kan ikke fylle hull i proveniens, katalogdata eller dagens institusjonelle standpunkt. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. History Go og Kunst-Badge kan bidra med kunsthistorisk og institusjonell kontekst, men kan ikke gi relevant_education_or_employer_qualification, gjøre spilleren til Formidler uten Career-port, endre katalogdata eller gi sikkerhets- og bevaringsmyndighet.",
+        "task_domain": "publikum_formidling_og_galleridrift"
+      },
+      "id": "publikum_formidling_knowledge_history_go_001",
+      "mail_type": "knowledge",
+      "role_scope": "kunst_publikum_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar bruk kunsthistorien til bedre spørsmål, ikke til skjult fagmyndighet i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk bruk kunsthistorien til bedre spørsmål, ikke til skjult fagmyndighet gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+            "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+            "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+          ],
+          "subject": "Bruk kunsthistorien til bedre spørsmål, ikke til skjult fagmyndighet",
+          "summary": "En omvisning trenger rikere kontekst om verk, epoke og institusjon, men History Go-kunnskap må brukes til kildebevisste spørsmål og kan ikke fylle hull i proveniens, katalogdata eller dagens institusjonelle standpunkt. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. History Go og Kunst-Badge kan bidra med kunsthistorisk og institusjonell kontekst, men kan ikke gi relevant_education_or_employer_qualification, gjøre spilleren til Formidler uten Career-port, endre katalogdata eller gi sikkerhets- og bevaringsmyndighet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "publikum_formidling_knowledge_history_go_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "omvisning_og_formidlingsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "publikum_formidling_knowledge_history_go_001",
+          "source_path": "data/Civication/mailFamilies/kunst/knowledge/kunst_publikum_og_formidling_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_publikum_og_formidling.mail.publikum_formidling_knowledge_history_go_001",
+        "version": 1
+      },
+      "source_hash": "bf096f093571e77d48a3b5da810cffba257760f22d230e2b660d032e084a3174",
+      "source_path": "data/Civication/mailFamilies/kunst/knowledge/kunst_publikum_og_formidling_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_improvisert_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar svar nå eller hent riktig fagperson? i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "tilgjengelighet",
+              "eskalering"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk svar nå eller hent riktig fagperson? gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar.",
+            "tags": [
+              "improvisert_autoritet",
+              "tempo",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "presis_tilgjengelig_og_sporbar_formidling",
+        "consequence_axis": "faglig_tillit_og_trygghet_vs_skjult_usikkerhet",
+        "from": "Jon",
+        "id": "publikum_formidling_micro_eskaler_001",
+        "mail_family": "publikum_formidling_rask_avklaring",
+        "mail_type": "micro",
+        "narrative_arc": "eskaler",
+        "people_ref": "jon_publikumsvert_kunst_publikum_og_formidling",
+        "phase": "forenoon",
+        "place_id": "publikumsinngang_og_vertskapspunkt",
+        "pressure": "presisjon_tilgjengelighet_service_og_sikkerhet",
+        "priority": 130,
+        "role_scope": "kunst_publikum_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/micro/kunst_publikum_og_formidling_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+          "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+          "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+        ],
+        "subject": "Svar nå eller hent riktig fagperson?",
+        "summary": "Et kort spørsmål kommer i køen og krever mer sikker fagkunnskap enn den som står i vertsbriefen; du må velge mellom synlig usikkerhet og en rask improvisasjon. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering.",
+        "task_domain": "publikum_formidling_og_galleridrift"
+      },
+      "id": "publikum_formidling_micro_eskaler_001",
+      "mail_type": "micro",
+      "role_scope": "kunst_publikum_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar svar nå eller hent riktig fagperson? i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk svar nå eller hent riktig fagperson? gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+            "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+            "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+          ],
+          "subject": "Svar nå eller hent riktig fagperson?",
+          "summary": "Et kort spørsmål kommer i køen og krever mer sikker fagkunnskap enn den som står i vertsbriefen; du må velge mellom synlig usikkerhet og en rask improvisasjon. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "publikum_formidling_micro_eskaler_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "publikumsinngang_og_vertskapspunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "publikum_formidling_micro_eskaler_001",
+          "source_path": "data/Civication/mailFamilies/kunst/micro/kunst_publikum_og_formidling_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_publikum_og_formidling.mail.publikum_formidling_micro_eskaler_001",
+        "version": 1
+      },
+      "source_hash": "96b17f191cc535e25301af98e07479752378b86b4ce513ca8d5c0d496997a75f",
+      "source_path": "data/Civication/mailFamilies/kunst/micro/kunst_publikum_og_formidling_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_improvisert_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar publikumsverten ber om et tydeligere handoff ved kø og konflikt i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "tilgjengelighet",
+              "eskalering"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk publikumsverten ber om et tydeligere handoff ved kø og konflikt gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar.",
+            "tags": [
+              "improvisert_autoritet",
+              "tempo",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "presis_tilgjengelig_og_sporbar_formidling",
+        "consequence_axis": "faglig_tillit_og_trygghet_vs_skjult_usikkerhet",
+        "from": "Jon",
+        "id": "publikum_formidling_people_publikumsvert_002",
+        "mail_family": "publikum_formidling_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "publikumsvert",
+        "people_ref": "jon_publikumsvert_kunst_publikum_og_formidling",
+        "phase": "workday",
+        "place_id": "publikumsinngang_og_vertskapspunkt",
+        "pressure": "presisjon_tilgjengelighet_service_og_sikkerhet",
+        "priority": 129,
+        "role_scope": "kunst_publikum_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/people/kunst_publikum_og_formidling_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+          "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+          "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+        ],
+        "subject": "Publikumsverten ber om et tydeligere handoff ved kø og konflikt",
+        "summary": "Jon opplever at vanskelige gjestespørsmål og kapasitetsproblemer ofte blir stående hos vertskapet uten klart punkt for når formidler, drift eller sikkerhet skal overta. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering.",
+        "task_domain": "publikum_formidling_og_galleridrift"
+      },
+      "id": "publikum_formidling_people_publikumsvert_002",
+      "mail_type": "people",
+      "role_scope": "kunst_publikum_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar publikumsverten ber om et tydeligere handoff ved kø og konflikt i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk publikumsverten ber om et tydeligere handoff ved kø og konflikt gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+            "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+            "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+          ],
+          "subject": "Publikumsverten ber om et tydeligere handoff ved kø og konflikt",
+          "summary": "Jon opplever at vanskelige gjestespørsmål og kapasitetsproblemer ofte blir stående hos vertskapet uten klart punkt for når formidler, drift eller sikkerhet skal overta. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "publikum_formidling_people_publikumsvert_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "publikumsinngang_og_vertskapspunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "publikum_formidling_people_publikumsvert_002",
+          "source_path": "data/Civication/mailFamilies/kunst/people/kunst_publikum_og_formidling_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_publikum_og_formidling.mail.publikum_formidling_people_publikumsvert_002",
+        "version": 1
+      },
+      "source_hash": "9182ec4264360dbe96afa3071dfdb0dd99b334312f596b34b8870206293b0106",
+      "source_path": "data/Civication/mailFamilies/kunst/people/kunst_publikum_og_formidling_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_improvisert_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar senior formidler ber deg markere tolkning tydeligere i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "tilgjengelighet",
+              "eskalering"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk senior formidler ber deg markere tolkning tydeligere gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar.",
+            "tags": [
+              "improvisert_autoritet",
+              "tempo",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "presis_tilgjengelig_og_sporbar_formidling",
+        "consequence_axis": "faglig_tillit_og_trygghet_vs_skjult_usikkerhet",
+        "from": "Sara",
+        "id": "publikum_formidling_people_seniorformidler_001",
+        "mail_family": "publikum_formidling_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "seniorformidler",
+        "people_ref": "sara_senior_formidler_kunst_publikum_og_formidling",
+        "phase": "forenoon",
+        "place_id": "omvisning_og_formidlingsflate",
+        "pressure": "presisjon_tilgjengelighet_service_og_sikkerhet",
+        "priority": 130,
+        "role_scope": "kunst_publikum_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/people/kunst_publikum_og_formidling_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+          "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+          "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+        ],
+        "subject": "Senior formidler ber deg markere tolkning tydeligere",
+        "summary": "Sara har hørt en formulering i omvisningen som gjør en omstridt faglig tolkning mer sikker enn kildene tillater, og vil at skillet mellom data, tolkning og åpent spørsmål skal bli synlig. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering.",
+        "task_domain": "publikum_formidling_og_galleridrift"
+      },
+      "id": "publikum_formidling_people_seniorformidler_001",
+      "mail_type": "people",
+      "role_scope": "kunst_publikum_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar senior formidler ber deg markere tolkning tydeligere i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk senior formidler ber deg markere tolkning tydeligere gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+            "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+            "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+          ],
+          "subject": "Senior formidler ber deg markere tolkning tydeligere",
+          "summary": "Sara har hørt en formulering i omvisningen som gjør en omstridt faglig tolkning mer sikker enn kildene tillater, og vil at skillet mellom data, tolkning og åpent spørsmål skal bli synlig. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "publikum_formidling_people_seniorformidler_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "omvisning_og_formidlingsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "publikum_formidling_people_seniorformidler_001",
+          "source_path": "data/Civication/mailFamilies/kunst/people/kunst_publikum_og_formidling_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_publikum_og_formidling.mail.publikum_formidling_people_seniorformidler_001",
+        "version": 1
+      },
+      "source_hash": "b479e4bf556723fcd554eb4444956d26054b1c96c08562d155f58b489bbca9e6",
+      "source_path": "data/Civication/mailFamilies/kunst/people/kunst_publikum_og_formidling_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_improvisert_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar sikkerhetsansvarlig krever at et avvik ikke normaliseres i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "tilgjengelighet",
+              "eskalering"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk sikkerhetsansvarlig krever at et avvik ikke normaliseres gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar.",
+            "tags": [
+              "improvisert_autoritet",
+              "tempo",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "presis_tilgjengelig_og_sporbar_formidling",
+        "consequence_axis": "faglig_tillit_og_trygghet_vs_skjult_usikkerhet",
+        "from": "Erik",
+        "id": "publikum_formidling_people_sikkerhet_004",
+        "mail_family": "publikum_formidling_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "sikkerhet",
+        "people_ref": "erik_galleridrift_sikkerhet_kunst_publikum_og_formidling",
+        "phase": "workday",
+        "place_id": "galleridrift_hendelse_og_eskaleringspunkt",
+        "pressure": "presisjon_tilgjengelighet_service_og_sikkerhet",
+        "priority": 127,
+        "role_scope": "kunst_publikum_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/people/kunst_publikum_og_formidling_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+          "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+          "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+        ],
+        "subject": "Sikkerhetsansvarlig krever at et avvik ikke normaliseres",
+        "summary": "Erik har sett gjentatte små overskridelser av verkavstand i en populær sal og vil at formidling og vertskap skal endres før en hendelse blir alvorlig. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering.",
+        "task_domain": "publikum_formidling_og_galleridrift"
+      },
+      "id": "publikum_formidling_people_sikkerhet_004",
+      "mail_type": "people",
+      "role_scope": "kunst_publikum_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar sikkerhetsansvarlig krever at et avvik ikke normaliseres i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk sikkerhetsansvarlig krever at et avvik ikke normaliseres gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+            "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+            "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+          ],
+          "subject": "Sikkerhetsansvarlig krever at et avvik ikke normaliseres",
+          "summary": "Erik har sett gjentatte små overskridelser av verkavstand i en populær sal og vil at formidling og vertskap skal endres før en hendelse blir alvorlig. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "publikum_formidling_people_sikkerhet_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "galleridrift_hendelse_og_eskaleringspunkt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "publikum_formidling_people_sikkerhet_004",
+          "source_path": "data/Civication/mailFamilies/kunst/people/kunst_publikum_og_formidling_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_publikum_og_formidling.mail.publikum_formidling_people_sikkerhet_004",
+        "version": 1
+      },
+      "source_hash": "51898c28a5d80a7fdb0e14342cd34ef61147688ad1caf395cec8ad040e2c3160",
+      "source_path": "data/Civication/mailFamilies/kunst/people/kunst_publikum_og_formidling_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_improvisert_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar tilgjengelighetskoordinatoren vil dokumentere hva som faktisk fungerte i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "tilgjengelighet",
+              "eskalering"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk tilgjengelighetskoordinatoren vil dokumentere hva som faktisk fungerte gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar.",
+            "tags": [
+              "improvisert_autoritet",
+              "tempo",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "presis_tilgjengelig_og_sporbar_formidling",
+        "consequence_axis": "faglig_tillit_og_trygghet_vs_skjult_usikkerhet",
+        "from": "Amal",
+        "id": "publikum_formidling_people_tilgjengelighet_003",
+        "mail_family": "publikum_formidling_profesjonelle_relations",
+        "mail_type": "people",
+        "narrative_arc": "tilgjengelighet",
+        "people_ref": "amal_tilgjengelighetskoordinator_kunst_publikum_og_formidling",
+        "phase": "workday",
+        "place_id": "tilgjengelighet_og_gruppetilpasningsbord",
+        "pressure": "presisjon_tilgjengelighet_service_og_sikkerhet",
+        "priority": 128,
+        "role_scope": "kunst_publikum_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/people/kunst_publikum_og_formidling_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+          "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+          "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+        ],
+        "subject": "Tilgjengelighetskoordinatoren vil dokumentere hva som faktisk fungerte",
+        "summary": "Amal mener tilpasninger må evalueres mot konkrete gruppers erfaringer, ikke bare mot at institusjonen har tilbudt et alternativt format. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering.",
+        "task_domain": "publikum_formidling_og_galleridrift"
+      },
+      "id": "publikum_formidling_people_tilgjengelighet_003",
+      "mail_type": "people",
+      "role_scope": "kunst_publikum_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar tilgjengelighetskoordinatoren vil dokumentere hva som faktisk fungerte i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk tilgjengelighetskoordinatoren vil dokumentere hva som faktisk fungerte gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+            "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+            "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+          ],
+          "subject": "Tilgjengelighetskoordinatoren vil dokumentere hva som faktisk fungerte",
+          "summary": "Amal mener tilpasninger må evalueres mot konkrete gruppers erfaringer, ikke bare mot at institusjonen har tilbudt et alternativt format. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "publikum_formidling_people_tilgjengelighet_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "tilgjengelighet_og_gruppetilpasningsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "publikum_formidling_people_tilgjengelighet_003",
+          "source_path": "data/Civication/mailFamilies/kunst/people/kunst_publikum_og_formidling_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_publikum_og_formidling.mail.publikum_formidling_people_tilgjengelighet_003",
+        "version": 1
+      },
+      "source_hash": "3d23129b7db63be99727e8014702449de0a9fc651b8fb4b1ca99a89d1a104f55",
+      "source_path": "data/Civication/mailFamilies/kunst/people/kunst_publikum_og_formidling_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "kunst",
+      "compatibility_projection": {
+        "category": "kunst",
+        "choice_axis": "sporbar_avklaring_vs_improvisert_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar når den gode formidleren blir viktigere enn verket og publikum i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes.",
+            "tags": [
+              "sporbarhet",
+              "tilgjengelighet",
+              "eskalering"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk når den gode formidleren blir viktigere enn verket og publikum gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar.",
+            "tags": [
+              "improvisert_autoritet",
+              "tempo",
+              "skjult_usikkerhet"
+            ]
+          }
+        ],
+        "competency": "presis_tilgjengelig_og_sporbar_formidling",
+        "consequence_axis": "faglig_tillit_og_trygghet_vs_skjult_usikkerhet",
+        "from": "Sara",
+        "id": "publikum_formidling_story_formidleridentitet_001",
+        "mail_family": "publikum_formidling_identitet_og_mote_med_kunst",
+        "mail_type": "story",
+        "narrative_arc": "formidleridentitet",
+        "people_ref": "sara_senior_formidler_kunst_publikum_og_formidling",
+        "phase": "forenoon",
+        "place_id": "omvisning_og_formidlingsflate",
+        "pressure": "presisjon_tilgjengelighet_service_og_sikkerhet",
+        "priority": 130,
+        "role_scope": "kunst_publikum_og_formidling",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/kunst/story/kunst_publikum_og_formidling_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+          "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+          "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+        ],
+        "subject": "Når den gode formidleren blir viktigere enn verket og publikum",
+        "summary": "Etter mange vellykkede omvisninger har spilleren fått sterk personlig respons, og en ny kritisk gruppe tester om formidlingen fortsatt gir plass til verk, kilder, uenighet og publikums egne perspektiver. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering.",
+        "task_domain": "publikum_formidling_og_galleridrift"
+      },
+      "id": "publikum_formidling_story_formidleridentitet_001",
+      "mail_type": "story",
+      "role_scope": "kunst_publikum_og_formidling",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grepet kan gjøre møtet litt langsommere, men det bevarer skillet mellom det du vet, det du tolker og det du må eskalere. Neste vert, formidler eller fagperson kan se gruppens behov, tidligere kommunikasjon, eventuelle sikkerhetsgrenser og hva som fortsatt venter. Det beskytter både publikums tillit og institusjonens faglige redelighet fordi ingen senere trenger å late som usikkerheten aldri fantes.",
+            "id": "A",
+            "label": "Avklar når den gode formidleren blir viktigere enn verket og publikum i publikumsmøteloggen",
+            "reply": "Jeg beholder siste dokumenterte versjon, skiller godkjent fagstoff fra tolkning og usikkerhet, markerer tilgjengelighets-, fag- eller sikkerhetsventing eksplisitt og sender bare det uavklarte spørsmålet til den aktøren som faktisk har ansvar. Jeg dokumenterer også hva publikum allerede er informert om og hvilket kontrollpunkt som må passeres før saken kan lukkes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Møtet kan føles smidigere der og da, men loggen mister skillet mellom dokumentert kunnskap, personlig tolkning og uavklart spørsmål. Publikum kan få en falsk sikkerhet, neste medarbeider kan gjenta samme påstand eller overse samme behov, og et sikkerhets- eller tilgjengelighetsproblem blir vanskeligere å følge opp. Rollen ser mer selvsikker ut, men institusjonen blir mindre presis, mindre lærende og mer sårbar for korrigering i ettertid.",
+            "id": "B",
+            "label": "Lukk når den gode formidleren blir viktigere enn verket og publikum gjennom flyt og improvisert autoritet",
+            "reply": "Jeg prioriterer en rask og overbevisende løsning, fyller inn det uavklarte selv, behandler publikumsflyt som viktigere enn eksplisitt venting og unngår å sende saken videre dersom det kan skape forsinkelse eller gjøre meg mindre sikker i situasjonen. Jeg lar dermed neste aktør overta uten et tydelig spor av usikkerhet, avvik eller hvem som egentlig hadde fag- eller sikkerhetsansvar."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Publikumsmøteloggen viser siste versjon, gruppens behov, hva som er dokumentert, hva som er tolkning eller uavklart, og alle åpne tilgjengelighets- og sikkerhetspunkter.",
+            "En rask eller sosialt smidig løsning vil holde flyten bedre på kort sikt, men kan skjule faglig usikkerhet, gruppens faktiske behov eller et avvik som må eskaleres.",
+            "Du må velge et grep som gjør neste handoff og mulig rework lesbart uten å omskrive hva publikum allerede har fått høre eller hvilke grenser som faktisk gjaldt."
+          ],
+          "subject": "Når den gode formidleren blir viktigere enn verket og publikum",
+          "summary": "Etter mange vellykkede omvisninger har spilleren fått sterk personlig respons, og en ny kritisk gruppe tester om formidlingen fortsatt gir plass til verk, kilder, uenighet og publikums egne perspektiver. Saken skal føres i publikumsmote_formidling_tilgjengelighet_hendelses_og_eskaleringslogg, der målgruppe og behov, verk-/utstillingsgrunnlag, godkjent fagstoff, tolkning og usikkerhet, tilgjengelighet, publikumsrespons, kapasitet, sikkerhets- eller bevaringsgrense, hendelse, eskalering, kommunikasjon, ventepunkt og neste eier er separate felt. Rollen kan formidle godkjent fagstoff, veilede publikum og håndtere ordinære publikumsbehov, men kan ikke endre proveniens eller katalogdata, love utlån eller salg uten fullmakt, omdefinere institusjonens faglige standpunkt eller ignorere sikkerhets- eller bevaringsrutiner. God service, høy publikumstilfredshet og personlig overbevisning må derfor ikke brukes som erstatning for dokumentert faggrunnlag eller riktig eskalering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "publikum_formidling_story_formidleridentitet_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "omvisning_og_formidlingsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "publikum_formidling_story_formidleridentitet_001",
+          "source_path": "data/Civication/mailFamilies/kunst/story/kunst_publikum_og_formidling_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "kunst_publikum_og_formidling.mail.publikum_formidling_story_formidleridentitet_001",
+        "version": 1
+      },
+      "source_hash": "476205c098e8510d2fa5515f1a2a6d229e23d7f6149288a5b8dd0b875d5d0311",
+      "source_path": "data/Civication/mailFamilies/kunst/story/kunst_publikum_og_formidling_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -243888,7 +245907,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "057425782ea839a50a775812b592802123da737dc6e16aea035f15bb1ab21aa2",
+  "registry_hash": "2baece493dba65d3b9d345e5a7537bd442a2b03a6823623cf8dd35b5041399ce",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -244353,6 +246372,23 @@
       "museumsledelse_followup_etterkontroll_001",
       "museumsledelse_knowledge_history_go_001",
       "museumsledelse_consequence_sponsor_etterspill_001"
+    ],
+    "kunst/kunst_publikum_og_formidling": [
+      "publikum_formidling_job_ukjent_proveniens_001",
+      "publikum_formidling_job_tilgjengelig_gruppe_002",
+      "publikum_formidling_job_publikumstopp_003",
+      "publikum_formidling_job_beroring_verk_004",
+      "publikum_formidling_people_seniorformidler_001",
+      "publikum_formidling_people_publikumsvert_002",
+      "publikum_formidling_people_tilgjengelighet_003",
+      "publikum_formidling_people_sikkerhet_004",
+      "publikum_formidling_story_formidleridentitet_001",
+      "publikum_formidling_conflict_fasit_vs_apenhet_001",
+      "publikum_formidling_event_ny_hendelse_001",
+      "publikum_formidling_micro_eskaler_001",
+      "publikum_formidling_followup_etterkontroll_001",
+      "publikum_formidling_knowledge_history_go_001",
+      "publikum_formidling_consequence_hendelse_etterspill_001"
     ],
     "kunst/kunst_utstillingsproduksjon": [
       "utstillingsproduksjon_job_brief_001",
@@ -245607,11 +247643,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 557,
+    "compiled_source_file_count": 566,
     "ignored_source_file_count": 1,
-    "input_file_count": 558,
-    "role_count": 67,
-    "scene_count": 1555,
+    "input_file_count": 567,
+    "role_count": 68,
+    "scene_count": 1570,
     "shadowed_duplicate_count": 0
   },
   "version": 1

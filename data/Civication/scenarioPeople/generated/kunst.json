@@ -632,6 +632,21 @@
   "cross_category_existing_references": [],
   "missing_people_candidates": [
     {
+      "id": "amal_tilgjengelighetskoordinator_kunst_publikum_og_formidling",
+      "name": "amal_tilgjengelighetskoordinator_kunst_publikum_og_formidling",
+      "category": "kunst",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/kunst/kunst_publikum_og_formidling.json"
+      ],
+      "scenario_roles": [
+        "kunst_publikum_og_formidling"
+      ],
+      "verification_required": true
+    },
+    {
       "id": "amina_registrar_kunstlogistikk",
       "name": "amina_registrar_kunstlogistikk",
       "category": "kunst",
@@ -707,6 +722,21 @@
       "verification_required": true
     },
     {
+      "id": "erik_galleridrift_sikkerhet_kunst_publikum_og_formidling",
+      "name": "erik_galleridrift_sikkerhet_kunst_publikum_og_formidling",
+      "category": "kunst",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/kunst/kunst_publikum_og_formidling.json"
+      ],
+      "scenario_roles": [
+        "kunst_publikum_og_formidling"
+      ],
+      "verification_required": true
+    },
+    {
       "id": "eva_senior_konservator_kunst_konservering_og_samling",
       "name": "eva_senior_konservator_kunst_konservering_og_samling",
       "category": "kunst",
@@ -763,6 +793,21 @@
       ],
       "scenario_roles": [
         "kunst_kuratering_og_program"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "jon_publikumsvert_kunst_publikum_og_formidling",
+      "name": "jon_publikumsvert_kunst_publikum_og_formidling",
+      "category": "kunst",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/kunst/kunst_publikum_og_formidling.json"
+      ],
+      "scenario_roles": [
+        "kunst_publikum_og_formidling"
       ],
       "verification_required": true
     },
@@ -913,6 +958,21 @@
       ],
       "scenario_roles": [
         "kunst_kunstnerisk_ledelse"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "sara_senior_formidler_kunst_publikum_og_formidling",
+      "name": "sara_senior_formidler_kunst_publikum_og_formidling",
+      "category": "kunst",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/kunst/kunst_publikum_og_formidling.json"
+      ],
+      "scenario_roles": [
+        "kunst_publikum_og_formidling"
       ],
       "verification_required": true
     },
@@ -1314,6 +1374,41 @@
         "direct": 0,
         "strong": 0,
         "contextual": 87,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "kunst_publikum_og_formidling",
+      "role_scope": "kunst_publikum_og_formidling",
+      "title": "Publikum, galleri og kunstformidling",
+      "source": "data/Civication/roleModels/kunst/kunst_publikum_og_formidling.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [
+          "cecilie_malm_brundtland",
+          "lars_halvor_mageroy",
+          "sonja"
+        ],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "formidling",
+        "galleri",
+        "kunstformidling",
+        "publikum"
+      ],
+      "resolved_counts": {
+        "total": 87,
+        "existing_place_people": 87,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 3,
+        "contextual": 84,
         "excluded": 0
       }
     },
