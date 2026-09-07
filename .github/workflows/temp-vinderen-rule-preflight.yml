@@ -1,0 +1,36 @@
+name: TEMP Vinderen rule preflight
+
+on:
+  push:
+    branches:
+      - agent/vinderen-place-production-20260907
+    paths:
+      - .github/workflows/temp-vinderen-rule-preflight.yml
+
+permissions:
+  contents: write
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: agent/vinderen-place-production-20260907
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - name: Record current rule preflight
+        run: node scripts/place-production-rule-preflight.mjs record --workcard reports/place-production/vinderen-workcard-current.json --place-id vinderen --category by
+      - name: Validate current rule preflight
+        run: node scripts/place-production-rule-preflight.mjs validate --workcard reports/place-production/vinderen-workcard-current.json
+      - name: Commit permanent preflight evidence
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f .github/workflows/temp-vinderen-rule-preflight.yml
+          git add reports/place-production/vinderen-workcard-current.json .github/workflows/temp-vinderen-rule-preflight.yml
+          git commit -m "Record current Vinderen place rule preflight"
+          git push origin HEAD:agent/vinderen-place-production-20260907
