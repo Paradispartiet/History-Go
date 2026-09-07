@@ -10,11 +10,20 @@ const write = (p, v) => fs.writeFileSync(p, `${JSON.stringify(v, null, 2)}\n`);
 const quiz = read(quizPath);
 const brief = read(briefPath);
 const phases = ["opening", "middle", "middle", "bridge", "final"];
+const emneAliases = new Map([
+  ["em_by_institusjoner_kulturformidling", "em_by_infrastruktur_mobilitet"],
+  ["em_by_landemerker_utsyn_orientering", "em_by_infrastruktur_mobilitet"]
+]);
+
+for (const claim of brief.claims) {
+  claim.emne_id = emneAliases.get(claim.emne_id) || claim.emne_id;
+}
 const claims = new Map(brief.claims.map(claim => [claim.claim_id, claim]));
 
 for (const [setIndex, set] of quiz.sets.entries()) {
   set.phase = phases[setIndex];
   for (const question of set.questions) {
+    question.emne_id = emneAliases.get(question.emne_id) || question.emne_id;
     const claim = claims.get(question.claim_id);
     if (!claim) throw new Error(`Missing claim for ${question.id}: ${question.claim_id}`);
     question.claim_basis = claim.statement;
@@ -56,5 +65,6 @@ quiz.production_context = {
   method_start_phase: "final"
 };
 
+write(briefPath, brief);
 write(quizPath, quiz);
 console.log(`Normalized Vinderen quiz production contract: ${quiz.sets.length} sets / ${quiz.sets.flatMap(s => s.questions).length} questions.`);
