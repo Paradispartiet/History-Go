@@ -37,7 +37,7 @@ jobs:
           set -euo pipefail
           git fetch origin main
           git merge-base --is-ancestor origin/main HEAD || { echo 'Branch is stale versus main before materialization.' >&2; exit 1; }
-      - name: Patch runtime-role-bound appointment wording
+      - name: Patch materializer contracts
         shell: bash
         run: |
           set -euo pipefail
@@ -45,11 +45,39 @@ jobs:
           from pathlib import Path
           p = Path('scripts/TEMP_materialize_religion_fagledelse_prerequisites.mjs')
           s = p.read_text()
-          old = "materialisere Fagansvarlig, Seksjonsleder, Avdelingsleder, Avdelingsdirektør eller Direktør uten dokumentert employer_appointment"
-          new = "materialisere ansettelse i rollen som Fagansvarlig, Seksjonsleder, Avdelingsleder, Avdelingsdirektør eller Direktør uten dokumentert employer_appointment"
-          if s.count(old) != 1:
-              raise SystemExit(f'Expected exactly one appointment-boundary occurrence, found {s.count(old)}')
-          p.write_text(s.replace(old, new))
+
+          replacements = [
+              (
+                  "materialisere Fagansvarlig, Seksjonsleder, Avdelingsleder, Avdelingsdirektør eller Direktør uten dokumentert employer_appointment",
+                  "materialisere ansettelse i rollen som Fagansvarlig, Seksjonsleder, Avdelingsleder, Avdelingsdirektør eller Direktør uten dokumentert employer_appointment",
+                  1,
+                  'appointment-boundary wording',
+              ),
+              (
+                  "const manifest=read(MANIFEST);const paths=manifest.paths||manifest.role_models||[];",
+                  "const manifest=read(MANIFEST);const paths=manifest.files||[];",
+                  1,
+                  'canonical manifest read',
+              ),
+              (
+                  "if(Array.isArray(manifest.paths)) manifest.paths=paths; else manifest.role_models=paths;",
+                  "manifest.files=paths;delete manifest.paths;delete manifest.role_models;",
+                  1,
+                  'canonical manifest write',
+              ),
+              (
+                  "const manifest=read('${MANIFEST}');const paths=manifest.paths||manifest.role_models||[];assert.ok(paths.includes('${MODEL}'));",
+                  "const manifest=read('${MANIFEST}');const paths=manifest.files||[];assert.ok(paths.includes('${MODEL}'));",
+                  1,
+                  'focused manifest assertion',
+              ),
+          ]
+          for old, new, expected, label in replacements:
+              actual = s.count(old)
+              if actual != expected:
+                  raise SystemExit(f'{label}: expected {expected} occurrence(s), found {actual}')
+              s = s.replace(old, new)
+          p.write_text(s)
           PY
       - name: Syntax
         run: node --check scripts/TEMP_materialize_religion_fagledelse_prerequisites.mjs
@@ -95,6 +123,16 @@ jobs:
         run: node --test tests/civication-scenario-people.test.mjs
       - name: Verify full Civication suite
         run: node tests/run-civication-tests.mjs
+      - name: Diagnose broken mappings after Civication failure
+        if: failure()
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const index = JSON.parse(fs.readFileSync('data/Civication/rolePackIndex.json', 'utf8'));
+          const broken = index.roles.filter((row) => row.status === 'broken_mapping');
+          console.log('POST_SUITE_BROKEN_MAPPING_COUNT=' + broken.length);
+          console.log(JSON.stringify(broken, null, 2));
+          NODE
       - name: Verify job learning profiles
         run: npm run audit:job-learning-profiles
       - name: Verify job knowledge requirements
