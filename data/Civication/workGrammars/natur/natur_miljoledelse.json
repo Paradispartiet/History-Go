@@ -1,18 +1,232 @@
 {
-  "schema":"civication_work_grammar_v2","version":2,
-  "category":"natur","role_scope":"natur_miljoledelse","role_id":"natur_miljoledelse",
-  "badge_binding":{"badge_id":"natur","badge_titles":["Naturvernleder","Miljøsjef","Miljødirektør"]},
-  "work_world":"Miljøledelse der fag, folk, kapasitet, risiko og virksomhetsmål må håndteres innen et eksplisitt arbeidsgivermandat.",
-  "task_families":["ledelse","prioritering","budsjett","bemanning","strategi","kvalitetsstyring"],
-  "work_loops":["mål -> risiko -> kapasitet -> prioritering -> ansvar -> oppfølging -> læring","avvik -> alvorlighetsgrad -> tiltak -> kommunikasjon -> kontroll -> lukking"],
-  "pressure_axes":["kapasitet_vs_ambisjon","fag_vs_organisasjon","kortsiktig_leveranse_vs_langsiktig_naturverdi"],
-  "practice_stories":[
-    {"id":"ressursmangel","setup":"Lovpålagte miljøoppgaver overstiger tilgjengelig kapasitet.","decision":"Prioriter risiko, dokumenter restanse og eskaler ressursbehov.","learning":"ledelse betyr å synliggjøre konsekvensene av prioritering"},
-    {"id":"miljoavvik","setup":"Et alvorlig miljøavvik oppdages i virksomheten.","decision":"Stans skade der det er mulig, sikre fakta og varsle riktig nivå.","learning":"omdømme skal aldri gå foran skadebegrensning"},
-    {"id":"fag_mot_maal","setup":"Fagmiljøet anbefaler noe som svekker et kortsiktig virksomhetsmål.","decision":"Gjør konsekvenser og alternativer eksplisitte før beslutning.","learning":"ledelse må tåle dårlige nyheter"},
-    {"id":"bemanningskrise","setup":"Nøkkelkompetanse forsvinner midt i en kritisk leveranse.","decision":"Reduser eller omprioriter leveransen fremfor å late som kapasiteten er uendret.","learning":"mandat må matches med reell kapasitet"},
-    {"id":"tone_ned_risiko","setup":"Toppledelsen ber om mildere språk om miljørisiko.","decision":"Skill kommunikasjon fra selve risikovurderingen og bevar sporbarheten.","learning":"lederansvar inkluderer integritet i rapporteringen"}
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "natur",
+  "role_scope": "natur_miljoledelse",
+  "role_id": "natur_miljoledelse",
+  "badge_binding": {
+    "badge_id": "natur",
+    "badge_titles": [
+      "Naturvernleder",
+      "Miljøsjef",
+      "Miljødirektør"
+    ]
+  },
+  "work_world": "Miljøledelse der fag, folk, kapasitet, risiko og virksomhetsmål må håndteres innen et eksplisitt arbeidsgivermandat.",
+  "task_families": [
+    "ledelse",
+    "prioritering",
+    "budsjett",
+    "bemanning",
+    "strategi",
+    "kvalitetsstyring"
   ],
-  "quality_axes":["mandatforståelse","miljørisiko","prioritering","kapasitetsstyring","faglig_integritet","ansvarlighet"],
-  "authority_boundary":{"may":["lede innen dokumentert arbeidsgivermandat"],"may_not":["selvutnevne seg","utøve ministermyndighet","skjule vesentlig miljørisiko"]}
+  "work_loops": [
+    "mål -> risiko -> kapasitet -> prioritering -> ansvar -> oppfølging -> læring",
+    "avvik -> alvorlighetsgrad -> tiltak -> kommunikasjon -> kontroll -> lukking"
+  ],
+  "pressure_axes": [
+    "kapasitet_vs_ambisjon",
+    "fag_vs_organisasjon",
+    "kortsiktig_leveranse_vs_langsiktig_naturverdi"
+  ],
+  "practice_stories": [
+    {
+      "id": "ressursmangel",
+      "setup": "Lovpålagte miljøoppgaver overstiger tilgjengelig kapasitet.",
+      "decision": "Prioriter risiko, dokumenter restanse og eskaler ressursbehov.",
+      "learning": "ledelse betyr å synliggjøre konsekvensene av prioritering"
+    },
+    {
+      "id": "miljoavvik",
+      "setup": "Et alvorlig miljøavvik oppdages i virksomheten.",
+      "decision": "Stans skade der det er mulig, sikre fakta og varsle riktig nivå.",
+      "learning": "omdømme skal aldri gå foran skadebegrensning"
+    },
+    {
+      "id": "fag_mot_maal",
+      "setup": "Fagmiljøet anbefaler noe som svekker et kortsiktig virksomhetsmål.",
+      "decision": "Gjør konsekvenser og alternativer eksplisitte før beslutning.",
+      "learning": "ledelse må tåle dårlige nyheter"
+    },
+    {
+      "id": "bemanningskrise",
+      "setup": "Nøkkelkompetanse forsvinner midt i en kritisk leveranse.",
+      "decision": "Reduser eller omprioriter leveransen fremfor å late som kapasiteten er uendret.",
+      "learning": "mandat må matches med reell kapasitet"
+    },
+    {
+      "id": "tone_ned_risiko",
+      "setup": "Toppledelsen ber om mildere språk om miljørisiko.",
+      "decision": "Skill kommunikasjon fra selve risikovurderingen og bevar sporbarheten.",
+      "learning": "lederansvar inkluderer integritet i rapporteringen"
+    }
+  ],
+  "quality_axes": [
+    "mandatforståelse",
+    "miljørisiko",
+    "prioritering",
+    "kapasitetsstyring",
+    "faglig_integritet",
+    "ansvarlighet"
+  ],
+  "authority_boundary": {
+    "may": [
+      "lede innen dokumentert arbeidsgivermandat",
+      "prioritere ressurser og portefølje innen gitt fullmakt",
+      "fordele ansvar og delegere oppgaver uten å delegere bort eget lederansvar",
+      "eskalere vesentlig miljørisiko, kapasitetsbrist og målkonflikter",
+      "stanse eller omprioritere arbeid når dokumentert risiko eller kapasitet krever det"
+    ],
+    "may_not": [
+      "materialisere ledelsesmandat uten employer_appointment",
+      "opptre som statsråd eller annen offentlig myndighet uten særskilt utnevnelse",
+      "sette lov eller forskrift til side",
+      "overstyre eller omskrive faglige funn av omdømme-, budsjett- eller leveransehensyn",
+      "bruke History Go eller Natur-badge som arbeidsgiverutnevnelse, personalfullmakt, faglig evidens eller beslutningshjemmel"
+    ]
+  },
+  "actor_grammar": [
+    {
+      "id": "eva_fag_og_kvalitetsleder_natur_miljoledelse",
+      "name": "Eva",
+      "role": "fag- og kvalitetsleder",
+      "workplace_ids": [
+        "ledergruppe_mandat_og_maalbord_natur"
+      ]
+    },
+    {
+      "id": "jonas_okonomi_og_kapasitetscontroller_natur_miljoledelse",
+      "name": "Jonas",
+      "role": "økonomi- og kapasitetscontroller",
+      "workplace_ids": [
+        "budsjett_kapasitet_og_portefoljeflate_natur"
+      ]
+    },
+    {
+      "id": "amina_miljorisiko_og_avviksansvarlig_natur_miljoledelse",
+      "name": "Amina",
+      "role": "miljørisiko- og avviksansvarlig",
+      "workplace_ids": [
+        "miljorisiko_avvik_og_tiltaksrom_natur"
+      ]
+    },
+    {
+      "id": "tor_hr_og_lederstotte_natur_miljoledelse",
+      "name": "Tor",
+      "role": "HR- og lederstøtte",
+      "workplace_ids": [
+        "bemanning_delegering_og_oppfolgingsrom_natur"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "ledergruppe_mandat_og_maalbord_natur",
+      "name": "Ledergruppe-, mandat- og målbord",
+      "function": "Her låses arbeidsgivermandat, virksomhetsmål, miljømål, vesentlige faglige premisser, beslutningseier, fullmakter, rapporteringslinjer, prioriteringskriterier og hvilke uenigheter som må stå synlige før lederen fordeler ressurser eller gir styringssignaler."
+    },
+    {
+      "id": "budsjett_kapasitet_og_portefoljeflate_natur",
+      "name": "Budsjett-, kapasitet- og porteføljeflate",
+      "function": "Her sammenstilles budsjett, bemanning, kompetansedekning, frister, lovpålagte og strategiske oppgaver, porteføljeavhengigheter og eksplisitte restanser slik at prioriteringer kan begrunnes uten å late som kapasiteten er større enn den faktisk er."
+    },
+    {
+      "id": "miljorisiko_avvik_og_tiltaksrom_natur",
+      "name": "Miljørisiko-, avviks- og tiltaksrom",
+      "function": "Her registreres miljøavvik, alvorlighetsgrad, skadebegrensning, faktagrunnlag, varsling, tiltak, ansvar, frister, etterkontroll og gjenåpning. Omdømme, lederstatus eller ønsket leveransetempo kan aldri redusere selve risikovurderingen."
+    },
+    {
+      "id": "bemanning_delegering_og_oppfolgingsrom_natur",
+      "name": "Bemannings-, delegerings- og oppfølgingsrom",
+      "function": "Her kobles oppgaveeierskap, faktisk delegasjon, kompetanse, arbeidsbelastning, sykefravær, støttebehov, lederoppfølging, handoff og rework til konkrete leveranser uten at personalmakt brukes til å overstyre faglige funn eller skjule uforsvarlig kapasitet."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "mandat_maal_risiko_kapasitet_prioritering_ansvar_avvik_tiltak_og_oppfolgingslogg",
+    "description": "Et vedvarende, versjonert leder- og avviksspor som beholder arbeidsgivermandat, mål, beslutningseier, faglige premisser, miljørisiko, budsjett, bemanning, kompetanse, kapasitet, prioriteringskriterier, eksplisitte restanser, delegert ansvar, miljøavvik, tiltak, varsling, ventepunkt, handoff, etterkontroll og avgrenset rework gjennom samme styringsforløp.",
+    "states": [
+      "mandat_bekreftet",
+      "maal_laset",
+      "beslutningseier_registrert",
+      "faglige_premisser_laset",
+      "miljorisiko_vurderes",
+      "budsjett_avklart",
+      "kapasitet_kartlagt",
+      "kompetansegap_identifisert",
+      "prioritering_utkast",
+      "restanser_synliggjort",
+      "ansvar_delegert",
+      "avvik_apent",
+      "alvorlighetsgrad_satt",
+      "tiltak_pagar",
+      "venter_pa_avklaring",
+      "lederoppfolging",
+      "etterkontroll",
+      "rework",
+      "lukket_med_rest_risiko",
+      "gjenapnet"
+    ],
+    "handoff_rule": "Neste aktør overtar synlig arbeidsgivermandat, beslutningseier, faglige premisser, miljørisiko, budsjett, bemanning, kapasitet, prioriterte og utsatte oppgaver, delegert ansvar, åpne avvik, tiltak, ventepunkt og neste eier; handoff kan aldri skape employer_appointment, skjule restanser eller gjøre lederens ønskede utfall til faglig evidens."
+  },
+  "rhythm_contract": {
+    "loop": "mål -> risiko -> kapasitet -> waiting/venting på faglig vurdering, budsjett, bemanning, compliance, toppledelsesbeslutning eller tiltak -> prioritering -> ansvar -> handoff -> oppfølging -> avvik -> etterkontroll -> revisjon/rework -> læring",
+    "waiting_states": [
+      "faglig_risikovurdering",
+      "budsjett_eller_okonomiavklaring",
+      "bemanning_eller_kompetansedekning",
+      "juridisk_eller_compliance_avklaring",
+      "toppledelsesbeslutning",
+      "tiltaksgjennomforing",
+      "etterkontroll_eller_nye_data"
+    ],
+    "rework_rule": "Ny faglig risikovurdering, endret budsjett, bemanningsendring, nytt kompetansegap, compliance-avklaring, endret alvorlighetsgrad, svakere tiltakseffekt eller endret arbeidsgivermandat gjenåpner bare berørte prioriteringer, ansvar eller avvik med ny versjon og bevart begrunnelse."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_natur_miljoledelse_sted_og_okologikontekst",
+      "badge_id": "natur",
+      "use": "History Go kan forbedre lederens kontrollspørsmål gjennom arter, steder, økologi og naturhistorie. Natur-badge er ikke employer_appointment, kan ikke erstatte feltdata eller avviksbevis, kan ikke gi personal-, budsjett- eller offentlig myndighet og kan ikke gjøre lederstatus til faglig evidens."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "career_offer_policy_by_title",
+    "entry_policy_by_title": {
+      "Naturvernleder": {
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "employer_appointment"
+        ]
+      },
+      "Miljøsjef": {
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "employer_appointment"
+        ]
+      },
+      "Miljødirektør": {
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "employer_appointment"
+        ]
+      }
+    },
+    "first_object": "mandat_maal_risiko_kapasitet_prioritering_ansvar_avvik_tiltak_og_oppfolgingslogg",
+    "first_task": "Bekreft employer_appointment og faktisk arbeidsgivermandat, registrer mål, beslutningseier, faglige premisser, miljørisiko, budsjett, bemanning, kompetanse, minst én eksplisitt restanse, delegert ansvar og neste kontrollpunkt før du lover leveranse; marker hva History Go ikke beviser eller gir myndighet til."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "natur_miljoledelse",
+    "no_generic_fallback": true
+  }
 }
