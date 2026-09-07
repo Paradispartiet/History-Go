@@ -29,24 +29,24 @@ test("Rådhusplassen har standardproduksjon og fire canonical By-samlinger", asy
   assert.deepEqual(brands.radhusplassen, ["sporveien"]);
 });
 
-test("Rådhusplassen quiz er canonical rich 5x7 med 21/7/7 og sen teori", () => {
+test("Rådhusplassen quiz bevarer canonical rich 6x7 med 28/7/7 og sen teori", () => {
   const quiz = read("data/quiz/by/radhusplassen_sets.json");
   const questions = quiz.sets.flatMap(set => set.questions);
   assert.equal(quiz.targetId, "radhusplassen");
   assert.equal(quiz.categoryId, "by");
   assert.equal(quiz.size_class, "rich");
-  assert.equal(quiz.sets.length, 5);
+  assert.equal(quiz.sets.length, 6);
   assert.ok(quiz.sets.every(set => set.questions.length === 7));
-  assert.equal(questions.length, 35);
-  assert.equal(questions.filter(q => q.question_type === "fact").length, 21);
+  assert.equal(questions.length, 42);
+  assert.equal(questions.filter(q => q.question_type === "fact").length, 28);
   assert.equal(questions.filter(q => q.question_type === "context").length, 7);
   assert.equal(questions.filter(q => q.question_type === "concept").length, 7);
   assert.deepEqual(quiz.profile_snapshot, place.quiz_profile);
-  assert.ok(questions.slice(0, 28).every(q => !q.method_id && !q.thinker_id && !q.theory_ref));
-  assert.ok(questions.slice(28).every(q => q.method_id && q.thinker_id && q.theory_ref));
+  assert.ok(questions.slice(0, 35).every(q => !q.method_id && !q.thinker_id && !q.theory_ref));
+  assert.ok(questions.slice(35).every(q => q.method_id && q.thinker_id && q.theory_ref));
   assert.ok(questions.every(q => q.knowledge_contract_version === 1 && q.knowledge_link_status === "linked"));
   assert.ok(questions.every(q => Array.isArray(q.source) && q.source.length >= 1 && q.source_origin === "external"));
-  assert.equal(quiz.production_context.normal_opening_questions, 21);
+  assert.equal(quiz.production_context.normal_opening_questions, 28);
   assert.equal(quiz.production_context.theory_start_phase, "final");
   assert.equal(quiz.production_context.method_start_phase, "final");
 });
@@ -89,8 +89,8 @@ test("Rådhusplassen workcard og production packet lukker 30/30-kontrakten", () 
   assert.equal(workcard.quality_gate, "30/30_pending_ci");
   assert.deepEqual(workcard.collection_ids, ["people", "objects", "brands", "structures"]);
   assert.equal(production.status, "ready_v4_2");
-  assert.equal(production.quiz.totalQuestions, 35);
-  assert.equal(production.quiz.fact, 21);
+  assert.equal(production.quiz.totalQuestions, 42);
+  assert.equal(production.quiz.fact, 28);
   assert.equal(production.quiz.context, 7);
   assert.equal(production.quiz.concept, 7);
   assert.equal(audit.quality_score.total, 30);
