@@ -1,0 +1,584 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "by",
+  "targetId": "ullern",
+  "profile_hint": "rich",
+  "reviewed_at": "2026-09-07",
+  "review_note": "Oslo byleksikon, Den norske kirke og SNL bærer en 5×7-pakke med eksplisitt skille mellom fakta, kontekst og metode.",
+  "scope": {
+    "place": "Ullern",
+    "production_profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "total_questions": 35,
+    "normal_opening_questions": 21
+  },
+  "sources": {
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Ullern_%28str%C3%B8k%29",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Sogn, kirke, institusjoner og boligtypologi kontrollert."
+    },
+    "bydel": {
+      "url": "https://oslobyleksikon.no/index.php?title=Ullern_%28bydel%29",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Lang utbyggingshistorie og banetidslinje kontrollert."
+    },
+    "church": {
+      "url": "https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/Ullern/om-oss/om-ullern-kirke/",
+      "source_type": "primary_institutional",
+      "review_status": "reviewed",
+      "review_note": "1903, Bødtker, Peterssen, Kielland og baldakin kontrollert."
+    },
+    "church_snl": {
+      "url": "https://snl.no/Ullern_kirke",
+      "source_type": "edited_reference",
+      "review_status": "reviewed",
+      "review_note": "Kirkearkitektur og kunsthistoriske elementer kontrollert."
+    },
+    "smestadbanen": {
+      "url": "https://oslobyleksikon.no/side/Smestadbanen",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Åpning 1912 og forlengelse 1935 kontrollert."
+    },
+    "roabanen": {
+      "url": "https://oslobyleksikon.no/side/R%C3%B8abanen",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Røabanens historikk kontrollert."
+    },
+    "sorbyhaugen": {
+      "url": "https://oslobyleksikon.no/side/S%C3%B8rbyhaugen_%28str%C3%B8k%29",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Sørbyhaugen–Jar 1942 kontrollert."
+    },
+    "peterssen": {
+      "url": "https://snl.no/Eilif_Peterssen",
+      "source_type": "edited_biographical_reference",
+      "review_status": "reviewed",
+      "review_note": "Peterssens Ullern-verk 1908–09 kontrollert."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "kur_by_02_nabolag_ulikhet_segregering",
+      "kur_by_03_infrastruktur_og_bevegelse",
+      "kur_by_04_historiske_lag_og_transformasjon"
+    ],
+    "emne_ids": [
+      "em_by_historiske_lag_i_hverdagsrom",
+      "em_by_boligstruktur",
+      "em_by_infrastruktur_mobilitet",
+      "em_by_bydelsforskjeller_segregering"
+    ],
+    "topic_hook_ids": [
+      "ark_bygningstyper",
+      "urb_byidealer",
+      "urb_bil_vs_menneske"
+    ],
+    "method_ids": [
+      "met_morfologisk_analyse",
+      "met_for_etter",
+      "met_feltobservasjon"
+    ],
+    "thinker_ids": [],
+    "works": []
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/by/ullern_sets_merged.json",
+      "data/quiz/by/ullern_sets.json",
+      "data/quiz/manifest.json"
+    ],
+    "active_before": {
+      "file": "data/quiz/by/ullern_sets_merged.json",
+      "set_count": 5,
+      "question_count": 30,
+      "finding": "Legacy 5×6 package did not meet current 5×7 rich profile."
+    },
+    "decisions": [
+      "Migrate to 5×7.",
+      "Use 21 fact + 7 context + 7 concept.",
+      "Keep explicit source ids and stable Knowledge ids."
+    ],
+    "knowledge_migration": "All 35 questions receive stable Ullern Knowledge ids."
+  },
+  "profile_decision": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "justification": "Ullern has independent learning jobs for church/history, transport, housing morphology, source boundaries and method without filler."
+  },
+  "held_back_candidates": [
+    "Social class claims inferred only from villa morphology.",
+    "Current resident characteristics without demographic sources.",
+    "Unverified causal claims that one rail line alone produced all development."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_ullern_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Ullern har navn etter Ullern-gårdene.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Ullern kirke ble innviet i 1903.",
+      "source_ids": [
+        "church"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Ullern sogn ble skilt ut fra Vestre Aker i 1906.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Harald Bødtker var arkitekt for Ullern kirke.",
+      "source_ids": [
+        "church"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Eilif Peterssen utførte apsismaleriet i 1908–1909.",
+      "source_ids": [
+        "church",
+        "peterssen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Gabriel Kielland utførte de store glassmaleriene.",
+      "source_ids": [
+        "church",
+        "church_snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Alterbaldakinen er i italiensk marmor og bysantinsk stil.",
+      "source_ids": [
+        "church",
+        "church_snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Smestadbanen mellom Majorstuen og Smestad åpnet i 1912.",
+      "source_ids": [
+        "smestadbanen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Banen ble forlenget til Røa i 1935 og fikk navnet Røabanen.",
+      "source_ids": [
+        "smestadbanen",
+        "roabanen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Sørbyhaugen–Jar-forbindelsen åpnet i 1942.",
+      "source_ids": [
+        "sorbyhaugen",
+        "bydel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Villastrøk utgjør størst areal, men er ikke eneste boligform.",
+      "source_ids": [
+        "byleksikon",
+        "bydel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_boligstruktur"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Ullern har flere boligtypologier i tillegg til villabebyggelse.",
+      "source_ids": [
+        "byleksikon",
+        "bydel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_boligstruktur"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Bestum skole åpnet i 1921.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Ullern idrettsplass er et kommunalt anlegg fra 1922.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Ullern videregående skole kom i gang i 1931.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Det Norske Radiumhospital åpnet i 1931.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Ullern kirke har korsplan med sentraltårn.",
+      "source_ids": [
+        "church"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Den norske kirke oppgir 800 sitteplasser.",
+      "source_ids": [
+        "church"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Baldakinen beskrives som bysantinsk i stil.",
+      "source_ids": [
+        "church",
+        "church_snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon avgrenser Ullern-strøket mellom disse naboområdene.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Ullern er bygget ut over et langt tidsrom og har derfor variert bebyggelse.",
+      "source_ids": [
+        "bydel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Transporttilgjengelighet kan knyttes til utbygging uten å gjøre banen til eneste årsak.",
+      "source_ids": [
+        "bydel",
+        "smestadbanen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Morfologi kan observeres direkte; sosiale egenskaper krever andre data.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_boligstruktur"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Institusjoner gir stedet funksjoner for både beboere og besøkende.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Structure, Object og kunstverk bør ikke blandes til én entity.",
+      "source_ids": [
+        "church",
+        "church_snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Flere daterte infrastrukturlag åpnet forskjellige forbindelser over tid.",
+      "source_ids": [
+        "smestadbanen",
+        "roabanen",
+        "sorbyhaugen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Variert typologi viser at området ikke er fysisk ensartet.",
+      "source_ids": [
+        "byleksikon",
+        "bydel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_boligstruktur"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Før/etter-bilder krever avgrensning av hva perspektivet faktisk kan vise.",
+      "source_ids": [
+        "church"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_ullern_quiz_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Transportorientert vekst beskriver samspillet mellom forbindelser og arealbruk.",
+      "source_ids": [
+        "bydel",
+        "smestadbanen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet",
+      "method_ids": [
+        "met_morfologisk_analyse"
+      ]
+    },
+    {
+      "claim_id": "claim_ullern_quiz_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Morfologi handler om den fysiske organiseringen av byen.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_boligstruktur",
+      "method_ids": [
+        "met_morfologisk_analyse"
+      ]
+    },
+    {
+      "claim_id": "claim_ullern_quiz_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Sosiale påstander krever egne data utover visuell morfologi.",
+      "source_ids": [
+        "byleksikon",
+        "bydel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_bydelsforskjeller_segregering",
+      "method_ids": [
+        "met_feltobservasjon"
+      ]
+    },
+    {
+      "claim_id": "claim_ullern_quiz_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Et sted kan bære samtidige spor fra flere historiske perioder.",
+      "source_ids": [
+        "byleksikon",
+        "church"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+      "method_ids": [
+        "met_for_etter"
+      ]
+    },
+    {
+      "claim_id": "claim_ullern_quiz_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Funksjonell blanding beskriver flere formål og brukergrupper i samme område.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+      "method_ids": [
+        "met_feltobservasjon"
+      ]
+    },
+    {
+      "claim_id": "claim_ullern_quiz_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Feltobservasjon og historiske kilder utfyller hverandre, men beviser ulike ting.",
+      "source_ids": [
+        "bydel",
+        "church"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+      "method_ids": [
+        "met_feltobservasjon"
+      ]
+    },
+    {
+      "claim_id": "claim_ullern_quiz_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Helhetslesningen kombinerer flere dokumenterte systemer og holder tolkningens grenser åpne.",
+      "source_ids": [
+        "byleksikon",
+        "bydel",
+        "church"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+      "method_ids": [
+        "met_morfologisk_analyse"
+      ]
+    }
+  ]
+}
