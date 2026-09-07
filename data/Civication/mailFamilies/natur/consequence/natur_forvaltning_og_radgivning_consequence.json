@@ -1,0 +1,88 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "natur",
+  "role_scope": "natur_forvaltning_og_radgivning",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "forvaltning_radgivning_rad_og_etterspill",
+      "purpose": "Trene consequence gjennom ett versjonert beslutningsgrunnlag uten å blande naturdata, bestillerønske, regelverk, faglig råd og faktisk myndighet.",
+      "learning_focus": [
+        "faglig_integritet",
+        "sporbarhet",
+        "alternativanalyse",
+        "restusikkerhet",
+        "mandat"
+      ],
+      "mails": [
+        {
+          "id": "forvaltning_radgivning_consequence_001",
+          "mail_type": "consequence",
+          "mail_family": "forvaltning_radgivning_rad_og_etterspill",
+          "role_scope": "natur_forvaltning_og_radgivning",
+          "phase": "forenoon",
+          "priority": 120,
+          "from": "Henrik",
+          "people_ref": "henrik_plan_regelverksradgiver_natur_forvaltning_og_radgivning",
+          "place_id": "regelverk_plan_og_mandatspor_natur",
+          "subject": "Rådet leses som om det var et vedtak",
+          "summary": "Rådet leses som om det var et vedtak. Et kort sammendrag blir sitert videre som om rådgiveren hadde bestemt utfallet. Spilleren må korrigere rolle- og mandatgrensen samtidig som det faglige innholdet, datagapene og anbefalingen fortsatt er tydelige. Saken skal føres i bestilling_kunnskapsgrunnlag_naturverdi_regelverk_alternativer_avboting_restusikkerhet_og_radlogg, der bestilling, mandat, faktisk beslutningseier, kunnskapsgrunnlag, kildekvalitet, naturverdier, felt- og kartdata, datagap, regelverk, alternativer, avbøtende tiltak, interessekonflikter, restkonsekvens, restusikkerhet, habilitet, ventepunkt, handoff og neste eier holdes som separate felt. Rollen kan gi faglige råd, utarbeide utredninger og planer, analysere alternativer og avbøtende tiltak og synliggjøre vesentlige naturfaglige avvik, men kan ikke late som et faglig råd er et politisk eller administrativt vedtak, overskride delegert mandat, overstyre lovverk eller endre funn for å tilfredsstille bestiller. Alle tre Career-titlene krever relevant_education_or_employer_qualification; status, erfaring i spillet eller popularitet kan ikke erstatte denne gaten. History Go og Natur-badge kan gi arts-, steds-, økologi- og naturhistorisk kontekst som gjør spørsmål og alternativanalyse bedre, men er verken yrkeskvalifikasjon, feltdata, juridisk hjemmel, saksbevis, delegasjon eller forvaltningsmyndighet. En god løsning må derfor bevare skillet mellom faglig evidens, rådgiverens anbefaling og den beslutningen som en annen rolle eller institusjon faktisk eier, og gjøre det mulig å gjenåpne bare berørte premisser når nye data, regelverksavklaringer eller kvalitetssikringsinnspill kommer.",
+          "situation": [
+            "Rådloggen viser siste bestilling og mandat, faktisk beslutningseier, kunnskapsgrunnlag, datagap, naturverdier, regelverkspremisser, alternativer, avbøting, restusikkerhet, åpne avvik og hvem som eier neste avklaring.",
+            "En raskere løsning kan gjøre leveransen mer beslutningsklar, men kan samtidig skjule at naturdata mangler, at et alternativ ikke er reelt, at en regelverkstolkning må avklares eller at rådgiveren ikke selv eier vedtaket.",
+            "Du må velge et grep som gjør handoff og mulig rework lesbart uten å omskrive hvilke data, premisser, interessekonflikter, råd eller myndighetsgrenser som faktisk gjaldt."
+          ],
+          "task_domain": "naturforvaltning_og_miljoradgivning",
+          "competency": "sporbar_utredning_alternativanalyse_og_mandatklar_radgivning",
+          "pressure": "naturverdi_tiltak_frist_bestiller_og_beslutningsbehov",
+          "choice_axis": "etterprovbart_beslutningsgrunnlag_vs_improvisert_beslutningsklarhet",
+          "consequence_axis": "faglig_tillit_og_rolleavklaring_vs_skjult_usikkerhet_og_mandatglidning",
+          "narrative_arc": "consequence",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avklar rådet leses som om det var et vedtak i rådgivningssporet",
+              "reply": "Jeg låser først bestilling, mandat og faktisk beslutningseier, og skiller dokumenterte naturdata fra antakelser, bestillerønsker og rettslige eller administrative vurderinger som andre må eie. Jeg markerer datagap, kildekvalitet og restusikkerhet, beskriver minst ett reelt alternativ og relevant avbøting, og sender bare det uavklarte premisset til riktig faglig, juridisk eller beslutningsmessig eier. Hvis nye data eller en avklaring kommer, gjenåpner jeg den berørte vurderingen med nytt versjonsspor uten å omskrive det tidligere kunnskapsgrunnlaget eller late som fristen gjorde det sikrere.",
+              "effect": 1,
+              "tags": [
+                "sporbarhet",
+                "faglig_uavhengighet",
+                "restusikkerhet"
+              ],
+              "feedback": "Grepet gjør beslutningsgrunnlaget mer etterprøvbart fordi neste fagperson, prosjektleder eller beslutningseier kan se hva som er data, hva som er metode og tolkning, hvilke datagap og interessekonflikter som finnes, hvilke alternativer som faktisk ble sammenlignet, hva avbøting kan og ikke kan løse og hvor restusikkerheten ligger. Dermed kan frist, bestillerpress eller institusjonell status ikke fungere som skjult evidens, og den som faktisk har myndighet kan ta en beslutning uten at rådgiveren har forskuttert vedtaket.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukk rådet leses som om det var et vedtak gjennom tempo og antatt mandat",
+              "reply": "Jeg prioriterer en rask og beslutningsklar leveranse, fyller inn manglende kunnskapsgrunnlag med det som virker mest sannsynlig og lar bestillers foretrukne tiltak styre hvilke alternativer som får plass. Jeg omtaler rådgiverens anbefaling som om den nesten allerede er besluttet, lar uklart regelverk eller manglende kartlegging forsvinne i sammendraget og sender saken videre uten eksplisitt restusikkerhet, faktisk beslutningseier eller spor for hva som må gjenåpnes dersom nye premisser kommer.",
+              "effect": -1,
+              "tags": [
+                "tempo",
+                "bestillerpress",
+                "mandatglidning"
+              ],
+              "feedback": "Leveransen kan se ryddigere og mer handlingsklar ut på kort sikt, men den skjuler skillet mellom naturfaglig grunnlag, bestillerønske, regelverk, faglig råd og faktisk beslutning. Senere feltdata, en annen regelverkstolkning eller et realistisk alternativ blir vanskeligere å flette inn uten å åpne hele saken, og rådgiverrollen risikerer å opptre som beslutningseier uten delegasjon. Det svekker sporbarhet, faglig uavhengighet, tillit og muligheten til å forklare hvorfor et råd eller en konsekvensvurdering senere måtte endres.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,18 +1,229 @@
 {
-  "schema":"civication_work_grammar_v2","version":2,
-  "category":"natur","role_scope":"natur_forvaltning_og_radgivning","role_id":"natur_forvaltning_og_radgivning",
-  "badge_binding":{"badge_id":"natur","badge_titles":["Naturforvalter","Rådgiver (miljø/natur)","Seniorrådgiver (miljø/natur)"]},
-  "work_world":"Forvaltning og rådgivning der naturdata, regelverk, tiltak og motstridende interesser må omsettes til et etterprøvbart beslutningsgrunnlag.",
-  "task_families":["naturkartlegging","konsekvensvurdering","miljøråd","planarbeid","regelverksoppfølging"],
-  "work_loops":["bestilling -> kunnskapsgrunnlag -> analyse -> alternativer -> råd -> dokumentasjon","tiltak -> naturverdi -> regelverk -> avbøting -> restusikkerhet -> anbefaling"],
-  "pressure_axes":["naturverdi_vs_tiltak","faglig_uavhengighet_vs_bestilling","hastighet_vs_utredningskvalitet"],
-  "practice_stories":[
-    {"id":"svakt_kunnskapsgrunnlag","setup":"En plan skal avgjøres med mangelfull naturkartlegging.","decision":"Synliggjør datagap og hvilke konklusjoner som ikke kan trekkes.","learning":"manglende data er selv en relevant del av beslutningsgrunnlaget"},
-    {"id":"oppdragsgiver_press","setup":"Oppdragsgiver ønsker en mildere risikovurdering.","decision":"Behold den faglig begrunnede vurderingen og dokumenter premissene.","learning":"rådgiverrollen krever faglig integritet"},
-    {"id":"avboting","setup":"Et tiltak berører verdifull natur, men kan endres.","decision":"Sammenlign realistiske avbøtende alternativer og restkonsekvens.","learning":"råd skal gjøre reelle valg synlige"},
-    {"id":"kort_frist","setup":"En politisk frist er kortere enn normal utredningstid.","decision":"Lever det som kan kvalitetssikres og merk tydelig hva som gjenstår.","learning":"frist endrer ikke evidensnivået"},
-    {"id":"fagkonflikt","setup":"To fagmiljøer vurderer naturkonsekvensen ulikt.","decision":"Beskriv uenigheten, metodeforskjellene og hva som kan avklare den.","learning":"uenighet skal analyseres, ikke skjules"}
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "natur",
+  "role_scope": "natur_forvaltning_og_radgivning",
+  "role_id": "natur_forvaltning_og_radgivning",
+  "badge_binding": {
+    "badge_id": "natur",
+    "badge_titles": [
+      "Naturforvalter",
+      "Rådgiver (miljø/natur)",
+      "Seniorrådgiver (miljø/natur)"
+    ]
+  },
+  "work_world": "Forvaltning og rådgivning der naturdata, regelverk, tiltak og motstridende interesser må omsettes til et etterprøvbart beslutningsgrunnlag.",
+  "task_families": [
+    "naturkartlegging",
+    "konsekvensvurdering",
+    "miljøråd",
+    "planarbeid",
+    "regelverksoppfølging"
   ],
-  "quality_axes":["faglig_integritet","regelverksforståelse","sporbarhet","alternativanalyse","usikkerhet","interessekonflikter"],
-  "authority_boundary":{"may":["gi råd og utarbeide beslutningsgrunnlag"],"may_not":["late som råd er politisk vedtak","overskride delegert mandat","endre funn for å tilfredsstille bestiller"]}
+  "work_loops": [
+    "bestilling -> kunnskapsgrunnlag -> analyse -> alternativer -> råd -> dokumentasjon",
+    "tiltak -> naturverdi -> regelverk -> avbøting -> restusikkerhet -> anbefaling"
+  ],
+  "pressure_axes": [
+    "naturverdi_vs_tiltak",
+    "faglig_uavhengighet_vs_bestilling",
+    "hastighet_vs_utredningskvalitet"
+  ],
+  "practice_stories": [
+    {
+      "id": "svakt_kunnskapsgrunnlag",
+      "setup": "En plan skal avgjøres med mangelfull naturkartlegging.",
+      "decision": "Synliggjør datagap og hvilke konklusjoner som ikke kan trekkes.",
+      "learning": "manglende data er selv en relevant del av beslutningsgrunnlaget"
+    },
+    {
+      "id": "oppdragsgiver_press",
+      "setup": "Oppdragsgiver ønsker en mildere risikovurdering.",
+      "decision": "Behold den faglig begrunnede vurderingen og dokumenter premissene.",
+      "learning": "rådgiverrollen krever faglig integritet"
+    },
+    {
+      "id": "avboting",
+      "setup": "Et tiltak berører verdifull natur, men kan endres.",
+      "decision": "Sammenlign realistiske avbøtende alternativer og restkonsekvens.",
+      "learning": "råd skal gjøre reelle valg synlige"
+    },
+    {
+      "id": "kort_frist",
+      "setup": "En politisk frist er kortere enn normal utredningstid.",
+      "decision": "Lever det som kan kvalitetssikres og merk tydelig hva som gjenstår.",
+      "learning": "frist endrer ikke evidensnivået"
+    },
+    {
+      "id": "fagkonflikt",
+      "setup": "To fagmiljøer vurderer naturkonsekvensen ulikt.",
+      "decision": "Beskriv uenigheten, metodeforskjellene og hva som kan avklare den.",
+      "learning": "uenighet skal analyseres, ikke skjules"
+    }
+  ],
+  "quality_axes": [
+    "faglig_integritet",
+    "regelverksforståelse",
+    "sporbarhet",
+    "alternativanalyse",
+    "usikkerhet",
+    "interessekonflikter"
+  ],
+  "authority_boundary": {
+    "may": [
+      "gi faglige råd",
+      "utarbeide utredninger og planer",
+      "analysere alternativer og avbøtende tiltak",
+      "synliggjøre datagap, restusikkerhet og vesentlige naturfaglige avvik"
+    ],
+    "may_not": [
+      "late som faglig råd er politisk eller administrativt vedtak",
+      "overskride delegert mandat",
+      "endre funn for å tilfredsstille bestiller",
+      "overstyre lovverk",
+      "bruke History Go eller Natur-badge som delegert myndighet, yrkeskvalifikasjon eller saksbevis"
+    ]
+  },
+  "actor_grammar": [
+    {
+      "id": "ingrid_fagansvarlig_natur_forvaltning_og_radgivning",
+      "name": "Ingrid",
+      "role": "fagansvarlig naturforvalter",
+      "workplace_ids": [
+        "mandat_og_kunnskapsgrunnlagsbord_natur"
+      ]
+    },
+    {
+      "id": "henrik_plan_regelverksradgiver_natur_forvaltning_og_radgivning",
+      "name": "Henrik",
+      "role": "plan- og regelverksrådgiver",
+      "workplace_ids": [
+        "regelverk_plan_og_mandatspor_natur"
+      ]
+    },
+    {
+      "id": "sara_kart_dataanalytiker_natur_forvaltning_og_radgivning",
+      "name": "Sara",
+      "role": "kart- og dataanalytiker",
+      "workplace_ids": [
+        "kart_data_og_naturverdiflate_natur"
+      ]
+    },
+    {
+      "id": "mona_prosjekt_kvalitetssikrer_natur_forvaltning_og_radgivning",
+      "name": "Mona",
+      "role": "prosjekt- og kvalitetssikringsansvarlig",
+      "workplace_ids": [
+        "alternativ_avboting_og_radverksted_natur"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "mandat_og_kunnskapsgrunnlagsbord_natur",
+      "name": "Mandat- og kunnskapsgrunnlagsbord",
+      "function": "Her avgrenses bestilling, beslutningsspørsmål, rollemandat, faktiske beslutningseiere, tilgjengelige naturdata, datagap, kildestatus, feltbehov, habilitet, frist og hvilke deler av leveransen som må vente før et faglig råd kan formuleres."
+    },
+    {
+      "id": "regelverk_plan_og_mandatspor_natur",
+      "name": "Regelverk-, plan- og mandatspor",
+      "function": "Her kobles relevant regelverk, planstatus, delegasjon, saksrolle, krav til utredning, faktiske myndighetsgrenser og dokumenterte tolkninger til saken uten at rådgiveren gjør en faglig vurdering om til vedtak eller opptrer som beslutningseier."
+    },
+    {
+      "id": "kart_data_og_naturverdiflate_natur",
+      "name": "Kart-, data- og naturverdiflate",
+      "function": "Her sammenstilles kartlag, registreringer, feltdata, naturverdier, kildekvalitet, metode, geografisk avgrensning, usikkerhet og motstridende funn slik at manglende data forblir synlige i stedet for å bli glattet over av prosjektets ønskede framdrift."
+    },
+    {
+      "id": "alternativ_avboting_og_radverksted_natur",
+      "name": "Alternativ-, avbøtings- og rådverksted",
+      "function": "Her sammenlignes realistiske alternativer, avbøtende tiltak, restkonsekvens, restusikkerhet, interessekonflikter, kvalitetssikringsinnspill og ordlyden i det faglige rådet før saken leveres til den som faktisk eier beslutningen."
+    }
+  ],
+  "persistent_work_object_contract": {
+    "id": "bestilling_kunnskapsgrunnlag_naturverdi_regelverk_alternativer_avboting_restusikkerhet_og_radlogg",
+    "description": "Et vedvarende, versjonert beslutningsgrunnlag som beholder bestilling, mandat, beslutningseier, kunnskapsgrunnlag, kildekvalitet, naturdata, naturverdier, datagap, regelverk, alternativer, avbøting, restkonsekvens, restusikkerhet, interessekonflikter, habilitet, faglig råd, ventepunkt, handoff og avgrenset rework gjennom samme rådgivningssak.",
+    "states": [
+      "bestilling_mottatt",
+      "mandat_avklart",
+      "beslutningseier_registrert",
+      "kunnskapsgrunnlag_innhentes",
+      "datagap_identifisert",
+      "naturverdier_vurderes",
+      "regelverk_avklares",
+      "alternativer_utformes",
+      "avboting_vurderes",
+      "restkonsekvens_vurderes",
+      "restusikkerhet_registrert",
+      "interessekonflikt_apen",
+      "venter_pa_avklaring",
+      "faglig_rad_utkast",
+      "kvalitetssikring",
+      "rework",
+      "rad_avgrenset",
+      "handoff_til_beslutningseier",
+      "gjenapnet"
+    ],
+    "handoff_rule": "Neste aktør overtar synlig bestilling og mandat, faktisk beslutningseier, kilde- og dataversjon, naturverdier, datagap, regelverkspremisser, alternativer, avbøting, restkonsekvens, restusikkerhet, åpne interessekonflikter, ventepunkt og neste eier; en handoff kan aldri gjøre rådgiverens anbefaling til et vedtak eller skjule at et premiss fortsatt er uavklart."
+  },
+  "rhythm_contract": {
+    "loop": "bestilling -> mandat -> kunnskapsgrunnlag -> analyse -> waiting/venting på kartlegging, regelverk, tiltakshaveropplysninger, tverrfaglig innspill eller kvalitetssikring -> alternativer -> avbøting -> restusikkerhet -> handoff -> faglig råd -> beslutningseier -> revisjon/rework -> læring",
+    "waiting_states": [
+      "feltdata_eller_kartlegging",
+      "regelverksavklaring",
+      "tiltakshaveropplysninger",
+      "tverrfaglig_innspill",
+      "kvalitetssikring",
+      "beslutningseier",
+      "nye_data_eller_premiss"
+    ],
+    "rework_rule": "Nye felt- eller kartdata, endret geografisk avgrensning, regelverksavklaring, nytt realistisk alternativ, endret avbøting, kvalitetssikringsinnspill eller tydeliggjort mandat gjenåpner bare berørt kunnskapsgrunnlag, analyse, alternativ eller råd med ny versjon og bevart endringsspor."
+  },
+  "knowledge_dependencies": [
+    {
+      "id": "history_go_natur_forvaltning_sted_og_okologikontekst",
+      "badge_id": "natur",
+      "use": "History Go kan forbedre rådgivningsspørsmål gjennom arter, steder, økologi og naturhistorisk kontekst. Natur-badge er ikke relevant_education_or_employer_qualification, kan ikke erstatte feltdata eller kvalitetssikret kartlegging, kan ikke gi juridisk hjemmel eller delegasjon og kan ikke gjøre et faglig råd til et vedtak."
+    }
+  ],
+  "day_one_contract": {
+    "entry": "career_offer_policy_by_title",
+    "entry_policy_by_title": {
+      "Naturforvalter": {
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "relevant_education_or_employer_qualification"
+        ]
+      },
+      "Rådgiver (miljø/natur)": {
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "relevant_education_or_employer_qualification"
+        ]
+      },
+      "Seniorrådgiver (miljø/natur)": {
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "relevant_education_or_employer_qualification"
+        ]
+      }
+    },
+    "first_object": "bestilling_kunnskapsgrunnlag_naturverdi_regelverk_alternativer_avboting_restusikkerhet_og_radlogg",
+    "first_task": "Registrer bestilling, mandat, faktisk beslutningseier, kunnskapsgrunnlag, kildekvalitet, naturverdier, datagap, relevant regelverk, minst ett mulig alternativ, restusikkerhet og neste kontrollpunkt før du formulerer et sterkt råd; marker eksplisitt hva History Go ikke beviser eller gir myndighet til."
+  },
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "role_scope": "natur_forvaltning_og_radgivning",
+    "no_generic_fallback": true
+  }
 }
