@@ -1,0 +1,53 @@
+name: TEMP Litteratur round 13 theory diagnostic
+
+on:
+  push:
+    branches:
+      - agent/litteratur-maintenance-round13-kjonn-feminisme-20260907
+    paths:
+      - '.github/workflows/temp-litteratur-round13-theory-diagnostic.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inventory referenced theory scripts
+        shell: bash
+        run: |
+          set -euo pipefail
+          scripts=(
+            scripts/theory-repair.mjs
+            scripts/theory-audit.mjs
+            scripts/theory-determinism-check.mjs
+            scripts/subject-theory-coverage-check.mjs
+            scripts/subject-status-integrity-check.mjs
+            scripts/subject-status-domain-check.mjs
+            scripts/fagverk-contract-audit.mjs
+            scripts/fagverk-area-consistency-check.mjs
+            scripts/reference-integrity-check.mjs
+            scripts/fagverk-artifact-consistency-check.mjs
+            scripts/fagverk-readiness-summaries.mjs
+            scripts/scan-remaining-subject-historie.mjs
+            scripts/scan-remaining-subject-naturfag.mjs
+            scripts/scan-remaining-subject-norsk.mjs
+            scripts/scan-remaining-subject-geografi.mjs
+            scripts/scan-remaining-subject-religion.mjs
+            scripts/scan-remaining-subject-samfunnskunnskap.mjs
+            scripts/scan-remaining-subject-matematikk.mjs
+            scripts/scan-remaining-subject-engelsk.mjs
+            scripts/scan-remaining-subject-litteratur.mjs
+          )
+          missing=0
+          for file in "${scripts[@]}"; do
+            if [[ -f "$file" ]]; then
+              echo "EXISTS  $file"
+            else
+              echo "MISSING $file"
+              missing=$((missing + 1))
+            fi
+          done
+          echo "MISSING_COUNT=$missing"
