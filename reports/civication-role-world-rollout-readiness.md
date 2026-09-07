@@ -27,7 +27,7 @@ A PASS with policy open means controlled role-by-role rollout may proceed. It do
 
 ## First structurally varied wave candidates
 
-- **politikk/politikk_parlamentarisk_arbeid** — public_administration; rollout_ready; queue #1
+_No safe first-wave set is available yet._
 
 The first wave is a recommendation, not a batch PR: every role still gets its own PR. Cross-role linkage is optional and only used when the work object is genuinely shared.
 
@@ -35,20 +35,19 @@ The first wave is a recommendation, not a batch PR: every role still gets its ow
 
 | Rank | Role | Class | Structural family | Cross-role | Main authored debt |
 | ---: | --- | --- | --- | --- | --- |
-| 1 | `politikk/politikk_parlamentarisk_arbeid` | rollout_ready | public_administration | not_required_for_rollout | — |
-| 2 | `politikk/politikk_politisk_radgivning` | needs_role_authored_work | public_administration | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
-| 3 | `politikk/politikk_regjeringsledelse` | needs_role_authored_work | public_administration | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
-| 4 | `religion/religion_fagledelse` | needs_role_authored_work | other | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
-| 5 | `religion/religion_formidling_og_kulturarv` | needs_role_authored_work | other | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
-| 6 | `religion/religion_utredning_og_radgivning` | needs_role_authored_work | public_administration | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
-| 7 | `vitenskap/vitenskap_assistent_og_laboratorium` | needs_role_authored_work | research_education | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
-| 8 | `vitenskap/vitenskap_doktorlop_og_postdoktor` | needs_role_authored_work | research_education | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
-| 9 | `vitenskap/vitenskap_forskning` | needs_role_authored_work | research_education | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
-| 10 | `vitenskap/vitenskap_forskningsledelse` | needs_role_authored_work | research_education | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
-| 11 | `vitenskap/vitenskap_institusjonsledelse` | needs_role_authored_work | research_education | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
-| 12 | `vitenskap/vitenskap_undervisning_og_forskning` | needs_role_authored_work | research_education | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
-| 13 | `musikk/musikk_scene_og_produksjon` | blocked | creative_production | not_required_for_rollout | career:authority, career:day_one, career:knowledge, career:mail |
-| 14 | `musikk/musikk_utoving_og_ensemble` | blocked | other | not_required_for_rollout | career:authority, career:day_one, career:knowledge, career:mail |
+| 1 | `politikk/politikk_politisk_radgivning` | needs_role_authored_work | public_administration | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
+| 2 | `politikk/politikk_regjeringsledelse` | needs_role_authored_work | public_administration | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
+| 3 | `religion/religion_fagledelse` | needs_role_authored_work | other | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
+| 4 | `religion/religion_formidling_og_kulturarv` | needs_role_authored_work | other | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
+| 5 | `religion/religion_utredning_og_radgivning` | needs_role_authored_work | public_administration | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
+| 6 | `vitenskap/vitenskap_assistent_og_laboratorium` | needs_role_authored_work | research_education | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
+| 7 | `vitenskap/vitenskap_doktorlop_og_postdoktor` | needs_role_authored_work | research_education | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
+| 8 | `vitenskap/vitenskap_forskning` | needs_role_authored_work | research_education | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
+| 9 | `vitenskap/vitenskap_forskningsledelse` | needs_role_authored_work | research_education | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
+| 10 | `vitenskap/vitenskap_institusjonsledelse` | needs_role_authored_work | research_education | candidate_when_shared_work_is_real | career:day_one, career:knowledge, career:mail, career:people |
+| 11 | `vitenskap/vitenskap_undervisning_og_forskning` | needs_role_authored_work | research_education | not_required_for_rollout | career:day_one, career:knowledge, career:mail, career:people |
+| 12 | `musikk/musikk_scene_og_produksjon` | blocked | creative_production | not_required_for_rollout | career:authority, career:day_one, career:knowledge, career:mail |
+| 13 | `musikk/musikk_utoving_og_ensemble` | blocked | other | not_required_for_rollout | career:authority, career:day_one, career:knowledge, career:mail |
 
 ## Blocked roles
 
