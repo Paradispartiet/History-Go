@@ -42,6 +42,33 @@ jobs:
       - name: Materialize Politisk rådgivning Role World
         run: node scripts/TEMP_materialize_politikk_politisk_radgivning_role_world.mjs
 
+      - name: Deepen primary relationship threads
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const path='data/Civication/roleWorlds/politikk/politikk_politisk_radgivning.json';
+          const world=JSON.parse(fs.readFileSync(path,'utf8'));
+          const common='Standing bygges og brytes langsomt gjennom gjentatte valg, ikke gjennom ett enkelt riktig svar. Spilleren skal senere møte hukommelsen om hva som ble sagt, hvilke premisser som ble synliggjort, hvem som fikk tilgang, og om tidligere usikkerhet ble behandlet redelig. Tillit kan derfor utvikle seg ulikt mellom politisk ledelse, fagmiljø, presse, interessenter, kolleger, gjennomføringsledd og private relasjoner, uten at noen av disse reaksjonene blir formell myndighet.';
+          const specific={
+            beslutningseier_og_rad:'Når Ingrid vender tilbake til saken, skal hun kunne se om rådgiveren tidligere utfordret henne på et vanskelig premiss, om anbefalingen faktisk ble fulgt, og om uenigheten ble bevart uten å omskrive beslutningen. Det gjør lederens tillit avhengig av både politisk nytte og etterprøvbar rolleintegritet.',
+            kilde_usikkerhet_og_alternativer:'Når nye kilder eller resultater kommer, skal Marius og andre kontrollaktører kunne sammenligne dem med den opprinnelige versjonen og se om rådgiveren var tydelig om usikkerhet. Korrigering styrker standing når den er sporbar; opportunistisk historieskriving svekker den.',
+            interessenttilgang_og_representasjon:'Når de samme organisasjonene eller berørte gruppene vender tilbake, skal møteloggen vise hvem som tidligere ble hørt, hvem som manglet, hvilke interesser som var eksplisitte, og om noen fikk uautoriserte løfter. Relasjonell tillit avhenger av redelig representasjon, ikke lik møtefrekvens.',
+            fortrolighet_og_informasjonsmakt:'Når sensitiv informasjon senere blir offentlig, erstattet eller irrelevant, skal tidligere valg om tilgang fortsatt kunne vurderes. Den som avsto fra taktisk lekkasje kan ha tapt kortsiktig status og samtidig bygget varig tillit; den som misbrukte nærhet kan møte forsinket institusjonell og privat kostnad.',
+            kommunikasjon_og_offentlig_korrigering:'Når et gammelt talepunkt siteres på nytt, skal Samira og offentligheten kunne skille hva som var kjent da, hva som senere ble korrigert, og hva beslutningseieren faktisk vedtok. Standing følger evnen til å korrigere uten å late som den tidligere formuleringen aldri eksisterte.',
+            gjennomforing_og_bounded_rework:'Når forvaltningen møter konsekvensene i praksis, skal handoff og rådgivningslogg gjøre det mulig å se hvilke risikoer som var varslet, hvilke premisser som sviktet, og hvilket ansvar som faktisk ble tildelt. Sen læring skal endre framtidige råd uten å slette beslutningshistorien.',
+            maktnaerhet_karriere_og_privatrand:'Når rådgiverens interne status øker eller faller, skal tidligere lojalitetsvalg og private grenser fortsatt ha sosial virkning. Nærhet til ledelsen kan åpne samtaler og skape forventninger, men den må aldri bli delegasjon, særtilgang for venner eller et krav om at faglige motargumenter tones ned.'
+          };
+          for(const thread of world.primary_threads||[]){
+            const extra=specific[thread.id];
+            if(!extra) throw new Error(`Missing relationship extension for ${thread.id}`);
+            thread.relationship=`${thread.relationship} ${common} ${extra}`;
+            if(thread.relationship.length<350) throw new Error(`Relationship still too short: ${thread.id}/${thread.relationship.length}`);
+          }
+          fs.writeFileSync(path,JSON.stringify(world,null,2)+'\n');
+          NODE
+
       - name: Generate canonical rollout surfaces
         run: |
           set -euo pipefail
