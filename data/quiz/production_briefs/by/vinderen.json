@@ -1,0 +1,540 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "by",
+  "targetId": "vinderen",
+  "profile_hint": "rich",
+  "reviewed_at": "2026-09-07",
+  "review_note": "Eksisterende 5×6-kildepakke er gjenbrukt og utvidet med fem dokumenterte spørsmål. Progresjonen er låst til 21 fact + 7 context + 7 concept.",
+  "scope": {
+    "place": "Vinderen",
+    "production_profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "total_questions": 35,
+    "normal_opening_questions": 21
+  },
+  "sources": {
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/index.php/Vinderen_%28str%C3%B8k%29",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "1898, boligvekst, institusjoner, plan og lokalsenter kontrollert."
+    },
+    "station": {
+      "url": "https://oslobyleksikon.no/side/Vinderen_stasjon",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "1898, 1913, 1971 og Vinderntorvet kontrollert."
+    },
+    "conditori": {
+      "url": "https://oslobyleksikon.no/side/Vinderen_Conditori",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "1901, 2008, 2009 og 2012 kontrollert."
+    },
+    "farm": {
+      "url": "https://lokalhistoriewiki.no/wiki/Vinderen_%28Oslo_gnr_39/1%29",
+      "source_type": "local_history_reference",
+      "review_status": "reviewed",
+      "review_note": "Gårds- og navnehistorie kontrollert."
+    },
+    "rasmus": {
+      "url": "https://lokalhistoriewiki.no/wiki/Rasmus_Winderens_vei",
+      "source_type": "local_history_reference",
+      "review_status": "reviewed",
+      "review_note": "Rasmus Winderen og Aker-rollen kontrollert."
+    },
+    "sporveien": {
+      "url": "https://www.sporveien.no/prosjekter-og-arbeid/oppgradering-holmenkollbanen/",
+      "source_type": "primary_institutional",
+      "review_status": "reviewed",
+      "review_note": "Holmenkollbanens tekniske og historiske rolle kontrollert."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "kur_by_02_nabolag_ulikhet_segregering",
+      "kur_by_03_infrastruktur_og_bevegelse",
+      "kur_by_04_historiske_lag_og_transformasjon"
+    ],
+    "emne_ids": [
+      "em_by_boligstruktur",
+      "em_by_bydelsforskjeller_segregering",
+      "em_by_infrastruktur_mobilitet"
+    ],
+    "topic_hook_ids": [
+      "urb_byidealer",
+      "urb_bil_vs_menneske"
+    ],
+    "method_ids": [
+      "met_morfologisk_analyse",
+      "met_for_etter",
+      "met_feltobservasjon"
+    ],
+    "thinker_ids": [
+      "aldo_rossi",
+      "jan_gehl",
+      "kevin_lynch"
+    ],
+    "works": [
+      "The Architecture of the City",
+      "Life Between Buildings",
+      "The Image of the City"
+    ]
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/by/vinderen_sets_merged.json",
+      "data/quiz/manifest.json",
+      "data/quiz/by"
+    ],
+    "active_before": {
+      "file": "data/quiz/by/vinderen_sets_merged.json",
+      "set_count": 5,
+      "question_count": 30,
+      "finding": "Source-backed legacy 5×6 package retained as source material."
+    },
+    "decisions": [
+      "Upgrade to rich 5×7 without deleting verified legacy questions.",
+      "Normalize progression to 21 fact + 7 context + 7 concept."
+    ],
+    "knowledge_migration": "All 35 questions receive stable By Knowledge IDs."
+  },
+  "profile_decision": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "justification": "Fem læringsjobber dekker transportskapt vekst, lokalsenter/institusjoner, tidslag, kildekritikk og byform/sosial teori."
+  },
+  "held_back_candidates": [
+    "Udokumenterte sosiale generaliseringer om alle beboere.",
+    "Gresvig som Place Brand uten tilstrekkelig direkte Vinderen-evidens."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_vinderen_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "SNL og Lokalhistoriewiki beskriver Vinderen som et boligområde/strøk i bydel Vestre Aker.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_boligstruktur"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "SNL og Oslo byleksikon knytter Vinderens villa- og boligbygging til Holmenkollbanens åpning.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "SNL og Lokalhistoriewiki oppgir 1898 som åpningsåret for Holmenkollbanen i denne sammenhengen.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "SNL beskriver bebyggelsen på Vinderen som dominert av småhus.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_boligstruktur"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "SNL beskriver Vinderen som liggende på begge sider av Ring 3, også kalt Store Ringvei.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Repoets stedsprofil sier at Vinderen skal spørres som et transportskapt vestkantmiljø med lav tetthet, store villaer og sosial profil.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_bydelsforskjeller_segregering"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon oppgir at Vinderen Conditori ble etablert i 1901.",
+      "source_ids": [
+        "conditori"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon og Lokalhistoriewiki oppgir at Vinderen har navn etter gården Vinderen.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon og Lokalhistoriewiki oppgir at navnet også har vært skrevet Vindern.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "SNL forklarer sisteleddet i Vindarin som vin, med betydningen naturlig eng.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "SNL skriver at utbyggingen startet for alvor sist på 1800-tallet, særlig etter Holmenkollbanens åpning i 1898.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_boligstruktur"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon og Lokalhistoriewiki beskriver større utbygging på Vinderen i 1920- og 1930-årene.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_boligstruktur"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon og Lokalhistoriewiki oppgir at arkitektene Ove Bang og Arne Korsmo sto bak en reguleringsplan fra 1935.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_romlig_orden"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Skole og klinikk viser at forstaden fikk offentlige institusjoner i tillegg til boliger og handel.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_boligstruktur"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon og Lokalhistoriewiki beskriver et forretningssentrum som oppsto ved Vinderen stasjon rundt 1900.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_kommersielle_gater"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon og Lokalhistoriewiki oppgir at Conditorigården ved stasjonen ble oppført like etter 1900.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon nevner Vinderen Conditori fra 1901 i Conditorigården.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_kommersielle_gater"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon og Lokalhistoriewiki oppgir at Conditorigården ble totalskadd i brann i 2008.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon og Lokalhistoriewiki oppgir at Conditorigården ble revet året etter brannen, i 2009.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Lokalhistoriewiki oppgir at Vinderntorvet ligger der den gamle stasjonsbygningen på Vinderen sto.",
+      "source_ids": [
+        "farm"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_kommersielle_gater"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon oppgir at stasjonsbygningen fra 1913 ble revet i 1971.",
+      "source_ids": [
+        "station"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Lokalhistoriewiki oppgir at Vinderen stasjon åpnet i 1898.",
+      "source_ids": [
+        "station"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Lokalhistoriewiki oppgir at Vinderen stasjon opprinnelig het Winderen.",
+      "source_ids": [
+        "station"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Lokalhistoriewiki oppgir at stasjonen åpnet i 1898, men først fikk stasjonsbygning i 1912.",
+      "source_ids": [
+        "station"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Lokalhistoriewiki beskriver stasjonsbygningen som administrasjonsbygning for Holmenkollbanen i mange år.",
+      "source_ids": [
+        "station"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Lokalhistoriewiki oppgir at stasjonsbygningen ble revet i 1971.",
+      "source_ids": [
+        "station"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Lokalhistoriewiki oppgir at Vinderen stasjon ligger 86 meter over havet.",
+      "source_ids": [
+        "station"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Brann, riving og nybygg viser forskjellen mellom fysisk kontinuitet og funksjonskontinuitet.",
+      "source_ids": [
+        "conditori"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "SNL beskriver Holmenkollbanen som den viktigste kollektivforbindelsen fra Vinderen til sentrum.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet",
+      "topic_hook_id": "urb_bil_vs_menneske",
+      "thinker_id": "jan_gehl",
+      "work": "Life Between Buildings"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Lokalhistoriewiki beskriver krysset ved Vinderen stasjon som blant de mest trafikkerte planovergangene langs Holmenkollbanen.",
+      "source_ids": [
+        "station"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_flaskehalser_kryss_friksjon",
+      "method_id": "met_gaanalyse"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Repoets stedsprofil sier at Vinderen skal spørres med romsligheten som sosial markør, knyttet til store boliger, lav tetthet og vestkantens romlige idealer.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_bydelsforskjeller_segregering"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Vinderen kan leses som et område der banen gjorde lavere tetthet, grønnere boligmiljø og større tomter mulig, i kontrast til tettere indre by.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_bydelsforskjeller_segregering"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Vinderen stasjon fungerer som lokalt tyngdepunkt for handel, service og kollektivtilgang i et område dominert av småhus og villaer.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_kommersielle_gater"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Vinderen bør leses som et transportskapt vestkantmiljø der Holmenkollbanen, stasjonen, villabebyggelse, lav tetthet og sosial profil henger sammen.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_bydelsforskjeller_segregering"
+    },
+    {
+      "claim_id": "claim_vinderen_quiz_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Vinderens Fagverk skiller observerbar byform fra sosiale påstander som krever egne data.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_bydelsforskjeller_segregering"
+    }
+  ]
+}

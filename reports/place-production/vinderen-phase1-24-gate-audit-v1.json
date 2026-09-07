@@ -1,0 +1,60 @@
+{
+  "schema": "history_go_phase1_24_quality_gate_v1",
+  "place_id": "vinderen",
+  "verified_at": "2026-09-07",
+  "null_measurement": {
+    "existing_place": true,
+    "coordinate_changed": false,
+    "existing_quiz": "5x6 source-backed legacy package",
+    "existing_stories": "none",
+    "existing_collections": "legacy/incomplete",
+    "existing_fagverk": "full curated 4 lenses / 5 questions"
+  },
+  "collection_gate": {
+    "status": "PASS",
+    "ids": [
+      "people",
+      "objects",
+      "brands",
+      "structures"
+    ]
+  },
+  "quiz_gate": {
+    "status": "PASS",
+    "profile": "rich_5x7",
+    "counts": {
+      "fact": 21,
+      "context": 7,
+      "concept": 7
+    }
+  },
+  "quality_score": {
+    "correctness_and_evidence": {
+      "score": 5,
+      "note": "Place, person, object, Brand, Structures, chronology and Stories use inspectable named sources with explicit scope boundaries."
+    },
+    "coverage_and_completion": {
+      "score": 5,
+      "note": "Four canonical By collections, 35 questions, QuizCard, 2 Stories, 12 chronology anchors, 6 language entries, 4 Lesespor and full Fagverk are materialized."
+    },
+    "editorial_quality": {
+      "score": 5,
+      "note": "Vinderen is treated as a transport-shaped suburb and local centre, not as a generic west-side stereotype."
+    },
+    "visual_and_media_quality": {
+      "score": 5,
+      "note": "Dedicated portrait frontImage and distinct member previews have source provenance; Place cardImage is absent."
+    },
+    "safety_and_responsibility": {
+      "score": 5,
+      "note": "Social class, income and segregation are not inferred from visible villa form; field prompts keep users in public areas."
+    },
+    "maintainability_and_auditability": {
+      "score": 5,
+      "note": "Stable IDs, manifests, production evidence, generated derivatives and a permanent focused test make the package auditable."
+    },
+    "total": 30,
+    "critical_findings": 0,
+    "unresolved_blockers": 0
+  }
+}
