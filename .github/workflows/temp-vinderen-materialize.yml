@@ -34,33 +34,24 @@ jobs:
       - name: Cache verified source images
         run: |
           set -euo pipefail
-          cache=/tmp/vinderen-image-cache
-          mkdir -p "$cache"
-          download_image() {
-            local name="$1"
-            local url="$2"
-            local referer="${3:-}"
-            local args=(
-              --fail-with-body --silent --show-error --location
-              --retry 7 --retry-all-errors --retry-delay 5
-              --connect-timeout 20 --max-time 180
-              --user-agent 'History-Go-Vinderen-production/1.0 (source materialization)'
-              --output "$cache/$name"
-            )
-            if [ -n "$referer" ]; then args+=(--referer "$referer"); fi
-            echo "Caching $name"
-            curl "${args[@]}" "$url"
-            test -s "$cache/$name"
-            file "$cache/$name"
-            sleep 5
-          }
-          # Fetch each remote source exactly once. Train first because Commons had rate-limited it in the previous run.
-          download_image train.jpg 'https://upload.wikimedia.org/wikipedia/commons/8/8d/Holmenkollbanen_at_Vindern.jpg'
-          download_image place.jpg 'https://upload.wikimedia.org/wikipedia/commons/c/cd/Vinderen_Torvet,_Oslo.jpg'
-          download_image station.jpg 'https://upload.wikimedia.org/wikipedia/commons/9/9b/Vinderen_stasjon_-_2010-08-07_at_17-50-16.jpg'
-          download_image rasmus.jpg 'https://upload.wikimedia.org/wikipedia/commons/5/53/Rasmus_Larsen_Windern.jpg'
-          download_image school.jpg 'https://upload.wikimedia.org/wikipedia/commons/5/5d/Vinderen_skole.jpg'
-          download_image conditori.jpg 'https://dms07.dimu.org/image/02RWgryHoU?dimension=600x600' 'https://www.oslobilder.no/BAR/A-20027/Ua/0022/013'
+          mkdir -p /tmp/vinderen-image-cache
+          curl --fail --silent --show-error --location --retry 7 --retry-all-errors --retry-delay 5 --connect-timeout 20 --max-time 180 -A 'History-Go-Vinderen-production/1.0' -o /tmp/vinderen-image-cache/train.jpg 'https://upload.wikimedia.org/wikipedia/commons/8/8d/Holmenkollbanen_at_Vindern.jpg'
+          test -s /tmp/vinderen-image-cache/train.jpg
+          sleep 5
+          curl --fail --silent --show-error --location --retry 7 --retry-all-errors --retry-delay 5 --connect-timeout 20 --max-time 180 -A 'History-Go-Vinderen-production/1.0' -o /tmp/vinderen-image-cache/place.jpg 'https://upload.wikimedia.org/wikipedia/commons/c/cd/Vinderen_Torvet,_Oslo.jpg'
+          test -s /tmp/vinderen-image-cache/place.jpg
+          sleep 5
+          curl --fail --silent --show-error --location --retry 7 --retry-all-errors --retry-delay 5 --connect-timeout 20 --max-time 180 -A 'History-Go-Vinderen-production/1.0' -o /tmp/vinderen-image-cache/station.jpg 'https://upload.wikimedia.org/wikipedia/commons/9/9b/Vinderen_stasjon_-_2010-08-07_at_17-50-16.jpg'
+          test -s /tmp/vinderen-image-cache/station.jpg
+          sleep 5
+          curl --fail --silent --show-error --location --retry 7 --retry-all-errors --retry-delay 5 --connect-timeout 20 --max-time 180 -A 'History-Go-Vinderen-production/1.0' -o /tmp/vinderen-image-cache/rasmus.jpg 'https://upload.wikimedia.org/wikipedia/commons/5/53/Rasmus_Larsen_Windern.jpg'
+          test -s /tmp/vinderen-image-cache/rasmus.jpg
+          sleep 5
+          curl --fail --silent --show-error --location --retry 7 --retry-all-errors --retry-delay 5 --connect-timeout 20 --max-time 180 -A 'History-Go-Vinderen-production/1.0' -o /tmp/vinderen-image-cache/school.jpg 'https://upload.wikimedia.org/wikipedia/commons/5/5d/Vinderen_skole.jpg'
+          test -s /tmp/vinderen-image-cache/school.jpg
+          sleep 5
+          curl --fail --silent --show-error --location --retry 7 --retry-all-errors --retry-delay 5 --connect-timeout 20 --max-time 180 -A 'Mozilla/5.0 History-Go-Vinderen-production/1.0' -e 'https://www.oslobilder.no/BAR/A-20027/Ua/0022/013' -o /tmp/vinderen-image-cache/conditori.jpg 'https://dms07.dimu.org/image/02RWgryHoU?dimension=600x600'
+          test -s /tmp/vinderen-image-cache/conditori.jpg
       - name: Materialize Vinderen canonical production
         run: |
           python - <<'PY'
