@@ -1,0 +1,175 @@
+{
+  "schema": "history_go_litteratur_maintenance_source_refresh_v1",
+  "version": "1.0.0",
+  "subject_id": "litteratur",
+  "round_id": "source_refresh_round10_2026_09_06",
+  "baseline_main_sha": "a1eb42a3e2e1e68a11acbc0429a18ba0140b9c19",
+  "checked_at": "2026-09-06",
+  "status": "verified",
+  "scope": {
+    "area_id": "tekstkritikk_bokhistorie_arkiv",
+    "canonical_source_mutation": true,
+    "new_strict_subcategory": false,
+    "place_production": false,
+    "maintenance_evidence_only": false,
+    "replacement_policy": "replace_only_when_same-resource-or-authoritative-successor-url-is-verified"
+  },
+  "source_checks": [
+    {
+      "claims_source_id": "tb01",
+      "title": "Hamlet: An Introduction to This Text",
+      "publisher": "Folger Shakespeare Library",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.folger.edu/explore/shakespeares-works/hamlet/an-introduction-to-this-text/",
+      "evidence": "Folger currently serves the same Hamlet editorial introduction at the canonical endpoint, including the Q1/Q2/Folio and editorial-variant discussion.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "tb02",
+      "title": "The Publication of Shakespeare’s Plays",
+      "publisher": "Folger Shakespeare Library",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.folger.edu/explore/shakespeares-works/the-publication-of-shakespeares-plays-from-the-folger-shakespeare-editions/",
+      "evidence": "Folger currently serves the same publication-history essay at the canonical endpoint.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "tb03",
+      "title": "TEI P5 Guidelines",
+      "publisher": "Text Encoding Initiative",
+      "verification_state": "verified_live",
+      "canonical_url": "https://tei-c.org/guidelines/p5/",
+      "evidence": "The Text Encoding Initiative currently serves the P5 Guidelines at the canonical endpoint and identifies it as the stable current guideline family.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "tb04",
+      "title": "Using the Shelley-Godwin Archive",
+      "publisher": "Shelley-Godwin Archive",
+      "verification_state": "verified_live",
+      "canonical_url": "https://shelleygodwinarchive.org/using-the-archive/",
+      "evidence": "The Shelley-Godwin Archive currently serves the same user guide at the canonical endpoint with manuscript images, transcriptions, metadata, manifests and TEI views.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "tb05",
+      "title": "Henrik Ibsens skrifter",
+      "publisher": "Universitetet i Oslo",
+      "verification_state": "verified_identity_endpoint_restricted",
+      "canonical_url": "https://www.ibsen.uio.no/",
+      "evidence": "The root endpoint is not reliably crawlable, while current Henrik Ibsens skrifter files on the same UiO service remain live and document the active scholarly edition and textual principles. No replacement is justified.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "tb06",
+      "title": "The Pickwick Papers",
+      "publisher": "Project Gutenberg",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.gutenberg.org/ebooks/580",
+      "evidence": "Project Gutenberg ebook 580 remains live as The Pickwick Papers by Charles Dickens and was updated in January 2026.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "tb07",
+      "title": "The Walt Whitman Archive",
+      "publisher": "University of Nebraska–Lincoln",
+      "verification_state": "verified_live",
+      "canonical_url": "https://whitmanarchive.org/",
+      "evidence": "The Walt Whitman Archive remains active at the canonical root with 2026 updates and current editorial-policy documentation.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "tb08",
+      "title": "Emily Dickinson Archive",
+      "publisher": "Harvard University",
+      "verification_state": "verified_identity_endpoint_restricted",
+      "canonical_url": "https://www.edickinson.org/",
+      "evidence": "The canonical EDA root rate-limits this crawler, while current scholarly and institutional references continue to identify www.edickinson.org as Harvard's Emily Dickinson Archive. A crawler 429 is not source death.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "tb09",
+      "title": "MLA Guidelines for Editors of Scholarly Editions",
+      "publisher": "Modern Language Association",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.mla.org/Resources/Guidelines-and-Data/Reports-and-Professional-Guidelines/Guidelines-for-Editors-of-Scholarly-Editions",
+      "evidence": "The MLA canonical page remains available and current scholarly references continue to cite the exact MLA endpoint for the Guidelines for Editors of Scholarly Editions.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "tb10",
+      "title": "Digital Preservation",
+      "publisher": "Library of Congress",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.loc.gov/preservation/digital/",
+      "evidence": "Library of Congress continues to serve its Digital Preservation program at the canonical path, covering storage monitoring, sustainable formats, metadata and preservation tools.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "tb11",
+      "title": "Sámi Archives",
+      "publisher": "The National Archives of Norway",
+      "verification_state": "verified_authoritative_replacement",
+      "old_url": "https://arkivverket.no/en/about-us/sami-archives",
+      "canonical_url": "https://www.nasjonalarkivet.no/besok-informasjon/samisk-arkiv/",
+      "evidence": "Arkivverket's former Sámi Archives location has migrated into Nasjonalarkivet. The current authoritative Samisk arkiv page identifies the same national archive institution in Kautokeino and its current access surfaces.",
+      "action": "replace_canonical_url"
+    },
+    {
+      "claims_source_id": "tb12",
+      "title": "Timbuktu Manuscripts Project",
+      "publisher": "Tombouctou Manuscripts Project",
+      "verification_state": "verified_authoritative_replacement",
+      "old_url": "https://tombouctoumanuscripts.org/",
+      "canonical_url": "https://tombouctoumanuscripts.uct.ac.za/",
+      "evidence": "The legacy tombouctoumanuscripts.org domain is no longer the trustworthy project endpoint. The University of Cape Town now hosts the same Tombouctou Manuscripts Project, explicitly identifying the project, its manuscript research, digitisation and book-history work.",
+      "action": "replace_canonical_url"
+    },
+    {
+      "claims_source_id": "tb13",
+      "title": "Frankenstein Manuscript",
+      "publisher": "Shelley-Godwin Archive",
+      "verification_state": "verified_live",
+      "canonical_url": "https://shelleygodwinarchive.org/contents/frankenstein/",
+      "evidence": "The Shelley-Godwin Archive continues to serve the Frankenstein manuscript collection at the canonical contents endpoint.",
+      "action": "retain_canonical_url"
+    },
+    {
+      "claims_source_id": "tb14",
+      "title": "First Folio",
+      "publisher": "Folger Shakespeare Library",
+      "verification_state": "verified_live",
+      "canonical_url": "https://www.folger.edu/explore/shakespeare-in-print/first-folio/",
+      "evidence": "Folger currently serves The Shakespeare First Folio at the canonical endpoint, including production, copy variation and preservation history.",
+      "action": "retain_canonical_url"
+    }
+  ],
+  "materialization": {
+    "replacement_targets": [
+      "data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/tekstkritikk_bokhistorie_arkiv/claims.json",
+      "scripts/materialize-litteratur-authorship-textual-full-fields-v1.mjs",
+      "data/quiz/litteratur/litteratur_subject_pathways_v1.json",
+      "data/knowledge/subjects/litteratur/knowledge_units.generated.json"
+    ]
+  },
+  "summary": {
+    "canonical_sources_checked": 14,
+    "verified_live": 10,
+    "verified_identity_endpoint_restricted": 2,
+    "verified_authoritative_replacement": 2,
+    "canonical_url_replacements": 2
+  },
+  "quality_gates": {
+    "all_14_area_sources_accounted_for": true,
+    "two_authoritative_replacements_materialized": true,
+    "replacement_identity_preserved": true,
+    "restricted_endpoints_not_treated_as_source_death": true,
+    "canonical_source_ids_preserved": true,
+    "pathway_source_count_preserved": true,
+    "claim_provenance_scope_unchanged": true,
+    "theory_integrity_scope_unchanged": true,
+    "canonical_subject_architecture_unchanged": true,
+    "completion_status_preserved": true,
+    "knowledge_provenance_checked_source_id_aware": true
+  }
+}
