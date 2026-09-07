@@ -1,0 +1,62 @@
+name: TEMP Spikersuppa replay latest main
+
+on:
+  push:
+    branches:
+      - agent/spikersuppa-replay-20260907-temp2
+    paths:
+      - '.github/workflows/TEMP_spikersuppa_replay_fastforward.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - name: Replay verified disjoint delta
+        env:
+          MAIN_SHA: 18bbb3a7728726bec8043685f807319de48a4f91
+          VERIFIED_SHA: 0de33d9b8b8d2add5100877adc1dc10f18e6d2b1
+        run: |
+          set -euxo pipefail
+          git checkout --detach "$MAIN_SHA"
+          git cherry-pick --no-commit "$VERIFIED_SHA"
+          test -z "$(git diff --name-only --diff-filter=U)"
+          if git diff --name-only "$MAIN_SHA" | grep -E '(^|/)(TEMP|temp)[^/]*|^\.github/workflows/TEMP' ; then
+            echo 'TEMP path leaked' >&2; exit 1
+          fi
+      - name: Install dependencies
+        run: npm ci
+      - name: Validate no drift after disjoint replay
+        run: |
+          set -euxo pipefail
+          node --test tests/spikersuppa-completion.test.mjs
+          npm run place-open:check
+          npm run epoker:places:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node scripts/audit-place-images.mjs --mode=all --verify-summary=data/places/place_image_backlog_summary.json
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run leksikon:ids:check
+          npm run check:stories
+          npm run audit:knowledge
+      - name: Commit clean latest-main replay
+        env:
+          MAIN_SHA: 18bbb3a7728726bec8043685f807319de48a4f91
+        run: |
+          set -euxo pipefail
+          git add -A
+          git config user.name 'history-go-replay'
+          git config user.email 'actions@users.noreply.github.com'
+          git commit -m 'Materialize Spikersuppa on latest main'
+          test "$(git rev-parse HEAD^)" = "$MAIN_SHA"
+          test -z "$(git diff --name-only "$MAIN_SHA"..HEAD | grep -E '(^|/)(TEMP|temp)[^/]*|^\.github/workflows/TEMP' || true)"
+          git push --force origin HEAD:refs/heads/agent/spikersuppa-replay-output2-20260907
