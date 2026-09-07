@@ -1,0 +1,88 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "natur",
+  "role_scope": "natur_miljoledelse",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "miljoledelse_prioritering_og_etterspill",
+      "purpose": "Trene consequence gjennom ett versjonert leder- og avviksspor uten å blande arbeidsgivermandat, faglige funn, kapasitet, omdømme og offentlig myndighet.",
+      "learning_focus": [
+        "mandat",
+        "miljorisiko",
+        "kapasitetsstyring",
+        "faglig_integritet",
+        "oppfolging"
+      ],
+      "mails": [
+        {
+          "id": "miljoledelse_consequence_001",
+          "mail_type": "consequence",
+          "mail_family": "miljoledelse_prioritering_og_etterspill",
+          "role_scope": "natur_miljoledelse",
+          "phase": "forenoon",
+          "priority": 120,
+          "from": "Jonas",
+          "people_ref": "jonas_okonomi_og_kapasitetscontroller_natur_miljoledelse",
+          "place_id": "budsjett_kapasitet_og_portefoljeflate_natur",
+          "subject": "Skjult restanse kommer tilbake som styringssvikt",
+          "summary": "Skjult restanse kommer tilbake som styringssvikt. En oppgave som aldri ble eksplisitt prioritert bort, dukker senere opp som alvorlig restanse. Lederen må rekonstruere mandat, kapasitet og ansvar og korrigere styringssporet uten å legge hele skylden på medarbeideren som fikk en umulig portefølje. Saken skal føres i mandat_maal_risiko_kapasitet_prioritering_ansvar_avvik_tiltak_og_oppfolgingslogg, der dokumentert arbeidsgivermandat, virksomhets- og miljømål, beslutningseier, faglige premisser, miljørisiko, budsjett, bemanning, kompetansedekning, kapasitet, prioriteringskriterier, eksplisitte restanser, delegert ansvar, miljøavvik, tiltak, varsling, ventepunkt, handoff, etterkontroll og rework holdes som separate og versjonerte felt. Naturvernleder, Miljøsjef og Miljødirektør kan bare materialiseres etter employer_appointment; Badge-poeng, popularitet, tidligere gode resultater eller selverklært senioritet kan aldri oppfylle denne gaten. Lederen kan prioritere ressurser, fordele ansvar, eskalere risiko og styre gjennomføring innen dokumentert fullmakt, men kan ikke sette lov til side, gjøre personalmakt til faglig evidens, tone ned et miljøavvik for å beskytte omdømme eller opptre som statsråd. History Go og Natur-badge kan gi arts-, steds-, økologi- og naturhistorisk kontekst som gjør lederens kontrollspørsmål bedre, men er verken arbeidsgiverutnevnelse, feltdata, HMS- eller avviksbevis, delegasjon, budsjettfullmakt eller juridisk hjemmel. En god løsning må derfor gjøre selve prioriteringskostnaden synlig: hva som utsettes, hvilken rest-risiko som aksepteres, hvem som eier tiltaket, hva som må ventes på, og hvilket premiss som gjenåpner saken dersom kapasitet, faglige funn eller avviksbildet endres.",
+          "situation": [
+            "Oppfølgingsloggen viser dokumentert arbeidsgivermandat, mål, beslutningseier, miljørisiko, budsjett, bemanning, kompetanse, prioriterte og utsatte oppgaver, åpne avvik, tiltak, ansvar og hva organisasjonen venter på.",
+            "En rask løsning kan gi ro i rapporteringen, men kan samtidig skjule restanser, uholdbar belastning, mandatglidning eller at et miljøfaglig funn er blitt mildnet for å passe leveranse- eller omdømmebehov.",
+            "Du må velge et grep som gjør prioriteringskostnad, handoff og mulig rework lesbart uten å bruke lederstatus, employer_appointment eller History Go som erstatning for faglig evidens."
+          ],
+          "task_domain": "miljo_og_naturledelse",
+          "competency": "mandatklar_prioritering_risikostyring_kapasitet_og_oppfolging",
+          "pressure": "miljorisiko_budsjett_bemanning_virksomhetsmaal_og_omdomme",
+          "choice_axis": "etterprovbar_lederprioritering_vs_skjult_restansestyring",
+          "consequence_axis": "faglig_integritet_og_organisatorisk_tillit_vs_mandatglidning_og_skjult_risiko",
+          "narrative_arc": "consequence",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Før skjult restanse kommer tilbake som styringssvikt gjennom mandat- og risikosporet",
+              "reply": "Jeg låser først arbeidsgivermandat, beslutningseier og hvilke faglige premisser som faktisk er dokumentert. Deretter gjør jeg mål, miljørisiko, budsjett, bemanning, kompetanse og restanser sammenlignbare før jeg prioriterer. Jeg navngir hva som ikke blir gjort, hvem som eier hver oppgave og hvilket ventepunkt som stopper videre arbeid. Et alvorlig faglig eller miljømessig avvik blir stående uendret selv om ordlyden er ubehagelig. Hvis økonomi, bemanning, faggrunnlag eller alvorlighetsgrad endres, gjenåpner jeg bare berørte prioriteringer og tiltak med bevart versjonsspor i stedet for å omskrive hvorfor den forrige beslutningen ble tatt.",
+              "effect": 1,
+              "tags": [
+                "mandat",
+                "sporbarhet",
+                "miljorisiko"
+              ],
+              "feedback": "Grepet gjør lederansvaret etterprøvbart fordi medarbeidere, fagansvarlige, økonomi, toppledelse og senere kontroll kan se hvilket mandat som gjaldt, hvilke faglige funn som var låst, hvilken kapasitet som faktisk fantes, hvilke oppgaver som ble prioritert bort, hvem som fikk ansvar og hvilken rest-risiko som ble akseptert. Dermed kan arbeidsgiverfullmakt brukes til reell styring uten å bli forvekslet med faglig sannhet, og et avvik kan eskaleres eller gjenåpnes uten at organisasjonen må late som den opprinnelige prioriteringen var mer sikker enn den var.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukk skjult restanse kommer tilbake som styringssvikt gjennom tempo og lederstatus",
+              "reply": "Jeg bruker lederrollen til å skape framdrift raskt, fordeler oppgavene slik at alt ser dekket ut og lar teamet håndtere restanser uten å synliggjøre hva som faktisk faller bort. Hvis en miljørisiko eller et avvik skaper uro, toner jeg ned formuleringen til budsjett og kommunikasjon er avklart. Jeg behandler tidligere gode resultater og lederstatus som tilstrekkelig grunnlag for å presse gjennom prioriteringen, og lar handoff skje uten eksplisitt beslutningseier, kapasitetspremiss eller spor for hva som må gjenåpnes dersom situasjonen endrer seg.",
+              "effect": -1,
+              "tags": [
+                "tempo",
+                "omdommepress",
+                "mandatglidning"
+              ],
+              "feedback": "Løsningen kan skape kortsiktig ro og en penere statusrapport, men den gjør mandat, kapasitet og faglig grunnlag vanskeligere å skille fra hverandre. Skjulte restanser, uklare delegasjoner og nedtonet miljørisiko flytter kostnaden til medarbeidere, senere leveranser og den som må etterkontrollere avviket. Når situasjonen endres, finnes det heller ikke et lesbart spor for hvorfor oppgaver ble valgt bort eller hvem som faktisk eide tiltaket. Det øker både styringsrisiko, personalbelastning og faren for at ledermakt brukes til å overdøve ubehagelige faglige funn.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
