@@ -74,7 +74,6 @@ jobs:
           set -euxo pipefail
           npm run place-open:build
           npm run epoker:places:build
-          node scripts/build-fagverk-release-manifest.mjs
           node --input-type=module - <<'NODE'
           import fs from 'node:fs/promises';
           import { buildQuizProductionContext } from './scripts/quiz-production-lib.mjs';
@@ -96,6 +95,7 @@ jobs:
           set -euxo pipefail
           node --test tests/place-language-layer.test.mjs tests/place-language-dialect-scope.test.mjs tests/birkelunden-phase7h-language.test.mjs tests/sprakatlas-map-v3.test.mjs tests/sprakatlas-collection-v4.test.mjs tests/place-popup-direct-tabs.test.mjs tests/place-popup-all-direct-tabs-visible.test.mjs
           node scripts/audit-fagverk-place-pages.mjs
+          node scripts/build-fagverk-release-manifest.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
           node --test tests/spikersuppa-completion.test.mjs
           npm run place-open:check
