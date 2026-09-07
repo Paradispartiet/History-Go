@@ -61,11 +61,23 @@
       "temporalStatus": "current"
     },
     {
-      "id": "claim_lesekiosk_48_valerenga_kirke_coordinate",
+      "id": "claim_lesekiosk_48_valerenga_kirke_map_anchor",
       "claim": "Den offisielle Lesekiosk-kartlenken for Lesekiosk 48 – Vålerenga kirke oppgir kartankeret 59.9073411, 10.7850058 som en områdehenvisning.",
       "sourceUrl": "https://lesekiosk.no/finn-en-kiosk/",
       "sourceLocation": "Offisiell Lesekiosk-kartlenke fra aktuell kioskoversikt.",
       "sourceType": "institutional",
+      "verifiedAt": "2026-09-07",
+      "status": "verified",
+      "claimKind": "ordinary",
+      "evidenceMode": "direct",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "claim_lesekiosk_48_valerenga_kirke_coordinate",
+      "claim": "OpenStreetMap way 669605658 kartlegger selve telefonkioskens fotavtrykk; markøren bruker fotavtrykkets geometriske senter 59.9072601, 10.785392.",
+      "sourceUrl": "https://www.openstreetmap.org/way/669605658",
+      "sourceLocation": "OSM way 669605658: offentlig bokkasse/telefonkiosk og objektgeometri.",
+      "sourceType": "catalogue",
       "verifiedAt": "2026-09-07",
       "status": "verified",
       "claimKind": "ordinary",
@@ -105,7 +117,7 @@
       {
         "sentence": 2,
         "claimIds": [
-          "claim_lesekiosk_48_valerenga_kirke_coordinate"
+          "claim_lesekiosk_48_valerenga_kirke_map_anchor"
         ]
       },
       {
@@ -127,12 +139,12 @@
     "factual": {
       "status": "passed",
       "reviewedAt": "2026-09-07",
-      "reviewer": "History GO Lesekiosk coordinate-copy audit"
+      "reviewer": "History GO object-coordinate source audit"
     },
     "editorial": {
       "status": "passed",
       "reviewedAt": "2026-09-07",
-      "reviewer": "History GO Lesekiosk coordinate-copy audit",
+      "reviewer": "History GO object-coordinate source audit",
       "introducedNewFacts": false
     }
   },
@@ -144,8 +156,8 @@
     "currentStatus": "current",
     "sourceVerifiedAt": "2026-09-07",
     "claimsVerified": {
-      "verified": 4,
-      "total": 4
+      "verified": 5,
+      "total": 5
     },
     "factualReview": "passed",
     "editorialReview": "passed",

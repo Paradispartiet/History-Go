@@ -61,11 +61,23 @@
       "temporalStatus": "current"
     },
     {
-      "id": "claim_lesekiosk_42_munkedamsveien_coordinate",
+      "id": "claim_lesekiosk_42_munkedamsveien_map_anchor",
       "claim": "Den offisielle Lesekiosk-kartlenken for Lesekiosk 42 – Munkedamsveien oppgir kartankeret 59.9122394, 10.7272333 som en områdehenvisning.",
       "sourceUrl": "https://lesekiosk.no/finn-en-kiosk/",
       "sourceLocation": "Offisiell Lesekiosk-kartlenke fra aktuell kioskoversikt.",
       "sourceType": "institutional",
+      "verifiedAt": "2026-09-07",
+      "status": "verified",
+      "claimKind": "ordinary",
+      "evidenceMode": "direct",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "claim_lesekiosk_42_munkedamsveien_coordinate",
+      "claim": "OpenStreetMap way 669303908 kartlegger selve telefonkioskens fotavtrykk; markøren bruker fotavtrykkets geometriske senter 59.9118415, 10.7189098.",
+      "sourceUrl": "https://www.openstreetmap.org/way/669303908",
+      "sourceLocation": "OSM way 669303908: offentlig bokkasse/telefonkiosk og objektgeometri.",
+      "sourceType": "catalogue",
       "verifiedAt": "2026-09-07",
       "status": "verified",
       "claimKind": "ordinary",
@@ -105,7 +117,7 @@
       {
         "sentence": 2,
         "claimIds": [
-          "claim_lesekiosk_42_munkedamsveien_coordinate"
+          "claim_lesekiosk_42_munkedamsveien_map_anchor"
         ]
       },
       {
@@ -127,12 +139,12 @@
     "factual": {
       "status": "passed",
       "reviewedAt": "2026-09-07",
-      "reviewer": "History GO Lesekiosk coordinate-copy audit"
+      "reviewer": "History GO object-coordinate source audit"
     },
     "editorial": {
       "status": "passed",
       "reviewedAt": "2026-09-07",
-      "reviewer": "History GO Lesekiosk coordinate-copy audit",
+      "reviewer": "History GO object-coordinate source audit",
       "introducedNewFacts": false
     }
   },
@@ -144,8 +156,8 @@
     "currentStatus": "current",
     "sourceVerifiedAt": "2026-09-07",
     "claimsVerified": {
-      "verified": 4,
-      "total": 4
+      "verified": 5,
+      "total": 5
     },
     "factualReview": "passed",
     "editorialReview": "passed",

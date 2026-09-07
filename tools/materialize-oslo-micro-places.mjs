@@ -106,7 +106,7 @@ function kioskText(c,index){
   if(c.kioskNumber===70){
     const desc=`${c.name} er kiosk nummer 70 i paret som Lesekiosks Sagene-side omtaler som tvillingkioskene. Den offisielle oversikten fører nummer 70 ved Sagene kirke og bruker samme kartanker som nummer 71. Denne Place-identiteten gjelder bare telefonkiosken med nummer 70.`;
     const popupDesc=`Lesekiosks Sagene-side dokumenterer nummer 70 og 71 som tvillingkiosker med utsikt mot Sagene kirke. ${c.name} representerer nummer 70 i dette paret.\n\nDen aktuelle Oslo-oversikten bruker kartankeret som et felles punkt for begge kiosknumrene ved kirken.\n\n${c.name} beholdes som et selvstendig litteratursted, adskilt fra tvillingkiosk 71.`;
-    return {desc,popupDesc,sentenceCoverage:{desc:[[`claim_${c.id}_twin`],[`claim_${c.id}_identity`,`claim_${c.id}_coordinate`],[`claim_${c.id}_identity`]],popupDesc:[[`claim_${c.id}_twin`],[`claim_${c.id}_identity`],[`claim_${c.id}_coordinate`],[`claim_${c.id}_identity`,`claim_${c.id}_twin`]]}};
+    return {desc,popupDesc,sentenceCoverage:{desc:[[`claim_${c.id}_twin`],[`claim_${c.id}_identity`,`claim_${c.id}_map_anchor`],[`claim_${c.id}_identity`]],popupDesc:[[`claim_${c.id}_twin`],[`claim_${c.id}_identity`],[`claim_${c.id}_map_anchor`],[`claim_${c.id}_identity`,`claim_${c.id}_twin`]]}};
   }
   if(c.kioskNumber===71){
     const desc=`${c.name} er den individuelt dokumenterte kiosk nummer 71 ved Sagene kirke. Lesekiosks egen stedsside beskriver nummer 70 og 71 samlet som tvillingkioskene. Denne Place-identiteten gjelder nummer 71, ikke den andre telefonkiosken i paret.`;
@@ -114,7 +114,9 @@ function kioskText(c,index){
     return {desc,popupDesc,sentenceCoverage:{desc:[[`claim_${c.id}_identity`],[`claim_${c.id}_twin`],[`claim_${c.id}_identity`,`claim_${c.id}_twin`]],popupDesc:[[`claim_${c.id}_identity`,`claim_${c.id}_twin`],[`claim_${c.id}_identity`],[`claim_${c.id}_twin`],[`claim_${c.id}_identity`,`claim_${c.id}_twin`]]}};
   }
   const desc=`${c.name} er Lesekiosk nummer ${c.kioskNumber} ved ${c.officialListLabel} i Oslo. ${c.name} er en rød telefonkiosk som fungerer som et eget fysisk bokdelingspunkt. ${c.name} skilles fra byens øvrige Lesekiosker ved kiosknummer ${c.kioskNumber} og plasseringen.`;
-  const p1=`Lesekiosks aktuelle Oslo-oversikt registrerer ${c.name} som kiosk nummer ${c.kioskNumber} ved ${c.officialListLabel}. Kartlenken for ${c.name} oppgir punktet ${c.lat}, ${c.lon}.`;
+  const mapAnchor=c.officialMapAnchor;
+  if(!mapAnchor) throw new Error(`${c.id} mangler officialMapAnchor i Lesekiosk-inventory`);
+  const p1=`Lesekiosks aktuelle Oslo-oversikt registrerer ${c.name} som kiosk nummer ${c.kioskNumber} ved ${c.officialListLabel}. Kartlenken for ${c.name} oppgir kartankeret ${mapAnchor.lat}, ${mapAnchor.lon} som en områdehenvisning.`;
   const p2=`Ved ${c.name} gir Lesekiosk den røde telefonkiosken en litterær bokdelingsfunksjon uten å gjøre den til et bemannet bibliotek.`;
   const p3=`${c.name} beholder sin egen identitet og litteraturmarkør selv om bokutvalget i kiosken kan skifte.`;
   const popupDesc=`${p1}\n\n${p2}\n\n${p3}`;
@@ -122,7 +124,7 @@ function kioskText(c,index){
     desc,popupDesc,
     sentenceCoverage:{
       desc:[[`claim_${c.id}_identity`],[`claim_${c.id}_function`],[`claim_${c.id}_identity`]],
-      popupDesc:[[`claim_${c.id}_identity`,`claim_${c.id}_listing`],[`claim_${c.id}_coordinate`],[`claim_${c.id}_function`],[`claim_${c.id}_identity`,`claim_${c.id}_function`]]
+      popupDesc:[[`claim_${c.id}_identity`,`claim_${c.id}_listing`],[`claim_${c.id}_map_anchor`],[`claim_${c.id}_function`],[`claim_${c.id}_identity`,`claim_${c.id}_function`]]
     }
   };
 }
@@ -168,11 +170,22 @@ function envQuestions(st,claims){
 
 function kioskClaims(c){
   const primary=c.officialPage||LESEKIOSK_LIST;
+  const coordinate=c.coordinate;
+  const mapAnchor=c.officialMapAnchor;
+  if(!coordinate||!mapAnchor) throw new Error(`${c.id} mangler koordinatmetadata i Lesekiosk-inventory`);
+  const coordinateClaim=[70,71].includes(c.kioskNumber)
+    ? 'OpenStreetMap kartlegger tvillingkioskene ved Sagene kirke som to separate public_bookcase-punkter; koblingen mellom kiosknummer 70/71 og hvert enkelt punkt er fortsatt uavklart.'
+    : coordinate.sourceProvider==='osm'&&coordinate.sourceObjectId.startsWith('osm-way:')
+      ? `OpenStreetMap ${coordinate.sourceObjectId.replace('osm-way:','way ')} kartlegger selve telefonkioskens fotavtrykk; markøren bruker fotavtrykkets geometriske senter ${c.lat}, ${c.lon}.`
+      : coordinate.sourceProvider==='osm'
+        ? `OpenStreetMap ${coordinate.sourceObjectId.replace('osm-node:','node ')} kartlegger den fysiske bokkiosken på ${c.lat}, ${c.lon}.`
+        : `${coordinate.coordSource} identifiserer telefonkiosken ved navn og plasserer den på ${c.lat}, ${c.lon}.`;
   const result=[
     {id:`claim_${c.id}_identity`,claim:`${c.name} er kiosk nummer ${c.kioskNumber} ved ${c.officialListLabel} i Lesekiosks aktuelle Oslo-oversikt.`,sourceUrl:primary,sourceLocation:'Lesekiosk: kioskidentitet og stedsangivelse.',sourceType:'institutional',verifiedAt:DATE,status:'verified',claimKind:'identity',evidenceMode:'direct',temporalStatus:'current'},
     {id:`claim_${c.id}_listing`,claim:`Lesekiosk registrerer ${c.name} som et fysisk bokdelingspunkt i Oslo.`,sourceUrl:LESEKIOSK_LIST,sourceLocation:'Finn en kiosk: aktuell Oslo-liste.',sourceType:'institutional',verifiedAt:DATE,status:'verified',claimKind:'ordinary',evidenceMode:'direct',temporalStatus:'current'},
     {id:`claim_${c.id}_function`,claim:'Lesekiosk gir røde telefonkiosker en litterær bokdelingsfunksjon.',sourceUrl:LESEKIOSK_HOME,sourceLocation:'Lesekiosk: prosjektets bokkioskfunksjon.',sourceType:'institutional',verifiedAt:DATE,status:'verified',claimKind:'ordinary',evidenceMode:'direct',temporalStatus:'current'},
-    {id:`claim_${c.id}_coordinate`,claim:`Den offisielle Lesekiosk-kartlenken for ${c.name} oppgir kartankeret ${c.lat}, ${c.lon}.`,sourceUrl:LESEKIOSK_LIST,sourceLocation:'Offisiell Lesekiosk-kartlenke fra aktuell kioskoversikt.',sourceType:'institutional',verifiedAt:DATE,status:'verified',claimKind:'ordinary',evidenceMode:'direct',temporalStatus:'current'}
+    {id:`claim_${c.id}_map_anchor`,claim:`Den offisielle Lesekiosk-kartlenken for ${c.name} oppgir kartankeret ${mapAnchor.lat}, ${mapAnchor.lon}${[70,71].includes(c.kioskNumber)?'.':' som en områdehenvisning.'}`,sourceUrl:LESEKIOSK_LIST,sourceLocation:'Offisiell Lesekiosk-kartlenke fra aktuell kioskoversikt.',sourceType:'institutional',verifiedAt:DATE,status:'verified',claimKind:'ordinary',evidenceMode:'direct',temporalStatus:'current'},
+    {id:`claim_${c.id}_coordinate`,claim:coordinateClaim,sourceUrl:coordinate.coordSourceUrl,sourceLocation:coordinate.sourceProvider==='osm'?`${coordinate.sourceObjectId}: offentlig bokkasse/telefonkiosk og objektplassering.`:'Navngitt Google Maps-stedspost med adresse, kartpunkt og telefonkioskidentitet.',sourceType:'catalogue',verifiedAt:c.coordinateVerifiedAt||DATE,status:'verified',claimKind:'ordinary',evidenceMode:'direct',temporalStatus:'current',...(coordinate.pairedSourceUrl?{independentSourceUrls:[coordinate.pairedSourceUrl]}:{})}
   ];
   if([70,71].includes(c.kioskNumber))result.push({id:`claim_${c.id}_twin`,claim:'Lesekiosks Sagene-side omtaler kiosk nummer 70 og 71 som tvillingkioskene ved Sagene kirke.',sourceUrl:'https://lesekiosk.no/lesekiosk/lesekiosken-pa-sagene-nr-71/',sourceLocation:'Lesekiosken: avsnittet om tvillingkioskene på Sagene.',sourceType:'institutional',verifiedAt:DATE,status:'verified',claimKind:'identity',evidenceMode:'direct',temporalStatus:'current'});
   return result;
@@ -195,12 +208,15 @@ function kioskQuestions(c,claims){
 function kioskPlace(c,index){
   const {desc,popupDesc,sentenceCoverage}=kioskText(c,index);
   const address=structuredAddress(`${c.officialListLabel}, Oslo`);
+  const coordinate=c.coordinate;
+  if(!coordinate) throw new Error(`${c.id} mangler coordinate-metadata i Lesekiosk-inventory`);
   const place={
     id:c.id,name:c.name,lat:c.lat,lon:c.lon,r:45,category:'litteratur',subcategory_id:'lesekiosk',placeTier:'micro',desc,popupDesc,
     micro_place_profile:{schema:'history_go_micro_place_profile_v1',kind:'lesekiosk',currentStatus:'active',sourceUrl:c.officialPage||LESEKIOSK_LIST,sourceLocation:`Lesekiosk Oslo-oversikt: kiosk ${c.kioskNumber}, ${c.officialListLabel}`,verifiedAt:DATE,quizMode:'none'},
-    locatorType:'current_place',sourceProvider:'official_map',sourceObjectId:`lesekiosk-current-map:${c.id}`,geocodeAccuracy:'approximate',coordRole:'display_marker',coordType:'service_point',coordStatus:'needs_manual_visual_qa',coordSource:'Lesekiosk – offisiell kartlenke',coordSourceId:`lesekiosk-current-map:${c.id}`,coordSourceUrl:LESEKIOSK_LIST,coordNote:'Kartankeret kommer fra Lesekiosks offisielle aktuelle kartlenke og beholdes som needs_manual_visual_qa inntil et mer presist objektpunkt er dokumentert.',
-    externalLinks:[{type:'reference',label:c.officialPage?`Lesekiosk – ${c.name}`:'Lesekiosk – Finn en kiosk',url:c.officialPage||LESEKIOSK_LIST,lang:'nb',verifiedAt:DATE},{type:'coordinate_source',label:'Lesekiosk – offisiell kartlenke',url:LESEKIOSK_LIST,lang:'nb',verifiedAt:DATE}]
+    locatorType:coordinate.locatorType,sourceProvider:coordinate.sourceProvider,sourceObjectId:coordinate.sourceObjectId,geocodeAccuracy:coordinate.geocodeAccuracy,coordRole:coordinate.coordRole,coordType:coordinate.coordType,coordStatus:coordinate.coordStatus,coordPrecisionM:coordinate.coordPrecisionM,coordSource:coordinate.coordSource,coordSourceId:coordinate.sourceObjectId,coordSourceUrl:coordinate.coordSourceUrl,coordNote:coordinate.coordNote,
+    externalLinks:[{type:'reference',label:c.officialPage?`Lesekiosk – ${c.name}`:'Lesekiosk – Finn en kiosk',url:c.officialPage||LESEKIOSK_LIST,lang:'nb',verifiedAt:DATE},{type:'coordinate_source',label:c.coordinateEvidence,url:coordinate.coordSourceUrl,lang:coordinate.sourceProvider==='osm'?'en':'nb',verifiedAt:c.coordinateVerifiedAt||DATE},...(coordinate.pairedSourceUrl?[{type:'coordinate_source',label:`OpenStreetMap – ${coordinate.pairedSourceObjectId}`,url:coordinate.pairedSourceUrl,lang:'en',verifiedAt:c.coordinateVerifiedAt||DATE}]:[])]
   };
+  if(coordinate.coordStatus.startsWith('verified')) place.coordVerifiedAt=c.coordinateVerifiedAt||DATE;
   if(address) place.address=address;
   return {place,sentenceCoverage};
 }
@@ -255,7 +271,7 @@ async function main(){
     writeJson(path.join(ROOT,placeFile),place);
     writeJson(path.join(ROOT,'data/places/production',`${c.id}.json`),packet({place,placeFile,claims,sentenceCoverage,represents:`${c.name} som egen fysisk Lesekiosk ved ${c.officialListLabel}.`,excludes:['andre Lesekiosker i Oslo','nærliggende History GO-steder','skiftende enkeltbøker i kiosken']}));
     addManifest(manifest,rel);
-    kioskMaterialized.push({id:c.id,name:c.name,kioskNumber:c.kioskNumber,lat:c.lat,lon:c.lon,category:'litteratur',subcategory_id:'lesekiosk',source:c.officialPage||LESEKIOSK_LIST,status:'active_permanent'});
+    kioskMaterialized.push({id:c.id,name:c.name,kioskNumber:c.kioskNumber,lat:c.lat,lon:c.lon,category:'litteratur',subcategory_id:'lesekiosk',source:c.officialPage||LESEKIOSK_LIST,status:'active_permanent',coordinateSource:c.coordinate.sourceObjectId,coordStatus:c.coordinate.coordStatus});
     console.log(`generated kiosk ${c.id}`);
   }
 
