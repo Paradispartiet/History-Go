@@ -133,7 +133,10 @@ export function containsStrongClaim(sentence) {
 
 export function containsTemporalClaim(sentence) {
   const normalized = normalizeComparable(sentence);
-  return TEMPORAL_MARKERS.some((marker) => normalized.includes(normalizeComparable(marker)));
+  return TEMPORAL_MARKERS.some((marker) => {
+    const needle = normalizeComparable(marker);
+    return new RegExp(`(?:^|\\s)${escapeRegex(needle)}(?=\\s|$)`, 'u').test(normalized);
+  });
 }
 
 function escapeRegex(value) {
