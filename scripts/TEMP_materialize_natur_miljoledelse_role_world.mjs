@@ -41,7 +41,7 @@ const audiences = [
   {
     id:'okonomi_kapasitet_og_portefolje', axis:'kapasitets_og_prioriteringssannhet_standing',
     cares:['at budsjett, bemanning, kompetanse og restanser blir sammenlignbare før prioritering','at det som velges bort navngis med konsekvens, eier og reell rest-risiko'],
-    cannot:'Standing hos økonomi-, kapasitet- og porteføljemiljøet kan ikke gi employer_appointment, budsjettfullmakt utover faktisk delegasjon eller rett til å bruke tall som faglig evidens for lav miljørisiko. Den kan ikke gjøre History Go eller Natur-badge til økonomisk hjemmel, feltdata, avviksbevis eller beslutningsmyndighet, og den kan ikke overstyre lov, dokumenterte miljøfunn eller arbeidsgivers formelle mandat. En leder kan være kjent som leveransedyktig og fortsatt mangle kapasitet; sosial tillit kan derfor aldri brukes til å skjule restanser, uholdbar belastning eller beslutninger som krever et annet nivå.'
+    cannot:'Standing hos økonomi-, kapasitet- og porteføljemiljøet kan ikke gi employer_appointment, budsjettfullmakt utover faktisk delegasjon eller rett til å bruke tall som faglig evidens for lav miljørisiko. Den kan ikke gjøre History Go eller Natur-badge til økonomisk hjemmel, feltdata, avviksbevis eller beslutningsmyndighet, og den kan ikke overstyre lov, dokumenterte miljøfunn eller arbeidsgivers formelle mandat. En leder kan være kjent som leveransedyktig og fortsatt mangle kapasitet; sosial tillit kan derfor aldri brukes til å skjule restanser, uholdbar belastning eller beslutninger som krever et annet nivå. Tallgrunnlaget kan synliggjøre kostnad, fremdrift og bemanningsbehov, men kan ikke redusere dokumentert miljørisiko eller gjøre uholdbar arbeidsbelastning forsvarlig. Dersom tallstyring kolliderer med faglig risikovurdering eller arbeidsmiljø, må konflikten eskaleres til riktig mandatnivå i stedet for å løses gjennom standing.'
   },
   {
     id:'miljorisiko_avvik_og_etterlevelse', axis:'avviks_og_etterlevelsesstanding',
@@ -201,6 +201,43 @@ themeBank.reference_profiles[KEY] = THEMES;
 write('data/Civication/roleWorldThemeBank.json',themeBank);
 
 fs.mkdirSync(path.join(ROOT,'reports'),{recursive:true});
-fs.writeFileSync(path.join(ROOT,SOURCE),`# Natur / Miljøledelse — Role World rollout source-first\n\n## Scope lock\n\nCanonical role: \`${KEY}\`. This rollout closes **only** \`situated_reputation\`. It preserves the existing 16-step mail plan, four prerequisite People, four work surfaces, two work loops, persistent \`${PERSISTENT}\`, waiting/handoff/rework and authority boundary.\n\n## Career gates\n\n- **Naturvernleder** — \`appointment_required\` via \`employer_appointment\`.\n- **Miljøsjef** — \`appointment_required\` via \`employer_appointment\`.\n- **Miljødirektør** — \`appointment_required\` via \`employer_appointment\`.\n\nNo standing, History Go status or Natur-badge can satisfy employer appointment, create staff/budget authority, become environmental evidence or create public authority.\n\n## Situated reputation\n\nThere is **no global reputation score**. Standing is bounded to seven audiences: fag/quality, economy/capacity, environmental risk/compliance, employees/leadership line, top management/governance, peer/tverrfaglig leadership and private relations. Each audience has its own slow standing axis and explicit cannot-grant boundary.\n\n## Dramaturgy\n\nThe Role World has **14 days × 4 phases = 56 unique beats**, seven multi-day relationship threads, six private aftermaths and eight delayed consequences. Beats are grounded in all **15 canonical mail sources** from the prerequisite package.\n\n## Cross-role\n\nReadiness says \`candidate_when_shared_work_is_real\`. No governed shared work object is proved here, so there is **no cross-role link** and no invented shared object. A future link requires concrete shared work, ownership, authority and handoff proof.\n\n## History Go boundary\n\nHistory Go can improve environmental leadership questions through place, species, ecology and natural-history context. It cannot provide employer appointment, field data, deviation evidence, legal basis, delegation, staff/budget authority, compliance proof or a management/public decision.\n\n## Editorial uniqueness\n\nThis world is written specifically around employer appointment, environmental integrity, capacity/budget tradeoffs, explicit backlog, environmental deviations, employee voice, governance pressure, organizational learning and private role containment. It is not a copy of Formann, Natur / Forvaltning og rådgivning or Scenekunst / Institusjonsledelse.\n\n## Runtime\n\n**No new runtime.** Existing Scene Pipeline, Career gates, mail machinery and governed state remain canonical.\n`);
+fs.writeFileSync(path.join(ROOT,SOURCE),`# Natur / Miljøledelse — Role World rollout source-first\
+\
+## Scope lock\
+\
+Canonical role: \`${KEY}\`. This rollout closes **only** \`situated_reputation\`. It preserves the existing 16-step mail plan, four prerequisite People, four work surfaces, two work loops, persistent \`${PERSISTENT}\`, waiting/handoff/rework and authority boundary.\
+\
+## Career gates\
+\
+- **Naturvernleder** — \`appointment_required\` via \`employer_appointment\`.\
+- **Miljøsjef** — \`appointment_required\` via \`employer_appointment\`.\
+- **Miljødirektør** — \`appointment_required\` via \`employer_appointment\`.\
+\
+No standing, History Go status or Natur-badge can satisfy employer appointment, create staff/budget authority, become environmental evidence or create public authority.\
+\
+## Situated reputation\
+\
+There is **no global reputation score**. Standing is bounded to seven audiences: fag/quality, economy/capacity, environmental risk/compliance, employees/leadership line, top management/governance, peer/tverrfaglig leadership and private relations. Each audience has its own slow standing axis and explicit cannot-grant boundary.\
+\
+## Dramaturgy\
+\
+The Role World has **14 days × 4 phases = 56 unique beats**, seven multi-day relationship threads, six private aftermaths and eight delayed consequences. Beats are grounded in all **15 canonical mail sources** from the prerequisite package.\
+\
+## Cross-role\
+\
+Readiness says \`candidate_when_shared_work_is_real\`. No governed shared work object is proved here, so there is **no cross-role link** and no invented shared object. A future link requires concrete shared work, ownership, authority and handoff proof.\
+\
+## History Go boundary\
+\
+History Go can improve environmental leadership questions through place, species, ecology and natural-history context. It cannot provide employer appointment, field data, deviation evidence, legal basis, delegation, staff/budget authority, compliance proof or a management/public decision.\
+\
+## Editorial uniqueness\
+\
+This world is written specifically around employer appointment, environmental integrity, capacity/budget tradeoffs, explicit backlog, environmental deviations, employee voice, governance pressure, organizational learning and private role containment. It is not a copy of Formann, Natur / Forvaltning og rådgivning or Scenekunst / Institusjonsledelse.\
+\
+## Runtime\
+\
+**No new runtime.** Existing Scene Pipeline, Career gates, mail machinery and governed state remain canonical.\
+`);
 
 console.log(JSON.stringify({role:KEY,world:WORLD,canonical_refs:canonicalRefs.length,days:world.season.days,beats:world.season.coverage.length,audiences:audiences.length,threads:primaryThreads.length,delayed:delayedConsequences.length},null,2));
