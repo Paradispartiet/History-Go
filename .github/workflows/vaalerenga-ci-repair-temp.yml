@@ -1,0 +1,106 @@
+name: TEMP Vålerenga CI repair
+
+on:
+  push:
+    branches:
+      - agent/vaalerenga-replay-main-20260905
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    if: github.event.head_commit.message == 'Run fail-closed Vålerenga CI repair'
+    runs-on: ubuntu-latest
+    env:
+      LOCKED_MAIN: de937ab02a273f7a3831424a4e6252078a2f4a44
+    steps:
+      - name: Checkout exact branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/vaalerenga-replay-main-20260905
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Lock current main
+        run: |
+          git fetch origin main
+          test "$(git rev-parse origin/main)" = "$LOCKED_MAIN"
+          git merge-base --is-ancestor "$LOCKED_MAIN" HEAD
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Materialize minimal Vålerenga CI repair
+        run: |
+          node .tmp/vaalerenga-ci-repair.mjs
+          git diff --check
+          node scripts/validate-place-description-production-v4_2_policy.mjs --all --report /tmp/vaalerenga-place-description-validation.json
+
+      - name: Regenerate affected canonical derivatives
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+          npm run epoker:places:build
+          npm run knowledge:canonical:write
+          node scripts/audit-fagverk-place-pages.mjs
+          node scripts/build-fagverk-release-manifest.mjs
+          git checkout "$LOCKED_MAIN" -- reports/knowledge-contract-audit.json
+          git add -A
+          git diff --cached --check
+
+      - name: Validate focused and shared contracts
+        run: |
+          node scripts/validate-place-description-production-v4_2_policy.mjs --all --report /tmp/vaalerenga-place-description-validation-after.json
+          node --test tests/vaalerenga-completion.test.mjs
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-content
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run knowledge:canonical:check
+          npm run places:index:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run epoker:places:check
+          node --test tests/epoke-place-index.test.mjs tests/epoker-runtime-place-index.test.mjs tests/epoke-viewer.test.mjs
+          npm run place-open:check
+          npm run test:place-open
+
+      - name: Remove temporary CI repair machinery
+        run: |
+          rm -f .github/workflows/vaalerenga-ci-repair-temp.yml
+          rm -f .tmp/vaalerenga-ci-repair.mjs
+          rm -f .tmp/vaalerenga-ci-repair-trigger
+          rmdir .tmp 2>/dev/null || true
+          git add -A
+          git diff --cached --check
+          test ! -e .github/workflows/vaalerenga-ci-repair-temp.yml
+          test ! -e .tmp/vaalerenga-ci-repair.mjs
+          test ! -e .tmp/vaalerenga-ci-repair-trigger
+
+      - name: Create local candidate commit
+        run: |
+          test -n "$(git diff --cached --name-only)"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Fix Vålerenga production governance gates'
+
+      - name: Validate PR-isolation and repository hygiene on candidate
+        run: |
+          node scripts/validate-place-description-production-v4_2_policy.mjs --changed --base "$LOCKED_MAIN" --head HEAD
+          REPO_HYGIENE_BASE_SHA="$LOCKED_MAIN" REPO_HYGIENE_HEAD_SHA="$(git rev-parse HEAD)" node scripts/audit-repository-hygiene-v1.mjs
+          npm run knowledge:canonical:check
+          git diff --check "$LOCKED_MAIN" HEAD
+
+      - name: Recheck locked main
+        run: |
+          git fetch origin main
+          test "$(git rev-parse origin/main)" = "$LOCKED_MAIN"
+
+      - name: Push verified candidate
+        run: git push origin HEAD:agent/vaalerenga-replay-main-20260905
