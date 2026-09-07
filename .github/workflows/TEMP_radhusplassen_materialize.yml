@@ -1,0 +1,102 @@
+name: TEMP Rådhusplassen materialize
+
+on:
+  push:
+    branches:
+      - agent/radhusplassen-materialize-20260908
+    paths:
+      - '.github/workflows/TEMP_radhusplassen_materialize.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - name: Install dependencies
+        run: npm ci
+      - name: Materialize canonical Rådhusplassen production
+        run: |
+          set -euxo pipefail
+          node --check tools/materialize-radhusplassen.mjs
+          node tools/materialize-radhusplassen.mjs
+      - name: Regenerate deterministic canonical outputs
+        run: |
+          set -euxo pipefail
+          npm run places:index:build
+          node --experimental-strip-types scripts/knowledge-canonical-data.mts --write
+          npm run place-open:build
+          npm run epoker:places:build
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/audit-quiz-manifest-v2.mjs
+          node scripts/audit-place-images.mjs --mode=all --report=/tmp/place-image-audit.json
+          node - <<'NODE'
+          const fs=require('fs');
+          const report=JSON.parse(fs.readFileSync('/tmp/place-image-audit.json','utf8'));
+          const p='data/places/place_image_backlog_summary.json';
+          const s=JSON.parse(fs.readFileSync(p,'utf8'));
+          s.generatedAt='2026-09-08';
+          s.generatedFromCommit='radhusplassen_materialize_20260908';
+          s.totalPlaces=report.totalPlaces;
+          s.summary={validLocal:report.summary.local,validRemote:report.summary.remote,optionalMissing:report.summary.optional,missing:report.summary.missing,invalidLocalPath:report.summary.invalid,remaining:report.summary.missing+report.summary.invalid};
+          s.byCategory ||= {};
+          for(const [k,v] of Object.entries(report.byCategory||{})) s.byCategory[k]={total:v.total,valid:v.local+v.remote,optional:v.optional,missing:v.missing,invalid:v.invalid};
+          fs.writeFileSync(p,JSON.stringify(s,null,2)+'\n');
+          NODE
+      - name: Reconcile epoch contract expectations to regenerated canonical index
+        run: |
+          set -euxo pipefail
+          node - <<'NODE'
+          const fs=require('fs');
+          const index=JSON.parse(fs.readFileSync('data/epoker/epoke-place-index.json','utf8'));
+          const p='tests/epoke-place-index.test.mjs'; let s=fs.readFileSync(p,'utf8');
+          const stats=index.stats, cov=index.domains.historie.oslo_coverage;
+          const reps={
+            canonical_story_milestone_count:stats.canonical_story_milestone_count,
+            verified_place_production_milestone_count:stats.verified_place_production_milestone_count,
+            canonical_place_count:cov.canonical_place_count,
+            dated_evidence_place_count:cov.dated_evidence_place_count,
+            documented_case_place_count:cov.documented_case_place_count,
+            awaiting_source_backed_history_count:cov.awaiting_source_backed_history_count
+          };
+          for(const [k,v] of Object.entries(reps)){
+            const re=new RegExp(`(assert\\.equal\\((?:index\\.stats|coverage)\\.${k}, )\\d+(\\);)`);
+            if(!re.test(s)) throw new Error(`Missing epoch expectation ${k}`);
+            s=s.replace(re,`$1${v}$2`);
+          }
+          fs.writeFileSync(p,s);
+          console.log(reps);
+          NODE
+      - name: Validate focused Rådhusplassen contracts
+        run: |
+          set -euxo pipefail
+          node --test tests/radhusplassen-completion.test.mjs
+          npm run places:index:check
+          npm run place-open:check
+          npm run epoker:places:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node scripts/audit-place-images.mjs --mode=all --verify-summary=data/places/place_image_backlog_summary.json
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run leksikon:ids:check
+          npm run check:stories
+          npm run audit:knowledge
+          git diff --check
+          test -z "$(git diff --name-only --diff-filter=U)"
+      - name: Commit verified materialized output
+        run: |
+          set -euxo pipefail
+          git add -A
+          git status --short
+          git config user.name 'history-go-materializer'
+          git config user.email 'actions@users.noreply.github.com'
+          git commit -m 'TEMP materialize verified Rådhusplassen production'
+          git push origin HEAD:refs/heads/agent/radhusplassen-materialize-20260908
